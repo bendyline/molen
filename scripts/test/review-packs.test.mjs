@@ -160,8 +160,8 @@ test('publishes only after remote attachment digests match, and resumes without 
       release = { id: 1, tag_name: lock.release, draft: true };
       return JSON.stringify(release);
     }
-    if (args[0] === 'api')
-      return JSON.stringify([args.at(-1).includes('/assets?') ? remote : release ? [release] : []]);
+    if (args.includes('--jq')) return release ? `${JSON.stringify(release)}\n` : '';
+    if (args[0] === 'api') return JSON.stringify([remote]);
     if (args[1] === 'upload') {
       const name = args[3].split(/[\\/]/).at(-1),
         meta = info.get(name);

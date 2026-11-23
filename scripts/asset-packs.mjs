@@ -27,6 +27,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import * as tar from 'tar';
 import { assetInputs, changedInputs } from './asset-inputs.mjs';
+import { listReleases } from './github-releases.mjs';
 
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const MANIFEST = 'asset-manifest.json';
@@ -903,10 +904,7 @@ export async function publishAssets({
         maxBuffer: 8 * 1024 ** 2,
       }));
   // List releases rather than treating arbitrary authentication/network failures as "not found".
-  const releases = JSON.parse(
-    gh(['api', '--paginate', '--slurp', `repos/${repository}/releases?per_page=100`]),
-  ).flat();
-  let published = releases.find((r) => r.tag_name === release);
+  let published = listReleases(gh, repository).find((r) => r.tag_name === release);
   if (published && !published.draft) {
     log(`Already published https://github.com/${repository}/releases/tag/${release}`);
     return release;

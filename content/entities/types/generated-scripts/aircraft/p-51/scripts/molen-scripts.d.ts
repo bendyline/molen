@@ -983,6 +983,11 @@ type MolenFigureData = {
     eyeTilt?: number;
     lips?: number;
     crown?: number;
+    faceLength?: number;
+    noseLength?: number;
+    mouthWidth?: number;
+    browArch?: number;
+    eyeLid?: number;
   };
   facing?: 'velocity' | 'manual';
   turnRate?: number;

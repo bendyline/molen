@@ -211,7 +211,10 @@ function fakeGitHub(releases, calls = []) {
     if (command === 'api') {
       const assets = rest.at(-1).match(/releases\/(\d+)\/assets/);
       if (assets) return JSON.stringify([releases.find((r) => r.id === Number(assets[1])).assets]);
-      return JSON.stringify([releases]);
+      if (rest.includes('--jq'))
+        return releases
+          .map(({ id, tag_name, draft }) => `${JSON.stringify({ id, tag_name, draft })}\n`)
+          .join('');
     }
     if (command === 'release' && rest[0] === 'upload') {
       const bytes = readFileSync(rest[2]);

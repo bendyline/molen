@@ -59,7 +59,7 @@ describe('the designer model', () => {
     expect(model.canUndo).toBe(false);
   });
 
-  it('randomizes under the steer, keeping the parts asked for', () => {
+  it('randomizes under a steer the host sets, keeping the parts asked for', () => {
     const model = createFigureDesignerModel({
       look: randomFigureLook('r'),
       steer: 'feminine',
@@ -73,6 +73,32 @@ describe('the designer model', () => {
     for (let i = 0; i < 40; i++) {
       model.randomize();
       expect(model.look.person.facialHair).toBe('facial.none');
+    }
+  });
+
+  it('lets each random look lean for itself when no steer is set', () => {
+    const model = createFigureDesignerModel({
+      look: randomFigureLook('lean'),
+      randomSeed: nextSeed,
+    });
+    expect(model.steer).toBeUndefined();
+    // New people: some with facial hair, some in a dress or a skirt.
+    const seen = { facialHair: false, skirtOrDress: false };
+    for (let i = 0; i < 60; i++) {
+      model.randomize();
+      if (model.look.person.facialHair !== 'facial.none') seen.facialHair = true;
+      if (model.look.outfit.bottom.id === 'bottom.skirt' || model.figure.features?.top === 'dress')
+        seen.skirtOrDress = true;
+    }
+    expect(seen).toEqual({ facialHair: true, skirtOrDress: true });
+    // A new outfit follows the person: a bearded one is never drawn a dress or a skirt.
+    model.choose('body', 'body.straight');
+    model.choose('facialHair', 'facial.beard');
+    for (let i = 0; i < 60; i++) {
+      model.randomize(['person']);
+      expect(model.look.person.facialHair).toBe('facial.beard');
+      expect(model.look.outfit.bottom.id).not.toBe('bottom.skirt');
+      expect(model.figure.features?.top).not.toBe('dress');
     }
   });
 
@@ -92,11 +118,11 @@ describe('the designer model', () => {
 
 describe('designer strings', () => {
   it('falls back from host strings to English to the catalogue', () => {
-    expect(figureDesignerText('steer.masculine')).toBe('Masculine');
-    expect(figureDesignerText('steer.masculine', { strings: { 'steer.masculine': 'Male' } })).toBe(
-      'Male',
-    );
-    expect(figureDesignerText('steer.feminine', { strings: () => undefined })).toBe('Feminine');
+    expect(figureDesignerText('section.outfit')).toBe('Clothing & accessories');
+    expect(
+      figureDesignerText('section.outfit', { strings: { 'section.outfit': 'Wardrobe' } }),
+    ).toBe('Wardrobe');
+    expect(figureDesignerText('section.person', { strings: () => undefined })).toBe('Character');
     expect(figureDesignerText('option.hair.bun')).toBe('Bun');
     expect(figureDesignerText('swatch.skin.#9d6742')).toBe('Tone 6 of 10');
     expect(

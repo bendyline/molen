@@ -93,6 +93,7 @@ export {
   type EarthAudioOptions,
 } from './client/audio';
 export { EarthAudioTerrain, type EarthAudioTerrainSample } from './client/audio-terrain';
+export { EarthAvatar, type EarthAvatarFrame, type EarthAvatarOptions } from './client/avatar';
 export {
   EARTH_PACK_IDS,
   type EarthContent,

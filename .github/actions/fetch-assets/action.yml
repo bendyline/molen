@@ -5,9 +5,9 @@ description: >-
   bundle exists for these inputs yet (a pull request that changes models). That build starts from
   the newest earlier build this branch can see, so it reruns only the jobs whose inputs changed.
 outputs:
-  built:
-    description: "'true' when this job built the bundle from source."
-    value: ${{ steps.fetch.outputs.build == 'true' }}
+  release:
+    description: The release this checkout's asset inputs name, published or not.
+    value: ${{ steps.key.outputs.release }}
 runs:
   using: composite
   steps:

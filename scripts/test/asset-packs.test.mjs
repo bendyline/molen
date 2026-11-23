@@ -33,6 +33,7 @@ import {
   validatePlan,
 } from '../build-assets.mjs';
 import { checkSourceBundles } from '../check-source-bundles.mjs';
+import { listReleases } from '../github-releases.mjs';
 import { checkTrackedReviewCaptures } from '../review-captures.mjs';
 
 const roots = [];
@@ -750,8 +751,8 @@ function fakeGitHub(release, { existing } = {}) {
   const commands = [];
   const runGh = (args) => {
     commands.push(args);
-    if (args.some((a) => a.endsWith('/releases?per_page=100')))
-      return JSON.stringify([existing ? [existing] : []]);
+    if (args.includes('--jq') && args.at(-1).endsWith('/releases?per_page=100'))
+      return existing ? `${JSON.stringify(existing)}\n` : '';
     if (args.includes('POST')) return JSON.stringify({ id: 123, draft: true, tag_name: release });
     if (args.some((a) => a.endsWith('/assets?per_page=100'))) return JSON.stringify([uploaded]);
     if (args.includes('DELETE')) {
@@ -778,6 +779,25 @@ function fakeGitHub(release, { existing } = {}) {
   };
   return { runGh, commands, uploaded };
 }
+
+test('lists releases without their attachments, which outgrow a child process buffer', () => {
+  let command;
+  const releases = listReleases((args) => {
+    command = args;
+    // gh prints one line per release, page after page.
+    return '{"id":2,"tag_name":"assets-b","draft":true}\n{"id":1,"tag_name":"packs","draft":false}\r\n';
+  }, 'bendyline/molen');
+  assert.deepEqual(releases, [
+    { id: 2, tag_name: 'assets-b', draft: true },
+    { id: 1, tag_name: 'packs', draft: false },
+  ]);
+  assert.ok(command.includes('--paginate'));
+  assert.match(command[command.indexOf('--jq') + 1], /\{id, tag_name, draft\}/);
+  assert.deepEqual(
+    listReleases(() => '', 'bendyline/molen'),
+    [],
+  );
+});
 
 test('packs and publishes a bundle only after every attachment digest is verified', async () => {
   const root = await fixture();

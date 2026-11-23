@@ -8,31 +8,23 @@ declare global {
   interface Window {
     changes: FigureDesignerChange[];
     look: FigureLook;
-    steer: string;
   }
 }
 
 window.changes = [];
 
 function App() {
-  const [look, setLook] = useState<FigureLook>(() => randomFigureLook('golden'));
-  const [steer, setSteer] = useState<'masculine' | 'feminine' | 'unspecified'>('unspecified');
+  // The person the golden test's thresholds were measured on.
+  const [look, setLook] = useState<FigureLook>(() =>
+    randomFigureLook('golden', { steer: 'unspecified' }),
+  );
   window.look = look;
-  window.steer = steer;
   return (
     <FigureDesigner
       look={look}
-      steer={steer}
-      onSteerChange={setSteer}
       onChange={(next, change) => {
         window.changes.push(change);
         setLook(next);
-      }}
-      strings={{
-        'steer.label': 'Gender',
-        'steer.masculine': 'Male',
-        'steer.feminine': 'Female',
-        'steer.unspecified': 'Non-binary',
       }}
       motion="reduced"
     />

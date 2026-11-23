@@ -24,6 +24,12 @@ import type { BuildingRequest, RGB } from './types';
  */
 export const TEXTURED_SURFACE_MEAN = 0.65;
 
+/**
+ * What a textured pane's reflection of the sky adds to its base color, as albedo: glass is drawn
+ * with more reflectance than its color has, and a stand-in has no reflection of its own.
+ */
+export const GLASS_SHEEN = 0.045;
+
 const SHARED_MATERIAL_PREFIX = 'matgraph:molen.worldgen.material.';
 
 /**
@@ -240,12 +246,20 @@ function textureMean(ref: string): readonly [number, number, number] {
 
 /** A part's mean linear color as it renders up close. */
 function partMean(part: RecipePart, glass: boolean): [number, number, number] {
-  // Flat colors (palette references) are baked into the vertex color and drawn untextured.
-  if (part.ref === WHITE_REF)
-    return [decode(part.color[0]), decode(part.color[1]), decode(part.color[2])];
+  // Flat colors (palette references) are baked into the vertex color and drawn untextured, glass
+  // at the textured mean (see the client's flat materials).
+  if (part.ref === WHITE_REF) {
+    const scale = glass ? TEXTURED_SURFACE_MEAN : 1;
+    return [
+      decode(part.color[0]) * scale,
+      decode(part.color[1]) * scale,
+      decode(part.color[2]) * scale,
+    ];
+  }
   const mean = textureMean(part.ref);
   // Textured glass draws its texture as is; its vertex color is the flat levels' glass tone.
-  if (glass && part.tint !== 'multiply') return [mean[0], mean[1], mean[2]];
+  if (glass && part.tint !== 'multiply')
+    return [mean[0] + GLASS_SHEEN, mean[1] + GLASS_SHEEN, mean[2] + GLASS_SHEEN];
   return [
     mean[0] * decode(part.color[0]),
     mean[1] * decode(part.color[1]),

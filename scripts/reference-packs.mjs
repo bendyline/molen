@@ -27,6 +27,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import * as tar from 'tar';
 import { fileInfo, verifyArchive } from './asset-packs.mjs';
+import { listReleases } from './github-releases.mjs';
 import { isReferenceMaterial, trackedReferenceMaterial } from './reference-material.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -437,12 +438,7 @@ export async function publishReferences({
   const gh =
     runGh ?? ((args) => execFileSync('gh', args, { encoding: 'utf8', maxBuffer: 8 * 1024 ** 2 }));
   const request = (args) => JSON.parse(gh(args));
-  const releases = request([
-    'api',
-    '--paginate',
-    '--slurp',
-    `repos/${repository}/releases?per_page=100`,
-  ]).flat();
+  const releases = listReleases(gh, repository);
   const listAssets = (id) =>
     request([
       'api',

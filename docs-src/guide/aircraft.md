@@ -790,6 +790,8 @@ rest-relative `motion` (`property`, `axis`, `scale`, optional `offset`). Switche
 gear, flaps and engine RPM still follow the simulation's transit/spool response.
 Separate throttle levers are associated with engine
 positions from pilot-left to pilot-right; duplicated collective/thrust levers remain linked.
+`cockpit.floor` is the height of the floor at the pilot's feet in the model's frame, measured as the
+bottom of the rudder pedals nearest their eye, for seating a figure (undefined without pedals).
 `bindAircraftCockpitPointer` from `@bendyline/molen-client/aircraft` binds a canvas, camera and
 active pilot session. The HTML companion panel is opt-in with `companionPanel: true`, for
 accessibility or older models with incomplete geometry. Call its `update()` each frame

@@ -20,6 +20,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import * as tar from 'tar';
 import { fileInfo, verifyArchive } from './asset-packs.mjs';
+import { listReleases } from './github-releases.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const LOCK = 'review-lock.json';
@@ -364,13 +365,7 @@ export async function publishReviews({
   const gh =
     runGh ?? ((args) => execFileSync('gh', args, { encoding: 'utf8', maxBuffer: 8 * 1024 ** 2 }));
   const request = (args) => JSON.parse(gh(args));
-  const releases = request([
-    'api',
-    '--paginate',
-    '--slurp',
-    `repos/${repository}/releases?per_page=100`,
-  ]).flat();
-  let published = releases.find((item) => item.tag_name === release);
+  let published = listReleases(gh, repository).find((item) => item.tag_name === release);
   const uploads = [...lock.archives, { file: LOCK, ...(await fileInfo(join(directory, LOCK))) }];
   if (
     !validateReviewLock(JSON.parse(await readFile(join(directory, LOCK), 'utf8'))) ||

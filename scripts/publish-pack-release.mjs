@@ -28,6 +28,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
+import { listReleases } from './github-releases.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DEFAULT_INDEX = join(ROOT, 'examples/world-explorer/public/packs/index.json');
@@ -166,10 +167,7 @@ export async function publishPackRelease({
   const notes = releaseNotes(repo, tag, target, packs.length);
 
   // List releases rather than treating arbitrary authentication/network failures as "not found".
-  const releases = JSON.parse(
-    gh(['api', '--paginate', '--slurp', `repos/${repo}/releases?per_page=100`]),
-  ).flat();
-  let release = releases.find((r) => r.tag_name === tag);
+  let release = listReleases(gh, repo).find((r) => r.tag_name === tag);
   const listAssets = () =>
     release === undefined
       ? []

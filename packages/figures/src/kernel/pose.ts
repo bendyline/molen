@@ -23,7 +23,15 @@ import type {
   FigureMode,
   FigureStateData,
 } from './components';
-import { bipedGaitPose, fallPose, idlePose, jumpPose, quadrupedGaitPose, sitPose } from './gait';
+import {
+  bipedGaitPose,
+  fallPose,
+  idlePose,
+  jumpPose,
+  quadrupedGaitPose,
+  restHandsOnThighs,
+  sitPose,
+} from './gait';
 import { solveTwoBoneIk } from './ik';
 import {
   blendPose,
@@ -58,6 +66,11 @@ export interface PoseEvalOptions {
   ik?: Partial<Record<FigureIkEffector, Vec3>>;
   /** Re-anchor the root so this point sits at the figure origin (seats, saddles). */
   anchor?: FigureAnchor;
+  /**
+   * Seated, anchored bipeds: how far below the anchor the surface under the feet lies, meters (a
+   * cockpit floor below a pilot's eye). Legs too long to hang above it rest on it, reaching forward.
+   */
+  floor?: number;
   /** Saddle-relative contact points for a cycle rider, evaluated after the seated pose. */
   riding?: {
     lean: number;
@@ -126,6 +139,8 @@ function modePose(
   tickRate: number,
   seed: number,
   buf: PoseBuffer,
+  /** Ground covered per gait cycle, meters (bipeds: what keeps the feet planted). */
+  stride: number | undefined,
 ): void {
   resetPose(buf);
   switch (mode) {
@@ -134,17 +149,17 @@ function modePose(
       break;
     case 'walk':
     case 'run':
-      if (rig.archetype === 'biped') bipedGaitPose(rig, phase, mode === 'run', buf);
+      if (rig.archetype === 'biped') bipedGaitPose(rig, phase, mode === 'run', buf, stride);
       else quadrupedGaitPose(rig, phase, gait ?? (mode === 'run' ? 'trot' : 'walk'), buf);
       break;
     case 'jump':
       jumpPose(rig, buf);
       break;
     case 'fall':
-      fallPose(rig, buf);
+      fallPose(rig, buf, tick / tickRate, seed);
       break;
     case 'sit':
-      sitPose(rig, buf);
+      sitPose(rig, buf, tick / tickRate, seed);
       break;
     default:
       break;
@@ -253,9 +268,11 @@ function applyIk(
   goal: Vec3,
   /** Turns the knee or elbow direction with a body turned this far about Y. */
   poleYaw = 0,
+  /** The way the knee or elbow bends, instead of the chain's own. */
+  bend?: Vec3,
 ): void {
   const { chain } = IK_CHAINS[effector];
-  let { pole } = IK_CHAINS[effector];
+  let pole = bend ?? IK_CHAINS[effector].pole;
   if (poleYaw !== 0) {
     const c = dmath.cos(poleYaw),
       s = dmath.sin(poleYaw);
@@ -335,12 +352,16 @@ export function evaluatePose(
   const mode = upright ? 'idle' : (state?.mode ?? 'idle');
   const phase = state === undefined ? 0 : figurePhase(state, tick, opts.tickRate);
   const seed = opts.seed ?? 0;
-  modePose(rig, mode, phase, state?.gait, tick, opts.tickRate, seed, cur);
+  const stride =
+    state !== undefined && state.strideRate > 0 && state.speed > 0
+      ? state.speed / state.strideRate
+      : undefined;
+  modePose(rig, mode, phase, state?.gait, tick, opts.tickRate, seed, cur, stride);
   const blendTicks = opts.blendTicks ?? 12;
   if (state?.prevMode !== undefined && blendTicks > 0) {
     const w = dmath.smoothstep((tick - state.modeAtTick) / blendTicks);
     if (w < 1) {
-      modePose(rig, state.prevMode, phase, state.gait, tick, opts.tickRate, seed, prev);
+      modePose(rig, state.prevMode, phase, state.gait, tick, opts.tickRate, seed, prev, stride);
       blendPose(prev, cur, w, cur);
     }
   }
@@ -464,6 +485,18 @@ export function evaluatePose(
       p = socketTransform(rig, pose, 'eye', model)?.pos;
     }
     if (p !== undefined) {
+      // The limbs move neither the eye nor the pelvis, so the anchor point holds.
+      if (
+        opts.floor !== undefined &&
+        mode === 'sit' &&
+        riding === undefined &&
+        rig.archetype === 'biped' &&
+        restFeet(rig, cur, model, p[1] - opts.floor)
+      ) {
+        // The hands lay on hanging thighs: follow them up.
+        restHandsOnThighs(rig, cur);
+        writeLocals(rig, cur, pose.local);
+      }
       const pelvis = opts.anchor === 'pelvis';
       pose.local[0] = (pose.local[0] as number) - p[0] + (pelvis ? slide[0] : 0);
       pose.local[1] =
@@ -472,6 +505,39 @@ export function evaluatePose(
     }
   }
   return pose;
+}
+
+/** Share of its leg's length between a seated hip and an ankle resting on a floor near the seat. */
+const FLOOR_LEG_EXTENSION = 0.8;
+
+/**
+ * Rest seated feet on a floor at `floor` (figure space) that their hanging legs would pass
+ * through: ankles at their own height above it, legs out in front, knees up. True when a leg moved.
+ */
+function restFeet(rig: FigureRig, buf: PoseBuffer, model: Float32Array, floor: number): boolean {
+  let moved = false;
+  const ankle = floor + rig.metrics.ankleHeight;
+  for (const effector of ['foot.l', 'foot.r'] as const) {
+    const { chain } = IK_CHAINS[effector];
+    const u = rig.index[chain[0]],
+      l = rig.index[chain[1]],
+      e = rig.index[chain[2]];
+    if (u === undefined || l === undefined || e === undefined) continue;
+    const foot = readTransform(model, e).pos;
+    if (foot[1] >= ankle) continue;
+    const hip = readTransform(model, u).pos;
+    const lower = rig.joints[l] as FigureJoint,
+      end = rig.joints[e] as FigureJoint;
+    const reach =
+      FLOOR_LEG_EXTENSION *
+      (dmath.hypot(lower.bindPos[0], lower.bindPos[1], lower.bindPos[2]) +
+        dmath.hypot(end.bindPos[0], end.bindPos[1], end.bindPos[2]));
+    const drop = hip[1] - ankle;
+    const ahead = dmath.sqrt(dmath.max(0, reach * reach - drop * drop));
+    applyIk(rig, buf, model, effector, [foot[0], ankle, hip[2] + ahead], 0, [0, 1, 0]);
+    moved = true;
+  }
+  return moved;
 }
 
 /**

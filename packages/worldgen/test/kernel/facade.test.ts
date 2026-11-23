@@ -6,7 +6,7 @@ import { type BuildingGenerateInput, generateBuilding } from '../../src/kernel/b
 import { buildOpeningFrames } from '../../src/kernel/facade';
 import { distancePointToRing, pointInRing, ringBounds } from '../../src/kernel/geometry2d';
 import { MeshBufferBuilder } from '../../src/kernel/mesh-buffers';
-import { WHITE_REF } from '../../src/kernel/recipe';
+import { WHITE_REF, WINDOW_GLASS } from '../../src/kernel/recipe';
 import { resolveStylePackDocuments } from '../../src/kernel/stylepack';
 import { FLAT_GROUND, type MeshBuffers, type Vec2 } from '../../src/kernel/types';
 import '../../src/kernel';
@@ -246,8 +246,9 @@ describe('facades', () => {
       ].sort((a, b) => a - b);
     expect(levels(simple.buffers)).toEqual(levels(full.buffers));
     expect(simple.facade?.windows).toBeGreaterThan(4 * 3 * 2);
+    // The glass tone, not the white that would read as filled-in windows.
     for (const vertex of windowVertices(simple.buffers)) {
-      expect(simple.buffers.colors[vertex * 3]).toBeLessThan(80);
+      expect(simple.buffers.colors[vertex * 3]).toBe(Math.round(WINDOW_GLASS[0] * 255));
     }
     const seamed = build(doc, {
       request: { ...request, clipped: true, seamEdges: [0, 1, 2, 3] },

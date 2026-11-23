@@ -80,7 +80,16 @@ test('every CI job that restores GLBs waits for the job that builds them', () =>
     if (job.includes('fetch-assets') || job.includes('path: .artifacts/asset-packs/'))
       assert.ok(needs(job).includes('assets'), `${id} restores GLBs before assets has them`);
   }
-  assert.match(jobs.get('publish-assets'), /needs\.assets\.outputs\.assets-built == 'true'/);
+});
+
+test('a push to main publishes any bundle without a release, not only one it just built', () => {
+  const jobs = workflowJobs('ci.yml');
+  // A bundle whose publish failed comes back from the Actions cache, so "built" would skip it.
+  assert.match(jobs.get('assets'), /gh release view "\$RELEASE"/);
+  assert.match(jobs.get('assets'), /assets-unpublished: \$\{\{ steps\.release\.outputs\.unpublish/);
+  assert.match(jobs.get('publish-assets'), /needs\.assets\.outputs\.assets-unpublished == 'true'/);
+  const action = read('.github/actions/fetch-assets/action.yml');
+  assert.match(action, /value: \$\{\{ steps\.key\.outputs\.release \}\}/);
 });
 
 test('a source build starts from an earlier one and keeps its records for the next', () => {

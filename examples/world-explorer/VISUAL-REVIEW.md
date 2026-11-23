@@ -107,6 +107,12 @@ the flat glass tone in `packages/worldgen/src/kernel/recipe.ts`, `towerWalls` in
 changes by less than 8 points across its three levels, and the skyline reads light against the
 sky as the guide's palette rules ask.
 
+**2026-11-23:** landed, from the engine side (the shared graphs also build landmark models, so
+they were left alone): generated panes reflect 16% of the sky, flat levels carry the pane's
+on-screen average, and `use.skyscraper` lost its near-black walls. No glass tints yet. At the
+Honolulu pose in [MEDIUM-FI-REVIEW.md](../../content/worldgen/source/MEDIUM-FI-REVIEW.md) the
+shaded tower faces read 18–25%.
+
 #### 2. Bring the Pacific Northwest palette back into band
 
 **P0 · `a09`, `a10`, `a11`, `a13`, `a14`, `a12`.** Lawns read teal and forests read black.
@@ -142,6 +148,10 @@ with a curve that has a softer toe (AgX or Khronos neutral) on the same frames b
 `packages/earth/src/client/look.ts`, lighting in `packages/client/src/sky/visual.ts`. **Done
 when:** no region larger than a car is under 8% on screen at noon, and High is at least as easy to
 read as Economy in the `a16` pose.
+
+**2026-11-23:** landed, keeping ACES. The fill the rig asked for was not arriving: the sky map
+delivered 40% of it to level ground. Shaded ground now sits at 38% of sunlit (it was 16%), pale paving nearer half, and
+walls and undersides take the sunlit ground's bounce.
 
 #### 4. Exposure that follows the light
 

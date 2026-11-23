@@ -17,7 +17,6 @@ import {
   FIGURE_LOOK_GARMENTS,
   FIGURE_LOOK_PERSON_PALETTES,
   FIGURE_LOOK_SLOTS,
-  FIGURE_LOOK_STEERS,
   type FigureDescriptor,
   type FigureLook,
   type FigureLookCatalog,
@@ -33,7 +32,6 @@ import {
   type FigureLookSteer,
   figureFromLook,
   figureLookKey,
-  figureLookOptions,
   figureLookReplaced,
   normalizeFigureLook,
   setFigureLookOption,
@@ -53,18 +51,18 @@ import {
 
 export type FigureDesignerSection = 'person' | 'outfit';
 /** Anything the designer can leave out. */
-export type FigureDesignerPart = FigureLookCategoryId | FigureLookPersonColor | 'height' | 'steer';
+export type FigureDesignerPart = FigureLookCategoryId | FigureLookPersonColor | 'height';
 
 export interface FigureDesignerProps {
   /** The look under edit (any value: it is repaired first). Controlled: pass back `onChange`'s. */
   look: unknown;
   /** A new look. `change.committed` is false mid-drag: save only committed looks. */
   onChange(look: FigureLook, change: FigureDesignerChange): void;
-  /** Which options come first and what random looks lean toward (default 'unspecified'). */
+  /**
+   * What every random look leans toward. Left out, each one leans for itself: "Surprise me" rolls
+   * a steer per press, and "New outfit" follows the person's body shape and facial hair.
+   */
   steer?: FigureLookSteer;
-  onSteerChange?(steer: FigureLookSteer): void;
-  /** Show the built-in steer control (default true). Hosts name its choices through `strings`. */
-  steerControl?: boolean;
   catalog?: FigureLookCatalog;
   strings?: FigureDesignerStrings;
   /** The sections to show, as tabs when there are two (default both). */
@@ -128,19 +126,14 @@ function Thumbnail({
 function OptionGroup({
   category,
   look,
-  steer,
 }: {
   category: FigureLookCategory;
   look: FigureLook;
-  steer: FigureLookSteer;
 }): ReactElement {
   const { model, catalog, text, focus } = useShared();
   const name = useId();
   const slot = (FIGURE_LOOK_SLOTS as readonly string[]).includes(category.id);
   const current = currentOption(look, category.id);
-  const entries = figureLookOptions(category.id, { catalog, steer });
-  const suggested = entries.filter((e) => e.suggested);
-  const others = entries.filter((e) => !e.suggested);
   const tile = (optionId: string | null, label: string): ReactElement => {
     const checked = current === optionId;
     const thumbLook =
@@ -167,22 +160,13 @@ function OptionGroup({
       </label>
     );
   };
-  const open = others.some((e) => e.option.id === current);
   return (
     <fieldset data-category={category.id}>
       <legend>{text(`category.${category.id}`)}</legend>
       <div data-part="options">
         {slot ? tile(null, text('slot.none')) : null}
-        {suggested.map((e) => tile(e.option.id, text(`option.${e.option.id}`)))}
+        {category.options.map((option) => tile(option.id, text(`option.${option.id}`)))}
       </div>
-      {others.length > 0 ? (
-        <details data-part="more" open={open || undefined}>
-          <summary>{text('more.options')}</summary>
-          <div data-part="options">
-            {others.map((e) => tile(e.option.id, text(`option.${e.option.id}`)))}
-          </div>
-        </details>
-      ) : null}
     </fieldset>
   );
 }
@@ -286,35 +270,6 @@ function Height({ look, units }: { look: FigureLook; units: 'metric' | 'imperial
   );
 }
 
-function Steer({
-  steer,
-  onSteer,
-}: {
-  steer: FigureLookSteer;
-  onSteer: (steer: FigureLookSteer) => void;
-}): ReactElement {
-  const { text } = useShared();
-  const name = useId();
-  return (
-    <fieldset data-part="steer">
-      <legend>{text('steer.label')}</legend>
-      <div data-part="segmented">
-        {FIGURE_LOOK_STEERS.map((value) => (
-          <label key={value} data-checked={value === steer || undefined}>
-            <input
-              type="radio"
-              name={name}
-              checked={value === steer}
-              onChange={() => onSteer(value)}
-            />
-            <span>{text(`steer.${value}`)}</span>
-          </label>
-        ))}
-      </div>
-    </fieldset>
-  );
-}
-
 /** Categories worth showing: more than one choice (an accessory slot's other choice is none). */
 function shown(category: FigureLookCategory, hide: ReadonlySet<string>): boolean {
   if (hide.has(category.id)) return false;
@@ -364,16 +319,10 @@ function ItemColors({
 
 function PersonSection({
   look,
-  steer,
-  onSteer,
-  steerControl,
   hide,
   units,
 }: {
   look: FigureLook;
-  steer: FigureLookSteer;
-  onSteer: (steer: FigureLookSteer) => void;
-  steerControl: boolean;
   hide: ReadonlySet<string>;
   units: 'metric' | 'imperial';
 }): ReactElement {
@@ -383,7 +332,7 @@ function PersonSection({
   const group = (id: FigureLookCategoryId): ReactElement | null => {
     const found = category(id);
     return found !== undefined && shown(found, hide) ? (
-      <OptionGroup key={id} category={found} look={look} steer={steer} />
+      <OptionGroup key={id} category={found} look={look} />
     ) : null;
   };
   const color = (id: FigureLookPersonColor, framing: FigurePreviewFraming): ReactElement | null =>
@@ -398,7 +347,6 @@ function PersonSection({
     );
   return (
     <>
-      {steerControl && !hide.has('steer') ? <Steer steer={steer} onSteer={onSteer} /> : null}
       {color('skin', 'body')}
       {group('head')}
       {group('hair')}
@@ -414,11 +362,9 @@ function PersonSection({
 
 function OutfitSection({
   look,
-  steer,
   hide,
 }: {
   look: FigureLook;
-  steer: FigureLookSteer;
   hide: ReadonlySet<string>;
 }): ReactElement {
   const { catalog } = useShared();
@@ -432,9 +378,7 @@ function OutfitSection({
         if (category === undefined || hide.has(id) || replaced.has(id)) return null;
         return (
           <div key={id} data-part="item">
-            {shown(category, hide) ? (
-              <OptionGroup category={category} look={look} steer={steer} />
-            ) : null}
+            {shown(category, hide) ? <OptionGroup category={category} look={look} /> : null}
             <ItemColors category={category} look={look} />
           </div>
         );
@@ -505,14 +449,13 @@ export function FigureDesigner(props: FigureDesignerProps): ReactElement {
   const sections = props.sections ?? ['person', 'outfit'];
   const hide = useMemo(() => new Set<string>(props.hide ?? []), [props.hide]);
   const units = props.units ?? 'metric';
-  const [internalSteer, setInternalSteer] = useState<FigureLookSteer>(props.steer ?? 'unspecified');
-  const steer = props.steer ?? internalSteer;
+  const steer = props.steer;
   const modelRef = useRef<FigureDesignerModel | undefined>(undefined);
   if (modelRef.current === undefined || modelRef.current.catalog !== catalog)
     modelRef.current = createFigureDesignerModel({
       look: props.look,
       catalog,
-      steer,
+      ...(steer ? { steer } : {}),
       ...(props.randomSeed ? { randomSeed: props.randomSeed } : {}),
     });
   const model = modelRef.current;
@@ -612,10 +555,6 @@ export function FigureDesigner(props: FigureDesignerProps): ReactElement {
     });
   textRef.current = text;
   unitsRef.current = units;
-  const onSteer = (next: FigureLookSteer): void => {
-    if (props.steer === undefined) setInternalSteer(next);
-    props.onSteerChange?.(next);
-  };
   const look = model.look;
   const shownLook = props.outfit ? { ...look, outfit: props.outfit } : look;
   const description = describeFigureLook(shownLook, {
@@ -702,16 +641,9 @@ export function FigureDesigner(props: FigureDesignerProps): ReactElement {
                 : { role: 'region', 'aria-label': text(`section.${section}`) })}
             >
               {section === 'person' ? (
-                <PersonSection
-                  look={look}
-                  steer={steer}
-                  onSteer={onSteer}
-                  steerControl={props.steerControl ?? true}
-                  hide={hide}
-                  units={units}
-                />
+                <PersonSection look={look} hide={hide} units={units} />
               ) : (
-                <OutfitSection look={look} steer={steer} hide={hide} />
+                <OutfitSection look={look} hide={hide} />
               )}
             </div>
             <p data-part="visually-hidden" aria-live="polite">

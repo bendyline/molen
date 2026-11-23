@@ -528,14 +528,15 @@ weathered-wood maps.
 
 ## Releases
 
-CI's `assets` job runs on every pull request and every push to `main`. When a push to `main`
-built a new bundle, the `publish-assets` job runs `pnpm assets:publish --target <commit>`. That
-packs the built GLBs into `.tar.gz` archives
-grouped by content role and geohash2 cell, about 256 MiB each. It uploads them with
-`asset-manifest.json` and `ASSET-NOTICES.txt` to a draft release, checks every attachment's
-digest, then publishes the release without marking it latest. A release that is already
-published is left untouched, and older releases stay for older commits. The owner can run the
-same command with GitHub CLI credentials that have release write access.
+CI's `assets` job runs on every pull request and every push to `main`. When a push to `main` has
+asset inputs with no published release, the `publish-assets` job runs
+`pnpm assets:publish --target <commit>`; a pull request never publishes. A publish that failed is
+retried by the next push, from the bundle in the Actions cache. Publishing packs the built GLBs
+into `.tar.gz` archives grouped by content role and geohash2 cell, about 256 MiB each. It uploads
+them with `asset-manifest.json` and `ASSET-NOTICES.txt` to a draft release, checks every
+attachment's digest, then publishes the release without marking it latest. A release that is
+already published is left untouched, and older releases stay for older commits. The owner can run
+the same command with GitHub CLI credentials that have release write access.
 
 | Archive example | Contents |
 | --- | --- |

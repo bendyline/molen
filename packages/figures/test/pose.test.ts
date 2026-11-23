@@ -216,6 +216,39 @@ describe('pose evaluation', () => {
     expect(dist).toBeCloseTo(reach, 3);
   });
 
+  it('rests seated feet on a floor their legs would hang through, whatever the height', () => {
+    const state: FigureStateData = { ...walking(human, 0), mode: 'sit' };
+    for (const height of [1.5, 1.75, 1.95]) {
+      const rig = deriveRig(resolveFigureDescriptor({ preset: 'human.adult', height }));
+      const feet = (floor?: number): { y: number; z: number; eye: number[]; knee: number } => {
+        const pose = evaluatePose(rig, state, 30, {
+          tickRate: TICK_RATE,
+          anchor: 'eye',
+          ...(floor !== undefined ? { floor } : {}),
+        });
+        const model = poseModelSpace(pose);
+        const foot = jointTransform(model, rig.index['foot.l'] as number).pos;
+        return {
+          y: foot[1],
+          z: foot[2],
+          eye: socketTransform(rig, pose, 'eye')?.pos ?? [],
+          knee: jointTransform(model, rig.index['lowerLeg.l'] as number).pos[1],
+        };
+      };
+      const hanging = feet();
+      // A floor out of reach changes nothing.
+      expect(feet(5)).toEqual(hanging);
+      // The P-51's cockpit floor: 0.88 m below its pilot's eye.
+      const resting = feet(0.88);
+      expect(hanging.y).toBeLessThan(-0.88);
+      expect(resting.y).toBeCloseTo(-0.88 + rig.metrics.ankleHeight, 3);
+      expect(resting.z).toBeGreaterThan(hanging.z + 0.1);
+      expect(resting.knee).toBeGreaterThan(resting.y + 0.1);
+      // The seat is still the eye's.
+      for (let k = 0; k < 3; k++) expect(resting.eye[k]).toBeCloseTo(0, 4);
+    }
+  });
+
   it('re-anchors the root so the pelvis sits at the origin when seated', () => {
     const seated = evaluatePose(human, { ...walking(human, 0), mode: 'sit' }, 0, {
       tickRate: TICK_RATE,

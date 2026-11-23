@@ -30,11 +30,17 @@ export const EARTH_SKY_PALETTE: Required<SkyPalette> = {
 export const EARTH_SKY_DOME: { brightness: number } = { brightness: 0.52 };
 
 /**
- * A strong sun over a moderate sky fill: lit faces sit near their authored color and shade faces
- * well under half, so slopes, cast shadows and darks read with photographic contrast without
- * swallowing the shaded side of a street seen against the sun. The fill is cool but far less saturated than the zenith
- * it comes from, as real skylight is: lit by the dome colors themselves, a roof turned from the
- * sun rendered navy whatever its palette.
+ * A strong sun over a moderate sky fill: lit faces sit near their authored color, and level ground
+ * in shade gets a quarter of the light of the same ground in sun, which the tone curve shows at
+ * about 40% of its value (pale paving at half). Slopes, cast shadows and darks read with
+ * photographic contrast without swallowing the shaded side of a street seen against the sun. The
+ * fill is cool but far less saturated than the zenith it comes from, as real skylight is: lit by
+ * the dome colors themselves, a roof turned from the sun rendered navy whatever its palette.
+ *
+ * `dayAmbient` is what a level surface gets from the sky, over the horizon's color, whether the
+ * hemisphere light or the sky reflection map carries it. Until November 2026 the map delivered 40%
+ * of it, and shade was nearly black; the sun gave up what the fill gained, so ground in sun keeps
+ * the light its palettes were matched under (sun x sin 26 degrees + fill = 2.97).
  *
  * The balance is authored at the default 26° sun (EARTH_SUN_ELEVATION). A higher sun puts up to
  * 1.6 times the light on level ground, so above it the rig adapts as a camera's exposure would:
@@ -47,8 +53,8 @@ export const EARTH_LIGHTING: {
   skyLightSaturation: number;
   referenceElevation: number;
 } = {
-  sunIntensity: 6.1,
-  dayAmbient: 1.25,
+  sunIntensity: 4.9,
+  dayAmbient: 1.4,
   nightAmbient: 0.05,
   skyLightSaturation: 0.3,
   referenceElevation: 26,

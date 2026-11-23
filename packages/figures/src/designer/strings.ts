@@ -1,7 +1,7 @@
 /**
  * Every word a figure designer shows, behind typed keys with an English table, so a host can
- * translate or rename anything (a host's presentation names, its own word for "outfit") through
- * a map or a lookup function. Option, category and swatch labels fall back to the catalogue.
+ * translate or rename anything (its own word for "outfit") through a map or a lookup function.
+ * Option, category and swatch labels fall back to the catalogue.
  */
 
 import { DEFAULT_FIGURE_LOOK_CATALOG } from '../look/catalog';
@@ -20,10 +20,6 @@ export type FigureDesignerStringKey =
   | 'designer.label'
   | 'section.person'
   | 'section.outfit'
-  | 'steer.label'
-  | 'steer.masculine'
-  | 'steer.feminine'
-  | 'steer.unspecified'
   | 'color.skin'
   | 'color.hairColor'
   | 'color.eyes'
@@ -44,7 +40,6 @@ export type FigureDesignerStringKey =
   | 'height.label'
   | 'height.value.metric'
   | 'height.value.imperial'
-  | 'more.options'
   | 'slot.none'
   | 'action.randomize'
   | 'action.randomizeOutfit'
@@ -66,10 +61,6 @@ export const FIGURE_DESIGNER_STRINGS_EN: Readonly<Record<FigureDesignerStringKey
   'designer.label': 'Character designer',
   'section.person': 'Character',
   'section.outfit': 'Clothing & accessories',
-  'steer.label': 'Style',
-  'steer.masculine': 'Masculine',
-  'steer.feminine': 'Feminine',
-  'steer.unspecified': 'Unspecified',
   'color.skin': 'Skin tone',
   'color.hairColor': 'Hair colour',
   'color.eyes': 'Eye colour',
@@ -90,7 +81,6 @@ export const FIGURE_DESIGNER_STRINGS_EN: Readonly<Record<FigureDesignerStringKey
   'height.label': 'Height',
   'height.value.metric': '{m} m',
   'height.value.imperial': '{ft} ft {in} in',
-  'more.options': 'More options',
   'slot.none': 'None',
   'action.randomize': 'Surprise me',
   'action.randomizeOutfit': 'New outfit',

@@ -6,7 +6,12 @@ import {
   type Vec3,
 } from '@bendyline/molen-schema';
 import * as THREE from 'three';
-import type { SkyReflectionState } from '../three/sky-reflections';
+import {
+  groundBounce,
+  luminance,
+  type SkyReflectionState,
+  skyFillRadiance,
+} from '../three/sky-reflections';
 import { type EarthSkyState, evaluateEarthSky, skyDirection, skyTimeMs } from './astronomy';
 
 const RAD = Math.PI / 180;
@@ -365,8 +370,10 @@ export class SkyVisual {
     // it gets at that elevation, so a midday scene is not brighter than its authored colors.
     const reference = light?.referenceElevation;
     if (reference !== undefined && altitude > reference) {
+      // What the sky gives a level surface: the hemisphere's intensity times its sky color.
+      const fill = this.ambientLight.intensity * luminance(this.ambientLight.color);
       const level = (degrees: number): number =>
-        this.ambientLight.intensity + this.sunLight.intensity * Math.sin(degrees * RAD);
+        fill + this.sunLight.intensity * Math.sin(degrees * RAD);
       const scale = level(reference) / level(altitude);
       this.sunLight.intensity *= scale;
       this.ambientLight.intensity *= scale;
@@ -381,31 +388,36 @@ export class SkyVisual {
     // While the filtered map is active it replaces the hemisphere's diffuse light (see the
     // renderer), so it must carry the same irradiance: the PBR shader integrates radiance over the
     // hemisphere (π), as in reflectionStateFromLights. Unscaled palette radiance made the sky
-    // light about three times `dayAmbient`, a flat blue fill that washed out sunlit contrast.
+    // light about three times `dayAmbient`, a flat blue fill that washed out sunlit contrast, and
+    // radiance graded to the palette's dark zenith less than half of it (see skyFillRadiance).
     const radiance = this.ambientLight.intensity / Math.PI;
     // The dome keeps its art-directed colors; the light it casts can be less saturated, since a
     // deep zenith blue would otherwise tint every face in shade (most of all roofs) navy.
     const saturation = Math.max(0, Math.min(1, light?.skyLightSaturation ?? 1));
     const cast = (color: THREE.Color): THREE.Color => {
-      const luminance = color.r * 0.2126 + color.g * 0.7152 + color.b * 0.0722;
+      const grey = luminance(color);
       return color.setRGB(
-        luminance + (color.r - luminance) * saturation,
-        luminance + (color.g - luminance) * saturation,
-        luminance + (color.b - luminance) * saturation,
+        grey + (color.r - grey) * saturation,
+        grey + (color.g - grey) * saturation,
+        grey + (color.b - grey) * saturation,
       );
     };
+    const sky = skyFillRadiance(
+      cast(this.palette.nightZenith.clone().lerp(this.palette.dayZenith, daylight)),
+      cast(this.palette.nightHorizon.clone().lerp(this.palette.dayHorizon, daylight)),
+      radiance,
+    );
+    const bounce = groundBounce(
+      this.ambientLight.intensity,
+      this.sunLight.intensity,
+      Math.sin(altitude * RAD),
+    );
     this.currentReflections = {
-      zenith: rgb(
-        cast(
-          this.palette.nightZenith.clone().lerp(this.palette.dayZenith, daylight),
-        ).multiplyScalar(radiance),
+      zenith: sky.zenith,
+      horizon: sky.horizon,
+      ground: rgb(
+        this.palette.ground.clone().multiplyScalar((0.08 + daylight * 0.92) * bounce * radiance),
       ),
-      horizon: rgb(
-        cast(
-          this.palette.nightHorizon.clone().lerp(this.palette.dayHorizon, daylight),
-        ).multiplyScalar(radiance),
-      ),
-      ground: rgb(this.palette.ground.clone().multiplyScalar((0.08 + daylight * 0.92) * radiance)),
       twilight: rgb(this.palette.twilight.clone().multiplyScalar(radiance)),
       twilightStrength: smooth(-18, -4, altitude) * (1 - smooth(0, 16, altitude)),
       sunDirection,

@@ -4,7 +4,11 @@ import { fileURLToPath } from 'node:url';
 import { type AssetProvider, MaterialResolver } from '@bendyline/molen-client';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
-import { createResolvedMaterialSet } from '../../src/client/materials';
+import {
+  createResolvedMaterialSet,
+  createVertexColorMaterialSet,
+  TEXTURED_SURFACE_MEAN,
+} from '../../src/client/materials';
 import { resolveStylePackDocuments, stylePackMaterialRefs } from '../../src/kernel/stylepack';
 import '../../src/kernel';
 
@@ -167,9 +171,29 @@ describe('resolved material set', () => {
     expect(glass.map).toBe(source.map);
     expect(glass.vertexColors).toBe(false);
     expect(set.materialFor('window', ref)).toBe(glass);
+    // A pane reflects the sky: 16% face on, where an ordinary surface reflects 4%.
+    const pane = glass as THREE.MeshPhysicalMaterial;
+    expect(pane.isMeshPhysicalMaterial).toBe(true);
+    expect(((pane.ior - 1) / (pane.ior + 1)) ** 2).toBeGreaterThan(0.15);
+    expect(pane.defines).toMatchObject({ STANDARD: '', PHYSICAL: '' });
+    expect(pane.roughness).toBe(0.3);
     // Other slots sharing the ref keep their tint.
     expect((set.materialFor('wall', ref) as THREE.MeshStandardMaterial).vertexColors).toBe(true);
     set.dispose();
+  });
+
+  it('draws flat glass as bright in a near batch as in a distant one', () => {
+    // A distant batch draws every slot on one material at the textured mean, glass included; a
+    // near flat window at full strength was half again brighter than the same one further off.
+    const near = createVertexColorMaterialSet();
+    const far = createVertexColorMaterialSet({ surfaceMean: TEXTURED_SURFACE_MEAN });
+    const color = (set: typeof near, slot: 'window' | 'wall') =>
+      (set.materialFor(slot, 'palette:#ffffff') as THREE.MeshStandardMaterial).color.r;
+    expect(color(near, 'window')).toBe(color(far, 'window'));
+    expect(color(near, 'window')).toBe(TEXTURED_SURFACE_MEAN);
+    expect(color(near, 'wall')).toBe(1);
+    near.dispose?.();
+    far.dispose?.();
   });
 
   it('releases a bake that completes after the viewer is disposed', async () => {

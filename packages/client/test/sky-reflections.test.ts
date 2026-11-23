@@ -1,11 +1,33 @@
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
-import { defaultSkyPalette, SkyVisual } from '../src/sky/visual';
+import { SkyVisual } from '../src/sky/visual';
 import {
+  luminance,
   reflectionStateFromLights,
+  type SkyReflectionState,
   SkyReflections,
   sampleSkyReflection,
 } from '../src/three/sky-reflections';
+
+/** The light a surface facing `normal` gets from the map: radiance over its hemisphere. */
+function irradiance(state: SkyReflectionState, normal: readonly number[]): number {
+  const color = new THREE.Color();
+  const steps = 96;
+  let sum = 0;
+  for (let i = 0; i < steps; i++) {
+    const y = -1 + (2 * (i + 0.5)) / steps;
+    const r = Math.sqrt(1 - y * y);
+    for (let j = 0; j < steps; j++) {
+      const angle = (2 * Math.PI * (j + 0.5)) / steps;
+      const x = r * Math.cos(angle);
+      const z = r * Math.sin(angle);
+      const cosine =
+        x * (normal[0] as number) + y * (normal[1] as number) + z * (normal[2] as number);
+      if (cosine > 0) sum += luminance(sampleSkyReflection(state, x, y, z, color)) * cosine;
+    }
+  }
+  return (sum * 4 * Math.PI) / (steps * steps);
+}
 
 function setup() {
   const scene = new THREE.Scene();
@@ -90,30 +112,71 @@ describe('shared sky reflections', () => {
     night.dispose();
   });
 
-  it('carries the sky fill the hemisphere light would, scaled by dayAmbient', () => {
-    // The map replaces the hemisphere while reflections are on, so its radiance is the
-    // hemisphere's irradiance over π: doubling dayAmbient doubles the fill, and the fill matches
-    // the light-only rig's.
-    const dim = new SkyVisual({
-      mode: 'custom',
-      sunBody: { direction: [0, 1, 0] },
-      lighting: { dayAmbient: 1 },
-    });
-    const bright = new SkyVisual({
-      mode: 'custom',
-      sunBody: { direction: [0, 1, 0] },
-      lighting: { dayAmbient: 2 },
-    });
-    const up = (sky: SkyVisual) =>
-      sampleSkyReflection(sky.reflectionState, 0, 1, 0, new THREE.Color());
-    expect(up(bright).b).toBeCloseTo(up(dim).b * 2, 6);
-    // Full daylight with no cloud: the day zenith at the ambient intensity (1) over π.
-    const zenith = new THREE.Color(defaultSkyPalette.dayZenith).multiplyScalar(1 / Math.PI);
-    dim.reflectionState.zenith.forEach((value, i) => {
-      expect(value).toBeCloseTo(zenith.toArray()[i] as number, 6);
-    });
-    dim.dispose();
-    bright.dispose();
+  it('lights a level surface as much as the hemisphere light it replaces, scaled by dayAmbient', () => {
+    // The map replaces the hemisphere while reflections are on. Graded to the palette's dark
+    // zenith, it used to give level ground 40% of the hemisphere's light: shade was nearly black.
+    const palettes = [
+      undefined,
+      { dayZenith: '#2a6cc4', dayHorizon: '#b2cde4', ground: '#9a8f70' },
+      { dayZenith: '#000000', dayHorizon: '#b2cde4' },
+    ];
+    for (const palette of palettes) {
+      const fills = [1, 2].map((dayAmbient) => {
+        const sky = new SkyVisual({
+          mode: 'custom',
+          sunBody: { direction: [0.3, 1, 0] },
+          lighting: { dayAmbient },
+          ...(palette ? { palette } : {}),
+        });
+        // The broad glow around the sun is the map's own, not the hemisphere's.
+        const fill = irradiance({ ...sky.reflectionState, sunGlow: 0 }, [0, 1, 0]);
+        const hemisphere = sky.ambientLight.intensity * luminance(sky.ambientLight.color);
+        expect(fill / hemisphere).toBeGreaterThan(0.98);
+        expect(fill / hemisphere).toBeLessThan(1.02);
+        sky.dispose();
+        return fill;
+      });
+      expect((fills[1] as number) / (fills[0] as number)).toBeCloseTo(2, 5);
+    }
+    // A fixed rig's map stands in for its hemisphere the same way.
+    const ambient = new THREE.HemisphereLight('#b2cde4', '#9a8f70', 1.4);
+    const state = reflectionStateFromLights(ambient, undefined, new THREE.Color('#2a6cc4'), 0);
+    const fill = irradiance(state, [0, 1, 0]);
+    expect(fill / (1.4 * luminance(ambient.color))).toBeCloseTo(1, 1);
+  });
+
+  it('keeps the sky deeper overhead than at the horizon, and no brighter than it needs', () => {
+    const { sky, reflections } = setup();
+    const { zenith, horizon } = sky.reflectionState;
+    const bright = (c: readonly [number, number, number]) => luminance(new THREE.Color(...c));
+    expect(bright(zenith)).toBeLessThan(bright(horizon) * 0.8);
+    // The horizon rises at most by what lifting the darkest zenith half way costs.
+    const radiance = (sky.ambientLight.intensity * luminance(sky.ambientLight.color)) / Math.PI;
+    expect(bright(horizon)).toBeGreaterThan(radiance);
+    expect(bright(horizon)).toBeLessThan(radiance * 1.7);
+    reflections.dispose();
+    sky.dispose();
+  });
+
+  it('lights walls from sunlit ground, most of all under a high sun', () => {
+    const at = (elevation: number) => {
+      const angle = (elevation * Math.PI) / 180;
+      return new SkyVisual({
+        mode: 'custom',
+        sunBody: { direction: [Math.cos(angle), Math.sin(angle), 0] },
+        lighting: { sunIntensity: 4.9, dayAmbient: 1.4 },
+        palette: { dayZenith: '#2a6cc4', dayHorizon: '#b2cde4', ground: '#9a8f70' },
+      });
+    };
+    const [low, high] = [at(20), at(88)] as const;
+    const ground = (sky: SkyVisual) => luminance(new THREE.Color(...sky.reflectionState.ground));
+    expect(ground(high)).toBeGreaterThan(ground(low) * 1.5);
+    // A wall turned from a sun overhead gets no direct light: what lights it comes off the street.
+    const wall = irradiance({ ...high.reflectionState, sunGlow: 0 }, [0, 0, 1]);
+    const dark = { ...high.reflectionState, sunGlow: 0, ground: [0, 0, 0] as const };
+    expect(irradiance(dark, [0, 0, 1])).toBeLessThan(wall * 0.75);
+    low.dispose();
+    high.dispose();
   });
 
   it('respects a host environment and disposes only its own resources once', () => {
@@ -145,7 +208,12 @@ describe('shared sky reflections', () => {
     sun.target.position.set(10, 0, 4);
     const state = reflectionStateFromLights(ambient, sun, new THREE.Color('#78aadd'), 0);
     expect(state.sunDirection).toEqual([0, 1, 0]);
-    expect(state.horizon[0]).toBeCloseTo((ambient.color.r * 0.4) / Math.PI);
+    // The horizon keeps the ambient sky's hue, at the strength that makes up the hemisphere.
+    expect(state.horizon[0] / state.horizon[2]).toBeCloseTo(ambient.color.r / ambient.color.b);
+    expect(state.horizon[0]).toBeGreaterThan((ambient.color.r * 0.4) / Math.PI);
+    expect(state.ground[2] / state.ground[0]).toBeCloseTo(
+      ambient.groundColor.b / ambient.groundColor.r,
+    );
     reflections.update(state);
     reflections.dispose();
     expect(scene.environment).toBeNull();
