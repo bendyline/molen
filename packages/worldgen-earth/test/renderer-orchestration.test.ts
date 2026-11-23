@@ -1594,7 +1594,9 @@ describe('map overrides in the worldgen renderers', () => {
       [40, 60],
     ];
     // Trimmed at the mask, and dropped whole above a coverage share: neither touches the host's.
-    const trimmed = withoutBuildingCutouts(source, { origin: [0, 0], tileSize: 200 }, [cutout]);
+    const trimmed = withoutBuildingCutouts(source, { origin: [0, 0], tileSize: 200 }, [
+      { outlines: [cutout] },
+    ]);
     expect(trimmed.buildings[0]?.polygons[0]?.holes).toHaveLength(1);
     expect(trimmed.buildings[1]).toBe(source.buildings[1]);
     const dropped = withoutBuildingCutouts(

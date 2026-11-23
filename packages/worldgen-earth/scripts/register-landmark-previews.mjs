@@ -17,6 +17,7 @@ import {
 } from '../../worldgen/scripts/structure-model-files.mjs';
 import { createStructureIndex } from '../dist/kernel.mjs';
 import { hasAuthoredGroundContact } from './authored-ground-contact.mjs';
+import { checkPlacementSources } from './build-placement-catalogs.mjs';
 import { authoredHistoricalAppearance } from './historical-placement.mjs';
 import { readStructurePlacements, writeStructurePlacement } from './placement-sources.mjs';
 
@@ -94,6 +95,8 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
       `${spec.id}: geographic placement needs an origin-aligned base or a reviewed contact plane with its source basis`,
     );
   createStructureIndex({ ...catalog, entries: [entry] });
+  // The proposal is copied verbatim; reject keys the compiler would refuse, in --check too.
+  checkPlacementSources([entry], () => `${spec.id} geographicProposal`);
   const existing = catalog.entries.find((item) => item.asset === spec.assetId);
   const reportPath = resolve(dir, 'placement-report.json');
   const previous = await readOptionalJson(reportPath);

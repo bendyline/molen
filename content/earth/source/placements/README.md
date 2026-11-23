@@ -11,9 +11,12 @@ Property order and numeric precision in these files are intentional.
 
 Use `readStructurePlacements()` and `writeStructurePlacement(entry)` from
 `packages/worldgen-earth/scripts/placement-sources.mjs` for authoring tools. A write changes
-only the selected source record (moving its file if the anchor changes cells). The local
-`structures/placements/authoring.json` aggregate is generated for existing review fixtures;
-it is neither authoritative nor included in a content pack.
+only the selected source record (moving its file if the anchor changes cells). It first runs
+the compiler's check and writes nothing if the record does not match the published
+`structure-placements` schema. That schema keeps `note` and `basis` explanations and lets
+`mapIdentity` carry any map evidence beside its runtime `wikidata`, `names` and `maxDistance`
+fields; everything else must be a defined field. The local `structures/placements/authoring.json` aggregate is generated for existing
+review fixtures; it is neither authoritative nor included in a content pack.
 
 After building the library packages, regenerate runtime data with:
 
@@ -21,6 +24,10 @@ After building the library packages, regenerate runtime data with:
 node packages/worldgen-earth/scripts/build-placement-catalogs.mjs
 node packages/worldgen-earth/scripts/build-placement-catalogs.mjs --check
 ```
+
+Run the check after editing a record by hand. It names every refused file and field at once,
+for example `content/earth/source/placements/u1/u14/ypres-cloth-hall.json: buildingCutout:
+Unrecognized key: "courts"`.
 
 The worldgen-earth package build and the world-explorer pack build run this compiler. Generated
 regions and their directory are ignored by Git. Source notes remain here; the compiler emits

@@ -1,3 +1,4 @@
+import { getSchema } from '@bendyline/molen-schema';
 import type { TerrainPyramidTileLayerContext } from '@bendyline/molen-terrain/client';
 import {
   createEmptyTerrainSemanticTile,
@@ -12,11 +13,13 @@ import { describe, expect, it, vi } from 'vitest';
 import { createWorldgenSemanticRenderers } from '../src/client/renderers';
 import {
   structureBuildingCutout,
+  structureBuildingCutoutMask,
   structureBuildingCutouts,
   withoutBuildingCutouts,
 } from '../src/client/structure-building-cutout';
 import type { WorldgenGenerateRequest } from '../src/client/worker-bridge';
 import { createStructureIndex, type StructurePlacement } from '../src/kernel/structure-index';
+import { registerStructurePlacementsSchema } from '../src/kernel/structure-index-schema';
 import { loadDefaultPack } from './helpers/pack';
 
 const pack = await loadDefaultPack();
@@ -169,7 +172,7 @@ describe('explicit landmark building cutouts', () => {
         },
       };
     const outlines = structureBuildingCutouts(mask, 1),
-      result = withoutBuildingCutouts(source, context, outlines);
+      result = withoutBuildingCutouts(source, context, [{ outlines }]);
     expect(outlines).toHaveLength(2);
     expect(result.buildings.map((b) => b.id)).toEqual(['gap']);
     expect(result.buildings[0]).toBe(source.buildings[1]);
@@ -211,7 +214,7 @@ describe('explicit landmark building cutouts', () => {
       before = structuredClone(source),
       mask = structureBuildingCutout(entry, 1);
     if (!mask) throw Error('Missing fixture cutout');
-    const result = withoutBuildingCutouts(source, context, [mask]);
+    const result = withoutBuildingCutouts(source, context, [{ outlines: [mask] }]);
     expect(result.buildings.map((b) => b.id)).toEqual(['merged', 'neighbor']);
     const merged = result.buildings[0];
     if (!merged) throw Error('Lost merged building');
@@ -237,9 +240,133 @@ describe('explicit landmark building cutouts', () => {
         { height: 10, polygons: [{ outer: rect(0, 0, 1, 1), holes: [rect(0.1, 0.1, 0.2, 0.2)] }] },
       ],
     };
-    const result = withoutBuildingCutouts(source, context, [rect(90, -10, 110, 210)]);
+    const result = withoutBuildingCutouts(source, context, [
+      { outlines: [rect(90, -10, 110, 210)] },
+    ]);
     expect(result.buildings[0]?.polygons).toHaveLength(2);
     expect(result.buildings[0]?.polygons.reduce((n, p) => n + polygonArea(p), 0)).toBeCloseTo(0.89);
+  });
+  describe('holes', () => {
+    // A cloister: the ring building, a well house in its court, and a merged block across both.
+    const cloister = () => ({
+      ...createEmptyTerrainSemanticTile(),
+      buildings: [
+        {
+          id: 'ring',
+          height: 12,
+          polygons: [{ outer: rect(0, 0, 1, 1), holes: [rect(0.25, 0.25, 0.75, 0.75)] }],
+        },
+        { id: 'well', height: 4, polygons: [{ outer: rect(0.4, 0.4, 0.6, 0.6) }] },
+        { id: 'merged', height: 6, polygons: [{ outer: rect(1.1, 0.4, 1.6, 0.6) }] },
+      ],
+    });
+    const outlines = [rect(-1, -1, 201, 201)];
+    const holes = [rect(52, 52, 148, 148)];
+
+    it('keeps what is mapped in a hole and trims a crossing block to the hole', () => {
+      const court = cloister();
+      const source = {
+          ...court,
+          buildings: [
+            ...court.buildings.slice(0, 2),
+            { id: 'block', height: 6, polygons: [{ outer: rect(0.1, 0.4, 0.6, 0.6) }] },
+          ],
+        },
+        before = structuredClone(source);
+      const result = withoutBuildingCutouts(source, context, [{ outlines, holes }]);
+      expect(result.buildings.map((b) => b.id)).toEqual(['well', 'block']);
+      expect(result.buildings[0]).toBe(source.buildings[1]);
+      expect(result.buildings[1]?.height).toBe(6);
+      // The block spans world X 20..120 and Z 80..120; the hole keeps X 52..120 of it.
+      expect(
+        result.buildings[1]?.polygons.reduce((n, p) => n + polygonArea(p), 0) * 40000,
+      ).toBeCloseTo((120 - 52) * (120 - 80), 6);
+      expect(source).toEqual(before);
+      // Without the hole, the court goes with the ring.
+      expect(withoutBuildingCutouts(source, context, [{ outlines }]).buildings).toEqual([]);
+    });
+
+    it('leaves buildings in a hole uncovered for whole-building replacement', () => {
+      const source = cloister();
+      const result = withoutBuildingCutouts(
+        source,
+        context,
+        [],
+        [{ outlines, holes, minimumCoverage: 0.995 }],
+      );
+      expect(result.buildings.map((b) => b.id)).toEqual(['well', 'merged']);
+      expect(result.buildings[0]).toBe(source.buildings[1]);
+      expect(
+        withoutBuildingCutouts(
+          source,
+          context,
+          [],
+          [{ outlines, minimumCoverage: 0.995 }],
+        ).buildings.map((b) => b.id),
+      ).toEqual(['merged']);
+      // Coarse merged blocks are trimmed instead, and still keep the court.
+      const coarse = withoutBuildingCutouts(
+        { ...source, buildingsGeneralized: true },
+        context,
+        [],
+        [{ outlines, holes, minimumCoverage: 0.995 }],
+      );
+      expect(coarse.buildings.map((b) => b.id)).toEqual(['well', 'merged']);
+    });
+
+    it("carves only its own placement's masks", () => {
+      const source = cloister();
+      const result = withoutBuildingCutouts(source, context, [
+        { outlines, holes },
+        { outlines: [rect(70, 70, 130, 130)] },
+      ]);
+      expect(result.buildings.map((b) => b.id)).toEqual(['merged']);
+    });
+
+    it('places holes with the model and validates them', () => {
+      registerStructurePlacementsSchema();
+      const schema = getSchema('structure-placements')?.zod;
+      if (!schema) throw new Error('Missing placements schema');
+      const holed = {
+        ...entry,
+        heading: Math.PI / 2,
+        scale: [2, 1, 3] as [number, number, number],
+        buildingCutout: { ...baseCutout, holes: [rect(-2, -2, 2, 2)] },
+      };
+      const mask = structureBuildingCutoutMask(holed, 1);
+      expect(mask?.outlines).toEqual(structureBuildingCutouts(holed, 1));
+      expect(mask?.holes?.[0]?.[0]?.[0]).toBeCloseTo(44);
+      expect(mask?.holes?.[0]?.[0]?.[1]).toBeCloseTo(64);
+      expect(structureBuildingCutoutMask(entry, 1)).toEqual({
+        outlines: structureBuildingCutouts(entry, 1),
+      });
+      const doc = (item: StructurePlacement) => ({
+        format: 'molen/structure-placements@1' as const,
+        title: 'test',
+        entries: [item],
+      });
+      expect(schema.safeParse(doc(holed)).success).toBe(true);
+      expect(() => createStructureIndex(doc(holed))).not.toThrow();
+      for (const invalid of [
+        [],
+        Array.from({ length: 65 }, () => rect(0, 0, 1, 1)),
+        [
+          [
+            [0, 0],
+            [1, 1],
+            [0, 1],
+            [1, 0],
+          ],
+        ],
+      ]) {
+        const item = {
+          ...holed,
+          buildingCutout: { ...holed.buildingCutout, holes: invalid as [number, number][][] },
+        };
+        expect(schema.safeParse(doc(item)).success).toBe(false);
+        expect(() => createStructureIndex(doc(item))).toThrow(/building cutout/);
+      }
+    });
   });
   it('requires a valid site boundary and geographic bounds', () => {
     const doc = {
@@ -275,10 +402,13 @@ describe('explicit landmark building cutouts', () => {
     { success: false, minimumCoverage: 0.995 },
     { success: true, minimumCoverage: 0.995, generalized: true },
     { success: false, minimumCoverage: 0.995, generalized: true },
+    { success: true, minimumCoverage: undefined, holes: true },
+    { success: true, minimumCoverage: 0.995, holes: true },
   ])('changes map buildings only after a successful load: %j', async ({
     success,
     minimumCoverage,
     generalized,
+    holes,
   }) => {
     const source = { ...tile(), buildingsGeneralized: generalized ?? false },
       seen: WorldgenGenerateRequest[] = [];
@@ -293,7 +423,17 @@ describe('explicit landmark building cutouts', () => {
       structures: createStructureIndex({
         format: 'molen/structure-placements@1',
         title: 'Site',
-        entries: [{ ...entry, buildingCutout: { ...baseCutout, minimumCoverage } }],
+        entries: [
+          {
+            ...entry,
+            buildingCutout: {
+              ...baseCutout,
+              minimumCoverage,
+              // Around the 35 m part at world X 46..54, Z 56..64.
+              ...(holes ? { holes: [rect(-5, -5, 5, 5)] } : {}),
+            },
+          },
+        ],
       }),
       structureModels: models,
       roads: { renderTransportation: false },
@@ -340,11 +480,13 @@ describe('explicit landmark building cutouts', () => {
       expect(request).toBeDefined();
       if (!request) throw Error('Missing building request');
       expect(request.tile.buildings.map((b) => b.id)).toEqual(
-        success ? ['merged', 'neighbor'] : ['merged', 'part', 'neighbor'],
+        success && !holes ? ['merged', 'neighbor'] : ['merged', 'part', 'neighbor'],
       );
-      expect(request.tile.buildings[0]?.polygons[0]?.holes?.length ?? 0).toBe(
-        success && (minimumCoverage === undefined || generalized) ? 1 : 0,
-      );
+      if (holes) expect(request.tile.buildings[1]).toBe(source.buildings[1]);
+      else
+        expect(request.tile.buildings[0]?.polygons[0]?.holes?.length ?? 0).toBe(
+          success && (minimumCoverage === undefined || generalized) ? 1 : 0,
+        );
       if (minimumCoverage !== undefined && !generalized)
         expect(request.tile.buildings[0]).toBe(source.buildings[0]);
       expect(source.buildings).toHaveLength(3);
