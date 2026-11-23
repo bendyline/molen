@@ -1,0 +1,256 @@
+{
+  "id": "khami",
+  "planId": "khami",
+  "title": "Khami Hill Complex",
+  "assetId": "molen.worldgen.structure.khami",
+  "category": "landmark",
+  "wikidataId": "Q938685",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 28.423801,
+    "latitude": -20.1438907
+  },
+  "visualBrief": "Khami’s main hill has curving dry-stone retaining walls stepped into the slope. Alternating recessed stones mark the upper tiers, and large granite boulders interrupt the lower terraces.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ks/ksk/khami/models/hill-terraces.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Khami_Main_Platform.jpg",
+    "https://commons.wikimedia.org/wiki/File:Khami_Hill_Complex.jpg",
+    "https://commons.wikimedia.org/wiki/File:Khamiruins3.jpg",
+    "https://www.openstreetmap.org/node/966731668"
+  ],
+  "geographicProposal": {
+    "id": "khami-hill-complex",
+    "title": "Khami Hill Complex",
+    "asset": "molen.worldgen.structure.khami",
+    "anchor": [
+      28.423801,
+      -20.1438907
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 1296.046875,
+    "bounds": [
+      28.423284303813084,
+      -20.144384774987806,
+      28.424155032572518,
+      -20.143477473646563
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q938685",
+      "names": [
+        "Khami Hill Complex",
+        "Khami",
+        "Khami Ruins (World Heritage Site)",
+        "Hill Complex",
+        "Ruines de Khami"
+      ],
+      "maxDistance": 87
+    },
+    "source": "https://www.openstreetmap.org/node/966731668",
+    "note": "The named Hill Complex viewpoint anchors the dry-stone terraces against the sloping hillside; surrounding visitor routes and separate platforms stay with the host.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:15b8f5ecdc44bf207bfa207769dd91f59a36ee062f7878f4d2b43ea667f4723a"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.98
+      },
+      "coping": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.96
+      },
+      "recess": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.98
+      }
+    },
+    "errorMeters": 1.05,
+    "module": "content/worldgen/source/places/ks/ksk/khami/models/hill-terraces.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "recess": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.44
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "recess": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.161
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "recess": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.047
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -8,
+        1,
+        3
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "terraced-east-flank-and-boulder",
+      "position": [
+        41,
+        1.4,
+        12
+      ],
+      "lookAt": [
+        2,
+        0.45,
+        3
+      ],
+      "fov": 56
+    },
+    {
+      "name": "checkerboard-recesses",
+      "position": [
+        25,
+        1.7,
+        -9
+      ],
+      "lookAt": [
+        -3,
+        1.6,
+        -8
+      ],
+      "fov": 56
+    },
+    {
+      "name": "hill-path-and-wall-crowns",
+      "position": [
+        22,
+        24,
+        60
+      ],
+      "lookAt": [
+        -11,
+        0.5,
+        -2
+      ],
+      "fov": 54
+    }
+  ],
+  "limitations": [
+    "PMTiles identifies the hill and its approach. Terrace alignments, crest heights, recess spacing and boulder dimensions are estimated from the photographs and sampled terrain. The surrounding archaeological precinct comprises separate platforms."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -45.09253692626953,
+      -10.169099807739258,
+      -33.90785217285156
+    ],
+    "max": [
+      31.45683479309082,
+      10.12040901184082,
+      49.42690658569336
+    ]
+  },
+  "size": [
+    76.54937171936035,
+    20.289508819580078,
+    83.33475875854492
+  ],
+  "mesh": {
+    "triangles": 14256,
+    "vertices": 28644,
+    "materials": 3,
+    "bytes": 1204724,
+    "sha256": "sha256:71671edd3055151ad7671f3fc219b071cc1956ab0212c1e21193a7ea2302bfdd"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    }
+  ]
+}

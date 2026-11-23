@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.adelaide_town_hall",
+  "kind": "static-structure",
+  "title": "Adelaide Town Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.adelaide_town_hall",
+        "output": "assets/places/r1/r1f/adelaide_town_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:bedb8f489613652456699ef916447fb060b323865a61681e13594d8a71950f48"
+      }
+    ],
+    "generators": [
+      {
+        "id": "adelaide_town_hall",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "hall",
+        "path": "models/hall.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

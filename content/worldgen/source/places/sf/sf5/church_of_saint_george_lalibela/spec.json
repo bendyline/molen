@@ -1,0 +1,358 @@
+{
+  "id": "church_of_saint_george_lalibela",
+  "planId": "church_of_saint_george_lalibela",
+  "title": "Church of Saint George, Lalibela",
+  "assetId": "molen.worldgen.structure.church_of_saint_george_lalibela",
+  "category": "religious",
+  "wikidataId": "Q7971367",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 39.04113,
+    "latitude": 12.03174
+  },
+  "visualBrief": "Three nested crosses are carved into the roof of the 12 m monolithic church. The church rises from a rock-cut court entered by a sloping tunnel and a short flight of stairs.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sf/sf5/church_of_saint_george_lalibela/models/rock-cut-cross.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:The_Roof_Crosses%2C_Bet_Giyorgis%2C_Lalbela%2C_Ethiopia_(3278990293).jpg",
+    "https://commons.wikimedia.org/wiki/File:Facade_of_Bet_Giyorgis_Rock-Hewn_Church_-_Lalibela_-_Ethiopia_(8730986171).jpg",
+    "https://www.openstreetmap.org/way/266054164"
+  ],
+  "geographicProposal": {
+    "id": "church-of-saint-george-lalibela",
+    "title": "Church of Saint George, Lalibela",
+    "asset": "molen.worldgen.structure.church_of_saint_george_lalibela",
+    "anchor": [
+      39.04113,
+      12.03174
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 2419.45,
+    "bounds": [
+      39.040942930150855,
+      12.031494734242658,
+      39.04128336984589,
+      12.031784966219785
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q7971367",
+      "names": [
+        "Church of Saint George, Lalibela",
+        "Biete Ghiorgis",
+        "Bete Giyorgis",
+        "Church of Saint George, Lalibela",
+        "ቤተ ጊዮርጊስ"
+      ],
+      "maxDistance": 25
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -2.144819,
+          18.156203
+        ],
+        [
+          3.124685,
+          19.046759
+        ],
+        [
+          3.701718,
+          15.629252
+        ],
+        [
+          6.695754,
+          16.13019
+        ],
+        [
+          7.534085,
+          11.098551
+        ],
+        [
+          4.409399,
+          10.57535
+        ],
+        [
+          4.964657,
+          7.213502
+        ],
+        [
+          -0.29396,
+          6.334078
+        ],
+        [
+          -0.827443,
+          9.562343
+        ],
+        [
+          -4.104552,
+          9.016877
+        ],
+        [
+          -4.540048,
+          11.632885
+        ],
+        [
+          -4.942882,
+          14.048516
+        ],
+        [
+          -1.546012,
+          14.616246
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -9.417606,
+            -3.005626
+          ],
+          [
+            14.697997,
+            5.176356
+          ],
+          [
+            8.557501,
+            25.30291
+          ],
+          [
+            -13.609257,
+            20.460515
+          ],
+          [
+            -11.812835,
+            10.430634
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the one mapped church inside the rock-cut court while retaining the neighboring monastery landscape."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -9.417606,
+          -3.005626
+        ],
+        [
+          14.697997,
+          5.176356
+        ],
+        [
+          8.557501,
+          25.30291
+        ],
+        [
+          -13.609257,
+          20.460515
+        ],
+        [
+          -11.812835,
+          10.430634
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Clear host terrain inside the mapped natural cliff to expose the 12 m deep carved courtyard."
+    },
+    "source": "https://www.openstreetmap.org/way/266054164",
+    "note": "The measured cross plan, surrounding cliff, west entrance, stair and accessible end of the tunnel follow the map.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1837b792835d47443856d54c35c6783eec72ef6e26e77f7d95a0504b12c154d5"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "rock": {
+        "slot": "wall",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.98
+      },
+      "cutStone": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.96
+      },
+      "aperture": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98
+      }
+    },
+    "errorMeters": 0.81,
+    "module": "content/worldgen/source/places/sf/sf5/church_of_saint_george_lalibela/models/rock-cut-cross.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98
+          },
+          "cutStone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.96
+          },
+          "aperture": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.32
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98
+          },
+          "cutStone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.96
+          },
+          "aperture": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.118
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98
+          },
+          "cutStone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.96
+          },
+          "aperture": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.036
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        1,
+        -4,
+        11
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "nested-roof-crosses",
+      "position": [
+        -12,
+        18,
+        -3
+      ],
+      "lookAt": [
+        1,
+        -0.1,
+        12
+      ],
+      "fov": 55
+    },
+    {
+      "name": "carved-west-entrance",
+      "position": [
+        -9.8,
+        -8.6,
+        15
+      ],
+      "lookAt": [
+        -3.52,
+        -5.83,
+        12
+      ],
+      "fov": 74
+    },
+    {
+      "name": "rock-walls-and-courtyard",
+      "position": [
+        7,
+        -4.78,
+        22
+      ],
+      "lookAt": [
+        -2.4,
+        -4,
+        9.8
+      ],
+      "fov": 65
+    }
+  ],
+  "limitations": [
+    "The Terrarium tile gives the rim elevations. The lower excavation, carved reveals and slope of the partly covered approach use photographic approximations."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -18.4080810546875,
+      -12.229999542236328,
+      -3.1666126251220703
+    ],
+    "max": [
+      14.932456016540527,
+      4.71999979019165,
+      25.595991134643555
+    ]
+  },
+  "size": [
+    33.34053707122803,
+    16.94999933242798,
+    28.762603759765625
+  ],
+  "mesh": {
+    "triangles": 5699,
+    "vertices": 11411,
+    "materials": 3,
+    "bytes": 481564,
+    "sha256": "sha256:8c6d1cf2e2930db8dcf7f35aade03109b45c5fc72e06894feb8887bf723a62e5"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats"
+    }
+  ]
+}

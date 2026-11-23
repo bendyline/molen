@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kigali_convention_centre",
+  "kind": "static-structure",
+  "title": "Kigali Convention Centre",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kigali_convention_centre",
+        "output": "assets/places/kx/kxt/kigali_convention_centre/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b19d7a8a22938d7cc52b84481f35006840f2f4abf463bf3d90c2b8189bc95644"
+      }
+    ],
+    "generators": [
+      {
+        "id": "kigali_convention_centre",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "kimihurura-dome",
+        "path": "models/kimihurura-dome.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.itsukushima_shrine",
+  "kind": "static-structure",
+  "title": "Itsukushima Shrine",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json",
+      "native-water.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.itsukushima_shrine",
+        "output": "assets/places/wy/wyn/itsukushima_shrine/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d1b724caabbae3e1e9e1174172f555f59ddb6dd189bf42e99a5271dbda611a9f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "itsukushima_shrine",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "shrine-model",
+        "path": "models/shrine-model.mjs"
+      },
+      {
+        "id": "great-torii",
+        "path": "models/great-torii.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

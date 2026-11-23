@@ -1,0 +1,171 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.ahu_akivi",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
+  },
+  "hash": "sha256:c890770576b98ef42a00380fd89ed2b5d93dce877645a720ff68a90c70fe46c7",
+  "sourceHash": "sha256:4c7c0878120e73f7665b85685b4fa88be6516efc54320f34f7315af06d958d25",
+  "bounds": {
+    "aabb": {
+      "min": [
+        -9.0786,
+        -2.176,
+        -41.2076
+      ],
+      "max": [
+        9.0836,
+        6.09,
+        41.2133
+      ]
+    },
+    "sphere": {
+      "center": [
+        0.0025,
+        1.957,
+        0.0029
+      ],
+      "radius": 41.5145
+    }
+  },
+  "stats": {
+    "triangles": 13878,
+    "vertices": 27478,
+    "meshes": 1,
+    "primitives": 3,
+    "materials": 3,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 1157844
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 13878
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "stone_basalt_raw",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "gravel",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "stone_drywall",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -9.0786,
+          -2.176,
+          -41.2076,
+          -9.0786,
+          -2.176,
+          41.2133,
+          -9.0786,
+          6.09,
+          -41.2076,
+          -9.0786,
+          6.09,
+          41.2133,
+          9.0836,
+          -2.176,
+          -41.2076,
+          9.0836,
+          -2.176,
+          41.2133,
+          9.0836,
+          6.09,
+          -41.2076,
+          9.0836,
+          6.09,
+          41.2133
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": [],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:04ed439c695b9ad1bf4906f5a3418d933e25f21c4f57214ecfad0fa8066a2aed",
+    "masterHash": "sha256:c890770576b98ef42a00380fd89ed2b5d93dce877645a720ff68a90c70fe46c7",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:ea70f548e6609dd98cf2d14bcbcdba4f3271219944c381b3793d48ebf4caae79",
+        "bytes": 33976,
+        "gzipBytes": 13490,
+        "triangles": 386,
+        "cpuBytes": 30108,
+        "gpuBytes": 30108,
+        "errorMeters": 0.39,
+        "drawCalls": 3
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:971b612062a3af1ffaef8b736a44962c08dc68a82539a1d3d57dd1193f066379",
+        "bytes": 106856,
+        "gzipBytes": 42508,
+        "triangles": 1346,
+        "cpuBytes": 102972,
+        "gpuBytes": 102972,
+        "errorMeters": 0.18,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:cfdb9b7225bd4891b0b9284e0b4c1a21fb6197f2c2928aff3615178e2976ffc9",
+        "bytes": 380844,
+        "gzipBytes": 142194,
+        "triangles": 4910,
+        "cpuBytes": 376932,
+        "gpuBytes": 376932,
+        "errorMeters": 0.077,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:4196af8fa218e9b1fb25785e87d44ee4dd3738fe6eda82fc6971eccfbca01527",
+        "bytes": 1076332,
+        "gzipBytes": 414886,
+        "triangles": 13878,
+        "cpuBytes": 1072404,
+        "gpuBytes": 1072404,
+        "errorMeters": 0.028,
+        "drawCalls": 3
+      }
+    ]
+  }
+}

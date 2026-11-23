@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.holy_trinity_cathedral",
+  "kind": "static-structure",
+  "title": "Holy Trinity Cathedral, Auckland",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.holy_trinity_cathedral",
+        "output": "assets/places/rc/rck/holy_trinity_cathedral/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a7afd38fb0b072d2e41d0b664e7765a144cc2beb9042453ea03d6c3b2e85012d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "holy_trinity_cathedral",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "parnell-folded-nave",
+        "path": "models/parnell-folded-nave.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

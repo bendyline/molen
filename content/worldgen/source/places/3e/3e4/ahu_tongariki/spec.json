@@ -1,0 +1,241 @@
+{
+  "id": "ahu_tongariki",
+  "planId": "ahu_tongariki",
+  "title": "Ahu Tongariki",
+  "assetId": "molen.worldgen.structure.ahu_tongariki",
+  "category": "landmark",
+  "wikidataId": "Q3448354",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -109.276922925,
+    "latitude": -27.125749925
+  },
+  "visualBrief": "Fifteen varied moai face inland from the long coastal stone platform. A single figure near the right end wears a red scoria pukao. The low wings extend along the mapped coastline-facing boundary.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/3e/3e4/ahu_tongariki/models/tongariki.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://revistaurbanismo.uchile.cl/index.php/RU/article/download/12951/13235/32699",
+    "https://www.openstreetmap.org/way/221696391"
+  ],
+  "geographicProposal": {
+    "id": "ahu-tongariki",
+    "title": "Ahu Tongariki",
+    "asset": "molen.worldgen.structure.ahu_tongariki",
+    "anchor": [
+      -109.276922925,
+      -27.125749925
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 6,
+    "bounds": [
+      -109.2776311866826,
+      -27.126663373973383,
+      -109.27635381331719,
+      -27.12488483303065
+    ],
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q3448354",
+      "names": [
+        "Ahu Tongariki",
+        "Ahu Toŋariki",
+        "Ahu Tongariki"
+      ],
+      "maxDistance": 125
+    },
+    "source": "https://www.openstreetmap.org/way/221696391",
+    "note": "The platform’s long axis and wings follow the mapped outline. The row faces away from the mapped shore. Unrelated statue points and archaeological remains are kept in the surrounding map.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e64303ea1b66c1cc0d6e088f9257d9bcd3322805e2d5f905696085bbb6a1b125"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "tuff": {
+        "slot": "wall",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.99
+      },
+      "wall": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.99
+      },
+      "gravel": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.99
+      }
+    },
+    "errorMeters": 0.56,
+    "module": "content/worldgen/source/places/3e/3e4/ahu_tongariki/models/tongariki.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "tuff": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99
+          },
+          "wall": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.99
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.24
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "tuff": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99
+          },
+          "wall": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.99
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.095
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "tuff": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99
+          },
+          "wall": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.99
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.032
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -3,
+        5,
+        3
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "fifteen-figures-facing-inland",
+      "position": [
+        -78,
+        10.9,
+        -51
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        0
+      ],
+      "fov": 47
+    },
+    {
+      "name": "scoria-pukao-and-platform",
+      "position": [
+        -33,
+        5.2,
+        12
+      ],
+      "lookAt": [
+        -13,
+        5.9,
+        33
+      ],
+      "fov": 56
+    }
+  ],
+  "limitations": [
+    "Individual statue positions, orientations and dimensions are photographic approximations within the mapped platform. Nearby individually tagged sculptures lie beyond the main row and remain host features."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -68.17119598388672,
+      -0.5199999809265137,
+      -94.3011703491211
+    ],
+    "max": [
+      54.38487243652344,
+      10.350000381469727,
+      99.68421936035156
+    ]
+  },
+  "size": [
+    122.55606842041016,
+    10.87000036239624,
+    193.98538970947266
+  ],
+  "mesh": {
+    "triangles": 33038,
+    "vertices": 65442,
+    "materials": 3,
+    "bytes": 2754828,
+    "sha256": "sha256:daded9e05ec9a74f83c2df4919ffee2652adbb356debfb3a140ace455e76df67"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.cologne_cathedral",
+  "kind": "static-structure",
+  "title": "Cologne Cathedral",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.cologne_cathedral",
+        "output": "assets/places/u1/u1h/cologne_cathedral/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a9380db73a7c126b6fa61258f5690e85a8973ea8995343c6f78f9aa5f3852e0e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "cologne_cathedral",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cathedral-model",
+        "path": "models/cathedral-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

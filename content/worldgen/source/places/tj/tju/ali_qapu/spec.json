@@ -1,0 +1,348 @@
+{
+  "id": "ali_qapu",
+  "planId": "ali_qapu",
+  "title": "Ali Qapu",
+  "assetId": "molen.worldgen.structure.ali_qapu",
+  "category": "palace",
+  "wikidataId": "Q2429287",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 51.67655,
+    "latitude": 32.657135
+  },
+  "visualBrief": "A tall brick gate opens between Naqsh-e Jahan Square and the palace courtyard. Eighteen timber columns carry the deep square-facing terrace roof. The taller rear block has stacked pointed recesses, blue tile panels and lattice windows.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tj/tju/ali_qapu/models/palace.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:%C4%80l%C4%AB_Q%C4%81p%C5%AB_in_golden_time.jpg",
+    "https://commons.wikimedia.org/wiki/File:Irnr110-Isfahan-Ali_Qapu_Palace.jpg",
+    "https://www.openstreetmap.org/way/807478006"
+  ],
+  "geographicProposal": {
+    "id": "ali-qapu-isfahan",
+    "title": "Ali Qapu",
+    "asset": "molen.worldgen.structure.ali_qapu",
+    "anchor": [
+      51.67655,
+      32.657135
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 1573.15,
+    "bounds": [
+      51.676427560188266,
+      32.65693493499545,
+      51.67671053981354,
+      32.657260765664155
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q2429287",
+      "names": [
+        "Ali Qapu",
+        "کاخ عالی قاپو",
+        "Ali Qapu Palace",
+        "Aali Qapu"
+      ],
+      "maxDistance": 62
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -9.475245,
+          -8.794244
+        ],
+        [
+          -4.001909,
+          20.271259
+        ],
+        [
+          13.046035,
+          17.065263
+        ],
+        [
+          7.582071,
+          -12.000248
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the one named palace polygon. The square and adjoining market ranges have separate map features."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -9.475245,
+          -8.794244
+        ],
+        [
+          -4.001909,
+          20.271259
+        ],
+        [
+          13.046035,
+          17.065263
+        ],
+        [
+          7.582071,
+          -12.000248
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Let the modeled ground passage retain its paved floor and headroom through the palace footprint."
+    },
+    "source": "https://www.openstreetmap.org/way/807478006",
+    "note": "The projecting terrace fronts Naqsh-e Jahan Square. The opposite gate opens west.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:65b72052690634dc2af288070c7e2ab98f4411fdbd3ad465f26119edc1d16307"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_longformat",
+        "roughness": 0.91
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "tile": {
+        "slot": "trim",
+        "graph": "tile_mosaic",
+        "roughness": 0.76
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.88
+      },
+      "lime": {
+        "slot": "roof",
+        "graph": "plaster_lime",
+        "roughness": 0.93
+      }
+    },
+    "errorMeters": 1.02,
+    "module": "content/worldgen/source/places/tj/tju/ali_qapu/models/palace.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.76
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.88
+          },
+          "lime": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          }
+        },
+        "errorMeters": 0.43
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.76
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.88
+          },
+          "lime": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          }
+        },
+        "errorMeters": 0.16
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.76
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.88
+          },
+          "lime": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          }
+        },
+        "errorMeters": 0.065
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -1,
+        13,
+        3
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "eighteen-column-terrace",
+      "position": [
+        39,
+        8,
+        -11
+      ],
+      "lookAt": [
+        -1,
+        16,
+        4
+      ],
+      "fov": 52
+    },
+    {
+      "name": "rear-gate-and-tiles",
+      "position": [
+        -38,
+        4.2,
+        -7
+      ],
+      "lookAt": [
+        -6,
+        15,
+        3
+      ],
+      "fov": 56
+    },
+    {
+      "name": "timber-roof-from-the-square",
+      "position": [
+        21,
+        8,
+        6
+      ],
+      "lookAt": [
+        2,
+        19,
+        3
+      ],
+      "fov": 53
+    }
+  ],
+  "limitations": [
+    "The footprint and street-facing bearing are mapped. Individual tier heights, the underside pattern and the balcony column spacing are photo-based approximations. Interiors above the gate are outside the exterior scope."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -9.637524604797363,
+      -4.300000190734863,
+      -13.179536819458008
+    ],
+    "max": [
+      14.37695026397705,
+      34.400001525878906,
+      20.47649574279785
+    ]
+  },
+  "size": [
+    24.014474868774414,
+    38.70000171661377,
+    33.65603256225586
+  ],
+  "mesh": {
+    "triangles": 15905,
+    "vertices": 33171,
+    "materials": 5,
+    "bytes": 1388388,
+    "sha256": "sha256:0777986cd22c800f53ae03742687f88004e0e66c1a3b70734d4d20dbab0cd416"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_mosaic",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

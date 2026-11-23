@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.borobudur_temple",
+  "kind": "static-structure",
+  "title": "Borobudur Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.borobudur_temple",
+        "output": "assets/places/qq/qqw/borobudur_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2a17c4b7b420e4530cc16bed4726ca919b7059bbcfe072a3aa67e767ad3f0eeb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "borobudur_temple",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "temple-model",
+        "path": "models/temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.la_fortaleza",
+  "kind": "static-structure",
+  "title": "La Fortaleza",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.la_fortaleza",
+        "output": "assets/places/de/de2/la_fortaleza/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2e38fb60e86e4a7040a11bab54219511e35680b5829cc168fc00d827355f8862"
+      }
+    ],
+    "generators": [
+      {
+        "id": "la_fortaleza",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "santa-catalina-palace",
+        "path": "models/santa-catalina-palace.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

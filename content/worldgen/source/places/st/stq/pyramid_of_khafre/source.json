@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.pyramid_of_khafre",
+  "kind": "static-structure",
+  "title": "Pyramid of Khafre",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.pyramid_of_khafre",
+        "output": "assets/places/st/stq/pyramid_of_khafre/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:5ca7b376ecf2b2f4abb79c20b69155be9e701858c717eaa55d5cdda5e75192e2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "pyramid_of_khafre",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "pyramid-course-model",
+        "path": "models/pyramid-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

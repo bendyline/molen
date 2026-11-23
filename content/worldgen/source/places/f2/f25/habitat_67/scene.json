@@ -1,0 +1,57 @@
+{
+  "format": "molen/scene@3",
+  "name": "Habitat 67",
+  "seed": "habitat_67",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": {
+    "mode": "fixed",
+    "position": [-204.216919, 89, -249.722746],
+    "lookAt": [17.541902, 14, 7.230606],
+    "fov": 52
+  },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.habitat_67",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [-0.63, 0.63, -0.27],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -0.62, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [840, 1.18, 840] },
+          "materialRef": "palette:#8e8b73",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}

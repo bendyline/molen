@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.konark_sun_temple",
+  "kind": "static-structure",
+  "title": "Konark Sun Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.konark_sun_temple",
+        "output": "assets/places/tg/tgt/konark_sun_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:0749971f4ffcc2cc5e66ac4ba1623ea0fce3df0dcf984c648883f5bfd5e555ae"
+      }
+    ],
+    "generators": [
+      {
+        "id": "konark_sun_temple",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "temple-model",
+        "path": "models/temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

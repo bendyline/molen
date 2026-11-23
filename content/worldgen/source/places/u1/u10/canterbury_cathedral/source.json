@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.canterbury_cathedral",
+  "kind": "static-structure",
+  "title": "Canterbury Cathedral",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.canterbury_cathedral",
+        "output": "assets/places/u1/u10/canterbury_cathedral/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:442d1377bc9da559fc8ca962c9920faa9ea1db4a8f9579a7f48521fbb1d61e5f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "canterbury_cathedral",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cathedral",
+        "path": "models/cathedral.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

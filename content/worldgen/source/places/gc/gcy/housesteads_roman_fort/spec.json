@@ -1,0 +1,254 @@
+{
+  "id": "housesteads_roman_fort",
+  "planId": "housesteads_roman_fort",
+  "title": "Housesteads Roman Fort",
+  "assetId": "molen.worldgen.structure.housesteads_roman_fort",
+  "category": "archaeology",
+  "wikidataId": "Q1812832",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -2.331,
+    "latitude": 55.013
+  },
+  "visualBrief": "Roofless barracks, granaries and gate ruins sit inside low walls on the Whin Sill ridge. The inner foundations follow the slope and preserve the open rooms.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcy/housesteads_roman_fort/models/whin-sill-ruins.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hadrian's_Wall_and_Housesteads_Roman_Fort_aerial.jpg",
+    "https://www.english-heritage.org.uk/visit/places/housesteads-roman-fort-hadrians-wall/",
+    "https://www.openstreetmap.org/way/1102700039"
+  ],
+  "geographicProposal": {
+    "id": "housesteads-roman-fort",
+    "title": "Housesteads Roman Fort",
+    "asset": "molen.worldgen.structure.housesteads_roman_fort",
+    "anchor": [
+      -2.331,
+      55.013
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 260.8555,
+    "bounds": [
+      -2.33185583344953,
+      55.01265693928765,
+      -2.3286807665457925,
+      55.01397116552715
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q1812832",
+      "names": [
+        "Housesteads Roman Fort",
+        "Housesteads Roman Fort",
+        "Vercovicium",
+        "Hadrian's Wall and Housesteads Fort"
+      ],
+      "maxDistance": 146
+    },
+    "source": "https://www.openstreetmap.org/way/1102700039",
+    "note": "The four gates and mapped room boundaries follow the surveyed fort plan. Sampled terrain heights support the walls without levelling the hill.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:54405a275798b63c6c154135081c71481bb19477de724a95e1745b9d5a00985b"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.98
+      },
+      "rubble": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.98
+      },
+      "coping": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.95
+      }
+    },
+    "errorMeters": 0.83,
+    "module": "content/worldgen/source/places/gc/gcy/housesteads_roman_fort/models/whin-sill-ruins.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.95
+          }
+        },
+        "errorMeters": 0.31
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.95
+          }
+        },
+        "errorMeters": 0.126
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.95
+          }
+        },
+        "errorMeters": 0.047
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        46,
+        0,
+        -40
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "granary-piers-and-courtyard",
+      "position": [
+        7,
+        14,
+        -35
+      ],
+      "lookAt": [
+        48,
+        0,
+        -62
+      ],
+      "fov": 56
+    },
+    {
+      "name": "open-west-gate",
+      "position": [
+        -63,
+        5,
+        -12
+      ],
+      "lookAt": [
+        -39,
+        3,
+        -16
+      ],
+      "fov": 56
+    },
+    {
+      "name": "south-gate-and-latrines",
+      "position": [
+        111,
+        3,
+        30
+      ],
+      "lookAt": [
+        99,
+        -6,
+        2
+      ],
+      "fov": 54
+    }
+  ],
+  "limitations": [
+    "Surviving wall crests, the extent of smaller foundations and individual granary supports are approximated from photos and terrain. The terrain elevation follows Terrarium sampling."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -53.28826904296875,
+      -9.920100212097168,
+      -106.78276824951172
+    ],
+    "max": [
+      146.71060180664062,
+      5.00011682510376,
+      36.8585205078125
+    ]
+  },
+  "size": [
+    199.99887084960938,
+    14.920217037200928,
+    143.64128875732422
+  ],
+  "mesh": {
+    "triangles": 24174,
+    "vertices": 48362,
+    "materials": 3,
+    "bytes": 2033604,
+    "sha256": "sha256:5d1ee7fb9e7470d4477c52430d55de81898e59ae41ada62516af5f46d73cf19f"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

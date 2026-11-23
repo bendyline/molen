@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.poblet_monastery",
+  "kind": "static-structure",
+  "title": "Poblet Monastery",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.poblet_monastery",
+        "output": "assets/places/sp/sp2/poblet_monastery/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d83cfdbd656b2b8463aec87923caa9534ec79f4f216934d6c1e3344a634722fd"
+      }
+    ],
+    "generators": [
+      {
+        "id": "poblet_monastery",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "monastery",
+        "path": "models/monastery.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

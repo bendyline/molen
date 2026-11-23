@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fort_jesus",
+  "kind": "static-structure",
+  "title": "Fort Jesus",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fort_jesus",
+        "output": "assets/places/kz/kzk/fort_jesus/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:06e8590e50748719af0ca9e23ce33fdcc3f2bc1d78dc819b8a213e1efd1d58b8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "fort_jesus",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "coral-fort",
+        "path": "models/coral-fort.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

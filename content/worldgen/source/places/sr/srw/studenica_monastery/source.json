@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.studenica_monastery",
+  "kind": "static-structure",
+  "title": "Studenica Monastery",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.studenica_monastery",
+        "output": "assets/places/sr/srw/studenica_monastery/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d287fe71bc8514d87f8c00111e6e0303102fb229d3d069c48c099f79b90a4f1d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "studenica_monastery",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "monastery",
+        "path": "models/monastery.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.christchurch_arts_centre",
+  "kind": "static-structure",
+  "title": "Christchurch Arts Centre",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.christchurch_arts_centre",
+        "output": "assets/places/rb/rb6/christchurch_arts_centre/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e87ec093efc7f3b2db966ec5ade3e09d958f091faa78971647f323445d36a705"
+      }
+    ],
+    "generators": [
+      {
+        "id": "christchurch_arts_centre",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "gothic-campus",
+        "path": "models/gothic-campus.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

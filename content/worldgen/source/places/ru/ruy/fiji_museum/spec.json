@@ -1,0 +1,388 @@
+{
+  "id": "fiji_museum",
+  "planId": "fiji_museum",
+  "title": "Fiji Museum",
+  "assetId": "molen.worldgen.structure.fiji_museum",
+  "category": "museum",
+  "wikidataId": "Q2652153",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 178.425735,
+    "latitude": -18.149666
+  },
+  "visualBrief": "A green corrugated hipped roof shelters the open timber veranda with lattice and flanking stone stairs. Lower gallery wings follow the stepped museum footprint in Thurston Gardens.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ru/ruy/fiji_museum/models/thurston-museum.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:FIJI_MUSEUM%2C_SUVA%2C_FIJI_ISLANDS.jpg",
+    "https://commons.wikimedia.org/wiki/File:Fiji_Museum_in_Suva.jpg",
+    "https://www.openstreetmap.org/way/1309951782"
+  ],
+  "geographicProposal": {
+    "id": "fiji-museum",
+    "title": "Fiji Museum",
+    "asset": "molen.worldgen.structure.fiji_museum",
+    "anchor": [
+      178.425735,
+      -18.149666
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 13.64,
+    "bounds": [
+      178.42539459299755,
+      -18.15003286770246,
+      178.42598830700373,
+      -18.14929933299073
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q2652153",
+      "names": [
+        "Fiji Museum",
+        "Fiji Museum",
+        "National Museum of Fiji"
+      ],
+      "maxDistance": 53
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -17.601943,
+          -9.428759
+        ],
+        [
+          -23.694924,
+          -3.88505
+        ],
+        [
+          -21.135026,
+          -1.079799
+        ],
+        [
+          -34.008562,
+          10.66441
+        ],
+        [
+          -21.801445,
+          24.056157
+        ],
+        [
+          -12.291742,
+          15.38436
+        ],
+        [
+          9.097158,
+          38.839409
+        ],
+        [
+          20.182997,
+          28.731582
+        ],
+        [
+          2.348336,
+          9.172728
+        ],
+        [
+          -4.728407,
+          15.618131
+        ],
+        [
+          -8.716347,
+          11.243272
+        ],
+        [
+          -5.437139,
+          8.248776
+        ],
+        [
+          6.738244,
+          -2.849779
+        ],
+        [
+          9.171205,
+          -0.178111
+        ],
+        [
+          14.883374,
+          -5.387863
+        ],
+        [
+          12.386944,
+          -8.126321
+        ],
+        [
+          24.795045,
+          -19.436373
+        ],
+        [
+          7.129633,
+          -38.817068
+        ],
+        [
+          -1.459777,
+          -30.991322
+        ],
+        [
+          -12.111914,
+          -21.284275
+        ],
+        [
+          -21.008088,
+          -13.169091
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace only the named museum footprint. The approach path, Thurston Gardens and the separately mapped clock and shelter stay in the host."
+    },
+    "source": "https://www.openstreetmap.org/way/1309951782",
+    "note": "The center of the stair meets the northwestern approach from the garden. The lower wings and their setbacks use the mapped museum outline.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c33c90a1eb0409f3e7865cff3883be59d5bd1b3b268d97cc16c6152fd76818e0"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.81
+      },
+      "siding": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.92
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.94
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.97
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.56
+      }
+    },
+    "errorMeters": 0.93,
+    "module": "content/worldgen/source/places/ru/ruy/fiji_museum/models/thurston-museum.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.81
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.94
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.97
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 0.36
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.81
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.94
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.97
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 0.14
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.81
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.94
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.97
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 0.052
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        1.930333,
+        3,
+        -2.956682
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "entrance-lattice-and-stairs",
+      "position": [
+        -12.321208,
+        3.6,
+        -46.796089
+      ],
+      "lookAt": [
+        -1.065283,
+        2.5,
+        -29.99418
+      ],
+      "fov": 58
+    },
+    {
+      "name": "hipped-roof-and-wing",
+      "position": [
+        -39.535175,
+        15,
+        -24.696314
+      ],
+      "lookAt": [
+        0.759495,
+        4,
+        -23.538935
+      ],
+      "fov": 54
+    },
+    {
+      "name": "lower-gallery-wings",
+      "position": [
+        -20.463239,
+        13,
+        52.635835
+      ],
+      "lookAt": [
+        0.537346,
+        3,
+        11.84398
+      ],
+      "fov": 52
+    }
+  ],
+  "limitations": [
+    "The veranda and roof profiles use exterior photos. Gallery glazing and detailing outside the principal elevation are approximated."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -34.70829391479492,
+      -2.8299999237060547,
+      -41.461029052734375
+    ],
+    "max": [
+      25.63783073425293,
+      8.209451675415039,
+      39.41297149658203
+    ]
+  },
+  "size": [
+    60.34612464904785,
+    11.039451599121094,
+    80.8740005493164
+  ],
+  "mesh": {
+    "triangles": 8315,
+    "vertices": 16649,
+    "materials": 5,
+    "bytes": 702432,
+    "sha256": "sha256:2e7e5d6ac23ba6f283a8784f5755925f0e80731c86d21161629ccb33d10b829c"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

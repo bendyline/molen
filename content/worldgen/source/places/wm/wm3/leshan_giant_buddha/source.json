@@ -1,0 +1,55 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.leshan_giant_buddha",
+  "kind": "static-structure",
+  "title": "Leshan Giant Buddha",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.leshan_giant_buddha",
+        "output": "assets/places/wm/wm3/leshan_giant_buddha/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c8d06c00af6579a01ca080a9ecd0a729a40a3217bef31843e116874bcdf13761"
+      }
+    ],
+    "generators": [
+      {
+        "id": "leshan_giant_buddha",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "landmark",
+        "path": "models/landmark.mjs"
+      },
+      {
+        "id": "statue",
+        "path": "models/statue.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

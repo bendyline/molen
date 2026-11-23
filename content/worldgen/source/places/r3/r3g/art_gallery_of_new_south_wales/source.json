@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.art_gallery_of_new_south_wales",
+  "kind": "static-structure",
+  "title": "Art Gallery of New South Wales — Naala Nura",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.art_gallery_of_new_south_wales",
+        "output": "assets/places/r3/r3g/art_gallery_of_new_south_wales/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:25f65977e338e8047dec0bf1263573b765510d0393866ee3fede87f3a4fcefeb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "art_gallery_of_new_south_wales",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "south-gallery",
+        "path": "models/south-gallery.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

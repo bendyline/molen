@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.estacion_mapocho",
+  "kind": "static-structure",
+  "title": "Estación Mapocho",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.estacion_mapocho",
+        "output": "assets/places/66/66j/estacion_mapocho/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:645d51afec898a924b572c95211e795479581c60d937616886a2d9c06ee5e041"
+      }
+    ],
+    "generators": [
+      {
+        "id": "estacion_mapocho",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "mapocho-station",
+        "path": "models/mapocho-station.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

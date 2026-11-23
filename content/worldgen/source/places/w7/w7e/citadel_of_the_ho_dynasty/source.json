@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.citadel_of_the_ho_dynasty",
+  "kind": "static-structure",
+  "title": "Citadel of the Hồ Dynasty",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.citadel_of_the_ho_dynasty",
+        "output": "assets/places/w7/w7e/citadel_of_the_ho_dynasty/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b31493d106b12e333ecc17f44b7dd7c83f7f911bebc02577f64efef1e2c054e3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "citadel_of_the_ho_dynasty",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "citadel-model",
+        "path": "models/citadel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

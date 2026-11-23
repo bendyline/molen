@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.church_of_the_nativity",
+  "kind": "static-structure",
+  "title": "Church of the Nativity",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.church_of_the_nativity",
+        "output": "assets/places/sv/sv9/church_of_the_nativity/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:89a3908027b4fa943d08093988e5cebbd5a0018b5ffd27dd4ad61022d7ec778c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "church_of_the_nativity",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "basilica-model",
+        "path": "models/basilica-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.government_house_suva",
+  "kind": "static-structure",
+  "title": "Government House, Suva",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.government_house_suva",
+        "output": "assets/places/ru/ruy/government_house_suva/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:363d190f4bd91fbec7e40026b8f8aab9f819903ca050b39e4588989e72be2ff0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "government_house_suva",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "suva-government-house",
+        "path": "models/suva-government-house.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

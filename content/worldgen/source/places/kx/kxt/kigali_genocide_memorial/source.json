@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kigali_genocide_memorial",
+  "kind": "static-structure",
+  "title": "Kigali Genocide Memorial",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kigali_genocide_memorial",
+        "output": "assets/places/kx/kxt/kigali_genocide_memorial/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:02446ec2e1720b999c847c33793df2a31316eeba95f3f29f7b108f8c85c5d465"
+      }
+    ],
+    "generators": [
+      {
+        "id": "kigali_genocide_memorial",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "gisozi-memorial-museum",
+        "path": "models/gisozi-memorial-museum.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

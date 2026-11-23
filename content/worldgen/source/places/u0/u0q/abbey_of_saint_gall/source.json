@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.abbey_of_saint_gall",
+  "kind": "static-structure",
+  "title": "Abbey of Saint Gall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.abbey_of_saint_gall",
+        "output": "assets/places/u0/u0q/abbey_of_saint_gall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a3c3761ba9cad5c4112c27ea59a0d8a47133b11de99bf66adfd0bac7a5eb555b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "abbey_of_saint_gall",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "abbey",
+        "path": "models/abbey.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

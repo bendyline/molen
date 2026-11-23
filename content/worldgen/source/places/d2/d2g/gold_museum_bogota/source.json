@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.gold_museum_bogota",
+  "kind": "static-structure",
+  "title": "Gold Museum, Bogotá",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.gold_museum_bogota",
+        "output": "assets/places/d2/d2g/gold_museum_bogota/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:456eed4c8b469296a758ee9c9f6bb2483aacba883a604331ce473a9ee759d9d7"
+      }
+    ],
+    "generators": [
+      {
+        "id": "gold_museum_bogota",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "parque-santander-museum",
+        "path": "models/parque-santander-museum.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

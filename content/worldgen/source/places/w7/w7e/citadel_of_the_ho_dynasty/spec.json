@@ -1,0 +1,450 @@
+{
+  "id": "citadel_of_the_ho_dynasty",
+  "planId": "citadel_of_the_ho_dynasty",
+  "title": "Citadel of the Hồ Dynasty",
+  "assetId": "molen.worldgen.structure.citadel_of_the_ho_dynasty",
+  "category": "castle",
+  "wikidataId": "Q190060",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 105.6044590473175,
+    "latitude": 20.07797330591906
+  },
+  "visualBrief": "Four stone gates stand at their original entrances. The South Gate has three barrel-vaulted openings, and each of the other gates has one. Short battered walls join the gates to the surrounding bank.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w7/w7e/citadel_of_the_ho_dynasty/models/citadel-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/1358/",
+    "https://whc.unesco.org/uploads/nominations/1358.pdf",
+    "https://commons.wikimedia.org/wiki/Th%C3%A0nh_T%C3%A2y_%C4%90%C3%B4",
+    "https://www.openstreetmap.org/way/242169982"
+  ],
+  "geographicProposal": {
+    "id": "citadel-of-the-ho-dynasty",
+    "title": "Citadel of the Hồ Dynasty",
+    "asset": "molen.worldgen.structure.citadel_of_the_ho_dynasty",
+    "anchor": [
+      105.6044590473175,
+      20.07797330591906
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 14,
+    "bounds": [
+      105.5987172711628,
+      20.07261844161521,
+      105.61017542883317,
+      20.083411542679336
+    ],
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q190060",
+      "names": [
+        "Citadel of the Hồ Dynasty",
+        "Thành Nhà Hồ",
+        "Citadel of the Ho Dynasty",
+        "Tây Đô",
+        "Thành Tây Đô"
+      ],
+      "maxDistance": 450
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -220.656117,
+          -377.331967
+        ],
+        [
+          150.511269,
+          -603.383678
+        ],
+        [
+          378.794895,
+          -223.018234
+        ],
+        [
+          595.671658,
+          150.080951
+        ],
+        [
+          -145.1889,
+          594.102669
+        ],
+        [
+          -371.684649,
+          227.881301
+        ],
+        [
+          -598.326774,
+          -150.014132
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            209.772586,
+            379.284306
+          ],
+          [
+            217.645517,
+            392.108028
+          ],
+          [
+            231.321205,
+            383.714725
+          ],
+          [
+            245.749684,
+            374.865018
+          ],
+          [
+            237.887209,
+            362.041283
+          ],
+          [
+            223.720116,
+            370.724021
+          ]
+        ],
+        [
+          [
+            368.872702,
+            -230.910889
+          ],
+          [
+            374.748648,
+            -220.702759
+          ],
+          [
+            379.150379,
+            -213.066147
+          ],
+          [
+            389.020295,
+            -218.754644
+          ],
+          [
+            384.639475,
+            -226.34673
+          ],
+          [
+            378.732163,
+            -236.588259
+          ]
+        ],
+        [
+          [
+            -231.561119,
+            -375.806857
+          ],
+          [
+            -225.977925,
+            -367.346396
+          ],
+          [
+            -217.582224,
+            -372.890224
+          ],
+          [
+            -208.496464,
+            -378.901606
+          ],
+          [
+            -214.079658,
+            -387.362073
+          ],
+          [
+            -223.34316,
+            -381.239366
+          ]
+        ],
+        [
+          [
+            -381.17817,
+            220.723549
+          ],
+          [
+            -372.134232,
+            215.536126
+          ],
+          [
+            -366.760147,
+            224.909109
+          ],
+          [
+            -361.344239,
+            234.360009
+          ],
+          [
+            -370.398632,
+            239.547427
+          ],
+          [
+            -375.69953,
+            230.296902
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace only the four mapped stone gate footprints. Preserve streets, fields, museums and other structures around the citadel."
+    },
+    "source": "https://www.openstreetmap.org/way/242169982",
+    "note": "Each gate uses its own mapped footprint, road bearing and approach elevation. The main passage aligns with the road through it. Nearby curtain wall segments meet the gate abutments.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9a608e3f58ba3474631286cd8810c0755600fd583b83fc84d4e072bd7799c622"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "rock": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97
+      },
+      "voussoir": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94
+      },
+      "rubble": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 1
+      },
+      "earth": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 1
+      }
+    },
+    "errorMeters": 0.92,
+    "module": "content/worldgen/source/places/w7/w7e/citadel_of_the_ho_dynasty/models/citadel-model.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "voussoir": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 1
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.5
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "voussoir": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 1
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.2
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "voussoir": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 1
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.08
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.94,
+    "focus": {
+      "center": [
+        227.68,
+        2.4,
+        377.12
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "south-gate-triple-vault",
+      "position": [
+        269,
+        12.4,
+        427
+      ],
+      "lookAt": [
+        227.7,
+        4.9,
+        377.1
+      ],
+      "fov": 53
+    },
+    {
+      "name": "east-gate",
+      "position": [
+        421,
+        14,
+        -248
+      ],
+      "lookAt": [
+        378.7,
+        6,
+        -224.3
+      ],
+      "fov": 58
+    },
+    {
+      "name": "north-gate",
+      "position": [
+        -245,
+        12.7,
+        -417
+      ],
+      "lookAt": [
+        -220,
+        8,
+        -377.25
+      ],
+      "fov": 55
+    },
+    {
+      "name": "west-gate",
+      "position": [
+        -422,
+        12.5,
+        255
+      ],
+      "lookAt": [
+        -371.2,
+        5.4,
+        227.6
+      ],
+      "fov": 53
+    },
+    {
+      "name": "four-gate-alignment",
+      "position": [
+        75,
+        908,
+        165
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 60
+    }
+  ],
+  "limitations": [
+    "The gate footprints and road alignments come from the map. Heights, individual block joints and the lengths of the short adjoining curtain walls are approximate.",
+    "The surviving stone forms are modeled. The unoccupied site interior remains in the host, and the terrain datum is sampled at each gate approach."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -390.04925537109375,
+      -2.8499999046325684,
+      -396.9817199707031
+    ],
+    "max": [
+      396.6785888671875,
+      12.100000381469727,
+      402.5680236816406
+    ]
+  },
+  "size": [
+    786.7278442382812,
+    14.950000286102295,
+    799.5497436523438
+  ],
+  "mesh": {
+    "triangles": 3680,
+    "vertices": 11040,
+    "materials": 4,
+    "bytes": 444560,
+    "sha256": "sha256:b31493d106b12e333ecc17f44b7dd7c83f7f911bebc02577f64efef1e2c054e3"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

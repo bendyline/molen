@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mehmed_pasa_sokolovic_bridge",
+  "kind": "static-structure",
+  "title": "Mehmed Paša Sokolović Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json",
+      "native-water.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mehmed_pasa_sokolovic_bridge",
+        "output": "assets/places/sr/srv/mehmed_pasa_sokolovic_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d77d6e3069fe92c62b1465191dac55e4d00ca7de019e49de327a46d8fbc68b7f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "mehmed_pasa_sokolovic_bridge",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "stone-bridge",
+        "path": "models/stone-bridge.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mausoleum_of_khoja_ahmed_yasawi",
+  "kind": "static-structure",
+  "title": "Mausoleum of Khoja Ahmed Yasawi",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mausoleum_of_khoja_ahmed_yasawi",
+        "output": "assets/places/tx/tx8/mausoleum_of_khoja_ahmed_yasawi/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:502fb6522007d12e92b162cb65a7d7d96123052b62ed57f818f5e01fc1ee529f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "mausoleum_of_khoja_ahmed_yasawi",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "mausoleum",
+        "path": "models/mausoleum.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

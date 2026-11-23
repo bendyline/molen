@@ -1,0 +1,443 @@
+{
+  "id": "australian_national_maritime_museum",
+  "planId": "australian_national_maritime_museum",
+  "title": "Australian National Maritime Museum",
+  "assetId": "molen.worldgen.structure.australian_national_maritime_museum",
+  "category": "museum",
+  "wikidataId": "Q844329",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 151.19872,
+    "latitude": -33.86927
+  },
+  "visualBrief": "White metal roofs curl over the long waterfront galleries at Pyrmont. Two lower glazed harbour wings frame the recessed east frontage. The south entry and stone podium follow the museum’s mapped outline.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r3/r3g/australian_national_maritime_museum/models/wave-roof-museum.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Australian_National_Maritime_Museum_from_Pyrmont_Bay_ferry_wharf.jpg",
+    "https://commons.wikimedia.org/wiki/File:AusNatMM.JPG",
+    "https://www.openstreetmap.org/way/16598528"
+  ],
+  "geographicProposal": {
+    "id": "australian-national-maritime-museum",
+    "title": "Australian National Maritime Museum",
+    "asset": "molen.worldgen.structure.australian_national_maritime_museum",
+    "anchor": [
+      151.19872,
+      -33.86927
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 6.12,
+    "bounds": [
+      151.19828096196227,
+      -33.87014217568984,
+      151.19920123803877,
+      -33.86860803224314
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q844329",
+      "names": [
+        "Australian National Maritime Museum",
+        "Australian National Maritime Museum",
+        "National Maritime Museum"
+      ],
+      "maxDistance": 120
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -29.790135,
+          41.154905
+        ],
+        [
+          -29.762406,
+          35.254948
+        ],
+        [
+          -31.481601,
+          35.232684
+        ],
+        [
+          -34.383897,
+          32.427423
+        ],
+        [
+          -34.217524,
+          14.482677
+        ],
+        [
+          -26.749193,
+          14.382489
+        ],
+        [
+          -26.795408,
+          5.220886
+        ],
+        [
+          -24.891354,
+          5.465789
+        ],
+        [
+          -24.72498,
+          -4.57523
+        ],
+        [
+          -38.580212,
+          -4.408251
+        ],
+        [
+          -37.230736,
+          -49.080637
+        ],
+        [
+          -33.792347,
+          -49.726286
+        ],
+        [
+          -34.319197,
+          -61.425896
+        ],
+        [
+          -21.591609,
+          -61.214391
+        ],
+        [
+          -20.547152,
+          -43.670536
+        ],
+        [
+          -7.080125,
+          -43.592613
+        ],
+        [
+          -7.274228,
+          -50.538914
+        ],
+        [
+          -3.789623,
+          -50.75042
+        ],
+        [
+          -4.529062,
+          -67.492768
+        ],
+        [
+          9.797562,
+          -67.726537
+        ],
+        [
+          9.4186,
+          -71.233075
+        ],
+        [
+          41.676611,
+          -71.689482
+        ],
+        [
+          42.480751,
+          -56.872958
+        ],
+        [
+          17.968359,
+          -32.727874
+        ],
+        [
+          18.689312,
+          32.638931
+        ],
+        [
+          26.573577,
+          42.824705
+        ],
+        [
+          42.249676,
+          56.650658
+        ],
+        [
+          42.000116,
+          93.564493
+        ],
+        [
+          19.826199,
+          71.51191
+        ],
+        [
+          19.659825,
+          95.089585
+        ],
+        [
+          -4.159342,
+          71.088893
+        ],
+        [
+          -4.242529,
+          66.368912
+        ],
+        [
+          -4.316473,
+          61.648934
+        ],
+        [
+          -9.594217,
+          61.481954
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the main museum polygon. The Cape Bowling Green Light, Navy Pavilion and moored ships retain their own map features."
+    },
+    "source": "https://www.openstreetmap.org/way/16598528",
+    "note": "The roof axes and walls are aligned to the main survey footprint. Both entrance points come from the mapped museum wall.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6306f0e7bc3d77b085a06ceb59f213bb086d23ed21aad8db3f144c1308d446fd"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "metal_standing_seam",
+        "roughness": 0.91
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.84
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_panel",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.46
+      }
+    },
+    "errorMeters": 1.35,
+    "module": "content/worldgen/source/places/r3/r3g/australian_national_maritime_museum/models/wave-roof-museum.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46
+          }
+        },
+        "errorMeters": 0.51
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46
+          }
+        },
+        "errorMeters": 0.19
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46
+          }
+        },
+        "errorMeters": 0.073
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        9,
+        5
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "northern-wave-roofs",
+      "position": [
+        32,
+        13,
+        -107
+      ],
+      "lookAt": [
+        -9,
+        16,
+        -40
+      ],
+      "fov": 55
+    },
+    {
+      "name": "waterfront-glass-wings",
+      "position": [
+        96,
+        11,
+        -22
+      ],
+      "lookAt": [
+        12,
+        7,
+        1
+      ],
+      "fov": 57
+    },
+    {
+      "name": "mapped-south-entrance",
+      "position": [
+        44,
+        6,
+        107
+      ],
+      "lookAt": [
+        2,
+        6,
+        64
+      ],
+      "fov": 58
+    }
+  ],
+  "limitations": [
+    "The cross sections and crest heights are estimated from photographs. The model covers the main museum exterior. The waterfront and nearby vessels use the host map."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -38.890071868896484,
+      -5.650000095367432,
+      -72.47002410888672
+    ],
+    "max": [
+      43.028114318847656,
+      25.632341384887695,
+      95.63903045654297
+    ]
+  },
+  "size": [
+    81.91818618774414,
+    31.282341480255127,
+    168.1090545654297
+  ],
+  "mesh": {
+    "triangles": 24524,
+    "vertices": 49416,
+    "materials": 5,
+    "bytes": 2076600,
+    "sha256": "sha256:849c5edab85bd635ad5386050fde0ac74f2e45e91356abb000646aad817185de"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

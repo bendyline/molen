@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.naala_badu",
+  "kind": "static-structure",
+  "title": "Naala Badu",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.naala_badu",
+        "output": "assets/places/r3/r3g/naala_badu/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d7b6fa47b960083fdb9ebc0528db5e64d2de47ce33b6bbe4dcd452fe23590135"
+      }
+    ],
+    "generators": [
+      {
+        "id": "naala_badu",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "north-gallery",
+        "path": "models/north-gallery.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

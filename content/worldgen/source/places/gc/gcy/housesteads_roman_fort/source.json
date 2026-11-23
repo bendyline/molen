@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.housesteads_roman_fort",
+  "kind": "static-structure",
+  "title": "Housesteads Roman Fort",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.housesteads_roman_fort",
+        "output": "assets/places/gc/gcy/housesteads_roman_fort/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:5d1ee7fb9e7470d4477c52430d55de81898e59ae41ada62516af5f46d73cf19f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "housesteads_roman_fort",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "whin-sill-ruins",
+        "path": "models/whin-sill-ruins.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

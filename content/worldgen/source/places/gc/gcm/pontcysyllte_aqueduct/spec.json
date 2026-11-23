@@ -1,0 +1,318 @@
+{
+  "id": "pontcysyllte_aqueduct",
+  "planId": "pontcysyllte_aqueduct",
+  "title": "Pontcysyllte Aqueduct",
+  "assetId": "molen.worldgen.structure.pontcysyllte_aqueduct",
+  "category": "bridge",
+  "wikidataId": "Q158822",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -3.0878750000000004,
+    "latitude": 52.970175749999996
+  },
+  "visualBrief": "Nineteen cast-iron spans carry the Llangollen Canal above the Dee. Tapering ashlar piers meet the valley below, with pointed cutwaters in the river. The narrow east towpath follows the trough to both landings.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcm/pontcysyllte_aqueduct/models/aqueduct.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?id=1601",
+    "https://datamap.gov.wales/maps/lidar-data-download/",
+    "https://www.openstreetmap.org/way/250823337"
+  ],
+  "geographicProposal": {
+    "id": "pontcysyllte-aqueduct",
+    "title": "Pontcysyllte Aqueduct",
+    "asset": "molen.worldgen.structure.pontcysyllte_aqueduct",
+    "anchor": [
+      -3.0878750000000004,
+      52.970175749999996
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 94.44,
+    "bounds": [
+      -3.088277792884346,
+      52.96870979600421,
+      -3.087449377017633,
+      52.97168051738456
+    ],
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q158822",
+      "names": [
+        "Pontcysyllte Aqueduct",
+        "Dyfrbont Pontcysyllte",
+        "Traphont Pontcysyllte"
+      ],
+      "maxDistance": 170
+    },
+    "source": "https://www.openstreetmap.org/way/250823337",
+    "note": "The crossing follows the PMTiles canal and east towpath. Its two deck ends meet the landings measured in the Welsh Government DTM.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:48bb05fe34eec887194d0451706045d4194672df88eedb199002a94db66f2c3b",
+    "replaceRoads": {
+      "length": 326.9,
+      "width": 3.8,
+      "outline": [
+        [
+          -24.444517,
+          159.525172
+        ],
+        [
+          -20.673207,
+          160.066758
+        ],
+        [
+          25.846367,
+          -163.870021
+        ],
+        [
+          22.075056,
+          -164.411608
+        ]
+      ],
+      "bridgeFeatureIds": [
+        25589778,
+        35184397678610
+      ],
+      "deckHeight": 0.11,
+      "deckEndpoints": [
+        [
+          -21.449394,
+          159.773445
+        ],
+        [
+          25.019006,
+          -163.806989
+        ]
+      ],
+      "includeConnectedApproaches": true
+    }
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.31
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "canal": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.39
+      }
+    },
+    "errorMeters": 1.02,
+    "module": "content/worldgen/source/places/gc/gcm/pontcysyllte_aqueduct/models/aqueduct.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.31
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "canal": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.39
+          }
+        },
+        "errorMeters": 0.48
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.31
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "canal": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.39
+          }
+        },
+        "errorMeters": 0.18
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.31
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "canal": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.39
+          }
+        },
+        "errorMeters": 0.065
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": -42,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        -15,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "iron-arches-over-dee",
+      "position": [
+        -83,
+        -17,
+        35
+      ],
+      "lookAt": [
+        8,
+        -16,
+        -31
+      ],
+      "fov": 49
+    },
+    {
+      "name": "trevor-towpath-and-trough",
+      "position": [
+        27,
+        2.7,
+        -159
+      ],
+      "lookAt": [
+        18,
+        -0.5,
+        -112
+      ],
+      "fov": 59
+    },
+    {
+      "name": "froncysyllte-landing",
+      "position": [
+        -26.4,
+        3.2,
+        161
+      ],
+      "lookAt": [
+        -18,
+        -0.4,
+        120
+      ],
+      "fov": 58
+    }
+  ],
+  "limitations": [
+    "The span pitch, iron plate details, submerged pier foundations and end masonry are reconstructed. The local grades use a Welsh Government LiDAR DTM. Filtered river elevation approximates the surface and provides no bathymetry."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -24.72578239440918,
+      -40.439998626708984,
+      -164.27749633789062
+    ],
+    "max": [
+      26.018749237060547,
+      1.2400000095367432,
+      159.91702270507812
+    ]
+  },
+  "size": [
+    50.74453163146973,
+    41.67999863624573,
+    324.19451904296875
+  ],
+  "mesh": {
+    "triangles": 38770,
+    "vertices": 77524,
+    "materials": 4,
+    "bytes": 3258940,
+    "sha256": "sha256:2a1cd8cc6865c317c1911b07345ad77986f824dd6e2033f96368834469edbc2b"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

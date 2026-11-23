@@ -5,6 +5,10 @@ Rank reflects broad recognition, architectural or historical significance, and r
 The selection uses Wikidata sitelinks and selected UNESCO listings, supplemented by named
 landmark leads. The manifest records the source and reference coordinate for each entry.
 
+Fort Jesus in Mombasa occupies slot 73. The duplicate UNESCO entry in slot 446 was replaced
+with the Fortress of São Miguel in Luanda to keep the inventory at 500 distinct places.
+[Fort Jesus](https://whc.unesco.org/en/list/1295/) · [Fortress of São Miguel](https://www.wikidata.org/wiki/Q1408988)
+
 ## First authoring pass
 
 The existing collection covers the Empire State Building, Eiffel Tower, Brandenburg Gate,

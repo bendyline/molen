@@ -1,0 +1,52 @@
+{
+  "format": "molen/scene@3",
+  "name": "Art Gallery of New South Wales — Naala Nura",
+  "seed": "art_gallery_of_new_south_wales",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": { "mode": "fixed", "position": [-169, 57, -140], "lookAt": [-10, 3, 1], "fov": 50 },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.art_gallery_of_new_south_wales",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [-0.78, 0.65, -0.38],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -0.62, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [754, 1.18, 754] },
+          "materialRef": "palette:#8c8769",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}

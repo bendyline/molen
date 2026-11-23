@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.auckland_town_hall",
+  "kind": "static-structure",
+  "title": "Auckland Town Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.auckland_town_hall",
+        "output": "assets/places/rc/rck/auckland_town_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1fed5a927945210e0ae0f6d4ad23b98c088721abaacfe8b9aea703a48e6377c1"
+      }
+    ],
+    "generators": [
+      {
+        "id": "auckland_town_hall",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "civic-hall",
+        "path": "models/civic-hall.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

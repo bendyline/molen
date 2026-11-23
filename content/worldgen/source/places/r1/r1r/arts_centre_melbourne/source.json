@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.arts_centre_melbourne",
+  "kind": "static-structure",
+  "title": "Arts Centre Melbourne — Theatres Building",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.arts_centre_melbourne",
+        "output": "assets/places/r1/r1r/arts_centre_melbourne/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c7c16817d8dd77b4b7567d017c4f108854d06c294360490230d98107530c09c1"
+      }
+    ],
+    "generators": [
+      {
+        "id": "arts_centre_melbourne",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "theatres",
+        "path": "models/theatres.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

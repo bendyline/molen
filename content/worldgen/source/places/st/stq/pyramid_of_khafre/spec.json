@@ -1,0 +1,293 @@
+{
+  "id": "pyramid_of_khafre",
+  "planId": "pyramid_of_khafre",
+  "title": "Pyramid of Khafre",
+  "assetId": "molen.worldgen.structure.pyramid_of_khafre",
+  "category": "pyramid",
+  "wikidataId": "Q208358",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 31.13073706626892,
+    "latitude": 29.975989311068588
+  },
+  "visualBrief": "The surviving four-sided pyramid has rough limestone masonry on its lower slopes and a pale, largely intact casing above an irregular break near the summit.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/st/stq/pyramid_of_khafre/models/pyramid-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://egymonuments.gov.eg/en/monuments/pyramid-complex-of-khafre-khefren/",
+    "https://www.openstreetmap.org/way/4420396"
+  ],
+  "geographicProposal": {
+    "id": "pyramid-of-khafre",
+    "title": "Pyramid of Khafre",
+    "asset": "molen.worldgen.structure.pyramid_of_khafre",
+    "anchor": [
+      31.13073706626892,
+      29.975989311068588
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 72,
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "bounds": [
+      31.12964540719986,
+      29.975039031048112,
+      31.131828725337982,
+      29.976939591022628
+    ],
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q208358",
+      "names": [
+        "Pyramid of Khafre",
+        "Pyramid of Chephren",
+        "هرم خفرع"
+      ],
+      "maxDistance": 12
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -105.267,
+          -105.009
+        ],
+        [
+          104.491,
+          -105.785
+        ],
+        [
+          105.267,
+          105.008
+        ],
+        [
+          -104.491,
+          105.784
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Replace the same named PMTiles pyramid footprint. Keep the independent monuments and temples."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -105.267,
+          -105.009
+        ],
+        [
+          104.491,
+          -105.785
+        ],
+        [
+          105.267,
+          105.008
+        ],
+        [
+          -104.491,
+          105.784
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Limit terrain trimming to the modeled pyramid base and retain the surrounding plateau paving."
+    },
+    "source": "https://www.openstreetmap.org/way/4420396",
+    "note": "The PMTiles outline establishes the full extent and orientation. A local Terrarium sample sets an approximate base elevation.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:17467e1a378c15130ac12e24004a79dacdf5b0fca6c6196bfedc6ad516f974cc"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "errorMeters": 3.5,
+    "surfaces": {
+      "limestone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96
+      },
+      "casing": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.9
+      },
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      }
+    },
+    "module": "content/worldgen/source/places/st/stq/pyramid_of_khafre/models/pyramid-model.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 1.6,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "casing": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "casing": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "casing": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          }
+        }
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.8,
+    "focus": {
+      "center": [
+        0,
+        40.8,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "northeast-overview",
+      "position": [
+        204.4,
+        70.72,
+        -232.39999999999998
+      ],
+      "lookAt": [
+        0,
+        51.68,
+        0
+      ],
+      "fov": 43
+    },
+    {
+      "name": "north-face",
+      "position": [
+        0,
+        42.16,
+        -273
+      ],
+      "lookAt": [
+        0,
+        54.400000000000006,
+        0
+      ],
+      "fov": 44
+    },
+    {
+      "name": "remaining-casing",
+      "position": [
+        34,
+        126,
+        -63
+      ],
+      "lookAt": [
+        0,
+        118,
+        0
+      ],
+      "fov": 40
+    }
+  ],
+  "limitations": [
+    "The PMTiles plan and reference photo control the major shapes. Course positions, casing losses and individual masonry blocks are authored estimates.",
+    "The base elevation and footing contact are approximate and depend on the host terrain source.",
+    "The associated mortuary and valley temples are separate structures."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -105.26699829101562,
+      -8,
+      -105.78500366210938
+    ],
+    "max": [
+      105.26699829101562,
+      136,
+      105.78399658203125
+    ]
+  },
+  "size": [
+    210.53399658203125,
+    144,
+    211.56900024414062
+  ],
+  "mesh": {
+    "triangles": 18444,
+    "vertices": 55332,
+    "materials": 2,
+    "bytes": 2215288,
+    "sha256": "sha256:5ca7b376ecf2b2f4abb79c20b69155be9e701858c717eaa55d5cdda5e75192e2"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    }
+  ]
+}

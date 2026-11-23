@@ -1,0 +1,52 @@
+{
+  "format": "molen/scene@3",
+  "name": "Altes Museum",
+  "seed": "altes_museum",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": { "mode": "fixed", "position": [65, 37, 111], "lookAt": [0, 11, 0], "fov": 49 },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.altes_museum",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [0.69, 0.78, 0.44],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -0.62, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [540, 1.18, 540] },
+          "materialRef": "palette:#989982",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}

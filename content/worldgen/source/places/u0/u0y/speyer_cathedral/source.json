@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.speyer_cathedral",
+  "kind": "static-structure",
+  "title": "Speyer Cathedral",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.speyer_cathedral",
+        "output": "assets/places/u0/u0y/speyer_cathedral/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:097e72cee4ee7b00ee73e50875bd0d459e822f9cbc3b1884ce19c5b2189b05eb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "speyer_cathedral",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cathedral-model",
+        "path": "models/cathedral-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

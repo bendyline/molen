@@ -17,6 +17,8 @@ export type EarthSiteGrades = readonly {
   elevation: number;
   /** Optional station/elevation controls along the site's local +Z axis in metres. */
   elevationProfile?: [station: number, elevation: number][];
+  /** Regular absolute elevation samples over bounds, ordered by increasing local Z then X. */
+  elevationGrid?: number[][];
   blend: number;
   repairBelow?: number;
   validFrom?: string;
@@ -35,6 +37,7 @@ export function readEarthSiteGrades(value: unknown): EarthSiteGrades {
       heading,
       elevation,
       elevationProfile,
+      elevationGrid,
       blend,
       repairBelow,
       validFrom,
@@ -50,6 +53,8 @@ export function readEarthSiteGrades(value: unknown): EarthSiteGrades {
       !finite(heading) ||
       !finite(elevation) ||
       (elevationProfile !== undefined && !validElevationProfile(elevationProfile)) ||
+      (elevationGrid !== undefined &&
+        (elevationProfile !== undefined || !validElevationGrid(elevationGrid))) ||
       !finite(blend) ||
       blend <= 0 ||
       ((validFrom !== undefined || validUntil !== undefined) &&
@@ -57,7 +62,8 @@ export function readEarthSiteGrades(value: unknown): EarthSiteGrades {
       (repairBelow !== undefined &&
         (!finite(repairBelow) ||
           repairBelow > elevation ||
-          elevationProfile?.some(([, height]) => height < repairBelow)))
+          elevationProfile?.some(([, height]) => height < repairBelow) ||
+          elevationGrid?.some((row) => row.some((height) => height < repairBelow))))
     )
       throw new Error('Invalid Earth site grade');
     const center = anchor as [number, number];
@@ -75,6 +81,7 @@ export function readEarthSiteGrades(value: unknown): EarthSiteGrades {
       heading,
       elevation,
       ...(elevationProfile !== undefined ? { elevationProfile } : {}),
+      ...(elevationGrid !== undefined ? { elevationGrid } : {}),
       blend,
       ...(repairBelow === undefined ? {} : { repairBelow }),
       ...(typeof validFrom === 'string' && typeof validUntil === 'string'
@@ -86,6 +93,20 @@ export function readEarthSiteGrades(value: unknown): EarthSiteGrades {
 
 const finite = (value: unknown): value is number =>
   typeof value === 'number' && Number.isFinite(value);
+
+function validElevationGrid(value: unknown): value is number[][] {
+  if (!Array.isArray(value) || value.length < 2 || value.length > 129) return false;
+  const cols = Array.isArray(value[0]) ? value[0].length : 0;
+  return (
+    cols >= 2 &&
+    cols <= 129 &&
+    value.every((row) => {
+      if (!Array.isArray(row) || row.length !== cols) return false;
+      for (const height of row) if (!finite(height)) return false;
+      return true;
+    })
+  );
+}
 
 function validElevationProfile(value: unknown): value is [number, number][] {
   return (
@@ -135,10 +156,24 @@ export function createEarthSiteGrading(
     !activeGrades?.length
   )
     return undefined;
+  const prepared = activeGrades.map((site) => {
+    if (!site.elevationGrid) return { site };
+    const [west, north, east, south] = site.bounds;
+    const heights = site.elevationGrid.flat();
+    const min = Math.min(...heights);
+    const max = Math.max(Math.max(...heights), min + 1);
+    const field = new Heightfield(
+      Float32Array.from(heights, (y) => (y - min) / (max - min)),
+      heights.length / site.elevationGrid.length,
+      site.elevationGrid.length,
+      { origin: [west, north], worldSize: [east - west, south - north], height: { min, max } },
+    );
+    return { site, field };
+  });
   return ({ heightfield, pyramid, origin, tileSize, signal }) => {
     if (signal.aborted) return heightfield;
     const scale = pyramid.metersPerUnit ?? 1;
-    const sites = activeGrades.flatMap((site) => {
+    const sites = prepared.flatMap(({ site, field }) => {
       const factor = scale / Math.cos((site.anchor[1] * Math.PI) / 180);
       const blend = site.blend * factor;
       // A coarse grid can spread one corrected sample beyond the site's shoulder.
@@ -173,6 +208,8 @@ export function createEarthSiteGrading(
           east,
           south,
           blend,
+          field,
+          factor,
           elevation: site.elevation,
           elevationProfile: site.elevationProfile?.map(([z, y]): [number, number] => [
             z * factor,
@@ -211,9 +248,11 @@ export function createEarthSiteGrading(
             continue;
           if (influence > weight) {
             weight = influence;
-            elevation = site.elevationProfile
-              ? profileElevation(site.elevationProfile, v, site.elevation)
-              : site.elevation;
+            elevation = site.field
+              ? site.field.sampleHeight(u / site.factor, v / site.factor)
+              : site.elevationProfile
+                ? profileElevation(site.elevationProfile, v, site.elevation)
+                : site.elevation;
           }
         }
         if (weight === 0) continue;

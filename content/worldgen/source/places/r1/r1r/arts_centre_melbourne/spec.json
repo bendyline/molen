@@ -1,0 +1,457 @@
+{
+  "id": "arts_centre_melbourne",
+  "planId": "arts_centre_melbourne",
+  "title": "Arts Centre Melbourne — Theatres Building",
+  "assetId": "molen.worldgen.structure.arts_centre_melbourne",
+  "category": "landmark",
+  "wikidataId": "Q4801443",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 144.968573,
+    "latitude": -37.82136
+  },
+  "visualBrief": "A tapered 162 m white steel lattice and the open bronze mesh canopy rise over the rounded Theatres Building and its stepped concrete apron.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r1/r1r/arts_centre_melbourne/models/theatres.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Arts_Centre%2C_Melbourne%2C_north_view_20230219_1.jpg",
+    "https://www.artscentremelbourne.com.au/-/media/acm/files/about-us/media-centre/media-releases/2024/241001arts-centre-melbournes-theatres-building-celebrates-40-years--media-release.pdf",
+    "https://www.openstreetmap.org/way/22664482"
+  ],
+  "geographicProposal": {
+    "id": "arts-centre-melbourne-theatres",
+    "title": "Arts Centre Melbourne — Theatres Building",
+    "asset": "molen.worldgen.structure.arts_centre_melbourne",
+    "anchor": [
+      144.968573,
+      -37.82136
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 21.4,
+    "bounds": [
+      144.96801094537977,
+      -37.82201704868894,
+      144.96883847918642,
+      -37.82091160635593
+    ],
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q4801443",
+      "names": [
+        "Arts Centre Melbourne — Theatres Building",
+        "Arts Centre Melbourne",
+        "Arts Centre Melbourne (Theatres Building)",
+        "Arts Centre Melbourne Spire"
+      ],
+      "maxDistance": 188
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          1.582816,
+          49.615247
+        ],
+        [
+          -1.380567,
+          54.424279
+        ],
+        [
+          -4.115321,
+          57.22955
+        ],
+        [
+          -7.615103,
+          59.667464
+        ],
+        [
+          -12.33717,
+          61.960662
+        ],
+        [
+          -17.032857,
+          63.051602
+        ],
+        [
+          -21.763717,
+          63.274242
+        ],
+        [
+          -26.274742,
+          62.795565
+        ],
+        [
+          -30.099881,
+          61.337268
+        ],
+        [
+          -33.098437,
+          59.15539
+        ],
+        [
+          -36.34321,
+          56.082951
+        ],
+        [
+          -39.148311,
+          51.830518
+        ],
+        [
+          -40.827855,
+          47.800728
+        ],
+        [
+          -41.768751,
+          44.060373
+        ],
+        [
+          -41.162005,
+          38.950782
+        ],
+        [
+          -40.062827,
+          34.442323
+        ],
+        [
+          -38.770194,
+          29.599906
+        ],
+        [
+          -26.626479,
+          -23.822336
+        ],
+        [
+          -24.023627,
+          -29.944888
+        ],
+        [
+          -20.488671,
+          -34.308595
+        ],
+        [
+          -16.01282,
+          -37.14723
+        ],
+        [
+          -11.05333,
+          -39.384741
+        ],
+        [
+          -6.102634,
+          -39.974732
+        ],
+        [
+          -4.053767,
+          -39.763226
+        ],
+        [
+          -1.503675,
+          -39.507192
+        ],
+        [
+          0.597953,
+          -38.883806
+        ],
+        [
+          4.511025,
+          -37.737221
+        ],
+        [
+          8.872562,
+          -34.197276
+        ],
+        [
+          12.64494,
+          -30.067339
+        ],
+        [
+          15.238999,
+          -24.757417
+        ],
+        [
+          16.188688,
+          -19.336173
+        ],
+        [
+          15.599529,
+          -14.026244
+        ],
+        [
+          12.258029,
+          6.434269
+        ],
+        [
+          9.109984,
+          19.325086
+        ],
+        [
+          7.99322,
+          23.922593
+        ],
+        [
+          4.018593,
+          41.511143
+        ],
+        [
+          3.323913,
+          44.605841
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the Theatres Building and its mapped spire part. Hamer Hall and other nearby structures have separate footprints."
+    },
+    "source": "https://www.openstreetmap.org/way/22664482",
+    "note": "The rounded building outline and spire base are matched to their respective map features. The 162 m height follows the mapped tower measurement.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e2d60390c43523e91f517bdf1a1b13ee6eec802b5b458725c5b939b202c0273f"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.93
+      },
+      "siding": {
+        "slot": "wall",
+        "graph": "metal_standing_seam",
+        "roughness": 0.83
+      },
+      "white": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78
+      },
+      "mesh": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.88,
+        "doubleSided": true
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.56
+      }
+    },
+    "errorMeters": 1.62,
+    "module": "content/worldgen/source/places/r1/r1r/arts_centre_melbourne/models/theatres.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "mesh": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.88,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 0.65
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "mesh": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.88,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 0.24
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "mesh": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.88,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 0.088
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -13,
+        56,
+        13
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "tower-net-and-concrete-apron",
+      "position": [
+        31,
+        9.6,
+        -60
+      ],
+      "lookAt": [
+        -14,
+        18,
+        11
+      ],
+      "fov": 53
+    },
+    {
+      "name": "spire-lattice",
+      "position": [
+        96,
+        68,
+        -74
+      ],
+      "lookAt": [
+        -13,
+        81,
+        15
+      ],
+      "fov": 54
+    },
+    {
+      "name": "covered-roof-saddle",
+      "position": [
+        -68,
+        32,
+        64
+      ],
+      "lookAt": [
+        -12,
+        21,
+        12
+      ],
+      "fov": 55
+    }
+  ],
+  "limitations": [
+    "The bronze canopy net geometry, stepped apron and count of structural struts are estimated from photographs. The model covers the exterior of the Theatres Building and its mast."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -45.94899368286133,
+      -8.350000381469727,
+      -47.93351745605469
+    ],
+    "max": [
+      20.196765899658203,
+      162,
+      71.22054290771484
+    ]
+  },
+  "size": [
+    66.14575958251953,
+    170.35000038146973,
+    119.15406036376953
+  ],
+  "mesh": {
+    "triangles": 36951,
+    "vertices": 74351,
+    "materials": 5,
+    "bytes": 3123380,
+    "sha256": "sha256:c7c16817d8dd77b4b7567d017c4f108854d06c294360490230d98107530c09c1"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

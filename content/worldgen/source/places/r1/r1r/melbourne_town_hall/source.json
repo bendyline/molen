@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.melbourne_town_hall",
+  "kind": "static-structure",
+  "title": "Melbourne Town Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.melbourne_town_hall",
+        "output": "assets/places/r1/r1r/melbourne_town_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:abaf005054f0ff721eaca07a4ffea67ac97a7fcd4f68aada948d56da17c0ac28"
+      }
+    ],
+    "generators": [
+      {
+        "id": "melbourne_town_hall",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "swanston-civic-hall",
+        "path": "models/swanston-civic-hall.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

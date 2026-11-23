@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.temple_of_ephesian_artemis",
+  "kind": "static-structure",
+  "title": "Temple of Artemis at Ephesus",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.temple_of_ephesian_artemis",
+        "output": "assets/places/sw/swe/temple_of_ephesian_artemis/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:823980ecad4cbe0d3a13ff3cdfea8559fd695f557d49a3705ab4e1b2fee643ae"
+      }
+    ],
+    "generators": [
+      {
+        "id": "temple_of_ephesian_artemis",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "ruins-model",
+        "path": "models/ruins-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "format": "molen/scene@3",
+  "name": "Itsukushima Shrine",
+  "seed": "itsukushima_shrine",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": { "mode": "fixed", "position": [-288, 132, -114], "lookAt": [-89, 5, -86], "fov": 52 },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.itsukushima_shrine",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [-28, 34, -20],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [-70, -0.79, -25], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [1350, 1.18, 1350] },
+          "materialRef": "palette:#608b92",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}

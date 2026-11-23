@@ -1,0 +1,472 @@
+{
+  "id": "chuzu_temple",
+  "planId": "chuzu_temple",
+  "title": "Chuzu Temple",
+  "assetId": "molen.worldgen.structure.chuzu_temple",
+  "category": "religious",
+  "wikidataId": "Q2706020",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 112.92671263217926,
+    "latitude": 34.51051960397602
+  },
+  "visualBrief": "Chuzu Temple’s principal hall stands on a stone podium below a steep swept roof. Timber brackets support the deep eaves over red plaster, stone plinths and a central recessed door. Four smaller halls and ranges frame the open precinct.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ww/ww0/chuzu_temple/models/temple.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.openstreetmap.org/way/216154069"
+  ],
+  "geographicProposal": {
+    "id": "chuzu-temple",
+    "title": "Chuzu Temple",
+    "asset": "molen.worldgen.structure.chuzu_temple",
+    "anchor": [
+      112.92671263217926,
+      34.51051960397602
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 655.8828125,
+    "bounds": [
+      112.92634129682126,
+      34.51028733536182,
+      112.92692660317944,
+      34.51081426500037
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q2706020",
+      "names": [
+        "Chuzu Temple",
+        "初祖庵",
+        "First Patriarch’s Temple",
+        "Temple of the First Patriarch"
+      ],
+      "maxDistance": 55
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -15.982271,
+          -37.915053
+        ],
+        [
+          -41.409752,
+          -15.573167
+        ],
+        [
+          -1.488973,
+          26.238409
+        ],
+        [
+          15.141627,
+          41.210827
+        ],
+        [
+          27.396718,
+          28.843278
+        ],
+        [
+          41.513924,
+          14.594416
+        ],
+        [
+          11.738454,
+          -14.370915
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -3.222665,
+            13.447827
+          ],
+          [
+            8.417837,
+            23.856179
+          ],
+          [
+            17.627502,
+            13.570279
+          ],
+          [
+            5.987,
+            3.161916
+          ]
+        ],
+        [
+          [
+            -31.43873,
+            -21.551036
+          ],
+          [
+            -24.274638,
+            -14.103748
+          ],
+          [
+            -15.817157,
+            -22.241218
+          ],
+          [
+            -22.990422,
+            -29.688513
+          ]
+        ],
+        [
+          [
+            -32.062492,
+            -11.39868
+          ],
+          [
+            -27.668638,
+            -15.795807
+          ],
+          [
+            -15.7346,
+            -3.862345
+          ],
+          [
+            -20.128454,
+            0.534776
+          ]
+        ],
+        [
+          [
+            -14.670536,
+            -5.676853
+          ],
+          [
+            -7.396368,
+            1.681367
+          ],
+          [
+            -0.113027,
+            -5.509874
+          ],
+          [
+            -7.387195,
+            -12.868099
+          ]
+        ],
+        [
+          [
+            -16.046482,
+            -26.24873
+          ],
+          [
+            -4.167482,
+            -15.428452
+          ],
+          [
+            -0.021298,
+            -19.981428
+          ],
+          [
+            -11.900298,
+            -30.801712
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the five mapped roofs of Chuzu Temple. The paths and courtyards retain their host terrain."
+    },
+    "source": "https://www.openstreetmap.org/way/216154069",
+    "note": "The main hall faces the open court northwest of its mapped footprint. The five building foundations use separate terrain elevations.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e5d5d182830470fc43e8f65fe0d1056d6f99382878d78fae358cc79509289efd"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.91
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.96
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.97
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_vertical",
+        "roughness": 0.88
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "metallic": 0.19,
+        "roughness": 0.84
+      },
+      "shade": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.83
+      }
+    },
+    "errorMeters": 1.21,
+    "module": "content/worldgen/source/places/ww/ww0/chuzu_temple/models/temple.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.88
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "metallic": 0.19,
+            "roughness": 0.84
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          }
+        },
+        "errorMeters": 0.58
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.88
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "metallic": 0.19,
+            "roughness": 0.84
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          }
+        },
+        "errorMeters": 0.24
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.88
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "metallic": 0.19,
+            "roughness": 0.84
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          }
+        },
+        "errorMeters": 0.08
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -5,
+        3,
+        -3
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "principal-hall-timber-eaves",
+      "position": [
+        -5,
+        3.7,
+        0.2
+      ],
+      "lookAt": [
+        7.1,
+        3.9,
+        13.7
+      ],
+      "fov": 62
+    },
+    {
+      "name": "roof-ridge-and-stone-plinth",
+      "position": [
+        28,
+        14,
+        -9
+      ],
+      "lookAt": [
+        3.3,
+        4.8,
+        12.9
+      ],
+      "fov": 56
+    },
+    {
+      "name": "precinct-courtyard",
+      "position": [
+        -16,
+        10,
+        11
+      ],
+      "lookAt": [
+        -15,
+        3,
+        -14
+      ],
+      "fov": 66
+    }
+  ],
+  "limitations": [
+    "Timber carving, ridge crest, wall height and the secondary roofs are photo-based estimates. The model represents the outside of the five mapped buildings."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -32.62970733642578,
+      -5.227344036102295,
+      -31.366783142089844
+    ],
+    "max": [
+      18.776281356811523,
+      9.950469017028809,
+      25.029327392578125
+    ]
+  },
+  "size": [
+    51.405988693237305,
+    15.177813053131104,
+    56.39611053466797
+  ],
+  "mesh": {
+    "triangles": 3570,
+    "vertices": 7484,
+    "materials": 6,
+    "bytes": 315988,
+    "sha256": "sha256:7c672a633ac8da92ff328de14894b22eb6b46d440f0b9a3384cd9aae5cd2f310"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "door",
+      "uv": "repeats"
+    }
+  ]
+}

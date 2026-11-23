@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.christchurch_town_hall",
+  "kind": "static-structure",
+  "title": "Christchurch Town Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.christchurch_town_hall",
+        "output": "assets/places/rb/rb6/christchurch_town_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:114c9e9dfd3f64301559a280345c80e83e89980a60ab320df351a7259e9e4b4d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "christchurch_town_hall",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "riverside-theatres",
+        "path": "models/riverside-theatres.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

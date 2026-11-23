@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.great_zimbabwe",
+  "kind": "static-structure",
+  "title": "Great Zimbabwe",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.great_zimbabwe",
+        "output": "assets/places/ks/ksm/great_zimbabwe/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c509b8a4259a0699535d6f28d72383ab7d5f7a934ebeb2064f8b1b6498ac79eb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "great_zimbabwe",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "enclosure-model",
+        "path": "models/enclosure-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

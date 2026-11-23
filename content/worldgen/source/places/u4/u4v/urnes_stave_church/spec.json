@@ -1,0 +1,406 @@
+{
+  "id": "urnes_stave_church",
+  "planId": "urnes_stave_church",
+  "title": "Urnes Stave Church",
+  "assetId": "molen.worldgen.structure.urnes_stave_church",
+  "category": "religious",
+  "wikidataId": "Q210678",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 7.322610318660736,
+    "latitude": 61.29810757981838
+  },
+  "visualBrief": "Dark tarred staves rise above the stone sill. The double roof and slender belfry mark the nave against the fjord, and interlaced woodwork frames the old north portal.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u4/u4v/urnes_stave_church/models/stave-church.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/58/",
+    "https://commons.wikimedia.org/wiki/Urnes_Stave_Church",
+    "https://commons.wikimedia.org/wiki/Category:North_portal_of_Urnes_stavkirke",
+    "https://www.openstreetmap.org/way/441801479"
+  ],
+  "geographicProposal": {
+    "id": "urnes-stave-church",
+    "title": "Urnes Stave Church",
+    "asset": "molen.worldgen.structure.urnes_stave_church",
+    "anchor": [
+      7.322610318660736,
+      61.29810757981838
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 119.8,
+    "bounds": [
+      7.322418189864502,
+      61.29805963446853,
+      7.3228049101282,
+      61.29817336529067
+    ],
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q210678",
+      "names": [
+        "Urnes Stave Church",
+        "Urnes stavkyrkje",
+        "Urnes stavkirke",
+        "Chiesa di Urnes"
+      ],
+      "maxDistance": 44
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -7.159487,
+          2.446781
+        ],
+        [
+          -8.271486,
+          2.335462
+        ],
+        [
+          -7.560448,
+          -5.089551
+        ],
+        [
+          -6.416373,
+          -4.978231
+        ],
+        [
+          -6.384296,
+          -5.323322
+        ],
+        [
+          2.950075,
+          -4.354841
+        ],
+        [
+          2.83246,
+          -3.197117
+        ],
+        [
+          5.858378,
+          -2.818631
+        ],
+        [
+          5.831648,
+          -2.5292
+        ],
+        [
+          8.403144,
+          -2.228637
+        ],
+        [
+          7.868529,
+          2.647156
+        ],
+        [
+          5.387918,
+          2.391122
+        ],
+        [
+          5.382571,
+          2.535837
+        ],
+        [
+          2.404768,
+          2.246406
+        ],
+        [
+          2.292499,
+          3.337337
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace only the named Urnes church polygon. Keep the cemetery, the freestanding entrance and other mapped buildings."
+    },
+    "source": "https://www.openstreetmap.org/way/441801479",
+    "note": "The main wall bearing comes from the native outline. The hillside stone sill seats the church above the neighboring field and cemetery.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b2d08501d39a61f9e29c7ca15a1fb5c748b518b066364797416369abfd8da1ec"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "tarred": {
+        "slot": "wall",
+        "graph": "wood_shou_sugi_ban",
+        "roughness": 0.96
+      },
+      "planks": {
+        "slot": "wall",
+        "graph": "wood_vertical",
+        "roughness": 0.95
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "shingle_cedar",
+        "roughness": 0.96
+      },
+      "carved": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.94
+      },
+      "plinth": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 1
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88
+      }
+    },
+    "errorMeters": 0.36,
+    "module": "content/worldgen/source/places/u4/u4v/urnes_stave_church/models/stave-church.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "tarred": {
+            "slot": "wall",
+            "graph": "wood_shou_sugi_ban",
+            "roughness": 0.96
+          },
+          "planks": {
+            "slot": "wall",
+            "graph": "wood_vertical",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.96
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          }
+        },
+        "errorMeters": 0.176
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "tarred": {
+            "slot": "wall",
+            "graph": "wood_shou_sugi_ban",
+            "roughness": 0.96
+          },
+          "planks": {
+            "slot": "wall",
+            "graph": "wood_vertical",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.96
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          }
+        },
+        "errorMeters": 0.075
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "tarred": {
+            "slot": "wall",
+            "graph": "wood_shou_sugi_ban",
+            "roughness": 0.96
+          },
+          "planks": {
+            "slot": "wall",
+            "graph": "wood_vertical",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.96
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          }
+        },
+        "errorMeters": 0.03
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.27,
+    "focus": {
+      "center": [
+        -0.41,
+        4.1,
+        -0.66
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "south-dormer-and-belfry",
+      "position": [
+        -13,
+        7.8,
+        20
+      ],
+      "lookAt": [
+        -1.14,
+        6.36,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "north-nave-and-annex",
+      "position": [
+        11.4,
+        8.2,
+        -17.3
+      ],
+      "lookAt": [
+        -0.29,
+        6.15,
+        -0.82
+      ],
+      "fov": 57
+    },
+    {
+      "name": "carved-north-portal",
+      "position": [
+        -2.42,
+        2.17,
+        -8.15
+      ],
+      "lookAt": [
+        -3.18,
+        2.04,
+        -5.02
+      ],
+      "fov": 57
+    },
+    {
+      "name": "stave-and-shingle-profiles",
+      "position": [
+        -12.73,
+        15.7,
+        7.42
+      ],
+      "lookAt": [
+        -2.11,
+        8.71,
+        -0.86
+      ],
+      "fov": 57
+    }
+  ],
+  "limitations": [
+    "The native footprint sets the building plan. Roof, dormer and tower dimensions use photographic proportions, and the carved portal is interpreted as shallow relief.",
+    "The stone sill uses available Terrarium samples. Terrain grade and the locations of small trim pieces are approximate."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -8.487776756286621,
+      -2.8399999141693115,
+      -5.751149654388428
+    ],
+    "max": [
+      8.654764175415039,
+      17.079999923706055,
+      3.7399730682373047
+    ]
+  },
+  "size": [
+    17.14254093170166,
+    19.919999837875366,
+    9.491122722625732
+  ],
+  "mesh": {
+    "triangles": 3625,
+    "vertices": 9327,
+    "materials": 6,
+    "bytes": 383004,
+    "sha256": "sha256:0c82ba2d288d306d9424402b014d4217e5cf627d1d8811894ec3f99580e8b8bf"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_shou_sugi_ban",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_cedar",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

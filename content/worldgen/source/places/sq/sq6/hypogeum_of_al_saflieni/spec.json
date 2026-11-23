@@ -1,0 +1,367 @@
+{
+  "id": "hypogeum_of_al_saflieni",
+  "planId": "hypogeum_of_al_saflieni",
+  "title": "Hypogeum of Ħal Saflieni",
+  "assetId": "molen.worldgen.structure.hypogeum_of_al_saflieni",
+  "category": "landmark",
+  "wikidataId": "Q755514",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 14.506891071796417,
+    "latitude": 35.86954933616042
+  },
+  "visualBrief": "The Paola visitor entrance stands above three tiers of rock-cut chambers. The middle level includes nested trilithons, corbelled limestone and ochre spiral marks. The lower burial chambers reach 10.6 m below the street.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sq/sq6/hypogeum_of_al_saflieni/models/hypogeum.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/130/",
+    "https://heritagemalta.mt/mt/explore/hal-saflieni-hypogeum/",
+    "https://www.openstreetmap.org/way/386844095"
+  ],
+  "geographicProposal": {
+    "id": "hypogeum-of-hal-saflieni",
+    "title": "Hypogeum of Ħal Saflieni",
+    "asset": "molen.worldgen.structure.hypogeum_of_al_saflieni",
+    "anchor": [
+      14.506891071796417,
+      35.86954933616042
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 53.57,
+    "bounds": [
+      14.506720889586964,
+      35.8693573718781,
+      14.507053497263522,
+      35.869761827383385
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q755514",
+      "names": [
+        "Hypogeum of Ħal Saflieni",
+        "Ħal Saflieni Hypogeum",
+        "L-Ipoġew ta' Ħal Saflieni",
+        "Hal Saflieni Hypogeum",
+        "Ipogeo Ħal Saflieni"
+      ],
+      "maxDistance": 45
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          8.996292,
+          -11.651133
+        ],
+        [
+          7.552962,
+          -2.82349
+        ],
+        [
+          11.792743,
+          -2.133309
+        ],
+        [
+          9.0865,
+          14.453283
+        ],
+        [
+          4.025826,
+          13.629521
+        ],
+        [
+          5.451114,
+          4.913214
+        ],
+        [
+          -11.724509,
+          2.107963
+        ],
+        [
+          -8.991204,
+          -14.589972
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the named visitor building only. The adjacent row houses and street remain host features."
+    },
+    "source": "https://www.openstreetmap.org/way/386844095",
+    "note": "The entrance faces Triq iċ-Ċimiterju on the mapped wall. The rock-cut reconstruction sits below the street and can be inspected from its source scenes.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2ba516a87cf425f419ebb7a0ffbb0360917473edc873517340a1b1a1a14707ad"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "limestone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.96
+      },
+      "cave": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.99
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.91
+      }
+    },
+    "errorMeters": 0.78,
+    "module": "content/worldgen/source/places/sq/sq6/hypogeum_of_al_saflieni/models/hypogeum.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "cave": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          }
+        },
+        "errorMeters": 0.35
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "cave": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          }
+        },
+        "errorMeters": 0.15
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "cave": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          }
+        },
+        "errorMeters": 0.056
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.82,
+    "focus": {
+      "center": [
+        0,
+        2.8,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "entrance-on-triq-ic-cimiterju",
+      "position": [
+        9.719,
+        3.8,
+        31.166
+      ],
+      "lookAt": [
+        6.323,
+        3.9,
+        13.998
+      ],
+      "fov": 54
+    },
+    {
+      "name": "upper-burial-chambers",
+      "position": [
+        -2.886,
+        -1.62,
+        -12.02
+      ],
+      "lookAt": [
+        -2.354,
+        -1.91,
+        -7.323
+      ],
+      "fov": 74
+    },
+    {
+      "name": "holy-of-holies",
+      "position": [
+        7.259,
+        -4.67,
+        8.436
+      ],
+      "lookAt": [
+        7.186,
+        -4.77,
+        12.618
+      ],
+      "fov": 68
+    },
+    {
+      "name": "decorated-chamber",
+      "position": [
+        0.512,
+        -4.92,
+        12.292
+      ],
+      "lookAt": [
+        1.064,
+        -3.07,
+        13.01
+      ],
+      "fov": 65
+    },
+    {
+      "name": "lower-chambers",
+      "position": [
+        1.831,
+        -9.17,
+        16.012
+      ],
+      "lookAt": [
+        6.508,
+        -9.47,
+        16.662
+      ],
+      "fov": 72
+    }
+  ],
+  "limitations": [
+    "The underground shapes and stair connections interpret a historical drawing and photographs. Horizontal registration beneath the visitor building is approximate.",
+    "The geographic model preserves street terrain and neighboring foundations. Chamber views use fixed review cameras. The viewer’s normal walk mode follows the ground surface."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -13.38041877746582,
+      -10.600000381469727,
+      -21.654563903808594
+    ],
+    "max": [
+      12.660186767578125,
+      8.289999961853027,
+      19.446767807006836
+    ]
+  },
+  "size": [
+    26.040605545043945,
+    18.890000343322754,
+    41.10133171081543
+  ],
+  "mesh": {
+    "triangles": 4856,
+    "vertices": 14388,
+    "materials": 5,
+    "bytes": 579540,
+    "sha256": "sha256:8935d5548c58424fcfe8b813bfa0b5a5317b689a1ff1cba78c760c7724e161d2"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

@@ -1,0 +1,470 @@
+{
+  "id": "al_zaytunah_mosque",
+  "planId": "al_zaytunah_mosque",
+  "title": "Al-Zaytunah Mosque",
+  "assetId": "molen.worldgen.structure.al_zaytunah_mosque",
+  "category": "mosque",
+  "wikidataId": "Q1291779",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 10.171051,
+    "latitude": 36.797324
+  },
+  "visualBrief": "The square stone minaret rises 43 metres above the paved courtyard. Three portico ranges and the prayer hall face the open court. Two ribbed white domes stand above the flat roofs.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sn/snx/al_zaytunah_mosque/models/mosque.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Minaret_et_patio_de_la_mosqu%C3%A9e_Zitouna_au_centre_de_la_M%C3%A9dina_de_Tunis.jpg",
+    "https://commons.wikimedia.org/wiki/File:Djamaa_Zitouna_view_from_the_roof.jpg",
+    "https://commons.wikimedia.org/wiki/File:Dome_and_Minaret_of_Jamaa_Zitouna.jpg",
+    "https://www.openstreetmap.org/relation/1552764"
+  ],
+  "geographicProposal": {
+    "id": "al-zaytunah-mosque-tunis",
+    "title": "Al-Zaytunah Mosque",
+    "asset": "molen.worldgen.structure.al_zaytunah_mosque",
+    "anchor": [
+      10.171051,
+      36.797324
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 25.85,
+    "bounds": [
+      10.170663663412256,
+      36.79686573795057,
+      10.171839536584702,
+      36.797762164594985
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q1291779",
+      "names": [
+        "Al-Zaytunah Mosque",
+        "جامع الزيتونة",
+        "Mosquée Zitouna",
+        "Zaytuna Mosque"
+      ],
+      "maxDistance": 125
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          60.713338,
+          3.539959
+        ],
+        [
+          30.985107,
+          -46.776578
+        ],
+        [
+          -2.950538,
+          -30.646311
+        ],
+        [
+          -4.733341,
+          -33.985908
+        ],
+        [
+          -10.2422,
+          -30.846687
+        ],
+        [
+          -8.602022,
+          -27.84105
+        ],
+        [
+          -24.201543,
+          -20.905826
+        ],
+        [
+          -31.207957,
+          -16.152473
+        ],
+        [
+          -28.756604,
+          -12.545716
+        ],
+        [
+          -32.527231,
+          -8.93896
+        ],
+        [
+          -24.005435,
+          4.86466
+        ],
+        [
+          -18.434177,
+          1.569605
+        ],
+        [
+          12.604413,
+          49.013831
+        ],
+        [
+          57.548863,
+          14.838875
+        ],
+        [
+          68.290248,
+          6.52332
+        ],
+        [
+          64.867267,
+          1.213382
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the named mosque and its minaret footprint. Adjacent medina buildings retain their map features."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          60.713338,
+          3.539959
+        ],
+        [
+          30.985107,
+          -46.776578
+        ],
+        [
+          -2.950538,
+          -30.646311
+        ],
+        [
+          -4.733341,
+          -33.985908
+        ],
+        [
+          -10.2422,
+          -30.846687
+        ],
+        [
+          -8.602022,
+          -27.84105
+        ],
+        [
+          -24.201543,
+          -20.905826
+        ],
+        [
+          -31.207957,
+          -16.152473
+        ],
+        [
+          -28.756604,
+          -12.545716
+        ],
+        [
+          -32.527231,
+          -8.93896
+        ],
+        [
+          -24.005435,
+          4.86466
+        ],
+        [
+          -18.434177,
+          1.569605
+        ],
+        [
+          12.604413,
+          49.013831
+        ],
+        [
+          57.548863,
+          14.838875
+        ],
+        [
+          68.290248,
+          6.52332
+        ],
+        [
+          64.867267,
+          1.213382
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "The bottom of the roofless, paved courtyard has a modeled floor. Clear the DEM inside the mosque so it cannot cover portions of the court."
+    },
+    "source": "https://www.openstreetmap.org/relation/1552764",
+    "note": "The minaret anchors to the native tower polygon. The mosque spans the native outer ring and preserves the open courtyard.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:86fe6c6fbda1e9e78b2cb5069c9e6f888fa2d18d73c7e1666f2e9636fff2c932"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.92
+      },
+      "pale": {
+        "slot": "roof",
+        "graph": "plaster_lime",
+        "roughness": 0.91
+      },
+      "tile": {
+        "slot": "trim",
+        "graph": "tile_glazed",
+        "roughness": 0.68
+      },
+      "wood": {
+        "slot": "window",
+        "graph": "wood_vertical",
+        "roughness": 0.87
+      },
+      "basalt": {
+        "slot": "foundation",
+        "graph": "stone_basalt",
+        "roughness": 0.92
+      }
+    },
+    "errorMeters": 1.18,
+    "module": "content/worldgen/source/places/sn/snx/al_zaytunah_mosque/models/mosque.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.92
+          },
+          "pale": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.68
+          },
+          "wood": {
+            "slot": "window",
+            "graph": "wood_vertical",
+            "roughness": 0.87
+          },
+          "basalt": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.92
+          }
+        },
+        "errorMeters": 0.52
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.92
+          },
+          "pale": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.68
+          },
+          "wood": {
+            "slot": "window",
+            "graph": "wood_vertical",
+            "roughness": 0.87
+          },
+          "basalt": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.92
+          }
+        },
+        "errorMeters": 0.19
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.92
+          },
+          "pale": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.68
+          },
+          "wood": {
+            "slot": "window",
+            "graph": "wood_vertical",
+            "roughness": 0.87
+          },
+          "basalt": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.92
+          }
+        },
+        "errorMeters": 0.075
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        11,
+        9,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "open-courtyard-and-minaret",
+      "position": [
+        20,
+        2.45,
+        -8
+      ],
+      "lookAt": [
+        -22,
+        14,
+        -15
+      ],
+      "fov": 62
+    },
+    {
+      "name": "ribbed-domes-over-prayer-hall",
+      "position": [
+        68,
+        29,
+        59
+      ],
+      "lookAt": [
+        25,
+        7,
+        9
+      ],
+      "fov": 52
+    },
+    {
+      "name": "portico-and-prayer-hall",
+      "position": [
+        6,
+        2.7,
+        -20
+      ],
+      "lookAt": [
+        15,
+        4.7,
+        13
+      ],
+      "fov": 57
+    }
+  ],
+  "limitations": [
+    "The 43 m tower height is mapped. The wall heights, roof drum locations and paving levels are inferred from photographs and terrain. The model covers the exterior and courtyard."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -32.52722930908203,
+      -5.25,
+      -46.77657699584961
+    ],
+    "max": [
+      68.29024505615234,
+      43,
+      49.013832092285156
+    ]
+  },
+  "size": [
+    100.81747436523438,
+    48.25,
+    95.79040908813477
+  ],
+  "mesh": {
+    "triangles": 46147,
+    "vertices": 115681,
+    "materials": 6,
+    "bytes": 4722116,
+    "sha256": "sha256:4b8d951a472ef1ca7711fd14c49e3e93e1d98ea8093fc32a0cd7498c60a762bb"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.museum_of_contemporary_art_australia",
+  "kind": "static-structure",
+  "title": "Museum of Contemporary Art Australia",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.museum_of_contemporary_art_australia",
+        "output": "assets/places/r3/r3g/museum_of_contemporary_art_australia/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:0576d732114fb4dcede1910befc244ad4a4f5516f4a0033111daa65b6e07874b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "museum_of_contemporary_art_australia",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "circular-quay-galleries",
+        "path": "models/circular-quay-galleries.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

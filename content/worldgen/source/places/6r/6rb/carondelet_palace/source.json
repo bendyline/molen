@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.carondelet_palace",
+  "kind": "static-structure",
+  "title": "Carondelet Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.carondelet_palace",
+        "output": "assets/places/6r/6rb/carondelet_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:0449469ea6eba6b2209592cfac00f9131f12cc6333ea4b070ca9f87019a034c6"
+      }
+    ],
+    "generators": [
+      {
+        "id": "carondelet_palace",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "presidential-palace",
+        "path": "models/presidential-palace.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [
+      "terrain-review.height.png"
+    ],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

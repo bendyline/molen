@@ -1,0 +1,52 @@
+{
+  "format": "molen/scene@3",
+  "name": "Preah Vihear Temple",
+  "seed": "preah_vihear_temple",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": { "mode": "fixed", "position": [-390, 275, -485], "lookAt": [-4, 62, 42], "fov": 52 },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.preah_vihear_temple",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [-68, 71, -51],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -0.62, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [2020, 1.18, 2020] },
+          "materialRef": "palette:#8b966d",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}

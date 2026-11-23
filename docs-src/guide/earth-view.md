@@ -993,6 +993,10 @@ in its `site-grades` data. Supply two or more `[station, elevation]` pairs in in
 local Z order. The terrain grade interpolates between the elevations and keeps the endpoint
 levels outside the station range. The existing `bounds`, `blend` and `repairBelow` fields
 control where the profile applies.
+For measured terrain that varies along both axes, use `elevationGrid` in place of the profile.
+Each row contains absolute elevations from minimum to maximum local X. The rows run from
+minimum to maximum local Z across `bounds`. Adjacent samples are bilinearly interpolated and
+the same `blend` tapers the perimeter into host terrain.
 For a historical site grade, set `validFrom` and `validUntil` as calendar dates. The grade
 applies when `viewingDate` falls on or after the first date and before the second date.
 

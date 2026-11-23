@@ -1,0 +1,52 @@
+{
+  "format": "molen/scene@3",
+  "name": "Independence Memorial Museum, Windhoek",
+  "seed": "independence_memorial_museum",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": { "mode": "fixed", "position": [-91, 56, -63], "lookAt": [1, 17, 13], "fov": 51 },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.independence_memorial_museum",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [-0.65, 0.61, -0.39],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -0.62, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [522, 1.18, 522] },
+          "materialRef": "palette:#9b927a",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}
