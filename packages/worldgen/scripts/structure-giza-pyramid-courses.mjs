@@ -37,18 +37,21 @@ export function buildGizaPyramid(out, site, detail) {
   const count = [12, 29, 58, 102][detail];
   const segments = [1, 2, 7, 21][detail];
   const scale = (y) => lerp(1, topScale, y / height);
-  const courseHeights = [0, ...Array.from({ length: count }, (_, i) => {
-    const t = (i + 1) / count;
-    return height * (t - .16 * t * (1 - t));
-  })];
+  const courseHeights = [
+    0,
+    ...Array.from({ length: count }, (_, i) => {
+      const t = (i + 1) / count;
+      return height * (t - 0.16 * t * (1 - t));
+    }),
+  ];
   for (const [edge, start] of corners.entries()) {
     const end = corners[(edge + 1) % corners.length];
     const distance = Math.hypot(end[0] - start[0], end[1] - start[1]);
     const outward = [(end[1] - start[1]) / distance, 0, (start[0] - end[0]) / distance];
-    const north = outward[2] < -.9;
+    const north = outward[2] < -0.9;
     const inset = (u, y) => {
       if (!breach || !north) return 0;
-      const mid = breach.center + .015 * Math.sin(y / 6.9);
+      const mid = breach.center + 0.015 * Math.sin(y / 6.9);
       const side = 1 - smooth(Math.abs(u - mid) / breach.width);
       return breach.depth * side * smooth((y - 5) / 11) * smooth((breach.upper - y) / 11);
     };
@@ -58,38 +61,76 @@ export function buildGizaPyramid(out, site, detail) {
       lerp(start[1], end[1], u) * width - outward[2] * inset(u, y),
     ];
     const bottomMaterial = graniteHeight ? 'granite' : 'limestone';
-    quad(out, bottomMaterial, [point(0, footing, 1), point(1, footing, 1), point(1, 0, 1), point(0, 0, 1)], tileColors[bottomMaterial][0], outward);
+    quad(
+      out,
+      bottomMaterial,
+      [point(0, footing, 1), point(1, footing, 1), point(1, 0, 1), point(0, 0, 1)],
+      tileColors[bottomMaterial][0],
+      outward,
+    );
     for (let row = 0; row < count; row++) {
-      const low = courseHeights[row], high = courseHeights[row + 1];
-      const bands = breach && north ? Math.max(8, segments) : Math.max(1, Math.round(segments * scale(low)));
-      const slope = casingHeight && low >= casingHeight - 1 ? .89 : [.94, .7, .41, .31][detail];
-      const base = scale(low), next = scale(high), front = lerp(base, next, slope);
+      const low = courseHeights[row],
+        high = courseHeights[row + 1];
+      const bands =
+        breach && north ? Math.max(8, segments) : Math.max(1, Math.round(segments * scale(low)));
+      const slope =
+        casingHeight && low >= casingHeight - 1 ? 0.89 : [0.94, 0.7, 0.41, 0.31][detail];
+      const base = scale(low),
+        next = scale(high),
+        front = lerp(base, next, slope);
       const joins = Array.from({ length: bands + 1 }, (_, i) => i / bands);
       if (breach && north) {
         joins.push(breach.center - breach.width, breach.center, breach.center + breach.width);
         joins.sort((a, b) => a - b);
       }
       for (let j = 1; j < joins.length; j++) {
-        const a = joins[j - 1], b = joins[j];
+        const a = joins[j - 1],
+          b = joins[j];
         if (b - a < 1e-6) continue;
-        const mid = (a + b) * .5;
-        const scrapedCasingEdge = casingHeight + 2.25 * Math.cos(8.1 * mid + 2.1 * edge)
-          + 1.1 * Math.sin(19 * mid + 3.4 * edge);
-        const material = casingHeight && (low + high) * .5 >= scrapedCasingEdge ? 'casing'
-          : graniteHeight && low < graniteHeight * (.78 + .22 * Math.cos(9.7 * mid + edge)) ? 'granite' : 'limestone';
+        const mid = (a + b) * 0.5;
+        const scrapedCasingEdge =
+          casingHeight +
+          2.25 * Math.cos(8.1 * mid + 2.1 * edge) +
+          1.1 * Math.sin(19 * mid + 3.4 * edge);
+        const material =
+          casingHeight && (low + high) * 0.5 >= scrapedCasingEdge
+            ? 'casing'
+            : graniteHeight && low < graniteHeight * (0.78 + 0.22 * Math.cos(9.7 * mid + edge))
+              ? 'granite'
+              : 'limestone';
         const palette = tileColors[material];
         const variation = ((row * 73856093) ^ (edge * 19349663) ^ (j * 83492791)) >>> 0;
         const color = palette[variation % palette.length];
-        const bottomA = point(a, low, base), bottomB = point(b, low, base);
-        const topA = point(a, high, front), topB = point(b, high, front);
+        const bottomA = point(a, low, base),
+          bottomB = point(b, low, base);
+        const topA = point(a, high, front),
+          topB = point(b, high, front);
         quad(out, material, [bottomA, bottomB, topB, topA], color, outward);
-        quad(out, material, [topA, topB, point(b, high, next), point(a, high, next)], color, [0, 1, 0]);
+        quad(
+          out,
+          material,
+          [topA, topB, point(b, high, next), point(a, high, next)],
+          color,
+          [0, 1, 0],
+        );
       }
     }
   }
   // Close the top and underside. The tiny surviving platform preserves a damaged summit.
   const topMaterial = casingHeight ? 'casing' : 'limestone';
-  quad(out, topMaterial, corners.map(([x, z]) => [x * topScale, height, z * topScale]), tileColors[topMaterial][0], [0, 1, 0]);
+  quad(
+    out,
+    topMaterial,
+    corners.map(([x, z]) => [x * topScale, height, z * topScale]),
+    tileColors[topMaterial][0],
+    [0, 1, 0],
+  );
   const bottomMaterial = graniteHeight ? 'granite' : 'limestone';
-  quad(out, bottomMaterial, corners.map(([x, z]) => [x, footing, z]), tileColors[bottomMaterial][0], [0, -1, 0]);
+  quad(
+    out,
+    bottomMaterial,
+    corners.map(([x, z]) => [x, footing, z]),
+    tileColors[bottomMaterial][0],
+    [0, -1, 0],
+  );
 }
