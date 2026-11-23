@@ -106,6 +106,8 @@ test('a source build starts from an earlier one and keeps its records for the ne
     'node scripts/asset-packs.mjs seed',
     'pnpm assets:build --compile',
     'pnpm assets:pack',
+    // Without the prune the seed's archives ride along and the cache passes GitHub's 10 GB limit.
+    'node scripts/asset-packs.mjs prune',
     'cp .artifacts/asset-packs/installed.json .artifacts/asset-build/seed.json',
     'uses: actions/cache/save@',
   ].map((text) => action.indexOf(text));
@@ -116,7 +118,7 @@ test('a source build starts from an earlier one and keeps its records for the ne
   assert.deepEqual(
     order,
     [...order].sort((a, b) => a - b),
-    'seed before building, record after packing',
+    'seed before building; prune and record after packing, before saving',
   );
 });
 

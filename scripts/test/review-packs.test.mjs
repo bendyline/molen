@@ -129,6 +129,29 @@ test('downloads only required archives and verifies their committed hashes', asy
   await checkReviews({ root, log: quiet });
 });
 
+test('a review download the network dropped is tried again', async () => {
+  const { root, lock, directory } = await fixture();
+  const archive = lock.archives.find((a) => a.files.includes(first));
+  const bytes = await readFile(join(directory, archive.file));
+  await rm(join(root, first));
+  await rm(join(directory, archive.file));
+  const waits = [];
+  let calls = 0;
+  await fetchReviews({
+    root,
+    log: quiet,
+    retry: { wait: async (ms) => waits.push(ms) },
+    fetchImpl: async () => {
+      if (++calls === 1) throw new TypeError('fetch failed');
+      if (calls === 2) return new Response('busy', { status: 503 });
+      return new Response(bytes);
+    },
+  });
+  assert.equal(calls, 3);
+  assert.deepEqual(waits, [2_000, 8_000]);
+  await checkReviews({ root, log: quiet });
+});
+
 test('does not write through destination symlinks', async (t) => {
   const { root } = await fixture();
   await rm(join(root, first));

@@ -128,6 +128,55 @@ test('packs by place, restores exact bytes into a fresh checkout and keeps local
   await assert.rejects(checkReferences({ root: fresh, log: quiet }), /Changed .*north-elevation/);
 });
 
+test('a reference download the network dropped is tried again', async () => {
+  const root = await fixture();
+  await packReferences({ root, log: quiet });
+  const fresh = await fixture();
+  await rm(join(fresh, photo));
+  await rm(join(fresh, scan));
+  await writeFile(
+    join(fresh, 'reference-lock.json'),
+    await readFile(join(root, 'reference-lock.json')),
+  );
+  const serve = releaseServer(root);
+  const seen = new Map();
+  const waits = [];
+  const result = await fetchReferences({
+    root: fresh,
+    fetchImpl: async (url) => {
+      seen.set(url, (seen.get(url) ?? 0) + 1);
+      if (seen.get(url) > 1) return serve(url);
+      if (url.includes('-c2-')) return new Response('busy', { status: 503 });
+      throw new TypeError('fetch failed', {
+        cause: Object.assign(new Error('read ECONNRESET'), { code: 'ECONNRESET' }),
+      });
+    },
+    retry: { wait: async (ms) => waits.push(ms) },
+    log: quiet,
+  });
+  assert.deepEqual(result, { restored: 2, preserved: 0 });
+  assert.deepEqual(waits, [2_000, 2_000]);
+  assert.equal(await readFile(join(fresh, scan), 'utf8'), 'scanned plans');
+  // A release that is not there is not worth waiting for.
+  await rm(join(fresh, photo));
+  await rm(join(fresh, '.artifacts/reference-packs'), { recursive: true });
+  let calls = 0;
+  await assert.rejects(
+    fetchReferences({
+      root: fresh,
+      fetchImpl: async () => {
+        calls++;
+        return new Response('Not Found', { status: 404 });
+      },
+      retry: { wait: async (ms) => waits.push(ms) },
+      log: quiet,
+    }),
+    /Reference download failed: HTTP 404/,
+  );
+  assert.equal(calls, 1);
+  assert.equal(waits.length, 2);
+});
+
 test('a new place packs only its own archive; unchanged archives keep their release', async () => {
   const root = await fixture();
   const first = await packReferences({ root, log: quiet });

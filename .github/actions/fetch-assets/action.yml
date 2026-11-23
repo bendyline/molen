@@ -91,6 +91,10 @@ runs:
         # it offline, and on main the publish job uploads these archives. Groups the build did
         # not change reuse the seed's archives instead of compressing them again.
         pnpm assets:pack
+        # Drop the seed's archives that this bundle did not reuse. Saving both put the cache over
+        # GitHub's 10 GB limit for a repository's caches, and the next cache any job saved then
+        # evicted it before the dependent jobs restored it.
+        node scripts/asset-packs.mjs prune
         # The next build of this branch (or of any branch, from main) starts from this one.
         cp .artifacts/asset-packs/installed.json .artifacts/asset-build/seed.json
     - if: steps.fetch.outputs.build == 'true'

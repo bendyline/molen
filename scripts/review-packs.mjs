@@ -21,6 +21,7 @@ import { parseArgs } from 'node:util';
 import * as tar from 'tar';
 import { fileInfo, verifyArchive } from './asset-packs.mjs';
 import { listReleases } from './github-releases.mjs';
+import { httpError, retryTransient } from './release-download.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const LOCK = 'review-lock.json';
@@ -237,7 +238,7 @@ async function download(lock, archive, path, fetchImpl) {
   try {
     const response = await fetchImpl(url, { signal: AbortSignal.timeout(600_000) });
     if (!response.ok || !response.body)
-      throw new Error(`Review download failed: HTTP ${response.status} ${url}`);
+      throw httpError(`Review download failed: HTTP ${response.status} ${url}`, response.status);
     let size = 0;
     await pipeline(
       Readable.fromWeb(response.body),
@@ -267,6 +268,7 @@ export async function fetchReviews({
   force = false,
   prefix = '',
   fetchImpl = fetch,
+  retry,
   log = console.log,
 } = {}) {
   const lock = await readReviewLock(root);
@@ -294,7 +296,11 @@ export async function fetchReviews({
     if (!(await stat(path)) || !same(await fileInfo(path), archive)) {
       if (offline) throw new Error(`Offline review archive missing or corrupt: ${path}`);
       log(`Downloading ${archive.file}`);
-      await download(lock, archive, path, fetchImpl);
+      await retryTransient(() => download(lock, archive, path, fetchImpl), {
+        what: `Download of ${archive.file}`,
+        log,
+        ...retry,
+      });
     }
     await verifyArchive(path, archive, byPath);
     const stage = await mkdtemp(join(staging, 'restore-'));

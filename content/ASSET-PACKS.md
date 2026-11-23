@@ -224,7 +224,19 @@ it, starting from an earlier build instead of from nothing:
    still verified and kept.
 4. `pnpm assets:pack` reuses every archive whose files and bytes are unchanged (from the seed or
    any manifest in `.artifacts/asset-packs/`), compressing only changed groups.
-5. The job saves its records as the next seed, and its archives under `molen-assets-<release>`.
+5. `node scripts/asset-packs.mjs prune` deletes the seed's archives the new bundle did not reuse.
+6. The job saves its records as the next seed, and its archives under `molen-assets-<release>`.
+
+GitHub keeps at most 10 GB of Actions caches for a repository and evicts the least recently used
+ones whenever a new cache takes the total over that. One bundle's archives are 8.3 GB
+(2026-11-23: 17,228 GLBs in 427 archives), so the saved cache must hold one bundle and nothing
+else: with the seed's archives beside them it was 11.1 GB, and the next cache any job saved (a
+new pnpm store after a lockfile change) evicted the bundle before `docs-site` could restore it.
+A bundle that outgrows the limit by itself can no longer be handed between jobs this way.
+
+Downloads from a release (manifests, archives and the release list) are tried four times, 2, 8
+and 30 seconds apart, when the network or a busy server fails them; a missing release or a
+checksum mismatch fails at once.
 
 ## Change a model
 
