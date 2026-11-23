@@ -1,0 +1,634 @@
+{
+  "planId": "kota_kinabalu_city_mosque",
+  "id": "kota_kinabalu_city_mosque",
+  "assetId": "molen.worldgen.structure.kota_kinabalu_city_mosque",
+  "title": "Kota Kinabalu City Mosque",
+  "wikidataId": "Q3397006",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 116.1077152,
+    "latitude": 5.9957868
+  },
+  "size": [
+    135.79000091552734,
+    50.989999294281006,
+    133.18599700927734
+  ],
+  "actualBounds": {
+    "min": [
+      -62.849998474121094,
+      -4.599999904632568,
+      -64.33599853515625
+    ],
+    "max": [
+      72.94000244140625,
+      46.38999938964844,
+      68.8499984741211
+    ]
+  },
+  "visualBrief": "The Likas Bay floating mosque with cream arcades, a patterned blue dome, three-tier minarets and a low lagoon-side platform.",
+  "nativeAxes": {
+    "x": "east-southeast along principal covered wings",
+    "y": "up",
+    "z": "south-southwest toward the lagoon shore"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Kota_Kinabalu_City_Mosque_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:Kota_Kinabalu_Sabah_City_Mosque_on_November_25th,_2019.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kota-kinabalu-city-mosque-wp",
+      "url": "https://qualla.com/kota-kinabalu-city-mosque/"
+    }
+  ],
+  "referenceInputHash": "sha256:5312052b18cc2ff9ea93e24693e977d451095c41d24cacda9897a482f501aa33",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w9/w94/kota_kinabalu_city_mosque/models/kota-kinabalu-city-mosque-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w9/w94/kota_kinabalu_city_mosque/models/kota-kinabalu-city-mosque-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.89,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.92
+      },
+      "mold": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "deck": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.87
+      },
+      "blue": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.62
+      },
+      "ivory": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.7
+      },
+      "gold": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.71,
+        "metallic": 0.25
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.63
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.34,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92
+          },
+          "mold": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87
+          },
+          "blue": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          },
+          "ivory": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.111,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92
+          },
+          "mold": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87
+          },
+          "blue": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          },
+          "ivory": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92
+          },
+          "mold": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87
+          },
+          "blue": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          },
+          "ivory": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "concrete_plain",
+    "metal_standing_seam",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Terrarium field beside the landing of the eastern mosque wing.",
+    "anchor": [
+      116.1077152,
+      5.9957868
+    ],
+    "heading": -0.36427775751273095,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        116.1081447202278,
+        5.995268205373377
+      ],
+      "modelHeight": 0,
+      "basis": "Original Terrarium field beside the landing of the eastern mosque wing."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -62.628,
+          -19.474
+        ],
+        [
+          -62.632,
+          39.929
+        ],
+        [
+          -48.793,
+          39.93
+        ],
+        [
+          -48.791,
+          44.099
+        ],
+        [
+          -26.964,
+          44.104
+        ],
+        [
+          -26.972,
+          49.242
+        ],
+        [
+          -14.138,
+          49.245
+        ],
+        [
+          -14.143,
+          59.207
+        ],
+        [
+          -1.38,
+          59.213
+        ],
+        [
+          6.867,
+          59.214
+        ],
+        [
+          18.998,
+          59.211
+        ],
+        [
+          18.993,
+          49.253
+        ],
+        [
+          27.285,
+          49.248
+        ],
+        [
+          27.284,
+          44.614
+        ],
+        [
+          32.533,
+          44.614
+        ],
+        [
+          32.531,
+          42.435
+        ],
+        [
+          50.827,
+          42.44
+        ],
+        [
+          62.749,
+          42.445
+        ],
+        [
+          69.477,
+          42.441
+        ],
+        [
+          69.477,
+          -21.976
+        ],
+        [
+          62.689,
+          -21.973
+        ],
+        [
+          49.831,
+          -21.979
+        ],
+        [
+          32.033,
+          -21.983
+        ],
+        [
+          32.036,
+          -23.748
+        ],
+        [
+          27.096,
+          -23.746
+        ],
+        [
+          27.104,
+          -27.919
+        ],
+        [
+          22.318,
+          -27.917
+        ],
+        [
+          22.316,
+          -38.27
+        ],
+        [
+          18.617,
+          -38.277
+        ],
+        [
+          18.624,
+          -64.204
+        ],
+        [
+          7.404,
+          -64.203
+        ],
+        [
+          -12.386,
+          -64.21
+        ],
+        [
+          -12.385,
+          -39.442
+        ],
+        [
+          -19.313,
+          -39.433
+        ],
+        [
+          -19.312,
+          -30.046
+        ],
+        [
+          -27.25,
+          -30.045
+        ],
+        [
+          -27.251,
+          -24.112
+        ],
+        [
+          -48.878,
+          -24.121
+        ],
+        [
+          -48.883,
+          -19.473
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "Mapped named mosque, its attached wings and integrated structural platforms."
+    },
+    "featureIds": [
+      "way/131390717"
+    ],
+    "source": "https://www.openstreetmap.org/way/131390717",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:039b7a674b29585e0669cf9c560fff3fe778b14c7a65853ec0ff27bd00c043b7",
+    "notes": "A white multi-wing mosque with blue-and-cream diamond-patterned main dome, smaller domes, four cream minarets with open balconies, and arched windows beside the lagoon."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The roof levels, tower dimensions, ornamental spacing and elevations away from the documented faces are approximate.",
+    "The model includes the mosque and its fixed structural platforms. The lagoon is represented by mapped placement context and terrain rather than permanent water geometry in the mosque asset."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "kota-kinabalu-city-mosque-skyline",
+      "position": [
+        -112,
+        68,
+        153
+      ],
+      "lookAt": [
+        0,
+        16.4,
+        5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kota-kinabalu-city-mosque-district",
+      "position": [
+        -112,
+        68,
+        153
+      ],
+      "lookAt": [
+        0,
+        16.4,
+        5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "kota-kinabalu-city-mosque-street",
+      "position": [
+        -112,
+        68,
+        153
+      ],
+      "lookAt": [
+        0,
+        16.4,
+        5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "kota-kinabalu-city-mosque-closeup",
+      "position": [
+        -112,
+        68,
+        153
+      ],
+      "lookAt": [
+        0,
+        16.4,
+        5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-floating-mosque-and-four-minarets",
+      "position": [
+        -112,
+        68,
+        153
+      ],
+      "lookAt": [
+        0,
+        16.4,
+        5
+      ]
+    },
+    {
+      "name": "lagoon-side-arches-and-patterned-dome",
+      "position": [
+        -61,
+        19,
+        104
+      ],
+      "lookAt": [
+        -35,
+        18,
+        24
+      ]
+    },
+    {
+      "name": "stepped-minaret-balconies-and-entrance",
+      "position": [
+        87,
+        45,
+        83
+      ],
+      "lookAt": [
+        23,
+        19,
+        19
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 21357,
+    "vertices": 64071,
+    "materials": 7,
+    "bytes": 2688464,
+    "sha256": "sha256:f8ac91079458ee3cf64389c1e0befdd28d7b2dd3febf92c43c295c6f9ade5aee"
+  }
+}

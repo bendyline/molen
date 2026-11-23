@@ -1,0 +1,354 @@
+{
+  "planId": "green_bank_telescope",
+  "id": "green_bank_telescope",
+  "assetId": "molen.worldgen.structure.green_bank_telescope",
+  "title": "Green Bank Telescope",
+  "wikidataId": "Q1544579",
+  "category": "scientific-observatory",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -79.839835,
+    "latitude": 38.433121111111106
+  },
+  "size": [
+    100.60551452636719,
+    143.95489811897278,
+    124.4893798828125
+  ],
+  "actualBounds": {
+    "min": [
+      -50.302757263183594,
+      -1.4500000476837158,
+      -60.059783935546875
+    ],
+    "max": [
+      50.302757263183594,
+      142.50489807128906,
+      64.42959594726562
+    ]
+  },
+  "visualBrief": "Open steel radio telescope with a 100-by-110-metre asymmetrical dish, azimuth track, elevation axle and outboard feed tower.",
+  "nativeAxes": {
+    "x": "east in the unrotated placement frame",
+    "y": "up",
+    "z": "south in the unrotated placement frame"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Green_Bank_Telescope,_2008.png"
+  ],
+  "stories": [
+    {
+      "id": "green-bank-telescope-wp",
+      "url": "https://qualla.com/green-bank-telescope/"
+    }
+  ],
+  "referenceInputHash": "sha256:8e891e9ff04a67317caf9842762106d98cfc1424249500bcae29c3760dbd6e16",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dn/dnz/green_bank_telescope/models/green-bank-telescope-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dn/dnz/green_bank_telescope/models/green-bank-telescope-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.92,
+    "surfaces": {
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.13
+      },
+      "dish": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.57,
+        "metallic": 0.19
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.93
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.79
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.42,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.13
+          },
+          "dish": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.57,
+            "metallic": 0.19
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.13
+          },
+          "dish": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.57,
+            "metallic": 0.19
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.057,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.13
+          },
+          "dish": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.57,
+            "metallic": 0.19
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "USGS bare earth sampled at the observatory-surveyed support axis. The separately surveyed track elevation defines the wheel landing plane.",
+    "anchor": [
+      -79.839835,
+      38.433121111111106
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -79.839835,
+        38.433121111111106
+      ],
+      "modelHeight": 0,
+      "basis": "USGS bare earth sampled at the observatory-surveyed support axis. The separately surveyed track elevation defines the wheel landing plane."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/48381034"
+    ],
+    "source": "https://www.openstreetmap.org/way/48381034",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cfafb38f553440b8e70d5ab8d66ca455dc28ac7185008523da78e191c455e8b1",
+    "notes": "An open steel support cradle sits below the elevated 100 by 110 metre asymmetrical reflecting surface. An off-axis trussed arm carries the subreflector outside the collecting aperture."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The telescope is a static high-elevation pose. The absolute azimuth and instantaneous observation target are representative.",
+    "The aperture span, base and axle are survey and specification based. Individual reflector panels, cabling, service equipment and connection details are represented at a coarser scale."
+  ],
+  "sourceLicense": "Original 3D work under the repository license. Native map under ODbL and USGS bare-earth elevations in the public domain.",
+  "qaLodCameras": [
+    {
+      "name": "green-bank-telescope-skyline",
+      "position": [
+        -194,
+        103,
+        201
+      ],
+      "lookAt": [
+        0,
+        66,
+        7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "green-bank-telescope-district",
+      "position": [
+        -194,
+        103,
+        201
+      ],
+      "lookAt": [
+        0,
+        66,
+        7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "green-bank-telescope-street",
+      "position": [
+        -194,
+        103,
+        201
+      ],
+      "lookAt": [
+        0,
+        66,
+        7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "green-bank-telescope-closeup",
+      "position": [
+        -194,
+        103,
+        201
+      ],
+      "lookAt": [
+        0,
+        66,
+        7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "feed-boom-and-open-frame",
+      "position": [
+        139,
+        41,
+        135
+      ],
+      "lookAt": [
+        0,
+        65,
+        12
+      ]
+    },
+    {
+      "name": "reflector-and-offset-feed",
+      "position": [
+        -122,
+        171,
+        134
+      ],
+      "lookAt": [
+        0,
+        94,
+        9
+      ]
+    },
+    {
+      "name": "azimuth-track-and-axle",
+      "position": [
+        -89,
+        37,
+        -74
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8050,
+    "vertices": 24150,
+    "materials": 4,
+    "bytes": 1034224,
+    "sha256": "sha256:9f5b5de609385d02359c8a1510a39fe440a9ddbd115b9bd1b757fdcdbeae1162"
+  }
+}

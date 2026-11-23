@@ -1,0 +1,472 @@
+{
+  "planId": "alto_vista_chapel",
+  "id": "alto_vista_chapel",
+  "assetId": "molen.worldgen.structure.alto_vista_chapel",
+  "title": "Alto Vista Chapel",
+  "wikidataId": "Q2208973",
+  "category": "church",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -70.010921,
+    "latitude": 12.57597955
+  },
+  "size": [
+    7.460329532623291,
+    9.360000193119049,
+    11.28000020980835
+  ],
+  "actualBounds": {
+    "min": [
+      -3.7301647663116455,
+      -0.8100000023841858,
+      -5.090000152587891
+    ],
+    "max": [
+      3.7301647663116455,
+      8.550000190734863,
+      6.190000057220459
+    ]
+  },
+  "visualBrief": "Yellow coastal chapel in Noord with open pointed doors, orange roofing and a narrow tan bell spire.",
+  "nativeAxes": {
+    "x": "south across the front",
+    "y": "up",
+    "z": "west toward the approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Kapel_di_Alto_Vista_October_2025.jpg"
+  ],
+  "stories": [
+    {
+      "id": "alto-vista-chapel-wp",
+      "url": "https://qualla.com/alto-vista-chapel/"
+    }
+  ],
+  "referenceInputHash": "sha256:28d951bdaea06e6112301e2cf36a54c5e42c405244bd1ff94702d2a2ca1bb984",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/d6/d6n/alto_vista_chapel/models/alto-vista-chapel-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/d6/d6n/alto_vista_chapel/models/alto-vista-chapel-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.36,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.88
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.84
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_panel",
+        "roughness": 0.92
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.11
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.87
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.92
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.11
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.064,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.92
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.11
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.029,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.92
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.11
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "tile_ceramic",
+    "wood_plain",
+    "stone_ashlar",
+    "concrete_panel",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Mapzen terrain on the west approaches directly in front of the raised chapel threshold.",
+    "anchor": [
+      -70.010921,
+      12.57597955
+    ],
+    "heading": -1.589296739604846,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -70.01097897484424,
+        12.575980596945312
+      ],
+      "modelHeight": 0,
+      "basis": "Mapzen terrain on the west approaches directly in front of the raised chapel threshold."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -3.4668,
+          4.889
+        ],
+        [
+          -3.5129,
+          -4.825
+        ],
+        [
+          3.3988,
+          -4.9529
+        ],
+        [
+          3.5809,
+          4.889
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Mapped Alto Vista Chapel footprint and the small west entrance stoop."
+    },
+    "featureIds": [
+      "way/93476341"
+    ],
+    "source": "https://www.openstreetmap.org/way/93476341",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:23ca3b37781fcd57c1146317ddc2e766d4036b8b120373e484b45646bbe0b28c",
+    "notes": "The native CC0 original shows the yellow gable, orange-red roof, pale ochre spire and small cross, dark reddish pointed door leaves, side windows and a visible pebble-textured base. Heights beyond the footprint are estimated."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Focused on the standing exterior, its orange-red roof and limestone platform. The rear gable, smaller trim and window glazing are approximate.",
+    "The extended courtyard, cacti, low freestanding benches and interior furnishings are outside model scope."
+  ],
+  "sourceLicense": "Original 3D work under the repository license, OpenStreetMap geometry under ODbL and Mapzen elevation under source attribution terms.",
+  "qaLodCameras": [
+    {
+      "name": "alto-vista-chapel-skyline",
+      "position": [
+        -15,
+        10,
+        21
+      ],
+      "lookAt": [
+        0,
+        3.1,
+        0.29
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "alto-vista-chapel-district",
+      "position": [
+        -15,
+        10,
+        21
+      ],
+      "lookAt": [
+        0,
+        3.1,
+        0.29
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "alto-vista-chapel-street",
+      "position": [
+        -15,
+        10,
+        21
+      ],
+      "lookAt": [
+        0,
+        3.1,
+        0.29
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "alto-vista-chapel-closeup",
+      "position": [
+        -15,
+        10,
+        21
+      ],
+      "lookAt": [
+        0,
+        3.1,
+        0.29
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "yellow-front-and-open-pointed-doors",
+      "position": [
+        -5,
+        3.4,
+        16
+      ],
+      "lookAt": [
+        0,
+        3.85,
+        1
+      ]
+    },
+    {
+      "name": "red-roof-and-three-side-windows",
+      "position": [
+        -14,
+        4.5,
+        5.5
+      ],
+      "lookAt": [
+        0,
+        3.1,
+        0
+      ]
+    },
+    {
+      "name": "bell-spire-and-stone-stoop",
+      "position": [
+        10,
+        8,
+        14
+      ],
+      "lookAt": [
+        0,
+        4.1,
+        1.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1586,
+    "vertices": 4758,
+    "materials": 7,
+    "bytes": 376632,
+    "sha256": "sha256:1c4533eaf0b9ac70f7ce6ca0fc991ee6675eef1cff8ce42ff5241e9d54eb27dd"
+  }
+}

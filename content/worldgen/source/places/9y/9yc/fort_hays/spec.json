@@ -1,0 +1,744 @@
+{
+  "planId": "fort_hays",
+  "id": "fort_hays",
+  "assetId": "molen.worldgen.structure.fort_hays",
+  "title": "Fort Hays",
+  "wikidataId": "Q5471315",
+  "category": "archaeological",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -99.3428,
+    "latitude": 38.86218
+  },
+  "size": [
+    180.15501403808594,
+    11.5526864528656,
+    146.0894660949707
+  ],
+  "actualBounds": {
+    "min": [
+      -109.58000183105469,
+      -2.4755685329437256,
+      -29.586963653564453
+    ],
+    "max": [
+      70.57501220703125,
+      9.077117919921875,
+      116.50250244140625
+    ]
+  },
+  "visualBrief": "Fort Hays State Historic Site, with the limestone blockhouse and guardhouse, two officers houses and visitor center.",
+  "nativeAxes": {
+    "x": "southeast",
+    "y": "up",
+    "z": "southwest"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fort_Hays_Visitor_Center.jpg",
+    "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/ks_m_3809914_nw_14_030_20230814_20231113"
+  ],
+  "stories": [
+    {
+      "id": "fort-hays-wp",
+      "url": "https://qualla.com/fort-hays/"
+    }
+  ],
+  "referenceInputHash": "sha256:af9cda897b4f8ecdd6a0fa553d7e873ffa9d81b9639bcb82cc0a905a604ae901",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9y/9yc/fort_hays/models/fort-hays-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9y/9yc/fort_hays/models/fort-hays-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.05,
+    "surfaces": {
+      "limestone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.93
+      },
+      "siding": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.92
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.89
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.96
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.34,
+        "metallic": 0.14
+      },
+      "shingle": {
+        "slot": "roof",
+        "graph": "shingle_cedar",
+        "roughness": 0.9
+      },
+      "flatRoof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.51,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.14
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.9
+          },
+          "flatRoof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.21,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.14
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.9
+          },
+          "flatRoof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.068,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.14
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.9
+          },
+          "flatRoof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "wood_painted_lap",
+    "wood_plain",
+    "stone_granite",
+    "shingle_cedar"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.05,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "One-metre native USGS grade at the visitor center paved entrance apron.",
+    "anchor": [
+      -99.3428,
+      38.86218
+    ],
+    "heading": -0.667,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -99.34282300023165,
+        38.86265599796852
+      ],
+      "modelHeight": 0,
+      "basis": "One-metre native USGS grade at the visitor center paved entrance apron."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -50.1528,
+          -24.099
+        ],
+        [
+          -43.6067,
+          -23.94
+        ],
+        [
+          -32.3408,
+          -23.6435
+        ],
+        [
+          -32.1932,
+          -29.2288
+        ],
+        [
+          -21.2079,
+          -28.9523
+        ],
+        [
+          -21.5411,
+          -15.9524
+        ],
+        [
+          -21.7449,
+          -8.1126
+        ],
+        [
+          -31.8547,
+          -8.3701
+        ],
+        [
+          -31.7362,
+          -13.0115
+        ],
+        [
+          -43.8092,
+          -13.3242
+        ],
+        [
+          -50.4305,
+          -13.4947
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -50.1528,
+            -24.099
+          ],
+          [
+            -43.6067,
+            -23.94
+          ],
+          [
+            -32.3408,
+            -23.6435
+          ],
+          [
+            -32.1932,
+            -29.2288
+          ],
+          [
+            -21.2079,
+            -28.9523
+          ],
+          [
+            -21.5411,
+            -15.9524
+          ],
+          [
+            -21.7449,
+            -8.1126
+          ],
+          [
+            -31.8547,
+            -8.3701
+          ],
+          [
+            -31.7362,
+            -13.0115
+          ],
+          [
+            -43.8092,
+            -13.3242
+          ],
+          [
+            -50.4305,
+            -13.4947
+          ]
+        ],
+        [
+          [
+            -73.7049,
+            107.8222
+          ],
+          [
+            -67.7539,
+            107.9821
+          ],
+          [
+            -43.977,
+            108.6432
+          ],
+          [
+            -42.1302,
+            108.6909
+          ],
+          [
+            -42.3755,
+            117.711
+          ],
+          [
+            -73.9571,
+            116.8336
+          ]
+        ],
+        [
+          [
+            61.8197,
+            7.5025
+          ],
+          [
+            65.4874,
+            7.845
+          ],
+          [
+            67.6976,
+            8.06
+          ],
+          [
+            67.3158,
+            12.0586
+          ],
+          [
+            68.4405,
+            12.6324
+          ],
+          [
+            70.9098,
+            17.7582
+          ],
+          [
+            67.5384,
+            22.8781
+          ],
+          [
+            66.4229,
+            22.7505
+          ],
+          [
+            65.7432,
+            28.5847
+          ],
+          [
+            63.1563,
+            28.2837
+          ],
+          [
+            59.7483,
+            27.8926
+          ],
+          [
+            60.637,
+            20.2361
+          ],
+          [
+            59.0125,
+            17.038
+          ],
+          [
+            61.9287,
+            12.4889
+          ],
+          [
+            61.4963,
+            10.9309
+          ]
+        ],
+        [
+          [
+            -109.5463,
+            -7.9092
+          ],
+          [
+            -97.278,
+            -8.147
+          ],
+          [
+            -97.2402,
+            -6.2215
+          ],
+          [
+            -95.7152,
+            -6.2604
+          ],
+          [
+            -95.6024,
+            -0.5685
+          ],
+          [
+            -99.1516,
+            -0.5084
+          ],
+          [
+            -98.9797,
+            8.5232
+          ],
+          [
+            -105.9687,
+            8.6564
+          ],
+          [
+            -106.1304,
+            0.2543
+          ],
+          [
+            -109.3924,
+            0.3149
+          ]
+        ],
+        [
+          [
+            -92.9422,
+            -8.203
+          ],
+          [
+            -79.9006,
+            -8.3696
+          ],
+          [
+            -80.6685,
+            -6.1922
+          ],
+          [
+            -78.2339,
+            -6.2248
+          ],
+          [
+            -78.1639,
+            -0.8816
+          ],
+          [
+            -82.5749,
+            -0.8231
+          ],
+          [
+            -82.4604,
+            7.7012
+          ],
+          [
+            -88.1434,
+            7.7837
+          ],
+          [
+            -88.2544,
+            -0.0917
+          ],
+          [
+            -92.8364,
+            -0.026
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Suppress duplicate building forms only over the five individually mapped building outlines."
+    },
+    "featureIds": [
+      "way/577980673",
+      "way/470511754",
+      "way/470511756",
+      "way/470511758",
+      "way/470511760",
+      "way/470511761"
+    ],
+    "source": "https://www.openstreetmap.org/way/577980673",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f175c5228b84248fa089714a587feca487de8917a4d7a4fb44e05e4e11418321",
+    "notes": "Published Kansas Historical Society dimensions, current USDA survey photography and the exact licensed Qualla visitor center original inform each building."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_cedar",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Wall heights, minor apertures and fine timber decoration were proportioned using the documented building types. The historic floor plans and interiors are outside the current model scope.",
+    "All five present buildings are represented. The many removed post structures remain absent."
+  ],
+  "sourceLicense": "Original model from the exact CC0 Qualla image by FUBAR007, public-domain USDA survey imagery, published historic site facts, and native OSM geometry under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "fort-hays-skyline",
+      "position": [
+        137,
+        124,
+        -159
+      ],
+      "lookAt": [
+        -20,
+        2.5,
+        35
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "fort-hays-district",
+      "position": [
+        137,
+        124,
+        -159
+      ],
+      "lookAt": [
+        -20,
+        2.5,
+        35
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "fort-hays-street",
+      "position": [
+        137,
+        124,
+        -159
+      ],
+      "lookAt": [
+        -20,
+        2.5,
+        35
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "fort-hays-closeup",
+      "position": [
+        137,
+        124,
+        -159
+      ],
+      "lookAt": [
+        -20,
+        2.5,
+        35
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "fort-site-five-surviving-and-visitor-buildings",
+      "position": [
+        137,
+        124,
+        -159
+      ],
+      "lookAt": [
+        -20,
+        2.5,
+        35
+      ]
+    },
+    {
+      "name": "limestone-hexagonal-blockhouse",
+      "position": [
+        86,
+        8,
+        -14
+      ],
+      "lookAt": [
+        64.5,
+        3,
+        18
+      ]
+    },
+    {
+      "name": "long-limestone-guardhouse",
+      "position": [
+        -40,
+        8,
+        80
+      ],
+      "lookAt": [
+        -57,
+        0.8,
+        112
+      ]
+    },
+    {
+      "name": "paired-frame-officers-quarters",
+      "position": [
+        -71,
+        12,
+        -30
+      ],
+      "lookAt": [
+        -94,
+        3.1,
+        -0.5
+      ]
+    },
+    {
+      "name": "visitor-center-recessed-entry",
+      "position": [
+        -37,
+        4.1,
+        -54
+      ],
+      "lookAt": [
+        -33.6,
+        2.3,
+        -22
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7179,
+    "vertices": 21537,
+    "materials": 7,
+    "bytes": 1147368,
+    "sha256": "sha256:1c366aa90469ef039e486817d58256731952d18702f9ac42279571581d77770e"
+  }
+}

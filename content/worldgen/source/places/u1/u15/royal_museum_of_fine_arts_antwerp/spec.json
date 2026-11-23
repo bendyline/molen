@@ -1,0 +1,662 @@
+{
+  "planId": "royal_museum_of_fine_arts_antwerp",
+  "id": "royal_museum_of_fine_arts_antwerp",
+  "assetId": "molen.worldgen.structure.royal_museum_of_fine_arts_antwerp",
+  "title": "Royal Museum of Fine Arts Antwerp",
+  "wikidataId": "Q1471477",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 4.394828363024261,
+    "latitude": 51.208473935826525
+  },
+  "size": [
+    71.27483749389648,
+    32.639998495578766,
+    126.03993606567383
+  ],
+  "actualBounds": {
+    "min": [
+      -38.40283966064453,
+      -0.5400000214576721,
+      -60.88993453979492
+    ],
+    "max": [
+      32.87199783325195,
+      32.099998474121094,
+      65.1500015258789
+    ]
+  },
+  "visualBrief": "The 1890 Antwerp museum with its open Corinthian entrance porch, copper roofs and twin bronze chariots.",
+  "nativeAxes": {
+    "x": "southwest across the entrance façade",
+    "y": "up",
+    "z": "northwest toward Leopold de Waelplaats"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://artinflanders.be/en/artwork/postcard-view-museum"
+  ],
+  "stories": [
+    {
+      "id": "royal-museum-of-fine-arts-antwerp-wp",
+      "url": "https://qualla.com/royal-museum-of-fine-arts-antwerp/"
+    }
+  ],
+  "referenceInputHash": "sha256:2fa762b61c2e56e96a114f5f1adcf2d9fb3e0745fba453bc629051e46889bb9d",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u15/royal_museum_of_fine_arts_antwerp/models/royal-museum-of-fine-arts-antwerp-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u15/royal_museum_of_fine_arts_antwerp/models/royal-museum-of-fine-arts-antwerp-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.73,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.93
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.91
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.86
+      },
+      "red": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.18
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.27
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.44
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.85
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86
+          },
+          "red": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.18
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.27
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86
+          },
+          "red": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.18
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.27
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86
+          },
+          "red": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.18
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.27
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_limestone",
+    "plaster_lime",
+    "metal_painted",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified Flemish DHMVII bare-earth level at the bottom of the main entrance stairs.",
+    "anchor": [
+      4.394828363024261,
+      51.208473935826525
+    ],
+    "heading": -2.2347686543637346,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        4.394112415252727,
+        51.208824908313495
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified Flemish DHMVII bare-earth level at the bottom of the main entrance stairs."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          31.244,
+          53.236
+        ],
+        [
+          26.943,
+          53.14
+        ],
+        [
+          26.939,
+          52.594
+        ],
+        [
+          17.847,
+          52.553
+        ],
+        [
+          17.999,
+          58.022
+        ],
+        [
+          -17.989,
+          58.022
+        ],
+        [
+          -17.966,
+          52.992
+        ],
+        [
+          -31.322,
+          53.41
+        ],
+        [
+          -31.403,
+          51.445
+        ],
+        [
+          -31.452,
+          50.137
+        ],
+        [
+          -32.369,
+          50.12
+        ],
+        [
+          -32.424,
+          36.756
+        ],
+        [
+          -31.349,
+          36.774
+        ],
+        [
+          -31.343,
+          -24.979
+        ],
+        [
+          -31.347,
+          -36.364
+        ],
+        [
+          -32.491,
+          -36.363
+        ],
+        [
+          -32.549,
+          -39.815
+        ],
+        [
+          -37.678,
+          -39.849
+        ],
+        [
+          -37.833,
+          -46.387
+        ],
+        [
+          -32.668,
+          -46.452
+        ],
+        [
+          -32.732,
+          -49.839
+        ],
+        [
+          -31.552,
+          -49.849
+        ],
+        [
+          -31.713,
+          -58.473
+        ],
+        [
+          -9.696,
+          -58.406
+        ],
+        [
+          -9.737,
+          -60.03
+        ],
+        [
+          9.26,
+          -60.32
+        ],
+        [
+          9.244,
+          -58.571
+        ],
+        [
+          26.385,
+          -58.612
+        ],
+        [
+          26.354,
+          -58.977
+        ],
+        [
+          30.687,
+          -58.967
+        ],
+        [
+          30.667,
+          -58.74
+        ],
+        [
+          30.958,
+          -58.711
+        ],
+        [
+          30.956,
+          -54.378
+        ],
+        [
+          30.721,
+          -54.407
+        ],
+        [
+          30.666,
+          -50.468
+        ],
+        [
+          30.94,
+          -50.461
+        ],
+        [
+          30.929,
+          -50.168
+        ],
+        [
+          31.968,
+          -50.105
+        ],
+        [
+          31.954,
+          -36.864
+        ],
+        [
+          30.801,
+          -36.928
+        ],
+        [
+          30.813,
+          -33.643
+        ],
+        [
+          31.061,
+          36.094
+        ],
+        [
+          31.37,
+          36.091
+        ],
+        [
+          31.371,
+          36.418
+        ],
+        [
+          32.302,
+          36.434
+        ],
+        [
+          32.274,
+          49.729
+        ],
+        [
+          31.383,
+          49.674
+        ],
+        [
+          31.337,
+          50.897
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Named historical KMSKA building outline, including external portico."
+    },
+    "featureIds": [
+      "way/23221247"
+    ],
+    "source": "https://www.openstreetmap.org/way/23221247",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:dfd3f8305914dff9f6faa4bee025438f9e44b2f9c9c9fefed148c16d63973d7c",
+    "notes": "The archival postcard shows four free Corinthian columns, two engaged columns and paired flanking pilasters, lateral stepped windows, copper roofs and the twin rooftop statues with two horses. The 2022 work adds triangular north-facing daylight structures within the historic outline."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Street-side volumes and courtyard roof follow the present footprint, archival façade and current published roof description. Small sculptures, inscriptions, patina and roof glazing detail are representative.",
+    "The surface survey predates the 2022 reopening, so modern rooflight height and exact glass panels are estimated."
+  ],
+  "sourceLicense": "Original 3D work, native OpenStreetMap outline under ODbL and Flemish DHMVII survey under provider attribution.",
+  "qaLodCameras": [
+    {
+      "name": "antwerp-royal-museum-skyline",
+      "position": [
+        60,
+        32,
+        136
+      ],
+      "lookAt": [
+        0,
+        13,
+        33
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "antwerp-royal-museum-district",
+      "position": [
+        60,
+        32,
+        136
+      ],
+      "lookAt": [
+        0,
+        13,
+        33
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "antwerp-royal-museum-street",
+      "position": [
+        60,
+        32,
+        136
+      ],
+      "lookAt": [
+        0,
+        13,
+        33
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "antwerp-royal-museum-closeup",
+      "position": [
+        60,
+        32,
+        136
+      ],
+      "lookAt": [
+        0,
+        13,
+        33
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "leopold-de-waelplaats-elevation",
+      "position": [
+        14,
+        10,
+        124
+      ],
+      "lookAt": [
+        0,
+        13.33,
+        54
+      ]
+    },
+    {
+      "name": "corinthian-portico-and-chariots",
+      "position": [
+        17,
+        12,
+        95
+      ],
+      "lookAt": [
+        0,
+        17.4,
+        56.2
+      ]
+    },
+    {
+      "name": "copper-roofs-and-daylight-structures",
+      "position": [
+        70,
+        77,
+        12
+      ],
+      "lookAt": [
+        0,
+        19,
+        -10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26000,
+    "vertices": 78000,
+    "materials": 8,
+    "bytes": 3342284,
+    "sha256": "sha256:9ac382d8bd09d85180caa194837d69e8dc52a682c9d76e926fb4e6bde9d6494f"
+  }
+}

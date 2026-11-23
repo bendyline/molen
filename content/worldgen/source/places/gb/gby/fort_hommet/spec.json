@@ -1,0 +1,394 @@
+{
+  "planId": "fort_hommet",
+  "id": "fort_hommet",
+  "assetId": "molen.worldgen.structure.fort_hommet",
+  "title": "Fort Hommet",
+  "wikidataId": "Q5471346",
+  "category": "historic-fort",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -2.611875057894737,
+    "latitude": 49.47440412631579
+  },
+  "size": [
+    32.208648681640625,
+    6.91871440410614,
+    24.87140655517578
+  ],
+  "actualBounds": {
+    "min": [
+      -13.602230072021484,
+      -1.4087141752243042,
+      -11.741299629211426
+    ],
+    "max": [
+      18.60641860961914,
+      5.510000228881836,
+      13.130106925964355
+    ]
+  },
+  "visualBrief": "Stone Martello tower, curving enclosure and the weathered concrete exterior on Guernsey’s Vazon Bay headland.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Guernsey_July_2010_16,_Fort_Hommet.jpg",
+    "https://commons.wikimedia.org/wiki/File:Guernsey_July_2010_62,_Fort_Hommet.jpg"
+  ],
+  "stories": [
+    {
+      "id": "fort-hommet-wp",
+      "url": "https://qualla.com/fort-hommet/"
+    }
+  ],
+  "referenceInputHash": "sha256:448ebbcd82200eac158fdd5039dbb1d14ecf99ae4f74d22d325940f9750b8aa1",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gb/gby/fort_hommet/models/fort-hommet-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gb/gby/fort_hommet/models/fort-hommet-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.54,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.95
+      },
+      "masonry": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.91
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.94
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.09
+      },
+      "dark": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95
+          },
+          "masonry": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.09
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.087,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95
+          },
+          "masonry": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.09
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.037,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95
+          },
+          "masonry": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.09
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_drywall",
+    "stone_ashlar",
+    "concrete_boardformed",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Open original Mapzen field at the tower's landward stone-footing side, with the lower enclosing wall and cliff grade checked independently.",
+    "anchor": [
+      -2.611875057894737,
+      49.47440412631579
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -2.611875057894737,
+        49.47443107565104
+      ],
+      "modelHeight": 0,
+      "basis": "Open original Mapzen field at the tower's landward stone-footing side, with the lower enclosing wall and cliff grade checked independently."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/428855874",
+      "way/428855898",
+      "way/428855901"
+    ],
+    "source": "https://www.openstreetmap.org/way/428855874",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e913efdbdfa32c97a8fa0fd1b1ef9022c5c6768ec9d7b279cbeaae535d1a64a8",
+    "notes": "The short, slightly battered masonry cylinder stands within a much wider low curving stone wall. A squared natural-stone entrance return and adjoining pale gray concrete block interrupt the silhouette."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Models the visible main fort core. Outlying ruins, fixtures and interiors are outside scope.",
+    "Roof openings, small stonework and the elevation of separate parts are approximate. Mapzen data resolves the broad headland grade."
+  ],
+  "sourceLicense": "Original 3D work under the repository license. Native footprints under ODbL and Mapzen open elevation tiles under their published attribution.",
+  "qaLodCameras": [
+    {
+      "name": "fort-hommet-skyline",
+      "position": [
+        -32,
+        15,
+        36
+      ],
+      "lookAt": [
+        1.5,
+        1.94,
+        0.9
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "fort-hommet-district",
+      "position": [
+        -32,
+        15,
+        36
+      ],
+      "lookAt": [
+        1.5,
+        1.94,
+        0.9
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "fort-hommet-street",
+      "position": [
+        -32,
+        15,
+        36
+      ],
+      "lookAt": [
+        1.5,
+        1.94,
+        0.9
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "fort-hommet-closeup",
+      "position": [
+        -32,
+        15,
+        36
+      ],
+      "lookAt": [
+        1.5,
+        1.94,
+        0.9
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "upper-tower-and-enclosure",
+      "position": [
+        -14,
+        5.8,
+        28
+      ],
+      "lookAt": [
+        0,
+        2.48,
+        1.5
+      ]
+    },
+    {
+      "name": "stonework-and-concrete-profile",
+      "position": [
+        26,
+        9,
+        23
+      ],
+      "lookAt": [
+        4,
+        2.35,
+        -0.2
+      ]
+    },
+    {
+      "name": "landward-footings",
+      "position": [
+        -19,
+        10,
+        -20
+      ],
+      "lookAt": [
+        0,
+        1.65,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 611,
+    "vertices": 1833,
+    "materials": 5,
+    "bytes": 292396,
+    "sha256": "sha256:bc12683db0df2a26a8f93250143ff3bd34bfe16b1d22607e1f301e617a99b1b8"
+  }
+}

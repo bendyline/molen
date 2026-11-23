@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.motegi_control_tower",
+  "kind": "static-structure",
+  "title": "Motegi Control Tower",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.motegi_control_tower",
+        "output": "assets/places/xn/xn7/motegi_control_tower/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3874b932395a8cf0170fc352d701764577e6068577ae4667f36ca67bfeb3aef8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-motegi-control-tower",
+        "path": "models/generate-motegi-control-tower.mjs"
+      },
+      {
+        "id": "motegi-control-tower-model",
+        "path": "models/motegi-control-tower-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/motegi-control-tower-footprint.json",
+      "reference-rights/motegi-control-tower-architectural-facts.json",
+      "reference-rights/motegi-control-tower-qualla-original-1.json",
+      "reference-rights/motegi-tower-photographer-rename.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/motegi-gsi-dem5a_png-15-29147-12807.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

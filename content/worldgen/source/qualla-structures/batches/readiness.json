@@ -4,12 +4,12 @@
   "policy": "A source or import is not completion. Ready requires verified references or a separately supported primary-factual reconstruction, exact source/runtime/LOD bytes, inspected portable/shared/context captures, fidelity appropriate to the declared method, and terrain/placement evidence. Structure catalog work is excluded. Imagery must be public domain, match published Qualla media and original attribution, and have current bytes. Conflicting or incomplete records are excluded.",
   "counts": {
     "target": 100,
-    "ready": 10,
+    "ready": 12,
     "started": 100,
     "pilotsReady": 5,
-    "technicallyValidated": 10,
+    "technicallyValidated": 12,
     "publicDomainImageryVerified": 100,
-    "publicDomainFidelityReviewed": 66,
+    "publicDomainFidelityReviewed": 88,
     "primaryFactsReconstructionsVerified": 0
   },
   "candidates": [
@@ -631,26 +631,19 @@
       "sourcePath": "content/worldgen/source/places/dr/dr4/eastern_state_penitentiary",
       "order": 7,
       "pilot": false,
-      "readiness": "needs-review",
-      "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
-        "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "public-domain-fidelity-review-missing-or-unbound"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
         "activePlacement": "eastern-state-penitentiary",
         "placementHash": "sha256:101e625218e4a5ac59c20d436b4c1976a514b15d5a8a57460d4be56f953fdd3e",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:f0bce6239a3ed1a8a16f2d9e5ca531118044cd2368a8f2c2d1297ccc0abe63b3",
-      "technicalReadiness": "needs-review",
+      "inputHash": "sha256:62d0ced59064732b0031ea9c0339e86806d6992564df96f3f398d8e610c1e561",
+      "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
@@ -692,7 +685,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -703,26 +696,19 @@
       "sourcePath": "content/worldgen/source/places/dp/dpp/fallingwater",
       "order": 8,
       "pilot": false,
-      "readiness": "needs-review",
-      "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
-        "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "public-domain-fidelity-review-missing-or-unbound"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
         "activePlacement": "fallingwater",
         "placementHash": "sha256:46e2f5a03a6f96ed1b4234360e3954c1e3b4cd938776140d8ea7683006f59e4d",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:260d37106b0674c73d9f483de9b4e47da7968afb4f2bf75d0eb48b040fdfca12",
-      "technicalReadiness": "needs-review",
+      "inputHash": "sha256:f1884a9cf1fd3904a38c95de633682950b62160149882214b88724f5aa61f080",
+      "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
@@ -952,7 +938,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -1997,13 +1983,10 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
         "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
         "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "stonewall-inn",
@@ -2014,7 +1997,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:737f12f7436e32d9a0f1c30e683a88758dc5fdbfbc467221eb85f7c7054b297b",
+      "inputHash": "sha256:b9a9f942d4f181f00e51f7392f66cea1a70cc1aebc9a8b11943e6b823fe25fb7",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -2039,7 +2022,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -2235,13 +2218,10 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
         "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
         "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "hotel-majapahit",
@@ -2252,7 +2232,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:fa5c3250824c41d7f94dfb945f454799e13d6917e6114b397ee37d95dde0a548",
+      "inputHash": "sha256:322ebbaad7d4ab8cf2195e1d2c9934aac05540479f8b90dfe14864ea3e3912e8",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -2305,7 +2285,7 @@
           },
           "additional": []
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -2699,24 +2679,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "chateau-frontenac",
         "placementHash": "sha256:4541e575b18b79e5a6dd6678d0d50ea24c36af31af63e2e09ff5c77674df9616",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:94367f179e6e099702d9aa6459a86bb1f87d833d4c41301555d6bae785a85df1",
+      "inputHash": "sha256:a24376485ab90b082d3a15d3fa9c734a3e78df23f674dfca42cbd295706954ea",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -2765,7 +2740,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -2778,24 +2753,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "chateau-laurier",
         "placementHash": "sha256:31cb6fd4ee37ef6f59e0928d8934fd8d492f0a339bbd7e1dd7214a752b5d0865",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:24f07c2b2c1cd4a6e16c56075271bef1e82f8ab5557ff672dd676dfed36656ee",
+      "inputHash": "sha256:fc738cee11a59b82a326008c2b087ff51032930e4965e7ae11bf714787332cf6",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -2844,7 +2814,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -2909,13 +2879,10 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
         "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
         "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "ennis-house",
@@ -2926,7 +2893,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:1f5b4738c2e859e5b57ed70fd3274aa5e8595d7d04da8eeaffb638c56ac46edc",
+      "inputHash": "sha256:fc934c8c2b2dabcfc503a8b8b2640a03b13e1d5a800da8170d5d32340991fa00",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -2951,7 +2918,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -2964,13 +2931,10 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
         "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
         "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "hollyhock-house",
@@ -2981,7 +2945,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:e9aab82c1aa53aebf3f4c5880a37a408454e715b021a73bad360219281f9e125",
+      "inputHash": "sha256:51532a40f2ef9bcffeb9ace2120ba3753bab5ea16d4b553e0033a50a609107ca",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -3012,7 +2976,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -3042,7 +3006,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:9cf14d58fb06d2be3ced1b9cb52efabe2c58c509fbd927a39138224fc089bdd9",
+      "inputHash": "sha256:cf01f74cfa0ae5f55f84928ea4a115cb1ca2a0f133b0f34f041870efd75c27a4",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -3136,7 +3100,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:82a7da68ec40fb491c09713fabbb03c8cf7831cc16044d10076007d2f0beb686",
+      "inputHash": "sha256:9e0f106b99fdbeb57b537036b14114717fc82feef01cdb2330b9a78eb9e82ed2",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -3696,24 +3660,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "old-parliament-house-canberra",
         "placementHash": "sha256:a58f02472996dcf99376f4c6319d762a1d3cb7192cdfdb3e75925255fd2ddcc1",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:ebfcb162599331e6abc2355d173a5763b0b4790bef1f1ad5dd2e647748ea3878",
+      "inputHash": "sha256:ef9c698f2f01c15af6fe270f7b41d60b9bd2e4b5fc97e0d7978ffbadae83b2b9",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -3744,7 +3703,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -3757,24 +3716,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "parliament-house-canberra",
         "placementHash": "sha256:eb2b7eec9d5a2a31c7e96474a6998824111cfe20d91c5a5e9bb2ccf5dfdc25cd",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:26247ca18fcdcae80d050bca284cfcd7d077f34e82f4633ea11f788d399c0068",
+      "inputHash": "sha256:3ba7327aed589180e5b02e249ce2923c0adaf98958002ae6184e76567ede699e",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -3811,7 +3765,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -4209,13 +4163,16 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
         "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "washington-monument-baltimore",
         "placementHash": "sha256:b9a1a2c3ce1fcd883f1725f762bbd3bb1f6aa17aa287fb3a930413841210b2f2",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
@@ -4616,24 +4573,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "white-tower-of-thessaloniki",
         "placementHash": "sha256:b0147d2129e2625a5029dac2cec754f4fe5ca26530b8facb6331c3ccb1cdda2e",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:53123f594a75f60361ce6f0338751aaa95bd1c2d5964a799590821706a83581d",
+      "inputHash": "sha256:2ce2151757fde413d0ee9bd05c8c0ab25e7c42b64f8d530cc8ab3ed3b0c0327f",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -4682,7 +4634,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -4831,24 +4783,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "hoboken-terminal",
         "placementHash": "sha256:a90c4bdbafe06d99439607d963cb2bef65b36c975f449095ed7cf052c522fc23",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:c99c0246cf45a67c9f9b1a42dec647069364940ea32bf7bd91a90b0c6f4be48b",
+      "inputHash": "sha256:dd84ff229c6bb4b94bbe86a208a22e6f12609b9ede080dccd3e16f19ae10510a",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -4891,7 +4838,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -4972,24 +4919,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "penarth-pier",
         "placementHash": "sha256:0c1373b90b58c5452c280d86c662da968af9f0a2d0cc525dd3b10f09d56614a0",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:6fcbd7cdd1e11676207adedfc159b291fa6b381749b10191f6be84ac46bfc812",
+      "inputHash": "sha256:5cd8721f69c488f80bb6fc56c76cc6fdbdae41cd4bae70a31fa11d946b73bdb4",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -5020,7 +4962,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -6085,24 +6027,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "dresden-castle",
         "placementHash": "sha256:14c3b35025a96259da9f7f8099162a953acfe78e701a2ced18515616b66cb4fb",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:9d7d3848494796918b4113643b2c9710d7859b64615572e265b045bb2bb59362",
+      "inputHash": "sha256:2744b3d5e65eea8034685a19426f1063febf77cee749c9b0033b81bce952b9d6",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -6139,7 +6076,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -6169,7 +6106,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:afa2ba8f10b0a291746cd5d60930b79a7bcd056acf35821af3d7f95beb2308f9",
+      "inputHash": "sha256:998e6ebace1bd81c6d9832e82996e4b67395f350570b7c8c44d9530e47879034",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -6423,24 +6360,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "castle-clinton",
         "placementHash": "sha256:d0b6690f56b2912b1bf9df38c9d9b2fe8bc3ba9a4528b797cd1dbed1c0d91ac3",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:5166b8b9503cfda8990eba7efa87ef70c213704f3e4e87885b974ea20139b15b",
+      "inputHash": "sha256:bad787378e236d646c760fc89214cefb264cd9dfa91d17a2795344563a368f72",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -6477,7 +6409,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -6490,24 +6422,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "el-morro",
         "placementHash": "sha256:87861c124ddcf9c3d75cad82273e3108aebd01504b3110fb7618c20dcbe95bc5",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:e99ee29674c195426f36e0a055dd214f5571790dc3e33ca1f13aea2298bbc012",
+      "inputHash": "sha256:30c6e25f5445ebb5ba36ae0a99b42557cfba5893913b785c8b0870237ed66723",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -6550,7 +6477,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -6563,11 +6490,11 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
+        "source-missing-or-hash-mismatch",
         "runtime-missing-or-hash-mismatch",
         "review-inputs-stale-or-missing",
         "visual-review-missing-or-unbound",
         "shared-surface-review-missing-or-unbound",
-        "runtime-lods-missing-stale-or-over-budget",
         "medium-fi-fidelity-review-missing-or-unbound",
         "geographic-review-missing-or-unbound",
         "current-asset-render-identity-unverified",
@@ -6764,24 +6691,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "alcatraz-federal-penitentiary",
         "placementHash": "sha256:4a67e8adf743a7a1aeb94176ca8a1b33a49155dbf8fe28bb659e05e8707f4842",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:4a9d01f8444eadb300f4fd2d66976914153cf8a21b6b8eb7dd7097ae9fdcd49a",
+      "inputHash": "sha256:b2fccff735d979ab521b75263093bdb90b6d0ef8568e84cc13e7c5223ec22c5c",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -6806,7 +6728,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -6819,24 +6741,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "alcatraz-island-lighthouse",
         "placementHash": "sha256:30712e8ea703e6e8345a5926359fe2c3dceb4f0aac733a8d41debcc2bd1a7cc6",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:87aec218ad1419ea896ce4915cf4a585e369b9460a7d6bf5ef998904d96c90fc",
+      "inputHash": "sha256:c5afc1a3368d1c028f21628347831d715391a4b84a18ea668c98efacad660c86",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -6861,7 +6778,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -6874,24 +6791,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "absecon-lighthouse",
         "placementHash": "sha256:737a3fa0dc6d49ccae4606393052c2dd661de2b9e7debb480d9804aed3fee5af",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:3dcde00c5d6382aeddb8ea7e0a00e5a8d96c6520a735f67ff0e0ca8315765bb8",
+      "inputHash": "sha256:1519a56a936b00077b08d6da017336c1f7c119a862e2cc01c344809f6258a744",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -6922,7 +6834,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -7141,24 +7053,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "bradbury-building",
         "placementHash": "sha256:8854cbbf9b173eaf001c25747232db3291d2903a6810efec7517b3166504466d",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:d4462a9d7d138c9f39023e47083602fd1122f6e4f56fbc723c95abf2605707d6",
+      "inputHash": "sha256:1b5a2a4555ae2cae20b0881fac4587add1aa49cfd7c4fe236537a95b21a61834",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -7183,7 +7090,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -7196,11 +7103,11 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
+        "source-missing-or-hash-mismatch",
         "runtime-missing-or-hash-mismatch",
         "review-inputs-stale-or-missing",
         "visual-review-missing-or-unbound",
         "shared-surface-review-missing-or-unbound",
-        "runtime-lods-missing-stale-or-over-budget",
         "medium-fi-fidelity-review-missing-or-unbound",
         "geographic-review-missing-or-unbound",
         "current-asset-render-identity-unverified",
@@ -7215,7 +7122,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:be0e3dc502333ca76083ee779966e05580c66abf8566ef5d082233a09f7c6e31",
+      "inputHash": "sha256:253d0aebfb135ce16ceb9cd6e281ff6bbc7cda4723a2f83fa75c1d56e7f8ddf6",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -7253,24 +7160,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "humayuns-tomb",
         "placementHash": "sha256:1aefe93db8112dc09cd150f27ebf9525a0e6063dfafd191cbb84e117c09e23e8",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:0fd3c864bf62f50ee57dee3c1d753303d8b738e33ef769d1bbfd04da1bd6219c",
+      "inputHash": "sha256:0f75ae2d6860c5a45a864494543738aacff6d6e07d18d52c3477583593ddb543",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -7307,7 +7209,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -7376,24 +7278,19 @@
       "pilot": false,
       "readiness": "needs-review",
       "blockers": [
-        "review-inputs-stale-or-missing",
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
         "medium-fi-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "current-asset-render-identity-unverified",
-        "public-domain-fidelity-review-missing-or-unbound"
+        "current-asset-render-identity-unverified"
       ],
       "geographic": {
         "activePlacement": "notre-dame-basilica-montreal",
         "placementHash": "sha256:8355b9ccc2874b79908c3d7430806df7b4b9e3330dcf159abc5ee6f526a187a7",
-        "verified": false
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
         "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:8a4e7a51e173e7f9bb217267be5f9085af96ab244337f0435443e10a63239388",
+      "inputHash": "sha256:5c53c171be885b2fef82b3985e550bcbcaec9a22b10e17dc18b4b04fa2a7f83e",
       "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": false,
       "imagery": {
@@ -7418,7 +7315,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": false
+        "fidelityReviewPassed": true
       }
     }
   ]

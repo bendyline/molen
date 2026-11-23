@@ -1,0 +1,1112 @@
+{
+  "planId": "tarragona_amphitheatre",
+  "id": "tarragona_amphitheatre",
+  "assetId": "molen.worldgen.structure.tarragona_amphitheatre",
+  "title": "Tarragona Amphitheatre",
+  "wikidataId": "Q2746482",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 1.2587906451085753,
+    "latitude": 41.11453245896993
+  },
+  "size": [
+    94.5639533996582,
+    12.211881160736084,
+    62.43804740905762
+  ],
+  "actualBounds": {
+    "min": [
+      -52,
+      -2.4800000190734863,
+      -27.088048934936523
+    ],
+    "max": [
+      42.5639533996582,
+      9.731881141662598,
+      35.349998474121094
+    ]
+  },
+  "visualBrief": "The surviving seaward-facing Roman amphitheatre of Tarraco with elliptical seating, vaulted approaches and medieval church ruins in the arena.",
+  "nativeAxes": {
+    "x": "northeast along the long axis of the arena",
+    "y": "up",
+    "z": "southeast toward the Mediterranean"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Amfiteatre_rom%C3%A0_de_Tarragona_2026.jpg",
+    "https://commons.wikimedia.org/wiki/File:Tarragona_-_Anfiteatro_romano_2.JPG",
+    "https://commons.wikimedia.org/wiki/File:Tarragona_-_Anfiteatro_romano_3.JPG"
+  ],
+  "stories": [
+    {
+      "id": "tarragona-amphitheatre-wp",
+      "url": "https://qualla.com/tarragona-amphitheatre/"
+    }
+  ],
+  "referenceInputHash": "sha256:1ad77ad99da734c3cc2d0b3f5c0f994b65c68b402752b966be88c71367be00e3",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sp/sp2/tarragona_amphitheatre/models/tarragona-amphitheatre-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sp/sp2/tarragona_amphitheatre/models/tarragona-amphitheatre-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.86,
+    "surfaces": {
+      "ruin": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "dressed": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "step": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "earth": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "shadow": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.42,
+        "surfaces": {
+          "ruin": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "step": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "ruin": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "step": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.062,
+        "surfaces": {
+          "ruin": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "step": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_ashlar",
+    "gravel"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.15,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified national bare-earth survey sampled on the open western side of the arena floor.",
+    "anchor": [
+      1.2587906451085753,
+      41.11453245896993
+    ],
+    "heading": 0.5332505535117246,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        1.2586861106975837,
+        41.11450683285701
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified national bare-earth survey sampled on the open western side of the arena floor."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          31.358,
+          0
+        ],
+        [
+          31.089727962959948,
+          2.528292343302399
+        ],
+        [
+          30.289502060772605,
+          5.013324903635827
+        ],
+        [
+          28.97101438048893,
+          7.4125780849117895
+        ],
+        [
+          27.15682461187243,
+          9.684999999999999
+        ],
+        [
+          24.877974044852554,
+          11.79170887989892
+        ],
+        [
+          22.17345444444776,
+          13.696658351583425
+        ],
+        [
+          19.089540890855464,
+          15.367254201441225
+        ],
+        [
+          15.679000000000004,
+          16.774912071304577
+        ],
+        [
+          12.000187072104488,
+          17.895546544743624
+        ],
+        [
+          8.116047616324845,
+          18.709983255219253
+        ],
+        [
+          4.093040335636382,
+          19.20428696481071
+        ],
+        [
+          1.9201237163831353e-15,
+          19.37
+        ],
+        [
+          -4.0930403356363785,
+          19.20428696481071
+        ],
+        [
+          -8.116047616324842,
+          18.709983255219253
+        ],
+        [
+          -12.000187072104477,
+          17.895546544743627
+        ],
+        [
+          -15.678999999999993,
+          16.774912071304577
+        ],
+        [
+          -19.089540890855464,
+          15.367254201441225
+        ],
+        [
+          -22.173454444447756,
+          13.696658351583427
+        ],
+        [
+          -24.87797404485255,
+          11.791708879898923
+        ],
+        [
+          -27.15682461187243,
+          9.684999999999999
+        ],
+        [
+          -28.97101438048893,
+          7.412578084911791
+        ],
+        [
+          -30.2895020607726,
+          5.013324903635833
+        ],
+        [
+          -31.089727962959948,
+          2.5282923433024074
+        ],
+        [
+          -31.358,
+          2.3721408499484233e-15
+        ],
+        [
+          -31.089727962959948,
+          -2.528292343302403
+        ],
+        [
+          -30.289502060772605,
+          -5.013324903635828
+        ],
+        [
+          -28.971014380488935,
+          -7.412578084911788
+        ],
+        [
+          -27.156824611872434,
+          -9.684999999999995
+        ],
+        [
+          -24.877974044852554,
+          -11.79170887989892
+        ],
+        [
+          -22.17345444444777,
+          -13.696658351583418
+        ],
+        [
+          -19.08954089085547,
+          -15.367254201441222
+        ],
+        [
+          -15.679000000000014,
+          -16.774912071304573
+        ],
+        [
+          -12.000187072104477,
+          -17.895546544743627
+        ],
+        [
+          -8.116047616324842,
+          -18.709983255219253
+        ],
+        [
+          -4.093040335636379,
+          -19.20428696481071
+        ],
+        [
+          -5.760371149149405e-15,
+          -19.37
+        ],
+        [
+          4.093040335636368,
+          -19.20428696481071
+        ],
+        [
+          8.116047616324831,
+          -18.709983255219257
+        ],
+        [
+          12.000187072104467,
+          -17.89554654474363
+        ],
+        [
+          15.679000000000004,
+          -16.774912071304577
+        ],
+        [
+          19.08954089085544,
+          -15.367254201441236
+        ],
+        [
+          22.173454444447753,
+          -13.69665835158343
+        ],
+        [
+          24.877974044852547,
+          -11.791708879898923
+        ],
+        [
+          27.15682461187242,
+          -9.68500000000001
+        ],
+        [
+          28.971014380488935,
+          -7.412578084911785
+        ],
+        [
+          30.289502060772598,
+          -5.013324903635843
+        ],
+        [
+          31.089727962959948,
+          -2.528292343302401
+        ]
+      ],
+      "additionalOutlines": [
+        [
+          [
+            15.764711250743185,
+            16.497792867165064
+          ],
+          [
+            13.41208678287386,
+            17.264958859444825
+          ],
+          [
+            10.961349020380853,
+            17.905826683313872
+          ],
+          [
+            8.430425818938645,
+            18.415708205252347
+          ],
+          [
+            5.8378316139034006,
+            18.790873494430322
+          ],
+          [
+            3.20253198186259,
+            19.028578108230807
+          ],
+          [
+            0.5438049019559199,
+            19.12708316864139
+          ],
+          [
+            -2.1189002681187636,
+            19.085668082649935
+          ],
+          [
+            -4.766105069783246,
+            18.904635813590893
+          ],
+          [
+            -7.378444434138139,
+            18.58531066488089
+          ],
+          [
+            -9.936808343043738,
+            18.130028592356126
+          ],
+          [
+            -12.422481624430807,
+            17.542120116079715
+          ],
+          [
+            -14.817280859198108,
+            16.82588595662396
+          ],
+          [
+            -17.103687398183236,
+            15.986565574055277
+          ],
+          [
+            -19.264975516148887,
+            15.030298839768161
+          ],
+          [
+            -21.285334765301414,
+            13.964081121549805
+          ],
+          [
+            -23.149985633289987,
+            12.79571211044114
+          ],
+          [
+            -24.84528765961484,
+            11.533738763740596
+          ],
+          [
+            -26.358839219541682,
+            10.187392781539032
+          ],
+          [
+            -27.67956824557414,
+            8.766523074163052
+          ],
+          [
+            -28.797813222830374,
+            7.281523714546902
+          ],
+          [
+            -29.70539386581931,
+            5.7432579025821955
+          ],
+          [
+            -30.39567095959537,
+            4.1629784976682265
+          ],
+          [
+            -30.86359492753635,
+            2.552245700790286
+          ],
+          [
+            -31.10574277045718,
+            0.922842488305318
+          ],
+          [
+            -31.120343106839105,
+            -0.7133115839386225
+          ],
+          [
+            -30.90728913099795,
+            -2.3442475756014844
+          ],
+          [
+            -30.46813939439859,
+            -3.9580347181121374
+          ],
+          [
+            -29.806106404400126,
+            -5.542867691691765
+          ],
+          [
+            -28.926033123835257,
+            -7.087152984683054
+          ],
+          [
+            -27.834357543336182,
+            -8.579593703441704
+          ],
+          [
+            -26.539065585570786,
+            -10.009272212381362
+          ],
+          [
+            -25.049632685908186,
+            -11.36572999963615
+          ],
+          [
+            -23.376954476867933,
+            -12.639044184100406
+          ],
+          [
+            -21.53326708341634,
+            -13.81990010417438
+          ],
+          [
+            -19.5320576121727,
+            -14.899659457208381
+          ],
+          [
+            -17.387965489322823,
+            -15.870423491185525
+          ],
+          [
+            -24.057520488293818,
+            -26.88139465575897
+          ],
+          [
+            -27.374062712676587,
+            -25.720088642419416
+          ],
+          [
+            -30.564643728517627,
+            -24.304164197702043
+          ],
+          [
+            -33.60053995746624,
+            -22.637169005279425
+          ],
+          [
+            -36.45365532934325,
+            -20.72502345927032
+          ],
+          [
+            -38.88676169396778,
+            -18.432757586221925
+          ],
+          [
+            -40.78470755507306,
+            -15.799907082973784
+          ],
+          [
+            -42.384301482339,
+            -13.05147568886546
+          ],
+          [
+            -43.673841983462054,
+            -10.207568974602589
+          ],
+          [
+            -44.64389569664223,
+            -7.288990940476535
+          ],
+          [
+            -45.28736639835348,
+            -4.317091829084151
+          ],
+          [
+            -45.59954691427156,
+            -1.3136119421270527
+          ],
+          [
+            -45.57815355361593,
+            1.6994773961843028
+          ],
+          [
+            -45.22334281500838,
+            4.700134565723007
+          ],
+          [
+            -44.53771024164039,
+            7.666408891273052
+          ],
+          [
+            -43.5262714341238,
+            10.57660121806841
+          ],
+          [
+            -42.19642535992149,
+            13.409422647387126
+          ],
+          [
+            -40.55790022776001,
+            16.14415027100392
+          ],
+          [
+            -38.62268232296859,
+            18.76077876525849
+          ],
+          [
+            -36.40492832433464,
+            21.240166735785166
+          ],
+          [
+            -33.920861743903174,
+            23.564176742349872
+          ],
+          [
+            -31.18865424729314,
+            25.71580797947216
+          ],
+          [
+            -28.228292722706776,
+            27.67932064223526
+          ],
+          [
+            -25.061433071060648,
+            29.44035106751219
+          ],
+          [
+            -21.711241786805903,
+            30.986016808316613
+          ],
+          [
+            -18.202226488319855,
+            32.30501087262914
+          ],
+          [
+            -14.560056637587978,
+            33.38768443731482
+          ],
+          [
+            -10.81137576066402,
+            34.22611743205551
+          ],
+          [
+            -6.9836065425694835,
+            34.814176476955375
+          ],
+          [
+            -3.1047502224199595,
+            35.14755974998908
+          ],
+          [
+            0.7968182437391024,
+            35.223828456074294
+          ],
+          [
+            4.692557753944087,
+            35.04242466756324
+          ],
+          [
+            8.553969846730395,
+            34.604675405644784
+          ],
+          [
+            12.352807175621944,
+            33.91378293280063
+          ],
+          [
+            16.061280146641977,
+            32.974801327328855
+          ],
+          [
+            19.652260207231915,
+            31.794599511299193
+          ],
+          [
+            23.099478299460934,
+            30.38181100240102
+          ]
+        ],
+        [
+          [
+            -51.8,
+            -2.49
+          ],
+          [
+            -31,
+            -2.49
+          ],
+          [
+            -31,
+            1.5
+          ],
+          [
+            -51.8,
+            1.5
+          ]
+        ]
+      ],
+      "minHeight": -2.96,
+      "basis": "Limited to the recessed elliptical arena, the inside face of the measured seating bank and the access passage. The surrounding terrain is unchanged."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -17.758,
+          -34.829
+        ],
+        [
+          -20.458,
+          -33.721
+        ],
+        [
+          -26.26,
+          -30.062
+        ],
+        [
+          -30.803,
+          -25.763
+        ],
+        [
+          -34.179,
+          -22.585
+        ],
+        [
+          -37.308,
+          -19.132
+        ],
+        [
+          -39.937,
+          -15.371
+        ],
+        [
+          -45.792,
+          -14.213
+        ],
+        [
+          -45.344,
+          -8.506
+        ],
+        [
+          -47.561,
+          -8.445
+        ],
+        [
+          -47.726,
+          -11.399
+        ],
+        [
+          -49.244,
+          -11.351
+        ],
+        [
+          -49.333,
+          -10.046
+        ],
+        [
+          -52.636,
+          -10.225
+        ],
+        [
+          -52.429,
+          -6.781
+        ],
+        [
+          -52.603,
+          -4.143
+        ],
+        [
+          -52.654,
+          -1.665
+        ],
+        [
+          -52.824,
+          1.841
+        ],
+        [
+          -52.747,
+          5.092
+        ],
+        [
+          -49.626,
+          11.42
+        ],
+        [
+          -47.973,
+          14.839
+        ],
+        [
+          -45.855,
+          19.088
+        ],
+        [
+          -44.25,
+          21.665
+        ],
+        [
+          -38.205,
+          17.529
+        ],
+        [
+          -36.804,
+          19.661
+        ],
+        [
+          -31.167,
+          24.63
+        ],
+        [
+          -24.429,
+          28.194
+        ],
+        [
+          -17.081,
+          31.174
+        ],
+        [
+          -8.345,
+          33.202
+        ],
+        [
+          -9.149,
+          38.028
+        ],
+        [
+          -1.557,
+          40.609
+        ],
+        [
+          8.072,
+          39.493
+        ],
+        [
+          19.845,
+          38.687
+        ],
+        [
+          25.268,
+          35.489
+        ],
+        [
+          30.32,
+          31.22
+        ],
+        [
+          28.51,
+          25.162
+        ],
+        [
+          27.909,
+          23.178
+        ],
+        [
+          24.62,
+          17.695
+        ],
+        [
+          27.13,
+          15.505
+        ],
+        [
+          36.656,
+          15.272
+        ],
+        [
+          42.525,
+          15.195
+        ],
+        [
+          40.942,
+          -26.536
+        ],
+        [
+          39.518,
+          -26.912
+        ],
+        [
+          27.193,
+          -27.232
+        ],
+        [
+          27.084,
+          -29.145
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The mapped masonry footprint inside the Roman archaeological site."
+    },
+    "featureIds": [
+      "way/77502859"
+    ],
+    "source": "https://www.openstreetmap.org/way/77502859",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b431491676ec0179edb7e9f058b6d672fcb77c14cbaef94a52ea81c9c50cc5d2",
+    "notes": "The city documents a 3.25 m original podium, terraces cut into rock on the landward flank, and vaulted seating elsewhere. Three original Public Domain Dedication photographs reveal how much survives, backed by the national LiDAR ground surface."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The present visible ruin is modeled. The building remains measured and interpreted at the scale of the surviving complex, with individual broken stones, stair breaks and excavated channel depths represented approximately.",
+    "The modern site paths, handrails, structural conservation barriers and nearby buildings are outside this model except for the main walking levels needed to read the ruin."
+  ],
+  "sourceLicense": "Original model from author-dedicated CC0 photography, ODbL OpenStreetMap archaeological geometry, and attributed Spanish national geographic elevation data.",
+  "qaLodCameras": [
+    {
+      "name": "tarragona-arena-skyline",
+      "position": [
+        -74,
+        32,
+        -49
+      ],
+      "lookAt": [
+        0,
+        2.75,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "tarragona-arena-district",
+      "position": [
+        -74,
+        32,
+        -49
+      ],
+      "lookAt": [
+        0,
+        2.75,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "tarragona-arena-street",
+      "position": [
+        -74,
+        32,
+        -49
+      ],
+      "lookAt": [
+        0,
+        2.75,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "tarragona-arena-closeup",
+      "position": [
+        -74,
+        32,
+        -49
+      ],
+      "lookAt": [
+        0,
+        2.75,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "western-approach-and-seaward-stone-seating",
+      "position": [
+        -74,
+        32,
+        -49
+      ],
+      "lookAt": [
+        0,
+        2.75,
+        0
+      ]
+    },
+    {
+      "name": "standing-medieval-church-and-arena-passages",
+      "position": [
+        -13,
+        12,
+        -21
+      ],
+      "lookAt": [
+        20,
+        1.7,
+        4
+      ]
+    },
+    {
+      "name": "restored-west-axial-vault",
+      "position": [
+        -61,
+        23,
+        -7.5
+      ],
+      "lookAt": [
+        -43,
+        5.1,
+        -0.72
+      ]
+    },
+    {
+      "name": "mapped-seating-and-arena-from-above",
+      "position": [
+        -28,
+        89,
+        -22
+      ],
+      "lookAt": [
+        4,
+        0,
+        1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6058,
+    "vertices": 18174,
+    "materials": 5,
+    "bytes": 1038764,
+    "sha256": "sha256:c8f0e67d2132be9221cf601a5441f8ba94cda9ec7bb4799976b1c618a156d15d"
+  }
+}

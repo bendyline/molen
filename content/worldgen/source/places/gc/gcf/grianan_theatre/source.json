@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.grianan_theatre",
+  "kind": "static-structure",
+  "title": "An Grianán Theatre",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.grianan_theatre",
+        "output": "assets/places/gc/gcf/grianan_theatre/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4cdfe7b7a3c9e433a35028e352d58082f565433cc61a8b3466b72958e879d4aa"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-grianan-theatre",
+        "path": "models/generate-grianan-theatre.mjs"
+      },
+      {
+        "id": "grianan-theatre-model",
+        "path": "models/grianan-theatre-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/grianan-theatre-footprint.json",
+      "reference-rights/grianan-theatre-architectural-facts.json",
+      "reference-rights/grianan-theatre-qualla-original-2.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-15680-10371.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

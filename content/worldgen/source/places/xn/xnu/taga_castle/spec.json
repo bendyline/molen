@@ -1,0 +1,479 @@
+{
+  "planId": "taga_castle",
+  "id": "taga_castle",
+  "assetId": "molen.worldgen.structure.taga_castle",
+  "title": "Taga Castle",
+  "wikidataId": "Q870867",
+  "category": "archaeological",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 140.98833333333332,
+    "latitude": 38.306666666666665
+  },
+  "size": [
+    110.60200119018555,
+    12.687482357025146,
+    169
+  ],
+  "actualBounds": {
+    "min": [
+      -52,
+      -7.199999809265137,
+      -49
+    ],
+    "max": [
+      58.60200119018555,
+      5.48748254776001,
+      120
+    ]
+  },
+  "visualBrief": "The excavated central government enclosure at Taga Castle, including the main plinth, associated foundation stones and south approach.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Taga_Castle_zenkei.JPG",
+    "https://commons.wikimedia.org/wiki/File:Tagajo-ato_nishi-wakiden.JPG",
+    "https://commons.wikimedia.org/wiki/File:Tagajo-ato_kouden.JPG",
+    "https://commons.wikimedia.org/wiki/File:Tagajo-ato_nanmon.JPG",
+    "https://commons.wikimedia.org/wiki/File:Tagajo-ato_nandou.JPG",
+    "https://commons.wikimedia.org/wiki/File:Tagajo-ato_higashi-wakiden.JPG",
+    "https://commons.wikimedia.org/wiki/File:Tagajo-ato_seiden.JPG"
+  ],
+  "stories": [
+    {
+      "id": "taga-castle-wp",
+      "url": "https://qualla.com/taga-castle/"
+    }
+  ],
+  "referenceInputHash": "sha256:b26d7c15d932cf57f75b4af9e8bcb2f8642e66e326314e6dc4ad462c2f4a8226",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xnu/taga_castle/models/taga-castle-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xnu/taga_castle/models/taga-castle-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.16,
+    "surfaces": {
+      "field": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.99
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "gravel": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98
+      },
+      "clay": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.97
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.13,
+        "surfaces": {
+          "field": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "clay": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.42,
+        "surfaces": {
+          "field": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "clay": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.145,
+        "surfaces": {
+          "field": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "clay": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_granite",
+    "stone_ashlar",
+    "gravel"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.65,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original GSI bare-earth level on the southern approach just outside the government enclosure.",
+    "anchor": [
+      140.98833333333332,
+      38.306666666666665
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        140.98837225574252,
+        38.30592106839142
+      ],
+      "modelHeight": 0,
+      "basis": "Original GSI bare-earth level on the southern approach just outside the government enclosure."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -52,
+          -49
+        ],
+        [
+          58,
+          -49
+        ],
+        [
+          58,
+          75
+        ],
+        [
+          44,
+          84
+        ],
+        [
+          21,
+          95
+        ],
+        [
+          13,
+          120
+        ],
+        [
+          -9,
+          120
+        ],
+        [
+          -13,
+          96
+        ],
+        [
+          -35,
+          84
+        ],
+        [
+          -51,
+          74
+        ]
+      ],
+      "minHeight": -7.2,
+      "basis": "Limited to the central excavated enclosure and immediate approach. The authored surface reproduces the surveyed hilltop."
+    },
+    "featureIds": [
+      "relation/14421968",
+      "way/1083460306",
+      "way/1083460307",
+      "way/1083460309",
+      "way/1083460310",
+      "way/1083460311",
+      "way/1083460312",
+      "way/1083460313",
+      "way/1083460314",
+      "way/1083460315",
+      "way/1083460316",
+      "way/1083460317",
+      "way/1083460318",
+      "way/1083460319",
+      "way/1083460320",
+      "way/1083460321",
+      "way/1083460322",
+      "way/1083460323",
+      "way/1083460324",
+      "way/1083460325",
+      "way/1083460326",
+      "way/1083460327",
+      "way/1083460328",
+      "way/1083460329",
+      "way/1083460330",
+      "way/1083460331",
+      "way/1083460332",
+      "way/1083460333",
+      "way/1083460334",
+      "way/1083460335",
+      "way/1083460336",
+      "way/1083460344",
+      "way/1083470605",
+      "way/1083470607",
+      "way/1083470609",
+      "way/1083470615",
+      "way/1083633702"
+    ],
+    "source": "https://www.openstreetmap.org/relation/14421968",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cb132bae93ec838e52a0a3342ee7cb1b0e53c83ca8c5b2106c819131b68531e2",
+    "notes": "The municipal excavation describes the phased central government site. Seven direct Qualla photographs document the surviving central plinth, stairs, stones, painted ground outlines and approaches."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The modeled scope covers the present central archaeological enclosure and immediate approach. The modern full-sized outer gate is south of this scope.",
+    "The visible plinth and bank heights use the native terrain and exterior photographs. Small marker stones, gravel edges and individual stair risers are representative."
+  ],
+  "sourceLicense": "Original model from Saigen Jiro’s original CC0 Qualla photographs, OSM native mapped geometry under ODbL, and Japanese GSI DEM1A elevation data.",
+  "qaLodCameras": [
+    {
+      "name": "taga-castle-skyline",
+      "position": [
+        105,
+        111,
+        151
+      ],
+      "lookAt": [
+        4,
+        2,
+        27
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "taga-castle-district",
+      "position": [
+        105,
+        111,
+        151
+      ],
+      "lookAt": [
+        4,
+        2,
+        27
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "taga-castle-street",
+      "position": [
+        105,
+        111,
+        151
+      ],
+      "lookAt": [
+        4,
+        2,
+        27
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "taga-castle-closeup",
+      "position": [
+        105,
+        111,
+        151
+      ],
+      "lookAt": [
+        4,
+        2,
+        27
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "central-enclosure-and-south-approach",
+      "position": [
+        105,
+        111,
+        151
+      ],
+      "lookAt": [
+        4,
+        2,
+        27
+      ]
+    },
+    {
+      "name": "main-hall-plinth-and-three-stairs",
+      "position": [
+        29,
+        10,
+        32
+      ],
+      "lookAt": [
+        4.55,
+        2.9,
+        3.5
+      ]
+    },
+    {
+      "name": "rear-hall-and-flanking-foundations",
+      "position": [
+        -34,
+        28,
+        -55
+      ],
+      "lookAt": [
+        5.1,
+        3.2,
+        1.5
+      ]
+    },
+    {
+      "name": "inner-south-gate-and-ascending-path",
+      "position": [
+        7,
+        7.5,
+        100
+      ],
+      "lookAt": [
+        3.6,
+        1.2,
+        53
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22953,
+    "vertices": 68859,
+    "materials": 4,
+    "bytes": 3063436,
+    "sha256": "sha256:f99ac6e9e66fcfd8486ebf40ac9e25f10ded31b04953f8743564f62b59d8dc54"
+  }
+}

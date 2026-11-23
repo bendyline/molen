@@ -1,0 +1,1324 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+    "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154"
+  },
+  "sourceHash": "sha256:c0249f6072da806885d8d439dfec5eaf81fd6e80d2d1d0450fb370f091b8789e",
+  "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+  "fixtureHash": "sha256:0db81f2b7283257ef278f88ac793a1b6d1bb0aadff5fd9b4680d3dfd33f5ce34",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
+    },
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:b47def7b983f37df2dd5d57c7a0047b13c117d1bbccfbdf2858bc08ac4f4121b",
+      "bytes": 64272,
+      "gzipBytes": 16055,
+      "triangles": 792,
+      "cpuBytes": 58108,
+      "gpuBytes": 58108,
+      "errorMeters": 1.48,
+      "drawCalls": 5
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:45f8b321999dc518cbe9818723db9d040edc62bef49b1075afc45ab68d673ef5",
+      "bytes": 146176,
+      "gzipBytes": 38509,
+      "triangles": 1860,
+      "cpuBytes": 139972,
+      "gpuBytes": 139972,
+      "errorMeters": 0.8,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:918135d4591663812aa4833c986ed288c1d5e78f9a5c3add8c2e0bd814b66c27",
+      "bytes": 275048,
+      "gzipBytes": 69357,
+      "triangles": 3442,
+      "cpuBytes": 268840,
+      "gpuBytes": 268840,
+      "errorMeters": 0.22,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:64fe72e165989c4f23c3d0aab2656865e922e73b1787f7fc7e3932a293c61e86",
+      "bytes": 365848,
+      "gzipBytes": 87546,
+      "triangles": 4606,
+      "cpuBytes": 359632,
+      "gpuBytes": 359632,
+      "errorMeters": 0.085,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:38310859c534038f23200f408251e31746a6134a3d163da7a3928a0b6c1f186f"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:7a2ef3e2c2f45b006da916f48dc284eefc10d216b79a76d039e5c8373d451c51"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:2ef3ff96e040d550279f588c19928d55c4eb7e9d647403ec19a18c3edbde60ff",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:64fe72e165989c4f23c3d0aab2656865e922e73b1787f7fc7e3932a293c61e86",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 43616,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          47.1078,
+          32.55,
+          83.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:5fca3c278d82cbadf79a4efcb398ab3f4a927e9683dbc9e3887a998385c0806a",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:64fe72e165989c4f23c3d0aab2656865e922e73b1787f7fc7e3932a293c61e86",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 43616,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          47.1078,
+          32.55,
+          83.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:b1b5437f47c9d02a5a8601f4d8c0a627ccf4138c46247f7dac2eb1c174acf86e",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:64fe72e165989c4f23c3d0aab2656865e922e73b1787f7fc7e3932a293c61e86",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 43616,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          47.1078,
+          32.55,
+          83.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:441489ef1b171852eb656164ea38f982ea9297dd215fc0645d3a6da795300d35",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:64fe72e165989c4f23c3d0aab2656865e922e73b1787f7fc7e3932a293c61e86",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 43616,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          47.1078,
+          32.55,
+          83.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:a35a6663048f60197372f606cb27a19765699aeccdf179a681a2c9293a3d2537",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:45f8b321999dc518cbe9818723db9d040edc62bef49b1075afc45ab68d673ef5",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 40870,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          96.1078,
+          68.55,
+          168.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:8210f1cf5045ebeec510c44603b08acb14180a4c50285a5a8c8cb81aa873608f",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:45f8b321999dc518cbe9818723db9d040edc62bef49b1075afc45ab68d673ef5",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 40870,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          96.1078,
+          68.55,
+          168.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:3e36a3fe782d0661ea87118a5bbb4d56d75fbf6c31e3a1daa51c043e3857809a",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:45f8b321999dc518cbe9818723db9d040edc62bef49b1075afc45ab68d673ef5",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 40870,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          96.1078,
+          68.55,
+          168.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:4ad620a45b31453c03cb8f064f9b97671566f44112d7df5a156ad2649267a36e",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:45f8b321999dc518cbe9818723db9d040edc62bef49b1075afc45ab68d673ef5",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 40870,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          96.1078,
+          68.55,
+          168.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:aafa42398acf8659932c53d57be66976325192c939b10eaa7060fa2149c8568f",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:b47def7b983f37df2dd5d57c7a0047b13c117d1bbccfbdf2858bc08ac4f4121b",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 39802,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          193.1078,
+          106.55,
+          336.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:c326608530ee40fdf16786611d7d562fff496abfdc15fd1687a3f82f26357de1",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:b47def7b983f37df2dd5d57c7a0047b13c117d1bbccfbdf2858bc08ac4f4121b",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39802,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          193.1078,
+          106.55,
+          336.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:bf78c63a1f4269bea0ab0c0d606a690de3c3abff5f7151e2d96ab875ccf0cdf3",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:b47def7b983f37df2dd5d57c7a0047b13c117d1bbccfbdf2858bc08ac4f4121b",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 39802,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          193.1078,
+          106.55,
+          336.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:0e33de1a59820de245b169d1eeacaa969e1c5d54c1e32543e2e2529fe0e064d3",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:b47def7b983f37df2dd5d57c7a0047b13c117d1bbccfbdf2858bc08ac4f4121b",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39802,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          193.1078,
+          106.55,
+          336.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:afcda9ed06c7a117e3ff06ec4f24c51961a85d4cc85b05459b3d6bef3031d7e1",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:b47def7b983f37df2dd5d57c7a0047b13c117d1bbccfbdf2858bc08ac4f4121b",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 33562,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          193.1078,
+          106.55,
+          336.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/historic-portico-and-terrace.png",
+      "hash": "sha256:6d0ce314e5e8db22c492e8dd32db4b96e02c8ee43384a0a96ac00efb6a244f74",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:64fe72e165989c4f23c3d0aab2656865e922e73b1787f7fc7e3932a293c61e86",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 43616,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          40,
+          17,
+          97
+        ],
+        "lookAt": [
+          2.9,
+          7.7,
+          30.5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/western-wing-and-historic-front.png",
+      "hash": "sha256:05e649e1c96661a534594fadf02b76c72cfeccbc8576df762439ead8f5198161",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:64fe72e165989c4f23c3d0aab2656865e922e73b1787f7fc7e3932a293c61e86",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 43616,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          -98,
+          26,
+          115
+        ],
+        "lookAt": [
+          -18,
+          7.2,
+          5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northern-and-eastern-wings.png",
+      "hash": "sha256:b37ab4df1a21caaf12268c677a5326c919d95e43c053144d114e7e3b47af3e36",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:64fe72e165989c4f23c3d0aab2656865e922e73b1787f7fc7e3932a293c61e86",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 43616,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          98,
+          44,
+          -109
+        ],
+        "lookAt": [
+          8,
+          8,
+          -16
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/baltimore-museum-skyline.png",
+      "hash": "sha256:4241b0169ad17593b3e36764ee505f2cbef36a027190bd851e8195a35c044224",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:b47def7b983f37df2dd5d57c7a0047b13c117d1bbccfbdf2858bc08ac4f4121b",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39802,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          112,
+          65,
+          126
+        ],
+        "lookAt": [
+          -11,
+          7,
+          -3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/baltimore-museum-district.png",
+      "hash": "sha256:404c21c984143e816d777dd2d6be6e0885d259c15772be1bbddcdbdfa7cd075e",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:45f8b321999dc518cbe9818723db9d040edc62bef49b1075afc45ab68d673ef5",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 40870,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          112,
+          65,
+          126
+        ],
+        "lookAt": [
+          -11,
+          7,
+          -3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/baltimore-museum-street.png",
+      "hash": "sha256:6fee5a013707165dd69d1c7a31906647f3fe8df9a6ce7779b40b55d4b7012788",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:918135d4591663812aa4833c986ed288c1d5e78f9a5c3add8c2e0bd814b66c27",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 42452,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          112,
+          65,
+          126
+        ],
+        "lookAt": [
+          -11,
+          7,
+          -3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/baltimore-museum-closeup.png",
+      "hash": "sha256:b3e3c21277a34b48fec9f9ff44b045cc974c4218f6d8f4ca6bea87e0b05f7c4d",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:64fe72e165989c4f23c3d0aab2656865e922e73b1787f7fc7e3932a293c61e86",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 43616,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          112,
+          65,
+          126
+        ],
+        "lookAt": [
+          -11,
+          7,
+          -3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:be6339a3b357fb7f8e5442aee48912287a1dbadb17503bd01d1107679541c80f",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:b47def7b983f37df2dd5d57c7a0047b13c117d1bbccfbdf2858bc08ac4f4121b",
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39802,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          96.1078,
+          68.55,
+          168.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:8210f1cf5045ebeec510c44603b08acb14180a4c50285a5a8c8cb81aa873608f",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:45f8b321999dc518cbe9818723db9d040edc62bef49b1075afc45ab68d673ef5",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 40870,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          96.1078,
+          68.55,
+          168.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:fb71a63a843347c422539eaf3df70e8baa82f0c8d5e2c9d0409c06ac6ec1ba1b",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:918135d4591663812aa4833c986ed288c1d5e78f9a5c3add8c2e0bd814b66c27",
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 42452,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          96.1078,
+          68.55,
+          168.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:03562c521f795e29c04df84317834ba9afa147d0ddf97991f31878088309c97a",
+      "state": {
+        "assetId": "molen.worldgen.structure.baltimore_museum_of_art",
+        "runtimeHash": "sha256:4082401bd6168275b48567c4959b9fabb78906974464358f5f49aa4323d21154",
+        "lodHash": "sha256:64fe72e165989c4f23c3d0aab2656865e922e73b1787f7fc7e3932a293c61e86",
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 43616,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/baltimore_museum_of_art/terrain-review.height.png"
+        },
+        "position": [
+          96.1078,
+          68.55,
+          168.9332
+        ],
+        "lookAt": [
+          -0.8922,
+          17.55,
+          0.9332
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          -0.8922,
+          6.55,
+          0.9332
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

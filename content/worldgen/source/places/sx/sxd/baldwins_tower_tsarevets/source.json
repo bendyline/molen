@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.baldwins_tower_tsarevets",
+  "kind": "static-structure",
+  "title": "Baldwin’s Tower at Tsarevets",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.baldwins_tower_tsarevets",
+        "output": "assets/places/sx/sxd/baldwins_tower_tsarevets/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3c4e57e870a1ac6f4b70e32cbb4dabb2ce04319f4b19acf638ce8de44bc64ab1"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-baldwins-tower-tsarevets",
+        "path": "models/generate-baldwins-tower-tsarevets.mjs"
+      },
+      {
+        "id": "baldwins-tower-tsarevets-model",
+        "path": "models/baldwins-tower-tsarevets-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/baldwins-tower-tsarevets-footprint.json",
+      "native-map/baldwins-tower-mapped-curtain.json",
+      "reference-rights/baldwins-tower-tsarevets-architectural-facts.json",
+      "references/tsarevets-baldwin-kandi-original.jpg",
+      "reference-rights/kandi-baldwins-tower-commons-first-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-18719-12030.png",
+      "terrain-sources/terrarium-15-18718-12030.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

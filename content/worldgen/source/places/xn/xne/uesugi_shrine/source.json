@@ -1,0 +1,63 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.uesugi_shrine",
+  "kind": "static-structure",
+  "title": "Uesugi Shrine",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.uesugi_shrine",
+        "output": "assets/places/xn/xne/uesugi_shrine/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:82f165f05f76d979adcdfb82693655a4622f5a2e2a2648162326db20e01a118b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-uesugi-shrine",
+        "path": "models/generate-uesugi-shrine.mjs"
+      },
+      {
+        "id": "uesugi-shrine-model",
+        "path": "models/uesugi-shrine-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/uesugi-shrine-footprint.json",
+      "native-map/uesugi-shrine-part-record.json",
+      "reference-rights/uesugi-shrine-architectural-facts.json",
+      "reference-rights/uesugi-shrine-qualla-original-7.json",
+      "reference-rights/uesugi-shrine-qualla-original-8.json",
+      "references/uesugi-shrine-supplement-native.jpg",
+      "reference-rights/syced-commons-first-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/uesugi-gsi-dem5a_png-15-29136-12650.png",
+      "terrain-sources/uesugi-gsi-dem5a_png-15-29136-12649.png",
+      "terrain-sources/uesugi-gsi-dem_png-14-14568-6324.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.san_pedro_chapel",
+  "kind": "static-structure",
+  "title": "San Pedro Chapel",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.san_pedro_chapel",
+        "output": "assets/places/9t/9t9/san_pedro_chapel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:bdd329ef69035ee1e2a305d0ae28293499eb7ee34a7d57edb218aa974ebc2693"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-san-pedro-chapel",
+        "path": "models/generate-san-pedro-chapel.mjs"
+      },
+      {
+        "id": "san-pedro-chapel-model",
+        "path": "models/san-pedro-chapel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/san-pedro-chapel-footprint.json",
+      "reference-rights/san-pedro-nrhp-architectural-facts.json",
+      "reference-rights/ammodramus-original-1.json",
+      "reference-rights/ammodramus-original-2.json",
+      "reference-rights/ammodramus-original-3.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-6291-13278.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

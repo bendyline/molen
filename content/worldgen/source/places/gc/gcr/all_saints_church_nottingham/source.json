@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.all_saints_church_nottingham",
+  "kind": "static-structure",
+  "title": "All Saints' Church, Nottingham",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.all_saints_church_nottingham",
+        "output": "assets/places/gc/gcr/all_saints_church_nottingham/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:5e7735f77e3d925d060b2b11e8fbf0f33d1dcc9c235dc2fd6c4b7c957a516c3d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-all-saints-church-nottingham",
+        "path": "models/generate-all-saints-church-nottingham.mjs"
+      },
+      {
+        "id": "all-saints-church-nottingham-model",
+        "path": "models/all-saints-church-nottingham-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/all-saints-church-nottingham-footprint.json",
+      "reference-rights/all-saints-church-nottingham-architectural-facts.json",
+      "reference-rights/nottingham-original-hero.json",
+      "reference-rights/nottingham-original-33.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-16278-10680.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

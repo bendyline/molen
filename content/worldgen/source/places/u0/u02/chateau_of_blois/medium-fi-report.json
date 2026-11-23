@@ -1,0 +1,1324 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.chateau_of_blois",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.chateau_of_blois",
+    "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae"
+  },
+  "sourceHash": "sha256:5cd65d064fd5e043d1e66e85883b0c1ec207badf66fd8a8b42cd4e51b9fce001",
+  "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+  "fixtureHash": "sha256:0db81f2b7283257ef278f88ac793a1b6d1bb0aadff5fd9b4680d3dfd33f5ce34",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
+    },
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:e3e8d0210e6bbd50d6d5329c6a4cdf102bd4621d1164bc102cb93cd4b665682b",
+      "bytes": 61660,
+      "gzipBytes": 17824,
+      "triangles": 802,
+      "cpuBytes": 55432,
+      "gpuBytes": 55432,
+      "errorMeters": 0.91,
+      "drawCalls": 5
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:94943b4230960f540b4acf5665b94350b768728148eb49284fb8c63cb912a6d5",
+      "bytes": 260096,
+      "gzipBytes": 71051,
+      "triangles": 3944,
+      "cpuBytes": 252740,
+      "gpuBytes": 252740,
+      "errorMeters": 0.48,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:f489bc2b7bdfd8667cf93a447870270be6f45bf82bf581f0e9b49ed53662024c",
+      "bytes": 768868,
+      "gzipBytes": 191297,
+      "triangles": 10705,
+      "cpuBytes": 761484,
+      "gpuBytes": 761484,
+      "errorMeters": 0.18,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:61b2af1372909b0eb73a92fc7d22ff4b7837acf39c1f11905e027c7d3b34721b",
+      "bytes": 2187248,
+      "gzipBytes": 552936,
+      "triangles": 29239,
+      "cpuBytes": 2179812,
+      "gpuBytes": 2179812,
+      "errorMeters": 0.07,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:95b8a483180f7f85cafae6799231c29063d49cb38e678f4cf31b8f5064345653"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:efe2268a22569ea3d7cc10ae2c1ba99908e89f46d5b9a5891a3ed9d0056310e2"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:39d7d9bd17565247a9998239b83196a5dafc55a32a9afcf379186e1e88babeab",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:61b2af1372909b0eb73a92fc7d22ff4b7837acf39c1f11905e027c7d3b34721b",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 68249,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          57.2256,
+          32.665,
+          95.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:09a5425d563108fcb78d8ce812cee04448a86ab52e2ff80a4eac4a6c3bef2d86",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:61b2af1372909b0eb73a92fc7d22ff4b7837acf39c1f11905e027c7d3b34721b",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 68249,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          57.2256,
+          32.665,
+          95.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:d442e967973ffa0dcecd9886ed76a111cc297acafbc35f21c22c9e210289d43d",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:61b2af1372909b0eb73a92fc7d22ff4b7837acf39c1f11905e027c7d3b34721b",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 68249,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          57.2256,
+          32.665,
+          95.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:3dec8a2222e3dbb2fd2b34c37adfdaf13decc0e077c4c6192866b89f873bf8af",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:61b2af1372909b0eb73a92fc7d22ff4b7837acf39c1f11905e027c7d3b34721b",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 68249,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          57.2256,
+          32.665,
+          95.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:056fb61f3459a8e819b1c841ade1961b255a8ed757738be6bc1d80a4713a6ebe",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:94943b4230960f540b4acf5665b94350b768728148eb49284fb8c63cb912a6d5",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 42954,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          106.2256,
+          68.665,
+          180.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:09953c6448e0c71fccfcbc8ad9619cfd94011e46de7ebbaaec41867db9729dd3",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:94943b4230960f540b4acf5665b94350b768728148eb49284fb8c63cb912a6d5",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 42954,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          106.2256,
+          68.665,
+          180.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:30b192d575392c6699a89eef9964cd6af2ccfb30af1ae8e8a24542d789332ca4",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:94943b4230960f540b4acf5665b94350b768728148eb49284fb8c63cb912a6d5",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 42954,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          106.2256,
+          68.665,
+          180.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:f4d0037feab0a83981e7a30d28f717fbcaca6d7bd2de9e922c6a3feb26df52d3",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:94943b4230960f540b4acf5665b94350b768728148eb49284fb8c63cb912a6d5",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 42954,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          106.2256,
+          68.665,
+          180.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:86c56338747200443876f0ed2dcfc922dcb17c586c394f8b54dabe99b6832913",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:e3e8d0210e6bbd50d6d5329c6a4cdf102bd4621d1164bc102cb93cd4b665682b",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 39812,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          203.2256,
+          106.665,
+          348.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:29abde1395a62df75b3aa8a7fd21b9cd5a75d517e38ab170a602fc8ea3233662",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:e3e8d0210e6bbd50d6d5329c6a4cdf102bd4621d1164bc102cb93cd4b665682b",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39812,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          203.2256,
+          106.665,
+          348.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:aeb3f28c1aed64c4d1410c2c02dcbb80d5ad2f8cc935cb73fac56093d8b3e80a",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:e3e8d0210e6bbd50d6d5329c6a4cdf102bd4621d1164bc102cb93cd4b665682b",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 39812,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          203.2256,
+          106.665,
+          348.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:8dfd089b038a9e6954eb8fddd28c66c22d6a01f4df60270d9b3e8e5860a7f0f6",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:e3e8d0210e6bbd50d6d5329c6a4cdf102bd4621d1164bc102cb93cd4b665682b",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39812,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          203.2256,
+          106.665,
+          348.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:a88f94fe425e0f83f028bebf3c745bec34d919673968b60e54aba142a34dfd41",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:e3e8d0210e6bbd50d6d5329c6a4cdf102bd4621d1164bc102cb93cd4b665682b",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 33572,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          203.2256,
+          106.665,
+          348.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/francois-outer-loggias.png",
+      "hash": "sha256:aab225941c7104e7f296955e33fded2a2524570d0a9656fa24d7e8b5a67a7393",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:61b2af1372909b0eb73a92fc7d22ff4b7837acf39c1f11905e027c7d3b34721b",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 68249,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          9,
+          5.2,
+          -104
+        ],
+        "lookAt": [
+          8,
+          6.8,
+          -31
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/courtyard-stair-and-classical-wing.png",
+      "hash": "sha256:9a4066911fb7b0619dfdda63587e8079b4cf9bb3cf118f5f970e63c8859b5153",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:61b2af1372909b0eb73a92fc7d22ff4b7837acf39c1f11905e027c7d3b34721b",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 68249,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          23,
+          7.4,
+          18
+        ],
+        "lookAt": [
+          -2,
+          8.9,
+          -14
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/louis-xii-brick-gate.png",
+      "hash": "sha256:76dcfb065ee2a991d0cdc5e764a0451e3f0260a2ff243d78940f9113c40de1e8",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:61b2af1372909b0eb73a92fc7d22ff4b7837acf39c1f11905e027c7d3b34721b",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 68249,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          96,
+          8,
+          33
+        ],
+        "lookAt": [
+          53,
+          7.1,
+          15
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/blois-skyline.png",
+      "hash": "sha256:2477a93eac08ae20300065d53b9718324cd8b722654d021147d517c7ca6cf57b",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:e3e8d0210e6bbd50d6d5329c6a4cdf102bd4621d1164bc102cb93cd4b665682b",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39812,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          128,
+          83,
+          127
+        ],
+        "lookAt": [
+          4,
+          6.5,
+          6
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/blois-district.png",
+      "hash": "sha256:6fac28555a96d9f045aa66ce7a6314eb8a6420f8a2b623b06f2d4e6446327375",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:94943b4230960f540b4acf5665b94350b768728148eb49284fb8c63cb912a6d5",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 42954,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          128,
+          83,
+          127
+        ],
+        "lookAt": [
+          4,
+          6.5,
+          6
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/blois-street.png",
+      "hash": "sha256:1ced92baf67b3553233bb0471eb6930392b78d566d41ff06d36eb86327b2bea9",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:f489bc2b7bdfd8667cf93a447870270be6f45bf82bf581f0e9b49ed53662024c",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 49715,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          128,
+          83,
+          127
+        ],
+        "lookAt": [
+          4,
+          6.5,
+          6
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/blois-closeup.png",
+      "hash": "sha256:2f70541927c86273c92832e43f2e4d0f0cb6de57157b4abedeb89c2e4e1a01c8",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:61b2af1372909b0eb73a92fc7d22ff4b7837acf39c1f11905e027c7d3b34721b",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 68249,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          128,
+          83,
+          127
+        ],
+        "lookAt": [
+          4,
+          6.5,
+          6
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:7e50fc9cb9a620e12ae68b15994c11b7349f3b937b488d097cdf0435a813b084",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:e3e8d0210e6bbd50d6d5329c6a4cdf102bd4621d1164bc102cb93cd4b665682b",
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39812,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          106.2256,
+          68.665,
+          180.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:09953c6448e0c71fccfcbc8ad9619cfd94011e46de7ebbaaec41867db9729dd3",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:94943b4230960f540b4acf5665b94350b768728148eb49284fb8c63cb912a6d5",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 42954,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          106.2256,
+          68.665,
+          180.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:818abc4e0fc9203d2f1dc53b080d86dc96456ddfe8a065949e17705ce91647b1",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:f489bc2b7bdfd8667cf93a447870270be6f45bf82bf581f0e9b49ed53662024c",
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 49715,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          106.2256,
+          68.665,
+          180.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:c8e9b096bfc6279c6ed63c1ab3f144b5ee5e160d65299ee26f3033017a3ec606",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_of_blois",
+        "runtimeHash": "sha256:18db854ad2ef104906c887277f1e9c930dea18fac8df6e62cdbb82d9762157ae",
+        "lodHash": "sha256:61b2af1372909b0eb73a92fc7d22ff4b7837acf39c1f11905e027c7d3b34721b",
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 68249,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_of_blois/terrain-review.height.png"
+        },
+        "position": [
+          106.2256,
+          68.665,
+          180.4244
+        ],
+        "lookAt": [
+          9.2256,
+          17.665,
+          12.4244
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          9.2256,
+          6.665,
+          12.4244
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

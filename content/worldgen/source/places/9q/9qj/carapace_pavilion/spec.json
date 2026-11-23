@@ -1,0 +1,337 @@
+{
+  "planId": "carapace_pavilion",
+  "id": "carapace_pavilion",
+  "assetId": "molen.worldgen.structure.carapace_pavilion",
+  "title": "Carapace Pavilion",
+  "category": "pavilion",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -116.1177,
+    "latitude": 34.0077
+  },
+  "size": [
+    12.852758407592773,
+    4.143016040325165,
+    4.278729438781738
+  ],
+  "actualBounds": {
+    "min": [
+      -6.426379203796387,
+      -0.1899999976158142,
+      -2.139364719390869
+    ],
+    "max": [
+      6.426379203796387,
+      3.9530160427093506,
+      2.139364719390869
+    ]
+  },
+  "visualBrief": "Pink concrete shade pavilion with thin double-curved wings and diagrid perforations.",
+  "nativeAxes": {
+    "x": "north along the open passage",
+    "y": "up",
+    "z": "east across the curved shell"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Carapace_Pavilion_installed_in_Joshua_Tree_National_Park.jpg",
+    "https://commons.wikimedia.org/wiki/File:1_carapace_installed_side.jpg",
+    "https://commons.wikimedia.org/wiki/File:Carapace_Pavilion_aerial_drone_view.jpg"
+  ],
+  "stories": [
+    {
+      "id": "carapace-pavilion-wp",
+      "url": "https://qualla.com/carapace-pavilion/"
+    }
+  ],
+  "referenceInputHash": "sha256:00d61e280da05a8023f521fcc20f1dad8204bd8121b6309a8e24a570c21ee6a3",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9q/9qj/carapace_pavilion/models/carapace-pavilion-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9q/9qj/carapace_pavilion/models/carapace-pavilion-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.37,
+    "surfaces": {
+      "outer": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94
+      },
+      "inner": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.84
+      },
+      "edge": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "soil": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.99
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "outer": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "inner": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.84
+          },
+          "edge": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "soil": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.095,
+        "surfaces": {
+          "outer": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "inner": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.84
+          },
+          "edge": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "soil": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.026,
+        "surfaces": {
+          "outer": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "inner": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.84
+          },
+          "edge": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "soil": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "USGS one-metre bare-earth elevation under the published nominal site position.",
+    "anchor": [
+      -116.1177,
+      34.0077
+    ],
+    "heading": 1.5707963267948966,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -116.1177,
+        34.0077
+      ],
+      "modelHeight": 0,
+      "basis": "USGS one-metre bare-earth elevation under the published nominal site position."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "construction-project/usc-carapace-pavilion"
+    ],
+    "source": "https://www.studyarchitecture.com/blog/student-work/usc-architecture-students-built-this-the-carapace-pavilion/",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7cc6bfd85a4ba3dd38f18e2173eb05f4be37ee8b5682663060fca2af6ea1c358",
+    "notes": "The two exact installed photographs and the same photographer's yard photograph establish the anticlastic roof, stepped wall and roof joints, thin aperture reveals and warm pink concrete. The structural project record establishes 13 foot overall height."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The north–south heading is documented. The site point is approximate and the underlying dated bare-earth survey predates installation.",
+    "The exact perforation outlines, hidden connections and underside engineering detail are representative."
+  ],
+  "sourceLicense": "Original 3D work under the repository license. Native USGS terrain and the photographer’s CC0 images are public domain.",
+  "qaLodCameras": [
+    {
+      "name": "carapace-pavilion-skyline",
+      "position": [
+        11.4,
+        5.3,
+        14.1
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "carapace-pavilion-district",
+      "position": [
+        11.4,
+        5.3,
+        14.1
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "carapace-pavilion-street",
+      "position": [
+        11.4,
+        5.3,
+        14.1
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "carapace-pavilion-closeup",
+      "position": [
+        11.4,
+        5.3,
+        14.1
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "desert-shelter-and-original-terrain",
+      "position": [
+        10.2,
+        3.7,
+        12.2
+      ],
+      "lookAt": [
+        0,
+        1.7,
+        0
+      ]
+    },
+    {
+      "name": "northern-opening-and-thin-shell",
+      "position": [
+        8.8,
+        2.9,
+        4.1
+      ],
+      "lookAt": [
+        -0.5,
+        1.85,
+        0
+      ]
+    },
+    {
+      "name": "roof-perforations-and-cantilevers",
+      "position": [
+        -5.2,
+        8.8,
+        -9.2
+      ],
+      "lookAt": [
+        0.7,
+        2.5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6736,
+    "vertices": 20208,
+    "materials": 3,
+    "bytes": 841208,
+    "sha256": "sha256:d9229e4cd662e312e2b55151fca99a5458313bf3e9bd695437e7cd0f17141dba"
+  }
+}

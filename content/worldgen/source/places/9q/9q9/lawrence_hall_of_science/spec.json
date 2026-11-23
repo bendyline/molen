@@ -1,0 +1,646 @@
+{
+  "planId": "lawrence_hall_of_science",
+  "id": "lawrence_hall_of_science",
+  "assetId": "molen.worldgen.structure.lawrence_hall_of_science",
+  "title": "Lawrence Hall of Science",
+  "wikidataId": "Q14683059",
+  "category": "science-museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -122.246664,
+    "latitude": 37.879144272727274
+  },
+  "size": [
+    78.90499114990234,
+    21.8634934425354,
+    164.53775787353516
+  ],
+  "actualBounds": {
+    "min": [
+      -42.07627487182617,
+      -5.400000095367432,
+      -70.27313995361328
+    ],
+    "max": [
+      36.82871627807617,
+      16.46349334716797,
+      94.26461791992188
+    ]
+  },
+  "visualBrief": "The faceted concrete science hall and polygonal fountain plaza on the hillside above Berkeley.",
+  "nativeAxes": {
+    "x": "across the plaza toward the east",
+    "y": "up",
+    "z": "from the plaza toward the southern wings"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Lawrence_Hall_of_Science_plaza_2.JPG",
+    "https://commons.wikimedia.org/wiki/File:Lawrence_Hall_of_Science.jpg"
+  ],
+  "stories": [
+    {
+      "id": "lawrence-hall-of-science-wp",
+      "url": "https://qualla.com/lawrence-hall-of-science/"
+    }
+  ],
+  "referenceInputHash": "sha256:4bb464eca098ac1674ebc1de4a07a88202435a80492c6d235b2519ca6005aa89",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9q/9q9/lawrence_hall_of_science/models/lawrence-hall-of-science-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9q/9q9/lawrence_hall_of_science/models/lawrence-hall-of-science-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.67,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.95
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.9
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94
+      },
+      "joint": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.66
+      },
+      "railing": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.81
+      },
+      "basin": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.77
+      },
+      "water": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.49
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "joint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "railing": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.81
+          },
+          "basin": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.77
+          },
+          "water": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.49
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "joint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "railing": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.81
+          },
+          "basin": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.77
+          },
+          "water": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.49
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.034,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "joint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "railing": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.81
+          },
+          "basin": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.77
+          },
+          "water": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.49
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_boardformed",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged USGS one-meter survey at the center of the public plaza.",
+    "anchor": [
+      -122.246664,
+      37.879144272727274
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -122.246664,
+        37.87944071541502
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged USGS one-meter survey at the center of the public plaza."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -28.6089,
+          53.063
+        ],
+        [
+          -31.9566,
+          42.0757
+        ],
+        [
+          -37.5273,
+          25.1218
+        ],
+        [
+          -30.9989,
+          18.8656
+        ],
+        [
+          -21.8433,
+          18.6318
+        ],
+        [
+          -18.9262,
+          25.6895
+        ],
+        [
+          -16.6681,
+          20.6022
+        ],
+        [
+          -18.4605,
+          17.0511
+        ],
+        [
+          -16.9756,
+          13.9453
+        ],
+        [
+          -20.7274,
+          4.5165
+        ],
+        [
+          -28.7759,
+          1.2549
+        ],
+        [
+          -30.5947,
+          2.4794
+        ],
+        [
+          -32.4838,
+          1.6556
+        ],
+        [
+          -33.67,
+          -0.6821
+        ],
+        [
+          -32.6156,
+          -3.0309
+        ],
+        [
+          -42.7201,
+          -28.8125
+        ],
+        [
+          -31.3503,
+          -57.5997
+        ],
+        [
+          -11.9497,
+          -65.4923
+        ],
+        [
+          -12.9689,
+          -67.496
+        ],
+        [
+          -2.1966,
+          -71.96
+        ],
+        [
+          8.4439,
+          -67.6742
+        ],
+        [
+          7.6706,
+          -64.958
+        ],
+        [
+          26.3947,
+          -57.0877
+        ],
+        [
+          32.1411,
+          -43.8295
+        ],
+        [
+          37.5273,
+          -29.614
+        ],
+        [
+          33.7051,
+          -19.15
+        ],
+        [
+          32.2641,
+          -15.3651
+        ],
+        [
+          30.0939,
+          -10.5116
+        ],
+        [
+          26.7462,
+          -1.8064
+        ],
+        [
+          16.5363,
+          3.1918
+        ],
+        [
+          12.4154,
+          14.3127
+        ],
+        [
+          12.7668,
+          15.3591
+        ],
+        [
+          13.8212,
+          17.0956
+        ],
+        [
+          12.0375,
+          20.9139
+        ],
+        [
+          14.6911,
+          27.9938
+        ],
+        [
+          17.3534,
+          18.5317
+        ],
+        [
+          26.6232,
+          18.5873
+        ],
+        [
+          33.1252,
+          25.1997
+        ],
+        [
+          32.1587,
+          27.7489
+        ],
+        [
+          35.3219,
+          28.6951
+        ],
+        [
+          28.6441,
+          50.2243
+        ],
+        [
+          25.3491,
+          49.6232
+        ],
+        [
+          23.7149,
+          52.8849
+        ],
+        [
+          18.645,
+          53.0741
+        ],
+        [
+          19.9542,
+          58.4842
+        ],
+        [
+          16.1672,
+          58.9963
+        ],
+        [
+          4.4899,
+          53.7198
+        ],
+        [
+          -2.0209,
+          53.7643
+        ],
+        [
+          -8.8041,
+          53.9758
+        ],
+        [
+          -21.5973,
+          59.3636
+        ],
+        [
+          -24.6462,
+          58.0946
+        ],
+        [
+          -24.3211,
+          56.358
+        ],
+        [
+          -23.873,
+          53.9201
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "Named underground podium, plaza and museum perimeter from the current map."
+    },
+    "featureIds": [
+      "way/24026035"
+    ],
+    "source": "https://www.openstreetmap.org/way/24026035",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f0af9d715fb5ab94d300c967b6a4ea4b56a4dc6b83a7036ec992a2d94348ffa5",
+    "notes": "UC Berkeley's 2021 Historic Resources Technical Report identifies concrete forms and low, faceted roofs. The known CC0 Qualla gallery view establishes the cast concrete rib proportions; the plaza photograph shows the paving and low wall profile."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The geographic outline and plaza features are mapped. Roof ridge elevations and portions of the concrete elevations use aerial and photographic scale estimates.",
+    "The model covers the current building and immediately connected public plaza and terraces. Exhibition interiors, moving installations and sculpture are outside scope."
+  ],
+  "sourceLicense": "Original model under repository license. Footprint © OpenStreetMap contributors. USDA NAIP imagery and USGS 3DEP are public domain.",
+  "qaLodCameras": [
+    {
+      "name": "lawrence-hall-of-science-skyline",
+      "position": [
+        -118,
+        76,
+        -114
+      ],
+      "lookAt": [
+        0,
+        7,
+        -4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "lawrence-hall-of-science-district",
+      "position": [
+        -118,
+        76,
+        -114
+      ],
+      "lookAt": [
+        0,
+        7,
+        -4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "lawrence-hall-of-science-street",
+      "position": [
+        -118,
+        76,
+        -114
+      ],
+      "lookAt": [
+        0,
+        7,
+        -4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "lawrence-hall-of-science-closeup",
+      "position": [
+        -118,
+        76,
+        -114
+      ],
+      "lookAt": [
+        0,
+        7,
+        -4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "main-plaza-and-entrance",
+      "position": [
+        -26,
+        9.7,
+        -62
+      ],
+      "lookAt": [
+        4,
+        8,
+        -1
+      ]
+    },
+    {
+      "name": "roof-facets-and-southern-wings",
+      "position": [
+        84,
+        68,
+        98
+      ],
+      "lookAt": [
+        1,
+        9,
+        16
+      ]
+    },
+    {
+      "name": "bay-facing-plaza-podium",
+      "position": [
+        -88,
+        42,
+        -16
+      ],
+      "lookAt": [
+        -3,
+        5,
+        -30
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4061,
+    "vertices": 12183,
+    "materials": 6,
+    "bytes": 547408,
+    "sha256": "sha256:7c5acd944b855e9fba732030c9ae0a398d2713f8dee6301212e9d5e872e5c3b7"
+  }
+}

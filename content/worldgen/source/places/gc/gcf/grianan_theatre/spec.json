@@ -1,0 +1,561 @@
+{
+  "planId": "grianan_theatre",
+  "id": "grianan_theatre",
+  "assetId": "molen.worldgen.structure.grianan_theatre",
+  "title": "An Grianán Theatre",
+  "wikidataId": "Q565432",
+  "category": "performance-sport",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -7.7319119,
+    "latitude": 54.95339115
+  },
+  "size": [
+    36.93600082397461,
+    21.47999906539917,
+    52.98800086975098
+  ],
+  "actualBounds": {
+    "min": [
+      -19.55500030517578,
+      -5.099999904632568,
+      -22.610000610351562
+    ],
+    "max": [
+      17.381000518798828,
+      16.3799991607666,
+      30.378000259399414
+    ]
+  },
+  "visualBrief": "The Letterkenny theatre with a glazed gable, exposed roof braces and a curved entrance.",
+  "nativeAxes": {
+    "x": "across the street-facing foyer",
+    "y": "up",
+    "z": "from backstage toward Port Road"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Lk-theatre-lk.jpg"
+  ],
+  "stories": [
+    {
+      "id": "an-grianan-theatre-wp",
+      "url": "https://qualla.com/an-grianan-theatre/"
+    }
+  ],
+  "referenceInputHash": "sha256:dd03770b9579a3f51d0a73d6c6b1785477c46dd69f69108ccb8f6cfbbd465506",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcf/grianan_theatre/models/grianan-theatre-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gcf/grianan_theatre/models/grianan-theatre-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.86,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.93
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.88
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76
+      },
+      "door": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.81
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.43
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.39,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.048,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "stone_ashlar",
+    "metal_standing_seam",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native ground elevation at the foot of the main Port Road entrance.",
+    "anchor": [
+      -7.7319119,
+      54.95339115
+    ],
+    "heading": 0.6365629055332549,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -7.7316403694858415,
+        54.9531802176061
+      ],
+      "modelHeight": 0,
+      "basis": "Native ground elevation at the foot of the main Port Road entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          15.294,
+          20.67
+        ],
+        [
+          14.828,
+          20.547
+        ],
+        [
+          14.847,
+          18.554
+        ],
+        [
+          17.381,
+          18.642
+        ],
+        [
+          17.381,
+          -20.341
+        ],
+        [
+          -15.936,
+          -22.211
+        ],
+        [
+          -17.206,
+          -22.61
+        ],
+        [
+          -16.725,
+          -14.53
+        ],
+        [
+          -9.915,
+          -13.289
+        ],
+        [
+          -9.817,
+          -8.69
+        ],
+        [
+          -18.997,
+          -8.111
+        ],
+        [
+          -19.555,
+          4.752
+        ],
+        [
+          -13.4,
+          5.717
+        ],
+        [
+          -13.282,
+          14.096
+        ],
+        [
+          -13.777,
+          16.056
+        ],
+        [
+          -12.719,
+          23.787
+        ],
+        [
+          -9.687,
+          25.696
+        ],
+        [
+          -3.324,
+          25.735
+        ],
+        [
+          -3.046,
+          26.424
+        ],
+        [
+          -2.303,
+          27.14
+        ],
+        [
+          -1.323,
+          27.685
+        ],
+        [
+          -0.372,
+          28
+        ],
+        [
+          0.879,
+          27.997
+        ],
+        [
+          1.58,
+          27.823
+        ],
+        [
+          2.257,
+          27.327
+        ],
+        [
+          2.646,
+          26.95
+        ],
+        [
+          3.101,
+          26.303
+        ],
+        [
+          3.296,
+          25.77
+        ],
+        [
+          9.548,
+          25.808
+        ],
+        [
+          9.562,
+          23.23
+        ],
+        [
+          11.039,
+          23.242
+        ],
+        [
+          12.097,
+          24.994
+        ],
+        [
+          14.093,
+          25.5
+        ],
+        [
+          14.448,
+          25.416
+        ],
+        [
+          15.856,
+          24.436
+        ],
+        [
+          16.356,
+          22.438
+        ],
+        [
+          16.289,
+          22.098
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named native An Grianán Theatre outline including the main curved entrance."
+    },
+    "featureIds": [
+      "way/64264588"
+    ],
+    "source": "https://www.openstreetmap.org/way/64264588",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a8c346a60e5566a801da53834ff85f0b58e448d20bfd152233e0a97f3f202cdc",
+    "notes": "The Port Road façade combines a deep eaved gable, a tall rectilinear curtain wall, exposed diagonal roof ties and an enclosed central porch. The rear contains the auditorium and full-height fly stage."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The front colours and entrance represent the cleared 2007 image before the 2014 renovations.",
+    "The rear and secondary wings follow the mapped outline. Unpublished exterior heights, cladding and openings are approximate."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "grianan-theatre-skyline",
+      "position": [
+        -43,
+        23,
+        82
+      ],
+      "lookAt": [
+        0,
+        7.4,
+        5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "grianan-theatre-district",
+      "position": [
+        -43,
+        23,
+        82
+      ],
+      "lookAt": [
+        0,
+        7.4,
+        5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "grianan-theatre-street",
+      "position": [
+        -43,
+        23,
+        82
+      ],
+      "lookAt": [
+        0,
+        7.4,
+        5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "grianan-theatre-closeup",
+      "position": [
+        -43,
+        23,
+        82
+      ],
+      "lookAt": [
+        0,
+        7.4,
+        5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "port-road-theatre",
+      "position": [
+        -43,
+        23,
+        82
+      ],
+      "lookAt": [
+        0,
+        7.4,
+        5
+      ]
+    },
+    {
+      "name": "glass-gable-and-braces",
+      "position": [
+        -3,
+        9.3,
+        59
+      ],
+      "lookAt": [
+        0,
+        6.4,
+        25.8
+      ]
+    },
+    {
+      "name": "curved-entrance-and-steps",
+      "position": [
+        8,
+        4.7,
+        42.5
+      ],
+      "lookAt": [
+        0,
+        2.3,
+        27.1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1915,
+    "vertices": 5745,
+    "materials": 6,
+    "bytes": 382028,
+    "sha256": "sha256:4cdfe7b7a3c9e433a35028e352d58082f565433cc61a8b3466b72958e879d4aa"
+  }
+}

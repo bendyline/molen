@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.ypres_cloth_hall",
+  "kind": "static-structure",
+  "title": "Ypres Cloth Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.ypres_cloth_hall",
+        "output": "assets/places/u1/u14/ypres_cloth_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:13da459920d5be2194194767c9f6401e10964b25810d2b4aacade66f505ec8b8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-ypres-cloth-hall",
+        "path": "models/generate-ypres-cloth-hall.mjs"
+      },
+      {
+        "id": "ypres-cloth-hall-model",
+        "path": "models/ypres-cloth-hall-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/ypres-cloth-hall-footprint.json",
+      "native-map/ypres-cloth-hall-attached-nieuwerck.json",
+      "reference-rights/ypres-cloth-hall-architectural-facts.json",
+      "reference-rights/ypres-cloth-hall-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-16646-10991.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

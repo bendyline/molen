@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.shiroishi_castle",
+  "kind": "static-structure",
+  "title": "Shiroishi Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.shiroishi_castle",
+        "output": "assets/places/xn/xng/shiroishi_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c98d34485cf301c6fb02b9461c524e4f66492d95e416e01fc996d1e39bc395db"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-shiroishi-castle",
+        "path": "models/generate-shiroishi-castle.mjs"
+      },
+      {
+        "id": "shiroishi-castle-model",
+        "path": "models/shiroishi-castle-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/shiroishi-castle-footprint.json",
+      "reference-rights/shiroishi-castle-architectural-facts.json",
+      "reference-rights/shiroishi-castle-qualla-original-2.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-29183-12639.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

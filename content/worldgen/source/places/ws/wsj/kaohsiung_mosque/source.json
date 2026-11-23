@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kaohsiung_mosque",
+  "kind": "static-structure",
+  "title": "Kaohsiung Mosque",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kaohsiung_mosque",
+        "output": "assets/places/ws/wsj/kaohsiung_mosque/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9327009bd3c81a97ac5bee48a2daad58624ac86f776256f2e31707f201326250"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-kaohsiung-mosque",
+        "path": "models/generate-kaohsiung-mosque.mjs"
+      },
+      {
+        "id": "kaohsiung-mosque-model",
+        "path": "models/kaohsiung-mosque-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/kaohsiung-mosque-footprint.json",
+      "native-map/kaohsiung-emap-mapped-perimeter.json",
+      "reference-rights/kaohsiung-mosque-architectural-facts.json",
+      "reference-rights/kaohsiung-mosque-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-27337-14268.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

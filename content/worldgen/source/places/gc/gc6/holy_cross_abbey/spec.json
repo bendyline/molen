@@ -1,0 +1,590 @@
+{
+  "planId": "holy_cross_abbey",
+  "id": "holy_cross_abbey",
+  "assetId": "molen.worldgen.structure.holy_cross_abbey",
+  "title": "Holycross Abbey",
+  "wikidataId": "Q839896",
+  "category": "abbey",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -7.8680039,
+    "latitude": 52.639492
+  },
+  "size": [
+    50.4630012512207,
+    23.530000805854797,
+    65.42199897766113
+  ],
+  "actualBounds": {
+    "min": [
+      -25.290000915527344,
+      -1.8300000429153442,
+      -17.121999740600586
+    ],
+    "max": [
+      25.17300033569336,
+      21.700000762939453,
+      48.29999923706055
+    ]
+  },
+  "visualBrief": "The lime-gray Cistercian abbey with crenellated tower, steep slate roofs and an open cloister.",
+  "nativeAxes": {
+    "x": "east-southeast toward the chancel",
+    "y": "up",
+    "z": "south-southwest through the cloister"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Holy_Cross_Abbey08.JPG",
+    "https://commons.wikimedia.org/wiki/File:Holy_Cross_Abbey09.JPG",
+    "https://commons.wikimedia.org/wiki/File:HolyCrossAbbey.JPG"
+  ],
+  "stories": [
+    {
+      "id": "holy-cross-abbey-wp",
+      "url": "https://qualla.com/holy-cross-abbey/"
+    }
+  ],
+  "referenceInputHash": "sha256:121f8da66d0a885d3a0ab9b72b7dddaea231c2c882bb1568dbc729623c567d61",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gc6/holy_cross_abbey/models/holy-cross-abbey-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gc6/holy_cross_abbey/models/holy-cross-abbey-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.97
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94
+      },
+      "weathered": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.91
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.72
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.97
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "weathered": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.97
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "weathered": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.066,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.97
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "weathered": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_limestone_raw",
+    "stone_limestone_weathered",
+    "tile_flat"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original grade at the western church approach beyond the church wall.",
+    "anchor": [
+      -7.8680039,
+      52.639492
+    ],
+    "heading": -0.27635017734684175,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -7.8684093405155515,
+        52.6396121984864
+      ],
+      "modelHeight": 0,
+      "basis": "Original grade at the western church approach beyond the church wall."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -23.284,
+          40.182
+        ],
+        [
+          -22.953,
+          14.609
+        ],
+        [
+          -22.857,
+          7.026
+        ],
+        [
+          -25.06,
+          7.13
+        ],
+        [
+          -25.077,
+          -0.259
+        ],
+        [
+          -25.15,
+          -8.488
+        ],
+        [
+          5.001,
+          -8.488
+        ],
+        [
+          4.996,
+          -16.205
+        ],
+        [
+          18.038,
+          -15.773
+        ],
+        [
+          17.954,
+          -9.929
+        ],
+        [
+          21.423,
+          -9.929
+        ],
+        [
+          24.177,
+          -9.923
+        ],
+        [
+          24.177,
+          -1.604
+        ],
+        [
+          24.173,
+          3.929
+        ],
+        [
+          18.471,
+          3.926
+        ],
+        [
+          18.467,
+          9.111
+        ],
+        [
+          18.466,
+          12.328
+        ],
+        [
+          15.082,
+          12.327
+        ],
+        [
+          15.03,
+          16.403
+        ],
+        [
+          15.001,
+          18.355
+        ],
+        [
+          15.078,
+          24.026
+        ],
+        [
+          15.265,
+          35.949
+        ],
+        [
+          15.297,
+          37.769
+        ],
+        [
+          15.371,
+          45.211
+        ],
+        [
+          11.891,
+          45.318
+        ],
+        [
+          11.961,
+          46.953
+        ],
+        [
+          12.044,
+          49.649
+        ],
+        [
+          5.998,
+          47.441
+        ],
+        [
+          6.134,
+          45.84
+        ],
+        [
+          6.25,
+          44.442
+        ],
+        [
+          6.056,
+          36.062
+        ],
+        [
+          6.042,
+          35.591
+        ],
+        [
+          6.039,
+          30.628
+        ],
+        [
+          6.074,
+          28.697
+        ],
+        [
+          6.159,
+          24.045
+        ],
+        [
+          6.174,
+          22.513
+        ],
+        [
+          6.181,
+          21.794
+        ],
+        [
+          6.398,
+          12.557
+        ],
+        [
+          5.273,
+          12.552
+        ],
+        [
+          4.681,
+          12.569
+        ],
+        [
+          2.014,
+          12.573
+        ],
+        [
+          1.931,
+          10.051
+        ],
+        [
+          2.023,
+          7.109
+        ],
+        [
+          -12.524,
+          7.116
+        ],
+        [
+          -14.062,
+          7.112
+        ],
+        [
+          -14.069,
+          14.369
+        ],
+        [
+          -14.533,
+          34.322
+        ],
+        [
+          -14.485,
+          40.186
+        ],
+        [
+          -15.383,
+          40.187
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Mapped restored abbey and its attached ranges."
+    },
+    "featureIds": [
+      "way/1023082836"
+    ],
+    "source": "https://www.openstreetmap.org/way/1023082836",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d39779350b2035b00e70388577434114321cff3a7dbe4766e1fd34e989ee1201",
+    "notes": "A steep-roofed limestone church with traceried lancets, stepped buttresses, a square, flat crenellated crossing tower and monastic ranges framing the open cloister."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Tower height and individual window tracery and masonry joints are approximated from the exterior photographs.",
+    "The separately managed detached infirmary and other ruin structures are outside the attached church-and-cloister scope."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "holycross-abbey-skyline",
+      "position": [
+        81,
+        36,
+        97
+      ],
+      "lookAt": [
+        -3,
+        8.1,
+        12
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "holycross-abbey-district",
+      "position": [
+        81,
+        36,
+        97
+      ],
+      "lookAt": [
+        -3,
+        8.1,
+        12
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "holycross-abbey-street",
+      "position": [
+        81,
+        36,
+        97
+      ],
+      "lookAt": [
+        -3,
+        8.1,
+        12
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "holycross-abbey-closeup",
+      "position": [
+        81,
+        36,
+        97
+      ],
+      "lookAt": [
+        -3,
+        8.1,
+        12
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "church-and-crossing-tower",
+      "position": [
+        62,
+        15.25,
+        -62
+      ],
+      "lookAt": [
+        2.2,
+        8.8,
+        -3.2
+      ]
+    },
+    {
+      "name": "nave-and-graveyard-side",
+      "position": [
+        -37,
+        11.65,
+        -52
+      ],
+      "lookAt": [
+        -1.8,
+        8,
+        -5.85
+      ]
+    },
+    {
+      "name": "cloister-arcade-and-ranges",
+      "position": [
+        -7.2,
+        8.12,
+        34.9
+      ],
+      "lookAt": [
+        -4.9,
+        7.23,
+        7.1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7871,
+    "vertices": 23613,
+    "materials": 5,
+    "bytes": 1305940,
+    "sha256": "sha256:41311267dbc09eb5e74ea58eb3b9454e0b697608044335e78e437b15a326d02d"
+  }
+}

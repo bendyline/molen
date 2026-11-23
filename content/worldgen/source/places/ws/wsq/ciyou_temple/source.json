@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.ciyou_temple",
+  "kind": "static-structure",
+  "title": "Ciyou Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.ciyou_temple",
+        "output": "assets/places/ws/wsq/ciyou_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1afe7d29b3c8c7c9d8e57776f149a141a975f71007a0e43413fa27d2b6c1fc91"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-ciyou-temple",
+        "path": "models/generate-ciyou-temple.mjs"
+      },
+      {
+        "id": "ciyou-temple-model",
+        "path": "models/ciyou-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/ciyou-temple-footprint.json",
+      "reference-rights/ciyou-temple-architectural-facts.json",
+      "reference-rights/ciyou-temple-qualla-original-3.json",
+      "reference-rights/ciyou-temple-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-27450-14027.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

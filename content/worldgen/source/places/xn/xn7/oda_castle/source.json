@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.oda_castle",
+  "kind": "static-structure",
+  "title": "Oda Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.oda_castle",
+        "output": "assets/places/xn/xn7/oda_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:376363961ce3aa49349cf722f0f72cae5022753a9521aee627d3c0b81ce2d410"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-oda-castle",
+        "path": "models/generate-oda-castle.mjs"
+      },
+      {
+        "id": "oda-castle-model",
+        "path": "models/oda-castle-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/oda-castle-footprint.json",
+      "reference-rights/oda-castle-architectural-facts.json",
+      "reference-rights/oda-castle-qualla-original-2.json",
+      "reference-rights/oda-castle-qualla-original-3.json",
+      "reference-rights/oda-castle-qualla-original-4.json",
+      "reference-rights/oda-castle-qualla-original-5.json",
+      "reference-rights/oda-castle-qualla-original-6.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/oda-castle-gsi-dem5a_png-15-29137-12850.png",
+      "terrain-sources/oda-castle-gsi-dem_png-14-14568-6425.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

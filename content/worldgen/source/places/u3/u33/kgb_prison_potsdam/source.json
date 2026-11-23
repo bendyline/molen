@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kgb_prison_potsdam",
+  "kind": "static-structure",
+  "title": "KGB Prison, Potsdam",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kgb_prison_potsdam",
+        "output": "assets/places/u3/u33/kgb_prison_potsdam/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a35927627cfb4b008feb540195846dee23d9a57842bafac944847919d2f4e2bf"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-kgb-prison-potsdam",
+        "path": "models/generate-kgb-prison-potsdam.mjs"
+      },
+      {
+        "id": "kgb-prison-potsdam-model",
+        "path": "models/kgb-prison-potsdam-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/kgb-prison-potsdam-footprint.json",
+      "native-map/potsdam-memorial-mapped-parts.json",
+      "reference-rights/kgb-prison-potsdam-architectural-facts.json",
+      "reference-rights/kgb-prison-potsdam-qualla-original-1.json",
+      "reference-rights/kgb-prison-potsdam-qualla-original-2.json",
+      "references/potsdam-lenz-exterior-01.jpg",
+      "reference-rights/leonhard-lenz-commons-first-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-17573-10761.png",
+      "terrain-sources/terrarium-15-17573-10762.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

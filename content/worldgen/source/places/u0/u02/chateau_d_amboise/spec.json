@@ -1,0 +1,640 @@
+{
+  "planId": "chateau_d_amboise",
+  "id": "chateau_d_amboise",
+  "assetId": "molen.worldgen.structure.chateau_d_amboise",
+  "title": "Château d'Amboise",
+  "wikidataId": "Q389908",
+  "category": "castle",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 0.98612,
+    "latitude": 47.41353
+  },
+  "size": [
+    226.7806854248047,
+    46.52000045776367,
+    200.17523956298828
+  ],
+  "actualBounds": {
+    "min": [
+      -88.56700134277344,
+      -20.899999618530273,
+      -33.584251403808594
+    ],
+    "max": [
+      138.21368408203125,
+      25.6200008392334,
+      166.5909881591797
+    ]
+  },
+  "visualBrief": "The royal lodging, vaulted river facade, Tour des Minimes, Tour Heurtault, Tour Garçonnet and Chapelle Saint-Hubert above the Loire.",
+  "nativeAxes": {
+    "x": "northeast along the river-facing range",
+    "y": "up",
+    "z": "southeast across the upper terrace"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_d%27Amboise_vu_depuis_maletrenne.jpg",
+    "https://commons.wikimedia.org/wiki/File:AmboiseLeChateau.JPG"
+  ],
+  "stories": [
+    {
+      "id": "chateau-d-amboise-wp",
+      "url": "https://qualla.com/chateau-d-amboise/"
+    }
+  ],
+  "referenceInputHash": "sha256:31ba4024a8713db846163bf126f19938b8e7b907a23983ee17adc2f7fa121e03",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u0/u02/chateau_d_amboise/models/chateau-d-amboise-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u0/u02/chateau_d_amboise/models/chateau-d-amboise-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.96,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.94
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.92
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.64
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.46,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.062,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_limestone_weathered",
+    "slate",
+    "brick"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Terrarium elevation on the upper terrace immediately southeast of the royal lodging range.",
+    "anchor": [
+      0.98612,
+      47.41353
+    ],
+    "heading": 0.6073514618337692,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        0.9862487899378708,
+        47.41340459790834
+      ],
+      "modelHeight": 0,
+      "basis": "Original Terrarium elevation on the upper terrace immediately southeast of the royal lodging range."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          34.236,
+          -18.638
+        ],
+        [
+          33.238,
+          -18.654
+        ],
+        [
+          32.577,
+          -17.188
+        ],
+        [
+          30.29,
+          -14.412
+        ],
+        [
+          27.209,
+          -12.527
+        ],
+        [
+          23.681,
+          -11.766
+        ],
+        [
+          20.105,
+          -12.205
+        ],
+        [
+          16.861,
+          -13.781
+        ],
+        [
+          14.323,
+          -16.345
+        ],
+        [
+          12.892,
+          -19.183
+        ],
+        [
+          12.92,
+          -22.919
+        ],
+        [
+          5.664,
+          -22.458
+        ],
+        [
+          -5.151,
+          -22.288
+        ],
+        [
+          -9.26,
+          -22.025
+        ],
+        [
+          -14.355,
+          -22.191
+        ],
+        [
+          -17.008,
+          -22.123
+        ],
+        [
+          -24.36,
+          -22.895
+        ],
+        [
+          -25.038,
+          -18.621
+        ],
+        [
+          -25.375,
+          -16.551
+        ],
+        [
+          -22.948,
+          -16.084
+        ],
+        [
+          -22.857,
+          -13.31
+        ],
+        [
+          -21.259,
+          -11.386
+        ],
+        [
+          -15.037,
+          -10.043
+        ],
+        [
+          -9.999,
+          -8.712
+        ],
+        [
+          8.531,
+          -8.712
+        ],
+        [
+          8.583,
+          2.169
+        ],
+        [
+          8.677,
+          19.722
+        ],
+        [
+          16.662,
+          19.849
+        ],
+        [
+          16.839,
+          20.65
+        ],
+        [
+          17.454,
+          21.349
+        ],
+        [
+          18.22,
+          21.488
+        ],
+        [
+          18.761,
+          21.579
+        ],
+        [
+          20.079,
+          21.004
+        ],
+        [
+          20.718,
+          19.821
+        ],
+        [
+          20.606,
+          18.794
+        ],
+        [
+          19.994,
+          17.827
+        ],
+        [
+          18.999,
+          17.542
+        ],
+        [
+          17.875,
+          17.575
+        ],
+        [
+          17.997,
+          7.763
+        ],
+        [
+          17.937,
+          -2.446
+        ],
+        [
+          18.497,
+          -2.328
+        ],
+        [
+          19.433,
+          -2.355
+        ],
+        [
+          20.689,
+          -2.974
+        ],
+        [
+          21.202,
+          -4.108
+        ],
+        [
+          21.092,
+          -5.269
+        ],
+        [
+          20.229,
+          -6.14
+        ],
+        [
+          19.049,
+          -6.554
+        ],
+        [
+          18.04,
+          -6.224
+        ],
+        [
+          17.882,
+          -8.042
+        ],
+        [
+          26.996,
+          -8.405
+        ],
+        [
+          32.492,
+          -8.883
+        ],
+        [
+          34.674,
+          -8.709
+        ],
+        [
+          34.577,
+          -9.955
+        ],
+        [
+          34.408,
+          -12.418
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Named château building outline for the surviving royal lodgings."
+    },
+    "featureIds": [
+      "way/176699222",
+      "way/31174156",
+      "way/31174159",
+      "way/176699223",
+      "way/451409825",
+      "way/451409826",
+      "way/451409827",
+      "way/451409828",
+      "way/451409829",
+      "way/451409830",
+      "way/451514984",
+      "way/451514985",
+      "way/208020935"
+    ],
+    "source": "https://www.openstreetmap.org/way/176699222",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fd7654f4e6a59b6112f0a2f8d6e30745eef17913367b55f9734e25e2bf9088bc",
+    "notes": "Pale limestone walls rise from a natural bluff. The river face has a long vaulted balcony, tiered retaining face, the Minimes drum and steep dark roofs. The town side includes the Gothic chapel and retaining arcades."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Roof and chapel heights use the scale of the documented surviving wings. Terrace masonry, fine sculpture and less visible roof details are simplified. The original DEM preserves the bluff and terrace but averages narrow vertical edges."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "chateau-d-amboise-skyline",
+      "position": [
+        -112,
+        68,
+        -162
+      ],
+      "lookAt": [
+        15,
+        3,
+        46
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "chateau-d-amboise-district",
+      "position": [
+        -112,
+        68,
+        -162
+      ],
+      "lookAt": [
+        15,
+        3,
+        46
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "chateau-d-amboise-street",
+      "position": [
+        -112,
+        68,
+        -162
+      ],
+      "lookAt": [
+        15,
+        3,
+        46
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "chateau-d-amboise-closeup",
+      "position": [
+        -112,
+        68,
+        -162
+      ],
+      "lookAt": [
+        15,
+        3,
+        46
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "loire-front-loggia-and-minimes",
+      "position": [
+        29,
+        3,
+        -104
+      ],
+      "lookAt": [
+        0,
+        6,
+        -13
+      ]
+    },
+    {
+      "name": "chapel-and-town-side",
+      "position": [
+        -104,
+        17,
+        69
+      ],
+      "lookAt": [
+        -50,
+        6,
+        29
+      ]
+    },
+    {
+      "name": "fortified-terrace-and-heurtault",
+      "position": [
+        122,
+        96,
+        129
+      ],
+      "lookAt": [
+        16,
+        2,
+        37
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 20323,
+    "vertices": 60969,
+    "materials": 6,
+    "bytes": 2759692,
+    "sha256": "sha256:4e776bb8fbfa3d2c2fa45a271abe8182d377b4492761ffa90a227003fbae569c"
+  }
+}

@@ -1,0 +1,594 @@
+{
+  "planId": "st_philip_s_church_charleston_south_carolina",
+  "id": "st_philip_s_church_charleston_south_carolina",
+  "assetId": "molen.worldgen.structure.st_philip_s_church_charleston_south_carolina",
+  "title": "St. Philip's Church (Charleston, South Carolina)",
+  "wikidataId": "Q4501848",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -79.92910756976744,
+    "latitude": 32.77902556511628
+  },
+  "size": [
+    50.06800174713135,
+    59.200000047683716,
+    27.9399995803833
+  ],
+  "actualBounds": {
+    "min": [
+      -35.310001373291016,
+      -3.200000047683716,
+      -13.489999771118164
+    ],
+    "max": [
+      14.758000373840332,
+      56,
+      14.449999809265137
+    ]
+  },
+  "visualBrief": "St. Philip’s Church in Charleston with three classical porticoes, the curved sanctuary and the tapering Church Street steeple.",
+  "nativeAxes": {
+    "x": "west tower to eastern apse",
+    "y": "up",
+    "z": "north churchyard toward south façade"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:St._Philip%27s_Church_and_Graveyard,_Charleston_SC.jpg"
+  ],
+  "stories": [
+    {
+      "id": "st-philip-s-church-charleston-south-carolina-wp",
+      "url": "https://qualla.com/st-philip-s-church-charleston-south-carolina/"
+    }
+  ],
+  "referenceInputHash": "sha256:bf2a48146e0f7d6d165716558257e0a802f27698be7d73dbd34445702425ae18",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dj/djz/st_philip_s_church_charleston_south_carolina/models/st-philip-s-church-charleston-south-carolina-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dj/djz/st_philip_s_church_charleston_south_carolina/models/st-philip-s-church-charleston-south-carolina-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.02,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.95
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.9
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.89
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.61
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.96
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.61
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.61
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.61
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "stone_ashlar",
+    "metal_standing_seam",
+    "stone_limestone",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified elevation at the west Church Street approach by the projecting portico.",
+    "anchor": [
+      -79.92910756976744,
+      32.77902556511628
+    ],
+    "heading": 0.05012410442830717,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -79.92949271375714,
+        32.779007971384914
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified elevation at the west Church Street approach by the projecting portico."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -30.63,
+          -13.021
+        ],
+        [
+          -30.105,
+          -13.028
+        ],
+        [
+          -25.204,
+          -13.027
+        ],
+        [
+          -19.478,
+          -13.03
+        ],
+        [
+          -19.479,
+          -9.842
+        ],
+        [
+          4.521,
+          -9.853
+        ],
+        [
+          5.13,
+          -9.856
+        ],
+        [
+          10.35,
+          -9.862
+        ],
+        [
+          10.35,
+          -4.991
+        ],
+        [
+          10.345,
+          -4.534
+        ],
+        [
+          11.042,
+          -4.41
+        ],
+        [
+          11.696,
+          -4.188
+        ],
+        [
+          12.309,
+          -3.889
+        ],
+        [
+          12.88,
+          -3.504
+        ],
+        [
+          13.382,
+          -3.044
+        ],
+        [
+          13.824,
+          -2.509
+        ],
+        [
+          14.188,
+          -1.934
+        ],
+        [
+          14.466,
+          -1.307
+        ],
+        [
+          14.658,
+          -0.64
+        ],
+        [
+          14.755,
+          0.034
+        ],
+        [
+          14.758,
+          0.725
+        ],
+        [
+          14.668,
+          1.401
+        ],
+        [
+          14.485,
+          2.06
+        ],
+        [
+          14.219,
+          2.693
+        ],
+        [
+          13.861,
+          3.277
+        ],
+        [
+          13.422,
+          3.813
+        ],
+        [
+          12.921,
+          4.278
+        ],
+        [
+          12.358,
+          4.673
+        ],
+        [
+          11.886,
+          4.917
+        ],
+        [
+          11.379,
+          5.126
+        ],
+        [
+          10.856,
+          5.267
+        ],
+        [
+          10.346,
+          5.352
+        ],
+        [
+          10.339,
+          5.865
+        ],
+        [
+          10.337,
+          10.947
+        ],
+        [
+          5.164,
+          10.955
+        ],
+        [
+          -19.276,
+          10.955
+        ],
+        [
+          -19.272,
+          14.054
+        ],
+        [
+          -29.936,
+          14.054
+        ],
+        [
+          -30.536,
+          14.057
+        ],
+        [
+          -30.539,
+          6.645
+        ],
+        [
+          -34.906,
+          6.649
+        ],
+        [
+          -34.907,
+          -5.667
+        ],
+        [
+          -30.625,
+          -5.664
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The mapped church building and projecting porticoes."
+    },
+    "featureIds": [
+      "way/173699967"
+    ],
+    "source": "https://www.openstreetmap.org/way/173699967",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6e90194bb8014dd4106fa81fe3be574e6f606fe293ec04ea7e4edefa7aac485f",
+    "notes": "The current Qualla photograph and federal heritage inventory establish a pale stucco church, classical porticoes and the stepped cream spire, with a visible clock, tiered belfry and thin upper needle."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The standing church, porticoes and steeple. Adjacent Good Shepherd Chapel, churchyard and interior lie outside scope.",
+    "The steeple uses the mapped height, and intermediate heights and ornament are estimated."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "st-philips-charleston-skyline",
+      "position": [
+        -104,
+        45,
+        64
+      ],
+      "lookAt": [
+        -10,
+        23,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "st-philips-charleston-district",
+      "position": [
+        -104,
+        45,
+        64
+      ],
+      "lookAt": [
+        -10,
+        23,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "st-philips-charleston-street",
+      "position": [
+        -104,
+        45,
+        64
+      ],
+      "lookAt": [
+        -10,
+        23,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "st-philips-charleston-closeup",
+      "position": [
+        -104,
+        45,
+        64
+      ],
+      "lookAt": [
+        -10,
+        23,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "church-street-porticoes-and-steeple",
+      "position": [
+        -104,
+        45,
+        64
+      ],
+      "lookAt": [
+        -10,
+        23,
+        0
+      ]
+    },
+    {
+      "name": "west-portico-and-clock",
+      "position": [
+        -74,
+        14.3,
+        19
+      ],
+      "lookAt": [
+        -27,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "east-apse-and-nave",
+      "position": [
+        68,
+        28,
+        -50
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7576,
+    "vertices": 22728,
+    "materials": 6,
+    "bytes": 1129328,
+    "sha256": "sha256:6ddf0722677c561f7d42d86061242a05446bb2218be15134915386e5d0c382cf"
+  }
+}

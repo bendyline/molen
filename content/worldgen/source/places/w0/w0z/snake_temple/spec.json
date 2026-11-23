@@ -1,0 +1,497 @@
+{
+  "planId": "snake_temple",
+  "id": "snake_temple",
+  "assetId": "molen.worldgen.structure.snake_temple",
+  "title": "Snake Temple",
+  "wikidataId": "Q182774",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 100.285268,
+    "latitude": 5.314117
+  },
+  "size": [
+    18.33412742614746,
+    11.224079132080078,
+    37.05999946594238
+  ],
+  "actualBounds": {
+    "min": [
+      -10.090025901794434,
+      -2.75,
+      -17.43000030517578
+    ],
+    "max": [
+      8.244101524353027,
+      8.474079132080078,
+      19.6299991607666
+    ]
+  },
+  "visualBrief": "The main Snake Temple shrine with an open timber entrance, upturned ceramic ridges, brick wings and a small paved approach.",
+  "nativeAxes": {
+    "x": "approximately east along the shrine frontage",
+    "y": "up",
+    "z": "approximately south through the courtyard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Snake_Temple_exterior.jpg"
+  ],
+  "stories": [
+    {
+      "id": "snake-temple-wp",
+      "url": "https://qualla.com/snake-temple/"
+    }
+  ],
+  "referenceInputHash": "sha256:2f3bc66029e7eaf3a1eb46adf11b2628e1d3e700d21c0a3184cea75a8f9aaca5",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w0/w0z/snake_temple/models/snake-temple-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w0/w0z/snake_temple/models/snake-temple-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.77,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.94
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.91
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9
+      },
+      "glaze": {
+        "slot": "trim",
+        "graph": "tile_glazed",
+        "roughness": 0.78
+      },
+      "door": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "ornamental": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.89
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.33,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "glaze": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.78
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "ornamental": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "glaze": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.78
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "ornamental": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "glaze": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.78
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "ornamental": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_ashlar",
+    "concrete_plain",
+    "wood_plain",
+    "tile_ceramic",
+    "tile_glazed"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged original terrain sampled on the paved courtyard in front of the main shrine.",
+    "anchor": [
+      100.285268,
+      5.314117
+    ],
+    "heading": 0.02998340295312873,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        100.28528787483866,
+        5.314056480903768
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged original terrain sampled on the paved courtyard in front of the main shrine."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -9.622,
+          -16.749
+        ],
+        [
+          -9.614,
+          -3.329
+        ],
+        [
+          -5.334,
+          -3.334
+        ],
+        [
+          -5.329,
+          0.943
+        ],
+        [
+          7.668,
+          0.943
+        ],
+        [
+          7.655,
+          -16.765
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Native mapped footprint of the main northern shrine."
+    },
+    "featureIds": [
+      "way/940403839"
+    ],
+    "source": "https://www.openstreetmap.org/way/940403839",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f941f11081fcfe580e39a0a25694fd47e3b7c8fd2531c54844ab44ec5c9fffaa",
+    "notes": "The main shrine has coral-red masonry, dark timber, terracotta and weathered gray roof tiling, a deeply overhanging open entry roof and upturned glazed ridges. Low side ranges flank the center."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The photographed entrance and ridge ornament use visual proportions. Roof and trim detail on the rear building faces and the lesser forecourt building is approximate."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "snake-temple-skyline",
+      "position": [
+        26,
+        18,
+        40
+      ],
+      "lookAt": [
+        0.5,
+        3,
+        -0.8
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "snake-temple-district",
+      "position": [
+        26,
+        18,
+        40
+      ],
+      "lookAt": [
+        0.5,
+        3,
+        -0.8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "snake-temple-street",
+      "position": [
+        26,
+        18,
+        40
+      ],
+      "lookAt": [
+        0.5,
+        3,
+        -0.8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "snake-temple-closeup",
+      "position": [
+        26,
+        18,
+        40
+      ],
+      "lookAt": [
+        0.5,
+        3,
+        -0.8
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "courtyard-and-dragon-portico",
+      "position": [
+        -4.1,
+        3.5,
+        8.02
+      ],
+      "lookAt": [
+        1.24,
+        4.4,
+        1.83
+      ]
+    },
+    {
+      "name": "swept-roofs-and-forecourt-building",
+      "position": [
+        -20,
+        26,
+        30
+      ],
+      "lookAt": [
+        0,
+        3,
+        1
+      ]
+    },
+    {
+      "name": "front-bay-and-timber-columns",
+      "position": [
+        12,
+        7,
+        7.99
+      ],
+      "lookAt": [
+        1.35,
+        3.47,
+        1.93
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 21112,
+    "vertices": 63336,
+    "materials": 8,
+    "bytes": 2716388,
+    "sha256": "sha256:c8ff075f7e858923b208db70c5f91363d1513982c10ea3b4b0ff5eb78199d0f8"
+  }
+}

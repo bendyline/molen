@@ -1,0 +1,520 @@
+{
+  "planId": "pori_theatre",
+  "id": "pori_theatre",
+  "assetId": "molen.worldgen.structure.pori_theatre",
+  "title": "Pori Theatre",
+  "wikidataId": "Q4413108",
+  "category": "theatre",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 21.79220488007996,
+    "latitude": 61.48928479374233
+  },
+  "size": [
+    25.699999809265137,
+    19.41999912261963,
+    47.47500038146973
+  ],
+  "actualBounds": {
+    "min": [
+      -13.970000267028809,
+      -3.119999885559082,
+      -24.545000076293945
+    ],
+    "max": [
+      11.729999542236328,
+      16.299999237060547,
+      22.93000030517578
+    ]
+  },
+  "visualBrief": "Historic Pori Theatre with the three-arched Hallituskatu façade, pale ochre side wings and tall rear stagehouse.",
+  "nativeAxes": {
+    "x": "west-northwest along Hallituskatu",
+    "y": "up",
+    "z": "north-northeast across Hallituskatu"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Theatre_of_Pori.jpg"
+  ],
+  "stories": [
+    {
+      "id": "pori-theatre-wp",
+      "url": "https://qualla.com/pori-theatre/"
+    }
+  ],
+  "referenceInputHash": "sha256:78a32238b2dfddd057d8fd41c242b98fceaf1629840dc7fe2fc2ec3641eb13f3",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u6/u6z/pori_theatre/models/pori-theatre-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u6/u6z/pori_theatre/models/pori-theatre-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.7,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.91
+      },
+      "detail": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.89
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.93
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.09
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.8
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.48
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.31,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "detail": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.89
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.09
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "detail": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.89
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.09
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "detail": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.89
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.09
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_granite",
+    "metal_painted",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "National Land Survey of Finland's native two-metre bare-earth model at the Hallituskatu front stair.",
+    "anchor": [
+      21.79220488007996,
+      61.48928479374233
+    ],
+    "heading": 2.9130960142979307,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        21.792306606431232,
+        61.489477326143195
+      ],
+      "modelHeight": 0,
+      "basis": "National Land Survey of Finland's native two-metre bare-earth model at the Hallituskatu front stair."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          8.454,
+          -23.509
+        ],
+        [
+          4.481,
+          -23.442
+        ],
+        [
+          4.367,
+          -24.284
+        ],
+        [
+          -3.812,
+          -24.314
+        ],
+        [
+          -3.743,
+          -23.575
+        ],
+        [
+          -7.829,
+          -23.665
+        ],
+        [
+          -7.84,
+          -20.428
+        ],
+        [
+          -11.671,
+          -20.554
+        ],
+        [
+          -11.694,
+          -10.4
+        ],
+        [
+          -13.197,
+          -10.531
+        ],
+        [
+          -13.656,
+          10.365
+        ],
+        [
+          -12.256,
+          10.406
+        ],
+        [
+          -12.374,
+          20.148
+        ],
+        [
+          -4.943,
+          20.294
+        ],
+        [
+          -4.935,
+          21.149
+        ],
+        [
+          3.844,
+          21.039
+        ],
+        [
+          3.803,
+          20.157
+        ],
+        [
+          11.222,
+          20.135
+        ],
+        [
+          11.277,
+          7.07
+        ],
+        [
+          11.3,
+          -19.92
+        ],
+        [
+          8.498,
+          -19.988
+        ]
+      ],
+      "minimumCoverage": 0.87,
+      "basis": "Trimmed plan of the historic theatre based on the native footprint and the modern annex boundary."
+    },
+    "featureIds": [
+      "way/171452284"
+    ],
+    "source": "https://www.openstreetmap.org/way/171452284",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8252b34ae2e2faa018a956dd9058776b81913b54d61c8933faeab93d33d118f4",
+    "notes": "The archived Qualla original shows pale ochre plaster, a light three-bay loggia facade with arched doors and upper windows, stepped parapet, iron ridge crest, hipped metal roofing and deep dentilled cornices."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Standing historic theatre and stagehouse. The modern 1974 theatre annex and interiors are outside scope.",
+    "Historic front details follow the primary photo. Rear fenestration, exact roof junctions and small ornamental patterns are representative."
+  ],
+  "sourceLicense": "Original 3D work, OpenStreetMap footprint under ODbL, National Land Survey of Finland elevation under CC BY 4.0.",
+  "qaLodCameras": [
+    {
+      "name": "pori-theatre-skyline",
+      "position": [
+        -37,
+        18,
+        57
+      ],
+      "lookAt": [
+        0,
+        7.2,
+        7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "pori-theatre-district",
+      "position": [
+        -37,
+        18,
+        57
+      ],
+      "lookAt": [
+        0,
+        7.2,
+        7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "pori-theatre-street",
+      "position": [
+        -37,
+        18,
+        57
+      ],
+      "lookAt": [
+        0,
+        7.2,
+        7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "pori-theatre-closeup",
+      "position": [
+        -37,
+        18,
+        57
+      ],
+      "lookAt": [
+        0,
+        7.2,
+        7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "hallituskatu-and-original-grade",
+      "position": [
+        -26,
+        12,
+        52
+      ],
+      "lookAt": [
+        0,
+        7.4,
+        15
+      ]
+    },
+    {
+      "name": "three-arched-doors-and-renaissance-cornice",
+      "position": [
+        -10.5,
+        6.8,
+        36.2
+      ],
+      "lookAt": [
+        -0.6,
+        6.9,
+        21
+      ]
+    },
+    {
+      "name": "historic-roof-and-stagehouse",
+      "position": [
+        35,
+        23,
+        -36
+      ],
+      "lookAt": [
+        0,
+        9.5,
+        -5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9386,
+    "vertices": 28158,
+    "materials": 7,
+    "bytes": 1383608,
+    "sha256": "sha256:8c242be59ae9840c9dcfe97f6d3f7085dfca25e7deb6e666d23b591462f21350"
+  }
+}

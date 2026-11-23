@@ -1,0 +1,455 @@
+{
+  "planId": "macquarie_lighthouse",
+  "id": "macquarie_lighthouse",
+  "assetId": "molen.worldgen.structure.macquarie_lighthouse",
+  "title": "Macquarie Lighthouse",
+  "wikidataId": "Q1065004",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 151.28518685,
+    "latitude": -33.8539672
+  },
+  "size": [
+    23.68000030517578,
+    27.200000405311584,
+    9.039999961853027
+  ],
+  "actualBounds": {
+    "min": [
+      -11.84000015258789,
+      -1.6799999475479126,
+      -4.355000019073486
+    ],
+    "max": [
+      11.84000015258789,
+      25.520000457763672,
+      4.684999942779541
+    ]
+  },
+  "visualBrief": "Sydney’s 1883 Macquarie Lighthouse with white tapered stone tower, twin leaded domes and diamond-glazed Chance lantern.",
+  "nativeAxes": {
+    "x": "south-southwest along the wings",
+    "y": "up",
+    "z": "west-northwest toward the road"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.sl.nsw.gov.au/collection-items/macquarie-lighthouse-south-head-1885"
+  ],
+  "stories": [
+    {
+      "id": "macquarie-lighthouse-wp",
+      "url": "https://qualla.com/macquarie-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "sha256:3756b5636e46680e16fa4a91da8928edd03604d726520b26bff019d1dea743d8",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r3/r3g/macquarie_lighthouse/models/macquarie-lighthouse-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r3/r3g/macquarie_lighthouse/models/macquarie-lighthouse-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.66,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.95
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.91
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.95
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.85
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.78
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ecefed",
+        "roughness": 0.42,
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.61
+        ],
+        "alphaMode": "BLEND"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.31,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ecefed",
+            "roughness": 0.42,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.61
+            ],
+            "alphaMode": "BLEND"
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ecefed",
+            "roughness": 0.42,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.61
+            ],
+            "alphaMode": "BLEND"
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ecefed",
+            "roughness": 0.42,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.61
+            ],
+            "alphaMode": "BLEND"
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "stone_sandstone_raw",
+    "stone_basalt_raw",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original sampled road-side grass approach beyond the west-facing footprint.",
+    "anchor": [
+      151.28518685,
+      -33.8539672
+    ],
+    "heading": -1.7185116429064473,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        151.2851039438059,
+        -33.85396603715129
+      ],
+      "modelHeight": 0,
+      "basis": "Original sampled road-side grass approach beyond the west-facing footprint."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -11.618,
+          4.135
+        ],
+        [
+          -11.622,
+          -4.135
+        ],
+        [
+          11.618,
+          -4.135
+        ],
+        [
+          11.622,
+          4.135
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Named mapped rectangle for Barnet’s standing lighthouse and attached bays."
+    },
+    "featureIds": [
+      "way/354264865"
+    ],
+    "source": "https://www.openstreetmap.org/way/354264865",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:28ff2fc9501fecb4c4af00cba57f2554152179a3bdae06567655400ed6cf62d3",
+    "notes": "Square masonry plinth rises to a round tower and projecting gallery. The late Victorian cast iron lantern has diamond-patterned glazing and a domed cap above. The two low attached rooms have leaded domes."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The nearby keepers’ cottages, original Greenway tower site, and compound walls are outside the connected Barnet building. Small optic, vents, hardware and minor paint details are simplified."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "macquarie-lighthouse-skyline",
+      "position": [
+        -35,
+        19,
+        45
+      ],
+      "lookAt": [
+        0,
+        11.8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "macquarie-lighthouse-district",
+      "position": [
+        -35,
+        19,
+        45
+      ],
+      "lookAt": [
+        0,
+        11.8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "macquarie-lighthouse-street",
+      "position": [
+        -35,
+        19,
+        45
+      ],
+      "lookAt": [
+        0,
+        11.8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "macquarie-lighthouse-closeup",
+      "position": [
+        -35,
+        19,
+        45
+      ],
+      "lookAt": [
+        0,
+        11.8,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "barnet-landward-elevation",
+      "position": [
+        -1.4,
+        5.3,
+        42.5
+      ],
+      "lookAt": [
+        0,
+        12.07,
+        0
+      ]
+    },
+    {
+      "name": "diagonal-glazing-and-bluestone-gallery",
+      "position": [
+        11,
+        23.4,
+        19.5
+      ],
+      "lookAt": [
+        0,
+        21.3,
+        0
+      ]
+    },
+    {
+      "name": "ocean-side-tower-and-domed-rooms",
+      "position": [
+        31,
+        13.4,
+        -35
+      ],
+      "lookAt": [
+        0,
+        10.7,
+        -0.7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8217,
+    "vertices": 24651,
+    "materials": 6,
+    "bytes": 1183300,
+    "sha256": "sha256:935fcd2240d49d5dc64da0322c98821918b642e21f239877f90715f83d22f328"
+  }
+}

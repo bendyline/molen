@@ -1,0 +1,620 @@
+{
+  "planId": "kilmainham_gaol",
+  "id": "kilmainham_gaol",
+  "assetId": "molen.worldgen.structure.kilmainham_gaol",
+  "title": "Kilmainham Gaol",
+  "wikidataId": "Q1049842",
+  "category": "historic-museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -6.30953,
+    "latitude": 53.34175
+  },
+  "size": [
+    103.11359405517578,
+    21.45289897918701,
+    72.26645278930664
+  ],
+  "actualBounds": {
+    "min": [
+      -56.31529998779297,
+      -4.57289981842041,
+      -33.93474197387695
+    ],
+    "max": [
+      46.79829406738281,
+      16.8799991607666,
+      38.33171081542969
+    ]
+  },
+  "visualBrief": "The current Kilmainham Gaol museum, with its high rubble-limestone enclosure, historic ranges, governor’s front court and surviving Stonebreakers’ Yard.",
+  "nativeAxes": {
+    "x": "east along the prison wing cross axis",
+    "y": "up",
+    "z": "south away from Inchicore Road"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Kilmainham6.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kilmainham-gaol-wp",
+      "url": "https://qualla.com/kilmainham-gaol/"
+    }
+  ],
+  "referenceInputHash": "sha256:76140c432c80a0eee932584e1cd38a70cded7a16bfe9b53cb8839e18fcb8cf18",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gc7/kilmainham_gaol/models/kilmainham-gaol-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gc7/kilmainham_gaol/models/kilmainham-gaol-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.73,
+    "surfaces": {
+      "rough": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.95
+      },
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.96
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.89
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_vertical",
+        "roughness": 0.92
+      },
+      "iron": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.79
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.73
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.34,
+        "surfaces": {
+          "rough": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95
+          },
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.96
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.89
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.92
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.73
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "rough": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95
+          },
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.96
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.89
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.92
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.73
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "rough": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95
+          },
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.96
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.89
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.92
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.73
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_ashlar",
+    "stone_granite",
+    "gravel",
+    "tile_flat",
+    "wood_vertical"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged mapped elevation immediately outside the Inchicore Road forecourt.",
+    "anchor": [
+      -6.30953,
+      53.34175
+    ],
+    "heading": -0.12228770142949842,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -6.309842775423888,
+        53.3420716236097
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged mapped elevation immediately outside the Inchicore Road forecourt."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -18.3511,
+          -32.446
+        ],
+        [
+          -20.086,
+          -32.9955
+        ],
+        [
+          -37.6907,
+          -32.6712
+        ],
+        [
+          -48.5421,
+          -32.4816
+        ],
+        [
+          -53.1694,
+          -30.9035
+        ],
+        [
+          -54.8584,
+          -28.8453
+        ],
+        [
+          -55.5922,
+          -25.7717
+        ],
+        [
+          -55.4859,
+          -21.3658
+        ],
+        [
+          -49.6813,
+          -21.4287
+        ],
+        [
+          -49.5257,
+          -13.0248
+        ],
+        [
+          -48.578,
+          -10.7075
+        ],
+        [
+          -48.7475,
+          -1.6804
+        ],
+        [
+          -48.3397,
+          27.0826
+        ],
+        [
+          -49.6823,
+          27.0009
+        ],
+        [
+          -49.7566,
+          37.62
+        ],
+        [
+          -38.2636,
+          37.4749
+        ],
+        [
+          -38.2541,
+          36.7896
+        ],
+        [
+          24.4113,
+          36.4791
+        ],
+        [
+          25.0514,
+          37.2192
+        ],
+        [
+          36.3598,
+          37.1528
+        ],
+        [
+          46.0838,
+          24.6299
+        ],
+        [
+          45.9975,
+          22.1842
+        ],
+        [
+          44.9426,
+          -25.0837
+        ],
+        [
+          44.8914,
+          -27.2981
+        ],
+        [
+          44.3298,
+          -29.4161
+        ],
+        [
+          42.7604,
+          -31.343
+        ],
+        [
+          39.8408,
+          -32.1058
+        ],
+        [
+          37.9389,
+          -32.1076
+        ],
+        [
+          37.9102,
+          -33.1583
+        ],
+        [
+          23.753,
+          -33.2241
+        ],
+        [
+          5.4653,
+          -33.0627
+        ],
+        [
+          3.7069,
+          -32.0054
+        ],
+        [
+          2.8813,
+          -30.2776
+        ],
+        [
+          2.8249,
+          -21.7468
+        ],
+        [
+          -7.1513,
+          -21.5189
+        ],
+        [
+          -18.0304,
+          -21.337
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "The mapped site enclosure, including the front and rear prison ranges."
+    },
+    "featureIds": [
+      "way/41662413",
+      "way/391782030",
+      "way/391784845",
+      "relation/279494"
+    ],
+    "source": "https://www.openstreetmap.org/way/41662413",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f3384f808930e7c1ef608ec36ed108e78bb69b36bbd39d172429d5f1fcd94672",
+    "notes": "The national record gives the 1796 sedimentary-stone buildings and a later three-storey east wing. The museum describes variable boundary height of 30–50 feet. The Qualla court image shows the stone wall, gate and ground memorial detail."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The outer wall and connected building silhouettes are tied to current map data. Roof pitches, wall height transitions, internal bay alignment, and smaller openings are estimated from the architectural inventory and the story photograph.",
+    "The former courthouse is a separate neighbor and interiors are outside the exterior model."
+  ],
+  "sourceLicense": "Original model under repository license. Enclosure and building outline © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "kilmainham-gaol-skyline",
+      "position": [
+        -106,
+        72,
+        -123
+      ],
+      "lookAt": [
+        -2,
+        6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kilmainham-gaol-district",
+      "position": [
+        -106,
+        72,
+        -123
+      ],
+      "lookAt": [
+        -2,
+        6,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "kilmainham-gaol-street",
+      "position": [
+        -106,
+        72,
+        -123
+      ],
+      "lookAt": [
+        -2,
+        6,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "kilmainham-gaol-closeup",
+      "position": [
+        -106,
+        72,
+        -123
+      ],
+      "lookAt": [
+        -2,
+        6,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "inchicore-road-entrance",
+      "position": [
+        18,
+        15.2,
+        -69
+      ],
+      "lookAt": [
+        12,
+        7.7,
+        -26
+      ]
+    },
+    {
+      "name": "stonebreakers-yard",
+      "position": [
+        -48.4,
+        3,
+        -28.7
+      ],
+      "lookAt": [
+        -40.2,
+        3.5,
+        -21.7
+      ]
+    },
+    {
+      "name": "east-wing-and-enclosure",
+      "position": [
+        73,
+        59,
+        42
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26106,
+    "vertices": 78318,
+    "materials": 8,
+    "bytes": 3684964,
+    "sha256": "sha256:e1d86b8f0d35f4fcd205676b2c213c4677ca10721e6f1b53641323e41a964375"
+  }
+}

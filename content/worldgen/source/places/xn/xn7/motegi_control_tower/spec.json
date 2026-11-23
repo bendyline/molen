@@ -1,0 +1,444 @@
+{
+  "planId": "motegi_control_tower",
+  "id": "motegi_control_tower",
+  "assetId": "molen.worldgen.structure.motegi_control_tower",
+  "title": "Motegi Control Tower",
+  "wikidataId": "Q1420895",
+  "category": "motorsport-building",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 140.2269617,
+    "latitude": 36.533183825
+  },
+  "size": [
+    36.94000053405762,
+    18.449999630451202,
+    11.474999904632568
+  ],
+  "actualBounds": {
+    "min": [
+      -18.520000457763672,
+      -0.550000011920929,
+      -5.59499979019165
+    ],
+    "max": [
+      18.420000076293945,
+      17.899999618530273,
+      5.880000114440918
+    ]
+  },
+  "visualBrief": "Motegi paddock control building with silver curtain wall, dark blue stair bay and open roof shelter.",
+  "nativeAxes": {
+    "x": "along the tower's long footprint axis",
+    "y": "up",
+    "z": "from the track edge toward the first paddock"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Image-INDY_Japan_300mile_2008,_Motegi_tower_from_paddock.JPG"
+  ],
+  "stories": [
+    {
+      "id": "mobility-resort-motegi-wp",
+      "url": "https://qualla.com/mobility-resort-motegi/"
+    }
+  ],
+  "referenceInputHash": "sha256:81c227ffd54f9248d7d1e9739397d68c923d081439e99deddb54bf354b19ba90",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn7/motegi_control_tower/models/motegi-control-tower-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn7/motegi_control_tower/models/motegi-control-tower-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.65,
+    "surfaces": {
+      "silver": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.11
+      },
+      "blue": {
+        "slot": "trim",
+        "graph": "metal_standing_seam",
+        "roughness": 0.84,
+        "metallic": 0.1
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.16
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.33,
+        "metallic": 0.12
+      },
+      "masonry": {
+        "slot": "foundation",
+        "graph": "concrete_panel",
+        "roughness": 0.93
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_longformat",
+        "roughness": 0.9
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.27,
+        "surfaces": {
+          "silver": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.11
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84,
+            "metallic": 0.1
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.33,
+            "metallic": 0.12
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.93
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.9
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.106,
+        "surfaces": {
+          "silver": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.11
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84,
+            "metallic": 0.1
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.33,
+            "metallic": 0.12
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.93
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.9
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.043,
+        "surfaces": {
+          "silver": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.11
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84,
+            "metallic": 0.1
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.33,
+            "metallic": 0.12
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.93
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.9
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "metal_standing_seam",
+    "concrete_panel",
+    "brick_longformat"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original GSI bare-earth grade on the first paddock at the tower's access stair.",
+    "anchor": [
+      140.2269617,
+      36.533183825
+    ],
+    "heading": 2.0568955239946987,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        140.22705066284223,
+        36.533221595612545
+      ],
+      "modelHeight": 0,
+      "basis": "Original GSI bare-earth grade on the first paddock at the tower's access stair."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          18.2871,
+          -5.9977
+        ],
+        [
+          18.8814,
+          5.7683
+        ],
+        [
+          -19.066,
+          5.7683
+        ],
+        [
+          -18.1025,
+          -5.5388
+        ]
+      ],
+      "minimumCoverage": 0.86,
+      "basis": "Mapped paddock control building with its exterior stairs."
+    },
+    "featureIds": [
+      "way/815797467"
+    ],
+    "source": "https://www.openstreetmap.org/way/815797467",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:da349157bf396db7b2f42f30739892480bbd54736d31ef8441e45f47e4b68a17",
+    "notes": "The tower has a stacked silver-clad box, darker corrugated return, a broad open roof terrace and a tall metal switchback stair above its recessed entrance."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        0.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Models the standalone control tower. The adjacent long pit garages and the separate speedway buildings sit outside scope.",
+    "The inset stair framing and facade colors follow the 2008 photograph. Rear openings, small equipment and exact floor heights are approximate."
+  ],
+  "sourceLicense": "Original 3D work under the repository license, map footprint under ODbL and native GSI elevations under source attribution terms.",
+  "qaLodCameras": [
+    {
+      "name": "motegi-control-tower-skyline",
+      "position": [
+        -46,
+        26,
+        48
+      ],
+      "lookAt": [
+        0,
+        7.3,
+        0.1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "motegi-control-tower-district",
+      "position": [
+        -46,
+        26,
+        48
+      ],
+      "lookAt": [
+        0,
+        7.3,
+        0.1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "motegi-control-tower-street",
+      "position": [
+        -46,
+        26,
+        48
+      ],
+      "lookAt": [
+        0,
+        7.3,
+        0.1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "motegi-control-tower-closeup",
+      "position": [
+        -46,
+        26,
+        48
+      ],
+      "lookAt": [
+        0,
+        7.3,
+        0.1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "paddock-stair-and-roof-shelter",
+      "position": [
+        -32,
+        6.1,
+        39
+      ],
+      "lookAt": [
+        3.5,
+        8.6,
+        1.7
+      ]
+    },
+    {
+      "name": "paddock-exterior-switchback-stairs",
+      "position": [
+        29,
+        13,
+        26
+      ],
+      "lookAt": [
+        13,
+        7.2,
+        2.75
+      ]
+    },
+    {
+      "name": "track-elevation-and-roof-deck",
+      "position": [
+        -19,
+        23,
+        -30
+      ],
+      "lookAt": [
+        -1,
+        7.9,
+        -0.8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2484,
+    "vertices": 7452,
+    "materials": 6,
+    "bytes": 433136,
+    "sha256": "sha256:3874b932395a8cf0170fc352d701764577e6068577ae4667f36ca67bfeb3aef8"
+  }
+}

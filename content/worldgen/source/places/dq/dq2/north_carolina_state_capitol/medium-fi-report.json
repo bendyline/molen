@@ -1,0 +1,1348 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+    "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d"
+  },
+  "sourceHash": "sha256:cf424a56c0ec4e75234173538ed4efdcf246e2b091a46778f460fed4fe3221fb",
+  "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+  "fixtureHash": "sha256:0db81f2b7283257ef278f88ac793a1b6d1bb0aadff5fd9b4680d3dfd33f5ce34",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
+    },
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:9888329a1541c291558f3c95c51d54eb3cb6b5e44f9e2270f040e275eeb13403",
+      "bytes": 67740,
+      "gzipBytes": 17384,
+      "triangles": 810,
+      "cpuBytes": 62676,
+      "gpuBytes": 62676,
+      "errorMeters": 1.06,
+      "drawCalls": 4
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:077b7d00f469170ceeeeac70d0dfd1ff3eb9ecaea29ced9452410ea683a37efb",
+      "bytes": 130572,
+      "gzipBytes": 33689,
+      "triangles": 1594,
+      "cpuBytes": 123252,
+      "gpuBytes": 123252,
+      "errorMeters": 0.43,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:d588a810b4f7b540224db34de973cf684d878a3b1221d786b1321a29a4fcb6e4",
+      "bytes": 537644,
+      "gzipBytes": 123375,
+      "triangles": 6794,
+      "cpuBytes": 529068,
+      "gpuBytes": 529068,
+      "errorMeters": 0.14,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:771a7ae90fc78986bbfc897d3700d9b11f3cfdb4f76a09630bc1398b59b51189",
+      "bytes": 1137476,
+      "gzipBytes": 253226,
+      "triangles": 14596,
+      "cpuBytes": 1128876,
+      "gpuBytes": 1128876,
+      "errorMeters": 0.058,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:c884feeb28e1117528797ada5b932d29954e15642a043bf2dda5fa7e4d93a908"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:fb16477d32977268593a176bfa8a8c5d2dc13855c8825ba1abd4474b4f3cfb26"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:5fa9ff3000bfec9a63359e98d74952e25897fa963dc5485e891c69f68d1b5b3d",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:771a7ae90fc78986bbfc897d3700d9b11f3cfdb4f76a09630bc1398b59b51189",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 53606,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          48.009,
+          37.36,
+          83.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:0f58f6f02cd19672ecb933e54f6a59ff8137434292771cf53d464a01df743c85",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:771a7ae90fc78986bbfc897d3700d9b11f3cfdb4f76a09630bc1398b59b51189",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 53606,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          48.009,
+          37.36,
+          83.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:bd4f5da1b74e2fef293acc3deb23653db01c39511415462c9e831f3002c05451",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:771a7ae90fc78986bbfc897d3700d9b11f3cfdb4f76a09630bc1398b59b51189",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 53606,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          48.009,
+          37.36,
+          83.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:deef59b6ebbaa374dd080af5ac0992619ba91f644bee2a5aa5522dd2d0d5fcbd",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:771a7ae90fc78986bbfc897d3700d9b11f3cfdb4f76a09630bc1398b59b51189",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 53606,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          48.009,
+          37.36,
+          83.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:93c4207e899a716a1902401c96d045488eb34a568c67e87338d3227b2837406a",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:077b7d00f469170ceeeeac70d0dfd1ff3eb9ecaea29ced9452410ea683a37efb",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 40604,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          97.009,
+          73.36,
+          168.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:cbc6385ef78c7d5326b5b86891226f2fc42dffe2688c4f095011be880eb1539d",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:077b7d00f469170ceeeeac70d0dfd1ff3eb9ecaea29ced9452410ea683a37efb",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 40604,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          97.009,
+          73.36,
+          168.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:db79a34bd21aac7b36ef6a3e235515d74a2ed1b9a11c2346a8c7817a14f42d60",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:077b7d00f469170ceeeeac70d0dfd1ff3eb9ecaea29ced9452410ea683a37efb",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 40604,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          97.009,
+          73.36,
+          168.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:4fda7e0674a046d0dabce589598b35544962dcc6165351d7f1e9e2c92d51327d",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:077b7d00f469170ceeeeac70d0dfd1ff3eb9ecaea29ced9452410ea683a37efb",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 40604,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          97.009,
+          73.36,
+          168.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:2f7750886fc69ec8277a977b9205e066597f60204284007b992ebe1ca3677f62",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:9888329a1541c291558f3c95c51d54eb3cb6b5e44f9e2270f040e275eeb13403",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 39820,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          194.009,
+          111.36,
+          336.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:0a9fe8e34e2e9e6e873b789e9e0e0aa16fde5dec34fe2c6521bea5ad318a1863",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:9888329a1541c291558f3c95c51d54eb3cb6b5e44f9e2270f040e275eeb13403",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 39820,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          194.009,
+          111.36,
+          336.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:c1e5d924b9f00a950ff1550b24f21c8bc4bc342b9a086b8f1f2462032588b398",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:9888329a1541c291558f3c95c51d54eb3cb6b5e44f9e2270f040e275eeb13403",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 39820,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          194.009,
+          111.36,
+          336.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:5dfdb11c365713371f88e01e21f1a5160e82d3621a7245dba6890a786b3d4ef3",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:9888329a1541c291558f3c95c51d54eb3cb6b5e44f9e2270f040e275eeb13403",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 39820,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          194.009,
+          111.36,
+          336.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:8eaafe3578558bd93ae96ee4b954c2254d205bee5e85bca8197900eb1af06ed8",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:9888329a1541c291558f3c95c51d54eb3cb6b5e44f9e2270f040e275eeb13403",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 6,
+        "triangles": 33580,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          194.009,
+          111.36,
+          336.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/union-square-exterior-and-dome.png",
+      "hash": "sha256:c40595e8bf34390904309ba03fb6cfb734bf97f49232fe591c5e8de2d20afd64",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:771a7ae90fc78986bbfc897d3700d9b11f3cfdb4f76a09630bc1398b59b51189",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 53606,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          81,
+          39,
+          62
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/east-doric-portico-and-stone-piers.png",
+      "hash": "sha256:c62ca26aa89a4c25ff57df6297757772cf92067fd509310ee2f799b12471795f",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:771a7ae90fc78986bbfc897d3700d9b11f3cfdb4f76a09630bc1398b59b51189",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 53606,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          49,
+          9,
+          13
+        ],
+        "lookAt": [
+          9,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/copper-dome-and-anthemions.png",
+      "hash": "sha256:8e2605abdf71f6f0c6bd87c0dbb562997d1a203a11a8d2bcae0c662f764638b9",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:771a7ae90fc78986bbfc897d3700d9b11f3cfdb4f76a09630bc1398b59b51189",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 53606,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          20,
+          32,
+          34
+        ],
+        "lookAt": [
+          0,
+          23.4,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-carolina-state-capitol-skyline.png",
+      "hash": "sha256:ace46488bdf10a8eed0fe07bb18e4b5d876571290c41808bfa0760340c99e138",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:9888329a1541c291558f3c95c51d54eb3cb6b5e44f9e2270f040e275eeb13403",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 39820,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          81,
+          39,
+          62
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-carolina-state-capitol-district.png",
+      "hash": "sha256:81ee378aa4f6739dc40b054d2ef11cf137cec54a7ad1df941e23ff5ba70aee78",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:077b7d00f469170ceeeeac70d0dfd1ff3eb9ecaea29ced9452410ea683a37efb",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 40604,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          81,
+          39,
+          62
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-carolina-state-capitol-street.png",
+      "hash": "sha256:01ffb39c1c225c8a4d08d09f10757a8c468dcf239deb9270294ae8bc38c089eb",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:d588a810b4f7b540224db34de973cf684d878a3b1221d786b1321a29a4fcb6e4",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 45804,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          81,
+          39,
+          62
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-carolina-state-capitol-closeup.png",
+      "hash": "sha256:c40595e8bf34390904309ba03fb6cfb734bf97f49232fe591c5e8de2d20afd64",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:771a7ae90fc78986bbfc897d3700d9b11f3cfdb4f76a09630bc1398b59b51189",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 53606,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          81,
+          39,
+          62
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:3e83f18e49bc47f3db7479e2a49b86802e8dc3f60f03c7fdde032728427db93f",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:9888329a1541c291558f3c95c51d54eb3cb6b5e44f9e2270f040e275eeb13403",
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 39820,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          97.009,
+          73.36,
+          168.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:cbc6385ef78c7d5326b5b86891226f2fc42dffe2688c4f095011be880eb1539d",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:077b7d00f469170ceeeeac70d0dfd1ff3eb9ecaea29ced9452410ea683a37efb",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 40604,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          97.009,
+          73.36,
+          168.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:9aa42a495800947320f56cf29e07c4ba9524bc037fb122d4df55beb70df7b04f",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:d588a810b4f7b540224db34de973cf684d878a3b1221d786b1321a29a4fcb6e4",
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 45804,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          97.009,
+          73.36,
+          168.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:d307dc8acc99b0214b920167056827509ef92ca85ec2e6c0931c2db22be3c909",
+      "state": {
+        "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+        "runtimeHash": "sha256:1cd98266ef9968cf8fdbc503e627b74d2ed25836daefca18035bcf691466b33d",
+        "lodHash": "sha256:771a7ae90fc78986bbfc897d3700d9b11f3cfdb4f76a09630bc1398b59b51189",
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 53606,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/terrain-review.height.png"
+        },
+        "position": [
+          97.009,
+          73.36,
+          168.0055
+        ],
+        "lookAt": [
+          0.009,
+          22.36,
+          0.0055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0.009,
+          11.36,
+          0.0055
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

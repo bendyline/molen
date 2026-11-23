@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.evergreen_maritime_museum",
+  "kind": "static-structure",
+  "title": "Evergreen Maritime Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.evergreen_maritime_museum",
+        "output": "assets/places/ws/wsq/evergreen_maritime_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:fe63ffc722cc535a4544fb6afb9d171b82d253fb7b9b5a5ac18c0c439ceff9f7"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-evergreen-maritime-museum",
+        "path": "models/generate-evergreen-maritime-museum.mjs"
+      },
+      {
+        "id": "evergreen-maritime-museum-model",
+        "path": "models/evergreen-maritime-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/evergreen-maritime-museum-footprint.json",
+      "native-map/evergreen-building-parts.json",
+      "reference-rights/evergreen-maritime-museum-architectural-facts.json",
+      "reference-rights/evergreen-maritime-museum-qualla-original-1.json",
+      "reference-rights/evergreen-maritime-museum-qualla-original-2.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/nlsc-claimed-2024-13-6861-3507.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

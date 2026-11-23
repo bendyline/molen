@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mecklenburg_castle",
+  "kind": "static-structure",
+  "title": "Mecklenburg Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mecklenburg_castle",
+        "output": "assets/places/u3/u38/mecklenburg_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2a3f9db11e3d8e95d901f6580377b5e7d076091dbfdfef5eb819359764772035"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-mecklenburg-castle",
+        "path": "models/generate-mecklenburg-castle.mjs"
+      },
+      {
+        "id": "mecklenburg-castle-model",
+        "path": "models/mecklenburg-castle-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/mecklenburg-castle-footprint.json",
+      "native-map/mecklenburg-earthworks-native-approaches.json",
+      "reference-rights/mecklenburg-castle-architectural-facts.json",
+      "reference-rights/mecklenburg-castle-qualla-original-1.json",
+      "reference-rights/mecklenburg-castle-qualla-original-2.json",
+      "reference-rights/mecklenburg-castle-qualla-original-3.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/mecklenburg-dgm-native.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

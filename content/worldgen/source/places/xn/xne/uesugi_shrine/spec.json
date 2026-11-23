@@ -1,0 +1,438 @@
+{
+  "planId": "uesugi_shrine",
+  "id": "uesugi_shrine",
+  "assetId": "molen.worldgen.structure.uesugi_shrine",
+  "title": "Uesugi Shrine",
+  "wikidataId": "Q10867478",
+  "category": "shinto-shrine",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 140.104208575,
+    "latitude": 37.909245225
+  },
+  "size": [
+    34.77406311035156,
+    9.557615280151367,
+    119.07768249511719
+  ],
+  "actualBounds": {
+    "min": [
+      -17.858383178710938,
+      -1.3476152420043945,
+      -29.077682495117188
+    ],
+    "max": [
+      16.915679931640625,
+      8.210000038146973,
+      90
+    ]
+  },
+  "visualBrief": "Historic Yonezawa shrine with a swept gray-green worship-hall roof, enclosed rear sanctuary, timber entrance and stone torii.",
+  "nativeAxes": {
+    "x": "along the worship-hall frontage",
+    "y": "up",
+    "z": "outbound along the shrine approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Yonezawa_Castle_5.jpg",
+    "https://commons.wikimedia.org/wiki/File:Yonezawa_Castle_6.jpg",
+    "https://commons.wikimedia.org/wiki/File:Uesugi_Shrine,_Yonezawa_castle_20.jpg"
+  ],
+  "stories": [
+    {
+      "id": "yonezawa-castle-wp",
+      "url": "https://qualla.com/yonezawa-castle/"
+    }
+  ],
+  "referenceInputHash": "sha256:0f729e71ce093046a041ca1f065c06b0855f8e9ea3c0a228fd461151bf731ee8",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xne/uesugi_shrine/models/uesugi-shrine-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xne/uesugi_shrine/models/uesugi-shrine-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.56,
+    "surfaces": {
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.86,
+        "metallic": 0.13
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.88
+      },
+      "finish": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.83
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.27
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.13
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "finish": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.098,
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.13
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "finish": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.038,
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.13
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "finish": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_standing_seam",
+    "stone_ashlar",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original GSI bare-earth ground on the stone approach between the main hall and courtyard entrance.",
+    "anchor": [
+      140.104208575,
+      37.909245225
+    ],
+    "heading": 1.3197288166192913,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        140.10432989059888,
+        37.90922067577649
+      ],
+      "modelHeight": 0,
+      "basis": "Original GSI bare-earth ground on the stone approach between the main hall and courtyard entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          4.0801,
+          2.7459
+        ],
+        [
+          4.0765,
+          4.524
+        ],
+        [
+          -4.4978,
+          4.5198
+        ],
+        [
+          -4.4942,
+          2.7417
+        ],
+        [
+          -7.4465,
+          2.7463
+        ],
+        [
+          -7.4435,
+          -10.012
+        ],
+        [
+          7.8642,
+          -10.012
+        ],
+        [
+          7.8612,
+          2.7463
+        ]
+      ],
+      "minimumCoverage": 0.88,
+      "basis": "Mapped worship hall with projection toward the courtyard."
+    },
+    "featureIds": [
+      "way/185622350",
+      "way/185622352",
+      "way/185622354",
+      "way/185622362",
+      "way/1085472013",
+      "node/395257324"
+    ],
+    "source": "https://www.openstreetmap.org/way/185622350",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1c3dcecb6aba0540990b9fc9d987430b58e9be725207b6e33c379bb5db2b5807",
+    "notes": "The worship hall has a broad gray-green hipped roof with raised corners and a high ridge, dark natural timber framing and open central bays. The entrance is much lower and links the timber enclosure. The stone torii has two inward-sloping pillars and a curved upper lintel."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the standing shrine buildings, enclosure and torii. The demolished castle buildings, outer moat, treasure hall and separate Matsugasaki Shrine are outside its scope.",
+    "Roof heights, rear-facing finish details and hand-carved fittings are approximate. The entrance is presented without seasonal crowds, snow, temporary decorations or inscriptions."
+  ],
+  "sourceLicense": "Original 3D work under the repository license. Native footprints under ODbL and GSI elevations under the agency terms.",
+  "qaLodCameras": [
+    {
+      "name": "uesugi-shrine-skyline",
+      "position": [
+        38,
+        25,
+        45
+      ],
+      "lookAt": [
+        0,
+        3.05,
+        4.1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "uesugi-shrine-district",
+      "position": [
+        38,
+        25,
+        45
+      ],
+      "lookAt": [
+        0,
+        3.05,
+        4.1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "uesugi-shrine-street",
+      "position": [
+        38,
+        25,
+        45
+      ],
+      "lookAt": [
+        0,
+        3.05,
+        4.1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "uesugi-shrine-closeup",
+      "position": [
+        38,
+        25,
+        45
+      ],
+      "lookAt": [
+        0,
+        3.05,
+        4.1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "glazed-bays-and-timber-front",
+      "position": [
+        -10,
+        6.5,
+        15
+      ],
+      "lookAt": [
+        0,
+        3.9,
+        1
+      ]
+    },
+    {
+      "name": "stone-torii-and-approach",
+      "position": [
+        -9,
+        6.8,
+        97
+      ],
+      "lookAt": [
+        -1.1623,
+        2.1,
+        84.154
+      ]
+    },
+    {
+      "name": "courtyard-gate-and-enclosure",
+      "position": [
+        16,
+        8,
+        36
+      ],
+      "lookAt": [
+        -0.5,
+        1.7,
+        18
+      ]
+    },
+    {
+      "name": "rear-sanctuary-and-courtyard",
+      "position": [
+        -43,
+        23,
+        -36
+      ],
+      "lookAt": [
+        0,
+        3.1,
+        -7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7312,
+    "vertices": 21936,
+    "materials": 5,
+    "bytes": 978036,
+    "sha256": "sha256:82f165f05f76d979adcdfb82693655a4622f5a2e2a2648162326db20e01a118b"
+  }
+}

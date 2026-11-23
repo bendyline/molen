@@ -1,0 +1,64 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.gavin_power_plant",
+  "kind": "static-structure",
+  "title": "Gavin Power Plant",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.gavin_power_plant",
+        "output": "assets/places/dn/dnv/gavin_power_plant/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d291afe02c20b1c5211e68a8f498dbd92d6189ac9bd01d0fac63c5212a25ac96"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-gavin-power-plant",
+        "path": "models/generate-gavin-power-plant.mjs"
+      },
+      {
+        "id": "gavin-power-plant-model",
+        "path": "models/gavin-power-plant-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/gavin-power-plant-footprint.json",
+      "native-map/gavin-plant-site-controls.json",
+      "reference-rights/gavin-power-plant-architectural-facts.json",
+      "reference-rights/gavin-power-plant-qualla-original-1.json",
+      "references/gavin-highsmith-native.jpg",
+      "reference-rights/highsmith-loc-rights.html",
+      "reference-rights/highsmith-loc-catalog.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-8909-12530.png",
+      "terrain-sources/terrarium-15-8909-12531.png",
+      "terrain-sources/terrarium-15-8908-12530.png",
+      "terrain-sources/terrarium-15-8908-12531.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

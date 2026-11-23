@@ -1,0 +1,486 @@
+{
+  "planId": "harewood_house",
+  "id": "harewood_house",
+  "assetId": "molen.worldgen.structure.harewood_house",
+  "title": "Harewood House",
+  "wikidataId": "Q1585312",
+  "category": "historic",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -1.52731455,
+    "latitude": 53.89692605
+  },
+  "size": [
+    79.33999633789062,
+    26.030000686645508,
+    33.499999046325684
+  ],
+  "actualBounds": {
+    "min": [
+      -39.66999816894531,
+      -8.100000381469727,
+      -15.414999961853027
+    ],
+    "max": [
+      39.66999816894531,
+      17.93000030517578,
+      18.084999084472656
+    ]
+  },
+  "visualBrief": "Harewood House with its nine-bay Palladian center, columned pediment, Venetian-window pavilions, and attached double garden stair.",
+  "nativeAxes": {
+    "x": "west to east across the north frontage",
+    "y": "up",
+    "z": "north entrance to south garden"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Harewood_House_frontage.JPG"
+  ],
+  "stories": [
+    {
+      "id": "harewood-house-wp",
+      "url": "https://qualla.com/harewood-house/"
+    }
+  ],
+  "referenceInputHash": "sha256:8d2d11f3d8c8d8d1efbb689703e22a7f76be4c5e32fd82bdb55b3b0e4f2d2144",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcw/harewood_house/models/harewood-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gcw/harewood_house/models/harewood-house-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.95,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.94
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.89
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.93
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.54
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.87
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.43,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.93
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.93
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.058,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.93
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "stone_ashlar",
+    "stone_limestone",
+    "tile_flat",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original forecourt grade on the north entrance axis.",
+    "anchor": [
+      -1.52731455,
+      53.89692605
+    ],
+    "heading": 0.2476824299200593,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -1.5273855623801829,
+        53.89709152054175
+      ],
+      "modelHeight": 0,
+      "basis": "Original forecourt grade on the north entrance axis."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -39.138,
+          9.663
+        ],
+        [
+          -39.208,
+          13.366
+        ],
+        [
+          -29.533,
+          13.366
+        ],
+        [
+          -13.442,
+          13.359
+        ],
+        [
+          18.479,
+          13.359
+        ],
+        [
+          30.622,
+          13.364
+        ],
+        [
+          39.195,
+          13.362
+        ],
+        [
+          39.189,
+          -13.37
+        ],
+        [
+          30.204,
+          -13.289
+        ],
+        [
+          18.03,
+          -13.175
+        ],
+        [
+          14.408,
+          -13.138
+        ],
+        [
+          3.402,
+          -13.039
+        ],
+        [
+          -7.871,
+          -12.927
+        ],
+        [
+          -13.637,
+          -12.87
+        ],
+        [
+          -29.514,
+          -12.717
+        ],
+        [
+          -39.381,
+          -12.628
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "The individually named Harewood House outline."
+    },
+    "featureIds": [
+      "way/61215723"
+    ],
+    "source": "https://www.openstreetmap.org/way/61215723",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3ebe8d14fb6296381cbc9a5f1cb5ceed2a2777917023c544fe86a41f00653872",
+    "notes": "The original Qualla north elevation shows a nine-bay central block, giant Corinthian order, pediment and three-bay links to Venetian-window pavilions. The listed-building survey describes the south double stair and remodeled pilasters."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Scope covers the house and its attached exterior steps. The free-standing sculptures, wider gardens and stable buildings are separate structures.",
+    "The fine reliefs, roof fittings and unsurveyed vertical dimensions are approximate."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "harewood-house-skyline",
+      "position": [
+        53,
+        24,
+        -76
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "harewood-house-district",
+      "position": [
+        53,
+        24,
+        -76
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "harewood-house-street",
+      "position": [
+        53,
+        24,
+        -76
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "harewood-house-closeup",
+      "position": [
+        53,
+        24,
+        -76
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "north-pediment-and-pavilions",
+      "position": [
+        53,
+        24,
+        -76
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "south-terrace-and-double-stair",
+      "position": [
+        -48,
+        15,
+        62
+      ],
+      "lookAt": [
+        0,
+        6,
+        6
+      ]
+    },
+    {
+      "name": "venetian-window-and-balustrade",
+      "position": [
+        43,
+        5.4,
+        -34
+      ],
+      "lookAt": [
+        34,
+        7,
+        -13
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18491,
+    "vertices": 55473,
+    "materials": 6,
+    "bytes": 2459236,
+    "sha256": "sha256:ae788003099df69cac4807b7fc7223032c87a948a1fbbbbb5fea31d4dd3b2b28"
+  }
+}

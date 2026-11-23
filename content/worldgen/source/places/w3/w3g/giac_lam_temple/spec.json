@@ -1,0 +1,534 @@
+{
+  "planId": "giac_lam_temple",
+  "id": "giac_lam_temple",
+  "assetId": "molen.worldgen.structure.giac_lam_temple",
+  "title": "Giác Lâm Temple",
+  "wikidataId": "Q3360457",
+  "category": "temple",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 106.649245,
+    "latitude": 10.77858
+  },
+  "size": [
+    42.99930000305176,
+    40.70000147819519,
+    137.96029663085938
+  ],
+  "actualBounds": {
+    "min": [
+      -16.920000076293945,
+      -3.549999952316284,
+      -69.23999786376953
+    ],
+    "max": [
+      26.079299926757812,
+      37.150001525878906,
+      68.72029876708984
+    ]
+  },
+  "visualBrief": "The linked ochre halls of Giác Lâm under broad clay tiles, and the pale seven-tier Bảo tháp Xá Lợi with raised glazed corners and open balconies.",
+  "nativeAxes": {
+    "x": "east along the historic eaves",
+    "y": "up",
+    "z": "south to the outer gate"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Stupa_of_seven_stories.jpg",
+    "https://commons.wikimedia.org/wiki/File:ChuaGiacLam01.jpg",
+    "https://commons.wikimedia.org/wiki/File:ChuaGiacLam03.jpg"
+  ],
+  "stories": [
+    {
+      "id": "giac-lam-temple-wp",
+      "url": "https://qualla.com/giac-lam-temple/"
+    }
+  ],
+  "referenceInputHash": "sha256:d06155d0e938034e39a21b79447c1473ba688a0dd32be8bfb01c469f72a50a2e",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w3/w3g/giac_lam_temple/models/giac-lam-temple-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w3/w3g/giac_lam_temple/models/giac-lam-temple-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.71,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.86
+      },
+      "ridge": {
+        "slot": "trim",
+        "graph": "tile_glazed",
+        "roughness": 0.83
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.89
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86
+      },
+      "window": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.69
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86
+          },
+          "ridge": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.83
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.89
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.69
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86
+          },
+          "ridge": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.83
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.89
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.69
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86
+          },
+          "ridge": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.83
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.89
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.69
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_ashlar",
+    "tile_ceramic",
+    "tile_glazed",
+    "wood_vertical"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged Copernicus surface sample at the open central approach. Elevation data are too coarse to measure the courtyard steps.",
+    "anchor": [
+      106.649245,
+      10.77858
+    ],
+    "heading": 0.013793509532247228,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        106.64920943473932,
+        10.778507646323598
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged Copernicus surface sample at the open central approach. Elevation data are too coarse to measure the courtyard steps."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          26.0765,
+          -69.2439
+        ],
+        [
+          26.0785,
+          -62.2523
+        ],
+        [
+          20.4243,
+          -62.2524
+        ],
+        [
+          20.425,
+          -59.1351
+        ],
+        [
+          26.0793,
+          -59.135
+        ],
+        [
+          26.0785,
+          -51.9431
+        ],
+        [
+          19.5164,
+          -51.9335
+        ],
+        [
+          19.5135,
+          -33.4861
+        ],
+        [
+          13.1812,
+          -33.4844
+        ],
+        [
+          13.1841,
+          -51.9317
+        ],
+        [
+          6.4472,
+          -51.9356
+        ],
+        [
+          6.4494,
+          -47.3376
+        ],
+        [
+          11.7318,
+          -47.3427
+        ],
+        [
+          11.7434,
+          -23.607
+        ],
+        [
+          7.2594,
+          -23.602
+        ],
+        [
+          7.256,
+          -0.3675
+        ],
+        [
+          -13.2174,
+          -0.3605
+        ],
+        [
+          -13.222,
+          -23.8066
+        ],
+        [
+          -16.9187,
+          -23.802
+        ],
+        [
+          -16.9152,
+          -47.0476
+        ],
+        [
+          -12.4969,
+          -47.0424
+        ],
+        [
+          -12.4969,
+          -69.2416
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Historic hall footprint from OSM relation 20714367."
+    },
+    "featureIds": [
+      "way/1221686026",
+      "relation/20714367"
+    ],
+    "source": "https://www.openstreetmap.org/way/1221686026",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:18620ebde7f4a46c32fdf262c0bc6402b070a154dfc644dec7d0d0140e3fab95",
+    "notes": "National tourism records identify the three longitudinally related halls and seven hexagonal stupa tiers. Exact photographer-dedicated story images establish the broad orange-red tile roof and green eaves of the main hall and the pale ochre tower with its repeated balconies."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The current main hall, two linked rear hall rows and relic stupa constitute the exterior model. The map controls the hall envelope and the two open wells. Roof ridge heights and rear service elevations are estimates.",
+    "The current relic stupa stands on the left of the entrance and south of the halls. Exact stupa outline and surveyed coordinates are unavailable in the native map, so its location and width are approximated within the precinct.",
+    "The scale-appropriate exterior omits individual tombs, interior features, sculpture inscriptions and the subsidiary monastic outbuildings."
+  ],
+  "sourceLicense": "Original model under repository license. Map footprint © OpenStreetMap contributors; public Copernicus DEM GLO-30 elevation data.",
+  "qaLodCameras": [
+    {
+      "name": "giac-lam-temple-skyline",
+      "position": [
+        116,
+        65,
+        114
+      ],
+      "lookAt": [
+        0,
+        11,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "giac-lam-temple-district",
+      "position": [
+        116,
+        65,
+        114
+      ],
+      "lookAt": [
+        0,
+        11,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "giac-lam-temple-street",
+      "position": [
+        116,
+        65,
+        114
+      ],
+      "lookAt": [
+        0,
+        11,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "giac-lam-temple-closeup",
+      "position": [
+        116,
+        65,
+        114
+      ],
+      "lookAt": [
+        0,
+        11,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "seven-tier-relic-stupa",
+      "position": [
+        -12,
+        15,
+        14
+      ],
+      "lookAt": [
+        -1.1925,
+        19,
+        62.6624
+      ]
+    },
+    {
+      "name": "historic-hall-front",
+      "position": [
+        10,
+        5.5,
+        23
+      ],
+      "lookAt": [
+        -2,
+        4.3,
+        -6
+      ]
+    },
+    {
+      "name": "hall-courtyards-and-roofs",
+      "position": [
+        36,
+        48,
+        -12
+      ],
+      "lookAt": [
+        0,
+        3.5,
+        -31
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18685,
+    "vertices": 56055,
+    "materials": 7,
+    "bytes": 2382468,
+    "sha256": "sha256:84078b25d9c0acff1a9b0132ef12c7976735bbcb94102e7b1dc551ac96061301"
+  }
+}

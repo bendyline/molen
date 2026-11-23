@@ -1,0 +1,431 @@
+{
+  "planId": "fort_frederik",
+  "id": "fort_frederik",
+  "assetId": "molen.worldgen.structure.fort_frederik",
+  "title": "Fort Frederik",
+  "wikidataId": "Q4994594",
+  "category": "fort",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -64.88349564,
+    "latitude": 17.715257053333335
+  },
+  "size": [
+    53.34160614013672,
+    9.220000088214874,
+    47.78448486328125
+  ],
+  "actualBounds": {
+    "min": [
+      -20.72799301147461,
+      -0.550000011920929,
+      -24.18548583984375
+    ],
+    "max": [
+      32.61361312866211,
+      8.670000076293945,
+      23.5989990234375
+    ]
+  },
+  "visualBrief": "Frederiksted’s Danish fort with red walls, white trim, paved courtyard, two-storey commandant’s quarters and masonry stairs.",
+  "nativeAxes": {
+    "x": "east inland along the curtain walls",
+    "y": "up",
+    "z": "south across the courtyard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://npgallery.nps.gov/GetAsset/7d69ecde-7b56-489d-8a91-448c0c8a7378"
+  ],
+  "stories": [
+    {
+      "id": "fort-frederik-wp",
+      "url": "https://qualla.com/fort-frederik/"
+    }
+  ],
+  "referenceInputHash": "sha256:60fdb1de57fc327871ca5dcf09cdce6e4ad2a894b01a9ff199990f85f8ba440c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/de/de1/fort_frederik/models/fort-frederik-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/de/de1/fort_frederik/models/fort-frederik-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.7,
+    "surfaces": {
+      "stucco": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.96
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stucco",
+        "roughness": 0.91
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "brick",
+        "roughness": 0.98
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "brick",
+        "roughness": 0.95
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.87
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.33,
+        "surfaces": {
+          "stucco": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.91
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "brick",
+            "roughness": 0.95
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "stucco": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.91
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "brick",
+            "roughness": 0.95
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.046,
+        "surfaces": {
+          "stucco": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.91
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "brick",
+            "roughness": 0.95
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "brick"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified sampled native grade at the seaward wall and sally port entrance.",
+    "anchor": [
+      -64.88349564,
+      17.715257053333335
+    ],
+    "heading": 0.09147237543037037,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -64.88362128979419,
+        17.715246074225107
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified sampled native grade at the seaward wall and sally port entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          23.71,
+          -19.64
+        ],
+        [
+          23.713,
+          -8.64
+        ],
+        [
+          32.588,
+          -1.968
+        ],
+        [
+          23.718,
+          7.558
+        ],
+        [
+          23.712,
+          20.849
+        ],
+        [
+          -6.998,
+          20.849
+        ],
+        [
+          -7.386,
+          23.564
+        ],
+        [
+          -18.227,
+          23.464
+        ],
+        [
+          -16.555,
+          12.662
+        ],
+        [
+          -13.38,
+          12.182
+        ],
+        [
+          -13.381,
+          -11.729
+        ],
+        [
+          -17.582,
+          -12.707
+        ],
+        [
+          -20.683,
+          -24.059
+        ],
+        [
+          -6.737,
+          -22.746
+        ],
+        [
+          -6.511,
+          -19.64
+        ]
+      ],
+      "minimumCoverage": 0.86,
+      "basis": "Named fort building, including the projecting bastions and the enclosing walls."
+    },
+    "featureIds": [
+      "way/253996422"
+    ],
+    "source": "https://www.openstreetmap.org/way/253996422",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:552aa0a5c4a53e1eda2effc0a3ec4c42fbc1281a274d8e3accbed96d2efe4238",
+    "notes": "Four wings surround a brick court. The west wing contains the two-storey Commandant’s Quarters, an arched passage and two court stairs. The low wings have flat decks with parapets. Red plaster is trimmed white, with shutters and alternating upper pediments."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Standing fort building only. The separately situated former stables, lower seaside outwork and movable displays are outside the mapped building boundary. Fine masonry, woodwork and smaller openings are approximated."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "fort-frederik-skyline",
+      "position": [
+        52,
+        34,
+        -54
+      ],
+      "lookAt": [
+        3,
+        3.6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "fort-frederik-district",
+      "position": [
+        52,
+        34,
+        -54
+      ],
+      "lookAt": [
+        3,
+        3.6,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "fort-frederik-street",
+      "position": [
+        52,
+        34,
+        -54
+      ],
+      "lookAt": [
+        3,
+        3.6,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "fort-frederik-closeup",
+      "position": [
+        52,
+        34,
+        -54
+      ],
+      "lookAt": [
+        3,
+        3.6,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "court-and-commandants-quarters",
+      "position": [
+        14.4,
+        7.6,
+        -11.7
+      ],
+      "lookAt": [
+        -7,
+        3.6,
+        1.1
+      ]
+    },
+    {
+      "name": "sea-gate-and-bastions",
+      "position": [
+        -51,
+        13.3,
+        -20
+      ],
+      "lookAt": [
+        -9,
+        3.05,
+        2
+      ]
+    },
+    {
+      "name": "ramparts-salient-and-cistern",
+      "position": [
+        32,
+        20.3,
+        26
+      ],
+      "lookAt": [
+        5,
+        2.35,
+        1.6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4045,
+    "vertices": 12135,
+    "materials": 5,
+    "bytes": 569332,
+    "sha256": "sha256:303995b8d252ff03c1d69d191ef83588ca3c563f14f4ac67d4c048a459761801"
+  }
+}

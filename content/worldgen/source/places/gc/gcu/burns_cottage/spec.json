@@ -1,0 +1,420 @@
+{
+  "planId": "burns_cottage",
+  "id": "burns_cottage",
+  "assetId": "molen.worldgen.structure.burns_cottage",
+  "title": "Burns Cottage",
+  "wikidataId": "Q5000064",
+  "category": "residence",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -4.633407271428571,
+    "latitude": 55.432846957142864
+  },
+  "size": [
+    24.555302619934082,
+    8.81499981880188,
+    9.222318649291992
+  ],
+  "actualBounds": {
+    "min": [
+      -13.99932861328125,
+      -2.799999952316284,
+      -4.697926044464111
+    ],
+    "max": [
+      10.555974006652832,
+      6.014999866485596,
+      4.524392604827881
+    ]
+  },
+  "visualBrief": "The low whitewashed, thatched cottage at Alloway where Robert Burns was born, with the attached byre and barn.",
+  "nativeAxes": {
+    "x": "southwest kitchen to northeast barn",
+    "y": "up",
+    "z": "northwest yard to southeast road"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Burns_Cottage_in_2000.jpg"
+  ],
+  "stories": [
+    {
+      "id": "burns-cottage-wp",
+      "url": "https://qualla.com/burns-cottage/"
+    }
+  ],
+  "referenceInputHash": "sha256:239a162d038e556022502365e3fbafd833aff21537f6972e8e7b8d5ea26f46f9",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcu/burns_cottage/models/burns-cottage-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gcu/burns_cottage/models/burns-cottage-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.02,
+    "surfaces": {
+      "render": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.97
+      },
+      "thatch": {
+        "slot": "roof",
+        "graph": "thatch",
+        "roughness": 0.98
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.88
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.97
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.79
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.97
+          },
+          "thatch": {
+            "slot": "roof",
+            "graph": "thatch",
+            "roughness": 0.98
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.97
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.97
+          },
+          "thatch": {
+            "slot": "roof",
+            "graph": "thatch",
+            "roughness": 0.98
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.97
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.97
+          },
+          "thatch": {
+            "slot": "roof",
+            "graph": "thatch",
+            "roughness": 0.98
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.97
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "thatch",
+    "wood_plain",
+    "stone_drywall"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified elevation along the approach to the southeast entrance row.",
+    "anchor": [
+      -4.633407271428571,
+      55.432846957142864
+    ],
+    "heading": 0.7063608679597806,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -4.633430580794169,
+        55.43277249745135
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified elevation along the approach to the southeast entrance row."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -13.957,
+          -1.51
+        ],
+        [
+          1.474,
+          -2.012
+        ],
+        [
+          3.283,
+          -2.342
+        ],
+        [
+          9.459,
+          -4.374
+        ],
+        [
+          10.507,
+          1.773
+        ],
+        [
+          2.447,
+          4.233
+        ],
+        [
+          -13.211,
+          4.233
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The mapped cottage and attached byre and barn."
+    },
+    "featureIds": [
+      "way/174167622"
+    ],
+    "source": "https://www.openstreetmap.org/way/174167622",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0dd76bee4fa336e8ec1951513b3118310ea815be321fd8ff5ba4b2734dd78481",
+    "notes": "Historic Environment Scotland records a single storey, seven entrance bays, five rear bays, whitewashed harled clay walls, reed thatch with deep coping, wooden ridge and rendered stacks."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.thatch",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The preserved cottage including the attached agricultural bays. Freestanding wall, museum grounds and interiors lie outside the model scope.",
+    "Individual sill and stack heights are estimated from the photograph and heritage description."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "burns-cottage-skyline",
+      "position": [
+        -32,
+        10,
+        27
+      ],
+      "lookAt": [
+        -1,
+        2.4,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "burns-cottage-district",
+      "position": [
+        -32,
+        10,
+        27
+      ],
+      "lookAt": [
+        -1,
+        2.4,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "burns-cottage-street",
+      "position": [
+        -32,
+        10,
+        27
+      ],
+      "lookAt": [
+        -1,
+        2.4,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "burns-cottage-closeup",
+      "position": [
+        -32,
+        10,
+        27
+      ],
+      "lookAt": [
+        -1,
+        2.4,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "southwest-gable-and-entrance-row",
+      "position": [
+        -32,
+        10,
+        27
+      ],
+      "lookAt": [
+        -1,
+        2.4,
+        0
+      ]
+    },
+    {
+      "name": "southeast-reed-eaves-and-shutters",
+      "position": [
+        1,
+        5,
+        20
+      ],
+      "lookAt": [
+        0,
+        2.2,
+        1
+      ]
+    },
+    {
+      "name": "bent-rear-range-and-ridge",
+      "position": [
+        21,
+        9,
+        -24
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 730,
+    "vertices": 2190,
+    "materials": 5,
+    "bytes": 309036,
+    "sha256": "sha256:7ed812f9145dd7e42e269ac70dba86150a05623ff74aa70b27cc338e80a12b80"
+  }
+}

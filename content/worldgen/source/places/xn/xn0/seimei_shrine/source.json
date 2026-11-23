@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.seimei_shrine",
+  "kind": "static-structure",
+  "title": "Seimei Shrine",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.seimei_shrine",
+        "output": "assets/places/xn/xn0/seimei_shrine/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:0fc8c94b80b3f508afa00203498169fa3c3c050f01385cdba87ff3c104cac51b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-seimei-shrine",
+        "path": "models/generate-seimei-shrine.mjs"
+      },
+      {
+        "id": "seimei-shrine-model",
+        "path": "models/seimei-shrine-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/seimei-shrine-footprint.json",
+      "reference-rights/seimei-shrine-architectural-facts.json",
+      "reference-rights/seimei-shrine-qualla-original-1.json",
+      "reference-rights/seimei-shrine-qualla-original-2.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-28740-12976.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.casa_monica_hotel",
+  "kind": "static-structure",
+  "title": "Casa Monica Hotel",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.casa_monica_hotel",
+        "output": "assets/places/dj/djq/casa_monica_hotel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b6c32024ceb0e20328d9b646055455b230bd533819c944420eb97150a457b15f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-casa-monica-hotel",
+        "path": "models/generate-casa-monica-hotel.mjs"
+      },
+      {
+        "id": "casa-monica-hotel-model",
+        "path": "models/casa-monica-hotel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/casa-monica-hotel-footprint.json",
+      "reference-rights/casa-monica-hotel-architectural-facts.json",
+      "reference-rights/casa-monica-hotel-qualla-original-1.json",
+      "references/casa-monica-fhwa-7716755-original.jpg",
+      "reference-rights/casa-monica-fhwa-7716755.json",
+      "references/casa-monica-fhwa-7716767-original.jpg",
+      "reference-rights/casa-monica-fhwa-7716767.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-8982-13530.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

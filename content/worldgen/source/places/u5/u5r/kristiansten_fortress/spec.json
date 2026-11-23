@@ -1,0 +1,454 @@
+{
+  "planId": "kristiansten_fortress",
+  "id": "kristiansten_fortress",
+  "assetId": "molen.worldgen.structure.kristiansten_fortress",
+  "title": "Kristiansten Fortress",
+  "wikidataId": "Q2705932",
+  "category": "fortress",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 10.41058728,
+    "latitude": 63.426900739999994
+  },
+  "size": [
+    163.77132034301758,
+    35.67533302307129,
+    192.98804473876953
+  ],
+  "actualBounds": {
+    "min": [
+      -32.8531379699707,
+      -11.551162719726562,
+      -95.89636993408203
+    ],
+    "max": [
+      130.91818237304688,
+      24.124170303344727,
+      97.0916748046875
+    ]
+  },
+  "visualBrief": "Trondheim’s limewashed Kristiansten Donjon above angular stone ramparts, with slate roofs, grassed crests, the red-roofed Commandant’s Residence and the long white magazine.",
+  "nativeAxes": {
+    "x": "east along donjon frontage",
+    "y": "up",
+    "z": "roughly south toward the outer magazine"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Haubitzmagasinet_Kristiansten_festning_Trondheim_2022-08-18_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:Kommandantbolig_Kristiansten_festning_Trondheim_2022-08-18_02.jpg",
+    "https://commons.wikimedia.org/wiki/File:Kristiansten_festning_Trondheim_2022-08-18_04.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kristiansten-fortress-wp",
+      "url": "https://qualla.com/kristiansten-fortress/"
+    }
+  ],
+  "referenceInputHash": "sha256:a3824e810cca65d262c586f4cc9f756e87746d5e2fe30639d410d1378b15edc6",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u5/u5r/kristiansten_fortress/models/kristiansten-fortress-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u5/u5r/kristiansten_fortress/models/kristiansten-fortress-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.92,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.97
+      },
+      "timber": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.94
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9
+      },
+      "clay": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.91
+      },
+      "detail": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.49,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.97
+          },
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.97
+          },
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.97
+          },
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_drywall",
+    "wood_painted_lap",
+    "slate",
+    "tile_ceramic"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original elevation near the foot of the Donjon on its west side.",
+    "anchor": [
+      10.41058728,
+      63.426900739999994
+    ],
+    "heading": 0.0627702476959508,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        10.41040791280656,
+        63.426888496146276
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation near the foot of the Donjon on its west side."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -7.941,
+          -6.763
+        ],
+        [
+          -7.951,
+          10.134
+        ],
+        [
+          6.779,
+          10.134
+        ],
+        [
+          6.782,
+          -6.752
+        ],
+        [
+          2.331,
+          -6.753
+        ]
+      ],
+      "minimumCoverage": 0.88,
+      "basis": "Mapped masonry outline of the Donjon at the centre of the fortress."
+    },
+    "featureIds": [
+      "way/10243780",
+      "way/17693566",
+      "way/89642573",
+      "way/95714848",
+      "way/474662465",
+      "way/133262099",
+      "way/542765750",
+      "way/89642572",
+      "way/87984263",
+      "way/89642570",
+      "way/89642571",
+      "way/542765744"
+    ],
+    "source": "https://www.openstreetmap.org/way/10243780",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2d0f1f7eb5bf7bcbc8b81eb25e0c62bb46a4cea83b95b59453ec7ee43c0bc7f0",
+    "notes": "The upper keep is a three-storey white limewashed masonry donjon, with a grey fully hipped slate roof and splayed small openings. Bastion walls are battered rough stone with planted crests. Lower support buildings use white cladding, red tile on the commandant’s residence, and grey roofing on the magazine."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "Bastion crest and backfill levels and the Donjon’s section are interpreted from the map, terrain and exterior photographs. The model covers the principal group and preserves the outline of the angular fort. Interiors and detached equipment are outside the model."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "kristiansten-skyline",
+      "position": [
+        -178,
+        79,
+        113
+      ],
+      "lookAt": [
+        31,
+        2.7,
+        7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kristiansten-district",
+      "position": [
+        -178,
+        79,
+        113
+      ],
+      "lookAt": [
+        31,
+        2.7,
+        7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "kristiansten-street",
+      "position": [
+        -178,
+        79,
+        113
+      ],
+      "lookAt": [
+        31,
+        2.7,
+        7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "kristiansten-closeup",
+      "position": [
+        -178,
+        79,
+        113
+      ],
+      "lookAt": [
+        31,
+        2.7,
+        7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "white-donjon-and-grassed-ramparts",
+      "position": [
+        -77,
+        6.25,
+        39
+      ],
+      "lookAt": [
+        5,
+        7.5,
+        0
+      ]
+    },
+    {
+      "name": "residence-and-north-earthworks",
+      "position": [
+        61,
+        18,
+        -109
+      ],
+      "lookAt": [
+        17,
+        7,
+        -27
+      ]
+    },
+    {
+      "name": "magazine-and-outer-walls",
+      "position": [
+        169,
+        17,
+        114
+      ],
+      "lookAt": [
+        64,
+        2,
+        41
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6703,
+    "vertices": 20109,
+    "materials": 6,
+    "bytes": 996296,
+    "sha256": "sha256:4fafa285b47226bc917f800d282e090e7bad1f7252f8ac5755b188a07d53894a"
+  }
+}

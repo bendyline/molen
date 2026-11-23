@@ -1,0 +1,554 @@
+{
+  "planId": "frans_hals_museum",
+  "id": "frans_hals_museum",
+  "assetId": "molen.worldgen.structure.frans_hals_museum",
+  "title": "Frans Hals Museum",
+  "wikidataId": "Q574961",
+  "category": "cultural",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 4.633315,
+    "latitude": 52.376638
+  },
+  "size": [
+    55.51067543029785,
+    18.590000063180923,
+    59.56689262390137
+  ],
+  "actualBounds": {
+    "min": [
+      -29.591312408447266,
+      -0.41999998688697815,
+      -30.688562393188477
+    ],
+    "max": [
+      25.919363021850586,
+      18.170000076293945,
+      28.87833023071289
+    ]
+  },
+  "visualBrief": "The Frans Hals Museum’s historic Haarlem courtyard and almshouse wings, leaded façades and lantern.",
+  "nativeAxes": {
+    "x": "north-northeast along the street",
+    "y": "up",
+    "z": "east-southeast out through the doorway"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://hdl.handle.net/21.12102/a7145332-8a12-e89b-9b6a-c3b6384c1d48",
+    "https://hdl.handle.net/21.12102/f6b430c2-6c55-c6be-928f-28b52c10696a",
+    "https://hdl.handle.net/21.12102/f3099de5-a7d3-4a00-f055-1fca7fe40434",
+    "https://hdl.handle.net/21.12102/45ec6661-394d-48a6-36d0-5c99197f82cd"
+  ],
+  "stories": [
+    {
+      "id": "frans-hals-museum-wp",
+      "url": "https://qualla.com/frans-hals-museum/"
+    }
+  ],
+  "referenceInputHash": "sha256:9901fb3739fce1cd42ebe699a875848f0c620cb49f9ba345cb4216ae936e9846",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u17/frans_hals_museum/models/frans-hals-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u17/frans_hals_museum/models/frans-hals-museum-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.71,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.91
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.94
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_painted_lap",
+        "roughness": 0.88
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.86,
+        "metallic": 0.16
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.65
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.88
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.86,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.88
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.86,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.062,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.88
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.86,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_limestone",
+    "tile_ceramic",
+    "wood_painted_lap",
+    "metal_copper"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.22,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmasked national AHN bare-earth point at the street-side doorway approach.",
+    "anchor": [
+      4.633315,
+      52.376638
+    ],
+    "heading": 1.368,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        4.633750922942612,
+        52.37658969996425
+      ],
+      "modelHeight": 0,
+      "basis": "Unmasked national AHN bare-earth point at the street-side doorway approach."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          25.581,
+          -8.188
+        ],
+        [
+          25.739,
+          6.62
+        ],
+        [
+          25.782,
+          10.864
+        ],
+        [
+          22.229,
+          10.998
+        ],
+        [
+          22.396,
+          19.99
+        ],
+        [
+          22.812,
+          20.022
+        ],
+        [
+          23.047,
+          25.475
+        ],
+        [
+          23.172,
+          28.35
+        ],
+        [
+          4.2,
+          28.386
+        ],
+        [
+          4.191,
+          28.617
+        ],
+        [
+          2.058,
+          28.633
+        ],
+        [
+          -0.336,
+          28.653
+        ],
+        [
+          -0.32,
+          28.4
+        ],
+        [
+          -22.837,
+          28.604
+        ],
+        [
+          -22.979,
+          28.3
+        ],
+        [
+          -23.441,
+          17.267
+        ],
+        [
+          -26.564,
+          17.499
+        ],
+        [
+          -29.541,
+          -16.377
+        ],
+        [
+          -28.964,
+          -16.502
+        ],
+        [
+          -29.359,
+          -24.726
+        ],
+        [
+          -18.088,
+          -24.573
+        ],
+        [
+          -6.52,
+          -24.635
+        ],
+        [
+          -6.289,
+          -30.586
+        ],
+        [
+          15.172,
+          -30.066
+        ],
+        [
+          15.384,
+          -23.949
+        ],
+        [
+          17.81,
+          -23.983
+        ],
+        [
+          17.772,
+          -24.551
+        ],
+        [
+          20.51,
+          -24.448
+        ],
+        [
+          20.661,
+          -22.384
+        ],
+        [
+          18.243,
+          -22.317
+        ],
+        [
+          25.422,
+          -22.392
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The principal current BAG museum fabric around the open courtyard."
+    },
+    "featureIds": [
+      "way/265269331"
+    ],
+    "source": "https://www.openstreetmap.org/way/265269331",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cb0b186dbcd284389bde2250c21a042e4e7a77a66620d4cdb2751b668beb9517",
+    "notes": "Reviewed the exact 1961 De Boer street and courtyard campaign, the elevated courtyard view and the untrimmed archive master of the photo originally published in Qualla. Measured roof heights from the national AHN 0.5 m surface model."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Models the principal historic museum at its Hof address. The separate Hal and individually mapped adjoining buildings are outside the site model.",
+    "The courtyard, grouped shutters, masonry, entry work and varying roofs follow the archive and survey. Fine ornament, roof tile joints and nonprincipal outer walls are representative."
+  ],
+  "sourceLicense": "Original model from CC0 De Boer archive photographs, ODbL BAG-derived OpenStreetMap footprints, and public AHN survey data.",
+  "qaLodCameras": [
+    {
+      "name": "frans-hals-museum-skyline",
+      "position": [
+        61,
+        40,
+        78
+      ],
+      "lookAt": [
+        -1,
+        5.4,
+        -0.5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "frans-hals-museum-district",
+      "position": [
+        61,
+        40,
+        78
+      ],
+      "lookAt": [
+        -1,
+        5.4,
+        -0.5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "frans-hals-museum-street",
+      "position": [
+        61,
+        40,
+        78
+      ],
+      "lookAt": [
+        -1,
+        5.4,
+        -0.5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "frans-hals-museum-closeup",
+      "position": [
+        61,
+        40,
+        78
+      ],
+      "lookAt": [
+        -1,
+        5.4,
+        -0.5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "groot-heiligland-street-shutters-and-doorway",
+      "position": [
+        9,
+        13,
+        65
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        25
+      ]
+    },
+    {
+      "name": "regents-wing-and-courtyard-lantern",
+      "position": [
+        4,
+        18,
+        10
+      ],
+      "lookAt": [
+        0,
+        7,
+        -19
+      ]
+    },
+    {
+      "name": "historic-quadrangle-and-courtyard",
+      "position": [
+        -56,
+        61,
+        49
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4310,
+    "vertices": 12930,
+    "materials": 6,
+    "bytes": 696992,
+    "sha256": "sha256:63cc734611774c12fd543e410299e62fdc4e69914a934f2dc50471b1056cdf9a"
+  }
+}

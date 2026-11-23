@@ -1,0 +1,581 @@
+{
+  "planId": "evergreen_maritime_museum",
+  "id": "evergreen_maritime_museum",
+  "assetId": "molen.worldgen.structure.evergreen_maritime_museum",
+  "title": "Evergreen Maritime Museum",
+  "wikidataId": "Q14920625",
+  "category": "cultural",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 121.51882595000001,
+    "latitude": 25.0386697
+  },
+  "size": [
+    66.99794578552246,
+    56.43000030517578,
+    54.95800018310547
+  ],
+  "actualBounds": {
+    "min": [
+      -35.15996551513672,
+      -5,
+      -30.270000457763672
+    ],
+    "max": [
+      31.837980270385742,
+      51.43000030517578,
+      24.687999725341797
+    ]
+  },
+  "visualBrief": "The Evergreen Maritime Museum’s Taipei foundation building, with blue-green glazing, deep stone window bays and projecting cornices.",
+  "nativeAxes": {
+    "x": "west toward east along the north elevation",
+    "y": "up",
+    "z": "north toward south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Evergreen_Maritime_Museum_Entrance_North_Exit_20131013.JPG",
+    "https://commons.wikimedia.org/wiki/File:Evergreen_Maritime_Museum_View_from_Section_1,_Renai_Road_20131013.JPG"
+  ],
+  "stories": [
+    {
+      "id": "evergreen-maritime-museum-wp",
+      "url": "https://qualla.com/evergreen-maritime-museum/"
+    }
+  ],
+  "referenceInputHash": "sha256:bfd05d2345d02a2e59aeb114c5ef8a3d3b5254d37ad3984f85cd6c632762d3a7",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ws/wsq/evergreen_maritime_museum/models/evergreen-maritime-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ws/wsq/evergreen_maritime_museum/models/evergreen-maritime-museum-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.25,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.9
+      },
+      "cornice": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.88
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "tinted": {
+        "slot": "window",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.58
+      },
+      "distantGlazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.72
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.54,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "cornice": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.88
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "tinted": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.58
+          },
+          "distantGlazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "cornice": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.88
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "tinted": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.58
+          },
+          "distantGlazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.062,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "cornice": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.88
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "tinted": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.58
+          },
+          "distantGlazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_ashlar",
+    "concrete_plain",
+    "concrete_plain",
+    "glass_frit_triangular",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original ground immediately north of the footprint toward Section 1, Renai Road.",
+    "anchor": [
+      121.51882595000001,
+      25.0386697
+    ],
+    "heading": -0.31806352017495776,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        121.51896605778212,
+        25.038911629974017
+      ],
+      "modelHeight": 0,
+      "basis": "Original ground immediately north of the footprint toward Section 1, Renai Road."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -25.204,
+          -25.806
+        ],
+        [
+          -14.369,
+          -25.823
+        ],
+        [
+          -14.368,
+          -22.143
+        ],
+        [
+          -13.592,
+          -22.141
+        ],
+        [
+          -13.591,
+          -16.269
+        ],
+        [
+          -7.7,
+          -16.275
+        ],
+        [
+          -7.703,
+          -25.251
+        ],
+        [
+          -6.924,
+          -25.238
+        ],
+        [
+          -6.925,
+          -26.726
+        ],
+        [
+          30.316,
+          -26.717
+        ],
+        [
+          30.318,
+          -25.229
+        ],
+        [
+          31.149,
+          -25.222
+        ],
+        [
+          31.147,
+          -13.326
+        ],
+        [
+          30.455,
+          -13.332
+        ],
+        [
+          30.474,
+          10.98
+        ],
+        [
+          31.228,
+          10.978
+        ],
+        [
+          31.224,
+          22.676
+        ],
+        [
+          30.452,
+          22.684
+        ],
+        [
+          30.454,
+          24.078
+        ],
+        [
+          -7.029,
+          24.078
+        ],
+        [
+          -7.021,
+          22.681
+        ],
+        [
+          -7.54,
+          22.687
+        ],
+        [
+          -7.534,
+          13.544
+        ],
+        [
+          -13.776,
+          13.548
+        ],
+        [
+          -13.781,
+          19.339
+        ],
+        [
+          -14.354,
+          19.341
+        ],
+        [
+          -14.357,
+          23.104
+        ],
+        [
+          -25.007,
+          23.106
+        ],
+        [
+          -25.013,
+          19.346
+        ],
+        [
+          -25.895,
+          19.343
+        ],
+        [
+          -25.901,
+          14.939
+        ],
+        [
+          -34.532,
+          14.944
+        ],
+        [
+          -34.55,
+          -17.748
+        ],
+        [
+          -25.897,
+          -17.749
+        ],
+        [
+          -25.899,
+          -22.144
+        ],
+        [
+          -25.197,
+          -22.14
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "The mapped Chang Yung-Fa Foundation building at 11 Zhongshan South Road."
+    },
+    "featureIds": [
+      "way/138955666"
+    ],
+    "source": "https://www.openstreetmap.org/way/138955666",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3a08a69edf3a93a7b6c249ba98fdfe9f6d867e1b275d5c8b7594ec34d229e979",
+    "notes": "The museum occupies the first through fifth floors of the foundation building. The principal elevation has a multi-storey stone grid, blue-green upper windows, cornices and a taller roof form."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.glass_frit_triangular",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.05,
+        0.08660254
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Roof elevations of the mapped storeys are estimated from exterior proportions.",
+    "The exterior of the shared building is represented. Interiors and street furnishings are outside scope.",
+    "Ground comes from a published derivative of Taiwan’s 20 m bare-earth DTM; fine street grades are below its source resolution."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Taiwan MOI 20 m DTM derivative under Taiwan Open Government Data License 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "evergreen-maritime-museum-skyline",
+      "position": [
+        88,
+        63,
+        -108
+      ],
+      "lookAt": [
+        -1,
+        21,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "evergreen-maritime-museum-district",
+      "position": [
+        88,
+        63,
+        -108
+      ],
+      "lookAt": [
+        -1,
+        21,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "evergreen-maritime-museum-street",
+      "position": [
+        88,
+        63,
+        -108
+      ],
+      "lookAt": [
+        -1,
+        21,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "evergreen-maritime-museum-closeup",
+      "position": [
+        88,
+        63,
+        -108
+      ],
+      "lookAt": [
+        -1,
+        21,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "renai-road-facade",
+      "position": [
+        88,
+        63,
+        -108
+      ],
+      "lookAt": [
+        -1,
+        21,
+        0
+      ]
+    },
+    {
+      "name": "north-gate-and-stone-window-bays",
+      "position": [
+        36,
+        10,
+        -60
+      ],
+      "lookAt": [
+        6,
+        13,
+        -20
+      ]
+    },
+    {
+      "name": "west-wing-and-roof-setbacks",
+      "position": [
+        -93,
+        57,
+        -62
+      ],
+      "lookAt": [
+        -5,
+        25,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 41938,
+    "vertices": 125814,
+    "materials": 6,
+    "bytes": 5256060,
+    "sha256": "sha256:fe63ffc722cc535a4544fb6afb9d171b82d253fb7b9b5a5ac18c0c439ceff9f7"
+  }
+}

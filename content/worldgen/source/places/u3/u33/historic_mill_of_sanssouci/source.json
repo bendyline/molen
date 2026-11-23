@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.historic_mill_of_sanssouci",
+  "kind": "static-structure",
+  "title": "Historic Mill of Sanssouci",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.historic_mill_of_sanssouci",
+        "output": "assets/places/u3/u33/historic_mill_of_sanssouci/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4eb781ee26c83886fa04bc382f73ccdd71052516810866900640b1a67dc566ec"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-historic-mill-of-sanssouci",
+        "path": "models/generate-historic-mill-of-sanssouci.mjs"
+      },
+      {
+        "id": "historic-mill-of-sanssouci-model",
+        "path": "models/historic-mill-of-sanssouci-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/historic-mill-of-sanssouci-footprint.json",
+      "reference-rights/historic-mill-of-sanssouci-architectural-facts.json",
+      "reference-rights/historic-mill-of-sanssouci-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-17570-10763.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

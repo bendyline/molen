@@ -97,6 +97,1009 @@ function localBytes(dir, relative) {
   return fs.readFileSync(file);
 }
 
+/** State Library of NSW's catalogued scan of James Barnet's 1885 sheet. */
+function inspectBarnetLighthousePlan(dir, reference) {
+  const page = 'https://www.sl.nsw.gov.au/collection-items/macquarie-lighthouse-south-head-1885';
+  const scanPath =
+    '/sites/default/files/styles/max_2600x2600/public/6.3_a2151019.jpg?itok=TYnlYo3R';
+  const expectedHash = '005b0c0e3aacfd63e85ddb45a8724a1a05e2983b58445ee503a22e78a5bb3dc6';
+  const image = localBytes(dir, reference.path);
+  const snapshot = localBytes(dir, reference.rightsEvidence?.path);
+  const record = snapshot?.toString('utf8');
+  const rightsLabel = record?.match(
+    /Copyright information:\s*<\/div>\s*<div[^>]*>\s*<p>([^<]+)<\/p>/i,
+  )?.[1];
+  const blockers = [];
+  if (
+    !image ||
+    digest(image) !== expectedHash ||
+    plainHash(reference.sha256) !== expectedHash ||
+    !snapshot ||
+    digest(snapshot) !== plainHash(reference.rightsEvidence?.sha256)
+  )
+    blockers.push('supplemental-image-or-archive-bytes-unbound');
+  if (
+    reference.sourceUrl !== page ||
+    reference.rightsEvidence?.sourceUrl !== page ||
+    reference.downloadUrl !== `https://www.sl.nsw.gov.au${scanPath}` ||
+    reference.license !== 'Public domain' ||
+    reference.artist !== 'James Johnstone Barnet' ||
+    reference.originalReview?.status !== 'inspected' ||
+    reference.originalReview?.rendition !== 'library-published-2597px-scan' ||
+    reference.visuallyReviewedForThisPolicy !== true ||
+    !record?.includes(`<link rel="canonical" href="${page}"`) ||
+    !record.includes(`${scanPath} 2x`) ||
+    !record.includes('Plan section and elevation of Macquarie Lighthouse South Head, 1885') ||
+    !record.includes('Barnet, James Johnstone, 1827-1904') ||
+    !record.includes('/Details/archive/110312182" target="_blank"> PXD 784 / 1 </a>') ||
+    rightsLabel?.trim() !== 'Out of copyright.&nbsp;'
+  )
+    blockers.push('supplemental-barnet-lighthouse-plan-unverified');
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers,
+    eligible: !blockers.length,
+  };
+}
+
+/** FHWA gallery releases corroborated against the original NARA transfer. */
+function inspectFhwaBywaysReference(dir, reference) {
+  const image = localBytes(dir, reference.path);
+  const rights = localBytes(dir, reference.rightsEvidence?.path);
+  const proof = snapshotJson(rights);
+  const native = proof?.native;
+  const info = native?.imageinfo?.[0];
+  const revision = native?.revisions?.[0];
+  const originalText = revision?.slots?.main?.content ?? '';
+  const byway = reference.sourceUrl?.match(
+    /^https:\/\/fhwaapps\.fhwa\.dot\.gov\/bywaysp\/Photos\?bywayId=(\d+)$/,
+  )?.[1];
+  const filename = reference.downloadUrl?.match(
+    /^https:\/\/fhwaapps\.fhwa\.dot\.gov\/bywaysp\/uploads\/asset_files\/(\d+)\/([\w.-]+\.jpe?g)$/i,
+  );
+  const archive = native?.title?.match(/ - NARA - (\d+)\.jpe?g$/i)?.[1];
+  const credit = `Public Domain. Photo by ${reference.artist}`;
+  const card = [...String(proof?.record ?? '').matchAll(/<li\b[^>]*>[\s\S]*?<\/li>/gi)]
+    .map(([html]) => html)
+    .find((html) => html.includes(`href="${reference.downloadUrl}"`));
+  const copyright = card?.match(/<div class="copyright">([\s\S]*?)<\/div>/i)?.[1];
+  const blockers = [];
+  if (
+    !image ||
+    digest(image) !== plainHash(reference.sha256) ||
+    !rights ||
+    digest(rights) !== plainHash(reference.rightsEvidence?.sha256) ||
+    proof?.sha256 !== reference.sha256 ||
+    image.length !== info?.size ||
+    createHash('sha1').update(image).digest('hex') !== info.sha1
+  )
+    blockers.push('supplemental-fhwa-original-bytes-unbound');
+  if (
+    !byway ||
+    filename?.[1] !== byway ||
+    proof?.file !== reference.downloadUrl ||
+    proof?.listing !== reference.sourceUrl ||
+    reference.rightsEvidence?.sourceUrl !== reference.sourceUrl ||
+    reference.license !== 'Public domain' ||
+    !reference.artist ||
+    plainText(copyright) !== credit ||
+    !archive ||
+    info?.user !== 'US National Archives bot' ||
+    revision?.user !== 'US National Archives bot' ||
+    revision.parentid !== 0 ||
+    info.extmetadata?.LicenseShortName?.value !== 'Public domain' ||
+    !new RegExp(`\\|\\s*NAID\\s*=\\s*${archive}(?:\\s|$)`).test(originalText) ||
+    !originalText.includes('{{PD-USGov}}') ||
+    !originalText.includes(`Status: Public domain. Photo by ${reference.artist}`) ||
+    reference.visuallyReviewedForThisPolicy !== true ||
+    reference.originalReview?.status !== 'inspected' ||
+    reference.originalReview?.rendition !== 'agency-published-image'
+  )
+    blockers.push('supplemental-fhwa-individual-release-unverified');
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers,
+    eligible: !blockers.length,
+  };
+}
+
+/** The Museum of Gothenburg's individually marked archive image from the 1923 exhibition. */
+function inspectGothenburgKarnellPhoto(dir, reference) {
+  const archive = 'https://carlotta.goteborgsstadsmuseum.se/carlotta/web';
+  const source = `${archive}/object/353930`;
+  const download = `${archive}/image/zoom/1719974/GhmE:5165.jpg`;
+  const expected = 'd1bf17e22d26af0884b9b75e841a66381f369eddf5685c389fd0a7fa569aa047';
+  const image = localBytes(dir, reference.path);
+  const catalog = localBytes(dir, reference.rightsEvidence?.path);
+  const html = catalog?.toString() ?? '';
+  const eligible =
+    !!image &&
+    digest(image) === expected &&
+    plainHash(reference.sha256) === expected &&
+    !!catalog &&
+    digest(catalog) === plainHash(reference.rightsEvidence?.sha256) &&
+    html.includes(`property="og:image" content="${download}"`) &&
+    html.includes(`property="og:url" content="${source}"`) &&
+    html.includes('Karnell, Anders Wilhelm, 1871-1934') &&
+    html.includes('Jubileumsutställningen 1923 med  Götaplatsen och Konstmuseet') &&
+    html.includes('>Public Domain Mark</a>') &&
+    html.includes('creativecommons.org/publicdomain/mark/1.0/') &&
+    reference.sourceUrl === source &&
+    reference.rightsEvidence?.sourceUrl === source &&
+    reference.downloadUrl === download &&
+    reference.artist === 'Anders Wilhelm Karnell' &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected' &&
+    reference.originalReview?.rendition === 'museum-catalogue-image';
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-gothenburg-karnell-photo-unverified'],
+  };
+}
+
+/** Art in Flanders' individually released digitization of the museum's postcard. */
+function inspectAntwerpMuseumPostcard(dir, reference) {
+  const source = 'https://artinflanders.be/en/artwork/postcard-view-museum';
+  const file =
+    '5c27139fdd6347dfa9dc58014be140eb6f83831bb2a44ede8d88ad74c1c3e6d677ef5a1b257f4befae74ac16c9dae6af.jpg';
+  const expected = '9876df1d67f8eeec463061bb612626d508944408c06eaa3a71e758c0f90085d6';
+  const image = localBytes(dir, reference.path);
+  const catalog = localBytes(dir, reference.rightsEvidence?.path);
+  const html = catalog?.toString() ?? '';
+  const caption =
+    'postcard view from the museum, by unknown, collection KMSKA, artinflanders.be, photo: Hugo Maertens, public domain.';
+  const eligible =
+    !!image &&
+    digest(image) === expected &&
+    plainHash(reference.sha256) === expected &&
+    !!catalog &&
+    digest(catalog) === plainHash(reference.rightsEvidence?.sha256) &&
+    html.includes(`/styles/artwork_cover_image_detail/public/artwork/${file}?`) &&
+    html.includes('photo_number=0030979000&amp;licence_number=public%20domain') &&
+    html.includes('8911n9pc2r') &&
+    html.includes(caption) &&
+    reference.sourceUrl === source &&
+    reference.rightsEvidence?.sourceUrl === source &&
+    reference.downloadUrl === `https://artinflanders.be/sites/default/files/artwork/${file}` &&
+    reference.artist === 'Hugo Maertens (digitization), KMSKA' &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected' &&
+    reference.originalReview?.rendition === 'institutional-postcard-scan';
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-antwerp-museum-postcard-unverified'],
+  };
+}
+
+/** Two individually marked public-domain postcards from the National Museum of Taiwan History. */
+function inspectKaohsiungCityHallPostcard(dir, reference) {
+  const records = {
+    '2001.008.0597': {
+      member: '20010080597_P001.jpg',
+      image: 'cddc142cfc1d6579ecdd64a80e10d1e68227c28efbce4c1ac55f25a9101b7529',
+      metadata: 'adfccabb9131e5748c542cc195280901c40dcb33ba5af2952266f48a4e1e7f4c',
+      archive: '582c261d0f3aa223e16d9066984629ff1ef77bd5e97b8bb089a591db65f5418a',
+      imprint: '昭和十五年二月十三日',
+    },
+    '2002.007.0274': {
+      member: '20020070274_I001.jpg',
+      image: '367735c1a97510f957fee1fa8ae1eb17380bbeca9cd1ba3c5ea96ca1d31d06e8',
+      metadata: '2560a16e6048f1a082948bb7db9050ec36ff68201c3d8cc052a0ea0293021621',
+      archive: '203259e3c1d2555fdfdfae501637544c6a474846635f8ddd2463a8c3d4de8cf2',
+      imprint: '昭和十四年五月十二日',
+    },
+  };
+  const accession = reference.accession;
+  const known = Object.hasOwn(records, accession) ? records[accession] : null;
+  const source = `https://collections.nmth.gov.tw/CollectionContent.aspx?a=132&rno=${accession}`;
+  const image = localBytes(dir, reference.path);
+  const proof = localBytes(dir, reference.rightsEvidence?.path);
+  const record = snapshotJson(proof);
+  const eligible =
+    !!known &&
+    !!image &&
+    digest(image) === known.image &&
+    plainHash(reference.sha256) === known.image &&
+    !!proof &&
+    digest(proof) === plainHash(reference.rightsEvidence?.sha256) &&
+    record?.accession === accession &&
+    record.catalogue === source &&
+    record.member === known.member &&
+    plainHash(record.archiveSha256) === known.archive &&
+    typeof record.nativeMetadata === 'string' &&
+    digest(record.nativeMetadata) === known.metadata &&
+    record.nativeMetadata.includes('高雄市役所') &&
+    record.nativeMetadata.includes(known.imprint) &&
+    typeof record.release === 'string' &&
+    record.release.includes('images/cc-licensed/PDM.png') &&
+    record.release.includes('因著作年代久遠或超過著作權法保護時效，已進入公眾領域。') &&
+    reference.sourceUrl === source &&
+    reference.rightsEvidence?.sourceUrl === source &&
+    reference.downloadUrl === `${source}#ctl00_ContentPlaceHolder1_aOpenDataZip` &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected' &&
+    reference.originalReview?.rendition === 'institutional-postcard-scan';
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-kaohsiung-museum-postcard-unverified'],
+  };
+}
+
+/** Plate I in the museum's own 1925 catalogue, marked PDM by the National Diet Library. */
+function inspectLushunMuseumPlate(dir, reference) {
+  const archive = 'https://dl.ndl.go.jp/api/iiif/925883';
+  const source = 'https://ndlsearch.ndl.go.jp/books/R100000002-I000000547112';
+  const download = `${archive}/R0000004/full/full/0/default.jpg`;
+  const expected = 'd6ffebead3cc52386ebc0732e11774b341faafe68bc4fcc689f63c13c5025e85';
+  const image = localBytes(dir, reference.path);
+  const manifest = localBytes(dir, reference.rightsEvidence?.path);
+  const catalog = localBytes(dir, reference.catalogEvidence?.path);
+  const facing = localBytes(dir, reference.captionEvidence?.path);
+  const record = snapshotJson(manifest);
+  const metadata = new Map((record?.metadata ?? []).map((field) => [field.label, field.value]));
+  const canvas = record?.sequences?.[0]?.canvases?.[3];
+  const eligible =
+    !!image &&
+    digest(image) === expected &&
+    plainHash(reference.sha256) === expected &&
+    !!manifest &&
+    digest(manifest) === plainHash(reference.rightsEvidence?.sha256) &&
+    !!catalog &&
+    digest(catalog) === plainHash(reference.catalogEvidence?.sha256) &&
+    catalog.toString().includes('"pdm"') &&
+    catalog.toString().includes('10.11501/925883') &&
+    !!facing &&
+    digest(facing) === 'f5d546761be6a825f3222b12ce9d3f39c4f06e9f77e7d17e90ad7e42352399ba' &&
+    digest(facing) === plainHash(reference.captionEvidence?.sha256) &&
+    metadata.get('Persistent ID') === 'info:ndljp/pid/925883' &&
+    metadata.get('Title') === '[関東庁]博物館陳列品図譜' &&
+    metadata.get('Publisher') === '関東庁博物館' &&
+    metadata.get('Publication Date (W3CDTF fortmat)') === '1925' &&
+    metadata.get('Access Restrictions') === 'PDM' &&
+    canvas?.['@id'] === `${archive}/canvas/4` &&
+    canvas.images?.[0]?.resource?.['@id'] === download &&
+    reference.sourceUrl === source &&
+    reference.downloadUrl === download &&
+    reference.rightsEvidence?.sourceUrl === `${archive}/manifest.json` &&
+    reference.catalogEvidence?.sourceUrl === source &&
+    reference.captionEvidence?.sourceUrl === `${archive}/R0000003/full/full/0/default.jpg` &&
+    reference.artist === 'Kwantung Government Museum (publisher)' &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected' &&
+    reference.originalReview?.rendition === 'original-print-scan' &&
+    reference.originalReview?.printedPlate === 'I';
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-lushun-museum-plate-unverified'],
+  };
+}
+
+/** The University of Hawaiʻi's two-sided scan of the original Japanese hotel postcard. */
+function inspectNaraHotelPostcard(dir, reference) {
+  const archive = 'https://digital.library.manoa.hawaii.edu';
+  const itemUrl = `${archive}/api/items/43772`;
+  const filesUrl = `${archive}/api/files?item=43772`;
+  const source = `${archive}/items/show/43772`;
+  const download = `${archive}/files/original/c04edf499e4d7915ec983cfdf918a164.jpg`;
+  const image = localBytes(dir, reference.path);
+  const imageHash = '3c7a494db4a3490bb1d1a9da0599a217fd1708520aed487d56384d068edacaaa';
+  const bound = (record) => {
+    const bytes = localBytes(dir, record?.path);
+    return bytes && digest(bytes) === plainHash(record?.sha256) ? bytes : undefined;
+  };
+  const item = snapshotJson(bound(reference.rightsEvidence));
+  const files = snapshotJson(bound(reference.catalogEvidence));
+  const reverse = bound(reference.reverseEvidence);
+  const japan = plainText(bound(reference.japanEvidence)?.toString() ?? '');
+  const restoration = plainText(bound(reference.restorationEvidence)?.toString() ?? '');
+  const field = (key) => item?.element_texts?.find((v) => v.element?.name === key)?.text;
+  const eligible =
+    !!image &&
+    digest(image) === imageHash &&
+    plainHash(reference.sha256) === imageHash &&
+    !!reverse &&
+    digest(reverse) === 'a05e8e0cb1ba71ab19f9b79328f5e0ecdb1e1b56274c6bd42b9abf2c4ad0cc2e' &&
+    item?.id === 43772 &&
+    item.public === true &&
+    item.item_type?.name === 'Postcard' &&
+    item.files?.url === filesUrl &&
+    field('Identifier') === 'PS731' &&
+    field('Title') === 'Nara Hotel' &&
+    field('Date') === 'c. 1918-1932' &&
+    field('Description')?.includes('Nara Hotel, The Ancient Capital. Nara. The Best in Japan.') &&
+    Array.isArray(files) &&
+    files.some(
+      (file) =>
+        file.item?.url === itemUrl &&
+        file.original_filename === 'ps731a.jpg' &&
+        file.file_urls?.original === download &&
+        file.size === image.length,
+    ) &&
+    files.some(
+      (file) =>
+        file.item?.url === itemUrl &&
+        file.original_filename === 'ps731b.jpg' &&
+        file.file_urls?.original === reference.reverseEvidence?.sourceUrl &&
+        file.size === reverse.length,
+    ) &&
+    japan.includes(
+      'The term of protection for photographs published no later than 1957 is considered to have expired',
+    ) &&
+    restoration.includes(
+      'were protected by copyright or neighboring rights in the source country',
+    ) &&
+    reference.sourceUrl === source &&
+    reference.downloadUrl === download &&
+    reference.rightsEvidence?.sourceUrl === itemUrl &&
+    reference.catalogEvidence?.sourceUrl === filesUrl &&
+    reference.japanEvidence?.sourceUrl === 'https://www.ndl.go.jp/en/help/utilizing' &&
+    reference.restorationEvidence?.sourceUrl === 'https://www.copyright.gov/gatt.html' &&
+    reference.artist === 'Nara Hotel (postcard imprint)' &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected' &&
+    reference.originalReview?.rendition === 'original-postcard-scan';
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-nara-hotel-postcard-unverified'],
+  };
+}
+
+/** Library of Congress service scan of the Detroit Publishing panorama registered in 1901. */
+function inspectDetroitMackinacPanorama(dir, reference) {
+  const itemId = '2016800770';
+  const panel = '4a06088';
+  const source = `https://www.loc.gov/item/${itemId}/`;
+  const download = `https://tile.loc.gov/storage-services/service/pnp/det/4a00000/4a06000/4a06000/${panel}v.jpg`;
+  const rightsUrl = 'https://wwws.loc.gov/rr/print/res/102_det.html';
+  const expected = '9cee1fb083b8e64bae8facfe691ecfc10b82602020ecd96eca8798c61ce33c58';
+  const image = localBytes(dir, reference.path);
+  const rights = localBytes(dir, reference.rightsEvidence?.path);
+  const catalog = localBytes(dir, reference.catalogEvidence?.path);
+  const record = snapshotJson(catalog);
+  const item = record?.item;
+  const creators = item?.item?.creators ?? [];
+  const resources = (record?.resources ?? []).flatMap((r) => (r.files ?? []).flat());
+  const eligible =
+    !!image &&
+    digest(image) === expected &&
+    plainHash(reference.sha256) === expected &&
+    !!rights &&
+    digest(rights) === plainHash(reference.rightsEvidence?.sha256) &&
+    plainText(rights.toString()).includes(
+      'Those published more than 95 years ago are in the public domain.',
+    ) &&
+    !!catalog &&
+    digest(catalog) === plainHash(reference.catalogEvidence?.sha256) &&
+    item?.item?.id === itemId &&
+    item.item.created_published === 'c1901.' &&
+    item.item.rights_advisory === 'No known restrictions on publication.' &&
+    item.item.digital_id?.includes(`det ${panel} https://hdl.loc.gov/loc.pnp/det.${panel}`) &&
+    creators.some((c) => c.role === 'publisher' && c.title === 'Detroit Publishing Co.') &&
+    creators.some((c) => c.role === 'copyright claimant' && c.title === 'Detroit Publishing Co.') &&
+    resources.some(
+      (f) => f.url === download && f.mimetype === 'image/jpeg' && f.size === image.length,
+    ) &&
+    reference.sourceUrl === source &&
+    reference.downloadUrl === download &&
+    reference.rightsEvidence?.sourceUrl === rightsUrl &&
+    reference.catalogEvidence?.sourceUrl === `${source}?fo=json` &&
+    reference.artist === 'Detroit Publishing Company' &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected' &&
+    reference.originalReview?.rendition === 'library-service-scan-from-negative';
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-detroit-mackinac-panorama-unverified'],
+  };
+}
+
+/** Richard Hanitsch's signed photograph in the National Library Board's 1908 guide. */
+function inspectRafflesLibraryPlate(dir, reference) {
+  const archive = 'Guidezoological00Nati';
+  const page = 'https://www.biodiversitylibrary.org/page/47142049';
+  const metadataUrl = `https://archive.org/metadata/${archive}`;
+  const fileUrl = `https://archive.org/download/${archive}/page/n5.jpg`;
+  const expected = 'c1f98399148ee9ce85d85a0ff35adc0fe66eb9fa330a1989c982058478050f9d';
+  const photo = localBytes(dir, reference.path);
+  const catalogue = localBytes(dir, reference.rightsEvidence?.path);
+  const index = localBytes(dir, reference.pageIndexEvidence?.path);
+  const metadata = snapshotJson(catalogue)?.metadata;
+  const indexText = index?.toString('utf8') ?? '';
+  const eligible =
+    !!photo &&
+    digest(photo) === expected &&
+    plainHash(reference.sha256) === expected &&
+    !!catalogue &&
+    digest(catalogue) === plainHash(reference.rightsEvidence?.sha256) &&
+    !!index &&
+    digest(index) === plainHash(reference.pageIndexEvidence?.sha256) &&
+    /<mets:div TYPE="page" ORDER="6" LABEL="PLATE I">\s*<mets:fptr FILEID="pageImg47142049"\s*\/>/.test(
+      indexText,
+    ) &&
+    indexText.includes(`xlink:href="${page}"`) &&
+    metadata?.identifier === archive &&
+    metadata.title === 'Guide to the zoological collections of the Raffles Museum, Singapore' &&
+    metadata.date === '1908' &&
+    metadata.publisher === 'Singapore : Printed by the Straits Times Press' &&
+    metadata.contributor === 'National Library Board, Singapore' &&
+    Array.isArray(metadata.creator) &&
+    metadata.creator.includes('Hanitsch, R') &&
+    metadata['possible-copyright-status'] ===
+      'Public domain. The BHL considers that this work is no longer under copyright protection.' &&
+    reference.sourceUrl === page &&
+    reference.downloadUrl === fileUrl &&
+    reference.rightsEvidence?.sourceUrl === metadataUrl &&
+    reference.pageIndexEvidence?.sourceUrl ===
+      `https://archive.org/download/${archive}/${archive}_bhlmets.xml` &&
+    reference.license === 'Public domain' &&
+    reference.artist === 'Richard Hanitsch' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected' &&
+    reference.originalReview?.rendition === 'original-print-scan' &&
+    reference.originalReview?.printedPlate === 'I';
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-raffles-library-plate-unverified'],
+  };
+}
+
+/** Edmund Körner's measured drawings as printed in the 1914 Berlin monograph. */
+function inspectEssenSynagogueDrawings(dir, reference) {
+  const id = 'dieneuesynagogei00klap';
+  const download = `https://archive.org/download/${id}/${id}.pdf`;
+  const pdf = localBytes(dir, reference.path);
+  const rights = localBytes(dir, reference.rightsEvidence?.path);
+  const { metadata, files } = snapshotJson(rights) ?? {};
+  const original = files?.find((file) => file.name === `${id}.pdf`);
+  const review = reference.originalReview;
+  const hash = '2a6df2515738803d6b99bb4c30d326d2504e62f1a37f338485ed2411a411d2dd';
+  const eligible =
+    !!pdf &&
+    pdf.subarray(0, 5).toString() === '%PDF-' &&
+    digest(pdf) === hash &&
+    plainHash(reference.sha256) === hash &&
+    Number(original?.size) === pdf.length &&
+    original.sha1 === createHash('sha1').update(pdf).digest('hex') &&
+    !!rights &&
+    digest(rights) === plainHash(reference.rightsEvidence?.sha256) &&
+    metadata?.identifier === id &&
+    metadata?.date === '1914' &&
+    metadata?.publisher === 'Berlin : E. Wasmuth' &&
+    metadata?.contributor === 'United States Holocaust Memorial Museum, Rare Book Collection' &&
+    Array.isArray(metadata?.creator) &&
+    metadata.creator.some(
+      (creator) => typeof creator === 'string' && creator.normalize('NFC') === 'Körner, Edmund',
+    ) &&
+    metadata?.['possible-copyright-status'] ===
+      'The USHMM is unaware of any copyright restrictions for this item.' &&
+    reference.sourceUrl === `https://archive.org/details/${id}` &&
+    reference.downloadUrl === download &&
+    reference.rightsEvidence?.sourceUrl === `https://archive.org/metadata/${id}` &&
+    reference.artist === 'Edmund Körner (1874–1940)' &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    review?.status === 'inspected' &&
+    review?.rendition === 'native-original-pdf' &&
+    review?.publicationYear === 1914 &&
+    review?.creatorDied === 1940 &&
+    [13, 42, 112, 119, 125, 128, 133].every((page) => review.pagesInspected?.includes(page));
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-essen-synagogue-drawings-unverified'],
+  };
+}
+
+/** The contemporary published Wardenclyffe tower photograph on page 23760. */
+function inspectWardenclyffeScientificAmerican(dir, reference) {
+  const id = 'sim_scientific-american-supplement_1904-06-04_57_1483';
+  const pdf = localBytes(dir, reference.path);
+  const record = localBytes(dir, reference.rightsEvidence?.path);
+  const { metadata, files } = snapshotJson(record) ?? {};
+  const original = files?.find((file) => file.name === `${id}.pdf`);
+  const review = reference.originalReview;
+  const hash = 'a436dbef745e3d26edb249931ba10d527e7d22df80d85c4884966b5867c2e43e';
+  const eligible =
+    !!pdf &&
+    pdf.subarray(0, 5).toString() === '%PDF-' &&
+    digest(pdf) === hash &&
+    plainHash(reference.sha256) === hash &&
+    Number(original?.size) === pdf.length &&
+    original.sha1 === createHash('sha1').update(pdf).digest('hex') &&
+    !!record &&
+    digest(record) === plainHash(reference.rightsEvidence?.sha256) &&
+    metadata?.identifier === id &&
+    metadata?.date === '1904-06-04' &&
+    metadata?.volume === '57' &&
+    metadata?.issue === '1483' &&
+    reference.sourceUrl === `https://archive.org/details/${id}/page/n3/mode/1up` &&
+    reference.downloadUrl === `https://archive.org/download/${id}/${id}.pdf` &&
+    reference.rightsEvidence?.sourceUrl === `https://archive.org/metadata/${id}` &&
+    reference.artist === 'Uncredited photographer, Scientific American Supplement' &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    review?.status === 'inspected' &&
+    review?.rendition === 'native-original-pdf' &&
+    review?.publicationYear === 1904 &&
+    review?.printedPage === 23760 &&
+    review?.figureNumber === 2;
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-wardenclyffe-1904-photograph-unverified'],
+  };
+}
+
+const naipCrops = {
+  'usda-naip-gainesville-2023-stadium': {
+    id: 'fl_m_2908222_sw_17_030_20230126_20230511',
+    datetime: '2023-01-26T16:00:00Z',
+    resolution: 0.3,
+    directory: 'fl/2023/fl_030cm_2023/29082',
+    file: 'm_2908222_sw_17_030_20230126_20230511.tif',
+    export: '-82.3513,29.6484,-82.3469,29.6516/1150x960.png',
+    sha256: '4335c4b6e56d1b5bcca7e2d56360c962bbcb460939ac349b45d0b8535a4a77a2',
+    blocker: 'supplemental-gainesville-naip-crop-unverified',
+  },
+  'usda-naip-thomasville-2023-house': {
+    id: 'ga_m_3008309_nw_17_060_20231018_20240103',
+    datetime: '2023-10-18T16:00:00Z',
+    resolution: 0.6,
+    directory: 'ga/2023/ga_060cm_2023/30083',
+    file: 'm_3008309_nw_17_060_20231018_20240103.tif',
+    export: '-83.9835,30.84518,-83.9823,30.8462.png',
+    sha256: '1894308fa8b1f3ceb36a791d6de7f212e23f04a9ca06e68fc98883924eb99c8b',
+    blocker: 'supplemental-thomasville-naip-crop-unverified',
+  },
+  'usda-naip-fort-hays-2023': {
+    id: 'ks_m_3809914_nw_14_030_20230814_20231113',
+    datetime: '2023-08-14T16:00:00Z',
+    resolution: 0.3,
+    directory: 'ks/2023/ks_030cm_2023/38099',
+    file: 'm_3809914_nw_14_030_20230814_20231113.tif',
+    export: '-99.34460,38.86140,-99.34197,38.86296.png',
+    sha256: 'b730cffc1aafe33ce5ce171ce3ba4da5444c35db44758fcf0d246ea000ad0d4a',
+    blocker: 'supplemental-fort-hays-naip-crop-unverified',
+  },
+  'usda-naip-swiftsure-2023': {
+    id: 'wa_m_4712222_sw_10_060_20231007_20240209',
+    datetime: '2023-10-07T16:00:00Z',
+    resolution: 0.6,
+    directory: 'wa/2023/wa_060cm_2023/47122',
+    file: 'm_4712222_sw_10_060_20231007_20240209.tif',
+    export: '-122.33732,47.62775,-122.33615,47.62858.png',
+    sha256: '19b4ba71d38d813bb7ff19f2f3a69cce794f9669d7c6c9e569f0ea5375c6ff92',
+    blocker: 'supplemental-swiftsure-naip-crop-unverified',
+  },
+  'usda-naip-ponce-casino-2022': {
+    id: 'pr_m_1806660_sw_19_030_20221016_20230329',
+    datetime: '2022-10-16T16:00:00Z',
+    resolution: 0.3,
+    directory: 'pr/2022/pr_030cm_2022/18066/60',
+    file: 'm_1806660_sw_19_030_20221016_20230329.tif',
+    export: '-66.61357,18.00972,-66.61237,18.01062.png',
+    sha256: '811b1b0ab462b2cb0a89ac8a2c3f1d78ba8ddc3678d7afa4330f144008b4684e',
+    blocker: 'supplemental-ponce-casino-naip-crop-unverified',
+  },
+};
+
+/** Verify the published US Department of Agriculture item and the exact inspected crop. */
+function inspectNaipReference(dir, reference) {
+  const crop = naipCrops[reference.origin];
+  const itemUrl = `https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/${crop.id}`;
+  const exportUrl =
+    `https://planetarycomputer.microsoft.com/api/data/v1/item/bbox/${crop.export}` +
+    `?collection=naip&item=${crop.id}&assets=image&bidx=1&bidx=2&bidx=3`;
+  const image = localBytes(dir, reference.path);
+  const snapshot = localBytes(dir, reference.rightsEvidence?.path);
+  const item = snapshotJson(snapshot);
+  const eligible =
+    !!image &&
+    digest(image) === crop.sha256 &&
+    plainHash(reference.sha256) === crop.sha256 &&
+    !!snapshot &&
+    digest(snapshot) === plainHash(reference.rightsEvidence?.sha256) &&
+    item?.id === crop.id &&
+    item?.collection === 'naip' &&
+    item?.properties?.datetime === crop.datetime &&
+    item.properties.gsd === crop.resolution &&
+    item.properties.providers?.some(
+      ({ name, roles }) => name === 'USDA Farm Service Agency' && roles?.includes('licensor'),
+    ) &&
+    item.assets?.image?.href ===
+      `https://naipeuwest.blob.core.windows.net/naip/v002/${crop.directory}/${crop.file}` &&
+    reference.artist === 'USDA Farm Service Agency' &&
+    reference.license === 'Public domain' &&
+    reference.sourceUrl === itemUrl &&
+    reference.rightsEvidence?.sourceUrl === itemUrl &&
+    reference.downloadUrl === exportUrl &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected' &&
+    reference.originalReview?.rendition === 'native-item-natural-color-crop';
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : [crop.blocker],
+  };
+}
+
+const swiftsureSurveyImages = {
+  'sheet/00001v.jpg': {
+    resource: 'sheet/?sp=1',
+    creator: 'U.S. Office of the Light-House Board',
+    credit: 'U.S. Office of the Light-House Board',
+    sha256: 'da3893bb4fc8c2778a500199f168938de6b18e66317252d741c2266034ef890d',
+  },
+  'sheet/00004v.jpg': {
+    resource: 'sheet/?sp=4',
+    creator: 'U.S. Office of the Light-House Board',
+    credit: 'U.S. Office of the Light-House Board',
+    sha256: '48bbddc0cf81aa592f1159d32473588ed3ef913d68a2f368a4ee3aeb28ed552a',
+  },
+  'photos/204356pv.jpg': {
+    resource: 'photos/?sp=1',
+    creator: 'Lowe, Jet, photographer',
+    credit: 'Jet Lowe, Historic American Engineering Record',
+    sha256: '199e243dc39fdf3ae3b674fdbc5400f694279185c8b3905837cddbbede74a7c0',
+  },
+};
+
+/** Match the reviewed federal drawings or the specifically credited staff photograph. */
+function inspectSwiftsureSurveyImage(dir, reference) {
+  const imageRoot = 'https://tile.loc.gov/storage-services/service/pnp/habshaer/wa/wa0700/wa0747/';
+  const archive = 'https://www.loc.gov/resource/hhh.wa0747.';
+  const file = reference.downloadUrl?.startsWith(imageRoot)
+    ? reference.downloadUrl.slice(imageRoot.length)
+    : '';
+  const expected = Object.hasOwn(swiftsureSurveyImages, file) && swiftsureSurveyImages[file];
+  const image = localBytes(dir, reference.path);
+  const rights = localBytes(dir, reference.rightsEvidence?.path);
+  const catalogBytes = localBytes(dir, reference.catalogEvidence?.path);
+  const catalog = snapshotJson(catalogBytes);
+  const eligible =
+    !!expected &&
+    !!image &&
+    digest(image) === expected.sha256 &&
+    plainHash(reference.sha256) === expected.sha256 &&
+    !!rights &&
+    digest(rights) === plainHash(reference.rightsEvidence?.sha256) &&
+    reference.rightsEvidence?.sourceUrl === 'https://wwws.loc.gov/rr/print/res/114_habs.html' &&
+    plainText(rights.toString()).includes(
+      'created for the U.S. Government and are considered to be in the public domain',
+    ) &&
+    !!catalogBytes &&
+    digest(catalogBytes) === plainHash(reference.catalogEvidence?.sha256) &&
+    catalog?.item?.contributor_names?.includes(expected.creator) &&
+    catalog.item.rights_advisory?.includes(
+      'No known restrictions on images made by the U.S. Government',
+    ) &&
+    reference.sourceUrl === archive + expected.resource &&
+    catalog.segments?.some(
+      (segment) =>
+        segment.url === reference.sourceUrl &&
+        segment.title.includes('Lightship No. 83') &&
+        segment.image_url?.some((url) => url.split('#')[0] === reference.downloadUrl),
+    ) &&
+    reference.artist === expected.credit &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected';
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-swiftsure-federal-survey-image-unverified'],
+  };
+}
+
+const tobolskPrints = {
+  'https://www.loc.gov/item/2018689690/': {
+    download:
+      'https://tile.loc.gov/image-services/iiif/public:gdc:2018689690:npc00214/full/pct:100.0/0/default.jpg',
+    record: 'https://www.loc.gov/item/2018689690/?fo=json',
+    credit: 'A. V. Januszkiewicz (publisher)',
+    hash: '18ae36135adfce5dca93a440c2c8b9262eb124c2149e0466d90dfb0139941d78',
+    check: (doc) =>
+      doc?.item?.number_lccn?.includes('2018689690') &&
+      doc.item.created_published?.some((row) => row.endsWith('1904-1917.')) &&
+      doc.item.notes?.includes('Original image at: National Library of Russia'),
+  },
+  'https://www.loc.gov/item/2007683265/': {
+    download: 'https://cdn.loc.gov/service/pnp/ppmsca/15700/15749v.jpg',
+    record: 'https://www.loc.gov/item/2007683265/?fo=json',
+    credit: 'Underwood & Underwood',
+    hash: '70411c11d7dd50b59f95ef9c608d2987d03be7d3a306f8bb81864dffb2aee89c',
+    check: (doc) =>
+      doc?.item?.number_lccn?.includes('2007683265') &&
+      doc.item.notes?.includes('Copyright deposit; 1921.') &&
+      doc.item.rights_advisory === 'No known restrictions on publication.',
+  },
+  'https://archive.org/details/lifetragedyofale00sofi/page/n348/mode/1up': {
+    download: 'https://archive.org/download/lifetragedyofale00sofi/page/n348.jpg',
+    record: 'https://archive.org/metadata/lifetragedyofale00sofi',
+    credit: 'Longmans, Green and Co. (publisher)',
+    hash: 'e2e58fcd3dba7b67aeccf7689bc76300f437c621f7337130de547c0ab6384102',
+    check: (doc) =>
+      doc?.metadata?.identifier === 'lifetragedyofale00sofi' &&
+      doc.metadata.contributor === 'UCLA Library, Preservation Department' &&
+      doc.metadata.publisher?.includes('Longmans, Green and co.'),
+  },
+};
+
+/** Tie the three individually dated mansion views to their original print editions. */
+function inspectTobolskPrint(dir, reference) {
+  const expected =
+    Object.hasOwn(tobolskPrints, reference.sourceUrl) && tobolskPrints[reference.sourceUrl];
+  const image = localBytes(dir, reference.path);
+  const record = localBytes(dir, reference.rightsEvidence?.path);
+  const titleLeaf = reference.sourceUrl?.startsWith('https://archive.org/')
+    ? localBytes(dir, reference.catalogEvidence?.path)
+    : undefined;
+  const eligible =
+    !!expected &&
+    !!image &&
+    !!record &&
+    digest(image) === expected.hash &&
+    plainHash(reference.sha256) === expected.hash &&
+    digest(record) === plainHash(reference.rightsEvidence?.sha256) &&
+    reference.rightsEvidence?.sourceUrl === expected.record &&
+    expected.check(snapshotJson(record)) &&
+    reference.downloadUrl === expected.download &&
+    reference.artist === expected.credit &&
+    reference.license === 'Public domain' &&
+    (!reference.sourceUrl.startsWith('https://archive.org/') ||
+      (!!titleLeaf &&
+        digest(titleLeaf) === 'c2cbe67c51dd7e8665c7b7b8cb5df761dc0a656e8fcca1d2132fbe9457276d02' &&
+        digest(titleLeaf) === plainHash(reference.catalogEvidence?.sha256) &&
+        reference.catalogEvidence?.sourceUrl ===
+          'https://archive.org/download/lifetragedyofale00sofi/page/n10.jpg')) &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected';
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-tobolsk-original-print-unverified'],
+  };
+}
+
+/** Bind the individually cleared 1984 Ponce photograph to the nomination and permission record. */
+function inspectPonceCasinoPhotograph(dir, reference) {
+  const native = 'https://commons.wikimedia.org/wiki/File:Casino_de_Ponce.JPG';
+  const archival = 'https://npgallery.nps.gov/GetAsset/2d0ae558-93fa-410d-8690-1e3cba31faec';
+  const image = localBytes(dir, reference.path);
+  const grant = localBytes(dir, reference.rightsEvidence?.path);
+  const nomination = localBytes(dir, reference.catalogEvidence?.path);
+  const grantText = plainText(grant?.toString());
+  const eligible =
+    !!image &&
+    !!grant &&
+    !!nomination &&
+    digest(image) === 'fb121f10271d1ca7d63ee1e52463cbfd9fcb372ef046a9a5f87ebe126a200d93' &&
+    digest(image) === plainHash(reference.sha256) &&
+    digest(grant) === plainHash(reference.rightsEvidence?.sha256) &&
+    digest(nomination) === plainHash(reference.catalogEvidence?.sha256) &&
+    digest(nomination) === 'f9b759124e0d541979d8c98736f4e3ae7127bd36db1f571629a0162cc1595357' &&
+    reference.artist === 'Pablo Ojeda for the Puerto Rico State Historic Preservation Office' &&
+    reference.license === 'Public domain' &&
+    reference.sourceUrl === native &&
+    reference.downloadUrl ===
+      'https://upload.wikimedia.org/wikipedia/commons/7/73/Casino_de_Ponce.JPG' &&
+    reference.rightsEvidence?.sourceUrl === native &&
+    reference.catalogEvidence?.sourceUrl === archival &&
+    grantText.includes('considered of the Public Domain') &&
+    grantText.includes(
+      'copyright holder has approved publication under the terms mentioned on this page',
+    ) &&
+    grantText.includes('2010062610023503') &&
+    reference.originalReview?.status === 'inspected' &&
+    reference.originalReview?.pdfObject === 144 &&
+    reference.originalReview?.matchedLuminanceCorrelation > 0.995 &&
+    reference.visuallyReviewedForThisPolicy === true;
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-ponce-casino-vrt-public-domain-unverified'],
+  };
+}
+
+/** The Broadway facade photograph from the Library of Congress copy of Greater Oakland. */
+function inspectKeyRouteInnHistoricalPhoto(dir, reference) {
+  const id = 'greateroakland1901blak';
+  const leaf = localBytes(dir, reference.path);
+  const record = localBytes(dir, reference.rightsEvidence?.path);
+  const index = localBytes(dir, reference.catalogEvidence?.path);
+  const { metadata } = snapshotJson(record) ?? {};
+  const review = reference.originalReview;
+  const hash = '61aa87f7ded8ca3202c0ad6f3bf501ec89be4239912e0a3f11dfc406e53f5563';
+  const eligible =
+    !!leaf &&
+    digest(leaf) === hash &&
+    plainHash(reference.sha256) === hash &&
+    !!record &&
+    digest(record) === plainHash(reference.rightsEvidence?.sha256) &&
+    !!index &&
+    digest(index) === plainHash(reference.catalogEvidence?.sha256) &&
+    index.toString().includes('<page leafNum="306">') &&
+    metadata?.identifier === id &&
+    metadata?.date === '1911' &&
+    metadata?.contributor === 'The Library of Congress' &&
+    metadata?.collection?.includes('library_of_congress') &&
+    reference.sourceUrl === `https://archive.org/details/${id}/page/n306/mode/1up` &&
+    reference.downloadUrl === `https://archive.org/download/${id}/page/n306/mode/1up.jpg` &&
+    reference.rightsEvidence?.sourceUrl === `https://archive.org/metadata/${id}` &&
+    reference.catalogEvidence?.sourceUrl ===
+      `https://archive.org/download/${id}/${id}_scandata.xml` &&
+    reference.artist === 'Uncredited photographer, Greater Oakland' &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    review?.status === 'inspected' &&
+    review?.rendition === 'native-archive-leaf' &&
+    review?.publicationYear === 1911 &&
+    review?.printedPage === 291 &&
+    review?.archiveLeaf === 306;
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-key-route-inn-1911-photograph-unverified'],
+  };
+}
+
+/** The three contemporary photographs of the unfinished works in the 1903 Strand. */
+function inspectJezreelStrandPhotographs(dir, reference) {
+  const id = 'sim_strand-magazine_1903-08_26_152';
+  const issue = localBytes(dir, reference.path);
+  const record = localBytes(dir, reference.rightsEvidence?.path);
+  const { metadata, files } = snapshotJson(record) ?? {};
+  const original = files?.find((file) => file.name === `${id}.pdf`);
+  const review = reference.originalReview;
+  const hash = 'b60ed5d0938dcc7eb48af66fae3dd6db87c5947beb6b323d4f7f4dd088335ccb';
+  const eligible =
+    !!issue &&
+    issue.subarray(0, 5).toString() === '%PDF-' &&
+    digest(issue) === hash &&
+    plainHash(reference.sha256) === hash &&
+    Number(original?.size) === issue.length &&
+    original.sha1 === createHash('sha1').update(issue).digest('hex') &&
+    !!record &&
+    digest(record) === plainHash(reference.rightsEvidence?.sha256) &&
+    metadata?.identifier === id &&
+    metadata?.date === '1903-08' &&
+    metadata?.volume === '26' &&
+    metadata?.issue === '152' &&
+    reference.sourceUrl === `https://archive.org/details/${id}/page/233/mode/1up` &&
+    reference.downloadUrl === `https://archive.org/download/${id}/${id}.pdf` &&
+    reference.rightsEvidence?.sourceUrl === `https://archive.org/metadata/${id}` &&
+    reference.artist === 'Uncredited photographer, The Strand Magazine' &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    review?.status === 'inspected' &&
+    review?.rendition === 'native-original-pdf' &&
+    review?.publicationYear === 1903 &&
+    [233, 234, 235].every((page) => review?.pagesInspected?.includes(page));
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-jezreel-1903-photographs-unverified'],
+  };
+}
+
+/** The uncredited 1928 pavilion view printed in the December 19 Architects' Journal. */
+function inspectTowerHillArchitectsJournal(dir, reference) {
+  const source = 'https://www.usmodernist.org/AJUK/AJUK-1928-12-19.pdf';
+  const issue = localBytes(dir, reference.path);
+  const record = localBytes(dir, reference.rightsEvidence?.path);
+  const catalog = snapshotJson(record);
+  const review = reference.originalReview;
+  const hash = 'af385c03cd84a934e287c8077e8ae20cb7d456c7b4e6afdaf176597c46bf649f';
+  const eligible =
+    !!issue &&
+    issue.subarray(0, 5).toString() === '%PDF-' &&
+    digest(issue) === hash &&
+    plainHash(reference.sha256) === hash &&
+    !!record &&
+    digest(record) === plainHash(reference.rightsEvidence?.sha256) &&
+    catalog?.issue === source &&
+    catalog?.date === '1928-12-19' &&
+    catalog?.printedPage === 872 &&
+    catalog?.pdfPage === 4 &&
+    catalog?.photographer === 'Uncredited' &&
+    catalog?.photoCaption?.endsWith('from the design of Sir Edwin Lutyens.') &&
+    reference.sourceUrl === `${source}#page=4` &&
+    reference.downloadUrl === source &&
+    reference.artist === "Uncredited photographer, The Architects' Journal" &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    review?.status === 'inspected' &&
+    review?.rendition === 'native-original-pdf' &&
+    review?.publicationYear === 1928 &&
+    review?.printedPage === 872;
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-tower-hill-1928-photograph-unverified'],
+  };
+}
+
+/** Original archive scans identified in the North Holland Archives' De Boer catalog export. */
+function inspectDeBoerHaarlemPhotograph(dir, reference) {
+  const expected = {
+    'NL-HlmNHA_1478_00659K00_28':
+      'fc7a41fa7b589eab8ce0e997601f2997ab21a43eddb6d06735e0d8a873346d1f',
+    'NL-HlmNHA_1478_00837K00_13':
+      '686301bc58a78f3fbeabb9d3adb2c92326645ba803c89d639ef72d1d455e0de6',
+    'NL-HlmNHA_1478_00837K00_16':
+      '5596869b3440614c91d93dc3f315c3a62a0f5cb3666d6d0342411641059ce7c4',
+    'NL-HlmNHA_1478_32352K00_27':
+      '7840ec3f473a38b2ef87f227aae80aeaae67ad0545fcfdc98009ad83e404b510',
+  }[reference.archiveIdentifier];
+  const original = localBytes(dir, reference.path);
+  const rights = localBytes(dir, reference.rightsEvidence?.path);
+  const proof = snapshotJson(rights);
+  const published = localBytes(dir, proof?.releasePath);
+  const item = proof?.item;
+  const thumbnail = item?.photograph_thumbnail ?? '';
+  const eligible =
+    /^[a-f0-9]{64}$/.test(expected ?? '') &&
+    !!original &&
+    digest(original) === expected &&
+    plainHash(reference.sha256) === expected &&
+    !!rights &&
+    digest(rights) === plainHash(reference.rightsEvidence?.sha256) &&
+    reference.rightsEvidence?.sourceUrl === 'https://doi.org/10.5334/johd.271' &&
+    !!published &&
+    digest(published) === 'cef243258dcf254f52a6081c0541343563037351c0970046f5a7429af0d2d792' &&
+    proof.catalog === 'https://ssh.datastations.nl/api/access/datafile/210171' &&
+    proof.collectionOwner === 'Noord-Hollands Archief' &&
+    item?.photograph_identifier === reference.archiveIdentifier &&
+    /^https:\/\/hdl\.handle\.net\/21\.12102\/[0-9a-f-]{36}$/.test(item.photograph_uri ?? '') &&
+    item.photograph_uri === reference.sourceUrl &&
+    /^https:\/\/maior-images\.memorix\.nl\/ranh\/iiif\/[0-9a-f-]{36}\/full\/,250\/0\/default\.jpg$/.test(
+      thumbnail,
+    ) &&
+    thumbnail.replace('/,250/', '/max/') === reference.downloadUrl &&
+    reference.artist === 'Fotopersbureau De Boer' &&
+    reference.license === 'CC0' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected' &&
+    reference.originalReview?.rendition === 'archive-full-negative-scan';
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-de-boer-haarlem-archive-unverified'],
+  };
+}
+
 /** University of Victoria's scan of the September 1912 Grant Street school illustration. */
 function inspectVictoriaDailyTimesPage(dir, reference) {
   const identifier = 'victoriadailytimes19120916';
@@ -854,6 +1857,118 @@ export function inspectNpsReference(dir, reference) {
   };
 }
 
+/** The dated Fidanza album plate showing the Palacete Provincial. */
+function inspectFidanzaManausPlate(dir, reference) {
+  const source = 'https://idd.org.br/iconografia/as-dependencias-do-quartel-da-policia/';
+  const catalog = 'https://bdlb.bn.gov.br/acervo/handle/20.500.12156.3/45809';
+  const download =
+    'https://idd.org.br/wp-content/uploads/2020/12/Quartel-de-policia.-Album-do-Amazonas-1901-1902.-p.-52-scaled.jpg';
+  const expected = 'c6b3f195eaed757761363c6e60bf13fdfc2410d24b528d3465334a96b7550502';
+  const image = localBytes(dir, reference.path);
+  const snapshot = localBytes(dir, reference.rightsEvidence?.path);
+  const review = reference.originalReview;
+  const eligible = Boolean(
+    image &&
+      digest(image) === expected &&
+      plainHash(reference.sha256) === expected &&
+      snapshot &&
+      digest(snapshot) === plainHash(reference.rightsEvidence?.sha256) &&
+      snapshot.includes(`<meta property="og:url" content="${source}"`) &&
+      snapshot.includes(`<meta property="og:image" content="${download}"`) &&
+      snapshot.includes('<p><strong>Foto: </strong>F. A. Fidanza</p>') &&
+      reference.sourceUrl === source &&
+      reference.rightsEvidence?.sourceUrl === source &&
+      reference.downloadUrl === download &&
+      reference.artist === 'Filipe Augusto Fidanza' &&
+      reference.license === 'Public domain' &&
+      reference.width === 2560 &&
+      reference.height === 1945 &&
+      review?.status === 'inspected' &&
+      review.rendition === 'archive-published-complete-plate' &&
+      review.nativeCatalogue === catalog &&
+      review.publicationYear === 1902 &&
+      review.printedPage === 52,
+  );
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers: eligible ? [] : ['supplemental-fidanza-album-plate-unverified'],
+    eligible,
+  };
+}
+
+/** The Hamburg State Library's public-domain scan of the original 1914 printed photograph. */
+function inspectHamburgLomePalacePlate(dir, reference) {
+  const source = 'https://resolver.sub.uni-hamburg.de/kitodo/PPN1026639638_1914';
+  const pdf = 'https://img.sub.uni-hamburg.de/kitodo/PPN1026639638_1914/PDF/PPN1026639638_1914.pdf';
+  const archiveHash = '2c0877a677331a587520dc6cb2c944fbe489d64fa52d0ae22d75c96e3ededd91';
+  const archive = localBytes(dir, reference.rightsEvidence?.path);
+  const image = localBytes(dir, reference.path);
+  const review = reference.originalReview;
+  const eligible = Boolean(
+    archive &&
+      digest(archive) === archiveHash &&
+      plainHash(reference.rightsEvidence?.sha256) === archiveHash &&
+      image?.equals(archive.subarray(2851142, 3413359)) &&
+      digest(image) === plainHash(reference.sha256) &&
+      reference.width === 1693 &&
+      reference.height === 2112 &&
+      reference.sourceUrl === source &&
+      reference.rightsEvidence?.sourceUrl === pdf &&
+      reference.downloadUrl === `${pdf}#page=7` &&
+      reference.artist === 'Uncredited photographer' &&
+      reference.license === 'Public domain' &&
+      review?.status === 'inspected' &&
+      review.rendition === 'exact-native-pdf-image-stream' &&
+      review.publicationYear === 1914 &&
+      review.printedPage === 2,
+  );
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers: eligible ? [] : ['supplemental-hamburg-public-domain-plate-unverified'],
+    eligible,
+  };
+}
+
+/** The captioned NPS staff photographs of the standing Fort Frederik. */
+function inspectFortFrederikPhotos(dir, reference) {
+  const source = 'https://npgallery.nps.gov/GetAsset/7d69ecde-7b56-489d-8a91-448c0c8a7378';
+  const archiveHash = '39fb6635d4bb029f0264eec0986bd56753e5521361d764d16810e5e0521d30a2';
+  const photos = new Map([
+    [1, { start: 7690, length: 175249, width: 1506, height: 944 }],
+    [2, { start: 208441, length: 150605, width: 1482, height: 933 }],
+  ]);
+  const image = localBytes(dir, reference.path);
+  const archive = localBytes(dir, reference.rightsEvidence?.path);
+  const review = reference.originalReview;
+  const photo = photos.get(review?.printedPage);
+  const eligible = Boolean(
+    archive &&
+      digest(archive) === archiveHash &&
+      plainHash(reference.rightsEvidence?.sha256) === archiveHash &&
+      image &&
+      photo &&
+      image.equals(archive.subarray(photo.start, photo.start + photo.length)) &&
+      digest(image) === plainHash(reference.sha256) &&
+      reference.width === photo.width &&
+      reference.height === photo.height &&
+      reference.sourceUrl === source &&
+      reference.rightsEvidence?.sourceUrl === source &&
+      reference.downloadUrl === `${source}#page=${review.printedPage}` &&
+      reference.artist === 'Mark Barnes, National Park Service' &&
+      reference.license === 'Public domain' &&
+      review.status === 'inspected' &&
+      review.rendition === 'exact-native-pdf-image-stream',
+  );
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers: eligible ? [] : ['supplemental-nps-captioned-photo-unverified'],
+    eligible,
+  };
+}
+
 /** A dated historical postcard explicitly released in its own NPS image caption. */
 export function inspectNpsHistoricalReference(dir, reference) {
   const blockers = [],
@@ -1430,7 +2545,14 @@ export function inspectCommonsEmbassyReference(dir, reference) {
 }
 
 export function inspectCommonsSelfReference(dir, reference) {
-  if (reference.creatorDedication?.kind === 'english-wikipedia-archived-author-original')
+  if (
+    [
+      'english-wikipedia-archived-author-original',
+      'chinese-wikipedia-archived-author-original',
+      'commons-archived-own-camera-photograph',
+      'commons-archived-confirmed-self-release',
+    ].includes(reference.creatorDedication?.kind)
+  )
     return inspectArchivedAuthorReference(dir, reference);
   const blockers = [],
     image = localBytes(dir, reference.path),
@@ -1456,7 +2578,8 @@ export function inspectCommonsSelfReference(dir, reference) {
     info = page?.imageinfo?.[0],
     meta = info?.extmetadata,
     value = (k) => meta?.[k]?.value;
-  const body = page?.revisions?.[0]?.slots?.main?.['*'] ?? '';
+  const revisionText = page?.revisions?.[0]?.slots?.main;
+  const body = revisionText?.['*'] ?? revisionText?.content ?? '';
   const dedication = reference.creatorDedication;
   // Some early Commons originals predate the Information template. Their
   // uploader's first revision can itself contain the explicit copyright-holder
@@ -1533,9 +2656,26 @@ export function inspectCommonsSelfReference(dir, reference) {
       'No machine-readable source provided. Own work assumed (based on copyright claims).' &&
     /\{\{\s*PD-self\s*\}\}/i.test(body) &&
     !/\{\{\s*(?:PD-user|copyright)/i.test(body);
-  // This Japanese first-person source means "photographed on site". Bind the
-  // named photographer's original self-release and native upload before allowing
-  // the rendered author label's Japanese talk-link suffix.
+  // Match the original Japanese photographer credit and its rendered metadata.
+  // The first upload must carry the release and identify that same photographer.
+  const formerJapaneseAccount = dedication?.originalAccount;
+  const signedJapanesePhotographerRelease =
+    typeof formerJapaneseAccount === 'string' &&
+    formerJapaneseAccount.length > 0 &&
+    formerJapaneseAccount !== dedication.username &&
+    body.includes(`|Source=[[User:${formerJapaneseAccount}|${formerJapaneseAccount}]]`) &&
+    /^\|Author=投稿者が撮影\s*$/m.test(body) &&
+    plainText(value('Artist')) === '投稿者が撮影' &&
+    plainText(value('Credit')).startsWith(`${formerJapaneseAccount} (talk)`) &&
+    json?.authorAccountHistory?.renameRecord?.query?.logevents?.some(
+      (event) =>
+        event.title === `User:${formerJapaneseAccount}` &&
+        Number.isInteger(event.logid) &&
+        event.logid > 0 &&
+        event.params?.olduser === formerJapaneseAccount &&
+        event.params?.newuser === dedication.username &&
+        Date.parse(event.timestamp) > Date.parse(first?.timestamp),
+    );
   const japanesePhotographerRelease =
     reference.origin === 'commons-self-public-domain' &&
     reference.license === 'Public domain' &&
@@ -1546,13 +2686,19 @@ export function inspectCommonsSelfReference(dir, reference) {
     dedication.revision === first?.revid &&
     first?.parentid === 0 &&
     page.imageinfo.length === 1 &&
+    !json?.continue?.iicontinue &&
     Number.isFinite(Date.parse(first.timestamp)) &&
     Math.abs(Date.parse(first.timestamp) - Date.parse(info.timestamp)) < 300000 &&
     /\{\{\s*PD-self\s*\}\}/i.test(body) &&
-    /\|\s*Source\s*=\s*現地で撮影\s*(?:\n|\|)/.test(body) &&
-    body.includes(`[[利用者:${dedication.username}|${dedication.username}]]`) &&
-    plainText(value('Credit')) === '現地で撮影' &&
-    plainText(value('Artist')) === `${dedication.username}（会話）`;
+    ((/^\|\s*Source\s*=\s*自身で撮影\s*$/m.test(body) &&
+      body.split(/\r?\n/).includes(`|Author=${dedication.username}`) &&
+      plainText(value('Credit')) === '自身で撮影' &&
+      plainText(value('Artist')) === dedication.username) ||
+      (/\|\s*Source\s*=\s*現地で撮影\s*(?:\n|\|)/.test(body) &&
+        body.includes(`[[利用者:${dedication.username}|${dedication.username}]]`) &&
+        plainText(value('Credit')) === '現地で撮影' &&
+        plainText(value('Artist')) === `${dedication.username}（会話）`) ||
+      signedJapanesePhotographerRelease);
   // A migrated author's explicit grant remains usable, but the granting account,
   // linked author and original file must all agree. A generic PD-user tag cannot qualify.
   const migratedNamedRelease =
@@ -1910,8 +3056,11 @@ export function inspectCommonsSelfReference(dir, reference) {
     !json?.continue?.iicontinue &&
     Math.abs(Date.parse(first.timestamp) - Date.parse(info.timestamp)) < 300000 &&
     info.size === image?.length &&
-    /^\|\s*source\s*=\s*\{\{\s*own\s*\}\}\s*$/im.test(body) &&
-    body.split('\n').includes(`|Author=[[User:${dedication.username}|${dedication.username}]]`) &&
+    /^\|\s*source\s*=\s*(?:\{\{\s*own\s*\}\}|self-made)\s*$/im.test(body) &&
+    body.split('\n').some((line) => {
+      const author = line.match(/^\|\s*author\s*=\s*(.+?)\s*$/i)?.[1];
+      return author === `[[User:${dedication.username}|${dedication.username}]]`;
+    }) &&
     /^\{\{\s*cc-zero\s*\}\}\s*$/im.test(body) &&
     plainText(value('Credit')) === 'Own work';
   const release =
@@ -2979,9 +4128,29 @@ export function inspectImageryInventory({
       (r) =>
         ![
           'birmingham-terminal-original-archive',
+          'hamburg-lome-palace-print-public-domain',
+          'fidanza-manaus-album-public-domain',
+          'nps-fort-frederik-captioned-photo',
           'archive-comayagua-harpers-1859',
           'archive-khartoum-cathedral-building-news-1915',
           'archive-victoria-daily-times-1912',
+          'bhl-1908-raffles-library-plate',
+          'ushmm-essen-synagogue-1914-drawings',
+          'sa-supplement-wardenclyffe-1904-photograph',
+          'architects-journal-tower-hill-1928-photograph',
+          'library-of-congress-key-route-inn-1911-photo',
+          'strand-jezreel-tower-1903-photographs',
+          ...Object.keys(naipCrops),
+          'loc-haer-swiftsure-public-domain',
+          'tobolsk-mansion-historical-print',
+          'ponce-casino-vrt-public-domain',
+          'nha-de-boer-haarlem-cc0-photograph',
+          'loc-1901-detroit-mackinac-panorama',
+          'manoa-hiraoka-nara-hotel-postcard',
+          'ndl-lushun-museum-1925-plate',
+          'aif-antwerp-fine-arts-museum-postcard',
+          'nmth-kaohsiung-city-hall-postcard',
+          'gothenburg-karnell-collection-photo',
           'efeo-cambodia-museum-1930-plate',
           'archives-ontario-hammond-expired-photograph',
           'eth-gau-dendur-1822-survey',
@@ -2992,6 +4161,7 @@ export function inspectImageryInventory({
           'loc-carpenter-expired-original',
           'silesian-library-public-domain-periodical',
           'canadiana-1877-library-engraving',
+          'slnsw-barnet-lighthouse-plan',
           'expired-danish-svedstrup-fort-drawings',
           'expired-rgada-1704-taganrog-plan',
           'amon-carter-moran1870-public-domain',
@@ -3023,8 +4193,10 @@ export function inspectImageryInventory({
         ].includes(r.origin),
     )
     .map((r) =>
-      r.origin === 'nps-agency-photo-public-domain'
-        ? inspectNpsAgencyReference(dir, r)
+      ['nps-agency-photo-public-domain', 'fhwa-byways-photo-public-domain'].includes(r.origin)
+        ? r.origin === 'fhwa-byways-photo-public-domain'
+          ? inspectFhwaBywaysReference(dir, r)
+          : inspectNpsAgencyReference(dir, r)
         : r.origin === 'commons-chile-ilustrado-1872-original-volume'
           ? inspectChileIlustradoReference(dir, r)
           : r.origin === 'archive-carter-1923-original-volume'
@@ -3141,6 +4313,15 @@ export function inspectImageryInventory({
     );
   additionalProof.push(
     ...additional
+      .filter((r) => r.origin === 'fidanza-manaus-album-public-domain')
+      .map((r) => inspectFidanzaManausPlate(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'hamburg-lome-palace-print-public-domain')
+      .map((r) => inspectHamburgLomePalacePlate(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'nps-fort-frederik-captioned-photo')
+      .map((r) => inspectFortFrederikPhotos(dir, r)),
+    ...additional
       .filter((r) => r.origin === 'yale-dura-archive-cc0-plan')
       .map((r) => inspectYaleDuraBaptisteryPlan(dir, r)),
     ...additional
@@ -3158,6 +4339,60 @@ export function inspectImageryInventory({
     ...additional
       .filter((r) => r.origin === 'archive-victoria-daily-times-1912')
       .map((r) => inspectVictoriaDailyTimesPage(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'bhl-1908-raffles-library-plate')
+      .map((r) => inspectRafflesLibraryPlate(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'ushmm-essen-synagogue-1914-drawings')
+      .map((r) => inspectEssenSynagogueDrawings(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'sa-supplement-wardenclyffe-1904-photograph')
+      .map((r) => inspectWardenclyffeScientificAmerican(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'architects-journal-tower-hill-1928-photograph')
+      .map((r) => inspectTowerHillArchitectsJournal(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'library-of-congress-key-route-inn-1911-photo')
+      .map((r) => inspectKeyRouteInnHistoricalPhoto(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'strand-jezreel-tower-1903-photographs')
+      .map((r) => inspectJezreelStrandPhotographs(dir, r)),
+    ...additional
+      .filter((r) => Object.hasOwn(naipCrops, r.origin))
+      .map((r) => inspectNaipReference(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'loc-haer-swiftsure-public-domain')
+      .map((r) => inspectSwiftsureSurveyImage(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'tobolsk-mansion-historical-print')
+      .map((r) => inspectTobolskPrint(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'ponce-casino-vrt-public-domain')
+      .map((r) => inspectPonceCasinoPhotograph(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'nha-de-boer-haarlem-cc0-photograph')
+      .map((r) => inspectDeBoerHaarlemPhotograph(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'loc-1901-detroit-mackinac-panorama')
+      .map((r) => inspectDetroitMackinacPanorama(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'manoa-hiraoka-nara-hotel-postcard')
+      .map((r) => inspectNaraHotelPostcard(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'ndl-lushun-museum-1925-plate')
+      .map((r) => inspectLushunMuseumPlate(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'aif-antwerp-fine-arts-museum-postcard')
+      .map((r) => inspectAntwerpMuseumPostcard(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'nmth-kaohsiung-city-hall-postcard')
+      .map((r) => inspectKaohsiungCityHallPostcard(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'gothenburg-karnell-collection-photo')
+      .map((r) => inspectGothenburgKarnellPhoto(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'slnsw-barnet-lighthouse-plan')
+      .map((r) => inspectBarnetLighthousePlan(dir, r)),
     ...additional
       .filter((r) => r.origin === 'birmingham-terminal-original-archive')
       .map((r) => inspectBirminghamTerminalArchive(dir, r)),

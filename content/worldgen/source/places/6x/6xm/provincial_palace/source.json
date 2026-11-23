@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.provincial_palace",
+  "kind": "static-structure",
+  "title": "Provincial Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.provincial_palace",
+        "output": "assets/places/6x/6xm/provincial_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b9b9ae272ec8514ba711f80a81a52224b33c63d2f1ca9a5a31a8bb31d31c8e49"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-provincial-palace",
+        "path": "models/generate-provincial-palace.mjs"
+      },
+      {
+        "id": "provincial-palace-model",
+        "path": "models/provincial-palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/provincial-palace-footprint.json",
+      "reference-rights/provincial-palace-architectural-facts.json",
+      "reference-originals/manaus-fidanza-album-page-52.jpg",
+      "reference-rights/manaus-fidanza-album-page-52.html",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-10920-16669.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}
