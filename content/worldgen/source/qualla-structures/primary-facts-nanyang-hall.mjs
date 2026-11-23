@@ -5,7 +5,7 @@ import { join } from 'node:path';
 export const nanyangHallCase = 'nanyang-hall-mapped-villa-and-conservation-record';
 export const nanyangHallModel = 'sun_yat_sen_nanyang_memorial_hall';
 
-const hash = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 function readEvidence(dir, evidence, name) {
   if (evidence?.path !== name) throw Error('Unexpected memorial hall source path');

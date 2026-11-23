@@ -6,7 +6,7 @@ export const hongKongPoliceHeadquartersCase =
   'arsenal-house-native-exterior-and-published-construction-facts';
 export const hongKongPoliceHeadquartersModel = 'hong_kong_police_headquarters';
 
-const digest = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const digest = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 export function inspectHongKongPoliceHeadquartersFacts({ dir, proof, controls, frame, inventory }) {

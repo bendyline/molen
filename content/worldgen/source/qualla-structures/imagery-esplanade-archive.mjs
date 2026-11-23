@@ -23,8 +23,8 @@ const plates = new Map([
 ]);
 const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const plain = (hash) => hash?.replace(/^sha256:/, '');
-const leaf = (page) => esplanadeJournal + '&pg=PA' + page;
-const pageFile = (page) => 'deutsche-bauzeitung-1913-p' + page + '.jpg';
+const leaf = (page) => `${esplanadeJournal}&pg=PA${page}`;
+const pageFile = (page) => `deutsche-bauzeitung-1913-p${page}.jpg`;
 
 function localBytes(dir, file) {
   if (typeof file !== 'string' || isAbsolute(file) || file.split(/[\\/]/).includes('..'))
@@ -86,7 +86,7 @@ export function inspectEsplanadeArchive(dir, reference) {
       reference.sourceUrl === mapCatalog &&
       reference.downloadUrl === aerialRequest &&
       record.aerial?.catalog === mapCatalog &&
-      record.aerial.capabilities === mapService + '?SERVICE=WMS&REQUEST=GetCapabilities' &&
+      record.aerial.capabilities === `${mapService}?SERVICE=WMS&REQUEST=GetCapabilities` &&
       digest(localBytes(dir, 'reference-rights/berlin-aerial-1928-wms.xml')) === capabilitiesHash &&
       review.rendition === 'native-georeferenced-aerial';
     if (bound && (aerial || print)) return { ...result, eligible: true, blockers: [] };

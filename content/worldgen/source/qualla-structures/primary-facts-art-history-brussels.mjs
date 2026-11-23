@@ -6,7 +6,7 @@ export const artHistoryBrusselsCase = 'brussels-museum-urbis-8459643-and-heritag
 export const artHistoryBrusselsModel = 'art_and_history_museum';
 export const artHistoryBrusselsInventory = 'https://monument.heritage.brussels/fr/buildings/18704';
 
-const digest = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const digest = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 export function inspectArtHistoryBrusselsFacts({ dir, proof, controls, frame, inventory }) {

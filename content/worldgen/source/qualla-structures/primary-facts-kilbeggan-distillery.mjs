@@ -5,7 +5,7 @@ import { join } from 'node:path';
 export const kilbegganDistilleryCase = 'kilbeggan-distillery-national-inventory-mill-race';
 export const kilbegganDistilleryModel = 'kilbeggan_distillery';
 
-const hash = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 function readRecord(dir, evidence, name) {
   if (evidence?.path !== name) throw Error('Unexpected distillery evidence path');

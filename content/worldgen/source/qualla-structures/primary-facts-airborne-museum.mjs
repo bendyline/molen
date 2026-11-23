@@ -5,7 +5,7 @@ import { join } from 'node:path';
 export const airborneMuseumCase = 'airborne-museum-named-footprint-and-director-history';
 export const airborneMuseumModel = 'airborne_division_war_memorial_museum';
 
-const hash = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 function readBound(dir, source, filename) {
   if (source?.path !== filename) throw Error('Unexpected museum evidence path');

@@ -6,7 +6,7 @@ export const jamkaranCase = 'jamkaran-verified-prayer-halls-and-courtyard';
 export const jamkaranModel = 'jamkaran_mosque';
 
 const metersPerDegree = (6378137 * Math.PI) / 180;
-const hash = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 function boundDocument(dir, evidence, expectedPath) {
   if (evidence?.path !== expectedPath) throw Error('Unexpected Jamkaran source path');
