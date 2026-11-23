@@ -8,7 +8,14 @@ import type { ArchStyleDoc } from './archstyle-types';
 import { buildBuildingAccess } from './building-access';
 import { buildYardFence } from './building-yard';
 import { buildCrowns } from './crowns';
-import { recipeDistantLook, standInTint } from './distant-look';
+import {
+  DECK_ROOF_HEIGHT,
+  MANSARD_DECK_HEIGHT,
+  MAPPED_ROOF_SHARE,
+  recipeDistantLook,
+  roofStandIn,
+  standInTint,
+} from './distant-look';
 import { buildFacade, buildOpeningFrames, type FacadeStats } from './facade';
 import {
   analyzeFootprint,
@@ -56,26 +63,28 @@ export interface BoxPlacement {
   /** three.js rotation about +y. */
   yaw: number;
   sx: number;
+  /** Height of the box: of the walls alone where the stand-in has a `roof`. */
   sy: number;
   sz: number;
+  /** The box's color: the walls'. */
   color: RGB;
   /**
-   * `gable`: a pitched building's stand-in, the `builtin:box.gable` model (walls to
-   * `GABLE_BOX_EAVE` of its height, then a roof ridged along local x, the longer side).
+   * `gable`: a pitched building's stand-in. The box is its walls, and a `builtin:roof.gable`
+   * model `roofHeight` high stands on them, ridged along local x (the longer side), in
+   * `roofColor` (`roofStandIn` in distant-look.ts sizes it from the style's slope).
    */
   roof?: 'gable';
+  /** Height of the roof above the walls, meters (with `roof`). */
+  roofHeight?: number;
+  /** The roof's color (with `roof`). */
+  roofColor?: RGB;
 }
 
-/** Eave of the unit `builtin:box.gable` model, as a fraction of its height. */
+/**
+ * Eave of the unit `builtin:box.gable` model, as a fraction of its height: a small gabled shape
+ * for props. Building stand-ins no longer use it, since its roof is a fixed share of its height.
+ */
 export const GABLE_BOX_EAVE = 0.62;
-
-const PITCHED_STAND_IN: ReadonlySet<string> = new Set([
-  'gable',
-  'hip',
-  'pyramid',
-  'gambrel',
-  'mansard',
-]);
 
 export interface BuildingGenerateInput {
   request: BuildingRequest;
@@ -301,24 +310,12 @@ export function generateBuilding(
       recipe.minHeight === 0 ? foundationDepth : undefined,
     );
     // A pitched building keeps a roof even as a stand-in: from above, roofs are what a
-    // neighbourhood is made of. The ridge runs along the longer side.
-    if (
-      PITCHED_STAND_IN.has(recipe.roof.type) &&
-      input.request.clipped !== true &&
-      recipe.minHeight === 0
-    ) {
-      box.roof = 'gable';
-      // One color per stand-in: its roof's, since the roof is most of what a pitched building
-      // shows from above or afar. Wall-colored ridges made a tiled district read as plaster.
-      box.color = standInTint(look.roof);
-      if (box.sz > box.sx) {
-        [box.sx, box.sz] = [box.sz, box.sx];
-        box.yaw += Math.PI / 2;
-      }
-      // A mapped height is ground to top, roof included; otherwise the walls end at the eave,
-      // as the full building's would, and the roof rises above it.
-      if (input.request.height === undefined) box.sy /= GABLE_BOX_EAVE;
-    }
+    // neighbourhood is made of. The ridge runs along the longer side, the roof stands as high
+    // as the recipe's slope makes it on a plan this deep, and it has the roof's color while the
+    // walls keep theirs. A mapped height is ground to top, roof included; otherwise the walls
+    // end at the eave, as the full building's would, and the roof rises above it.
+    if (input.request.clipped !== true && recipe.minHeight === 0)
+      roofStandIn(box, look, recipe.totalHeight, input.request.height !== undefined);
     return { analysis, recipe, record, box };
   }
 
@@ -438,7 +435,7 @@ export function generateBuilding(
       {
         eave,
         rise: mansard ? Math.max(recipe.roof.lowerRise, 1) : recipe.roof.rise,
-        maxHeight: mansard ? 2.4 : 4.6,
+        maxHeight: mansard ? MANSARD_DECK_HEIGHT : DECK_ROOF_HEIGHT,
         overhang: Math.min(recipe.roof.overhang, 0.45),
         span: Math.min(analysis.width, analysis.depth),
         tier: geometryTier,
@@ -582,7 +579,7 @@ export function generateBuilding(
     // Reserve roof space within that envelope, limiting it so shallow parts retain walls.
     const oldEave = eave;
     const roofRise = Math.max(0, out.maxYSince(roofMark) - oldEave);
-    const reserve = Math.min(roofRise, recipe.totalHeight * 0.4);
+    const reserve = Math.min(roofRise, recipe.totalHeight * MAPPED_ROOF_SHARE);
     // Even when a budget tier omits the parapet, windows keep the full-detail floor grid.
     const facadeHeight =
       recipe.totalHeight -

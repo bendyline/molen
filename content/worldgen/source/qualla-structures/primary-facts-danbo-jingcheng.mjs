@@ -5,7 +5,7 @@ import path from 'node:path';
 export const danboJingchengCase = 'chengde-main-audience-hall-native-core-and-written-dimensions';
 export const danboJingchengModel = 'danbo_jingcheng_hall';
 
-const digest = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const digest = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 export function inspectDanboJingchengFacts({ dir, proof, controls, frame, inventory }) {

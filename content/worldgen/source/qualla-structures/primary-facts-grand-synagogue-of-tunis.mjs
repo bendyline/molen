@@ -5,7 +5,7 @@ import { join } from 'node:path';
 export const tunisSynagogueCase = 'tunis-osiris-synagogue-mapped-lot-and-valensi-structure';
 export const tunisSynagogueModel = 'grand_synagogue_of_tunis';
 
-const digest = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const digest = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 function readBound(dir, binding, file) {
   if (binding?.path !== file) throw Error('Unexpected Tunis synagogue source');

@@ -18,6 +18,15 @@ const preservePavementOwners = new WeakSet<THREE.Object3D>();
 const shorelineLevels = new WeakMap<THREE.Object3D, readonly number[]>();
 const ownerRefs = new Set<WeakRef<THREE.Object3D>>();
 const surfaceRefs = new Set<WeakRef<THREE.Mesh>>();
+/** Each listed object's own entry in those sets, for `forgetTerrainGroundCutout`. */
+const ownerRefOf = new WeakMap<THREE.Object3D, WeakRef<THREE.Object3D>>();
+const surfaceRefOf = new WeakMap<THREE.Mesh, WeakRef<THREE.Mesh>>();
+function listOwner(object: THREE.Object3D): void {
+  if (owners.has(object)) return;
+  const ref = new WeakRef(object);
+  ownerRefs.add(ref);
+  ownerRefOf.set(object, ref);
+}
 const cutScopes = new WeakSet<THREE.Object3D>();
 const scopedOwners = new WeakSet<THREE.Object3D>();
 const outlineCeilings = new WeakMap<THREE.Object3D, readonly number[]>();
@@ -61,7 +70,11 @@ const states = new WeakMap<THREE.Mesh, CutState>();
 
 /** Mark ground for model openings. Native shorelines clear elevation/landcover, not paving. */
 export function markTerrainGroundSurface(mesh: THREE.Mesh, shoreline = true): void {
-  if (!surfaces.has(mesh)) surfaceRefs.add(new WeakRef(mesh));
+  if (!surfaces.has(mesh)) {
+    const ref = new WeakRef(mesh);
+    surfaceRefs.add(ref);
+    surfaceRefOf.set(mesh, ref);
+  }
   surfaces.add(mesh);
   waterSurfaces.delete(mesh);
   pavementSurfaces.delete(mesh);
@@ -167,7 +180,7 @@ export function setTerrainGroundCutouts(
     return outline.map(([x, z]) => [x, z] as Point);
   });
   if ((paving?.length ?? 0) > 64) throw new Error('Paving cutouts require at most64 outlines');
-  if (!owners.has(object)) ownerRefs.add(new WeakRef(object));
+  listOwner(object);
   owners.set(object, polygons);
   if (paving?.length) pavementOpenings.set(object, paving);
   else pavementOpenings.delete(object);
@@ -198,7 +211,7 @@ export function setTerrainShorelineCutouts(
   levels: readonly number[],
 ): void {
   if (!outlines.length) return;
-  if (!owners.has(object)) ownerRefs.add(new WeakRef(object));
+  listOwner(object);
   owners.set(object, outlines);
   pavementOpenings.delete(object);
   ceilings.delete(object);
@@ -207,6 +220,33 @@ export function setTerrainShorelineCutouts(
   shorelineOwners.add(object);
   preservePavementOwners.delete(object);
   shorelineLevels.set(object, levels);
+}
+
+/**
+ * An object that is being disposed leaves the lists every cut pass walks: its openings no longer
+ * cut, and its ground is no longer cut. Those lists hold weak references and drop a collected
+ * object on their own, but a pass dereferences every entry to find that out, and a browser keeps
+ * whatever a job has dereferenced until the job ends. A frame that renders for most of its job
+ * ends its collections inside it, so an object dereferenced every frame is never collected: an
+ * evicted tile's ground mesh held the whole tile through its parent, and a flight kept every
+ * tile it had evicted (4.4 GiB of buffers after 150 s over Osaka, all of it freed by a
+ * collection forced from outside a frame). The terrain stream and the semantic layers call this
+ * for what they dispose (`retireTerrainObjects`).
+ * @internal
+ */
+export function forgetTerrainGroundCutout(object: THREE.Object3D): void {
+  const owner = ownerRefOf.get(object);
+  if (owner !== undefined) {
+    ownerRefs.delete(owner);
+    ownerRefOf.delete(object);
+    owners.delete(object);
+  }
+  const surface = surfaceRefOf.get(object as THREE.Mesh);
+  if (surface !== undefined) {
+    surfaceRefs.delete(surface);
+    surfaceRefOf.delete(object as THREE.Mesh);
+    surfaces.delete(object as THREE.Mesh);
+  }
 }
 
 /** Replace only native water within this visible owner's footprint. Ground remains intact. */

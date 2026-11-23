@@ -15,4 +15,12 @@ export default defineConfig({
   clean: true,
   // One three.js and one client in the host's bundle; every molen package stays a real import.
   external: [/^three(\/.*)?$/, /^@bendyline\/molen-/],
+  // Keep the vehicle runtimes (road vehicles, aircraft, trains) in their own chunk as the client
+  // grows, so the entry stays under the package-content gate's per-chunk limit. This is code;
+  // fleets, liveries and models remain in the content packs.
+  outputOptions: {
+    codeSplitting: {
+      groups: [{ name: 'vehicles', test: /[/\\]client[/\\](vehicles|aircraft|trains)\.ts$/ }],
+    },
+  },
 });

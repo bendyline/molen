@@ -86,6 +86,33 @@ export function cycleRiderPose(
     stance === 'standing' && spec?.runners !== undefined
       ? (state?.roll ?? 0) - (spec.runners.flat === true ? (state?.bodyRoll ?? 0) : 0)
       : 0;
+  // Every place a seated rider's feet must reach whatever the crank: the footrests, or the pedal
+  // circle all the way round. The pose slides a rider with short legs forward on the saddle by
+  // one amount for all of them, so the body does not shuffle through a revolution (see
+  // evaluatePose). The grips are left out: the reach to them changes as the rider leans into a
+  // turn, and a slide that followed the steering would rock the rider on the saddle.
+  const reach: NonNullable<NonNullable<PoseEvalOptions['riding']>['reach']> = [];
+  if (stance === 'seated') {
+    for (const [i, effector] of (['foot.l', 'foot.r'] as const).entries()) {
+      if (pedals === undefined) {
+        const rest = contacts.footrests[i];
+        if (rest !== undefined) reach.push({ effector, point: relative(rest) });
+        continue;
+      }
+      const side = i === 0 ? 1 : -1;
+      for (let k = 0; k < 8; k++) {
+        const angle = (k * m.TAU) / 8;
+        reach.push({
+          effector,
+          point: relative([
+            pedals.center[0] + side * pedals.halfWidth,
+            pedals.center[1] + side * pedals.radius * m.cos(angle) + 0.08,
+            pedals.center[2] + side * pedals.radius * m.sin(angle) - 0.06,
+          ]),
+        });
+      }
+    }
+  }
   return {
     lean: contacts.riderLean + m.abs(steer) * 0.2,
     turn: steer,
@@ -93,5 +120,6 @@ export function cycleRiderPose(
     ...(stance !== 'seated' ? { stance } : {}),
     ...(push > 0 ? { push } : {}),
     ...(level !== 0 ? { level } : {}),
+    ...(reach.length > 0 ? { reach } : {}),
   };
 }

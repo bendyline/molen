@@ -140,6 +140,15 @@ export type { EarthFleet, EarthFleetContent, EarthFleetOptions } from './client/
 export { createEarthFleet } from './client/fleet';
 export { composeEarthGroundGrading } from './client/ground-grading';
 export {
+  type EarthLocality,
+  type EarthLocateOptions,
+  type EarthLocation,
+  EarthLocator,
+  type EarthStreet,
+  type EarthStreetSource,
+  placeExtent,
+} from './client/locator';
+export {
   EARTH_EXPOSURE,
   EARTH_LIGHTING,
   EARTH_SHADOW_CASTER_HEIGHT,
@@ -186,9 +195,13 @@ export {
   EARTH_STICKY_QUALITY,
   type EarthAdmissionLimits,
   type EarthDeviceMemory,
+  type EarthFixedQuality,
   type EarthPerformanceTier,
   earthAdmission,
   earthArrivalAdmission,
+  earthFixedObjectPixelError,
+  earthFixedPixelRatio,
+  earthFixedPreset,
   earthInitialQualityLevel,
   earthMemoryBudget,
   earthPerformanceTier,

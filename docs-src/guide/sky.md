@@ -106,6 +106,17 @@ that has arrived, so a moving caster would leave its shadow behind. It is at mos
 across (meters a texel: a house's shadow, not a chimney's) and costs under a millisecond of
 main thread each time it is drawn. `renderer.farShadowInfo` reports its radius, how often it has
 been drawn and how long the last drawing took.
+The focused map itself is drawn every frame only while its texels are fine. Drawing it is a
+second pass over everything inside it, and from 1,400 m over a city that pass was a fifth of the
+frame, 350 draws and 3.9 million triangles, for shadows that had not changed. On WebGL a map whose
+texels are over 0.3 m (a flying view above about 150 m at the high quality) stands between
+drawings, longer the coarser it is, up to a quarter of a second from 1.2 m texels; and a map whose
+sun gives no light stands all night. A standing map keeps the box it was drawn for, so lookups go
+on matching it, and it is drawn again at once when the focus has left the middle of the box, when
+the sun or the world origin has moved, and when a new kind of caster arrives. Walking and driving
+views are unchanged (their texels are 4 to 14 cm), and a moving subject keeps its own map, below.
+`holdShadows: false` on the viewer draws the map every frame, and `renderer.shadowHoldInfo` counts
+the frames it could have stood and the drawings among them.
 A focused map is fixed to the ground, so a moving object is drawn into different texels every
 frame. Texels of a driving view are 0.14 to 0.56 m, and a car's shadow on the road changed
 outline each frame. On WebGL `renderer.setShadowSubject({ object, center, radius })` gives one

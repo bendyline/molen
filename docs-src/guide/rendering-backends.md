@@ -179,6 +179,7 @@ differences with a known cause:
 | | WebGL | WebGPU |
 | --- | --- | --- |
 | Far sun shadows (`setFarShadowCasters`) | A second, wider shadow map | None: scenery past the focused map stays sunlit |
+| The focused sun map from high up, and at night (`holdShadows`) | Stands between drawings while its texels are coarse or its sun is dark | Drawn every frame |
 | The driven car's or flown aircraft's sun shadow (`setShadowSubject`) | A map of its own that travels with it: the shadow holds its shape | The focused map: the shadow's outline changes as it moves; from a car's driver's seat the car casts none, and an aircraft casts none once the map's texels pass 0.15 m |
 | Sun shadow filter | PCF | Soft PCF, except at the low shadow quality |
 | Ambient occlusion | None | `setAmbientOcclusion`, off by default |

@@ -2,6 +2,8 @@ import * as THREE from 'three';
 
 const tagged = new Map<string, Set<WeakRef<THREE.Object3D>>>();
 const versions = new Map<string, number>();
+/** Each tagged object's own entries in those sets, for `forgetTaggedTerrainObject`. */
+const entries = new WeakMap<THREE.Object3D, Array<[tag: string, ref: WeakRef<THREE.Object3D>]>>();
 
 /**
  * Remember a terrain object a host looks for by kind (`'water'` surfaces, `'parked-vehicles'`
@@ -15,8 +17,25 @@ export function tagTerrainObject(tag: string, object: THREE.Object3D): void {
     set = new Set();
     tagged.set(tag, set);
   }
-  set.add(new WeakRef(object));
+  const ref = new WeakRef(object);
+  set.add(ref);
+  const own = entries.get(object);
+  if (own === undefined) entries.set(object, [[tag, ref]]);
+  else own.push([tag, ref]);
   versions.set(tag, (versions.get(tag) ?? 0) + 1);
+}
+
+/**
+ * An object that is being disposed loses its tags now, rather than when it is collected: a host
+ * that visits a tag every frame dereferences every object under it, and what a frame has
+ * dereferenced the browser does not collect in that frame (see `forgetTerrainGroundCutout`).
+ * @internal
+ */
+export function forgetTaggedTerrainObject(object: THREE.Object3D): void {
+  const own = entries.get(object);
+  if (own === undefined) return;
+  for (const [tag, ref] of own) tagged.get(tag)?.delete(ref);
+  entries.delete(object);
 }
 
 /**

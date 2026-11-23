@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { generateWorldgenBatch } from '../../src/kernel/batch';
 import { dilate, RasterGrid, rasterizePolygon, rasterizePolyline } from '../../src/kernel/raster';
-import { samplePlacements, TREELINE_FADE } from '../../src/kernel/scatter';
+import {
+  type ScatterSample,
+  samplePlacements,
+  sampleScatter,
+  TREELINE_FADE,
+} from '../../src/kernel/scatter';
 import type { ScatterDoc } from '../../src/kernel/scatter-types';
 import {
   FLAT_GROUND,
@@ -638,7 +643,7 @@ it('varies crown width independently without reshuffling placements, height, or 
   }
 });
 
-it('stands a fitted plant on each painted crown, kept whole and outside the layer cap', () => {
+it('stands a fitted plant on each painted crown, kept whole and apart from its layer', () => {
   // A crown in the middle of every 8 m cell, 1 to 2.5 m across the row, painted from brush 0.4
   // in even columns and 0.8 in odd ones.
   const crowns = {
@@ -654,6 +659,8 @@ it('stands a fitted plant on each painted crown, kept whole and outside the laye
       z: j * 8 + 4,
       radius: 1 + ((i + j) % 4) * 0.5,
       brush: i % 2 === 0 ? 0.4 : 0.8,
+      // Where its plant hands the crown back to the ground's paint: a lattice byte over 255.
+      reach: ((i * 37 + j * 11) % 256) / 255,
     }),
     // Paved over north of z = 64 (built-up ground).
     open: (_x: number, z: number) => (z < 64 ? 1 : 0),
@@ -701,9 +708,9 @@ it('stands a fitted plant on each painted crown, kept whole and outside the laye
   };
   const run = (
     overrides: Partial<ScatterRequest> = {},
-    options: { tier?: number; cap?: number; withCrowns?: boolean } = {},
+    options: { tier?: number; cap?: number; withCrowns?: boolean; nearCap?: number } = {},
   ) =>
-    samplePlacements({
+    sampleScatter({
       request: request([0, 0, 128, 128], overrides),
       doc: crowned,
       pack: identity,
@@ -712,18 +719,53 @@ it('stands a fitted plant on each painted crown, kept whole and outside the laye
         ...budget,
         maxUnderstoryInstances: options.cap ?? 100_000,
         maxUnderstoryModels: 4,
+        ...(options.nearCap !== undefined ? { maxNearInstances: options.nearCap } : {}),
       },
       tier: options.tier ?? 0,
       ...(options.withCrowns === false ? {} : { crowns }),
     });
-  const plants = (sets: PlacementSet[], model = 'builtin:shrub') => {
+  // The crowns' plants, from the near placements.
+  const plants = (sample: ScatterSample, model = 'builtin:shrub') => {
     const rows: number[][] = [];
-    for (const set of sets.filter((entry) => entry.modelRef === model))
+    const near = sample.near;
+    if (near === undefined) return rows;
+    const index = near.models.indexOf(model);
+    for (let i = 0; i < near.count; i++)
+      if (near.model[i] === index)
+        rows.push(Array.from(near.data.slice(i * PLACEMENT_STRIDE, (i + 1) * PLACEMENT_STRIDE)));
+    return rows;
+  };
+  const layered = (sample: ScatterSample, model: string) => {
+    const rows: number[][] = [];
+    for (const set of sample.placements.filter((entry) => entry.modelRef === model))
       for (let i = 0; i < set.count; i++)
         rows.push(Array.from(set.data.slice(i * PLACEMENT_STRIDE, (i + 1) * PLACEMENT_STRIDE)));
     return rows;
   };
-  const full = plants(run());
+  const sample = run();
+  const full = plants(sample);
+  // Apart from the layer: no crown's plant is among the placements.
+  expect(layered(sample, 'builtin:shrub')).toEqual([]);
+  // Filed by cell: each plant lies in the 32 m cell its offsets name, cells in order.
+  const near = sample.near;
+  if (near === undefined) throw new Error('no near placements');
+  expect([near.cell, near.columns, near.rows, near.originX, near.originZ]).toEqual([
+    32, 4, 4, 0, 0,
+  ]);
+  expect(near.start[near.columns * near.rows]).toBe(near.count);
+  for (let row = 0; row < near.rows; row++)
+    for (let column = 0; column < near.columns; column++) {
+      const k = row * near.columns + column;
+      expect(near.start[k + 1]).toBeGreaterThanOrEqual(near.start[k] as number);
+      for (let i = near.start[k] as number; i < (near.start[k + 1] as number); i++) {
+        expect(Math.floor((near.data[i * PLACEMENT_STRIDE] as number) / 32)).toBe(column);
+        expect(Math.floor((near.data[i * PLACEMENT_STRIDE + 2] as number) / 32)).toBe(row);
+        // Each plant carries its crown's reach, exactly, as a byte.
+        const ci = ((near.data[i * PLACEMENT_STRIDE] as number) - 4) / 8,
+          cj = ((near.data[i * PLACEMENT_STRIDE + 2] as number) - 4) / 8;
+        expect(near.reach?.[i]).toBe((ci * 37 + cj * 11) % 256);
+      }
+    }
   // Forest (brush 0.6) shows only the even columns' crowns, and none on the paved half.
   expect(full.length).toBe(8 * 8);
   for (const [x = 0, , z = 0, , sx = 0, sy = 0, sz = 0] of full) {
@@ -753,13 +795,34 @@ it('stands a fitted plant on each painted crown, kept whole and outside the laye
   expect(plants(run({ polygons: [base, { ...yard, ground: false }] }))).toEqual(full);
   expect(plants(run({ polygons: [base, yard] })).length).toBeLessThan(full.length);
   // Kept whole: neither the host's keep nor a tight understory cap drops one, and the cap
-  // still thins the rest of the layer.
+  // still thins the rest of the layer. A closed layer switches the rule off.
   const capped = run({ keep: 0.3 }, { cap: 10 });
   expect(plants(capped)).toEqual(full);
-  expect(plants(capped, 'builtin:bush').length).toBe(10);
+  expect(layered(capped, 'builtin:bush').length).toBe(10);
   expect(plants(run({ keep: 0.3 }, { cap: 0 }))).toEqual([]);
+  // Only the batch's near budget bounds them: past it a subset stays, and at 0 none, while the
+  // rest of the layer is untouched.
+  const bounded = plants(run({}, { nearCap: 20 }));
+  expect(bounded.length).toBe(20);
+  const fullRows = new Set(full.map((row) => row.join(',')));
+  for (const row of bounded) expect(fullRows.has(row.join(','))).toBe(true);
+  const none = run({}, { nearCap: 0 });
+  expect(none.near).toBeUndefined();
+  expect(layered(none, 'builtin:bush')).toEqual(layered(sample, 'builtin:bush'));
   // Off at coarser tiers, and nothing without the host's crowns.
   expect(plants(run({}, { tier: 1 }))).toEqual([]);
   expect(plants(run({}, { withCrowns: false }))).toEqual([]);
-  expect(plants(run({}, { withCrowns: false }), 'builtin:bush').length).toBeGreaterThan(0);
+  expect(layered(run({}, { withCrowns: false }), 'builtin:bush').length).toBeGreaterThan(0);
+  // `samplePlacements` is the layer's placements alone.
+  expect(
+    samplePlacements({
+      request: request([0, 0, 128, 128]),
+      doc: crowned,
+      pack: identity,
+      ground: FLAT_GROUND,
+      budget: { ...budget, maxUnderstoryInstances: 100_000, maxUnderstoryModels: 4 },
+      tier: 0,
+      crowns,
+    }),
+  ).toEqual(sample.placements);
 });

@@ -130,6 +130,38 @@ describe('mapped World audio context', () => {
     terrain.observer.removed(object);
     expect(terrain.sample(150, 55).riverDistance).toBe(Infinity);
   });
+  it('reads the street underfoot from a package’s finest tiles, however large', () => {
+    const roads = empty();
+    roads.transportation = [
+      {
+        class: 'minor_road',
+        width: 8,
+        lines: [
+          [
+            [0, 0.5],
+            [1, 0.5],
+          ],
+        ],
+      },
+    ];
+    // 4 km tiles: the finest a zoom-13 basemap has (level 13 of 13), and one level coarser.
+    const sample = (level: number) => {
+      const terrain = new EarthAudioTerrain();
+      const root = new THREE.Group();
+      const object = new THREE.Group();
+      root.add(object);
+      terrain.observer.added(object, roads, {
+        ...context(),
+        address: { level, x: 0, z: 0 },
+        pyramid: { maxLevel: 13 } as TerrainPyramidTileLayerContext['pyramid'],
+        tileSize: 4000,
+      });
+      return terrain.sample(1000, 2001).streetDistance;
+    };
+    expect(sample(13)).toBe(0);
+    expect(sample(12)).toBe(Infinity);
+  });
+
   it('uses road widths and mapped materials without requiring parked cars; roads beat landcover', () => {
     const terrain = new EarthAudioTerrain(),
       root = new THREE.Group(),

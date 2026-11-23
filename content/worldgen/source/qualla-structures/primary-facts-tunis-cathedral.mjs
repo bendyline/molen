@@ -5,7 +5,7 @@ import { join } from 'node:path';
 export const tunisCathedralCase = 'tunis-cathedral-mapped-perimeter-and-vicar-inventory';
 export const tunisCathedralModel = 'cathedral_of_saint_vincent_de_paul';
 
-const hash = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 function record(dir, source, name) {
   if (source?.path !== name) throw Error('Unexpected cathedral evidence path');

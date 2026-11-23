@@ -44,6 +44,57 @@ it('keeps a fixed light budget, positions street spill through floating origins,
   expect(lighting.object.parent).toBeNull();
 });
 
+it('lights the nearest lamps in order, passes over tiles out of reach and follows the camera', () => {
+  const root = new THREE.Group();
+  const near = new THREE.Group();
+  const far = new THREE.Group();
+  far.position.set(5000, 0, 0);
+  root.add(near, far);
+  const lamp = (x: number, z: number) => ({ x, y: 8, z, yaw: 0, groundLift: 0.5 });
+  // A row of lamps east from the camera, 30 m ahead of it; and a tile 4 km away.
+  const tiles = [
+    { tile: near, lights: Array.from({ length: 40 }, (_, i) => lamp(1000 + i * 12, 2030)) },
+    { tile: far, lights: Array.from({ length: 40 }, (_, i) => lamp(i * 12, 2030)) },
+  ];
+  const visited: THREE.Object3D[] = [];
+  const lighting = new EarthNightLighting({
+    root,
+    world: new World(),
+    sampleHeight: () => 0,
+    surface: {
+      visitStreetLights: (visit, wanted) => {
+        for (const { tile, lights } of tiles) {
+          if (wanted !== undefined && !wanted(lights, tile)) continue;
+          visited.push(tile);
+          for (const light of lights) visit(light, tile);
+        }
+      },
+    },
+  });
+  lighting.update(frame);
+  expect(visited).toEqual([near]);
+  const points = lighting.object.children.filter(
+    (o): o is THREE.PointLight => o instanceof THREE.PointLight,
+  );
+  expect(points.map((point) => point.position.x)).toEqual(
+    Array.from({ length: 16 }, (_, i) => 1000 + i * 12),
+  );
+  // A frame later, nothing moved: the lamps stand as chosen, without another walk over them.
+  lighting.update(frame);
+  expect(visited).toEqual([near]);
+  expect(points.every((point) => point.intensity > 0)).toBe(true);
+  // The camera has travelled: chosen again, around where it is now.
+  lighting.update({ ...frame, camera: [1300, 12, 2000] });
+  expect(visited).toEqual([near, near]);
+  expect(points[0]?.position.x).toBe(1300);
+  expect(Math.max(...points.map((point) => Math.abs(point.position.x - 1300)))).toBeLessThan(110);
+  // Over the far tile, only its lamps are walked.
+  lighting.update({ ...frame, camera: [5100, 12, 2000] });
+  expect(visited).toEqual([near, near, far]);
+  expect(points[0]?.position.x).toBeCloseTo(5100 - 4, 6);
+  lighting.dispose();
+});
+
 it('moves head/tail lenses and beams with traffic, excludes hidden agents, and bounds beam count', () => {
   const root = new THREE.Group(),
     world = new World();

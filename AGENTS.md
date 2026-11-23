@@ -157,8 +157,9 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
   `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/world`; `@bendyline/molen-client`
   also exposes `/camera-track`, `/vite`, `/vehicles`, `/aircraft`, `/navigation`, `/markers`, `/audio`, `/snow`,
   `/console`;
-  `@bendyline/molen-terrain`, `@bendyline/molen-figures` and `@bendyline/molen-ambient` expose
-  only `/kernel` and `/client` (no `.`).
+  `@bendyline/molen-terrain` and `@bendyline/molen-ambient` expose only `/kernel` and `/client`
+  (no `.`); `@bendyline/molen-figures` adds the host-side `/look` (pure data) and `/designer`
+  (designer model and preview, three.js, no kernel runtime).
 - **Content lives in `content/`, not in packages.** Each `content/<pack>/` directory builds into
   one content pack (`molen pack build content/<pack>`). CLI ops find packs through the project's
   `packs`, `MOLEN_PACKS`, or a worldgen op's `--pack`; see [content/README.md](content/README.md).

@@ -24,7 +24,14 @@ import type {
   FigureMode,
 } from './types';
 
-export { FIGURE_EXAMPLE, FIGURE_FILE_EXAMPLE, FIGURE_FORMAT, FIGURE_MODES } from './schema';
+export {
+  FIGURE_EXAMPLE,
+  FIGURE_FILE_EXAMPLE,
+  FIGURE_FORMAT,
+  FIGURE_LOOK_FILE_EXAMPLE,
+  FIGURE_LOOK_FILE_FORMAT,
+  FIGURE_MODES,
+} from './schema';
 export type { FigureAnchor, FigureGait, FigureIkEffector, FigureMode } from './types';
 
 export interface FigureData extends FigureDescriptor {

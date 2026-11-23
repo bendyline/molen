@@ -534,14 +534,21 @@ function logicalCores(): number {
  * seconds. Two halved those for a tile generated ~170 ms later (most of it hidden by the
  * predicted views loading ahead).
  *
- * A workstation has the cores to spare: three from 16 logical cores, four from 24. On 32 (with
- * three land cover and three surface workers, see `surfaceWorkers`) a 250 m/s circle at Balanced
- * built a tile's buildings in 0.41 s on average instead of 0.63 s, and missed fewer frames (9
- * over 20 ms instead of 32) rather than more. Only the 32-core figures were measured; 16-23 is
- * the step between them and the laptop.
+ * A workstation has the cores to spare: three from 16 logical cores, five from 20. On 32 (with
+ * three land cover and three surface workers, see `surfaceWorkers`) four built a tile's
+ * buildings in 0.41 s on average over a 250 m/s circle at Balanced instead of three's 0.63 s,
+ * and missed fewer frames (9 over 20 ms instead of 32) rather than more.
+ *
+ * A dense city asks for more than a suburb does. Over Osaka at High a tile's buildings take
+ * 1.2-1.5 s of a worker on average (4-5 s at the 95th percentile) against about 0.5 s for a
+ * Seattle tile. On a 20-core laptop three workers ran flat out (98% busy each) while the other pools
+ * idled and half the cores stood free, each tile waited 7.4 s on average for its turn and its
+ * build, and the first view took 93 s to finish. Five finished it in 64 s, a tile in 4.3 s, with
+ * fewer long frames (36 over 100 ms instead of 87) and the same frame rate while loading.
+ * 16-19 keeps three: sixteen logical cores are often eight with two threads each.
  */
 export function generationWorkers(cores: number = logicalCores()): number {
-  if (cores >= 24) return 4;
+  if (cores >= 20) return 5;
   if (cores >= 16) return 3;
   return Math.max(1, Math.min(2, Math.floor(cores / 4)));
 }

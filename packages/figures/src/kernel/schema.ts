@@ -136,6 +136,102 @@ export const FIGURE_FILE_EXAMPLE: JsonValue = {
   palette: { skin: '#3b2a1e', markings: '#f0ead6' },
 };
 
+export const FIGURE_LOOK_FILE_FORMAT: 'molen/figure-look@1' = 'molen/figure-look@1';
+
+const lookHex = z
+  .string()
+  .regex(/^#[0-9a-fA-F]{6}$/, { error: 'must be "#rrggbb"' })
+  .describe('Color as "#rrggbb".');
+const lookId = z.string().min(1).describe('Option id from the catalogue.');
+const lookItem = z
+  .strictObject({
+    id: lookId,
+    colors: z
+      .strictObject({
+        top: lookHex.optional(),
+        bottom: lookHex.optional(),
+        shoes: lookHex.optional(),
+        accent: lookHex.optional(),
+        outer: lookHex.describe('A jacket or coat, over the shirt in top.').optional(),
+        headwear: lookHex.optional(),
+        eyewear: lookHex.optional(),
+        neckwear: lookHex.optional(),
+        backwear: lookHex.optional(),
+        earwear: lookHex.optional(),
+        wristwear: lookHex.optional(),
+        bag: lookHex.optional(),
+      })
+      .describe('Colours of the item by figure palette slot.'),
+  })
+  .describe('A worn item: a catalogue option and its colours.');
+
+// Ids are checked against a catalogue by normalizeFigureLook (molen-figures/look), not here:
+// the format holds any catalogue's looks.
+const figureLookFileSchema = z.strictObject({
+  format: z
+    .literal(FIGURE_LOOK_FILE_FORMAT)
+    .describe("Format envelope; always 'molen/figure-look@1'."),
+  catalog: z
+    .string()
+    .min(1)
+    .describe("The catalogue the look was made with, as '<id>@<revision>'."),
+  person: z
+    .strictObject({
+      age: z.enum(['child', 'adult', 'elder']).describe('Age band.'),
+      body: lookId.describe('Body shape option id.'),
+      height: z.number().min(0.5).max(2.5).describe('Standing height in meters.'),
+      skin: lookHex,
+      eyes: lookHex,
+      head: lookId.describe('Head option id.'),
+      hair: lookId.describe('Hair style option id.'),
+      hairTexture: lookId.describe('Hair texture option id.'),
+      hairColor: lookHex,
+      facialHair: lookId.describe('Facial hair option id.'),
+    })
+    .describe('Who the person is.'),
+  outfit: z
+    .strictObject({
+      top: lookItem,
+      bottom: lookItem,
+      footwear: lookItem,
+      accessories: z
+        .strictObject({
+          headwear: lookItem.optional(),
+          eyewear: lookItem.optional(),
+          neckwear: lookItem.optional(),
+          backwear: lookItem.optional(),
+          earwear: lookItem.optional(),
+          wristwear: lookItem.optional(),
+          bag: lookItem.optional(),
+        })
+        .describe('Accessories by slot; a missing slot is empty.'),
+    })
+    .describe('What the person wears.'),
+});
+
+export const FIGURE_LOOK_FILE_EXAMPLE: JsonValue = {
+  format: FIGURE_LOOK_FILE_FORMAT,
+  catalog: 'molen.people@4',
+  person: {
+    age: 'adult',
+    body: 'body.straight',
+    height: 1.72,
+    skin: '#9d6742',
+    eyes: '#4b3020',
+    head: 'head.01',
+    hair: 'hair.crop',
+    hairTexture: 'texture.straight',
+    hairColor: '#1c1714',
+    facialHair: 'facial.none',
+  },
+  outfit: {
+    top: { id: 'top.jacket', colors: { outer: '#2f5a3b', top: '#e8eef6' } },
+    bottom: { id: 'bottom.trousers', colors: { bottom: '#2f3b52', accent: '#c8a24a' } },
+    footwear: { id: 'footwear.shoes', colors: { shoes: '#4a2e1f' } },
+    accessories: { eyewear: { id: 'eyewear.glasses', colors: { eyewear: '#6e4a2c' } } },
+  },
+};
+
 let registered = false;
 
 /** Register the figures components, the `figure` renderable kind, and molen/figure@1 (idempotent). */
@@ -224,6 +320,16 @@ export function registerFiguresSchema(): void {
         'A figure descriptor document: a preset plus overrides, the same shape as the `figure` component. Preview it with `molen figure preview`, bake it with `molen figure bake`.',
       examples: [FIGURE_FILE_EXAMPLE],
       docsRef,
+    });
+  }
+  if (getSchema('figure-look') === undefined) {
+    registerSchema('figure-look', figureLookFileSchema, {
+      id: FIGURE_LOOK_FILE_FORMAT,
+      title: 'Figure look',
+      description:
+        'A person and their outfit chosen from a catalogue of named options (skin, head, hair, body shape, clothing, accessories). `figureFromLook` from @bendyline/molen-figures/look turns it into a figure descriptor; `normalizeFigureLook` repairs a saved look against a catalogue.',
+      examples: [FIGURE_LOOK_FILE_EXAMPLE],
+      docsRef: 'guide/figure-looks.md',
     });
   }
 }

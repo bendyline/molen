@@ -139,13 +139,14 @@ import {
   type EarthActorViewer,
   type EarthAvatarFrame,
 } from './actors';
-import { EarthAircraft, type EarthFlightStatus } from './aircraft';
+import { EarthAircraft, type EarthFlightStatus, type EarthInstrument } from './aircraft';
 import { EarthAirfields, type EarthPlace } from './airfields';
 import { EarthAirportPopulation } from './airport-population';
 import { createAirportTerrainGrading } from './airport-terrain';
 import { withEarthAirports } from './airports';
 import {
   ambientContentFromTypes,
+  ambientDensity,
   EarthAmbient,
   type EarthAmbientSettings,
   type EarthAmbientStats,
@@ -167,6 +168,13 @@ import type { EarthContent } from './content';
 import { EarthDioramaDirector, type EarthDioramaOptions, type EarthDioramas } from './dioramas';
 import { createEarthFleet, type EarthFleetOptions } from './fleet';
 import { composeEarthGroundGrading } from './ground-grading';
+import {
+  type EarthLocality,
+  type EarthLocateOptions,
+  type EarthLocation,
+  EarthLocator,
+  type LocatedLabel,
+} from './locator';
 import {
   EARTH_EXPOSURE,
   EARTH_LIGHTING,
@@ -191,8 +199,12 @@ import {
   EARTH_INDEPENDENT_LAYERS,
   EARTH_QUALITY_CALIBRATION_MS,
   EARTH_STICKY_QUALITY,
+  type EarthFixedQuality,
   earthAdmission,
   earthArrivalAdmission,
+  earthFixedObjectPixelError,
+  earthFixedPixelRatio,
+  earthFixedPreset,
   earthInitialQualityLevel,
   earthMemoryBudget,
   earthPerformanceTier,
@@ -297,6 +309,11 @@ export type EarthVehicleStatus =
       snowDepth?: number;
       /** Deep snow is holding the vehicle against its own drive. */
       stuck?: boolean;
+      /**
+       * The speedometer `setInstrumentCanvas` draws (a dial of the console kit, in `speedUnit`,
+       * a boat's in knots): empty until the model has loaded.
+       */
+      instruments: EarthInstrument[];
     }
   | ({ kind: 'aircraft' } & EarthFlightStatus);
 
@@ -306,10 +323,19 @@ export interface EarthConsoleOptions {
   container: HTMLElement;
   /** When it shows: on touch devices (`'auto'`, the default) or on every device. */
   touch?: 'auto' | 'always';
-  /** The flown aircraft's own airspeed and altitude dials in a chase view (default true). */
+  /**
+   * The flown aircraft's own airspeed and altitude dials in a chase view, and the driven
+   * vehicle's speedometer in every view (default true).
+   */
   gauges?: boolean;
   /** `left` puts the stick on the right and the throttle on the left. */
   handed?: 'right' | 'left';
+  /**
+   * The change-view and leave buttons in the top corner (default true). Pass false to offer them
+   * in the page's own toolbar instead: `view.console.buttons` lists them, `view.console.tap`
+   * presses one.
+   */
+  cornerButtons?: boolean;
 }
 
 /** Where to look, in geographic terms. Angles are radians. */
@@ -477,8 +503,13 @@ export interface EarthViewOptions {
   interaction?: EarthInteractionSettings;
   /** The first view. */
   camera: EarthCameraTarget;
-  /** `'auto'` adapts to measured frame times (default). */
-  quality?: 'auto' | TerrainQualityPreset;
+  /**
+   * `'auto'` adapts to measured frame times (default). A preset (`'economy'`, `'balanced'`,
+   * `'high'`) holds that detail. `'ultra'` is the high preset drawn sharper: models at a finer
+   * level of detail, and supersampled up to 1.25× where the pixel budget allows, never below the
+   * device's ratio (`earthFixedPixelRatio`).
+   */
+  quality?: 'auto' | EarthFixedQuality;
   /** Worker factories; each piece of work runs in-thread without its worker. */
   workers?: EarthViewWorkers;
   /** Seeded synthetic homes where street density suggests missing outlines (default true). */
@@ -528,10 +559,22 @@ export interface EarthViewOptions {
   /**
    * The vehicle console: touch controls drawn as the vehicle's own, along the bottom of its
    * container. An aircraft's stick, rudder pedals, throttle, gear and flap handles and dials; a
-   * car's wheel, pedals and handbrake; the plain stick on foot. Where it shows it takes the place
+   * car's wheel, pedals, handbrake and speedometer; the plain stick on foot. Where it shows it takes the place
    * of `touchJoystickContainer`'s stick (see the Vehicle console guide).
    */
   console?: EarthConsoleOptions;
+  /**
+   * Units of a driven vehicle's speedometer, in the console and `setInstrumentCanvas` (default
+   * `'km/h'`). A boat's reads knots.
+   */
+  speedUnit?: 'km/h' | 'mph';
+  /**
+   * The viewer's body from the first frame, as `EarthWalker.setAvatar` takes it (a figure
+   * descriptor, e.g. from `figureFromLook`, or `{ type }`). Without one the viewer has no body.
+   */
+  avatar?: { figure: FigureData } | { type: string };
+  /** The first on-foot view (default `'first'`); `'third'` applies only with an `avatar`. */
+  walkView?: 'first' | 'third';
   /** Graphics backend (default `'webgl'`, which skips the WebGPU probe). */
   backend?: RendererBackendPreference;
   /** Highest device pixel ratio rendered (default 2). */
@@ -596,7 +639,9 @@ export interface EarthWalker {
   /**
    * Give the viewer a body: a figure descriptor, or `{ type }` naming an entity type with a
    * `figure` component. It is drawn on foot in the third-person view and seated in a vehicle's
-   * chase view; never in first person or a cockpit. `undefined` removes it (the default).
+   * chase view; never in first person or a cockpit. `undefined` removes it (the default, unless
+   * the view was mounted with `avatar`). Call it again at any time to change the body: the one on
+   * screen stays until the new one is ready to draw.
    */
   setAvatar(avatar: { figure: FigureData } | { type: string } | undefined): void;
   /**
@@ -781,6 +826,21 @@ export interface EarthView {
     longitude: number;
     radius?: number;
   }): EarthBuildingHit | undefined;
+  /**
+   * Where a place is, in words: the named street it is on or beside (within `streetRadius`
+   * meters, default 30, preferring the road running along `heading` at a junction), the
+   * settlement it is in or near, and the district around it, from the map labels and roads the
+   * view streams (no geocoding service). With a `features.buildingDetail` level, streets come
+   * from that level's roads, which name side streets a basemap's coarser zooms leave unnamed: a
+   * call loads the few tiles around the place (usually from the byte cache, as the view read them
+   * for buildings) and answers from the rendered tiles until they arrive, so ask again a moment
+   * later. Parts the map cannot answer are absent: far from any road, before the map around the
+   * place has streamed, or with a terrain package whose features carry no `poi` layer (place
+   * labels come with POIs). Settlement labels seen earlier in the session are remembered. It reads
+   * map data: for a HUD refreshed every second or so, not every frame; `street: false` skips the
+   * street (and its tiles) where none is wanted.
+   */
+  locate(place: EarthLocateOptions): EarthLocation;
   readonly viewer: MolenClient;
   readonly input: NavigationInputSource;
   /**
@@ -807,11 +867,13 @@ export interface EarthView {
   /**
    * Draw the flown aircraft's own airspeed and altitude instruments into `canvas`, side by side:
    * close-ups of the dials (or glass readouts) in its cockpit, with their faces, units, needles
-   * and calibration as modeled, for a HUD beside a chase view. `vehicleStatus().instruments`
+   * and calibration as modeled, for a HUD beside a chase view. While driving it draws the
+   * vehicle's speedometer instead, a dial of the console kit read in `speedUnit` (a dashboard's
+   * own dial carries no numerals; a cycle or boat has none). `vehicleStatus().instruments`
    * lists them, to size and label the canvas (each takes a square cell of its width). They draw
-   * about 20 times a second while flying, and not while the canvas is hidden, through a small
-   * WebGL context of the canvas's own. `undefined` stops and releases it; the canvas cannot draw
-   * again, so show them later on a new one.
+   * about 20 times a second while flying or driving, and not while the canvas is hidden, through
+   * a small WebGL context of the canvas's own. `undefined` stops and releases it; the canvas
+   * cannot draw again, so show them later on a new one.
    */
   setInstrumentCanvas(canvas: HTMLCanvasElement | undefined): void;
   /** The tuning of the pilot's body under load in cockpit views; `enabled` is its switch. */
@@ -893,6 +955,26 @@ export interface EarthView {
   /** Show or hide ambient life (no-op when mounted with `ambient: false`). */
   setAmbientEnabled(enabled: boolean): void;
   readonly ambientEnabled: boolean;
+  /**
+   * How busy the streets are, 0..1, as `ambient.density` takes it (no-op when mounted with
+   * `ambient: false`). It changes what spawns from now on: raised, traffic and people fill in as
+   * they arrive; lowered, the streets thin as agents leave. The performance tier still caps the
+   * count.
+   */
+  setAmbientDensity(density: number): void;
+  /** The ambient density in use (0 when mounted with `ambient: false`). */
+  readonly ambientDensity: number;
+  /**
+   * Change the rendering quality without remounting: `'auto'`, or a fixed `'economy'`,
+   * `'balanced'`, `'high'` or `'ultra'`, as the `quality` option takes it. The camera, mode,
+   * vehicles, walker, markers and everything streamed stay; resolution, terrain and building
+   * detail, surfaces, ambient budgets, shadows and clouds swap as an adaptive level change does,
+   * a step per frame. Back to `'auto'`, the view starts again from the device's first level and
+   * calibrates. The memory budget and `maxPixelRatio` are fixed at mount.
+   */
+  setQuality(quality: 'auto' | EarthFixedQuality): void;
+  /** The quality asked for, at mount or by `setQuality` (`stats().qualityLevel` is the level). */
+  readonly quality: 'auto' | EarthFixedQuality;
   dispose(): void;
 }
 
@@ -1026,6 +1108,8 @@ interface EarthStack {
   ambient: EarthAmbient | undefined;
   wildlife: EarthWildlife | undefined;
   audioTerrain: EarthAudioTerrain;
+  /** Streets and place labels from the feature tiles, for `locate`. */
+  locator: EarthLocator;
   viewDistance: number;
   /** The view's map overrides, bound to this stack's tiles. */
   overrides: MapOverrideBinding;
@@ -1081,13 +1165,17 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
   let pkg = source.terrain;
   const report =
     options.onError ?? ((error, context) => console.warn(`[molen-earth] ${context}`, error));
-  const automatic = (options.quality ?? 'auto') === 'auto';
-  let level = automatic
-    ? earthInitialQualityLevel()
-    : earthQualityLevel(options.quality as TerrainQualityPreset);
+  // The quality asked for, at mount or since by `setQuality`.
+  let requestedQuality: 'auto' | EarthFixedQuality = options.quality ?? 'auto';
+  let automatic = requestedQuality === 'auto';
+  // A fixed quality: a terrain preset, or 'ultra' (the high preset, drawn sharper).
+  let fixedQuality: EarthFixedQuality = requestedQuality === 'auto' ? 'balanced' : requestedQuality;
+  let level = automatic ? earthInitialQualityLevel() : earthQualityLevel(fixedQuality);
   let tier = earthPerformanceTier(level);
   const quality = (): TerrainQualityPreset =>
-    automatic ? tier.quality : (options.quality as TerrainQualityPreset);
+    automatic ? tier.quality : earthFixedPreset(fixedQuality);
+  const objectPixelError = (): number =>
+    automatic ? tier.objectPixelError : earthFixedObjectPixelError(fixedQuality);
   const maxPixelRatio = options.maxPixelRatio ?? 2;
   const memoryBudget = options.memoryBudget ?? earthMemoryBudget();
   if (!(memoryBudget > 0) || !Number.isFinite(memoryBudget))
@@ -1287,6 +1375,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         input: input.map,
         focusTarget: canvas,
         ...(options.console.handed !== undefined ? { handed: options.console.handed } : {}),
+        ...(options.console.cornerButtons !== undefined
+          ? { cornerButtons: options.console.cornerButtons }
+          : {}),
       });
       vehicleConsole.setVisible(false);
       disposers.push(() => vehicleConsole?.dispose());
@@ -1332,7 +1423,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     disposers.push(() => semanticWorker?.terminate());
     const groundHeight = (x: number, z: number): number | undefined =>
       stack?.stream.sampleSurfaceHeight(x, z);
-    const ambientSettings = options.ambient === false ? undefined : (options.ambient ?? {});
+    // A copy: `setAmbientDensity` changes its density, which stacks built later start with.
+    const ambientSettings: EarthAmbientSettings | undefined =
+      options.ambient === false ? undefined : { ...options.ambient };
     let ambientOn = ambientSettings !== undefined;
     const ambientContent =
       content?.types !== undefined
@@ -1480,9 +1573,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         // Ambient life reads the decoded road tiles as the features layer builds them.
         const ambientTiles = ambientSettings !== undefined ? new SemanticTileBuffer() : undefined;
         const audioTerrain = new EarthAudioTerrain();
+        const locator = new EarthLocator();
         const waterFeatures = selectEarthWaterFeatures(content?.waterFeatures, options.viewingDate);
         const waterMesh = earthWaterMeshOptions(waterFeatures, pkg);
         parts.push(() => audioTerrain.clear());
+        parts.push(() => locator.clear());
         const wildlifeWanted =
           ambientSettings !== undefined &&
           ambientSettings.wildlife !== false &&
@@ -1611,10 +1706,13 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                     withMapOverrides(
                       withEarthShorelineRoadMask(
                         observeSemanticTiles(
-                          ambientTiles !== undefined
-                            ? observeSemanticTiles(inner, ambientTiles)
-                            : inner,
-                          audioTerrain.observer,
+                          observeSemanticTiles(
+                            ambientTiles !== undefined
+                              ? observeSemanticTiles(inner, ambientTiles)
+                              : inner,
+                            audioTerrain.observer,
+                          ),
+                          locator.observer,
                         ),
                         waterFeatures,
                         pkg,
@@ -1647,6 +1745,13 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             // Finer building footprints are optional: without them the feature tiles' own stay.
             if (semantic.semantics.buildingDetailError !== undefined)
               report(semantic.semantics.buildingDetailError, 'building detail');
+            // The detail level's roads name the side streets `locate` reports.
+            const detailStreets = buildingDetail?.streets;
+            if (buildingDetail !== undefined && detailStreets !== undefined)
+              locator.useStreets({
+                level: buildingDetail.level,
+                load: (address, signal) => detailStreets.load(address, signal),
+              });
           } catch (error) {
             // Bare terrain still renders; semantic sidecars are optional by contract.
             report(error, 'semantic layers');
@@ -1877,6 +1982,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           ambient,
           wildlife,
           audioTerrain,
+          locator,
           viewDistance: budget.viewDistance,
           overrides: overrideBinding,
           dispose: cleanup,
@@ -2010,7 +2116,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     const collision = new WalkCollision({ rescanIntervalMs: 200 });
     const look = { yaw: 0, pitch: 0 };
     // Third person: a chase camera behind the walker's feet (see EarthWalker.setView).
-    let walkView: 'first' | 'third' = 'first';
+    let walkView: 'first' | 'third' =
+      options.walkView === 'third' && options.avatar !== undefined ? 'third' : 'first';
     const follow = new FollowController({ distance: 4.5, height: 1.9, lookHeight: 1.4 });
 
     const applyProfile = (): void => {
@@ -2781,13 +2888,19 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         paceAt: snowPace,
         ...(content?.types !== undefined ? { types: content.types } : {}),
         prepare: (object) => {
-          void renderer.prepareObject(object);
+          // Not waited for: the figure shows at once and warms as it does. Disposing the view
+          // rejects warm-ups still queued, which must not surface as unhandled rejections.
+          renderer.prepareObject(object).catch((error: unknown) => {
+            if (!disposed) report(error, 'actor figure');
+          });
         },
         emit: (change) => emit('actorchange', change),
         ownsVehicle: (id) => owned.has(id),
       },
       options.actors,
     );
+    if (options.avatar !== undefined)
+      actorDirector.setAvatar('figure' in options.avatar ? options.avatar.figure : options.avatar);
     actorDirector.attach(actorStack(stack));
     disposers.push(() => actorDirector.dispose());
     const dioramaDirector = new EarthDioramaDirector(
@@ -3285,7 +3398,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       const live = (): boolean => current !== undefined && current === stack;
       const steps: Array<() => void> = [
         () => {
-          lodPolicy.maxPixelError = automatic ? tier.objectPixelError : 2;
+          lodPolicy.maxPixelError = objectPixelError();
           resize();
         },
         () => {
@@ -3342,7 +3455,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       const device = window.devicePixelRatio || 1;
       const ratio = automatic
         ? Math.min(maxPixelRatio, earthPixelRatio(level, w, h, device))
-        : Math.min(maxPixelRatio, device);
+        : Math.min(maxPixelRatio, earthFixedPixelRatio(fixedQuality, w, h, device));
       renderer.setPixelRatio(ratio);
       renderer.setSize(w, h);
       lodPolicy.viewportHeight = canvas.height;
@@ -3466,7 +3579,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     // Frame work, where the browser can time the GPU: with both GPU and CPU work known, slow
     // frames while tiles stream in lower quality only when rendering itself is the cost. Without
     // GPU timing, CPU work alone would hide a GPU-bound device's overload, so neither is sent.
-    const gpuTimer = automatic ? renderer.createGpuTimer?.() : undefined;
+    // Only adaptive quality reads it: `setQuality` makes one, or lets it go, as it switches.
+    let gpuTimer = automatic ? renderer.createGpuTimer?.() : undefined;
     disposers.push(() => gpuTimer?.dispose());
     let workMs = 0;
     const admissionGovernor = createEarthAdmissionGovernor(renderer.backend);
@@ -3483,6 +3597,42 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     let heldSince = 0;
     let movedAt = Number.NEGATIVE_INFINITY;
     let lastPose = pose;
+
+    // `EarthView.setQuality`: the swap an adaptive level change makes (applyTier), on the live
+    // view. A fixed quality holds its level; back to 'auto', the view starts again where a mount
+    // would (the device's first level) and calibrates from there.
+    const setQuality = (next: 'auto' | EarthFixedQuality): void => {
+      if (disposed || next === requestedQuality) return;
+      requestedQuality = next;
+      automatic = next === 'auto';
+      if (next !== 'auto') fixedQuality = next;
+      heldLevel = undefined;
+      heldReason = undefined;
+      qualityReason = undefined;
+      levelSince = performance.now();
+      if (automatic) {
+        level = Math.min(
+          renderer.softwareRasterizer
+            ? earthInitialQualityLevel({ softwareRasterizer: true })
+            : earthInitialQualityLevel(),
+          maxQualityLevel,
+        );
+        controller = new AdaptiveQualityController({
+          initialLevel: level,
+          maxLevel: maxQualityLevel,
+          ...EARTH_CALIBRATION_QUALITY,
+        });
+        calibrated = false;
+        gpuTimer ??= renderer.createGpuTimer?.();
+      } else {
+        level = earthQualityLevel(fixedQuality);
+        gpuTimer?.dispose();
+        gpuTimer = undefined;
+        workMs = 0;
+      }
+      // A step a frame while it renders, as adaptive changes go; paused, there is no frame to spare.
+      applyTier(!paused);
+    };
 
     const orbitFrame = (dt: number, frameInput: NavigationInput): NavigationPose => {
       const wasFlying = orbit.flying;
@@ -3787,17 +3937,24 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       );
     };
 
+    /** Units of a driven vehicle's speedometer (a boat's read knots). */
+    const speedUnit = options.speedUnit ?? 'km/h';
     /** What the vehicle console shows: the flown aircraft, the driven vehicle, or on foot. */
     const consoleSubject = (current: EarthStack | undefined): ConsoleSubject | undefined => {
       if (mode === 'fly')
         return current?.aircraft?.consoleSubject(
           options.console?.gauges !== false && current.aircraft.view === 'chase',
         );
-      if (mode === 'drive') return current?.vehicles?.consoleSubject();
+      if (mode === 'drive')
+        return current?.vehicles?.consoleSubject({
+          gauges: options.console?.gauges !== false,
+          speedUnit,
+        });
       return mode === 'walk' ? ON_FOOT : undefined;
     };
-    // The flown aircraft's own instruments in a host canvas (setInstrumentCanvas), drawn after
-    // the frame, when the cockpit's world matrices are this frame's.
+    // The flown aircraft's own instruments, or the driven vehicle's speedometer, in a host canvas
+    // (setInstrumentCanvas), drawn after the frame, when the cockpit's world matrices are this
+    // frame's.
     let instrumentCanvas: HTMLCanvasElement | undefined;
     let instrumentDisplay: AircraftInstrumentDisplay | undefined;
     disposers.push(() => instrumentDisplay?.dispose());
@@ -3910,7 +4067,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           // screen and asked for its finest level.
           verticalFov: VERTICAL_FOV_DEGREES,
           viewportHeight: canvas.height,
-          maxPixelError: automatic ? tier.objectPixelError : 2,
+          maxPixelError: objectPixelError(),
         });
         if (
           now - streamTime >= 100 ||
@@ -4072,7 +4229,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       viewer.renderFrame();
       if (timing) gpuTimer?.end();
       instrumentDisplay?.update(
-        mode === 'fly' ? current?.aircraft?.mountedInstruments() : undefined,
+        mode === 'fly'
+          ? current?.aircraft?.mountedInstruments()
+          : mode === 'drive'
+            ? current?.vehicles?.mountedInstruments(speedUnit)
+            : undefined,
         now,
       );
       // After the frame: the console's dials copy the cockpit's world matrices.
@@ -4272,6 +4433,16 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             ...(vehicles.snow
               ? { snowDepth: vehicles.snow.depth, stuck: vehicles.snow.stuck }
               : {}),
+            // Its model loaded, the speedometer draws (`mountedInstruments`).
+            instruments:
+              vehicles.consoleSubject() !== undefined
+                ? [
+                    {
+                      kind: 'speed',
+                      unit: vehicles.isBoat(vehicles.mountedId as string) ? 'kt' : speedUnit,
+                    },
+                  ]
+                : [],
           };
         }
         return undefined;
@@ -4346,6 +4517,24 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           ...hit,
           outlines: hit.outlines.map((ring) => ring.map(geo)),
           bounds: [west, south, east, north],
+        };
+      },
+      locate({ latitude, longitude, heading, streetRadius, street }) {
+        if (stack === undefined) return {};
+        const [x, z] = toWorld(latitude, longitude);
+        const found = stack.locator.locate(x, z, {
+          ...(heading !== undefined ? { heading } : {}),
+          ...(streetRadius !== undefined ? { streetRadius } : {}),
+          ...(street !== undefined ? { street } : {}),
+        });
+        const geo = ({ x: lx, z: lz, ...label }: LocatedLabel): EarthLocality => ({
+          ...label,
+          ...toLatLon(lx, lz),
+        });
+        return {
+          ...(found.street !== undefined ? { street: found.street } : {}),
+          ...(found.locality !== undefined ? { locality: geo(found.locality) } : {}),
+          ...(found.district !== undefined ? { district: geo(found.district) } : {}),
         };
       },
       airfields,
@@ -4436,6 +4625,18 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         stack?.ambient?.setEnabled(enabled);
         stack?.wildlife?.setEnabled(enabled);
       },
+      get ambientDensity() {
+        return ambientSettings === undefined ? 0 : ambientDensity(ambientSettings);
+      },
+      setAmbientDensity(density) {
+        if (ambientSettings === undefined || !Number.isFinite(density)) return;
+        ambientSettings.density = Math.max(0, Math.min(1, density));
+        stack?.ambient?.setDensity(ambientSettings.density);
+      },
+      get quality() {
+        return requestedQuality;
+      },
+      setQuality,
       get weather() {
         return weather;
       },

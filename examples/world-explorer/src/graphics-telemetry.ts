@@ -8,6 +8,18 @@ export class GraphicsTelemetry {
     values.push(milliseconds);
     this.stages.set(stage, values);
   }
+  /**
+   * Mean of a stage's last `samples` recordings, or undefined before its first: cheap enough
+   * for a readout refreshed several times a second, unlike `snapshot`, which sorts everything.
+   */
+  recentMean(stage: string, samples = 32): number | undefined {
+    const values = this.stages.get(stage);
+    if (values === undefined || values.length === 0) return undefined;
+    const from = Math.max(0, values.length - samples);
+    let sum = 0;
+    for (let i = from; i < values.length; i++) sum += values[i] as number;
+    return sum / (values.length - from);
+  }
   count(name: string): void {
     this.total(name, 1);
   }

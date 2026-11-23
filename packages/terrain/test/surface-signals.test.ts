@@ -134,6 +134,30 @@ describe('intersection traffic signals', () => {
     renderer.dispose();
   });
 
+  it('advances the lenses ten times a second of signal time, and only those that are drawn', () => {
+    const { tile, context } = fixture();
+    const renderer = createTerrainSurfaceRenderer();
+    const root = renderer.createTile(tile, context);
+    renderer.updateSignals(100, () => 'amber');
+    expect(new Set(colors(root))).toEqual(new Set(['ffbd18']));
+    // A frame later: the tiles are not visited again yet.
+    renderer.updateSignals(100.02, () => 'green');
+    expect(new Set(colors(root))).toEqual(new Set(['ffbd18']));
+    renderer.updateSignals(100.15, () => 'green');
+    expect(new Set(colors(root))).toEqual(new Set(['21f581']));
+    // Time running backwards (a reset) counts as well.
+    renderer.updateSignals(50, () => 'red');
+    expect(new Set(colors(root))).toEqual(new Set(['ff3425']));
+    // Past their draw distance the lenses are left as they were, and caught up on return.
+    renderer.updateDetail(new THREE.Vector3(50_000, 0, 50_000));
+    renderer.updateSignals(60, () => 'green');
+    expect(new Set(colors(root))).toEqual(new Set(['ff3425']));
+    renderer.updateDetail(new THREE.Vector3(0, 0, 0));
+    renderer.updateSignals(60.2, () => 'green');
+    expect(new Set(colors(root))).toEqual(new Set(['21f581']));
+    renderer.dispose();
+  });
+
   it('hides small street detail far from the camera and shows it again nearby', () => {
     const { tile, context } = fixture();
     const renderer = createTerrainSurfaceRenderer();

@@ -63,8 +63,10 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   accessibility. Pinned Americana SVG inputs and archived reference/licensing HTML under model
   source bundles are excluded: they are upstream evidence, not maintained UI. Preserve their
   original bytes and hashes; fix accessibility in the application that presents the content.
-  Generated data (glyph atlases, PMTiles extracts) is excluded too; other content JSON and place
-  model scripts may be up to 16 MiB before Biome skips them.
+  Generated data (glyph atlases, PMTiles extracts) is excluded too; other content JSON, place
+  model scripts and the generated source galleries (`content/worldgen/source/*/gallery.html`)
+  may be up to 16 MiB before Biome skips them. Fix a gallery finding in its generator, then
+  regenerate: each generator's `--check` compares the page byte for byte.
 - Place model scripts (`content/worldgen/source/places/**/*.mjs`) and the shared recipes listed in
   `authoring-index.json` feed `modelInputHash`, which capture and placement reports pin. A
   lint-only edit to one of them stales its captures and reviews. Biome therefore does not report

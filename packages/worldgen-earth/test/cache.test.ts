@@ -320,4 +320,39 @@ describe('worldgen tile cache', () => {
     tileHeightGrid(ground, { ...geom, originX: 4 }, 5);
     expect(samples).toBe(50);
   });
+
+  it('follows the drawn mesh when the host draws the ground coarser than its samples', () => {
+    // A ridge along x = 2 on a 4 m tile, sampled into a 9-sample grid. Drawn with 3 vertices per
+    // edge (2 m apart) the mesh has vertices on the ridge line and keeps the crest; drawn with 2
+    // (one 4 m cell) the ridge is gone, and buildings on the crest must stand where it is drawn.
+    const ground = {
+      sampleHeight: (x: number) => 10 - 5 * Math.abs(x - 2),
+      slopeAt: () => 0,
+      normalAt: () => [0, 1, 0] as [number, number, number],
+    };
+    const geom = {
+      level: 2,
+      x: 0,
+      z: 0,
+      originX: 0,
+      originZ: 0,
+      size: 4,
+      metersPerUnit: 1,
+      levelBelowMax: 0,
+    };
+    const crest = (grid: { cols: number; heights: Float32Array }) =>
+      grid.heights[2 * grid.cols + 4] as number;
+    const source = tileHeightGrid(ground, geom, 9);
+    expect(crest(source)).toBe(10);
+    // Drawn at the grid's own resolution nothing changes.
+    expect(Array.from(tileHeightGrid(ground, geom, 9, 9).heights)).toEqual(
+      Array.from(source.heights),
+    );
+    expect(crest(tileHeightGrid(ground, geom, 9, 3))).toBe(10);
+    const coarse = tileHeightGrid(ground, geom, 9, 2);
+    expect(crest(coarse)).toBe(0);
+    expect(Math.max(...coarse.heights)).toBe(0);
+    // The recent grids are told apart by the drawn mesh too.
+    expect(crest(tileHeightGrid(ground, geom, 9))).toBe(10);
+  });
 });

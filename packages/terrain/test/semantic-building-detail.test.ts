@@ -12,6 +12,7 @@ import {
   composeTerrainBuildingDetail,
   createBuildingDetailTerrainSemanticSource,
 } from '../src/semantic-building-detail';
+import { terrainSemanticTileFromPacket, terrainSemanticTilePacket } from '../src/semantic-packet';
 import {
   createEmptyTerrainSemanticTile,
   setTerrainSemanticTileContentHash,
@@ -171,6 +172,69 @@ describe('building detail composition', () => {
     const coarse = tileWith([{ id: 1, polygons: [{ outer: rect(0.1, 0.1, 0.2, 0.2) }] }], true);
     expect(composeTerrainBuildingDetail(coarse, parent, 15, children({}))).toBe(coarse);
   });
+
+  it('takes only the largest footprints of each detail tile under a limit, and carries the coverage of all', () => {
+    // 100 houses in a 10 x 10 grid across each child (a quarter of each child's ground), plus a
+    // tower in the north-west one and a hall that straddles the seam to its east.
+    const houses = (prefix: string): TerrainBuildingFeature[] =>
+      Array.from({ length: 100 }, (_, index) => {
+        const u = 0.025 + (index % 10) * 0.1;
+        const v = 0.025 + Math.floor(index / 10) * 0.1;
+        return { id: `${prefix}${index}`, polygons: [{ outer: rect(u, v, u + 0.05, v + 0.05) }] };
+      });
+    const tower: TerrainBuildingFeature = {
+      id: 'tower',
+      height: 120,
+      polygons: [{ outer: rect(0.41, 0.41, 0.44, 0.44) }],
+    };
+    const hallWest: TerrainBuildingFeature = {
+      id: 'hall',
+      polygons: [{ outer: rect(0.9, 0.7, 1.015, 0.85) }],
+    };
+    const hallEast: TerrainBuildingFeature = {
+      id: 'hall',
+      polygons: [{ outer: rect(-0.015, 0.7, 0.04, 0.74) }],
+    };
+    const tiles = {
+      '20/40': tileWith([...houses('nw'), tower, hallWest]),
+      '21/40': tileWith([...houses('ne'), hallEast]),
+      '20/41': tileWith(houses('sw')),
+      '21/41': tileWith(houses('se').slice(0, 3)),
+    };
+    const all = composeTerrainBuildingDetail(undefined, parent, 15, children(tiles));
+    expect(all?.buildings).toHaveLength(305);
+    expect(all?.buildingCoverage).toBeUndefined();
+
+    const limited = composeTerrainBuildingDetail(undefined, parent, 15, children(tiles), {
+      limitPerChild: 4,
+    });
+    const ids = limited?.buildings.map((feature) => String(feature.id)) ?? [];
+    // Four from each crowded child, all three of the last, and the hall once.
+    expect(ids).toHaveLength(4 + 4 + 4 + 3);
+    expect(ids).toContain('tower');
+    expect(ids.filter((id) => id === 'hall')).toHaveLength(1);
+    // The hall is whole: its eastern sliver came along though that child's limit was spent on
+    // larger houses. (A house is 0.0025 of a child; the sliver 0.0022, the western part 0.017.)
+    const hall = limited?.buildings.find((feature) => feature.id === 'hall');
+    const [minU, , maxU] = bounds(hall as TerrainBuildingFeature);
+    expect(minU).toBeCloseTo(0.45, 6);
+    expect(maxU).toBeCloseTo(0.52, 6);
+    // Coverage is that of every footprint: about a quarter in the three crowded quarters, next
+    // to nothing in the south-east, whatever was kept.
+    const coverage = limited?.buildingCoverage;
+    expect(coverage?.size).toBe(16);
+    const at = (column: number, row: number): number => coverage?.cells[row * 16 + column] ?? -1;
+    expect(at(3, 3)).toBeGreaterThan(0.2);
+    expect(at(3, 3)).toBeLessThan(0.4);
+    expect(at(12, 3)).toBeGreaterThan(0.2);
+    expect(at(3, 12)).toBeGreaterThan(0.2);
+    expect(at(13, 13)).toBeLessThan(0.01);
+    // A child within the limit gives everything, and with none over it nothing changes.
+    const roomy = composeTerrainBuildingDetail(undefined, parent, 15, children(tiles), {
+      limitPerChild: 1000,
+    });
+    expect(roomy).toEqual(all);
+  });
 });
 
 describe('building detail source', () => {
@@ -204,6 +268,118 @@ describe('building detail source', () => {
     const level12 = await source.load({ level: 12, x: 2, z: 5 }, signal);
     expect(level12?.buildings.map((b) => b.id)).toEqual(['merged']);
     expect(detailLoads).toHaveLength(16);
+  });
+
+  it('limits what a tile two levels coarser takes, and never a tile one level coarser', async () => {
+    const crowd = (address: TerrainPyramidTileAddress): TerrainSemanticTile =>
+      tileWith(
+        Array.from({ length: 40 }, (_, index) => ({
+          id: `${address.x}-${address.z}-${index}`,
+          polygons: [
+            { outer: rect(0.02 + index * 0.02, 0.4, 0.03 + index * 0.02 + index * 0.0001, 0.45) },
+          ],
+        })),
+      );
+    const signal = new AbortController().signal;
+    const source = createBuildingDetailTerrainSemanticSource(
+      { load: async () => coarse() },
+      { load: async (address) => crowd(address) },
+      { level: 15, coarseBuildingLimit: 5 },
+    );
+    const level13 = await source.load({ level: 13, x: 5, z: 10 }, signal);
+    expect(level13?.buildings).toHaveLength(16 * 5);
+    expect(level13?.buildingCoverage?.cells).toHaveLength(256);
+    // The widest five of each detail tile.
+    expect(level13?.buildings.some((feature) => String(feature.id).endsWith('-39'))).toBe(true);
+    expect(level13?.buildings.some((feature) => String(feature.id).endsWith('-0'))).toBe(false);
+    const level14 = await source.load({ level: 14, x: 10, z: 20 }, signal);
+    expect(level14?.buildings).toHaveLength(4 * 40);
+    expect(level14?.buildingCoverage).toBeUndefined();
+    // The default keeps 256 a detail tile; Infinity keeps all.
+    const whole = createBuildingDetailTerrainSemanticSource(
+      { load: async () => coarse() },
+      { load: async (address) => crowd(address) },
+      { level: 15, coarseBuildingLimit: Number.POSITIVE_INFINITY },
+    );
+    expect((await whole.load({ level: 13, x: 5, z: 10 }, signal))?.buildings).toHaveLength(640);
+  });
+
+  it('packs a crowded composed tile once, so it crosses to workers and is kept as a packet', async () => {
+    // 1,200 footprints a detail tile: 4,800 under a level-14 tile, 300 with only one child.
+    const crowd = (address: TerrainPyramidTileAddress, count: number): TerrainSemanticTile =>
+      tileWith(
+        Array.from({ length: count }, (_, index) => ({
+          id: `${address.x}-${address.z}-${index}`,
+          height: 3 + (index % 7),
+          polygons: [
+            {
+              outer: rect(
+                0.01 + (index % 40) * 0.024,
+                0.01 + Math.floor(index / 40) * 0.03,
+                0.02 + (index % 40) * 0.024,
+                0.03 + Math.floor(index / 40) * 0.03,
+              ),
+            },
+          ],
+        })),
+      );
+    const signal = new AbortController().signal;
+    const source = (count: number) =>
+      createBuildingDetailTerrainSemanticSource(
+        { load: async () => coarse() },
+        { load: async (address) => crowd(address, count) },
+        { level: 15 },
+      );
+    const big = await source(1200).load({ level: 14, x: 10, z: 20 }, signal);
+    if (big === undefined) throw new Error('no tile');
+    expect(big.buildings).toHaveLength(4800);
+    const packet = terrainSemanticTilePacket(big);
+    expect(packet?.json).toBeDefined();
+    const received = terrainSemanticTileFromPacket(
+      structuredClone(packet as typeof packet & object),
+    );
+    expect(received.buildings).toEqual(big.buildings);
+    expect(received.buildingSourceLevel).toBe(15);
+    // A small one is cheaper to clone than to pack.
+    const small = await source(75).load({ level: 14, x: 10, z: 20 }, signal);
+    expect(small?.buildings).toHaveLength(300);
+    expect(small && terrainSemanticTilePacket(small)).toBeUndefined();
+  });
+
+  it('keeps fewer detail tiles when they are crowded', async () => {
+    // Four detail tiles of 40 footprints each under one level-14 tile.
+    const crowd = (address: TerrainPyramidTileAddress): TerrainSemanticTile =>
+      tileWith(
+        Array.from({ length: 40 }, (_, index) => ({
+          id: `${address.x}-${address.z}-${index}`,
+          polygons: [{ outer: rect(0.02 * index, 0.4, 0.02 * index + 0.01, 0.45) }],
+        })),
+      );
+    const signal = new AbortController().signal;
+    const loadsWith = async (cacheBuildings?: number): Promise<number> => {
+      let loads = 0;
+      const source = createBuildingDetailTerrainSemanticSource(
+        { load: async () => coarse() },
+        {
+          load: async (address) => {
+            loads++;
+            return crowd(address);
+          },
+        },
+        { level: 15, ...(cacheBuildings !== undefined ? { cacheBuildings } : {}) },
+      );
+      const first = await source.load({ level: 14, x: 10, z: 20 }, signal);
+      expect(first?.buildings).toHaveLength(160);
+      const again = await source.load({ level: 14, x: 10, z: 20 }, signal);
+      expect(again?.buildings).toHaveLength(160);
+      return loads;
+    };
+    // By default all four are kept, and the second visit reads none again.
+    expect(await loadsWith()).toBe(4);
+    // Room for 100 footprints keeps the two newest: the other two are read again.
+    expect(await loadsWith(100)).toBe(6);
+    // With room for less than one tile only the newest request is kept: nothing is reused.
+    expect(await loadsWith(10)).toBe(8);
   });
 
   it('serves tiles finer than the detail level from the covering detail tile', async () => {
@@ -352,6 +528,94 @@ describe('building detail in a terrain package', () => {
     expect(contexts.filter((c) => c.startsWith('detail'))).toEqual(
       Array(4).fill('detail@11:building'),
     );
+  });
+
+  it('opens a roads-only street source on the detail level, when the features carry roads', async () => {
+    const contexts: string[] = [];
+    const decoder = {
+      decode(data: Uint8Array, context: { address: { level: number }; layers: readonly string[] }) {
+        contexts.push(
+          `${new TextDecoder().decode(data)}@${context.address.level}:${context.layers}`,
+        );
+        return tileWith([]);
+      },
+    };
+    const opened = await createTerrainPackageSemanticLayers(descriptor(), {
+      featuresArchive: archive(0, 9, 'coarse'),
+      buildingDetailArchive: archive(11, 11, 'detail'),
+      decoder,
+    });
+    const streets = opened.semantics.buildingDetail?.streets;
+    expect(streets).toBeDefined();
+    const signal = new AbortController().signal;
+    expect(await streets?.load({ level: 11, x: 5, z: 6 }, signal)).toBeDefined();
+    // Only its one level: coarser tiles are the feature tiles' business.
+    expect(await streets?.load({ level: 10, x: 2, z: 3 }, signal)).toBeUndefined();
+    expect(contexts).toEqual(['detail@11:transportation']);
+    // A package whose features have no roads has no street source.
+    const buildingsOnly = descriptor();
+    if (!buildingsOnly.features) throw new Error('fixture needs features');
+    buildingsOnly.features.layers = ['building'];
+    const without = await createTerrainPackageSemanticLayers(buildingsOnly, {
+      featuresArchive: archive(0, 9, 'coarse'),
+      buildingDetailArchive: archive(11, 11, 'detail'),
+      decoder,
+    });
+    expect(without.semantics.buildingDetail?.level).toBe(11);
+    expect(without.semantics.buildingDetail?.streets).toBeUndefined();
+  });
+
+  it('draws the detail level’s roads where the pyramid reaches it, and the coarse roads above', async () => {
+    const render = async (maxLevel: number, level: number) => {
+      const pkg = descriptor();
+      pkg.tileMatrix.maxLevel = maxLevel;
+      let rendered: TerrainSemanticTile | undefined;
+      const opened = await createTerrainPackageSemanticLayers(pkg, {
+        featuresArchive: archive(0, 9, 'coarse'),
+        buildingDetailArchive: archive(11, 11, 'detail'),
+        decoder: {
+          decode(data, context) {
+            const tile = tileWith([]);
+            const detail = new TextDecoder().decode(data) === 'detail';
+            if (context.layers.includes('transportation'))
+              tile.transportation = [
+                {
+                  class: detail ? 'minor_road' : 'major_road',
+                  name: detail ? 'Side Street' : 'Main Road',
+                  lines: [
+                    [
+                      [0.5, 0],
+                      [0.5, 1],
+                    ],
+                  ],
+                },
+              ];
+            return tile;
+          },
+        },
+        featuresLayer: {
+          renderer: {
+            createTile(tile) {
+              rendered = tile;
+              return undefined;
+            },
+          },
+        },
+      });
+      await opened.layers
+        .find((layer) => layer.category === 'human-feature')
+        ?.createTile({
+          address: { level, x: 6, z: 6 },
+          signal: new AbortController().signal,
+        } as TerrainPyramidTileLayerContext);
+      return rendered?.transportation.map((road) => road.name);
+    };
+    // The pyramid reaches the detail level (11): its tiles there draw the detail roads.
+    expect(await render(11, 11)).toEqual(['Side Street']);
+    // A coarser tile keeps its own.
+    expect(await render(11, 10)).toEqual(['Main Road']);
+    // A pyramid that stops short of the detail level never asks for detail roads.
+    expect(await render(10, 10)).toEqual(['Main Road']);
   });
 
   it.each([

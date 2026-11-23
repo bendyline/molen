@@ -48,6 +48,7 @@ import {
 } from './polygon';
 import type { TerrainPyramidTileLayer, TerrainPyramidTileLayerContext } from './pyramid-stream';
 import { TERRAIN_RAILWAY_GROUND } from './rail-features';
+import { retireTerrainObjects } from './retire';
 import {
   assertTerrainSemanticTile,
   type TerrainBuildingFeature,
@@ -1598,6 +1599,7 @@ export function disposeTerrainSemanticObject(root: THREE.Object3D): void {
     dispose?.();
   });
   disposeTerrainSurfaceObject(root);
+  retireTerrainObjects(root);
 }
 
 /**

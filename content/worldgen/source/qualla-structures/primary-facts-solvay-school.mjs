@@ -5,7 +5,7 @@ import { join } from 'node:path';
 export const solvaySchoolCase = 'solvay-r42-surveyed-entrance-and-firsthand-building-description';
 export const solvaySchoolModel = 'solvay_brussels_school_of_economics_and_management';
 
-const hash = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 function boundDocument(dir, binding, expectedPath) {
   if (binding?.path !== expectedPath) throw Error('Unexpected Solvay School source path');

@@ -16,11 +16,13 @@ export {
   buildingBoxGeometry,
   createInstancedPlacements,
   gableBoxGeometry,
+  gableRoofGeometry,
   unitBoxGeometry,
 } from './client/instanced-box';
 export {
   createInstancedPlacementLod,
   type InstancedPlacementLodOptions,
+  PlacementSetGroup,
 } from './client/instanced-lod';
 export type { ModelDetail, ModelLoader, PreparedModel } from './client/instanced-models';
 export { ModelLibrary, mergeSceneGeometry } from './client/instanced-models';
@@ -38,6 +40,14 @@ export {
   createVertexColorMaterialSet,
   TEXTURED_SURFACE_MEAN,
 } from './client/materials';
+export {
+  createNearPlacements,
+  isNearPlacementObject,
+  type NearPlacementModel,
+  NearPlacementObject,
+  type NearPlacementOptions,
+  nearPlacementReach,
+} from './client/near-placements';
 export {
   type ModelNightLight,
   NightWindowLighting,

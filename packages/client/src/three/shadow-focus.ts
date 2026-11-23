@@ -27,6 +27,30 @@ export const SHADOW_MAP_SIZE: Record<Exclude<ShadowQuality, 'off'>, number> = {
   high: 4096,
 };
 
+/** Texel size, meters, up to which the focused map is drawn every frame. */
+const EVERY_FRAME_TEXEL = 0.3;
+/** How much longer the map stands for each meter of texel past that, ms, and the longest. */
+const HOLD_MS_PER_METER = 280;
+const HOLD_MS_MAX = 250;
+
+/**
+ * How long the sun's focused map may stand before it is drawn again, ms, when its texels are
+ * `texel` meters across: 0 (every frame) up to 0.3 m, which covers every walking and driving
+ * view and a flying one below about 150 m; then longer the coarser the map, to a quarter of a
+ * second from 1.2 m texels (600 m up and above, where the map is 5 km and more across).
+ *
+ * Drawing the map is a second pass over everything inside it. From 1,400 m over Osaka that was
+ * 350 draws and 3.9 million triangles a frame, a fifth of the frame's main-thread and GPU time,
+ * for shadows that did not change: buildings and trees stand still, the map is snapped to its
+ * own texels, and a car's shadow moves a fraction of a 2.4 m texel between frames. Standing, the
+ * map keeps the box it was drawn for, so every lookup still matches it; the renderer draws it
+ * again at once when the view, the sun, or the world origin has moved (see `Renderer`).
+ */
+export function shadowHoldMs(texel: number): number {
+  if (!(texel > EVERY_FRAME_TEXEL)) return 0;
+  return Math.min(HOLD_MS_MAX, (texel - EVERY_FRAME_TEXEL) * HOLD_MS_PER_METER);
+}
+
 const UP = new THREE.Vector3(0, 1, 0);
 const VERTICAL_UP = new THREE.Vector3(1, 0, 0);
 const shadowRadii = new WeakMap<THREE.DirectionalLight, number>();

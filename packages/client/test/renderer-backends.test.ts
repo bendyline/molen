@@ -10,6 +10,7 @@ const factories = vi.hoisted(() => ({
   webgpu: vi.fn(),
   reflections: vi.fn(),
   occlusion: vi.fn(),
+  canvasDepthIsFloat: vi.fn(),
 }));
 
 vi.mock('three', async (importOriginal) => ({
@@ -17,6 +18,7 @@ vi.mock('three', async (importOriginal) => ({
   WebGLRenderer: factories.webgl,
 }));
 
+vi.mock('../src/three/canvas-depth', () => ({ canvasDepthIsFloat: factories.canvasDepthIsFloat }));
 vi.mock('../src/three/webgpu-driver', () => ({ createWebGpuDriver: factories.webgpu }));
 vi.mock('../src/three/sky-reflections', async (importOriginal) => ({
   ...(await importOriginal<typeof import('../src/three/sky-reflections')>()),
@@ -48,10 +50,12 @@ function fakeDriver() {
     getRenderTarget: vi.fn(() => null),
     setRenderTarget: vi.fn(),
     getContext: vi.fn(() => gl),
+    domElement: {} as HTMLCanvasElement,
+    resetState: vi.fn(),
     state: {
       buffers: {
         color: { setMask: vi.fn(), setClear: vi.fn() },
-        depth: { getReversed: vi.fn(() => false) },
+        depth: { getReversed: vi.fn(() => false), setReversed: vi.fn(), setClear: vi.fn() },
       },
     },
     setRenderObjectFunction: vi.fn(),
@@ -75,9 +79,15 @@ describe('renderer backend selection', () => {
     factories.webgl.mockReset();
     factories.webgpu.mockReset();
     factories.reflections.mockReset();
+    factories.canvasDepthIsFloat.mockReset();
+    // SwiftShader's canvas depth: floating point, where reversed depth holds.
+    factories.canvasDepthIsFloat.mockReturnValue(true);
     webgl = fakeDriver();
     webgpu = fakeDriver();
-    factories.webgl.mockImplementation(function MockWebGlRenderer() {
+    factories.webgl.mockImplementation(function MockWebGlRenderer(options?: {
+      canvas?: HTMLCanvasElement;
+    }) {
+      if (options?.canvas) webgl.domElement = options.canvas;
       return webgl as unknown as WebGLRenderer;
     });
     factories.webgpu.mockResolvedValue(webgpu as unknown as WebGPURenderer);
@@ -645,18 +655,44 @@ describe('renderer backend selection', () => {
     expect(factories.webgl).not.toHaveBeenCalled();
   });
 
-  it('uses logarithmic depth on the same context when reversed WebGL depth is unsupported', async () => {
+  it('keeps reversed WebGL depth where the canvas depth buffer is floating point', async () => {
     const canvas = {} as HTMLCanvasElement;
-    const context = {} as WebGL2RenderingContext;
-    const unsupported = {
-      ...fakeDriver(),
-      domElement: canvas,
-      getContext: vi.fn(() => context),
-      capabilities: { reversedDepthBuffer: false },
-    };
-    factories.webgl.mockImplementationOnce(function UnsupportedWebGlRenderer() {
-      return unsupported as unknown as WebGLRenderer;
-    });
+    const renderer = await Renderer.create({ backend: 'webgl', canvas, reverseDepthBuffer: true });
+    expect(factories.canvasDepthIsFloat).toHaveBeenCalledExactlyOnceWith(gl);
+    expect(factories.webgl).toHaveBeenCalledExactlyOnceWith(
+      expect.objectContaining({ canvas, reversedDepthBuffer: true, logarithmicDepthBuffer: false }),
+    );
+    // The probe drew behind three's state cache: reset it, then reverse depth and set its clear
+    // value again as three's constructor did. Without the clear value the canvas drew nothing
+    // but its background.
+    expect(webgl.resetState).toHaveBeenCalledOnce();
+    expect(webgl.state.buffers.depth.setReversed).toHaveBeenCalledExactlyOnceWith(true);
+    expect(webgl.state.buffers.depth.setClear).toHaveBeenCalledExactlyOnceWith(1);
+    expect(
+      webgl.state.buffers.depth.setReversed.mock.invocationCallOrder[0] ?? Number.NaN,
+    ).toBeLessThan(webgl.state.buffers.depth.setClear.mock.invocationCallOrder[0] ?? Number.NaN);
+    expect(webgl.resetState.mock.invocationCallOrder[0] ?? Number.NaN).toBeLessThan(
+      webgl.state.buffers.depth.setReversed.mock.invocationCallOrder[0] ?? Number.NaN,
+    );
+    expect(renderer.three).toBe(webgl);
+    expect(webgl.dispose).not.toHaveBeenCalled();
+    renderer.dispose();
+  });
+
+  it('draws with logarithmic depth on the same context where the canvas depth is fixed point', async () => {
+    // A 24-bit fixed-point buffer gains nothing from reversing: behind a 5 cm near plane, distant
+    // roads fought the ground beneath them in stripes.
+    factories.canvasDepthIsFloat.mockReturnValue(false);
+    const replacement = fakeDriver();
+    factories.webgl
+      .mockImplementationOnce(function MockWebGlRenderer(options: { canvas: HTMLCanvasElement }) {
+        webgl.domElement = options.canvas;
+        return webgl as unknown as WebGLRenderer;
+      })
+      .mockImplementationOnce(function MockWebGlRenderer() {
+        return replacement as unknown as WebGLRenderer;
+      });
+    const canvas = {} as HTMLCanvasElement;
     const renderer = await Renderer.create({
       backend: 'webgl',
       canvas,
@@ -664,25 +700,49 @@ describe('renderer backend selection', () => {
       cameraNear: 0.05,
       cameraFar: 500000,
     });
-    expect(unsupported.dispose).toHaveBeenCalledOnce();
-    expect(unsupported.forceContextLoss).not.toHaveBeenCalled();
     expect(factories.webgl).toHaveBeenCalledTimes(2);
     expect(factories.webgl).toHaveBeenLastCalledWith(
       expect.objectContaining({
         canvas,
-        context,
+        context: gl,
+        reversedDepthBuffer: false,
+        logarithmicDepthBuffer: true,
+      }),
+    );
+    // Reset before disposing: the reset returns clip control to three's default, which the
+    // replacement on the same context assumes.
+    expect(webgl.resetState).toHaveBeenCalledOnce();
+    expect(webgl.resetState.mock.invocationCallOrder[0] ?? Number.NaN).toBeLessThan(
+      webgl.dispose.mock.invocationCallOrder[0] ?? Number.NaN,
+    );
+    expect(webgl.state.buffers.depth.setReversed).not.toHaveBeenCalled();
+    expect(webgl.forceContextLoss).not.toHaveBeenCalled();
+    expect(renderer.three).toBe(replacement);
+    renderer.dispose();
+    expect(replacement.dispose).toHaveBeenCalledOnce();
+  });
+
+  it('uses logarithmic depth without probing where EXT_clip_control is missing', async () => {
+    webgl.capabilities.reversedDepthBuffer = false;
+    const renderer = await Renderer.create({ backend: 'webgl', reverseDepthBuffer: true });
+    expect(factories.canvasDepthIsFloat).not.toHaveBeenCalled();
+    expect(factories.webgl).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        context: gl,
         reversedDepthBuffer: false,
         logarithmicDepthBuffer: true,
       }),
     );
     renderer.dispose();
-    expect(webgl.dispose).toHaveBeenCalledOnce();
   });
 
-  it('keeps reversed depth on supported WebGL without rebuilding the renderer', async () => {
-    const renderer = await Renderer.create({ backend: 'webgl', reverseDepthBuffer: true });
-    expect(factories.webgl).toHaveBeenCalledOnce();
-    expect(webgl.dispose).not.toHaveBeenCalled();
+  it('leaves WebGL depth alone when reversed depth is not asked for', async () => {
+    const renderer = await Renderer.create({ backend: 'webgl' });
+    expect(factories.webgl).toHaveBeenCalledExactlyOnceWith(
+      expect.objectContaining({ reversedDepthBuffer: false, logarithmicDepthBuffer: false }),
+    );
+    expect(factories.canvasDepthIsFloat).not.toHaveBeenCalled();
+    expect(webgl.resetState).not.toHaveBeenCalled();
     renderer.dispose();
   });
 
@@ -920,6 +980,85 @@ describe('renderer backend selection', () => {
     renderer.dispose();
   });
 
+  it('lets the focused sun map stand between drawings while it is coarse or its sun is dark', () => {
+    const now = vi.spyOn(performance, 'now').mockReturnValue(1_000);
+    const renderer = new Renderer();
+    applyEnvironment(renderer, { sun: { direction: [0, 1, 1] } });
+    const light = renderer.scene
+      .getObjectByName('$environment')
+      ?.children.find(
+        (child): child is THREE.DirectionalLight => child instanceof THREE.DirectionalLight,
+      ) as THREE.DirectionalLight;
+    renderer.setShadowQuality('high');
+    // The test double has no shadow pass: clear the request as three's does once it has drawn.
+    const frame = (): boolean => {
+      light.shadow.needsUpdate = false;
+      renderer.render();
+      return light.shadow.autoUpdate || light.shadow.needsUpdate;
+    };
+    // A walking view's 8 cm texels: every frame, as three decides.
+    renderer.setShadowFocus({ center: [0, 0, 0], radius: 160 });
+    expect(frame()).toBe(true);
+    expect(light.shadow.autoUpdate).toBe(true);
+    expect(renderer.shadowHoldInfo).toEqual({ frames: 0, draws: 0 });
+    // From 1,400 m the map is 10 km across, 2.5 m a texel: drawn once, then it stands.
+    renderer.setShadowFocus({ center: [0, 0, 0], radius: 5_000 });
+    expect(frame()).toBe(true);
+    expect(light.shadow.autoUpdate).toBe(false);
+    const aimed = light.target.position.clone();
+    renderer.setShadowFocus({ center: [200, 0, 0], radius: 5_000 });
+    expect(frame()).toBe(false);
+    // Standing, it keeps the box it was drawn for.
+    expect(light.target.position.equals(aimed)).toBe(true);
+    expect(renderer.shadowHoldInfo).toEqual({ frames: 2, draws: 1 });
+    // Drawn again: a quarter of a second on,
+    now.mockReturnValue(1_250);
+    expect(frame()).toBe(true);
+    expect(light.target.position.x).toBeGreaterThan(190);
+    // once the focus has left the middle of the box,
+    renderer.setShadowFocus({ center: [600, 0, 0], radius: 5_000 });
+    expect(frame()).toBe(true);
+    // when the world origin moves (the map's matrix is in scene coordinates),
+    renderer.setWorldOrigin([64, 0, 0]);
+    expect(frame()).toBe(true);
+    expect(frame()).toBe(false);
+    // and when something asks for it: a new kind of caster, as for a parked map.
+    light.shadow.needsUpdate = true;
+    renderer.render();
+    expect(light.shadow.needsUpdate).toBe(true);
+    // Parked stays parked, and coming back draws at once.
+    renderer.setShadowQuality('off');
+    expect(frame()).toBe(false);
+    expect(light.shadow.intensity).toBe(0);
+    renderer.setShadowQuality('high');
+    expect(frame()).toBe(true);
+    expect(light.shadow.autoUpdate).toBe(false);
+    // Fine texels again: every frame.
+    renderer.setShadowFocus({ center: [600, 0, 0], radius: 160 });
+    expect(frame()).toBe(true);
+    expect(light.shadow.autoUpdate).toBe(true);
+    // A sun that gives no light (night): its map is drawn once and stands until it does.
+    light.intensity = 0;
+    expect(frame()).toBe(true);
+    now.mockReturnValue(60_000);
+    renderer.setShadowFocus({ center: [9_000, 0, 0], radius: 160 });
+    expect(frame()).toBe(false);
+    light.intensity = 2;
+    expect(frame()).toBe(true);
+    expect(light.shadow.autoUpdate).toBe(true);
+    renderer.dispose();
+    // `holdShadows: false` draws every frame whatever the texels.
+    const every = new Renderer({ holdShadows: false });
+    applyEnvironment(every, { sun: { direction: [0, 1, 1] } });
+    every.setShadowQuality('high');
+    every.setShadowFocus({ center: [0, 0, 0], radius: 5_000 });
+    every.render();
+    every.render();
+    expect(every.shadowHoldInfo).toEqual({ frames: 0, draws: 0 });
+    every.dispose();
+    now.mockRestore();
+  });
+
   it('keeps ambient occlusion to the WebGPU backend and draws WebGL frames directly', () => {
     const renderer = new Renderer();
     expect(renderer.backend).toBe('webgl');
@@ -1079,6 +1218,30 @@ describe('renderer backend selection', () => {
     renderer.scene.updateMatrixWorld();
     expect(write).toHaveBeenCalledTimes(1);
     expect(new THREE.Vector3().setFromMatrixPosition(building.matrixWorld).x).toBe(-95);
+    renderer.dispose();
+  });
+
+  it('keeps hold of a render group only while it has a parent', () => {
+    // The renderer walks its render groups every frame. Holding every group ever made, weakly,
+    // and dereferencing each to find the live ones kept the dead ones from being collected.
+    const renderer = new Renderer();
+    const held = (renderer as unknown as { renderGroups: Set<THREE.Object3D> }).renderGroups;
+    const parent = new THREE.Group();
+    renderer.scene.add(parent);
+    const group = renderer.createRenderGroup();
+    expect(held.has(group)).toBe(false);
+    parent.add(group);
+    expect(held.has(group)).toBe(true);
+    // As a terrain stream keeps a tile warm: out of the scene, its parent set back by hand.
+    parent.remove(group);
+    group.parent = parent;
+    expect(held.has(group)).toBe(false);
+    parent.add(group);
+    expect(held.has(group)).toBe(true);
+    expect(parent.children.filter((child) => child === group)).toHaveLength(1);
+    // And as it evicts one.
+    parent.remove(group);
+    expect(held.size).toBe(0);
     renderer.dispose();
   });
 

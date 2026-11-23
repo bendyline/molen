@@ -77,26 +77,67 @@ export function segmentDistance(a: Vec2, b: Vec2, c: Vec2, d: Vec2): number {
   if (cross(a, b, c) * cross(a, b, d) < 0 && cross(c, d, a) * cross(c, d, b) < 0) return 0;
   return Math.min(distance(a, c, d), distance(b, c, d), distance(c, a, b), distance(d, a, b));
 }
+/**
+ * The proximity tests below first compare bounds, and answer "not near" only when the bounds are
+ * apart by this much more than the padding asked for, so rounding in a computed distance can
+ * never change an answer the full test would give. Most of what a lot is tested against (the
+ * mapped footprints, land and roads in its cells) is nowhere near it. A caller testing many lots
+ * against the same large polygon passes its extent, computed once (a cache keyed by polygon
+ * object filled a WeakMap with every lot's parcel and slowed the collector more than it saved).
+ */
+const APART_MARGIN = 1e-6;
+/** Bounds of every ring of a polygon, holes included. */
+export function polygonExtent(polygon: TerrainSemanticPolygon): Bounds {
+  const box: Bounds = [Infinity, Infinity, -Infinity, -Infinity];
+  for (const ring of [polygon.outer, ...(polygon.holes ?? [])])
+    for (const p of ring) {
+      if (p[0] < box[0]) box[0] = p[0];
+      if (p[1] < box[1]) box[1] = p[1];
+      if (p[0] > box[2]) box[2] = p[0];
+      if (p[1] > box[3]) box[3] = p[1];
+    }
+  return box;
+}
+/** Whether two bounds are certainly more than `gap` apart. */
+function apart(a: Bounds, b: Bounds, gap: number): boolean {
+  const g = gap + APART_MARGIN;
+  return a[2] + g < b[0] || b[2] + g < a[0] || a[3] + g < b[1] || b[3] + g < a[1];
+}
+function segmentExtent(a: Vec2, b: Vec2): Bounds {
+  return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[0], b[0]), Math.max(a[1], b[1])];
+}
+/** `segmentDistance(a, b, c, d) < limit`, skipping the distance for segments far apart. */
+export function segmentsWithin(a: Vec2, b: Vec2, c: Vec2, d: Vec2, limit: number): boolean {
+  return (
+    !apart(segmentExtent(a, b), segmentExtent(c, d), limit) && segmentDistance(a, b, c, d) < limit
+  );
+}
+/** Whether segment a-b comes within `padding` of the polygon (or lies in it). */
 export function lineNearPolygon(
   a: Vec2,
   b: Vec2,
   polygon: TerrainSemanticPolygon,
   padding: number,
+  extent: Bounds = polygonExtent(polygon),
 ): boolean {
+  if (apart(segmentExtent(a, b), extent, padding)) return false;
   if (pointInPolygon(a, polygon) || pointInPolygon(b, polygon)) return true;
   return [polygon.outer, ...(polygon.holes ?? [])].some((r) =>
     r.some((p, i) => segmentDistance(a, b, p, r[(i + 1) % r.length] as Vec2) <= padding),
   );
 }
+/** Whether two polygons come within `padding` of each other; `bExtent` is b's polygonExtent. */
 export function polygonsNear(
   a: TerrainSemanticPolygon,
   b: TerrainSemanticPolygon,
   padding = 0,
+  bExtent: Bounds = polygonExtent(b),
 ): boolean {
+  if (apart(polygonExtent(a), bExtent, padding)) return false;
   if (a.outer.some((p) => pointInPolygon(p, b)) || b.outer.some((p) => pointInPolygon(p, a)))
     return true;
   return [a.outer, ...(a.holes ?? [])].some((r) =>
-    r.some((p, i) => lineNearPolygon(p, r[(i + 1) % r.length] as Vec2, b, padding)),
+    r.some((p, i) => lineNearPolygon(p, r[(i + 1) % r.length] as Vec2, b, padding, bExtent)),
   );
 }
 export function corridor(a: Vec2, b: Vec2, width: number): TerrainSemanticPolygon {

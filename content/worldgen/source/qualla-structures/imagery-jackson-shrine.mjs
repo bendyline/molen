@@ -3,8 +3,8 @@ import { readFileSync, realpathSync } from 'node:fs';
 import { isAbsolute, relative, resolve } from 'node:path';
 
 const filename = 'From_Constantinople_to_the_home_of_Omar_Khayyam.djvu';
-const book = 'https://commons.wikimedia.org/wiki/File:' + filename;
-const original = 'https://upload.wikimedia.org/wikipedia/commons/8/89/' + filename;
+const book = `https://commons.wikimedia.org/wiki/File:${filename}`;
+const original = `https://upload.wikimedia.org/wikipedia/commons/8/89/${filename}`;
 const archive = 'https://archive.org/details/fromconstantinop00jackuoft';
 const volumeSha1 = 'eb9a17975cec615ddc65a7124d5f36a1b3906f8c';
 const leafHashes = new Map([
@@ -15,7 +15,7 @@ const leafHashes = new Map([
 ]);
 const sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const plain = (digest) => digest?.replace(/^sha256:/, '');
-const pageUrl = (leaf) => 'https://en.wikisource.org/wiki/Page:' + filename + '/' + leaf;
+const pageUrl = (leaf) => `https://en.wikisource.org/wiki/Page:${filename}/${leaf}`;
 const pageImage = (leaf) =>
   'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/' +
   filename +
@@ -56,7 +56,7 @@ export function inspectJacksonShrinePlate(dir, reference) {
         (p) => sha(localBytes(dir, record.publicationLeaves?.[p])) === leafHashes.get(p),
       );
     const metadataMatches =
-      item?.title === 'File:' + filename.replaceAll('_', ' ') &&
+      item?.title === `File:${filename.replaceAll('_', ' ')}` &&
       info?.descriptionurl === book &&
       info?.url?.split('?')[0] === original &&
       info?.sha1 === volumeSha1 &&

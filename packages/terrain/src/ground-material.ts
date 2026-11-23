@@ -128,24 +128,36 @@ const RELIEF: [number, number, number] = [0.08, 0.04, 0.016];
  * Ground detail (the `landcoverDetail` attribute): shrub crowns (see `TERRAIN_GROUND_CROWNS`)
  * and lighter bare-soil patches in 32 m cells. Single shrubs that small cannot be drawn by the
  * thousand to the horizon, so the ground carries them; near the camera scatter's `crowns` rules
- * stand a shrub on each crown, and the painted one gives way to it inside `BRUSH_NEAR`.
+ * stand a shrub on each crown. With a host's plant reach (`setTerrainGroundCrownReach`) each crown
+ * is painted exactly where its plant is not drawn, crossfading as the plant shrinks away; without
+ * one the painted crowns give way inside `BRUSH_NEAR` (and leave bare ground there).
  */
 const BRUSH_SHARE = TERRAIN_GROUND_CROWNS.share;
 const BRUSH_CELL = TERRAIN_GROUND_CROWNS.cell;
 const BRUSH_RADIUS = TERRAIN_GROUND_CROWNS.radius;
 const BRUSH_FULL = TERRAIN_GROUND_CROWN_FULL;
 const BRUSH_AT = TERRAIN_GROUND_CROWN_OFFSETS;
-/** Meters per pixel over which crowns resolve; coarser, the ground takes their mean color. */
-const BRUSH_RESOLVE: [number, number] = [0.5, 1.5];
+/**
+ * Meters per pixel over which crowns resolve; coarser, the ground takes their mean color. A
+ * crown drawn more than a few pixels across but flat reads as a splotch painted on the ground
+ * from any height but the air's, so they resolve only once they are large on screen (a 2 to 5 m
+ * crown at 0.25 m per pixel is 8 to 20 pixels), where a host's plants stand on them anyway.
+ * They were drawn from 1.5 m per pixel, out to about 300 m from a helicopter.
+ */
+const BRUSH_RESOLVE: [number, number] = [0.25, 0.75];
 const BRUSH_NEAR: [number, number] = [25, 60];
 /**
- * Linear sunlit crown colors, each crown drawn between them: the grey-green of creosote and the
- * warmer olive of mesquite and bursage. Their mean keeps the olive brown matched to Yuma frames.
+ * Linear sunlit crown colors, each crown drawn between them: the grey-green of creosote and sage
+ * and the warmer olive of mesquite and bursage. They match the scatter's shrub models in the same
+ * light, since those plants stand on these crowns near the camera. The earlier values, matched to
+ * Yuma orthophotos (0.062, 0.066, 0.025 and 0.082, 0.058, 0.019), drew at half the shrubs'
+ * brightness and browner: from a helicopter or a hillside the crowns read as dark holes in the
+ * ground rather than brush.
  */
-const BRUSH_GREEN: [number, number, number] = [0.062, 0.066, 0.025];
-const BRUSH_OLIVE: [number, number, number] = [0.082, 0.058, 0.019];
+const BRUSH_GREEN: [number, number, number] = [0.15, 0.17, 0.075];
+const BRUSH_OLIVE: [number, number, number] = [0.17, 0.155, 0.065];
 /** Share of the sunlit color left at a crown's shaded rim; the dome's own shading adds to it. */
-const BRUSH_RIM = 0.5;
+const BRUSH_RIM = 0.7;
 /**
  * Leafy lobes that break a crown's outline (noise cell in meters, and the share of the radius
  * they move it by), and the leaf clumps that mottle its top (cell, and the brightness swing).
@@ -260,6 +272,8 @@ interface TerrainGroundState {
   strength: { value: number };
   /** Snow line (rendered Y), transition band, amount (0 is none): `writeSnowCoverValue`. */
   snow: { value: THREE.Vector4 };
+  /** The host's plant reach (full, radius, shrink, 1), or all zero: `setTerrainGroundCrownReach`. */
+  crownReach?: { value: THREE.Vector4 };
 }
 
 const noSnow = (): THREE.Vector4 => new THREE.Vector4(0, 150, 0, 0);
@@ -279,6 +293,7 @@ const GLSL = /* glsl */ `
   uniform float terrainGroundStrength;
   uniform sampler2D terrainGroundNoiseMap;
   uniform vec4 terrainGroundSnow;
+  uniform vec4 terrainGroundCrownReach;
   ${SNOW_COVER_GLSL}
 
   float terrainGroundHash(vec2 c, float period) {
@@ -364,8 +379,15 @@ const GLSL = /* glsl */ `
         terrainGroundNoise(p + vec2(97.0, 41.0), ${BARE_CELL.toFixed(1)}));
       color *= mix(vec3(1.0), ${glslVec3(BARE)}, patchShare);
     }
-    float share = detail.x * ${BRUSH_SHARE.toFixed(2)} *
-      smoothstep(${BRUSH_NEAR[0].toFixed(1)}, ${BRUSH_NEAR[1].toFixed(1)}, distance);
+    // With a host's plant reach (x full, y radius, z shrink, w on) each crown is painted where its
+    // plant is not drawn: all within x stand, then each until its own reach between x and y.
+    // The share the ground still paints at this distance is the crowns past their reach.
+    vec4 reach = terrainGroundCrownReach;
+    bool handoff = reach.w > 0.5;
+    float brushShare = detail.x * ${BRUSH_SHARE.toFixed(2)};
+    float share = brushShare * (handoff
+      ? clamp((distance - reach.x + reach.z) / max(reach.y - reach.x, 1.0), 0.0, 1.0)
+      : smoothstep(${BRUSH_NEAR[0].toFixed(1)}, ${BRUSH_NEAR[1].toFixed(1)}, distance));
     if (share > 0.0) {
       vec3 far = mix(color, ${glslVec3(BRUSH_MEAN)}, share);
       float resolved = 1.0 - smoothstep(${BRUSH_RESOLVE[0].toFixed(2)}, ${BRUSH_RESOLVE[1].toFixed(2)}, footprint);
@@ -391,8 +413,14 @@ const GLSL = /* glsl */ `
         float d = length(p - center);
         float r = d / outline;
         float soft = max(footprint, 0.15);
-        float crown = step(terrainGroundCell(cell + ${glslVec2(BRUSH_AT.shown)}), min(share / ${BRUSH_FULL.toFixed(4)}, 1.0)) *
+        float crown = step(terrainGroundCell(cell + ${glslVec2(BRUSH_AT.shown)}),
+            min((handoff ? brushShare : share) / ${BRUSH_FULL.toFixed(4)}, 1.0)) *
           (1.0 - smoothstep(outline - soft, outline + soft, d));
+        if (handoff) {
+          // This crown's plant stands to its own reach, shrinking over the last z meters.
+          float plantReach = mix(reach.x, reach.y, terrainGroundCell(cell + ${glslVec2(BRUSH_AT.reach)}));
+          crown *= 1.0 - clamp((plantReach - distance) / max(reach.z, 0.01), 0.0, 1.0);
+        }
         vec3 lit = mix(${glslVec3(BRUSH_GREEN)}, ${glslVec3(BRUSH_OLIVE)}, terrainGroundCell(cell + vec2(131.0, 17.0)));
         vec3 shaded = lit * mix(1.0, ${BRUSH_RIM.toFixed(2)}, smoothstep(0.2, 1.0, r)) * clumps;
         far = mix(far, mix(color, shaded, crown), resolved);
@@ -621,10 +649,13 @@ function strength(options: { strength?: number }): number {
 export function createTerrainGroundMaterial(
   options: TerrainGroundMaterialOptions = {},
 ): THREE.MeshStandardMaterial {
+  // Off (all zero, w included: a bare Vector4 has w = 1) until a host sets a reach.
+  const crownReach = { value: new THREE.Vector4(0, 0, 0, 0) };
   const state: TerrainGroundState = {
     origin: { value: new THREE.Vector2() },
     strength: { value: strength(options) },
     snow: { value: noSnow() },
+    crownReach,
   };
   const material = new THREE.MeshStandardMaterial(parameters(options));
   material.name = 'terrain-ground';
@@ -636,6 +667,7 @@ export function createTerrainGroundMaterial(
       terrainGroundStrength: state.strength,
       terrainGroundNoiseMap: { value: groundNoiseLattice() },
       terrainGroundSnow: state.snow,
+      terrainGroundCrownReach: crownReach,
     });
     shader.vertexShader = `
       ${options.agriculture ? 'attribute vec4 agricultureRows; attribute vec3 agricultureSoil; attribute vec4 landcoverBlend; attribute vec2 landcoverDetail; varying vec4 vAgricultureRows; varying vec3 vAgricultureSoil; varying vec4 vLandcoverBlend; varying vec2 vLandcoverDetail;' : ''}
@@ -770,6 +802,8 @@ async function createTerrainGroundNodeMaterial(
   const origin = uniform(new THREE.Vector2()).setName('terrainGroundOrigin');
   const amount = uniform(strength(options)).setName('terrainGroundStrength');
   const snow = uniform(noSnow()).setName('terrainGroundSnow');
+  // Off (all zero, w included: a bare Vector4 has w = 1) until a host sets a reach.
+  const crownReach = uniform(new THREE.Vector4(0, 0, 0, 0)).setName('terrainGroundCrownReach');
   const p = positionWorld.xz.add(origin).toVar() as unknown as V2;
   const distance = positionView.length().toVar();
   const footprint = max(max(dFdx(p).length(), dFdy(p).length()), 0.0001).toVar();
@@ -927,9 +961,24 @@ async function createTerrainGroundNodeMaterial(
         );
         color.mulAssign(mix(vec3(1), vec3(...BARE), patchShare));
       });
-      const share = detail.x
-        .mul(BRUSH_SHARE)
-        .mul(smoothstep(BRUSH_NEAR[0], BRUSH_NEAR[1], distance))
+      // A host's plant reach hands each crown to its plant (see the GLSL path): 1 when set.
+      const handoff = step(0.5, crownReach.w).toVar();
+      const brushShare = detail.x.mul(BRUSH_SHARE).toVar();
+      const share = brushShare
+        .mul(
+          mix(
+            smoothstep(BRUSH_NEAR[0], BRUSH_NEAR[1], distance),
+            clamp(
+              distance
+                .sub(crownReach.x)
+                .add(crownReach.z)
+                .div(max(crownReach.y.sub(crownReach.x), 1)),
+              0,
+              1,
+            ),
+            handoff,
+          ),
+        )
         .toVar();
       If(share.greaterThan(0), () => {
         const far = mix(color, vec3(...BRUSH_MEAN), share).toVar();
@@ -968,11 +1017,21 @@ async function createTerrainGroundNodeMaterial(
           const d = p.sub(center).length().toVar();
           const r = d.div(outline).toVar();
           const soft = max(footprint, 0.15);
+          // This crown's plant stands to its own reach, shrinking over the last `z` meters.
+          const plantReach = mix(
+            crownReach.x,
+            crownReach.y,
+            cell(at.add(vec2(...BRUSH_AT.reach)) as unknown as V2),
+          );
+          const planted = clamp(plantReach.sub(distance).div(max(crownReach.z, 0.01)), 0, 1).mul(
+            handoff,
+          );
           const crown = step(
             cell(at.add(vec2(...BRUSH_AT.shown)) as unknown as V2),
-            min(share.div(BRUSH_FULL), 1),
+            min(mix(share, brushShare, handoff).div(BRUSH_FULL), 1),
           )
             .mul(smoothstep(outline.sub(soft), outline.add(soft), d).oneMinus())
+            .mul(planted.oneMinus())
             .toVar();
           const lit = mix(
             vec3(...BRUSH_GREEN),
@@ -1172,7 +1231,7 @@ async function createTerrainGroundNodeMaterial(
   const dy = dFdy(relief as unknown as V3) as unknown as F;
   const slope = r1.mul(dx).add(r2.mul(dy)).mul(sign(det)) as unknown as V3;
   material.normalNode = normalize(normalView.mul(abs(det)).sub(slope));
-  states.set(material, { origin, strength: amount, snow });
+  states.set(material, { origin, strength: amount, snow, crownReach });
   return material;
 }
 
@@ -2293,6 +2352,37 @@ export function setTerrainGroundSnow(
   if (state === undefined)
     throw new Error('material was not created by a terrain ground material factory');
   writeSnowCoverValue(state.snow.value, cover, worldOriginY);
+}
+
+/** How far from the camera a host draws the plants on the painted crowns; see below. */
+export interface TerrainGroundCrownReach {
+  /** Meters within which every crown's plant stands. */
+  full: number;
+  /** Meters past which none does; between, each crown's plant stands to its own reach. */
+  radius: number;
+  /** Meters over which a plant shrinks away before its reach. */
+  shrink: number;
+}
+
+/**
+ * Hand each painted shrub crown to the plant a host draws on it near the camera, or give them
+ * back with `undefined` (the default: crowns then give way within 25 to 60 m and leave bare
+ * ground). A crown's plant stands while the camera is within its reach, `full` plus the crown's
+ * `TerrainGroundCrown.reach` share of the way to `radius`, shrinking over its last `shrink` meters;
+ * the ground paints the crown exactly where the plant is not drawn, crossfading as it shrinks, so
+ * a plant never stands on its own painted disc. A host's plants must thin by the same rule (the
+ * worldgen near placements do, from `NearPlacements.reach`). Ground materials only; a pavement
+ * material ignores it. Changing it never rebuilds a shader.
+ */
+export function setTerrainGroundCrownReach(
+  material: THREE.Material,
+  reach: TerrainGroundCrownReach | undefined,
+): void {
+  const state = states.get(material);
+  if (state === undefined)
+    throw new Error('material was not created by a terrain ground material factory');
+  if (reach === undefined) state.crownReach?.value.set(0, 0, 0, 0);
+  else state.crownReach?.value.set(reach.full, Math.max(reach.full, reach.radius), reach.shrink, 1);
 }
 
 /** Whether a material carries the ground variation (and accepts setTerrainGroundOrigin). */

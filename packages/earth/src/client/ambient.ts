@@ -39,6 +39,7 @@ import { renderedGroundSampler, terrainPyramidTileKey } from '@bendyline/molen-t
 import type * as THREE from 'three';
 import type { OBB } from 'three/addons/math/OBB.js';
 import type { SemanticTileObserver } from './ambient-tiles';
+import { isFineTile } from './fine-tiles';
 
 /** What `mountEarthView({ ambient })` accepts. */
 export interface EarthAmbientSettings {
@@ -130,13 +131,43 @@ interface Entry {
   registered: boolean;
   /** The keys it is registered under: the tile's own, or one per part (see PART_SIZE). */
   parts: string[];
+  /**
+   * A registered split tile's parts by key. Only those within reach of the observer are handed
+   * over (`parts`); the rest wait until it comes near (see `reachParts`).
+   */
+  inputs?: Map<string, AmbientTileInput>;
   /** When the object was first seen detached from the stream (for forgetting stale tiles). */
   detachedAt?: number;
 }
 
+/** Meters from (x, z) to a tile part's bounds (0 for an unsplit tile, which has none). */
+function partDistance(input: AmbientTileInput, x: number, z: number): number {
+  const bounds = input.bounds;
+  if (bounds === undefined) return 0;
+  return Math.hypot(
+    Math.max(bounds[0] - x, 0, x - bounds[2]),
+    Math.max(bounds[1] - z, 0, z - bounds[3]),
+  );
+}
+
 // Per lane-km at density 1. A third of the earlier 20 cars and 13 people: streets read as busy
 // at that, and every agent costs simulation, a draw and, as each first appears, shader builds.
-const BASE_DENSITY = { car: 7, pedestrian: 40 / 9, train: 2 };
+const BASE_DENSITY = { car: 7, pedestrian: 40 / 9, train: 2, boat: 0.8 };
+
+/** The density `settings` asks for, 0..1 (default 0.6). */
+export function ambientDensity(settings: EarthAmbientSettings): number {
+  return Math.max(0, Math.min(1, settings.density ?? 0.6));
+}
+
+/** The kernel's spawn rates at a density. */
+function densityPolicy(density: number) {
+  return {
+    car: { perLaneKm: BASE_DENSITY.car * density },
+    pedestrian: { perLaneKm: BASE_DENSITY.pedestrian * density },
+    train: { perLaneKm: BASE_DENSITY.train * density },
+    boat: { perLaneKm: BASE_DENSITY.boat * density },
+  };
+}
 
 /** Whether two tiles' areas overlap (an ancestor and its descendant do). */
 function overlaps(a: TerrainPyramidTileLayerContext, b: TerrainPyramidTileLayerContext): boolean {
@@ -174,6 +205,9 @@ const DETACHED_MS = 30_000;
  * aircraft carried a whole town's roads, and building its network held one frame for half a
  * second; a jet passes a tile's traffic in seconds, too briefly to see, for a dropped frame per
  * tile. One sample between syncs is noisy (a dip let tiles through at 300 m/s), hence the hold.
+ * A package's finest tiles register whatever their size (fine-tiles.ts): a basemap ending at zoom
+ * 13 has nothing under 3.3 km in Seattle, and the cap alone left its streets without traffic. They
+ * register in parts, nearest first, one a frame, like any large tile.
  */
 const MAX_TILE_SIZE = 3000;
 const MAX_REGISTER_SPEED = 80;
@@ -181,7 +215,8 @@ const FAST_HOLD_MS = 3000;
 /**
  * Tiles of SPLIT_SIZE (m) and more join in square parts at least PART_SIZE wide, nearest first,
  * one per frame (see `feed`): a dense Kyoto tile of 1-2 km built its network in 20-95 ms at once,
- * and 250 m parts of Sydney's centre still took 10-20 ms.
+ * and 250 m parts of Sydney's centre still took 10-20 ms. Only parts within reach of the observer
+ * join, and parts left well behind leave (see `reachParts`): a 4 km tile has about a thousand.
  */
 const SPLIT_SIZE = 500;
 const PART_SIZE = 125;
@@ -308,7 +343,6 @@ export class EarthAmbient implements SemanticTileObserver {
       options.world ?? new World({ tickRate: 60, seed: 'earth-ambient', devFreeze: false });
     const settings = options.settings;
     this.drivingSideAt = (x, z) => settings.drivingSide ?? options.drivingSideAt?.(x, z) ?? 'right';
-    const density = Math.max(0, Math.min(1, settings.density ?? 0.6));
     const classes: AmbientKind[] = [];
     if (settings.cars !== false) classes.push('car');
     if (settings.pedestrians !== false) classes.push('pedestrian');
@@ -322,12 +356,7 @@ export class EarthAmbient implements SemanticTileObserver {
       ...(ground !== undefined ? { ground: (x: number, z: number) => ground(x, z) ?? 0 } : {}),
       ...(options.content !== undefined ? { types: options.content.types } : {}),
       ...(options.carsAt ? { carsAt: options.carsAt } : {}),
-      policy: {
-        car: { perLaneKm: BASE_DENSITY.car * density },
-        pedestrian: { perLaneKm: BASE_DENSITY.pedestrian * density },
-        train: { perLaneKm: BASE_DENSITY.train * density },
-        boat: { perLaneKm: 0.8 * density },
-      },
+      policy: densityPolicy(ambientDensity(settings)),
       seed: 'earth-ambient',
       // One tile (or part) a tick: each network build stays a few milliseconds. A tile leaving
       // takes its parts with it, a few a tick.
@@ -374,7 +403,7 @@ export class EarthAmbient implements SemanticTileObserver {
     context: TerrainPyramidTileLayerContext,
   ): void {
     // Too coarse to register (see MAX_TILE_SIZE): not kept at all.
-    if (this.disposed || context.tileSize > MAX_TILE_SIZE) return;
+    if (this.disposed || !isFineTile(context, MAX_TILE_SIZE)) return;
     this.entries.set(object, {
       key: terrainPyramidTileKey(context.address),
       roads: {
@@ -404,12 +433,45 @@ export class EarthAmbient implements SemanticTileObserver {
 
   private unregister(entry: Entry): void {
     entry.registered = false;
-    for (const key of entry.parts.splice(0)) {
-      if (this.fed.delete(key)) this.handle.unregisterTile(key);
-      else {
-        const queued = this.feed.findIndex((part) => part.key === key);
-        if (queued >= 0) this.feed.splice(queued, 1);
-      }
+    delete entry.inputs;
+    for (const key of entry.parts.splice(0)) this.unregisterPart(key);
+  }
+
+  /** Take one handed-over or queued part out of the network. */
+  private unregisterPart(key: string): void {
+    if (this.fed.delete(key)) this.handle.unregisterTile(key);
+    else {
+      const queued = this.feed.findIndex((part) => part.key === key);
+      if (queued >= 0) this.feed.splice(queued, 1);
+    }
+  }
+
+  /**
+   * Keep a registered split tile's parts to those near the observer: parts beyond 1.5 × `reach`
+   * leave, and (when `arrive`) parts within `reach` not yet handed over queue, nearest first. The
+   * spawn rings use a few hundred parts at most, wherever the tile's edges fall.
+   */
+  private reachParts(entry: Entry, x: number, z: number, reach: number, arrive: boolean): void {
+    const inputs = entry.inputs;
+    if (inputs === undefined) return;
+    const active = new Set(entry.parts);
+    entry.parts = entry.parts.filter((key) => {
+      const input = inputs.get(key);
+      if (input !== undefined && partDistance(input, x, z) <= reach * 1.5) return true;
+      this.unregisterPart(key);
+      return false;
+    });
+    if (!arrive) return;
+    const arriving: { input: AmbientTileInput; d: number }[] = [];
+    for (const input of inputs.values()) {
+      if (active.has(input.key)) continue;
+      const d = partDistance(input, x, z);
+      if (d <= reach) arriving.push({ input, d });
+    }
+    arriving.sort((a, b) => a.d - b.d || (a.input.key < b.input.key ? -1 : 1));
+    for (const { input } of arriving) {
+      entry.parts.push(input.key);
+      this.feed.push(input);
     }
   }
 
@@ -464,6 +526,7 @@ export class EarthAmbient implements SemanticTileObserver {
           tileDistance(entry.context, x, z) > reach * 1.5)
       )
         this.unregister(entry);
+      else if (entry.registered) this.reachParts(entry, x, z, reach, registering);
     }
     // One new tile per call keeps a busy tile from stalling a frame. A tile overlapping one still
     // registered (its parent or child mid-transition) waits its turn.
@@ -472,7 +535,7 @@ export class EarthAmbient implements SemanticTileObserver {
     let nearestDistance = Number.POSITIVE_INFINITY;
     for (const [object, entry] of this.entries) {
       if (entry.registered || !registering) continue;
-      if (entry.context.tileSize > MAX_TILE_SIZE || !displayed(object, this.root)) continue;
+      if (!isFineTile(entry.context, MAX_TILE_SIZE) || !displayed(object, this.root)) continue;
       const distance = tileDistance(entry.context, x, z);
       if (distance > reach || distance >= nearestDistance) continue;
       if (registered.some((other) => overlaps(other.context, entry.context))) continue;
@@ -503,7 +566,7 @@ export class EarthAmbient implements SemanticTileObserver {
         this.feed.push({ ...base, key: nearest.key });
       } else {
         const step = size / count;
-        const parts: { key: string; bounds: [number, number, number, number]; d: number }[] = [];
+        const inputs = new Map<string, AmbientTileInput>();
         for (let i = 0; i < count; i++)
           for (let j = 0; j < count; j++) {
             const x0 = ox + i * step;
@@ -512,17 +575,12 @@ export class EarthAmbient implements SemanticTileObserver {
             // end on the tile's edge, where neighboring tiles stitch.
             const x1 = i === count - 1 ? ox + size : ox + (i + 1) * step;
             const z1 = j === count - 1 ? oz + size : oz + (j + 1) * step;
-            const dx = Math.max(x0 - x, 0, x - x1);
-            const dz = Math.max(z0 - z, 0, z - z1);
-            parts.push({
-              key: `${nearest.key}:${i},${j}`,
-              bounds: [x0, z0, x1, z1],
-              d: dx * dx + dz * dz,
-            });
+            const key = `${nearest.key}:${i},${j}`;
+            inputs.set(key, { ...base, key, bounds: [x0, z0, x1, z1] });
           }
-        parts.sort((a, b) => a.d - b.d || (a.key < b.key ? -1 : 1));
-        nearest.parts = parts.map((part) => part.key);
-        for (const part of parts) this.feed.push({ ...base, key: part.key, bounds: part.bounds });
+        nearest.inputs = inputs;
+        nearest.parts = [];
+        this.reachParts(nearest, x, z, reach, true);
       }
     }
     this.handOver();
@@ -552,6 +610,14 @@ export class EarthAmbient implements SemanticTileObserver {
   setBudget(budget: EarthAmbientBudget): void {
     this.budget = budget;
     this.applyBudget();
+  }
+
+  /**
+   * How busy the streets are from now on, 0..1 (`EarthAmbientSettings.density`): the kernel spawns
+   * toward the new rate and lets agents already out leave as they would.
+   */
+  setDensity(density: number): void {
+    this.handle.setPolicy(densityPolicy(Math.max(0, Math.min(1, density))));
   }
 
   private applyBudget(): void {

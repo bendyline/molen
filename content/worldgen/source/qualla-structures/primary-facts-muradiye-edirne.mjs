@@ -6,7 +6,7 @@ export const muradiyeEdirneCase = 'edirne-muradiye-native-281702066-and-architec
 export const muradiyeEdirneModel = 'muradiye_mosque_edirne';
 export const muradiyeSurvey = 'https://islamansiklopedisi.org.tr/muradiye-kulliyesi--edirne';
 
-const digest = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const digest = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 export function inspectMuradiyeEdirneFacts({ dir, proof, controls, frame, inventory }) {

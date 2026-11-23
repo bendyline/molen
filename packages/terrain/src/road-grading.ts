@@ -8,8 +8,11 @@
  * of world position, and roads from the tile and the eight around it. For bridges that is not
  * enough (an interchange reaches farther than a tile reads), so near an edge a road takes its
  * height from both tiles' gradings, which both tiles read alike (see `blend`).
+ *
+ * The heavy part of each is done off the main thread where the height source can: the ground by
+ * `gradeEarthworks`, a tile's bridges by `gradeSeparations` (see road-separation.ts). What stays
+ * here is gathering the roads, cutting them to their tiles, and the blend along tile edges.
  */
-import { gradeTransportSeparationSteps } from './grade-separation';
 import type { Heightfield } from './heightfield';
 import type { TerrainPyramidHeightSource, TerrainPyramidTileLayerContext } from './pyramid-stream';
 import {
@@ -31,6 +34,19 @@ import {
   roadProfileHeight,
   roadReferenceGround,
 } from './road-earthworks';
+import {
+  breathe,
+  gradeRoadSeparationSteps,
+  ROAD_SEPARATION_REACH,
+  ROAD_SEPARATION_SPACING,
+  ROAD_SEPARATION_WAY_STRIDE,
+  RoadSeparationPacker,
+  type RoadSeparationRequest,
+  type RoadSeparationResult,
+  roadSeparationCellRange,
+  roadSeparationProfile,
+  roadSeparationSignature,
+} from './road-separation';
 import type { TerrainSemanticTileRenderer, TerrainSemanticTileSource } from './semantic-client';
 import type {
   TerrainBridgeProfileSample,
@@ -91,6 +107,9 @@ interface SolvedWay {
   data: Float64Array;
 }
 
+/** A road's profile height at a point of the tile, along a direction: the ground a grading read. */
+type RoadGround = (x: number, z: number, dx: number, dz: number) => number;
+
 /**
  * One tile's bridges graded with the roads around it: the tile's own roads cut to its square
  * (`pieces`, each of line `owners[i]` of `transportation`), the profiles the grading gave them,
@@ -102,21 +121,34 @@ interface Solve {
   owners: [feature: number, line: number][];
   profiles: Map<number, TerrainBridgeProfileSample[]>;
   ways: SolvedWay[];
-  /** Segments of `ways` by the cells they come near, as way and station in turn. */
-  cells: Map<number, number[]>;
-  /** The ground the grading read, in the tile's own meters; absent when it graded nothing. */
-  ground?: (x: number, z: number, dx: number, dz: number) => number;
+  /**
+   * Segments of `ways` by the cells they come near, as way and station in turn: a
+   * `RoadSeparationResult`'s index (see `roadSeparationCellRange`), undefined without ways.
+   */
+  cells?: Pick<RoadSeparationResult, 'cellKeys' | 'cellEnds' | 'cells'>;
+  /** Graded over a reference ground: only then is there a ground to read (see `ground`). */
+  graded: boolean;
+  /**
+   * The ground the grading read, in the tile's own meters. Present when the grading was done on
+   * this thread; one done elsewhere reads it here only if the blend asks (see `groundOf`).
+   */
+  ground?: RoadGround;
+  groundLoad?: Promise<RoadGround | undefined>;
+}
+
+/** A tile's grading in the cache: while it is worked out, the tiles waiting for it. */
+interface SolveEntry {
+  promise: Promise<Solve | undefined>;
+  waiters: Set<AbortSignal> | undefined;
+  /** Take note of another tile waiting, to stop the grading once none is left. */
+  watch?: ((waiter: AbortSignal) => void) | undefined;
 }
 
 /** Numbers to a station of a `SolvedWay`: world x and z, elevation, flatness, anchor, ground. */
-const SOLVED_STRIDE = 6;
-/** Meters to a cell of a solve's index of segments, and how near a segment a point is on it. */
-const SOLVED_CELL = 32;
-const SOLVED_REACH = 0.5;
-const solvedCell = (cx: number, cz: number): number => (cx + 0x200000) * 0x400000 + cz + 0x200000;
-/** What tells one road from another where two gradings are matched by position. */
-const roadSignature = (feature: TerrainTransportationFeature): string =>
-  `${feature.class}/${feature.subclass ?? ''}/${feature.bridge === true ? 1 : 0}`;
+const SOLVED_STRIDE = ROAD_SEPARATION_WAY_STRIDE;
+/** How near a segment a point is on it, meters. */
+const SOLVED_REACH = ROAD_SEPARATION_REACH;
+const roadSignature = roadSeparationSignature;
 /** Whether two lists of roads are the same roads, feature for feature and line for line. */
 function sameRoads(
   a: readonly TerrainTransportationFeature[],
@@ -160,28 +192,10 @@ const SEPARATION_REACH = 400;
  */
 const BLEND_REACH = 300;
 /** Meters between the stations bridge profiles are worked out at. */
-const SEPARATION_SPACING = 6;
-/** Meters two halves of a way cut at a tile edge may end apart and still be joined. */
-const CUT_TOLERANCE = 1.5;
+const SEPARATION_SPACING = ROAD_SEPARATION_SPACING;
 const NEVER = new AbortController().signal;
 /** Main-thread time (ms) one tile's grading takes before letting a frame through. */
 const SLICE_MS = 2;
-
-/** Yield to the event loop: a macrotask, without a timer's clamped delay where there is one. */
-function breathe(): Promise<void> {
-  return new Promise((resolve) => {
-    if (typeof MessageChannel === 'undefined') {
-      setTimeout(resolve, 0);
-      return;
-    }
-    const channel = new MessageChannel();
-    channel.port1.onmessage = () => {
-      channel.port1.close();
-      resolve();
-    };
-    channel.port2.postMessage(0);
-  });
-}
 
 function remember<T>(cache: Map<string, T>, key: string, value: T, limit: number): T {
   cache.delete(key);
@@ -193,13 +207,21 @@ function remember<T>(cache: Map<string, T>, key: string, value: T, limit: number
 /** Share one grading between a terrain stream and its features layer. */
 export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): TerrainRoadGrading {
   let heights = options.heights;
+  /**
+   * The stream's own source, as `transformHeightfield` is handed it. A host's `heights` is often
+   * a thin stand-in for it (`load` alone, until the stream exists), and only the source itself
+   * can grade bridges off the main thread.
+   */
+  let streamSource: TerrainPyramidHeightSource | undefined;
+  /** Who grades a tile's bridges off the main thread, if anyone can. */
+  const separator = (): TerrainPyramidHeightSource | undefined =>
+    heights?.gradeSeparations ? heights : streamSource?.gradeSeparations ? streamSource : undefined;
   let disposed = false;
+  /** Gradings under way elsewhere, to call off when this is disposed. */
+  const stops = new Set<AbortController>();
   const roads = new Map<string, Promise<TileRoads | undefined>>();
   /** A tile's grading, and while it is worked out the tiles that wait for it. */
-  const solves = new Map<
-    string,
-    { promise: Promise<Solve | undefined>; waiters: Set<AbortSignal> | undefined }
-  >();
+  const solves = new Map<string, SolveEntry>();
   const fields = new Map<string, Promise<Heightfield | undefined>>();
   const gradedTiles = new WeakMap<TerrainSemanticTile, Promise<TerrainSemanticTile>>();
 
@@ -282,138 +304,193 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
     pyramid: TerrainPyramidDescriptor,
     own: TileRoads,
     wanted: () => boolean,
+    /** Aborted once nobody wants the grading: one under way off this thread is called off. */
+    signal: AbortSignal,
   ): Promise<Solve | undefined> => {
     if (disposed || !heights) return undefined;
     const tileSize = terrainPyramidTileSize(pyramid, address.level);
     const origin = terrainPyramidTileOrigin(pyramid, address);
     const around = await neighborhood(address, own);
     if (!wanted()) return undefined;
+    const solved: Solve = {
+      transportation: own.transportation,
+      pieces: [],
+      owners: [],
+      profiles: new Map(),
+      ways: [],
+      graded: false,
+    };
+    // No bridge in the tile or around it, as most tiles have none: nothing to grade, and
+    // nothing reads the pieces of a tile that graded no way. Told before the roads are cut,
+    // which for nine tiles of streets was time spent on every tile of every town.
+    if (!around.some(({ roads: tile }) => tile.transportation.some((f) => f.bridge && !f.tunnel)))
+      return solved;
     // Every tile's roads are cut to its own square, this tile's and its neighbors' alike,
     // so both tiles that share an edge work on the same pieces, stationed the same way,
     // and give a road crossing the edge one height there. Neighbors' roads stop where
     // they can no longer matter.
     const square = [0, 0, 1, 1] as const;
     let buffer = 0;
-    const pieces: TerrainTransportationFeature[] = [];
-    const owners: [feature: number, line: number][] = [];
+    const { pieces, owners } = solved;
+    // The ways as they go to whoever grades them (the tile's own, then those around it), and
+    // which piece each of the tile's own is: ways that take no part in grading are not sent.
+    const packer = new RoadSeparationPacker();
+    const sent: number[] = [];
+    let bridges = false;
     own.transportation.forEach((feature, f) => {
       if (feature.tunnel) return;
       feature.lines.forEach((line, l) => {
         for (const [u, v] of line) buffer = Math.max(buffer, -u, u - 1, -v, v - 1);
         for (const piece of clipRoadLine(line, square)) {
           if (piece.length < 2) continue;
+          if (packer.add(feature, piece)) sent.push(pieces.length);
+          if (feature.bridge) bridges = true;
           pieces.push({ ...feature, lines: [piece] });
           owners.push([f, l]);
         }
       });
     });
+    packer.endOwn();
     const margin = Math.min(1, SEPARATION_REACH / tileSize);
     const outer = [-margin, -margin, 1 + margin, 1 + margin] as const;
-    const beyondTile: TerrainTransportationFeature[] = [];
     for (const { dx, dz, roads: neighbor } of around) {
       if (dx === 0 && dz === 0) continue;
       for (const feature of neighbor.transportation) {
         if (feature.tunnel) continue;
-        const lines: TerrainSemanticLine[] = [];
         for (const line of feature.lines)
           for (const piece of clipRoadLine(line, square))
             for (const near of clipRoadLine(
               piece.map(([u, v]): [number, number] => [u + dx, v + dz]),
               outer,
-            ))
-              if (near.length > 1) lines.push(near);
-        if (lines.length > 0) beyondTile.push({ ...feature, lines });
-      }
-    }
-    const solved: Solve = {
-      transportation: own.transportation,
-      pieces,
-      owners,
-      profiles: new Map(),
-      ways: [],
-      cells: new Map(),
-    };
-    if (!pieces.some((feature) => feature.bridge) && !beyondTile.some((feature) => feature.bridge))
-      return solved;
-    const reach = SEPARATION_REACH + ROAD_PROFILE_WINDOW + 12;
-    const ground = await reference(
-      pyramid,
-      heights,
-      [
-        origin[0] - reach,
-        origin[1] - reach,
-        origin[0] + tileSize + reach,
-        origin[1] + tileSize + reach,
-      ],
-      referenceLevel(pyramid, address.level),
-    );
-    if (disposed || !ground || !wanted()) return undefined;
-    solved.ground = (x, z, dx, dz) =>
-      roadProfileHeight(ground, origin[0] + x, origin[1] + z, dx, dz);
-    // An interchange and what surrounds it is tens of thousands of stations: taken a few
-    // milliseconds at a time, like the earthworks.
-    const steps = gradeTransportSeparationSteps(pieces, tileSize, solved.ground, {
-      context: beyondTile,
-      endTolerance: CUT_TOLERANCE,
-      spacing: SEPARATION_SPACING,
-      // Graded over the reference ground, drawn on the tile's own.
-      anchored: true,
-      // A road is drawn a little past the tile's edge: its profile reaches there too.
-      extend: Math.min(0.05, buffer) * tileSize + SEPARATION_SPACING,
-      profiled(feature, _line, samples) {
-        if (samples.length < 2) return;
-        const data = new Float64Array(samples.length * SOLVED_STRIDE);
-        samples.forEach((sample, i) => {
-          data[i * SOLVED_STRIDE] = origin[0] + sample.point[0] * tileSize;
-          data[i * SOLVED_STRIDE + 1] = origin[1] + sample.point[1] * tileSize;
-          data[i * SOLVED_STRIDE + 2] = sample.elevation;
-          data[i * SOLVED_STRIDE + 3] = sample.flatness;
-          data[i * SOLVED_STRIDE + 4] = sample.anchor ?? 0;
-          data[i * SOLVED_STRIDE + 5] = sample.ground ?? 0;
-        });
-        const index = solved.ways.length;
-        solved.ways.push({ signature: roadSignature(feature), data });
-        for (let i = 0; i + 1 < samples.length; i++) {
-          const ax = data[i * SOLVED_STRIDE] as number,
-            az = data[i * SOLVED_STRIDE + 1] as number,
-            bx = data[(i + 1) * SOLVED_STRIDE] as number,
-            bz = data[(i + 1) * SOLVED_STRIDE + 1] as number;
-          for (
-            let cx = Math.floor((Math.min(ax, bx) - SOLVED_REACH) / SOLVED_CELL);
-            cx <= Math.floor((Math.max(ax, bx) + SOLVED_REACH) / SOLVED_CELL);
-            cx++
-          )
-            for (
-              let cz = Math.floor((Math.min(az, bz) - SOLVED_REACH) / SOLVED_CELL);
-              cz <= Math.floor((Math.max(az, bz) + SOLVED_REACH) / SOLVED_CELL);
-              cz++
-            ) {
-              const key = solvedCell(cx, cz);
-              const list = solved.cells.get(key);
-              if (list) list.push(index, i);
-              else solved.cells.set(key, [index, i]);
+            )) {
+              if (near.length < 2) continue;
+              packer.add(feature, near);
+              if (feature.bridge) bridges = true;
             }
-        }
-      },
-    });
-    let graded: readonly TerrainTransportationFeature[];
-    for (let slice = performance.now(); ; ) {
-      const step = steps.next();
-      if (step.done) {
-        graded = step.value;
-        break;
       }
-      if (performance.now() - slice < SLICE_MS) continue;
-      await breathe();
-      if (disposed || !wanted()) return undefined;
-      slice = performance.now();
     }
-    if (graded === pieces) return solved;
-    graded.forEach((feature, i) => {
-      const samples = feature.bridgeApproachProfile;
-      if (samples?.length && feature !== pieces[i]) solved.profiles.set(i, samples);
+    if (!bridges) return solved;
+    solved.graded = true;
+    // Bridges, but none that takes part (their heights were surveyed or authored): no way is
+    // given a profile, and nothing reads the ground of a tile that graded no way.
+    if (!packer.bridges) return solved;
+    const reach = SEPARATION_REACH + ROAD_PROFILE_WINDOW + 12;
+    const request = (): RoadSeparationRequest =>
+      packer.request({
+        address,
+        // A road is drawn a little past the tile's edge: its profile reaches there too.
+        extend: Math.min(0.05, buffer) * tileSize + SEPARATION_SPACING,
+        referenceLevel: referenceLevel(pyramid, address.level),
+        reach,
+      });
+    let result: RoadSeparationResult | undefined;
+    const elsewhere = separator();
+    if (elsewhere?.gradeSeparations) {
+      // Off the main thread where the source can: an interchange and what surrounds it is
+      // tens of thousands of stations, 139 ms of each second of a flight over a city of
+      // viaducts when taken here between frames.
+      let answer: RoadSeparationResult | null | undefined;
+      let failed = false;
+      try {
+        answer = await elsewhere.gradeSeparations(request(), signal);
+      } catch {
+        // Whoever was to grade it cannot: graded here, as without them.
+        failed = true;
+      }
+      if (disposed || !wanted()) return undefined;
+      if (!failed) {
+        // Called off, or no reference ground to grade over: asked again by the next caller.
+        if (!answer) return undefined;
+        result = answer;
+      }
+    }
+    if (result === undefined) {
+      const ground = await reference(
+        pyramid,
+        heights,
+        [
+          origin[0] - reach,
+          origin[1] - reach,
+          origin[0] + tileSize + reach,
+          origin[1] + tileSize + reach,
+        ],
+        referenceLevel(pyramid, address.level),
+      );
+      if (disposed || !ground || !wanted()) return undefined;
+      solved.ground = (x, z, dx, dz) =>
+        roadProfileHeight(ground, origin[0] + x, origin[1] + z, dx, dz);
+      // Taken a few milliseconds at a time, like the earthworks.
+      const steps = gradeRoadSeparationSteps(request(), origin, tileSize, ground);
+      for (let slice = performance.now(); ; ) {
+        const step = steps.next();
+        if (step.done) {
+          result = step.value;
+          break;
+        }
+        if (performance.now() - slice < SLICE_MS) continue;
+        await breathe();
+        if (disposed || !wanted()) return undefined;
+        slice = performance.now();
+      }
+    }
+    // Back onto the tile's pieces, and the graded ways as the tiles around will read them.
+    for (let k = 0; k < result.profiled.length; k++)
+      solved.profiles.set(
+        sent[result.profiled[k] as number] as number,
+        roadSeparationProfile(result, k),
+      );
+    result.signatures.forEach((signature, way) => {
+      const from = way === 0 ? 0 : (result.wayEnds[way - 1] as number);
+      solved.ways.push({
+        signature,
+        data: result.ways.subarray(
+          from * SOLVED_STRIDE,
+          (result.wayEnds[way] as number) * SOLVED_STRIDE,
+        ),
+      });
     });
+    // Only the index and the stations are kept: the profiles now stand on the pieces.
+    if (solved.ways.length > 0)
+      solved.cells = {
+        cellKeys: result.cellKeys,
+        cellEnds: result.cellEnds,
+        cells: result.cells,
+      };
     return solved;
+  };
+  /**
+   * The ground a tile's grading read, for the blend: the grading's own when it was done on this
+   * thread, else read here the first time it is asked for, from the same elevation level over
+   * the same reach. Undefined for a tile that graded nothing, and where it cannot be read.
+   */
+  const groundOf = (
+    solved: Solve,
+    address: TerrainPyramidTileAddress,
+    pyramid: TerrainPyramidDescriptor,
+  ): Promise<RoadGround | undefined> => {
+    const source = heights;
+    if (solved.ground || !solved.graded || !source) return Promise.resolve(solved.ground);
+    solved.groundLoad ??= (async (): Promise<RoadGround | undefined> => {
+      const tileSize = terrainPyramidTileSize(pyramid, address.level);
+      const origin = terrainPyramidTileOrigin(pyramid, address);
+      const reach = SEPARATION_REACH + ROAD_PROFILE_WINDOW + 12;
+      const ground = await reference(
+        pyramid,
+        source,
+        [
+          origin[0] - reach,
+          origin[1] - reach,
+          origin[0] + tileSize + reach,
+          origin[1] + tileSize + reach,
+        ],
+        referenceLevel(pyramid, address.level),
+      ).catch(() => undefined);
+      if (ground)
+        solved.ground = (x, z, dx, dz) =>
+          roadProfileHeight(ground, origin[0] + x, origin[1] + z, dx, dz);
+      return solved.ground;
+    })();
+    return solved.groundLoad;
   };
   /**
    * The grading of a tile's plain roads, kept for the tiles around it. `signal` is the tile
@@ -431,14 +508,14 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
     const key = terrainPyramidTileKey(address);
     const known = solves.get(key);
     if (known) {
-      known.waiters?.add(signal);
+      if (known.waiters && !known.waiters.has(signal)) {
+        known.waiters.add(signal);
+        known.watch?.(signal);
+      }
       return remember(solves, key, known, 64).promise;
     }
     const waiters = new Set([signal]);
-    const entry: { promise: Promise<Solve | undefined>; waiters: Set<AbortSignal> | undefined } = {
-      promise: Promise.resolve(undefined),
-      waiters,
-    };
+    const entry: SolveEntry = { promise: Promise.resolve(undefined), waiters };
     const wanted = (): boolean => {
       for (const waiter of waiters) if (!waiter.aborted) return true;
       // Forgotten in the same breath: whoever asks next starts afresh rather than waiting
@@ -446,11 +523,26 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
       if (solves.get(key) === entry) solves.delete(key);
       return false;
     };
+    // A grading under way off this thread is told when the last tile waiting for it gives up.
+    const stop = new AbortController();
+    stops.add(stop);
+    const watched: [AbortSignal, () => void][] = [];
+    entry.watch = (waiter) => {
+      const gone = (): void => {
+        if (!wanted()) stop.abort();
+      };
+      waiter.addEventListener('abort', gone, { once: true });
+      watched.push([waiter, gone]);
+    };
+    entry.watch(signal);
     entry.promise = roadsOf(address)
-      .then((roads) => (roads ? solve(address, pyramid, roads, wanted) : undefined))
+      .then((roads) => (roads ? solve(address, pyramid, roads, wanted, stop.signal) : undefined))
       .catch(() => undefined);
     void entry.promise.then((value) => {
       entry.waiters = undefined;
+      entry.watch = undefined;
+      stops.delete(stop);
+      for (const [waiter, gone] of watched) waiter.removeEventListener('abort', gone);
       if (value === undefined && solves.get(key) === entry) solves.delete(key);
     });
     return remember(solves, key, entry, 64).promise;
@@ -469,13 +561,13 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
     directions: readonly (readonly [number, number])[],
     signature: string,
   ): [elevation: number, flatness: number, anchor: number, ground: number] | undefined => {
-    const list = solved.cells.get(
-      solvedCell(Math.floor(x / SOLVED_CELL), Math.floor(z / SOLVED_CELL)),
-    );
-    if (!list) return undefined;
+    const index = solved.cells;
+    if (!index) return undefined;
+    const [from, to] = roadSeparationCellRange(index, x, z);
+    const list = index.cells;
     let nearest = SOLVED_REACH;
     let found: [number, number, number, number] | undefined;
-    for (let k = 0; k < list.length; k += 2) {
+    for (let k = from; k < to; k += 2) {
       const way = solved.ways[list[k] as number] as SolvedWay;
       if (way.signature !== signature) continue;
       const at = (list[k + 1] as number) * SOLVED_STRIDE;
@@ -561,7 +653,7 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
     for (const samples of profiles.values())
       for (const sample of samples) consider(sample.point[0], sample.point[1]);
     if (wanted.size === 0) return profiles;
-    const around = new Map<number, Solve>();
+    const finished = new Map<number, Solve>();
     await Promise.all(
       [...wanted].map(async (slot) => {
         const dx = (slot % 3) - 1,
@@ -571,21 +663,27 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
           pyramid,
           signal,
         );
-        if (solved) around.set(slot, solved);
+        if (solved) finished.set(slot, solved);
       }),
     );
+    // In the tiles' own order, not the order their gradings happened to finish in: the sums
+    // below are then the same numbers whenever a tile is graded, to the last bit. Summed as
+    // they finished, a road's height moved by a rounding error from one visit to the next.
+    const around = new Map([...finished].sort((a, b) => a[0] - b[0]));
     if (disposed || around.size === 0) return profiles;
     // A road on the ground here that a tile beside this one has climbing: it gets a profile
-    // too, on the ground in this tile's grading, to carry that tile's share of it.
-    const ground = center.ground;
-    if (ground)
+    // too, on the ground in this tile's grading, to carry that tile's share of it. First the
+    // roads a tile beside this one has a height for at all, and where: only for those is the
+    // ground read, which a grading done off this thread has yet to bring here.
+    const raised: { piece: number; at: number[] }[] = [];
+    if (center.graded)
       center.pieces.forEach((piece, i) => {
         if (profiles.has(i) || piece.bridge) return;
         const line = piece.lines[0] as TerrainSemanticLine;
         const signature = roadSignature(piece);
-        const lift = transportKind(piece) === 'path' ? PATH_SURFACE_LIFT : ROAD_SURFACE_LIFT;
-        let climbs = false;
-        for (let k = 0; k < line.length && !climbs; k++) {
+        // u, v, the road's direction there, and the height the tile beside gives it.
+        const at: number[] = [];
+        for (let k = 0; k < line.length; k++) {
           const [u, v] = line[k] as [number, number];
           const directions = directionsAt(line, k);
           const [tx, tz] = directions[0] ?? [1, 0];
@@ -600,14 +698,32 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
               directions,
               signature,
             );
-            // Off the ground by more than a seam would show.
-            climbs =
-              theirs !== undefined &&
-              theirs[0] > ground(u * tileSize, v * tileSize, tx, tz) + lift + 0.1;
-            if (climbs) break;
+            if (theirs !== undefined) at.push(u, v, tx, tz, theirs[0]);
           }
         }
-        if (!climbs) return;
+        if (at.length > 0) raised.push({ piece: i, at });
+      });
+    const ground = raised.length > 0 ? await groundOf(center, address, pyramid) : undefined;
+    if (disposed) return profiles;
+    if (ground)
+      for (const { piece: i, at } of raised) {
+        const piece = center.pieces[i] as TerrainTransportationFeature;
+        const line = piece.lines[0] as TerrainSemanticLine;
+        const lift = transportKind(piece) === 'path' ? PATH_SURFACE_LIFT : ROAD_SURFACE_LIFT;
+        let climbs = false;
+        // Off the ground by more than a seam would show.
+        for (let k = 0; k < at.length && !climbs; k += 5)
+          climbs =
+            (at[k + 4] as number) >
+            ground(
+              (at[k] as number) * tileSize,
+              (at[k + 1] as number) * tileSize,
+              at[k + 2] as number,
+              at[k + 3] as number,
+            ) +
+              lift +
+              0.1;
+        if (!climbs) continue;
         const samples: TerrainBridgeProfileSample[] = [];
         for (let k = 0; k + 1 < line.length; k++) {
           const [au, av] = line[k] as [number, number],
@@ -634,7 +750,7 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
           }
         }
         if (samples.length > 1) profiles.set(i, samples);
-      });
+      }
     for (const [i, samples] of profiles) {
       const piece = center.pieces[i] as TerrainTransportationFeature;
       const signature = roadSignature(piece);
@@ -697,6 +813,7 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
   return {
     async transformHeightfield(context, source) {
       heights ??= source;
+      streamSource ??= source;
       const { heightfield, address, pyramid, origin, tileSize, signal } = context;
       if (disposed || options.earthworks === false || signal.aborted) return heightfield;
       if (address.level < (options.minLevel ?? pyramid.minLevel)) return heightfield;
@@ -794,6 +911,7 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
                 pyramid,
                 { transportation: tile.transportation, water: tile.water },
                 () => !signal.aborted,
+                signal,
               );
         if (signal.aborted || !center || center.ways.length === 0) return tile;
         const blended = await blend(center, address, pyramid, signal);
@@ -835,6 +953,8 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
     },
     dispose() {
       disposed = true;
+      for (const stop of stops) stop.abort();
+      stops.clear();
       roads.clear();
       solves.clear();
       fields.clear();

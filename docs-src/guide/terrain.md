@@ -132,9 +132,17 @@ function frame(cameraPosition: [number, number, number]) {
 }
 ```
 
-`reverseDepthBuffer` preserves depth precision across a large view range. On WebGL devices without
-`EXT_clip_control`, Molen automatically uses logarithmic depth on the same canvas and context.
-Logarithmic depth costs early-fragment performance; devices supporting reversed depth keep it.
+`reverseDepthBuffer` preserves depth precision across a large view range. WebGPU reverses its
+floating-point depth buffer. WebGL renders into the canvas's own depth buffer, whose format the
+platform chooses: floating point on some (SwiftShader), 24-bit fixed point on others (Direct3D,
+OpenGL and Vulkan on desktop GPUs), with `DEPTH_BITS` reading 24 on both. Reversing fixed point
+gains nothing. A depth step there is about z² / near × 2⁻²⁴, 58 cm at 700 m behind a 5 cm near
+plane, so roads and their paint fought the ground in stripes. Molen therefore probes the canvas
+when it creates the renderer. It keeps reversed depth on a floating-point buffer and switches to
+logarithmic depth on a fixed-point one, which gives about a millimeter at a kilometer whatever
+the near plane. Logarithmic depth writes each fragment's depth, which gives up early depth
+rejection (hidden-surface removal on tile-based GPUs) and polygon offset. Overlays drawn on their
+surface's own triangles still pass the default less-or-equal test.
 
 The source interface returns decoded height tiles, so archive readers, procedural worlds, and tests
 do not change residency behavior. HTTP 404 is a stable missing tile; call `retryFailed()` only after
@@ -390,7 +398,13 @@ retaining direction-independent coarse coverage to the configured distance. `per
 widens that cone: tiles up to that many degrees past it stay selected at reduced
 detail (`peripheralDetail`, default 0.4, weighs their error), with hydrology prepared too, so
 turning the camera reveals ground and mapped water that are already there. Buildings and vegetation
-build once the tile is in view. In-flight surface
+build once the tile is in view. Detail already drawn stays on ground the camera turns or flies
+away from, so a look back finds it, until what is on show passes 85% of `maxResidentBytes`: then
+ground out of view gives that detail up, the farthest first, down to 70%, and its own coarser
+tile takes over, bare until it is looked at. The tiles let go join the warm cache. Without that
+limit a flight over a dense city kept a trail of its finest tiles as long as the view distance,
+twice the budget, and the stream stops preparing ground ahead once what is on show passes the
+budget. In-flight surface
 requests finish into a bounded warm cache instead of being restarted on every small camera turn;
 hidden cached tiles are evicted only when capacity is needed, farthest first in tile widths from
 the camera rather than least recently used, because a circling camera returns to the ground it saw
@@ -460,6 +474,14 @@ MVT packages can explicitly declare `"profile": "protomaps-basemap@1"` on each s
 polygon holes, waterways, bridge/tunnel flags, and building height/level fallbacks. Unknown profiles
 are never guessed. `createTerrainMvtSemanticDecoder` exposes source-layer/property mappings and
 per-tile feature/point limits for other MVT producers.
+
+A package whose features include `poi` also gets the map's place labels, in the tile's `places`
+(`TerrainPlaceFeature`): settlements (cities, towns, villages, hamlets) and their districts
+(suburbs, quarters, neighbourhoods), each a named point with its kind and, when the map knows it,
+its population. They come from Protomaps' `places` layer (OpenMapTiles' `place`; the `place`
+source-layer option names another); states, countries and unnamed labels are left out. A label
+says what a place is called, not where its edges are. The Earth view reads them for
+`view.locate` (see [Where am I](earth-view.md#where-am-i-streets-and-places)).
 
 `createTerrainSemanticPyramidLayer` joins any normalized source and renderer to adaptive residency.
 `createDefaultTerrainSemanticRenderer` is the initial scalable mesh policy: deterministic instanced
@@ -553,10 +575,72 @@ at the coarser level with a proportionally narrower buffer would cut it. `buildi
 the composed tile tells renderers that narrower buffer, so tile-edge ownership still agrees between
 neighbours. Descendants the archive lacks keep the coarse tile's buildings in their part of the
 tile. `createBuildingDetailTerrainSemanticSource` wraps any feature source this way and keeps
-recently loaded detail tiles, since a tile and its children share them. Only the `building` and
-`poi` layers of detail tiles are decoded. The detail archive is optional: if it cannot be opened,
+recently loaded detail tiles, since a tile and its children share them (`cacheSize`, 48 tiles,
+and `cacheBuildings`, 160,000 footprints between them: 48 tiles of a dense city were half a
+gigabyte). A tile two levels coarser is drawn as distant massing, so it takes only the largest
+buildings of each detail tile (`coarseBuildingLimit`, default 256 by footprint x height, with
+every clipped copy of a chosen footprint; `Infinity` keeps all) and carries the coverage of all
+of them as `buildingCoverage`, which `terrainBuildingCoverage` answers with, so its ground still
+paves over where the city is dense. Central Bogotá's 5 km tile went from 134,000 footprints to
+3,900 and from 10.6 s of generation to 0.8 s, with no visible change. One level coarser keeps
+every footprint. A composed tile of 4,000 footprints or more is packed once
+(`packTerrainSemanticTile`), so it crosses to workers and is kept by layers as a packet: cloning
+a 36,700-footprint tile whole took 200 ms of the page's thread for each worker it went to. Only the `building` and
+`poi` layers of detail tiles are decoded for building detail. When the features declare
+`transportation`, the opened sidecar also carries `streets`, a source that decodes the detail
+level's roads alone. The detail archive is optional: if it cannot be opened,
 `openTerrainPackageSemantics` reports `buildingDetailError` and the feature tiles carry on alone.
 Hosts with their own transport pass `buildingDetailArchive`.
+
+**Road detail.** A basemap's regular zooms keep few roads: Protomaps' zoom 13 holds a city's main
+roads and drops nearly every residential street, footway and stair, which only its last zoom has.
+Where the package's pyramid reaches the detail level, tiles at that level (or finer) take their
+roads from it (`createRoadDetailTerrainSemanticSource`; `roadDetail: false` on
+`createTerrainPackageSemanticLayers` turns it off). It wraps the plain feature source, so road
+grading, tunnels, underpasses, building detail and the layers all read the same lines, and
+neighbouring tiles agree at their edges. Coarser tiles keep their own roads: merging 4 or 16 detail
+tiles' streets into one coarse tile overruns the per-tile budgets tuned for detail-sized tiles (a
+surface network finds at most 256 junctions a tile), and a coarse tile is drawn far enough off not
+to miss them. Host edits to the native feature tiles (`transformFeatures`) do not reach detail
+roads. `EarthView.locate` reads its street from these tiles, or from `streets` where no tile that
+fine is drawn (see [Where am I](earth-view.md#where-am-i-streets-and-places)).
+
+So a host whose basemap ships a zoom-15 detail tier should declare its pyramid down to that level
+(`tileMatrix.maxLevel`), even where its elevation ends sooner: elevation fills finer tiles from
+ancestors (below), and the view then draws zoom-15 tiles near the camera, each with its own
+buildings and streets. On a planet release with elevation to zoom 13 and detail at 15, declaring
+zoom 15 cut the time to a settled view of downtown Seattle from about 36 s to 22 s and worldgen CPU
+by about three quarters, with side streets and finer near detail; a pyramid stopping at zoom 13
+composes 16 detail tiles into each 3–5 km tile instead.
+
+**Built-up evidence.** A basemap's footprints are complete in some towns and nearly absent in
+others, and a tile does not say which. A package can carry independent evidence of how much of the
+ground is under buildings, such as a settlement layer derived from satellite imagery:
+
+```json
+"builtUp": {
+  "urlTemplate": "https://your-host.example/built-up/ghsl-built-s-2020-v1/{z}/{x}/{y}.json",
+  "level": 11,
+  "source": "ghsl-built-s-r2023a",
+  "year": 2020
+}
+```
+
+Each document is a `molen/built-up-grid@1`: one XYZ tile at `level`, `resolution` cells across
+(up to 256), and `runs` of `[run length, percent built 0..100, ...]` row-major from the north. A
+document's `source` and `year` must match the declaration. `createTerrainPackageSemanticLayers`
+attaches the part of the grid over each tile at that level or finer as
+`TerrainSemanticTile.builtUp` (`columns`, `rows`, a tile-unit `box` and shares 0..1), on the
+classification and human-feature tiles alike; `createBuiltUpTileEnricher` does the same for a
+host's own sources, and `sampleTerrainBuiltUp` reads a point. Downloads are bounded
+(`maxTileBytes`, default 128 KiB) and shared by the tiles under one document. Inside the optional
+`bounds` (`[west, south, east, north]`, default the whole world) a missing document means nothing
+is built there, so a release need only hold tiles with something built; outside `bounds`, and
+when a download fails, a tile carries no evidence and readers behave as they do without a grid.
+Pick a level and a power-of-two resolution whose cells nest in the terrain tiles (level 11 with
+128 cells makes each cell a zoom-18 tile): a cell cut by a tile edge is compared with only part of
+its footprints. The grid is an observation, not a rendering recipe; worldgen's building infill is
+its reader (see [worldgen](worldgen.md)). Name the dataset's license in `attribution`.
 
 The package elevation pyramid may be sparse. `createTerrainPackagePyramidHeightSource` walks to the
 nearest declared ancestor when an exact tile is absent, then crops and resamples that ancestor into

@@ -1,0 +1,276 @@
+/*
+ * Optional baseline for <FigureDesigner>. Every selector is wrapped in :where() so host styles
+ * win without fighting specificity. Theme it with these custom properties (each falls back to a
+ * system colour, so light and dark both work unstyled):
+ *   --molen-figure-designer-color, -muted, -surface, -surface-raised, -border, -accent,
+ *   -accent-contrast, -focus-ring, -radius, -gap, -option-size, -swatch-size,
+ *   -preview-background, -preview-min-height, -font
+ */
+/* The root is the size container; the layout inside it switches to two columns when wide. */
+:where([data-molen-figure-designer]) {
+  container-type: inline-size;
+  color: var(--molen-figure-designer-color, CanvasText);
+  font: var(--molen-figure-designer-font, 0.9375rem / 1.45 system-ui, sans-serif);
+}
+:where([data-molen-figure-designer]) :where([data-part="layout"]) {
+  display: grid;
+  gap: var(--molen-figure-designer-gap, 1rem);
+}
+@container (min-width: 640px) {
+  :where([data-molen-figure-designer]) :where([data-part="layout"]) {
+    grid-template-columns: minmax(15rem, 2fr) 3fr;
+    align-items: start;
+  }
+  :where([data-molen-figure-designer]) :where([data-part="stage"]) {
+    position: sticky;
+    top: var(--molen-figure-designer-sticky-top, 0.5rem);
+  }
+}
+:where([data-molen-figure-designer]) :where([data-part="stage"]) {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+}
+:where([data-molen-figure-designer]) :where([data-part="preview"]) {
+  display: block;
+  width: 100%;
+  height: clamp(16rem, 44vh, 30rem);
+  min-height: var(--molen-figure-designer-preview-min-height, 16rem);
+  border-radius: var(--molen-figure-designer-radius, 0.75rem);
+  background: var(--molen-figure-designer-preview-background, Canvas);
+  border: 1px solid var(--molen-figure-designer-border, GrayText);
+  cursor: grab;
+}
+:where([data-molen-figure-designer]) :where([data-part="preview"]):active {
+  cursor: grabbing;
+}
+:where([data-molen-figure-designer]) :where([data-part="toolbar"], [data-part="actions"]) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+:where([data-molen-figure-designer]) :where(button) {
+  min-height: 44px;
+  padding: 0.4rem 0.9rem;
+  font: inherit;
+  color: inherit;
+  background: var(--molen-figure-designer-surface-raised, ButtonFace);
+  border: 1px solid var(--molen-figure-designer-border, GrayText);
+  border-radius: calc(var(--molen-figure-designer-radius, 0.75rem) * 0.66);
+  cursor: pointer;
+}
+:where([data-molen-figure-designer]) :where(button):disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+:where([data-molen-figure-designer])
+  :where(button[aria-pressed="true"], [role="tab"][aria-selected="true"]) {
+  background: var(--molen-figure-designer-accent, Highlight);
+  color: var(--molen-figure-designer-accent-contrast, HighlightText);
+  border-color: transparent;
+}
+:where([data-molen-figure-designer]) :where([data-part="panel"]) {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+:where([data-molen-figure-designer]) :where([data-part="tabs"]) {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--molen-figure-designer-border, GrayText);
+}
+:where([data-molen-figure-designer]) :where([role="tab"]) {
+  border-radius: calc(var(--molen-figure-designer-radius, 0.75rem) * 0.66)
+    calc(var(--molen-figure-designer-radius, 0.75rem) * 0.66) 0 0;
+  border-bottom: none;
+}
+:where([data-molen-figure-designer]) :where([data-part="section"]) {
+  display: grid;
+  gap: 1.25rem;
+}
+:where([data-molen-figure-designer]) :where(fieldset) {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+:where([data-molen-figure-designer]) :where(legend) {
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+:where([data-molen-figure-designer]) :where([data-part="item"]) {
+  display: grid;
+  gap: 0.75rem;
+}
+:where([data-molen-figure-designer]) :where([data-part="options"]) {
+  display: grid;
+  grid-template-columns: repeat(
+      auto-fill,
+      minmax(var(--molen-figure-designer-option-size, 6.5rem), 1fr)
+    );
+  gap: 0.5rem;
+}
+/* Options and swatches are native radios: the input is hidden, its label draws the tile. */
+:where([data-molen-figure-designer])
+  :where([data-part="option"], [data-part="swatch"], [data-part="segmented"] label) {
+  position: relative;
+  cursor: pointer;
+}
+:where([data-molen-figure-designer])
+  :where([data-part="option"], [data-part="swatch"], [data-part="segmented"] label)
+  > input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+:where([data-molen-figure-designer]) :where([data-part="option"]) {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 0.25rem;
+  min-height: 44px;
+  padding: 0.4rem;
+  text-align: center;
+  background: var(--molen-figure-designer-surface, Canvas);
+  border: 1px solid var(--molen-figure-designer-border, GrayText);
+  border-radius: calc(var(--molen-figure-designer-radius, 0.75rem) * 0.66);
+}
+:where([data-molen-figure-designer]) :where([data-part="option"]):has(input:checked) {
+  border-color: var(--molen-figure-designer-accent, Highlight);
+  box-shadow: inset 0 0 0 2px var(--molen-figure-designer-accent, Highlight);
+}
+:where([data-molen-figure-designer])
+  :where([data-part="option"]):has(input:checked)
+  :where([data-part="option-label"])::before {
+  content: "✓ ";
+}
+/* The check is a visual mark only: an empty alternative keeps it out of the option's accessible
+   name ("Ponytail", not "✓ Ponytail") where the browser supports one. */
+@supports (content: "x" / "") {
+  :where([data-molen-figure-designer])
+    :where([data-part="option"]):has(input:checked)
+    :where([data-part="option-label"])::before {
+    content: "✓ " / "";
+  }
+}
+:where([data-molen-figure-designer]) :where([data-part="thumbnail"]) {
+  width: 100%;
+  max-width: 7rem;
+  aspect-ratio: 1;
+  height: auto;
+}
+:where([data-molen-figure-designer]) :where([data-part="swatches"]) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+:where([data-molen-figure-designer]) :where([data-part="swatch"]) {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+}
+:where([data-molen-figure-designer]) :where([data-part="chip"]) {
+  width: var(--molen-figure-designer-swatch-size, 2rem);
+  height: var(--molen-figure-designer-swatch-size, 2rem);
+  border-radius: 50%;
+  /* A two-tone ring keeps the lightest and deepest tones visible on any surface. */
+  box-shadow:
+    0 0 0 1px var(--molen-figure-designer-surface, Canvas),
+    0 0 0 2px var(--molen-figure-designer-border, GrayText);
+}
+:where([data-molen-figure-designer])
+  :where([data-part="swatch"]):has(input:checked)
+  :where([data-part="chip"]) {
+  box-shadow:
+    0 0 0 2px var(--molen-figure-designer-surface, Canvas),
+    0 0 0 4px var(--molen-figure-designer-accent, Highlight);
+}
+:where([data-molen-figure-designer]) :where([data-part="custom"]) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+}
+:where([data-molen-figure-designer]) :where([data-part="custom"]) input {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--molen-figure-designer-border, GrayText);
+  border-radius: 50%;
+  background: none;
+}
+:where([data-molen-figure-designer]) :where([data-part="segmented"]) {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--molen-figure-designer-border, GrayText);
+  border-radius: calc(var(--molen-figure-designer-radius, 0.75rem) * 0.66);
+  overflow: hidden;
+}
+:where([data-molen-figure-designer]) :where([data-part="segmented"] label) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1rem;
+}
+:where([data-molen-figure-designer]) :where([data-part="segmented"] label):has(input:checked) {
+  background: var(--molen-figure-designer-accent, Highlight);
+  color: var(--molen-figure-designer-accent-contrast, HighlightText);
+}
+:where([data-molen-figure-designer]) :where([data-part="height"]) {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+}
+:where([data-molen-figure-designer]) :where([data-part="height"]) label {
+  font-weight: 600;
+}
+:where([data-molen-figure-designer]) :where([data-part="height"]) input {
+  min-height: 44px;
+  accent-color: var(--molen-figure-designer-accent, Highlight);
+}
+:where([data-molen-figure-designer]) :where([data-part="more"]) summary {
+  margin-top: 0.5rem;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: var(--molen-figure-designer-muted, GrayText);
+}
+:where([data-molen-figure-designer]) :where([data-part="notice"]) {
+  margin: 0;
+  color: var(--molen-figure-designer-muted, GrayText);
+}
+:where([data-molen-figure-designer]) :where(input:focus-visible) + :where(*),
+:where([data-molen-figure-designer])
+  :where(button, summary, [data-part="custom"] input):focus-visible,
+:where([data-molen-figure-designer]) :where([data-part="height"]) input:focus-visible {
+  outline: 3px solid var(--molen-figure-designer-focus-ring, Highlight);
+  outline-offset: 2px;
+}
+:where([data-molen-figure-designer])
+  :where([data-part="option"], [data-part="swatch"], [data-part="segmented"] label):has(
+    input:focus-visible
+  ) {
+  outline: 3px solid var(--molen-figure-designer-focus-ring, Highlight);
+  outline-offset: 2px;
+}
+:where([data-molen-figure-designer]) :where([data-part="visually-hidden"]) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+@media (forced-colors: active) {
+  :where([data-molen-figure-designer])
+    :where([data-part="option"], [data-part="swatch"]):has(input:checked) {
+    outline: 3px solid Highlight;
+  }
+}

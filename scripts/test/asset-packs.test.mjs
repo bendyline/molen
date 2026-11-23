@@ -50,7 +50,7 @@ async function fixture({ masters = [], source = '{"shape":"cube"}' } = {}) {
       format: 'molen/asset-build@2',
       node: process.versions.node.split('.')[0],
       repository: 'bendyline/molen',
-      inputs: { version: 1, data: ['inputs'], exclude: ['*.md'] },
+      inputs: { version: 1, data: ['inputs'], exclude: ['*.md', '*.test.mjs'] },
       generators: [],
       masters,
     }),
@@ -117,8 +117,9 @@ test('the bundle is named by its inputs, never by the bytes a build produced', a
   const b = await installFixture(two);
   assert.match(a.release, /^assets-[a-f0-9]{16}$/);
   assert.equal(a.key, b.key);
-  // Documents are excluded; any real input names a new bundle.
+  // Documents and the tests beside recipes are excluded; any real input names a new bundle.
   await asset(two, 'inputs/notes.md', Buffer.from('review notes'));
+  await asset(two, 'inputs/recipe.test.mjs', Buffer.from('assert.ok(true);'));
   assert.equal((await assetInputs(two)).key, a.key);
   await asset(two, recipe, Buffer.from('{"shape":"sphere"}'));
   assert.notEqual((await assetInputs(two)).key, a.key);

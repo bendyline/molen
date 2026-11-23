@@ -25,6 +25,7 @@ export const MODEL_REF_RE: RegExp =
 export const BUILTIN_MODELS: readonly string[] = [
   'builtin:box',
   'builtin:box.gable',
+  'builtin:roof.gable',
   'builtin:tree.mapped.broadleaf',
   'builtin:tree.mapped.needleleaf',
   'builtin:tree.conifer',

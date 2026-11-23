@@ -6,7 +6,7 @@ import { readFile } from 'node:fs/promises';
 import type { Pack } from '@bendyline/molen-pack';
 import { describe, expect, it } from 'vitest';
 import { loadEarthContent } from '../src/client/content';
-import { createEarthWorldgen, surfaceWorkers } from '../src/client/worldgen';
+import { createEarthWorldgen, generationWorkers, surfaceWorkers } from '../src/client/worldgen';
 
 const fakePack = (id: string, folder: string, provides: Record<string, string[]>): Pack =>
   ({
@@ -57,5 +57,26 @@ describe('createEarthWorldgen', () => {
     expect(started).toBe(surfaceWorkers());
     worldgen.dispose();
     expect(terminated).toBe(started);
+  });
+});
+
+describe('worker pool sizes', () => {
+  it('leaves a laptop its cores and gives a machine with cores to spare more workers', () => {
+    // Logical cores: generation workers, then land cover and surface workers each.
+    const sizes = [2, 4, 8, 12, 16, 20, 24, 32].map((cores) => [
+      cores,
+      generationWorkers(cores),
+      surfaceWorkers(cores),
+    ]);
+    expect(sizes).toEqual([
+      [2, 1, 1],
+      [4, 1, 1],
+      [8, 2, 1],
+      [12, 2, 1],
+      [16, 3, 2],
+      [20, 5, 2],
+      [24, 5, 3],
+      [32, 5, 3],
+    ]);
   });
 });

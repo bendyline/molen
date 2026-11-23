@@ -1322,15 +1322,15 @@ async function cmdFigure(args: ParsedArgs): Promise<number> {
   }
   if (sub === 'preview') {
     const usage =
-      'usage: molen figure preview [descriptor.figure.json] [--preset id[,id]] [--lineup humans|bodies|species|all] [--mode idle|walk|run|sit|jump|fall] [--tick N] [--tier 0|1|2] [--angles N|review] [--size WxH] --out <png>';
+      'usage: molen figure preview [descriptor.figure.json | look.json] [--preset id[,id]] [--lineup humans|bodies|species|looks|all] [--mode idle|walk|run|sit|jump|fall] [--tick N] [--tier 0|1|2] [--angles N|review] [--size WxH] --out <png>';
     const outPath = str(args.flags.out);
     if (outPath === undefined) {
       err(usage);
       return 2;
     }
     const lineup = str(args.flags.lineup);
-    if (lineup !== undefined && !['humans', 'bodies', 'species', 'all'].includes(lineup)) {
-      err('--lineup must be humans, bodies, species or all');
+    if (lineup !== undefined && !['humans', 'bodies', 'species', 'looks', 'all'].includes(lineup)) {
+      err('--lineup must be humans, bodies, species, looks or all');
       return 2;
     }
     const mode = str(args.flags.mode);

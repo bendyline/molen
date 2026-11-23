@@ -1,8 +1,12 @@
 /**
- * Instanced unit boxes for degraded buildings (and any `builtin:box` placement set), and their
- * pitched counterpart `builtin:box.gable`: a box whose walls stop at `GABLE_BOX_EAVE` of its
- * height under a roof ridged along local x. Both shade by vertex color under the instance color:
- * roofs darker than walls, so a neighbourhood seen from above reads as roofs, not boxes.
+ * Instanced unit shapes for degraded buildings (and any `builtin:box` placement set): the box, and
+ * `builtin:roof.gable`, the roof that stands on a pitched stand-in's box as its own instance, so
+ * it can be as high as the style's slope makes it on that plan and take the roof's color. A
+ * neighbourhood seen from above then reads as its roofs, not as boxes.
+ *
+ * `builtin:box.gable` is the older single shape, a box whose walls stop at `GABLE_BOX_EAVE` of
+ * its height under a roof ridged along local x. Its roof is a fixed share of its height (a
+ * two-storey house came out at 45 degrees), so it is kept for props only.
  */
 
 import { InstanceBatch } from '@bendyline/molen-client/instancing';
@@ -12,6 +16,7 @@ import { PLACEMENT_STRIDE, type PlacementSet } from '../kernel/types';
 
 let unitBox: THREE.BoxGeometry | undefined;
 let gableBox: THREE.BufferGeometry | undefined;
+let gableRoof: THREE.BufferGeometry | undefined;
 
 /** Roof shade under a stand-in's wall color: weathered shingle rather than painted wall. */
 const GABLE_ROOF_SHADE = 0.46;
@@ -66,9 +71,43 @@ export function gableBoxGeometry(): THREE.BufferGeometry {
   return geometry;
 }
 
+/**
+ * Shared unit gable roof, the roof of a pitched stand-in: it stands on a footprint [-0.5, 0.5]²
+ * with its eaves at y = 0 along the long sides (±z), its ridge along x at height 1 and a small
+ * overhang, flat-shaded. Scaled by a stand-in's plan and its roof's height, so the slope is the
+ * style's on a plan of any depth. The instance color is the roof's, and nothing is shaded
+ * darker: a stand-in's roof shows the mean color its full roof does.
+ */
+export function gableRoofGeometry(): THREE.BufferGeometry {
+  if (gableRoof !== undefined) return gableRoof;
+  const o = 0.06;
+  const positions: number[] = [];
+  const quad = (a: number[], b: number[], c: number[], d: number[]) =>
+    positions.push(...a, ...b, ...c, ...a, ...c, ...d);
+  // The gable ends, in the walls' planes, counter-clockwise from outside.
+  positions.push(0.5, 0, 0.5, 0.5, 0, -0.5, 0.5, 1, 0);
+  positions.push(-0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 1, 0);
+  // The two slopes, carried past the walls on every side at the same slope.
+  const drop = o / 0.5;
+  quad([-0.5 - o, -drop, 0.5 + o], [0.5 + o, -drop, 0.5 + o], [0.5 + o, 1, 0], [-0.5 - o, 1, 0]);
+  quad([0.5 + o, -drop, -0.5 - o], [-0.5 - o, -drop, -0.5 - o], [-0.5 - o, 1, 0], [0.5 + o, 1, 0]);
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute(
+    'color',
+    new THREE.Float32BufferAttribute(new Float32Array(positions.length).fill(1), 3),
+  );
+  geometry.computeVertexNormals();
+  geometry.computeBoundingBox();
+  geometry.computeBoundingSphere();
+  gableRoof = geometry;
+  return geometry;
+}
+
 /** The shared stand-in geometry for a box placement set's model, or undefined for other models. */
 export function buildingBoxGeometry(modelRef: string): THREE.BufferGeometry | undefined {
   if (modelRef === 'builtin:box') return unitBoxGeometry();
+  if (modelRef === 'builtin:roof.gable') return gableRoofGeometry();
   if (modelRef === 'builtin:box.gable') return gableBoxGeometry();
   return undefined;
 }

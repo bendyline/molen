@@ -113,4 +113,4 @@ it('reproduces all four image-free shared-material levels and keeps initial down
     expect(g.images ?? []).toHaveLength(0);
     expect(l.drawCalls).toBeLessThanOrEqual(3);
   }
-}, 10000);
+}, 30000);

@@ -8,6 +8,7 @@
 
 import type { SceneAdmission } from '@bendyline/molen-client';
 import { createAgricultureTileEnricher } from './agriculture-client';
+import { createBuiltUpTileEnricher } from './built-up-client';
 import { createProtomapsTerrainMvtDecoder } from './mvt-semantic-decoder';
 import {
   createTerrainPackageCombinedSemanticSource,
@@ -39,6 +40,7 @@ import {
 } from './semantic-decoder-worker';
 import { createOverzoomTerrainSemanticSource } from './semantic-overzoom';
 import { composeTerrainSemanticTile } from './semantic-packet';
+import { createRoadDetailTerrainSemanticSource } from './semantic-road-detail';
 import type { TerrainSemanticTile } from './semantic-types';
 import { withTerrainTunnels } from './tunnels';
 import { withTerrainUnderpasses } from './underpasses';
@@ -97,6 +99,14 @@ export interface CreateTerrainPackageSemanticLayersOptions
    * every tile's own, generalized footprints.
    */
   buildingDetail?: false | { maxDepth?: number };
+  /**
+   * Give tiles at the `features.buildingDetail` level, or finer, that level's roads (default true,
+   * with building detail on): every street a basemap keeps only at its last zoom, for drawing,
+   * grading, tunnels and every other reader alike. Coarser tiles keep their own roads. It only
+   * takes effect where the package's pyramid reaches the detail level. See
+   * semantic-road-detail.ts.
+   */
+  roadDetail?: boolean;
   /** Carry broad landcover and bounded building massing into distant terrain tiles.
    * Custom renderers must bound their work at these coarser levels. Default false. */
   distantCoverage?: boolean;
@@ -154,6 +164,7 @@ export async function createTerrainPackageSemanticLayers(
     roadGrading,
     overzoom = true,
     buildingDetail,
+    roadDetail = true,
     admission,
     distantCoverage = false,
     ...unadmitted
@@ -250,6 +261,24 @@ export async function createTerrainPackageSemanticLayers(
       semantics.features.maxLevel,
     );
   }
+  // Tiles at the building-detail level or finer take their roads from it (the streets a basemap
+  // keeps only at its last zoom), for every reader of the plain road tiles alike: grading, tunnels,
+  // building detail and the layers. See semantic-road-detail.ts.
+  const detailStreets = semantics.buildingDetail?.streets;
+  if (
+    featuresSource !== undefined &&
+    semantics.buildingDetail !== undefined &&
+    detailStreets !== undefined &&
+    buildingDetail !== false &&
+    roadDetail &&
+    semantics.buildingDetail.level <= packageMaxLevel
+  ) {
+    const level = semantics.buildingDetail.level;
+    featuresSource = createRoadDetailTerrainSemanticSource(featuresSource, detailStreets, {
+      level,
+      tileSize: terrainPyramidTileSize(terrainPyramidDescriptorFromPackage(pkg), level),
+    });
+  }
   // Share the detail reader across vegetation and buildings. Classification needs complete
   // homes for yard canopy and footprint exclusions, even if its coarse tile already has POIs.
   // Keep the unenhanced feature source for hydrology and tunnel topology.
@@ -264,10 +293,20 @@ export async function createTerrainPackageSemanticLayers(
       : featuresSource;
   // Enrich the completed joins, so retrieved cells cannot hide a separate mapped land-use
   // archive. Share the cache between visual layers and leave hydrology reads independent.
-  const enrich =
-    pkg.agriculture && pkg.coordinateSpace.kind === 'geospatial' && pkg.tileMatrix.scheme === 'xyz'
+  const geospatialXyz =
+    pkg.coordinateSpace.kind === 'geospatial' && pkg.tileMatrix.scheme === 'xyz';
+  const enrichAgriculture =
+    pkg.agriculture && geospatialXyz
       ? createAgricultureTileEnricher(pkg.agriculture, options.baseUrl)
       : (source: TerrainPackageSemanticSource) => source;
+  // Built-up evidence rides on the same tiles, so the classification and the human features
+  // agree on where buildings may be invented (built-up-grid.ts).
+  const enrichBuiltUp =
+    pkg.builtUp && geospatialXyz
+      ? createBuiltUpTileEnricher(pkg.builtUp, options.baseUrl)
+      : (source: TerrainPackageSemanticSource) => source;
+  const enrich = (source: TerrainPackageSemanticSource): TerrainPackageSemanticSource =>
+    enrichBuiltUp(enrichAgriculture(source));
   if (semantics.landcover !== undefined) {
     const style = landcoverLayer ?? {};
     const landSource = landcoverSource as TerrainPackageSemanticSource;

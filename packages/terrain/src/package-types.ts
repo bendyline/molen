@@ -1,4 +1,5 @@
 import type { TerrainAgricultureSource } from './agriculture-grid';
+import type { TerrainBuiltUpSource } from './built-up-grid';
 import type { TerrainLayer } from './descriptor-types';
 import type { TerrainPyramidTileAddress } from './pyramid-types';
 import type { TerrainSemanticTile } from './semantic-types';
@@ -103,6 +104,8 @@ export interface TerrainPackageDescriptor {
   };
   models?: { index: string };
   agriculture?: TerrainAgricultureSource;
+  /** Built-up evidence beside the map's footprints (built-up-grid.ts). */
+  builtUp?: TerrainBuiltUpSource;
   preset?: '1gb' | '5gb' | '20gb';
   attribution: TerrainPackageAttribution[];
   provenance: {

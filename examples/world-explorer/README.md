@@ -8,9 +8,10 @@ it, clone the engine repository and run `pnpm install && pnpm dev:prepare` once,
 from the root. Setup may generate models if the current asset bundle has not been published.
 
 The **Region** dropdown switches between Seattle/Bellevue/Sammamish, Sydney (Australia), Kyoto
-(Japan), Yuma (Arizona), and New Delhi (India). Each region bundles its own vector and elevation
-PMTiles. Selecting a region reloads at its starting location while retaining rendering preferences.
-Direct links use `?region=sydney`, `?region=kyoto`, `?region=yuma`, or `?region=new-delhi`.
+(Japan), Yuma (Arizona), New Delhi (India), and Oʻahu (Hawaii). Each region bundles its own vector
+and elevation PMTiles. Selecting a region reloads at its starting location while retaining rendering
+preferences. Direct links use `?region=sydney`, `?region=kyoto`, `?region=yuma`, `?region=new-delhi`,
+or `?region=oahu`.
 Explicit `?package=...` and `?synthetic=1` overrides remain available.
 
 **Controllers (N)** shows detected joysticks and gamepads. Open it to inspect raw axes/buttons,
@@ -121,7 +122,7 @@ The ground, roads and sidewalks are shaded procedurally: grass carries hue drift
 centimeters of sunlit relief, neighboring land classes meet along ragged blended edges instead of
 polygon lines, roads show asphalt wear, wheel tracks and repaired sections, and sidewalks show
 saw-cut slabs. `?ground=flat` turns all of it off for comparison. Tile generation runs on a pool
-of workers (half the logical cores, up to four).
+of workers sized to the machine: one or two on a laptop, three from 16 logical cores, five from 20.
 
 This browser example exercises molen's large-world terrain foundation in three modes:
 
@@ -189,15 +190,19 @@ and mapped parts guide building massing, with low pitched and taller flat reside
 therefore share actual coordinates without exposing a hard regional edge at flyover altitude.
 
 Starter regions open at real airports: Boeing Field for Seattle–Bellevue–Sammamish, Sydney
-Kingsford Smith, Osaka Itami within the wider Kyoto area, Yuma International, and Indira Gandhi
-International for New Delhi. Aircraft selection places one aircraft on the mapped runway,
+Kingsford Smith, Osaka Itami within the wider Kyoto area, Yuma International, Indira Gandhi
+International for New Delhi, and Daniel K. Inouye International (Honolulu) for Oʻahu. Aircraft selection places one aircraft on the mapped runway,
 aligned for takeoff at terrain height. The raised practice airfield belongs only to the
 synthetic fixture. Seattle's detail window extends south to 47.49° N, covering Boeing Field
 and its surrounding neighborhoods. Kyoto's street detail reaches southwest to Itami and south to
 central Osaka (135.40–135.88° E, 34.66–35.09° N), so streets and buildings run unbroken from the
 runway along the Yodo valley into Kyoto, and the runway's view south ends in Umeda and Namba; that
 widening is an `itami` detail window whose map tiles come from the 2026-11-18 Protomaps build,
-while Kyoto's own tiles keep the 2026-10-23 extract.
+while Kyoto's own tiles keep the 2026-10-23 extract. Oʻahu's street detail is the whole island,
+Kaʻena Point to Makapuʻu and Barbers Point to Kahuku (158.29–157.64° W, 21.24–21.73° N), from the
+2026-11-21 Protomaps build; its coarse elevation reaches Molokaʻi, Lānaʻi, Kahoʻolawe and Maui on
+the southeastern horizon. Open sea is flattened to the water datum and costs almost nothing, so the
+whole package is about 47 MB (11.5 MB vector, 35.4 MB elevation).
 
 Pass `?synthetic=1` to use the deterministic in-memory fixture instead. That path keeps adaptive
 coverage and semantic-layer transitions testable without network-derived data; its trees, roads,
@@ -255,11 +260,19 @@ The builder downloads only the declared bounding box, adds a shared east/south b
 each elevation tile, emits source and license sidecars, and hashes every package file. It is a
 small real-data fixture; the size-preset production pipeline lives outside this repository.
 
-In the engine repository, rebuild the four additional regions (or one with `--region kyoto`):
+In the engine repository, rebuild the five additional regions (or one with `--region kyoto`):
 
 ```sh
 pnpm --filter @bendyline/molen-examples-world-explorer data:regions -- \
   --pmtiles-cli /path/to/pmtiles
+```
+
+Oʻahu was built later than the others, from a newer daily archive (go-pmtiles 1.31.2):
+
+```sh
+pnpm --filter @bendyline/molen-examples-world-explorer data:regions -- \
+  --pmtiles-cli /path/to/pmtiles --region oahu --version 2026-11-21 \
+  --elevation-release "AWS open-data snapshot accessed 2026-11-21"
 ```
 
 The region catalog in `src/regions.ts` defines the starting locations and extraction bounds,
@@ -331,12 +344,18 @@ separate workers.
 (`speed` in m/s, `radius` in meters, `dive` in radians, `start` seconds to wait first), for
 reproducing a streaming problem exactly; `?tier=N` holds one adaptive tier while comparing runs.
 `?admissionMs=N` (with `admissionMiB=`) holds one streaming budget a frame instead of the one
-that grows while work backs up, and `?cull=0` walks every tile on show every frame, in view or
-not: both for comparison. See [the flight measurements](test/performance/README.md).
+that grows while work backs up, `?cull=0` walks every tile on show every frame, in view or
+not, and `?shadowHold=0` draws the sun's shadow map every frame however coarse or dark it is: all
+for comparison. See [the flight measurements](test/performance/README.md).
 
-The performance HUD reports frame/p90 and optional asynchronous GPU timing, actual rendered
-draws/triangles, resolution and memory budgets. Streaming selection runs at 10 Hz; navigation runs
-every frame. Walking collision rebuilds only for nearby changes or movement. Frustum culling and
+The panel's title bar shows frames a second (green from 50, amber from 30, red below), with the
+panel folded and in every mode, walking, driving and flying included. Its Performance section
+draws the last frames as bars against the 16.7 and 33.3 ms lines and reports the rate of the
+slowest 1% of frames, frame/p90 and main-thread (`CPU`) time, optional asynchronous GPU timing,
+actual rendered draws/triangles, resolution, what streaming is waiting for (tiles and layers
+loading, the wait in the frame queue, a tile's buildings in the workers) and memory. The section
+folds, and remembers that. `#performance-status` carries the rates as `data-fps` and
+`data-low-fps`. Streaming selection runs at 10 Hz; navigation runs every frame. Walking collision rebuilds only for nearby changes or movement. Frustum culling and
 depth testing are active; terrain/hill occlusion culling is not implemented. See
 [Adaptive rendering performance](../../docs-src/guide/adaptive-performance.md) for controls,
 budget limits, worker fallbacks, timing APIs and implementation boundaries.

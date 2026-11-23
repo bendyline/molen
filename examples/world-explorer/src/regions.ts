@@ -142,6 +142,21 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
       railGauge: 1.676,
     },
   },
+  {
+    id: 'oahu',
+    label: 'Oʻahu, Hawaii',
+    // The west end of Honolulu's runway 8L, looking east along the shore to downtown Honolulu
+    // and Diamond Head.
+    longitude: -157.942993,
+    latitude: 21.325199,
+    airport: { id: 'PHNL', runway: '08L/26R' },
+    // The whole island, Kaʻena Point to Makapuʻu and Barbers Point to Kahuku: Honolulu and
+    // Waikīkī, Pearl Harbor, the Koʻolau and Waiʻanae ranges and the North Shore.
+    detailBounds: [-158.29, 21.24, -157.64, 21.73],
+    // Molokaʻi, Lānaʻi, Kahoʻolawe and Maui, with Haleakalā, on the southeastern horizon. Most
+    // of it is open sea, which costs next to nothing in the elevation archive.
+    coverageBounds: [-158.9, 20.45, -155.9, 22.1],
+  },
 ];
 
 export function regionPackagePath(region: WorldRegion): string {

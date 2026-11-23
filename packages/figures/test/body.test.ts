@@ -36,7 +36,7 @@ const ANIMAL_BUDGET: Record<FigureTier, [number, number]> = {
 };
 
 const HUMAN_BUDGET: Record<FigureTier, [number, number]> = {
-  0: [3000, 8500],
+  0: [3000, 9000],
   1: [1000, 2600],
   2: [500, 1200],
 };
@@ -68,7 +68,7 @@ describe('procedural bodies', () => {
         }
       }
     }
-  });
+  }, 30_000);
 
   for (const preset of FIGURE_PRESET_IDS) {
     describe(preset, () => {

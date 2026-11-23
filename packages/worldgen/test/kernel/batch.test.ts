@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   BOX_PLACEMENT_SET_ID,
-  GABLE_BOX_PLACEMENT_SET_ID,
+  GABLE_ROOF_PLACEMENT_SET_ID,
   generateWorldgenBatch,
   generateWorldgenBatchSteps,
   worldgenTransferables,
@@ -91,6 +91,53 @@ describe('batch generation', () => {
     expect(detailed.records.some((record) => ['gable', 'hip'].includes(record.roof))).toBe(true);
   });
 
+  it('draws buildings past the count budget as stand-ins, up to maxStandIns', () => {
+    const kept = generateWorldgenBatch({
+      buildings: requests(),
+      pack,
+      budgets: { maxBuildings: 3, maxStandIns: 100 },
+    });
+    expect(kept.stats.buildingsDropped).toBe(0);
+    expect(kept.stats.buildingsRendered).toBe(3);
+    expect(kept.stats.buildingsBoxed).toBe(5);
+    expect(kept.records).toHaveLength(8);
+    // One box a stand-in, flat or pitched; a pitched one's roof is in its own set.
+    const boxes = kept.placements.filter((set) => set.setId === BOX_PLACEMENT_SET_ID);
+    expect(boxes.reduce((sum, set) => sum + set.count, 0)).toBe(5);
+    // The three with real geometry are the ones the count budget alone keeps.
+    const capped = generateWorldgenBatch({
+      buildings: requests(),
+      pack,
+      budgets: { maxBuildings: 3 },
+    });
+    expect(kept.buildings?.positions).toEqual(capped.buildings?.positions);
+    const some = generateWorldgenBatch({
+      buildings: requests(),
+      pack,
+      budgets: { maxBuildings: 3, maxStandIns: 2 },
+    });
+    expect(some.stats.buildingsBoxed).toBe(2);
+    expect(some.stats.buildingsDropped).toBe(3);
+  });
+
+  it('stops building meshes it cannot keep once the vertex budget is spent', () => {
+    // 400 small houses and vertices for a few dozen: the rest are stand-ins, every one drawn.
+    const many: BuildingRequest[] = Array.from({ length: 400 }, (_, index) => ({
+      identity: `row:${index}`,
+      labels: ['house'],
+      outline: translate(SHAPES.box as Vec2[], (index % 20) * 30, Math.floor(index / 20) * 30),
+    }));
+    const budget = { maxBuildings: 1000, maxBuildingVertices: 600, detailedCount: 0 };
+    const batch = generateWorldgenBatch({ buildings: many, pack, budgets: budget });
+    expect(batch.stats.buildingsDropped).toBe(0);
+    expect(batch.stats.buildingsRendered + batch.stats.buildingsBoxed).toBe(400);
+    expect(batch.stats.buildingsRendered).toBeGreaterThan(0);
+    expect(batch.stats.buildingsRendered).toBeLessThan(60);
+    expect(batch.stats.vertices).toBeLessThanOrEqual(budget.maxBuildingVertices);
+    expect(batch.records).toHaveLength(400);
+    expect(generateWorldgenBatch({ buildings: many, pack, budgets: budget }).hash).toBe(batch.hash);
+  });
+
   it('reserves roofs and windows for small houses before embellishing the largest building', () => {
     const buildings = [
       {
@@ -178,7 +225,7 @@ describe('batch generation', () => {
     ).toBe(8);
   });
 
-  it('falls back to walls and roof, then a gabled stand-in, before a plain box', () => {
+  it('falls back to walls and roof, then a roofed stand-in, before a plain box', () => {
     const houses = requests().map((request) => ({ ...request, labels: ['house'], levels: 2 }));
     const simplified = generateWorldgenBatch({
       buildings: houses,
@@ -203,23 +250,33 @@ describe('batch generation', () => {
     expect(squeezed.records.map((record) => record.roof)).toEqual(
       simplified.records.map((record) => record.roof),
     );
-    // No room at all: pitched houses stand in as gabled boxes, ridged along their longer side.
+    // No room at all: every house stands in as a box, and each pitched one keeps a roof on it,
+    // ridged along its longer side, at its style's slope (25 to 40 degrees in this pack).
     const exhausted = generateWorldgenBatch({
       buildings: houses,
       pack,
       budgets: { maxBuildingVertices: 0 },
     });
     expect(exhausted.stats.buildingsBoxed).toBe(houses.length);
-    const gabled = exhausted.placements.find((set) => set.setId === GABLE_BOX_PLACEMENT_SET_ID);
-    expect(gabled?.modelRef).toBe('builtin:box.gable');
+    const walls = exhausted.placements.find((set) => set.setId === BOX_PLACEMENT_SET_ID);
+    expect(walls?.modelRef).toBe('builtin:box');
+    expect(walls?.count).toBe(houses.length);
+    const roofs = exhausted.placements.find((set) => set.setId === GABLE_ROOF_PLACEMENT_SET_ID);
+    expect(roofs?.modelRef).toBe('builtin:roof.gable');
     const pitched = simplified.records.filter((record) =>
       ['gable', 'hip', 'pyramid', 'gambrel', 'mansard'].includes(record.roof),
     ).length;
     expect(pitched).toBeGreaterThan(0);
-    expect(gabled?.count).toBe(pitched);
-    for (let index = 0; index < (gabled?.count ?? 0); index++) {
+    expect(roofs?.count).toBe(pitched);
+    for (let index = 0; index < (roofs?.count ?? 0); index++) {
       const offset = index * PLACEMENT_STRIDE;
-      expect(gabled?.data[offset + 4]).toBeGreaterThanOrEqual(gabled?.data[offset + 6] as number);
+      const along = roofs?.data[offset + 4] as number;
+      const depth = roofs?.data[offset + 6] as number;
+      expect(along).toBeGreaterThanOrEqual(depth);
+      const degrees =
+        (Math.atan((roofs?.data[offset + 5] as number) / (depth / 2)) * 180) / Math.PI;
+      expect(degrees).toBeGreaterThan(24.9);
+      expect(degrees).toBeLessThan(40.1);
     }
   });
 

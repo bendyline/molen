@@ -46,6 +46,11 @@ export interface AircraftInstrumentView {
   camera: THREE.OrthographicCamera;
   /** Pose the copies from the live cockpit meshes; call once world matrices are current. */
   sync(): void;
+  /**
+   * Release what the view owns. A cropped dial shares the aircraft's geometry and materials and
+   * has none; a dial of the console kit (`createSpeedometerView`) owns its own.
+   */
+  dispose?(): void;
 }
 
 /** Trace authored unit conversions and numeric-display expressions back to their measurement. */

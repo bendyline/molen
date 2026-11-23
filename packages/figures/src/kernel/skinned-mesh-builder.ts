@@ -19,7 +19,9 @@ export type FigureRegion =
   | 'bottom'
   | 'shoes'
   | 'accent'
-  | 'markings';
+  | 'markings'
+  /** Accessories: hats, glasses, headphones, scarves, bags, watches. */
+  | 'gear';
 
 /** Fixed region order used when concatenating mesh groups. */
 export const FIGURE_REGIONS: readonly FigureRegion[] = [
@@ -33,6 +35,7 @@ export const FIGURE_REGIONS: readonly FigureRegion[] = [
   'shoes',
   'accent',
   'markings',
+  'gear',
 ];
 
 export type FigureTier = 0 | 1 | 2;

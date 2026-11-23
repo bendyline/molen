@@ -17,6 +17,7 @@ import {
   writeSnowCover,
 } from '../weather/snow-cover';
 import { WeatherVisual } from '../weather/visual';
+import { canvasDepthIsFloat } from './canvas-depth';
 import { applyEnvironment, defaultEnvironment, findEnvironmentRig } from './environment';
 import { FarShadow, type FarShadowInfo, type FarShadowView, injectFarShadow } from './far-shadow';
 import {
@@ -37,6 +38,7 @@ import {
   SHADOW_MAP_SIZE,
   type ShadowFocus,
   type ShadowQuality,
+  shadowHoldMs,
 } from './shadow-focus';
 import {
   createWebGlSkyReflectionFilter,
@@ -83,6 +85,33 @@ const SOFTWARE_RASTERIZER = /swiftshader|llvmpipe|softpipe|lavapipe|basic render
 const LIGHTS_REFRESH_MS = 250;
 /** How often a group seen only by a shadow map has its levels of detail chosen again, ms. */
 const SHADOW_LOD_MS = 500;
+/**
+ * A standing focused shadow map (see `focusedShadowDue`) is drawn again once its focus is this
+ * share of its half-width from where it was drawn, or needs less than this share of it. The map
+ * hands over to the far map over its outer fifth, so a focus this far off its middle still has
+ * the map under everything near it.
+ */
+const HELD_SHADOW_DRIFT = 0.06;
+const HELD_SHADOW_SHRINK = 0.7;
+/** And once the sun has moved this far, radians (0.2 degrees), as the far map is. */
+const HELD_SHADOW_SUN_TURN = 0.0035;
+
+/** A focused sun map standing between drawings, as it was last drawn. */
+interface HeldShadow {
+  /** `performance.now()` of the drawing. */
+  at: number;
+  /** Its focus, absolute world coordinates. */
+  center: [number, number, number];
+  /** Half-width of the box drawn, meters. */
+  radius: number;
+  /** Toward the sun. */
+  direction: THREE.Vector3;
+  /** The world origin its matrix is relative to. */
+  origin: [number, number, number];
+  mapSize: number;
+  /** Drawn for a sun that gave no light: drawn again when it does. */
+  dark: boolean;
+}
 const cullMatrix = new THREE.Matrix4();
 const cullBox = new THREE.Box3();
 /** Frames (render groups' parents) whose world matrix a culling pass has brought up to date. */
@@ -146,6 +175,12 @@ export interface RendererOptions {
    * true; false walks every group every frame, for comparison.
    */
   cullRenderGroups?: boolean;
+  /**
+   * WebGL: let the sun's focused shadow map stand between drawings while its texels are coarse
+   * (a high view; see `shadowHoldMs`) or its sun gives no light (night), instead of drawing it
+   * every frame. Default true; false draws it every frame, for comparison.
+   */
+  holdShadows?: boolean;
   /** Device loss requires a new viewer/canvas. Auto fallback applies during initialization. */
   onDeviceLost?: (reason: string) => void;
   canvas?: HTMLCanvasElement | OffscreenCanvas;
@@ -156,7 +191,11 @@ export interface RendererOptions {
   /** WebGL only. WebGPU presentation does not preserve the drawing buffer between frames. */
   preserveDrawingBuffer?: boolean;
   powerPreference?: 'default' | 'high-performance' | 'low-power';
-  /** Better depth precision for large view ranges; WebGL uses logarithmic depth if EXT_clip_control is unavailable. */
+  /**
+   * Depth precision for large view ranges. WebGPU reverses its floating-point depth buffer. WebGL
+   * reverses the canvas's depth buffer where it is floating point and uses logarithmic depth
+   * where it is fixed point (most desktop GPUs), since reversing fixed point gains nothing.
+   */
   reverseDepthBuffer?: boolean;
   /** Compatibility fallback for large view ranges; costs early-fragment performance. */
   logarithmicDepthBuffer?: boolean;
@@ -306,10 +345,26 @@ export class Renderer {
    * attaches it (a tile's, several frames before) and may never be, and one its owner has let
    * go of must not be kept alive here.
    */
-  private readonly renderGroups = new Set<WeakRef<THREE.Object3D>>();
+  /**
+   * The render groups that have a parent now. Each joins as it is added to one and leaves as it
+   * is removed, so the walks below touch only groups in use. They used to walk a weak reference
+   * to every group ever made and dereference each one, every frame, to find the ones still
+   * there; and what a frame has dereferenced the browser does not collect in that frame, so a
+   * group taken out of the scene for good (an evicted terrain tile, with everything in it) was
+   * never collected while frames kept coming.
+   */
+  private readonly renderGroups = new Set<THREE.Object3D>();
+  private readonly groupAdded = (event: { target: THREE.Object3D }): void => {
+    this.renderGroups.add(event.target);
+  };
+  private readonly groupRemoved = (event: { target: THREE.Object3D }): void => {
+    this.renderGroups.delete(event.target);
+  };
   /** Groups left out of the scene walk under way, to show again when it ends. */
   private readonly culledGroups: THREE.Object3D[] = [];
   private cullGroups = false;
+  /** `holdShadows`: the focused sun map may stand between drawings (WebGL). */
+  private holdShadows = false;
   private releaseShadowCulling: (() => void) | undefined;
   private preparationLights: THREE.Object3D[] | undefined;
   /** Every light the last walk of the scene found on show, and when it was (see `sceneLights`). */
@@ -409,6 +464,10 @@ export class Renderer {
   private shadowFocus: ShadowFocus | undefined;
   private readonly shadowCenter = new THREE.Vector3();
   private readonly shadowDirection = new THREE.Vector3();
+  /** Focused sun maps standing between drawings (WebGL): see focusedShadowDue. */
+  private readonly heldShadows = new WeakMap<THREE.DirectionalLight, HeldShadow>();
+  private heldShadowDraws = 0;
+  private heldShadowFrames = 0;
   /** The sun's far shadow map (WebGL); see setFarShadowCasters. */
   private farShadow: FarShadow | undefined;
   private readonly farShadowCenter = new THREE.Vector3();
@@ -606,7 +665,11 @@ export class Renderer {
           light === this.activeSky?.sunLight
             ? this.shadowDirection.fromArray(this.activeSky.frame.sunDirection)
             : this.shadowDirection.copy(light.userData.molenSunDirection as THREE.Vector3);
-        if (focus !== undefined && center !== undefined)
+        if (
+          focus !== undefined &&
+          center !== undefined &&
+          this.focusedShadowDue(light, direction, focus)
+        ) {
           focusDirectionalShadow(
             light,
             direction,
@@ -615,10 +678,14 @@ export class Renderer {
             reversedPcf,
             this.worldOrigin,
           );
+          const held = this.heldShadows.get(light);
+          // The box as drawn: its radius is rounded up to a stable step.
+          if (held !== undefined) held.radius = light.shadow.camera.right;
+        }
         // The far and subject maps follow the first sun that is casting: not a parked map's,
         // nor a sun below the horizon.
         if (
-          !light.shadow.autoUpdate ||
+          (!light.shadow.autoUpdate && !this.heldShadows.has(light)) ||
           light.shadow.intensity <= 0 ||
           !light.visible ||
           direction.y <= 0.02
@@ -648,6 +715,105 @@ export class Renderer {
     }
     this.farShadow?.update(far);
     this.subjectShadow?.update(subject);
+  }
+
+  /**
+   * Whether a sun's focused map is aimed and drawn this frame (WebGL). Every frame while its
+   * texels are fine; a coarse map stands for `shadowHoldMs` between drawings, and a map whose sun
+   * gives no light (night) stands until it does: drawn every frame, the night's map was a tenth
+   * of a flight's main-thread time for a light of zero. A standing map keeps the light, the box
+   * and the matrix it was drawn with, so lookups go on matching it. It is drawn again at once when
+   * the focus has left its middle, has grown past it or shrunk well inside it, when the sun has
+   * moved, when the world origin has (its matrix is in scene coordinates), and when something
+   * asks (`needsUpdate`: a first map, a new kind of caster). Parked maps (`setShadowQuality`) and
+   * lights a host drives itself are left as they are.
+   */
+  private focusedShadowDue(
+    light: THREE.DirectionalLight,
+    direction: THREE.Vector3,
+    focus: ShadowFocus,
+  ): boolean {
+    const shadow = light.shadow;
+    let held = this.heldShadows.get(light);
+    const live =
+      this.backend === 'webgl' &&
+      this.holdShadows &&
+      shadow.intensity > 0 &&
+      (shadow.autoUpdate || held !== undefined);
+    const dark = live && light.intensity <= 0;
+    const hold = !live
+      ? 0
+      : dark
+        ? Number.POSITIVE_INFINITY
+        : shadowHoldMs((2 * focus.radius) / (shadow.mapSize.x || 2048));
+    if (hold <= 0) {
+      if (held !== undefined) {
+        this.heldShadows.delete(light);
+        // Not a map parked meanwhile: that one stays as setShadowQuality left it.
+        if (shadow.intensity > 0) shadow.autoUpdate = true;
+      }
+      return true;
+    }
+    const now = performance.now();
+    const origin = this.worldOrigin;
+    const due =
+      held === undefined ||
+      shadow.needsUpdate ||
+      shadow.mapSize.x !== held.mapSize ||
+      // Night falls on a map drawn by day, and day breaks on one that stood all night.
+      (!dark &&
+        (held.dark ||
+          now - held.at >= hold ||
+          focus.radius > held.radius ||
+          focus.radius < held.radius * HELD_SHADOW_SHRINK ||
+          Math.hypot(
+            focus.center[0] - held.center[0],
+            focus.center[1] - held.center[1],
+            focus.center[2] - held.center[2],
+          ) >
+            held.radius * HELD_SHADOW_DRIFT ||
+          origin[0] !== held.origin[0] ||
+          origin[1] !== held.origin[1] ||
+          origin[2] !== held.origin[2] ||
+          direction.angleTo(held.direction) > HELD_SHADOW_SUN_TURN));
+    shadow.autoUpdate = false;
+    this.heldShadowFrames++;
+    if (!due) return false;
+    if (held === undefined) {
+      held = {
+        at: now,
+        center: [0, 0, 0],
+        radius: focus.radius,
+        direction: new THREE.Vector3(),
+        origin: [0, 0, 0],
+        mapSize: 0,
+        dark,
+      };
+      this.heldShadows.set(light, held);
+    }
+    held.at = now;
+    held.center[0] = focus.center[0];
+    held.center[1] = focus.center[1];
+    held.center[2] = focus.center[2];
+    held.radius = focus.radius;
+    held.direction.copy(direction);
+    held.origin[0] = origin[0];
+    held.origin[1] = origin[1];
+    held.origin[2] = origin[2];
+    held.mapSize = shadow.mapSize.x;
+    held.dark = dark;
+    shadow.needsUpdate = true;
+    this.heldShadowDraws++;
+    return true;
+  }
+
+  /**
+   * How often the sun's focused map was drawn while it could stand between drawings, since the
+   * renderer was made: `frames` it could have stood, and `draws` among them. Both stay 0 while the
+   * map is drawn every frame (fine texels, WebGPU, or `holdShadows: false`).
+   */
+  get shadowHoldInfo(): { frames: number; draws: number } {
+    return { frames: this.heldShadowFrames, draws: this.heldShadowDraws };
   }
 
   /** Active weather effects; physical weather data is also available in the simulation component. */
@@ -853,6 +1019,7 @@ export class Renderer {
       this.cloudBackend.installSnowCover(this.snowCover);
     } else {
       this.cullGroups = opts.cullRenderGroups !== false;
+      this.holdShadows = opts.holdShadows !== false;
       // Innermost on the shadow pass: the subject's map is drawn from its own root, which the
       // pruning of render groups has no part in.
       const subject = new SubjectShadow(this.three as THREE.WebGLRenderer);
@@ -1201,7 +1368,10 @@ export class Renderer {
         meshes = new Map();
         this.materialMeshes.set(material, meshes);
       }
-      if (meshes.get(key)?.deref() === undefined) meshes.set(key, new WeakRef(mesh));
+      // The latest mesh of its kind, without asking after the one before: dereferencing that
+      // one for every mesh prepared kept it, and the tile it was in, from being collected (see
+      // `renderGroups`).
+      meshes.set(key, new WeakRef(mesh));
       let map = this.warmedPrograms.get(material);
       if (!map) {
         map = new Map();
@@ -1873,13 +2043,8 @@ export class Renderer {
     // As three's render will: the camera's world matrix and its inverse, current for this frame.
     if (camera.parent === null && camera.matrixWorldAutoUpdate) camera.updateMatrixWorld();
     viewProjection(camera, cullMatrix);
-    for (const ref of this.renderGroups) {
-      const group = ref.deref();
-      if (group === undefined) {
-        this.renderGroups.delete(ref);
-        continue;
-      }
-      // Not attached yet, or let go of.
+    for (const group of this.renderGroups) {
+      // Let go of without being removed (its parent was set by hand).
       const parent = group.parent;
       if (parent === null) continue;
       const bounds = group.userData[RENDER_BOUNDS] as THREE.Box3 | undefined;
@@ -1938,6 +2103,11 @@ export class Renderer {
         const shadow = shadowOf(light);
         return shadow !== undefined && (shadow.autoUpdate || shadow.needsUpdate);
       });
+      // Every map stands this frame (see focusedShadowDue): nothing to prune for.
+      if (drawn.length === 0) {
+        render.call(shadowMap, lights, scene, camera);
+        return;
+      }
       const directional = drawn.every(
         (light) => (light as THREE.DirectionalLight).isDirectionalLight,
       );
@@ -1961,10 +2131,9 @@ export class Renderer {
       const changed: THREE.Object3D[] = [];
       const hidden = new Set(this.culledGroups);
       const now = performance.now();
-      for (const ref of this.renderGroups) {
-        const group = ref.deref();
-        const parent = group?.parent;
-        if (group === undefined || parent === null || parent === undefined) continue;
+      for (const group of this.renderGroups) {
+        const parent = group.parent;
+        if (parent === null) continue;
         const culled = hidden.has(group);
         if (!culled && !group.visible) continue;
         const bounds = group.userData[RENDER_BOUNDS] as THREE.Box3 | undefined;
@@ -2143,7 +2312,10 @@ export class Renderer {
     const optimized = this.optimizer?.createGroup();
     if (optimized !== undefined) return optimized;
     const group = new THREE.Group();
-    if (this.cullGroups) this.renderGroups.add(new WeakRef(group));
+    if (this.cullGroups) {
+      group.addEventListener('added', this.groupAdded);
+      group.addEventListener('removed', this.groupRemoved);
+    }
     return group;
   }
 
@@ -2337,24 +2509,55 @@ function releaseOnDispose(mesh: THREE.Mesh, interest: WarmupInterest): void {
   });
 }
 
+/**
+ * WebGL keeps reversed depth only where it helps and draws with logarithmic depth elsewhere.
+ * Reversed depth gains precision only in a floating-point depth buffer. WebGL renders into the
+ * canvas's own, whose format the platform picks: float on some (SwiftShader), 24-bit fixed point
+ * on others (Direct3D, OpenGL and Vulkan on desktop GPUs). canvas-depth.ts explains the probe
+ * that tells them apart. In fixed point a depth step at distance z is about z² / near × 2⁻²⁴,
+ * reversed or not: 58 cm at 700 m behind the 5 cm near plane of a walk or vehicle view. Roads
+ * 0.32 m above the ground, paint and shoulders centimeters from their asphalt, and runway
+ * markings on their runways fought each other in shimmering stripes from an aircraft. The same
+ * happens without EXT_clip_control, where three silently drops reversed depth. Logarithmic depth
+ * keeps about z × 10⁻⁶ at any range (a millimeter at a kilometer), whatever the near plane.
+ *
+ * Logarithmic depth costs speed. Fragments write their own depth, so the GPU cannot reject
+ * hidden ones before shading them, and tile-based GPUs lose hidden-surface removal. That made no
+ * measurable difference in a busy Alicante view on a discrete GPU. Polygon offset no longer
+ * applies, but the overlays that use it (livery decals, sign glow, night windows) draw on their
+ * surfaces' own triangles, so they compute the same depth and pass three's less-or-equal test
+ * without it.
+ *
+ * The replacement reuses the context: a world viewer must not consume a second GL context.
+ * `resetState` both repairs three's state cache after the probe and returns clip control to
+ * three's default, which the replacement assumes. A kept renderer then needs its reversed depth
+ * and depth clear value back.
+ */
 function createWebGlRenderer(options: THREE.WebGLRendererParameters): THREE.WebGLRenderer {
   const renderer = new THREE.WebGLRenderer(options);
-  if (options.reversedDepthBuffer && renderer.capabilities.reversedDepthBuffer === false) {
-    // Three silently falls back to ordinary depth without EXT_clip_control. A world
-    // viewer's 5 cm–500 km clip range would then make even nearby surfaces fight.
-    // Reuse the context: replacing the renderer must not consume a second GL context.
-    const canvas = renderer.domElement;
-    const context = renderer.getContext();
-    renderer.dispose();
-    return new THREE.WebGLRenderer({
-      ...options,
-      canvas,
-      context,
-      reversedDepthBuffer: false,
-      logarithmicDepthBuffer: true,
-    });
+  if (!options.reversedDepthBuffer) return renderer;
+  const context = renderer.getContext();
+  const reversedHelps =
+    renderer.capabilities.reversedDepthBuffer &&
+    canvasDepthIsFloat(context as WebGL2RenderingContext);
+  renderer.resetState();
+  if (reversedHelps) {
+    // The reset also un-reversed depth and forgot the depth clear value, which three sets only in
+    // its constructor; left at 1, a reversed (greater-than) test passes nothing. Redo both.
+    const depth = renderer.state.buffers.depth;
+    depth.setReversed(true);
+    depth.setClear(1);
+    return renderer;
   }
-  return renderer;
+  const canvas = renderer.domElement;
+  renderer.dispose();
+  return new THREE.WebGLRenderer({
+    ...options,
+    canvas,
+    context,
+    reversedDepthBuffer: false,
+    logarithmicDepthBuffer: true,
+  });
 }
 
 /**

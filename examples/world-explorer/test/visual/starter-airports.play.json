@@ -148,6 +148,32 @@
       "type": "wait-for",
       "selector": "#navigation-status[data-aircraft=\"p51d\"]",
       "timeoutMs": 30000
+    },
+    {
+      "type": "navigate",
+      "path": "/?region=oahu&aircraft=p51d&mode=human&quality=economy&backend=webgl&ambient=0&airportTraffic=0&weather=sunny&sky=daylight&nostyles=1&warmup=0&shadows=0"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "Board P-51D",
+      "stableMs": 300,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "oahu-runway",
+      "timeoutMs": 60000
+    },
+    {
+      "type": "keys",
+      "keys": ["e"],
+      "durationMs": 100
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-aircraft=\"p51d\"]",
+      "timeoutMs": 30000
     }
   ]
 }

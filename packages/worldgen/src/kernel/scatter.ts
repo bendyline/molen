@@ -4,6 +4,12 @@
  * duplicate or miss a prop, coarser detail tiers show nested subsets). Rules pick species,
  * scale, heading, and tint from independent streams of the cell hash. The stepwise form yields
  * between chunks of cells so a host can stay responsive and abort.
+ *
+ * `crowns` rules stand apart: they put a plant on every shrub crown the ground paints, and those
+ * plants come back as `ScatterSample.near`, outside every pool and cap but `maxNearInstances`, for
+ * a host to draw around its camera only (the ground's paint carries them farther out). Capped
+ * with the rest, they once kept a few thousand of a batch's tens of thousands of crowns, and every
+ * other crown faded from a dark disc to bare ground as it was reached.
  */
 
 import { dmath } from '@bendyline/molen-kernel/determinism';
@@ -23,6 +29,7 @@ import {
 } from './seed';
 import {
   type HeightSampler,
+  type NearPlacements,
   PLACEMENT_STRIDE,
   type PlacementSet,
   type ScatterExclusion,
@@ -37,8 +44,15 @@ import {
 export interface ScatterGroundCrowns {
   /** Pattern cells whose crowns may fall in this request-local rectangle: [i0, j0, i1, j1]. */
   cells(bounds: Bounds2): [i0: number, j0: number, i1: number, j1: number];
-  /** Cell (i, j)'s crown: center, radius, and the least brush (0..1) at which it is painted. */
-  crown(i: number, j: number): { x: number; z: number; radius: number; brush: number };
+  /**
+   * Cell (i, j)'s crown: center, radius, the least brush (0..1) at which it is painted, and
+   * optionally where in a host's thinning band its plant stops standing (0..1, carried to
+   * `NearPlacements.reach`), when the ground hands the crown back to its paint there.
+   */
+  crown(
+    i: number,
+    j: number,
+  ): { x: number; z: number; radius: number; brush: number; reach?: number };
   /**
    * Share of an appearance class's brush the ground keeps at (x, z), where built-up ground paves
    * over it; omitted means all of it.
@@ -62,6 +76,11 @@ export interface ScatterBudget {
   /** Instances and model varieties for `garden` rules: planted yards, parks and verges. */
   maxGardenInstances?: number;
   maxGardenModels?: number;
+  /**
+   * Plants `crowns` rules may stand for the near layer (`ScatterSample.near`), across all of them
+   * (default: every one). Past it the lowest acceptance draws stay.
+   */
+  maxNearInstances?: number;
 }
 
 export interface ScatterSampleInput {
@@ -129,6 +148,12 @@ interface RuleCandidate {
   base: string;
 }
 
+/** A plant on a painted crown: its rule, and where its crown hands back to the paint. */
+interface NearCandidate extends RuleCandidate {
+  rule: number;
+  reach?: number;
+}
+
 /** The order a rule over its cap keeps candidates by: lowest draw, then cell (unique per rule). */
 function drawOrder(u: number, cz: number, cx: number, q: Candidate): number {
   return u - q.u || cz - q.cz || cx - q.cx;
@@ -141,8 +166,8 @@ function drawOrder(u: number, cz: number, cx: number, q: Candidate): number {
  * of candidates to keep a few thousand. Past the cap the kept ones are a max-heap (`heap`, indices
  * into `items`), so a candidate is compared with the worst one kept.
  */
-class LowestDraws {
-  private readonly items: RuleCandidate[] = [];
+class LowestDraws<T extends RuleCandidate = RuleCandidate> {
+  private readonly items: T[] = [];
   private heap: number[] | undefined;
   constructor(private readonly cap: number) {}
 
@@ -154,7 +179,7 @@ class LowestDraws {
     return worst === undefined || drawOrder(u, cz, cx, worst.candidate) > 0;
   }
 
-  add(entry: RuleCandidate): void {
+  add(entry: T): void {
     if (this.heap === undefined) {
       if (this.items.length < this.cap) {
         this.items.push(entry);
@@ -171,7 +196,7 @@ class LowestDraws {
     this.siftDown(0);
   }
 
-  result(): RuleCandidate[] {
+  result(): T[] {
     if (this.heap !== undefined)
       this.items.sort((p, q) =>
         drawOrder(p.candidate.u, p.candidate.cz, p.candidate.cx, q.candidate),
@@ -273,12 +298,26 @@ function tintFor(population: ScatterPopulation, hash: number): [number, number, 
   ];
 }
 
+/** What a scatter document places over one request. */
+export interface ScatterSample {
+  /** Every rule's plants but the `crowns` rules', by model, within the budget's pools and caps. */
+  placements: PlacementSet[];
+  /**
+   * The `crowns` rules' plants, one on each painted crown, for a host to draw near its camera
+   * (see `NearPlacements`). Absent when no `crowns` rule placed one.
+   */
+  near?: NearPlacements;
+}
+
+/** Edge of a `NearPlacements` cell in local meters: a camera's reach spans a few dozen of them. */
+const NEAR_CELL = 32;
+
 /** Sample every rule of a scatter document over one request, yielding between cell chunks. */
-export function* samplePlacementsSteps(
+export function* sampleScatterSteps(
   input: ScatterSampleInput,
-): Generator<WorldgenProgress, PlacementSet[], void> {
+): Generator<WorldgenProgress, ScatterSample, void> {
   const { request, doc, ground } = input;
-  if (request.polygons.length === 0) return [];
+  if (request.polygons.length === 0) return { placements: [] };
   const groundCoverInstances = input.budget.maxGroundCoverInstances ?? 0;
   const groundCoverModels = input.budget.maxGroundCoverModels ?? 0;
   const canopyOpen = input.budget.maxInstances > 0 && input.budget.maxPropModels > 0;
@@ -292,7 +331,8 @@ export function* samplePlacementsSteps(
   const gardenInstances = input.budget.maxGardenInstances ?? 0;
   const gardenModels = input.budget.maxGardenModels ?? 0;
   const gardenOpen = gardenInstances > 0 && gardenModels > 0;
-  if (!canopyOpen && !groundOpen && !understoryOpen && !agricultureOpen && !gardenOpen) return [];
+  if (!canopyOpen && !groundOpen && !understoryOpen && !agricultureOpen && !gardenOpen)
+    return { placements: [] };
   const bounds = request.emitBounds;
   const rasterCell = rasterCellFor(bounds);
   const labels = buildLabelRaster(request, rasterCell);
@@ -309,13 +349,12 @@ export function* samplePlacementsSteps(
     /** The rule's kept share at this tier, and how far its crowns may widen to hold cover. */
     keep: number;
     growth: number;
-    /**
-     * Stands on a painted crown (a `crowns` rule): outside its layer's instance cap and never
-     * widened. A crown left without its plant would vanish as it is reached, and admitting
-     * crowns ahead of the layer would evict the rest of it; their rule's own cap bounds them.
-     */
-    fitted?: boolean;
   }> = [];
+  // The plants on the painted crowns, every `crowns` rule's together: kept whole (a crown left
+  // without its plant fades to bare ground as it is reached), so only `maxNearInstances` bounds
+  // them, never a layer's pool or a rule's cap.
+  const nearCap = input.budget.maxNearInstances ?? Number.POSITIVE_INFINITY;
+  const near = new LowestDraws<NearCandidate>(Math.max(0, nearCap));
   const scatterId = { id: doc.id, version: doc.version };
   let visited = 0;
 
@@ -337,7 +376,12 @@ export function* samplePlacementsSteps(
     )
       continue;
     const crowns = rule.crowns !== undefined ? input.crowns : undefined;
-    if (rule.crowns !== undefined ? crowns === undefined : rule.densityPerHectare <= 0) continue;
+    if (
+      rule.crowns !== undefined
+        ? crowns === undefined || !(nearCap > 0)
+        : rule.densityPerHectare <= 0
+    )
+      continue;
     const matches = request.polygons.map(
       (polygon) =>
         classMatches(polygon.label, rule.classes) &&
@@ -465,7 +509,7 @@ export function* samplePlacementsSteps(
           const brush = (brushes[appearance] ?? 0) * (crowns.open?.(x, z, appearance) ?? 1);
           if (crown.brush > brush) continue;
           const u = unit01(hash, 2);
-          if (ruleCandidates.rejects(u, cz, cx)) continue;
+          if (near.rejects(u, cz, cx)) continue;
           if (exclusion.get(x, z) !== 0) continue;
           if (nearWater !== undefined && nearWater.get(x, z) === 0) continue;
           if (input.acceptsRule !== undefined && !input.acceptsRule(rule, x, z)) continue;
@@ -494,9 +538,11 @@ export function* samplePlacementsSteps(
             variants?.[pickWeighted(unit01(hash, 10), variantWeights(variants))]?.model ??
             population.model;
           const [r, g, b] = tintFor(population, hash);
-          ruleCandidates.add({
+          near.add({
             model: input.modelAt?.(variant, x, z) ?? variant,
             base: input.modelAt?.(population.model, x, z) ?? population.model,
+            rule: ruleIndex,
+            ...(crown.reach !== undefined ? { reach: crown.reach } : {}),
             candidate: {
               x,
               y: y - 0.15,
@@ -514,8 +560,6 @@ export function* samplePlacementsSteps(
           });
         }
       }
-      for (const entry of ruleCandidates.result())
-        accepted.push({ ...entry, rule: ruleIndex, layer, keep, growth: 1, fitted: true });
       yield { done: ruleIndex + 1, total: doc.rules.length };
       continue;
     }
@@ -670,8 +714,7 @@ export function* samplePlacementsSteps(
     maxInstances: number,
     maxModels: number,
   ) => {
-    const entries = accepted.filter((entry) => entry.layer === layer && entry.fitted !== true);
-    const fitted = accepted.filter((entry) => entry.layer === layer && entry.fitted === true);
+    const entries = accepted.filter((entry) => entry.layer === layer);
     const sampled = entries.length;
     if (entries.length > maxInstances) {
       entries.sort(byDraw);
@@ -697,7 +740,6 @@ export function* samplePlacementsSteps(
           },
         };
       }
-    entries.unshift(...fitted);
     if (layer !== 'garden') return admit(entries, maxModels, false);
     // A host draws each model once per quarter of the batch, so planting chooses its models
     // quarter by quarter: the same draws, and a neighborhood that differs from the next one
@@ -816,28 +858,108 @@ export function* samplePlacementsSteps(
     candidates.sort((p, q) => p.cz - q.cz || p.cx - q.cx || p.u - q.u);
     const data = new Float32Array(candidates.length * PLACEMENT_STRIDE);
     candidates.forEach((candidate, index) => {
-      const offset = index * PLACEMENT_STRIDE;
-      data[offset] = candidate.x;
-      data[offset + 1] = candidate.y;
-      data[offset + 2] = candidate.z;
-      data[offset + 3] = candidate.yaw;
-      data[offset + 4] = candidate.scale * candidate.widthScale;
-      data[offset + 5] = candidate.scale;
-      data[offset + 6] = candidate.scale * candidate.widthScale;
-      data[offset + 7] = candidate.r;
-      data[offset + 8] = candidate.g;
-      data[offset + 9] = candidate.b;
+      writePlacement(data, index * PLACEMENT_STRIDE, candidate);
     });
     sets.push({ setId: `scatter:${model}`, modelRef: model, count: candidates.length, data });
   }
-  return sets;
+  const crowned = near.result();
+  return crowned.length > 0
+    ? { placements: sets, near: nearPlacements(crowned, bounds) }
+    : { placements: sets };
+}
+
+/** One candidate as `PLACEMENT_STRIDE` floats at `offset`. */
+function writePlacement(data: Float32Array, offset: number, candidate: Candidate): void {
+  data[offset] = candidate.x;
+  data[offset + 1] = candidate.y;
+  data[offset + 2] = candidate.z;
+  data[offset + 3] = candidate.yaw;
+  data[offset + 4] = candidate.scale * candidate.widthScale;
+  data[offset + 5] = candidate.scale;
+  data[offset + 6] = candidate.scale * candidate.widthScale;
+  data[offset + 7] = candidate.r;
+  data[offset + 8] = candidate.g;
+  data[offset + 9] = candidate.b;
+}
+
+/**
+ * The crowns' plants bucketed into `NEAR_CELL` squares over the request's bounds, cell by cell
+ * and, within a cell, by crown (then rule), so the output depends on nothing but the plants.
+ */
+function nearPlacements(plants: readonly NearCandidate[], bounds: Bounds2): NearPlacements {
+  const columns = Math.max(1, Math.ceil((bounds[2] - bounds[0]) / NEAR_CELL));
+  const rows = Math.max(1, Math.ceil((bounds[3] - bounds[1]) / NEAR_CELL));
+  const cellOf = (candidate: Candidate): number => {
+    const column = Math.floor((candidate.x - bounds[0]) / NEAR_CELL);
+    const row = Math.floor((candidate.z - bounds[1]) / NEAR_CELL);
+    return (
+      Math.min(rows - 1, Math.max(0, row)) * columns + Math.min(columns - 1, Math.max(0, column))
+    );
+  };
+  const ordered = plants
+    .map((plant) => ({ plant, cell: cellOf(plant.candidate) }))
+    .sort(
+      (p, q) =>
+        p.cell - q.cell ||
+        p.plant.candidate.cz - q.plant.candidate.cz ||
+        p.plant.candidate.cx - q.plant.candidate.cx ||
+        p.plant.rule - q.plant.rule,
+    );
+  const models = [...new Set(plants.map((plant) => plant.model))].sort((p, q) =>
+    p < q ? -1 : p > q ? 1 : 0,
+  );
+  const indexOf = new Map(models.map((model, index) => [model, index]));
+  const data = new Float32Array(ordered.length * PLACEMENT_STRIDE);
+  const model = new Uint16Array(ordered.length);
+  const start = new Uint32Array(columns * rows + 1);
+  // The crowns' reach values are lattice bytes over 255: a byte holds each exactly.
+  const reach = plants.some((plant) => plant.reach !== undefined)
+    ? new Uint8Array(ordered.length)
+    : undefined;
+  ordered.forEach(({ plant, cell }, index) => {
+    writePlacement(data, index * PLACEMENT_STRIDE, plant.candidate);
+    model[index] = indexOf.get(plant.model) ?? 0;
+    if (reach !== undefined)
+      reach[index] = Math.round(Math.min(1, Math.max(0, plant.reach ?? 1)) * 255);
+    start[cell + 1] = (start[cell + 1] as number) + 1;
+  });
+  for (let cell = 0; cell < columns * rows; cell++)
+    start[cell + 1] = (start[cell + 1] as number) + (start[cell] as number);
+  return {
+    models,
+    count: ordered.length,
+    data,
+    model,
+    ...(reach !== undefined ? { reach } : {}),
+    cell: NEAR_CELL,
+    originX: bounds[0],
+    originZ: bounds[1],
+    columns,
+    rows,
+    start,
+  };
 }
 
 /** Run the stepwise sampler to completion. */
-export function samplePlacements(input: ScatterSampleInput): PlacementSet[] {
-  const generator = samplePlacementsSteps(input);
+export function sampleScatter(input: ScatterSampleInput): ScatterSample {
+  const generator = sampleScatterSteps(input);
   for (;;) {
     const next = generator.next();
     if (next.done === true) return next.value;
   }
+}
+
+/**
+ * `sampleScatterSteps`' placements alone: what every rule but a `crowns` rule places (those
+ * plants are its `near`).
+ */
+export function* samplePlacementsSteps(
+  input: ScatterSampleInput,
+): Generator<WorldgenProgress, PlacementSet[], void> {
+  return (yield* sampleScatterSteps(input)).placements;
+}
+
+/** `sampleScatter`'s placements alone; the `crowns` rules' plants are its `near`. */
+export function samplePlacements(input: ScatterSampleInput): PlacementSet[] {
+  return sampleScatter(input).placements;
 }
