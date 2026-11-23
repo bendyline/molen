@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import {
   deriveRig,
+  FIGURE_HEAD_PRESET_IDS,
   generateFigureBody,
   resolveFigureDescriptor,
   rigBindModel,
@@ -216,5 +217,59 @@ describe('human hips and stance', () => {
     // Trousers hang as cloth: a leg about 0.08 of stature through at the knee, not a stocking.
     const knee = band(trousers, 0.27, 0.28);
     expect(knee[1] - knee[2]).toBeGreaterThan(0.075);
+  });
+});
+
+describe('triangles a statue can be carved from', () => {
+  /** Triangles with no area in the 32-bit positions: the bound landmark exporters reject at. */
+  const flat = (buffers: ReturnType<typeof generateFigureBody>['buffers']): number => {
+    const p = buffers.positions;
+    const at = (v: number): THREE.Vector3 =>
+      new THREE.Vector3(p[v * 3] as number, p[v * 3 + 1] as number, p[v * 3 + 2] as number);
+    let count = 0;
+    for (let i = 0; i < buffers.indices.length; i += 3) {
+      const a = at(buffers.indices[i] as number);
+      const b = at(buffers.indices[i + 1] as number).sub(a);
+      const c = at(buffers.indices[i + 2] as number).sub(a);
+      if (b.cross(c).length() < 1e-10) count++;
+    }
+    return count;
+  };
+
+  // Lips and lids taper to a point at their corners. Each cell there once kept a second
+  // triangle with two corners on that point, and the Louisville Water Tower's statues, which
+  // are carved from this body, failed their export on it.
+  it('draws no triangle without area on any face, at any age, tier or head', () => {
+    for (const preset of ['human.adult', 'human.child', 'human.elder'] as const)
+      for (const tier of [0, 1, 2] as const)
+        for (const head of FIGURE_HEAD_PRESET_IDS)
+          for (const facialHair of ['none', 'stubble', 'mustache', 'beard'] as const) {
+            const d = resolveFigureDescriptor({
+              preset,
+              head: { preset: head },
+              features: { facialHair },
+            });
+            expect(
+              flat(generateFigureBody(d, tier).buffers),
+              `${preset} ${head} ${facialHair}`,
+            ).toBe(0);
+          }
+  });
+
+  it('nor on the undressed bodies landmark statues use', () => {
+    // Long hair, hair under a hat and the open fronts of coats and jackets still pinch; no
+    // statue wears them.
+    for (const tier of [0, 1] as const)
+      for (const hands of ['fingers', 'mitten'] as const)
+        for (const legs of ['shorts', 'long', 'skirt'] as const) {
+          const d = resolveFigureDescriptor({
+            preset: 'human.adult',
+            height: 2,
+            build: -0.2,
+            features: { hair: 'none', hands, sleeves: 'none', legs },
+            proportions: { headScale: 0.993, shoulderWidth: 0.94, hipWidth: 1.03 },
+          });
+          expect(flat(generateFigureBody(d, tier).buffers), `${hands} ${legs}`).toBe(0);
+        }
   });
 });

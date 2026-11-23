@@ -205,10 +205,26 @@ report and one log per generator are in `.artifacts/asset-build/`.
   runs `tsc`, lint, the docs check, `assets:test` and the production audit, so those errors
   surface in minutes. The full package builds run content validators that open GLBs
   (`validate-structure-materials` reads every `source.glb`); `unit` runs them in `pretest:unit`.
-- `assets` restores or builds this commit's bundle (`.github/actions/fetch-assets`), then runs
-  `assets:check` and `source:check`, which hash GLBs.
+- `assets` restores or builds this commit's bundle (`.github/actions/fetch-assets`), runs
+  `assets:check`, uploads the bundle's archives as the run's `asset-bundle` artifact, then runs
+  `source:check`.
 - `unit`, `docs-site`, `packed` and `golden` read GLBs. Each waits for `check` and `assets`, then
-  restores the bundle `assets` left in the Actions cache.
+  downloads that artifact and installs it offline (`.github/actions/restore-assets`). They never
+  download a release or build, so a run has one bundle: the one `assets` checked.
+  `publish-assets` uploads the same artifact's archives as the release.
+
+The artifact belongs to the workflow run. Nothing another job saves can remove it and its size
+has no ceiling; GitHub deletes it after two days. "Re-run failed jobs" within that time reads the
+first attempt's artifact; after it, use "Re-run all jobs" so `assets` uploads it again.
+
+`fetch-assets` looks for the bundle in the Actions cache (`molen-assets-<release>`), then in its
+release, and builds it when neither has it. The cache is only a shortcut between runs for the
+`assets` job. GitHub keeps 10 GB of caches for a repository and evicts the least recently used
+ones whenever a new cache takes the total over that, and one bundle's archives are 8.3 GB
+(2026-11-23: 17,228 GLBs in 427 archives). So the action saves one bundle and nothing else (the
+`prune` step below), and saves none once the archives pass 9 GB: a cache that size would evict
+every other cache, the job records among them, and be evicted in turn. Past that size a bundle
+reaches later runs through its release, or is rebuilt from the job records.
 
 When no bundle exists for the inputs (a pull request that changes models), `fetch-assets` builds
 it, starting from an earlier build instead of from nothing:
@@ -225,14 +241,12 @@ it, starting from an earlier build instead of from nothing:
 4. `pnpm assets:pack` reuses every archive whose files and bytes are unchanged (from the seed or
    any manifest in `.artifacts/asset-packs/`), compressing only changed groups.
 5. `node scripts/asset-packs.mjs prune` deletes the seed's archives the new bundle did not reuse.
-6. The job saves its records as the next seed, and its archives under `molen-assets-<release>`.
+6. The job saves its records as the next seed, and its archives under `molen-assets-<release>`
+   while they fit the cache.
 
-GitHub keeps at most 10 GB of Actions caches for a repository and evicts the least recently used
-ones whenever a new cache takes the total over that. One bundle's archives are 8.3 GB
-(2026-11-23: 17,228 GLBs in 427 archives), so the saved cache must hold one bundle and nothing
-else: with the seed's archives beside them it was 11.1 GB, and the next cache any job saved (a
-new pnpm store after a lockfile change) evicted the bundle before `docs-site` could restore it.
-A bundle that outgrows the limit by itself can no longer be handed between jobs this way.
+The jobs once took the bundle from the cache. On 2026-11-23 it held the seed's archives as well
+(11.1 GB), a new pnpm store saved after a lockfile change evicted it between `assets` and
+`docs-site`, and the four waiting jobs each started a source build of their own.
 
 Downloads from a release (manifests, archives and the release list) are tried four times, 2, 8
 and 30 seconds apart, when the network or a busy server fails them; a missing release or a
@@ -543,7 +557,7 @@ weathered-wood maps.
 CI's `assets` job runs on every pull request and every push to `main`. When a push to `main` has
 asset inputs with no published release, the `publish-assets` job runs
 `pnpm assets:publish --target <commit>`; a pull request never publishes. A publish that failed is
-retried by the next push, from the bundle in the Actions cache. Publishing packs the built GLBs
+retried by the next push, from the bundle in the Actions cache or a rebuild. Publishing packs the built GLBs
 into `.tar.gz` archives grouped by content role and geohash2 cell, about 256 MiB each. It uploads
 them with `asset-manifest.json` and `ASSET-NOTICES.txt` to a draft release, checks every
 attachment's digest, then publishes the release without marking it latest. A release that is

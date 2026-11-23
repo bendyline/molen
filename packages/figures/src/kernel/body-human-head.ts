@@ -84,6 +84,21 @@ function profile(t: number): [number, number, number] {
   return [0.4626, 0.5447, 0.6012];
 }
 
+/**
+ * Whether a triangle has no area as stored, in 32-bit floats: two corners on one point, or all
+ * three in a line. Such a triangle draws nothing, and a model carved from the body (a landmark's
+ * statue) is rejected for holding one.
+ */
+function spansNoArea(a: Vec3, b: Vec3, c: Vec3): boolean {
+  const f = Math.fround;
+  const [ux, uy, uz] = [f(b[0]) - f(a[0]), f(b[1]) - f(a[1]), f(b[2]) - f(a[2])];
+  const [vx, vy, vz] = [f(c[0]) - f(a[0]), f(c[1]) - f(a[1]), f(c[2]) - f(a[2])];
+  const [nx, ny, nz] = [uy * vz - uz * vy, uz * vx - ux * vz, ux * vy - uy * vx];
+  // Twice the area under 1e-9 m². The smallest triangle a face draws, on a figure 0.9 m tall, is
+  // 240 times that.
+  return nx * nx + ny * ny + nz * nz < 1e-18;
+}
+
 function bump(x: number, y: number): number {
   return dmath.exp(-x * x - y * y);
 }
@@ -559,6 +574,8 @@ export function buildHumanHead(
   /**
    * A patch with its own vertices: rows top to bottom, columns by increasing x. It shades
    * smoothly inside and meets its neighbours on a crease, which is what makes a plane of it.
+   * Rows may meet in a point (the corners of the mouth and of the eyes): the half of a cell that
+   * has no area there is not drawn.
    */
   const patch = (
     region: FigureRegion,
@@ -569,8 +586,16 @@ export function buildHumanHead(
     for (let r = 0; r + 1 < ids.length; r++) {
       const hi = ids[r] as number[];
       const lo = ids[r + 1] as number[];
-      for (let c = 0; c + 1 < hi.length; c++)
-        b.quad(region, hi[c] as number, lo[c] as number, lo[c + 1] as number, hi[c + 1] as number);
+      const top = pts[r] as readonly Vec3[];
+      const bottom = pts[r + 1] as readonly Vec3[];
+      for (let c = 0; c + 1 < hi.length; c++) {
+        const [a, d] = [top[c] as Vec3, top[c + 1] as Vec3];
+        const [e, f] = [bottom[c] as Vec3, bottom[c + 1] as Vec3];
+        if (!spansNoArea(a, e, f))
+          b.triangle(region, hi[c] as number, lo[c] as number, lo[c + 1] as number);
+        if (!spansNoArea(a, f, d))
+          b.triangle(region, hi[c] as number, lo[c + 1] as number, hi[c + 1] as number);
+      }
     }
   };
 

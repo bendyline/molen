@@ -40,10 +40,24 @@ Things that looked right by the numbers and wrong on screen:
   noise; the planes come from features with their own vertices (the nose, the lids, hems).
 
 The pinned state hashes in `examples/figures-gallery` and `examples/dioramas` moved with the
-rig and the stride rate. The four statue landmarks carve their figures from this body, and the
-asset key does not cover the figures package's build output: their GLBs stay as they are until
-their generators next run, and will change then (they pose with `mode: 'custom'`, so only the
-geometry moves).
+rig and the stride rate. Five landmarks carve their statues from this body (Louisville Water
+Tower, the New York Stock Exchange pediment, the Empress Joséphine, the Trevi Fountain and
+Antigua Guatemala Cathedral), and the asset key does not cover the figures package's build
+output: their GLBs stay as they are until their generators next run, and change then (they pose
+with `mode: 'custom'`, so only the geometry moves).
+
+That next run was the first source build in CI, and it failed: `louisville_water_tower:
+degenerate Float32 triangle`. Lips and eyelids taper to a point at their corners, and each cell
+there kept a second triangle with two corners on that point: 12, 8 and 4 triangles without area
+per body at the three tiers. They draw nothing, but the landmark exporter rejects a mesh that
+holds one. The face patches no longer emit them (`spansNoArea`), a test pins it for every head,
+age and tier, and the five landmarks were regenerated, imported and given their levels of detail
+to check the rest of the build: 97,915 triangles for Louisville (102,479 from the body before
+this review), the Trevi's street level 15,560 of its 16,000. Long hair, hair under a hat and the
+open fronts of coats and jackets still hold such triangles, as they did before this review; no
+statue wears them. Check a figure change against the statues before calling it done:
+`node packages/worldgen/scripts/generate-authored-places.mjs --ids=<the five> --check` must stop
+at "Stale generated output", which is past the mesh checks.
 
 ## The figure review of 2026-11-08
 
@@ -314,9 +328,11 @@ Worth adding next:
   hair styles differ little in silhouette; eyes do not blink. Walking backward steps forward
   (`state.travel` is not read), a walk above about 2.4 m/s or a run above 5.4 leg lengths a
   stride slips, elders run like young adults, and seated hands rest on the thighs rather than
-  on a stick or wheel. Model sheets bake the bind pose under their own lighting, which makes
-  the dog's and cat's necks look flatter than they do posed in a scene; judge necks in a scene
-  render.
+  on a stick or wheel. Long hair, hair tucked under a hat and the open fronts of coats and
+  jackets hold triangles without area (two corners on one point), which a statue carved from
+  such a body would be rejected for. Model sheets bake the bind pose under their own lighting,
+  which makes the dog's and cat's necks look flatter than they do posed in a scene; judge necks
+  in a scene render.
 - Cars do not yet reach 96 on look (refit self-grades 82–94). The most common builder limits
   the refits ran into: a hood-to-grille edge and per-corner fascia lean so noses stop reading as upright slabs under a
   soft hood; a shoulder crease across tailgates and trunk lids with a plate recess and a rear

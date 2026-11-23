@@ -35,7 +35,8 @@ jobs:
 
   # Restores the bundle for these asset inputs, building it if none exists yet. A build starts
   # from the newest earlier one (see .github/actions/fetch-assets), so a pull request that changes
-  # a few models rebuilds those models, not all of them.
+  # a few models rebuilds those models, not all of them. The bundle then goes to the jobs below as
+  # this run's `asset-bundle` artifact.
   assets:
     runs-on: ubuntu-latest
     outputs:
@@ -51,12 +52,28 @@ jobs:
       - id: assets
         uses: ./.github/actions/fetch-assets
       - run: pnpm assets:check
+      # Hand the checked bundle to the jobs that wait for this one. An artifact belongs to the
+      # run, so nothing another job saves can evict it, and its size has no 10 GB ceiling: the
+      # Actions cache lost the bundle between this job and the next ones (see restore-assets).
+      - uses: actions/upload-artifact@v4
+        with:
+          name: asset-bundle
+          path: .artifacts/asset-packs/
+          # `.artifacts` is a hidden directory.
+          include-hidden-files: true
+          # The archives are gzip already; storing them as they are is much faster.
+          compression-level: 0
+          if-no-files-found: error
+          # "Re-run all jobs" uploads again under the same name.
+          overwrite: true
+          # Long enough to re-run failed jobs the next day; about 8 GB a run is not kept longer.
+          retention-days: 2
       # Source bundles are part of `pnpm verify`, the release gate; CI runs the same checks. They
       # hash source and runtime GLBs, and read the schema's dist.
       - run: pnpm --filter @bendyline/molen-schema build
       - run: pnpm source:check
       # Ask GitHub for the release rather than whether this run built the bundle: an earlier push
-      # may have built it and failed to publish it, and then only the Actions cache holds it.
+      # may have built it and failed to publish it, and then it comes back from the Actions cache.
       # A failed lookup counts as unpublished; publishing checks again.
       - id: release
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -69,8 +86,9 @@ jobs:
           fi
 
   publish-assets:
-    # A push to main whose asset inputs name no published release: `assets` left their bundle in
-    # the Actions cache, so publish it as that release. Idempotent; other runs then download it.
+    # A push to main whose asset inputs name no published release: `assets` uploaded their bundle
+    # as this run's artifact, so publish it as that release. Idempotent; other runs then download
+    # it.
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.assets.outputs.assets-unpublished == 'true'
     runs-on: ubuntu-latest
     needs: assets
@@ -84,22 +102,21 @@ jobs:
           node-version-file: .node-version
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - id: key
-        run: echo "release=$(node scripts/asset-packs.mjs key)" >> "$GITHUB_OUTPUT"
-      # This job restores archives directly instead of using fetch-assets.
+      # This job needs the archives, not the GLBs, so it downloads them without restore-assets.
       - uses: ./.github/actions/prepare-asset-runner
-      - uses: actions/cache/restore@v4
+      - uses: actions/download-artifact@v4
         with:
+          name: asset-bundle
           path: .artifacts/asset-packs/
-          key: molen-assets-${{ steps.key.outputs.release }}
-          fail-on-cache-miss: true
       - env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm assets:publish --target "$GITHUB_SHA"
 
-  # The jobs below read repository GLBs. They wait for `assets`, which leaves this commit's bundle
-  # in the Actions cache for them to restore offline, and for `check`, so a failed fast check
-  # spends no runners on them. `assets` itself keeps building, so the next push can start from it.
+  # The jobs below read repository GLBs. They wait for `assets`, which uploads this commit's bundle
+  # as the run's artifact for them to install offline (.github/actions/restore-assets), and for
+  # `check`, so a failed fast check spends no runners on them. None of them downloads a release
+  # or builds: only `assets` does. `assets` itself keeps building when `check` fails, so the next
+  # push can start from it.
   docs-site:
     # The molen.dev site generates its API reference from the built `.d.mts`, its CLI/MCP
     # reference from OPS_CATALOG and its sample pages from examples/. Building it proves those
@@ -114,7 +131,7 @@ jobs:
           node-version-file: .node-version
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - uses: ./.github/actions/fetch-assets
+      - uses: ./.github/actions/restore-assets
       # Fails if .vitepress/generated-nav.json is stale (a new export, op, guide or sample).
       - run: pnpm docs:site:check
       - run: pnpm docs:site:build
@@ -131,7 +148,7 @@ jobs:
           node-version-file: .node-version
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - uses: ./.github/actions/fetch-assets
+      - uses: ./.github/actions/restore-assets
       # Kernel unit tests include the deterministic replay-hash suite. `pretest:unit` builds first:
       # the full package builds, including the GLB-reading validators that `check` skips.
       - run: pnpm test:unit
@@ -152,7 +169,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - uses: ./.github/actions/fetch-assets
+      - uses: ./.github/actions/restore-assets
       # Packing consumes library dist, not browser apps or their multi-gigabyte content packs.
       - run: pnpm -r --filter './packages/**' build
       - run: pnpm smoke:packed
@@ -168,7 +185,7 @@ jobs:
           node-version-file: .node-version
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - uses: ./.github/actions/fetch-assets
+      - uses: ./.github/actions/restore-assets
       # The render tests carry no reference images, so this runner records nothing of its own.
       - run: pnpm exec playwright install --with-deps chromium
       # `pretest:golden` builds first. These CPU-only runners find a SwiftShader WebGPU adapter

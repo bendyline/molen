@@ -13,7 +13,24 @@ test('shared asset restoration prepares disk before downloading or extracting th
   assert.ok(action.indexOf('pnpm assets:fetch') > restore);
 });
 
-test('direct asset cache restores also prepare disk first', () => {
+test("a job that reads GLBs prepares disk, then installs this run's artifact offline", () => {
+  const action = read('.github/actions/restore-assets/action.yml');
+  const order = [
+    prepare,
+    'uses: actions/download-artifact@',
+    'pnpm assets:fetch --no-build --offline',
+  ].map((text) => action.indexOf(text));
+  assert.ok(order.every((index) => index >= 0));
+  assert.deepEqual(
+    order,
+    [...order].sort((a, b) => a - b),
+  );
+  // It takes what `assets` checked and nothing else: no cache, no release, no source build.
+  assert.doesNotMatch(action, /actions\/cache|assets:build|asset-packs\.mjs seed/);
+  assert.equal(action.match(/pnpm assets:fetch/g).length, 1);
+});
+
+test('direct downloads of the asset archives also prepare disk first', () => {
   let restores = 0;
   for (const file of readdirSync(new URL('../../.github/workflows/', import.meta.url))) {
     if (!/\.ya?ml$/.test(file)) continue;
@@ -25,7 +42,7 @@ test('direct asset cache restores also prepare disk first', () => {
       for (const step of steps) {
         if (step.includes(prepare)) prepared = true;
         if (
-          step.includes('uses: actions/cache/restore@') &&
+          /uses: actions\/(cache\/restore|download-artifact)@/.test(step) &&
           step.includes('path: .artifacts/asset-packs/')
         ) {
           restores++;
@@ -37,7 +54,7 @@ test('direct asset cache restores also prepare disk first', () => {
       }
     }
   }
-  assert.ok(restores > 0, 'the publish-assets job restores its archives directly');
+  assert.ok(restores > 0, 'the publish-assets job downloads its archives directly');
 });
 
 /** A workflow's jobs by id, each as its YAML text without comments. */
@@ -75,11 +92,74 @@ test('the fast CI checks need no GLBs and wait for nothing', () => {
 test('every CI job that restores GLBs waits for the job that builds them', () => {
   const jobs = workflowJobs('ci.yml');
   assert.match(jobs.get('assets') ?? '', /uses: \.\/\.github\/actions\/fetch-assets/);
+  let readers = 0;
   for (const [id, job] of jobs) {
     if (id === 'assets') continue;
-    if (job.includes('fetch-assets') || job.includes('path: .artifacts/asset-packs/'))
+    // Only `assets` may download a release or build: four jobs doing that at once is what a
+    // lost cache used to cost.
+    assert.doesNotMatch(job, /fetch-assets/, `${id} must install the artifact, not rebuild`);
+    if (job.includes('restore-assets') || job.includes('path: .artifacts/asset-packs/')) {
+      readers++;
       assert.ok(needs(job).includes('assets'), `${id} restores GLBs before assets has them`);
+    }
   }
+  assert.ok(readers >= 5, 'docs-site, unit, packed, golden and publish-assets read the bundle');
+});
+
+test("the bundle reaches the other jobs as this run's artifact, never through the cache", () => {
+  const jobs = workflowJobs('ci.yml');
+  const steps = jobs.get('assets').split(/(?=^ {6}- )/m);
+  const upload = steps.find((step) => step.includes('uses: actions/upload-artifact@'));
+  assert.ok(upload, 'assets uploads the bundle');
+  for (const line of [
+    'name: asset-bundle',
+    'path: .artifacts/asset-packs/',
+    // `.artifacts` is hidden, the archives are already compressed, and a full re-run uploads
+    // the same name again.
+    'include-hidden-files: true',
+    'compression-level: 0',
+    'if-no-files-found: error',
+    'overwrite: true',
+  ])
+    assert.ok(upload.includes(line), `the upload sets ${line}`);
+  assert.match(upload, /retention-days: [1-7]\n/, 'about 8 GB a run is not kept for 90 days');
+  // Upload what was restored and checked, after the checks that read it.
+  const index = (text) => steps.findIndex((step) => step.includes(text));
+  assert.ok(index('fetch-assets') < index('pnpm assets:check'));
+  assert.ok(index('pnpm assets:check') < steps.indexOf(upload));
+  const restore = read('.github/actions/restore-assets/action.yml').replaceAll('\r\n', '\n');
+  for (const text of [restore, jobs.get('publish-assets')]) {
+    assert.match(text, /uses: actions\/download-artifact@/);
+    assert.match(text, /name: asset-bundle\n\s+path: \.artifacts\/asset-packs\/\n/);
+  }
+  for (const [id, job] of jobs)
+    if (id !== 'assets')
+      assert.doesNotMatch(job, /key: molen-assets-/, `${id} reads the bundle from the cache`);
+});
+
+test('the cache keeps one bundle, and none that would evict every other cache', () => {
+  const action = read('.github/actions/fetch-assets/action.yml').replaceAll('\r\n', '\n');
+  const steps = action.split(/(?=^ {4}- )/m);
+  const prune = steps.findIndex((step) => step.includes('node scripts/asset-packs.mjs prune'));
+  const saves = steps.flatMap((step, index) =>
+    step.includes('uses: actions/cache/save@') ? [index] : [],
+  );
+  assert.equal(saves.length, 2, 'the job records and the bundle');
+  assert.ok(prune >= 0 && saves.every((index) => index > prune), 'prune before saving');
+  // The prune runs whatever the bundle came from: `assets` uploads this directory afterwards.
+  assert.doesNotMatch(steps[prune], /^ {4}- if:/);
+  assert.match(steps[prune], /id: bundle\n/);
+  assert.match(
+    steps[prune],
+    /\[ "\$bytes" -le \d+ \]; then echo "cache=true" >> "\$GITHUB_OUTPUT"/,
+  );
+  const limit = Number(steps[prune].match(/-le (\d+) \]/)[1]);
+  assert.ok(limit < 10e9, 'GitHub keeps 10 GB of caches for a repository');
+  const bundle = steps[saves[1]];
+  assert.match(bundle, /path: \.artifacts\/asset-packs\/\n/);
+  assert.match(bundle, /steps\.bundle\.outputs\.cache == 'true'/);
+  // The small job records are saved whatever the bundle's size.
+  assert.doesNotMatch(steps[saves[0]], /steps\.bundle/);
 });
 
 test('a push to main publishes any bundle without a release, not only one it just built', () => {
@@ -106,9 +186,9 @@ test('a source build starts from an earlier one and keeps its records for the ne
     'node scripts/asset-packs.mjs seed',
     'pnpm assets:build --compile',
     'pnpm assets:pack',
+    'cp .artifacts/asset-packs/installed.json .artifacts/asset-build/seed.json',
     // Without the prune the seed's archives ride along and the cache passes GitHub's 10 GB limit.
     'node scripts/asset-packs.mjs prune',
-    'cp .artifacts/asset-packs/installed.json .artifacts/asset-build/seed.json',
     'uses: actions/cache/save@',
   ].map((text) => action.indexOf(text));
   assert.ok(
@@ -118,7 +198,7 @@ test('a source build starts from an earlier one and keeps its records for the ne
   assert.deepEqual(
     order,
     [...order].sort((a, b) => a - b),
-    'seed before building; prune and record after packing, before saving',
+    'seed before building; record and prune after packing, before saving',
   );
 });
 
