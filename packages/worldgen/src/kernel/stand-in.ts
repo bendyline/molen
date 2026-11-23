@@ -10,15 +10,15 @@
  *
  * The box is the outline's bounding rectangle along its longest edge, which is what a full
  * analysis gives a plain rectangle and close to it for the L and T shapes of houses. A pitched
- * look keeps a gabled stand-in, ridge along the longer side, in its roof's color, as
- * `generateBuilding` draws its own.
+ * look keeps a roof on its stand-in, ridge along the longer side, at the look's own slope and in
+ * its roof's color, as `generateBuilding` draws its own.
  *
  * Related files: building.ts (`boxPlacement`, the stand-in a generated building gets),
- * distant-look.ts (looks), batch.ts (`standIns`).
+ * distant-look.ts (looks, and `roofStandIn`, which sizes the roof), batch.ts (`standIns`).
  */
 import { dmath } from '@bendyline/molen-kernel/determinism';
-import { type BoxPlacement, GABLE_BOX_EAVE } from './building';
-import { type DistantLook, standInTint } from './distant-look';
+import type { BoxPlacement } from './building';
+import { type DistantLook, roofStandIn, standInTint } from './distant-look';
 import type { HeightSampler, Vec2 } from './types';
 
 export interface StandInOptions {
@@ -115,14 +115,7 @@ export function standInPlacement(
     sz: Math.max(0.5, v1 - v0),
     color: standInTint(look.wall),
   };
-  if (look.pitched === true && options.clipped !== true && minHeight === 0) {
-    box.roof = 'gable';
-    box.color = standInTint(look.roof);
-    if (box.sz > box.sx) {
-      [box.sx, box.sz] = [box.sz, box.sx];
-      box.yaw += Math.PI / 2;
-    }
-    if (options.measured !== true) box.sy /= GABLE_BOX_EAVE;
-  }
+  if (options.clipped !== true && minHeight === 0)
+    roofStandIn(box, look, options.height, options.measured === true);
   return box;
 }

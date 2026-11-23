@@ -139,9 +139,10 @@ const FOCUS_DETAIL_SHARE = 0.5;
  */
 const BUDGET_SPENT_AFTER = 48;
 
+/** Every stand-in's box: the whole of a flat one, the walls of a pitched one. */
 export const BOX_PLACEMENT_SET_ID: string = 'buildings:box';
-/** Stand-ins for pitched buildings: the `builtin:box.gable` model. */
-export const GABLE_BOX_PLACEMENT_SET_ID: string = 'buildings:box.gable';
+/** The roofs of pitched stand-ins: the `builtin:roof.gable` model, one on each one's walls. */
+export const GABLE_ROOF_PLACEMENT_SET_ID: string = 'buildings:roof.gable';
 
 /**
  * Hash every typed array of an output (positions, normals, uvs, colors, indices, placements,
@@ -228,12 +229,30 @@ export function placementSetsFromProps(
   return sets;
 }
 
+/**
+ * Stand-ins as two sets: every box, and a roof for each pitched one, standing on its walls with
+ * the same turn and plan, as high as its `roofHeight` and in its roof's color. A roof is its own
+ * instance because its height follows the style's slope and the plan's depth, not the walls'
+ * height: one shape scaled to the building cannot hold both.
+ */
 function placementSetsFromBoxes(boxes: readonly BoxPlacement[]): PlacementSet[] {
-  const gabled = boxes.filter((box) => box.roof === 'gable');
-  const flat = boxes.filter((box) => box.roof !== 'gable');
+  const roofs: BoxPlacement[] = [];
+  for (const box of boxes) {
+    if (box.roof !== 'gable' || !((box.roofHeight ?? 0) > 0)) continue;
+    roofs.push({
+      x: box.x,
+      y: box.y + box.sy,
+      z: box.z,
+      yaw: box.yaw,
+      sx: box.sx,
+      sy: box.roofHeight as number,
+      sz: box.sz,
+      color: box.roofColor ?? box.color,
+    });
+  }
   return [
-    placementSetFromBoxes(flat, BOX_PLACEMENT_SET_ID, 'builtin:box'),
-    placementSetFromBoxes(gabled, GABLE_BOX_PLACEMENT_SET_ID, 'builtin:box.gable'),
+    placementSetFromBoxes(boxes, BOX_PLACEMENT_SET_ID, 'builtin:box'),
+    placementSetFromBoxes(roofs, GABLE_ROOF_PLACEMENT_SET_ID, 'builtin:roof.gable'),
   ].filter((set): set is PlacementSet => set !== undefined);
 }
 

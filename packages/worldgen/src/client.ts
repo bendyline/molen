@@ -16,6 +16,7 @@ export {
   buildingBoxGeometry,
   createInstancedPlacements,
   gableBoxGeometry,
+  gableRoofGeometry,
   unitBoxGeometry,
 } from './client/instanced-box';
 export {

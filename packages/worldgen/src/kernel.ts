@@ -222,8 +222,13 @@ export {
   WORLDGEN_BUILDING_COMPONENT,
   WorldgenBuilding,
 } from './kernel/components';
-export type { DistantLook } from './kernel/distant-look';
-export { distantBuildingLook, PITCHED_STAND_IN } from './kernel/distant-look';
+export type { DistantLook, DistantPitch } from './kernel/distant-look';
+export {
+  distantBuildingLook,
+  distantRoofHeight,
+  PITCHED_STAND_IN,
+  roofStandIn,
+} from './kernel/distant-look';
 export type { FacadeBands, FacadeStats, FacadeWindows } from './kernel/facade';
 export type { GlbMaterialMeta, GlbSharedSurface } from './kernel/glb';
 export { encodeGlb } from './kernel/glb';

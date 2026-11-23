@@ -6,6 +6,7 @@
  */
 
 import {
+  renderedGroundSampler,
   type TerrainSemanticTile,
   terrainSemanticTilePacket,
 } from '@bendyline/molen-terrain/kernel';
@@ -39,6 +40,15 @@ export interface WorldgenGenerateRequest {
   ground: HeightSampler;
   /** Samples per tile edge for the transferable height grid (the terrain tile resolution). */
   resolution: number;
+  /**
+   * Vertices per edge of the ground the host draws for this tile (the terrain layer context's
+   * `surfaceResolution`), when it draws `ground` as a coarser triangle mesh. Buildings, plants and
+   * props then stand on those triangles, as everything else on the drawn ground does
+   * (`renderedGroundSampler`). Fitted to `ground` itself, a hillside's buildings floated over a
+   * coarse mesh or sank into it: 17 vertices across a 3.8 km tile left them up to 10 m in the
+   * air over Alicante's hills, after a flight had lowered the quality tier.
+   */
+  surfaceResolution?: number;
   budgets?: Partial<WorldgenBudgets>;
   features?: { buildings?: boolean; scatter?: boolean; interiors?: boolean };
   tierOffset?: number;
@@ -97,15 +107,40 @@ const RECENT_GRIDS = 8;
 
 /**
  * Sample a tile's ground into the grid both generation paths use. Each call returns its own
- * heights, which the worker bridge transfers away; a recent tile's samples are reused.
+ * heights, which the worker bridge transfers away; a recent tile's samples are reused. With
+ * `surfaceResolution`, the grid follows the drawn triangle mesh of that many vertices per edge
+ * (see `WorldgenGenerateRequest.surfaceResolution`) rather than `ground` between its vertices.
  */
 export function tileHeightGrid(
   ground: HeightSampler,
   geom: TileGeometry,
   resolution: number,
+  surfaceResolution?: number,
 ): HeightGrid {
-  const grid = sampledTileGround(ground, geom, resolution);
+  const grid = sampledTileGround(ground, geom, resolution, surfaceResolution);
   return { ...grid, heights: grid.heights.slice() };
+}
+
+/**
+ * The ground a host draws as a mesh of `surfaceResolution` vertices per edge over the tile,
+ * triangles split as the terrain mesh splits them. Only heights are read from it (the grid).
+ */
+function drawnTileGround(
+  ground: HeightSampler,
+  geom: TileGeometry,
+  surfaceResolution: number,
+): HeightSampler {
+  const sampleHeight = renderedGroundSampler(
+    { cols: surfaceResolution, sampleHeight: (x, z) => ground.sampleHeight(x, z) },
+    [geom.originX, geom.originZ],
+    geom.size,
+    surfaceResolution,
+  );
+  return {
+    sampleHeight,
+    slopeAt: (x, z) => ground.slopeAt(x, z),
+    normalAt: (x, z) => ground.normalAt(x, z),
+  };
 }
 
 /** The shared grid behind `tileHeightGrid`: sampled once for a recent tile, never transferred. */
@@ -113,13 +148,18 @@ function sampledTileGround(
   ground: HeightSampler,
   geom: TileGeometry,
   resolution: number,
+  surfaceResolution?: number,
 ): HeightGrid {
   const samples = Math.max(2, Math.min(1025, Math.floor(resolution)));
-  const key = `${geom.originX},${geom.originZ},${geom.size},${samples}`;
+  const surface =
+    surfaceResolution !== undefined && surfaceResolution >= 2
+      ? Math.floor(surfaceResolution)
+      : undefined;
+  const key = `${geom.originX},${geom.originZ},${geom.size},${samples},${surface ?? '-'}`;
   let index = recentGrids.findIndex((entry) => entry.ground === ground && entry.key === key);
   if (index < 0) {
     const grid = heightGridFromSampler(
-      ground,
+      surface === undefined ? ground : drawnTileGround(ground, geom, surface),
       geom.originX,
       geom.originZ,
       geom.size,
@@ -139,8 +179,9 @@ export function prepareTileHeightGrid(
   ground: HeightSampler,
   geom: TileGeometry,
   resolution: number,
+  surfaceResolution?: number,
 ): void {
-  sampledTileGround(ground, geom, resolution);
+  sampledTileGround(ground, geom, resolution, surfaceResolution);
 }
 
 export function createWorldgenWorkerBridge(
@@ -175,13 +216,24 @@ export function createWorldgenWorkerBridge(
 
   return {
     prepare(request): void {
-      if (!disposed) prepareTileHeightGrid(request.ground, request.geom, request.resolution);
+      if (!disposed)
+        prepareTileHeightGrid(
+          request.ground,
+          request.geom,
+          request.resolution,
+          request.surfaceResolution,
+        );
     },
     generate(request, signal): Promise<WorldgenTileOutput | undefined> {
       if (disposed) return Promise.resolve(undefined);
       if (signal.aborted) return Promise.resolve(undefined);
       const id = nextId++;
-      const ground = tileHeightGrid(request.ground, request.geom, request.resolution);
+      const ground = tileHeightGrid(
+        request.ground,
+        request.geom,
+        request.resolution,
+        request.surfaceResolution,
+      );
       const exclusions =
         request.buildingInfillExclusions !== undefined
           ? packPolygons(request.buildingInfillExclusions)

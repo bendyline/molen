@@ -39,14 +39,24 @@ export function createInThreadWorldgenGenerator(
 ): WorldgenGenerator {
   return {
     prepare(request: WorldgenGenerateRequest): void {
-      prepareTileHeightGrid(request.ground, request.geom, request.resolution);
+      prepareTileHeightGrid(
+        request.ground,
+        request.geom,
+        request.resolution,
+        request.surfaceResolution,
+      );
     },
     async generate(
       request: WorldgenGenerateRequest,
       signal: AbortSignal,
     ): Promise<WorldgenTileOutput | undefined> {
       if (signal.aborted) return undefined;
-      const grid = tileHeightGrid(request.ground, request.geom, request.resolution);
+      const grid = tileHeightGrid(
+        request.ground,
+        request.geom,
+        request.resolution,
+        request.surfaceResolution,
+      );
       const steps = generateWorldgenTileSteps(
         {
           tile: request.tile,

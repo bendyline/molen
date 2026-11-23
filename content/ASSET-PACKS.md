@@ -39,7 +39,8 @@ models are still imported by the build. Prefer a generator for anything new.
 
 There is no lock file. The bundle's release name, `assets-<16 hex>`, hashes what builds it:
 `asset-build.json`, every generator script with the relative modules it imports, the authored
-masters and the source data `asset-build.json` declares (`scripts/asset-inputs.mjs`). Outputs are
+masters and the source data `asset-build.json` declares, less its `inputs.exclude` names: documents,
+review records and `*.test.mjs` files (`scripts/asset-inputs.mjs`). Outputs are
 not inputs, so every machine computes the same name. `node scripts/asset-packs.mjs key --explain`
 prints the name and the inputs that differ from the installed bundle. Engine code under
 `packages/` is not an input; bump `inputs.version` in `asset-build.json` when an engine change

@@ -1,9 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import {
-  type BuildingGenerateInput,
-  GABLE_BOX_EAVE,
-  generateBuilding,
-} from '../../src/kernel/building';
+import { type BuildingGenerateInput, generateBuilding } from '../../src/kernel/building';
 import { analyzeFootprint } from '../../src/kernel/footprint';
 import { MeshBufferBuilder } from '../../src/kernel/mesh-buffers';
 import { resolveBuildingRecipe } from '../../src/kernel/recipe';
@@ -303,14 +299,40 @@ describe('building generation', () => {
     const ground: HeightSampler = { ...FLAT_GROUND, sampleHeight: (x, z) => -x - z };
     const result = build({ ground, tier: 99 });
     expect(result.box?.y).toBeLessThan(-24);
-    // A pitched stand-in's walls end at its eave; its roof rises above the record's height.
-    const walls =
-      result.box?.roof === 'gable' ? GABLE_BOX_EAVE * (result.box.sy as number) : result.box?.sy;
-    expect((result.box?.y as number) + (walls as number)).toBeCloseTo(
+    // A pitched stand-in's box is its walls, which end at the eave; its roof stands on them,
+    // above the record's height.
+    expect((result.box?.y as number) + (result.box?.sy as number)).toBeCloseTo(
       (result.record?.base as number) + (result.record?.height as number),
       6,
     );
     expect(result.out.isEmpty()).toBe(true);
+  });
+
+  it('gives a pitched stand-in the roof its recipe describes, inside a mapped height', () => {
+    const outline: Vec2[] = [
+      [0, 0],
+      [12, 0],
+      [12, 7],
+      [0, 7],
+    ];
+    const guessed = build({ tier: 99, request: { identity: 'f:1', labels: ['house'], outline } });
+    expect(guessed.box?.roof).toBe('gable');
+    const rise = guessed.recipe?.roof.rise as number;
+    expect(rise).toBeGreaterThan(0);
+    // The recipe's slope over half of the 7 m depth, not a share of the building's height.
+    expect(guessed.box?.roofHeight).toBeCloseTo(rise * 3.5, 6);
+    expect(guessed.box?.sx).toBeCloseTo(12, 6);
+    // A mapped height is ground to ridge: the roof takes at most 0.4 of it from the walls.
+    const mapped = build({
+      tier: 99,
+      request: { identity: 'f:1', labels: ['house'], outline, height: 5 },
+    });
+    const roof = mapped.box?.roofHeight as number;
+    expect(roof).toBeCloseTo(Math.min((mapped.recipe?.roof.rise as number) * 3.5, 2), 6);
+    expect((mapped.box?.y as number) + (mapped.box?.sy as number) + roof).toBeCloseTo(
+      (mapped.record?.base as number) + 5,
+      6,
+    );
   });
 
   it.each([

@@ -552,6 +552,10 @@ export function createWorldgenSemanticRenderers(
               environment: environmentHash,
               semantics: tileHash(request.tile),
               geometry: request.geom,
+              // The drawn mesh the buildings stand on (see `surfaceResolution`).
+              ...(request.surfaceResolution !== undefined
+                ? { surface: request.surfaceResolution }
+                : {}),
             }),
             level: request.geom.level,
             x: request.geom.x,
@@ -584,6 +588,10 @@ export function createWorldgenSemanticRenderers(
       ...(buildingInfillExclusions !== undefined ? { buildingInfillExclusions } : {}),
       ground: context.heightfield,
       resolution: context.pyramid.tileResolution,
+      // Stand on the ground as drawn: a lower quality tier meshes it coarser than the heightfield.
+      ...(context.surfaceResolution !== undefined
+        ? { surfaceResolution: context.surfaceResolution }
+        : {}),
       renderCellsOnly: options.lodPolicy !== undefined,
       budgets: {
         ...worldgenTileBudgetForQuality(preset, geom.levelBelowMax, {
@@ -820,7 +828,7 @@ export function createWorldgenSemanticRenderers(
         set,
         geometry,
         (flatMaterials ?? materials).materialFor('wall', 'palette:#ffffff'),
-        `${name}:${set.modelRef === 'builtin:box' ? 'boxes' : 'gable-boxes'}`,
+        `${name}:${set.modelRef === 'builtin:box' ? 'boxes' : set.modelRef === 'builtin:roof.gable' ? 'box-roofs' : 'gable-boxes'}`,
       );
       // Stand-ins scale a one-meter box to each building, so a host judging casters by the
       // shared shape's height (the terrain stream's shadowCasterHeight) dropped every one: an

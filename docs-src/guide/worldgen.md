@@ -690,11 +690,19 @@ lowest sampled ground, keeping roofs and windows level without gaps on downhill 
 vertices and draw calls. Stand-ins do the same; intentionally elevated `minHeight` parts retain
 their clearance.
 
-Stand-ins are instanced: `builtin:box` for flat-roofed buildings, and `builtin:box.gable` (set
-`buildings:box.gable`) for pitched ones, a box whose walls stop at the eave (`GABLE_BOX_EAVE` of
-its height) under a roof ridged along its longer side, the roof shaded darker than the walls. From
-the air a neighbourhood of stand-ins still reads as roofs. `buildingBoxGeometry(modelRef)` returns
-the shared geometry for either. Buildings beyond `maxBuildings` are stand-ins too, up to
+Stand-ins are instanced: one `builtin:box` each (set `buildings:box`), and for a pitched building
+a `builtin:roof.gable` on top of it (set `buildings:roof.gable`), ridged along the longer side.
+The box is then the walls, in the wall color, and the roof has the roof's. The roof is a second
+instance so that it can stand as high as the building's own roof would: the style's slope times
+half the plan's depth (`distantRoofHeight`: the two slopes of a gambrel, a mansard's low skirt, a
+deck on a plan too deep for a ridge, nothing where the style leaves such plans flat), and at most
+0.4 of a mapped height, which is ground to ridge. A single shape whose roof was a fixed share of
+its height drew a two-storey house at 45 degrees and a six-storey block at 60 in a region whose
+styles ask for 17 to 26, and drew its walls in the roof's color. From the air a neighbourhood of
+stand-ins reads as its roofs. `buildingBoxGeometry(modelRef)` returns the shared geometry for
+either; `builtin:box.gable`, the old single shape, remains as a prop model. A host that makes
+stand-ins itself calls `roofStandIn(box, look, height, measured)` for the same roof, or
+`standInPlacement`, which does. Buildings beyond `maxBuildings` are stand-ins too, up to
 `maxStandIns` (default 0, which omits them; `worldgenTileBudgetForQuality` sets 8,000 to 24,000 on
 the finest level and 24,000 to 60,000 behind it): a 1.2 km tile of central Bogotá holds 10,600
 footprints against 6,000 buildings at High, and the 4,600 smallest were missing. Once 48
