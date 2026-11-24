@@ -18,13 +18,14 @@ import type {
 export const FIGURE_LOOK_FORMAT: 'molen/figure-look@1' = 'molen/figure-look@1';
 
 /**
- * How random looks and option order lean: `masculine` and `feminine` favour the options a
- * catalogue suggests for that presentation (every option stays available), `unspecified` treats
- * every option alike. A steer is designer state, never part of a look.
+ * How a random look leans: `masculine` and `feminine` favour the options a catalogue suggests
+ * for that presentation, so body shape, facial hair and clothing agree; `unspecified` treats
+ * every option alike. A steer belongs to the draw, never to a look, and limits nothing a person
+ * may choose.
  */
 export type FigureLookSteer = 'unspecified' | 'masculine' | 'feminine';
 
-/** Every steer, in display order. */
+/** Every steer. */
 export const FIGURE_LOOK_STEERS: readonly FigureLookSteer[] = [
   'masculine',
   'feminine',

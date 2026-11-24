@@ -41,6 +41,19 @@ describe('the shared Earth look', () => {
     expect(env.background).toBe(EARTH_SKY_PALETTE.dayZenith);
   });
 
+  it('keeps shade at a quarter of sunlit ground, under the light its palettes were matched in', () => {
+    const color = new Color(EARTH_SKY_PALETTE.dayHorizon);
+    const fill =
+      EARTH_LIGHTING.dayAmbient * (color.r * 0.2126 + color.g * 0.7152 + color.b * 0.0722);
+    const sun =
+      EARTH_LIGHTING.sunIntensity * Math.sin((EARTH_LIGHTING.referenceElevation * Math.PI) / 180);
+    // Level ground in sun: what the orthophoto comparisons were made under. Change the balance,
+    // not the total, or every ground and roof palette moves.
+    expect(fill + sun).toBeCloseTo(2.97, 1);
+    expect(fill / (fill + sun)).toBeGreaterThan(0.23);
+    expect(fill / (fill + sun)).toBeLessThan(0.32);
+  });
+
   it('turns sun shadows on from the Medium tier and aims them ahead of the camera', () => {
     expect([0, 1, 2, 3, 4, 5].map((level) => earthPerformanceTier(level).shadows)).toEqual([
       'off',

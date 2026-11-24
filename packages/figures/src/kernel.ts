@@ -40,6 +40,8 @@ export {
 } from './kernel/descriptor';
 export {
   bipedRunFor,
+  bipedStrideRateFor,
+  figureStrideRate,
   froude,
   GRAVITY,
   idleThresholds,

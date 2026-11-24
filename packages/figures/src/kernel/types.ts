@@ -112,7 +112,10 @@ export type FigureHeadPresetId = (typeof FIGURE_HEAD_PRESET_IDS)[number];
  * (lean ↔ full), `cheekbones` (flat ↔ high and wide), `brow` (smooth ↔ strong ridge),
  * `noseBridge` (low ↔ high), `noseWidth` (narrow ↔ broad), `noseTip` (small ↔ full), `eyeSpacing`
  * (close ↔ wide), `eyeSize` (small ↔ large), `eyeTilt` (down ↔ up at the outer corner), `lips`
- * (thin ↔ full), `crown` (flat ↔ rounded skull top).
+ * (thin ↔ full), `crown` (flat ↔ rounded skull top). Added later, so a head written before
+ * them reads them as 0: `faceLength` (short ↔ long), `noseLength` (short ↔ long), `mouthWidth`
+ * (narrow ↔ wide), `browArch` (straight ↔ arched) and `eyeLid` (a smooth lid with no fold ↔ a
+ * deep-set eye under a high fold).
  */
 export interface FigureHeadShape extends JsonObject {
   faceWidth: number;
@@ -129,6 +132,11 @@ export interface FigureHeadShape extends JsonObject {
   eyeTilt: number;
   lips: number;
   crown: number;
+  faceLength: number;
+  noseLength: number;
+  mouthWidth: number;
+  browArch: number;
+  eyeLid: number;
 }
 
 /** An authored head: an optional preset, then any parameters over it. */

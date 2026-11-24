@@ -145,8 +145,8 @@ tier's budget.
 
 Builtin vegetation uses three shared models in spatial cells; the far fir/conifer is 12 triangles
 and the far broadleaf crown is 20. Building cells use authored materials nearby, a single
-vertex-color material farther away (where window glass keeps a dark glass tone rather than turning
-white, and buildings still cast shadows), then remove door, trim and detail faces while retaining
+vertex-color material farther away (where window glass keeps the tone a pane shows up close, its
+sky reflection included, and buildings still cast shadows), then remove door, trim and detail faces while retaining
 walls, roof shapes, foundations and windows, so a distant facade keeps its rows of windows. Cells
 store positions as 16-bit offsets with one uniform scale per cell and normals as 8-bit values,
 20 bytes a vertex instead of 35. Cell bounds let frustum culling reject offscreen batches.

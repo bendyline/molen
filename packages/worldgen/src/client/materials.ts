@@ -20,6 +20,13 @@ const SLOT_ROUGHNESS: Readonly<Record<MaterialSlot, number>> = {
 };
 
 /**
+ * Index of refraction of a textured pane (three's highest). It reflects 16% of what it faces and
+ * more at a glance, as coated architectural glass does. The default 1.5 reflects 4%, which left a
+ * glazed tower its dark base color: a black slab whenever it was seen against the sun.
+ */
+const GLASS_IOR = 2.333;
+
+/**
  * Four-ish shared vertex-colored materials (one per slot). Every material reference collapses
  * onto the slot material, so a batch costs at most one draw call per slot. Pass `surfaceMean`
  * (usually {@link TEXTURED_SURFACE_MEAN}) when the set stands in for textured surfaces.
@@ -41,7 +48,10 @@ export function createVertexColorMaterialSet(
           roughness: SLOT_ROUGHNESS[slot],
           metalness: slot === 'window' ? 0.1 : 0,
         });
-        if (options.surfaceMean !== undefined) material.color.setScalar(options.surfaceMean);
+        // Glass carries its tone for a surface this bright wherever it is drawn flat (see
+        // `WINDOW_GLASS`), so a pane is the same at every level.
+        const mean = slot === 'window' ? TEXTURED_SURFACE_MEAN : options.surfaceMean;
+        if (mean !== undefined) material.color.setScalar(mean);
         material.name = `worldgen:${slot}`;
         options.decorate?.(material, slot);
         // Lying snow settles on roofs, ledges and sills (whatever faces the sky), not on glass.
@@ -117,7 +127,7 @@ export function createResolvedMaterialSet(
   const placeholders = new Map<string, THREE.MeshStandardMaterial>();
   // Textured glass draws its texture untinted: the vertex color of a window carries the glass
   // tone for flat levels instead (see the recipe), so the window slot gets its own variant.
-  const glass = new Map<string, THREE.MeshStandardMaterial>();
+  const glass = new Map<string, THREE.MeshPhysicalMaterial>();
   // Upgrades built ahead of their placeholders: they hold the shared programs (see prepareChange).
   const upgrades = new Set<THREE.Material>();
   const rejected = new Set<string>();
@@ -131,8 +141,15 @@ export function createResolvedMaterialSet(
   if (options.maxTextureBytes !== undefined && !(options.maxTextureBytes > 0))
     throw new Error('Material texture budget must be positive');
   let disposed = false;
-  const untinted = (target: THREE.MeshStandardMaterial, from: THREE.Material): void => {
-    target.copy(from as THREE.MeshStandardMaterial);
+  const glazed = (from: THREE.Material): THREE.MeshPhysicalMaterial => {
+    const target = new THREE.MeshPhysicalMaterial({ ior: GLASS_IOR });
+    // The standard copy: a physical one reads fields that a standard source does not have.
+    THREE.MeshStandardMaterial.prototype.copy.call(target, from as THREE.MeshStandardMaterial);
+    target.defines = { STANDARD: '', PHYSICAL: '' };
+    return target;
+  };
+  const untinted = (target: THREE.MeshPhysicalMaterial, from: THREE.Material): void => {
+    target.copy(glazed(from));
     target.vertexColors = false;
     target.needsUpdate = true;
   };
@@ -215,7 +232,7 @@ export function createResolvedMaterialSet(
         const builds: Promise<void>[] = [];
         if (placeholder !== undefined) builds.push(options.prepareChange(placeholder, upgrade));
         if (window !== undefined) {
-          const glassUpgrade = new THREE.MeshStandardMaterial();
+          const glassUpgrade = new THREE.MeshPhysicalMaterial();
           untinted(glassUpgrade, upgrade);
           upgrades.add(glassUpgrade);
           builds.push(options.prepareChange(window, glassUpgrade));
@@ -275,11 +292,8 @@ export function createResolvedMaterialSet(
         if (window === undefined) {
           if (material === undefined && !options.progressive) return flat.materialFor(slot, ref);
           // Until the texture bakes, the flat glass tone (vertex color) stands in.
-          window =
-            material !== undefined
-              ? new THREE.MeshStandardMaterial()
-              : (flat.materialFor(slot, ref).clone() as THREE.MeshStandardMaterial);
-          if (material !== undefined) untinted(window, material);
+          window = glazed(material ?? flat.materialFor(slot, ref));
+          if (material !== undefined) window.vertexColors = false;
           window.name = `worldgen:${ref}:glass`;
           glass.set(ref, window);
         }

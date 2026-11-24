@@ -1,0 +1,22 @@
+name: Restore this run's repository GLBs
+description: >-
+  Install the asset bundle that this workflow run's `assets` job uploaded as the `asset-bundle`
+  artifact. A job that reads GLBs uses this after `needs: assets`. It downloads no release and
+  builds nothing, so every job of a run reads exactly the bundle `assets` checked. The Actions
+  cache cannot carry this handoff: one bundle is most of the 10 GB GitHub keeps for a
+  repository's caches, and a cache saved by any job evicted the bundle between `assets` and the
+  jobs waiting for it.
+runs:
+  using: composite
+  steps:
+    # Run before the download: the archives and the GLBs they expand to both need the space.
+    - uses: ./.github/actions/prepare-asset-runner
+    # Fails when the artifact is gone (GitHub keeps it for the days `assets` asks for): use
+    # "Re-run all jobs" then, so `assets` uploads it again.
+    - uses: actions/download-artifact@v4
+      with:
+        name: asset-bundle
+        path: .artifacts/asset-packs/
+    - name: Restore GLBs from the bundle
+      shell: bash
+      run: pnpm assets:fetch --no-build --offline

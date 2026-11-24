@@ -35,7 +35,7 @@ function Character({ view }: { view: EarthView }) {
         if (change.committed) localStorage.setItem('look', JSON.stringify(next));
         view.walker.setAvatar({ figure: figureFromLook(next) });
       }}
-      strings={{ 'steer.masculine': 'Male', 'steer.feminine': 'Female', 'steer.unspecified': 'Non-binary' }}
+      strings={{ 'section.person': 'You', 'action.randomize': 'Someone new' }}
     />
   );
 }
@@ -49,7 +49,7 @@ touches storage. `change.committed` is false while a slider or colour picker is 
 | Prop | For |
 | --- | --- |
 | `look`, `onChange` | The look under edit (any value is repaired first) and each new look |
-| `steer`, `onSteerChange`, `steerControl` | Which options a presentation suggests first and what "Surprise me" leans toward; every option stays available. Skin, head, hair and eyes are never steered |
+| `steer` | What every random look leans toward. Left out, "Surprise me" rolls a lean per press (masculine or feminine nine times in ten) and "New outfit" follows the person's body shape and facial hair. The designer lists every option together and asks for no presentation |
 | `sections`, `hide` | Show only the person or only the outfit (a wardrobe screen), or leave parts out |
 | `outfit` | Show an outfit on the figure instead of the look's own, such as a uniform |
 | `strings` | Every word, as a map or a lookup function; keys from `figureDesignerStringKeys()` |

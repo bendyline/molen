@@ -22,7 +22,7 @@ view.walker.setAvatar({ figure: figureFromLook(look) });
 
 | Function | Does |
 | --- | --- |
-| `randomFigureLook(seed, { steer, age, keep })` | A complete look for a seed; the same seed and catalogue give the same look. `keep` copies parts of an existing look (`'person'`, `'outfit'`, a category) |
+| `randomFigureLook(seed, { steer, age, keep })` | A complete look for a seed; the same seed and catalogue give the same look. `keep` copies parts of an existing look (`'person'`, `'outfit'`, a category). Without `steer` the look [rolls its own](#steering-and-neutrality) |
 | `normalizeFigureLook(value)` | Repairs anything into a valid look and lists what it fixed. Total and idempotent |
 | `figureFromLook(look, { outfit })` | The figure descriptor. `outfit` dresses the person in another outfit, such as a uniform, without changing who they are |
 | `setFigureLookOption`, `setFigureLookColor`, `setFigureLookHeight` | Immutable edits |
@@ -41,16 +41,31 @@ option id with its colours).
 
 ## Steering and neutrality
 
-A steer, `masculine`, `feminine` or `unspecified`, orders options and weights random looks. It is
-designer state and never part of a look, so a shared look does not disclose it. The default
-catalogue keeps three rules, and `validateFigureLookCatalog` enforces the first two for any
-catalogue:
+A steer, `masculine`, `feminine` or `unspecified`, weights a random look so that its body shape,
+facial hair and clothing agree: a look drawn under `feminine` has no beard, and one drawn under
+`masculine` no dress. It belongs to the draw and never to a look, so a shared look does not
+disclose it, and it limits nothing a person may choose: the designer lists every option of a
+category together and asks for no presentation.
+
+`randomFigureLook` without a `steer` picks one for itself:
+
+- With `keep`, the look leans the way the kept parts do. A kept person with a beard or a
+  masculine-form body is drawn no dress or skirt, and a kept dress draws no facial hair. Kept
+  parts that hold one of each are steered by neither.
+- With nothing to go by, the seed rolls a steer: `masculine` or `feminine` nine times in ten, in
+  equal measure, and `unspecified` otherwise. Facial hair on a feminine-form body is then about
+  one random look in fifty, against one in five when every look is drawn `unspecified`.
+
+`figureLookPool` cycles the three steers, so a third of a crowd is drawn `unspecified`.
+
+The default catalogue keeps three rules, and `validateFigureLookCatalog` enforces the first two
+for any catalogue:
 
 - Skin tone, head, hair style, hair texture, hair colour and eye colour are never steered. A
   random look draws each of them independently of every other choice and of the steer.
-- A steer only reorders body shapes, facial hair and clothing, and never removes an option. Under
-  `masculine` or `feminine` the options it does not suggest are listed after the rest, and random
-  looks do not draw them. Under `unspecified` every option is suggested.
+- A steer only weights body shapes, facial hair and clothing. Under `masculine` or `feminine`
+  random looks do not draw the options it does not suggest (`figureLookOptions` lists those
+  last); under `unspecified` every option is suggested.
 - Skin tones are one ramp of ten, evenly spaced in lightness and named "Tone 1 of 10" to "Tone 10
   of 10". Option labels describe shapes and colours, never groups of people.
 
@@ -102,12 +117,14 @@ import '@bendyline/molen-figures-react/style.css';
     setLook(next);
     if (change.committed) save(next);
   }}
-  strings={{ 'steer.masculine': 'Male', 'steer.feminine': 'Female', 'steer.unspecified': 'Non-binary' }}
+  strings={{ 'section.person': 'You', 'action.randomize': 'Someone new' }}
 />;
 ```
 
 Options and colours are native radio groups with visible labels, the arrow keys move between tabs,
-every target is at least 44 px, and a polite live region announces each change. `strings` renames
+every target is at least 44 px, and a polite live region announces each change. "Surprise me"
+draws a new person and outfit and "New outfit" keeps the person; each
+[leans for itself](#steering-and-neutrality) unless the host sets `steer`. `strings` renames
 anything: a map or a lookup function over the keys `figureDesignerStringKeys()` lists. `sections`
 shows only the person or only the outfit, `hide` leaves parts out, and `outfit` shows a uniform on
 the figure while the look keeps its own clothes. The stylesheet uses `:where()` selectors and
@@ -137,3 +154,24 @@ view.walker.setAvatar({ figure: figureFromLook(next) }); // re-dresses the body 
 `avatar` gives the viewer a body from the first frame and `walkView: 'third'` starts on foot behind
 it. A later `setAvatar` swaps the body in place: the old one stays on screen until the new one's
 shaders are built.
+
+A host that composes its own view from the Earth building blocks draws the viewer's figure with
+`EarthAvatar`:
+
+```ts
+import { EarthAvatar } from '@bendyline/molen-earth/client';
+
+const avatar = new EarthAvatar({
+  world: vehicles.world, // the viewer's seat is read from here
+  parent: stream.object,
+  prepare: (object) => viewer.renderer.prepareObject(object),
+  cockpitFloor: (id) => aircraftVisuals.get(id)?.cockpit.floor, // keeps a tall pilot's feet inside
+});
+avatar.setFigure(figureFromLook(look));
+// Each frame, after the world step and the walker:
+avatar.update(dt, { visible: thirdPerson, feet, velocity, heading }, cameraPosition);
+```
+
+On foot it stands at `feet` and faces the way it goes; while the viewer is mounted it sits in their
+seat instead. [World Explorer](https://molen.dev/play/world-explorer/) does this, with the character
+designer beside it: press **Design…** under "Your figure".

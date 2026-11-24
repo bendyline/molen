@@ -191,7 +191,11 @@ Without `environment.sky`, it uses the ambient/sun rig and background color. Its
 replaces the hemisphere light, which stays hidden (`visible` false, its intensity as authored)
 while the map is the scene environment so surfaces are not lit twice. The map carries the same
 irradiance: `sky.lighting.dayAmbient` and `nightAmbient` (or
-`environment.ambient.intensity`) set the sky fill whether reflections are on or off.
+`environment.ambient.intensity`) set the sky fill whether reflections are on or off. A level
+surface gets the same light from the map as from the hemisphere, however dark the palette's
+zenith is drawn: the gradient lights from a zenith half way to the horizon's brightness, scaled
+to the hemisphere's total. The map's ground half is brighter than the ground color under the sky
+alone, by the sunlight on the ground, so a wall under a high sun is lit from the street.
 A host-supplied `renderer.scene.environment` takes precedence; the host retains ownership of that
 texture and control of its light balance.
 Custom host meshes should use `MeshStandardMaterial` or `MeshPhysicalMaterial` for this mode;

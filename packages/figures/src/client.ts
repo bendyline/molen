@@ -17,7 +17,7 @@ export { applyPose, figureBodyToSkinnedMesh, figureGeometry } from './client/upl
 // (a main-thread world, where importing the kernel half would load the script host).
 export type { FigureAnchor, FigureData, FigureMode, FigureStateData } from './kernel/components';
 export { descriptorKey, resolveFigureDescriptor } from './kernel/descriptor';
-export { strideRateFor } from './kernel/gait';
+export { figureStrideRate, strideRateFor } from './kernel/gait';
 export type { FigurePose, PoseEvalOptions } from './kernel/pose';
 export { evaluatePose, worldToFigure } from './kernel/pose';
 export { cycleRiderPose } from './kernel/riding';

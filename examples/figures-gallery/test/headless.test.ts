@@ -27,11 +27,13 @@ function gait(mode: 'idle' | 'walk' | 'run', tick: number, seq = 0): Command {
 describe('figures gallery headless', () => {
   // Pinned, so a rig, gait or pose-evaluation change has to be an intentional edit here.
   it('matches the pinned state hash across engine versions', async () => {
-    // Includes the 2026-11-08 proportions: shorter human necks and narrower shoulders (the
-    // hand, eye and chest sockets moved) and the raised quadruped necks and heads.
+    // Includes the 2026-11-08 proportions (shorter human necks and narrower shoulders, raised
+    // quadruped necks and heads) and the 2026-11-23 human pass: hip joints at 0.52 of stature
+    // and 0.108 apart, the knee at 0.275 over an ankle at 0.04 (so the hip, hand and foot sockets
+    // moved), and a walker's own stride rate (2.7 leg lengths at Froude 1, not 2.3).
     const r = await runSimulation({ scene: scene(), ticks: 240 });
     expect(r.stateHash).toBe(
-      'sha256:7bcb918efc8f168d178f593a16cb200a56b47ef2ac2e149b480447a1a063a868',
+      'sha256:e5e20b156510191975f635b0bd0624ab8e1f79aabe155b443701ec1a449b2f27',
     );
   });
 

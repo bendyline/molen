@@ -100,9 +100,9 @@ figure` prints the full shape (the `molen/figure@1` file format wraps the same f
 | `seed` | detail jitter only (symmetry-safe) |
 
 Every rig stands with its feet at y = 0 and its reference point exactly at `height`, whatever
-the overrides. Bodies come in three detail tiers. The default human uses roughly 7,500 triangles
-near, 2,200 at medium distance and 1,100 for the rigid distant tier; the most detailed styling
-(locs or braids, a beard, a coat or hoodie over a skirt, sandals) stays within 9,000, 2,600 and
+the overrides. Bodies come in three detail tiers. The default human uses roughly 5,600 triangles
+near, 1,900 at medium distance and 950 for the rigid distant tier; the most detailed styling
+(locs, a beard, a coat or hoodie over a skirt, sandals) stays within 9,000, 2,600 and
 1,200, and with every accessory worn at once within 9,700, 3,000 and 1,300. The six animal
 presets use about 4,100–6,500 near,
 2,100–2,900 medium and 1,100–1,500 distant triangles. The client
@@ -111,37 +111,55 @@ with the default `hands: "fingers"`; `hands: "mitten"` keeps a joined finger sil
 and distant hands merge the fingers while retaining the thumb. Facial details and clothing
 use the canonical joint hierarchy, so gait, IK and attachment APIs are unchanged. The biped
 rest pose holds the arms five degrees from vertical; idle adds a slight elbow bend, leaving
-the hands beside the thighs. Idle rotates each forearm along the elbow-to-wrist axis so the
-back of the hand angles forward, with small wrist flexion and gently curled fingers. Walking,
-running and sitting use smaller forearm rotations. The rigid distant mesh retains the resting
-hand orientation; fingers remain a fixed curved shape on the hand joint. Shared shoulder vertices and blended skin weights connect the
-torso to the sleeves without separate shoulder caps.
+the hands beside the thighs, and on a body whose hips are wider than its shoulders the arms hang
+a few degrees further out so the hands clear them. Idle rotates each forearm along the
+elbow-to-wrist axis so the back of the hand angles forward, with small wrist flexion and gently
+curled fingers. Walking, running and sitting use smaller forearm rotations. The rigid distant
+mesh retains the resting hand orientation; fingers remain a fixed curved shape on the hand
+joint. Sleeves are set into the torso between the armpit and the shoulder, sharing its vertices
+and blended skin weights, under a rounded cap over the shoulder joint.
 
 Human proportions follow adult anthropometric means, as fractions of `height`: the head is 0.13
 (about 7.5 heads tall), the chin sits at 0.87 and the shoulder joints at 0.80, 0.2 apart. The
 neck is about 0.072 across and leaves the shoulders on a slanted line: the notch at the front of
 the collar sits at 0.83, the sides at 0.85 and the back at 0.865, about level with the chin, so
 the neck shows a few centimeters in front and less behind. It sits toward the back of the
-shoulders and leans forward to the skull. The chest is about 0.19 across and 0.135 deep, the
-waist 0.17 across, and the outside of the arms about 0.27. The shoulder line falls steeply off
+shoulders and leans forward to the skull. The chest is about 0.19 across and 0.14 deep, the
+waist 0.175 across, and the outside of the arms about 0.28. The shoulder line falls steeply off
 the neck, flattens over the shoulder joint and rounds into the upper arm. Children keep their
 larger head.
+
+Below the waist the hip joints sit at 0.52, the knees at 0.275 and the ankles at 0.04, inside a
+shoe 0.166 long. The hips are one block from the waistband at 0.58 to the crotch at 0.475,
+about 0.2 across at the joints with the seat behind them, and the legs divide below it, so
+trousers have a rise and the legs start where legs start. In profile the body stands on a
+curve: the chest ahead of the belly, the shoulder blades and the seat behind a hollow lower
+back. Trousers are cut as cloth (about 0.08 through at the knee) with crisp hems; bare legs have
+a kneecap and a calf behind a straight shin.
+
+The head is as deep as a head: the brow stands 0.6 of a head width in front of the ear and the
+back of the skull as far behind it, so the jaw overhangs the throat. The nose is its own set of
+planes (a ridge, side walls, wings and an underside), the eyes have an upper lid standing over
+them with a lash line and an iris the lids cut off, the lips and brows are modeled, and the ears
+are shallow shells. Close-cut hair passes behind the ears; hair that hangs past them, or stands
+as far off the head as they do, covers them. The skull under a full head of hair is not drawn.
 
 ### Appearance
 
 | Feature | Values | Notes |
 |---|---|---|
 | `form` | `neutral`, `masculine`, `feminine` | Shoulder and hip width, waist, chest depth, neck and arm thickness, jaw, brow and lips. Feminine adults have a bust and plain shirt fronts. Ignored by quadrupeds. |
-| `hair` | `none`, `buzz`, `balding`, `cap`, `crop`, `bob`, `long`, `ponytail`, `bun`, `afro`, `shoulder`, `fade`, `mohawk`, `topknot`, `puffs`, `braids`, `rows`, `locs` | `cap` is the short default; `balding` keeps a fringe above and behind the ears; `long` falls down the back past the shoulder blades; `shoulder` stops at the shoulders; `fade` blends close sides into a fuller top; `mohawk` is a ridge over buzzed sides; `topknot` and `puffs` gather hair on the crown; `braids` hang down the back; `rows` are close braided rows; `locs` hang as rope-like locks. Braids show at near and medium detail, locks at near detail. |
+| `hair` | `none`, `buzz`, `balding`, `cap`, `crop`, `bob`, `long`, `ponytail`, `bun`, `afro`, `shoulder`, `fade`, `mohawk`, `topknot`, `puffs`, `braids`, `rows`, `locs` | `cap` is the short default; `balding` keeps a fringe above and behind the ears; `long` falls down the back past the shoulder blades; `shoulder` stops at the shoulders; `fade` blends close sides into a fuller top; `mohawk` is a ridge over buzzed sides; `topknot` and `puffs` gather hair on the crown; `braids` leave the hair behind the ears and lie on the back; `rows` are close braided rows; `locs` run down from the crown and hang as rope-like locks to the shoulders. Braids and locks show at near and medium detail. |
 | `hairTexture` | `straight` (default), `wavy`, `curly`, `coily` | Loose hair only: volume off the scalp, fuller ends on hanging lengths and a rougher silhouette near. Pulled-back styles (`buzz`, `ponytail`, `bun`, `braids`, `rows`, …) keep their shape; gathered ones (`bun`, `topknot`, `puffs`) swell a little. |
-| `facialHair` | `none`, `stubble`, `mustache`, `beard` | Drawn in `palette.hair`. Adults and elders only. |
+| `facialHair` | `none`, `stubble`, `mustache`, `beard` | Drawn in `palette.hair`. A beard wraps the jaw from sideburn to sideburn under a mustache and closes under the chin. Adults and elders only. |
 | `sleeves` | `none`, `short`, `long` | Sleeve length of any top. |
 | `top` | `shirt` (default), `tee`, `tank`, `polo`, `sweater`, `hoodie`, `jacket`, `coat`, `dress` | See [Garments](#garments). |
-| `legs` | `shorts`, `long`, `skirt`, `slim`, `wide`, `cropped` | A knee-length skirt in `palette.bottom` over bare legs. It sways with the stride; seated, it follows the thighs. `slim` trousers taper below the knee, `wide` ones flare to the ankle, `cropped` ones end at mid-calf. |
-| `footwear` | `shoe` (default), `sneaker`, `boot`, `sandal` | In `palette.shoes`. Sneakers have a thick pale sole; boots a darker sole and a shaft up the shin, over trousers or a bare leg; sandals a sole and straps under the bare foot (a band of color below near detail). |
+| `legs` | `shorts`, `long`, `skirt`, `slim`, `wide`, `cropped` | A knee-length skirt in `palette.bottom` over bare legs. It sways with the stride; seated, it follows the thighs. `slim` trousers taper below the knee, `wide` ones flare to the ankle, `cropped` ones end at mid-calf, and `shorts` end above the knee. |
+| `footwear` | `shoe` (default), `sneaker`, `boot`, `sandal` | In `palette.shoes`. Sneakers have a thick pale sole; boots a darker sole and a shaft up the shin, which shows under `slim` or `cropped` trousers, shorts and skirts (`long` and `wide` trousers fall over it); sandals a sole and straps under the bare foot (a band of color below near detail). |
 
 Hair that falls past the neck (long hair, a ponytail, braids, locks) blends from the head joint
-toward the chest, so it stays on the back when the head turns.
+toward the chest, so it stays on the back when the head turns. It rests on the body as built:
+over a hood, and out over a backpack.
 
 ### Garments
 
@@ -185,9 +203,11 @@ Without accessories a body is unchanged, byte for byte.
 
 Without a `head`, a human face follows its body form (a squarer jaw and stronger brow, or a
 narrower jaw and fuller lips), as it always has. A `head` sets the face itself, independent of the
-body form, from fourteen parameters, each -1 to 1 with 0 the reference head: `faceWidth`, `jaw`,
+body form, from nineteen parameters, each -1 to 1 with 0 the reference head: `faceWidth`, `jaw`,
 `chin`, `cheeks`, `cheekbones`, `brow`, `noseBridge`, `noseWidth`, `noseTip`, `eyeSpacing`,
-`eyeSize`, `eyeTilt`, `lips` and `crown`. A head `preset` (`01`–`12`) starts from one of twelve
+`eyeSize`, `eyeTilt`, `lips`, `crown`, `faceLength`, `noseLength`, `mouthWidth`, `browArch` and
+`eyeLid` (a smooth upper lid with no fold at -1, a deep-set eye under a high fold at 1). A head
+written before the last five reads them as 0. A head `preset` (`01`–`12`) starts from one of twelve
 shapes, and parameters given beside it override it:
 
 ```json
@@ -226,9 +246,25 @@ The `figures-locomotion` system (late phase, before the hierarchy) reads whateve
 entity: `kinematicBody.vel`, then `character` + `moveIntent`, `platformBody`, a rapier
 `velocity`, else transform deltas (`speedSource: 'transform'` forces the last; `'none'` freezes
 it). It picks a mode (`idle`, `walk`, `run`, `jump`, `fall`; `sit` when `mounted`), a
-quadruped gait (walk, trot, gallop by Froude number), a stride rate from the leg length, and
-turns the figure toward its velocity (`facing: 'velocity'`, the default) at `turnRate` rad/s.
-`facing: 'manual'` leaves `transform.rot` to you (rapier-driven bodies, strafing).
+quadruped gait (walk, trot, gallop by Froude number), a stride rate from the leg length
+(`figureStrideRate(rig, speed)`: an adult walking at 1.35 m/s takes about 112 steps a minute),
+and turns the figure toward its velocity (`facing: 'velocity'`, the default) at `turnRate`
+rad/s. `facing: 'manual'` leaves `transform.rot` to you (rapier-driven bodies, strafing).
+
+A person's walk and run are solved from where the feet go. The stride is `speed / strideRate`,
+so a stance foot stays where it landed while the body passes over it: heel strike with the toes
+up, flat, heel-off and toe-off, then a swing. The pelvis rides at the height the legs can reach,
+shifts over the standing foot and turns with the stride; the shoulders turn against it, the head
+stays level and the arms swing against the legs with the elbow lagging. A run has a flight
+phase, a heel kick and bent arms, and leans further the faster it goes. A host that poses a
+figure itself gets the same motion by passing `speed` and `strideRate` in the state it gives
+`evaluatePose`. A walk above about 2.4 leg lengths a stride (roughly 2.4 m/s for an adult), or a
+run above 5.4, takes the longest stride the legs have and the feet then slip. Walking backward
+is not posed: with `facing: 'manual'` a figure moving against its facing still steps forward.
+
+Standing, a person shifts their weight onto one leg every few seconds with the feet staying
+put, breathes, glances and nods, each from the figure's seed so a crowd is not in step. Seated,
+the hands rest on the thighs.
 
 State is written only when something changes: speed is quantized to 0.05 m/s, the gait phase is
 anchored to a tick, so a steadily walking figure sends no deltas. `figureIntent.mode` forces a

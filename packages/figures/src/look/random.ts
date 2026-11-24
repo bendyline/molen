@@ -1,19 +1,28 @@
 /**
  * Random looks: one seed becomes one complete person and outfit. Neutral choices (skin, head,
  * hair, hair colour, eyes) are drawn independently of each other and of the steer; the steer
- * only weights body shape, facial hair and clothing.
+ * only weights body shape, facial hair and clothing. A look drawn without a steer rolls its own
+ * from the seed, most often masculine or feminine, so those three agree with each other.
  */
 
 import { seedToInt } from '@bendyline/molen-kernel/determinism';
 import type { FigureAge } from '../kernel/types';
 import { DEFAULT_FIGURE_LOOK_CATALOG } from './catalog';
-import { drawOption, drawSwatch, drawUnit, findCategory } from './draw';
+import {
+  drawOption,
+  drawSwatch,
+  drawUnit,
+  figureLookSuggested,
+  findCategory,
+  pickWeighted,
+} from './draw';
 import {
   FIGURE_LOOK_FORMAT,
   FIGURE_LOOK_GARMENTS,
   FIGURE_LOOK_PERSON_CHOICES,
   FIGURE_LOOK_PERSON_PALETTES,
   FIGURE_LOOK_SLOTS,
+  FIGURE_LOOK_STEERS,
   type FigureLook,
   type FigureLookAccessories,
   type FigureLookCatalog,
@@ -38,12 +47,72 @@ export type FigureLookPart =
 
 export interface RandomFigureLookOptions {
   catalog?: FigureLookCatalog;
-  /** Default 'unspecified'. */
+  /**
+   * What the look leans toward. Left out, the look leans the way the parts it keeps do (a kept
+   * beard draws no dress); with nothing to go by it rolls a steer from the seed, masculine or
+   * feminine nine times in ten.
+   */
   steer?: FigureLookSteer;
   /** Default 'adult'. */
   age?: FigureAge;
   /** Copy these parts from an existing look instead of drawing them. */
   keep?: { look: FigureLook; parts: readonly FigureLookPart[] };
+}
+
+/**
+ * How often a look drawn without a steer leans each way. Most lean masculine or feminine, so
+ * body shape, facial hair and clothing agree; one in ten draws every option alike.
+ */
+const STEER_ROLL: Readonly<Record<FigureLookSteer, number>> = {
+  masculine: 9,
+  feminine: 9,
+  unspecified: 2,
+};
+
+function rollSteer(seed: number): FigureLookSteer {
+  return pickWeighted(FIGURE_LOOK_STEERS, (steer) => STEER_ROLL[steer], drawUnit(seed, 'steer'));
+}
+
+/** The options the kept parts of a look hold, each with its category. */
+function keptOptions(
+  look: FigureLook,
+  parts: readonly FigureLookPart[],
+): [FigureLookCategoryId, string][] {
+  const person = parts.includes('person');
+  const outfit = parts.includes('outfit');
+  const kept: [FigureLookCategoryId, string][] = [];
+  for (const choice of FIGURE_LOOK_PERSON_CHOICES)
+    if (person || parts.includes(choice)) kept.push([choice, look.person[choice]]);
+  for (const garment of FIGURE_LOOK_GARMENTS)
+    if (outfit || parts.includes(garment)) kept.push([garment, look.outfit[garment].id]);
+  for (const slot of FIGURE_LOOK_SLOTS) {
+    const item = look.outfit.accessories[slot];
+    if (item !== undefined && (outfit || parts.includes(slot))) kept.push([slot, item.id]);
+  }
+  return kept;
+}
+
+/**
+ * The steer the kept parts of a look agree with: masculine or feminine when they hold an option
+ * the other steer does not suggest, unspecified when they hold one of each, and undefined when
+ * every option they hold suits both.
+ */
+function keptSteer(
+  catalog: FigureLookCatalog,
+  look: FigureLook,
+  parts: readonly FigureLookPart[],
+): FigureLookSteer | undefined {
+  let masculine = true;
+  let feminine = true;
+  for (const [id, optionId] of keptOptions(look, parts)) {
+    const category = findCategory(catalog, id);
+    const option = category?.options.find((o) => o.id === optionId);
+    if (category === undefined || option === undefined) continue;
+    masculine &&= figureLookSuggested(category, option, 'masculine');
+    feminine &&= figureLookSuggested(category, option, 'feminine');
+  }
+  if (masculine && feminine) return undefined;
+  return masculine ? 'masculine' : feminine ? 'feminine' : 'unspecified';
 }
 
 /** The catalogue id a look records: `<id>@<revision>`. */
@@ -102,16 +171,19 @@ function heightFor(
   return Math.round((lo + (hi - lo) * drawUnit(seed, 'height')) * 100) / 100;
 }
 
-/** A complete random look for a seed (the same seed, catalogue and steer give the same look). */
+/** A complete random look for a seed (the same seed, catalogue and options give the same look). */
 export function randomFigureLook(
   seed: string | number,
   options: RandomFigureLookOptions = {},
 ): FigureLook {
   const catalog = options.catalog ?? DEFAULT_FIGURE_LOOK_CATALOG;
-  const steer = options.steer ?? 'unspecified';
   const keep = options.keep;
   const age = keep?.parts.includes('person') ? keep.look.person.age : (options.age ?? 'adult');
   const s = seedToInt(seed);
+  const steer =
+    options.steer ??
+    (keep === undefined ? undefined : keptSteer(catalog, keep.look, keep.parts)) ??
+    rollSteer(s);
 
   const person: FigureLookPerson = {
     age,

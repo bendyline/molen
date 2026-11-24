@@ -28,7 +28,7 @@ import {
   FigureState,
   type FigureStateData,
 } from './components';
-import { bipedRunFor, froude, idleThresholds, quadrupedGaitFor, strideRateFor } from './gait';
+import { bipedRunFor, figureStrideRate, froude, idleThresholds, quadrupedGaitFor } from './gait';
 import { figurePhase } from './pose';
 import type { FigureRuntime } from './runtime';
 
@@ -212,7 +212,7 @@ export function installLocomotion(
             dmath.abs(v - prevSpeed) <= SPEED_THRESHOLD;
           speed = keep ? prevSpeed : dmath.round(v / SPEED_QUANTUM) * SPEED_QUANTUM;
         }
-        const strideRate = moving ? strideRateFor(speed, rig.legLength) : 0;
+        const strideRate = moving ? figureStrideRate(rig, speed) : 0;
 
         const yaw = yawOf(t.rot);
         let travel: number | undefined;

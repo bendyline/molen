@@ -27,6 +27,8 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import * as tar from 'tar';
 import { assetInputs, changedInputs } from './asset-inputs.mjs';
+import { listReleases } from './github-releases.mjs';
+import { httpError, retryTransient } from './release-download.mjs';
 
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const MANIFEST = 'asset-manifest.json';
@@ -550,12 +552,13 @@ export async function checkAssets({ root = ROOT, prefix = '', log = console.log 
   return { stamp, repository: current.repository };
 }
 
+/** One attempt at an archive: a dropped connection leaves nothing behind for the next one. */
 async function download(url, path, expected, fetchImpl) {
   const temporary = `${path}.${randomUUID()}.part`;
   try {
     const response = await fetchImpl(url, { signal: AbortSignal.timeout(600_000) });
     if (!response.ok || !response.body)
-      throw new Error(`Asset download failed: HTTP ${response.status} ${url}`);
+      throw httpError(`Asset download failed: HTTP ${response.status} ${url}`, response.status);
     let count = 0;
     await pipeline(
       Readable.fromWeb(response.body),
@@ -581,7 +584,26 @@ async function download(url, path, expected, fetchImpl) {
 const releaseUrl = ({ repository, release }, file) =>
   `https://github.com/${repository}/releases/download/${release}/${file}`;
 
-async function releaseManifest(current, archiveDir, offline, fetchImpl) {
+/** A release's manifest text, or undefined when GitHub has no such release attachment. */
+function manifestText(release, fetchImpl, { label, log, retry }) {
+  return retryTransient(
+    async () => {
+      const response = await fetchImpl(releaseUrl(release, MANIFEST), {
+        signal: AbortSignal.timeout(60_000),
+      });
+      if (response.status === 404) return undefined;
+      if (!response.ok)
+        throw httpError(
+          `${label} manifest download failed: HTTP ${response.status}`,
+          response.status,
+        );
+      return await response.text();
+    },
+    { what: `${label} manifest of ${release.release}`, log, ...retry },
+  );
+}
+
+async function releaseManifest(current, archiveDir, offline, fetchImpl, { log, retry } = {}) {
   // The published manifest is cached apart from a local `pack`: archives are not byte-reproducible,
   // so a local packing only stands in for the release when working offline.
   const cached = join(archiveDir, 'published', `${current.release}.json`);
@@ -592,15 +614,11 @@ async function releaseManifest(current, archiveDir, offline, fetchImpl) {
   }
   if (offline)
     throw new ReleaseMissingError(`Offline and ${current.release} is not cached in ${archiveDir}.`);
-  const response = await fetchImpl(releaseUrl(current, MANIFEST), {
-    signal: AbortSignal.timeout(60_000),
-  });
-  if (response.status === 404)
+  const text = await manifestText(current, fetchImpl, { label: 'Bundle', log, retry });
+  if (text === undefined)
     throw new ReleaseMissingError(
       `Bundle ${current.release} is not published yet. CI publishes it once these inputs reach main.`,
     );
-  if (!response.ok) throw new Error(`Bundle manifest download failed: HTTP ${response.status}`);
-  const text = await response.text();
   const manifest = validateManifest(JSON.parse(text), current);
   await mkdir(dirname(cached), { recursive: true });
   await writeFile(cached, text);
@@ -633,6 +651,7 @@ export async function fetchAssets({
   force = false,
   prefix = '',
   fetchImpl = fetch,
+  retry,
   log = console.log,
 } = {}) {
   const current = await assetInputs(root);
@@ -654,7 +673,7 @@ export async function fetchAssets({
       return files.length;
     }
   }
-  const manifest = await releaseManifest(current, archiveDir, offline, fetchImpl);
+  const manifest = await releaseManifest(current, archiveDir, offline, fetchImpl, { log, retry });
   const { files, restored } = await installBundle({
     root,
     archiveDir,
@@ -665,6 +684,7 @@ export async function fetchAssets({
     force,
     prefix,
     fetchImpl,
+    retry,
     log,
   });
   await writeStamp(root, { ...current, from: 'fetch', prefix, files });
@@ -687,6 +707,7 @@ async function installBundle({
   force,
   prefix = '',
   fetchImpl,
+  retry,
   log,
 }) {
   const files = manifest.files.filter((f) => f.path.startsWith(prefix));
@@ -706,7 +727,14 @@ async function installBundle({
       log(`Downloading ${archive.file}`);
       path = archivePath(archiveDir, archive);
       await mkdir(dirname(path), { recursive: true });
-      await download(releaseUrl(manifest, archive.file), path, archive, fetchImpl);
+      // A bundle is hundreds of archives: one dropped connection must not cost the whole restore.
+      const url = releaseUrl(manifest, archive.file);
+      const destination = path;
+      await retryTransient(() => download(url, destination, archive, fetchImpl), {
+        what: `Download of ${archive.file}`,
+        log,
+        ...retry,
+      });
     }
     await verifyArchive(path, archive, byPath);
     const stage = await mkdtemp(join(staging, 'restore-'));
@@ -748,17 +776,27 @@ async function installBundle({
 }
 
 /** The newest published bundle (what main last built), or undefined when none can be listed. */
-async function latestPublished(repository, fetchImpl) {
+async function latestPublished(repository, fetchImpl, { log, retry } = {}) {
   const headers = { Accept: 'application/vnd.github+json' };
   const token = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
   if (token) headers.Authorization = `Bearer ${token}`;
-  const response = await fetchImpl(
-    `https://api.github.com/repos/${repository}/releases?per_page=100`,
-    { headers, signal: AbortSignal.timeout(60_000) },
+  // Giving up here means a build from nothing, so a busy API is worth waiting for.
+  const releases = await retryTransient(
+    async () => {
+      const response = await fetchImpl(
+        `https://api.github.com/repos/${repository}/releases?per_page=100`,
+        { headers, signal: AbortSignal.timeout(60_000) },
+      );
+      if (!response.ok)
+        throw httpError(
+          `Listing ${repository} releases failed: HTTP ${response.status}`,
+          response.status,
+        );
+      return await response.json();
+    },
+    { what: `Listing ${repository} releases`, log, ...retry },
   );
-  if (!response.ok)
-    throw new Error(`Listing ${repository} releases failed: HTTP ${response.status}`);
-  return (await response.json())
+  return releases
     .filter(
       (release) =>
         !release.draft &&
@@ -775,7 +813,7 @@ async function latestPublished(repository, fetchImpl) {
  * A seed bundle's manifest: a packed one whose archives are all cached here (an Actions cache of
  * an unpublished build), else the published one. Undefined when it is neither.
  */
-async function seedManifest(release, { repository, key }, archiveDir, fetchImpl) {
+async function seedManifest(release, { repository, key }, archiveDir, fetchImpl, options = {}) {
   const check = (manifest) => {
     validateManifest(manifest, { repository, key: key ?? manifest?.key ?? '' });
     if (manifest.release !== release) throw new Error(`Seed manifest is not ${release}.`);
@@ -796,12 +834,11 @@ async function seedManifest(release, { repository, key }, archiveDir, fetchImpl)
   const published = join(archiveDir, 'published', `${release}.json`);
   if (await maybeStat(published))
     return { manifest: check(JSON.parse(await readFile(published, 'utf8'))), offline: false };
-  const response = await fetchImpl(releaseUrl({ repository, release }, MANIFEST), {
-    signal: AbortSignal.timeout(60_000),
+  const text = await manifestText({ repository, release }, fetchImpl, {
+    label: 'Seed',
+    ...options,
   });
-  if (response.status === 404) return undefined;
-  if (!response.ok) throw new Error(`Seed manifest download failed: HTTP ${response.status}`);
-  const text = await response.text();
+  if (text === undefined) return undefined;
   const manifest = check(JSON.parse(text));
   await mkdir(dirname(published), { recursive: true });
   await writeFile(published, text);
@@ -819,6 +856,7 @@ export async function seedAssets({
   root = ROOT,
   archiveDir = join(root, OUTPUT),
   fetchImpl = fetch,
+  retry,
   log = console.log,
 } = {}) {
   const { repository } = JSON.parse(await readFile(join(root, 'asset-build.json'), 'utf8'));
@@ -833,7 +871,10 @@ export async function seedAssets({
       ? `assets-${seed.key.slice(0, 16)}`
       : undefined;
   const install = async (release, key, why) => {
-    const found = await seedManifest(release, { repository, key }, archiveDir, fetchImpl);
+    const found = await seedManifest(release, { repository, key }, archiveDir, fetchImpl, {
+      log,
+      retry,
+    });
     if (!found) {
       log(`Seed ${release} is neither cached nor published.`);
       return;
@@ -848,6 +889,7 @@ export async function seedAssets({
       offline,
       force: false,
       fetchImpl,
+      retry,
       log,
     });
     await writeStamp(root, {
@@ -867,7 +909,7 @@ export async function seedAssets({
   }
   let latest;
   try {
-    latest = await latestPublished(repository, fetchImpl);
+    latest = await latestPublished(repository, fetchImpl, { log, retry });
   } catch (error) {
     log(`Warning: ${error.message}`);
   }
@@ -877,6 +919,53 @@ export async function seedAssets({
   }
   await clearStamp(root);
   log('No earlier bundle to start from: the build runs every job.');
+}
+
+/**
+ * Delete the cached archives that the bundle for this checkout's inputs does not use. A CI source
+ * build leaves its seed's archives beside its own, and saving both put the Actions cache over
+ * GitHub's limit for a repository's caches (10 GB), so GitHub evicted it while jobs still needed
+ * it. Nothing is removed unless that bundle's manifest is here to say what it uses.
+ */
+export async function pruneArchives({
+  root = ROOT,
+  archiveDir = join(root, OUTPUT),
+  log = console.log,
+} = {}) {
+  const current = await assetInputs(root);
+  // A local packing and the published release can hold different bytes for the same bundle.
+  const used = new Set();
+  let manifests = 0;
+  for (const path of [
+    join(archiveDir, current.release, MANIFEST),
+    join(archiveDir, 'published', `${current.release}.json`),
+  ]) {
+    if (!(await maybeStat(path))) continue;
+    const manifest = validateManifest(JSON.parse(await readFile(path, 'utf8')), current);
+    for (const archive of manifest.archives) used.add(archive.sha256);
+    manifests++;
+  }
+  if (!manifests) {
+    log(`No manifest of ${current.release} in ${archiveDir}: no archives removed.`);
+    return { removed: 0, bytes: 0 };
+  }
+  let removed = 0;
+  let bytes = 0;
+  for (const entry of await readdir(archiveDir, { withFileTypes: true })) {
+    // Archives live at <sha256>/<file> (archivePath); manifests and stamps are left alone.
+    if (!entry.isDirectory() || !SHA.test(entry.name) || used.has(entry.name)) continue;
+    const directory = join(archiveDir, entry.name);
+    for (const file of await readdir(directory, { withFileTypes: true })) {
+      if (!file.isFile()) continue;
+      bytes += (await lstat(join(directory, file.name))).size;
+      removed++;
+    }
+    await removeStage(directory, archiveDir);
+  }
+  log(
+    `Removed ${removed} archives of other bundles (${(bytes / 1024 ** 2).toFixed(0)} MiB); ${current.release} uses ${used.size}.`,
+  );
+  return { removed, bytes };
 }
 
 /**
@@ -903,10 +992,7 @@ export async function publishAssets({
         maxBuffer: 8 * 1024 ** 2,
       }));
   // List releases rather than treating arbitrary authentication/network failures as "not found".
-  const releases = JSON.parse(
-    gh(['api', '--paginate', '--slurp', `repos/${repository}/releases?per_page=100`]),
-  ).flat();
-  let published = releases.find((r) => r.tag_name === release);
+  let published = listReleases(gh, repository).find((r) => r.tag_name === release);
   if (published && !published.draft) {
     log(`Already published https://github.com/${repository}/releases/tag/${release}`);
     return release;
@@ -1006,7 +1092,7 @@ async function main() {
   const archiveDir = resolve(values['archive-dir'] ?? join(root, OUTPUT));
   if (positionals.length !== 1)
     throw new Error(
-      'Usage: node scripts/asset-packs.mjs key|pack|fetch|seed|check|publish [options]',
+      'Usage: node scripts/asset-packs.mjs key|pack|fetch|seed|prune|check|publish [options]',
     );
   switch (positionals[0]) {
     case 'key': {
@@ -1050,6 +1136,9 @@ async function main() {
     case 'seed':
       await seedAssets({ root, archiveDir });
       break;
+    case 'prune':
+      await pruneArchives({ root, archiveDir });
+      break;
     case 'check':
       await checkAssets({ root, prefix: values.prefix });
       break;
@@ -1057,7 +1146,7 @@ async function main() {
       await publishAssets({ root, archiveDir, target: values.target });
       break;
     default:
-      throw new Error('Expected key, pack, fetch, seed, check or publish.');
+      throw new Error('Expected key, pack, fetch, seed, prune, check or publish.');
   }
 }
 

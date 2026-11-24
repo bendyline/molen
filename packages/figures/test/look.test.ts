@@ -168,6 +168,69 @@ describe('random looks', () => {
     expect(masculine.slice(6).every((e) => !e.suggested)).toBe(true);
   });
 
+  it('roll a steer of their own when none is given, so body, facial hair and clothes agree', () => {
+    const body = category('body');
+    const feminineBody = (look: FigureLook): boolean =>
+      body.options.find((o) => o.id === look.person.body)?.figure.features?.form === 'feminine';
+    const count = { masculine: 0, feminine: 0, unspecified: 0, mixed: 0 };
+    const n = 4000;
+    for (let i = 0; i < n; i++) {
+      const look = randomFigureLook(`roll-${i}`);
+      const steer = STEERS.find(
+        (s) => JSON.stringify(randomFigureLook(`roll-${i}`, { steer: s })) === JSON.stringify(look),
+      );
+      // The look is the one some steer draws for the seed (heights alone tell the steers apart).
+      expect(steer, `roll-${i}`).toBeDefined();
+      count[steer as FigureLookSteer]++;
+      if (look.person.facialHair !== 'facial.none' && feminineBody(look)) count.mixed++;
+    }
+    // Most looks lean one way or the other, in equal measure, and one in ten leans neither: the
+    // shares over these seeds were 0.450, 0.451 and 0.099.
+    expect(count.masculine / n).toBeGreaterThan(0.4);
+    expect(count.feminine / n).toBeGreaterThan(0.4);
+    expect(count.unspecified / n).toBeGreaterThan(0.05);
+    expect(count.unspecified / n).toBeLessThan(0.15);
+    // Facial hair on a feminine-form body stays possible and rare: 0.018 of these looks, against
+    // 0.206 when every look is drawn unsteered.
+    expect(count.mixed).toBeGreaterThan(0);
+    expect(count.mixed / n).toBeLessThan(0.04);
+  });
+
+  it('lean the way the parts they keep do', () => {
+    const base = randomFigureLook('kept', { steer: 'unspecified' });
+    const person = (bodyId: string, facialHair: string): FigureLook =>
+      setFigureLookOption(setFigureLookOption(base, 'body', bodyId), 'facialHair', facialHair);
+    const outfits = (look: FigureLook): Set<string> => {
+      const worn = new Set<string>();
+      for (let i = 0; i < 400; i++) {
+        const next = randomFigureLook(`outfit-${i}`, { keep: { look, parts: ['person'] } });
+        worn.add(next.outfit.top.id);
+        worn.add(next.outfit.bottom.id);
+      }
+      return worn;
+    };
+    // A beard, or a masculine-form body, draws no dress or skirt.
+    for (const look of [
+      person('body.straight', 'facial.beard'),
+      person('body.broad', 'facial.none'),
+    ]) {
+      const worn = outfits(look);
+      expect(worn.has('top.dress')).toBe(false);
+      expect(worn.has('bottom.skirt')).toBe(false);
+    }
+    // A feminine-form body draws them, and so does a person who suits either steer.
+    expect(outfits(person('body.curved', 'facial.none')).has('top.dress')).toBe(true);
+    expect(outfits(person('body.straight', 'facial.none')).has('bottom.skirt')).toBe(true);
+    // A person with one of each is steered by neither: every outfit is open.
+    expect(outfits(person('body.curved', 'facial.beard')).has('bottom.skirt')).toBe(true);
+    // The other way round: a kept dress draws no facial hair on the new person.
+    const dressed = setFigureLookOption(base, 'top', 'top.dress');
+    for (let i = 0; i < 200; i++) {
+      const next = randomFigureLook(`person-${i}`, { keep: { look: dressed, parts: ['outfit'] } });
+      expect(next.person.facialHair).toBe('facial.none');
+    }
+  });
+
   it('keep the parts asked for', () => {
     const a = randomFigureLook('a');
     const b = randomFigureLook('b', { keep: { look: a, parts: ['person'] } });

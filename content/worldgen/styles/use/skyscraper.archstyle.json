@@ -2,7 +2,7 @@
   "format": "molen/archstyle@1",
   "id": "molen.worldgen.use.skyscraper",
   "title": "Glass skyscraper",
-  "doc": "A curtain-walled tower: floor-to-ceiling glazing behind slim dark mullions, a double-height lobby, and a screened plant crown at the top.",
+  "doc": "A curtain-walled tower: floor-to-ceiling glazing between spandrels of pale panel or metal, a double-height lobby, and a screened plant crown at the top.",
   "version": 1,
   "applicability": {
     "classes": [
@@ -109,15 +109,21 @@
     "wall": {
       "choices": [
         {
+          "ref": "matgraph:molen.worldgen.material.concrete_panel",
+          "weight": 3,
+          "palette": "panel"
+        },
+        {
           "ref": "matgraph:molen.worldgen.material.metal_painted",
-          "weight": 1
+          "weight": 2,
+          "palette": "metal"
         }
       ],
       "tint": "multiply",
       "uv": "meters",
       "uvOffset": "none",
       "uvMirror": false,
-      "palette": "wall",
+      "palette": "panel",
       "uvScale": [
         3,
         3
@@ -188,18 +194,47 @@
     }
   },
   "palettes": {
-    "wall": {
+    "panel": {
       "entries": [
         {
-          "color": "#3f474d",
+          "color": "#d2cec5",
+          "weight": 4
+        },
+        {
+          "color": "#e3e0d8",
+          "weight": 3
+        },
+        {
+          "color": "#ddd6c6",
+          "weight": 3
+        },
+        {
+          "color": "#b8bfc4",
+          "weight": 2
+        }
+      ],
+      "jitter": {
+        "hue": 0.004,
+        "saturation": 0.02,
+        "lightness": 0.03
+      }
+    },
+    "metal": {
+      "entries": [
+        {
+          "color": "#b8bfc4",
+          "weight": 3
+        },
+        {
+          "color": "#9eacb8",
+          "weight": 3
+        },
+        {
+          "color": "#8f9397",
           "weight": 2
         },
         {
-          "color": "#343c42",
-          "weight": 2
-        },
-        {
-          "color": "#4a5258",
+          "color": "#b3aca1",
           "weight": 1
         }
       ],
@@ -212,7 +247,27 @@
     "roof": {
       "entries": [
         {
-          "color": "#6f7270",
+          "color": "#ecece8",
+          "weight": 7
+        },
+        {
+          "color": "#dadbd7",
+          "weight": 4
+        },
+        {
+          "color": "#c0c1bd",
+          "weight": 3
+        },
+        {
+          "color": "#9b9d9d",
+          "weight": 2
+        },
+        {
+          "color": "#74777b",
+          "weight": 1
+        },
+        {
+          "color": "#b5ab98",
           "weight": 1
         }
       ],
@@ -225,15 +280,15 @@
     "trim": {
       "entries": [
         {
-          "color": "#3f474d",
-          "weight": 2
+          "color": "#d8d5cc",
+          "weight": 3
         },
         {
-          "color": "#343c42",
-          "weight": 2
+          "color": "#b8bfc4",
+          "weight": 3
         },
         {
-          "color": "#4a5258",
+          "color": "#8f9397",
           "weight": 1
         }
       ],

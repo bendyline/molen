@@ -291,7 +291,8 @@ front of any wall between it and the walker. Mouse-look turns the walker's headi
 with it; vertical look tilts the camera and eases back. Movement stays relative to the camera, and
 the body faces the way it walks (the camera's heading while standing). The avatar is drawn on foot
 in the third-person view and seated at the wheel in a car's or aircraft's chase view; never in first
-person or a cockpit.
+person or a cockpit. Seated, its eye is at the seat's and its feet rest on the floor of the car or
+cockpit, however tall it is.
 
 ### Owned vehicles
 

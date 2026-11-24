@@ -35,7 +35,7 @@ export const USE_SHOWCASE: readonly ShowcaseBuilding[] = [
 ];
 
 /** The street of building uses for review, with ?synthetic=1&uses=1. */
-export function useShowcaseTile(size: number): TerrainSemanticTile {
+export function landUseShowcaseTile(size: number): TerrainSemanticTile {
   const tile = createEmptyTerrainSemanticTile();
   const point = (x: number, z: number): [number, number] => [0.5 + x / size, 0.5 + z / size];
   tile.landcover.push({

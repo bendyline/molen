@@ -122,22 +122,107 @@ export function topSpec(top: FigureTopStyle | undefined): TopSpec {
   return TOP_SPECS[top ?? 'shirt'];
 }
 
-/**
- * The leg radius factor of a trouser cut at a station (`t`: 0 hip, 1 knee, 2 ankle): slim cuts
- * taper below the knee, wide ones flare. Exactly 1 for every other legwear.
- */
-export function legwearRadius(legs: FigureLegwearStyle, t: number): number {
-  if (legs === 'slim')
-    return t > 0.9 ? 1 - 0.16 * dmath.smoothstep(dmath.clamp((t - 0.9) / 1.04, 0, 1)) : 1;
-  if (legs === 'wide')
-    return t > 0.7 ? 1 + 0.42 * dmath.smoothstep(dmath.clamp((t - 0.7) / 1.24, 0, 1)) : 1;
-  return 1;
+/** A leg section's radii in limb radii: outward, inward, in front of and behind its centre. */
+export type LegRadii = readonly [out: number, inner: number, front: number, back: number];
+
+interface LegwearCut {
+  /** Fullness over the leg (1 = skin tight). */
+  ease: number;
+  /**
+   * The least radius of the leg tube by station (`t`: 0 hip, 1 knee, 2 ankle), in limb radii and
+   * linear between entries: where cloth hangs clear of the leg instead of following it.
+   */
+  drape: readonly (readonly [t: number, r: number])[];
+  /** The hem's station: the leg is bare below it (9: the hem is at the shoe). */
+  hem: number;
 }
 
-/** Where the leg is bare from (a station `t`, see legwearRadius), else beyond the ankle. */
+/**
+ * Trouser cuts. Cloth hangs from the seat and thigh, so a regular leg is a near-straight tube
+ * about 0.08 of stature across at the knee and 0.07 at the hem: drawn skin tight, trousers read
+ * as leggings and the legs as long and thin.
+ */
+const LEGWEAR: Readonly<Record<FigureLegwearStyle, LegwearCut>> = {
+  long: {
+    ease: 1.06,
+    drape: [
+      [0.5, 1.2],
+      [1, 1.16],
+      [1.4, 1.1],
+      [2, 1.02],
+    ],
+    hem: 9,
+  },
+  slim: {
+    ease: 1.05,
+    drape: [
+      [1, 0.98],
+      [1.5, 0.9],
+      [2, 0.74],
+    ],
+    hem: 9,
+  },
+  wide: {
+    ease: 1.08,
+    drape: [
+      [0.4, 1.4],
+      [1, 1.38],
+      [1.5, 1.56],
+      [2, 1.72],
+    ],
+    hem: 9,
+  },
+  cropped: {
+    ease: 1.06,
+    drape: [
+      [0.5, 1.2],
+      [1, 1.16],
+      [1.55, 1.1],
+    ],
+    hem: 1.55,
+  },
+  shorts: {
+    ease: 1.1,
+    drape: [
+      [0.27, 1.5],
+      [0.68, 1.42],
+    ],
+    hem: 0.68,
+  },
+  skirt: { ease: 1, drape: [], hem: -1 },
+};
+
+/**
+ * A trouser leg's section at a station (`t`: 0 hip, 1 knee, 2 ankle) over the leg's own: the leg
+ * with the cut's ease, or the cut's drape where that is fuller.
+ */
+export function legwearSection(legs: FigureLegwearStyle, t: number, body: LegRadii): LegRadii {
+  const cut = LEGWEAR[legs];
+  let drape = 0;
+  const table = cut.drape;
+  for (let i = 0; i < table.length; i++) {
+    const [t1, r1] = table[i] as readonly [number, number];
+    if (i === 0 && t < t1) break;
+    const next = table[i + 1];
+    if (next === undefined || t <= next[0]) {
+      drape = next === undefined ? r1 : dmath.lerp(r1, next[1], (t - t1) / (next[0] - t1));
+      break;
+    }
+  }
+  return [
+    dmath.max(body[0] * cut.ease, drape),
+    dmath.max(body[1] * cut.ease, drape),
+    dmath.max(body[2] * cut.ease, drape),
+    dmath.max(body[3] * cut.ease, drape),
+  ];
+}
+
+/** Where the leg is bare from (a station `t`, see legwearSection), else beyond the ankle. */
 export function legwearBareFrom(legs: FigureLegwearStyle, skirtLike: boolean): number {
-  if (skirtLike) return -1;
-  if (legs === 'shorts') return 0.5;
-  if (legs === 'cropped') return 1.55;
-  return 9;
+  return skirtLike ? -1 : LEGWEAR[legs].hem;
+}
+
+/** Whether a trouser leg reaches the shoe and falls over a boot's shaft (slim legs tuck in). */
+export function legwearOverBoot(legs: FigureLegwearStyle): boolean {
+  return legs === 'long' || legs === 'wide';
 }

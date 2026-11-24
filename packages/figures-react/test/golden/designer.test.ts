@@ -87,22 +87,29 @@ it('designs a character with the mouse and the keyboard, drawn in 3D', async () 
     expect(after).not.toBe('hair.bun');
     expect(await page.evaluate(() => window.changes.at(-1)?.source)).toBe('hair');
 
-    // The steer reorders body shapes: under "Female" the masculine-form shapes move to "More".
-    await page.getByRole('radio', { name: 'Female' }).check();
-    expect(await page.evaluate(() => window.steer)).toBe('feminine');
+    // Every body shape is listed together, and nothing asks for a presentation first.
     const body = page.locator('fieldset[data-category="body"]');
-    expect(await body.locator(':scope > [data-part="options"] [data-part="option"]').count()).toBe(
-      6,
-    );
-    expect(await body.locator('[data-part="more"] [data-part="option"]').count()).toBe(3);
-    await page.getByRole('radio', { name: 'Non-binary' }).check();
     expect(await body.locator(':scope > [data-part="options"] [data-part="option"]').count()).toBe(
       9,
     );
+    expect(await page.locator('details').count()).toBe(0);
 
     // Undo goes back one step at a time.
     await page.getByRole('button', { name: 'Undo' }).click();
     expect(await page.evaluate(() => window.look.person.hair)).toBe('hair.bun');
+
+    // "New outfit" keeps the person and follows them: a beard is never drawn a dress or a skirt.
+    await body.getByRole('radio', { name: 'Straight' }).check();
+    await page.getByRole('radio', { name: 'Beard' }).check();
+    const person = await page.evaluate(() => JSON.stringify(window.look.person));
+    for (let i = 0; i < 12; i++) {
+      await page.getByRole('button', { name: 'New outfit' }).click();
+      const outfit = await page.evaluate(() => window.look.outfit);
+      expect(outfit.bottom.id).not.toBe('bottom.skirt');
+      expect(outfit.top.id).not.toMatch(/dress/);
+    }
+    expect(await page.evaluate(() => JSON.stringify(window.look.person))).toBe(person);
+    expect(await page.evaluate(() => window.changes.at(-1)?.source)).toBe('random');
 
     // Tabs: arrow keys move between the character and the outfit.
     await page.getByRole('tab', { name: 'Character' }).focus();

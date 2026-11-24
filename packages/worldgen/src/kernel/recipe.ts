@@ -134,10 +134,12 @@ export interface BuildingRecipe {
 }
 
 /**
- * sRGB tone of untinted window glass on flat (texture-less) levels: a blue-grey pane a little
- * darker than the textured window graphs, so distant facades keep legible rows of windows.
+ * sRGB tone of untinted window glass on flat (texture-less) levels, which draw it at
+ * `TEXTURED_SURFACE_MEAN`: the blue-grey a textured pane shows on screen, the sky it reflects
+ * included, a little darker so distant facades keep legible rows of windows. A tone of the pane's
+ * base color alone drew mid-distance towers black, over twice as dark as the same glass up close.
  */
-export const WINDOW_GLASS: readonly [number, number, number] = [0.3, 0.38, 0.47];
+export const WINDOW_GLASS: readonly [number, number, number] = [0.5, 0.6, 0.71];
 
 function clamp(value: number, lo: number, hi: number): number {
   return value < lo ? lo : value > hi ? hi : value;

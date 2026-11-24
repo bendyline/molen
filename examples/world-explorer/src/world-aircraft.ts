@@ -169,6 +169,12 @@ export class WorldAircraft {
       ? { model: visual.object, spec: this.aircraftData(this.typeId(kind)).spec }
       : undefined;
   }
+  /** Height of an aircraft entity's cockpit floor in its own frame, once its model has loaded. */
+  cockpitFloor(id: string): number | undefined {
+    return id.startsWith('aircraft-')
+      ? this.visuals.get(id.slice('aircraft-'.length))?.cockpit.floor
+      : undefined;
+  }
   /**
    * The flown aircraft for the vehicle console: its loaded model and its pilot's controls;
    * `gauges` shows its dials. Undefined until the model loads.

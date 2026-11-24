@@ -211,8 +211,8 @@ describe('garment layers', () => {
     }
   });
 
-  it('raises a boot shaft over the ankle, around trousers or a bare shin', () => {
-    for (const legs of ['long', 'cropped', 'shorts'] as const)
+  it('raises a boot shaft over the ankle, around slim trousers or a bare shin', () => {
+    for (const legs of ['slim', 'cropped', 'shorts'] as const)
       for (const tier of [0, 1, 2] as const) {
         const d: FigureDescriptor = {
           preset: 'human.adult',
@@ -227,19 +227,21 @@ describe('garment layers', () => {
       }
   });
 
-  it('lets wide trousers fall over boots, which stop at the ankle under them', () => {
-    for (const tier of [0, 1, 2] as const) {
-      const d: FigureDescriptor = {
-        preset: 'human.adult',
-        features: { footwear: 'boot', legs: 'wide' },
-        palette: LAYERS,
-      };
-      const H = resolveFigureDescriptor(d).height;
-      for (const from of ['front', 'back'] as const) {
-        expect(layer(frontmost(d, tier, 0.1, 0.085 * H, from)), `tier ${tier}`).toBe('bottom');
-        expect(layer(frontmost(d, tier, 0.1, 0.01 * H, from)), `tier ${tier}`).toBe('shoes');
+  it('lets regular and wide trousers fall over boots, which stop at the ankle under them', () => {
+    for (const legs of ['long', 'wide'] as const)
+      for (const tier of [0, 1, 2] as const) {
+        const d: FigureDescriptor = {
+          preset: 'human.adult',
+          features: { footwear: 'boot', legs },
+          palette: LAYERS,
+        };
+        const H = resolveFigureDescriptor(d).height;
+        for (const from of ['front', 'back'] as const) {
+          const what = `${legs} tier ${tier}`;
+          expect(layer(frontmost(d, tier, 0.1, 0.085 * H, from)), what).toBe('bottom');
+          expect(layer(frontmost(d, tier, 0.1, 0.01 * H, from)), what).toBe('shoes');
+        }
       }
-    }
   });
 });
 

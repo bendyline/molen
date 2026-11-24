@@ -117,6 +117,16 @@ describe('AmbientFigures for host characters', () => {
     expect(far.count).toBe(0);
   });
 
+  it('keeps seated feet on the floor of the seat', () => {
+    const seated = { mode: 'sit', anchor: 'eye' } as const;
+    const hanging = draw(new AmbientFigures(), [walker(seated)]);
+    const resting = draw(new AmbientFigures(), [walker({ ...seated, floor: 0.88 })]);
+    if (hanging === undefined || resting === undefined) throw new Error('no figure drawn');
+    expect(joint(hanging, 'foot.l').y).toBeLessThan(AT[1] - 0.95);
+    expect(joint(resting, 'foot.l').y).toBeGreaterThan(AT[1] - 0.88);
+    expect(joint(resting, 'head').y).toBeCloseTo(joint(hanging, 'head').y, 4);
+  });
+
   it('rebuilds a visible walker whose figure changes (a host changing a look)', () => {
     const figures = new AmbientFigures();
     const before = draw(figures, [walker()]);

@@ -13,22 +13,30 @@ it('renders a controlled look on the server, with every person choice labelled',
     <FigureDesigner
       look={randomFigureLook('server')}
       onChange={() => {}}
-      strings={{ 'steer.masculine': 'Male', 'steer.unspecified': 'Non-binary' }}
+      strings={{ 'section.person': 'You', 'category.body': 'Build' }}
     />,
   );
-  for (const text of [
-    'Male',
-    'Non-binary',
-    'Skin tone',
-    'Head',
-    'Hair style',
-    'Hair texture',
-    'Body shape',
-    'Height',
-  ])
+  for (const text of ['You', 'Build', 'Skin tone', 'Head', 'Hair style', 'Hair texture', 'Height'])
     expect(html).toContain(text);
   for (const option of ['Tone 1 of 10', 'Face 12', 'Locs', 'Coily']) expect(html).toContain(option);
   expect(html).toContain('role="tablist"');
+});
+
+it('lists every option of a category together, with no presentation to pick first', () => {
+  const html = renderToStaticMarkup(
+    <FigureDesigner look={randomFigureLook('server')} onChange={() => {}} preview={false} />,
+  );
+  const body = DEFAULT_FIGURE_LOOK_CATALOG.categories.find((c) => c.id === 'body');
+  const facialHair = DEFAULT_FIGURE_LOOK_CATALOG.categories.find((c) => c.id === 'facialHair');
+  for (const option of [...(body?.options ?? []), ...(facialHair?.options ?? [])])
+    expect(html, option.id).toContain(`>${option.label}</span>`);
+  expect(html.match(/data-part="option"/g)).toHaveLength(
+    DEFAULT_FIGURE_LOOK_CATALOG.categories
+      .filter((c) => c.part === 'person')
+      .reduce((n, c) => n + c.options.length, 0),
+  );
+  expect(html).not.toContain('<details');
+  for (const word of ['Masculine', 'Feminine', 'Unspecified']) expect(html).not.toContain(word);
 });
 
 it('leaves out a category with a single choice', () => {

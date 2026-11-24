@@ -131,6 +131,7 @@ import {
 } from './backend-options.js';
 import { type ExplorerWorldgenContent, loadExplorerContent } from './content.js';
 import { createExplorerDioramas, DIORAMA_SITES, selectedDiorama } from './dioramas.js';
+import { createExplorerFigure } from './explorer-figure.js';
 import { createFlightInstrumentPanel } from './flight-instrument-panel.js';
 import { drawFrameGraph, FrameMeter, frameRateHealth } from './frame-meter.js';
 import { formatCameraLocation } from './location-readout.js';
@@ -148,6 +149,7 @@ import { createSkyControls } from './sky-controls.js';
 import { createSurfaceControls } from './surface-controls.js';
 import { syntheticFeatureTile, syntheticLandcoverTile } from './synthetic-footprints.js';
 import { ExplorerTrains, isTrainRequest, TRAIN_HELP, TRAIN_RIDE_HELP } from './trains.js';
+import { collisionObstruction, WalkCamera } from './walk-camera.js';
 import { createWeatherControls } from './weather-controls.js';
 import { AIRCRAFT_HELP, aircraftBlocks, WorldAircraft } from './world-aircraft.js';
 import { PARACHUTE_HELP, WorldParachute } from './world-parachute.js';
@@ -1868,6 +1870,25 @@ async function main(): Promise<void> {
   );
   // Climbing out of a wreck: the landing ray looks past aircraft, so the pilot stands beside it.
   const besideVehicles = new WalkCollision({ ignoreVehicles: true });
+  // The viewer's own figure: on foot in the third-person view, and in the seat of what they drive
+  // or fly while the camera is outside it.
+  const figure = createExplorerFigure({
+    params,
+    world: vehicles.world,
+    parent: stream.object,
+    ...(params.get('warmup') !== '0'
+      ? { prepare: (object: THREE.Object3D) => viewer.renderer.prepareObject(object) }
+      : {}),
+    cockpitFloor: (id) => flight.cockpitFloor(id),
+    suspendInput: () => input.map.suspend(),
+    focusTarget: canvas,
+  });
+  // On foot V switches between the walker's own eyes and the camera behind them;
+  // `?walkView=first` starts in the first.
+  let walkView: 'first' | 'third' =
+    figure.enabled && params.get('walkView') !== 'first' ? 'third' : 'first';
+  const walkCamera = new WalkCamera();
+  const walkObstruction = collisionObstruction(walkCollision);
   const nightLighting = new EarthNightLighting({
     root: stream.object,
     world: vehicles.world,
@@ -1966,10 +1987,8 @@ async function main(): Promise<void> {
       audio?.layer.setSuspended(document.hidden || !document.hasFocus());
     })
     .catch((error: unknown) => console.warn('audio unavailable', error));
-  const walkHelp =
-    'WASD walk · Shift run · Space jump · E open door / board vehicle · P personal ride · click to look · Esc release mouse';
-  const swimHelp =
-    'WASD swim · Shift swim faster · Return to shore to walk · E board vehicle · click to look · Esc release mouse';
+  const walkHelp = `WASD walk · Shift run · Space jump · E open door / board vehicle · P personal ride · ${figure.enabled ? 'V view · ' : ''}click to look · Esc release mouse`;
+  const swimHelp = `WASD swim · Shift swim faster · Return to shore to walk · E board vehicle · ${figure.enabled ? 'V view · ' : ''}click to look · Esc release mouse`;
   const boatHelp =
     'W/S thrust / reverse · A/D helm · Space opposing thrust · hold Shift to anchor slowly · E dockside exit · V view';
   const standAt = (feet: readonly [number, number, number]): void => {
@@ -2054,6 +2073,7 @@ async function main(): Promise<void> {
       pilotVision.dispose();
       nightLighting.dispose();
       parachute.dispose();
+      figure.dispose();
       besideVehicles.clear();
       explorerTrains.dispose();
       explorerOverrides.dispose();
@@ -2241,7 +2261,7 @@ async function main(): Promise<void> {
           ? 'E · Close the door'
           : 'E · Open the door';
   /** Open or shut the door ahead; false when there is none. */
-  const useDoor = (): boolean => {
+  const operateDoor = (): boolean => {
     const door = doorAhead();
     if (!door) return false;
     worldgen?.setDoor(door.id, !door.open, [walker.feet.x, walker.feet.y, walker.feet.z]);
@@ -2252,7 +2272,7 @@ async function main(): Promise<void> {
     // Standing in a lift, E takes it up a storey rather than reaching for a vehicle.
     if (!vehicles.mountedId && rideLift(1)) return;
     // A door in front of the walker comes before a car behind them; an aircraft's prompt wins.
-    if (!vehicles.mountedId && !flight.nearest(camera.pos) && useDoor()) return;
+    if (!vehicles.mountedId && !flight.nearest(camera.pos) && operateDoor()) return;
     if (vehicles.mountedId) {
       const car = vehicles.mountedId;
       // Out through the door, which shuts once the walker moves off.
@@ -2507,9 +2527,12 @@ async function main(): Promise<void> {
       frameInput = input.read(0);
     }
     flyby &&= flight.mountedKind !== undefined;
-    if (frameInput.view % 2 === 1 && (vehicles.mountedId || parachute.active)) {
-      if (flyby) flyby = false;
-      else vehicles.view = vehicles.view === 'cockpit' ? 'chase' : 'cockpit';
+    if (frameInput.view % 2 === 1) {
+      if (vehicles.mountedId || parachute.active) {
+        if (flyby) flyby = false;
+        else vehicles.view = vehicles.view === 'cockpit' ? 'chase' : 'cockpit';
+      } else if (navigation === 'walk' && figure.enabled)
+        walkView = walkView === 'first' ? 'third' : 'first';
     }
     if (vehicles.mountedId || parachute.active) {
       // Under a canopy the view turns all the way round, and down to the landing.
@@ -2791,11 +2814,43 @@ async function main(): Promise<void> {
       camera.pitch = pose.pitch;
       viewDirection = cameraForward(camera.yaw, camera.pitch);
     }
+    // `camera.pos` stays the walker's eye, which prompts, doors, streaming budgets and readouts work
+    // from; in the third-person view the camera itself stands behind it.
+    const onFoot = navigation === 'walk' && !vehicleCamera && walker.ready;
+    const behind =
+      onFoot && walkView === 'third'
+        ? walkCamera.update(
+            dt,
+            camera.pos,
+            viewDirection,
+            walkObstruction,
+            // Swimming, the eye is a little above the water: keep the camera above it too.
+            walker.swimming ? camera.pos[1] - 0.2 : undefined,
+          )
+        : undefined;
+    const viewPosition = behind?.position ?? camera.pos;
+    figure.update(
+      dt,
+      {
+        seated: vehicles.mountedId !== undefined,
+        visible: onFoot
+          ? (behind?.distance ?? 0) > 0
+          : vehicles.mountedId !== undefined && (flyby || vehicles.view === 'chase'),
+        ...(onFoot
+          ? {
+              feet: [walker.feet.x, walker.feet.y, walker.feet.z] as const,
+              velocity: [walker.velocity.x, walker.velocity.z] as const,
+              heading: camera.yaw + Math.PI / 2,
+            }
+          : {}),
+      },
+      viewPosition,
+    );
     // Keep the inexpensive 10 Hz cadence while the view barely changes, but refresh before this
     // frame renders if a drag or movement could outrun the selector's view guard band. Otherwise
     // the camera can briefly face resident-but-hidden terrain and expose a horizon-sized hole.
     worldgen?.updateStructures({
-      position: camera.pos,
+      position: viewPosition,
       direction: viewDirection,
       verticalFov: 60,
       viewportHeight: canvas.height,
@@ -2806,17 +2861,17 @@ async function main(): Promise<void> {
       viewNeedsImmediateUpdate(
         streamedPosition,
         streamedDirection,
-        camera.pos,
+        viewPosition,
         viewDirection,
         immediateStreamMove,
         immediateStreamTurn,
       );
     if (now - streamTime >= 100 || terrainViewChanged) {
       streamTime = now;
-      if (fixedEarth !== undefined) fixedEarth.stream.update(camera.pos);
+      if (fixedEarth !== undefined) fixedEarth.stream.update(viewPosition);
       else {
         const streamView: TerrainPyramidView = {
-          position: camera.pos,
+          position: viewPosition,
           verticalFov: THREE.MathUtils.degToRad(60),
           viewportHeight: canvas.height,
           direction: viewDirection,
@@ -2824,7 +2879,7 @@ async function main(): Promise<void> {
         };
         pyramidEarth?.stream.update(streamView, tilePreloader.views(now, streamView, true));
       }
-      streamedPosition = [...camera.pos];
+      streamedPosition = [...viewPosition];
       streamedDirection = [...viewDirection];
     }
 
@@ -2844,14 +2899,14 @@ async function main(): Promise<void> {
       });
     else
       viewer.setCamera({
-        position: camera.pos,
+        position: viewPosition,
         ...(flightCamera
           ? { rotation: flightCamera.rotation }
           : {
               lookAt: [
-                camera.pos[0] + viewDirection[0],
-                camera.pos[1] + viewDirection[1],
-                camera.pos[2] + viewDirection[2],
+                viewPosition[0] + viewDirection[0],
+                viewPosition[1] + viewDirection[1],
+                viewPosition[2] + viewDirection[2],
               ],
             }),
       });
@@ -3224,6 +3279,8 @@ async function main(): Promise<void> {
               ? 'rotation'
               : 'grounded';
       navigationStatus.dataset.view = flyby ? 'flyby' : vehicles.view;
+      navigationStatus.dataset.walkView = walkView;
+      navigationStatus.dataset.figure = String(figure.shown);
       navigationStatus.dataset.entities = String(vehicles.world.query({ name: 'vehicle' }).count());
       const ambientStats = ambient?.stats();
       navigationStatus.dataset.ambientCars = String(ambientStats?.cars ?? 0);

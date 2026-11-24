@@ -21,6 +21,15 @@ axis numbering varies by device. Press a controller button with the page focused
 detected. **Save** keeps mappings in this browser and shares them with the Earth view sample on
 the same origin; **Done** resumes play. Keyboard controls continue to work alongside analog input.
 
+**Your figure** is the person you walk as. Someone random is drawn when the page loads, and you see
+them from behind on foot (**V** switches to your own eyes and back; `?walkView=first` starts there)
+and in the seat of whatever you drive or fly, from the chase and flyby views. **Design…** opens the
+[character designer](https://molen.dev/guide/figure-looks) to choose their skin tone, head, hair,
+body, clothing and accessories. A figure you design is kept in this browser for later visits;
+**Surprise me** draws someone new for this one. A backpack, shoulder bag or wide-brimmed hat comes
+off in a seat. `?figure=ada` (any word) always draws the same person, `?figure=0` leaves the figure
+out, and frozen captures (`?freeze=1`) are first person without one unless `?figure=1`.
+
 **Living places** plays six scripted dioramas at registered geographic sites. Choose a place
 and press **Visit**, or open `?diorama=football`, `airport`, `little-league`, `fireworks`, `fair`
 or `market`. Scenes load within 450 meters and unload beyond 550 meters. They run in separate

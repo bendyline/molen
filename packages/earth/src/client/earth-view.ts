@@ -137,7 +137,6 @@ import {
   type EarthActorSettings,
   type EarthActors,
   type EarthActorViewer,
-  type EarthAvatarFrame,
 } from './actors';
 import { EarthAircraft, type EarthFlightStatus, type EarthInstrument } from './aircraft';
 import { EarthAirfields, type EarthPlace } from './airfields';
@@ -164,6 +163,7 @@ import {
 import { type EarthCredit, earthCredits, regionalEarthAttribution } from './attribution';
 import { createEarthAudio, type EarthAudio, type EarthAudioOptions } from './audio';
 import { EarthAudioTerrain, type EarthAudioTerrainSample } from './audio-terrain';
+import type { EarthAvatarFrame } from './avatar';
 import type { EarthContent } from './content';
 import { EarthDioramaDirector, type EarthDioramaOptions, type EarthDioramas } from './dioramas';
 import { createEarthFleet, type EarthFleetOptions } from './fleet';
@@ -2896,6 +2896,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         },
         emit: (change) => emit('actorchange', change),
         ownsVehicle: (id) => owned.has(id),
+        cockpitFloor: (id) => stack?.aircraft?.cockpitFloor(id),
       },
       options.actors,
     );

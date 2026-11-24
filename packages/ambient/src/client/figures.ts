@@ -21,9 +21,9 @@ import {
   type FigureTier,
   figureBodyToSkinnedMesh,
   figureSeed,
+  figureStrideRate,
   type ResolvedFigureDescriptor,
   resolveFigureDescriptor,
-  strideRateFor,
   worldToFigure,
 } from '@bendyline/molen-figures/client';
 import * as THREE from 'three';
@@ -52,6 +52,11 @@ export interface WalkerView {
   anchor?: 'origin' | 'eye' | 'pelvis';
   /** Saddle-relative cycle contact points, shared with the kernel pose evaluator. */
   riding?: import('@bendyline/molen-figures/client').PoseEvalOptions['riding'];
+  /**
+   * Seated and anchored: the floor's depth below `pos`, meters. Legs too long to hang above it
+   * rest on it, stretched out in front, instead of passing through.
+   */
+  floor?: number;
   /** A world point the head turns toward (within the neck's reach). */
   lookAt?: readonly [number, number, number];
 }
@@ -363,7 +368,7 @@ export class AmbientFigures {
       if (walker === undefined) continue;
       const seated = walker.mode === 'sit';
       const moving = !seated && walker.speed > 0.05 && walker.mode !== 'idle';
-      const strideRate = moving ? strideRateFor(walker.speed, entry.rig.legLength) : 0;
+      const strideRate = moving ? figureStrideRate(entry.rig, walker.speed) : 0;
       const stride = strideRate > 0 ? walker.speed / strideRate : 1;
       const state: FigureStateData = {
         mode: seated ? 'sit' : moving ? (walker.mode === 'run' ? 'run' : 'walk') : 'idle',
@@ -393,6 +398,7 @@ export class AmbientFigures {
           ...(walker.anchor !== undefined && walker.anchor !== 'origin'
             ? { anchor: walker.anchor }
             : {}),
+          ...(walker.floor !== undefined ? { floor: walker.floor } : {}),
         },
         entry.pose,
       );

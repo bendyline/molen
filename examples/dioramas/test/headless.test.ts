@@ -9,9 +9,10 @@ describe('football diorama', () => {
   it('pins its normal CLI simulation and produces the cheer cue', async () => {
     const run = await runSimulation({ scene: football().scene, ticks: 420 });
     expect(run.ok, run.error).toBe(true);
-    // Re-pinned for the 2026-11-08 figure rework: the human and animal rigs changed proportions.
+    // Re-pinned for the 2026-11-08 figure rework (human and animal proportions) and again for
+    // the 2026-11-23 human pass (hip, knee and ankle heights; a walker's own stride rate).
     expect(run.stateHash).toBe(
-      'sha256:c6747a21973d48ad13cdb8e195c6704fedd2aaf631f9f5630a0a77ed63a86dc0',
+      'sha256:e0195e70425715bd5fbd5aed7df44376eff34cd1e5f60a2ce76e51afc6d91acb',
     );
     expect(run.events.some((event) => event.event.type === 'diorama.cue')).toBe(true);
   });

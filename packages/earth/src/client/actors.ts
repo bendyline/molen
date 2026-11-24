@@ -24,11 +24,7 @@ import {
   WalkController,
   type WalkInput,
 } from '@bendyline/molen-client/navigation';
-import {
-  cycleRiderPose,
-  type FigureData,
-  resolveFigureDescriptor,
-} from '@bendyline/molen-figures/client';
+import { type FigureData, resolveFigureDescriptor } from '@bendyline/molen-figures/client';
 import { AircraftState } from '@bendyline/molen-kernel/aircraft';
 import type { TypeLibrary } from '@bendyline/molen-kernel/content';
 import {
@@ -38,7 +34,6 @@ import {
   mountEntity,
   type SeatData,
   unmountEntity,
-  Vehicle,
   VehicleState,
   vehicleLocalPoint,
 } from '@bendyline/molen-kernel/vehicles';
@@ -46,6 +41,13 @@ import { componentHandle, isBoostMode, Transform, type World } from '@bendyline/
 import { boostSpeedMultiplier } from '@bendyline/molen-schema';
 import type * as THREE from 'three';
 import type { EarthPlace } from './airfields';
+import {
+  AvatarMotion,
+  type EarthAvatarFrame,
+  headingRotation,
+  seatedPose,
+  turnToward,
+} from './avatar';
 import type { EarthVehicles } from './vehicles';
 
 /** What an actor does. Set it with {@link EarthActors.setBehaviour}; distances are meters. */
@@ -176,6 +178,8 @@ export interface EarthActorHost {
   emit(change: EarthActorChange): void;
   /** Whether the host keeps this vehicle (it comes back after a re-anchor, so seats wait for it). */
   ownsVehicle?(id: string): boolean;
+  /** Height of an aircraft's cockpit floor in its own frame, for the feet of whoever sits in it. */
+  cockpitFloor?: (aircraft: string) => number | undefined;
 }
 
 /** The pieces of one terrain stack the director works in. */
@@ -201,15 +205,6 @@ export interface EarthActorViewer {
   eye: readonly [number, number, number] | undefined;
 }
 
-/** The viewer's own figure this frame (see `EarthWalker.setAvatar`). */
-export interface EarthAvatarFrame {
-  visible: boolean;
-  /** On foot: the walker's feet, horizontal velocity [x, z] and look heading. */
-  feet?: readonly [number, number, number];
-  velocity?: readonly [number, number];
-  heading?: number;
-}
-
 const PLAYER = 'world-player';
 const FigureComponent = componentHandle('figure');
 const ActorMarker = componentHandle('earthActor');
@@ -230,23 +225,10 @@ const STUCK_PROGRESS = 0.3;
 
 const compass = (heading: number): number => ((heading % TAU) + TAU) % TAU;
 
-/** Rotation about +Y turning a figure's front (+Z) to a compass heading (north -Z, east +X). */
-function headingRotation(heading: number): [number, number, number, number] {
-  const yaw = Math.PI - heading;
-  return [0, Math.sin(yaw / 2), 0, Math.cos(yaw / 2)];
-}
-
 /** The compass heading a rotation turns +Z to. */
 function rotationHeading(rot: readonly number[]): number {
   const [x = 0, y = 0, z = 0, w = 1] = rot;
   return compass(Math.atan2(2 * (x * z + w * y), -(1 - 2 * (x * x + y * y))));
-}
-
-function turnToward(current: number, target: number, step: number): number {
-  let delta = (target - current) % TAU;
-  if (delta > Math.PI) delta -= TAU;
-  if (delta < -Math.PI) delta += TAU;
-  return compass(current + Math.max(-step, Math.min(step, delta)));
 }
 
 /** A small seeded generator per actor (client-side variety, not simulation state). */
@@ -360,10 +342,7 @@ export class EarthActorDirector {
   private figures: AmbientFigures | undefined;
   private avatar: FigureData | undefined;
   private avatarVisible = false;
-  private avatarHeading = 0;
-  private avatarSpeed = 0;
-  private avatarSince = 0;
-  private avatarMoving = false;
+  private readonly avatarMotion = new AvatarMotion();
   private sequence = 0;
   private syncedAt = Number.NEGATIVE_INFINITY;
   private now = 0;
@@ -1353,26 +1332,8 @@ export class EarthActorDirector {
   private updateAvatar(world: World, frame: EarthAvatarFrame, dt: number): void {
     this.avatarVisible = frame.visible && this.avatar !== undefined;
     if (this.avatar === undefined || !world.exists(PLAYER)) return;
-    if (frame.feet === undefined || world.has(PLAYER, Mounted)) {
-      this.avatarSpeed = 0;
-      return;
-    }
-    const [vx, vz] = frame.velocity ?? [0, 0];
-    const speed = Math.hypot(vx, vz);
-    // Face where the walker goes; standing, face where the camera looks.
-    const target =
-      speed > 0.3 ? compass(Math.atan2(vx, -vz)) : (frame.heading ?? this.avatarHeading);
-    this.avatarHeading = turnToward(this.avatarHeading, target, 12 * Math.max(0, dt));
-    const moving = speed > 0.15;
-    if (moving !== this.avatarMoving) {
-      this.avatarMoving = moving;
-      this.avatarSince = world.tick;
-    }
-    this.avatarSpeed = speed;
-    world.patch(PLAYER, Transform, {
-      pos: [frame.feet[0], frame.feet[1], frame.feet[2]],
-      rot: headingRotation(this.avatarHeading),
-    });
+    const at = this.avatarMotion.update(frame, world.has(PLAYER, Mounted), world.tick, dt);
+    if (at !== undefined) world.patch(PLAYER, Transform, at);
   }
 
   /** Draw every figure in the world that ambient life does not draw: actors and the avatar. */
@@ -1387,30 +1348,11 @@ export class EarthActorDirector {
     const walkers: WalkerView[] = [];
     for (const [id, figure, t] of world.query(FigureComponent, Transform).without(AmbientAgent)) {
       const mounted = world.get(id, Mounted);
-      const seated = mounted !== undefined;
-      const riding =
-        mounted === undefined
-          ? undefined
-          : cycleRiderPose(
-              world.get(mounted.vehicle, Vehicle),
-              world.get(mounted.vehicle, VehicleState),
-              world.get(mounted.vehicle, Mountable)?.seats.find((seat) => seat.id === mounted.seat),
-            );
-      const seating = seated
-        ? { mode: 'sit' as const, anchor: riding ? ('pelvis' as const) : ('eye' as const), riding }
-        : {};
+      const seated =
+        mounted !== undefined ? seatedPose(world, mounted, this.host.cockpitFloor) : undefined;
       if (id === PLAYER) {
-        if (!this.avatarVisible) continue;
-        walkers.push({
-          id,
-          figure: figure as FigureData,
-          pos: t.pos,
-          rot: t.rot,
-          speed: seated ? 0 : this.avatarSpeed,
-          since: this.avatarSince,
-          hidden: false,
-          ...(seated ? seating : this.avatarSpeed > 2.2 ? { mode: 'run' as const } : {}),
-        });
+        if (this.avatarVisible)
+          walkers.push(this.avatarMotion.walker(id, figure as FigureData, t, seated));
         continue;
       }
       const actor = this.actors.get(id);
@@ -1420,11 +1362,10 @@ export class EarthActorDirector {
         figure: figure as FigureData,
         pos: t.pos,
         rot: t.rot,
-        speed: seated ? 0 : (actor?.speed ?? 0),
+        speed: seated !== undefined ? 0 : (actor?.speed ?? 0),
         since: actor?.modeSince ?? 0,
         hidden: false,
-        ...seating,
-        ...(!seated && actor !== undefined ? { mode: actor.mode } : {}),
+        ...(seated ?? (actor !== undefined ? { mode: actor.mode } : {})),
         ...(look !== undefined ? { lookAt: look } : {}),
       });
     }

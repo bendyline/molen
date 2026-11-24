@@ -1,10 +1,12 @@
 /**
  * Human head presets: twelve points in the head-shape space (see FigureHeadShape). `01` is the
- * reference head (every parameter 0). The others are a Latin-hypercube design over the fourteen
+ * reference head (every parameter 0). The others are a Latin-hypercube design over the nineteen
  * parameters, chosen so every parameter takes eleven evenly spaced values across them and no two
  * parameters move together (the largest pairwise correlation is 0.53): a broad nose does not come
  * with full lips, nor a wide face with a strong brow. They are shapes, not portraits of any group,
- * and are named by number for that reason.
+ * and are named by number for that reason. The five parameters added later (face length, nose
+ * length, mouth width, brow arch, eyelid) were spread over the existing eleven heads the same
+ * way, so each head kept the fourteen values it had.
  */
 
 import type { FigureHeadInput, FigureHeadPresetId, FigureHeadShape } from './types';
@@ -24,6 +26,11 @@ const ZERO: FigureHeadShape = {
   eyeTilt: 0,
   lips: 0,
   crown: 0,
+  faceLength: 0,
+  noseLength: 0,
+  mouthWidth: 0,
+  browArch: 0,
+  eyeLid: 0,
 };
 
 /** The head-shape parameter names, in a stable order. */
@@ -48,6 +55,10 @@ export const FIGURE_HEAD_PRESETS: Readonly<Record<FigureHeadPresetId, FigureHead
     eyeTilt: 0.15,
     lips: 0.3,
     crown: -0.3,
+    noseLength: 0.75,
+    mouthWidth: 0.6,
+    browArch: 0.6,
+    eyeLid: 0.75,
   }),
   '03': head({
     faceWidth: -0.15,
@@ -62,6 +73,10 @@ export const FIGURE_HEAD_PRESETS: Readonly<Record<FigureHeadPresetId, FigureHead
     eyeSpacing: -0.45,
     eyeSize: -0.3,
     eyeTilt: -0.3,
+    faceLength: 0.45,
+    noseLength: 0.6,
+    mouthWidth: -0.75,
+    eyeLid: 0.3,
   }),
   '04': head({
     faceWidth: -0.6,
@@ -77,6 +92,10 @@ export const FIGURE_HEAD_PRESETS: Readonly<Record<FigureHeadPresetId, FigureHead
     eyeTilt: -0.45,
     lips: -0.3,
     crown: 0.75,
+    faceLength: -0.45,
+    noseLength: 0.15,
+    mouthWidth: -0.45,
+    browArch: 0.75,
   }),
   '05': head({
     faceWidth: 0.6,
@@ -93,6 +112,10 @@ export const FIGURE_HEAD_PRESETS: Readonly<Record<FigureHeadPresetId, FigureHead
     eyeTilt: 0.3,
     lips: 0.45,
     crown: 0.6,
+    faceLength: -0.6,
+    mouthWidth: 0.45,
+    browArch: -0.6,
+    eyeLid: 0.6,
   }),
   '06': head({
     faceWidth: 0.75,
@@ -109,6 +132,11 @@ export const FIGURE_HEAD_PRESETS: Readonly<Record<FigureHeadPresetId, FigureHead
     eyeTilt: -0.75,
     lips: -0.45,
     crown: 0.45,
+    faceLength: 0.15,
+    noseLength: 0.3,
+    mouthWidth: -0.3,
+    browArch: 0.45,
+    eyeLid: 0.15,
   }),
   '07': head({
     faceWidth: 0.45,
@@ -124,6 +152,10 @@ export const FIGURE_HEAD_PRESETS: Readonly<Record<FigureHeadPresetId, FigureHead
     eyeSize: 0.75,
     lips: 0.6,
     crown: 0.15,
+    faceLength: 0.75,
+    noseLength: -0.3,
+    browArch: -0.75,
+    eyeLid: -0.75,
   }),
   '08': head({
     faceWidth: 0.3,
@@ -137,6 +169,11 @@ export const FIGURE_HEAD_PRESETS: Readonly<Record<FigureHeadPresetId, FigureHead
     eyeTilt: -0.15,
     lips: 0.15,
     crown: -0.15,
+    faceLength: 0.3,
+    noseLength: -0.15,
+    mouthWidth: -0.6,
+    browArch: 0.15,
+    eyeLid: -0.3,
   }),
   '09': head({
     faceWidth: -0.45,
@@ -151,6 +188,11 @@ export const FIGURE_HEAD_PRESETS: Readonly<Record<FigureHeadPresetId, FigureHead
     eyeTilt: 0.6,
     lips: -0.75,
     crown: -0.6,
+    faceLength: -0.75,
+    noseLength: 0.45,
+    mouthWidth: 0.15,
+    browArch: -0.45,
+    eyeLid: -0.6,
   }),
   '10': head({
     faceWidth: -0.3,
@@ -166,6 +208,11 @@ export const FIGURE_HEAD_PRESETS: Readonly<Record<FigureHeadPresetId, FigureHead
     eyeTilt: -0.6,
     lips: -0.6,
     crown: -0.75,
+    faceLength: -0.15,
+    noseLength: -0.75,
+    mouthWidth: 0.75,
+    browArch: -0.3,
+    eyeLid: 0.45,
   }),
   '11': head({
     faceWidth: -0.75,
@@ -180,6 +227,11 @@ export const FIGURE_HEAD_PRESETS: Readonly<Record<FigureHeadPresetId, FigureHead
     eyeTilt: 0.45,
     lips: -0.15,
     crown: 0.3,
+    faceLength: 0.6,
+    noseLength: -0.6,
+    mouthWidth: 0.3,
+    browArch: 0.3,
+    eyeLid: -0.15,
   }),
   '12': head({
     faceWidth: 0.15,
@@ -196,6 +248,11 @@ export const FIGURE_HEAD_PRESETS: Readonly<Record<FigureHeadPresetId, FigureHead
     eyeTilt: 0.75,
     lips: 0.75,
     crown: -0.45,
+    faceLength: -0.3,
+    noseLength: -0.45,
+    mouthWidth: -0.15,
+    browArch: -0.15,
+    eyeLid: -0.45,
   }),
 };
 

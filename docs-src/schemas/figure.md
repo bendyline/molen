@@ -572,6 +572,36 @@ A figure descriptor document: a preset plus overrides, the same shape as the `fi
           "minimum": -1,
           "maximum": 1,
           "description": "Flat (-1) to rounded (1) skull top."
+        },
+        "faceLength": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Short (-1) to long (1) face."
+        },
+        "noseLength": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Short (-1) to long (1) nose."
+        },
+        "mouthWidth": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Narrow (-1) to wide (1) mouth."
+        },
+        "browArch": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Straight (-1) to arched (1) eyebrows."
+        },
+        "eyeLid": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "A smooth upper lid with no fold (-1) to a deep-set eye under a high fold (1)."
         }
       },
       "additionalProperties": false,

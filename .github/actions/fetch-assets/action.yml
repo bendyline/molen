@@ -4,10 +4,12 @@ description: >-
   from the Actions cache, else from its GitHub release, else by building it from source when no
   bundle exists for these inputs yet (a pull request that changes models). That build starts from
   the newest earlier build this branch can see, so it reruns only the jobs whose inputs changed.
+  CI runs this once per workflow run, in the `assets` job, which uploads the bundle as the run's
+  artifact; the jobs that read GLBs install it from there (.github/actions/restore-assets).
 outputs:
-  built:
-    description: "'true' when this job built the bundle from source."
-    value: ${{ steps.fetch.outputs.build == 'true' }}
+  release:
+    description: The release this checkout's asset inputs name, published or not.
+    value: ${{ steps.key.outputs.release }}
 runs:
   using: composite
   steps:
@@ -87,9 +89,9 @@ runs:
       run: |
         pip install -r examples/lantern-dungeon/tools/requirements.txt
         pnpm assets:build --compile
-        # Make the build restorable before its release exists: dependent jobs and reruns restore
-        # it offline, and on main the publish job uploads these archives. Groups the build did
-        # not change reuse the seed's archives instead of compressing them again.
+        # Make the build restorable before its release exists: the run's other jobs install these
+        # archives, and on main the publish job uploads them. Groups the build did not change
+        # reuse the seed's archives instead of compressing them again.
         pnpm assets:pack
         # The next build of this branch (or of any branch, from main) starts from this one.
         cp .artifacts/asset-packs/installed.json .artifacts/asset-build/seed.json
@@ -97,6 +99,22 @@ runs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ steps.node.outputs.version }}
+    # One bundle and nothing else is what the cache keeps below and what `assets` uploads for the
+    # run's other jobs. A source build leaves its seed's archives beside its own; saving both put
+    # the cache over GitHub's 10 GB limit for a repository's caches.
+    - id: bundle
+      name: Keep only this bundle's archives
+      shell: bash
+      run: |
+        node scripts/asset-packs.mjs prune
+        bytes=$(du -sb .artifacts/asset-packs | cut -f1)
+        echo "The bundle's archives take $((bytes / 1000000)) MB."
+        # GitHub evicts a repository's least recently used caches to fit a new one under 10 GB. A
+        # bundle near that size would push out every other cache, the job records saved below
+        # among them, and then be evicted by the next cache any job saves. Such a bundle is not
+        # cached: the run's other jobs get it as an artifact, and a later run restores it from
+        # its release or rebuilds it from those records.
+        if [ "$bytes" -le 9000000000 ]; then echo "cache=true" >> "$GITHUB_OUTPUT"; fi
     - if: steps.fetch.outputs.build == 'true'
       uses: actions/cache/save@v4
       with:
@@ -108,6 +126,7 @@ runs:
     # A pull request that only downloaded the release reads main's cache instead of saving a copy.
     - if: >-
         steps.cache.outputs.cache-hit != 'true' &&
+        steps.bundle.outputs.cache == 'true' &&
         (steps.fetch.outputs.build == 'true' || github.ref == 'refs/heads/main')
       uses: actions/cache/save@v4
       with:

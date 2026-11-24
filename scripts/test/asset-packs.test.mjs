@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { cp, mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readdir, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, join, resolve, sep } from 'node:path';
 import { afterEach, test } from 'node:test';
@@ -15,6 +15,7 @@ import {
   fetchAssets,
   fileInfo,
   packAssets,
+  pruneArchives,
   publishAssets,
   ReleaseMissingError,
   readStamp,
@@ -33,6 +34,7 @@ import {
   validatePlan,
 } from '../build-assets.mjs';
 import { checkSourceBundles } from '../check-source-bundles.mjs';
+import { listReleases } from '../github-releases.mjs';
 import { checkTrackedReviewCaptures } from '../review-captures.mjs';
 
 const roots = [];
@@ -483,6 +485,155 @@ test('rejects corrupt downloads without installing any GLB', async () => {
   await assert.rejects(readFile(join(root, 'assets/test/model.glb')), /ENOENT/);
 });
 
+/** What Node's fetch throws for a connection the network dropped. */
+const dropped = () =>
+  new TypeError('fetch failed', {
+    cause: Object.assign(new Error('read ECONNRESET'), { code: 'ECONNRESET' }),
+  });
+
+test('a dropped connection or a busy server costs a retry, not the restore', async () => {
+  const seattle = 'content/worldgen/assets/places/c2/c23/seattle/model.glb';
+  const chicago = 'content/worldgen/assets/places/dp/dp3/chicago/model.glb';
+  const published = await publishedFixture([
+    [seattle, Buffer.from('seattle geometry')],
+    [chicago, Buffer.from('chicago geometry')],
+  ]);
+  const serve = releaseServer(published.source);
+  const seen = new Map();
+  const waits = [];
+  const messages = [];
+  const fresh = await fixture();
+  await fetchAssets({
+    root: fresh,
+    // Each URL fails once in its own way: a busy server for the manifest, a refused connection
+    // for one archive, and a body that stops halfway for the other.
+    fetchImpl: async (url) => {
+      const attempt = (seen.get(url) ?? 0) + 1;
+      seen.set(url, attempt);
+      if (attempt > 1) return serve(url);
+      if (url.endsWith('asset-manifest.json')) return new Response('busy', { status: 503 });
+      if (url.includes('-c2-')) throw dropped();
+      const bytes = Buffer.from(await (await serve(url)).arrayBuffer());
+      return new Response(
+        new ReadableStream({
+          start(controller) {
+            controller.enqueue(bytes.subarray(0, bytes.length >> 1));
+            controller.error(new TypeError('terminated'));
+          },
+        }),
+      );
+    },
+    retry: { wait: async (ms) => waits.push(ms) },
+    log: (line) => messages.push(line),
+  });
+  assert.deepEqual(waits, [2_000, 2_000, 2_000]);
+  assert.deepEqual([...seen.values()], [2, 2, 2]);
+  assert.equal(messages.filter((line) => line.includes('trying again in 2 seconds')).length, 3);
+  assert.ok(messages.some((line) => line.includes('fetch failed: read ECONNRESET')));
+  assert.equal(await readFile(join(fresh, seattle), 'utf8'), 'seattle geometry');
+  assert.equal(await readFile(join(fresh, chicago), 'utf8'), 'chicago geometry');
+  await checkAssets({ root: fresh, log: quiet });
+  // A half-written download leaves no file a later run could mistake for an archive.
+  const left = await readdir(join(fresh, '.artifacts/asset-packs'), { recursive: true });
+  assert.deepEqual(
+    left.filter((name) => name.endsWith('.part')),
+    [],
+  );
+});
+
+test('a connection that keeps dropping fails the restore after four tries, with the cause', async () => {
+  const published = await publishedFixture([['assets/test/model.glb', Buffer.from('ok')]]);
+  const serve = releaseServer(published.source);
+  const waits = [];
+  let archives = 0;
+  const root = await fixture();
+  await assert.rejects(
+    fetchAssets({
+      root,
+      fetchImpl: async (url) => {
+        if (url.endsWith('asset-manifest.json')) return serve(url);
+        archives++;
+        throw dropped();
+      },
+      retry: { wait: async (ms) => waits.push(ms) },
+      log: quiet,
+    }),
+    /Download of \S+\.tar\.gz failed 4 times: fetch failed: read ECONNRESET/,
+  );
+  assert.equal(archives, 4);
+  assert.deepEqual(waits, [2_000, 8_000, 30_000]);
+  await assert.rejects(readFile(join(root, 'assets/test/model.glb')), /ENOENT/);
+});
+
+test('a seed waits out a busy release list instead of building from nothing', async () => {
+  const path = 'assets/test/model.glb';
+  const main = await publishedFixture([[path, Buffer.from('main as published')]]);
+  const fresh = await fixture({ source: '{"shape":"sphere"}' });
+  const serve = gitHubServer([
+    { ...main.installed, source: main.source, published_at: '2026-11-10T00:00:00Z' },
+  ]);
+  const waits = [];
+  let listings = 0;
+  const release = await seedAssets({
+    root: fresh,
+    fetchImpl: async (url) => {
+      if (url.startsWith('https://api.github.com/') && ++listings === 1)
+        return new Response('bad gateway', { status: 502 });
+      return serve(url);
+    },
+    retry: { wait: async (ms) => waits.push(ms) },
+    log: quiet,
+  });
+  assert.equal(release, main.installed.release);
+  assert.equal(listings, 2);
+  assert.deepEqual(waits, [2_000]);
+  assert.equal(await readFile(join(fresh, path), 'utf8'), 'main as published');
+});
+
+test('pruning leaves one bundle in the cache: the seed archives a build did not reuse go', async () => {
+  const seattle = 'content/worldgen/assets/places/c2/c23/seattle/model.glb';
+  const chicago = 'content/worldgen/assets/places/dp/dp3/chicago/model.glb';
+  const { source, manifest: seed } = await publishedFixture([
+    [seattle, Buffer.from('seattle')],
+    [chicago, Buffer.from('chicago')],
+  ]);
+  const packs = join(source, '.artifacts/asset-packs');
+  // Before the new bundle is packed there is no manifest to say what it uses: remove nothing.
+  await asset(source, recipe, Buffer.from('{"shape":"sphere"}'));
+  await asset(source, seattle, Buffer.from('seattle, rebuilt'));
+  await installFixture(source);
+  const early = [];
+  assert.deepEqual(await pruneArchives({ root: source, log: (line) => early.push(line) }), {
+    removed: 0,
+    bytes: 0,
+  });
+  assert.match(early.join('\n'), /no archives removed/);
+  const built = await packAssets({ root: source, log: quiet });
+  const stale = seed.archives.find((a) => a.file === 'worldgen-models-c2-part-001.tar.gz');
+  const reused = seed.archives.find((a) => a.file === 'worldgen-models-dp-part-001.tar.gz');
+  assert.ok(built.archives.some((a) => a.sha256 === reused.sha256));
+  await readFile(archivePath(packs, stale)); // the seed's Seattle is still cached beside the new one
+  const messages = [];
+  const result = await pruneArchives({ root: source, log: (line) => messages.push(line) });
+  assert.deepEqual(result, { removed: 1, bytes: stale.size });
+  assert.match(messages.join('\n'), /Removed 1 archives of other bundles .* uses 2\./);
+  await assert.rejects(readFile(archivePath(packs, stale)), /ENOENT/);
+  // What is left restores the new bundle offline, as a dependent CI job does from the cache.
+  const fresh = await fixture({ source: '{"shape":"sphere"}' });
+  await cp(packs, join(fresh, '.artifacts/asset-packs'), { recursive: true });
+  await fetchAssets({
+    root: fresh,
+    offline: true,
+    fetchImpl: () => {
+      throw new Error('A pruned cache must still hold the whole bundle');
+    },
+    log: quiet,
+  });
+  assert.equal(await readFile(join(fresh, seattle), 'utf8'), 'seattle, rebuilt');
+  assert.equal(await readFile(join(fresh, chicago), 'utf8'), 'chicago');
+  assert.deepEqual(await pruneArchives({ root: source, log: quiet }), { removed: 0, bytes: 0 });
+});
+
 test('rejects a manifest that does not cover exactly its files or names other inputs', async () => {
   const published = await publishedFixture([
     ['assets/test/a.glb', Buffer.from('a')],
@@ -750,8 +901,8 @@ function fakeGitHub(release, { existing } = {}) {
   const commands = [];
   const runGh = (args) => {
     commands.push(args);
-    if (args.some((a) => a.endsWith('/releases?per_page=100')))
-      return JSON.stringify([existing ? [existing] : []]);
+    if (args.includes('--jq') && args.at(-1).endsWith('/releases?per_page=100'))
+      return existing ? `${JSON.stringify(existing)}\n` : '';
     if (args.includes('POST')) return JSON.stringify({ id: 123, draft: true, tag_name: release });
     if (args.some((a) => a.endsWith('/assets?per_page=100'))) return JSON.stringify([uploaded]);
     if (args.includes('DELETE')) {
@@ -778,6 +929,25 @@ function fakeGitHub(release, { existing } = {}) {
   };
   return { runGh, commands, uploaded };
 }
+
+test('lists releases without their attachments, which outgrow a child process buffer', () => {
+  let command;
+  const releases = listReleases((args) => {
+    command = args;
+    // gh prints one line per release, page after page.
+    return '{"id":2,"tag_name":"assets-b","draft":true}\n{"id":1,"tag_name":"packs","draft":false}\r\n';
+  }, 'bendyline/molen');
+  assert.deepEqual(releases, [
+    { id: 2, tag_name: 'assets-b', draft: true },
+    { id: 1, tag_name: 'packs', draft: false },
+  ]);
+  assert.ok(command.includes('--paginate'));
+  assert.match(command[command.indexOf('--jq') + 1], /\{id, tag_name, draft\}/);
+  assert.deepEqual(
+    listReleases(() => '', 'bendyline/molen'),
+    [],
+  );
+});
 
 test('packs and publishes a bundle only after every attachment digest is verified', async () => {
   const root = await fixture();

@@ -218,8 +218,9 @@ while softening the horizon. Both distances extend at flight altitude and stay i
 range; it does not otherwise change with the terrain quality preset.
 
 In [World Explorer](https://molen.dev/play/world-explorer/), select **Walk mode** to move from the aerial viewer to open ground
-near your current position. The camera sits 1.7 meters above your feet, with a 5 cm near clipping
-plane, so nearby buildings retain their real, human-scale dimensions. Human features turn on
+near your current position. Your eyes are 1.7 meters above your feet, with a 5 cm near clipping
+plane, so nearby buildings retain their real, human-scale dimensions. The camera starts behind your
+figure, and **V** switches between that view and your own eyes. Human features turn on
 when available; the terrain layer buttons remain independent of navigation.
 
 Use **WASD** to walk (1.5 m/s), **Shift** to run (4 m/s), **Space** to jump, and click the world

@@ -5,17 +5,23 @@
 import { hashBytes } from '@bendyline/molen-kernel/determinism';
 import { describe, expect, it } from 'vitest';
 import {
+  deriveRig,
   descriptorKey,
   FIGURE_HAIR_STYLES,
   FIGURE_HAIR_TEXTURES,
   FIGURE_HEAD_PARAMS,
   FIGURE_HEAD_PRESET_IDS,
+  FIGURE_HEAD_PRESETS,
   type FigureBody,
   type FigureDescriptor,
   type FigureHeadShape,
   generateFigureBody,
   resolveFigureDescriptor,
+  resolveFigureHead,
+  rigBindModel,
 } from '../src/kernel';
+import { humanHeadFrame } from '../src/kernel/body-human-head';
+import { firstHit } from './helpers/raycast';
 
 const CAPS = { 0: 9000, 1: 2600, 2: 1200 } as const;
 
@@ -40,6 +46,95 @@ function body(descriptor: FigureDescriptor, tier: 0 | 1 | 2 = 0): FigureBody {
 
 const allHead = (value: number): Partial<FigureHeadShape> =>
   Object.fromEntries(FIGURE_HEAD_PARAMS.map((key) => [key, value]));
+
+/** Pure channel colors, so a ray's first hit names the layer it met whatever tint was applied. */
+const PAINT = { skin: '#ff0000', eyes: '#00ff00', hair: '#0000ff' };
+const layerOf = (rgb: string): 'skin' | 'eyes' | 'hair' | 'dark' | 'none' => {
+  if (rgb === 'none') return 'none';
+  const [r, g, b] = rgb.split(',').map(Number) as [number, number, number];
+  if (Math.max(r, g, b) < 40) return 'dark';
+  return r >= g && r >= b ? 'skin' : g >= b ? 'eyes' : 'hair';
+};
+
+/** The head's frame (width unit, height, chin height) of a descriptor. */
+function frame(descriptor: FigureDescriptor): { W: number; L: number; baseY: number } {
+  const d = resolveFigureDescriptor(descriptor);
+  const rig = deriveRig(d);
+  const headY = rigBindModel(rig)[(rig.index.head as number) * 7 + 1] as number;
+  return humanHeadFrame(rig.metrics, [0, headY, 0], d.head);
+}
+
+describe('faces', () => {
+  it('show an iris on the white of each eye, on every head and at every tier', () => {
+    // The socket is hollow: an iris laid on the face's own surface sinks behind the white.
+    for (const preset of ['01', '04', '07', '10'] as const)
+      for (const tier of [0, 1, 2] as const) {
+        const d: FigureDescriptor = {
+          preset: 'human.adult',
+          head: { preset },
+          palette: PAINT,
+          features: { hair: 'none' },
+        };
+        const { W, L, baseY } = frame(d);
+        const k = FIGURE_HEAD_PRESETS[preset];
+        const size = 1 + 0.2 * k.eyeSize;
+        const x = 0.205 * (1 + 0.13 * k.eyeSpacing) + 0.7 * 0.036 * Math.sqrt(size);
+        const y = baseY + (0.497 + 0.004 * size) * L;
+        for (const side of [-1, 1])
+          expect(
+            layerOf(firstHit(d, tier, 'front', side * x * W, y)),
+            `head ${preset} tier ${tier}`,
+          ).toBe('eyes');
+      }
+  });
+
+  it('carry a nose that stands off the face and lips that stand off the mouth', () => {
+    const d: FigureDescriptor = { preset: 'human.adult', features: { hair: 'none' } };
+    const { W, L, baseY } = frame(d);
+    const { positions } = body(d).buffers;
+    /** Furthest forward of the head between two heights (t above the chin). */
+    const front = (lo: number, hi: number): number => {
+      let z = 0;
+      for (let i = 0; i < positions.length; i += 3) {
+        const t = ((positions[i + 1] as number) - baseY) / L;
+        if (t >= lo && t <= hi && Math.abs(positions[i] as number) < 0.2 * W)
+          z = Math.max(z, positions[i + 2] as number);
+      }
+      return z / W;
+    };
+    const brow = front(0.56, 0.62);
+    const tip = front(0.33, 0.38);
+    const lips = front(0.17, 0.24);
+    const groove = front(0.135, 0.155);
+    const chin = front(0.03, 0.1);
+    // About 2 cm of nose past the brow, lips proud of the groove under them, a chin under that.
+    expect(tip - brow).toBeGreaterThan(0.06);
+    expect(lips - groove).toBeGreaterThan(0.03);
+    expect(chin - groove).toBeGreaterThan(0.01);
+    // The jaw overhangs the throat: the chin is well in front of the neck's front.
+    expect(chin).toBeGreaterThan(0.5);
+  });
+
+  it('wrap a beard round the jaw with no skin showing through it', () => {
+    for (const tier of [0, 1] as const) {
+      const d: FigureDescriptor = {
+        preset: 'human.adult',
+        palette: PAINT,
+        features: { hair: 'crop', facialHair: 'beard' },
+      };
+      const { W, L, baseY } = frame(d);
+      for (const x of [-0.15, 0, 0.15])
+        for (const t of [0.03, 0.08, 0.13])
+          expect(
+            layerOf(firstHit(d, tier, 'front', x * W, baseY + t * L)),
+            `tier ${tier} at ${x}, ${t}`,
+          ).toBe('hair');
+      // Under the nose (the mustache), and on the side of the jaw, seen from the figure's left.
+      expect(layerOf(firstHit(d, tier, 'front', 0, baseY + 0.285 * L))).toBe('hair');
+      expect(layerOf(firstHit(d, tier, 'left', 0.2 * W, baseY + 0.2 * L))).toBe('hair');
+    }
+  });
+});
 
 describe('head shapes', () => {
   it('keep the face topology, from the reference head to every extreme', () => {
@@ -81,6 +176,20 @@ describe('head shapes', () => {
       return ys;
     };
     expect(headOnly('masculine').length).toBeGreaterThan(100);
+  });
+
+  it('move the head with each parameter added later, which older heads read as 0', () => {
+    expect(FIGURE_HEAD_PARAMS).toHaveLength(19);
+    const added = ['faceLength', 'noseLength', 'mouthWidth', 'browArch', 'eyeLid'] as const;
+    const reference = digest(body({ preset: 'human.adult', head: {} }));
+    for (const key of added) {
+      const high = digest(body({ preset: 'human.adult', head: { [key]: 1 } }));
+      const low = digest(body({ preset: 'human.adult', head: { [key]: -1 } }));
+      expect(high, key).not.toBe(reference);
+      expect(low, key).not.toBe(reference);
+      expect(high, key).not.toBe(low);
+      expect(resolveFigureHead({ jaw: 0.4 })[key]).toBe(0);
+    }
   });
 
   it('leave descriptors written before them unchanged', () => {
@@ -130,6 +239,18 @@ describe('hair styles and textures', () => {
         }
   });
 
+  it('draw no scalp under a full head of hair', () => {
+    const skin = (hair: 'none' | 'crop' | 'long' | 'balding'): number =>
+      body({ preset: 'human.adult', features: { hair } }).buffers.groups.find(
+        (g) => g.region === 'skin',
+      )?.count ?? 0;
+    // Indices, three a triangle: a shell hides some 800 triangles of skull at near detail.
+    expect(skin('crop')).toBeLessThan(skin('none') - 1500);
+    expect(skin('long')).toBeLessThan(skin('none') - 1500);
+    // A fringe of hair leaves the crown bare, so the whole skull stays.
+    expect(skin('balding')).toBe(skin('none'));
+  });
+
   it('draw every style differently', () => {
     const looks = new Set(
       FIGURE_HAIR_STYLES.map((hair) => digest(body({ preset: 'human.adult', features: { hair } }))),
@@ -155,32 +276,46 @@ describe('hair styles and textures', () => {
     ).toBe(digest(body({ preset: 'human.adult', features: { hair: 'long' } })));
   });
 
-  it('keep braids behind a heavy back', () => {
-    // The braids hang behind the torso however deep it is: every braid vertex below the
-    // shoulders lies behind the back surface (the torso's half-depth).
+  it('lay braids on the back, however deep it is', () => {
+    // A braid rests on the body from the shoulder down: behind the back at every height it
+    // passes, and no more than its own thickness and a little air off it (they used to hang
+    // straight down some centimeters behind the shoulder blades).
     for (const build of [-1, 0, 1]) {
       const d = resolveFigureDescriptor({
         preset: 'human.adult',
         build,
         features: { hair: 'braids' },
       });
-      const plain = body({ preset: 'human.adult', build, features: { hair: 'crop' } }).buffers
+      const plain = body({ preset: 'human.adult', build, features: { hair: 'none' } }).buffers
         .positions;
-      const braided = body({ preset: 'human.adult', build, features: { hair: 'braids' } }).buffers
-        .positions;
-      let backZ = 0;
-      const shoulders = d.height * 0.78;
-      for (let i = 0; i < plain.length; i += 3)
-        if ((plain[i + 1] as number) < shoulders && (plain[i + 1] as number) > d.height * 0.65)
-          backZ = Math.min(backZ, plain[i + 2] as number);
-      let braidZ = 0;
-      for (let i = 0; i < braided.length; i += 3)
-        if (
-          (braided[i + 1] as number) < d.height * 0.7 &&
-          (braided[i + 1] as number) > d.height * 0.66
-        )
-          braidZ = Math.min(braidZ, braided[i + 2] as number);
-      expect(braidZ, `build ${build}`).toBeLessThan(backZ);
+      const braided = body({ preset: 'human.adult', build, features: { hair: 'braids' } }).buffers;
+      const hair = braided.groups.find((g) => g.region === 'hair');
+      const strands = new Set<number>();
+      if (hair)
+        for (let i = hair.start; i < hair.start + hair.count; i++)
+          strands.add(braided.indices[i] as number);
+      for (const [lo, hi] of [
+        [0.76, 0.8],
+        [0.71, 0.75],
+      ] as const) {
+        let backZ = 0;
+        for (let i = 0; i < plain.length; i += 3) {
+          const y = (plain[i + 1] as number) / d.height;
+          if (y > lo && y < hi && Math.abs(plain[i] as number) < 0.07 * d.height)
+            backZ = Math.min(backZ, plain[i + 2] as number);
+        }
+        let near = -Infinity;
+        let far = 0;
+        for (const v of strands) {
+          const y = (braided.positions[v * 3 + 1] as number) / d.height;
+          if (y <= lo || y >= hi) continue;
+          near = Math.max(near, braided.positions[v * 3 + 2] as number);
+          far = Math.min(far, braided.positions[v * 3 + 2] as number);
+        }
+        expect(near, `build ${build} at ${lo}`).toBeLessThan(0);
+        expect(far, `build ${build} at ${lo}`).toBeLessThan(backZ);
+        expect(far, `build ${build} at ${lo}`).toBeGreaterThan(backZ - 0.045);
+      }
     }
   });
 });
