@@ -1,0 +1,519 @@
+{
+  "planId": "puebla_cathedral",
+  "id": "puebla_cathedral",
+  "assetId": "molen.worldgen.structure.puebla_cathedral",
+  "title": "Puebla Cathedral",
+  "wikidataId": "Q1994735",
+  "category": "historic-church",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -98.19832,
+    "latitude": 19.04283
+  },
+  "size": [
+    61.790000915527344,
+    73.02700185775757,
+    100.11999893188477
+  ],
+  "actualBounds": {
+    "min": [
+      -29.110000610351562,
+      -4.599999904632568,
+      -43.34000015258789
+    ],
+    "max": [
+      32.68000030517578,
+      68.427001953125,
+      56.779998779296875
+    ]
+  },
+  "visualBrief": "Puebla Cathedral’s dark stone facade, paired two-stage bell towers, raised cross vault and glazed crossing dome.",
+  "nativeAxes": {
+    "x": "southwest along the front",
+    "y": "up",
+    "z": "west-northwest across the main atrium"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Catedral_de_Puebla_desde_un_dron_07.jpg",
+    "https://commons.wikimedia.org/wiki/File:Catedral_de_Puebla_desde_un_dron_05.jpg",
+    "https://commons.wikimedia.org/wiki/File:Catedral_de_Puebla_(toma_cenital)_desde_un_dron_01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "puebla-cathedral-wp",
+      "url": "https://qualla.com/puebla-cathedral/"
+    }
+  ],
+  "referenceInputHash": "sha256:3a064ebb2ba89333e539a8a1298ef6bf7f02706dbe5b939b35b3d1ee06ff2aaf",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9g/9g6/puebla_cathedral/models/puebla-cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9g/9g6/puebla_cathedral/models/puebla-cathedral-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.86,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.95
+      },
+      "mortar": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.93
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.92
+      },
+      "glaze": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.69
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8
+      },
+      "shadow": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95
+          },
+          "mortar": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "glaze": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.69
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95
+          },
+          "mortar": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "glaze": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.69
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.034,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95
+          },
+          "mortar": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "glaze": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.69
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "plaster_lime",
+    "tile_ceramic",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.2,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Open west approach in the unmodified Copernicus GLO-30 terrain. Coarse ground samples through the building include roof returns.",
+    "anchor": [
+      -98.19832,
+      19.04283
+    ],
+    "heading": -2.0647245051092917,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -98.19892186829982,
+        19.043128175755154
+      ],
+      "modelHeight": 0,
+      "basis": "Open west approach in the unmodified Copernicus GLO-30 terrain. Coarse ground samples through the building include roof returns."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          31.9008,
+          55.6537
+        ],
+        [
+          28.924,
+          55.6432
+        ],
+        [
+          17.0562,
+          55.6036
+        ],
+        [
+          8.6079,
+          55.5752
+        ],
+        [
+          -6.7977,
+          55.5164
+        ],
+        [
+          -15.2214,
+          55.4867
+        ],
+        [
+          -27.724,
+          55.4424
+        ],
+        [
+          -27.8343,
+          42.5108
+        ],
+        [
+          -27.9563,
+          14.037
+        ],
+        [
+          -28.0463,
+          -0.8057
+        ],
+        [
+          -28.2748,
+          -41.0299
+        ],
+        [
+          -8.3241,
+          -41.1476
+        ],
+        [
+          -1.6821,
+          -41.1864
+        ],
+        [
+          1.3535,
+          -41.2075
+        ],
+        [
+          3.4741,
+          -41.2139
+        ],
+        [
+          9.875,
+          -41.2544
+        ],
+        [
+          12.0545,
+          -41.2687
+        ],
+        [
+          14.8146,
+          -41.2848
+        ],
+        [
+          31.341,
+          -41.3753
+        ],
+        [
+          31.5764,
+          -0.88
+        ],
+        [
+          31.6718,
+          14.0196
+        ]
+      ],
+      "minimumCoverage": 0.85,
+      "basis": "The surveyed geographic footprint follows the full mapped cathedral perimeter."
+    },
+    "featureIds": [
+      "way/1113187115"
+    ],
+    "source": "https://www.openstreetmap.org/way/1113187115",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bf0e6e8abdf58840c4c522a6d38033a0d7209911949308f7687f0377d18e47f9",
+    "notes": "The Qualla drone views establish open stacked arched belfries, the triple dark stone facade, gray-brown vaulted roof, brick-red crossing drum, and gold and green glazed dome. Heritage documentation gives the approximate tower height."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "The Qualla drone views establish open stacked arched belfries, the triple dark stone facade, gray-brown vaulted roof, brick-red crossing drum, and gold and green glazed dome. Heritage documentation gives the approximate tower height.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "puebla-cathedral-skyline",
+      "position": [
+        -90,
+        87,
+        171
+      ],
+      "lookAt": [
+        1,
+        26,
+        11
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "puebla-cathedral-district",
+      "position": [
+        -90,
+        87,
+        171
+      ],
+      "lookAt": [
+        1,
+        26,
+        11
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "puebla-cathedral-street",
+      "position": [
+        -90,
+        87,
+        171
+      ],
+      "lookAt": [
+        1,
+        26,
+        11
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "puebla-cathedral-closeup",
+      "position": [
+        -90,
+        87,
+        171
+      ],
+      "lookAt": [
+        1,
+        26,
+        11
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "atrium-and-towers",
+      "position": [
+        -90,
+        87,
+        171
+      ],
+      "lookAt": [
+        1,
+        26,
+        11
+      ]
+    },
+    {
+      "name": "three-west-portals",
+      "position": [
+        -14,
+        14,
+        109
+      ],
+      "lookAt": [
+        0,
+        17,
+        53
+      ]
+    },
+    {
+      "name": "glazed-crossing-and-nave",
+      "position": [
+        -63,
+        57,
+        29
+      ],
+      "lookAt": [
+        1,
+        22,
+        4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 15058,
+    "vertices": 45174,
+    "materials": 6,
+    "bytes": 1958440,
+    "sha256": "sha256:1750c5c38cd1f4eca671621449527cd3805c6f13a9eb550a6f5b681f30710179"
+  }
+}

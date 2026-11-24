@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.newgrange",
+  "kind": "static-structure",
+  "title": "Newgrange",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.newgrange",
+        "output": "assets/places/gc/gce/newgrange/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:101b13577ac2df951a27683907cb7371a28f174cbbb7560fe2ee52bf718c3067"
+      }
+    ],
+    "generators": [
+      {
+        "id": "newgrange",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "boyne-passage-mound",
+        "path": "models/boyne-passage-mound.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

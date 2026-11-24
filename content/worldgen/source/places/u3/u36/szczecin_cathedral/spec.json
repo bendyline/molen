@@ -1,0 +1,1055 @@
+{
+  "planId": "szczecin_cathedral",
+  "id": "szczecin_cathedral",
+  "assetId": "molen.worldgen.structure.szczecin_cathedral",
+  "title": "Szczecin Cathedral",
+  "wikidataId": "Q337871",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 14.556,
+    "latitude": 53.4247
+  },
+  "size": [
+    45.84000015258789,
+    113.23000025749207,
+    81.73929977416992
+  ],
+  "actualBounds": {
+    "min": [
+      -19.739999771118164,
+      -3.049999952316284,
+      -44.516300201416016
+    ],
+    "max": [
+      26.100000381469727,
+      110.18000030517578,
+      37.222999572753906
+    ]
+  },
+  "visualBrief": "Szczecin’s great Brick Gothic cathedral, with a polygonal east choir, broad copper-green roof and the restored copper spire above the west tower.",
+  "nativeAxes": {
+    "x": "south across the nave",
+    "y": "up",
+    "z": "west toward the main tower entrance"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Jacobikirche_-_Stettin_-2008.JPG",
+    "https://commons.wikimedia.org/wiki/File:Szczecin_katedra_helm.jpg",
+    "https://commons.wikimedia.org/wiki/File:PolandSzczecinBasilica.JPG"
+  ],
+  "stories": [
+    {
+      "id": "szczecin-cathedral-wp",
+      "url": "https://qualla.com/szczecin-cathedral/"
+    }
+  ],
+  "referenceInputHash": "sha256:16fd9b1d486a6badf9c299115ced1a3f1eaf39b39d25b4e84ce1606aee2d0301",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u3/u36/szczecin_cathedral/models/szczecin-cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u3/u36/szczecin_cathedral/models/szczecin-cathedral-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.78,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.94
+      },
+      "detail": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.92
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.9,
+        "metallic": 0.1
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.86,
+        "metallic": 0.2
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.64
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "detail": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.9,
+            "metallic": 0.1
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.86,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "detail": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.9,
+            "metallic": 0.1
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.86,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.061,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "detail": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.9,
+            "metallic": 0.1
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.86,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "brick",
+    "stone_ashlar",
+    "metal_standing_seam",
+    "metal_copper"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.56,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Sampled the original open elevation field at the western tower approach; the footprint’s stone footing follows the sloping site.",
+    "anchor": [
+      14.556,
+      53.4247
+    ],
+    "heading": -1.476793642258813,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        14.555420057696725,
+        53.42460425833529
+      ],
+      "modelHeight": 0,
+      "basis": "Sampled the original open elevation field at the western tower approach; the footprint’s stone footing follows the sloping site."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -5.773,
+          37.16
+        ],
+        [
+          -7.271,
+          37.159
+        ],
+        [
+          -7.289,
+          35.685
+        ],
+        [
+          -8.734,
+          35.715
+        ],
+        [
+          -8.685,
+          34.247
+        ],
+        [
+          -10.084,
+          34.262
+        ],
+        [
+          -10.102,
+          32.907
+        ],
+        [
+          -8.714,
+          32.892
+        ],
+        [
+          -8.655,
+          29.419
+        ],
+        [
+          -8.608,
+          26.079
+        ],
+        [
+          -9.267,
+          26.07
+        ],
+        [
+          -10.195,
+          25.237
+        ],
+        [
+          -10.187,
+          24.085
+        ],
+        [
+          -10.859,
+          24.095
+        ],
+        [
+          -10.864,
+          23.794
+        ],
+        [
+          -13.654,
+          23.851
+        ],
+        [
+          -13.659,
+          24.15
+        ],
+        [
+          -15.451,
+          24.181
+        ],
+        [
+          -15.459,
+          22.362
+        ],
+        [
+          -15.156,
+          22.357
+        ],
+        [
+          -15.231,
+          15.68
+        ],
+        [
+          -15.532,
+          15.672
+        ],
+        [
+          -15.502,
+          14.522
+        ],
+        [
+          -15.202,
+          14.537
+        ],
+        [
+          -15.231,
+          7.972
+        ],
+        [
+          -15.534,
+          7.977
+        ],
+        [
+          -15.538,
+          7.79
+        ],
+        [
+          -16.433,
+          7.792
+        ],
+        [
+          -16.438,
+          7.365
+        ],
+        [
+          -16.336,
+          7.355
+        ],
+        [
+          -16.362,
+          5.493
+        ],
+        [
+          -16.396,
+          3.724
+        ],
+        [
+          -16.497,
+          3.728
+        ],
+        [
+          -16.488,
+          3.276
+        ],
+        [
+          -16.388,
+          3.285
+        ],
+        [
+          -16.404,
+          1.552
+        ],
+        [
+          -16.421,
+          -0.282
+        ],
+        [
+          -16.521,
+          -0.292
+        ],
+        [
+          -16.506,
+          -0.803
+        ],
+        [
+          -15.624,
+          -0.787
+        ],
+        [
+          -15.598,
+          -1.184
+        ],
+        [
+          -15.296,
+          -1.189
+        ],
+        [
+          -15.312,
+          -3.982
+        ],
+        [
+          -15.468,
+          -3.99
+        ],
+        [
+          -15.45,
+          -4.895
+        ],
+        [
+          -15.293,
+          -4.893
+        ],
+        [
+          -15.293,
+          -7.265
+        ],
+        [
+          -15.595,
+          -7.267
+        ],
+        [
+          -15.603,
+          -8.96
+        ],
+        [
+          -15.301,
+          -8.958
+        ],
+        [
+          -15.304,
+          -11.657
+        ],
+        [
+          -16.907,
+          -11.608
+        ],
+        [
+          -17.631,
+          -10.817
+        ],
+        [
+          -18.275,
+          -11.457
+        ],
+        [
+          -17.486,
+          -12.229
+        ],
+        [
+          -17.586,
+          -15.563
+        ],
+        [
+          -18.717,
+          -15.543
+        ],
+        [
+          -18.722,
+          -16.436
+        ],
+        [
+          -17.615,
+          -16.439
+        ],
+        [
+          -17.627,
+          -21.53
+        ],
+        [
+          -18.777,
+          -21.552
+        ],
+        [
+          -18.747,
+          -22.335
+        ],
+        [
+          -17.596,
+          -22.333
+        ],
+        [
+          -17.64,
+          -27.441
+        ],
+        [
+          -18.493,
+          -28.234
+        ],
+        [
+          -17.904,
+          -28.905
+        ],
+        [
+          -17.038,
+          -28.137
+        ],
+        [
+          -13.229,
+          -27.971
+        ],
+        [
+          -13.197,
+          -28.901
+        ],
+        [
+          -12.475,
+          -28.86
+        ],
+        [
+          -12.517,
+          -27.931
+        ],
+        [
+          -8.604,
+          -27.809
+        ],
+        [
+          -8.265,
+          -29.149
+        ],
+        [
+          -7.232,
+          -32.396
+        ],
+        [
+          -7.364,
+          -32.422
+        ],
+        [
+          -6.937,
+          -33.748
+        ],
+        [
+          -6.796,
+          -33.708
+        ],
+        [
+          -5.722,
+          -37.391
+        ],
+        [
+          -5.832,
+          -37.528
+        ],
+        [
+          -4.796,
+          -38.43
+        ],
+        [
+          -4.675,
+          -38.298
+        ],
+        [
+          -1.972,
+          -40.755
+        ],
+        [
+          -2.071,
+          -40.884
+        ],
+        [
+          -1.021,
+          -41.585
+        ],
+        [
+          -0.923,
+          -41.442
+        ],
+        [
+          1.836,
+          -43.548
+        ],
+        [
+          1.772,
+          -43.7
+        ],
+        [
+          2.894,
+          -44.094
+        ],
+        [
+          2.958,
+          -43.948
+        ],
+        [
+          6.55,
+          -43.856
+        ],
+        [
+          6.554,
+          -44.016
+        ],
+        [
+          7.973,
+          -44.008
+        ],
+        [
+          7.979,
+          -43.835
+        ],
+        [
+          11.774,
+          -43.877
+        ],
+        [
+          11.82,
+          -44.019
+        ],
+        [
+          13.071,
+          -43.641
+        ],
+        [
+          13.023,
+          -43.486
+        ],
+        [
+          15.858,
+          -41.419
+        ],
+        [
+          15.958,
+          -41.53
+        ],
+        [
+          17.047,
+          -40.628
+        ],
+        [
+          16.946,
+          -40.511
+        ],
+        [
+          19.819,
+          -38.368
+        ],
+        [
+          19.961,
+          -38.447
+        ],
+        [
+          20.596,
+          -37.355
+        ],
+        [
+          20.464,
+          -37.267
+        ],
+        [
+          21.436,
+          -33.818
+        ],
+        [
+          21.575,
+          -33.865
+        ],
+        [
+          21.895,
+          -32.755
+        ],
+        [
+          21.745,
+          -32.709
+        ],
+        [
+          22.73,
+          -29.158
+        ],
+        [
+          22.875,
+          -29.151
+        ],
+        [
+          22.893,
+          -27.917
+        ],
+        [
+          22.737,
+          -27.932
+        ],
+        [
+          22.701,
+          -22.805
+        ],
+        [
+          22.858,
+          -22.803
+        ],
+        [
+          22.894,
+          -21.527
+        ],
+        [
+          22.737,
+          -21.522
+        ],
+        [
+          22.723,
+          -16.28
+        ],
+        [
+          22.87,
+          -16.293
+        ],
+        [
+          22.908,
+          -15.037
+        ],
+        [
+          22.762,
+          -15.03
+        ],
+        [
+          22.968,
+          -11.753
+        ],
+        [
+          23.671,
+          -11.74
+        ],
+        [
+          23.634,
+          -9.092
+        ],
+        [
+          26.001,
+          -9.062
+        ],
+        [
+          25.852,
+          2.131
+        ],
+        [
+          25.326,
+          2.601
+        ],
+        [
+          25.29,
+          5.243
+        ],
+        [
+          25.802,
+          5.737
+        ],
+        [
+          25.569,
+          23.038
+        ],
+        [
+          25.011,
+          23.026
+        ],
+        [
+          24.997,
+          23.764
+        ],
+        [
+          24.595,
+          23.759
+        ],
+        [
+          24.602,
+          25.113
+        ],
+        [
+          23.644,
+          26.022
+        ],
+        [
+          22.943,
+          25.982
+        ],
+        [
+          22.847,
+          32.696
+        ],
+        [
+          24.338,
+          32.657
+        ],
+        [
+          24.381,
+          34.093
+        ],
+        [
+          22.901,
+          34.133
+        ],
+        [
+          22.929,
+          35.615
+        ],
+        [
+          21.472,
+          35.658
+        ],
+        [
+          21.507,
+          37.187
+        ],
+        [
+          19.983,
+          37.223
+        ],
+        [
+          19.948,
+          35.687
+        ],
+        [
+          13.099,
+          35.635
+        ],
+        [
+          13.088,
+          37.173
+        ],
+        [
+          11.548,
+          37.147
+        ],
+        [
+          11.558,
+          35.616
+        ],
+        [
+          7.386,
+          35.629
+        ],
+        [
+          2.387,
+          35.644
+        ],
+        [
+          2.4,
+          37.164
+        ],
+        [
+          0.867,
+          37.18
+        ],
+        [
+          0.853,
+          35.659
+        ],
+        [
+          -5.802,
+          35.685
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The mapped cathedral and its connected Gothic chapels."
+    },
+    "featureIds": [
+      "way/53263911"
+    ],
+    "source": "https://www.openstreetmap.org/way/53263911",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:da8e9e94564a900f223f413a47a5e6aad3c07e8edb2d202f5d5791df2ea0348c",
+    "notes": "Szczecin’s city heritage account documents the 110.18 m restored spire. Rüdiger Schlott’s post-restoration photo and Kapitel’s exact crown detail show the retained Gothic tower, analog dials, copper-toned spire and four corner pinnacles. Horvat’s earlier clear view supports only the standing choir and the broad green nave roof."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The present church and restored west spire are modeled. Separate nearby houses and stained-glass interiors are outside the scope.",
+    "The original and restored tower features, broad green roof and wall alignments are grounded in the photos and mapped building. Fine masonry patterns and chapel roofs are representative.",
+    "The open elevation field resolves the general street slope only; exact curb heights are below its source resolution."
+  ],
+  "sourceLicense": "Original model with photographer-released public-domain reference images, OpenStreetMap ODbL building geometry, and open Mapzen terrain.",
+  "qaLodCameras": [
+    {
+      "name": "szczecin-cathedral-skyline",
+      "position": [
+        99,
+        68,
+        124
+      ],
+      "lookAt": [
+        6,
+        41,
+        -1.5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "szczecin-cathedral-district",
+      "position": [
+        99,
+        68,
+        124
+      ],
+      "lookAt": [
+        6,
+        41,
+        -1.5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "szczecin-cathedral-street",
+      "position": [
+        99,
+        68,
+        124
+      ],
+      "lookAt": [
+        6,
+        41,
+        -1.5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "szczecin-cathedral-closeup",
+      "position": [
+        99,
+        68,
+        124
+      ],
+      "lookAt": [
+        6,
+        41,
+        -1.5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "western-tower-and-restored-spire",
+      "position": [
+        99,
+        68,
+        124
+      ],
+      "lookAt": [
+        6,
+        41,
+        -1.5
+      ]
+    },
+    {
+      "name": "clock-window-pinnacles-and-restored-spire",
+      "position": [
+        41,
+        72,
+        116
+      ],
+      "lookAt": [
+        6.7,
+        74,
+        26
+      ]
+    },
+    {
+      "name": "polygonal-brick-choir-and-copper-green-roof",
+      "position": [
+        91,
+        31,
+        -104
+      ],
+      "lookAt": [
+        6,
+        28,
+        -20
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6437,
+    "vertices": 19311,
+    "materials": 6,
+    "bytes": 994404,
+    "sha256": "sha256:1a44f6a4039704f8bc0ac042342897b80264fceff1de95c67f016f74955d7c63"
+  }
+}

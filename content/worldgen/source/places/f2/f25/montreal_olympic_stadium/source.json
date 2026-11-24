@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.montreal_olympic_stadium",
+  "kind": "static-structure",
+  "title": "Montréal Olympic Stadium",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.montreal_olympic_stadium",
+        "output": "assets/places/f2/f25/montreal_olympic_stadium/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8a1f6b772b5069b16b6f0a3c057d05bff66303ffe869c772be5ff26752cc66fa"
+      }
+    ],
+    "generators": [
+      {
+        "id": "montreal_olympic_stadium",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "taillibert-bowl-and-tower",
+        "path": "models/taillibert-bowl-and-tower.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

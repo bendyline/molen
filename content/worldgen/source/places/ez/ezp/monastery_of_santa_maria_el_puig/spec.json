@@ -1,0 +1,520 @@
+{
+  "planId": "monastery_of_santa_maria_el_puig",
+  "id": "monastery_of_santa_maria_el_puig",
+  "assetId": "molen.worldgen.structure.monastery_of_santa_maria_el_puig",
+  "title": "Monastery of Santa Maria, El Puig",
+  "wikidataId": "Q528487",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -0.3033224083333333,
+    "latitude": 39.58864704583333
+  },
+  "size": [
+    70.93630599975586,
+    46.400001525878906,
+    89.76247024536133
+  ],
+  "actualBounds": {
+    "min": [
+      -34.59944152832031,
+      -12,
+      -39.495323181152344
+    ],
+    "max": [
+      36.33686447143555,
+      34.400001525878906,
+      50.267147064208984
+    ]
+  },
+  "visualBrief": "The royal convent at El Puig with four defensively styled stone towers, a roofless cloister and the northern sanctuary and belfry.",
+  "nativeAxes": {
+    "x": "western range toward the east ramp",
+    "y": "up",
+    "z": "north sanctuary toward south range"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Monestir_del_puig.jpg",
+    "https://commons.wikimedia.org/wiki/File:Monastery1_Puig.JPG",
+    "https://commons.wikimedia.org/wiki/File:Monastery2_Puig.JPG"
+  ],
+  "stories": [
+    {
+      "id": "monastery-of-santa-maria-el-puig-wp",
+      "url": "https://qualla.com/monastery-of-santa-maria-el-puig/"
+    }
+  ],
+  "referenceInputHash": "sha256:29fda2252873e71ddee18ddb02c631fdf970a6fe19c695e0e7b7a81181c260aa",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ez/ezp/monastery_of_santa_maria_el_puig/models/monastery-of-santa-maria-el-puig-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ez/ezp/monastery_of_santa_maria_el_puig/models/monastery-of-santa-maria-el-puig-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.02,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.95
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.92
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.91
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.95
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.79
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_drywall",
+    "brick",
+    "stone_ashlar",
+    "tile_flat",
+    "stone_limestone_weathered"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified datum on the eastern access approach outside the monastery walls.",
+    "anchor": [
+      -0.3033224083333333,
+      39.58864704583333
+    ],
+    "heading": -0.25535426293453956,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -0.3029436858072999,
+        39.58836381844862
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified datum on the eastern access approach outside the monastery walls."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -34.259,
+          -38.21
+        ],
+        [
+          -34.218,
+          -27.119
+        ],
+        [
+          -32.482,
+          -27.158
+        ],
+        [
+          -31.837,
+          38.483
+        ],
+        [
+          -33.391,
+          38.612
+        ],
+        [
+          -32.662,
+          49.927
+        ],
+        [
+          -22.035,
+          49.914
+        ],
+        [
+          -21.976,
+          48.104
+        ],
+        [
+          22.99,
+          48.158
+        ],
+        [
+          22.972,
+          49.888
+        ],
+        [
+          35.497,
+          49.909
+        ],
+        [
+          35.992,
+          38.459
+        ],
+        [
+          34.14,
+          38.666
+        ],
+        [
+          34.14,
+          -27.902
+        ],
+        [
+          35.862,
+          -27.995
+        ],
+        [
+          35.547,
+          -39.153
+        ],
+        [
+          24.716,
+          -38.937
+        ],
+        [
+          24.585,
+          -31.356
+        ],
+        [
+          -0.313,
+          -30.206
+        ],
+        [
+          -0.128,
+          -32.52
+        ],
+        [
+          -8.3,
+          -32.239
+        ],
+        [
+          -8.085,
+          -29.615
+        ],
+        [
+          -23.384,
+          -29.326
+        ],
+        [
+          -23.372,
+          -38.383
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The monastery’s mapped outer perimeter."
+    },
+    "featureIds": [
+      "relation/11260386"
+    ],
+    "source": "https://www.openstreetmap.org/relation/11260386",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:11caf382e2397a63209b859054a94e527ce847c6fefbdd429b1a235f1b2f3cf4",
+    "notes": "Qualla imagery establishes the four tall square masonry corner towers with stone fins, the north bell tower and repeating square-window rhythms. The monastery's own account identifies the east entrance and north church porch."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Standing convent, sanctuary and courtyard exterior. The surrounding public terraces and interior rooms lie outside scope.",
+    "Exact heights, minor roof junctions and concealed elements are estimated from photographs."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "el-puig-monastery-skyline",
+      "position": [
+        116,
+        38,
+        129
+      ],
+      "lookAt": [
+        0,
+        11,
+        6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "el-puig-monastery-district",
+      "position": [
+        116,
+        38,
+        129
+      ],
+      "lookAt": [
+        0,
+        11,
+        6
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "el-puig-monastery-street",
+      "position": [
+        116,
+        38,
+        129
+      ],
+      "lookAt": [
+        0,
+        11,
+        6
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "el-puig-monastery-closeup",
+      "position": [
+        116,
+        38,
+        129
+      ],
+      "lookAt": [
+        0,
+        11,
+        6
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "fortified-east-and-south-ranges",
+      "position": [
+        116,
+        38,
+        129
+      ],
+      "lookAt": [
+        0,
+        11,
+        6
+      ]
+    },
+    {
+      "name": "east-entrance-and-corner-towers",
+      "position": [
+        94,
+        23,
+        39
+      ],
+      "lookAt": [
+        18,
+        11.8,
+        12
+      ]
+    },
+    {
+      "name": "north-belfry-and-open-cloister",
+      "position": [
+        -106,
+        58,
+        -92
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 14247,
+    "vertices": 42741,
+    "materials": 6,
+    "bytes": 2127476,
+    "sha256": "sha256:0e3100c16b87b2db4d1123ad70197ca1dfc8cb76a69b5ca710d8346581a04334"
+  }
+}

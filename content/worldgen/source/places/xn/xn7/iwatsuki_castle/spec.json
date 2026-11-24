@@ -1,0 +1,501 @@
+{
+  "planId": "iwatsuki_castle",
+  "id": "iwatsuki_castle",
+  "assetId": "molen.worldgen.structure.iwatsuki_castle",
+  "title": "Iwatsuki Castle",
+  "wikidataId": "Q11475219",
+  "category": "heritage",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 139.71067887499999,
+    "latitude": 35.9509287125
+  },
+  "size": [
+    15.136219501495361,
+    8.210999965667725,
+    63.66726112365723
+  ],
+  "actualBounds": {
+    "min": [
+      -5.550919055938721,
+      -2.9000000953674316,
+      -32.46746063232422
+    ],
+    "max": [
+      9.58530044555664,
+      5.310999870300293,
+      31.199800491333008
+    ]
+  },
+  "visualBrief": "The standing Kuromon and Uramon timber gates at Iwatsuki Castle Park, each on its own mapped footprint.",
+  "nativeAxes": {
+    "x": "along the Kuromon eave",
+    "y": "up",
+    "z": "Kuromon toward Uramon"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:IwatsukiJoUramon.jpg",
+    "https://commons.wikimedia.org/wiki/File:Iwatsuki_Castle,_jomon-1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Iwatsuki_Castle,_jomon-2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "iwatsuki-castle-wp",
+      "url": "https://qualla.com/iwatsuki-castle/"
+    }
+  ],
+  "referenceInputHash": "sha256:8169d88ac540a0e015fc7147581cbd58c3450b19fba8f0dfd0d029ee5630f4ea",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn7/iwatsuki_castle/models/iwatsuki-castle-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn7/iwatsuki_castle/models/iwatsuki-castle-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.72,
+    "surfaces": {
+      "timber": {
+        "slot": "wall",
+        "graph": "wood_plain",
+        "roughness": 0.94
+      },
+      "board": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.91
+      },
+      "rendered": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.94
+      },
+      "edge": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.93
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.9
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.96
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          },
+          "board": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "rendered": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94
+          },
+          "edge": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.93
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          },
+          "board": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "rendered": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94
+          },
+          "edge": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.93
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          },
+          "board": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "rendered": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94
+          },
+          "edge": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.93
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_plain",
+    "wood_plain",
+    "stucco",
+    "wood_plain",
+    "tile_flat",
+    "stone_drywall",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original elevation at the path immediately outside the main Kuromon gate.",
+    "anchor": [
+      139.71067887499999,
+      35.9509287125
+    ],
+    "heading": 0.7667589528869074,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        139.71043483532446,
+        35.9511687313645
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation at the path immediately outside the main Kuromon gate."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          9.4796,
+          -31.4105
+        ],
+        [
+          9.4803,
+          -27.19
+        ],
+        [
+          -4.3343,
+          -27.19
+        ],
+        [
+          -4.3272,
+          -31.4186
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            9.4796,
+            -31.4105
+          ],
+          [
+            9.4803,
+            -27.19
+          ],
+          [
+            -4.3343,
+            -27.19
+          ],
+          [
+            -4.3272,
+            -31.4186
+          ]
+        ],
+        [
+          [
+            -0.8755,
+            27.5386
+          ],
+          [
+            -0.9008,
+            31.0848
+          ],
+          [
+            -4.2738,
+            31.066
+          ],
+          [
+            -4.2484,
+            27.5197
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "Each individually mapped Iwatsuki gate outline."
+    },
+    "featureIds": [
+      "way/489026480",
+      "way/489026479"
+    ],
+    "source": "https://www.openstreetmap.org/way/489026480",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:20b4457ae63aedd47e72a72b26c439ebc9e86e68b36e3e48829c50cac6141957",
+    "notes": "The photographs distinguish the wide timber and plaster black gate with tiled roof from the smaller weathered rear gate with short side panels and its own tiled gable."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "The extant two timber gates and the black gate’s immediate stone curb. The vanished castle buildings, park bridge, and earthworks are outside scope.",
+    "Heights, timber joint details and the small side panels of the rear gate are estimated from the exact photographs."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "iwatsuki-castle-skyline",
+      "position": [
+        83,
+        53,
+        -78
+      ],
+      "lookAt": [
+        1,
+        1.8,
+        -2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "iwatsuki-castle-district",
+      "position": [
+        83,
+        53,
+        -78
+      ],
+      "lookAt": [
+        1,
+        1.8,
+        -2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "iwatsuki-castle-street",
+      "position": [
+        83,
+        53,
+        -78
+      ],
+      "lookAt": [
+        1,
+        1.8,
+        -2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "iwatsuki-castle-closeup",
+      "position": [
+        83,
+        53,
+        -78
+      ],
+      "lookAt": [
+        1,
+        1.8,
+        -2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "two-gates-in-their-mapped-positions",
+      "position": [
+        83,
+        53,
+        -78
+      ],
+      "lookAt": [
+        1,
+        1.8,
+        -2
+      ]
+    },
+    {
+      "name": "kuromon-tiled-roof-and-plaster-panels",
+      "position": [
+        10,
+        6,
+        -46
+      ],
+      "lookAt": [
+        2.57,
+        2.5,
+        -29.3
+      ]
+    },
+    {
+      "name": "uramons-smaller-weathered-gate",
+      "position": [
+        2.9,
+        5.1,
+        39.48
+      ],
+      "lookAt": [
+        -2.59,
+        2.75,
+        29.3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6068,
+    "vertices": 18204,
+    "materials": 7,
+    "bytes": 1012984,
+    "sha256": "sha256:5f56a1caafe25fefa97400370f512a102d55775cbe17a105e291b696915f3422"
+  }
+}

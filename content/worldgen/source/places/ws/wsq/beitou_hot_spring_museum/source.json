@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.beitou_hot_spring_museum",
+  "kind": "static-structure",
+  "title": "Beitou Hot Spring Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.beitou_hot_spring_museum",
+        "output": "assets/places/ws/wsq/beitou_hot_spring_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e2013c36700d7ac92293cb7724a95e5d25229787d49fadda14d60ee9df440d7f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-beitou-hot-spring-museum",
+        "path": "models/generate-beitou-hot-spring-museum.mjs"
+      },
+      {
+        "id": "beitou-hot-spring-museum-model",
+        "path": "models/beitou-hot-spring-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/beitou-hot-spring-museum-footprint.json",
+      "reference-rights/beitou-hot-spring-museum-architectural-facts.json",
+      "reference-rights/beitou-hot-spring-museum-qualla-original-1.json",
+      "reference-rights/beitou-hot-spring-museum-qualla-original-2.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-27443-14018.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

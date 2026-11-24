@@ -1,0 +1,776 @@
+{
+  "planId": "memorial_stadium_clemson",
+  "id": "memorial_stadium_clemson",
+  "assetId": "molen.worldgen.structure.memorial_stadium_clemson",
+  "title": "Memorial Stadium (Clemson)",
+  "wikidataId": "Q543579",
+  "category": "sports",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -82.843192,
+    "latitude": 34.67873985
+  },
+  "size": [
+    236.35741424560547,
+    58.25999927520752,
+    229.5240020751953
+  ],
+  "actualBounds": {
+    "min": [
+      -133.89813232421875,
+      -7.800000190734863,
+      -117.8280029296875
+    ],
+    "max": [
+      102.45928192138672,
+      50.459999084472656,
+      111.69599914550781
+    ]
+  },
+  "visualBrief": "Clemson Memorial Stadium with Frank Howard Field, the twin upper decks, the WestZone and East Hill scoreboard.",
+  "nativeAxes": {
+    "x": "toward East Hill",
+    "y": "up",
+    "z": "toward south press box and grandstand"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Clemson_Memorial_Stadium_-_Clemson_University_-_DSC07484.JPG",
+    "https://commons.wikimedia.org/wiki/File:ClemsonMemorialStadium2.jpg",
+    "https://commons.wikimedia.org/wiki/File:ClemsonMemorialStadium3.jpg",
+    "https://commons.wikimedia.org/wiki/File:ClemsonMemorialStadium1.jpg"
+  ],
+  "stories": [
+    {
+      "id": "memorial-stadium-clemson-wp",
+      "url": "https://qualla.com/memorial-stadium-clemson/"
+    }
+  ],
+  "referenceInputHash": "sha256:49b514f7183366bd228868152947d0b8c3d50fae80160807b9d496ad8446d08c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dn/dnj/memorial_stadium_clemson/models/memorial-stadium-clemson-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dn/dnj/memorial_stadium_clemson/models/memorial-stadium-clemson-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.13,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "fascia": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.94
+      },
+      "seats": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94
+      },
+      "steel": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.84,
+        "metallic": 0.06
+      },
+      "grass": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98
+      },
+      "paint": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.97
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.66,
+        "metallic": 0.08
+      },
+      "screen": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.83
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "fascia": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "seats": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0.06
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66,
+            "metallic": 0.08
+          },
+          "screen": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "fascia": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "seats": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0.06
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66,
+            "metallic": 0.08
+          },
+          "screen": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.068,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "fascia": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "seats": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0.06
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66,
+            "metallic": 0.08
+          },
+          "screen": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "brick_flemish"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified center-field grass elevation in the original provider field.",
+    "anchor": [
+      -82.843192,
+      34.67873985
+    ],
+    "heading": 0.2475358299386611,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -82.843192,
+        34.67873985
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified center-field grass elevation in the original provider field."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -129.176,
+          -44.213
+        ],
+        [
+          -113.035,
+          -43.406
+        ],
+        [
+          -112.276,
+          -54.031
+        ],
+        [
+          -111.29,
+          -67.835
+        ],
+        [
+          -105.888,
+          -73.405
+        ],
+        [
+          -83.007,
+          -51.445
+        ],
+        [
+          -84.647,
+          -49.965
+        ],
+        [
+          -81.289,
+          -47.222
+        ],
+        [
+          -75.119,
+          -51.61
+        ],
+        [
+          -93.292,
+          -91.452
+        ],
+        [
+          -97.314,
+          -97.544
+        ],
+        [
+          -89.808,
+          -98.586
+        ],
+        [
+          -70.931,
+          -105.47
+        ],
+        [
+          -51.452,
+          -108.906
+        ],
+        [
+          -32.516,
+          -113.444
+        ],
+        [
+          -12.609,
+          -117.828
+        ],
+        [
+          6.789,
+          -117.691
+        ],
+        [
+          26.991,
+          -116.179
+        ],
+        [
+          45.043,
+          -113.224
+        ],
+        [
+          65.443,
+          -110.101
+        ],
+        [
+          79.874,
+          -105.26
+        ],
+        [
+          91.813,
+          -99.82
+        ],
+        [
+          72.317,
+          -53.274
+        ],
+        [
+          75.593,
+          -51.183
+        ],
+        [
+          78.382,
+          -49.215
+        ],
+        [
+          81.506,
+          -46.52
+        ],
+        [
+          84.119,
+          -43.333
+        ],
+        [
+          83.007,
+          -41.961
+        ],
+        [
+          85.615,
+          -39.051
+        ],
+        [
+          88.445,
+          -34.409
+        ],
+        [
+          90.18,
+          -29.32
+        ],
+        [
+          91.336,
+          -21.864
+        ],
+        [
+          87.112,
+          -21.14
+        ],
+        [
+          89.984,
+          -11.918
+        ],
+        [
+          91.982,
+          -2.078
+        ],
+        [
+          92.351,
+          10.14
+        ],
+        [
+          90.421,
+          9.928
+        ],
+        [
+          88.936,
+          19.244
+        ],
+        [
+          92.029,
+          20.266
+        ],
+        [
+          90.722,
+          25.964
+        ],
+        [
+          89.455,
+          30.455
+        ],
+        [
+          87.845,
+          34.469
+        ],
+        [
+          85.182,
+          38.618
+        ],
+        [
+          82.915,
+          42.098
+        ],
+        [
+          80.074,
+          45.307
+        ],
+        [
+          73.814,
+          50.051
+        ],
+        [
+          69.844,
+          51.712
+        ],
+        [
+          65.856,
+          52.472
+        ],
+        [
+          79.905,
+          97.197
+        ],
+        [
+          62.863,
+          102.684
+        ],
+        [
+          45.641,
+          106.943
+        ],
+        [
+          26.579,
+          110.186
+        ],
+        [
+          7.161,
+          110.951
+        ],
+        [
+          -1.704,
+          111.696
+        ],
+        [
+          -11.737,
+          111.641
+        ],
+        [
+          -30.903,
+          110.586
+        ],
+        [
+          -50.026,
+          107.981
+        ],
+        [
+          -67.712,
+          102.604
+        ],
+        [
+          -85.764,
+          96.021
+        ],
+        [
+          -71.029,
+          53.783
+        ],
+        [
+          -74.778,
+          52.066
+        ],
+        [
+          -78.23,
+          50.183
+        ],
+        [
+          -87.048,
+          64.041
+        ],
+        [
+          -92.097,
+          59.47
+        ],
+        [
+          -111.65,
+          80.237
+        ],
+        [
+          -116.967,
+          74.713
+        ],
+        [
+          -120.57,
+          75.445
+        ],
+        [
+          -120.171,
+          57.312
+        ],
+        [
+          -126.489,
+          58.253
+        ],
+        [
+          -128.731,
+          50.086
+        ],
+        [
+          -129.141,
+          47.261
+        ],
+        [
+          -130.714,
+          36.449
+        ],
+        [
+          -132.673,
+          22.118
+        ],
+        [
+          -133.498,
+          7.638
+        ],
+        [
+          -133.274,
+          -4.718
+        ],
+        [
+          -133.115,
+          -16.745
+        ],
+        [
+          -131.796,
+          -28.95
+        ],
+        [
+          -129.839,
+          -40.73
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "Named stadium grandstand perimeter including attached WestZone."
+    },
+    "featureIds": [
+      "relation/4131933"
+    ],
+    "source": "https://www.openstreetmap.org/relation/4131933",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5d0544dcfbf5bff8c6bb1e10780e871ea24fb23fc81857b4f0fdbc52de565e62",
+    "notes": "The lower bowl curves upward from the field. Tall split north and south upper decks frame the lower western club seats and the green east hill with its modern scoreboard."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Both exact daytime seating views predate the newest scoreboard. The field footprint and scoreboard dimensions are independently controlled.",
+    "Upper deck heights, precise row positions, stair bays and WestZone side elevations are estimates from the mapped shape and photographs.",
+    "Scope covers the standing stadium complex. Separate parking and the opposite memorial park are outside the structure envelope."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation tiles.",
+  "qaLodCameras": [
+    {
+      "name": "memorial-stadium-clemson-skyline",
+      "position": [
+        235,
+        140,
+        222
+      ],
+      "lookAt": [
+        -4,
+        9.5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "memorial-stadium-clemson-district",
+      "position": [
+        235,
+        140,
+        222
+      ],
+      "lookAt": [
+        -4,
+        9.5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "memorial-stadium-clemson-street",
+      "position": [
+        235,
+        140,
+        222
+      ],
+      "lookAt": [
+        -4,
+        9.5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "memorial-stadium-clemson-closeup",
+      "position": [
+        235,
+        140,
+        222
+      ],
+      "lookAt": [
+        -4,
+        9.5,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "open-bowl-and-east-hill",
+      "position": [
+        235,
+        140,
+        222
+      ],
+      "lookAt": [
+        -4,
+        9.5,
+        0
+      ]
+    },
+    {
+      "name": "westzone-brick-and-glass",
+      "position": [
+        -186,
+        39,
+        45
+      ],
+      "lookAt": [
+        -110,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "field-tiers-and-east-videoboard",
+      "position": [
+        -64,
+        35,
+        30
+      ],
+      "lookAt": [
+        66,
+        11,
+        1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 29347,
+    "vertices": 88041,
+    "materials": 7,
+    "bytes": 3611672,
+    "sha256": "sha256:5f8b01e567bd94608d34a703c0168a75abc7c98b6de999c3103bfea20d667bf1"
+  }
+}

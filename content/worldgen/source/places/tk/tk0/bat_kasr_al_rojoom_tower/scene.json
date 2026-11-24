@@ -1,0 +1,52 @@
+{
+  "format": "molen/scene@3",
+  "name": "Kasr al-Rojoom Tower, Bat",
+  "seed": "bat_kasr_al_rojoom_tower",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": { "mode": "fixed", "position": [-22, 17.733736, 26], "lookAt": [0, 0.46, 0], "fov": 51 },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.bat_kasr_al_rojoom_tower",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [-0.71, 0.62, 0.41],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -1.578937, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [224, 1.18, 224] },
+          "materialRef": "palette:#a28a70",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}

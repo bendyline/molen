@@ -1,0 +1,559 @@
+{
+  "planId": "chateau_tongariro",
+  "id": "chateau_tongariro",
+  "assetId": "molen.worldgen.structure.chateau_tongariro",
+  "title": "Chateau Tongariro",
+  "wikidataId": "Q5087550",
+  "category": "historic-hotel",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 175.53947,
+    "latitude": -39.199973
+  },
+  "size": [
+    83.77000045776367,
+    24.359999895095825,
+    67.64999961853027
+  ],
+  "actualBounds": {
+    "min": [
+      -47.18000030517578,
+      -3.700000047683716,
+      -36.63999938964844
+    ],
+    "max": [
+      36.59000015258789,
+      20.65999984741211,
+      31.010000228881836
+    ]
+  },
+  "visualBrief": "Chateau Tongariro with the raised loggia and Doric portico, a red dormered roof and attached later hotel wings.",
+  "nativeAxes": {
+    "x": "southeast",
+    "y": "up",
+    "z": "southwest"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://manawatuheritage.pncc.govt.nz/item/edc28628-10d5-4382-a96c-dfe65eb5bfb5",
+    "https://collections.tepapa.govt.nz/object/440584"
+  ],
+  "stories": [
+    {
+      "id": "chateau-tongariro-wp",
+      "url": "https://qualla.com/chateau-tongariro/"
+    }
+  ],
+  "referenceInputHash": "sha256:c80c3740e3b6b83daa39fcf4fa38eca662cdb86f6a6bf766d7d69c3c23594c33",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/rc/rch/chateau_tongariro/models/chateau-tongariro-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/rc/rch/chateau_tongariro/models/chateau-tongariro-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.63,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.92
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.93
+      },
+      "iron": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.83
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.81
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.6
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.26,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.92
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "iron": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.83
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.81
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.115,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.92
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "iron": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.83
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.81
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.046,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.92
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "iron": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.83
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.81
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "plaster_lime",
+    "concrete_plain",
+    "metal_painted",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged LINZ ground at the portico approach. The historical basement and terrace meet the sampled original slope.",
+    "anchor": [
+      175.53947,
+      -39.199973
+    ],
+    "heading": -0.9997359566640297,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        175.53917765505005,
+        -39.2000491489173
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged LINZ ground at the portico approach. The historical basement and terrace meet the sampled original slope."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          30.45491,
+          28.13824
+        ],
+        [
+          12.88282,
+          27.78937
+        ],
+        [
+          12.81418,
+          30.98542
+        ],
+        [
+          2.2344,
+          30.75057
+        ],
+        [
+          2.53633,
+          17.61487
+        ],
+        [
+          -1.92104,
+          17.50938
+        ],
+        [
+          -2.09905,
+          24.6033
+        ],
+        [
+          -10.66303,
+          24.38184
+        ],
+        [
+          -10.48494,
+          17.32899
+        ],
+        [
+          -21.4109,
+          17.05631
+        ],
+        [
+          -21.07593,
+          4.07513
+        ],
+        [
+          -26.70261,
+          3.93615
+        ],
+        [
+          -32.9233,
+          3.77442
+        ],
+        [
+          -46.95893,
+          3.76993
+        ],
+        [
+          -46.95893,
+          -10.70816
+        ],
+        [
+          -32.8204,
+          -10.69908
+        ],
+        [
+          -26.99756,
+          -10.70067
+        ],
+        [
+          -20.27674,
+          -10.69954
+        ],
+        [
+          -20.27001,
+          -24.11718
+        ],
+        [
+          -9.32584,
+          -24.09939
+        ],
+        [
+          -9.31882,
+          -27.7144
+        ],
+        [
+          -2.71955,
+          -27.68883
+        ],
+        [
+          -2.73653,
+          -24.38783
+        ],
+        [
+          3.82069,
+          -24.338
+        ],
+        [
+          3.84461,
+          -26.47589
+        ],
+        [
+          8.25511,
+          -26.42102
+        ],
+        [
+          8.39442,
+          -36.58512
+        ],
+        [
+          23.75407,
+          -36.35546
+        ],
+        [
+          23.34753,
+          -9.62917
+        ],
+        [
+          13.42266,
+          -9.79187
+        ],
+        [
+          13.25987,
+          0.32638
+        ],
+        [
+          36.43975,
+          0.72006
+        ],
+        [
+          36.15419,
+          17.47555
+        ],
+        [
+          30.66322,
+          17.37249
+        ]
+      ],
+      "minimumCoverage": 0.88,
+      "basis": "Use named OSM way 37662690 to replace the generic Chateau geometry."
+    },
+    "featureIds": [
+      "way/37662690"
+    ],
+    "source": "https://www.openstreetmap.org/way/37662690",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ed9cb815d24f0d3ba2bc3f8644c93a5b0688ce278bf7cecc5164d658cc967ee9",
+    "notes": "The dated construction and 1934 photographs show the basement, Doric portico, parapet, hipped roof with dormers and brick upper façade. The heritage register records the main materials and modern additions."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The archival images show the original hotel. Modern wing detail, infill and rear service entrances are inferred from the footprint and numeric roof surveys.",
+    "Roof finish, trim colors, parapet detailing and small rear openings are estimates."
+  ],
+  "sourceLicense": "Original geometry informed by public-domain photographs from the Ian Matheson City Archives and Te Papa, OpenStreetMap and open LINZ numeric terrain.",
+  "qaLodCameras": [
+    {
+      "name": "chateau-tongariro-skyline",
+      "position": [
+        -69,
+        21,
+        87
+      ],
+      "lookAt": [
+        -6,
+        8.45,
+        3.6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "chateau-tongariro-district",
+      "position": [
+        -69,
+        21,
+        87
+      ],
+      "lookAt": [
+        -6,
+        8.45,
+        3.6
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "chateau-tongariro-street",
+      "position": [
+        -69,
+        21,
+        87
+      ],
+      "lookAt": [
+        -6,
+        8.45,
+        3.6
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "chateau-tongariro-closeup",
+      "position": [
+        -69,
+        21,
+        87
+      ],
+      "lookAt": [
+        -6,
+        8.45,
+        3.6
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whakapapa-bruce-road",
+      "position": [
+        -69,
+        21,
+        87
+      ],
+      "lookAt": [
+        -6,
+        8.45,
+        3.6
+      ]
+    },
+    {
+      "name": "doric-portico-and-basement",
+      "position": [
+        -16,
+        10.8,
+        44.8
+      ],
+      "lookAt": [
+        -6.28,
+        6.17,
+        21.2
+      ]
+    },
+    {
+      "name": "mapped-east-and-service-wings",
+      "position": [
+        67,
+        32,
+        -70
+      ],
+      "lookAt": [
+        2,
+        8.3,
+        -4.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12022,
+    "vertices": 36066,
+    "materials": 6,
+    "bytes": 1624612,
+    "sha256": "sha256:16c3ce1caab6b428a2256996e6c67183c57ab5ae3994708587aed04ebc7ae2ea"
+  }
+}

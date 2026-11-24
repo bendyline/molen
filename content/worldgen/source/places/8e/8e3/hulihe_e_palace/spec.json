@@ -1,0 +1,446 @@
+{
+  "planId": "hulihe_e_palace",
+  "id": "hulihe_e_palace",
+  "assetId": "molen.worldgen.structure.hulihe_e_palace",
+  "title": "Huliheʻe Palace",
+  "wikidataId": "Q3333366",
+  "category": "palace",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -155.9943588,
+    "latitude": 19.6393116
+  },
+  "size": [
+    29.97879981994629,
+    11.640000343322754,
+    17.29599952697754
+  ],
+  "actualBounds": {
+    "min": [
+      -19.489999771118164,
+      -1.4600000381469727,
+      -9.229999542236328
+    ],
+    "max": [
+      10.488800048828125,
+      10.180000305175781,
+      8.065999984741211
+    ]
+  },
+  "visualBrief": "The restored Huliheʻe Palace in Kailua-Kona, with its green roof and two-storey waterfront lanai.",
+  "nativeAxes": {
+    "x": "south-southeast along the waterfront elevation",
+    "y": "up",
+    "z": "west-southwest through the lanai toward Kailua Bay"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Backside_of_the_Hulihee_Palace.JPG",
+    "https://commons.wikimedia.org/wiki/File:Huihee_Palace_after_2006_earthquake.jpg",
+    "https://commons.wikimedia.org/wiki/File:Hulihee_Palace_after_earthquake.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hulihe-e-palace-wp",
+      "url": "https://qualla.com/hulihe-e-palace/"
+    }
+  ],
+  "referenceInputHash": "sha256:93a1705d2df1c945c2192a4e147c1668e3b4b97923923bc20c37fe32b0a12697",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/8e/8e3/hulihe_e_palace/models/hulihe-e-palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/8e/8e3/hulihe_e_palace/models/hulihe-e-palace-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.89,
+    "surfaces": {
+      "stucco": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_basalt",
+        "roughness": 0.95
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.84
+      },
+      "painted": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.88
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "stucco": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.88
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "stucco": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.88
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "stucco": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.88
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_basalt",
+    "metal_standing_seam",
+    "wood_vertical"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged local elevation on the palace grounds immediately in front of the lanai approach.",
+    "anchor": [
+      -155.9943588,
+      19.6393116
+    ],
+    "heading": -1.0671235834638926,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -155.99444550932026,
+        19.639266595871376
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged local elevation on the palace grounds immediately in front of the lanai approach."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          10.679,
+          -7.57
+        ],
+        [
+          10.674,
+          7.57
+        ],
+        [
+          -10.679,
+          7.57
+        ],
+        [
+          -10.676,
+          2.604
+        ],
+        [
+          -19.024,
+          2.6
+        ],
+        [
+          -19.028,
+          -1.867
+        ],
+        [
+          -10.68,
+          -1.863
+        ],
+        [
+          -10.674,
+          -7.57
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Named native palace footprint and attached service range."
+    },
+    "featureIds": [
+      "way/198653703"
+    ],
+    "source": "https://www.openstreetmap.org/way/198653703",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2b3fe2ab8ec598ece20928c1140fece82e065fd83665557491c051d01ab3af01",
+    "notes": "A stuccoed two-story lava-rubble block with a low green metal gabled roof. A two-deck sea-facing timber lanai has finely spaced balusters, square posts, brackets and a long external stair at the end. Smaller porches mark the street and side entrances."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The original views establish the bayside lanai and side trim. Fine bracket shapes and details of the less visible landward entrance use architectural estimates.",
+    "The unchanged original relief is cropped to the palace grounds. The wider coastal DEM contains extreme values offshore."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "hulihee-palace-skyline",
+      "position": [
+        30,
+        14,
+        37
+      ],
+      "lookAt": [
+        -2.6,
+        4.15,
+        1.2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "hulihee-palace-district",
+      "position": [
+        30,
+        14,
+        37
+      ],
+      "lookAt": [
+        -2.6,
+        4.15,
+        1.2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "hulihee-palace-street",
+      "position": [
+        30,
+        14,
+        37
+      ],
+      "lookAt": [
+        -2.6,
+        4.15,
+        1.2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "hulihee-palace-closeup",
+      "position": [
+        30,
+        14,
+        37
+      ],
+      "lookAt": [
+        -2.6,
+        4.15,
+        1.2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "waterfront-lanai-and-stairs",
+      "position": [
+        13,
+        5.6,
+        30
+      ],
+      "lookAt": [
+        -0.2,
+        4.65,
+        4.9
+      ]
+    },
+    {
+      "name": "ali-i-drive-front-porch",
+      "position": [
+        -15,
+        7.3,
+        -26
+      ],
+      "lookAt": [
+        -1.2,
+        4.51,
+        -4.4
+      ]
+    },
+    {
+      "name": "gable-shutters-and-service-range",
+      "position": [
+        -24,
+        8.2,
+        15
+      ],
+      "lookAt": [
+        -7.1,
+        4.31,
+        0.8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7024,
+    "vertices": 21072,
+    "materials": 6,
+    "bytes": 997564,
+    "sha256": "sha256:2dc88029fa4ed150d3c8cbe9237df5d706b847cd6ce663e6e71060e70bd3561c"
+  }
+}

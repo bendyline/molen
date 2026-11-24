@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.leaning_tower_of_pisa",
+  "kind": "static-structure",
+  "title": "Leaning Tower of Pisa",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.leaning_tower_of_pisa",
+        "output": "assets/places/sp/spz/leaning_tower_of_pisa/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:02cbf15c10c62696502904ad79aacb573e6be09a0f6e8c2b4545db5face80b2d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "leaning_tower_of_pisa",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "tower-model",
+        "path": "models/tower-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

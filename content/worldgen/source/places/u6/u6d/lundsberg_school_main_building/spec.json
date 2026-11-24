@@ -1,0 +1,553 @@
+{
+  "planId": "lundsberg_school_main_building",
+  "id": "lundsberg_school_main_building",
+  "assetId": "molen.worldgen.structure.lundsberg_school_main_building",
+  "title": "Lundsberg School Main Building",
+  "category": "school",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 14.1627,
+    "latitude": 59.4982
+  },
+  "size": [
+    89.04000091552734,
+    21.730000019073486,
+    43.522499084472656
+  ],
+  "actualBounds": {
+    "min": [
+      -49.58000183105469,
+      -4.900000095367432,
+      -24.522499084472656
+    ],
+    "max": [
+      39.459999084472656,
+      16.829999923706055,
+      19
+    ]
+  },
+  "visualBrief": "Lundsberg’s National Romantic schoolhouse, with plaster walls, a granite footing and steep tiled gables.",
+  "nativeAxes": {
+    "x": "northeast along the teaching wing",
+    "y": "up",
+    "z": "southeast towards the court"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Lundsbergsskola1.JPG"
+  ],
+  "stories": [
+    {
+      "id": "lundsbergs-boarding-school-wp",
+      "url": "https://qualla.com/lundsbergs-boarding-school/"
+    }
+  ],
+  "referenceInputHash": "sha256:9cf1e8350bffbe700ae0e922973aea3927336ea4bf00b041c3d13c44fd008879",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u6/u6d/lundsberg_school_main_building/models/lundsberg-school-main-building-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u6/u6d/lundsberg_school_main_building/models/lundsberg-school-main-building-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.84,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.92
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.88
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.81
+      },
+      "flashing": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.43
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.37,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.92
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.81
+          },
+          "flashing": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.92
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.81
+          },
+          "flashing": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.92
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.81
+          },
+          "flashing": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_granite",
+    "tile_flat",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Mapzen terrain at the documented southeast entrance, under the red-tiled canopy.",
+    "anchor": [
+      14.1627,
+      59.4982
+    ],
+    "heading": 1.2514173094542307,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        14.162924832390972,
+        59.49835338529866
+      ],
+      "modelHeight": 0,
+      "basis": "Original Mapzen terrain at the documented southeast entrance, under the red-tiled canopy."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -26.992,
+          9.498
+        ],
+        [
+          -27.011,
+          1.499
+        ],
+        [
+          -32.553,
+          1.511
+        ],
+        [
+          -38.151,
+          1.53
+        ],
+        [
+          -38.169,
+          -3.559
+        ],
+        [
+          -41.52,
+          -3.552
+        ],
+        [
+          -41.536,
+          -11.294
+        ],
+        [
+          -49.278,
+          -11.269
+        ],
+        [
+          -49.314,
+          -24.249
+        ],
+        [
+          -29.27,
+          -24.301
+        ],
+        [
+          -29.236,
+          -11.327
+        ],
+        [
+          -35.444,
+          -11.31
+        ],
+        [
+          -35.427,
+          -4.239
+        ],
+        [
+          -26.97,
+          -4.263
+        ],
+        [
+          -26.991,
+          -10.106
+        ],
+        [
+          -14.728,
+          -10.144
+        ],
+        [
+          -14.718,
+          -6.392
+        ],
+        [
+          2.303,
+          -6.439
+        ],
+        [
+          2.293,
+          -9.126
+        ],
+        [
+          12.448,
+          -9.157
+        ],
+        [
+          12.459,
+          -6.465
+        ],
+        [
+          27.03,
+          -6.511
+        ],
+        [
+          27.009,
+          -14.8
+        ],
+        [
+          37.797,
+          -14.832
+        ],
+        [
+          37.858,
+          5.03
+        ],
+        [
+          37.871,
+          9.68
+        ],
+        [
+          37.892,
+          18.712
+        ],
+        [
+          27.103,
+          18.74
+        ],
+        [
+          27.068,
+          6.51
+        ],
+        [
+          21.316,
+          6.525
+        ],
+        [
+          2.223,
+          6.579
+        ],
+        [
+          -14.68,
+          6.628
+        ],
+        [
+          -14.671,
+          9.458
+        ]
+      ],
+      "minimumCoverage": 0.83,
+      "basis": "Native perimeter of the main school building, with the adjoining church left outside the cutout."
+    },
+    "featureIds": [
+      "way/333543301"
+    ],
+    "source": "https://www.openstreetmap.org/way/333543301",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:234c80dedb9995bfb9863fa211316fe16e971842d79231cd43a851a974d32a17",
+    "notes": "The photographer's original shows the yellow plaster, dark masonry footing and stringcourse, dark red tiled gables, multi-pane school windows, shallow porch and two-storey oriel. Roof and storey heights are visual estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The standing main schoolhouse is shown. The church and the detached campus buildings have separate footprints.",
+    "West and rear elevations, exact section heights and small window divisions are representative."
+  ],
+  "sourceLicense": "Original 3D work under the repository license, OpenStreetMap geometry under ODbL and Mapzen elevations under source attribution terms.",
+  "qaLodCameras": [
+    {
+      "name": "lundsberg-school-skyline",
+      "position": [
+        70,
+        26,
+        79
+      ],
+      "lookAt": [
+        -4,
+        7.4,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "lundsberg-school-district",
+      "position": [
+        70,
+        26,
+        79
+      ],
+      "lookAt": [
+        -4,
+        7.4,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "lundsberg-school-street",
+      "position": [
+        70,
+        26,
+        79
+      ],
+      "lookAt": [
+        -4,
+        7.4,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "lundsberg-school-closeup",
+      "position": [
+        70,
+        26,
+        79
+      ],
+      "lookAt": [
+        -4,
+        7.4,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "schoolhouse-and-original-hillside",
+      "position": [
+        74,
+        22,
+        80
+      ],
+      "lookAt": [
+        -6,
+        7.1,
+        0
+      ]
+    },
+    {
+      "name": "court-elevation-and-entry-canopy",
+      "position": [
+        16,
+        9,
+        48
+      ],
+      "lookAt": [
+        14,
+        7.3,
+        8
+      ]
+    },
+    {
+      "name": "steep-gables-timber-oriel",
+      "position": [
+        57,
+        14.5,
+        25
+      ],
+      "lookAt": [
+        33.5,
+        8.2,
+        9.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11648,
+    "vertices": 34944,
+    "materials": 6,
+    "bytes": 1706164,
+    "sha256": "sha256:044ae6759776edc3829832fe81c618457ad8eecbe5b590acf81ec9935617f641"
+  }
+}

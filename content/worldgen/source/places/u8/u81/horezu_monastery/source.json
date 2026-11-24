@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.horezu_monastery",
+  "kind": "static-structure",
+  "title": "Horezu Monastery",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.horezu_monastery",
+        "output": "assets/places/u8/u81/horezu_monastery/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3fb3c4db73bb3771e8a3ab741284ea85292b7dbeeb1d225bdad6965e7b571486"
+      }
+    ],
+    "generators": [
+      {
+        "id": "horezu_monastery",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "monastery",
+        "path": "models/monastery.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

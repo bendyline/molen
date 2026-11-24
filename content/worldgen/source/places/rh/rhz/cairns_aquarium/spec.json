@@ -1,0 +1,396 @@
+{
+  "id": "cairns_aquarium",
+  "planId": "cairns_aquarium",
+  "title": "Cairns Aquarium",
+  "assetId": "molen.worldgen.structure.cairns_aquarium",
+  "category": "museum",
+  "wikidataId": "Q50822227",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 145.773639,
+    "latitude": -16.918592
+  },
+  "visualBrief": "A sloped blue-glass atrium and projecting angular canopy break up the stepped white facade. Marine roundels, handrails and a shallow entrance stair face Florence Street.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/rh/rhz/cairns_aquarium/models/aquarium.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.fkg.com.au/archives/537",
+    "https://commons.wikimedia.org/wiki/File:Cairns_Aquarium%2C_Queensland%2C_2020%2C_02.jpg",
+    "https://commons.wikimedia.org/wiki/File:Entrance_to_the_Cairns_Aquarium%2C_Florence_Street%2C_Cairns_CBD%2C_2018.jpg",
+    "https://www.openstreetmap.org/way/648805828"
+  ],
+  "geographicProposal": {
+    "id": "cairns-aquarium",
+    "title": "Cairns Aquarium",
+    "asset": "molen.worldgen.structure.cairns_aquarium",
+    "anchor": [
+      145.773639,
+      -16.918592
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 7.4,
+    "bounds": [
+      145.7731562209252,
+      -16.91902576791277,
+      145.77413157907813,
+      -16.91820453302379
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q50822227",
+      "names": [
+        "Cairns Aquarium",
+        "Cairns Aquarium"
+      ],
+      "maxDistance": 93
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -24.388842,
+          46.286695
+        ],
+        [
+          50.460408,
+          -15.406612
+        ],
+        [
+          29.980171,
+          -40.709498
+        ],
+        [
+          21.012745,
+          -41.132512
+        ],
+        [
+          20.000981,
+          -33.273369
+        ],
+        [
+          9.414732,
+          -31.792822
+        ],
+        [
+          9.574484,
+          -30.301143
+        ],
+        [
+          5.527428,
+          -28.119285
+        ],
+        [
+          6.070585,
+          -26.917036
+        ],
+        [
+          0.244953,
+          -23.788962
+        ],
+        [
+          -0.330155,
+          -23.354816
+        ],
+        [
+          -1.948977,
+          -25.080266
+        ],
+        [
+          -14.697206,
+          -14.961334
+        ],
+        [
+          -11.821666,
+          -11.265529
+        ],
+        [
+          -22.10971,
+          -4.430515
+        ],
+        [
+          -21.566553,
+          -3.42864
+        ],
+        [
+          -30.097322,
+          0.077924
+        ],
+        [
+          -29.586115,
+          1.380362
+        ],
+        [
+          -36.178558,
+          4.797871
+        ],
+        [
+          -35.688651,
+          5.93333
+        ],
+        [
+          -45.050132,
+          11.833265
+        ],
+        [
+          -44.038368,
+          12.890801
+        ],
+        [
+          -49.416693,
+          15.573603
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace only the named Cairns Aquarium footprint along Florence Street."
+    },
+    "source": "https://www.openstreetmap.org/way/648805828",
+    "note": "The northwestern row of mapped steps determines the orientation of the Florence Street frontage and glazing.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1963b52d13c0117d5c84d200a3b753f62627abc1349dae9bd41899870608d7a6"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "cladding": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.88
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.97
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.9
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.42
+      }
+    },
+    "errorMeters": 1.1,
+    "module": "content/worldgen/source/places/rh/rhz/cairns_aquarium/models/aquarium.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "cladding": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.97
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.9
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42
+          }
+        },
+        "errorMeters": 0.42
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "cladding": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.97
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.9
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42
+          }
+        },
+        "errorMeters": 0.16
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "cladding": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.97
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.9
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42
+          }
+        },
+        "errorMeters": 0.052
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -3,
+        6,
+        3
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "atrium-stairs-and-glazing",
+      "position": [
+        -27,
+        5,
+        -40
+      ],
+      "lookAt": [
+        -8,
+        6,
+        -17
+      ],
+      "fov": 63
+    },
+    {
+      "name": "florence-street-roundels",
+      "position": [
+        -66,
+        6,
+        -11
+      ],
+      "lookAt": [
+        -11,
+        8,
+        -17
+      ],
+      "fov": 58
+    },
+    {
+      "name": "southeast-service-wall",
+      "position": [
+        77,
+        15,
+        62
+      ],
+      "lookAt": [
+        5,
+        7,
+        2
+      ],
+      "fov": 49
+    }
+  ],
+  "limitations": [
+    "The builder’s atrium height and the mapped wall line set the main glazing. Marine roundels are drawn as simplified fish and coral forms. Parapet heights, roof equipment and entrance details are photographic estimates."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -49.47483444213867,
+      -2.430000066757202,
+      -41.207427978515625
+    ],
+    "max": [
+      50.51870346069336,
+      15.75,
+      46.34457015991211
+    ]
+  },
+  "size": [
+    99.99353790283203,
+    18.180000066757202,
+    87.55199813842773
+  ],
+  "mesh": {
+    "triangles": 2731,
+    "vertices": 6243,
+    "materials": 5,
+    "bytes": 260800,
+    "sha256": "sha256:10fbeaa744b0254aa1299529db564381c03a7cc1149e05d18570bcd993c1319c"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

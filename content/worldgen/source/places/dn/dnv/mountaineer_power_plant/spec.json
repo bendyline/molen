@@ -1,0 +1,530 @@
+{
+  "planId": "mountaineer_power_plant",
+  "id": "mountaineer_power_plant",
+  "assetId": "molen.worldgen.structure.mountaineer_power_plant",
+  "title": "Mountaineer Power Plant",
+  "wikidataId": "Q2194720",
+  "category": "industrial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -81.9357,
+    "latitude": 38.9782
+  },
+  "size": [
+    634.5010986328125,
+    342.8187928199768,
+    398.0122833251953
+  ],
+  "actualBounds": {
+    "min": [
+      -229.68099975585938,
+      -7.400000095367432,
+      -258.8642578125
+    ],
+    "max": [
+      404.8200988769531,
+      335.4187927246094,
+      139.1480255126953
+    ]
+  },
+  "visualBrief": "Mountaineer Power Plant’s two tapered concrete chimneys, single hyperbolic cooling tower and generating hall along the Ohio River.",
+  "nativeAxes": {
+    "x": "east toward the Ohio River",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Sutton_Township_fields_and_West_Virginia_power_plant.jpg"
+  ],
+  "stories": [
+    {
+      "id": "mountaineer-power-plant-wp",
+      "url": "https://qualla.com/mountaineer-power-plant/"
+    }
+  ],
+  "referenceInputHash": "sha256:0a0817db7785e4451175f58a91fad3bfe91efc489208431067eaafc4fa0c10be",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dn/dnv/mountaineer_power_plant/models/mountaineer-power-plant-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dn/dnv/mountaineer_power_plant/models/mountaineer-power-plant-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 3.2,
+    "surfaces": {
+      "tower": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.96
+      },
+      "stack": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "liner": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.97
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.91
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.91
+      },
+      "metal": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.83
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.75
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.55,
+        "surfaces": {
+          "tower": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96
+          },
+          "stack": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "liner": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.91
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.56,
+        "surfaces": {
+          "tower": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96
+          },
+          "stack": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "liner": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.91
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "tower": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96
+          },
+          "stack": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "liner": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.91
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_boardformed",
+    "concrete_plain",
+    "metal_corrugated",
+    "concrete_plain",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original power plant yard grade between the cooling tower and the hall.",
+    "anchor": [
+      -81.9357,
+      38.9782
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -81.9357,
+        38.9782
+      ],
+      "modelHeight": 0,
+      "basis": "Original power plant yard grade between the cooling tower and the hall."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          80.87,
+          -103.06
+        ],
+        [
+          4.24,
+          -78.725
+        ],
+        [
+          -10.35,
+          -125.758
+        ],
+        [
+          -55.35,
+          -122.518
+        ],
+        [
+          -188.324,
+          -43.459
+        ],
+        [
+          -229.681,
+          -112.789
+        ],
+        [
+          -208.6,
+          -123.32
+        ],
+        [
+          -212.624,
+          -129.643
+        ],
+        [
+          -219.945,
+          -141.164
+        ],
+        [
+          -124.676,
+          -189.811
+        ],
+        [
+          -109.272,
+          -162.649
+        ],
+        [
+          -84.132,
+          -179.269
+        ],
+        [
+          -76.43,
+          -166.701
+        ],
+        [
+          -16.84,
+          -170.352
+        ],
+        [
+          -7.512,
+          -218.598
+        ],
+        [
+          79.243,
+          -210.082
+        ],
+        [
+          93.842,
+          -173.191
+        ],
+        [
+          100.324,
+          -147.242
+        ],
+        [
+          94.647,
+          -124.132
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Native footprint of the main Mountaineer generating hall."
+    },
+    "featureIds": [
+      "way/920093333"
+    ],
+    "source": "https://www.openstreetmap.org/way/920093333",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b6c56ffe56ca26d63715b951331ed6049a9875fb83505c0aa8355e7ccce584c5",
+    "notes": "The round, tapered 2007 flue stack stands southeast of the still-standing original chimney in the photo. A wide hyperbolic cooling tower sits to the southwest of the two chimneys. The low industrial wings are placed along the native mapped geometry."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The chimney and tower heights come from public agency records. Secondary elevations and the external details of the hall and cooling tower are approximated from the public footprint and records.",
+    "Scope covers the principal visible structures and immediate annexes. Plant interiors, broader utility infrastructure and offsite facilities lie outside this exterior model."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "mountaineer-power-plant-skyline",
+      "position": [
+        615,
+        215,
+        590
+      ],
+      "lookAt": [
+        -24,
+        115,
+        -42
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "mountaineer-power-plant-district",
+      "position": [
+        615,
+        215,
+        590
+      ],
+      "lookAt": [
+        -24,
+        115,
+        -42
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "mountaineer-power-plant-street",
+      "position": [
+        615,
+        215,
+        590
+      ],
+      "lookAt": [
+        -24,
+        115,
+        -42
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "mountaineer-power-plant-closeup",
+      "position": [
+        615,
+        215,
+        590
+      ],
+      "lookAt": [
+        -24,
+        115,
+        -42
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "paired-stack-profiles",
+      "position": [
+        588,
+        74,
+        118
+      ],
+      "lookAt": [
+        35,
+        144,
+        -83
+      ]
+    },
+    {
+      "name": "open-rim-cooling-tower",
+      "position": [
+        -254,
+        217,
+        332
+      ],
+      "lookAt": [
+        -36,
+        83,
+        44
+      ]
+    },
+    {
+      "name": "generating-hall-and-plant-roofs",
+      "position": [
+        300,
+        252,
+        -432
+      ],
+      "lookAt": [
+        -56,
+        50,
+        -93
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9764,
+    "vertices": 29292,
+    "materials": 8,
+    "bytes": 1317240,
+    "sha256": "sha256:66493d30e8a751edc21774c931c0773ec8385ecc605a103822a3dc76a123f717"
+  }
+}

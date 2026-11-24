@@ -12,25 +12,31 @@ import type { StructurePlacement } from '../kernel/structure-index';
 
 type Point = [number, number];
 type Context = { origin: readonly [number, number]; tileSize: number };
-export type WholeBuildingCutout = {
+/** One placement's mask: the union of its outlines, less its holes. */
+export type BuildingCutoutMask = {
   outlines: readonly (readonly Point[])[];
-  minimumCoverage: number;
+  /** Courtyards and enclosed ground whose mapped buildings stay. */
+  holes?: readonly (readonly Point[])[];
 };
+export type WholeBuildingCutout = BuildingCutoutMask & { minimumCoverage: number };
 
 /** Same scale/yaw/translation as the model, in absolute world coordinates. */
+function toWorld(entry: StructurePlacement, metersPerUnit: number) {
+  const [x, z] = wgs84ToWorld(metersPerUnit, ...entry.anchor);
+  const c = Math.cos(entry.heading ?? 0),
+    s = Math.sin(entry.heading ?? 0);
+  const [sx, , sz] = entry.scale ?? [1, 1, 1];
+  return (ring: readonly Point[]): Point[] =>
+    ring.map(([px, pz]) => [x + px * sx * c + pz * sz * s, z - px * sx * s + pz * sz * c]);
+}
+
+/** The primary outline in absolute world coordinates. */
 export function structureBuildingCutout(
   entry: StructurePlacement,
   metersPerUnit: number,
 ): Point[] | undefined {
   if (!entry.buildingCutout) return undefined;
-  const [x, z] = wgs84ToWorld(metersPerUnit, ...entry.anchor);
-  const c = Math.cos(entry.heading ?? 0),
-    s = Math.sin(entry.heading ?? 0);
-  const [sx, , sz] = entry.scale ?? [1, 1, 1];
-  return entry.buildingCutout.outline.map(([px, pz]) => [
-    x + px * sx * c + pz * sz * s,
-    z - px * sx * s + pz * sz * c,
-  ]);
+  return toWorld(entry, metersPerUnit)(entry.buildingCutout.outline);
 }
 
 function semantic(polygon: Polygon): TerrainSemanticPolygon {
@@ -47,32 +53,55 @@ export function structureBuildingCutouts(
 ): Point[][] {
   const cutout = entry.buildingCutout;
   if (!cutout) return [];
-  return (cutout.outlines ?? [cutout.outline]).map(
-    (outline) =>
-      structureBuildingCutout(
-        { ...entry, buildingCutout: { outline, basis: cutout.basis } },
-        metersPerUnit,
-      ) as Point[],
-  );
+  return (cutout.outlines ?? [cutout.outline]).map(toWorld(entry, metersPerUnit));
+}
+
+/** The placement's whole world mask, holes included. */
+export function structureBuildingCutoutMask(
+  entry: StructurePlacement,
+  metersPerUnit: number,
+): BuildingCutoutMask | undefined {
+  const cutout = entry.buildingCutout;
+  if (!cutout) return undefined;
+  const world = toWorld(entry, metersPerUnit);
+  const outlines = (cutout.outlines ?? [cutout.outline]).map(world);
+  return cutout.holes?.length ? { outlines, holes: cutout.holes.map(world) } : { outlines };
 }
 
 /** Input tiles remain intact, allowing eviction to restore their original buildings. */
 export function withoutBuildingCutouts(
   tile: TerrainSemanticTile,
   context: Context,
-  worldOutlines: readonly (readonly Point[])[],
+  worldMasks: readonly BuildingCutoutMask[],
   wholeBuildings: readonly WholeBuildingCutout[] = [],
 ): TerrainSemanticTile {
-  if (!worldOutlines.length && !wholeBuildings.length) return tile;
-  const normalize = (outlines: readonly (readonly Point[])[]) =>
-    outlines.map((outline) => {
-      const outer = outline.map(
-        ([x, z]): Point => [
-          (x - context.origin[0]) / context.tileSize,
-          (z - context.origin[1]) / context.tileSize,
-        ],
-      );
-      return { polygon: [outer] as Polygon, bounds: polygonBounds({ outer }) };
+  if (!worldMasks.length && !wholeBuildings.length) return tile;
+  const ring = (outline: readonly Point[]) =>
+    outline.map(
+      ([x, z]): Point => [
+        (x - context.origin[0]) / context.tileSize,
+        (z - context.origin[1]) / context.tileSize,
+      ],
+    );
+  const mask = (polygon: Polygon) => ({
+    polygon,
+    bounds: polygonBounds({ outer: polygon[0] ?? [] }),
+  });
+  const normalize = (masks: readonly BuildingCutoutMask[]) =>
+    masks.flatMap(({ outlines, holes }) => {
+      const outers = outlines.map((outline): Polygon => [ring(outline)]);
+      if (!holes?.length) return outers.map(mask);
+      try {
+        // Holes carve only their own placement's outlines, so another landmark's mask still
+        // clears what it covers there.
+        return polygonClipping
+          .difference(outers, ...holes.map((hole): Polygon => [ring(hole)]))
+          .map(mask);
+      } catch {
+        // The model still stands over its whole outline; a lost courtyard beats a building
+        // drawn through the landmark.
+        return outers.map(mask);
+      }
     });
   const validWhole = wholeBuildings.filter(
     (cutout) =>
@@ -81,13 +110,10 @@ export function withoutBuildingCutouts(
       cutout.minimumCoverage <= 1,
   );
   // Coarse sources merge the landmark with its neighbors; trim only the occupied area there.
-  const masks = normalize([
-    ...worldOutlines,
-    ...(tile.buildingsGeneralized ? validWhole.flatMap((cutout) => cutout.outlines) : []),
-  ]);
+  const masks = normalize([...worldMasks, ...(tile.buildingsGeneralized ? validWhole : [])]);
   const wholeMasks = (tile.buildingsGeneralized ? [] : validWhole).map((cutout) => ({
     minimumCoverage: cutout.minimumCoverage,
-    masks: normalize(cutout.outlines),
+    masks: normalize([cutout]),
   }));
   let changed = false;
   const buildings = tile.buildings.flatMap((feature) => {

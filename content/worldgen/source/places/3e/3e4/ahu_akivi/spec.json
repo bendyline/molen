@@ -1,0 +1,239 @@
+{
+  "id": "ahu_akivi",
+  "planId": "ahu_akivi",
+  "title": "Ahu Akivi",
+  "assetId": "molen.worldgen.structure.ahu_akivi",
+  "category": "landmark",
+  "wikidataId": "Q2011739",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -109.395079275,
+    "latitude": -27.115034375
+  },
+  "visualBrief": "Seven carved moai stand on a low stone terrace above the poro ramp. They face west along the stone platform’s measured bearing. Lower wings follow the mapped enclosure.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/3e/3e4/ahu_akivi/models/akivi.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.museorapanui.gob.cl/conozca-rapa-nui",
+    "https://www.openstreetmap.org/way/221755582"
+  ],
+  "geographicProposal": {
+    "id": "ahu-akivi",
+    "title": "Ahu Akivi",
+    "asset": "molen.worldgen.structure.ahu_akivi",
+    "anchor": [
+      -109.395079275,
+      -27.115034375
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 141.4219,
+    "bounds": [
+      -109.39519108474535,
+      -27.115422568655852,
+      -109.39496741525703,
+      -27.1146462325753
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q2011739",
+      "names": [
+        "Ahu Akivi",
+        "Ahu A Tiu",
+        "Ahu A Tiu (Ahu A Kivi)",
+        "Ahu A Kivi"
+      ],
+      "maxDistance": 68
+    },
+    "source": "https://www.openstreetmap.org/way/221755582",
+    "note": "The stone platform follows the mapped bearing, with the statues facing west. The visitor trail and other archaeological features remain independent.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b580385fd358dd91e1a31466068b4c3ecd910e03d05473420a7d242e7d481296"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "tuff": {
+        "slot": "wall",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.99
+      },
+      "wall": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.99
+      },
+      "gravel": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.99
+      }
+    },
+    "errorMeters": 0.39,
+    "module": "content/worldgen/source/places/3e/3e4/ahu_akivi/models/akivi.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "tuff": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99
+          },
+          "wall": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.99
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.18
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "tuff": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99
+          },
+          "wall": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.99
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.077
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "tuff": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99
+          },
+          "wall": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.99
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.028
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -2,
+        3,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "seven-west-facing-moai",
+      "position": [
+        -33,
+        4.5,
+        4
+      ],
+      "lookAt": [
+        -0.8,
+        3,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "sculpted-profiles-and-terrace",
+      "position": [
+        -8.4,
+        2.65,
+        10.8
+      ],
+      "lookAt": [
+        2.8,
+        3.28,
+        3.4
+      ],
+      "fov": 61
+    }
+  ],
+  "limitations": [
+    "One mapped statue sets a control on the row. The remaining individual statue positions, proportions and terrace grades are estimates from the photographs and available terrain."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -9.078638076782227,
+      -2.1760001182556152,
+      -41.20762252807617
+    ],
+    "max": [
+      9.08359146118164,
+      6.090000152587891,
+      41.21332550048828
+    ]
+  },
+  "size": [
+    18.162229537963867,
+    8.266000270843506,
+    82.42094802856445
+  ],
+  "mesh": {
+    "triangles": 13878,
+    "vertices": 27478,
+    "materials": 3,
+    "bytes": 1158192,
+    "sha256": "sha256:4c7c0878120e73f7665b85685b4fa88be6516efc54320f34f7315af06d958d25"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

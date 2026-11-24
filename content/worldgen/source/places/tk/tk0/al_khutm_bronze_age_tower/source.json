@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.al_khutm_bronze_age_tower",
+  "kind": "static-structure",
+  "title": "Al-Khutm Bronze Age Tower",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.al_khutm_bronze_age_tower",
+        "output": "assets/places/tk/tk0/al_khutm_bronze_age_tower/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9607477e7456a727a7fce2a19d1414c134f22e708314bed36588e51d2a4ee773"
+      }
+    ],
+    "generators": [
+      {
+        "id": "al_khutm_bronze_age_tower",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "oman-bronze-age",
+        "path": "models/oman-bronze-age.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

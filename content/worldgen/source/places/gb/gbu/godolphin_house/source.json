@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.godolphin_house",
+  "kind": "static-structure",
+  "title": "Godolphin House",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.godolphin_house",
+        "output": "assets/places/gb/gbu/godolphin_house/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2dd5c04cffb85a00bf4398ef6ac4c0aff543ea482ea05f425417eaab2f04ece9"
+      }
+    ],
+    "generators": [
+      {
+        "id": "godolphin_house",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cornish-heritage",
+        "path": "models/cornish-heritage.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

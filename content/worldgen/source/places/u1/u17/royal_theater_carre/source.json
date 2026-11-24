@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.royal_theater_carre",
+  "kind": "static-structure",
+  "title": "Royal Theatre Carré",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.royal_theater_carre",
+        "output": "assets/places/u1/u17/royal_theater_carre/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2a0ec61cc71846dd8aef65c5f411a24d2924d915941501ea6b33eb3f485a4739"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-royal-theater-carre",
+        "path": "models/generate-royal-theater-carre.mjs"
+      },
+      {
+        "id": "royal-theater-carre-model",
+        "path": "models/royal-theater-carre-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/royal-theater-carre-footprint.json",
+      "native-map/royal-theater-carre-survey-measurements.json",
+      "reference-rights/royal-theater-carre-architectural-facts.json",
+      "reference-rights/royal-theater-carre-qualla-original-2.json",
+      "references/carre-amsterdam-facade.jpg",
+      "reference-rights/jvhertum-commons-first-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-16830-10769.png",
+      "terrain-sources/terrarium-15-16830-10770.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,461 @@
+{
+  "planId": "king_chulalongkorn_memorial_building",
+  "id": "king_chulalongkorn_memorial_building",
+  "assetId": "molen.worldgen.structure.king_chulalongkorn_memorial_building",
+  "title": "King Chulalongkorn Memorial Building",
+  "wikidataId": "Q4918760",
+  "category": "monument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 16.675313850000002,
+    "latitude": 62.9554119
+  },
+  "size": [
+    22.736000061035156,
+    36.64130353927612,
+    22.335841178894043
+  ],
+  "actualBounds": {
+    "min": [
+      -11.368000030517578,
+      -4.421302318572998,
+      -8.576600074768066
+    ],
+    "max": [
+      11.368000030517578,
+      32.220001220703125,
+      13.759241104125977
+    ]
+  },
+  "visualBrief": "Utanede’s royal Thai pavilion with its stone terrace, white colonnade, red cross-gables and gilt spire.",
+  "nativeAxes": {
+    "x": "north-northwest along the footprint frontage",
+    "y": "up",
+    "z": "east-northeast toward the garden and principal pedestrian approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:20080719ChulalongkornPavilionIMG_6737.jpg",
+    "https://commons.wikimedia.org/wiki/File:20080719ChulalongkornPavilionIMG_6713.jpg"
+  ],
+  "stories": [
+    {
+      "id": "king-chulalongkorn-memorial-building-wp",
+      "url": "https://qualla.com/king-chulalongkorn-memorial-building/"
+    }
+  ],
+  "referenceInputHash": "sha256:df6f0c13e690fe494abd1b64821f82d3d63802f60e99a58419331ada0b5ed114",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u7/u75/king_chulalongkorn_memorial_building/models/king-chulalongkorn-memorial-building-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u7/u75/king_chulalongkorn_memorial_building/models/king-chulalongkorn-memorial-building-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.93,
+    "surfaces": {
+      "white": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.91
+      },
+      "ashlar": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "grass": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.99
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.87
+      },
+      "lacquer": {
+        "slot": "trim",
+        "graph": "wood_painted_shingle",
+        "roughness": 0.86
+      },
+      "gold": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.58,
+        "metallic": 0.23
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.91
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.39,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "ashlar": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.87
+          },
+          "lacquer": {
+            "slot": "trim",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.86
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58,
+            "metallic": 0.23
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "ashlar": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.87
+          },
+          "lacquer": {
+            "slot": "trim",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.86
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58,
+            "metallic": 0.23
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "ashlar": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.87
+          },
+          "lacquer": {
+            "slot": "trim",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.86
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58,
+            "metallic": 0.23
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_ashlar",
+    "tile_ceramic",
+    "wood_painted_shingle"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged regional terrain at the approach immediately outside the modeled plinth.",
+    "anchor": [
+      16.675313850000002,
+      62.9554119
+    ],
+    "heading": 2.0283463162452433,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        16.675482233671918,
+        62.955449598874125
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged regional terrain at the approach immediately outside the modeled plinth."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          8.153,
+          -7.058
+        ],
+        [
+          -8.149,
+          -7.062
+        ],
+        [
+          -8.153,
+          7.058
+        ],
+        [
+          -0.82,
+          7.058
+        ],
+        [
+          8.151,
+          7.058
+        ],
+        [
+          8.156,
+          -4.19
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Named native outline of the memorial pavilion and plinth."
+    },
+    "featureIds": [
+      "way/531267018"
+    ],
+    "source": "https://www.openstreetmap.org/way/531267018",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:aa8ea4824ae7adf1f0e2b609614da163526aa87bfdb86f7d433812db217ddbee",
+    "notes": "The map fixes an approximately 16.3 by 14.1 metre envelope. Two cleared photographs fix the white column arcade, raised gray stone terrace, red cross-gables, gold bargeboards, and multiple gold stages supporting the tall royal spire."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_shingle",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The exterior proportions follow the photographs and the documented overall height. Gilded relief is simplified and exact rear trim details are estimated. Only the pavilion and its stone terrace are modeled."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "utanede-pavilion-skyline",
+      "position": [
+        -36,
+        25,
+        44
+      ],
+      "lookAt": [
+        0,
+        16.6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "utanede-pavilion-district",
+      "position": [
+        -36,
+        25,
+        44
+      ],
+      "lookAt": [
+        0,
+        16.6,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "utanede-pavilion-street",
+      "position": [
+        -36,
+        25,
+        44
+      ],
+      "lookAt": [
+        0,
+        16.6,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "utanede-pavilion-closeup",
+      "position": [
+        -36,
+        25,
+        44
+      ],
+      "lookAt": [
+        0,
+        16.6,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "approach-colonnade",
+      "position": [
+        -22,
+        7.4,
+        27
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "cross-gables-and-spire",
+      "position": [
+        23,
+        20,
+        27
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "upper-roof-and-terrace",
+      "position": [
+        25,
+        30,
+        -29
+      ],
+      "lookAt": [
+        0,
+        15.2,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9494,
+    "vertices": 28482,
+    "materials": 7,
+    "bytes": 1254376,
+    "sha256": "sha256:56bf16349f307262d1a6032c98042a9c1669bce8d6ca7b49c34ec052f7eaa53d"
+  }
+}

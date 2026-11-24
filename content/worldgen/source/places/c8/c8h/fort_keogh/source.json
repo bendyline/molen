@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fort_keogh",
+  "kind": "static-structure",
+  "title": "Fort Keogh Water Wagon Shed",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fort_keogh",
+        "output": "assets/places/c8/c8h/fort_keogh/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2422b325194a0f23176948c829ca782da363e1be68e2dccb69ee22d68fe173a6"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-fort-keogh",
+        "path": "models/generate-fort-keogh.mjs"
+      },
+      {
+        "id": "fort-keogh-model",
+        "path": "models/fort-keogh-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/fort-keogh-footprint.json",
+      "native-map/fort-keogh-water-wagon-geometry-controls.json",
+      "reference-rights/fort-keogh-architectural-facts.json",
+      "references/fort-keogh-water-wagon-naip.png",
+      "reference-rights/fort-keogh-water-wagon-naip-item.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/fort-keogh-water-wagon-3dep.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

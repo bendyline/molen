@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.keats_shelley_memorial_house",
+  "kind": "static-structure",
+  "title": "Keats–Shelley Memorial House",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.keats_shelley_memorial_house",
+        "output": "assets/places/sr/sr2/keats_shelley_memorial_house/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9fb57e141b5e2e215e44a0562fa3a7205a7c958b1e4670a88db9a8fa5f46753e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-keats-shelley-memorial-house",
+        "path": "models/generate-keats-shelley-memorial-house.mjs"
+      },
+      {
+        "id": "keats-shelley-memorial-house-model",
+        "path": "models/keats-shelley-memorial-house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/keats-shelley-memorial-house-footprint.json",
+      "reference-rights/keats-shelley-memorial-house-architectural-facts.json",
+      "reference-rights/keats-shelley-memorial-house-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/tinitaly-keats-shelley-native.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

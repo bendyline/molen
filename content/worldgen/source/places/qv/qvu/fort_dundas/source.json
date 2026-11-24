@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fort_dundas",
+  "kind": "static-structure",
+  "title": "Fort Dundas",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fort_dundas",
+        "output": "assets/places/qv/qvu/fort_dundas/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9dcbc567aed1a15adfdef5af12fba290201cf0de94cc8ed2ad52d8cd49d865b3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-fort-dundas",
+        "path": "models/generate-fort-dundas.mjs"
+      },
+      {
+        "id": "fort-dundas-model",
+        "path": "models/fort-dundas-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/fort-dundas-footprint.json",
+      "native-map/fort-dundas-shape-controls.json",
+      "reference-rights/fort-dundas-architectural-facts.json",
+      "references/fort-dundas-roe-1824-engraving.jpg",
+      "reference-rights/fort-dundas-king-1827-archive.json",
+      "reference-rights/fort-dundas-king-1827-imprint.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-fort-dundas-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

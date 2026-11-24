@@ -1,0 +1,468 @@
+{
+  "planId": "gothenburg_museum_of_art",
+  "id": "gothenburg_museum_of_art",
+  "assetId": "molen.worldgen.structure.gothenburg_museum_of_art",
+  "title": "Gothenburg Museum of Art",
+  "wikidataId": "Q1992004",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 11.98071,
+    "latitude": 57.6966
+  },
+  "size": [
+    60.39999771118164,
+    28.74500012397766,
+    44.02000045776367
+  ],
+  "actualBounds": {
+    "min": [
+      -17.299999237060547,
+      -1.4500000476837158,
+      -10.180000305175781
+    ],
+    "max": [
+      43.099998474121094,
+      27.295000076293945,
+      33.84000015258789
+    ]
+  },
+  "visualBrief": "Gothenburg’s original yellow-brick art museum, with seven monumental arches above its cut-stone terraces.",
+  "nativeAxes": {
+    "x": "southwest across the seven-arched façade",
+    "y": "up",
+    "z": "northwest toward Kungsportsavenyen"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://carlotta.goteborgsstadsmuseum.se/carlotta/web/object/353930"
+  ],
+  "stories": [
+    {
+      "id": "gothenburg-museum-of-art-wp",
+      "url": "https://qualla.com/gothenburg-museum-of-art/"
+    }
+  ],
+  "referenceInputHash": "sha256:1908b239a79fe21a607fe1c22711e07cb6ac245feb404a2e4eb035fd1d193707",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u6/u62/gothenburg_museum_of_art/models/gothenburg-museum-of-art-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u6/u62/gothenburg_museum_of_art/models/gothenburg-museum-of-art-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.6,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.93
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.92
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.14
+      },
+      "relief": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.9,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.5
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.92
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.14
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.125,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.92
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.14
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.048,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.92
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.14
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_ashlar",
+    "stone_granite",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified Gothenburg City 0.5 metre terrain sampled at the bottom of the historic Götaplatsen terrace.",
+    "anchor": [
+      11.98071,
+      57.6966
+    ],
+    "heading": -2.4853706311618944,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        11.98014462942096,
+        57.69679137516707
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified Gothenburg City 0.5 metre terrain sampled at the bottom of the historic Götaplatsen terrace."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -16.76,
+          24.95
+        ],
+        [
+          -16.76,
+          2.7
+        ],
+        [
+          -14.5,
+          2.7
+        ],
+        [
+          -14.5,
+          -9.8
+        ],
+        [
+          39.2,
+          -9.8
+        ],
+        [
+          39.2,
+          2.8
+        ],
+        [
+          42.54,
+          2.8
+        ],
+        [
+          42.54,
+          24.85
+        ],
+        [
+          27.8,
+          24.95
+        ],
+        [
+          27.84,
+          18.49
+        ],
+        [
+          -0.46,
+          18.51
+        ],
+        [
+          -0.52,
+          24.95
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Historic gallery footprint fitted to the historic building line in the mapped complex."
+    },
+    "featureIds": [
+      "relation/16887890"
+    ],
+    "source": "https://www.openstreetmap.org/relation/16887890",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:21b98da491cd7d5910aa9602132d26439366bb134093f82561c29ae642da3d51",
+    "notes": "Anders Wilhelm Karnell’s 1923 public-domain photograph shows the width of the terraced stone base, seven arches, medallions and shallow roof. The museum identifies the original materials as Gothenburg yellow brick and hewn natural stone."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model focuses on the 1923 gallery and seven-arched entrance. The 1968 and 1996 additions, the Poseidon statue and independent neighbouring buildings are outside the model.",
+    "Historical rear transitions, exact wall slopes and small medallions are representative."
+  ],
+  "sourceLicense": "Original 3D work, OpenStreetMap outline under ODbL and City of Gothenburg CC0 ground elevation.",
+  "qaLodCameras": [
+    {
+      "name": "gothenburg-museum-art-skyline",
+      "position": [
+        57,
+        27,
+        105
+      ],
+      "lookAt": [
+        13.65,
+        10.6,
+        14
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "gothenburg-museum-art-district",
+      "position": [
+        57,
+        27,
+        105
+      ],
+      "lookAt": [
+        13.65,
+        10.6,
+        14
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "gothenburg-museum-art-street",
+      "position": [
+        57,
+        27,
+        105
+      ],
+      "lookAt": [
+        13.65,
+        10.6,
+        14
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "gothenburg-museum-art-closeup",
+      "position": [
+        57,
+        27,
+        105
+      ],
+      "lookAt": [
+        13.65,
+        10.6,
+        14
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "gotaplatsen-seven-arched-elevation",
+      "position": [
+        13.65,
+        10.5,
+        83
+      ],
+      "lookAt": [
+        13.65,
+        11.5,
+        20.6
+      ]
+    },
+    {
+      "name": "stair-terraces-and-arch-depth",
+      "position": [
+        37,
+        10.3,
+        51
+      ],
+      "lookAt": [
+        19,
+        9.1,
+        19.52
+      ]
+    },
+    {
+      "name": "shallow-gallery-and-roof",
+      "position": [
+        60,
+        34,
+        -25
+      ],
+      "lookAt": [
+        13.65,
+        14,
+        5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6760,
+    "vertices": 20280,
+    "materials": 6,
+    "bytes": 1123824,
+    "sha256": "sha256:1958c6deb1e6729e2bf0fe9d692827e0ed09fd7ca7499c0d2db76bfccf47d590"
+  }
+}

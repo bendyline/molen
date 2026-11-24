@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.costesti_cetatuie_dacian_fortress",
+  "kind": "static-structure",
+  "title": "Costești-Cetățuie Dacian Fortress",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.costesti_cetatuie_dacian_fortress",
+        "output": "assets/places/u8/u80/costesti_cetatuie_dacian_fortress/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:938f2f7de95789a1f0fd37fbecad873cb0c8447efa24498352d3c8c61e5a6c13"
+      }
+    ],
+    "generators": [
+      {
+        "id": "costesti_cetatuie_dacian_fortress",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "dacian-fortress",
+        "path": "models/dacian-fortress.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

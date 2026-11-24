@@ -1,0 +1,532 @@
+{
+  "planId": "house_of_european_history",
+  "id": "house_of_european_history",
+  "assetId": "molen.worldgen.structure.house_of_european_history",
+  "title": "House of European History",
+  "wikidataId": "Q46012",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 4.3784942749999995,
+    "latitude": 50.839959875
+  },
+  "size": [
+    55.44000053405762,
+    26.830000638961792,
+    36.65999984741211
+  ],
+  "actualBounds": {
+    "min": [
+      -27.739999771118164,
+      -1.7200000286102295,
+      -18.280000686645508
+    ],
+    "max": [
+      27.700000762939453,
+      25.110000610351562,
+      18.3799991607666
+    ]
+  },
+  "visualBrief": "Pale limestone Eastman Building with symmetrical wings, sunken entrance and the museum’s translucent glass addition.",
+  "nativeAxes": {
+    "x": "northeast along the park façade",
+    "y": "up",
+    "z": "southeast toward the pond"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:House_of_European_History,_Brussels_(sept._2019).jpg"
+  ],
+  "stories": [
+    {
+      "id": "house-of-european-history-wp",
+      "url": "https://qualla.com/house-of-european-history/"
+    }
+  ],
+  "referenceInputHash": "sha256:f10065bf9cfd530429c0a2c3b34f44a78befbb7629444a0a8a98572aae2ba0ac",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u15/house_of_european_history/models/house-of-european-history-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u15/house_of_european_history/models/house-of-european-history-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.74,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.91
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.88
+      },
+      "foot": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_panel",
+        "roughness": 0.92
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.13
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.51
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#e2eaeb",
+        "roughness": 0.4,
+        "metallic": 0.04,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.64
+        ],
+        "doubleSided": true
+      },
+      "inside": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.84
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.32,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "foot": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.13
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.51
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#e2eaeb",
+            "roughness": 0.4,
+            "metallic": 0.04,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.64
+            ],
+            "doubleSided": true
+          },
+          "inside": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.84
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "foot": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.13
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.51
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#e2eaeb",
+            "roughness": 0.4,
+            "metallic": 0.04,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.64
+            ],
+            "doubleSided": true
+          },
+          "inside": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.84
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.052,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "foot": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.13
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.51
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#e2eaeb",
+            "roughness": 0.4,
+            "metallic": 0.04,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.64
+            ],
+            "doubleSided": true
+          },
+          "inside": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.84
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_ashlar",
+    "concrete_panel",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Mapzen ground at the low steps directly in front of the park entrance.",
+    "anchor": [
+      4.3784942749999995,
+      50.839959875
+    ],
+    "heading": 1.1396463819895917,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        4.378713974103281,
+        50.839896053868316
+      ],
+      "modelHeight": 0,
+      "basis": "Original Mapzen ground at the low steps directly in front of the park entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          27.2647,
+          -17.771
+        ],
+        [
+          27.1594,
+          17.6935
+        ],
+        [
+          27.163,
+          17.8079
+        ],
+        [
+          15.5659,
+          17.7959
+        ],
+        [
+          15.5948,
+          14.0762
+        ],
+        [
+          -5.6478,
+          14.0597
+        ],
+        [
+          -15.6873,
+          14.0508
+        ],
+        [
+          -15.7113,
+          17.8611
+        ],
+        [
+          -27.2229,
+          17.8485
+        ],
+        [
+          -27.2012,
+          -17.771
+        ]
+      ],
+      "minimumCoverage": 0.87,
+      "basis": "Native Eastman Building perimeter, including the shallow central park frontage setback."
+    },
+    "featureIds": [
+      "way/31138838"
+    ],
+    "source": "https://www.openstreetmap.org/way/31138838",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4b846f2429d461bc1388dcd5c1aa777bcce46291997e2d248a707742505a5af8",
+    "notes": "The exact Qualla photo shows the stone limestone body, central entrance with broad stairs and dark recess, three stacked window bands, heavy horizontal roof edge and the three-level translucent glass addition with opaque boxes behind it."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The standing museum exterior retains the limestone shell and glass addition. The heights, opaque interior volumes’ exact positions behind the roof glass, rear window spacing and roof service forms are representative estimates.",
+    "The museum interior, courtyard exhibits, neighboring park and architectural signs at small scale are outside this model."
+  ],
+  "sourceLicense": "Original 3D work under the repository license, OpenStreetMap geometry under ODbL and Mapzen elevations under source attribution terms.",
+  "qaLodCameras": [
+    {
+      "name": "house-of-european-history-skyline",
+      "position": [
+        43,
+        26,
+        67
+      ],
+      "lookAt": [
+        0,
+        10.15,
+        2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "house-of-european-history-district",
+      "position": [
+        43,
+        26,
+        67
+      ],
+      "lookAt": [
+        0,
+        10.15,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "house-of-european-history-street",
+      "position": [
+        43,
+        26,
+        67
+      ],
+      "lookAt": [
+        0,
+        10.15,
+        2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "house-of-european-history-closeup",
+      "position": [
+        43,
+        26,
+        67
+      ],
+      "lookAt": [
+        0,
+        10.15,
+        2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "leopold-park-front-and-glass-museum",
+      "position": [
+        -0.5,
+        6.2,
+        59
+      ],
+      "lookAt": [
+        0,
+        11.4,
+        11.7
+      ]
+    },
+    {
+      "name": "stone-steps-and-park-entrance",
+      "position": [
+        -23,
+        7.2,
+        38
+      ],
+      "lookAt": [
+        -0.9,
+        8.7,
+        14.8
+      ]
+    },
+    {
+      "name": "three-level-glass-box-and-roof-detail",
+      "position": [
+        37,
+        28,
+        -43
+      ],
+      "lookAt": [
+        0,
+        14.5,
+        -3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7358,
+    "vertices": 22074,
+    "materials": 8,
+    "bytes": 1072840,
+    "sha256": "sha256:7e1545bc964c3e07ce6252a92976a71eb5943c91c7b2aba12d3cc715f3874552"
+  }
+}

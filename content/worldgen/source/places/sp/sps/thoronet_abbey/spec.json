@@ -1,0 +1,496 @@
+{
+  "planId": "thoronet_abbey",
+  "id": "thoronet_abbey",
+  "assetId": "molen.worldgen.structure.thoronet_abbey",
+  "title": "Thoronet Abbey",
+  "wikidataId": "Q306155",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 6.264118288888889,
+    "latitude": 43.46031247222223
+  },
+  "size": [
+    60.527302742004395,
+    42.779998779296875,
+    59.83201503753662
+  ],
+  "actualBounds": {
+    "min": [
+      -45.12200164794922,
+      -10.5,
+      -45.27201461791992
+    ],
+    "max": [
+      15.405301094055176,
+      32.279998779296875,
+      14.5600004196167
+    ]
+  },
+  "visualBrief": "Thoronet Abbey in Provence, with its limestone church and stone spire, single-storey paired cloister arcade, and attached dormitory wing.",
+  "nativeAxes": {
+    "x": "west nave entrance toward sanctuary",
+    "y": "up",
+    "z": "north cloister toward south approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Thoronet_Cloister3.JPG",
+    "https://commons.wikimedia.org/wiki/File:Thoronet_Cloister_Garden.JPG",
+    "https://commons.wikimedia.org/wiki/File:Thoronet_Exterior.JPG"
+  ],
+  "stories": [
+    {
+      "id": "thoronet-abbey-wp",
+      "url": "https://qualla.com/thoronet-abbey/"
+    }
+  ],
+  "referenceInputHash": "sha256:02176e69d1e5b7f748cb1f4d69060326481d1f55fb00f4e92ddf37997929f3bb",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sp/sps/thoronet_abbey/models/thoronet-abbey-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sp/sps/thoronet_abbey/models/thoronet-abbey-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.02,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.95
+      },
+      "dressed": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.91
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.91
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.96
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.77
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.88
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_ashlar",
+    "tile_flat",
+    "stone_drywall",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified ground on the west approach, in front of the abbey church.",
+    "anchor": [
+      6.264118288888889,
+      43.46031247222223
+    ],
+    "heading": 0.010616087072338298,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        6.263679570995295,
+        43.46026776682516
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified ground on the west approach, in front of the abbey church."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -31.958,
+          -9.104
+        ],
+        [
+          -32.056,
+          6.948
+        ],
+        [
+          -32.016,
+          9.264
+        ],
+        [
+          -4.752,
+          9.264
+        ],
+        [
+          -4.805,
+          14.251
+        ],
+        [
+          7.597,
+          14.383
+        ],
+        [
+          7.695,
+          5.222
+        ],
+        [
+          10.309,
+          4.849
+        ],
+        [
+          12.79,
+          4.085
+        ],
+        [
+          14.236,
+          2.542
+        ],
+        [
+          15.259,
+          -0.186
+        ],
+        [
+          14.945,
+          -3.362
+        ],
+        [
+          12.827,
+          -5.556
+        ],
+        [
+          10.37,
+          -6.294
+        ],
+        [
+          8.144,
+          -6.63
+        ],
+        [
+          8.041,
+          -15.214
+        ],
+        [
+          -8.157,
+          -15.575
+        ],
+        [
+          -8.47,
+          -8.888
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The individually mapped abbey church footprint."
+    },
+    "featureIds": [
+      "way/155707597"
+    ],
+    "source": "https://www.openstreetmap.org/way/155707597",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:23c5668a3d4d5dad2227fef1732c7ae55caeca3b2d0c8a1ca829ebde01b4c9f6",
+    "notes": "The French national monuments authority records a low Romanesque arcade with carved double arches and oculi, a steep site, and the north-transept connection to the east dormitory. The supplemental public-domain view shows the sloping tile roofs and tall limestone bell tower."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "The preserved church, cloister and attached chapter-house and dormitory ranges. Detached ruins and other parts of the estate are outside scope.",
+    "Fine roof and arcade dimensions are estimated from photographs and the official descriptions."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "thoronet-abbey-skyline",
+      "position": [
+        -88,
+        34,
+        63
+      ],
+      "lookAt": [
+        -14,
+        9,
+        -13
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "thoronet-abbey-district",
+      "position": [
+        -88,
+        34,
+        63
+      ],
+      "lookAt": [
+        -14,
+        9,
+        -13
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "thoronet-abbey-street",
+      "position": [
+        -88,
+        34,
+        63
+      ],
+      "lookAt": [
+        -14,
+        9,
+        -13
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "thoronet-abbey-closeup",
+      "position": [
+        -88,
+        34,
+        63
+      ],
+      "lookAt": [
+        -14,
+        9,
+        -13
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "abbey-church-and-stone-spire",
+      "position": [
+        -88,
+        34,
+        63
+      ],
+      "lookAt": [
+        -14,
+        9,
+        -13
+      ]
+    },
+    {
+      "name": "west-nave-and-south-aisle",
+      "position": [
+        -52,
+        9,
+        23
+      ],
+      "lookAt": [
+        -19,
+        9.3,
+        -1
+      ]
+    },
+    {
+      "name": "cloister-paired-arches-and-dormitory",
+      "position": [
+        -47,
+        38,
+        -58
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7069,
+    "vertices": 21207,
+    "materials": 6,
+    "bytes": 1241788,
+    "sha256": "sha256:9f844dc273f219ff1bdbbbf499fe79743287a277bd941f25b4b5fafd98165c98"
+  }
+}

@@ -94,7 +94,11 @@ import {
 import type { WorldgenTileOutput } from '../kernel/tile-generate';
 import { type WorldgenTileCache, worldgenTileCacheKey } from './cache';
 import { createInThreadWorldgenGenerator, withWorldgenTileCache } from './generators';
-import { structureBuildingCutouts, withoutBuildingCutouts } from './structure-building-cutout';
+import {
+  type BuildingCutoutMask,
+  structureBuildingCutoutMask,
+  withoutBuildingCutouts,
+} from './structure-building-cutout';
 import { resolveStructureElevation, type StructureTerrainSampler } from './structure-elevation';
 import {
   clipStructureGroundOutlines,
@@ -910,13 +914,13 @@ export function createWorldgenSemanticRenderers(
         entry.replaceFootprint && !entry.buildingCutout
           ? structureFootprint(object, group, context.origin)
           : undefined;
-      const buildingCutouts = structureBuildingCutouts(entry, metersPerUnit);
+      const cutoutMask = structureBuildingCutoutMask(entry, metersPerUnit);
       return [
         {
           entry,
           size: [extent.x, extent.z] as const,
           ...(footprint !== undefined ? { footprint } : {}),
-          ...(buildingCutouts.length ? { buildingCutouts } : {}),
+          ...(cutoutMask !== undefined ? { cutoutMask } : {}),
         },
       ];
     });
@@ -947,7 +951,7 @@ export function createWorldgenSemanticRenderers(
       entry: StructurePlacement;
       size: readonly [number, number];
       footprint?: StructureFootprint;
-      buildingCutouts?: [number, number][][];
+      cutoutMask?: BuildingCutoutMask;
     }>,
     nearby: readonly StructureFootprint[] = [],
   ): TerrainSemanticTile {
@@ -963,12 +967,14 @@ export function createWorldgenSemanticRenderers(
       });
     const remote = tile.buildingsGeneralized ? [] : nearby;
     const cutouts = placed.flatMap((item) =>
-      item.entry.buildingCutout?.minimumCoverage === undefined ? (item.buildingCutouts ?? []) : [],
+      item.cutoutMask && item.entry.buildingCutout?.minimumCoverage === undefined
+        ? [item.cutoutMask]
+        : [],
     );
     const wholeBuildings = placed.flatMap((item) => {
       const minimumCoverage = item.entry.buildingCutout?.minimumCoverage;
-      return minimumCoverage !== undefined && item.buildingCutouts?.length
-        ? [{ outlines: item.buildingCutouts, minimumCoverage }]
+      return minimumCoverage !== undefined && item.cutoutMask
+        ? [{ ...item.cutoutMask, minimumCoverage }]
         : [];
     });
     if (

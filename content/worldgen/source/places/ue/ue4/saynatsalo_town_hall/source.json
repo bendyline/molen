@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.saynatsalo_town_hall",
+  "kind": "static-structure",
+  "title": "Säynätsalo Town Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.saynatsalo_town_hall",
+        "output": "assets/places/ue/ue4/saynatsalo_town_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:aa4c4c30efbe92dadedbc8e5dcd0bc5370f0ee6385a7625289ddf395cfb8875b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-saynatsalo-town-hall",
+        "path": "models/generate-saynatsalo-town-hall.mjs"
+      },
+      {
+        "id": "saynatsalo-town-hall-model",
+        "path": "models/saynatsalo-town-hall-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/saynatsalo-town-hall-footprint.json",
+      "native-map/saynatsalo-building-parts.json",
+      "reference-rights/saynatsalo-town-hall-architectural-facts.json",
+      "reference-rights/saynatsalo-town-hall-qualla-original-2.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-18729-9112.png",
+      "terrain-sources/terrarium-15-18729-9113.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

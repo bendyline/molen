@@ -1,0 +1,658 @@
+{
+  "planId": "paz_palace",
+  "id": "paz_palace",
+  "assetId": "molen.worldgen.structure.paz_palace",
+  "title": "Paz Palace",
+  "wikidataId": "Q1668230",
+  "category": "historic-palace",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -58.37739,
+    "latitude": -34.596045
+  },
+  "size": [
+    93.28599548339844,
+    31.700000405311584,
+    57.6148567199707
+  ],
+  "actualBounds": {
+    "min": [
+      -36.462703704833984,
+      -1.600000023841858,
+      -33.20419692993164
+    ],
+    "max": [
+      56.82329177856445,
+      30.100000381469727,
+      24.410659790039062
+    ]
+  },
+  "visualBrief": "The Beaux-Arts Buenos Aires residence with an open light court, chamfered mansard corner, sculpted main range, semicircular Maipú bay, and lower Santa Fe gate.",
+  "nativeAxes": {
+    "x": "along the avenue northwest",
+    "y": "up",
+    "z": "towards Plaza San Martín"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Palacio_Paz_en_1916._Buenos_Aires.png"
+  ],
+  "stories": [
+    {
+      "id": "paz-palace-wp",
+      "url": "https://qualla.com/paz-palace/"
+    }
+  ],
+  "referenceInputHash": "sha256:b718af2dd25bc5f301db331acde19393fb705185be1079557461bcf6655e36e7",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/69/69y/paz_palace/models/paz-palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/69/69y/paz_palace/models/paz-palace-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.63,
+    "surfaces": {
+      "limestone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.92
+      },
+      "ashlar": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.92
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.72
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.58
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.72
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.72
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.095,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.72
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_ashlar",
+    "slate",
+    "metal_painted",
+    "metal_bronze_cast"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.11,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Buenos Aires ground contours interpolate the public walk at Avenida Santa Fe in front of the Beaux-Arts pavilion.",
+    "anchor": [
+      -58.37739,
+      -34.596045
+    ],
+    "heading": 2.5899091805935788,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -58.377391704967785,
+        -34.595731916248
+      ],
+      "modelHeight": 0,
+      "basis": "Buenos Aires ground contours interpolate the public walk at Avenida Santa Fe in front of the Beaux-Arts pavilion."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -35.6884,
+          1.61173
+        ],
+        [
+          -22.15434,
+          23.62066
+        ],
+        [
+          48.74226,
+          23.62066
+        ],
+        [
+          48.958,
+          11.69772
+        ],
+        [
+          38.36337,
+          11.77384
+        ],
+        [
+          38.50725,
+          3.79033
+        ],
+        [
+          5.11127,
+          4.00431
+        ],
+        [
+          -1.19489,
+          -5.52571
+        ],
+        [
+          15.30486,
+          -17.03945
+        ],
+        [
+          13.87124,
+          -19.1766
+        ],
+        [
+          17.41831,
+          -21.43798
+        ],
+        [
+          17.67803,
+          -21.76774
+        ],
+        [
+          17.76432,
+          -22.13456
+        ],
+        [
+          17.7259,
+          -22.52918
+        ],
+        [
+          17.53343,
+          -22.89437
+        ],
+        [
+          11.30706,
+          -32.32972
+        ],
+        [
+          11.02474,
+          -32.56117
+        ],
+        [
+          10.72863,
+          -32.69265
+        ],
+        [
+          10.41283,
+          -32.68129
+        ],
+        [
+          10.02277,
+          -32.54581
+        ],
+        [
+          6.46192,
+          -30.18445
+        ],
+        [
+          4.95829,
+          -32.43537
+        ],
+        [
+          -34.45559,
+          -4.47999
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -35.6884,
+            1.61173
+          ],
+          [
+            -22.15434,
+            23.62066
+          ],
+          [
+            48.74226,
+            23.62066
+          ],
+          [
+            48.958,
+            11.69772
+          ],
+          [
+            38.36337,
+            11.77384
+          ],
+          [
+            38.50725,
+            3.79033
+          ],
+          [
+            5.11127,
+            4.00431
+          ],
+          [
+            -1.19489,
+            -5.52571
+          ],
+          [
+            15.30486,
+            -17.03945
+          ],
+          [
+            13.87124,
+            -19.1766
+          ],
+          [
+            17.41831,
+            -21.43798
+          ],
+          [
+            17.67803,
+            -21.76774
+          ],
+          [
+            17.76432,
+            -22.13456
+          ],
+          [
+            17.7259,
+            -22.52918
+          ],
+          [
+            17.53343,
+            -22.89437
+          ],
+          [
+            11.30706,
+            -32.32972
+          ],
+          [
+            11.02474,
+            -32.56117
+          ],
+          [
+            10.72863,
+            -32.69265
+          ],
+          [
+            10.41283,
+            -32.68129
+          ],
+          [
+            10.02277,
+            -32.54581
+          ],
+          [
+            6.46192,
+            -30.18445
+          ],
+          [
+            4.95829,
+            -32.43537
+          ],
+          [
+            -34.45559,
+            -4.47999
+          ]
+        ],
+        [
+          [
+            48.958,
+            11.69772
+          ],
+          [
+            56.82329,
+            11.83734
+          ],
+          [
+            56.78699,
+            14.0687
+          ],
+          [
+            56.64969,
+            21.53839
+          ],
+          [
+            56.60755,
+            23.76028
+          ],
+          [
+            48.74226,
+            23.62066
+          ]
+        ]
+      ],
+      "holes": [
+        [
+          [
+            -17.64413,
+            4.74133
+          ],
+          [
+            -21.68278,
+            7.25295
+          ],
+          [
+            -25.01245,
+            1.92999
+          ],
+          [
+            -20.97184,
+            -0.59592
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.86,
+      "basis": "Suppress the mapped original palace and the attached low entry while keeping the unrelated nearby hotel and sports pavilion."
+    },
+    "featureIds": [
+      "relation/9327492",
+      "way/670630427"
+    ],
+    "source": "https://www.openstreetmap.org/relation/9327492",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:269d1b3ac290926cafc003f52b9a636ce131ab4a100b9426d56f4a6412b26d29",
+    "notes": "The exact June 1916 photograph establishes façade orders, mansards, curved corner, dormers and cornices. The Argentine listing identifies the sculpted principal front and lower gate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "The exact June 1916 photograph establishes façade orders, mansards, curved corner, dormers and cornices. The Argentine listing identifies the sculpted principal front and lower gate.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "paz-palace-skyline",
+      "position": [
+        -57,
+        43,
+        96
+      ],
+      "lookAt": [
+        6,
+        12.1,
+        2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "paz-palace-district",
+      "position": [
+        -57,
+        43,
+        96
+      ],
+      "lookAt": [
+        6,
+        12.1,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "paz-palace-street",
+      "position": [
+        -57,
+        43,
+        96
+      ],
+      "lookAt": [
+        6,
+        12.1,
+        2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "paz-palace-closeup",
+      "position": [
+        -57,
+        43,
+        96
+      ],
+      "lookAt": [
+        6,
+        12.1,
+        2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "plaza-san-martin-main-and-corner",
+      "position": [
+        -44,
+        16,
+        67
+      ],
+      "lookAt": [
+        8,
+        13,
+        21.5
+      ]
+    },
+    {
+      "name": "metalwork-and-avenue-gate",
+      "position": [
+        56,
+        7.6,
+        41
+      ],
+      "lookAt": [
+        51,
+        6,
+        22.8
+      ]
+    },
+    {
+      "name": "side-bow-and-garden-facing-ranges",
+      "position": [
+        -33,
+        37,
+        -59
+      ],
+      "lookAt": [
+        3,
+        11,
+        -10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 17816,
+    "vertices": 53448,
+    "materials": 6,
+    "bytes": 2373876,
+    "sha256": "sha256:0a6d00a0a0e54bdf1ec698ac26e8d7e9123197409028970a54af223ba78c3005"
+  }
+}

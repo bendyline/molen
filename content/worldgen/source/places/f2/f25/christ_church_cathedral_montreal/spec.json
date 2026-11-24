@@ -1,0 +1,523 @@
+{
+  "planId": "christ_church_cathedral_montreal",
+  "id": "christ_church_cathedral_montreal",
+  "assetId": "molen.worldgen.structure.christ_church_cathedral_montreal",
+  "title": "Christ Church Cathedral (Montreal)",
+  "wikidataId": "Q652073",
+  "category": "cathedral",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -73.570176,
+    "latitude": 45.503738
+  },
+  "size": [
+    35.1200008392334,
+    70.30000305175781,
+    63.01332092285156
+  ],
+  "actualBounds": {
+    "min": [
+      -17.290000915527344,
+      -0.5,
+      -25.610000610351562
+    ],
+    "max": [
+      17.829999923706055,
+      69.80000305175781,
+      37.4033203125
+    ]
+  },
+  "visualBrief": "The standing Montréal cathedral with its limestone nave, lancets, crossing tower, aluminum spire and red triptych doors.",
+  "nativeAxes": {
+    "x": "across the cathedral toward Avenue Union",
+    "y": "up",
+    "z": "down the nave toward Sainte-Catherine Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://digitalcollections.nypl.org/items/00e60d20-c62c-012f-be6d-58d385a7bc34"
+  ],
+  "stories": [
+    {
+      "id": "christ-church-cathedral-montreal-wp",
+      "url": "https://qualla.com/christ-church-cathedral-montreal/"
+    }
+  ],
+  "referenceInputHash": "sha256:9eb2788f2776b0a9d7dad88efbf3a789457a4a394530ded390b4aa69f32ff1fa",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/f2/f25/christ_church_cathedral_montreal/models/christ-church-cathedral-montreal-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/f2/f25/christ_church_cathedral_montreal/models/christ-church-cathedral-montreal-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.95
+      },
+      "carved": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.91
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.89
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.63
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.88
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.56
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.64,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.63
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        }
+      },
+      "street": {
+        "export": "streetDetail",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.63
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.63
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_ashlar",
+    "slate",
+    "metal_painted",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.15,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "One-metre Canada HRDEM bare-earth sample at the Sainte-Catherine Street public approach.",
+    "anchor": [
+      -73.570176,
+      45.503738
+    ],
+    "heading": 0.9683657518398973,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -73.56975814718834,
+        45.50354234949057
+      ],
+      "modelHeight": 0,
+      "basis": "One-metre Canada HRDEM bare-earth sample at the Sainte-Catherine Street public approach."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          11.68698,
+          34.20332
+        ],
+        [
+          2.05247,
+          34.20088
+        ],
+        [
+          -6.43104,
+          34.20226
+        ],
+        [
+          -10.63202,
+          34.20332
+        ],
+        [
+          -10.63711,
+          -0.20302
+        ],
+        [
+          -16.03904,
+          -0.19984
+        ],
+        [
+          -16.04363,
+          -10.18633
+        ],
+        [
+          -11.03149,
+          -10.18657
+        ],
+        [
+          -11.02657,
+          -20.19854
+        ],
+        [
+          -5.67459,
+          -20.19577
+        ],
+        [
+          -5.67496,
+          -24.38075
+        ],
+        [
+          5.36441,
+          -24.37862
+        ],
+        [
+          5.36717,
+          -20.8581
+        ],
+        [
+          10.41092,
+          -20.85168
+        ],
+        [
+          10.41249,
+          -16.99893
+        ],
+        [
+          12.22072,
+          -17.00205
+        ],
+        [
+          12.21286,
+          -13.65413
+        ],
+        [
+          12.21318,
+          -10.25503
+        ],
+        [
+          16.57727,
+          -10.25464
+        ],
+        [
+          16.57889,
+          -0.09567
+        ],
+        [
+          11.59392,
+          -0.09518
+        ],
+        [
+          11.59641,
+          24.20967
+        ],
+        [
+          15.2173,
+          24.20986
+        ],
+        [
+          15.22358,
+          29.36607
+        ],
+        [
+          11.68425,
+          29.3666
+        ]
+      ],
+      "minimumCoverage": 0.88,
+      "basis": "The named Christ Church Cathedral envelope includes the attached porch and chancel."
+    },
+    "featureIds": [
+      "way/20167895"
+    ],
+    "source": "https://www.openstreetmap.org/way/20167895",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b3a0aeae80e85646d2af372ed418f61c937eaf30fc5c42138732830dfa28ab9f",
+    "notes": "The published Detroit photograph shows the Gothic mass, gray stone, steep gables and spire taper. The cathedral records the three entrance arches, rose window, limestone recladding and lighter 1940 aluminum spire."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "The published Detroit photograph shows the Gothic mass, gray stone, steep gables and spire taper. The cathedral records the three entrance arches, rose window, limestone recladding and lighter 1940 aluminum spire.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "montreal-cathedral-skyline",
+      "position": [
+        60,
+        38,
+        99
+      ],
+      "lookAt": [
+        0.4,
+        25.2,
+        4.8
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "montreal-cathedral-district",
+      "position": [
+        60,
+        38,
+        99
+      ],
+      "lookAt": [
+        0.4,
+        25.2,
+        4.8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "montreal-cathedral-street",
+      "position": [
+        60,
+        38,
+        99
+      ],
+      "lookAt": [
+        0.4,
+        25.2,
+        4.8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "montreal-cathedral-closeup",
+      "position": [
+        60,
+        38,
+        99
+      ],
+      "lookAt": [
+        0.4,
+        25.2,
+        4.8
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "sainte-catherine-triptych-and-rose",
+      "position": [
+        2,
+        8.6,
+        54.5
+      ],
+      "lookAt": [
+        0.5,
+        9.3,
+        33.8
+      ]
+    },
+    {
+      "name": "crossing-and-rebuilt-steeple",
+      "position": [
+        47,
+        37,
+        34
+      ],
+      "lookAt": [
+        0,
+        40,
+        -3
+      ]
+    },
+    {
+      "name": "transept-chancel-and-vestry",
+      "position": [
+        42,
+        24,
+        -46
+      ],
+      "lookAt": [
+        0.6,
+        13,
+        -12
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8962,
+    "vertices": 26886,
+    "materials": 6,
+    "bytes": 1301400,
+    "sha256": "sha256:c72b271e807d449d18aed1ad59fbf883b1c6bf3d2bc20ef2c05105f101bd5ed3"
+  }
+}

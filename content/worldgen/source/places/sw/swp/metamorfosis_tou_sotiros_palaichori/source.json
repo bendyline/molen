@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.metamorfosis_tou_sotiros_palaichori",
+  "kind": "static-structure",
+  "title": "Metamorfosis tou Sotiros, Palaichori",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.metamorfosis_tou_sotiros_palaichori",
+        "output": "assets/places/sw/swp/metamorfosis_tou_sotiros_palaichori/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:07eb6597ec9f2c35db6bd952136e63d34807b208f14d97257c577a9cbf7fa527"
+      }
+    ],
+    "generators": [
+      {
+        "id": "metamorfosis_tou_sotiros_palaichori",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "chapel-and-roof",
+        "path": "models/chapel-and-roof.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "church-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

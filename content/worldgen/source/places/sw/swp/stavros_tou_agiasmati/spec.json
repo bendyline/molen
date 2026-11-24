@@ -1,0 +1,459 @@
+{
+  "id": "stavros_tou_agiasmati",
+  "planId": "stavros_tou_agiasmati",
+  "title": "Stavros tou Agiasmati",
+  "assetId": "molen.worldgen.structure.stavros_tou_agiasmati",
+  "category": "religious",
+  "collectionId": "painted_churches_in_the_troodos_region",
+  "mapFeatureId": "way/191265197",
+  "wikidataId": "Q31025121",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 33.046979,
+    "latitude": 34.9790771
+  },
+  "visualBrief": "The pitched roof extends beyond the stone chapel on all four sides, forming an open timber portico.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sw/swp/stavros_tou_agiasmati/models/chapel-and-roof.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/351/",
+    "https://commons.wikimedia.org/wiki/File:Stavros_Agiasmati.JPG",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N34_00_E033_00_DEM/Copernicus_DSM_COG_10_N34_00_E033_00_DEM.tif",
+    "https://www.wikidata.org/wiki/Q31025121",
+    "https://www.openstreetmap.org/way/191265197"
+  ],
+  "geographicProposal": {
+    "id": "stavros-tou-agiasmati",
+    "title": "Stavros tou Agiasmati",
+    "asset": "molen.worldgen.structure.stavros_tou_agiasmati",
+    "anchor": [
+      33.046979,
+      34.9790771
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 862.2096,
+    "bounds": [
+      33.04680701818413,
+      34.97896065612515,
+      33.04715143239798,
+      34.979193573572964
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q31025121",
+      "names": [
+        "Stavros tou Agiasmati",
+        "Church of the Holy Cross of Agiasmati",
+        "Ιερός Ναός Τιμίου Σταυρού του Αγιασμάτι"
+      ],
+      "maxDistance": 28
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -8.2819496,
+          -7.703312
+        ],
+        [
+          10.3250737,
+          -4.5974961
+        ],
+        [
+          8.2819496,
+          7.6921736
+        ],
+        [
+          -10.3341948,
+          4.5974938
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "The independently mapped exterior footprint replaces the existing building extrusion."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -10.716831,
+          -10.965858
+        ],
+        [
+          -11.459278,
+          -6.499648
+        ],
+        [
+          -12.201724,
+          -2.033438
+        ],
+        [
+          -12.94417,
+          2.432772
+        ],
+        [
+          -13.686616,
+          6.898982
+        ],
+        [
+          -9.612525,
+          7.576244
+        ],
+        [
+          -5.538434,
+          8.253505
+        ],
+        [
+          -1.464343,
+          8.930767
+        ],
+        [
+          2.609748,
+          9.608029
+        ],
+        [
+          6.683839,
+          10.285291
+        ],
+        [
+          10.75793,
+          10.962552
+        ],
+        [
+          11.500376,
+          6.496343
+        ],
+        [
+          12.242822,
+          2.030133
+        ],
+        [
+          12.985268,
+          -2.436077
+        ],
+        [
+          13.727714,
+          -6.902287
+        ],
+        [
+          9.653623,
+          -7.579549
+        ],
+        [
+          5.579532,
+          -8.256811
+        ],
+        [
+          1.505442,
+          -8.934072
+        ],
+        [
+          -2.568649,
+          -9.611334
+        ],
+        [
+          -6.64274,
+          -10.288596
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Fit a small level court against the hillside, joining the sampled ground at its boundary."
+    },
+    "source": "https://www.openstreetmap.org/way/191265197",
+    "note": "The pitched roof is aligned to the independently mapped church. Neighboring churches and other site features retain their map geometry. The court keeps the entrances clear above the slope.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:734c1d9bb1348665412770333dfa21b57d15e7c6c3637384a2481da9e9b57725"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.96
+      },
+      "cut": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.92
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.92
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.89
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96
+      },
+      "shadow": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "name": "troodos-recesses",
+        "roughness": 0.91
+      },
+      "court": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96
+      }
+    },
+    "errorMeters": 0.49,
+    "module": "content/worldgen/source/places/sw/swp/stavros_tou_agiasmati/models/chapel-and-roof.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.89
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "troodos-recesses",
+            "roughness": 0.91
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.2
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.89
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "troodos-recesses",
+            "roughness": 0.91
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.083
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.89
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "troodos-recesses",
+            "roughness": 0.91
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.028
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        2.7,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "roof-and-entrance",
+      "position": [
+        -26.132346,
+        9.1,
+        16.944041
+      ],
+      "lookAt": [
+        0,
+        2.7,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "roof-pitch-and-eastern-wall",
+      "position": [
+        26.626851,
+        10,
+        -13.820667
+      ],
+      "lookAt": [
+        0,
+        2.7,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "placement-and-approach",
+      "position": [
+        -19.721612,
+        23,
+        14.968568
+      ],
+      "lookAt": [
+        0,
+        2.7,
+        0
+      ],
+      "fov": 49
+    }
+  ],
+  "limitations": [
+    "Fine masonry, timber fittings and roof weathering are simplified. The model covers the exterior. Sampled elevation establishes the foundation."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -13.686615943908691,
+      -4.666999816894531,
+      -10.965858459472656
+    ],
+    "max": [
+      13.727713584899902,
+      6.185999870300293,
+      10.962552070617676
+    ]
+  },
+  "size": [
+    27.414329528808594,
+    10.852999687194824,
+    21.928410530090332
+  ],
+  "mesh": {
+    "triangles": 929,
+    "vertices": 1963,
+    "materials": 6,
+    "bytes": 85572,
+    "sha256": "sha256:5f9355050b1e465aaf4b77cce50d458d640813f4762de31820ac1e7cc498df3d"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

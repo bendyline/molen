@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mahabodhi_temple",
+  "kind": "static-structure",
+  "title": "Mahabodhi Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mahabodhi_temple",
+        "output": "assets/places/tu/tuk/mahabodhi_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a74aa6a22a2a74d1bac967c752818f1337538b221d68097f3bb30628463d6892"
+      }
+    ],
+    "generators": [
+      {
+        "id": "mahabodhi_temple",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "temple-model",
+        "path": "models/temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

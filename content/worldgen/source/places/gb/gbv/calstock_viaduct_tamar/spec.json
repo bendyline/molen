@@ -1,0 +1,338 @@
+{
+  "id": "calstock_viaduct_tamar",
+  "planId": "calstock_viaduct_tamar",
+  "title": "Calstock Viaduct",
+  "assetId": "molen.worldgen.structure.calstock_viaduct_tamar",
+  "category": "bridge",
+  "collectionId": "cornwall_and_west_devon_mining_landscape",
+  "mapFeatureId": "way/28472143",
+  "wikidataId": "Q17536967",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -4.210118,
+    "latitude": 50.49623
+  },
+  "visualBrief": "Twelve round arches and tapered concrete-block piers carry the Tamar Valley Line over the tidal Tamar. Rounded cutwaters and deck refuges read along the river crossing.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gb/gbv/calstock_viaduct_tamar/models/cornish-viaduct.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/1215/maps/",
+    "https://historicengland.org.uk/listing/the-list/list-entry/1138329",
+    "https://commons.wikimedia.org/wiki/File:Calstock_Viaduct_-_geograph.org.uk_-_1040067.jpg",
+    "https://www.openstreetmap.org/way/28472143"
+  ],
+  "geographicProposal": {
+    "id": "calstock-viaduct-tamar",
+    "title": "Calstock Viaduct",
+    "asset": "molen.worldgen.structure.calstock_viaduct_tamar",
+    "anchor": [
+      -4.210118,
+      50.49623
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 2.264654,
+    "bounds": [
+      -4.210916916573506,
+      50.49510739264423,
+      -4.209392448716149,
+      50.49741620887789
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q17536967",
+      "names": [
+        "Calstock Viaduct",
+        "Calstock Viaduct",
+        "Ponsfordh Kalstok",
+        "Tamar Valley Line"
+      ],
+      "maxDistance": 167.18568004107894
+    },
+    "replaceRoads": {
+      "length": 269.654323,
+      "width": 7.643200000000001,
+      "outline": [
+        [
+          -48.447496,
+          123.316309
+        ],
+        [
+          22.246389,
+          -58.090681
+        ],
+        [
+          35.606024,
+          -92.47928
+        ],
+        [
+          50.260265,
+          -127.512178
+        ],
+        [
+          43.312767,
+          -130.418246
+        ],
+        [
+          28.62187,
+          -95.296114
+        ],
+        [
+          15.228145,
+          -60.821471
+        ],
+        [
+          -55.464316,
+          120.581867
+        ]
+      ],
+      "bridgeFeatureIds": [
+        28472143
+      ],
+      "deckEndpoints": [
+        [
+          -51.955906,
+          121.949088
+        ],
+        [
+          46.786516,
+          -128.965212
+        ]
+      ],
+      "deckHeights": [
+        33.335346,
+        33.665346
+      ],
+      "includeConnectedApproaches": true,
+      "deckProfile": [
+        [
+          -51.955906,
+          33.335346,
+          121.949088
+        ],
+        [
+          18.737267,
+          33.573609,
+          -59.456076
+        ],
+        [
+          32.113947,
+          33.618814,
+          -93.887697
+        ],
+        [
+          46.786516,
+          33.665346,
+          -128.965212
+        ]
+      ]
+    },
+    "source": "https://www.openstreetmap.org/way/28472143",
+    "note": "The authored viaduct is aligned to the native crossings and preserves neighboring roads, buildings and water.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:50d7e73082d354d745a455d0132923e049fe766339f8a3aa281ccbe49faf8e24"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.95
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.89
+      },
+      "sleeper": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.97
+      }
+    },
+    "errorMeters": 1.1,
+    "module": "content/worldgen/source/places/gb/gbv/calstock_viaduct_tamar/models/cornish-viaduct.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.95
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          },
+          "sleeper": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.95
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          },
+          "sleeper": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.092
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.95
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          },
+          "sleeper": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.031
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -1.041826,
+        25.500346,
+        -8.70111
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "bridge-overview",
+      "position": [
+        -219.20480978653748,
+        82.038124,
+        -102.40091375063275
+      ],
+      "lookAt": [
+        -1.041826,
+        25.500346,
+        -8.70111
+      ],
+      "fov": 52
+    },
+    {
+      "name": "open-spans",
+      "position": [
+        -43.01793734005681,
+        19.500346,
+        -22.165041366946504
+      ],
+      "lookAt": [
+        -4.958293,
+        30.050346,
+        1.348905
+      ],
+      "fov": 57
+    },
+    {
+      "name": "deck-and-parapets",
+      "position": [
+        -47.9764801700284,
+        43.400346,
+        51.14827581652675
+      ],
+      "lookAt": [
+        -4.958293,
+        33.400346,
+        1.348905
+      ],
+      "fov": 57
+    }
+  ],
+  "limitations": [
+    "The model follows the surveyed railway centerline. Arch spacing and rounded cutwaters use the photographed proportions and mapped tideway. The former wagon lift is omitted."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -55.22037887573242,
+      -3.2491250038146973,
+      -131.09710693359375
+    ],
+    "max": [
+      50.045379638671875,
+      34.40034484863281,
+      124.01940155029297
+    ]
+  },
+  "size": [
+    105.2657585144043,
+    37.64946985244751,
+    255.11650848388672
+  ],
+  "mesh": {
+    "triangles": 7420,
+    "vertices": 15104,
+    "materials": 3,
+    "bytes": 635240,
+    "sha256": "sha256:1988e0eb2e1d564c8a1ac1acabd101e2a6bd81a53a097a777e743e70b6468336"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats"
+    }
+  ]
+}

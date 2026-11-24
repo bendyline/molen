@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.great_sphinx_of_giza",
+  "kind": "static-structure",
+  "title": "Great Sphinx of Giza",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.great_sphinx_of_giza",
+        "output": "assets/places/st/stq/great_sphinx_of_giza/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e486d30c14490ca5104a02db5b8ec7454dd16d15e6c882c8ce7eafdede136e75"
+      }
+    ],
+    "generators": [
+      {
+        "id": "great_sphinx_of_giza",
+        "path": "models/generate-sphinx.mjs"
+      },
+      {
+        "id": "sphinx-mesh",
+        "path": "models/sphinx-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

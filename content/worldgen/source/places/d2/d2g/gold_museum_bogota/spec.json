@@ -1,0 +1,379 @@
+{
+  "id": "gold_museum_bogota",
+  "planId": "gold_museum_bogota",
+  "title": "Gold Museum, Bogotá",
+  "assetId": "molen.worldgen.structure.gold_museum_bogota",
+  "category": "museum",
+  "wikidataId": "Q1109031",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -74.072,
+    "latitude": 4.6019194
+  },
+  "visualBrief": "A pale stone exhibition volume projects over the glazed plaza foyer. The recessed display band carries the museum name in large letters.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/d2/d2g/gold_museum_bogota/models/parque-santander-museum.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:BOG_Museo_del_Oro.JPG",
+    "https://commons.wikimedia.org/wiki/File:Museo-del-Oro-Fachada_(27842494739).jpg",
+    "https://www.openstreetmap.org/way/702147832"
+  ],
+  "geographicProposal": {
+    "id": "gold-museum-bogota",
+    "title": "Gold Museum, Bogotá",
+    "asset": "molen.worldgen.structure.gold_museum_bogota",
+    "anchor": [
+      -74.072,
+      4.6019194
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 2619.7,
+    "bounds": [
+      -74.07215722441266,
+      4.601525834067285,
+      -74.07147327559066,
+      4.602080666210087
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q1109031",
+      "names": [
+        "Gold Museum, Bogotá",
+        "Museo del Oro",
+        "Gold Museum",
+        "Museo del Oro Bogotá"
+      ],
+      "maxDistance": 53
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -1.52016,
+          -15.952085
+        ],
+        [
+          42.06517,
+          9.684795
+        ],
+        [
+          56.445666,
+          18.145075
+        ],
+        [
+          42.520109,
+          41.81159
+        ],
+        [
+          -15.445718,
+          7.725572
+        ],
+        [
+          -10.419202,
+          -0.823764
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the surveyed museum pavilion alone. Adjoining Banco de la República offices, Parque Santander and Calle 16 remain host map features."
+    },
+    "source": "https://www.openstreetmap.org/way/702147832",
+    "note": "The public foyer and sign face Carrera 6 and Parque Santander. The long side follows Calle 16.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cfc9fc96d106b6058415677703a6d0ed23f6a462ce7b566b680710a2821d0cba"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_travertine",
+        "roughness": 0.91
+      },
+      "soffit": {
+        "slot": "trim",
+        "graph": "concrete_panel",
+        "roughness": 0.89
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.86
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.71
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.97
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.57
+      }
+    },
+    "errorMeters": 0.78,
+    "module": "content/worldgen/source/places/d2/d2g/gold_museum_bogota/models/parque-santander-museum.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.91
+          },
+          "soffit": {
+            "slot": "trim",
+            "graph": "concrete_panel",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.71
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.97
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.57
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.91
+          },
+          "soffit": {
+            "slot": "trim",
+            "graph": "concrete_panel",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.71
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.97
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.57
+          }
+        },
+        "errorMeters": 0.115
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.91
+          },
+          "soffit": {
+            "slot": "trim",
+            "graph": "concrete_panel",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.71
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.97
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.57
+          }
+        },
+        "errorMeters": 0.044
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        13.928375,
+        8,
+        9.067526
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "plaza-foyer-and-lettering",
+      "position": [
+        -30.476486,
+        4.2,
+        -18.004369
+      ],
+      "lookAt": [
+        -8.482939,
+        7,
+        -4.113256
+      ],
+      "fov": 59
+    },
+    {
+      "name": "calle-16-stone-facade",
+      "position": [
+        4.865612,
+        12,
+        -50.480652
+      ],
+      "lookAt": [
+        17.190549,
+        10,
+        5.493413
+      ],
+      "fov": 57
+    },
+    {
+      "name": "rear-and-roof",
+      "position": [
+        59.532629,
+        34,
+        81.441739
+      ],
+      "lookAt": [
+        31.895255,
+        10,
+        19.942344
+      ],
+      "fov": 58
+    }
+  ],
+  "limitations": [
+    "Facade height, stone panel joints, roof equipment and lettering proportions are photographic estimates. The model covers the pavilion exterior."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -15.742339134216309,
+      -2.7300000190734863,
+      -16.112279891967773
+    ],
+    "max": [
+      56.461181640625,
+      21.530000686645508,
+      41.82710647583008
+    ]
+  },
+  "size": [
+    72.20352077484131,
+    24.260000705718994,
+    57.93938636779785
+  ],
+  "mesh": {
+    "triangles": 3434,
+    "vertices": 6880,
+    "materials": 7,
+    "bytes": 293104,
+    "sha256": "sha256:456eed4c8b469296a758ee9c9f6bb2483aacba883a604331ce473a9ee759d9d7"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_travertine",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

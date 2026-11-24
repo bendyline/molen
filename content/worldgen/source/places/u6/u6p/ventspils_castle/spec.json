@@ -1,0 +1,461 @@
+{
+  "planId": "ventspils_castle",
+  "id": "ventspils_castle",
+  "assetId": "molen.worldgen.structure.ventspils_castle",
+  "title": "Ventspils Castle",
+  "wikidataId": "Q7920355",
+  "category": "historic-castle",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 21.55861,
+    "latitude": 57.39613
+  },
+  "size": [
+    66.1374397277832,
+    30.589999437332153,
+    56.270334243774414
+  ],
+  "actualBounds": {
+    "min": [
+      -36.997440338134766,
+      -1.4500000476837158,
+      -17.695775985717773
+    ],
+    "max": [
+      29.139999389648438,
+      29.139999389648438,
+      38.57455825805664
+    ]
+  },
+  "visualBrief": "The ochre four-wing Livonian castle with tiled roofs, white blind arches, southeast tower and adjoining heritage wall.",
+  "nativeAxes": {
+    "x": "east along the river side of the castle",
+    "y": "up",
+    "z": "from the river toward the grounds"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ventcastle.JPG"
+  ],
+  "stories": [
+    {
+      "id": "ventspils-castle-wp",
+      "url": "https://qualla.com/ventspils-castle/"
+    }
+  ],
+  "referenceInputHash": "sha256:aec761eda0ac95304859ae2a43fef2317796e9cc5dfa8186f37cdca3d8ba6e80",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u6/u6p/ventspils_castle/models/ventspils-castle-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u6/u6p/ventspils_castle/models/ventspils-castle-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.64,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.91
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "clay_fired",
+        "roughness": 0.92
+      },
+      "roofMetal": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.81
+      },
+      "detail": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.79
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.92
+          },
+          "roofMetal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.81
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.92
+          },
+          "roofMetal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.81
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.92
+          },
+          "roofMetal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.81
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "clay_fired",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Latvian national terrain survey at the south-east approach to the castle.",
+    "anchor": [
+      21.55861,
+      57.39613
+    ],
+    "heading": 0.393718893841184,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        21.559159575550236,
+        57.39602831146604
+      ],
+      "modelHeight": 0,
+      "basis": "Latvian national terrain survey at the south-east approach to the castle."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -11.4643,
+          -17.0577
+        ],
+        [
+          21.674,
+          -17.0577
+        ],
+        [
+          21.5576,
+          -11.6334
+        ],
+        [
+          28.7602,
+          -11.679
+        ],
+        [
+          28.679,
+          -3.8534
+        ],
+        [
+          21.3968,
+          -3.9132
+        ],
+        [
+          21.3491,
+          0.8767
+        ],
+        [
+          20.7149,
+          0.9025
+        ],
+        [
+          20.6516,
+          2.6964
+        ],
+        [
+          20.6202,
+          3.6477
+        ],
+        [
+          21.2668,
+          3.639
+        ],
+        [
+          21.3105,
+          6.5984
+        ],
+        [
+          22.6689,
+          6.5962
+        ],
+        [
+          22.7279,
+          16.6016
+        ],
+        [
+          12.6874,
+          16.6617
+        ],
+        [
+          12.6838,
+          15.8887
+        ],
+        [
+          -11.6147,
+          16.3424
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Mapped existing castle perimeter, tower and chapel."
+    },
+    "featureIds": [
+      "way/94464587",
+      "way/1156161104"
+    ],
+    "source": "https://www.openstreetmap.org/way/94464587",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:50003a7681e3f0799497bdf0b29b8c2bdee648a5f6c190f0884eba729a4b4439",
+    "notes": "The museum research describes the southeast tower and the historic quadrangle. The original dimensions inform the present roof proportions. A modern glass courtyard cover is included."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.clay_fired",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.8,
+        0.8
+      ]
+    }
+  ],
+  "limitations": [
+    "The current museum exterior, chapel and characteristic tower follow the historic quadrangle and original Qualla view. A number of small openings and rear facade details are estimated.",
+    "The current glazed cover is represented by an unobtrusive modeled roof. The courtyard interior and its collection are outside the exterior scope."
+  ],
+  "sourceLicense": "Original 3D work under the repository license. Latvian national terrain and OSM geometry under their published open data terms.",
+  "qaLodCameras": [
+    {
+      "name": "ventspils-castle-skyline",
+      "position": [
+        61,
+        43,
+        67
+      ],
+      "lookAt": [
+        -4,
+        10,
+        5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "ventspils-castle-district",
+      "position": [
+        61,
+        43,
+        67
+      ],
+      "lookAt": [
+        -4,
+        10,
+        5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "ventspils-castle-street",
+      "position": [
+        61,
+        43,
+        67
+      ],
+      "lookAt": [
+        -4,
+        10,
+        5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "ventspils-castle-closeup",
+      "position": [
+        61,
+        43,
+        67
+      ],
+      "lookAt": [
+        -4,
+        10,
+        5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "tower-from-southeast",
+      "position": [
+        47,
+        8,
+        48
+      ],
+      "lookAt": [
+        16,
+        13,
+        11
+      ]
+    },
+    {
+      "name": "chapel-and-courtyard-roofs",
+      "position": [
+        39,
+        48,
+        -45
+      ],
+      "lookAt": [
+        5,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "museum-wings-and-bailey",
+      "position": [
+        -54,
+        20,
+        67
+      ],
+      "lookAt": [
+        0,
+        10,
+        7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4236,
+    "vertices": 12708,
+    "materials": 5,
+    "bytes": 690988,
+    "sha256": "sha256:730d85990f34fef79509664c7a21ee1036bf579a436274fee69acf98d94f216a"
+  }
+}

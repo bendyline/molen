@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hayle_foundry_viaduct",
+  "kind": "static-structure",
+  "title": "Hayle Foundry Viaduct",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hayle_foundry_viaduct",
+        "output": "assets/places/gb/gbu/hayle_foundry_viaduct/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:861dc0fd8fb571106350760a1d54ed20674501eadc52b797e9ddd48289d15db2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "hayle_foundry_viaduct",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cornish-viaduct",
+        "path": "models/cornish-viaduct.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,0 +1,1348 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.harewood_house",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.harewood_house",
+    "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4"
+  },
+  "sourceHash": "sha256:ae788003099df69cac4807b7fc7223032c87a948a1fbbbbb5fea31d4dd3b2b28",
+  "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+  "fixtureHash": "sha256:0db81f2b7283257ef278f88ac793a1b6d1bb0aadff5fd9b4680d3dfd33f5ce34",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
+    },
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:7d05ecf5d42ce454360fe014e7e03ce276015cade56da30ca97aa24005b4de20",
+      "bytes": 76376,
+      "gzipBytes": 13429,
+      "triangles": 907,
+      "cpuBytes": 69056,
+      "gpuBytes": 69056,
+      "errorMeters": 0.95,
+      "drawCalls": 6
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:ef7121cf3f50a6b6db862e5877dc60358d4054408d354f65aad7f83b2cd3eca0",
+      "bytes": 300128,
+      "gzipBytes": 52340,
+      "triangles": 3827,
+      "cpuBytes": 292784,
+      "gpuBytes": 292784,
+      "errorMeters": 0.43,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:6f10d65e6082f7514d731e9f598e52c9e8df51b2d287862eb909a278407f49c0",
+      "bytes": 1034392,
+      "gzipBytes": 171146,
+      "triangles": 13257,
+      "cpuBytes": 1027028,
+      "gpuBytes": 1027028,
+      "errorMeters": 0.15,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:6568169e428395510c44a51ca61bee3523dc90f41156249ea57aae18ec1bc101",
+      "bytes": 1430168,
+      "gzipBytes": 240744,
+      "triangles": 18491,
+      "cpuBytes": 1422788,
+      "gpuBytes": 1422788,
+      "errorMeters": 0.058,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:3b4044a0969783f48f5114fd2ceceaa8c31337f4dc2f7419fcd25f3ac5c1c98c"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:33f0fd0662b6e4d99c9fac452d0246b41975b432a7c48715409a553d7d30b997"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:b7eab21e08908d2da6afecd313683c8a7f4765199475ca65926df30b87d280f4",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:6568169e428395510c44a51ca61bee3523dc90f41156249ea57aae18ec1bc101",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 57501,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          30.915,
+          84.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:965f8437120837b7c459c2229255be135cc1aff03690586db6f07c28145a849f",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:6568169e428395510c44a51ca61bee3523dc90f41156249ea57aae18ec1bc101",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 57501,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          30.915,
+          84.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:8b95092e31a2a2ddf13adf7a567935c154c3d4da1f2c17f18277c62136d79e08",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:6568169e428395510c44a51ca61bee3523dc90f41156249ea57aae18ec1bc101",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 57501,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          30.915,
+          84.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:62a71617db26134d8d88c0e78915593675251765bcbcc092ce990a491bf6ebac",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:6568169e428395510c44a51ca61bee3523dc90f41156249ea57aae18ec1bc101",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 57501,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          30.915,
+          84.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:424059e043a77d90dfcab8cd5a44b7cc6c89c3f9dee98410e1063d7a28a9edc6",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:ef7121cf3f50a6b6db862e5877dc60358d4054408d354f65aad7f83b2cd3eca0",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 42837,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.915,
+          169.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:76633868bda0580a3ced6be995e9f55aca284108cb594735e54a29c5aa5b9257",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:ef7121cf3f50a6b6db862e5877dc60358d4054408d354f65aad7f83b2cd3eca0",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 42837,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.915,
+          169.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:ca7519aac9730885eb95c9b92329e13207b7e3bdeab84fb4f05277916f3fbfa4",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:ef7121cf3f50a6b6db862e5877dc60358d4054408d354f65aad7f83b2cd3eca0",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 42837,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.915,
+          169.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:9ff0c91d4df7891c7c62fc4817c491918dcf57c648102ca62e9cc348923dafee",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:ef7121cf3f50a6b6db862e5877dc60358d4054408d354f65aad7f83b2cd3eca0",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 42837,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.915,
+          169.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:d41c2b358256a8b63dae936f185b13d5b767e35442f9e0bbc2d61bf35ab600eb",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:7d05ecf5d42ce454360fe014e7e03ce276015cade56da30ca97aa24005b4de20",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 39917,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          104.915,
+          337.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:05d73bcb00494168716e65a83a0a591a405ade805ca07037ec650c9216db45fc",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:7d05ecf5d42ce454360fe014e7e03ce276015cade56da30ca97aa24005b4de20",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 39917,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          104.915,
+          337.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:a4d80661b9fe0378f6bd39693e4d96ad84d76f30ec0a9045c6982ae18ea69c04",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:7d05ecf5d42ce454360fe014e7e03ce276015cade56da30ca97aa24005b4de20",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 39917,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          104.915,
+          337.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:69a0c69ee483345ddc8400922c188b85ad0a8e158e08df46f03e664f3fb3f67e",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:7d05ecf5d42ce454360fe014e7e03ce276015cade56da30ca97aa24005b4de20",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 39917,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          104.915,
+          337.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:3426a59f5b0241d1a96d31a5fbc1a49b54d9d4bdb12d851c0203544ed82ebef6",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:7d05ecf5d42ce454360fe014e7e03ce276015cade56da30ca97aa24005b4de20",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 33677,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          104.915,
+          337.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-pediment-and-pavilions.png",
+      "hash": "sha256:094270563ba60813f5460ece36434b70ccdf3a2bb2e9149dd3b3dc88154aaaad",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:6568169e428395510c44a51ca61bee3523dc90f41156249ea57aae18ec1bc101",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 57501,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          53,
+          24,
+          -76
+        ],
+        "lookAt": [
+          0,
+          7,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/south-terrace-and-double-stair.png",
+      "hash": "sha256:552c46b53b96cb305a6866d6e8d8cea6d2430825f7421beee47ebd93f993d0f6",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:6568169e428395510c44a51ca61bee3523dc90f41156249ea57aae18ec1bc101",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 57501,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          -48,
+          15,
+          62
+        ],
+        "lookAt": [
+          0,
+          6,
+          6
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/venetian-window-and-balustrade.png",
+      "hash": "sha256:651362eb421e5caf5648835db9e998aab7168903324a80ce071e4b1891969e03",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:6568169e428395510c44a51ca61bee3523dc90f41156249ea57aae18ec1bc101",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 57501,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          43,
+          5.4,
+          -34
+        ],
+        "lookAt": [
+          34,
+          7,
+          -13
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/harewood-house-skyline.png",
+      "hash": "sha256:e0f53f3b51f70ac31a49868f89776cfe4ccdf6d4b76f8b011df528b754b660ea",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:7d05ecf5d42ce454360fe014e7e03ce276015cade56da30ca97aa24005b4de20",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 39917,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          53,
+          24,
+          -76
+        ],
+        "lookAt": [
+          0,
+          7,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/harewood-house-district.png",
+      "hash": "sha256:55a6eaf52abbf0116055f2eafa51dcde5b2fa10770e80f2790512b846f502e18",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:ef7121cf3f50a6b6db862e5877dc60358d4054408d354f65aad7f83b2cd3eca0",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 42837,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          53,
+          24,
+          -76
+        ],
+        "lookAt": [
+          0,
+          7,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/harewood-house-street.png",
+      "hash": "sha256:fcab2786c438c80af31f9faef081869d92765933ba2698b8a9915c5f031dc722",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:6f10d65e6082f7514d731e9f598e52c9e8df51b2d287862eb909a278407f49c0",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 52267,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          53,
+          24,
+          -76
+        ],
+        "lookAt": [
+          0,
+          7,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/harewood-house-closeup.png",
+      "hash": "sha256:094270563ba60813f5460ece36434b70ccdf3a2bb2e9149dd3b3dc88154aaaad",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:6568169e428395510c44a51ca61bee3523dc90f41156249ea57aae18ec1bc101",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 57501,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          53,
+          24,
+          -76
+        ],
+        "lookAt": [
+          0,
+          7,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:8a9877b306e5f561de21a9b233d4ee6dd920eb8e8d1de19611fdb8b7dc2fc163",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:7d05ecf5d42ce454360fe014e7e03ce276015cade56da30ca97aa24005b4de20",
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 39917,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.915,
+          169.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:76633868bda0580a3ced6be995e9f55aca284108cb594735e54a29c5aa5b9257",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:ef7121cf3f50a6b6db862e5877dc60358d4054408d354f65aad7f83b2cd3eca0",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 42837,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.915,
+          169.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:b748fe7f59beab0bae3097396b4d211a0a3938f2f366c1aed01cd52c1a736a1a",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:6f10d65e6082f7514d731e9f598e52c9e8df51b2d287862eb909a278407f49c0",
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 52267,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.915,
+          169.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:e8c5dace9a471bfb6e228343ca8202bbaa4e7579000244334baf1e321e08fe87",
+      "state": {
+        "assetId": "molen.worldgen.structure.harewood_house",
+        "runtimeHash": "sha256:892323bff29c4c0eece7a2c2eb6a93ca27ca55871e12b4b62b5e41f2fc304df4",
+        "lodHash": "sha256:6568169e428395510c44a51ca61bee3523dc90f41156249ea57aae18ec1bc101",
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 57501,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcw/harewood_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.915,
+          169.335
+        ],
+        "lookAt": [
+          0,
+          15.915,
+          1.335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          0,
+          4.915,
+          1.335
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,516 @@
+{
+  "planId": "cascade_brewery",
+  "id": "cascade_brewery",
+  "assetId": "molen.worldgen.structure.cascade_brewery",
+  "title": "Cascade Brewery",
+  "wikidataId": "Q5048113",
+  "category": "historic-industrial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 147.292623,
+    "latitude": -42.895889
+  },
+  "size": [
+    54.23300838470459,
+    32.290000915527344,
+    27.710000038146973
+  ],
+  "actualBounds": {
+    "min": [
+      -13.863909721374512,
+      -3,
+      -14.645939826965332
+    ],
+    "max": [
+      40.36909866333008,
+      29.290000915527344,
+      13.06406021118164
+    ]
+  },
+  "visualBrief": "The historic South Hobart brewery with original sandstone lower walls, 1927 stepped upper floors, the painted façade lettering, and attached malthouse.",
+  "nativeAxes": {
+    "x": "north along the front",
+    "y": "up",
+    "z": "east towards the road"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.flickr.com/photos/107895189@N03/44327565012/",
+    "https://www.pittwateronlinenews.com/Australian-Trade-Tokens-The-Cascade-Shilling.php"
+  ],
+  "stories": [
+    {
+      "id": "cascade-brewery-wp",
+      "url": "https://qualla.com/cascade-brewery/"
+    }
+  ],
+  "referenceInputHash": "sha256:6379f1453b25bd03a2121b87cf914346300d1c1adec326cb1b12189782feb469",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r2/r22/cascade_brewery/models/cascade-brewery-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r2/r22/cascade_brewery/models/cascade-brewery-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.62,
+    "surfaces": {
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.89
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.92
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.85
+      },
+      "shade": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.75
+      },
+      "paint": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.84
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.85
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.85
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.85
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_sandstone",
+    "plaster_lime",
+    "brick",
+    "metal_corrugated"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.06,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Published two-metre Tasmania bare-earth surface sampled at the center of the historic east road frontage.",
+    "anchor": [
+      147.292623,
+      -42.895889
+    ],
+    "heading": 1.5092205080534,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        147.29283317642708,
+        -42.8958891770164
+      ],
+      "modelHeight": 0,
+      "basis": "Published two-metre Tasmania bare-earth surface sampled at the center of the historic east road frontage."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -13.60891,
+          12.80906
+        ],
+        [
+          -13.60891,
+          -14.390939999999999
+        ],
+        [
+          15.6791,
+          -14.390939999999999
+        ],
+        [
+          15.6791,
+          12.80906
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -13.60891,
+            12.80906
+          ],
+          [
+            -13.60891,
+            -14.390939999999999
+          ],
+          [
+            15.6791,
+            -14.390939999999999
+          ],
+          [
+            15.6791,
+            12.80906
+          ]
+        ],
+        [
+          [
+            15.6791,
+            12.699060000000001
+          ],
+          [
+            15.6791,
+            -11.840939999999998
+          ],
+          [
+            23.2291,
+            -11.840939999999998
+          ],
+          [
+            23.2291,
+            12.699060000000001
+          ]
+        ],
+        [
+          [
+            23.2291,
+            12.55906
+          ],
+          [
+            23.2291,
+            -12.640939999999999
+          ],
+          [
+            40.0791,
+            -12.640939999999999
+          ],
+          [
+            40.0791,
+            12.55906
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.77,
+      "basis": "Reserve the modeled historic east ranges at Cascade Road."
+    },
+    "featureIds": [
+      "way/23378168"
+    ],
+    "source": "https://www.openstreetmap.org/way/23378168",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bf3baa44224199b9c9b36a3a3ba9c6fbb1def20a86017a4c8ad24f9d24486caa",
+    "notes": "The Beattie postcard shows three lower floors, sandstone courses and lower arched windows. The May 1937 public-domain newspaper photograph shows the added upper brewery and lettering. The heritage register describes the seven-level envelope, 1967 damage and low attached ranges."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "The Beattie postcard shows three lower floors, sandstone courses and lower arched windows. The May 1937 public-domain newspaper photograph shows the added upper brewery and lettering. The heritage register describes the seven-level envelope, 1967 damage and low attached ranges.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "cascade-brewery-skyline",
+      "position": [
+        47,
+        37,
+        87
+      ],
+      "lookAt": [
+        8,
+        11,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "cascade-brewery-district",
+      "position": [
+        47,
+        37,
+        87
+      ],
+      "lookAt": [
+        8,
+        11,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "cascade-brewery-street",
+      "position": [
+        47,
+        37,
+        87
+      ],
+      "lookAt": [
+        8,
+        11,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "cascade-brewery-closeup",
+      "position": [
+        47,
+        37,
+        87
+      ],
+      "lookAt": [
+        8,
+        11,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "cascade-road-stepped-facade",
+      "position": [
+        -12,
+        13,
+        48
+      ],
+      "lookAt": [
+        3,
+        13,
+        10
+      ]
+    },
+    {
+      "name": "brewing-tower-lettering-and-pediment",
+      "position": [
+        15,
+        25,
+        38
+      ],
+      "lookAt": [
+        6,
+        23,
+        10
+      ]
+    },
+    {
+      "name": "malthouse-and-refrigeration-range",
+      "position": [
+        49,
+        18,
+        36
+      ],
+      "lookAt": [
+        26,
+        6,
+        5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11351,
+    "vertices": 34053,
+    "materials": 7,
+    "bytes": 1578956,
+    "sha256": "sha256:7d9d5b0e8f58f459221494f2e344b56bc67d0d620bddccae0a6cbe48d0a70a45"
+  }
+}

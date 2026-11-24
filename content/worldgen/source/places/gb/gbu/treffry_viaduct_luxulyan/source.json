@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.treffry_viaduct_luxulyan",
+  "kind": "static-structure",
+  "title": "Treffry Viaduct",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.treffry_viaduct_luxulyan",
+        "output": "assets/places/gb/gbu/treffry_viaduct_luxulyan/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:548c2241f5be6fc8760e153b61c281f71e8c1d177eb09fb49dc27a80c8eab429"
+      }
+    ],
+    "generators": [
+      {
+        "id": "treffry_viaduct_luxulyan",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cornish-viaduct",
+        "path": "models/cornish-viaduct.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

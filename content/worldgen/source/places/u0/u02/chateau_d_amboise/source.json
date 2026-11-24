@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.chateau_d_amboise",
+  "kind": "static-structure",
+  "title": "Château d'Amboise",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "output": "assets/places/u0/u02/chateau_d_amboise/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4e776bb8fbfa3d2c2fa45a271abe8182d377b4492761ffa90a227003fbae569c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-chateau-d-amboise",
+        "path": "models/generate-chateau-d-amboise.mjs"
+      },
+      {
+        "id": "chateau-d-amboise-model",
+        "path": "models/chateau-d-amboise-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/chateau-d-amboise-footprint.json",
+      "native-map/amboise-native-building-parts.json",
+      "reference-rights/chateau-d-amboise-architectural-facts.json",
+      "reference-rights/chateau-d-amboise-qualla-original-2.json",
+      "reference-rights/chateau-d-amboise-qualla-original-3.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-16473-11469.png",
+      "terrain-sources/terrarium-15-16473-11470.png",
+      "terrain-sources/terrarium-15-16474-11469.png",
+      "terrain-sources/terrarium-15-16474-11470.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

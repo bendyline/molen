@@ -1,0 +1,531 @@
+{
+  "planId": "starlight_theatre_kansas_city_missouri",
+  "id": "starlight_theatre_kansas_city_missouri",
+  "assetId": "molen.worldgen.structure.starlight_theatre_kansas_city_missouri",
+  "title": "Starlight Theatre (Kansas City, Missouri)",
+  "wikidataId": "Q14704492",
+  "category": "outdoor-theatre",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -94.5328595,
+    "latitude": 39.00726645
+  },
+  "size": [
+    87.12210083007812,
+    32.35000038146973,
+    97.33650016784668
+  ],
+  "actualBounds": {
+    "min": [
+      -45.39139938354492,
+      -1.25,
+      -70.21730041503906
+    ],
+    "max": [
+      41.7307014465332,
+      31.100000381469727,
+      27.119199752807617
+    ]
+  },
+  "visualBrief": "Swope Park’s outdoor theatre, with the four copper-roofed brick towers and the Cohen Community Stage as they stood in 2022.",
+  "nativeAxes": {
+    "x": "along the stage front toward the east tower",
+    "y": "up",
+    "z": "from the seating bowl into the stage house"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2022-06-29",
+    "validFrom": "2022-01-01",
+    "validUntil": "2024-10-01"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Starlight_Theatre_stage_Kansas_City_MO.jpg"
+  ],
+  "stories": [
+    {
+      "id": "starlight-theatre-kansas-city-missouri-wp",
+      "url": "https://qualla.com/starlight-theatre-kansas-city-missouri/"
+    }
+  ],
+  "referenceInputHash": "sha256:a46e042c7245fa19030227171f2af0476ab2c533894405c90b84f1ab605b53b5",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9y/9yu/starlight_theatre_kansas_city_missouri/models/starlight-theatre-kansas-city-missouri-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9y/9yu/starlight_theatre_kansas_city_missouri/models/starlight-theatre-kansas-city-missouri-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.84,
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.94
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.79
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.85
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.84
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.32,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.85
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.85
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.85
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "concrete_plain",
+    "metal_standing_seam",
+    "metal_copper"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "USGS 1-metre bare-earth terrain immediately in front of the stage.",
+    "anchor": [
+      -94.5328595,
+      39.00726645
+    ],
+    "heading": -0.08171077230249635,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -94.53285643346369,
+        39.00729554770462
+      ],
+      "modelHeight": 0,
+      "basis": "USGS 1-metre bare-earth terrain immediately in front of the stage."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          31.2963,
+          27.1192
+        ],
+        [
+          -0.6331,
+          26.8189
+        ],
+        [
+          -7.8779,
+          26.742
+        ],
+        [
+          -12.6551,
+          26.6976
+        ],
+        [
+          -14.6181,
+          26.6797
+        ],
+        [
+          -22.1773,
+          26.6844
+        ],
+        [
+          -22.191,
+          20.8999
+        ],
+        [
+          -22.1932,
+          12.2886
+        ],
+        [
+          -24.6745,
+          10.392
+        ],
+        [
+          -24.6817,
+          7.0195
+        ],
+        [
+          -28.5504,
+          7.0459
+        ],
+        [
+          -28.4467,
+          0.6821
+        ],
+        [
+          -24.9037,
+          0.7047
+        ],
+        [
+          -24.8476,
+          -1.154
+        ],
+        [
+          -25.307,
+          -3.1603
+        ],
+        [
+          -23.6043,
+          -5.5783
+        ],
+        [
+          -21.6209,
+          -5.8412
+        ],
+        [
+          -18.6726,
+          -3.6478
+        ],
+        [
+          -18.401,
+          -1.1793
+        ],
+        [
+          -15.7528,
+          0
+        ],
+        [
+          15.7528,
+          0
+        ],
+        [
+          17.7333,
+          -1.5695
+        ],
+        [
+          17.9351,
+          -2.8147
+        ],
+        [
+          21.1988,
+          -5.2488
+        ],
+        [
+          23.1441,
+          -5.1288
+        ],
+        [
+          23.4976,
+          -4.7333
+        ],
+        [
+          25.0269,
+          -3.0157
+        ],
+        [
+          24.9608,
+          -1.279
+        ],
+        [
+          24.4304,
+          -1.0792
+        ],
+        [
+          24.4334,
+          1.2884
+        ],
+        [
+          28.8498,
+          1.273
+        ],
+        [
+          28.8452,
+          5.1379
+        ],
+        [
+          31.5755,
+          5.093
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "The native stage house perimeter, independent of the graded audience bowl."
+    },
+    "featureIds": [
+      "way/1392473786",
+      "way/496249332"
+    ],
+    "source": "https://www.openstreetmap.org/way/1392473786",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:836aa9182748f34c073e6e57e40e29efeb1c0b449b0772aaa1f828dee168832c",
+    "notes": "The operator describes a ten-storey stage house opened in 2000 and distinguishes the 1950 and 2000 flanking towers. The Qualla reference establishes the relative tower heights, pale rolling door, gridded lighting deck and flared roofs."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The exterior depicts the open-air layout evidenced in 2008 and 2022. Later light-bridge towers and canopy work are outside this historical configuration.",
+    "The outline, footprint and grading are mapped. Roof heights, brick and steel detailing, individual seats and auxiliary facilities are approximated at medium fidelity."
+  ],
+  "sourceLicense": "Original 3D work under the repository license. OpenStreetMap outlines under ODbL. USGS/USDA survey data in the public domain.",
+  "qaLodCameras": [
+    {
+      "name": "starlight-theatre-skyline",
+      "position": [
+        -78,
+        44,
+        -96
+      ],
+      "lookAt": [
+        0,
+        10,
+        -19
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "starlight-theatre-district",
+      "position": [
+        -78,
+        44,
+        -96
+      ],
+      "lookAt": [
+        0,
+        10,
+        -19
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "starlight-theatre-street",
+      "position": [
+        -78,
+        44,
+        -96
+      ],
+      "lookAt": [
+        0,
+        10,
+        -19
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "starlight-theatre-closeup",
+      "position": [
+        -78,
+        44,
+        -96
+      ],
+      "lookAt": [
+        0,
+        10,
+        -19
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "cohen-stage-and-front-towers",
+      "position": [
+        -40,
+        10.4,
+        -43
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "elevated-open-seating-bowl",
+      "position": [
+        44,
+        42,
+        -72
+      ],
+      "lookAt": [
+        0,
+        8,
+        -24
+      ]
+    },
+    {
+      "name": "stage-house-backstage",
+      "position": [
+        -49,
+        29,
+        60
+      ],
+      "lookAt": [
+        0,
+        11,
+        11
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 19631,
+    "vertices": 58893,
+    "materials": 5,
+    "bytes": 2505896,
+    "sha256": "sha256:e47d15588635778645730bb6b3a8c2109a536602d02be3be533889c26f315d6c"
+  }
+}

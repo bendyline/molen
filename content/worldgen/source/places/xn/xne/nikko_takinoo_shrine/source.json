@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.nikko_takinoo_shrine",
+  "kind": "static-structure",
+  "title": "Nikkō Takinoo Shrine",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.nikko_takinoo_shrine",
+        "output": "assets/places/xn/xne/nikko_takinoo_shrine/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f138c01e01322f200fad0508c2d2822337d556e7db35aaad236bb34af19fcc3f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "nikko_takinoo_shrine",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "precinct",
+        "path": "models/precinct.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

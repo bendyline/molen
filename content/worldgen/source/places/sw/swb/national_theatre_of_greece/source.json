@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.national_theatre_of_greece",
+  "kind": "static-structure",
+  "title": "National Theatre of Greece",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.national_theatre_of_greece",
+        "output": "assets/places/sw/swb/national_theatre_of_greece/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d0ca2aeb01f3d198150ccfafed074e05df0b6386cf505016f48991971ba4a9ac"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-national-theatre-of-greece",
+        "path": "models/generate-national-theatre-of-greece.mjs"
+      },
+      {
+        "id": "national-theatre-of-greece-model",
+        "path": "models/national-theatre-of-greece-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/national-theatre-of-greece-footprint.json",
+      "reference-rights/national-theatre-of-greece-architectural-facts.json",
+      "reference-rights/national-theatre-of-greece-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-18543-12641.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

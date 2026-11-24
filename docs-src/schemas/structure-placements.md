@@ -584,6 +584,30 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
                   }
                 }
               },
+              "holes": {
+                "minItems": 1,
+                "maxItems": 64,
+                "type": "array",
+                "items": {
+                  "minItems": 3,
+                  "maxItems": 512,
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 2,
+                    "maxItems": 2
+                  }
+                }
+              },
               "basis": {
                 "type": "string",
                 "minLength": 1
@@ -764,7 +788,7 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
                 "maximum": 10000
               }
             },
-            "additionalProperties": false
+            "additionalProperties": {}
           },
           "orientation": {
             "type": "string",
@@ -814,6 +838,10 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
               },
               "validUntil": {
                 "type": "string"
+              },
+              "basis": {
+                "type": "string",
+                "minLength": 1
               }
             },
             "required": [

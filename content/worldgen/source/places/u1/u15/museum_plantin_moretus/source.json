@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.museum_plantin_moretus",
+  "kind": "static-structure",
+  "title": "Museum Plantin-Moretus",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.museum_plantin_moretus",
+        "output": "assets/places/u1/u15/museum_plantin_moretus/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7399cee64b2bba9f70a130154b51c44bca9a1501a7417c9416653c7578ee2d8e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "museum_plantin_moretus",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "flemish-printing-house-and-garden",
+        "path": "models/flemish-printing-house-and-garden.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

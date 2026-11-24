@@ -1,0 +1,474 @@
+{
+  "planId": "louisbourg_lighthouse",
+  "id": "louisbourg_lighthouse",
+  "assetId": "molen.worldgen.structure.louisbourg_lighthouse",
+  "title": "Louisbourg Lighthouse",
+  "wikidataId": "Q6688576",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -59.9585669,
+    "latitude": 45.9065273
+  },
+  "size": [
+    8.34000015258789,
+    23.579999208450317,
+    8.543242931365967
+  ],
+  "actualBounds": {
+    "min": [
+      -4.170000076293945,
+      -1.2799999713897705,
+      -4.170000076293945
+    ],
+    "max": [
+      4.170000076293945,
+      22.299999237060547,
+      4.3732428550720215
+    ]
+  },
+  "visualBrief": "First French lighthouse on Louisbourg Head, with a tapering circular stone tower, a glazed timber lantern and a slate cap as drawn in the original plan.",
+  "nativeAxes": {
+    "x": "southeast",
+    "y": "up",
+    "z": "southwest"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1735-07-01",
+    "validFrom": "1734-04-01",
+    "validUntil": "1736-09-12"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Plan_et_profil_de_la_Tour_de_la_Lanterne_a_l_entr%C3%A9e_du_port_de_Louisbourg_pour_representer_ce_qui_reste_a_faire_pour_la_perfectionner_pendant_l_ann%C3%A9e_1733.jpg"
+  ],
+  "stories": [
+    {
+      "id": "louisbourg-lighthouse-wp",
+      "url": "https://qualla.com/louisbourg-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "sha256:ffb3ad8c4b685cdf1a17a7b7d67cdc00683136f536ea729f78bf470231eb1f0d",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/f8/f8j/louisbourg_lighthouse/models/louisbourg-lighthouse-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/f8/f8j/louisbourg_lighthouse/models/louisbourg-lighthouse-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.72,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97
+      },
+      "stonework": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.91
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.91
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.87
+      },
+      "vent": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.47
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.33,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "stonework": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          },
+          "vent": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.136,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "stonework": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          },
+          "vent": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "stonework": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          },
+          "vent": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_limestone_weathered",
+    "stone_limestone",
+    "slate",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.75,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unaltered HRDEM elevation on the present land approach near the original southwest doorway. Ground at other sides follows the headland’s current slope.",
+    "anchor": [
+      -59.9585669,
+      45.9065273
+    ],
+    "heading": -0.7853981633974483,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -59.958606609763464,
+        45.90649966871633
+      ],
+      "modelHeight": 0,
+      "basis": "Unaltered HRDEM elevation on the present land approach near the original southwest doorway. Ground at other sides follows the headland’s current slope."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          0.82629,
+          -8.17825
+        ],
+        [
+          1.64682,
+          -14.08375
+        ],
+        [
+          -4.39945,
+          -15.20052
+        ],
+        [
+          -5.82654,
+          -9.00332
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "Suppress the separately mapped 1923 lighthouse during the original tower’s date range."
+    },
+    "featureIds": [
+      "node/2091642664"
+    ],
+    "source": "https://nouvelle-france.org/fra/item/details?id=40284",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a397b161b07aaae1dde69badf1bfcf59fd9095ad5e3569ecfc1314282f9dd52e",
+    "notes": "An archival section and elevation record the ashlar exterior, three projecting courses, small openings, framed doorway and heraldic plaque, slate roof and glazed timber lantern with a hooded vent. Parks Canada gives the height as 22.3 m."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Represents the original pre-fire tower shown by the drawing. The keeper’s house and later towers are outside the asset.",
+    "Door bearing, minor openings around the back, materials and glazing colors are approximated from the historic sheet. The modeled 400 panes are distributed as five columns and ten rows across eight faces.",
+    "Ground is modern bare-earth elevation; it does not recover the eighteenth-century surface."
+  ],
+  "sourceLicense": "Original model from the public-domain ANOM drawing FR CAOM 3DFC172B, Parks Canada research, OpenStreetMap location and open Natural Resources Canada elevation.",
+  "qaLodCameras": [
+    {
+      "name": "louisbourg-lighthouse-skyline",
+      "position": [
+        19,
+        14,
+        27
+      ],
+      "lookAt": [
+        0,
+        10.5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "louisbourg-lighthouse-district",
+      "position": [
+        19,
+        14,
+        27
+      ],
+      "lookAt": [
+        0,
+        10.5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "louisbourg-lighthouse-street",
+      "position": [
+        19,
+        14,
+        27
+      ],
+      "lookAt": [
+        0,
+        10.5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "louisbourg-lighthouse-closeup",
+      "position": [
+        19,
+        14,
+        27
+      ],
+      "lookAt": [
+        0,
+        10.5,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-tower-and-entrance",
+      "position": [
+        19,
+        14,
+        27
+      ],
+      "lookAt": [
+        0,
+        10.5,
+        0
+      ]
+    },
+    {
+      "name": "lantern-and-hooded-vent",
+      "position": [
+        8,
+        21.2,
+        14
+      ],
+      "lookAt": [
+        0,
+        18.7,
+        0
+      ]
+    },
+    {
+      "name": "doorway-and-ashlar",
+      "position": [
+        -4,
+        3.5,
+        12
+      ],
+      "lookAt": [
+        0,
+        3.4,
+        3.3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9526,
+    "vertices": 28578,
+    "materials": 7,
+    "bytes": 1532596,
+    "sha256": "sha256:31113009440cfb143961a76e5638cbf744e78e9ac9cb08bdf20a259f5335d252"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.wheal_coates_tin_mine",
+  "kind": "static-structure",
+  "title": "Wheal Coates Tin Mine",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.wheal_coates_tin_mine",
+        "output": "assets/places/gb/gbu/wheal_coates_tin_mine/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d7ee10ce84d8fa0a625aa5eda7f3420019ad6113a573650ca7302da74ea5bc9f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "wheal_coates_tin_mine",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cornish-engine-houses",
+        "path": "models/cornish-engine-houses.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

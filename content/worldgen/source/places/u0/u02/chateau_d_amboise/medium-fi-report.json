@@ -1,0 +1,1324 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.chateau_d_amboise",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.chateau_d_amboise",
+    "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e"
+  },
+  "sourceHash": "sha256:4e776bb8fbfa3d2c2fa45a271abe8182d377b4492761ffa90a227003fbae569c",
+  "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+  "fixtureHash": "sha256:0db81f2b7283257ef278f88ac793a1b6d1bb0aadff5fd9b4680d3dfd33f5ce34",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
+    },
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:c4b3b63fdedaab5040113488c5ff4407e90d120630534d4f75e7f57415b65ceb",
+      "bytes": 81572,
+      "gzipBytes": 24324,
+      "triangles": 971,
+      "cpuBytes": 76496,
+      "gpuBytes": 76496,
+      "errorMeters": 0.96,
+      "drawCalls": 4
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:216bc01b23001eecfd8e12d7446cfb7142697dbbd7b8630e3a14db85fdbafb78",
+      "bytes": 260628,
+      "gzipBytes": 73847,
+      "triangles": 3586,
+      "cpuBytes": 254440,
+      "gpuBytes": 254440,
+      "errorMeters": 0.46,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:92cda0a4b756c0951bc0dd86f513372caa2d3c828c1318ea2d26f81537876830",
+      "bytes": 729376,
+      "gzipBytes": 176596,
+      "triangles": 10007,
+      "cpuBytes": 722048,
+      "gpuBytes": 722048,
+      "errorMeters": 0.19,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:fd524eb55ab59f0b7eebeecf36bc7b66f6b5c2bd1e09405087f3f981742bdfb1",
+      "bytes": 1518856,
+      "gzipBytes": 374748,
+      "triangles": 20323,
+      "cpuBytes": 1511504,
+      "gpuBytes": 1511504,
+      "errorMeters": 0.062,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:922e1468776bc877bf20154c248ee74a0fe7b8b89200f3e15cee15a6b042c224"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:026d4a14214fc451bc98329b104786f0a89d594b08a5a8eef1ce07c0039415ba"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:ff4f4bb66ba9794c1722718ed3c660e5cfc5e75007f8a687290608a5c693b7f4",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:fd524eb55ab59f0b7eebeecf36bc7b66f6b5c2bd1e09405087f3f981742bdfb1",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 59333,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          72.8233,
+          28.36,
+          149.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:4b573c5b8e09c76b4932fc51c3b61221a084d3be2a6a405d8d91a5fa6ab625de",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:fd524eb55ab59f0b7eebeecf36bc7b66f6b5c2bd1e09405087f3f981742bdfb1",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59333,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          72.8233,
+          28.36,
+          149.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:30df551962b644a4b4ccfff73ee5582b14534a9fcbc255abc8967e2b91fe5deb",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:fd524eb55ab59f0b7eebeecf36bc7b66f6b5c2bd1e09405087f3f981742bdfb1",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 59333,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          72.8233,
+          28.36,
+          149.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:e8ae2e01798074d4b79e8f5e68ce6d62b87757a65e8c455326287e30d9a8e2d1",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:fd524eb55ab59f0b7eebeecf36bc7b66f6b5c2bd1e09405087f3f981742bdfb1",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59333,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          72.8233,
+          28.36,
+          149.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:08df6fee724b26668cbd47034c90842443b51e3f374967d390b21dac4b207bab",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:216bc01b23001eecfd8e12d7446cfb7142697dbbd7b8630e3a14db85fdbafb78",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 42596,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          121.8233,
+          64.36,
+          234.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:7c3d05cfeeadde77197cfd3befa04ebfab504ce950c1b7879d1b69abd08c9822",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:216bc01b23001eecfd8e12d7446cfb7142697dbbd7b8630e3a14db85fdbafb78",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 42596,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          121.8233,
+          64.36,
+          234.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:aea2bf37e65df83a1f5d40981230a8467d8e036ecf686dcd5ea6cf5b64806cdb",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:216bc01b23001eecfd8e12d7446cfb7142697dbbd7b8630e3a14db85fdbafb78",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 42596,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          121.8233,
+          64.36,
+          234.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:c1d216f80534e5a86c181b40ea93c95d99a94b040039b04081aadb3bc044461f",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:216bc01b23001eecfd8e12d7446cfb7142697dbbd7b8630e3a14db85fdbafb78",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 42596,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          121.8233,
+          64.36,
+          234.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:1b1b202180a3d29f146f37c4fc83d7e785eea20763bd32f4a096d22e0f10aab0",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:c4b3b63fdedaab5040113488c5ff4407e90d120630534d4f75e7f57415b65ceb",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 39981,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          218.8233,
+          102.36,
+          402.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:1b1915d9f55f21f7e7d8db996a458aeef6e093f05fb3d487d45a2ec298008cbd",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:c4b3b63fdedaab5040113488c5ff4407e90d120630534d4f75e7f57415b65ceb",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 39981,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          218.8233,
+          102.36,
+          402.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:26dd5b3c43295721619eb1b6925228e2a3dd368ce13787af3769fdd38b695a1d",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:c4b3b63fdedaab5040113488c5ff4407e90d120630534d4f75e7f57415b65ceb",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 39981,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          218.8233,
+          102.36,
+          402.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:c2eed22b13c0a2645ad82805b019c182b25e8661a2b290d42ed783875d2267b1",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:c4b3b63fdedaab5040113488c5ff4407e90d120630534d4f75e7f57415b65ceb",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 39981,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          218.8233,
+          102.36,
+          402.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:f69bbe0b2442fd7fe2b95ed0b034a5ffa7386f986c155360ae805685f1159d8b",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:c4b3b63fdedaab5040113488c5ff4407e90d120630534d4f75e7f57415b65ceb",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 6,
+        "triangles": 33741,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          218.8233,
+          102.36,
+          402.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/loire-front-loggia-and-minimes.png",
+      "hash": "sha256:7d2fe4f4801d386a71786b2ba72a74918ee9558322dd83fd4fd6c7b2633b2703",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:fd524eb55ab59f0b7eebeecf36bc7b66f6b5c2bd1e09405087f3f981742bdfb1",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59333,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          29,
+          3,
+          -104
+        ],
+        "lookAt": [
+          0,
+          6,
+          -13
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/chapel-and-town-side.png",
+      "hash": "sha256:620d2ab3b1b5dac7e218c7b6847ee3c5ee383bb9613ff79c39115ee96946ac03",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:fd524eb55ab59f0b7eebeecf36bc7b66f6b5c2bd1e09405087f3f981742bdfb1",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59333,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          -104,
+          17,
+          69
+        ],
+        "lookAt": [
+          -50,
+          6,
+          29
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/fortified-terrace-and-heurtault.png",
+      "hash": "sha256:386d3392f8266623da3904b75ffb069a2e467603ae4670a91b29bc12fb61fac5",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:fd524eb55ab59f0b7eebeecf36bc7b66f6b5c2bd1e09405087f3f981742bdfb1",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59333,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          122,
+          96,
+          129
+        ],
+        "lookAt": [
+          16,
+          2,
+          37
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/chateau-d-amboise-skyline.png",
+      "hash": "sha256:0225344427a2f9610c8f3f24ed7bb84c2bc4e74fb8669c2e4b32ca9383f65420",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:c4b3b63fdedaab5040113488c5ff4407e90d120630534d4f75e7f57415b65ceb",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 39981,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          -112,
+          68,
+          -162
+        ],
+        "lookAt": [
+          15,
+          3,
+          46
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/chateau-d-amboise-district.png",
+      "hash": "sha256:901ca97cd53479cf8e7b71d216f81bbe3401beddd78764e60cdb16cd282b3c33",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:216bc01b23001eecfd8e12d7446cfb7142697dbbd7b8630e3a14db85fdbafb78",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 42596,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          -112,
+          68,
+          -162
+        ],
+        "lookAt": [
+          15,
+          3,
+          46
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/chateau-d-amboise-street.png",
+      "hash": "sha256:14f795f41b61bd10274f5a4e966a7910de384cd3973166711bd90221f82196ce",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:92cda0a4b756c0951bc0dd86f513372caa2d3c828c1318ea2d26f81537876830",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 49017,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          -112,
+          68,
+          -162
+        ],
+        "lookAt": [
+          15,
+          3,
+          46
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/chateau-d-amboise-closeup.png",
+      "hash": "sha256:a9cad9a6782c2a8c1db4f948cbfd04a794a66dde217323fd86173bcd424784a5",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:fd524eb55ab59f0b7eebeecf36bc7b66f6b5c2bd1e09405087f3f981742bdfb1",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59333,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          -112,
+          68,
+          -162
+        ],
+        "lookAt": [
+          15,
+          3,
+          46
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:f40f7d5cf86b31e9336569a7acfec4d4d8132d066babf6e6227d82726b1cc32d",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:c4b3b63fdedaab5040113488c5ff4407e90d120630534d4f75e7f57415b65ceb",
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 39981,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          121.8233,
+          64.36,
+          234.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:7c3d05cfeeadde77197cfd3befa04ebfab504ce950c1b7879d1b69abd08c9822",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:216bc01b23001eecfd8e12d7446cfb7142697dbbd7b8630e3a14db85fdbafb78",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 42596,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          121.8233,
+          64.36,
+          234.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:3300480b3f145bba86ec41cc8850165119839cfbca6578692653478e9757cf8e",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:92cda0a4b756c0951bc0dd86f513372caa2d3c828c1318ea2d26f81537876830",
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 49017,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          121.8233,
+          64.36,
+          234.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:9fe3bad42fb682b36e6cce1635828b25570fb24282df8ae8cb0a305f14ba5674",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_d_amboise",
+        "runtimeHash": "sha256:1326f0fbea3ff4f181d778f1d0815c0fe6a26536dfca953b120cb4136307dd5e",
+        "lodHash": "sha256:fd524eb55ab59f0b7eebeecf36bc7b66f6b5c2bd1e09405087f3f981742bdfb1",
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59333,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u02/chateau_d_amboise/terrain-review.height.png"
+        },
+        "position": [
+          121.8233,
+          64.36,
+          234.5034
+        ],
+        "lookAt": [
+          24.8233,
+          13.36,
+          66.5034
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reviewCenter": [
+          24.8233,
+          2.36,
+          66.5034
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

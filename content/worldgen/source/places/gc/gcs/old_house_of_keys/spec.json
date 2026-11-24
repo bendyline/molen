@@ -1,0 +1,405 @@
+{
+  "planId": "old_house_of_keys",
+  "id": "old_house_of_keys",
+  "assetId": "molen.worldgen.structure.old_house_of_keys",
+  "title": "Old House of Keys",
+  "wikidataId": "Q2018393",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -4.6521049,
+    "latitude": 54.07340145
+  },
+  "size": [
+    12.298172950744629,
+    11.729999542236328,
+    12.504499673843384
+  ],
+  "actualBounds": {
+    "min": [
+      -5.91408634185791,
+      -1,
+      -3.9674999713897705
+    ],
+    "max": [
+      6.384086608886719,
+      10.729999542236328,
+      8.536999702453613
+    ]
+  },
+  "visualBrief": "Castletown’s Georgian Old House of Keys with a curved columned porch, three-bay sash frontage and twin slate roof ridges.",
+  "nativeAxes": {
+    "x": "southwest along Parliament Square frontage",
+    "y": "up",
+    "z": "northwest toward the castle and square"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:House-of-keys.jpg"
+  ],
+  "stories": [
+    {
+      "id": "old-house-of-keys-wp",
+      "url": "https://qualla.com/old-house-of-keys/"
+    }
+  ],
+  "referenceInputHash": "sha256:4a6ed71d5af78dd0ca92875b9d95321fc0bef6de2056cf9a2cf5505d9917dacd",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcs/old_house_of_keys/models/old-house-of-keys-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gcs/old_house_of_keys/models/old-house-of-keys-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.58,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.92
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.73
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.27,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.73
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.73
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.049,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.73
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "stone_limestone_raw",
+    "slate"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original terrain immediately beyond the entrance at Parliament Square.",
+    "anchor": [
+      -4.6521049,
+      54.07340145
+    ],
+    "heading": -2.1014149732259524,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -4.652226383954924,
+        54.07344327372041
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain immediately beyond the entrance at Parliament Square."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -5.683,
+          7.462
+        ],
+        [
+          6.153,
+          7.462
+        ],
+        [
+          6.154,
+          -3.732
+        ],
+        [
+          3.379,
+          -3.732
+        ],
+        [
+          -4.323,
+          -3.727
+        ],
+        [
+          -5.681,
+          -3.732
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named registered Old House of Keys building polygon."
+    },
+    "featureIds": [
+      "way/100464798"
+    ],
+    "source": "https://www.openstreetmap.org/way/100464798",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4f1af62e2392f48099ecd42b2ae4ec045eb5b605e55c5c8258719f7a5f605581",
+    "notes": "A two-storey Georgian building with light gray stucco, a three-bay street elevation, projecting semicircular columned entrance, hipped slate roof, connected rear range and chimney stacks."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Eave, ridge and chimney heights are estimated from the released exterior photograph. Smaller details on the rear elevation are approximated."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "old-house-of-keys-skyline",
+      "position": [
+        -18,
+        14,
+        31
+      ],
+      "lookAt": [
+        0.5,
+        4.6,
+        2.5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "old-house-of-keys-district",
+      "position": [
+        -18,
+        14,
+        31
+      ],
+      "lookAt": [
+        0.5,
+        4.6,
+        2.5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "old-house-of-keys-street",
+      "position": [
+        -18,
+        14,
+        31
+      ],
+      "lookAt": [
+        0.5,
+        4.6,
+        2.5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "old-house-of-keys-closeup",
+      "position": [
+        -18,
+        14,
+        31
+      ],
+      "lookAt": [
+        0.5,
+        4.6,
+        2.5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "parliament-square-and-columned-entrance",
+      "position": [
+        -8.9,
+        3.35,
+        27.3
+      ],
+      "lookAt": [
+        0.3,
+        4.7,
+        6.1
+      ]
+    },
+    {
+      "name": "castle-rushen-quarter-view",
+      "position": [
+        -14,
+        13.7,
+        23
+      ],
+      "lookAt": [
+        0.3,
+        5.5,
+        2.9
+      ]
+    },
+    {
+      "name": "chimneys-and-rear-roof",
+      "position": [
+        16,
+        12.1,
+        -15
+      ],
+      "lookAt": [
+        0.25,
+        4.9,
+        1.8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5409,
+    "vertices": 16227,
+    "materials": 5,
+    "bytes": 805912,
+    "sha256": "sha256:6682092ac8b092e1f5769ed0d135267ea7cdf89c199795c98a3a09e328572037"
+  }
+}

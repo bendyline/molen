@@ -1,0 +1,242 @@
+{
+  "id": "antonine_wall",
+  "planId": "antonine_wall",
+  "title": "Antonine Wall at Rough Castle",
+  "assetId": "molen.worldgen.structure.antonine_wall",
+  "category": "landmark",
+  "mapFeatureId": 132752049,
+  "wikidataId": "Q210957",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -3.8566,
+    "latitude": 55.9982
+  },
+  "visualBrief": "The surviving Antonine Wall at Rough Castle is rendered as matched terrain with a turf rampart, deep ditch, outer bank, fort and annexe scarps, and the shallow lilia pits.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcv/antonine_wall/models/rough-castle-earthworks.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.historicenvironment.scot/visit/all/antonine-wall-rough-castle/",
+    "https://unesco.org.uk/our-sites/world-heritage-sites/frontiers-of-the-roman-empire-the-antonine-wall/",
+    "https://commons.wikimedia.org/wiki/File:Lilia_at_Rough_Castle.jpg",
+    "https://commons.wikimedia.org/wiki/File:Rough_Castle_Roman_Fort_on_the_Antonine_Wall.jpg",
+    "https://www.openstreetmap.org/way/132752049"
+  ],
+  "geographicProposal": {
+    "id": "antonine-wall-rough-castle",
+    "title": "Antonine Wall at Rough Castle",
+    "asset": "molen.worldgen.structure.antonine_wall",
+    "anchor": [
+      -3.8566,
+      55.9982
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 62.65,
+    "bounds": [
+      -3.8595131590247647,
+      55.99642003355254,
+      -3.8522578839788943,
+      55.99925816112019
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q210957",
+      "names": [
+        "Antonine Wall at Rough Castle",
+        "Rough Castle Fort",
+        "Roman Antonine Wall"
+      ],
+      "maxDistance": 264
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -179.349884,
+          -6.032375
+        ],
+        [
+          -122.575863,
+          196.147522
+        ],
+        [
+          268.30527,
+          86.384416
+        ],
+        [
+          211.53125,
+          -115.795481
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Replace the terrain surface only along the modeled Rough Castle rampart, fort and annexe. Preserve paved trails and map approaches."
+    },
+    "source": "https://www.openstreetmap.org/way/132752049",
+    "note": "The east-west frontage follows the mapped Roman rampart. The ditch fades into the Rowan Tree Burn valley. The asset covers this visible section of the wider Antonine Wall.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6d59b7771dc862cef4d95cfc4e5237e92e124fa2565562b2f50f2776bdae907e"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "turf": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 0.97
+      }
+    },
+    "errorMeters": 1.5,
+    "module": "content/worldgen/source/places/gc/gcv/antonine_wall/models/rough-castle-earthworks.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "turf": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.51
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "turf": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.16
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "turf": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.048
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        27,
+        1,
+        30
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "ditch-and-south-rampart",
+      "position": [
+        117,
+        17,
+        -58
+      ],
+      "lookAt": [
+        22,
+        -1,
+        -21
+      ],
+      "fov": 58
+    },
+    {
+      "name": "fort-and-annexe-from-above",
+      "position": [
+        128,
+        111,
+        156
+      ],
+      "lookAt": [
+        49,
+        0,
+        39
+      ],
+      "fov": 57
+    },
+    {
+      "name": "lilia-pits",
+      "position": [
+        -1.2304840000000006,
+        10,
+        -38.222285
+      ],
+      "lookAt": [
+        -11.230484,
+        -0.6,
+        -29.222285
+      ],
+      "fov": 54
+    },
+    {
+      "name": "wall-through-the-burn-valley",
+      "position": [
+        -127,
+        17,
+        8
+      ],
+      "lookAt": [
+        -24,
+        -1,
+        2
+      ],
+      "fov": 61
+    }
+  ],
+  "limitations": [
+    "Coverage is the visible Rough Castle segment only. The earthwork cross-sections and individual pit positions use photo-based estimates from their mapped areas. The model represents the surviving landforms."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -179.34988403320312,
+      -6.923067569732666,
+      -115.79547882080078
+    ],
+    "max": [
+      268.3052673339844,
+      5.197251796722412,
+      196.14752197265625
+    ]
+  },
+  "size": [
+    447.6551513671875,
+    12.120319366455078,
+    311.94300079345703
+  ],
+  "mesh": {
+    "triangles": 25982,
+    "vertices": 77946,
+    "materials": 1,
+    "bytes": 3119396,
+    "sha256": "sha256:438c2052aa8fc9528b43ee0fd4590f1f0dff4481c039c5a40ec1101a479c5215"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

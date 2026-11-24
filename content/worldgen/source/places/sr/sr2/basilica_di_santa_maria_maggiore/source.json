@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.basilica_di_santa_maria_maggiore",
+  "kind": "static-structure",
+  "title": "Basilica di Santa Maria Maggiore",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.basilica_di_santa_maria_maggiore",
+        "output": "assets/places/sr/sr2/basilica_di_santa_maria_maggiore/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:540346464b7dfae155f5abb7c0d2ff46122b38ee95f53827642fc677e0513a7f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "basilica_di_santa_maria_maggiore",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "fuga-loggia-and-twin-lead-domes",
+        "path": "models/fuga-loggia-and-twin-lead-domes.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

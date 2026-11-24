@@ -1,0 +1,1031 @@
+{
+  "planId": "arena_of_nimes",
+  "id": "arena_of_nimes",
+  "assetId": "molen.worldgen.structure.arena_of_nimes",
+  "title": "Arena of Nîmes",
+  "wikidataId": "Q179656",
+  "category": "amphitheatre",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 4.359623700203048,
+    "latitude": 43.834889130558764
+  },
+  "size": [
+    133.86170959472656,
+    23.282699465751648,
+    104.55033111572266
+  ],
+  "actualBounds": {
+    "min": [
+      -66.93085479736328,
+      -1.9726999998092651,
+      -52.27516555786133
+    ],
+    "max": [
+      66.93085479736328,
+      21.309999465942383,
+      52.27516555786133
+    ]
+  },
+  "visualBrief": "The surviving Roman limestone amphitheatre, with two complete round-headed arcades encircling its tiered bowl and sand arena.",
+  "nativeAxes": {
+    "x": "toward the east end of the major axis",
+    "y": "up",
+    "z": "toward the southern minor axis"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://id.rijksmuseum.nl/200331474",
+    "https://id.rijksmuseum.nl/200236056"
+  ],
+  "stories": [
+    {
+      "id": "arena-of-nimes-wp",
+      "url": "https://qualla.com/arena-of-nimes/"
+    }
+  ],
+  "referenceInputHash": "sha256:f89f3834f19fc1925fca73fd7e7746a0e9481679512298cf3864f4a54e121ffc",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sp/spg/arena_of_nimes/models/arena-of-nimes-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sp/spg/arena_of_nimes/models/arena-of-nimes-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 3.1,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "fascia": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.91
+      },
+      "seats": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.96
+      },
+      "deep": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.34,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "fascia": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "seats": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.96
+          },
+          "deep": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.53,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "fascia": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "seats": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.96
+          },
+          "deep": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "fascia": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "seats": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.96
+          },
+          "deep": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_limestone_weathered",
+    "gravel"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.85,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The original one-metre IGN surface measured at the north approach, outside the minor-axis facade.",
+    "anchor": [
+      4.359623700203048,
+      43.834889130558764
+    ],
+    "heading": 0.5141559452245712,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        4.359316918231087,
+        43.8353174518175
+      ],
+      "modelHeight": 0,
+      "basis": "The original one-metre IGN surface measured at the north approach, outside the minor-axis facade."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -64.51686,
+          11.32752
+        ],
+        [
+          -63.20791,
+          16.14525
+        ],
+        [
+          -60.80667,
+          21.29866
+        ],
+        [
+          -57.44902,
+          26.68544
+        ],
+        [
+          -53.48949,
+          31.12091
+        ],
+        [
+          -49.44341,
+          34.68474
+        ],
+        [
+          -44.01205,
+          38.97988
+        ],
+        [
+          -38.78509,
+          42.37968
+        ],
+        [
+          -33.50167,
+          44.81415
+        ],
+        [
+          -27.55601,
+          46.95785
+        ],
+        [
+          -21.75896,
+          48.82585
+        ],
+        [
+          -15.84443,
+          50.1593
+        ],
+        [
+          -9.56686,
+          51.33983
+        ],
+        [
+          -3.59705,
+          51.57944
+        ],
+        [
+          2.85651,
+          51.63202
+        ],
+        [
+          8.75805,
+          51.25774
+        ],
+        [
+          14.91321,
+          50.63038
+        ],
+        [
+          20.617,
+          49.47959
+        ],
+        [
+          26.65384,
+          47.78817
+        ],
+        [
+          32.41991,
+          45.54749
+        ],
+        [
+          37.64339,
+          42.84691
+        ],
+        [
+          43.23335,
+          39.61181
+        ],
+        [
+          47.95786,
+          35.90066
+        ],
+        [
+          52.59491,
+          31.75656
+        ],
+        [
+          56.7025,
+          26.91708
+        ],
+        [
+          60.01297,
+          21.92141
+        ],
+        [
+          62.52573,
+          16.7053
+        ],
+        [
+          64.75282,
+          10.98265
+        ],
+        [
+          65.14977,
+          8.77772
+        ],
+        [
+          65.52034,
+          7.63182
+        ],
+        [
+          64.87888,
+          7.46129
+        ],
+        [
+          65.82272,
+          2.86763
+        ],
+        [
+          66.74028,
+          2.81057
+        ],
+        [
+          66.80921,
+          1.8395
+        ],
+        [
+          66.25318,
+          1.72999
+        ],
+        [
+          66.49376,
+          -4.00241
+        ],
+        [
+          66.94828,
+          -4.03973
+        ],
+        [
+          66.87527,
+          -5.16769
+        ],
+        [
+          65.74215,
+          -5.10454
+        ],
+        [
+          65.04808,
+          -9.16585
+        ],
+        [
+          65.5528,
+          -9.34102
+        ],
+        [
+          65.40077,
+          -10.59032
+        ],
+        [
+          64.66928,
+          -10.5688
+        ],
+        [
+          63.46059,
+          -15.0742
+        ],
+        [
+          64.00456,
+          -15.36784
+        ],
+        [
+          63.56943,
+          -16.3935
+        ],
+        [
+          63.04069,
+          -16.25745
+        ],
+        [
+          60.81629,
+          -20.94022
+        ],
+        [
+          61.31191,
+          -21.19725
+        ],
+        [
+          60.7074,
+          -22.03731
+        ],
+        [
+          60.20116,
+          -21.87577
+        ],
+        [
+          57.11011,
+          -25.80791
+        ],
+        [
+          57.50514,
+          -26.26238
+        ],
+        [
+          56.866,
+          -27.23707
+        ],
+        [
+          56.43667,
+          -27.03209
+        ],
+        [
+          53.28684,
+          -30.54995
+        ],
+        [
+          53.67489,
+          -31.00837
+        ],
+        [
+          52.78153,
+          -31.79423
+        ],
+        [
+          52.39719,
+          -31.53828
+        ],
+        [
+          48.41251,
+          -35.08021
+        ],
+        [
+          48.83703,
+          -35.50525
+        ],
+        [
+          48.12606,
+          -36.12417
+        ],
+        [
+          47.67179,
+          -35.90771
+        ],
+        [
+          44.13511,
+          -38.83862
+        ],
+        [
+          44.44288,
+          -39.25289
+        ],
+        [
+          43.27646,
+          -39.78388
+        ],
+        [
+          43.04138,
+          -39.48197
+        ],
+        [
+          39.15735,
+          -41.76527
+        ],
+        [
+          39.4268,
+          -42.11169
+        ],
+        [
+          38.54129,
+          -42.6502
+        ],
+        [
+          38.20707,
+          -42.23809
+        ],
+        [
+          33.60647,
+          -44.54258
+        ],
+        [
+          33.72546,
+          -45.06348
+        ],
+        [
+          32.84628,
+          -45.36829
+        ],
+        [
+          32.53119,
+          -44.84309
+        ],
+        [
+          27.73772,
+          -46.64285
+        ],
+        [
+          27.93883,
+          -47.30913
+        ],
+        [
+          26.94898,
+          -47.54861
+        ],
+        [
+          26.72082,
+          -46.94874
+        ],
+        [
+          22.01454,
+          -48.49468
+        ],
+        [
+          22.16579,
+          -49.13799
+        ],
+        [
+          20.90444,
+          -49.40296
+        ],
+        [
+          20.7526,
+          -48.82391
+        ],
+        [
+          15.88538,
+          -49.87266
+        ],
+        [
+          15.94936,
+          -50.47576
+        ],
+        [
+          14.94308,
+          -50.68616
+        ],
+        [
+          14.79032,
+          -50.05649
+        ],
+        [
+          9.99723,
+          -50.90994
+        ],
+        [
+          10.03233,
+          -51.47823
+        ],
+        [
+          8.90442,
+          -51.6039
+        ],
+        [
+          8.7872,
+          -50.89023
+        ],
+        [
+          3.89247,
+          -51.30248
+        ],
+        [
+          3.83819,
+          -51.90846
+        ],
+        [
+          2.74524,
+          -52.01439
+        ],
+        [
+          2.69128,
+          -51.38005
+        ],
+        [
+          -3.05235,
+          -51.53026
+        ],
+        [
+          -3.16989,
+          -52.05691
+        ],
+        [
+          -3.94729,
+          -52.03575
+        ],
+        [
+          -3.89663,
+          -51.52131
+        ],
+        [
+          -8.77699,
+          -50.97936
+        ],
+        [
+          -8.84499,
+          -51.4141
+        ],
+        [
+          -9.97053,
+          -51.28274
+        ],
+        [
+          -9.86908,
+          -50.84189
+        ],
+        [
+          -14.90148,
+          -50.19404
+        ],
+        [
+          -14.98135,
+          -50.55878
+        ],
+        [
+          -15.96217,
+          -50.42238
+        ],
+        [
+          -15.89569,
+          -50.00128
+        ],
+        [
+          -20.80593,
+          -49.07987
+        ],
+        [
+          -20.96238,
+          -49.60293
+        ],
+        [
+          -21.92374,
+          -49.46833
+        ],
+        [
+          -21.79651,
+          -48.79558
+        ],
+        [
+          -26.14438,
+          -47.53096
+        ],
+        [
+          -26.29568,
+          -47.94883
+        ],
+        [
+          -27.39174,
+          -47.78803
+        ],
+        [
+          -27.2961,
+          -47.22261
+        ],
+        [
+          -31.93874,
+          -45.19119
+        ],
+        [
+          -32.28707,
+          -45.55414
+        ],
+        [
+          -33.30292,
+          -45.14348
+        ],
+        [
+          -33.08506,
+          -44.59852
+        ],
+        [
+          -37.26618,
+          -42.60047
+        ],
+        [
+          -37.58681,
+          -43.12676
+        ],
+        [
+          -38.54065,
+          -42.62994
+        ],
+        [
+          -38.3906,
+          -42.04657
+        ],
+        [
+          -42.8105,
+          -39.54414
+        ],
+        [
+          -43.15942,
+          -39.97136
+        ],
+        [
+          -44.12118,
+          -39.42786
+        ],
+        [
+          -43.87047,
+          -38.94106
+        ],
+        [
+          -47.77417,
+          -36.27492
+        ],
+        [
+          -48.02099,
+          -36.49104
+        ],
+        [
+          -48.96336,
+          -35.65533
+        ],
+        [
+          -48.59742,
+          -35.19294
+        ],
+        [
+          -52.08175,
+          -31.70182
+        ],
+        [
+          -52.39269,
+          -32.082
+        ],
+        [
+          -53.14865,
+          -31.3967
+        ],
+        [
+          -52.86358,
+          -30.95441
+        ],
+        [
+          -56.34772,
+          -26.99014
+        ],
+        [
+          -56.74011,
+          -27.45469
+        ],
+        [
+          -57.45267,
+          -26.43804
+        ],
+        [
+          -57.10005,
+          -26.2133
+        ],
+        [
+          -59.91477,
+          -22.06269
+        ],
+        [
+          -60.24094,
+          -22.28527
+        ],
+        [
+          -60.67891,
+          -21.50986
+        ],
+        [
+          -60.33085,
+          -21.32604
+        ],
+        [
+          -62.60212,
+          -16.47215
+        ],
+        [
+          -63.00309,
+          -16.66028
+        ],
+        [
+          -63.27293,
+          -15.90496
+        ],
+        [
+          -62.92216,
+          -15.57899
+        ],
+        [
+          -64.5845,
+          -10.61128
+        ],
+        [
+          -65.03415,
+          -10.64791
+        ],
+        [
+          -65.266,
+          -9.84557
+        ],
+        [
+          -64.86958,
+          -9.69837
+        ],
+        [
+          -65.77213,
+          -4.85126
+        ],
+        [
+          -67.08037,
+          -4.77196
+        ],
+        [
+          -67.02886,
+          -4.01412
+        ],
+        [
+          -66.52783,
+          -3.98683
+        ],
+        [
+          -66.5921,
+          1.85794
+        ],
+        [
+          -67.09498,
+          1.93188
+        ],
+        [
+          -66.94987,
+          2.88322
+        ],
+        [
+          -65.69031,
+          2.95541
+        ],
+        [
+          -64.9031,
+          7.91313
+        ],
+        [
+          -65.35308,
+          7.99138
+        ],
+        [
+          -65.18944,
+          8.99154
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Native relation 534466 enables removal of generic replacements of the mapped outer walls."
+    },
+    "featureIds": [
+      "relation/534466"
+    ],
+    "source": "https://www.openstreetmap.org/relation/534466",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a99fd87b27281a4df2379be5a5f8ee8051a4856c3f3d61429723346c7bdd9921",
+    "notes": "Rijksmuseum nineteenth-century imagery establishes the two open arcades, round-head bays and engaged shaft profiles. The City of Nîmes reports four seating sections and 34 rows. The remaining modern monument is represented with simplified masonry repairs."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Individual Roman repairs, reliefs and restored stone profiles are simplified. The interior circulation beyond the open outer bays and the detailed subterranean complex are outside the exterior model.",
+    "Seating row placement and heights are interpreted between documented section sizes. Modern temporary event fixtures and crowds are omitted."
+  ],
+  "sourceLicense": "Original model based on public-domain Rijksmuseum records and renderings, written city and operator records, native mapping and the open national terrain dataset.",
+  "qaLodCameras": [
+    {
+      "name": "arena-of-nimes-skyline",
+      "position": [
+        -92,
+        51,
+        -118
+      ],
+      "lookAt": [
+        0,
+        7.7,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "arena-of-nimes-district",
+      "position": [
+        -92,
+        51,
+        -118
+      ],
+      "lookAt": [
+        0,
+        7.7,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "arena-of-nimes-street",
+      "position": [
+        -92,
+        51,
+        -118
+      ],
+      "lookAt": [
+        0,
+        7.7,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "arena-of-nimes-closeup",
+      "position": [
+        -92,
+        51,
+        -118
+      ],
+      "lookAt": [
+        0,
+        7.7,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-arena-and-tiered-seating",
+      "position": [
+        -92,
+        51,
+        -118
+      ],
+      "lookAt": [
+        0,
+        7.7,
+        0
+      ]
+    },
+    {
+      "name": "principal-facade-and-arcades",
+      "position": [
+        0,
+        9,
+        -74
+      ],
+      "lookAt": [
+        0,
+        11,
+        -48
+      ]
+    },
+    {
+      "name": "cavea-four-seating-levels",
+      "position": [
+        -26,
+        34,
+        23
+      ],
+      "lookAt": [
+        9,
+        7.4,
+        -17
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 35263,
+    "vertices": 105789,
+    "materials": 4,
+    "bytes": 4543064,
+    "sha256": "sha256:e7d9d470811d29dbc512a04270f448e994da95863485d5df3623c5c2a0dadd43"
+  }
+}

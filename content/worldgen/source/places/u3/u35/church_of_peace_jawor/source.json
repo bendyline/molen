@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.church_of_peace_jawor",
+  "kind": "static-structure",
+  "title": "Church of Peace in Jawor",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.church_of_peace_jawor",
+        "output": "assets/places/u3/u35/church_of_peace_jawor/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1935e216b133260f37e7a946a48862f449ea1d422dfe225d425e0014fbf44303"
+      }
+    ],
+    "generators": [
+      {
+        "id": "church_of_peace_jawor",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "half-timbered-hall-and-bell-tower",
+        "path": "models/half-timbered-hall-and-bell-tower.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

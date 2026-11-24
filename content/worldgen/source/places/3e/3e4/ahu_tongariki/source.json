@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.ahu_tongariki",
+  "kind": "static-structure",
+  "title": "Ahu Tongariki",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.ahu_tongariki",
+        "output": "assets/places/3e/3e4/ahu_tongariki/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:daded9e05ec9a74f83c2df4919ffee2652adbb356debfb3a140ace455e76df67"
+      }
+    ],
+    "generators": [
+      {
+        "id": "ahu_tongariki",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "tongariki",
+        "path": "models/tongariki.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

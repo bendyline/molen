@@ -162,6 +162,58 @@ it('interpolates several levels along a local grade and preserves valid terrain 
   expect(heightfield.sampleHeight(0, 0)).toBeCloseTo(40, 4);
 });
 
+it('samples a rotated survey grid in both dimensions and blends into the host terrain', async () => {
+  const document = {
+    format: 'molen/earth-site-grades@1',
+    sites: [
+      {
+        anchor: [0, 0],
+        heading: Math.PI / 2,
+        bounds: [-10, -10, 10, 10],
+        elevation: 40,
+        blend: 20,
+        elevationGrid: [
+          [10, 30],
+          [50, 70],
+        ],
+      },
+    ],
+  };
+  const grades = readEarthSiteGrades(document);
+  expect(() =>
+    readEarthSiteGrades({
+      ...document,
+      sites: [{ ...document.sites[0], elevationGrid: [[10, 30], [50]] }],
+    }),
+  ).toThrow();
+  const descriptor = {
+    coordinateSpace: { kind: 'geospatial' },
+    features: { profile: 'protomaps-basemap@1' },
+  } as TerrainPackageDescriptor;
+  const grade = createEarthSiteGrading(grades, descriptor);
+  if (!grade) throw new Error('Expected a survey grade');
+  const origin: [number, number] = [-100, -100];
+  const heightfield = new Heightfield(new Float32Array(41 * 41).fill(0.2), 41, 41, {
+    origin,
+    worldSize: [200, 200],
+    height: { min: 0, max: 100 },
+  });
+  const result = await grade(
+    {
+      origin,
+      tileSize: 200,
+      heightfield,
+      signal: new AbortController().signal,
+      pyramid: {},
+    } as TerrainPyramidTileLayerContext,
+    { load: async () => undefined },
+  );
+  expect(result.sampleHeight(-10, 10)).toBeCloseTo(10, 4);
+  expect(result.sampleHeight(5, -5)).toBeCloseTo(55, 4);
+  expect(result.sampleHeight(20, 0)).toBeCloseTo(40, 4);
+  expect(result.sampleHeight(40, 0)).toBeCloseTo(20, 4);
+});
+
 it.each([
   ['2017-01-07', '2017-01-08', '2017-01-09'],
   ['-000581-12-31', '-000580-01-01', '-000560-01-01'],

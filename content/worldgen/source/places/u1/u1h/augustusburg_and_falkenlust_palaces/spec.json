@@ -1,0 +1,398 @@
+{
+  "id": "augustusburg_and_falkenlust_palaces",
+  "planId": "augustusburg_and_falkenlust_palaces",
+  "title": "Augustusburg Palace",
+  "assetId": "molen.worldgen.structure.augustusburg_and_falkenlust_palaces",
+  "category": "palace",
+  "wikidataId": "Q10344013",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 6.908045121428572,
+    "latitude": 50.82838297142858
+  },
+  "visualBrief": "Two slate-mansard wings enclose a wide entrance court. The yellow plaster elevations have pale pilasters, arched ground-floor bays and dormers. The continuous garden front faces a raised stone landing and stairs.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u1h/augustusburg_and_falkenlust_palaces/models/palace.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.openstreetmap.org/way/25187730"
+  ],
+  "geographicProposal": {
+    "id": "augustusburg-palace-bruhl",
+    "title": "Augustusburg Palace",
+    "asset": "molen.worldgen.structure.augustusburg_and_falkenlust_palaces",
+    "anchor": [
+      6.908045121428572,
+      50.82838297142858
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 67.953125,
+    "bounds": [
+      6.907435075956696,
+      50.82799802469815,
+      6.908504243655836,
+      50.828719063787595
+    ],
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q10344013",
+      "names": [
+        "Augustusburg Palace",
+        "Schloss Augustusburg",
+        "Augustusburg Palace (Brühl)",
+        "Brühl Palace"
+      ],
+      "maxDistance": 75
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          30.282921,
+          24.542709
+        ],
+        [
+          -18.845776,
+          38.546616
+        ],
+        [
+          -20.139562,
+          33.993681
+        ],
+        [
+          -34.561053,
+          -16.578679
+        ],
+        [
+          -35.904058,
+          -21.276379
+        ],
+        [
+          13.681683,
+          -35.414031
+        ],
+        [
+          14.033255,
+          -34.200641
+        ],
+        [
+          18.659945,
+          -17.959045
+        ],
+        [
+          9.933923,
+          -15.465481
+        ],
+        [
+          -14.493312,
+          -8.496865
+        ],
+        [
+          -10.858056,
+          4.226958
+        ],
+        [
+          -7.194674,
+          17.073201
+        ],
+        [
+          25.487477,
+          7.74465
+        ],
+        [
+          29.917286,
+          23.262541
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the principal mapped U-shaped footprint and preserve the open entrance court."
+    },
+    "source": "https://www.openstreetmap.org/way/25187730",
+    "note": "The mapped palace mass and orientation set the entrance court and garden facade. The neighboring orangeries and the detached Falkenlust lodge have independent map identities.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bc036b81485e34b23d1a3ebea2775de5582064462283fdeec863b458d9eec226"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.89
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.63
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_vertical",
+        "roughness": 0.86
+      },
+      "lead": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82
+      }
+    },
+    "errorMeters": 1.65,
+    "module": "content/worldgen/source/places/u1/u1h/augustusburg_and_falkenlust_palaces/models/palace.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.86
+          },
+          "lead": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          }
+        },
+        "errorMeters": 0.74
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.86
+          },
+          "lead": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.86
+          },
+          "lead": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -3,
+        7,
+        -1
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "entrance-court-and-wings",
+      "position": [
+        97,
+        18,
+        -23
+      ],
+      "lookAt": [
+        -3,
+        11,
+        1
+      ],
+      "fov": 57
+    },
+    {
+      "name": "garden-facade-and-mansards",
+      "position": [
+        -94,
+        20,
+        34
+      ],
+      "lookAt": [
+        -22,
+        12,
+        8
+      ],
+      "fov": 57
+    },
+    {
+      "name": "pediment-and-entrance",
+      "position": [
+        27,
+        11,
+        -6
+      ],
+      "lookAt": [
+        -11,
+        10,
+        5
+      ],
+      "fov": 54
+    },
+    {
+      "name": "terrace-stair",
+      "position": [
+        -67,
+        9,
+        16
+      ],
+      "lookAt": [
+        -30,
+        6,
+        9
+      ],
+      "fov": 55
+    }
+  ],
+  "limitations": [
+    "This entry covers the principal Augustusburg Palace exterior. Window carving, heraldic sculpture, and the garden stairs are reconstructed at viewing scale."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -41.01040267944336,
+      -1.2200000286102295,
+      -36.05390930175781
+    ],
+    "max": [
+      30.941125869750977,
+      28.450000762939453,
+      40.88543701171875
+    ]
+  },
+  "size": [
+    71.95152854919434,
+    29.670000791549683,
+    76.93934631347656
+  ],
+  "mesh": {
+    "triangles": 10227,
+    "vertices": 30217,
+    "materials": 6,
+    "bytes": 1214252,
+    "sha256": "sha256:9a4e1593ac11aa0eac2010e2b378a94743334549f080b39428785139860b5c97"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "door",
+      "uv": "repeats"
+    }
+  ]
+}

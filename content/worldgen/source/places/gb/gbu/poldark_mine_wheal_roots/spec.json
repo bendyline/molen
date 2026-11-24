@@ -1,0 +1,184 @@
+{
+  "id": "poldark_mine_wheal_roots",
+  "planId": "poldark_mine_wheal_roots",
+  "title": "Poldark Mine and Wheal Roots",
+  "assetId": "molen.worldgen.structure.poldark_mine_wheal_roots",
+  "category": "landmark",
+  "collectionId": "cornwall_and_west_devon_mining_landscape",
+  "mapFeatureId": "node/6943557620",
+  "wikidataId": "Q7209224",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": { "longitude": -5.244019, "latitude": 50.1383709 },
+  "visualBrief": "The low mine ranges and an open winding frame mark the surface of the old Wheal Roots workings at Trenear.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gb/gbu/poldark_mine_wheal_roots/models/cornish-engine-works.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/1215/maps/",
+    "https://commons.wikimedia.org/wiki/File:Poldark_Mine%2C_Trenear%2C_Cornwall_-_geograph.org.uk_-_8394318.jpg",
+    "https://www.openstreetmap.org/node/6943557620"
+  ],
+  "geographicProposal": {
+    "id": "poldark-mine-wheal-roots",
+    "title": "Poldark Mine and Wheal Roots",
+    "asset": "molen.worldgen.structure.poldark_mine_wheal_roots",
+    "anchor": [-5.244019, 50.1383709],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 116.335966,
+    "bounds": [-5.2453285313642874, 50.13778994307476, -5.243466668628099, 50.13862566423216],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q7209224",
+      "names": ["Poldark Mine and Wheal Roots", "Poldark Mine", "Wheal Roots", "Trenear"],
+      "maxDistance": 103.433279
+    },
+    "buildingCutout": {
+      "outline": [
+        [-2.490067, -1.870168],
+        [31.14368, -26.360521],
+        [37.408091, -17.755488],
+        [21.932571, -6.48993],
+        [24.793652, -2.549217],
+        [6.642558, 10.675528]
+      ],
+      "outlines": [
+        [
+          [-2.490067, -1.870168],
+          [31.14368, -26.360521],
+          [37.408091, -17.755488],
+          [21.932571, -6.48993],
+          [24.793652, -2.549217],
+          [6.642558, 10.675528]
+        ],
+        [
+          [-73.396344, 45.830037],
+          [-63.38613, 38.672251],
+          [-51.335345, 55.514741],
+          [-61.338424, 62.672505]
+        ],
+        [
+          [-91.433279, 17.41034],
+          [-86.203424, 14.371327],
+          [-81.851157, 21.829707],
+          [-87.073878, 24.879848]
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the mapped ruins and sheds represented in the landmark, with adjacent mine buildings, protected ground and access routes left intact."
+    },
+    "source": "https://www.openstreetmap.org/node/6943557620",
+    "note": "The named mine and its mapped buildings locate each masonry range. Their orientations follow the mapped contours of the site.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:52f446857c9327563ccb37a34c7edf8435271069a49eef2473051c277c2620d1"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "rubble": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+      "granite": { "slot": "trim", "graph": "stone_granite", "roughness": 0.96 },
+      "slate": { "slot": "roof", "graph": "slate", "roughness": 0.93 },
+      "timber": { "slot": "wall", "graph": "wood_vertical", "roughness": 0.9 },
+      "paintedWood": { "slot": "trim", "graph": "wood_painted_lap", "roughness": 0.91 },
+      "iron": { "slot": "trim", "graph": "metal_painted", "roughness": 0.88 }
+    },
+    "errorMeters": 0.56,
+    "module": "content/worldgen/source/places/gb/gbu/poldark_mine_wheal_roots/models/cornish-engine-works.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "rubble": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+          "granite": { "slot": "trim", "graph": "stone_granite", "roughness": 0.96 },
+          "slate": { "slot": "roof", "graph": "slate", "roughness": 0.93 },
+          "timber": { "slot": "wall", "graph": "wood_vertical", "roughness": 0.9 },
+          "paintedWood": { "slot": "trim", "graph": "wood_painted_lap", "roughness": 0.91 },
+          "iron": { "slot": "trim", "graph": "metal_painted", "roughness": 0.88 }
+        },
+        "errorMeters": 0.19
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "rubble": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+          "granite": { "slot": "trim", "graph": "stone_granite", "roughness": 0.96 },
+          "slate": { "slot": "roof", "graph": "slate", "roughness": 0.93 },
+          "timber": { "slot": "wall", "graph": "wood_vertical", "roughness": 0.9 },
+          "paintedWood": { "slot": "trim", "graph": "wood_painted_lap", "roughness": 0.91 },
+          "iron": { "slot": "trim", "graph": "metal_painted", "roughness": 0.88 }
+        },
+        "errorMeters": 0.069
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "rubble": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+          "granite": { "slot": "trim", "graph": "stone_granite", "roughness": 0.96 },
+          "slate": { "slot": "roof", "graph": "slate", "roughness": 0.93 },
+          "timber": { "slot": "wall", "graph": "wood_vertical", "roughness": 0.9 },
+          "paintedWood": { "slot": "trim", "graph": "wood_painted_lap", "roughness": 0.91 },
+          "iron": { "slot": "trim", "graph": "metal_painted", "roughness": 0.88 }
+        },
+        "errorMeters": 0.024
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": { "center": [18.893119, 6.662535, -7.842496] },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "winding-frame-and-mine-ranges",
+      "position": [-19.9970635, 23.463571, 50.233986],
+      "lookAt": [-8.9970635, 6.443571, -10.766014],
+      "fov": 57
+    },
+    {
+      "name": "winding-headframe",
+      "position": [-56.887246, 5.263571, 1.3104680000000002],
+      "lookAt": [-36.887246, 7.113571, -13.689532],
+      "fov": 51
+    },
+    {
+      "name": "chimneys-and-mining-terraces",
+      "position": [-18.411658832000008, 33.178186, 54.33213372000001],
+      "lookAt": [18.893119, 6.662535, -7.842496],
+      "fov": 54
+    }
+  ],
+  "limitations": [
+    "The three mapped roofs fix the surface layout. The headframe position is approximate, and the underground workings are outside this exterior model."
+  ],
+  "importOptions": { "optimize": false },
+  "actualBounds": {
+    "min": [-91.66578674316406, -1.3334089517593384, -26.598024368286133],
+    "max": [40.51543426513672, 12.849149703979492, 62.91306686401367]
+  },
+  "size": [132.18122100830078, 14.18255865573883, 89.5110912322998],
+  "mesh": {
+    "triangles": 2110,
+    "vertices": 4626,
+    "materials": 5,
+    "bytes": 195212,
+    "sha256": "sha256:5e1c82558084829db026d05d674820883e59326f263a1a5be8125acb4bc84371"
+  },
+  "sharedSurfaces": [
+    { "ref": "matgraph:molen.worldgen.material.stone_drywall", "slot": "wall", "uv": "repeats" },
+    { "ref": "matgraph:molen.worldgen.material.wood_vertical", "slot": "wall", "uv": "repeats" },
+    { "ref": "matgraph:molen.worldgen.material.slate", "slot": "roof", "uv": "repeats" },
+    { "ref": "matgraph:molen.worldgen.material.metal_painted", "slot": "trim", "uv": "repeats" },
+    { "ref": "matgraph:molen.worldgen.material.stone_granite", "slot": "trim", "uv": "repeats" }
+  ]
+}

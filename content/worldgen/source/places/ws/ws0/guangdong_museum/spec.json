@@ -1,0 +1,428 @@
+{
+  "planId": "guangdong_museum",
+  "id": "guangdong_museum",
+  "assetId": "molen.worldgen.structure.guangdong_museum",
+  "title": "Guangdong Museum",
+  "wikidataId": "Q5613644",
+  "category": "civic",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 113.3214228,
+    "latitude": 23.1174149
+  },
+  "size": [
+    125.70800018310547,
+    56.25,
+    115.96599960327148
+  ],
+  "actualBounds": {
+    "min": [
+      -70,
+      -4,
+      -58.28900146484375
+    ],
+    "max": [
+      55.70800018310547,
+      52.25,
+      57.676998138427734
+    ]
+  },
+  "visualBrief": "A charcoal exhibition box with carved red-lined voids, a broad recessed atrium roof and an elevated west entrance.",
+  "nativeAxes": {
+    "x": "approximately east",
+    "y": "up",
+    "z": "approximately south toward the Pearl River"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Guangdong_Museum.jpg"
+  ],
+  "stories": [
+    {
+      "id": "guangdong-museum-wp",
+      "url": "https://qualla.com/guangdong-museum/"
+    }
+  ],
+  "referenceInputHash": "sha256:ea2094409ed8fa5da5bc2cba5e7ccecd5da41c172bc59efbf54eba5a7095032f",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ws/ws0/guangdong_museum/models/guangdong-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ws/ws0/guangdong_museum/models/guangdong-museum-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.94,
+    "surfaces": {
+      "panel": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.77,
+        "metallic": 0.18
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77
+      },
+      "void": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.42,
+        "metallic": 0.12
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "panel": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77,
+            "metallic": 0.18
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77
+          },
+          "void": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.12
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "panel": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77,
+            "metallic": 0.18
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77
+          },
+          "void": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.12
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.058,
+        "surfaces": {
+          "panel": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77,
+            "metallic": 0.18
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77
+          },
+          "void": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.12
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original elevation at the west public approach. The 45.25 m architectural height is based on the nominal 7 m higher grade around the south and east curb.",
+    "anchor": [
+      113.3214228,
+      23.1174149
+    ],
+    "heading": -0.026651722761297236,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        113.32084959042274,
+        23.117527802973374
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation at the west public approach. The 45.25 m architectural height is based on the nominal 7 m higher grade around the south and east curb."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -56.977,
+          -56.165
+        ],
+        [
+          -56.996,
+          -13.47
+        ],
+        [
+          -57.174,
+          -0.948
+        ],
+        [
+          -56.742,
+          7.203
+        ],
+        [
+          -55.724,
+          57.677
+        ],
+        [
+          55.708,
+          56.199
+        ],
+        [
+          55.708,
+          -58.289
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "Named exhibition hall footprint aligned to the roof shell and floor plan."
+    },
+    "featureIds": [
+      "way/240896442"
+    ],
+    "source": "https://www.openstreetmap.org/way/240896442",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7dc39bae2739643572cf04c0ee164b11993b91848fb9b3b5d9ce44e7e1ee40fa",
+    "notes": "Elevated charcoal metal panel shell with irregular deep red geometric recesses, set-back entrance and glazed central atrium roof within a broad recessed well."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The roof and the south and west elevations draw directly from the cleared aerial perspective. Pattern dimensions, glazing divisions and recessed depths are approximate, particularly on the north and east faces.",
+    "The source grade is reproduced at provider resolution. The entry deck and planted verge are simplified architectural geometry. Interior exhibits and adjacent buildings are outside the model scope."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "guangdong-museum-skyline",
+      "position": [
+        -132,
+        131,
+        176
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "guangdong-museum-district",
+      "position": [
+        -132,
+        131,
+        176
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "guangdong-museum-street",
+      "position": [
+        -132,
+        131,
+        176
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "guangdong-museum-closeup",
+      "position": [
+        -132,
+        131,
+        176
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "carved-box-and-central-roof",
+      "position": [
+        -132,
+        131,
+        176
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ]
+    },
+    {
+      "name": "south-glazed-cut-and-red-returns",
+      "position": [
+        -39,
+        38,
+        151
+      ],
+      "lookAt": [
+        0,
+        30,
+        38
+      ]
+    },
+    {
+      "name": "west-public-entry-and-overhang",
+      "position": [
+        -129,
+        18,
+        35
+      ],
+      "lookAt": [
+        -51,
+        17,
+        -6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 33842,
+    "vertices": 101526,
+    "materials": 5,
+    "bytes": 4129416,
+    "sha256": "sha256:225a8d34ba45ea3cc1e37fe37e7e84626d6a9c92fb493622b955a008d5c96fa1"
+  }
+}

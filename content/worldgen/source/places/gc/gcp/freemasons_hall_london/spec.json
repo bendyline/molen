@@ -1,0 +1,448 @@
+{
+  "planId": "freemasons_hall_london",
+  "id": "freemasons_hall_london",
+  "assetId": "molen.worldgen.structure.freemasons_hall_london",
+  "title": "Freemasons' Hall, London",
+  "wikidataId": "Q1453586",
+  "category": "cultural",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -0.1208543,
+    "latitude": 51.51512875
+  },
+  "size": [
+    71.45443153381348,
+    51.79999923706055,
+    87.1048355102539
+  ],
+  "actualBounds": {
+    "min": [
+      -30.033010482788086,
+      -7,
+      -34.7526741027832
+    ],
+    "max": [
+      41.42142105102539,
+      44.79999923706055,
+      52.3521614074707
+    ]
+  },
+  "visualBrief": "Freemasons’ Hall on Great Queen Street with its Portland stone street walls, recessed classical entrance, stepped attics and open corner tower.",
+  "nativeAxes": {
+    "x": "Great Queen Street into the hall",
+    "y": "up",
+    "z": "east end toward Long Acre corner"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Freemasons.hall.london.arp.750pix.jpg",
+    "https://commons.wikimedia.org/wiki/File:Freemasons%27_Hall_from_Long_Acre.jpg"
+  ],
+  "stories": [
+    {
+      "id": "freemasons-hall-london-wp",
+      "url": "https://qualla.com/freemasons-hall-london/"
+    }
+  ],
+  "referenceInputHash": "sha256:c177dafc7fc9917569722700ae787367440f38688b1739e49206415e59059957",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcp/freemasons_hall_london/models/freemasons-hall-london-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gcp/freemasons_hall_london/models/freemasons-hall-london-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.35,
+    "surfaces": {
+      "limestone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.92
+      },
+      "ashlar": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.91
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.93
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.69
+      },
+      "bronze": {
+        "slot": "door",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.82
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.54,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.69
+          },
+          "bronze": {
+            "slot": "door",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.82
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.69
+          },
+          "bronze": {
+            "slot": "door",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.82
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.062,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.69
+          },
+          "bronze": {
+            "slot": "door",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.82
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_ashlar",
+    "stone_granite",
+    "concrete_plain",
+    "metal_bronze_cast"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Street pavement on the southwest side of the diagonal entrance.",
+    "anchor": [
+      -0.1208543,
+      51.51512875
+    ],
+    "heading": -0.7313217477654295,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -0.12162796085076469,
+        51.51497419059021
+      ],
+      "modelHeight": 0,
+      "basis": "Street pavement on the southwest side of the diagonal entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -27.861,
+          43.883
+        ],
+        [
+          -18.052,
+          50.531
+        ],
+        [
+          37.179,
+          25.875
+        ],
+        [
+          40.903,
+          20.14
+        ],
+        [
+          39.229,
+          -31.214
+        ],
+        [
+          -27.861,
+          -34.235
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "The identified polygonal Freemasons’ Hall perimeter."
+    },
+    "featureIds": [
+      "way/28416499"
+    ],
+    "source": "https://www.openstreetmap.org/way/28416499",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b06755a44755e01dccab069ea3306dd4a15398e000e686376da4669f91e869c4",
+    "notes": "Historic England describes the long Portland-stone elevations, heavy cornice, two stepped attic levels, prominent west tower and giant fluted columns in antis."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The current main hall exterior, including its tower and attic levels. Adjacent addresses and interior halls are outside scope.",
+    "Tower and attic heights, hidden rear openings and fine carving are estimated from the photographs and listing."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "freemasons-hall-london-skyline",
+      "position": [
+        -97,
+        52,
+        124
+      ],
+      "lookAt": [
+        -2,
+        19,
+        7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "freemasons-hall-london-district",
+      "position": [
+        -97,
+        52,
+        124
+      ],
+      "lookAt": [
+        -2,
+        19,
+        7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "freemasons-hall-london-street",
+      "position": [
+        -97,
+        52,
+        124
+      ],
+      "lookAt": [
+        -2,
+        19,
+        7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "freemasons-hall-london-closeup",
+      "position": [
+        -97,
+        52,
+        124
+      ],
+      "lookAt": [
+        -2,
+        19,
+        7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "long-acre-corner-tower",
+      "position": [
+        -97,
+        52,
+        124
+      ],
+      "lookAt": [
+        -2,
+        19,
+        7
+      ]
+    },
+    {
+      "name": "portland-stone-entrance-and-open-lantern",
+      "position": [
+        -55,
+        10,
+        78
+      ],
+      "lookAt": [
+        -21,
+        19,
+        43
+      ]
+    },
+    {
+      "name": "great-queen-street-frontage",
+      "position": [
+        -99,
+        34,
+        -54
+      ],
+      "lookAt": [
+        -18,
+        17,
+        7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13613,
+    "vertices": 40839,
+    "materials": 6,
+    "bytes": 1984088,
+    "sha256": "sha256:b702df9e9dc58d9db915041a9672f57210dc5991472fcc9abcda3cbf755cb8e6"
+  }
+}

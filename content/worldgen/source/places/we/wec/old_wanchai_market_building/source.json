@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.old_wanchai_market_building",
+  "kind": "static-structure",
+  "title": "Old Wan Chai Market Building",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.old_wanchai_market_building",
+        "output": "assets/places/we/wec/old_wanchai_market_building/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e0ac70292c01fbacd28d82c101933f8f0f3a50ba6c9b0130bdc1664664d7e83d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-old-wanchai-market-building",
+        "path": "models/generate-old-wanchai-market-building.mjs"
+      },
+      {
+        "id": "old-wanchai-market-building-model",
+        "path": "models/old-wanchai-market-building-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/old-wanchai-market-building-footprint.json",
+      "native-map/wan-chai-market-native-survey.json",
+      "reference-rights/old-wanchai-market-building-architectural-facts.json",
+      "reference-rights/old-wanchai-market-building-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/landsd-market-5m.asc",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,496 @@
+{
+  "planId": "menara_kudus_mosque",
+  "id": "menara_kudus_mosque",
+  "assetId": "molen.worldgen.structure.menara_kudus_mosque",
+  "title": "Menara Kudus Mosque",
+  "wikidataId": "Q4022388",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 110.832835,
+    "latitude": -6.804199
+  },
+  "size": [
+    57.61200141906738,
+    21.299999952316284,
+    30.19999885559082
+  ],
+  "actualBounds": {
+    "min": [
+      -46.69200134277344,
+      -3.299999952316284,
+      -13.979999542236328
+    ],
+    "max": [
+      10.920000076293945,
+      18,
+      16.219999313354492
+    ]
+  },
+  "visualBrief": "The stepped red brick Menara Kudus beside the mosque’s silver dome, white entrance and red split gate.",
+  "nativeAxes": {
+    "x": "rear of mosque toward Jalan Menara",
+    "y": "up",
+    "z": "along mosque frontage toward the minaret"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Menara_Kudus.JPG",
+    "https://commons.wikimedia.org/wiki/File:Masjid_Menara_Kudus_Tampak_Depan.jpg",
+    "https://commons.wikimedia.org/wiki/File:Masjid_Menara_Kudus.jpg"
+  ],
+  "stories": [
+    {
+      "id": "menara-kudus-mosque-wp",
+      "url": "https://qualla.com/menara-kudus-mosque/"
+    }
+  ],
+  "referenceInputHash": "sha256:316fae90bc2817df2b002543a711f7212f427c09cf23c6abf9d89585e0012817",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/qq/qqy/menara_kudus_mosque/models/menara-kudus-mosque-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/qq/qqy/menara_kudus_mosque/models/menara-kudus-mosque-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.95,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.96
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.91
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.91
+      },
+      "paint": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.91
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.61,
+        "metallic": 0.22
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.59
+      },
+      "ceramic": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.72
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.37,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "paint": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.91
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.61,
+            "metallic": 0.22
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.59
+          },
+          "ceramic": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.135,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "paint": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.91
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.61,
+            "metallic": 0.22
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.59
+          },
+          "ceramic": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.053,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "paint": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.91
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.61,
+            "metallic": 0.22
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.59
+          },
+          "ceramic": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "stone_ashlar",
+    "wood_plain",
+    "tile_ceramic",
+    "stucco",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original elevation in front of the mosque entrance facing Jalan Menara.",
+    "anchor": [
+      110.832835,
+      -6.804199
+    ],
+    "heading": -0.09572986703639746,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        110.83293710089542,
+        -6.804158198206604
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation in front of the mosque entrance facing Jalan Menara."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -46.692,
+          6.262
+        ],
+        [
+          -22.98,
+          8.156
+        ],
+        [
+          -21.381,
+          -11.959
+        ],
+        [
+          -45.093,
+          -13.854
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "The OSM outline of the rear roof control. Detached mosque structures are placed using the cited precinct controls."
+    },
+    "featureIds": [
+      "simas/01.5.14.19.02.000001"
+    ],
+    "source": "https://simas.kemenag.go.id/profil/masjid/01.5.14.19.02.000001",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c525a8f54683bbc895676b87fc50eb9b64e84c983154aa2c1db1873b6d86118d",
+    "notes": "The mosque has a silver-domed east entry with pale walls, green parapet and paired capped pilasters. The southeast minaret is roughly 18 metres high, with stepped red brick courses carrying a two-tier tiled timber pavilion."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The front reaches, minaret registration, and hall links follow the surveyed site relationships and approximate roof controls. Separations and secondary volumes are estimates.",
+    "The exterior includes the historic minaret, photographed mosque entry and associated prayer hall. The cemetery and outlying auxiliary buildings are outside scope.",
+    "Small carved plaques, colours after subsequent repairs, and unpublished prayer-hall elevations are approximate."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Overture Maps ODbL. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "menara-kudus-mosque-skyline",
+      "position": [
+        55,
+        18,
+        34
+      ],
+      "lookAt": [
+        -10,
+        7,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "menara-kudus-mosque-district",
+      "position": [
+        55,
+        18,
+        34
+      ],
+      "lookAt": [
+        -10,
+        7,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "menara-kudus-mosque-street",
+      "position": [
+        55,
+        18,
+        34
+      ],
+      "lookAt": [
+        -10,
+        7,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "menara-kudus-mosque-closeup",
+      "position": [
+        55,
+        18,
+        34
+      ],
+      "lookAt": [
+        -10,
+        7,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "jalan-menara-mosque-and-minaret",
+      "position": [
+        55,
+        18,
+        34
+      ],
+      "lookAt": [
+        -10,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "brick-minaret-and-clock",
+      "position": [
+        31,
+        11.6,
+        25
+      ],
+      "lookAt": [
+        0.5,
+        9.5,
+        10.4
+      ]
+    },
+    {
+      "name": "split-gate-and-domed-front",
+      "position": [
+        34,
+        7.5,
+        -10
+      ],
+      "lookAt": [
+        5.4,
+        6.59,
+        -5.9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11627,
+    "vertices": 34881,
+    "materials": 8,
+    "bytes": 1585432,
+    "sha256": "sha256:fba5372a5b846d4b2d02d49a506184f5a3badfda908459ca774495db7b8a783c"
+  }
+}

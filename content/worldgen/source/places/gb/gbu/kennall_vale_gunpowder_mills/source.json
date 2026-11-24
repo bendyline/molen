@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kennall_vale_gunpowder_mills",
+  "kind": "static-structure",
+  "title": "Kennall Vale Mills",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kennall_vale_gunpowder_mills",
+        "output": "assets/places/gb/gbu/kennall_vale_gunpowder_mills/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:95b477fea19868911432368b89b9f42d3b9e273d014b7ba76e06f895cc39ef81"
+      }
+    ],
+    "generators": [
+      {
+        "id": "kennall_vale_gunpowder_mills",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cornish-engine-houses",
+        "path": "models/cornish-engine-houses.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

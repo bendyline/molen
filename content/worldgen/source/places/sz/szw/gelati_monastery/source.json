@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.gelati_monastery",
+  "kind": "static-structure",
+  "title": "Gelati Monastery",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.gelati_monastery",
+        "output": "assets/places/sz/szw/gelati_monastery/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4f3edaeeb19294262c9bcca10310b9769fdbb68c90fee96578c37fd5495b389a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "gelati_monastery",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "gelati-churches-and-academy",
+        "path": "models/gelati-churches-and-academy.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "gelati-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.dharmarajika_stupa",
+  "kind": "static-structure",
+  "title": "Dharmarajika Stupa",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.dharmarajika_stupa",
+        "output": "assets/places/tt/ttg/dharmarajika_stupa/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:69a3861fa719759d87b461f6b551ee0cb103b7dd87ff104d91708bcce3dddea7"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-dharmarajika-stupa",
+        "path": "models/generate-dharmarajika-stupa.mjs"
+      },
+      {
+        "id": "dharmarajika-stupa-model",
+        "path": "models/dharmarajika-stupa-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/dharmarajika-stupa-footprint.json",
+      "native-map/dharmarajika-stupa-shape-controls.json",
+      "reference-rights/dharmarajika-stupa-architectural-facts.json",
+      "references/taxila-guide-government-1918.pdf",
+      "reference-rights/taxila-guide-cornell-catalogue.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-glo30-native-dharmarajika-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

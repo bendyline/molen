@@ -1,11 +1,19 @@
-import { readFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import { readFile, unlink } from 'node:fs/promises';
 import { describe, expect, it } from 'vitest';
 import { createStructureStream } from '../dist/client.mjs';
 import { createStructureIndex } from '../dist/kernel.mjs';
-import { compilePlacementCatalog, runtimePlacement } from '../scripts/build-placement-catalogs.mjs';
 import {
+  checkPlacementSources,
+  compilePlacementCatalog,
+  placementSourceIssues,
+  runtimePlacement,
+} from '../scripts/build-placement-catalogs.mjs';
+import {
+  placementSourcePath,
   readPlacementSourcesSync,
   readStructurePlacements,
+  writeStructurePlacement,
 } from '../scripts/placement-sources.mjs';
 
 const withoutDocumentation = (value) =>
@@ -16,6 +24,94 @@ const withoutDocumentation = (value) =>
           key === 'basis' || key === 'note' ? undefined : field,
         ),
       );
+
+describe('placement source checks', () => {
+  const hall = {
+    id: 'placement-check-hall',
+    title: 'Check hall',
+    asset: 'molen.worldgen.structure.check_hall',
+    anchor: [2.88535, 50.851155],
+    datum: 'sea-level',
+    elevation: 0,
+    bounds: [2.884, 50.85, 2.887, 50.852],
+    buildingCutout: {
+      outline: [
+        [-10, -10],
+        [10, -10],
+        [10, 10],
+        [-10, 10],
+      ],
+      basis: 'Mapped hall footprint.',
+    },
+    status: 'preview',
+    source: 'https://example.com/hall',
+    note: 'Source notes stay in the record.',
+  };
+
+  it('accepts source evidence the compiler drops', () => {
+    expect(placementSourceIssues(hall)).toEqual([]);
+    const evidence = {
+      ...hall,
+      mapIdentity: { wikidata: 'Q1923610', provider: 'OpenStreetMap', scope: 'Named footprint.' },
+    };
+    expect(placementSourceIssues(evidence)).toEqual([]);
+    // Evidence without an identity is kept in the source and dropped from runtime data.
+    const evidenceOnly = { ...hall, mapIdentity: { provider: 'OpenStreetMap', way: 188066455 } };
+    expect(placementSourceIssues(evidenceOnly)).toEqual([]);
+    expect(runtimePlacement(evidenceOnly).mapIdentity).toBeUndefined();
+  });
+
+  it('accepts every authored source record', async () => {
+    const catalog = await readStructurePlacements();
+    expect(() => checkPlacementSources(catalog.entries)).not.toThrow();
+  }, 30_000);
+
+  it('rejects keys and values the compiler would refuse', () => {
+    expect(placementSourceIssues({ ...hall, roof: 'slate' })).toEqual(['Unrecognized key: "roof"']);
+    expect(
+      placementSourceIssues({ ...hall, buildingCutout: { ...hall.buildingCutout, courts: [] } }),
+    ).toEqual(['buildingCutout: Unrecognized key: "courts"']);
+    expect(placementSourceIssues({ ...hall, orientation: 'mapped' })).toEqual([
+      'mapped orientation requires a confirmed source identity',
+    ]);
+    // Evidence alone is no runtime identity; the runtime fields keep their types.
+    const evidenceOnly = { ...hall, orientation: 'mapped', mapIdentity: { provider: 'OSM' } };
+    expect(placementSourceIssues(evidenceOnly)).toEqual([
+      'mapped orientation requires a confirmed source identity',
+    ]);
+    expect(placementSourceIssues({ ...hall, mapIdentity: { wikidata: '1923610' } })).toEqual([
+      'mapIdentity.wikidata: Invalid string: must match pattern /^Q[1-9][0-9]*$/',
+    ]);
+    // Explanations stay required where the schema asks for them.
+    const { basis: _basis, ...unexplained } = hall.buildingCutout;
+    expect(placementSourceIssues({ ...hall, buildingCutout: unexplained })).toEqual([
+      'buildingCutout.basis: Invalid input: expected string, received undefined',
+    ]);
+  });
+
+  it('lists every failing record by its description', () => {
+    expect(() =>
+      checkPlacementSources(
+        [hall, { ...hall, id: 'a', roof: 1 }, { ...hall, id: 'b', title: '' }],
+        (entry) => `${entry.id}.json`,
+      ),
+    ).toThrow(/^Invalid placement sources \(2\):\na\.json: .*roof.*\nb\.json: title: /);
+    expect(() => checkPlacementSources([hall])).not.toThrow();
+  });
+
+  it('refuses to write a record the compiler would refuse', async () => {
+    const entry = { ...hall, buildingCutout: { ...hall.buildingCutout, courts: [] } };
+    const path = placementSourcePath(entry);
+    try {
+      await expect(writeStructurePlacement(entry)).rejects.toThrow(
+        /placement-check-hall\.json: buildingCutout: Unrecognized key: "courts"/,
+      );
+      expect(existsSync(path)).toBe(false);
+    } finally {
+      if (existsSync(path)) await unlink(path);
+    }
+  });
+});
 
 describe('placement compiler', () => {
   it('retains all source evidence and projects the full catalog without altering geometry', async () => {

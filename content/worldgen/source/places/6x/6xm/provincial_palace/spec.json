@@ -1,0 +1,423 @@
+{
+  "planId": "provincial_palace",
+  "id": "provincial_palace",
+  "assetId": "molen.worldgen.structure.provincial_palace",
+  "title": "Provincial Palace",
+  "wikidataId": "Q56650138",
+  "category": "palace",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -60.0209011875,
+    "latitude": -3.13558165
+  },
+  "size": [
+    48.98113822937012,
+    20.46000027656555,
+    64.88971519470215
+  ],
+  "actualBounds": {
+    "min": [
+      -30.274499893188477,
+      -3.200000047683716,
+      -31.340715408325195
+    ],
+    "max": [
+      18.70663833618164,
+      17.260000228881836,
+      33.54899978637695
+    ]
+  },
+  "visualBrief": "Manaus’s Palacete Provincial, with a long red and cream elevation, rows of arched windows and a central wrought-iron balcony.",
+  "nativeAxes": {
+    "x": "roughly southeast away from Praça Heliodoro Balbi",
+    "y": "up",
+    "z": "southwest along the main façade"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://idd.org.br/iconografia/as-dependencias-do-quartel-da-policia/"
+  ],
+  "stories": [
+    {
+      "id": "provincial-palace-wp",
+      "url": "https://qualla.com/provincial-palace/"
+    }
+  ],
+  "referenceInputHash": "sha256:23e4f8c5815cbc89d3b7d8640b9252b3c1d1bdacdd983f0c9999154c198e90ad",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6x/6xm/provincial_palace/models/provincial-palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/6x/6xm/provincial_palace/models/provincial-palace-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.79,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.94
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_sandstone",
+        "roughness": 0.98
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.91
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "stone_sandstone",
+    "tile_ceramic"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original terrain at the plaza-side path outside the middle of the long public frontage.",
+    "anchor": [
+      -60.0209011875,
+      -3.13558165
+    ],
+    "heading": -0.6942929260073445,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -60.021122433226246,
+        -3.135397721229983
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain at the plaza-side path outside the middle of the long public frontage."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -29.856,
+          33.179
+        ],
+        [
+          18.337,
+          33.179
+        ],
+        [
+          17.811,
+          21.29
+        ],
+        [
+          -0.384,
+          20.838
+        ],
+        [
+          1.766,
+          -23.727
+        ],
+        [
+          9.438,
+          -24.205
+        ],
+        [
+          9.127,
+          -30.971
+        ],
+        [
+          -26.238,
+          -29.584
+        ]
+      ],
+      "minimumCoverage": 0.89,
+      "basis": "Mapped Palacete Provincial building and its connected rear wing."
+    },
+    "featureIds": [
+      "way/307182995"
+    ],
+    "source": "https://www.openstreetmap.org/way/307182995",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8c26764f46453887f9035e23706380183d6a17ba2027b3385856c551ad3b207b",
+    "notes": "The long masonry frontage is two main storeys above an exposed ventilated plinth, with tall rounded windows, cream pilaster and cornice bands, a central balcony, and roof behind a parapet. The historic side and rear returns descend toward Avenida Floriano Peixoto."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The main historic exterior and connected wings follow the measured outline. The heights, less visible rear openings and rooftop details are estimated. Current exterior colours follow the government description."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "provincial-palace-skyline",
+      "position": [
+        -70,
+        27,
+        57
+      ],
+      "lookAt": [
+        -11,
+        7,
+        2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "provincial-palace-district",
+      "position": [
+        -70,
+        27,
+        57
+      ],
+      "lookAt": [
+        -11,
+        7,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "provincial-palace-street",
+      "position": [
+        -70,
+        27,
+        57
+      ],
+      "lookAt": [
+        -11,
+        7,
+        2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "provincial-palace-closeup",
+      "position": [
+        -70,
+        27,
+        57
+      ],
+      "lookAt": [
+        -11,
+        7,
+        2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "praca-heliodoro-balbi-front",
+      "position": [
+        -112,
+        13.5,
+        3
+      ],
+      "lookAt": [
+        -26,
+        6.5,
+        2
+      ]
+    },
+    {
+      "name": "ornament-and-central-balcony",
+      "position": [
+        -51,
+        11,
+        27
+      ],
+      "lookAt": [
+        -26,
+        8.9,
+        6
+      ]
+    },
+    {
+      "name": "rear-wing-and-roof",
+      "position": [
+        51,
+        24,
+        69
+      ],
+      "lookAt": [
+        -4,
+        8,
+        9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 14474,
+    "vertices": 43422,
+    "materials": 5,
+    "bytes": 1892428,
+    "sha256": "sha256:b9b9ae272ec8514ba711f80a81a52224b33c63d2f1ca9a5a31a8bb31d31c8e49"
+  }
+}

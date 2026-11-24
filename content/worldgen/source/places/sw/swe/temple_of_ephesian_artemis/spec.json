@@ -1,0 +1,271 @@
+{
+  "id": "temple_of_ephesian_artemis",
+  "planId": "temple_of_ephesian_artemis",
+  "title": "Temple of Artemis at Ephesus",
+  "assetId": "molen.worldgen.structure.temple_of_ephesian_artemis",
+  "category": "religious",
+  "wikidataId": "Q43018",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 27.3642831,
+    "latitude": 37.9497817
+  },
+  "visualBrief": "The present archaeological remains include one re-erected column assembled from dissimilar drums, surviving low foundation runs, and scattered carved fragments.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sw/swe/temple_of_ephesian_artemis/models/ruins-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://perseus-aa.github.io/items/aa_3932.html",
+    "https://whc.unesco.org/uploads/nominations/1018rev.pdf",
+    "https://www.flickr.com/photos/warrenlemay/53520188237/",
+    "https://www.ephesus.net/temple-of-artemis/",
+    "https://www.openstreetmap.org/way/244592660"
+  ],
+  "geographicProposal": {
+    "id": "temple-of-ephesian-artemis",
+    "title": "Temple of Artemis at Ephesus",
+    "asset": "molen.worldgen.structure.temple_of_ephesian_artemis",
+    "anchor": [
+      27.3642831,
+      37.9497817
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "minLevel": 14,
+    "datum": "sea-level",
+    "elevation": 7.87,
+    "status": "source-map-preview",
+    "bounds": [
+      27.3628255,
+      37.9493789,
+      27.3644408,
+      37.9501342
+    ],
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q43018",
+      "names": [
+        "Temple of Artemis at Ephesus",
+        "Temple of Artemis (Artemision)",
+        "Artemis Tapınağı",
+        "Artemis Tapinagi"
+      ],
+      "maxDistance": 118
+    },
+    "source": "https://www.openstreetmap.org/way/244592660",
+    "note": "The model is anchored on the separately mapped standing column. Nearby ruins stay within the mapped archaeological perimeter.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7bf3db2beeaf9bba905e7ddc02d7b1a20acfed0e029d4a139feacdfd04a30f4f"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "errorMeters": 0.87,
+    "surfaces": {
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.95
+      },
+      "rubble": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.98
+      },
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      }
+    },
+    "module": "content/worldgen/source/places/sw/swe/temple_of_ephesian_artemis/models/ruins-model.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.41,
+        "surfaces": {
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.95
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98
+          },
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.95
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98
+          },
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.95
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98
+          },
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          }
+        }
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.85,
+    "focus": {
+      "center": [
+        -39,
+        3,
+        -4
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "surviving-column",
+      "position": [
+        12,
+        5,
+        21
+      ],
+      "lookAt": [
+        0,
+        7.3,
+        0
+      ],
+      "fov": 42
+    },
+    {
+      "name": "stacked-drums",
+      "position": [
+        9,
+        12,
+        11
+      ],
+      "lookAt": [
+        0,
+        10.8,
+        0
+      ],
+      "fov": 44
+    },
+    {
+      "name": "foundation-runs",
+      "position": [
+        -58,
+        5,
+        20
+      ],
+      "lookAt": [
+        -44,
+        0.6,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "west-altar-remains",
+      "position": [
+        -90,
+        7,
+        10
+      ],
+      "lookAt": [
+        -76,
+        0,
+        -4
+      ],
+      "fov": 52
+    }
+  ],
+  "limitations": [
+    "OpenStreetMap fixes the standing column and the archaeological perimeter. Drum dimensions, low foundation runs and loose fragments are photo-based approximations.",
+    "The scene depicts the present stone remains. Water and vegetation follow the viewer’s site data. The nearby registered tombs are separate features."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -102.12435913085938,
+      -0.6224209666252136,
+      -34.86597442626953
+    ],
+    "max": [
+      4.29660177230835,
+      14.361000061035156,
+      12.417412757873535
+    ]
+  },
+  "size": [
+    106.42096090316772,
+    14.98342102766037,
+    47.283387184143066
+  ],
+  "mesh": {
+    "triangles": 9488,
+    "vertices": 17068,
+    "materials": 3,
+    "bytes": 730796,
+    "sha256": "sha256:823980ecad4cbe0d3a13ff3cdfea8559fd695f557d49a3705ab4e1b2fee643ae"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

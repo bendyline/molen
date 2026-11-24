@@ -1,0 +1,315 @@
+{
+  "id": "nikko_takinoo_shrine",
+  "planId": "nikko_takinoo_shrine",
+  "title": "Nikkō Takinoo Shrine",
+  "assetId": "molen.worldgen.structure.nikko_takinoo_shrine",
+  "category": "religious",
+  "collectionId": "shrines_and_temples_of_nikko",
+  "mapFeatureId": "node/3521264179",
+  "wikidataId": "Q28952427",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 139.5920315,
+    "latitude": 36.7653722
+  },
+  "visualBrief": "A small vermilion honden with a raised gallery and a dark roof stands above the path. The stone torii marks the lower approach.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xne/nikko_takinoo_shrine/models/precinct.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/913/",
+    "https://www.city.nikko.lg.jp/material/files/group/42/sekaiisan-map.pdf",
+    "https://www.openstreetmap.org/relation/13044127",
+    "https://commons.wikimedia.org/wiki/File:Futarasan_Shrine_(Nikko)_Takino-o-jinja_honden-2.JPG",
+    "https://www.openstreetmap.org/node/3521264179"
+  ],
+  "geographicProposal": {
+    "id": "nikko-takinoo-shrine",
+    "title": "Nikkō Takinoo Shrine",
+    "asset": "molen.worldgen.structure.nikko_takinoo_shrine",
+    "anchor": [
+      139.5920315,
+      36.7653722
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 772.28547,
+    "bounds": [
+      139.5919597745219,
+      36.765096676569215,
+      139.59267480804232,
+      36.765428222142155
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q28952427",
+      "names": [
+        "Nikkō Takinoo Shrine",
+        "滝尾神社",
+        "Takinoo-jinja Shrine",
+        "Takino-o-jinja"
+      ],
+      "maxDistance": 76
+    },
+    "source": "https://www.openstreetmap.org/node/3521264179",
+    "note": "PMTiles locates the shrine point. The mapped lower torii and approach establish the front.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f4bcbfe170df9e9c2ac29f436ba211ea0679e1668927452efc3f08da80eddc4c"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "timber": {
+        "slot": "wall",
+        "graph": "wood_plain",
+        "roughness": 0.9
+      },
+      "lacquer": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.77
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93
+      },
+      "tiles": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.93
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_copper",
+        "roughness": 0.81
+      }
+    },
+    "errorMeters": 0.76,
+    "module": "content/worldgen/source/places/xn/xne/nikko_takinoo_shrine/models/precinct.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "lacquer": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.77
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "tiles": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.81
+          }
+        },
+        "errorMeters": 0.27
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "lacquer": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.77
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "tiles": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.81
+          }
+        },
+        "errorMeters": 0.09
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "lacquer": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.77
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "tiles": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.81
+          }
+        },
+        "errorMeters": 0.032
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        2.602064,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "main-entrance-and-roof",
+      "position": [
+        21.071392,
+        3.502064,
+        4.732636
+      ],
+      "lookAt": [
+        0,
+        2.914564,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "roof-terraces",
+      "position": [
+        12.825646,
+        21.874668,
+        39.382592
+      ],
+      "lookAt": [
+        0,
+        2.602064,
+        0
+      ],
+      "fov": 56
+    }
+  ],
+  "limitations": [
+    "The modeled scope concentrates on the principal exterior structures in this precinct. Interior finishes and small sculpture use simplified volumes or remain outside the model.",
+    "The PMTiles shrine point and mapped torii establish the positions. The shrine outline and front step are photo estimates."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -4.428391456604004,
+      -8.776966094970703,
+      -4.295599937438965
+    ],
+    "max": [
+      55.15263748168945,
+      6.500162124633789,
+      28.586278915405273
+    ]
+  },
+  "size": [
+    59.58102893829346,
+    15.277128219604492,
+    32.88187885284424
+  ],
+  "mesh": {
+    "triangles": 2424,
+    "vertices": 4882,
+    "materials": 5,
+    "bytes": 208200,
+    "sha256": "sha256:f138c01e01322f200fad0508c2d2822337d556e7db35aaad236bb34af19fcc3f"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

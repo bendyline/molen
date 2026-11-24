@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.calstock_viaduct_tamar",
+  "kind": "static-structure",
+  "title": "Calstock Viaduct",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.calstock_viaduct_tamar",
+        "output": "assets/places/gb/gbv/calstock_viaduct_tamar/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1988e0eb2e1d564c8a1ac1acabd101e2a6bd81a53a097a777e743e70b6468336"
+      }
+    ],
+    "generators": [
+      {
+        "id": "calstock_viaduct_tamar",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cornish-viaduct",
+        "path": "models/cornish-viaduct.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

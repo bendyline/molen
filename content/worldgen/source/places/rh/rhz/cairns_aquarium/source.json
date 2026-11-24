@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.cairns_aquarium",
+  "kind": "static-structure",
+  "title": "Cairns Aquarium",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.cairns_aquarium",
+        "output": "assets/places/rh/rhz/cairns_aquarium/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:10fbeaa744b0254aa1299529db564381c03a7cc1149e05d18570bcd993c1319c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "cairns_aquarium",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "aquarium",
+        "path": "models/aquarium.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.vizcaya_bridge",
+  "kind": "static-structure",
+  "title": "Vizcaya Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.vizcaya_bridge",
+        "output": "assets/places/ez/ezt/vizcaya_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:99e6c5ab3db7c44f967e4f43308b9f728084546466e2d62da0b8e52ca4351298"
+      }
+    ],
+    "generators": [
+      {
+        "id": "vizcaya_bridge",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "transporter",
+        "path": "models/transporter.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "preview.png",
+      "site-preview.webp",
+      "terrain-review.height.png"
+    ]
+  }
+}

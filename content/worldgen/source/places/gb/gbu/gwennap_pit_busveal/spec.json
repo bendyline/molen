@@ -1,0 +1,318 @@
+{
+  "id": "gwennap_pit_busveal",
+  "planId": "gwennap_pit_busveal",
+  "title": "Gwennap Pit",
+  "assetId": "molen.worldgen.structure.gwennap_pit_busveal",
+  "category": "landmark",
+  "collectionId": "cornwall_and_west_devon_mining_landscape",
+  "mapFeatureId": "way/413448935",
+  "wikidataId": "Q17534341",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -5.2023142,
+    "latitude": 50.2316419
+  },
+  "visualBrief": "Thirteen concentric turf and rubble terraces descend into the open-air amphitheatre. The western access stair and north speaking stones remain visible inside the mapped rim.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gb/gbu/gwennap_pit_busveal/models/cornish-heritage.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/1215/maps/",
+    "https://historicengland.org.uk/listing/the-list/list-entry/1309719",
+    "https://commons.wikimedia.org/wiki/File:Gwennap_Pit_-_geograph.org.uk_-_35663.jpg",
+    "https://www.openstreetmap.org/way/413448935"
+  ],
+  "geographicProposal": {
+    "id": "gwennap-pit-busveal",
+    "title": "Gwennap Pit",
+    "asset": "molen.worldgen.structure.gwennap_pit_busveal",
+    "anchor": [
+      -5.2023142,
+      50.2316419
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 163.399135,
+    "bounds": [
+      -5.2026142861683375,
+      50.23146913575902,
+      -5.2020541138354055,
+      50.23182606466765
+    ],
+    "minLevel": 15,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q17534341",
+      "names": [
+        "Gwennap Pit",
+        "Gwennap Pit",
+        "Busveal",
+        "Poll Lannwenep"
+      ],
+      "maxDistance": 47
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          15.822738,
+          4.263535
+        ],
+        [
+          16.356809,
+          -0.122451
+        ],
+        [
+          16.520591,
+          -1.502813
+        ],
+        [
+          15.210337,
+          -7.502939
+        ],
+        [
+          11.963186,
+          -12.723833
+        ],
+        [
+          7.142307,
+          -16.53097
+        ],
+        [
+          1.324496,
+          -18.501332
+        ],
+        [
+          -4.813758,
+          -18.390012
+        ],
+        [
+          -10.56036,
+          -16.219275
+        ],
+        [
+          -15.025193,
+          -12.501194
+        ],
+        [
+          -18.065836,
+          -7.547467
+        ],
+        [
+          -19.368969,
+          -1.8813
+        ],
+        [
+          -18.792172,
+          3.896181
+        ],
+        [
+          -16.406656,
+          9.194982
+        ],
+        [
+          -12.454532,
+          13.458509
+        ],
+        [
+          -7.348815,
+          16.230357
+        ],
+        [
+          -1.623575,
+          17.232229
+        ],
+        [
+          4.123027,
+          16.352808
+        ],
+        [
+          9.285711,
+          13.681148
+        ],
+        [
+          13.323287,
+          9.506676
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "The mapped amphitheatre rim is the exact terrain cutout. The mesh supplies its stepped grass and stone floor."
+    },
+    "source": "https://www.openstreetmap.org/way/413448935",
+    "note": "The authored rings replace terrain inside the mapped pit rim. The mapped approach and surrounding ground are preserved.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:af63f34167ffd945dda688b8ac2e2d02ba532b6faafb57a5fb14b58e4d1cc0a8"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "grass": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98
+      },
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.98
+      }
+    },
+    "errorMeters": 0.72,
+    "module": "content/worldgen/source/places/gb/gbu/gwennap_pit_busveal/models/cornish-heritage.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "grass": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.22
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "grass": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.086
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "grass": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.031
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -0.669369,
+        -1.160517,
+        -0.480358
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "open-air-terraces",
+      "position": [
+        -31,
+        21.119483,
+        21
+      ],
+      "lookAt": [
+        -0.669369,
+        -1.160517,
+        -0.480358
+      ],
+      "fov": 54
+    },
+    {
+      "name": "stone-risers-and-west-stairs",
+      "position": [
+        6,
+        0.4194829999999996,
+        6
+      ],
+      "lookAt": [
+        -7,
+        -0.2305170000000003,
+        -5
+      ],
+      "fov": 68
+    },
+    {
+      "name": "speaking-stone-and-rim",
+      "position": [
+        15,
+        8.119482999999999,
+        12
+      ],
+      "lookAt": [
+        0.748269,
+        0.509483,
+        -13.293271
+      ],
+      "fov": 56
+    }
+  ],
+  "limitations": [
+    "The mapped outer rim and listed depth set the bowl. Individual stone blocks and the precise landing widths are approximated."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -19.414541244506836,
+      -3.000516891479492,
+      -18.501331329345703
+    ],
+    "max": [
+      16.520591735839844,
+      2.0112829208374023,
+      17.232229232788086
+    ]
+  },
+  "size": [
+    35.93513298034668,
+    5.0117998123168945,
+    35.73356056213379
+  ],
+  "mesh": {
+    "triangles": 1388,
+    "vertices": 2794,
+    "materials": 2,
+    "bytes": 119208,
+    "sha256": "sha256:a636a10d865caa1f16f23d0396cef0c502d4b014c706c0e61aafc96023e681ef"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

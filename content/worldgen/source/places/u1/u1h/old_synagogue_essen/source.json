@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.old_synagogue_essen",
+  "kind": "static-structure",
+  "title": "Old Synagogue (Essen)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.old_synagogue_essen",
+        "output": "assets/places/u1/u1h/old_synagogue_essen/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:34a8b20624eaf58632f503302d2fa02f93c80a9e6d7465bb37dd2b9a98384ecf"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-old-synagogue-essen",
+        "path": "models/generate-old-synagogue-essen.mjs"
+      },
+      {
+        "id": "old-synagogue-essen-model",
+        "path": "models/old-synagogue-essen-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/old-synagogue-essen-footprint.json",
+      "reference-rights/old-synagogue-essen-architectural-facts.json",
+      "references/essen-synagogue-1914-book.pdf",
+      "reference-rights/essen-synagogue-1914-book.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/essen-synagogue-nrw-dgm.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

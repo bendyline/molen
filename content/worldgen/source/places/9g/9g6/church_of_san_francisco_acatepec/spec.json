@@ -1,0 +1,544 @@
+{
+  "planId": "church_of_san_francisco_acatepec",
+  "id": "church_of_san_francisco_acatepec",
+  "assetId": "molen.worldgen.structure.church_of_san_francisco_acatepec",
+  "title": "Church of San Francisco Acatepec",
+  "wikidataId": "Q26926677",
+  "category": "historic-church",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -98.30863889,
+    "latitude": 19.02216667
+  },
+  "size": [
+    36.80999946594238,
+    25.810000896453857,
+    37.60300064086914
+  ],
+  "actualBounds": {
+    "min": [
+      -15.84000015258789,
+      -1.440000057220459,
+      -21.18000030517578
+    ],
+    "max": [
+      20.969999313354492,
+      24.3700008392334,
+      16.42300033569336
+    ]
+  },
+  "visualBrief": "San Francisco Acatepec with its tiled Baroque facade, asymmetrical towers, red vault and glazed dome.",
+  "nativeAxes": {
+    "x": "southwest along the facade",
+    "y": "up",
+    "z": "west-northwest through the entry atrium"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fachada_del_Templo_de_San_Francisco_Acatepec_desde_un_dron_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:C%C3%BApula_del_Templo_de_San_Francisco_Acatepec_desde_un_dron_01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "church-of-san-francisco-acatepec-wp",
+      "url": "https://qualla.com/church-of-san-francisco-acatepec/"
+    }
+  ],
+  "referenceInputHash": "sha256:ad36db74ab32f65947f83db4232155e80582d00e0cbf0e3adf6784cad60994d1",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9g/9g6/church_of_san_francisco_acatepec/models/church-of-san-francisco-acatepec-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9g/9g6/church_of_san_francisco_acatepec/models/church-of-san-francisco-acatepec-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.62,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96
+      },
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.95
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.89
+      },
+      "terra": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9
+      },
+      "glaze": {
+        "slot": "trim",
+        "graph": "tile_ceramic",
+        "roughness": 0.72
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.91
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81
+      },
+      "shade": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.87
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.26,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.89
+          },
+          "terra": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "glaze": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.72
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.078,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.89
+          },
+          "terra": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "glaze": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.72
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.021,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.89
+          },
+          "terra": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "glaze": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.72
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "brick_flemish",
+    "tile_ceramic",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.19,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Copernicus surface elevation on the approach inside the mapped enclosure.",
+    "anchor": [
+      -98.30863889,
+      19.02216667
+    ],
+    "heading": -2.0943951023931953,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -98.30880997512817,
+        19.022301543352633
+      ],
+      "modelHeight": 0,
+      "basis": "Original Copernicus surface elevation on the approach inside the mapped enclosure."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -12.15,
+          15.1
+        ],
+        [
+          -15.85,
+          15.1
+        ],
+        [
+          -15.85,
+          7.4
+        ],
+        [
+          -11.78,
+          7.4
+        ],
+        [
+          -11.78,
+          -7.24
+        ],
+        [
+          -15.47,
+          -7.24
+        ],
+        [
+          -15.47,
+          -16.62
+        ],
+        [
+          -11.42,
+          -16.62
+        ],
+        [
+          -11.42,
+          -21.2
+        ],
+        [
+          2.82,
+          -21.2
+        ],
+        [
+          2.82,
+          -16.16
+        ],
+        [
+          7.67,
+          -16.16
+        ],
+        [
+          11.89,
+          -17.97
+        ],
+        [
+          11.89,
+          -6.6
+        ],
+        [
+          4.11,
+          -6.6
+        ],
+        [
+          4.11,
+          6.78
+        ],
+        [
+          20.9,
+          6.78
+        ],
+        [
+          20.9,
+          16.01
+        ],
+        [
+          3.94,
+          16.01
+        ],
+        [
+          3.94,
+          15.1
+        ]
+      ],
+      "minimumCoverage": 0.8,
+      "basis": "The photograph-derived church envelope uses the native mapped enclosure and approach as control points."
+    },
+    "featureIds": [
+      "way/360083221"
+    ],
+    "source": "https://www.openstreetmap.org/way/360083221",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9c3c0546da607b33f6e35d22718f3f530dee57d06682617482b4abbc02d2b9c8",
+    "notes": "The cleared original clips and stills document the unequal towers, tiled facade, red vaulted roofs, white nave exterior, glazed dome and courtyard gallery."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "The cleared original clips and stills document the unequal towers, tiled facade, red vaulted roofs, white nave exterior, glazed dome and courtyard gallery.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "church-of-san-francisco-acatepec-skyline",
+      "position": [
+        -25,
+        28,
+        51
+      ],
+      "lookAt": [
+        1.5,
+        8.6,
+        0.6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "church-of-san-francisco-acatepec-district",
+      "position": [
+        -25,
+        28,
+        51
+      ],
+      "lookAt": [
+        1.5,
+        8.6,
+        0.6
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "church-of-san-francisco-acatepec-street",
+      "position": [
+        -25,
+        28,
+        51
+      ],
+      "lookAt": [
+        1.5,
+        8.6,
+        0.6
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "church-of-san-francisco-acatepec-closeup",
+      "position": [
+        -25,
+        28,
+        51
+      ],
+      "lookAt": [
+        1.5,
+        8.6,
+        0.6
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "acatepec-atrium",
+      "position": [
+        -25,
+        28,
+        51
+      ],
+      "lookAt": [
+        1.5,
+        8.6,
+        0.6
+      ]
+    },
+    {
+      "name": "talavera-west-front",
+      "position": [
+        -5,
+        6.9,
+        38.5
+      ],
+      "lookAt": [
+        -3.95,
+        8.1,
+        15.1
+      ]
+    },
+    {
+      "name": "crossing-dome-and-courtyard",
+      "position": [
+        35,
+        26.5,
+        -12.1
+      ],
+      "lookAt": [
+        -0.6,
+        8.4,
+        -2.9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12806,
+    "vertices": 38418,
+    "materials": 8,
+    "bytes": 1744808,
+    "sha256": "sha256:af8033fd541b8bf0ebf34bbbfe00b8faf914001630216beec0f5a405b4da317c"
+  }
+}

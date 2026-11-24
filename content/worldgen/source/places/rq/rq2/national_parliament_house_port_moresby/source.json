@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.national_parliament_house_port_moresby",
+  "kind": "static-structure",
+  "title": "National Parliament House, Port Moresby",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.national_parliament_house_port_moresby",
+        "output": "assets/places/rq/rq2/national_parliament_house_port_moresby/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:13fb575b46d251a7e47ed02fd65642e227ac8c79b64b74215ad5cda985dbf5bc"
+      }
+    ],
+    "generators": [
+      {
+        "id": "national_parliament_house_port_moresby",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "waigani-parliament-and-roundhouse",
+        "path": "models/waigani-parliament-and-roundhouse.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

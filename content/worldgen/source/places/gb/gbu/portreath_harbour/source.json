@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.portreath_harbour",
+  "kind": "static-structure",
+  "title": "Portreath Harbour and Daymark",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.portreath_harbour",
+        "output": "assets/places/gb/gbu/portreath_harbour/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9fe11743b46e26a9f41dfa992f51c8ddcc013e2f60452405c54cbed797eab764"
+      }
+    ],
+    "generators": [
+      {
+        "id": "portreath_harbour",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cornish-harbour",
+        "path": "models/cornish-harbour.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

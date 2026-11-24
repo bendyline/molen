@@ -1,0 +1,161 @@
+{
+  "id": "wheal_prosper_engine_house",
+  "planId": "wheal_prosper_engine_house",
+  "title": "Wheal Prosper Engine House",
+  "assetId": "molen.worldgen.structure.wheal_prosper_engine_house",
+  "category": "landmark",
+  "collectionId": "cornwall_and_west_devon_mining_landscape",
+  "mapFeatureId": "way/390101846",
+  "wikidataId": "Q464566",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": { "longitude": -5.3657751, "latitude": 50.0943891 },
+  "visualBrief": "The roofless Wheal Prosper engine house keeps its square stone shell, open machinery windows and an attached tapered stack with a brick upper section.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gb/gbu/wheal_prosper_engine_house/models/cornish-engine-houses.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/1215/maps/",
+    "https://commons.wikimedia.org/wiki/File:Wheal_Prosper_engine_house_-_geograph.org.uk_-_1110041.jpg",
+    "https://www.openstreetmap.org/way/390101846"
+  ],
+  "geographicProposal": {
+    "id": "wheal-prosper-engine-house",
+    "title": "Wheal Prosper Engine House",
+    "asset": "molen.worldgen.structure.wheal_prosper_engine_house",
+    "anchor": [-5.3657751, 50.0943891],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 55.643908,
+    "bounds": [-5.365863905632298, 50.09432393440096, -5.365675617864959, 50.09443656581955],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q464566",
+      "names": [
+        "Wheal Prosper Engine House",
+        "Wheal Prosper",
+        "Wheal Propser Engine House",
+        "Rinsey Engine House"
+      ],
+      "maxDistance": 46
+    },
+    "buildingCutout": {
+      "outline": [
+        [-0.892678, -3.283926],
+        [-4.341984, 2.794118],
+        [0.007141, 5.254277],
+        [3.199357, -0.378486],
+        [2.927983, -1.113195]
+      ],
+      "outlines": [
+        [
+          [-0.892678, -3.283926],
+          [-4.341984, 2.794118],
+          [0.007141, 5.254277],
+          [3.199357, -0.378486],
+          [2.927983, -1.113195]
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the mapped ruins and sheds represented in the landmark, with adjacent mine buildings, protected ground and access routes left intact."
+    },
+    "source": "https://www.openstreetmap.org/way/390101846",
+    "note": "The named mine and its mapped buildings locate each masonry range. Their orientations follow the mapped contours of the site.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b220ec7617d6d367bf39db3c574930dd18f95bdef6b1ca8fbd5a062259535fea"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "rubble": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+      "granite": { "slot": "trim", "graph": "stone_granite", "roughness": 0.96 },
+      "brick": { "slot": "trim", "graph": "brick", "roughness": 0.96 }
+    },
+    "errorMeters": 0.56,
+    "module": "content/worldgen/source/places/gb/gbu/wheal_prosper_engine_house/models/cornish-engine-houses.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "rubble": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+          "granite": { "slot": "trim", "graph": "stone_granite", "roughness": 0.96 },
+          "brick": { "slot": "trim", "graph": "brick", "roughness": 0.96 }
+        },
+        "errorMeters": 0.19
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "rubble": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+          "granite": { "slot": "trim", "graph": "stone_granite", "roughness": 0.96 },
+          "brick": { "slot": "trim", "graph": "brick", "roughness": 0.96 }
+        },
+        "errorMeters": 0.069
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "rubble": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+          "granite": { "slot": "trim", "graph": "stone_granite", "roughness": 0.96 },
+          "brick": { "slot": "trim", "graph": "brick", "roughness": 0.96 }
+        },
+        "errorMeters": 0.024
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": { "center": [-0.445093, 3.84516, 0.989266] },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "stone-walls-and-stepped-cliff",
+      "position": [-13.445093, 13.84516, 23.989266],
+      "lookAt": [-0.445093, 7.09516, 0.989266],
+      "fov": 58
+    },
+    {
+      "name": "roofless-engine-house",
+      "position": [-14.800081785169395, 8.79716, 17.626505345910925],
+      "lookAt": [-0.445093, 7.247159999999999, 0.989266],
+      "fov": 56
+    },
+    {
+      "name": "chimneys-and-mining-terraces",
+      "position": [-21.865093, 21.84516, 36.689265999999996],
+      "lookAt": [-0.445093, 3.84516, 0.989266],
+      "fov": 54
+    }
+  ],
+  "limitations": [
+    "The mapped walls and chimney set the position and orientation. Wall openings and crown elevations are based on the visible exterior."
+  ],
+  "importOptions": { "optimize": false },
+  "actualBounds": {
+    "min": [-4.365616798400879, -1.4122990369796753, -3.307616949081421],
+    "max": [5.193000316619873, 15.9304838180542, 5.2779436111450195]
+  },
+  "size": [9.558617115020752, 17.342782855033875, 8.58556056022644],
+  "mesh": {
+    "triangles": 1527,
+    "vertices": 3053,
+    "materials": 3,
+    "bytes": 130664,
+    "sha256": "sha256:a00490ec7589ab941821babdd607f212afd9c594f0a2ab895bb056b2f9162682"
+  },
+  "sharedSurfaces": [
+    { "ref": "matgraph:molen.worldgen.material.stone_drywall", "slot": "wall", "uv": "repeats" },
+    { "ref": "matgraph:molen.worldgen.material.brick", "slot": "trim", "uv": "repeats" },
+    { "ref": "matgraph:molen.worldgen.material.stone_granite", "slot": "trim", "uv": "repeats" }
+  ]
+}

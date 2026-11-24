@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.church_of_the_acheiropoietos",
+  "kind": "static-structure",
+  "title": "Church of the Acheiropoietos",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.church_of_the_acheiropoietos",
+        "output": "assets/places/sx/sx0/church_of_the_acheiropoietos/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f5d260375428fff70b806601f3ae8f240a9f63b53cf3eefba1b9c3bc129240c7"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-church-of-the-acheiropoietos",
+        "path": "models/generate-church-of-the-acheiropoietos.mjs"
+      },
+      {
+        "id": "church-of-the-acheiropoietos-model",
+        "path": "models/church-of-the-acheiropoietos-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/church-of-the-acheiropoietos-footprint.json",
+      "reference-rights/church-of-the-acheiropoietos-architectural-facts.json",
+      "reference-rights/church-of-the-acheiropoietos-qualla-original-2.json",
+      "reference-rights/church-of-the-acheiropoietos-qualla-original-3.json",
+      "reference-rights/church-of-the-acheiropoietos-qualla-original-4.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-18472-12329.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

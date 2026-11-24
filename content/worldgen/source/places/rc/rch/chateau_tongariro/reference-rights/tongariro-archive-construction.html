@@ -1,0 +1,3994 @@
+
+<!DOCTYPE html>
+<html class="h-full">
+  
+<head>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="7bc77697-8254-4bf6-8571-776388fb68e8"></script>
+  <style>
+    :root {
+      --color-primary: var(--primary-color, #3289a8);
+      --color-secondary: var(--secondary-color, #79bfd8);
+      --color-tertiary: var(--button-secondary-fill-color, #9d0b0b);
+      --color-light: var(--on-primary-color, #FFFFFF);
+      --color-dark: var(--body-color, #242424);
+      --color-background: var(--background-color, #F8F8FA);
+      --color-border: var(--border-subtle-color, #DBE3E8);
+      --color-silver: #c4c4c4;
+    }
+  </style>
+    <style>/* Default Theme (Collect #7007) */
+
+@font-face {
+  font-family: "CalibreWeb";
+  src: url('https://au-uploads-cdn.stqry.com/custom_font_files/0s6xa4z35qxzu67nyedr4pbaknru') format("woff2");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CalibreWeb";
+  src: url('https://au-uploads-cdn.stqry.com/custom_font_files/ju0d4gkfcd7zgbqnmr211tdgz0eo') format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CalibreWeb";
+  src: url('https://au-uploads-cdn.stqry.com/custom_font_files/uizvrsuenprsyn5w9po8uvuhbsv9') format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CalibreWeb";
+  src: url('https://au-uploads-cdn.stqry.com/custom_font_files/87jc9nyk5janzd0u2sw4vjux4vff') format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CalibreWeb";
+  src: url('https://au-uploads-cdn.stqry.com/custom_font_files/2dhhv40842jij3rifpohxcmb95f4') format("woff2");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CalibreWeb";
+  src: url('https://au-uploads-cdn.stqry.com/custom_font_files/sq32rbqwc5ivv9txqau2ix6t84gp') format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TiemposText";
+  src: url('https://au-uploads-cdn.stqry.com/custom_font_files/s0dm6k1msp8tif2dp3h0qhlczyqk') format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TiemposText";
+  src: url('https://au-uploads-cdn.stqry.com/custom_font_files/4iqtfe5zfbhlviud4gn1s8h5w2k6') format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+
+  :root {
+      --button-border-radius: 8px;
+      --button-opacity: 1;
+      --button-disabled-opacity: 0.5;
+      --button-radius: 0.5rem;
+      --button-border-width: 1px;
+}
+
+  :root {
+      --button-primary-border-radius: 8px;
+      --button-primary-opacity: 1;
+      --button-primary-disabled-opacity: 0.5;
+      --button-primary-radius: 0.5rem;
+      --button-primary-border-width: 1px;
+}
+
+  :root {
+      --button-secondary-border-radius: 8px;
+      --button-secondary-opacity: 1;
+      --button-secondary-disabled-opacity: 0.5;
+      --button-secondary-radius: 0.5rem;
+      --button-secondary-border-width: 1px;
+}
+
+  :root {
+      --button-language-border-radius: 8px;
+      --button-language-opacity: 1;
+      --button-language-disabled-opacity: 0.5;
+      --button-language-radius: 0.5rem;
+      --button-language-border-width: 1px;
+}
+
+  :root {
+      --button-language-selected-border-radius: 8px;
+      --button-language-selected-opacity: 1;
+      --button-language-selected-disabled-opacity: 0.5;
+      --button-language-selected-radius: 0.5rem;
+      --button-language-selected-border-width: 1px;
+}
+
+  :root {
+      --button-pill-border-radius: 8px;
+      --button-pill-opacity: 1;
+      --button-pill-disabled-opacity: 0.5;
+      --button-pill-radius: 9999px;
+      --button-pill-border-width: 1px;
+}
+
+  :root {
+      --text-opacity: 1;
+}
+
+  :root {
+      --label-opacity: 1;
+}
+
+  :root {
+      --note-opacity: 1;
+}
+
+  :root {
+      --card-radius: 0.75rem;
+      --card-shadow: none;
+      --card-opacity: 1;
+      --card-subtitle-opacity: 0.75;
+      --card-border-width: 0;
+}
+
+  :root {
+      --card-default-radius: 0.75rem;
+      --card-default-shadow: none;
+      --card-default-opacity: 1;
+      --card-default-subtitle-opacity: 0.75;
+      --card-default-border-width: 0;
+}
+
+  :root {
+      --card-elevated-radius: 0.75rem;
+      --card-elevated-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+      --card-elevated-opacity: 1;
+      --card-elevated-subtitle-opacity: 0.75;
+      --card-elevated-border-width: 0;
+}
+
+  :root {
+      --card-outlined-radius: 0.75rem;
+      --card-outlined-shadow: none;
+      --card-outlined-opacity: 1;
+      --card-outlined-subtitle-opacity: 0.75;
+      --card-outlined-border-width: 1px;
+}
+
+  :root {
+      --item-opacity: 1;
+      --item-disabled-opacity: 0.5;
+      --item-border-width: 0;
+}
+
+  :root {
+      --item-default-opacity: 1;
+      --item-default-disabled-opacity: 0.5;
+      --item-default-border-width: 0;
+}
+
+  :root {
+      --item-interactive-opacity: 1;
+      --item-interactive-disabled-opacity: 0.5;
+      --item-interactive-border-width: 0;
+}
+
+  :root {
+      --item-header-opacity: 1;
+      --item-header-disabled-opacity: 0.5;
+      --item-header-border-width: 0;
+}
+
+  :root {
+      --input-border-width: 1px;
+      --input-radius: 0.375rem;
+      --input-opacity: 1;
+      --input-disabled-opacity: 0.5;
+}
+
+  :root {
+      --input-default-border-width: 1px;
+      --input-default-radius: 0.375rem;
+      --input-default-opacity: 1;
+      --input-default-disabled-opacity: 0.5;
+}
+
+  :root {
+      --input-outlined-border-width: 1px;
+      --input-outlined-radius: 0.375rem;
+      --input-outlined-opacity: 1;
+      --input-outlined-disabled-opacity: 0.5;
+}
+
+  :root {
+      --input-filled-border-width: 0;
+      --input-filled-radius: 0.375rem;
+      --input-filled-opacity: 1;
+      --input-filled-disabled-opacity: 0.5;
+}
+
+  :root {
+      --textarea-border-width: 1px;
+      --textarea-radius: 0.375rem;
+      --textarea-opacity: 1;
+      --textarea-disabled-opacity: 0.5;
+}
+
+  :root {
+      --textarea-default-border-width: 1px;
+      --textarea-default-radius: 0.375rem;
+      --textarea-default-opacity: 1;
+      --textarea-default-disabled-opacity: 0.5;
+}
+
+  :root {
+      --textarea-outlined-border-width: 1px;
+      --textarea-outlined-radius: 0.375rem;
+      --textarea-outlined-opacity: 1;
+      --textarea-outlined-disabled-opacity: 0.5;
+}
+
+  :root {
+      --textarea-filled-border-width: 0;
+      --textarea-filled-radius: 0.375rem;
+      --textarea-filled-opacity: 1;
+      --textarea-filled-disabled-opacity: 0.5;
+}
+
+  :root {
+      --rating-option-radius: 0.5rem;
+      --rating-image-inactive-opacity: 0.55;
+      --rating-image-ring-width: 3px;
+}
+
+  :root {
+      --checkbox-border-width: 1px;
+      --checkbox-radius: 0.25rem;
+      --checkbox-opacity: 1;
+      --checkbox-disabled-opacity: 0.5;
+}
+
+  :root {
+      --checkbox-default-border-width: 1px;
+      --checkbox-default-radius: 0.25rem;
+      --checkbox-default-opacity: 1;
+      --checkbox-default-disabled-opacity: 0.5;
+}
+
+  :root {
+      --segment-border-width: 1px;
+      --segment-radius: 0.375rem;
+      --segment-opacity: 1;
+}
+
+  :root {
+      --segment-default-border-width: 1px;
+      --segment-default-radius: 0.375rem;
+      --segment-default-opacity: 1;
+}
+
+  :root {
+      --segment-pill-border-width: 1px;
+      --segment-pill-radius: 9999px;
+      --segment-pill-opacity: 1;
+}
+
+  :root {
+      --segment-button-radius: 0.375rem;
+      --segment-button-opacity: 1;
+      --segment-button-disabled-opacity: 0.5;
+      --segment-button-border-width: 0;
+}
+
+  :root {
+      --segment-button-default-radius: 0.375rem;
+      --segment-button-default-opacity: 1;
+      --segment-button-default-disabled-opacity: 0.5;
+      --segment-button-default-border-width: 0;
+}
+
+  :root {
+      --spinner-track-color: color-mix(in srgb, var(--primary-color) 20%, transparent);
+      --spinner-opacity: 1;
+}
+
+  :root {
+      --spinner-circle-track-color: color-mix(in srgb, var(--primary-color) 20%, transparent);
+      --spinner-circle-opacity: 1;
+}
+
+  :root {
+      --spinner-crescent-track-color: color-mix(in srgb, var(--primary-color) 20%, transparent);
+      --spinner-crescent-opacity: 1;
+}
+
+  :root {
+      --progressbar-radius: 9999px;
+      --progressbar-opacity: 1;
+}
+
+  :root {
+      --progressbar-determinate-radius: 9999px;
+      --progressbar-determinate-opacity: 1;
+}
+
+  :root {
+      --progressbar-indeterminate-radius: 9999px;
+      --progressbar-indeterminate-opacity: 1;
+}
+
+  :root {
+      --thumbnail-radius: 0.25rem;
+      --thumbnail-opacity: 1;
+}
+
+  :root {
+      --img-radius: 0;
+      --img-opacity: 1;
+}
+
+  :root {
+      --media-section-media-radius: 0;
+}
+
+  :root {
+      --media-group-section-media-radius: 0.375rem;
+}
+
+  :root {
+      --link-group-section-button-radius: 0.375rem;
+}
+
+  :root {
+      --badge-radius: 0.625rem;
+      --badge-unearned-opacity: 0.3;
+}
+
+  :root {
+      --image-slider-section-media-radius: 0.375rem;
+}
+
+  :root {
+      --slideshow-section-media-radius: 0.375rem;
+}
+
+  :root {
+      --quiz-question-section-answer-radius: 0.5rem;
+      --quiz-question-section-selected-fill-color: color-mix(in srgb, var(--primary-color) 10%, var(--page-background-color));
+}
+
+  :root {
+      --location-section-card-radius: 0.375rem;
+}
+
+  :root {
+      --loading-backdrop-opacity: 1;
+}
+
+  :root {
+      --modal-border-width: 0;
+      --modal-radius: 0.75rem;
+      --modal-opacity: 1;
+      --modal-backdrop-color: rgb(0 0 0 / 0.5);
+      --modal-backdrop-opacity: 1;
+}
+
+  :root {
+      --modal-default-border-width: 0;
+      --modal-default-radius: 0.75rem;
+      --modal-default-opacity: 1;
+      --modal-default-backdrop-color: rgb(0 0 0 / 0.5);
+      --modal-default-backdrop-opacity: 1;
+}
+
+  :root {
+      --modal-sheet-border-width: 0;
+      --modal-sheet-radius: 1rem 1rem 0 0;
+      --modal-sheet-opacity: 1;
+      --modal-sheet-backdrop-color: rgb(0 0 0 / 0.5);
+      --modal-sheet-backdrop-opacity: 1;
+}
+
+  :root {
+      --modal-fullscreen-border-width: 0;
+      --modal-fullscreen-radius: 0;
+      --modal-fullscreen-opacity: 1;
+      --modal-fullscreen-backdrop-color: rgb(0 0 0 / 0.5);
+      --modal-fullscreen-backdrop-opacity: 1;
+}
+
+  :root {
+      --popover-border-width: 1px;
+      --popover-radius: 0.5rem;
+      --popover-opacity: 1;
+      --popover-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+}
+
+  :root {
+      --popover-default-border-width: 1px;
+      --popover-default-radius: 0.5rem;
+      --popover-default-opacity: 1;
+      --popover-default-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+}
+
+  :root {
+      --popover-tooltip-border-width: 0;
+      --popover-tooltip-radius: 0.25rem;
+      --popover-tooltip-opacity: 1;
+      --popover-tooltip-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+}
+
+  :root {
+      --toast-border-width: 1px;
+      --toast-radius: 0.5rem;
+      --toast-opacity: 1;
+      --toast-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+}
+
+  :root {
+      --toast-info-border-width: 1px;
+      --toast-info-radius: 0.5rem;
+      --toast-info-opacity: 1;
+      --toast-info-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+}
+
+  :root {
+      --toast-success-border-width: 1px;
+      --toast-success-radius: 0.5rem;
+      --toast-success-opacity: 1;
+      --toast-success-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+}
+
+  :root {
+      --toast-warning-border-width: 1px;
+      --toast-warning-radius: 0.5rem;
+      --toast-warning-opacity: 1;
+      --toast-warning-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+}
+
+  :root {
+      --toast-error-border-width: 1px;
+      --toast-error-radius: 0.5rem;
+      --toast-error-opacity: 1;
+      --toast-error-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+}
+
+  :root {
+      --audio-player-now-playing-border-width: 3px;
+      --audio-player-inactive-opacity: 0.4;
+      --audio-player-next-label-opacity: 0.75;
+}
+
+  :root {
+      --collection-list-item-radius: 6px;
+      --collection-list-item-gradient-color: #000000;
+      --collection-list-item-gradient-color-rgb: 0 0 0;
+      --collection-list-item-gradient-opacity: 0.35;
+}
+
+  :root {
+      --icon-tile-radius: 0.5rem;
+      --icon-tile-border-width: 0;
+      --icon-tile-opacity: 1;
+      --icon-tile-fill-opacity: 1;
+      --icon-tile-blur-radius: 0px;
+}
+
+  :root {
+      --icon-tile-solid-radius: 0.5rem;
+      --icon-tile-solid-border-width: 0;
+      --icon-tile-solid-opacity: 1;
+      --icon-tile-solid-fill-opacity: 1;
+      --icon-tile-solid-blur-radius: 0px;
+}
+
+  :root {
+      --icon-tile-soft-radius: 0.5rem;
+      --icon-tile-soft-border-width: 0;
+      --icon-tile-soft-opacity: 1;
+      --icon-tile-soft-fill-opacity: 1;
+      --icon-tile-soft-blur-radius: 0px;
+}
+
+  :root {
+      --icon-tile-glass-radius: 0.5rem;
+      --icon-tile-glass-border-width: 0;
+      --icon-tile-glass-opacity: 1;
+      --icon-tile-glass-fill-opacity: 0.45;
+      --icon-tile-glass-blur-radius: 2px;
+}
+
+  :root {
+      --code-lock-backdrop-opacity: 0.25;
+      --code-lock-blur-radius: 0px;
+}
+
+  :root {
+      --stop-row-opacity: 1;
+      --stop-row-border-width: 1px;
+      --stop-row-radius: 0.75rem;
+}
+
+  :root {
+      --header-bar-overlay-color: #000000;
+      --header-bar-overlay-color-rgb: 0 0 0;
+      --header-bar-overlay-opacity: 1;
+}
+
+  :root {
+      --audio-transport-opacity: 1;
+      --audio-transport-divider-width: 1px;
+      --audio-transport-time-opacity: 0.9;
+      --audio-transport-track-opacity: 0.5;
+}
+
+  :root {
+      --app-background-display: block;
+}
+
+  :root {
+      --loading-background-display: block;
+}
+
+  :root {
+      --menu-title-text-align: start;
+}
+
+  :root {
+      --buttons-button-background: #ffffff;
+      --buttons-button-background-rgb: 255 255 255;
+      --buttons-button-outline: #e5e7eb;
+      --buttons-button-outline-rgb: 229 231 235;
+        --buttons-button-font-font-type: custom;
+        --buttons-button-font-font-family: CalibreWeb;
+        --buttons-button-font-font-style: normal;
+        --buttons-button-font-font-weight: 500;
+        --buttons-button-font-font-size: 16px;
+        --buttons-button-font-color: #111827;
+        --buttons-button-font-line-height: 1.5;
+        --buttons-button-font-letter-spacing: normal;
+      --buttons-border-radius: 8px;
+      --buttons-opacity: 1;
+}
+
+  :root {
+      --popups-popup-background-color: #ffffff;
+      --popups-popup-background-color-rgb: 255 255 255;
+      --popups-popup-body-text-color: #111827;
+      --popups-popup-body-text-color-rgb: 17 24 39;
+      --popups-popup-title-text-color: #111827;
+      --popups-popup-title-text-color-rgb: 17 24 39;
+}
+
+  :root {
+      --start-button-button-background: #ffffff;
+      --start-button-button-background-rgb: 255 255 255;
+      --start-button-button-outline: #e5e7eb;
+      --start-button-button-outline-rgb: 229 231 235;
+        --start-button-button-font-font-type: custom;
+        --start-button-button-font-font-family: CalibreWeb;
+        --start-button-button-font-font-style: normal;
+        --start-button-button-font-font-weight: 500;
+        --start-button-button-font-font-size: 16px;
+        --start-button-button-font-color: #111827;
+        --start-button-button-font-line-height: 1.5;
+        --start-button-button-font-letter-spacing: normal;
+      --start-button-border-radius: 8px;
+      --start-button-opacity: 1;
+}
+
+  :root {
+      --language-buttons-button-background: #ffffff;
+      --language-buttons-button-background-rgb: 255 255 255;
+      --language-buttons-button-outline: #e5e7eb;
+      --language-buttons-button-outline-rgb: 229 231 235;
+        --language-buttons-button-font-font-type: custom;
+        --language-buttons-button-font-font-family: CalibreWeb;
+        --language-buttons-button-font-font-style: normal;
+        --language-buttons-button-font-font-weight: 500;
+        --language-buttons-button-font-font-size: 16px;
+        --language-buttons-button-font-color: #111827;
+        --language-buttons-button-font-line-height: 1.5;
+        --language-buttons-button-font-letter-spacing: normal;
+      --language-buttons-border-radius: 8px;
+      --language-buttons-opacity: 1;
+      --language-buttons-current-button-background: #2563eb;
+      --language-buttons-current-button-background-rgb: 37 99 235;
+      --language-buttons-current-button-text: #ffffff;
+      --language-buttons-current-button-text-rgb: 255 255 255;
+}
+
+  :root {
+      --secondary-button-button-background: #e5e7eb;
+      --secondary-button-button-background-rgb: 229 231 235;
+      --secondary-button-button-outline: #9ca3af;
+      --secondary-button-button-outline-rgb: 156 163 175;
+        --secondary-button-button-font-font-type: custom;
+        --secondary-button-button-font-font-family: CalibreWeb;
+        --secondary-button-button-font-font-style: normal;
+        --secondary-button-button-font-font-weight: 500;
+        --secondary-button-button-font-font-size: 16px;
+        --secondary-button-button-font-color: #111827;
+        --secondary-button-button-font-line-height: 1.5;
+        --secondary-button-button-font-letter-spacing: normal;
+      --secondary-button-border-radius: 8px;
+      --secondary-button-opacity: 1;
+}
+
+  :root {
+      --radius-card: 0.75rem;
+      --radius-button: 0.5rem;
+      --radius-sm: 0.375rem;
+}
+
+  :root {
+      --chat-bubble-radius: 1.125rem;
+      --chat-bubble-tail-radius: 0.375rem;
+}
+
+  :root {
+      --chat-avatar-radius: 9999px;
+}
+
+  :root {
+      --chat-input-radius: 0.375rem;
+}
+
+  :root {
+      --chat-source-card-radius: 0.75rem;
+}
+
+  :root {
+      --chat-suggestion-radius: 0.75rem;
+}
+
+
+
+
+  :root {
+  --default-font-family: CalibreWeb;
+  --default-font-weight: 400;
+  --default-font-style: normal;
+  --default-font-size: 16px;
+  --default-color: #000000;
+  --default-line-height: 1.5;
+  --default-letter-spacing: normal;
+}
+
+  :root {
+  --body-font-family: CalibreWeb;
+  --body-font-weight: var(--default-font-weight);
+  --body-font-style: normal;
+  --body-font-size: var(--default-font-size);
+  --body-color: #242424;
+  --body-line-height: var(--default-line-height);
+  --body-letter-spacing: var(--default-letter-spacing);
+}
+
+  :root {
+  --reverse-font-family: var(--default-font-family);
+  --reverse-font-weight: var(--default-font-weight);
+  --reverse-font-style: var(--default-font-style);
+  --reverse-font-size: var(--default-font-size);
+  --reverse-color: #ffffff;
+  --reverse-line-height: var(--default-line-height);
+  --reverse-letter-spacing: var(--default-letter-spacing);
+}
+
+  :root {
+  --heading-font-family: TiemposText;
+  --heading-font-weight: 700;
+  --heading-font-style: normal;
+  --heading-font-size: 45px;
+  --heading-color: var(--default-color);
+  --heading-line-height: var(--default-line-height);
+  --heading-letter-spacing: var(--default-letter-spacing);
+}
+
+  :root {
+  --fullscreen-audio-player-font-family: var(--reverse-font-family);
+  --fullscreen-audio-player-font-weight: var(--reverse-font-weight);
+  --fullscreen-audio-player-font-style: var(--reverse-font-style);
+  --fullscreen-audio-player-font-size: var(--reverse-font-size);
+  --fullscreen-audio-player-color: var(--reverse-color);
+  --fullscreen-audio-player-line-height: var(--reverse-line-height);
+  --fullscreen-audio-player-letter-spacing: var(--reverse-letter-spacing);
+}
+
+  :root {
+  --fullscreen-audio-player-title-font-family: var(--fullscreen-audio-player-font-family);
+  --fullscreen-audio-player-title-font-weight: 700;
+  --fullscreen-audio-player-title-font-style: var(--fullscreen-audio-player-font-style);
+  --fullscreen-audio-player-title-font-size: 20px;
+  --fullscreen-audio-player-title-color: var(--fullscreen-audio-player-color);
+  --fullscreen-audio-player-title-line-height: 1.7;
+  --fullscreen-audio-player-title-letter-spacing: var(--fullscreen-audio-player-letter-spacing);
+}
+
+  :root {
+  --fullscreen-audio-player-eyebrow-font-family: var(--fullscreen-audio-player-font-family);
+  --fullscreen-audio-player-eyebrow-font-weight: 700;
+  --fullscreen-audio-player-eyebrow-font-style: var(--fullscreen-audio-player-font-style);
+  --fullscreen-audio-player-eyebrow-font-size: 11px;
+  --fullscreen-audio-player-eyebrow-color: var(--fullscreen-audio-player-color);
+  --fullscreen-audio-player-eyebrow-line-height: var(--fullscreen-audio-player-line-height);
+  --fullscreen-audio-player-eyebrow-letter-spacing: 1px;
+}
+
+  :root {
+  --fullscreen-audio-player-time-font-family: var(--fullscreen-audio-player-font-family);
+  --fullscreen-audio-player-time-font-weight: var(--fullscreen-audio-player-font-weight);
+  --fullscreen-audio-player-time-font-style: var(--fullscreen-audio-player-font-style);
+  --fullscreen-audio-player-time-font-size: 14px;
+  --fullscreen-audio-player-time-color: var(--fullscreen-audio-player-color);
+  --fullscreen-audio-player-time-line-height: var(--fullscreen-audio-player-line-height);
+  --fullscreen-audio-player-time-letter-spacing: var(--fullscreen-audio-player-letter-spacing);
+}
+
+  :root {
+  --fullscreen-audio-player-transcript-font-family: var(--body-font-family);
+  --fullscreen-audio-player-transcript-font-weight: var(--body-font-weight);
+  --fullscreen-audio-player-transcript-font-style: var(--body-font-style);
+  --fullscreen-audio-player-transcript-font-size: 16px;
+  --fullscreen-audio-player-transcript-color: var(--body-color);
+  --fullscreen-audio-player-transcript-line-height: 1.55;
+  --fullscreen-audio-player-transcript-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --fullscreen-audio-player-transcript-label-font-family: var(--fullscreen-audio-player-transcript-font-family);
+  --fullscreen-audio-player-transcript-label-font-weight: 700;
+  --fullscreen-audio-player-transcript-label-font-style: var(--fullscreen-audio-player-transcript-font-style);
+  --fullscreen-audio-player-transcript-label-font-size: 14px;
+  --fullscreen-audio-player-transcript-label-color: var(--fullscreen-audio-player-transcript-color);
+  --fullscreen-audio-player-transcript-label-line-height: normal;
+  --fullscreen-audio-player-transcript-label-letter-spacing: 1px;
+}
+
+  :root {
+  --fullscreen-audio-player-header-font-family: var(--fullscreen-audio-player-font-family);
+  --fullscreen-audio-player-header-font-weight: 500;
+  --fullscreen-audio-player-header-font-style: var(--fullscreen-audio-player-font-style);
+  --fullscreen-audio-player-header-font-size: 16px;
+  --fullscreen-audio-player-header-color: var(--fullscreen-audio-player-color);
+  --fullscreen-audio-player-header-line-height: normal;
+  --fullscreen-audio-player-header-letter-spacing: var(--fullscreen-audio-player-letter-spacing);
+}
+
+  :root {
+  --bar-audio-player-font-family: var(--default-font-family);
+  --bar-audio-player-font-weight: var(--default-font-weight);
+  --bar-audio-player-font-style: var(--default-font-style);
+  --bar-audio-player-font-size: var(--default-font-size);
+  --bar-audio-player-color: var(--default-color);
+  --bar-audio-player-line-height: var(--default-line-height);
+  --bar-audio-player-letter-spacing: var(--default-letter-spacing);
+}
+
+  :root {
+  --fullscreen-video-player-font-family: var(--reverse-font-family);
+  --fullscreen-video-player-font-weight: var(--reverse-font-weight);
+  --fullscreen-video-player-font-style: var(--reverse-font-style);
+  --fullscreen-video-player-font-size: var(--reverse-font-size);
+  --fullscreen-video-player-color: var(--reverse-color);
+  --fullscreen-video-player-line-height: var(--reverse-line-height);
+  --fullscreen-video-player-letter-spacing: var(--reverse-letter-spacing);
+}
+
+  :root {
+  --closed-captions-font-family: var(--reverse-font-family);
+  --closed-captions-font-weight: var(--reverse-font-weight);
+  --closed-captions-font-style: var(--reverse-font-style);
+  --closed-captions-font-size: var(--reverse-font-size);
+  --closed-captions-color: var(--reverse-color);
+  --closed-captions-line-height: var(--reverse-line-height);
+  --closed-captions-letter-spacing: var(--reverse-letter-spacing);
+}
+
+  :root {
+  --title-bar-font-family: var(--default-font-family);
+  --title-bar-font-weight: var(--default-font-weight);
+  --title-bar-font-style: var(--default-font-style);
+  --title-bar-font-size: var(--default-font-size);
+  --title-bar-color: var(--default-color);
+  --title-bar-line-height: var(--default-line-height);
+  --title-bar-letter-spacing: var(--default-letter-spacing);
+}
+
+  :root {
+  --tab-bar-font-family: var(--reverse-font-family);
+  --tab-bar-font-weight: var(--reverse-font-weight);
+  --tab-bar-font-style: var(--reverse-font-style);
+  --tab-bar-font-size: var(--reverse-font-size);
+  --tab-bar-color: var(--reverse-color);
+  --tab-bar-line-height: var(--reverse-line-height);
+  --tab-bar-letter-spacing: var(--reverse-letter-spacing);
+}
+
+  :root {
+  --tour-bar-font-family: var(--tab-bar-font-family);
+  --tour-bar-font-weight: var(--tab-bar-font-weight);
+  --tour-bar-font-style: var(--tab-bar-font-style);
+  --tour-bar-font-size: var(--tab-bar-font-size);
+  --tour-bar-color: var(--tab-bar-color);
+  --tour-bar-line-height: var(--tab-bar-line-height);
+  --tour-bar-letter-spacing: var(--tab-bar-letter-spacing);
+}
+
+  :root {
+  --keypad-font-family: var(--default-font-family);
+  --keypad-font-weight: var(--default-font-weight);
+  --keypad-font-style: var(--default-font-style);
+  --keypad-font-size: 2.5rem;
+  --keypad-color: var(--default-color);
+  --keypad-line-height: var(--default-line-height);
+  --keypad-letter-spacing: var(--default-letter-spacing);
+}
+
+  :root {
+  --block-heading-font-family: var(--default-font-family);
+  --block-heading-font-weight: 500;
+  --block-heading-font-style: var(--default-font-style);
+  --block-heading-font-size: 24px;
+  --block-heading-color: var(--default-color);
+  --block-heading-line-height: var(--default-line-height);
+  --block-heading-letter-spacing: var(--default-letter-spacing);
+}
+
+  :root {
+  --tour-heading-font-family: var(--heading-font-family);
+  --tour-heading-font-weight: var(--heading-font-weight);
+  --tour-heading-font-style: var(--heading-font-style);
+  --tour-heading-font-size: 32px;
+  --tour-heading-color: var(--heading-color);
+  --tour-heading-line-height: var(--heading-line-height);
+  --tour-heading-letter-spacing: var(--heading-letter-spacing);
+}
+
+  :root {
+  --button-font-family: var(--body-font-family);
+  --button-font-weight: 500;
+  --button-font-style: var(--body-font-style);
+  --button-font-size: var(--body-font-size);
+  --button-color: var(--body-color);
+  --button-line-height: var(--body-line-height);
+  --button-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --button-primary-font-family: var(--reverse-font-family);
+  --button-primary-font-weight: 500;
+  --button-primary-font-style: normal;
+  --button-primary-font-size: 14px;
+  --button-primary-color: var(--reverse-color);
+  --button-primary-line-height: var(--reverse-line-height);
+  --button-primary-letter-spacing: var(--reverse-letter-spacing);
+}
+
+  :root {
+  --button-secondary-font-family: var(--reverse-font-family);
+  --button-secondary-font-weight: 500;
+  --button-secondary-font-style: normal;
+  --button-secondary-font-size: 14px;
+  --button-secondary-color: var(--reverse-color);
+  --button-secondary-line-height: var(--reverse-line-height);
+  --button-secondary-letter-spacing: var(--reverse-letter-spacing);
+}
+
+  :root {
+  --button-language-font-family: var(--reverse-font-family);
+  --button-language-font-weight: 500;
+  --button-language-font-style: normal;
+  --button-language-font-size: 14px;
+  --button-language-color: var(--reverse-color);
+  --button-language-line-height: var(--reverse-line-height);
+  --button-language-letter-spacing: var(--reverse-letter-spacing);
+}
+
+  :root {
+  --button-language-selected-font-family: var(--button-language-font-family);
+  --button-language-selected-font-weight: var(--button-language-font-weight);
+  --button-language-selected-font-style: var(--button-language-font-style);
+  --button-language-selected-font-size: var(--button-language-font-size);
+  --button-language-selected-color: var(--button-language-color);
+  --button-language-selected-line-height: var(--button-language-line-height);
+  --button-language-selected-letter-spacing: var(--button-language-letter-spacing);
+}
+
+  :root {
+  --button-pill-font-family: var(--default-font-family);
+  --button-pill-font-weight: 500;
+  --button-pill-font-style: normal;
+  --button-pill-font-size: 14px;
+  --button-pill-color: var(--default-color);
+  --button-pill-line-height: var(--default-line-height);
+  --button-pill-letter-spacing: var(--default-letter-spacing);
+}
+
+  :root {
+  --text-font-family: var(--body-font-family);
+  --text-font-weight: var(--body-font-weight);
+  --text-font-style: inherit;
+  --text-font-size: inherit;
+  --text-color: var(--body-color);
+  --text-line-height: var(--body-line-height);
+  --text-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --label-font-family: var(--body-font-family);
+  --label-font-weight: var(--body-font-weight);
+  --label-font-style: inherit;
+  --label-font-size: inherit;
+  --label-color: var(--body-color);
+  --label-line-height: var(--body-line-height);
+  --label-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --text-secondary-font-family: var(--body-font-family);
+  --text-secondary-font-weight: var(--body-font-weight);
+  --text-secondary-font-style: var(--body-font-style);
+  --text-secondary-font-size: var(--body-font-size);
+  --text-secondary-color: #64748b;
+  --text-secondary-line-height: var(--body-line-height);
+  --text-secondary-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --note-font-family: var(--text-secondary-font-family);
+  --note-font-weight: var(--text-secondary-font-weight);
+  --note-font-style: inherit;
+  --note-font-size: 0.75rem;
+  --note-color: var(--text-secondary-color);
+  --note-line-height: var(--text-secondary-line-height);
+  --note-letter-spacing: var(--text-secondary-letter-spacing);
+}
+
+  :root {
+  --popup-text-font-family: var(--body-font-family);
+  --popup-text-font-weight: var(--body-font-weight);
+  --popup-text-font-style: var(--body-font-style);
+  --popup-text-font-size: var(--body-font-size);
+  --popup-text-color: var(--body-color);
+  --popup-text-line-height: var(--body-line-height);
+  --popup-text-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --popup-title-font-family: var(--popup-text-font-family);
+  --popup-title-font-weight: var(--popup-text-font-weight);
+  --popup-title-font-style: var(--popup-text-font-style);
+  --popup-title-font-size: var(--popup-text-font-size);
+  --popup-title-color: var(--popup-text-color);
+  --popup-title-line-height: var(--popup-text-line-height);
+  --popup-title-letter-spacing: var(--popup-text-letter-spacing);
+}
+
+  :root {
+  --modal-font-family: var(--popup-text-font-family);
+  --modal-font-weight: var(--popup-text-font-weight);
+  --modal-font-style: var(--popup-text-font-style);
+  --modal-font-size: var(--popup-text-font-size);
+  --modal-color: var(--popup-text-color);
+  --modal-line-height: var(--popup-text-line-height);
+  --modal-letter-spacing: var(--popup-text-letter-spacing);
+}
+
+  :root {
+  --modal-default-font-family: var(--modal-font-family);
+  --modal-default-font-weight: var(--modal-font-weight);
+  --modal-default-font-style: var(--modal-font-style);
+  --modal-default-font-size: var(--modal-font-size);
+  --modal-default-color: var(--modal-color);
+  --modal-default-line-height: var(--modal-line-height);
+  --modal-default-letter-spacing: var(--modal-letter-spacing);
+}
+
+  :root {
+  --modal-sheet-font-family: var(--modal-font-family);
+  --modal-sheet-font-weight: var(--modal-font-weight);
+  --modal-sheet-font-style: var(--modal-font-style);
+  --modal-sheet-font-size: var(--modal-font-size);
+  --modal-sheet-color: var(--modal-color);
+  --modal-sheet-line-height: var(--modal-line-height);
+  --modal-sheet-letter-spacing: var(--modal-letter-spacing);
+}
+
+  :root {
+  --modal-fullscreen-font-family: var(--modal-font-family);
+  --modal-fullscreen-font-weight: var(--modal-font-weight);
+  --modal-fullscreen-font-style: var(--modal-font-style);
+  --modal-fullscreen-font-size: var(--modal-font-size);
+  --modal-fullscreen-color: var(--modal-color);
+  --modal-fullscreen-line-height: var(--modal-line-height);
+  --modal-fullscreen-letter-spacing: var(--modal-letter-spacing);
+}
+
+  :root {
+  --popover-font-family: var(--popup-text-font-family);
+  --popover-font-weight: var(--popup-text-font-weight);
+  --popover-font-style: var(--popup-text-font-style);
+  --popover-font-size: var(--popup-text-font-size);
+  --popover-color: var(--popup-text-color);
+  --popover-line-height: var(--popup-text-line-height);
+  --popover-letter-spacing: var(--popup-text-letter-spacing);
+}
+
+  :root {
+  --popover-default-font-family: var(--popover-font-family);
+  --popover-default-font-weight: var(--popover-font-weight);
+  --popover-default-font-style: var(--popover-font-style);
+  --popover-default-font-size: var(--popover-font-size);
+  --popover-default-color: var(--popover-color);
+  --popover-default-line-height: var(--popover-line-height);
+  --popover-default-letter-spacing: var(--popover-letter-spacing);
+}
+
+  :root {
+  --popover-tooltip-font-family: var(--reverse-font-family);
+  --popover-tooltip-font-weight: var(--reverse-font-weight);
+  --popover-tooltip-font-style: var(--reverse-font-style);
+  --popover-tooltip-font-size: var(--reverse-font-size);
+  --popover-tooltip-color: var(--reverse-color);
+  --popover-tooltip-line-height: var(--reverse-line-height);
+  --popover-tooltip-letter-spacing: var(--reverse-letter-spacing);
+}
+
+  :root {
+  --toast-font-family: var(--popup-text-font-family);
+  --toast-font-weight: var(--popup-text-font-weight);
+  --toast-font-style: var(--popup-text-font-style);
+  --toast-font-size: var(--popup-text-font-size);
+  --toast-color: var(--popup-text-color);
+  --toast-line-height: var(--popup-text-line-height);
+  --toast-letter-spacing: var(--popup-text-letter-spacing);
+}
+
+  :root {
+  --toast-info-font-family: var(--toast-font-family);
+  --toast-info-font-weight: var(--toast-font-weight);
+  --toast-info-font-style: var(--toast-font-style);
+  --toast-info-font-size: var(--toast-font-size);
+  --toast-info-color: var(--toast-color);
+  --toast-info-line-height: var(--toast-line-height);
+  --toast-info-letter-spacing: var(--toast-letter-spacing);
+}
+
+  :root {
+  --toast-success-font-family: var(--toast-font-family);
+  --toast-success-font-weight: var(--toast-font-weight);
+  --toast-success-font-style: var(--toast-font-style);
+  --toast-success-font-size: var(--toast-font-size);
+  --toast-success-color: #10b981;
+  --toast-success-line-height: var(--toast-line-height);
+  --toast-success-letter-spacing: var(--toast-letter-spacing);
+}
+
+  :root {
+  --toast-warning-font-family: var(--toast-font-family);
+  --toast-warning-font-weight: var(--toast-font-weight);
+  --toast-warning-font-style: var(--toast-font-style);
+  --toast-warning-font-size: var(--toast-font-size);
+  --toast-warning-color: #f59e0b;
+  --toast-warning-line-height: var(--toast-line-height);
+  --toast-warning-letter-spacing: var(--toast-letter-spacing);
+}
+
+  :root {
+  --toast-error-font-family: var(--toast-font-family);
+  --toast-error-font-weight: var(--toast-font-weight);
+  --toast-error-font-style: var(--toast-font-style);
+  --toast-error-font-size: var(--toast-font-size);
+  --toast-error-color: #ef4444;
+  --toast-error-line-height: var(--toast-line-height);
+  --toast-error-letter-spacing: var(--toast-letter-spacing);
+}
+
+  :root {
+  --section-heading-font-family: var(--text-font-family);
+  --section-heading-font-weight: 600;
+  --section-heading-font-style: var(--text-font-style);
+  --section-heading-font-size: 1.25rem;
+  --section-heading-color: var(--text-color);
+  --section-heading-line-height: var(--text-line-height);
+  --section-heading-letter-spacing: var(--text-letter-spacing);
+}
+
+  :root {
+  --section-subheading-font-family: var(--text-font-family);
+  --section-subheading-font-weight: 500;
+  --section-subheading-font-style: var(--text-font-style);
+  --section-subheading-font-size: 1rem;
+  --section-subheading-color: var(--text-color);
+  --section-subheading-line-height: var(--text-line-height);
+  --section-subheading-letter-spacing: var(--text-letter-spacing);
+}
+
+  :root {
+  --section-body-font-family: var(--text-font-family);
+  --section-body-font-weight: var(--text-font-weight);
+  --section-body-font-style: var(--text-font-style);
+  --section-body-font-size: var(--text-font-size);
+  --section-body-color: var(--text-color);
+  --section-body-line-height: var(--text-line-height);
+  --section-body-letter-spacing: var(--text-letter-spacing);
+}
+
+  :root {
+  --text-section-heading-font-family: var(--section-heading-font-family);
+  --text-section-heading-font-weight: var(--section-heading-font-weight);
+  --text-section-heading-font-style: var(--section-heading-font-style);
+  --text-section-heading-font-size: var(--section-heading-font-size);
+  --text-section-heading-color: var(--section-heading-color);
+  --text-section-heading-line-height: var(--section-heading-line-height);
+  --text-section-heading-letter-spacing: var(--section-heading-letter-spacing);
+}
+
+  :root {
+  --text-section-subheading-font-family: var(--section-subheading-font-family);
+  --text-section-subheading-font-weight: var(--section-subheading-font-weight);
+  --text-section-subheading-font-style: var(--section-subheading-font-style);
+  --text-section-subheading-font-size: var(--section-subheading-font-size);
+  --text-section-subheading-color: var(--section-subheading-color);
+  --text-section-subheading-line-height: var(--section-subheading-line-height);
+  --text-section-subheading-letter-spacing: var(--section-subheading-letter-spacing);
+}
+
+  :root {
+  --media-section-heading-font-family: var(--section-heading-font-family);
+  --media-section-heading-font-weight: var(--section-heading-font-weight);
+  --media-section-heading-font-style: var(--section-heading-font-style);
+  --media-section-heading-font-size: var(--section-heading-font-size);
+  --media-section-heading-color: var(--section-heading-color);
+  --media-section-heading-line-height: var(--section-heading-line-height);
+  --media-section-heading-letter-spacing: var(--section-heading-letter-spacing);
+}
+
+  :root {
+  --media-section-subheading-font-family: var(--section-subheading-font-family);
+  --media-section-subheading-font-weight: var(--section-subheading-font-weight);
+  --media-section-subheading-font-style: var(--section-subheading-font-style);
+  --media-section-subheading-font-size: var(--section-subheading-font-size);
+  --media-section-subheading-color: var(--section-subheading-color);
+  --media-section-subheading-line-height: var(--section-subheading-line-height);
+  --media-section-subheading-letter-spacing: var(--section-subheading-letter-spacing);
+}
+
+  :root {
+  --media-section-caption-font-family: var(--section-body-font-family);
+  --media-section-caption-font-weight: var(--section-body-font-weight);
+  --media-section-caption-font-style: var(--section-body-font-style);
+  --media-section-caption-font-size: var(--section-body-font-size);
+  --media-section-caption-color: var(--section-body-color);
+  --media-section-caption-line-height: var(--section-body-line-height);
+  --media-section-caption-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --media-group-section-heading-font-family: var(--section-heading-font-family);
+  --media-group-section-heading-font-weight: var(--section-heading-font-weight);
+  --media-group-section-heading-font-style: var(--section-heading-font-style);
+  --media-group-section-heading-font-size: var(--section-heading-font-size);
+  --media-group-section-heading-color: var(--section-heading-color);
+  --media-group-section-heading-line-height: var(--section-heading-line-height);
+  --media-group-section-heading-letter-spacing: var(--section-heading-letter-spacing);
+}
+
+  :root {
+  --pricing-section-heading-font-family: var(--section-heading-font-family);
+  --pricing-section-heading-font-weight: var(--section-heading-font-weight);
+  --pricing-section-heading-font-style: var(--section-heading-font-style);
+  --pricing-section-heading-font-size: var(--section-heading-font-size);
+  --pricing-section-heading-color: var(--section-heading-color);
+  --pricing-section-heading-line-height: var(--section-heading-line-height);
+  --pricing-section-heading-letter-spacing: var(--section-heading-letter-spacing);
+}
+
+  :root {
+  --pricing-section-description-font-family: var(--section-body-font-family);
+  --pricing-section-description-font-weight: 500;
+  --pricing-section-description-font-style: var(--section-body-font-style);
+  --pricing-section-description-font-size: var(--section-body-font-size);
+  --pricing-section-description-color: var(--section-body-color);
+  --pricing-section-description-line-height: var(--section-body-line-height);
+  --pricing-section-description-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --opening-times-section-heading-font-family: var(--section-heading-font-family);
+  --opening-times-section-heading-font-weight: var(--section-heading-font-weight);
+  --opening-times-section-heading-font-style: var(--section-heading-font-style);
+  --opening-times-section-heading-font-size: var(--section-heading-font-size);
+  --opening-times-section-heading-color: var(--section-heading-color);
+  --opening-times-section-heading-line-height: var(--section-heading-line-height);
+  --opening-times-section-heading-letter-spacing: var(--section-heading-letter-spacing);
+}
+
+  :root {
+  --opening-times-section-description-font-family: var(--section-body-font-family);
+  --opening-times-section-description-font-weight: 500;
+  --opening-times-section-description-font-style: var(--section-body-font-style);
+  --opening-times-section-description-font-size: var(--section-body-font-size);
+  --opening-times-section-description-color: var(--section-body-color);
+  --opening-times-section-description-line-height: var(--section-body-line-height);
+  --opening-times-section-description-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --social-group-section-heading-font-family: var(--section-heading-font-family);
+  --social-group-section-heading-font-weight: var(--section-heading-font-weight);
+  --social-group-section-heading-font-style: var(--section-heading-font-style);
+  --social-group-section-heading-font-size: var(--section-heading-font-size);
+  --social-group-section-heading-color: var(--section-heading-color);
+  --social-group-section-heading-line-height: var(--section-heading-line-height);
+  --social-group-section-heading-letter-spacing: var(--section-heading-letter-spacing);
+}
+
+  :root {
+  --social-group-section-subheading-font-family: var(--section-subheading-font-family);
+  --social-group-section-subheading-font-weight: var(--section-subheading-font-weight);
+  --social-group-section-subheading-font-style: var(--section-subheading-font-style);
+  --social-group-section-subheading-font-size: var(--section-subheading-font-size);
+  --social-group-section-subheading-color: var(--section-subheading-color);
+  --social-group-section-subheading-line-height: var(--section-subheading-line-height);
+  --social-group-section-subheading-letter-spacing: var(--section-subheading-letter-spacing);
+}
+
+  :root {
+  --social-group-section-label-font-family: var(--section-body-font-family);
+  --social-group-section-label-font-weight: 500;
+  --social-group-section-label-font-style: var(--section-body-font-style);
+  --social-group-section-label-font-size: var(--section-body-font-size);
+  --social-group-section-label-color: var(--section-body-color);
+  --social-group-section-label-line-height: var(--section-body-line-height);
+  --social-group-section-label-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --link-group-section-heading-font-family: var(--section-heading-font-family);
+  --link-group-section-heading-font-weight: var(--section-heading-font-weight);
+  --link-group-section-heading-font-style: var(--section-heading-font-style);
+  --link-group-section-heading-font-size: var(--section-heading-font-size);
+  --link-group-section-heading-color: var(--section-heading-color);
+  --link-group-section-heading-line-height: var(--section-heading-line-height);
+  --link-group-section-heading-letter-spacing: var(--section-heading-letter-spacing);
+}
+
+  :root {
+  --link-group-section-subheading-font-family: var(--section-subheading-font-family);
+  --link-group-section-subheading-font-weight: var(--section-subheading-font-weight);
+  --link-group-section-subheading-font-style: var(--section-subheading-font-style);
+  --link-group-section-subheading-font-size: var(--section-subheading-font-size);
+  --link-group-section-subheading-color: var(--section-subheading-color);
+  --link-group-section-subheading-line-height: var(--section-subheading-line-height);
+  --link-group-section-subheading-letter-spacing: var(--section-subheading-letter-spacing);
+}
+
+  :root {
+  --link-group-section-label-font-family: var(--section-body-font-family);
+  --link-group-section-label-font-weight: 500;
+  --link-group-section-label-font-style: var(--section-body-font-style);
+  --link-group-section-label-font-size: var(--section-body-font-size);
+  --link-group-section-label-color: var(--section-body-color);
+  --link-group-section-label-line-height: var(--section-body-line-height);
+  --link-group-section-label-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --link-group-section-button-label-font-family: var(--button-primary-font-family);
+  --link-group-section-button-label-font-weight: 600;
+  --link-group-section-button-label-font-style: var(--button-primary-font-style);
+  --link-group-section-button-label-font-size: 16px;
+  --link-group-section-button-label-color: var(--button-primary-color);
+  --link-group-section-button-label-line-height: var(--button-primary-line-height);
+  --link-group-section-button-label-letter-spacing: var(--button-primary-letter-spacing);
+}
+
+  :root {
+  --badge-group-section-heading-font-family: var(--section-heading-font-family);
+  --badge-group-section-heading-font-weight: var(--section-heading-font-weight);
+  --badge-group-section-heading-font-style: var(--section-heading-font-style);
+  --badge-group-section-heading-font-size: var(--section-heading-font-size);
+  --badge-group-section-heading-color: var(--section-heading-color);
+  --badge-group-section-heading-line-height: var(--section-heading-line-height);
+  --badge-group-section-heading-letter-spacing: var(--section-heading-letter-spacing);
+}
+
+  :root {
+  --badge-group-section-subheading-font-family: var(--section-subheading-font-family);
+  --badge-group-section-subheading-font-weight: var(--section-subheading-font-weight);
+  --badge-group-section-subheading-font-style: var(--section-subheading-font-style);
+  --badge-group-section-subheading-font-size: var(--section-subheading-font-size);
+  --badge-group-section-subheading-color: var(--section-subheading-color);
+  --badge-group-section-subheading-line-height: var(--section-subheading-line-height);
+  --badge-group-section-subheading-letter-spacing: var(--section-subheading-letter-spacing);
+}
+
+  :root {
+  --badge-title-font-family: var(--text-font-family);
+  --badge-title-font-weight: 600;
+  --badge-title-font-style: var(--text-font-style);
+  --badge-title-font-size: 0.875rem;
+  --badge-title-color: var(--text-color);
+  --badge-title-line-height: 1.4444;
+  --badge-title-letter-spacing: var(--text-letter-spacing);
+}
+
+  :root {
+  --image-slider-section-heading-font-family: var(--section-heading-font-family);
+  --image-slider-section-heading-font-weight: var(--section-heading-font-weight);
+  --image-slider-section-heading-font-style: var(--section-heading-font-style);
+  --image-slider-section-heading-font-size: var(--section-heading-font-size);
+  --image-slider-section-heading-color: var(--section-heading-color);
+  --image-slider-section-heading-line-height: var(--section-heading-line-height);
+  --image-slider-section-heading-letter-spacing: var(--section-heading-letter-spacing);
+}
+
+  :root {
+  --image-slider-section-subheading-font-family: var(--section-subheading-font-family);
+  --image-slider-section-subheading-font-weight: var(--section-subheading-font-weight);
+  --image-slider-section-subheading-font-style: var(--section-subheading-font-style);
+  --image-slider-section-subheading-font-size: var(--section-subheading-font-size);
+  --image-slider-section-subheading-color: var(--section-subheading-color);
+  --image-slider-section-subheading-line-height: var(--section-subheading-line-height);
+  --image-slider-section-subheading-letter-spacing: var(--section-subheading-letter-spacing);
+}
+
+  :root {
+  --image-slider-section-caption-font-family: var(--section-body-font-family);
+  --image-slider-section-caption-font-weight: 300;
+  --image-slider-section-caption-font-style: var(--section-body-font-style);
+  --image-slider-section-caption-font-size: 0.9375rem;
+  --image-slider-section-caption-color: var(--section-body-color);
+  --image-slider-section-caption-line-height: var(--section-body-line-height);
+  --image-slider-section-caption-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --slideshow-section-heading-font-family: var(--section-heading-font-family);
+  --slideshow-section-heading-font-weight: var(--section-heading-font-weight);
+  --slideshow-section-heading-font-style: var(--section-heading-font-style);
+  --slideshow-section-heading-font-size: var(--section-heading-font-size);
+  --slideshow-section-heading-color: var(--section-heading-color);
+  --slideshow-section-heading-line-height: var(--section-heading-line-height);
+  --slideshow-section-heading-letter-spacing: var(--section-heading-letter-spacing);
+}
+
+  :root {
+  --slideshow-section-subheading-font-family: var(--section-subheading-font-family);
+  --slideshow-section-subheading-font-weight: var(--section-subheading-font-weight);
+  --slideshow-section-subheading-font-style: var(--section-subheading-font-style);
+  --slideshow-section-subheading-font-size: var(--section-subheading-font-size);
+  --slideshow-section-subheading-color: var(--section-subheading-color);
+  --slideshow-section-subheading-line-height: var(--section-subheading-line-height);
+  --slideshow-section-subheading-letter-spacing: var(--section-subheading-letter-spacing);
+}
+
+  :root {
+  --slideshow-section-caption-font-family: var(--section-body-font-family);
+  --slideshow-section-caption-font-weight: var(--section-body-font-weight);
+  --slideshow-section-caption-font-style: var(--section-body-font-style);
+  --slideshow-section-caption-font-size: var(--section-body-font-size);
+  --slideshow-section-caption-color: var(--section-body-color);
+  --slideshow-section-caption-line-height: var(--section-body-line-height);
+  --slideshow-section-caption-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --slideshow-section-title-font-family: var(--section-body-font-family);
+  --slideshow-section-title-font-weight: 600;
+  --slideshow-section-title-font-style: var(--section-body-font-style);
+  --slideshow-section-title-font-size: var(--section-body-font-size);
+  --slideshow-section-title-color: var(--section-body-color);
+  --slideshow-section-title-line-height: var(--section-body-line-height);
+  --slideshow-section-title-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --slideshow-section-meta-font-family: var(--section-body-font-family);
+  --slideshow-section-meta-font-weight: var(--section-body-font-weight);
+  --slideshow-section-meta-font-style: var(--section-body-font-style);
+  --slideshow-section-meta-font-size: 0.8125rem;
+  --slideshow-section-meta-color: var(--section-body-color);
+  --slideshow-section-meta-line-height: var(--section-body-line-height);
+  --slideshow-section-meta-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --menu-section-heading-font-family: var(--section-heading-font-family);
+  --menu-section-heading-font-weight: var(--section-heading-font-weight);
+  --menu-section-heading-font-style: var(--section-heading-font-style);
+  --menu-section-heading-font-size: var(--section-heading-font-size);
+  --menu-section-heading-color: var(--section-heading-color);
+  --menu-section-heading-line-height: var(--section-heading-line-height);
+  --menu-section-heading-letter-spacing: var(--section-heading-letter-spacing);
+}
+
+  :root {
+  --menu-section-subheading-font-family: var(--section-subheading-font-family);
+  --menu-section-subheading-font-weight: var(--section-subheading-font-weight);
+  --menu-section-subheading-font-style: var(--section-subheading-font-style);
+  --menu-section-subheading-font-size: var(--section-subheading-font-size);
+  --menu-section-subheading-color: var(--section-subheading-color);
+  --menu-section-subheading-line-height: var(--section-subheading-line-height);
+  --menu-section-subheading-letter-spacing: var(--section-subheading-letter-spacing);
+}
+
+  :root {
+  --quiz-question-section-heading-font-family: var(--section-heading-font-family);
+  --quiz-question-section-heading-font-weight: var(--section-heading-font-weight);
+  --quiz-question-section-heading-font-style: var(--section-heading-font-style);
+  --quiz-question-section-heading-font-size: var(--section-heading-font-size);
+  --quiz-question-section-heading-color: var(--section-heading-color);
+  --quiz-question-section-heading-line-height: var(--section-heading-line-height);
+  --quiz-question-section-heading-letter-spacing: var(--section-heading-letter-spacing);
+}
+
+  :root {
+  --quiz-question-section-subheading-font-family: var(--section-subheading-font-family);
+  --quiz-question-section-subheading-font-weight: var(--section-subheading-font-weight);
+  --quiz-question-section-subheading-font-style: var(--section-subheading-font-style);
+  --quiz-question-section-subheading-font-size: var(--section-subheading-font-size);
+  --quiz-question-section-subheading-color: var(--section-subheading-color);
+  --quiz-question-section-subheading-line-height: var(--section-subheading-line-height);
+  --quiz-question-section-subheading-letter-spacing: var(--section-subheading-letter-spacing);
+}
+
+  :root {
+  --quiz-question-section-question-font-family: var(--section-body-font-family);
+  --quiz-question-section-question-font-weight: 600;
+  --quiz-question-section-question-font-style: var(--section-body-font-style);
+  --quiz-question-section-question-font-size: 1.125rem;
+  --quiz-question-section-question-color: var(--section-body-color);
+  --quiz-question-section-question-line-height: 1.45;
+  --quiz-question-section-question-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --quiz-question-section-answer-label-font-family: var(--section-body-font-family);
+  --quiz-question-section-answer-label-font-weight: 500;
+  --quiz-question-section-answer-label-font-style: var(--section-body-font-style);
+  --quiz-question-section-answer-label-font-size: var(--section-body-font-size);
+  --quiz-question-section-answer-label-color: var(--section-body-color);
+  --quiz-question-section-answer-label-line-height: var(--section-body-line-height);
+  --quiz-question-section-answer-label-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --quiz-score-section-heading-font-family: var(--section-heading-font-family);
+  --quiz-score-section-heading-font-weight: var(--section-heading-font-weight);
+  --quiz-score-section-heading-font-style: var(--section-heading-font-style);
+  --quiz-score-section-heading-font-size: var(--section-heading-font-size);
+  --quiz-score-section-heading-color: var(--section-heading-color);
+  --quiz-score-section-heading-line-height: var(--section-heading-line-height);
+  --quiz-score-section-heading-letter-spacing: var(--section-heading-letter-spacing);
+}
+
+  :root {
+  --quiz-score-section-subheading-font-family: var(--section-subheading-font-family);
+  --quiz-score-section-subheading-font-weight: var(--section-subheading-font-weight);
+  --quiz-score-section-subheading-font-style: var(--section-subheading-font-style);
+  --quiz-score-section-subheading-font-size: var(--section-subheading-font-size);
+  --quiz-score-section-subheading-color: var(--section-subheading-color);
+  --quiz-score-section-subheading-line-height: var(--section-subheading-line-height);
+  --quiz-score-section-subheading-letter-spacing: var(--section-subheading-letter-spacing);
+}
+
+  :root {
+  --quiz-score-section-label-font-family: var(--section-body-font-family);
+  --quiz-score-section-label-font-weight: 500;
+  --quiz-score-section-label-font-style: var(--section-body-font-style);
+  --quiz-score-section-label-font-size: 1rem;
+  --quiz-score-section-label-color: var(--section-body-color);
+  --quiz-score-section-label-line-height: var(--section-body-line-height);
+  --quiz-score-section-label-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --quiz-score-section-score-font-family: var(--section-heading-font-family);
+  --quiz-score-section-score-font-weight: 700;
+  --quiz-score-section-score-font-style: var(--section-heading-font-style);
+  --quiz-score-section-score-font-size: 1.75rem;
+  --quiz-score-section-score-color: var(--section-heading-color);
+  --quiz-score-section-score-line-height: 1.1;
+  --quiz-score-section-score-letter-spacing: -0.01em;
+}
+
+  :root {
+  --quiz-score-section-message-font-family: var(--section-body-font-family);
+  --quiz-score-section-message-font-weight: var(--section-body-font-weight);
+  --quiz-score-section-message-font-style: var(--section-body-font-style);
+  --quiz-score-section-message-font-size: var(--section-body-font-size);
+  --quiz-score-section-message-color: var(--section-body-color);
+  --quiz-score-section-message-line-height: var(--section-body-line-height);
+  --quiz-score-section-message-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --location-section-heading-font-family: var(--section-heading-font-family);
+  --location-section-heading-font-weight: var(--section-heading-font-weight);
+  --location-section-heading-font-style: var(--section-heading-font-style);
+  --location-section-heading-font-size: var(--section-heading-font-size);
+  --location-section-heading-color: var(--section-heading-color);
+  --location-section-heading-line-height: var(--section-heading-line-height);
+  --location-section-heading-letter-spacing: var(--section-heading-letter-spacing);
+}
+
+  :root {
+  --location-section-subheading-font-family: var(--section-subheading-font-family);
+  --location-section-subheading-font-weight: var(--section-subheading-font-weight);
+  --location-section-subheading-font-style: var(--section-subheading-font-style);
+  --location-section-subheading-font-size: var(--section-subheading-font-size);
+  --location-section-subheading-color: var(--section-subheading-color);
+  --location-section-subheading-line-height: var(--section-subheading-line-height);
+  --location-section-subheading-letter-spacing: var(--section-subheading-letter-spacing);
+}
+
+  :root {
+  --location-section-description-font-family: var(--section-body-font-family);
+  --location-section-description-font-weight: var(--section-body-font-weight);
+  --location-section-description-font-style: var(--section-body-font-style);
+  --location-section-description-font-size: 0.875rem;
+  --location-section-description-color: var(--section-body-color);
+  --location-section-description-line-height: 1.28571;
+  --location-section-description-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --google-place-section-heading-font-family: var(--section-heading-font-family);
+  --google-place-section-heading-font-weight: var(--section-heading-font-weight);
+  --google-place-section-heading-font-style: var(--section-heading-font-style);
+  --google-place-section-heading-font-size: var(--section-heading-font-size);
+  --google-place-section-heading-color: var(--section-heading-color);
+  --google-place-section-heading-line-height: var(--section-heading-line-height);
+  --google-place-section-heading-letter-spacing: var(--section-heading-letter-spacing);
+}
+
+  :root {
+  --google-place-section-name-font-family: var(--section-body-font-family);
+  --google-place-section-name-font-weight: 500;
+  --google-place-section-name-font-style: var(--section-body-font-style);
+  --google-place-section-name-font-size: var(--section-body-font-size);
+  --google-place-section-name-color: var(--section-body-color);
+  --google-place-section-name-line-height: var(--section-body-line-height);
+  --google-place-section-name-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --google-place-section-detail-font-family: var(--section-body-font-family);
+  --google-place-section-detail-font-weight: var(--section-body-font-weight);
+  --google-place-section-detail-font-style: var(--section-body-font-style);
+  --google-place-section-detail-font-size: var(--section-body-font-size);
+  --google-place-section-detail-color: var(--section-body-color);
+  --google-place-section-detail-line-height: var(--section-body-line-height);
+  --google-place-section-detail-letter-spacing: var(--section-body-letter-spacing);
+}
+
+  :root {
+  --card-font-family: var(--body-font-family);
+  --card-font-weight: var(--body-font-weight);
+  --card-font-style: var(--body-font-style);
+  --card-font-size: var(--body-font-size);
+  --card-color: var(--body-color);
+  --card-line-height: var(--body-line-height);
+  --card-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --card-default-font-family: var(--card-font-family);
+  --card-default-font-weight: var(--card-font-weight);
+  --card-default-font-style: var(--card-font-style);
+  --card-default-font-size: var(--card-font-size);
+  --card-default-color: var(--card-color);
+  --card-default-line-height: var(--card-line-height);
+  --card-default-letter-spacing: var(--card-letter-spacing);
+}
+
+  :root {
+  --card-elevated-font-family: var(--card-font-family);
+  --card-elevated-font-weight: var(--card-font-weight);
+  --card-elevated-font-style: var(--card-font-style);
+  --card-elevated-font-size: var(--card-font-size);
+  --card-elevated-color: var(--card-color);
+  --card-elevated-line-height: var(--card-line-height);
+  --card-elevated-letter-spacing: var(--card-letter-spacing);
+}
+
+  :root {
+  --card-outlined-font-family: var(--card-font-family);
+  --card-outlined-font-weight: var(--card-font-weight);
+  --card-outlined-font-style: var(--card-font-style);
+  --card-outlined-font-size: var(--card-font-size);
+  --card-outlined-color: var(--card-color);
+  --card-outlined-line-height: var(--card-line-height);
+  --card-outlined-letter-spacing: var(--card-letter-spacing);
+}
+
+  :root {
+  --card-title-font-family: var(--card-font-family);
+  --card-title-font-weight: 600;
+  --card-title-font-style: normal;
+  --card-title-font-size: 1.125rem;
+  --card-title-color: var(--card-color);
+  --card-title-line-height: var(--card-line-height);
+  --card-title-letter-spacing: var(--card-letter-spacing);
+}
+
+  :root {
+  --code-lock-title-font-family: var(--card-title-font-family);
+  --code-lock-title-font-weight: var(--card-title-font-weight);
+  --code-lock-title-font-style: var(--card-title-font-style);
+  --code-lock-title-font-size: 1.25rem;
+  --code-lock-title-color: var(--card-title-color);
+  --code-lock-title-line-height: var(--card-title-line-height);
+  --code-lock-title-letter-spacing: var(--card-title-letter-spacing);
+}
+
+  :root {
+  --code-lock-description-font-family: var(--body-font-family);
+  --code-lock-description-font-weight: var(--body-font-weight);
+  --code-lock-description-font-style: var(--body-font-style);
+  --code-lock-description-font-size: var(--body-font-size);
+  --code-lock-description-color: var(--body-color);
+  --code-lock-description-line-height: var(--body-line-height);
+  --code-lock-description-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --card-subtitle-font-family: var(--card-font-family);
+  --card-subtitle-font-weight: var(--card-font-weight);
+  --card-subtitle-font-style: normal;
+  --card-subtitle-font-size: 0.875rem;
+  --card-subtitle-color: var(--card-color);
+  --card-subtitle-line-height: var(--card-line-height);
+  --card-subtitle-letter-spacing: var(--card-letter-spacing);
+}
+
+  :root {
+  --item-font-family: var(--body-font-family);
+  --item-font-weight: var(--body-font-weight);
+  --item-font-style: normal;
+  --item-font-size: 1rem;
+  --item-color: var(--body-color);
+  --item-line-height: var(--body-line-height);
+  --item-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --item-default-font-family: var(--item-font-family);
+  --item-default-font-weight: var(--item-font-weight);
+  --item-default-font-style: var(--item-font-style);
+  --item-default-font-size: var(--item-font-size);
+  --item-default-color: var(--item-color);
+  --item-default-line-height: var(--item-line-height);
+  --item-default-letter-spacing: var(--item-letter-spacing);
+}
+
+  :root {
+  --item-interactive-font-family: var(--item-font-family);
+  --item-interactive-font-weight: var(--item-font-weight);
+  --item-interactive-font-style: var(--item-font-style);
+  --item-interactive-font-size: var(--item-font-size);
+  --item-interactive-color: var(--item-color);
+  --item-interactive-line-height: var(--item-line-height);
+  --item-interactive-letter-spacing: var(--item-letter-spacing);
+}
+
+  :root {
+  --item-header-font-family: var(--text-secondary-font-family);
+  --item-header-font-weight: var(--text-secondary-font-weight);
+  --item-header-font-style: var(--text-secondary-font-style);
+  --item-header-font-size: 0.75rem;
+  --item-header-color: var(--text-secondary-color);
+  --item-header-line-height: var(--text-secondary-line-height);
+  --item-header-letter-spacing: var(--text-secondary-letter-spacing);
+}
+
+  :root {
+  --input-font-family: var(--body-font-family);
+  --input-font-weight: var(--body-font-weight);
+  --input-font-style: normal;
+  --input-font-size: 1rem;
+  --input-color: var(--body-color);
+  --input-line-height: var(--body-line-height);
+  --input-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --input-default-font-family: var(--input-font-family);
+  --input-default-font-weight: var(--input-font-weight);
+  --input-default-font-style: var(--input-font-style);
+  --input-default-font-size: var(--input-font-size);
+  --input-default-color: var(--input-color);
+  --input-default-line-height: var(--input-line-height);
+  --input-default-letter-spacing: var(--input-letter-spacing);
+}
+
+  :root {
+  --input-outlined-font-family: var(--input-font-family);
+  --input-outlined-font-weight: var(--input-font-weight);
+  --input-outlined-font-style: var(--input-font-style);
+  --input-outlined-font-size: var(--input-font-size);
+  --input-outlined-color: var(--input-color);
+  --input-outlined-line-height: var(--input-line-height);
+  --input-outlined-letter-spacing: var(--input-letter-spacing);
+}
+
+  :root {
+  --input-filled-font-family: var(--input-font-family);
+  --input-filled-font-weight: var(--input-font-weight);
+  --input-filled-font-style: var(--input-font-style);
+  --input-filled-font-size: var(--input-font-size);
+  --input-filled-color: var(--input-color);
+  --input-filled-line-height: var(--input-line-height);
+  --input-filled-letter-spacing: var(--input-letter-spacing);
+}
+
+  :root {
+  --textarea-font-family: var(--input-font-family);
+  --textarea-font-weight: var(--input-font-weight);
+  --textarea-font-style: var(--input-font-style);
+  --textarea-font-size: var(--input-font-size);
+  --textarea-color: var(--input-color);
+  --textarea-line-height: var(--input-line-height);
+  --textarea-letter-spacing: var(--input-letter-spacing);
+}
+
+  :root {
+  --textarea-default-font-family: var(--input-default-font-family);
+  --textarea-default-font-weight: var(--input-default-font-weight);
+  --textarea-default-font-style: var(--input-default-font-style);
+  --textarea-default-font-size: var(--input-default-font-size);
+  --textarea-default-color: var(--input-default-color);
+  --textarea-default-line-height: var(--input-default-line-height);
+  --textarea-default-letter-spacing: var(--input-default-letter-spacing);
+}
+
+  :root {
+  --textarea-outlined-font-family: var(--input-outlined-font-family);
+  --textarea-outlined-font-weight: var(--input-outlined-font-weight);
+  --textarea-outlined-font-style: var(--input-outlined-font-style);
+  --textarea-outlined-font-size: var(--input-outlined-font-size);
+  --textarea-outlined-color: var(--input-outlined-color);
+  --textarea-outlined-line-height: var(--input-outlined-line-height);
+  --textarea-outlined-letter-spacing: var(--input-outlined-letter-spacing);
+}
+
+  :root {
+  --textarea-filled-font-family: var(--input-filled-font-family);
+  --textarea-filled-font-weight: var(--input-filled-font-weight);
+  --textarea-filled-font-style: var(--input-filled-font-style);
+  --textarea-filled-font-size: var(--input-filled-font-size);
+  --textarea-filled-color: var(--input-filled-color);
+  --textarea-filled-line-height: var(--input-filled-line-height);
+  --textarea-filled-letter-spacing: var(--input-filled-letter-spacing);
+}
+
+  :root {
+  --rating-caption-font-family: var(--body-font-family);
+  --rating-caption-font-weight: var(--body-font-weight);
+  --rating-caption-font-style: var(--body-font-style);
+  --rating-caption-font-size: 0.875rem;
+  --rating-caption-color: var(--body-color);
+  --rating-caption-line-height: var(--body-line-height);
+  --rating-caption-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --segment-button-font-family: var(--body-font-family);
+  --segment-button-font-weight: var(--body-font-weight);
+  --segment-button-font-style: normal;
+  --segment-button-font-size: 0.875rem;
+  --segment-button-color: var(--body-color);
+  --segment-button-line-height: var(--body-line-height);
+  --segment-button-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --segment-button-default-font-family: var(--segment-button-font-family);
+  --segment-button-default-font-weight: var(--segment-button-font-weight);
+  --segment-button-default-font-style: var(--segment-button-font-style);
+  --segment-button-default-font-size: var(--segment-button-font-size);
+  --segment-button-default-color: var(--segment-button-color);
+  --segment-button-default-line-height: var(--segment-button-line-height);
+  --segment-button-default-letter-spacing: var(--segment-button-letter-spacing);
+}
+
+  :root {
+  --audio-card-title-font-family: var(--body-font-family);
+  --audio-card-title-font-weight: 600;
+  --audio-card-title-font-style: var(--body-font-style);
+  --audio-card-title-font-size: var(--body-font-size);
+  --audio-card-title-color: var(--body-color);
+  --audio-card-title-line-height: 1.25;
+  --audio-card-title-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --settings-label-font-family: var(--body-font-family);
+  --settings-label-font-weight: 500;
+  --settings-label-font-style: var(--body-font-style);
+  --settings-label-font-size: inherit;
+  --settings-label-color: var(--body-color);
+  --settings-label-line-height: inherit;
+  --settings-label-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --settings-value-font-family: var(--body-font-family);
+  --settings-value-font-weight: var(--body-font-weight);
+  --settings-value-font-style: var(--body-font-style);
+  --settings-value-font-size: inherit;
+  --settings-value-color: var(--body-color);
+  --settings-value-line-height: inherit;
+  --settings-value-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --transcript-available-font-family: var(--body-font-family);
+  --transcript-available-font-weight: 700;
+  --transcript-available-font-style: var(--body-font-style);
+  --transcript-available-font-size: 12px;
+  --transcript-available-color: var(--body-color);
+  --transcript-available-line-height: normal;
+  --transcript-available-letter-spacing: 1px;
+}
+
+  :root {
+  --tour-overview-header-start-font-family: var(--title-bar-font-family);
+  --tour-overview-header-start-font-weight: var(--title-bar-font-weight);
+  --tour-overview-header-start-font-style: var(--title-bar-font-style);
+  --tour-overview-header-start-font-size: var(--title-bar-font-size);
+  --tour-overview-header-start-color: #ffffff;
+  --tour-overview-header-start-line-height: var(--title-bar-line-height);
+  --tour-overview-header-start-letter-spacing: var(--title-bar-letter-spacing);
+}
+
+  :root {
+  --tour-overview-header-end-font-family: var(--title-bar-font-family);
+  --tour-overview-header-end-font-weight: var(--title-bar-font-weight);
+  --tour-overview-header-end-font-style: var(--title-bar-font-style);
+  --tour-overview-header-end-font-size: var(--title-bar-font-size);
+  --tour-overview-header-end-color: var(--title-bar-color);
+  --tour-overview-header-end-line-height: var(--title-bar-line-height);
+  --tour-overview-header-end-letter-spacing: var(--title-bar-letter-spacing);
+}
+
+  :root {
+  --collection-list-item-title-font-family: var(--reverse-font-family);
+  --collection-list-item-title-font-weight: var(--reverse-font-weight);
+  --collection-list-item-title-font-style: var(--reverse-font-style);
+  --collection-list-item-title-font-size: var(--reverse-font-size);
+  --collection-list-item-title-color: var(--reverse-color);
+  --collection-list-item-title-line-height: var(--reverse-line-height);
+  --collection-list-item-title-letter-spacing: var(--reverse-letter-spacing);
+}
+
+  :root {
+  --stop-row-title-font-family: var(--body-font-family);
+  --stop-row-title-font-weight: 600;
+  --stop-row-title-font-style: var(--body-font-style);
+  --stop-row-title-font-size: var(--body-font-size);
+  --stop-row-title-color: var(--body-color);
+  --stop-row-title-line-height: var(--body-line-height);
+  --stop-row-title-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --stop-row-label-font-family: var(--body-font-family);
+  --stop-row-label-font-weight: var(--body-font-weight);
+  --stop-row-label-font-style: var(--body-font-style);
+  --stop-row-label-font-size: 12px;
+  --stop-row-label-color: var(--body-color);
+  --stop-row-label-line-height: var(--body-line-height);
+  --stop-row-label-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --audio-transport-font-family: var(--stop-row-title-font-family);
+  --audio-transport-font-weight: 400;
+  --audio-transport-font-style: var(--stop-row-title-font-style);
+  --audio-transport-font-size: var(--stop-row-title-font-size);
+  --audio-transport-color: var(--stop-row-title-color);
+  --audio-transport-line-height: var(--stop-row-title-line-height);
+  --audio-transport-letter-spacing: var(--stop-row-title-letter-spacing);
+}
+
+  :root {
+  --audio-transport-time-font-family: var(--audio-transport-font-family);
+  --audio-transport-time-font-weight: 500;
+  --audio-transport-time-font-style: var(--audio-transport-font-style);
+  --audio-transport-time-font-size: 10px;
+  --audio-transport-time-color: var(--audio-transport-color);
+  --audio-transport-time-line-height: var(--audio-transport-line-height);
+  --audio-transport-time-letter-spacing: var(--audio-transport-letter-spacing);
+}
+
+  :root {
+  --header-bar-font-family: var(--body-font-family);
+  --header-bar-font-weight: var(--body-font-weight);
+  --header-bar-font-style: var(--body-font-style);
+  --header-bar-font-size: var(--body-font-size);
+  --header-bar-color: var(--body-color);
+  --header-bar-line-height: var(--body-line-height);
+  --header-bar-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --chat-message-font-family: var(--body-font-family);
+  --chat-message-font-weight: var(--body-font-weight);
+  --chat-message-font-style: var(--body-font-style);
+  --chat-message-font-size: var(--body-font-size);
+  --chat-message-color: var(--body-color);
+  --chat-message-line-height: var(--body-line-height);
+  --chat-message-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --chat-header-title-font-family: var(--heading-font-family);
+  --chat-header-title-font-weight: var(--heading-font-weight);
+  --chat-header-title-font-style: var(--heading-font-style);
+  --chat-header-title-font-size: var(--heading-font-size);
+  --chat-header-title-color: var(--heading-color);
+  --chat-header-title-line-height: var(--heading-line-height);
+  --chat-header-title-letter-spacing: var(--heading-letter-spacing);
+}
+
+  :root {
+  --chat-header-subtitle-font-family: var(--note-font-family);
+  --chat-header-subtitle-font-weight: var(--note-font-weight);
+  --chat-header-subtitle-font-style: var(--note-font-style);
+  --chat-header-subtitle-font-size: var(--note-font-size);
+  --chat-header-subtitle-color: var(--note-color);
+  --chat-header-subtitle-line-height: var(--note-line-height);
+  --chat-header-subtitle-letter-spacing: var(--note-letter-spacing);
+}
+
+  :root {
+  --chat-source-card-title-font-family: var(--body-font-family);
+  --chat-source-card-title-font-weight: 600;
+  --chat-source-card-title-font-style: var(--body-font-style);
+  --chat-source-card-title-font-size: var(--body-font-size);
+  --chat-source-card-title-color: var(--body-color);
+  --chat-source-card-title-line-height: var(--body-line-height);
+  --chat-source-card-title-letter-spacing: var(--body-letter-spacing);
+}
+
+  :root {
+  --chat-source-card-meta-font-family: var(--note-font-family);
+  --chat-source-card-meta-font-weight: var(--note-font-weight);
+  --chat-source-card-meta-font-style: var(--note-font-style);
+  --chat-source-card-meta-font-size: var(--note-font-size);
+  --chat-source-card-meta-color: var(--note-color);
+  --chat-source-card-meta-line-height: var(--note-line-height);
+  --chat-source-card-meta-letter-spacing: var(--note-letter-spacing);
+}
+
+  :root {
+  --chat-disclosure-font-family: var(--note-font-family);
+  --chat-disclosure-font-weight: var(--note-font-weight);
+  --chat-disclosure-font-style: var(--note-font-style);
+  --chat-disclosure-font-size: var(--note-font-size);
+  --chat-disclosure-color: var(--note-color);
+  --chat-disclosure-line-height: var(--note-line-height);
+  --chat-disclosure-letter-spacing: var(--note-letter-spacing);
+}
+
+
+  :root {
+  --primary-color: #033857;
+  --primary-color-rgb: 3 56 87;
+}
+
+  :root {
+  --secondary-color: #11657d;
+  --secondary-color-rgb: 17 101 125;
+}
+
+  :root {
+  --background-color: #F8F8FA;
+  --background-color-rgb: 248 248 250;
+}
+
+  :root {
+  --page-background-color: var(--background-color);
+  --page-background-color-rgb: var(--background-color-rgb);
+}
+
+  :root {
+  --app-background-color: var(--background-color);
+  --app-background-color-rgb: var(--background-color-rgb);
+}
+
+  :root {
+  --loading-background-color: var(--background-color);
+  --loading-background-color-rgb: var(--background-color-rgb);
+}
+
+  :root {
+  --title-bar-background-color: var(--background-color);
+  --title-bar-background-color-rgb: var(--background-color-rgb);
+}
+
+  :root {
+  --tab-bar-background-color: var(--primary-color);
+  --tab-bar-background-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --tour-bar-background-color: var(--tab-bar-background-color);
+  --tour-bar-background-color-rgb: var(--tab-bar-background-color-rgb);
+}
+
+  :root {
+  --keypad-background-color: var(--secondary-color);
+  --keypad-background-color-rgb: var(--secondary-color-rgb);
+}
+
+  :root {
+  --keypad-border-color: var(--secondary-color);
+  --keypad-border-color-rgb: var(--secondary-color-rgb);
+}
+
+  :root {
+  --tab-bar-content-color: #ffffff;
+  --tab-bar-content-color-rgb: 255 255 255;
+}
+
+  :root {
+  --border-base-color: #000000;
+  --border-base-color-rgb: 0 0 0;
+}
+
+  :root {
+  --warning-background-color: #dd2233;
+  --warning-background-color-rgb: 221 34 51;
+}
+
+  :root {
+  --form-input-border-color: #d1d5db;
+  --form-input-border-color-rgb: 209 213 219;
+}
+
+  :root {
+  --form-input-disabled-background-color: #f3f4f6;
+  --form-input-disabled-background-color-rgb: 243 244 246;
+}
+
+  :root {
+  --form-error-color: #dc2626;
+  --form-error-color-rgb: 220 38 38;
+}
+
+  :root {
+  --fullscreen-audio-player-background-color: var(--primary-color);
+  --fullscreen-audio-player-background-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --fullscreen-audio-player-transcript-background-color: var(--secondary-color);
+  --fullscreen-audio-player-transcript-background-color-rgb: var(--secondary-color-rgb);
+}
+
+  :root {
+  --bar-audio-player-background-color: var(--secondary-color);
+  --bar-audio-player-background-color-rgb: var(--secondary-color-rgb);
+}
+
+  :root {
+  --audio-player-now-playing-color: var(--primary-color);
+  --audio-player-now-playing-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --tour-overview-header-start-background-color: transparent;
+}
+
+  :root {
+  --tour-overview-header-end-background-color: var(--title-bar-background-color);
+  --tour-overview-header-end-background-color-rgb: var(--title-bar-background-color-rgb);
+}
+
+  :root {
+  --surface-color: #f8fafc;
+  --surface-color-rgb: 248 250 252;
+}
+
+  :root {
+  --feedback-success-color: #4a990a;
+  --feedback-success-color-rgb: 74 153 10;
+}
+
+  :root {
+  --feedback-success-fill-color: #d1fae5;
+  --feedback-success-fill-color-rgb: 209 250 229;
+}
+
+  :root {
+  --feedback-warning-color: #f59e0b;
+  --feedback-warning-color-rgb: 245 158 11;
+}
+
+  :root {
+  --feedback-warning-fill-color: #fef3c7;
+  --feedback-warning-fill-color-rgb: 254 243 199;
+}
+
+  :root {
+  --feedback-error-color: #ef4444;
+  --feedback-error-color-rgb: 239 68 68;
+}
+
+  :root {
+  --feedback-error-fill-color: #fee2e2;
+  --feedback-error-fill-color-rgb: 254 226 226;
+}
+
+  :root {
+  --popup-surface-color: var(--page-background-color);
+  --popup-surface-color-rgb: var(--page-background-color-rgb);
+}
+
+  :root {
+  --on-primary-color: #f8f8fa;
+  --on-primary-color-rgb: 248 248 250;
+}
+
+  :root {
+  --on-secondary-color: var(--on-primary-color);
+  --on-secondary-color-rgb: var(--on-primary-color-rgb);
+}
+
+  :root {
+  --border-subtle-color: #DBE3E8;
+  --border-subtle-color-rgb: 219 227 232;
+}
+
+  :root {
+  --button-fill-color: var(--primary-color);
+  --button-fill-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --button-border-color: transparent;
+}
+
+  :root {
+  --button-primary-fill-color: var(--button-fill-color);
+  --button-primary-fill-color-rgb: var(--button-fill-color-rgb);
+}
+
+  :root {
+  --button-primary-border-color: var(--button-border-color);
+}
+
+  :root {
+  --button-secondary-fill-color: #d8e7f0;
+  --button-secondary-fill-color-rgb: 216 231 240;
+}
+
+  :root {
+  --button-secondary-border-color: var(--button-border-color);
+}
+
+  :root {
+  --button-language-fill-color: var(--button-fill-color);
+  --button-language-fill-color-rgb: var(--button-fill-color-rgb);
+}
+
+  :root {
+  --button-language-border-color: var(--button-border-color);
+}
+
+  :root {
+  --button-language-selected-fill-color: var(--button-language-fill-color);
+  --button-language-selected-fill-color-rgb: var(--button-language-fill-color-rgb);
+}
+
+  :root {
+  --button-language-selected-border-color: var(--button-language-border-color);
+}
+
+  :root {
+  --button-pill-fill-color: var(--surface-color);
+  --button-pill-fill-color-rgb: var(--surface-color-rgb);
+}
+
+  :root {
+  --button-pill-border-color: var(--button-border-color);
+}
+
+  :root {
+  --card-fill-color: var(--surface-color);
+  --card-fill-color-rgb: var(--surface-color-rgb);
+}
+
+  :root {
+  --card-border-color: transparent;
+}
+
+  :root {
+  --card-default-fill-color: var(--card-fill-color);
+  --card-default-fill-color-rgb: var(--card-fill-color-rgb);
+}
+
+  :root {
+  --card-default-border-color: var(--card-border-color);
+}
+
+  :root {
+  --card-elevated-fill-color: var(--card-fill-color);
+  --card-elevated-fill-color-rgb: var(--card-fill-color-rgb);
+}
+
+  :root {
+  --card-elevated-border-color: var(--card-border-color);
+}
+
+  :root {
+  --card-outlined-fill-color: var(--card-fill-color);
+  --card-outlined-fill-color-rgb: var(--card-fill-color-rgb);
+}
+
+  :root {
+  --card-outlined-border-color: var(--border-subtle-color);
+  --card-outlined-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --list-fill-color: transparent;
+}
+
+  :root {
+  --item-fill-color: var(--surface-color);
+  --item-fill-color-rgb: var(--surface-color-rgb);
+}
+
+  :root {
+  --item-border-color: transparent;
+}
+
+  :root {
+  --item-default-fill-color: var(--item-fill-color);
+  --item-default-fill-color-rgb: var(--item-fill-color-rgb);
+}
+
+  :root {
+  --item-default-border-color: var(--item-border-color);
+}
+
+  :root {
+  --item-interactive-fill-color: var(--item-fill-color);
+  --item-interactive-fill-color-rgb: var(--item-fill-color-rgb);
+}
+
+  :root {
+  --item-interactive-border-color: var(--item-border-color);
+}
+
+  :root {
+  --item-header-fill-color: transparent;
+}
+
+  :root {
+  --item-header-border-color: var(--item-border-color);
+}
+
+  :root {
+  --input-fill-color: transparent;
+}
+
+  :root {
+  --input-default-fill-color: var(--input-fill-color);
+}
+
+  :root {
+  --input-outlined-fill-color: var(--input-fill-color);
+}
+
+  :root {
+  --input-filled-fill-color: var(--surface-color);
+  --input-filled-fill-color-rgb: var(--surface-color-rgb);
+}
+
+  :root {
+  --input-placeholder-color: #64748b;
+  --input-placeholder-color-rgb: 100 116 139;
+}
+
+  :root {
+  --input-default-placeholder-color: var(--input-placeholder-color);
+  --input-default-placeholder-color-rgb: var(--input-placeholder-color-rgb);
+}
+
+  :root {
+  --input-outlined-placeholder-color: var(--input-placeholder-color);
+  --input-outlined-placeholder-color-rgb: var(--input-placeholder-color-rgb);
+}
+
+  :root {
+  --input-filled-placeholder-color: var(--input-placeholder-color);
+  --input-filled-placeholder-color-rgb: var(--input-placeholder-color-rgb);
+}
+
+  :root {
+  --input-border-color: var(--border-subtle-color);
+  --input-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --input-default-border-color: var(--input-border-color);
+  --input-default-border-color-rgb: var(--input-border-color-rgb);
+}
+
+  :root {
+  --input-outlined-border-color: var(--input-border-color);
+  --input-outlined-border-color-rgb: var(--input-border-color-rgb);
+}
+
+  :root {
+  --input-filled-border-color: transparent;
+}
+
+  :root {
+  --textarea-fill-color: var(--input-fill-color);
+}
+
+  :root {
+  --textarea-default-fill-color: var(--input-default-fill-color);
+}
+
+  :root {
+  --textarea-outlined-fill-color: var(--input-outlined-fill-color);
+}
+
+  :root {
+  --textarea-filled-fill-color: var(--input-filled-fill-color);
+  --textarea-filled-fill-color-rgb: var(--input-filled-fill-color-rgb);
+}
+
+  :root {
+  --textarea-placeholder-color: var(--input-placeholder-color);
+  --textarea-placeholder-color-rgb: var(--input-placeholder-color-rgb);
+}
+
+  :root {
+  --textarea-default-placeholder-color: var(--input-default-placeholder-color);
+  --textarea-default-placeholder-color-rgb: var(--input-default-placeholder-color-rgb);
+}
+
+  :root {
+  --textarea-outlined-placeholder-color: var(--input-outlined-placeholder-color);
+  --textarea-outlined-placeholder-color-rgb: var(--input-outlined-placeholder-color-rgb);
+}
+
+  :root {
+  --textarea-filled-placeholder-color: var(--input-filled-placeholder-color);
+  --textarea-filled-placeholder-color-rgb: var(--input-filled-placeholder-color-rgb);
+}
+
+  :root {
+  --textarea-border-color: var(--input-border-color);
+  --textarea-border-color-rgb: var(--input-border-color-rgb);
+}
+
+  :root {
+  --textarea-default-border-color: var(--input-default-border-color);
+  --textarea-default-border-color-rgb: var(--input-default-border-color-rgb);
+}
+
+  :root {
+  --textarea-outlined-border-color: var(--input-outlined-border-color);
+  --textarea-outlined-border-color-rgb: var(--input-outlined-border-color-rgb);
+}
+
+  :root {
+  --textarea-filled-border-color: var(--input-filled-border-color);
+}
+
+  :root {
+  --rating-color: var(--primary-color);
+  --rating-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --rating-inactive-color: var(--input-outlined-border-color);
+  --rating-inactive-color-rgb: var(--input-outlined-border-color-rgb);
+}
+
+  :root {
+  --checkbox-fill-color: transparent;
+}
+
+  :root {
+  --checkbox-checked-fill-color: var(--primary-color);
+  --checkbox-checked-fill-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --checkbox-checkmark-color: var(--on-primary-color);
+  --checkbox-checkmark-color-rgb: var(--on-primary-color-rgb);
+}
+
+  :root {
+  --checkbox-default-fill-color: var(--checkbox-fill-color);
+}
+
+  :root {
+  --checkbox-default-checked-fill-color: var(--checkbox-checked-fill-color);
+  --checkbox-default-checked-fill-color-rgb: var(--checkbox-checked-fill-color-rgb);
+}
+
+  :root {
+  --checkbox-default-checkmark-color: var(--checkbox-checkmark-color);
+  --checkbox-default-checkmark-color-rgb: var(--checkbox-checkmark-color-rgb);
+}
+
+  :root {
+  --checkbox-border-color: var(--border-subtle-color);
+  --checkbox-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --checkbox-default-border-color: var(--checkbox-border-color);
+  --checkbox-default-border-color-rgb: var(--checkbox-border-color-rgb);
+}
+
+  :root {
+  --segment-fill-color: var(--surface-color);
+  --segment-fill-color-rgb: var(--surface-color-rgb);
+}
+
+  :root {
+  --segment-default-fill-color: var(--segment-fill-color);
+  --segment-default-fill-color-rgb: var(--segment-fill-color-rgb);
+}
+
+  :root {
+  --segment-pill-fill-color: var(--segment-fill-color);
+  --segment-pill-fill-color-rgb: var(--segment-fill-color-rgb);
+}
+
+  :root {
+  --segment-border-color: var(--border-subtle-color);
+  --segment-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --segment-default-border-color: var(--segment-border-color);
+  --segment-default-border-color-rgb: var(--segment-border-color-rgb);
+}
+
+  :root {
+  --segment-pill-border-color: var(--segment-border-color);
+  --segment-pill-border-color-rgb: var(--segment-border-color-rgb);
+}
+
+  :root {
+  --segment-button-fill-color: transparent;
+}
+
+  :root {
+  --segment-button-border-color: transparent;
+}
+
+  :root {
+  --segment-button-default-fill-color: var(--segment-button-fill-color);
+}
+
+  :root {
+  --segment-button-default-border-color: var(--segment-button-border-color);
+}
+
+  :root {
+  --spinner-color: var(--primary-color);
+  --spinner-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --spinner-circle-color: var(--spinner-color);
+  --spinner-circle-color-rgb: var(--spinner-color-rgb);
+}
+
+  :root {
+  --spinner-crescent-color: var(--spinner-color);
+  --spinner-crescent-color-rgb: var(--spinner-color-rgb);
+}
+
+  :root {
+  --progressbar-track-color: var(--border-subtle-color);
+  --progressbar-track-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --progressbar-fill-color: var(--primary-color);
+  --progressbar-fill-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --progressbar-determinate-track-color: var(--progressbar-track-color);
+  --progressbar-determinate-track-color-rgb: var(--progressbar-track-color-rgb);
+}
+
+  :root {
+  --progressbar-determinate-fill-color: var(--progressbar-fill-color);
+  --progressbar-determinate-fill-color-rgb: var(--progressbar-fill-color-rgb);
+}
+
+  :root {
+  --progressbar-indeterminate-track-color: var(--progressbar-track-color);
+  --progressbar-indeterminate-track-color-rgb: var(--progressbar-track-color-rgb);
+}
+
+  :root {
+  --progressbar-indeterminate-fill-color: var(--progressbar-fill-color);
+  --progressbar-indeterminate-fill-color-rgb: var(--progressbar-fill-color-rgb);
+}
+
+  :root {
+  --modal-fill-color: var(--popup-surface-color);
+  --modal-fill-color-rgb: var(--popup-surface-color-rgb);
+}
+
+  :root {
+  --modal-default-fill-color: var(--modal-fill-color);
+  --modal-default-fill-color-rgb: var(--modal-fill-color-rgb);
+}
+
+  :root {
+  --modal-sheet-fill-color: var(--modal-fill-color);
+  --modal-sheet-fill-color-rgb: var(--modal-fill-color-rgb);
+}
+
+  :root {
+  --modal-fullscreen-fill-color: var(--modal-fill-color);
+  --modal-fullscreen-fill-color-rgb: var(--modal-fill-color-rgb);
+}
+
+  :root {
+  --popover-fill-color: var(--popup-surface-color);
+  --popover-fill-color-rgb: var(--popup-surface-color-rgb);
+}
+
+  :root {
+  --popover-default-fill-color: var(--popover-fill-color);
+  --popover-default-fill-color-rgb: var(--popover-fill-color-rgb);
+}
+
+  :root {
+  --popover-tooltip-fill-color: #0f172a;
+  --popover-tooltip-fill-color-rgb: 15 23 42;
+}
+
+  :root {
+  --modal-border-color: transparent;
+}
+
+  :root {
+  --modal-default-border-color: var(--modal-border-color);
+}
+
+  :root {
+  --modal-sheet-border-color: var(--modal-border-color);
+}
+
+  :root {
+  --modal-fullscreen-border-color: var(--modal-border-color);
+}
+
+  :root {
+  --popover-border-color: var(--border-subtle-color);
+  --popover-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --popover-default-border-color: var(--popover-border-color);
+  --popover-default-border-color-rgb: var(--popover-border-color-rgb);
+}
+
+  :root {
+  --popover-tooltip-border-color: transparent;
+}
+
+  :root {
+  --toast-fill-color: var(--popup-surface-color);
+  --toast-fill-color-rgb: var(--popup-surface-color-rgb);
+}
+
+  :root {
+  --toast-info-fill-color: var(--toast-fill-color);
+  --toast-info-fill-color-rgb: var(--toast-fill-color-rgb);
+}
+
+  :root {
+  --toast-success-fill-color: var(--feedback-success-fill-color);
+  --toast-success-fill-color-rgb: var(--feedback-success-fill-color-rgb);
+}
+
+  :root {
+  --toast-warning-fill-color: var(--feedback-warning-fill-color);
+  --toast-warning-fill-color-rgb: var(--feedback-warning-fill-color-rgb);
+}
+
+  :root {
+  --toast-error-fill-color: var(--feedback-error-fill-color);
+  --toast-error-fill-color-rgb: var(--feedback-error-fill-color-rgb);
+}
+
+  :root {
+  --toast-border-color: var(--border-subtle-color);
+  --toast-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --toast-info-border-color: var(--toast-border-color);
+  --toast-info-border-color-rgb: var(--toast-border-color-rgb);
+}
+
+  :root {
+  --toast-success-border-color: var(--feedback-success-color);
+  --toast-success-border-color-rgb: var(--feedback-success-color-rgb);
+}
+
+  :root {
+  --toast-warning-border-color: var(--feedback-warning-color);
+  --toast-warning-border-color-rgb: var(--feedback-warning-color-rgb);
+}
+
+  :root {
+  --toast-error-border-color: var(--feedback-error-color);
+  --toast-error-border-color-rgb: var(--feedback-error-color-rgb);
+}
+
+  :root {
+  --text-section-link-color: #d6e31c;
+  --text-section-link-color-rgb: 214 227 28;
+}
+
+  :root {
+  --text-section-shadow-color: var(--page-background-color);
+  --text-section-shadow-color-rgb: var(--page-background-color-rgb);
+}
+
+  :root {
+  --code-lock-link-color: var(--primary-color);
+  --code-lock-link-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --code-lock-error-color: var(--feedback-error-color);
+  --code-lock-error-color-rgb: var(--feedback-error-color-rgb);
+}
+
+  :root {
+  --code-lock-backdrop-color: #000000;
+  --code-lock-backdrop-color-rgb: 0 0 0;
+}
+
+  :root {
+  --media-section-shadow-color: var(--page-background-color);
+  --media-section-shadow-color-rgb: var(--page-background-color-rgb);
+}
+
+  :root {
+  --carousel-dot-color: var(--border-subtle-color);
+  --carousel-dot-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --carousel-dot-active-color: var(--primary-color);
+  --carousel-dot-active-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --media-group-section-border-color: var(--border-subtle-color);
+  --media-group-section-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --pricing-section-border-color: var(--border-subtle-color);
+  --pricing-section-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --opening-times-section-border-color: var(--border-subtle-color);
+  --opening-times-section-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --social-group-section-icon-color: var(--primary-color);
+  --social-group-section-icon-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --social-group-section-border-color: var(--border-subtle-color);
+  --social-group-section-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --link-group-section-icon-color: var(--primary-color);
+  --link-group-section-icon-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --link-group-section-border-color: var(--border-subtle-color);
+  --link-group-section-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --link-group-section-button-fill-color: var(--button-primary-fill-color);
+  --link-group-section-button-fill-color-rgb: var(--button-primary-fill-color-rgb);
+}
+
+  :root {
+  --link-group-section-button-border-color: var(--button-primary-border-color);
+}
+
+  :root {
+  --icon-tile-fill-color: transparent;
+}
+
+  :root {
+  --icon-tile-icon-color: var(--primary-color);
+  --icon-tile-icon-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --icon-tile-border-color: var(--border-subtle-color);
+  --icon-tile-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --icon-tile-solid-fill-color: var(--primary-color);
+  --icon-tile-solid-fill-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --icon-tile-solid-icon-color: #ffffff;
+  --icon-tile-solid-icon-color-rgb: 255 255 255;
+}
+
+  :root {
+  --icon-tile-solid-border-color: var(--icon-tile-border-color);
+  --icon-tile-solid-border-color-rgb: var(--icon-tile-border-color-rgb);
+}
+
+  :root {
+  --icon-tile-soft-fill-color: var(--border-subtle-color);
+  --icon-tile-soft-fill-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --icon-tile-soft-icon-color: var(--primary-color);
+  --icon-tile-soft-icon-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --icon-tile-soft-border-color: var(--icon-tile-border-color);
+  --icon-tile-soft-border-color-rgb: var(--icon-tile-border-color-rgb);
+}
+
+  :root {
+  --icon-tile-glass-fill-color: #000000;
+  --icon-tile-glass-fill-color-rgb: 0 0 0;
+}
+
+  :root {
+  --icon-tile-glass-icon-color: #ffffff;
+  --icon-tile-glass-icon-color-rgb: 255 255 255;
+}
+
+  :root {
+  --icon-tile-glass-border-color: var(--icon-tile-border-color);
+  --icon-tile-glass-border-color-rgb: var(--icon-tile-border-color-rgb);
+}
+
+  :root {
+  --stop-row-fill-color: transparent;
+}
+
+  :root {
+  --stop-row-border-color: var(--border-subtle-color);
+  --stop-row-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --stop-row-placeholder-fill-color: var(--border-subtle-color);
+  --stop-row-placeholder-fill-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --header-bar-fill-color: var(--background-color);
+  --header-bar-fill-color-rgb: var(--background-color-rgb);
+}
+
+  :root {
+  --header-bar-image-color: #ffffff;
+  --header-bar-image-color-rgb: 255 255 255;
+}
+
+  :root {
+  --audio-transport-track-color: var(--border-subtle-color);
+  --audio-transport-track-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --audio-transport-divider-color: var(--stop-row-border-color);
+  --audio-transport-divider-color-rgb: var(--stop-row-border-color-rgb);
+}
+
+  :root {
+  --badge-fill-color: var(--page-background-color);
+  --badge-fill-color-rgb: var(--page-background-color-rgb);
+}
+
+  :root {
+  --badge-border-color: var(--border-subtle-color);
+  --badge-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --badge-ring-track-color: var(--border-subtle-color);
+  --badge-ring-track-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --badge-ring-progress-color: var(--button-primary-fill-color);
+  --badge-ring-progress-color-rgb: var(--button-primary-fill-color-rgb);
+}
+
+  :root {
+  --badge-placeholder-fill-color: #ececec;
+  --badge-placeholder-fill-color-rgb: 236 236 236;
+}
+
+  :root {
+  --badge-placeholder-glyph-color: #9b9b9b;
+  --badge-placeholder-glyph-color-rgb: 155 155 155;
+}
+
+  :root {
+  --image-slider-section-divider-color: #ffffff;
+  --image-slider-section-divider-color-rgb: 255 255 255;
+}
+
+  :root {
+  --slideshow-section-play-fill-color: var(--page-background-color);
+  --slideshow-section-play-fill-color-rgb: var(--page-background-color-rgb);
+}
+
+  :root {
+  --slideshow-section-now-playing-color: transparent;
+}
+
+  :root {
+  --menu-section-control-fill-color: #00000040;
+}
+
+  :root {
+  --menu-section-control-hover-fill-color: #00000066;
+}
+
+  :root {
+  --menu-section-control-border-color: #ffffff33;
+}
+
+  :root {
+  --menu-section-control-color: var(--on-primary-color);
+  --menu-section-control-color-rgb: var(--on-primary-color-rgb);
+}
+
+  :root {
+  --menu-section-shadow-color: var(--page-background-color);
+  --menu-section-shadow-color-rgb: var(--page-background-color-rgb);
+}
+
+  :root {
+  --quiz-question-section-answer-fill-color: var(--input-outlined-fill-color);
+}
+
+  :root {
+  --quiz-question-section-answer-border-color: var(--input-outlined-border-color);
+  --quiz-question-section-answer-border-color-rgb: var(--input-outlined-border-color-rgb);
+}
+
+  :root {
+  --quiz-question-section-selected-border-color: var(--primary-color);
+  --quiz-question-section-selected-border-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --quiz-question-section-correct-color: var(--feedback-success-color);
+  --quiz-question-section-correct-color-rgb: var(--feedback-success-color-rgb);
+}
+
+  :root {
+  --quiz-question-section-incorrect-color: var(--feedback-error-color);
+  --quiz-question-section-incorrect-color-rgb: var(--feedback-error-color-rgb);
+}
+
+  :root {
+  --quiz-question-section-shadow-color: var(--page-background-color);
+  --quiz-question-section-shadow-color-rgb: var(--page-background-color-rgb);
+}
+
+  :root {
+  --quiz-score-section-icon-color: var(--primary-color);
+  --quiz-score-section-icon-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --quiz-score-section-shadow-color: var(--page-background-color);
+  --quiz-score-section-shadow-color-rgb: var(--page-background-color-rgb);
+}
+
+  :root {
+  --form-section-rating-color: var(--rating-color);
+  --form-section-rating-color-rgb: var(--rating-color-rgb);
+}
+
+  :root {
+  --form-section-rating-inactive-color: var(--rating-inactive-color);
+  --form-section-rating-inactive-color-rgb: var(--rating-inactive-color-rgb);
+}
+
+  :root {
+  --form-section-shadow-color: var(--page-background-color);
+  --form-section-shadow-color-rgb: var(--page-background-color-rgb);
+}
+
+  :root {
+  --location-section-border-color: #0000001a;
+}
+
+  :root {
+  --location-section-description-fill-color: var(--background-color);
+  --location-section-description-fill-color-rgb: var(--background-color-rgb);
+}
+
+  :root {
+  --location-section-shadow-color: var(--page-background-color);
+  --location-section-shadow-color-rgb: var(--page-background-color-rgb);
+}
+
+  :root {
+  --google-place-section-icon-color: var(--primary-color);
+  --google-place-section-icon-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --google-place-section-border-color: var(--border-subtle-color);
+  --google-place-section-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --google-place-section-shadow-color: var(--page-background-color);
+  --google-place-section-shadow-color-rgb: var(--page-background-color-rgb);
+}
+
+  :root {
+  --chat-bot-avatar-fill-color: var(--primary-color);
+  --chat-bot-avatar-fill-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --chat-bot-avatar-icon-color: var(--on-primary-color);
+  --chat-bot-avatar-icon-color-rgb: var(--on-primary-color-rgb);
+}
+
+  :root {
+  --chat-bot-bubble-fill-color: var(--surface-color);
+  --chat-bot-bubble-fill-color-rgb: var(--surface-color-rgb);
+}
+
+  :root {
+  --chat-visitor-bubble-fill-color: var(--secondary-color);
+  --chat-visitor-bubble-fill-color-rgb: var(--secondary-color-rgb);
+}
+
+  :root {
+  --chat-visitor-bubble-text-color: var(--on-secondary-color);
+  --chat-visitor-bubble-text-color-rgb: var(--on-secondary-color-rgb);
+}
+
+  :root {
+  --chat-send-fill-color: var(--secondary-color);
+  --chat-send-fill-color-rgb: var(--secondary-color-rgb);
+}
+
+  :root {
+  --chat-send-icon-color: var(--on-secondary-color);
+  --chat-send-icon-color-rgb: var(--on-secondary-color-rgb);
+}
+
+  :root {
+  --chat-input-fill-color: var(--input-filled-fill-color);
+  --chat-input-fill-color-rgb: var(--input-filled-fill-color-rgb);
+}
+
+  :root {
+  --chat-input-placeholder-color: var(--input-filled-placeholder-color);
+  --chat-input-placeholder-color-rgb: var(--input-filled-placeholder-color-rgb);
+}
+
+  :root {
+  --chat-source-card-fill-color: var(--background-color);
+  --chat-source-card-fill-color-rgb: var(--background-color-rgb);
+}
+
+  :root {
+  --chat-source-card-border-color: var(--border-subtle-color);
+  --chat-source-card-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --chat-divider-color: var(--border-subtle-color);
+  --chat-divider-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --chat-feedback-icon-color: var(--input-placeholder-color);
+  --chat-feedback-icon-color-rgb: var(--input-placeholder-color-rgb);
+}
+
+  :root {
+  --chat-feedback-icon-selected-color: var(--primary-color);
+  --chat-feedback-icon-selected-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --chat-suggestion-fill-color: var(--background-color);
+  --chat-suggestion-fill-color-rgb: var(--background-color-rgb);
+}
+
+  :root {
+  --chat-suggestion-border-color: var(--border-subtle-color);
+  --chat-suggestion-border-color-rgb: var(--border-subtle-color-rgb);
+}
+
+  :root {
+  --chat-suggestion-icon-color: var(--input-placeholder-color);
+  --chat-suggestion-icon-color-rgb: var(--input-placeholder-color-rgb);
+}
+
+  :root {
+  --email-background-color: #f4f5f7;
+  --email-background-color-rgb: 244 245 247;
+}
+
+  :root {
+  --email-surface-color: #ffffff;
+  --email-surface-color-rgb: 255 255 255;
+}
+
+  :root {
+  --email-header-background-color: var(--email-surface-color);
+  --email-header-background-color-rgb: var(--email-surface-color-rgb);
+}
+
+  :root {
+  --email-header-text-color: var(--email-heading-color);
+  --email-header-text-color-rgb: var(--email-heading-color-rgb);
+}
+
+  :root {
+  --email-heading-color: #1a1d21;
+  --email-heading-color-rgb: 26 29 33;
+}
+
+  :root {
+  --email-text-color: #464a4e;
+  --email-text-color-rgb: 70 74 78;
+}
+
+  :root {
+  --email-muted-color: #8a9099;
+  --email-muted-color-rgb: 138 144 153;
+}
+
+  :root {
+  --email-border-color: #e4e6ea;
+  --email-border-color-rgb: 228 230 234;
+}
+
+  :root {
+  --email-panel-color: #f6f8fb;
+  --email-panel-color-rgb: 246 248 251;
+}
+
+  :root {
+  --email-accent-color: var(--primary-color);
+  --email-accent-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --email-on-accent-color: var(--on-primary-color);
+  --email-on-accent-color-rgb: var(--on-primary-color-rgb);
+}
+
+  :root {
+  --email-button-color: var(--button-primary-fill-color);
+  --email-button-color-rgb: var(--button-primary-fill-color-rgb);
+}
+
+  :root {
+  --email-on-button-color: var(--on-primary-color);
+  --email-on-button-color-rgb: var(--on-primary-color-rgb);
+}
+
+  :root {
+  --email-callout-background-color: #fdf6ec;
+  --email-callout-background-color-rgb: 253 246 236;
+}
+
+  :root {
+  --email-callout-text-color: #b7791f;
+  --email-callout-text-color-rgb: 183 121 31;
+}
+
+  :root {
+  --payment-modal-background-color: #ffffff;
+  --payment-modal-background-color-rgb: 255 255 255;
+}
+
+  :root {
+  --payment-modal-text-color: #1a1d21;
+  --payment-modal-text-color-rgb: 26 29 33;
+}
+
+  :root {
+  --payment-modal-border-color: #d1d5db;
+  --payment-modal-border-color-rgb: 209 213 219;
+}
+
+  :root {
+  --payment-modal-accent-color: var(--primary-color);
+  --payment-modal-accent-color-rgb: var(--primary-color-rgb);
+}
+
+  :root {
+  --payment-modal-button-color: var(--button-primary-fill-color);
+  --payment-modal-button-color-rgb: var(--button-primary-fill-color-rgb);
+}
+
+  :root {
+  --payment-modal-on-button-color: var(--on-primary-color);
+  --payment-modal-on-button-color-rgb: var(--on-primary-color-rgb);
+}
+
+
+
+
+
+
+</style>
+  <style>
+    :root {
+      --font-body: var(--body-font-family);
+      --font-heading: var(--heading-font-family);
+      --default-font-family: var(--font-body);
+    }
+  </style>
+
+  <title>Construction of Chateau Tongariro - Manawatū Heritage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="3dc-kvJ7tDRR2sLHzKtJ-W9DiZUsdNQanOM3EW0ZWQnULyUg3U9w8GXrf5nGmykVQrDI23ujBUMD7h3jF_rSbA" />
+  <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "flowbite": "/assets/flowbite-3fe13fabd16b4a23845c3120ae857c06c21903ba09cbf5ad91a58f0ce0f09748.js",
+    "@rails/ujs": "/assets/rails_ujs_esm-03021d9e8bc53fbd2a7a332dd423d826cfddc0e11bcd82b800cfda0ae53a3307.js",
+    "active_admin": "/assets/active_admin-03392389ca428464667e1dd62ec4a1f2b78a8732eb43bfc77b435f052665efcd.js",
+    "controllers/hw_combobox_controller": "/assets/hotwire_combobox.esm-a3ccdee72f8d3810bba06be0643e79cc2259cd16bfe1ee2b12721f56dc61fa8d.js",
+    "application": "/assets/application-76147ef47541a8c0a0343bd51725ed2eeda2f608dfef216d57d3f8092fd1aef0.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-b86d83036ff04169e5bf3ebbc82e0ad528456259e47091b448f41a3cadabdb40.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
+    "openseadragon": "/assets/openseadragon-60060cb1eb668375a8dc499716898e644eed89230a42edfcefd3dc57a4583f78.js",
+    "masonry-layout": "/assets/masonry-layout-f64938b1c404be8689b5f14fe909e22d65b3489d7aa8cb49a878b157802e85ac.js",
+    "dropzone": "/assets/dropzone-9a6bf7c4f776793127ba53faf1e0ac9be57a3cd7432d67f016f653d44351adba.js",
+    "just-extend": "/assets/just-extend-a1b27c637af9af679b25716d5518012cb638cf65c128b1a6ddfa726c3f13e8d0.js",
+    "trix": "/assets/trix-d240b6c804f99e29f5ba3efaf14373ab0cc97860e3e1110b6fdc925d8ff9d277.js",
+    "@rails/actiontext": "/assets/actiontext.esm-20b79cd0284fd0b78d86554fa51994f05c5e3db02fd65f7dcd2c62085c0fb46e.js",
+    "leaflet": "/assets/leaflet-1ff69389014a18c608b592e65d97e24f63d9582e02ab27d42386857456e36c8e.js",
+    "leaflet-geotag-photo": "https://unpkg.com/leaflet-geotag-photo/dist/Leaflet.GeotagPhoto.min.js",
+    "pdfjs-dist": "/assets/pdfjs-dist-47174a230aef82e5d69dfc3e9bbdbdbafc1888f6b9c4098b8f3c888d6acb9e42.js",
+    "active_admin/features/batch_actions": "/assets/active_admin/features/batch_actions-54e29b5025e6d0de009b922f6cd0a149f441190a69cd747c6898a17043395ad7.js",
+    "active_admin/features/dark_mode_toggle": "/assets/active_admin/features/dark_mode_toggle-f50b25b255510d25620c1c04ceb075baadcda82fb3ae48940e0f57ea66648d34.js",
+    "active_admin/features/filters": "/assets/active_admin/features/filters-fd2da714dd2865e54ce7caff5347099dc4f8a3ff89d5bc5602617089544cdfba.js",
+    "active_admin/features/has_many": "/assets/active_admin/features/has_many-ec835f28e199016b37cab7613f4720a2d5fe81907d183adb18f550712789b595.js",
+    "active_admin/features/main_menu": "/assets/active_admin/features/main_menu-f0525c1316253bc1a197bb0d92bb4e0e2a2ebbf9d9b3d987788add9208ac00d6.js",
+    "active_admin/features/per_page": "/assets/active_admin/features/per_page-ba324008a598ff21f9a9a6aa681e7b633ae0693fe18bd7abd527fde69b285b4f.js",
+    "active_admin/utils/dom": "/assets/active_admin/utils/dom-29d04bcb2191c53e6356f1ef3f2706b9da3ce10fee834036eed3651aea72e467.js",
+    "controllers/application": "/assets/controllers/application-992de401b2daa10b774ececa0f4b3a9a17784229cf80053802bb0278bea09c8d.js",
+    "controllers/audio_player_controller": "/assets/controllers/audio_player_controller-637bb2b29ec649d231c6a76941fea9b6c3fd5acb9d2edce1d5197e7c4baca957.js",
+    "controllers/authority_file_filter_controller": "/assets/controllers/authority_file_filter_controller-197553e58fe954cf83b789f8cafd54324fdd67cdaff6f8f617a4416a47770310.js",
+    "controllers/auto_width_select_controller": "/assets/controllers/auto_width_select_controller-b9f13bf8665e8ee647a4f1a624207bf402700b3ae62b4f3629d0ba3f091ee2ce.js",
+    "controllers/base_filter_controller": "/assets/controllers/base_filter_controller-8525098dbc9ce581489bdea87c1f19efdbc5ab62207464af7bc039f099c0284e.js",
+    "controllers/breadcrumbs_filter_controller": "/assets/controllers/breadcrumbs_filter_controller-60907a118f27df6749b22bea0bea8a42dcc67d79603d0433baf34e2753080fbb.js",
+    "controllers/browse_layout_controller": "/assets/controllers/browse_layout_controller-57a3853343a478fc3738f07ab08b5777ff3c8ca53cbd5682816b2cd11cfa9166.js",
+    "controllers/browse_loading_controller": "/assets/controllers/browse_loading_controller-e55444601eaa1a1e6e6a2a2f25e167a42a57663223ca4a8096aa6cdbc587a50f.js",
+    "controllers/clipboard_controller": "/assets/controllers/clipboard_controller-6e3b6492075257bba787041ab5819c6f961ec5674b05232eacab6497948f6cac.js",
+    "controllers/collapsible_header_controller": "/assets/controllers/collapsible_header_controller-2a4b4dddbba7b9ee3473f67d0c0951699cf97789f68eae4a6e1ae8d6e81057bb.js",
+    "controllers/combobox_controller": "/assets/controllers/combobox_controller-1ffe0f5b4c48472f90fde50fc84a17f6f8a370c7d633342cb6cfe7d3cb8980bc.js",
+    "controllers/date_filter_controller": "/assets/controllers/date_filter_controller-1b68ebfd5c5a348594022879788e40517d9878b021fa49cbb29e0c781bc54e54.js",
+    "controllers/debounced_search_controller": "/assets/controllers/debounced_search_controller-f7dd8eaed5a3c8f43e3b4586c640062bb21b5f9e710e0f7541f765317c8d3c14.js",
+    "controllers/dialog_controller": "/assets/controllers/dialog_controller-9fc99d80167f412bccd1506bab1a20a668b10532b6d315c3895ae22087c02036.js",
+    "controllers/disclosure_controller": "/assets/controllers/disclosure_controller-39157ebb9eb17bc82b6b4c9c8f8e4c14f75d1aedb9f6dd97c5786f3ea64f6428.js",
+    "controllers/dismissible_controller": "/assets/controllers/dismissible_controller-442b74c9a307945b7ef7927accd96558e0a01ead2344e342875e0511dd5c4b42.js",
+    "controllers/dropdown_controller": "/assets/controllers/dropdown_controller-832204ef450a7e8dc24bd2ede5cad0a1c940da3a887fe5eb8d4d64abea763d5f.js",
+    "controllers/dropzone_controller": "/assets/controllers/dropzone_controller-f053acc2d6e5abfcbf7161b77bee96e3fdbb863adb9688aba036cc0684ae13cf.js",
+    "controllers/filter_header_controller": "/assets/controllers/filter_header_controller-4380cbe959eb896e2a78c8a152d76cc8c013aff5997dd9828a0cc427bae39baf.js",
+    "controllers/form_embed_controller": "/assets/controllers/form_embed_controller-487280e7b969f38f9ff1cf34488c7441dff8d3e4f6b839ae13c5c29f4e3fa31e.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-2108543635323ded619403cd609e3bb61fdfba6d6ff4ec345c8a6890b36f85ce.js",
+    "controllers": "/assets/controllers/index-f842da3f4f8c2da9bc73fb712aea4e26dc29cb1539737f5cf4fddd42fa2be4f6.js",
+    "controllers/leaflet_controller": "/assets/controllers/leaflet_controller-ada9cfcc39555a2b04c9a7794bb815dd72aa19553943d4a57b11d88f561c71e7.js",
+    "controllers/masonry_controller": "/assets/controllers/masonry_controller-802ebac888819db782a91550470c5230930e2e7122c668059d64040a240c2c44.js",
+    "controllers/modal_controller": "/assets/controllers/modal_controller-d7f2e0d7d0069bcb154da0d50dee7ff60e748340f052c88ec8a9624e84e163b0.js",
+    "controllers/openseadragon_controller": "/assets/controllers/openseadragon_controller-fe8f6db9325051a2d2d9d5adf2d7b03ab64cef6647867701837e26cadfd34277.js",
+    "controllers/pagination_controller": "/assets/controllers/pagination_controller-2c943055a83aa2f744cf83b76429cbe1e3aa5d659e9a47b08b6b595a8072292d.js",
+    "controllers/password_validation_controller": "/assets/controllers/password_validation_controller-21ffcb3610631eb6f6c88feab6ab7dc76ec3b8f3102093b1daa6c8566b323ab2.js",
+    "controllers/pdf_viewer_controller": "/assets/controllers/pdf_viewer_controller-e6d865d3a91a2583b7a59460cb230b045b43d37c2be2e03ce8130b6878166fc1.js",
+    "controllers/popover_controller": "/assets/controllers/popover_controller-2b7a18c4b738903f3c22d616ff3b6427754c2db8211f27975038c3ba536c00fa.js",
+    "controllers/scroll_memory_controller": "/assets/controllers/scroll_memory_controller-0cb30dce175d3911526c34e0266908dc06a299b16b37afea937de9df693826b1.js",
+    "controllers/search_controller": "/assets/controllers/search_controller-0a86cf696ca859593de21d1c68f86470d03254f2ce09014ee110efad06f7ed2b.js",
+    "controllers/search_params_controller": "/assets/controllers/search_params_controller-dd413fe848de77121c51829377cb575461b9dab36b2d36e46970c6cce5070c77.js",
+    "controllers/tab_anchor_controller": "/assets/controllers/tab_anchor_controller-f8b69c060617e5c04c32fbcc99f8673d5c108f81ddf106e0b38564393ca7813e.js",
+    "controllers/toggle_filter_controller": "/assets/controllers/toggle_filter_controller-39b6e8fa7899b9bb022620e5102bfb7b289fa3b42ca851a3228450ecf07f549a.js",
+    "controllers/upload_media_controller": "/assets/controllers/upload_media_controller-31f4c3375c9a959f8052eeed3e97363824eaaa6bb1e135c10341134769d108b2.js",
+    "controllers/user_set_controller": "/assets/controllers/user_set_controller-8fb22cd119801a2510c9e081ec183cd9db67f5275a8fa56100cdc758a4c63a33.js",
+    "controllers/write_article_controller": "/assets/controllers/write_article_controller-d3d2fbaaed9f826e345536c266630ac0853b016dfaf8ab8a05919bd50e4e4372.js"
+  }
+}</script>
+<link rel="modulepreload" href="/assets/flowbite-3fe13fabd16b4a23845c3120ae857c06c21903ba09cbf5ad91a58f0ce0f09748.js">
+<link rel="modulepreload" href="/assets/rails_ujs_esm-03021d9e8bc53fbd2a7a332dd423d826cfddc0e11bcd82b800cfda0ae53a3307.js">
+<link rel="modulepreload" href="/assets/active_admin-03392389ca428464667e1dd62ec4a1f2b78a8732eb43bfc77b435f052665efcd.js">
+<link rel="modulepreload" href="/assets/hotwire_combobox.esm-a3ccdee72f8d3810bba06be0643e79cc2259cd16bfe1ee2b12721f56dc61fa8d.js">
+<link rel="modulepreload" href="/assets/application-76147ef47541a8c0a0343bd51725ed2eeda2f608dfef216d57d3f8092fd1aef0.js">
+<link rel="modulepreload" href="/assets/turbo.min-b86d83036ff04169e5bf3ebbc82e0ad528456259e47091b448f41a3cadabdb40.js">
+<link rel="modulepreload" href="/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js">
+<link rel="modulepreload" href="/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
+<link rel="modulepreload" href="/assets/openseadragon-60060cb1eb668375a8dc499716898e644eed89230a42edfcefd3dc57a4583f78.js">
+<link rel="modulepreload" href="/assets/masonry-layout-f64938b1c404be8689b5f14fe909e22d65b3489d7aa8cb49a878b157802e85ac.js">
+<link rel="modulepreload" href="/assets/dropzone-9a6bf7c4f776793127ba53faf1e0ac9be57a3cd7432d67f016f653d44351adba.js">
+<link rel="modulepreload" href="/assets/just-extend-a1b27c637af9af679b25716d5518012cb638cf65c128b1a6ddfa726c3f13e8d0.js">
+<link rel="modulepreload" href="/assets/trix-d240b6c804f99e29f5ba3efaf14373ab0cc97860e3e1110b6fdc925d8ff9d277.js">
+<link rel="modulepreload" href="/assets/actiontext.esm-20b79cd0284fd0b78d86554fa51994f05c5e3db02fd65f7dcd2c62085c0fb46e.js">
+<link rel="modulepreload" href="/assets/leaflet-1ff69389014a18c608b592e65d97e24f63d9582e02ab27d42386857456e36c8e.js">
+<link rel="modulepreload" href="https://unpkg.com/leaflet-geotag-photo/dist/Leaflet.GeotagPhoto.min.js">
+<link rel="modulepreload" href="/assets/pdfjs-dist-47174a230aef82e5d69dfc3e9bbdbdbafc1888f6b9c4098b8f3c888d6acb9e42.js">
+<link rel="modulepreload" href="/assets/active_admin/features/batch_actions-54e29b5025e6d0de009b922f6cd0a149f441190a69cd747c6898a17043395ad7.js">
+<link rel="modulepreload" href="/assets/active_admin/features/dark_mode_toggle-f50b25b255510d25620c1c04ceb075baadcda82fb3ae48940e0f57ea66648d34.js">
+<link rel="modulepreload" href="/assets/active_admin/features/filters-fd2da714dd2865e54ce7caff5347099dc4f8a3ff89d5bc5602617089544cdfba.js">
+<link rel="modulepreload" href="/assets/active_admin/features/has_many-ec835f28e199016b37cab7613f4720a2d5fe81907d183adb18f550712789b595.js">
+<link rel="modulepreload" href="/assets/active_admin/features/main_menu-f0525c1316253bc1a197bb0d92bb4e0e2a2ebbf9d9b3d987788add9208ac00d6.js">
+<link rel="modulepreload" href="/assets/active_admin/features/per_page-ba324008a598ff21f9a9a6aa681e7b633ae0693fe18bd7abd527fde69b285b4f.js">
+<link rel="modulepreload" href="/assets/active_admin/utils/dom-29d04bcb2191c53e6356f1ef3f2706b9da3ce10fee834036eed3651aea72e467.js">
+<link rel="modulepreload" href="/assets/controllers/application-992de401b2daa10b774ececa0f4b3a9a17784229cf80053802bb0278bea09c8d.js">
+<link rel="modulepreload" href="/assets/controllers/audio_player_controller-637bb2b29ec649d231c6a76941fea9b6c3fd5acb9d2edce1d5197e7c4baca957.js">
+<link rel="modulepreload" href="/assets/controllers/authority_file_filter_controller-197553e58fe954cf83b789f8cafd54324fdd67cdaff6f8f617a4416a47770310.js">
+<link rel="modulepreload" href="/assets/controllers/auto_width_select_controller-b9f13bf8665e8ee647a4f1a624207bf402700b3ae62b4f3629d0ba3f091ee2ce.js">
+<link rel="modulepreload" href="/assets/controllers/base_filter_controller-8525098dbc9ce581489bdea87c1f19efdbc5ab62207464af7bc039f099c0284e.js">
+<link rel="modulepreload" href="/assets/controllers/breadcrumbs_filter_controller-60907a118f27df6749b22bea0bea8a42dcc67d79603d0433baf34e2753080fbb.js">
+<link rel="modulepreload" href="/assets/controllers/browse_layout_controller-57a3853343a478fc3738f07ab08b5777ff3c8ca53cbd5682816b2cd11cfa9166.js">
+<link rel="modulepreload" href="/assets/controllers/browse_loading_controller-e55444601eaa1a1e6e6a2a2f25e167a42a57663223ca4a8096aa6cdbc587a50f.js">
+<link rel="modulepreload" href="/assets/controllers/clipboard_controller-6e3b6492075257bba787041ab5819c6f961ec5674b05232eacab6497948f6cac.js">
+<link rel="modulepreload" href="/assets/controllers/collapsible_header_controller-2a4b4dddbba7b9ee3473f67d0c0951699cf97789f68eae4a6e1ae8d6e81057bb.js">
+<link rel="modulepreload" href="/assets/controllers/combobox_controller-1ffe0f5b4c48472f90fde50fc84a17f6f8a370c7d633342cb6cfe7d3cb8980bc.js">
+<link rel="modulepreload" href="/assets/controllers/date_filter_controller-1b68ebfd5c5a348594022879788e40517d9878b021fa49cbb29e0c781bc54e54.js">
+<link rel="modulepreload" href="/assets/controllers/debounced_search_controller-f7dd8eaed5a3c8f43e3b4586c640062bb21b5f9e710e0f7541f765317c8d3c14.js">
+<link rel="modulepreload" href="/assets/controllers/dialog_controller-9fc99d80167f412bccd1506bab1a20a668b10532b6d315c3895ae22087c02036.js">
+<link rel="modulepreload" href="/assets/controllers/disclosure_controller-39157ebb9eb17bc82b6b4c9c8f8e4c14f75d1aedb9f6dd97c5786f3ea64f6428.js">
+<link rel="modulepreload" href="/assets/controllers/dismissible_controller-442b74c9a307945b7ef7927accd96558e0a01ead2344e342875e0511dd5c4b42.js">
+<link rel="modulepreload" href="/assets/controllers/dropdown_controller-832204ef450a7e8dc24bd2ede5cad0a1c940da3a887fe5eb8d4d64abea763d5f.js">
+<link rel="modulepreload" href="/assets/controllers/dropzone_controller-f053acc2d6e5abfcbf7161b77bee96e3fdbb863adb9688aba036cc0684ae13cf.js">
+<link rel="modulepreload" href="/assets/controllers/filter_header_controller-4380cbe959eb896e2a78c8a152d76cc8c013aff5997dd9828a0cc427bae39baf.js">
+<link rel="modulepreload" href="/assets/controllers/form_embed_controller-487280e7b969f38f9ff1cf34488c7441dff8d3e4f6b839ae13c5c29f4e3fa31e.js">
+<link rel="modulepreload" href="/assets/controllers/hello_controller-2108543635323ded619403cd609e3bb61fdfba6d6ff4ec345c8a6890b36f85ce.js">
+<link rel="modulepreload" href="/assets/controllers/index-f842da3f4f8c2da9bc73fb712aea4e26dc29cb1539737f5cf4fddd42fa2be4f6.js">
+<link rel="modulepreload" href="/assets/controllers/leaflet_controller-ada9cfcc39555a2b04c9a7794bb815dd72aa19553943d4a57b11d88f561c71e7.js">
+<link rel="modulepreload" href="/assets/controllers/masonry_controller-802ebac888819db782a91550470c5230930e2e7122c668059d64040a240c2c44.js">
+<link rel="modulepreload" href="/assets/controllers/modal_controller-d7f2e0d7d0069bcb154da0d50dee7ff60e748340f052c88ec8a9624e84e163b0.js">
+<link rel="modulepreload" href="/assets/controllers/openseadragon_controller-fe8f6db9325051a2d2d9d5adf2d7b03ab64cef6647867701837e26cadfd34277.js">
+<link rel="modulepreload" href="/assets/controllers/pagination_controller-2c943055a83aa2f744cf83b76429cbe1e3aa5d659e9a47b08b6b595a8072292d.js">
+<link rel="modulepreload" href="/assets/controllers/password_validation_controller-21ffcb3610631eb6f6c88feab6ab7dc76ec3b8f3102093b1daa6c8566b323ab2.js">
+<link rel="modulepreload" href="/assets/controllers/pdf_viewer_controller-e6d865d3a91a2583b7a59460cb230b045b43d37c2be2e03ce8130b6878166fc1.js">
+<link rel="modulepreload" href="/assets/controllers/popover_controller-2b7a18c4b738903f3c22d616ff3b6427754c2db8211f27975038c3ba536c00fa.js">
+<link rel="modulepreload" href="/assets/controllers/scroll_memory_controller-0cb30dce175d3911526c34e0266908dc06a299b16b37afea937de9df693826b1.js">
+<link rel="modulepreload" href="/assets/controllers/search_controller-0a86cf696ca859593de21d1c68f86470d03254f2ce09014ee110efad06f7ed2b.js">
+<link rel="modulepreload" href="/assets/controllers/search_params_controller-dd413fe848de77121c51829377cb575461b9dab36b2d36e46970c6cce5070c77.js">
+<link rel="modulepreload" href="/assets/controllers/tab_anchor_controller-f8b69c060617e5c04c32fbcc99f8673d5c108f81ddf106e0b38564393ca7813e.js">
+<link rel="modulepreload" href="/assets/controllers/toggle_filter_controller-39b6e8fa7899b9bb022620e5102bfb7b289fa3b42ca851a3228450ecf07f549a.js">
+<link rel="modulepreload" href="/assets/controllers/upload_media_controller-31f4c3375c9a959f8052eeed3e97363824eaaa6bb1e135c10341134769d108b2.js">
+<link rel="modulepreload" href="/assets/controllers/user_set_controller-8fb22cd119801a2510c9e081ec183cd9db67f5275a8fa56100cdc758a4c63a33.js">
+<link rel="modulepreload" href="/assets/controllers/write_article_controller-d3d2fbaaed9f826e345536c266630ac0853b016dfaf8ab8a05919bd50e4e4372.js">
+<script type="module">import "application"</script>
+  <link rel="stylesheet" href="/assets/application_web-1f4b1a3c1e7805fcdcb8e737527ab7c0654b5d8e617f2eaeb28cc09610a44213.css" data-turbo-track="reload" />
+  <link rel="stylesheet" href="/assets/hotwire_combobox-f15ba1205abe720b777423a9a88a300282bb252a0c532bd4049ab4b2b2bfaa6f.css" />
+<link rel="stylesheet" href="/assets/application_web-1f4b1a3c1e7805fcdcb8e737527ab7c0654b5d8e617f2eaeb28cc09610a44213.css" />
+  <link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="icon" href="https://d2185f9flfrb7y.cloudfront.net/uploads/000/496/536/original/4b344acdd19eb8f64b0da75b672f732d-dde5393e.png?1675157323" type="image/x-icon">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8ZQ2EVRK3L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8ZQ2EVRK3L');
+    </script>
+</head>
+
+
+  <body class="group/main" data-style="default">
+    
+<header class="transition-all group/resource-header duration-[0.2s] ease-[ease-in-out] w-full h-[88px] fixed z-[500] p-0 top-0 " style="color: #033857">
+  <div class="w-full max-w-screen-2xl mx-auto h-full flex items-stretch justify-end px-4">
+      <div class="flex items-center min-w-[100px] sm:min-w-[200px] pr-2 sm:pr-5 flex-shrink-0 group-has-[#mobile-menu:checked]/resource-header:pointer-events-none group-has-[#mobile-menu:checked]/resource-header:opacity-30 transition-all duration-[0.2s] ease-[ease-in-out]">
+        <a class="flex items-center w-full h-full" href="/">
+          <img alt="Manawatū Heritage" class="w-auto max-w-[100%] h-auto max-h-10 mx-auto inline-block align-middle border-0" src="https://d2185f9flfrb7y.cloudfront.net/uploads/000/496/537/original/a7a146f842c2b988f8b58678ea54bd24-7486d6a4.svg?1675157324" />
+</a>      </div>
+    <!-- Navigation Block -->
+    <nav class="relative ml-auto flex flex-shrink-0 items-center lg:items-stretch transition-all duration-[0.4s] ease-[ease-in-out] w-auto whitespace-nowrap">
+      <div class="flex items-center gap-4">
+        <div class="flex items-center mr-[60px] shadow-[0_0_1px_#c9dae5]" data-controller="search browse-loading" data-action="search:submit->browse-loading#start browse-loading:start@document->browse-loading#start turbo:before-fetch-request@document->browse-loading#startFrameLoad turbo:frame-render@document->browse-loading#finishFrameLoad turbo:before-fetch-response@document->browse-loading#finishOnErrorResponse turbo:fetch-request-error@document->browse-loading#finishOnNetworkError turbo:frame-missing@document->browse-loading#keepResultsOnError pageshow@window->browse-loading#resetRestoredPage">
+          <!-- Back to search Icon -->
+          <a class="flex justify-center relative items-center w-[45px] h-[45px] text-primary bg-white" href="/search">
+            <i class="icon icon--arrow-left text-[30px] absolute top-2"></i>
+</a>
+          <!-- Search Block -->
+          <div class="flex flex-auto justify-start max-w-[0] overflow-hidden group-has-[#search-block:checked]/resource-header:max-w-[250px] transition-all duration-[0.2s] ease-[ease-in-out] items-center border-l border-[#f8f8fa]">
+            <form class="relative flex-[0_1_530px] header-search-container flex w-full" data-turbo-frame="resources_listings" data-search-target="form" data-action="submit-&gt;search#handleSubmit" action="/search" accept-charset="UTF-8" method="get">
+              
+              <input value="relevance" type="hidden" name="order" id="order" />
+
+              <input class="header-search-field flex-auto min-w-0 font-normal h-[45px] px-2 py-1 outline-none bg-white" placeholder="Search..." data-search-target="input" type="search" name="new_q" id="new_q" />
+
+              <span class="hidden browse-loading:flex absolute right-0 top-0 items-center justify-center w-8 h-[45px] bg-white header-search-field text-primary" role="status" data-browse-loading-spinner>
+  <span class="size-5 animate-spin rounded-full border-2 border-current border-t-transparent" aria-hidden="true"></span>
+  <span class="sr-only">Loading...</span>
+</span>
+
+
+              <input data-search-target="hiddenField" type="hidden" name="q" id="q" />
+
+              <button name="button" type="button" hidden="hidden" data-search-target="plusButton">Save </button>
+</form>          </div>
+          <!-- Search Icon -->
+          <input class="hidden" type="checkbox" id="search-block">
+          <button type="button" class="flex justify-center cursor-pointer relative border-l border-[#f8f8fa] items-center w-[45px] h-[45px] text-primary bg-white" data-action="click->search#toggleOrSearch" data-search-target="toggleButton">
+            <i class="icon icon--search text-[30px] absolute top-2"></i>
+          </button>
+        </div>
+
+        <!-- Hamburger Menu -->
+        <div class="min-w-[45px] min-h-[45px] absolute right-0 max-w-[45px] max-h-[45px] default:shadow-[1px_1px_0_0_#0B3947] flex w-auto whitespace-nowrap top-[21.5px] before:hidden group-has-[#mobile-menu:checked]/resource-header:before:flex group-has-[#mobile-menu:checked]/resource-header:before:content-[''] group-has-[#mobile-menu:checked]/resource-header:before:fixed before:inset-0 before:w-full before:h-full before:bg-white before:opacity-75 before:z-[0]">
+          <!-- Mobile Menu with Hamburger -->
+          
+
+<style>
+  .hamburger-button {
+    background: var(--color-primary);
+    color: var(--color-light);
+  }
+
+  #mobile-menu-resource-header:checked + label.hamburger-button {
+    box-shadow: none;
+    background: var(--color-primary);
+  }
+
+  .hamburger-icon {
+    background: var(--color-light);
+    &:before {
+      background: var(--color-light);
+    }
+    &:after {
+      background: var(--color-light);
+    }
+  }
+
+  #mobile-menu-resource-header:checked + label .hamburger-icon {
+    background: transparent;
+
+    &:before {
+      background: var(--color-light);
+      transform: rotate(45deg);
+      top: 23px;
+    }
+
+    &:after {
+      background: var(--color-light);
+      transform: rotate(-45deg);
+      bottom: 19px;
+    }
+  }
+</style>
+<!-- Hamburger Button -->
+<input class="hidden peer/hamburger" type="checkbox" id="mobile-menu-resource-header">
+<label class="hamburger-button flex justify-center items-center text-6xl  w-[45px] h-[45px] absolute right-0 top-0 z-[21] overflow-hidden p-0 m-0 cursor-pointer transition-[background] duration-[0.2s] ease-[ease-in-out] has-[:checked]:justify-end has-[:checked]:pr-2 has-[:checked]:w-[420px] has-[:checked]:transition-none has-[:checked]:overflow-visible pointer-events-auto" for="mobile-menu-resource-header">
+  <span class="h-[3px] w-[29px] transition-all duration-[0.3s] block before:transition-all before:duration-[0.3s] before:block before:h-[3px] before:w-[29px] before:absolute before:top-[14px] before:content-[''] after:transition-all after:duration-[0.3s] after:block after:h-[3px] after:w-[29px] after:absolute after:bottom-[14px] after:content-[''] peer-checked/hamburger:bg-transparent peer-checked/hamburger:before:rotate-[45deg] peer-checked/hamburger:before:top-[23px] peer-checked/hamburger:after:rotate-[-45deg] peer-checked/hamburger:after:bottom-[19px] hamburger-icon"></span>
+</label>
+
+<!-- Navigation Links Mobile -->
+<div id="mobile-menu-resource-header-menu" style="background: var(--color-primary); color: var(--color-light); box-shadow:3px 3px 0 0 #0B3947" class="hidden peer-checked/hamburger:flex pt-10 fixed top-0 left-0 md:absolute z-20 md:-top-[1px] md:left-auto md:right-0 w-screen max-w-screen md:w-[420px] flex-col px-[1.5rem]">
+    
+<div class="relative text-center flex items-center justify-center gap-2 w-auto pb-[1rem]">
+  <a class="bg-transparent text-[#79d9ea] inline-block transition-all duration-[0.2s] ease-[ease-in-out] cursor-pointer leading-[1] py-[0.2em] px-[1em] text-[14px] font-medium uppercase tracking-[0.075em] rounded-[3px]" href="/locale/mi">
+    Māori
+</a>  <a class="bg-[#B2D4E3] text-[#0B3947] inline-block transition-all duration-[0.2s] ease-[ease-in-out] cursor-pointer leading-[1] py-[0.2em] px-[1em] text-[14px] font-medium uppercase tracking-[0.075em] rounded-[3px]" href="/locale/en">
+    English
+</a></div>
+
+
+  <div class="text-left flex flex-col w-auto pb-[1rem]">
+    <a class="text-xl py-2 px-0 font-medium uppercase tracking-[0.075em] leading-[1.4em]" href="/search">
+        <span>Tūhura</span>
+        <br>
+        <em class="font-normal">Explore</em>
+</a>
+
+      <a class="text-xl py-2 px-0 font-medium uppercase tracking-[0.075em] leading-[1.4em]" href="/featured-collections">
+          <span>Kohinga</span>
+          <br>
+          <em class="font-normal">Collections</em>
+</a>
+      <a class="text-xl py-2 px-0 font-medium uppercase tracking-[0.075em] leading-[1.4em]" href="/contribute">
+          <span>Tāpae kōrero</span>
+          <br>
+          <em class="font-normal">Contribute</em>
+</a>
+      <a class="text-xl py-2 px-0 font-medium uppercase tracking-[0.075em] leading-[1.4em]" href="/user/sets">
+          <span>Taku pukamahi</span>
+          <br>
+          <em class="font-normal">My Scrapbook</em>
+</a>
+      <a class="text-xl py-2 px-0 default:font-light type1:font-medium uppercase tracking-[0.075em] leading-[1.4em]" href="/login">Login/Register</a>
+  </div>
+
+  <!-- Footer Links Section -->
+  <div class="border-t border-white/20 pt-2 pb-2">
+      <a class="text-xl font-light whitespace-break-spaces py-2 px-0 default:font-light type1:font-medium uppercase tracking-[0.075em] leading-[1.4em] block" href="/about">About</a>
+      <a class="text-xl font-light whitespace-break-spaces py-2 px-0 default:font-light type1:font-medium uppercase tracking-[0.075em] leading-[1.4em] block" href="/terms-of-use">Terms of Use</a>
+      <a class="text-xl font-light whitespace-break-spaces py-2 px-0 default:font-light type1:font-medium uppercase tracking-[0.075em] leading-[1.4em] block" href="/using-the-site">Using the Site</a>
+  </div>
+
+  <!-- Social Media Icons -->
+  <div class="flex gap-4 pb-4 pt-4 border-t border-white/20 justify-center">
+    
+
+
+
+  <a class="text-[40px] flex items-center default:text-primary type1:text-secondary text-[40px] flex items-center" target="_blank" rel="noopener noreferrer" href="https://facebook.com/palmerstonnorthcitylibrary">
+    <i class="icon icon--facebook-circle"></i>
+</a>
+
+
+  <a class="text-[40px] flex items-center default:text-primary type1:text-secondary text-[40px] flex items-center" href="mailto:heritage@pncc.govt.nz">
+    <i class="icon icon--email-circle"></i>
+</a>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+
+
+
+
+
+    <main class=" group-has-[#mobile-menu:checked]/main:lg:pointer-events-auto group-has-[#mobile-menu:checked]/main:lg:opacity-100 group-has-[#mobile-menu:checked]/main:pointer-events-none group-has-[#mobile-menu:checked]/main:opacity-30 transition-all duration-[0.2s] ease-[ease-in-out]">
+      
+
+  <div class="relative group/media " data-controller="tab-anchor" data-action="hashchange@window->tab-anchor#openFromHash">
+    <!-- Resource Media -->
+      <!-- File to display -->
+
+
+
+
+<section class="relative h-[75vh] has-[.media-viewer]:h-auto has-[#openseadragon-viewer]:min-h-[600px] has-[.media-viewer]:min-h-[600px] ">
+  <div class="absolute left-0 top-0 z-[-1] w-full h-full default:bg-[url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAIElEQVR4AWN4LYUd/scBcWkY1TCqAZcELoNGNYxqwAEB0g9h33UOa1wAAAAASUVORK5CYII=),_linear-gradient(to_bottom,_#05151B_0%,_#020D10_100%)]"></div>
+  <div class="flex justify-center items-center w-full h-full  mx-auto overflow-hidden min-h-[600px] mb-4">
+      <!-- Multiple Files -->
+        <!-- Single File -->
+        <!-- Image -->
+    <div id="openseadragon-viewer" data-controller="openseadragon" data-dzi="https://d34j8rv9uvckun.cloudfront.net/1/e/d/c28628-10d5-4382-a96c-dfe65eb5bfb5/2017p_2011-88_024439.dzi" class="w-full h-full"></div>
+
+<!-- Video -->
+
+<!-- Audio -->
+
+<!-- Book -->
+
+  </div>
+
+  <div class="flex justify-end items-center absolute type1:rounded-lg type1:w-fit type1:px-1 type1:border type1:border-border type1:shadow-card type1:bg-white left-1/2 md:right-5 md:left-auto md:bottom-5 -translate-x-1/2 md:translate-x-0 z-[7] bottom-20">
+    <!-- Share / Download Modal -->
+    <button data-controller="modal" data-action="modal#show" data-modal-dialog-param="resource_modal" aria-label="Share or Download" class="inline-block w-[45px] h-[45px] py-2 text-center default:text-white type1:text-black leading-[1] default:bg-secondary type1:bg-white default:shadow-[1px_1px_0_0_#0B3947] default:opacity-30 transition-colors default:hover:bg-primary type1:hover:bg-background default:hover:shadow-[1px_1px_0_0_#082731] default:hover:opacity-100">
+      <i class="icon icon--share default:text-[30px] type1:text-[24px]"></i>
+    </button>
+
+    <!-- Favourite Modal -->
+      <div class="relative">
+          <a class="inline-block w-[45px] h-[45px] py-2 text-center default:text-white type1:text-black leading-[1] default:bg-secondary type1:bg-white default:shadow-[1px_1px_0_0_#0B3947] default:opacity-30 transition-colors default:hover:bg-primary type1:hover:bg-background default:hover:shadow-[1px_1px_0_0_#082731] default:hover:opacity-100" href="/login?return_to=%2Fitem%2Fedc28628-10d5-4382-a96c-dfe65eb5bfb5">
+    <i class="icon icon--heart default:text-[30px] type1:text-[24px]"></i>
+</a>
+        <div data-controller='popover'>
+  <div id="sets_popover" popover='manual' data-popover-target="popover"></div>
+  <div id="popover-content" class="absolute shadow-md rounded-md min-w-[370px] hidden bottom-[100%] -translate-y-[12px] right-0 bg-white border border-white ">
+    
+  <h3 class="bg-primary px-3.5 rounded-t-md py-2 text-white font-semibold uppercase">Add to a set</h3>
+  <turbo-frame class="px-4 pt-2 flex" id="favourite_set">
+</turbo-frame>  <turbo-frame class="px-4 py-2 border-t border-[#ebeff2] flex" id="new_user_set">
+    <div class="flex flex-col">
+  <form class="flex border border-[#ebeff2]" id="new_user_set" action="/user_sets" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="WNroOxRFP7zAP73YRmPTLucyJvrlQPEMVr2_g7Xg_8S0CRR4pwy8ZQn9DpdM3Ab701LUVyQX0OR1Uq-HrO2w3w" />
+    <input placeholder="Create new set" class="text-lg font-medium text-primary outline-none h-full px-3" type="text" name="user_set[name]" id="user_set_name" />
+    <input type="hidden" name="user_set[resource_id]" id="user_set_resource_id" />
+    <input type="submit" name="commit" value="Create" class="text-secondary border-l cursor-pointer border-[#ebeff2] text-lg font-semibold px-4 py-1" data-disable-with="Create" />
+</form></div>
+
+</turbo-frame>  <div class="pt-2 pb-4">
+    <div class="px-4 relative">
+      <h5 class="mb-2 text-xs font-semibold text-primary bg-white w-fit tracking-[0.9px] uppercase before:content-[''] before:z-[-1] before:block before:top-1/2 before:absolute before:left-0 before:right-0 before:border-b before:border-[#ebeff2]">Other Sets</h5>
+    </div>
+    <turbo-frame class="px-4 flex flex-col gap-2 max-h-[150px] overflow-y-scroll" id="user_sets">
+</turbo-frame>  </div>
+
+    <div style="box-shadow: 5px 5px 6px -1px rgba(0,0,0,.1)" class="z-[1] absolute size-[14px] select-none, bg-white pointer-events-none rotate-45 right-[15px] -bottom-[8px]"></div>
+  </div>
+</div>
+
+      </div>
+
+    <!-- Deep Zoom -->
+      <!-- Zoom Out -->
+      <button id="zoom-out" class="inline-block w-[45px] h-[45px] py-2 text-center default:text-white type1:text-black leading-[1] default:bg-secondary type1:bg-white default:shadow-[1px_1px_0_0_#0B3947] default:opacity-30 transition-colors default:hover:bg-primary type1:hover:bg-background default:hover:shadow-[1px_1px_0_0_#082731] default:hover:opacity-100">
+        <i class="icon icon--zoom-out default:text-[30px] type1:text-[24px]"></i>
+      </button>
+
+      <!-- Zoom In -->
+      <button id="zoom-in" class="inline-block w-[45px] h-[45px] py-2 text-center default:text-white type1:text-black leading-[1] default:bg-secondary type1:bg-white default:shadow-[1px_1px_0_0_#0B3947] default:opacity-30 transition-colors default:hover:bg-primary type1:hover:bg-background default:hover:shadow-[1px_1px_0_0_#082731] default:hover:opacity-100">
+        <i class="icon icon--zoom-in default:text-[30px] type1:text-[24px]"></i>
+      </button>
+
+    <!-- Files Navigation -->
+</div>
+</section>
+
+    <!-- Select Tab -->
+    <div class="max-w-screen-2xl px-4 relative z-[5] scroll-mt-28 mx-auto default:-mt-[48px]" data-tab-anchor-target="bar">
+      <div class='w-full type1:px-6 type1:pt-2 type1:bg-white type1:gap-4 flex'>
+        <input type="radio" name="tab" id="description" checked class="hidden description peer/description" data-tab-anchor-target="tab" data-action="change->tab-anchor#remember">
+        <label for="description" class="inline-block default:bg-[#dddddd] type1:border-b-[2px] type1:border-transparent type1:uppercase type1:text-silver type1:bg-transparent py-[0.67rem] default:px-[30px] mr-[2px] text-[18px] font-medium text-[#011826] peer-checked/description:bg-white type1:peer-checked/description:border-b-primary type1:peer-checked/description:text-primary default:peer-checked/description:border-[2px_solid_#ffffff] peer-hover/description:bg-white peer-hover/description:border-[2px_solid_#ffffff] transition-all duration-[0.2s] ease-[ease-in-out] cursor-pointer">Description</label>
+
+
+          <input id="comments" type="radio" name="tab" class="hidden comments peer/comments" data-tab-anchor-target="tab" data-action="change->tab-anchor#remember">
+          <label for="comments" class="inline-block default:bg-[#dddddd] type1:border-b-[2px] type1:border-transparent type1:uppercase type1:text-silver type1:bg-transparent py-[0.67rem] default:px-[30px] mr-[2px] text-[18px] font-medium text-[#011826] peer-checked/comments:bg-white type1:peer-checked/comments:border-b-primary type1:peer-checked/comments:text-primary default:peer-checked/comments:border-[2px_solid_#ffffff] peer-hover/comments:bg-white peer-hover/comments:border-[2px_solid_#ffffff] transition-all duration-[0.2s] ease-[ease-in-out] cursor-pointer">
+            Comments
+          </label>
+      </div>
+    </div>
+    <!-- Resource Information -->
+    <div class="px-4 max-w-screen-2xl mx-auto relative z-[5]">
+      <!-- Description section -->
+      <section class="hidden group-has-[.description:checked]/media:block py-[30px] px-[15px] sm:px-[30px] bg-white relative">
+
+        <div id='resource_details' class="grid grid-cols-1 sm:grid-cols-[6fr_4fr] lg:grid-cols-[7fr_3fr] justify-between gap-8">
+          <div class="w-full flex flex-col gap-8">
+                  <div class="flex items-start gap-2">
+          <div class='type1:flex type1:flex-wrap type1:items-start type1:justify-between type1:gap-2'>
+            <div class="type1:min-w-0">
+          <h1 class="text-2xl font-normal type1:text-dark leading-[1.2em]">
+            Construction of Chateau Tongariro
+          </h1>
+
+          <div class="flex items-center gap-1">
+            <div class="leading-[1.2em] text-[#8E989D]">Object type</div>
+            <div class="leading-[1.2em] font-medium text-primary">
+              Image
+            </div>
+          </div>
+
+          </div>
+          <div class="type1:flex type1:items-center type1:gap-2 type1:shrink-0">
+          <a href="#resource_info" class="default:bg-primary uppercase default:shadow-[1px_1px_0_0_#0B3947] rounded-sm inline-block text-center cursor-pointer transition-colors duration-[0.25s] ease-out border-none px-[0.8em] tracking-[0.075em] text-xs font-medium default:text-white type1:text-secondary">
+            More Info →
+          </a>
+          </div>
+          </div>
+        </div>
+            <div class="w-full">
+                <!-- Exclude sidebar section -->
+                <!-- Description & Main Body section -->
+                <section id="resource_info">
+  <!-- Special case for main_body section -->
+
+  <dl class=" ">
+
+      <div class="mb-2 w-full">
+        <dt class="default:text-xs type1:text-sm font-medium leading-[1.2em] text-[#8E989D] default:uppercase default:tracking-[0.075em]">
+          <!-- Special titles for digitisation & original_held_in fields -->
+            Description
+        </dt>
+
+        <dd class="m-0 mt-1 leading-[1.2em] text-lg">
+          <!-- Manual fields need to be shown like links -->
+            <!-- Condition for 'breadcrumbs' type -->
+              <div class="markdown-content">
+                <p>The Chateau, a neo-Georgian structure of four stories and basement, was designed by Timaru-based architect Herbert Hall (1880–1939) who modelled it on the Canadian Resort of Lake Louise.  </p>
+
+<p>The foundation stone was laid on 16 February 1929. Fletchers used a workforce of over 80, offering an incentive of free accommodation and a free suit to workers who stayed until the completion of the project.</p>
+
+              </div>
+              <!-- Multi-valued tag-like fields render each value as a search pill -->
+        </dd>
+      </div>
+
+  </dl>
+</section>
+
+                <!-- Exclude sidebar section -->
+                <!-- Description & Main Body section -->
+                <section id="resource_info">
+  <!-- Special case for main_body section -->
+    <h3 class="text-xl font-normal mb-4 leading-[1.2em]">Identification</h3>
+
+  <dl class=" flex flex-wrap">
+
+      <div class="mb-2 w-1/2">
+        <dt class="default:text-xs type1:text-sm font-medium leading-[1.2em] text-[#8E989D] default:uppercase default:tracking-[0.075em]">
+          <!-- Special titles for digitisation & original_held_in fields -->
+            Relation
+        </dt>
+
+        <dd class="m-0 mt-1 leading-[1.2em] text-lg">
+          <!-- Manual fields need to be shown like links -->
+            <a class="text-secondary hover:text-primary" href="/search?custom_fields=%7B%22original_held_in%22%3A%22Coolstore+2011-88%22%7D">Coolstore 2011-88</a>
+        </dd>
+      </div>
+
+      <div class="mb-2 w-1/2">
+        <dt class="default:text-xs type1:text-sm font-medium leading-[1.2em] text-[#8E989D] default:uppercase default:tracking-[0.075em]">
+          <!-- Special titles for digitisation & original_held_in fields -->
+            Date
+        </dt>
+
+        <dd class="m-0 mt-1 leading-[1.2em] text-lg">
+          <!-- Manual fields need to be shown like links -->
+            <!-- Condition for 'breadcrumbs' type -->
+              circa 1929
+        </dd>
+      </div>
+
+      <div class="mb-2 w-1/2">
+        <dt class="default:text-xs type1:text-sm font-medium leading-[1.2em] text-[#8E989D] default:uppercase default:tracking-[0.075em]">
+          <!-- Special titles for digitisation & original_held_in fields -->
+            Digitisation id
+        </dt>
+
+        <dd class="m-0 mt-1 leading-[1.2em] text-lg">
+          <!-- Manual fields need to be shown like links -->
+            <!-- Condition for 'breadcrumbs' type -->
+              2017P_2011-88_024439
+        </dd>
+      </div>
+
+      <div class="mb-2 w-1/2">
+        <dt class="default:text-xs type1:text-sm font-medium leading-[1.2em] text-[#8E989D] default:uppercase default:tracking-[0.075em]">
+          <!-- Special titles for digitisation & original_held_in fields -->
+            Format
+        </dt>
+
+        <dd class="m-0 mt-1 leading-[1.2em] text-lg">
+          <!-- Manual fields need to be shown like links -->
+            <a class="text-secondary hover:text-primary" href="/search?custom_fields=%7B%22format%22%3A%22sepia_print%22%7D">Sepia print</a>
+        </dd>
+      </div>
+
+      <div class="mb-2 w-1/2">
+        <dt class="default:text-xs type1:text-sm font-medium leading-[1.2em] text-[#8E989D] default:uppercase default:tracking-[0.075em]">
+          <!-- Special titles for digitisation & original_held_in fields -->
+            Held in
+        </dt>
+
+        <dd class="m-0 mt-1 leading-[1.2em] text-lg">
+          <!-- Manual fields need to be shown like links -->
+            <a class="text-secondary hover:text-primary" href="/search?custom_fields=%7B%22held_in%22%3A%22coolstore%22%7D">Coolstore</a>
+        </dd>
+      </div>
+
+  </dl>
+</section>
+
+            </div>
+
+              <div>
+                <!-- Related section -->
+                  <div class="border-t border-[#DBE3E8] pt-1 mt-4">
+  <h3 class="text-xl font-normal mt-2 mb-4 leading-[1.2em]">Related items</h3>
+  <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+      <a title="Construction of Chateau Tongariro" class="p-1 border border-[#e5e7eb] w-full flex justify-center items-center" href="/item/b81c6a42-e28a-4bab-b488-8ab75623aac1">
+        <img alt="Image" class="block w-auto h-full object-cover max-h-[80px]" src="https://d28dhd8eubcyz4.cloudfront.net/iiif/2/curtis-production2-cache%2F1%2Fb%2F8%2F1c6a42-e28a-4bab-b488-8ab75623aac1%2Fresize_master_6d39114b1ee28356a64a150649d1e05d.jpg/full/!440,512/0/default.jpg?sig=d8aa3a95dd33e6ed379815e3dc17a0988fdfb886&amp;ver=1628962955" />
+</a>      <a title="Plan for proposed alterations to Everybody's Theatre" class="p-1 border border-[#e5e7eb] w-full flex justify-center items-center" href="/item/22c28377-4c06-4a96-b113-192a7b482387">
+        <img alt="Image" class="block w-auto h-full object-cover max-h-[80px]" src="https://d28dhd8eubcyz4.cloudfront.net/iiif/2/curtis-production2-cache%2F1%2F2%2F2%2Fc28377-4c06-4a96-b113-192a7b482387%2Fresize_master_fb9c1e0a6cf71860671eadac73f77769.jpg/full/!440,512/0/default.jpg?sig=457c93eb9c6bbddb417374aa8efb0a032a0ddc94&amp;ver=1659548166" />
+</a>      <a title="Construction workers of the Chateau Tongariro" class="p-1 border border-[#e5e7eb] w-full flex justify-center items-center" href="/item/d88a0093-7879-403c-a209-a5ce7e9c82fc">
+        <img alt="Image" class="block w-auto h-full object-cover max-h-[80px]" src="https://d28dhd8eubcyz4.cloudfront.net/iiif/2/curtis-production2-cache%2F1%2Fd%2F8%2F8a0093-7879-403c-a209-a5ce7e9c82fc%2Fresize_master_0fc2adec46e52d1353d528c17e1fd8c2.jpg/full/!440,512/0/default.jpg?sig=56d7632e8b6b8bcdca125388b61b6085ed02c887&amp;ver=1628962950" />
+</a>      <a title="Commercial Hotel, Main Road, Ashhurst" class="p-1 border border-[#e5e7eb] w-full flex justify-center items-center" href="/item/229fa6f9-5108-4cb5-b97f-691a0ed30d6a">
+        <img alt="Image" class="block w-auto h-full object-cover max-h-[80px]" src="https://d28dhd8eubcyz4.cloudfront.net/iiif/2/curtis-production2-cache%2F1%2F2%2F2%2F9fa6f9-5108-4cb5-b97f-691a0ed30d6a%2Fresize_master_0a2d231010da691a2b76322d81248df8.jpg/full/!440,512/0/default.jpg?sig=518ca7002b47064d37804b1d06ea7bb1190e8fb2&amp;ver=1763597344" />
+</a>      <a title="First Masonic Hotel and Hall, Ashhurst" class="p-1 border border-[#e5e7eb] w-full flex justify-center items-center" href="/item/d17453e9-4c15-448e-b028-6d388856e5d8">
+        <img alt="Image" class="block w-auto h-full object-cover max-h-[80px]" src="https://d28dhd8eubcyz4.cloudfront.net/iiif/2/curtis-production2-cache%2F1%2Fd%2F1%2F7453e9-4c15-448e-b028-6d388856e5d8%2Fresize_master_8b679f76f05792516056efb23c6cc221.jpg/full/!440,512/0/default.jpg?sig=dd5e718fc97b456113280bf0191afa0c58b58be2&amp;ver=1763597663" />
+</a>      <a title="Macpherson Grove, Name" class="p-1 border border-[#e5e7eb] w-full flex justify-center items-center" href="/item/f318ecab-01bf-4004-ad21-0b788ab90a94">
+        <img alt="Image" class="block w-auto h-full object-cover max-h-[80px]" src="https://d28dhd8eubcyz4.cloudfront.net/iiif/2/curtis-production2-cache%2F1%2Ff%2F3%2F18ecab-01bf-4004-ad21-0b788ab90a94%2Fresize_master_27a03a1d9bcde7dcd58cb246e7fef5da.jpg/full/!440,512/0/default.jpg?sig=1c40daea4be2b2c19ff21771ef2aaeec7c6cbf49&amp;ver=1738871268" />
+</a>      <a title="Highden Manor Estate" class="p-1 border border-[#e5e7eb] w-full flex justify-center items-center" href="/item/06c348eb-921c-4440-a278-5b28ed4488d8">
+        <img alt="Image" class="block w-auto h-full object-cover max-h-[80px]" src="https://d28dhd8eubcyz4.cloudfront.net/iiif/2/curtis-production2-cache%2F1%2F0%2F6%2Fc348eb-921c-4440-a278-5b28ed4488d8%2Fresize_master_af7306b8282bb4857d0cc3c545e3a53a.jpg/full/!440,512/0/default.jpg?sig=84152a19693a3db15ed8f3bf661bf57690d89cd6&amp;ver=1667224955" />
+</a>      <a title="All Saints Church and Grand Hotel" class="p-1 border border-[#e5e7eb] w-full flex justify-center items-center" href="/item/33a7fe32-98fc-4785-8732-570f0bd44eda">
+        <img alt="Image" class="block w-auto h-full object-cover max-h-[80px]" src="https://d28dhd8eubcyz4.cloudfront.net/iiif/2/curtis-production2-cache%2F1%2F3%2F3%2Fa7fe32-98fc-4785-8732-570f0bd44eda%2Fresize_master_1a3887baf15014fc93c0fa81907fdfa6.jpg/full/!440,512/0/default.jpg?sig=2622b30962a64eecd91f0c43e29403904f5841c2&amp;ver=1655503573" />
+</a>      <a title="David Street, Name and History" class="p-1 border border-[#e5e7eb] w-full flex justify-center items-center" href="/item/2c9f35d3-ac5f-473b-a797-fa78ac3092d6">
+        <img alt="Image" class="block w-auto h-full object-cover max-h-[80px]" src="https://d28dhd8eubcyz4.cloudfront.net/iiif/2/curtis-production2-cache%2F1%2F2%2Fc%2F9f35d3-ac5f-473b-a797-fa78ac3092d6%2Fresize_master_b5ef2f5dff03690cd85eeefde64dae20.jpg/full/!440,512/0/default.jpg?sig=5df5934f025425aa52912fcd3a6dfd09e3aca0fc&amp;ver=1733328228" />
+</a>      <a title="Commercial Hotel 1950s- 1960s" class="p-1 border border-[#e5e7eb] w-full flex justify-center items-center" href="/item/532d19c2-3701-420c-bfba-0557b477b9b8">
+        <img alt="Image" class="block w-auto h-full object-cover max-h-[80px]" src="https://d28dhd8eubcyz4.cloudfront.net/iiif/2/curtis-production2-cache%2F1%2F5%2F3%2F2d19c2-3701-420c-bfba-0557b477b9b8%2Fresize_master_474df269d8d9dd71c02567ae5632d2e3.jpg/full/!440,512/0/default.jpg?sig=7ef431d4f8af5c1bc9ac9e04f9ad71b5ae30e12a&amp;ver=1655538078" />
+</a>      <a title="Foxton Family Hotel" class="p-1 border border-[#e5e7eb] w-full flex justify-center items-center" href="/item/2de3d016-de7c-4af9-bfa1-5891e88fe882">
+        <img alt="Image" class="block w-auto h-full object-cover max-h-[80px]" src="https://d28dhd8eubcyz4.cloudfront.net/iiif/2/curtis-production2-cache%2F1%2F2%2Fd%2Fe3d016-de7c-4af9-bfa1-5891e88fe882%2Fresize_master_bc66ada230f9b924f6339aa63af6fb6b.jpg/full/!440,512/0/default.jpg?sig=cc98df9a6782b993aa8ef0225333b5d4b6813b23&amp;ver=1659551956" />
+</a>      <a title="Foxton Floral Committee" class="p-1 border border-[#e5e7eb] w-full flex justify-center items-center" href="/item/fa752f3c-cf66-495d-bf25-cfcd6b503e54">
+        <img alt="Image" class="block w-auto h-full object-cover max-h-[80px]" src="https://d28dhd8eubcyz4.cloudfront.net/iiif/2/curtis-production2-cache%2F1%2Ff%2Fa%2F752f3c-cf66-495d-bf25-cfcd6b503e54%2Fresize_master_07c72b9a95b08d2056e2ed5f0756628b.jpg/full/!440,512/0/default.jpg?sig=853d00f1f1b7765b1e2aba2e3024ee86581b6781&amp;ver=1628931381" />
+</a>  </div>
+</div>
+
+
+                <!-- Finding Aid Parents section -->
+
+                <!-- Finding Aid Children section -->
+              </div>
+          </div>
+
+          <!-- Sidebar section-->
+          <div class="w-full pt-10">
+            <section>
+    <div class="mb-2 border-b border-[#DBE3E8]">
+      <h3 class="text-xl font-normal mb-4 leading-[1.2em]">
+        Creation
+      </h3>
+      <dl class="mb-2">
+          <div class="mb-2">
+            <dt class="default:text-xs type1:text-sm font-medium leading-[1.2em] text-[#8E989D] default:uppercase default:tracking-[0.075em]">Created By</dt>
+            <dd class="m-0 mt-1 leading-[1.2em] text-lg">Unknown</dd>
+          </div>
+          <div class="mb-2">
+            <dt class="default:text-xs type1:text-sm font-medium leading-[1.2em] text-[#8E989D] default:uppercase default:tracking-[0.075em]">Place</dt>
+            <dd class="m-0 mt-1 leading-[1.2em] text-lg">Whakapapa Village</dd>
+          </div>
+      </dl>
+    </div>
+
+  <div class="mb-2 border-b border-[#DBE3E8]">
+    <button data-controller="modal" data-action="modal#show" data-modal-dialog-param="resource_modal" class="type1:py-3 type1:px-4 bg-primary default:shadow-[1px_1px_0_0_#0B3947] default:hover:bg-[#0e5367] default:hover:shadow-[1px_1px_0_0_#082731] type1:rounded-md inline-block relative text-center leading-[1] cursor-pointer transition-colors duration-[0.25s] ease-out border-none py-[8px] px-[0.8em] m-[0_1rem_1rem_0] text-[18px] font-medium text-white appearance-none">
+      <i class="icon icon--share mr-2 text-[1.5em] h-[0em] leading-[0em] relative -top-[0.05em]"></i>
+      <span>Share or Download</span>
+    </button>
+  </div>
+
+    <div class="mb-2 border-b border-[#DBE3E8]">
+      <div
+        data-controller="leaflet"
+        data-leaflet-location-value="[175.531158442609,-39.1884785869327]"
+        data-leaflet-location-shape-value="{&quot;type&quot;:&quot;Point&quot;,&quot;coordinates&quot;:[175.53115844260904,-39.1884785869327]}"
+        data-leaflet-location-data-value="{&quot;type&quot;:&quot;Point&quot;,&quot;coordinates&quot;:[175.53115844260904,-39.1884785869327]}"
+        data-leaflet-location-precision-value="exact"
+        class="w-full h-[400px] mb-2 rounded overflow-hidden">
+      </div>
+
+        <div class="mb-2">
+          <dt class="default:text-xs type1:text-sm font-medium leading-[1.2em] text-[#8E989D] default:uppercase default:tracking-[0.075em]">Location</dt>
+          <dd class="m-0 mt-1 leading-[1.2em] text-lg">175.531158, -39.188479</dd>
+        </div>
+    </div>
+
+    <div class="mb-2 border-b border-[#DBE3E8]">
+      <h3 class="text-xl font-normal mb-4 leading-[1.2em]">
+        Object rights
+      </h3>
+      <dl class="mb-2">
+        <div>
+          <dt class="default:text-xs type1:text-sm font-medium leading-[1.2em] text-[#8E989D] default:uppercase default:tracking-[0.075em]">License</dt>
+          <dd class="m-0 mt-1 leading-[1.2em] text-lg">No Known Restrictions</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="mb-2 border-b border-[#DBE3E8]">
+      <h3 class="text-xl font-normal mb-4 leading-[1.2em]">
+        Taxonomy
+      </h3>
+        <dl class="mb-2">
+          <div>
+            <dt class="default:text-xs type1:text-sm font-medium leading-[1.2em] text-[#8E989D] default:uppercase default:tracking-[0.075em]">Tags</dt>
+            <span>
+  <dd class="inline-block m-0 mt-1 mr-1 leading-[1.2em] text-lg">
+    <a data-turbo="false" class="inline-block leading-[1] default:py-[0.2em] default:px-[1em] type1:px-3 type1:py-1 bg-tertiary font-medium default:text-xs type1:text-sm rounded-[0.7em] default:text-primary type1:text-white no-underline uppercase tracking-[0.075em] default:hover:bg-[#a1c5db]" href="/search?tag_search%5B%5D=buildings">buildings</a>
+  </dd>
+</span>
+<span>
+  <dd class="inline-block m-0 mt-1 mr-1 leading-[1.2em] text-lg">
+    <a data-turbo="false" class="inline-block leading-[1] default:py-[0.2em] default:px-[1em] type1:px-3 type1:py-1 bg-tertiary font-medium default:text-xs type1:text-sm rounded-[0.7em] default:text-primary type1:text-white no-underline uppercase tracking-[0.075em] default:hover:bg-[#a1c5db]" href="/search?tag_search%5B%5D=chateau+tongariro">chateau tongariro</a>
+  </dd>
+</span>
+<span>
+  <dd class="inline-block m-0 mt-1 mr-1 leading-[1.2em] text-lg">
+    <a data-turbo="false" class="inline-block leading-[1] default:py-[0.2em] default:px-[1em] type1:px-3 type1:py-1 bg-tertiary font-medium default:text-xs type1:text-sm rounded-[0.7em] default:text-primary type1:text-white no-underline uppercase tracking-[0.075em] default:hover:bg-[#a1c5db]" href="/search?tag_search%5B%5D=hotels">hotels</a>
+  </dd>
+</span>
+
+          </div>
+        </dl>
+        <dl class="mb-2">
+          <div>
+            <dt class="default:text-xs type1:text-sm font-medium leading-[1.2em] text-[#8E989D] default:uppercase default:tracking-[0.075em]">Community Tags</dt>
+            <turbo-frame id="user_tags">
+</turbo-frame>          </div>
+        </dl>
+          <div class="mb-2 ml-4">
+            <a class="text-secondary font-normal uppercase text-xs" href="/login?return_to=%2Fitem%2Fedc28628-10d5-4382-a96c-dfe65eb5bfb5">+ Login to add a tag to this item</a>
+          </div>
+    </div>
+  <div class="default:text-base type1:text-lg default:normal-case type1:uppercase">
+    <p class="m-0">
+      <a class="default:text-secondary default:underline default:font-normal type1:text-info type1:no-underline type1:font-normal inline-flex items-center type1:gap-[10px]" href="mailto:heritage@pncc.govt.nz?subject=Report a Problem - Construction of Chateau Tongariro&amp;body=%0D%0A%0D%0APage - https://manawatuheritage.pncc.govt.nz/item/edc28628-10d5-4382-a96c-dfe65eb5bfb5%0D%0AItem ID - edc28628-10d5-4382-a96c-dfe65eb5bfb5">
+        <i class="icon icon--problem default:hidden type1:flex type1:text-[20px] type1:leading-none"></i>
+        <span class="type1:leading-normal">Report a problem</span>
+</a>    </p>
+  </div>
+</section>
+
+          </div>
+        </div>
+      </section>
+        <!-- Comment Section -->
+        <section class="hidden group-has-[.comments:checked]/media:block py-[30px] px-[15px] sm:px-[30px] bg-white relative">
+          <turbo-frame loading="lazy" id="item_comments" src="/item/edc28628-10d5-4382-a96c-dfe65eb5bfb5/comments"></turbo-frame>
+        </section>
+    </div>
+  </div>
+  <!-- Share & Download Modal -->
+  
+
+
+
+<dialog id="resource_modal" data-controller="modal" data-action="click->modal#closeOnBackdrop" class="m-auto bg-white p-4 md:p-8 shadow-2xl max-w-screen md:max-w-[800px]">
+  <button data-controller="modal" data-action="modal#close" data-modal-dialog-param="resource_modal" class="absolute top-[5px] right-0 h-10 w-10 default:text-secondary type1:text-silver bg-white hover:text-primary transition-colors duration-[0.25s] ease-out">
+    <i class="icon icon--cross text-2xl "></i>
+  </button>
+
+  <h3 class="text-2xl default:font-semibold type1:font-medium mb-2 text-center">Share or Download media</h3>
+    <p class="text-lg default:font-light type1:font-normal mb-6 text-center text-primary">Before sharing or using this media, please review the license below:</p>
+
+  <hr class="border-0 border-t border-border mb-8">
+
+    <!-- License & downloads -->
+    <section class="bg-[#F4F7F9] rounded -mx-2 md:-mx-4 px-2 md:px-4 py-4 md:py-6 mb-8">
+        <!-- Record license -->
+        <h4 class="text-xl default:font-semibold type1:font-medium mb-4 text-primary">Record license</h4>
+
+    <div class="flex flex-col md:flex-row gap-8">
+      <!-- License text (left) -->
+      <div class="md:flex-1">
+      <div class="text-lg default:font-light type1:font-normal mb-6"><h5 class="text-lg default:font-normal type1:font-medium mb-2">No known copyright restrictions</h5>
+  <p>There are no known copyright restrictions on this material. You're free to use it, though crediting the source is appreciated.</p></div>
+      </div>
+
+      <!-- Media & downloads (right) -->
+        <div class="md:w-[269px] shrink-0 flex flex-col gap-8">
+            <div class="flex flex-col gap-3 bg-white rounded p-3">
+              <!-- Media Preview or Placeholder -->
+              <img onerror="this.error=null;this.src=&#39;/assets/default-picture-c2188c79dcda56636b37f0cc1ad07649d35f379865ba013393061cb50f0efae9.png&#39;" class="object-cover w-full h-[104px] rounded" src="https://d28dhd8eubcyz4.cloudfront.net/iiif/2/curtis-production2-cache%2F1%2Fe%2Fd%2Fc28628-10d5-4382-a96c-dfe65eb5bfb5%2Fresize_master_b1ffb9e1f94a9c259e5c3d4ef8100474.jpg/full/!880,1024/0/default.jpg?sig=d533fbea0b6e725f3e860170916c2b0c61fd4af3&amp;ver=1628962735" />
+
+              <div class="flex flex-col gap-2">
+                <!-- Image Download -->
+                      <a href="https://d28dhd8eubcyz4.cloudfront.net/iiif/2/curtis-production2-cache%2F1%2Fe%2Fd%2Fc28628-10d5-4382-a96c-dfe65eb5bfb5%2Fresize_master_b1ffb9e1f94a9c259e5c3d4ef8100474.jpg/full/!440,512/0/default.jpg?sig=0ca30060bf0e3d267059fb37f5f04707bb450056&amp;ver=1628962735" target="_blank" class="bg-tertiary text-primary hover:opacity-90 block w-full text-center leading-[1] cursor-pointer transition-opacity duration-[0.25s] ease-out border-none py-1 px-2 text-xs font-normal appearance-none">
+                        Small JPEG (440 x 512)
+                      </a>
+                      <a href="https://d28dhd8eubcyz4.cloudfront.net/iiif/2/curtis-production2-cache%2F1%2Fe%2Fd%2Fc28628-10d5-4382-a96c-dfe65eb5bfb5%2Fresize_master_b1ffb9e1f94a9c259e5c3d4ef8100474.jpg/full/!1170,1170/0/default.jpg?sig=0d121cdef26e3b57f21bb0879c62aa6572b422e9&amp;ver=1628962735" target="_blank" class="bg-tertiary text-primary hover:opacity-90 block w-full text-center leading-[1] cursor-pointer transition-opacity duration-[0.25s] ease-out border-none py-1 px-2 text-xs font-normal appearance-none">
+                        Large JPEG (1170 x 1170)
+                      </a>
+                      <a href="/item/edc28628-10d5-4382-a96c-dfe65eb5bfb5/files/41941ac6-2ac1-4241-b5ab-0b0794f1e392/download?variant=original" target="_blank" class="bg-tertiary text-primary hover:opacity-90 block w-full text-center leading-[1] cursor-pointer transition-opacity duration-[0.25s] ease-out border-none py-1 px-2 text-xs font-normal appearance-none">
+                        Original TIFF
+                      </a>
+
+                <!-- Audio Download -->
+
+                <!-- Video Download -->
+
+                <!-- Book Download -->
+              </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+  <!-- Reference -->
+    <section class="bg-white rounded overflow-hidden -mx-2 md:-mx-4 px-4 md:px-6 py-4 md:py-6 mb-4" data-controller="clipboard">
+      <div class="flex items-center justify-between gap-4">
+        <div class="flex-1">
+          <h4 class="text-xl default:font-semibold type1:font-medium mb-2 text-primary">Reference</h4>
+          <p data-clipboard-target="source" class="text-lg default:font-light type1:font-normal break-words italic">Unknown. &quot;Construction of Chateau Tongariro&quot;, circa 1929, Manawatū Heritage, Ian Matheson City Archives, https://manawatuheritage.pncc.govt.nz/item/edc28628-10d5-4382-a96c-dfe65eb5bfb5, accessed 2026-11-24 03:35.</p>
+        </div>
+        <button data-action="clipboard#copy" data-clipboard-target="button" class="bg-primary text-light default:shadow-[1px_1px_0_0_#0B3947] default:hover:shadow-[1px_1px_0_0_#082731] hover:opacity-90 type1:rounded-md inline-block text-center leading-[1] cursor-pointer transition-opacity duration-[0.25s] ease-out border-none py-[10px] px-[1.2em] text-[16px] font-medium appearance-none whitespace-nowrap">Copy</button>
+      </div>
+    </section>
+
+  <!-- Copy link -->
+  <section class="bg-white rounded overflow-hidden -mx-2 md:-mx-4 px-4 md:px-6 py-4 md:py-6 mb-4" data-controller="clipboard">
+    <h4 class="text-xl default:font-semibold type1:font-medium mb-2 text-primary">Copy link or share with your social community</h4>
+    <div class="flex items-stretch gap-2">
+      <input type="text" readonly autocomplete="off" value="https://manawatuheritage.pncc.govt.nz/item/edc28628-10d5-4382-a96c-dfe65eb5bfb5" data-clipboard-target="source" class="flex-1 border border-solid border-border bg-white px-3 py-2 text-lg text-secondary break-all">
+      <button data-action="clipboard#copy" data-clipboard-target="button" class="bg-tertiary text-primary hover:opacity-90 type1:rounded-md inline-block text-center leading-[1] cursor-pointer transition-opacity duration-[0.25s] ease-out border-none py-[10px] px-[1.2em] text-[16px] font-medium appearance-none whitespace-nowrap">Copy</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+    <section class="mt-6"><button type="button"
+    data-controller="form-embed"
+    data-form-embed-src-value="https://forms-au.stqry.com/embed/mzl9yZviUbE?record_title=Construction+of+Chateau+Tongariro&url=https%3A%2F%2Fmanawatuheritage.pncc.govt.nz%2Fitem%2Fedc28628-10d5-4382-a96c-dfe65eb5bfb5&name=&email="
+    data-action="form-embed#open"
+    class="flex-1 bg-primary text-light default:shadow-[1px_1px_0_0_#0B3947] default:hover:shadow-[1px_1px_0_0_#082731] hover:opacity-90 type1:rounded-md text-center leading-[1] cursor-pointer transition-opacity duration-[0.25s] ease-out border-none py-[10px] px-[1.2em] text-[16px] font-medium appearance-none whitespace-nowrap">Enquire about this record</button>
+  <button type="button"
+    data-controller="form-embed"
+    data-form-embed-src-value="https://forms-au.stqry.com/embed/2cQuLi74YAI?record_title=Construction+of+Chateau+Tongariro&url= https%3A%2F%2Fmanawatuheritage.pncc.govt.nz%2Fitem%2Fedc28628-10d5-4382-a96c-dfe65eb5bfb5&name=&email="
+    data-action="form-embed#open"
+    class="flex-1 bg-tertiary text-primary hover:opacity-90 type1:rounded-md text-center leading-[1] cursor-pointer transition-opacity duration-[0.25s] ease-out border-none py-[10px] px-[1.2em] text-[16px] font-medium appearance-none whitespace-nowrap">Help improve this record</button></section>
+</dialog>
+
+
+    </main>
+
+    <footer class="gap-6 mx-auto px-8 max-w-[1440px] w-full default:grid-cols-1 default:lg:grid-cols-[1.5fr_1fr] default:grid default:pt-16 default:pb-12 type1:flex type1:justify-between type1:items-center type1:p-6">
+
+  <div class="hidden lg:flex type1:gap-8 default:flex-col default:border-t default:dark:border-gray-200 default:pt-6">
+      <a class="block uppercase font-medium text-primary hover:underline tracking-[1.2px] w-fit" href="/about">About</a>
+      <a class="block uppercase font-medium text-primary hover:underline tracking-[1.2px] w-fit" href="/terms-of-use">Terms of Use</a>
+      <a class="block uppercase font-medium text-primary hover:underline tracking-[1.2px] w-fit" href="/using-the-site">Using the Site</a>
+  </div>
+
+  <div class="flex flex-col default:border-t default:gap-2 default:dark:border-gray-200 default:pt-6">
+    <div class="gap-2 flex">
+      
+
+
+
+  <a class="text-[40px] flex items-center default:text-primary type1:text-secondary " target="_blank" rel="noopener noreferrer" href="https://facebook.com/palmerstonnorthcitylibrary">
+    <i class="icon icon--facebook-circle"></i>
+</a>
+
+
+  <a class="text-[40px] flex items-center default:text-primary type1:text-secondary " href="mailto:heritage@pncc.govt.nz">
+    <i class="icon icon--email-circle"></i>
+</a>
+    </div>
+
+      <p class="text-primary font-normal">
+        © 2026 Palmerston North City Library
+      </p>
+  </div>
+</footer>
+
+  </body>
+</html>

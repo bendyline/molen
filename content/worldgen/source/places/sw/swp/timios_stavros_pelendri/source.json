@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.timios_stavros_pelendri",
+  "kind": "static-structure",
+  "title": "Timios Stavros, Pelendri",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.timios_stavros_pelendri",
+        "output": "assets/places/sw/swp/timios_stavros_pelendri/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f9790488696b861259b806e1f613e02b8b621821319e6888d115742e002d7412"
+      }
+    ],
+    "generators": [
+      {
+        "id": "timios_stavros_pelendri",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "chapel-and-roof",
+        "path": "models/chapel-and-roof.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "church-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

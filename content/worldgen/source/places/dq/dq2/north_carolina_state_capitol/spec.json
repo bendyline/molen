@@ -1,0 +1,495 @@
+{
+  "planId": "north_carolina_state_capitol",
+  "id": "north_carolina_state_capitol",
+  "assetId": "molen.worldgen.structure.north_carolina_state_capitol",
+  "title": "North Carolina State Capitol",
+  "wikidataId": "Q3694520",
+  "category": "civic",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -78.6390995,
+    "latitude": 35.78039995
+  },
+  "size": [
+    45.079999923706055,
+    35.11999988555908,
+    49.26496124267578
+  ],
+  "actualBounds": {
+    "min": [
+      -22.5310001373291,
+      -6.199999809265137,
+      -24.62696075439453
+    ],
+    "max": [
+      22.548999786376953,
+      28.920000076293945,
+      24.63800048828125
+    ]
+  },
+  "visualBrief": "The 1840 North Carolina State Capitol in Raleigh, with gneiss wings, paired Doric porticoes and a shallow copper dome.",
+  "nativeAxes": {
+    "x": "west portico to east portico",
+    "y": "up",
+    "z": "north pavilion to south pavilion"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Exterior_dome_-_North_Carolina_State_Capitol_-_DSC05841.JPG",
+    "https://commons.wikimedia.org/wiki/File:Exterior_east_facade_-_North_Carolina_State_Capitol_-_DSC05845.JPG",
+    "https://commons.wikimedia.org/wiki/File:Exterior_east_facade_-_North_Carolina_State_Capitol_-_DSC05839.JPG",
+    "https://commons.wikimedia.org/wiki/File:Exterior_south_facade_-_North_Carolina_State_Capitol_-_DSC05822.JPG"
+  ],
+  "stories": [
+    {
+      "id": "north-carolina-state-capitol-wp",
+      "url": "https://qualla.com/north-carolina-state-capitol/"
+    }
+  ],
+  "referenceInputHash": "sha256:69bf28ed6d953a3f5d5964cb38a531ba9e877342de7d8b303303240113d6df97",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/models/north-carolina-state-capitol-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dq/dq2/north_carolina_state_capitol/models/north-carolina-state-capitol-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.06,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.93
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.91
+      },
+      "ground": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.96
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.87
+      },
+      "gold": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.74
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.66
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.86
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.43,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.87
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.74
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.87
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.74
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.058,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.87
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.74
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_granite",
+    "stone_ashlar",
+    "stone_granite",
+    "metal_copper",
+    "metal_bronze_cast",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified elevation on the Union Square path outside the east portico.",
+    "anchor": [
+      -78.6390995,
+      35.78039995
+    ],
+    "heading": -0.04112055886796284,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -78.63881525591736,
+        35.780388664233755
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified elevation on the Union Square path outside the east portico."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          9.572,
+          -24.153
+        ],
+        [
+          9.582,
+          -6.784
+        ],
+        [
+          21.857,
+          -6.776
+        ],
+        [
+          21.863,
+          7.217
+        ],
+        [
+          9.815,
+          7.222
+        ],
+        [
+          9.825,
+          24.168
+        ],
+        [
+          -10.213,
+          24.168
+        ],
+        [
+          -10.211,
+          7.311
+        ],
+        [
+          -21.834,
+          7.321
+        ],
+        [
+          -21.839,
+          -7.084
+        ],
+        [
+          -10.071,
+          -7.089
+        ],
+        [
+          -10.087,
+          -24.157
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "The identified cross-shaped Capitol footprint and projecting porticoes."
+    },
+    "featureIds": [
+      "way/47663703"
+    ],
+    "source": "https://www.openstreetmap.org/way/47663703",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:dc90a0cadb09ec7b1591fed8732841357a48657ce3eda6171fa29e2111477eba",
+    "notes": "The National Register records four columns on each east and west portico, five bays at north and south ends, a hidden low roof, an octagonal base and copper dome with anthemion crown."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The standing exterior of the 1840 Capitol, including paired porticoes. Park monuments and interiors are outside scope.",
+    "Vertical proportions and the latest patina of the replaced copper are estimated. The dome and crown form follow the photographs and official description."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "north-carolina-state-capitol-skyline",
+      "position": [
+        81,
+        39,
+        62
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "north-carolina-state-capitol-district",
+      "position": [
+        81,
+        39,
+        62
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "north-carolina-state-capitol-street",
+      "position": [
+        81,
+        39,
+        62
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "north-carolina-state-capitol-closeup",
+      "position": [
+        81,
+        39,
+        62
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "union-square-exterior-and-dome",
+      "position": [
+        81,
+        39,
+        62
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "east-doric-portico-and-stone-piers",
+      "position": [
+        49,
+        9,
+        13
+      ],
+      "lookAt": [
+        9,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "copper-dome-and-anthemions",
+      "position": [
+        20,
+        32,
+        34
+      ],
+      "lookAt": [
+        0,
+        23.4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 14596,
+    "vertices": 43788,
+    "materials": 7,
+    "bytes": 2225852,
+    "sha256": "sha256:cf424a56c0ec4e75234173538ed4efdcf246e2b091a46778f460fed4fe3221fb"
+  }
+}

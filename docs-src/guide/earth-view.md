@@ -965,6 +965,13 @@ building geometry; use `groundCutout` separately when the model also covers the 
 For separated buildings or precincts, `buildingCutout.outlines` provides up to 64 independent
 simple masks and supersedes `outline`. Keep the primary `outline` for compatibility. Separate
 masks preserve intervening buildings without inventing connecting structure geometry.
+`buildingCutout.holes` carves up to 64 simple rings out of that placement's masks, such as a
+cloister court or the town inside a city wall. Mapped buildings in a hole keep their polygons and
+count as uncovered for `minimumCoverage`; a building crossing a hole's edge keeps the part inside
+it. Holes carve only their own placement's masks. Use them where the enclosed ground holds map
+buildings the model does not represent. A courtyard of the landmark's own building needs none for
+coverage, which already excludes that building's courtyards. On coarse tiles where the source
+has filled a small courtyard in, a hole keeps that fill as well.
 
 For an open carriage arch or similar at-grade passage, add `surfacePassageIds` and geographic
 `bounds`. List exact transportation feature IDs from the map package. While the landmark is
@@ -994,6 +1001,10 @@ in its `site-grades` data. Supply two or more `[station, elevation]` pairs in in
 local Z order. The terrain grade interpolates between the elevations and keeps the endpoint
 levels outside the station range. The existing `bounds`, `blend` and `repairBelow` fields
 control where the profile applies.
+For measured terrain that varies along both axes, use `elevationGrid` in place of the profile.
+Each row contains absolute elevations from minimum to maximum local X. The rows run from
+minimum to maximum local Z across `bounds`. Adjacent samples are bilinearly interpolated and
+the same `blend` tapers the perimeter into host terrain.
 For a historical site grade, set `validFrom` and `validUntil` as calendar dates. The grade
 applies when `viewingDate` falls on or after the first date and before the second date.
 

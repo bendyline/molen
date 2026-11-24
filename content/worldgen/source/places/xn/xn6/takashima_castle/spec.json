@@ -1,0 +1,411 @@
+{
+  "planId": "takashima_castle",
+  "id": "takashima_castle",
+  "assetId": "molen.worldgen.structure.takashima_castle",
+  "title": "Takashima Castle",
+  "wikidataId": "Q10856395",
+  "category": "historic-castle",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 138.11200885,
+    "latitude": 36.0397872
+  },
+  "size": [
+    26.5,
+    32.79742240905762,
+    29.232988357543945
+  ],
+  "actualBounds": {
+    "min": [
+      -13.251500129699707,
+      -9.260000228881836,
+      -13.85260009765625
+    ],
+    "max": [
+      13.248499870300293,
+      23.53742218017578,
+      15.380388259887695
+    ]
+  },
+  "visualBrief": "The rebuilt three-tier Takashima keep with bowed copper eaves, timber bands, stone platform and public stair.",
+  "nativeAxes": {
+    "x": "along the base eaves",
+    "y": "up",
+    "z": "toward the park stairs"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Takashima_castle1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Takashima_castle.JPG"
+  ],
+  "stories": [
+    {
+      "id": "takashima-castle-wp",
+      "url": "https://qualla.com/takashima-castle/"
+    }
+  ],
+  "referenceInputHash": "sha256:094056bc8612484f215d85633eb99cfcd8f3f627f74b723790777edd0da60c31",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn6/takashima_castle/models/takashima-castle-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn6/takashima_castle/models/takashima-castle-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.65,
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.92
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.86
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.86
+      },
+      "detail": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.83
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.92
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.86
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.92
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.86
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.92
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.86
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_drywall",
+    "plaster_lime",
+    "wood_plain",
+    "metal_copper"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original GSI ground outside the park-side entry staircase.",
+    "anchor": [
+      138.11200885,
+      36.0397872
+    ],
+    "heading": -0.32098163178479416,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        138.11202833132768,
+        36.03961961021084
+      ],
+      "modelHeight": 0,
+      "basis": "Original GSI ground outside the park-side entry staircase."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -8.997,
+          -8.9861
+        ],
+        [
+          8.9977,
+          -8.9861
+        ],
+        [
+          8.997,
+          8.9861
+        ],
+        [
+          -8.9977,
+          8.9861
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Named mapped main keep over the stone platform."
+    },
+    "featureIds": [
+      "way/233643278",
+      "way/971562084",
+      "way/971599592"
+    ],
+    "source": "https://www.openstreetmap.org/way/233643278",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:760720b2eab874bb83c82597b25ed31e42f3fa3e7908052977de827c5cffd7ba",
+    "notes": "The Suwa reconstruction guide specifies three stories, a published 20.2-metre height including the 1.7-metre ridge ornaments, a 13.8-metre ground-floor width, and copper in place of original cypress shingles."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the reconstructed keep and adjoining measured corner platform. The separate park gate, turrets and wider enclosure remain outside this scope.",
+    "Individual masonry joints, timber trim, parapets and copper ornaments are medium-fidelity approximations."
+  ],
+  "sourceLicense": "Original 3D work under the repository license. Mapped building data under ODbL and GSI open elevation data under published terms.",
+  "qaLodCameras": [
+    {
+      "name": "takashima-castle-skyline",
+      "position": [
+        44,
+        26,
+        45
+      ],
+      "lookAt": [
+        -1,
+        9.6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "takashima-castle-district",
+      "position": [
+        44,
+        26,
+        45
+      ],
+      "lookAt": [
+        -1,
+        9.6,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "takashima-castle-street",
+      "position": [
+        44,
+        26,
+        45
+      ],
+      "lookAt": [
+        -1,
+        9.6,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "takashima-castle-closeup",
+      "position": [
+        44,
+        26,
+        45
+      ],
+      "lookAt": [
+        -1,
+        9.6,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "park-stairs-and-entry-gables",
+      "position": [
+        8.8,
+        5.1,
+        34.5
+      ],
+      "lookAt": [
+        2.6,
+        11.8,
+        2
+      ]
+    },
+    {
+      "name": "keep-and-moat-platform",
+      "position": [
+        -30,
+        7,
+        -36
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "copper-eaves-and-observation-tier",
+      "position": [
+        13,
+        24,
+        29
+      ],
+      "lookAt": [
+        1,
+        17,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4866,
+    "vertices": 14598,
+    "materials": 5,
+    "bytes": 782872,
+    "sha256": "sha256:30654c1ce037f6617de9fe298e594c525a0eeb19c618b6bf05034cbdc94e7db8"
+  }
+}

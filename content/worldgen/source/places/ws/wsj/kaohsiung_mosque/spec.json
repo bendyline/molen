@@ -1,0 +1,479 @@
+{
+  "planId": "kaohsiung_mosque",
+  "id": "kaohsiung_mosque",
+  "assetId": "molen.worldgen.structure.kaohsiung_mosque",
+  "title": "Kaohsiung Mosque",
+  "wikidataId": "Q10566876",
+  "category": "mosque",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 120.34187419999999,
+    "latitude": 22.627987341935484
+  },
+  "size": [
+    43.14269256591797,
+    19.88999915122986,
+    40.52296829223633
+  ],
+  "actualBounds": {
+    "min": [
+      -23.89599609375,
+      -2.0899999141693115,
+      -19.45699691772461
+    ],
+    "max": [
+      19.24669647216797,
+      17.799999237060547,
+      21.06597137451172
+    ]
+  },
+  "visualBrief": "The mosque on Jianjyun Road with a dark green glazed-tile portico, tall arched windows, and pale dome and minaret crowns.",
+  "nativeAxes": {
+    "x": "east toward the street",
+    "y": "up",
+    "z": "south along the principal frontage"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Kaohsiung_Mosque_20190301.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kaohsiung-mosque-wp",
+      "url": "https://qualla.com/kaohsiung-mosque/"
+    }
+  ],
+  "referenceInputHash": "sha256:00d6ac8db54a5cfea4d7e6a8b5ab3a316302576007bbc801c7a0b5372b570415",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ws/wsj/kaohsiung_mosque/models/kaohsiung-mosque-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ws/wsj/kaohsiung_mosque/models/kaohsiung-mosque-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.28,
+    "surfaces": {
+      "tile": {
+        "slot": "wall",
+        "graph": "tile_glazed",
+        "roughness": 0.82
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.93
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.11
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.62
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_glazed",
+            "roughness": 0.82
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.11
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.062,
+        "surfaces": {
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_glazed",
+            "roughness": 0.82
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.11
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.018,
+        "surfaces": {
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_glazed",
+            "roughness": 0.82
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.11
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "tile_glazed",
+    "stone_limestone",
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Elevation sampled on the open street-side approach near the public entrance, from the original Terrarium tile.",
+    "anchor": [
+      120.34187419999999,
+      22.627987341935484
+    ],
+    "heading": -0.009790337092917767,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        120.34214669076225,
+        22.627984879439442
+      ],
+      "modelHeight": 0,
+      "basis": "Elevation sampled on the open street-side approach near the public entrance, from the original Terrarium tile."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -16.404,
+          -16.887
+        ],
+        [
+          -11.399,
+          -16.936
+        ],
+        [
+          -11.347,
+          -11.625
+        ],
+        [
+          0.861,
+          -11.868
+        ],
+        [
+          0.788,
+          -19.279
+        ],
+        [
+          12.02,
+          -19.389
+        ],
+        [
+          12.09,
+          -12.225
+        ],
+        [
+          16.485,
+          -12.268
+        ],
+        [
+          16.623,
+          1.814
+        ],
+        [
+          12.716,
+          1.852
+        ],
+        [
+          12.904,
+          20.998
+        ],
+        [
+          -23.735,
+          19.998
+        ],
+        [
+          -23.828,
+          10.487
+        ],
+        [
+          -5.632,
+          10.926
+        ],
+        [
+          -5.664,
+          7.591
+        ],
+        [
+          -15.919,
+          7.691
+        ]
+      ],
+      "minimumCoverage": 0.89,
+      "basis": "Named Kaohsiung Mosque site with the building limit traced from Taiwan e-Map linework."
+    },
+    "featureIds": [
+      "nlsc-emap-kaohsiung-mosque"
+    ],
+    "source": "https://maps.nlsc.gov.tw/pro/001_layer.html",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2e1c06fe5d1dd16dfb028d61406685ea508868cc8c91fcfb83bdbffda0ee7c3e",
+    "notes": "Three principal levels, with the tall dark green east portico and arched glazing seen in the exact Qualla view. The dome and minaret crowns follow the city's architectural description. The street approach stays open in front of the recessed entrance."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The e-Map footprint and the photo guide orientation and visible proportions. The roof height, dome scale, rear windows and smaller service wings are approximate."
+  ],
+  "sourceLicense": "Original mesh under repository license. Taiwan National Land Surveying and Mapping Center. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "kaohsiung-mosque-skyline",
+      "position": [
+        49,
+        25,
+        28
+      ],
+      "lookAt": [
+        1,
+        7.1,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kaohsiung-mosque-district",
+      "position": [
+        49,
+        25,
+        28
+      ],
+      "lookAt": [
+        1,
+        7.1,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "kaohsiung-mosque-street",
+      "position": [
+        49,
+        25,
+        28
+      ],
+      "lookAt": [
+        1,
+        7.1,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "kaohsiung-mosque-closeup",
+      "position": [
+        49,
+        25,
+        28
+      ],
+      "lookAt": [
+        1,
+        7.1,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "east-steps-and-portico",
+      "position": [
+        45,
+        5.5,
+        11
+      ],
+      "lookAt": [
+        11,
+        7.5,
+        -1
+      ]
+    },
+    {
+      "name": "arched-glazing-and-tile",
+      "position": [
+        32,
+        8.4,
+        30
+      ],
+      "lookAt": [
+        11,
+        7.2,
+        8
+      ]
+    },
+    {
+      "name": "dome-minarets-and-service-wings",
+      "position": [
+        22,
+        36,
+        -26
+      ],
+      "lookAt": [
+        0,
+        7.5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3137,
+    "vertices": 9411,
+    "materials": 6,
+    "bytes": 520588,
+    "sha256": "sha256:9327009bd3c81a97ac5bee48a2daad58624ac86f776256f2e31707f201326250"
+  }
+}

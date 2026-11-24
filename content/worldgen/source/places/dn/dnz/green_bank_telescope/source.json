@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.green_bank_telescope",
+  "kind": "static-structure",
+  "title": "Green Bank Telescope",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.green_bank_telescope",
+        "output": "assets/places/dn/dnz/green_bank_telescope/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9f5b5de609385d02359c8a1510a39fe440a9ddbd115b9bd1b757fdcdbeae1162"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-green-bank-telescope",
+        "path": "models/generate-green-bank-telescope.mjs"
+      },
+      {
+        "id": "green-bank-telescope-model",
+        "path": "models/green-bank-telescope-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/green-bank-telescope-footprint.json",
+      "reference-rights/green-bank-telescope-architectural-facts.json",
+      "reference-rights/green-bank-telescope-qualla-original-1.json",
+      "reference-rights/green-bank-english-original-log.json",
+      "reference-rights/green-bank-sole-commons-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/green-bank-usgs-ground.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

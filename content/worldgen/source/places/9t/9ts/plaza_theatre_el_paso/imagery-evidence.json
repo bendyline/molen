@@ -1,0 +1,62 @@
+{
+  "format": "molen/structure-imagery-evidence@1",
+  "policy": "qualla-public-domain-imagery@1",
+  "reviewedOn": "2026-11-23",
+  "scope": "Restored 1930 Plaza Theatre exterior at 125 Pioneer Plaza, including the original entrance, historic auditorium and attached stage and entry wings.",
+  "references": [
+    {
+      "path": "references/el-paso-plaza-theatre-naip.png",
+      "sourceUrl": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/tx_m_3110613_sw_13_060_20220529",
+      "sha256": "sha256:3106991bc61ffb634cebcb19fdeeac6073236e8b4bcc50ca515b738c28c88c02",
+      "downloadUrl": "https://planetarycomputer.microsoft.com/api/data/v1/item/bbox/-106.49022,31.75847,-106.48910,31.75964/450x540.png?collection=naip&item=tx_m_3110613_sw_13_060_20220529&assets=image&bidx=1&bidx=2&bidx=3",
+      "artist": "USDA Farm Service Agency",
+      "license": "Public domain",
+      "origin": "usda-naip-el-paso-plaza-theatre-2022",
+      "rightsEvidence": {
+        "path": "reference-rights/el-paso-plaza-theatre-naip-item.json",
+        "sourceUrl": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/tx_m_3110613_sw_13_060_20220529",
+        "sha256": "sha256:b1cff308c774421a2bb6651f2195e6a2a4ebc4c28ead2ed505eb55568ace8aba"
+      },
+      "visuallyReviewedForThisPolicy": true,
+      "originalReview": {
+        "status": "inspected",
+        "rendition": "native-item-natural-color-crop",
+        "notes": "Native 2022 NAIP shows the low front wing and canopy footprint, white auditorium roof, stage-house roof and rear service return. Used only for plan dimensions and roof tones."
+      }
+    },
+    {
+      "path": "references/el-paso-plaza-highsmith-native.jp2",
+      "origin": "loc-highsmith-public-domain",
+      "sourceUrl": "https://www.loc.gov/item/2014630837/",
+      "downloadUrl": "https://tile.loc.gov/storage-services/service/pnp/highsm/26600/26637.jp2",
+      "artist": "Carol M. Highsmith",
+      "license": "Public domain",
+      "sha256": "sha256:0ec6c473c6cfbe00a34cc43afd5b4a5e4c9e52afce96c1e3903f21b5a1ec7a4d",
+      "rightsEvidence": {
+        "path": "reference-rights/highsmith-loc-rights.html",
+        "sha256": "sha256:f5dd355abaa20317c0a78303917915e79cf1ad90eda7121d44ab5cb8d48e595b",
+        "sourceUrl": "https://wwws.loc.gov/rr/print/res/482_high.html"
+      },
+      "catalogEvidence": {
+        "path": "reference-rights/highsmith-loc-catalog.json",
+        "sha256": "sha256:8106e4e5ef798f7a0e1f0adee7f12c0795c7429bd506169a89c110034095e02e",
+        "sourceUrl": "https://www.loc.gov/item/2014630837/?fo=json"
+      },
+      "visuallyReviewedForThisPolicy": true,
+      "originalReview": {
+        "status": "inspected",
+        "rendition": "library-published-original-jp2",
+        "nativeCatalogue": "https://www.loc.gov/item/2014630837/",
+        "notes": "Original Library of Congress archive file. Shows the stepped scroll gable, small polychrome tiled balcony, relief PLAZA lettering, marquee and four pairs of glazed doors of the standing theatre."
+      }
+    }
+  ],
+  "quallaSearch": {
+    "source": "published-qualla-media",
+    "completedBeforeSupplementalFetch": true,
+    "articlePaths": [
+      "_c/art/9/t/s/k/plaza-theatre-el-paso-wp.json"
+    ],
+    "notes": "Qualla imagery checked first. Its public-domain thumbnail refers to the Truman historic site rather than El Paso, and its actual theatre images are CC BY-SA. The exact Highsmith Library of Congress image and source-specific USDA NAIP aerial were verified instead."
+  }
+}

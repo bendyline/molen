@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.saint_john_abbey",
+  "kind": "static-structure",
+  "title": "Saint John Abbey",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.saint_john_abbey",
+        "output": "assets/places/u0/u0r/saint_john_abbey/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1b1e72a4d9b1db9927723617b429d641315b55f08be2677ba438fef38c1a147f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "saint_john_abbey",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "carolingian-church-and-convent",
+        "path": "models/carolingian-church-and-convent.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "abbey-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

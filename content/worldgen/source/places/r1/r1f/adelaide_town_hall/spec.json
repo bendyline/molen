@@ -1,0 +1,369 @@
+{
+  "id": "adelaide_town_hall",
+  "planId": "adelaide_town_hall",
+  "title": "Adelaide Town Hall",
+  "assetId": "molen.worldgen.structure.adelaide_town_hall",
+  "category": "landmark",
+  "wikidataId": "Q4681798",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 138.60017633,
+    "latitude": -34.92614897
+  },
+  "visualBrief": "A rusticated sandstone civic block surrounds Albert Tower. Its clock chamber supports two arched stages, a domed cap, a small lantern and the weather vane. King William Street faces the central vaulted entry.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r1/r1f/adelaide_town_hall/models/hall.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.openstreetmap.org/way/219740570"
+  ],
+  "geographicProposal": {
+    "id": "adelaide-town-hall",
+    "title": "Adelaide Town Hall",
+    "asset": "molen.worldgen.structure.adelaide_town_hall",
+    "anchor": [
+      138.60017633,
+      -34.92614897
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 45.1523,
+    "bounds": [
+      138.59989548695424,
+      -34.92641826832738,
+      138.60061961305382,
+      -34.925810432261684
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q4681798",
+      "names": [
+        "Adelaide Town Hall",
+        "Adelaide City Hall",
+        "Albert Tower",
+        "Adelaide Town Hall"
+      ],
+      "maxDistance": 92
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -19.005113,
+          -32.123409
+        ],
+        [
+          -17.845986,
+          -11.184262
+        ],
+        [
+          -20.28289,
+          -11.050679
+        ],
+        [
+          -23.632492,
+          -10.861436
+        ],
+        [
+          -23.36781,
+          -6.085835
+        ],
+        [
+          -23.011858,
+          0.29277
+        ],
+        [
+          -22.445985,
+          10.42285
+        ],
+        [
+          -19.114637,
+          10.244738
+        ],
+        [
+          -16.349161,
+          10.088891
+        ],
+        [
+          -15.363447,
+          27.97797
+        ],
+        [
+          9.580592,
+          26.586473
+        ],
+        [
+          9.498449,
+          25.061391
+        ],
+        [
+          22.887731,
+          24.315549
+        ],
+        [
+          22.294477,
+          13.651119
+        ],
+        [
+          29.103205,
+          13.239237
+        ],
+        [
+          38.458361,
+          12.69377
+        ],
+        [
+          36.79725,
+          -17.217769
+        ],
+        [
+          25.00519,
+          -17.006263
+        ],
+        [
+          24.302413,
+          -35.685619
+        ],
+        [
+          -17.508288,
+          -33.359051
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace only the government building and mapped Albert Tower part. Retain the independent Queen’s Chambers and surrounding city blocks."
+    },
+    "source": "https://www.openstreetmap.org/way/219740570",
+    "note": "The body follows the mapped civic block and the 44-metre tower sits on the surveyed King William Street projection.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:08b4e9c6819c8c5cd01178fb902abbe4b6fa9e42de812d1ab4abe441f344682f"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "sandstone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.94
+      },
+      "ashlar": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.91
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.56
+      }
+    },
+    "errorMeters": 1.16,
+    "module": "content/worldgen/source/places/r1/r1f/adelaide_town_hall/models/hall.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94
+          },
+          "ashlar": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 0.48
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94
+          },
+          "ashlar": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 0.21
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94
+          },
+          "ashlar": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 0.066
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -4,
+        16,
+        -1
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "albert-tower-clock-and-belfry",
+      "position": [
+        -60,
+        19.3,
+        -19
+      ],
+      "lookAt": [
+        -20,
+        27.05,
+        -3.2
+      ],
+      "fov": 55
+    },
+    {
+      "name": "king-william-street-archway",
+      "position": [
+        -51,
+        5.4,
+        9
+      ],
+      "lookAt": [
+        -21,
+        8.47,
+        -3.1
+      ],
+      "fov": 52
+    }
+  ],
+  "limitations": [
+    "The tower height comes from the mapped building part. Individual clocks, stone carvings and minor roof fixtures are simplified. Building heights below the tower and the upper arcade spacing are estimated from photographs."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -24.278287887573242,
+      -0.7300000190734863,
+      -36.04506301879883
+    ],
+    "max": [
+      38.817806243896484,
+      44,
+      28.337411880493164
+    ]
+  },
+  "size": [
+    63.09609413146973,
+    44.730000019073486,
+    64.38247489929199
+  ],
+  "mesh": {
+    "triangles": 28011,
+    "vertices": 55029,
+    "materials": 5,
+    "bytes": 2320472,
+    "sha256": "sha256:bedb8f489613652456699ef916447fb060b323865a61681e13594d8a71950f48"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.al_zaytunah_mosque",
+  "kind": "static-structure",
+  "title": "Al-Zaytunah Mosque",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.al_zaytunah_mosque",
+        "output": "assets/places/sn/snx/al_zaytunah_mosque/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4b8d951a472ef1ca7711fd14c49e3e93e1d98ea8093fc32a0cd7498c60a762bb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "al_zaytunah_mosque",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "mosque",
+        "path": "models/mosque.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.carew_tidal_mill",
+  "kind": "static-structure",
+  "title": "Carew Tidal Mill",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.carew_tidal_mill",
+        "output": "assets/places/gc/gch/carew_tidal_mill/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4f06b6585cda7ac0f07e743601c68d91484720105db15aadf1126d10e52f6044"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-carew-tidal-mill",
+        "path": "models/generate-carew-tidal-mill.mjs"
+      },
+      {
+        "id": "carew-tidal-mill-model",
+        "path": "models/carew-tidal-mill-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/carew-tidal-mill-footprint.json",
+      "native-map/carew-mill-causeway-native.json",
+      "reference-rights/carew-tidal-mill-architectural-facts.json",
+      "reference-rights/carew-tidal-mill-qualla-original-1.json",
+      "reference-rights/carew-tidal-mill-qualla-original-2.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-15943-10868.png",
+      "terrain-sources/terrarium-15-15943-10867.png",
+      "terrain-sources/terrarium-15-15944-10867.png",
+      "terrain-sources/terrarium-15-15944-10868.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

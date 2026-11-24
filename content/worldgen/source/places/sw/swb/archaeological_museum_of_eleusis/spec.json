@@ -1,0 +1,453 @@
+{
+  "planId": "archaeological_museum_of_eleusis",
+  "id": "archaeological_museum_of_eleusis",
+  "assetId": "molen.worldgen.structure.archaeological_museum_of_eleusis",
+  "title": "Archaeological Museum of Eleusis",
+  "wikidataId": "Q3329429",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 23.537557,
+    "latitude": 38.040572
+  },
+  "size": [
+    44.54999923706055,
+    8.120000123977661,
+    16.697999477386475
+  ],
+  "actualBounds": {
+    "min": [
+      -22.079999923706055,
+      -1.9500000476837158,
+      -6.127999782562256
+    ],
+    "max": [
+      22.469999313354492,
+      6.170000076293945,
+      10.569999694824219
+    ]
+  },
+  "visualBrief": "Long, pale stone museum above the sanctuary, with clay roofs and a stepped south terrace.",
+  "nativeAxes": {
+    "x": "east-southeast along the building",
+    "y": "up",
+    "z": "south-southwest towards the open terrace"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Gymnasium_at_Eleusis,_looking_W_towards_Mithraeum,_Sacred_House,_and_Archaeological_Museum.jpg",
+    "https://commons.wikimedia.org/wiki/File:Gymnasium_at_Eleusis,_looking_W_towards_Mithraeum,_Sacred_House,_and_Archaeological_Museum2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "archaeological-museum-of-eleusis-wp",
+      "url": "https://qualla.com/archaeological-museum-of-eleusis/"
+    }
+  ],
+  "referenceInputHash": "sha256:23d5908b088a24b4f9b57f26de7ffad699d3f007823f7244390ee98c800e5884",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sw/swb/archaeological_museum_of_eleusis/models/archaeological-museum-of-eleusis-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sw/swb/archaeological_museum_of_eleusis/models/archaeological-museum-of-eleusis-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.66,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.88
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.88
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.86
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.45
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.86
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.86
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.86
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "plaster_lime",
+    "tile_flat",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Mapzen elevation at the transition from the southern museum wall to the stepped entrance terrace.",
+    "anchor": [
+      23.537557,
+      38.040572
+    ],
+    "heading": -0.10282624325542847,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        23.53758937060941,
+        38.040521505937186
+      ],
+      "modelHeight": 0,
+      "basis": "Original Mapzen elevation at the transition from the southern museum wall to the stepped entrance terrace."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -21.873,
+          -5.868
+        ],
+        [
+          22.266,
+          -5.868
+        ],
+        [
+          22.266,
+          4.462
+        ],
+        [
+          14.368,
+          4.46
+        ],
+        [
+          13.579,
+          5.526
+        ],
+        [
+          6.93,
+          5.406
+        ],
+        [
+          4.711,
+          4.74
+        ],
+        [
+          1.221,
+          4.832
+        ],
+        [
+          -0.957,
+          5.504
+        ],
+        [
+          -21.879,
+          5.436
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Native exterior outline used to keep the hillside ground from entering the gallery."
+    },
+    "featureIds": [
+      "way/150049214"
+    ],
+    "source": "https://www.openstreetmap.org/way/150049214",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f39d07e1bd9989eaebf32af085ff9e38f2f21419ddff66d76ce1f3c669f4843f",
+    "notes": "Photographs show pale rendered walls, red clay tiled edges, dark rectangular grille windows, a shallow arrival canopy and lower buff masonry terrace. The west and north walls are scaled from the native envelope."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Standing historic museum exterior and attached approach. The clock tower and archaeological sanctuary have separate identities.",
+    "Roof heights, covered gallery detail, north-wall windows and narrow service links are representative."
+  ],
+  "sourceLicense": "Original 3D work, OpenStreetMap perimeter under ODbL, and sourced Mapzen elevation.",
+  "qaLodCameras": [
+    {
+      "name": "eleusis-museum-skyline",
+      "position": [
+        36,
+        13,
+        43
+      ],
+      "lookAt": [
+        1,
+        2.45,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "eleusis-museum-district",
+      "position": [
+        36,
+        13,
+        43
+      ],
+      "lookAt": [
+        1,
+        2.45,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "eleusis-museum-street",
+      "position": [
+        36,
+        13,
+        43
+      ],
+      "lookAt": [
+        1,
+        2.45,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "eleusis-museum-closeup",
+      "position": [
+        36,
+        13,
+        43
+      ],
+      "lookAt": [
+        1,
+        2.45,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "museum-from-southeast-terrace",
+      "position": [
+        39,
+        8.5,
+        39
+      ],
+      "lookAt": [
+        0,
+        2.2,
+        4
+      ]
+    },
+    {
+      "name": "glazing-stairs-and-arrival-canopy",
+      "position": [
+        7.6,
+        4.5,
+        22
+      ],
+      "lookAt": [
+        1.8,
+        2.3,
+        6.3
+      ]
+    },
+    {
+      "name": "east-gable-and-clay-roof",
+      "position": [
+        34,
+        10,
+        10
+      ],
+      "lookAt": [
+        16.8,
+        3.8,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4018,
+    "vertices": 12054,
+    "materials": 6,
+    "bytes": 677664,
+    "sha256": "sha256:4fafd8e9492249871475f52fb2caae4329f3b2bb624965ad16f96d44f27b727c"
+  }
+}

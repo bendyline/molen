@@ -1,0 +1,502 @@
+{
+  "planId": "plaza_theatre_palm_springs_california",
+  "id": "plaza_theatre_palm_springs_california",
+  "assetId": "molen.worldgen.structure.plaza_theatre_palm_springs_california",
+  "title": "Plaza Theatre (Palm Springs, California)",
+  "wikidataId": "Q7203657",
+  "category": "theatre",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -116.54617538210849,
+    "latitude": 33.8225662155094
+  },
+  "size": [
+    51.82099914550781,
+    16.959999561309814,
+    23.420000076293945
+  ],
+  "actualBounds": {
+    "min": [
+      -26.219999313354492,
+      -3.5999999046325684,
+      -11.819999694824219
+    ],
+    "max": [
+      25.60099983215332,
+      13.359999656677246,
+      11.600000381469727
+    ]
+  },
+  "visualBrief": "The Spanish Colonial Revival Plaza Theatre in Palm Springs, with its triple entry arcade, inset balcony, clay hip roofs and two-faced theatre sign.",
+  "nativeAxes": {
+    "x": "Palm Canyon Drive entrance to east rear of house",
+    "y": "up",
+    "z": "north party wall towards the south courtyard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Plaza_Theatre_(Palm_Springs).jpg"
+  ],
+  "stories": [
+    {
+      "id": "plaza-theatre-palm-springs-california-wp",
+      "url": "https://qualla.com/plaza-theatre-palm-springs-california/"
+    }
+  ],
+  "referenceInputHash": "sha256:5dedec1f7b93aa3f93da989e7cfe9895c02347f765288025e9ebf47cceb10f51",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9q/9qj/plaza_theatre_palm_springs_california/models/plaza-theatre-palm-springs-california-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9q/9qj/plaza_theatre_palm_springs_california/models/plaza-theatre-palm-springs-california-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.02,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.95
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.92
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.93
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.66
+      },
+      "sign": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "sign": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "sign": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "sign": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "tile_ceramic",
+    "wood_plain",
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified sampled grade in the west plaza at the theatre entrance.",
+    "anchor": [
+      -116.54617538210849,
+      33.8225662155094
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -116.5464781476759,
+        33.822570707065275
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified sampled grade in the west plaza at the theatre entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -11.021,
+          -11.5
+        ],
+        [
+          -25.6,
+          -11.487
+        ],
+        [
+          -25.6,
+          -5.063
+        ],
+        [
+          -25.6,
+          2.34
+        ],
+        [
+          -25.601,
+          11.089
+        ],
+        [
+          -8.857,
+          10.834
+        ],
+        [
+          -8.75,
+          11.532
+        ],
+        [
+          9.325,
+          11.456
+        ],
+        [
+          9.531,
+          10.849
+        ],
+        [
+          23.105,
+          10.792
+        ],
+        [
+          24.225,
+          10.791
+        ],
+        [
+          23.956,
+          -4.763
+        ],
+        [
+          25.601,
+          -4.681
+        ],
+        [
+          25.498,
+          -6.628
+        ],
+        [
+          23.909,
+          -6.924
+        ],
+        [
+          23.947,
+          -9.418
+        ],
+        [
+          25.516,
+          -9.581
+        ],
+        [
+          25.513,
+          -10.213
+        ],
+        [
+          24.499,
+          -10.306
+        ],
+        [
+          24.495,
+          -11.532
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The county parcel containing the historic theatre."
+    },
+    "featureIds": [
+      "riverside-county-apn/513144010"
+    ],
+    "source": "https://gis.countyofriverside.us/arcgis_mapping/rest/services/OpenData/Assessor/MapServer/40",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:996d9aeb9d6eddb8cf263bfd30b71b3256a1c305fd19f021438e8505ea576991",
+    "notes": "The lead Qualla photo and restoration narrative establish the west arcade and inset upper balcony, paired lettering, clay-tile hip roofs, and horizontal south lobby openings."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The building from the theatre parcel, excluding nearby shops, the pedestrian plaza, and freestanding signs outside the parcel.",
+    "The roof profiles and rear fenestration are estimated from the official description and primary photograph."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "plaza-theatre-skyline",
+      "position": [
+        -57,
+        15,
+        29
+      ],
+      "lookAt": [
+        -6,
+        5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "plaza-theatre-district",
+      "position": [
+        -57,
+        15,
+        29
+      ],
+      "lookAt": [
+        -6,
+        5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "plaza-theatre-street",
+      "position": [
+        -57,
+        15,
+        29
+      ],
+      "lookAt": [
+        -6,
+        5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "plaza-theatre-closeup",
+      "position": [
+        -57,
+        15,
+        29
+      ],
+      "lookAt": [
+        -6,
+        5,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-entrance-and-theatre-roofs",
+      "position": [
+        -57,
+        15,
+        29
+      ],
+      "lookAt": [
+        -6,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "arcade-balcony-and-sign",
+      "position": [
+        -45,
+        6.8,
+        -1
+      ],
+      "lookAt": [
+        -24,
+        5.6,
+        0
+      ]
+    },
+    {
+      "name": "southern-arches-and-clay-roofs",
+      "position": [
+        33,
+        20,
+        30
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2848,
+    "vertices": 8544,
+    "materials": 6,
+    "bytes": 474760,
+    "sha256": "sha256:894df99c92aaef3dff953df3c3a3bcf805addcb52fab2060c0bbdac356d9626f"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.snake_temple",
+  "kind": "static-structure",
+  "title": "Snake Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.snake_temple",
+        "output": "assets/places/w0/w0z/snake_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c8ff075f7e858923b208db70c5f91363d1513982c10ea3b4b0ff5eb78199d0f8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-snake-temple",
+        "path": "models/generate-snake-temple.mjs"
+      },
+      {
+        "id": "snake-temple-model",
+        "path": "models/snake-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/snake-temple-footprint.json",
+      "native-map/snake-temple-compound-footprints.json",
+      "reference-rights/snake-temple-architectural-facts.json",
+      "reference-rights/snake-temple-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-25512-15899.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

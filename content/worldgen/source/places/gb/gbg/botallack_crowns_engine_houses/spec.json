@@ -1,0 +1,348 @@
+{
+  "id": "botallack_crowns_engine_houses",
+  "planId": "botallack_crowns_engine_houses",
+  "title": "Crowns Engine Houses, Botallack",
+  "assetId": "molen.worldgen.structure.botallack_crowns_engine_houses",
+  "category": "landmark",
+  "collectionId": "cornwall_and_west_devon_mining_landscape",
+  "mapFeatureId": "node/690271327",
+  "wikidataId": "Q54817647",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -5.69314,
+    "latitude": 50.143033
+  },
+  "visualBrief": "Two roofless Cornish engine houses stand on staggered shelves above the Atlantic, with tall stone bob walls, deep openings and the upper mine chimney on the coastal slope.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gb/gbg/botallack_crowns_engine_houses/models/cornish-engine-houses.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/1215/maps/",
+    "https://commons.wikimedia.org/wiki/File:Botallack_Crowns_engine_houses.jpg",
+    "https://www.openstreetmap.org/node/690271327"
+  ],
+  "geographicProposal": {
+    "id": "botallack-crowns-engine-houses",
+    "title": "Crowns Engine Houses, Botallack",
+    "asset": "molen.worldgen.structure.botallack_crowns_engine_houses",
+    "anchor": [
+      -5.69314,
+      50.143033
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 21.13904,
+    "bounds": [
+      -5.69339513410665,
+      50.14292983485011,
+      -5.691661194160158,
+      50.14341661713035
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q54817647",
+      "names": [
+        "Crowns Engine Houses, Botallack",
+        "Crowns Mine",
+        "Crown Mines",
+        "Crowns Engine Houses"
+      ],
+      "maxDistance": 105
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          6.998619,
+          -6.055784
+        ],
+        [
+          13.633396,
+          1.536209
+        ],
+        [
+          17.243285,
+          -1.614133
+        ],
+        [
+          10.608509,
+          -9.20613
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            6.998619,
+            -6.055784
+          ],
+          [
+            13.633396,
+            1.536209
+          ],
+          [
+            17.243285,
+            -1.614133
+          ],
+          [
+            10.608509,
+            -9.20613
+          ]
+        ],
+        [
+          [
+            -16.201697,
+            5.298805
+          ],
+          [
+            -15.431206,
+            6.055777
+          ],
+          [
+            -11.942598,
+            9.484412
+          ],
+          [
+            -6.342276,
+            3.795993
+          ],
+          [
+            -10.608509,
+            -0.389618
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the mapped ruins and sheds represented in the landmark, with adjacent mine buildings, protected ground and access routes left intact."
+    },
+    "source": "https://www.openstreetmap.org/node/690271327",
+    "note": "The named mine and its mapped buildings locate each masonry range. Their orientations follow the mapped contours of the site.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e278c77ecf108da3b4439d84b7573b4229a5ca70c968b0381fd924953f2b20d2"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.98
+      },
+      "granite": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.96
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.96
+      },
+      "bedrock": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.99
+      }
+    },
+    "errorMeters": 0.56,
+    "module": "content/worldgen/source/places/gb/gbg/botallack_crowns_engine_houses/models/cornish-engine-houses.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "granite": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.96
+          },
+          "bedrock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.19
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "granite": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.96
+          },
+          "bedrock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.069
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "granite": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.96
+          },
+          "bedrock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.024
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0.4244830000000004,
+        10.631448,
+        0.3562205000000003
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "stone-walls-and-stepped-cliff",
+      "position": [
+        18.424483000000002,
+        24.631448,
+        36.3562205
+      ],
+      "lookAt": [
+        0.4244830000000004,
+        10.631448,
+        0.3562205000000003
+      ],
+      "fov": 58
+    },
+    {
+      "name": "roofless-engine-house",
+      "position": [
+        -2.234036785169394,
+        23.423585,
+        9.802281345910924
+      ],
+      "lookAt": [
+        12.120952,
+        18.973585,
+        -3.834958
+      ],
+      "fov": 56
+    },
+    {
+      "name": "chimneys-and-mining-terraces",
+      "position": [
+        -41.803721,
+        40.646593,
+        70.73656050000001
+      ],
+      "lookAt": [
+        0.4244830000000004,
+        10.631448,
+        0.3562205000000003
+      ],
+      "fov": 54
+    }
+  ],
+  "limitations": [
+    "Exterior wall and stack heights are estimated from photographs. The shafts, galleries, cliff paths and geological features rely on underlying map and terrain data."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -16.201696395874023,
+      -3.0834550857543945,
+      -40.78559112548828
+    ],
+    "max": [
+      103.60250091552734,
+      91.40665435791016,
+      9.518087387084961
+    ]
+  },
+  "size": [
+    119.80419731140137,
+    94.49010944366455,
+    50.30367851257324
+  ],
+  "mesh": {
+    "triangles": 2969,
+    "vertices": 5975,
+    "materials": 4,
+    "bytes": 253644,
+    "sha256": "sha256:e5f35e5d03e36133d0bc1f88500316290b88f3f48ae8a109a4c6e15bc9fcc00a"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

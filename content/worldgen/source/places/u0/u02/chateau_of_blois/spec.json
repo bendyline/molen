@@ -1,0 +1,1044 @@
+{
+  "planId": "chateau_of_blois",
+  "id": "chateau_of_blois",
+  "assetId": "molen.worldgen.structure.chateau_of_blois",
+  "title": "Château of Blois",
+  "wikidataId": "Q4055",
+  "category": "castle",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 1.33077765,
+    "latitude": 47.585593
+  },
+  "size": [
+    125.0588150024414,
+    29.530000686645508,
+    119.91522598266602
+  ],
+  "actualBounds": {
+    "min": [
+      -53.30377197265625,
+      -8.100000381469727,
+      -47.53322219848633
+    ],
+    "max": [
+      71.75504302978516,
+      21.43000030517578,
+      72.38200378417969
+    ]
+  },
+  "visualBrief": "The Royal Château of Blois with its four historic wings, François I loggias and open court stair, brick Louis XII entrance, Gaston d’Orléans frontage, chapel and Foix tower.",
+  "nativeAxes": {
+    "x": "northeast along François Ier wing",
+    "y": "up",
+    "z": "southeast across the courtyard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_de_Blois_-_Fa%C3%A7ade_des_Loges.jpg",
+    "https://commons.wikimedia.org/wiki/File:2022.10.29.101657_Ch%C3%A2teau_Royal_de_Blois_France.jpg",
+    "https://id.rijksmuseum.nl/200729884",
+    "https://id.rijksmuseum.nl/200621184"
+  ],
+  "stories": [
+    {
+      "id": "chateau-of-blois-wp",
+      "url": "https://qualla.com/chateau-of-blois/"
+    }
+  ],
+  "referenceInputHash": "sha256:4d6fd06d46dce8b82d1b2878cba48719b4cd321dde975e92396bcdca1bf7533b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u0/u02/chateau_of_blois/models/chateau-of-blois-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u0/u02/chateau_of_blois/models/chateau-of-blois-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.91,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.91
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.89
+      },
+      "void": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89
+          },
+          "void": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89
+          },
+          "void": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89
+          },
+          "void": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_limestone_raw",
+    "brick_flemish",
+    "slate"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original elevation field sampled near the court-side Louis XII gate approach.",
+    "anchor": [
+      1.33077765,
+      47.585593
+    ],
+    "heading": 0.8529105359426237,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        1.331346096757057,
+        47.58585448569731
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation field sampled near the court-side Louis XII gate approach."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -31.903,
+          -7.422
+        ],
+        [
+          -33.433,
+          -7.651
+        ],
+        [
+          -34.749,
+          0.895
+        ],
+        [
+          -36.105,
+          9.715
+        ],
+        [
+          -34.515,
+          9.962
+        ],
+        [
+          -35.122,
+          13.921
+        ],
+        [
+          -36.907,
+          25.399
+        ],
+        [
+          -43.446,
+          24.41
+        ],
+        [
+          -48.027,
+          23.716
+        ],
+        [
+          -49.73,
+          23.459
+        ],
+        [
+          -50.814,
+          29.021
+        ],
+        [
+          -51.565,
+          28.889
+        ],
+        [
+          -53.151,
+          38.14
+        ],
+        [
+          -52.278,
+          38.294
+        ],
+        [
+          -52.925,
+          44.492
+        ],
+        [
+          -51.573,
+          44.686
+        ],
+        [
+          -45.76,
+          45.521
+        ],
+        [
+          -44.725,
+          45.674
+        ],
+        [
+          -37.963,
+          46.647
+        ],
+        [
+          -37.613,
+          44.357
+        ],
+        [
+          -38.267,
+          44.251
+        ],
+        [
+          -37.601,
+          39.971
+        ],
+        [
+          -15.63,
+          43.382
+        ],
+        [
+          -15.835,
+          44.737
+        ],
+        [
+          -14.214,
+          44.986
+        ],
+        [
+          -14.029,
+          43.708
+        ],
+        [
+          -12.615,
+          34.04
+        ],
+        [
+          -13.557,
+          33.875
+        ],
+        [
+          -13.076,
+          31.431
+        ],
+        [
+          -13.565,
+          31.311
+        ],
+        [
+          -11.788,
+          19.959
+        ],
+        [
+          -11.183,
+          20.059
+        ],
+        [
+          -10.833,
+          17.77
+        ],
+        [
+          -12.192,
+          17.551
+        ],
+        [
+          -12.107,
+          15.922
+        ],
+        [
+          -14.723,
+          14.737
+        ],
+        [
+          -17.217,
+          12.559
+        ],
+        [
+          -18.872,
+          9.309
+        ],
+        [
+          -18.835,
+          7.203
+        ],
+        [
+          -18.647,
+          4.457
+        ],
+        [
+          -19.726,
+          4.253
+        ],
+        [
+          -18.733,
+          -2.057
+        ],
+        [
+          -17.605,
+          -9.192
+        ],
+        [
+          -16.428,
+          -8.995
+        ],
+        [
+          -16.051,
+          -11.118
+        ],
+        [
+          -15.27,
+          -13.305
+        ],
+        [
+          -13.347,
+          -16.112
+        ],
+        [
+          -11.548,
+          -17.572
+        ],
+        [
+          -8.454,
+          -18.65
+        ],
+        [
+          -6.299,
+          -18.568
+        ],
+        [
+          -6.246,
+          -19.472
+        ],
+        [
+          -5.356,
+          -19.332
+        ],
+        [
+          -5.184,
+          -20.439
+        ],
+        [
+          3.946,
+          -20.139
+        ],
+        [
+          3.9,
+          -17.467
+        ],
+        [
+          6.502,
+          -14.894
+        ],
+        [
+          9.313,
+          -14.518
+        ],
+        [
+          12.287,
+          -17.814
+        ],
+        [
+          12.304,
+          -19.961
+        ],
+        [
+          29.734,
+          -19.752
+        ],
+        [
+          36.141,
+          -19.676
+        ],
+        [
+          34.436,
+          -13.302
+        ],
+        [
+          34.041,
+          -13.416
+        ],
+        [
+          33.492,
+          -11.879
+        ],
+        [
+          35.084,
+          -11.256
+        ],
+        [
+          35.269,
+          -11.637
+        ],
+        [
+          43.558,
+          -8.678
+        ],
+        [
+          40.535,
+          -1.123
+        ],
+        [
+          45.399,
+          0.859
+        ],
+        [
+          42.145,
+          8.167
+        ],
+        [
+          41.552,
+          9.502
+        ],
+        [
+          41.009,
+          10.724
+        ],
+        [
+          34.09,
+          26.257
+        ],
+        [
+          32.059,
+          25.1
+        ],
+        [
+          29.322,
+          25.875
+        ],
+        [
+          28.341,
+          28.018
+        ],
+        [
+          24.722,
+          26.244
+        ],
+        [
+          5.764,
+          22.305
+        ],
+        [
+          5.67,
+          22.756
+        ],
+        [
+          5.153,
+          25.142
+        ],
+        [
+          6.876,
+          25.491
+        ],
+        [
+          6.607,
+          26.942
+        ],
+        [
+          9.042,
+          27.378
+        ],
+        [
+          9.203,
+          26.26
+        ],
+        [
+          10.654,
+          26.448
+        ],
+        [
+          10.511,
+          27.639
+        ],
+        [
+          12.823,
+          28.052
+        ],
+        [
+          13.048,
+          26.939
+        ],
+        [
+          14.513,
+          27.245
+        ],
+        [
+          14.298,
+          28.32
+        ],
+        [
+          15.067,
+          28.456
+        ],
+        [
+          15.922,
+          28.606
+        ],
+        [
+          17.015,
+          28.808
+        ],
+        [
+          17.827,
+          27.571
+        ],
+        [
+          18.797,
+          28.208
+        ],
+        [
+          18.168,
+          28.977
+        ],
+        [
+          23.105,
+          29.79
+        ],
+        [
+          20.394,
+          35.706
+        ],
+        [
+          28.419,
+          39.394
+        ],
+        [
+          32.229,
+          41.151
+        ],
+        [
+          35.012,
+          42.408
+        ],
+        [
+          41.74,
+          45.425
+        ],
+        [
+          47.739,
+          32.629
+        ],
+        [
+          54.868,
+          17.421
+        ],
+        [
+          55.581,
+          15.902
+        ],
+        [
+          56.244,
+          14.495
+        ],
+        [
+          59.257,
+          8.045
+        ],
+        [
+          63.728,
+          -1.491
+        ],
+        [
+          65.121,
+          -1.013
+        ],
+        [
+          65.611,
+          -2.009
+        ],
+        [
+          64.405,
+          -2.442
+        ],
+        [
+          67.152,
+          -10.652
+        ],
+        [
+          68.324,
+          -10.36
+        ],
+        [
+          68.655,
+          -11.436
+        ],
+        [
+          67.695,
+          -11.824
+        ],
+        [
+          70.15,
+          -19.032
+        ],
+        [
+          70.942,
+          -18.717
+        ],
+        [
+          71.597,
+          -20.116
+        ],
+        [
+          70.69,
+          -20.461
+        ],
+        [
+          71.693,
+          -23.002
+        ],
+        [
+          70.352,
+          -23.844
+        ],
+        [
+          70.103,
+          -23.537
+        ],
+        [
+          59.858,
+          -27.888
+        ],
+        [
+          54.17,
+          -30.307
+        ],
+        [
+          46.266,
+          -33.602
+        ],
+        [
+          45.93,
+          -34.715
+        ],
+        [
+          45.213,
+          -35.892
+        ],
+        [
+          44.213,
+          -36.833
+        ],
+        [
+          42.839,
+          -37.527
+        ],
+        [
+          41.558,
+          -37.775
+        ],
+        [
+          41.428,
+          -38.448
+        ],
+        [
+          -11.404,
+          -38.493
+        ],
+        [
+          -12.856,
+          -38.312
+        ],
+        [
+          -13.203,
+          -38.776
+        ],
+        [
+          -14.302,
+          -39.511
+        ],
+        [
+          -15.589,
+          -39.833
+        ],
+        [
+          -16.911,
+          -39.705
+        ],
+        [
+          -18.104,
+          -39.142
+        ],
+        [
+          -18.998,
+          -38.271
+        ],
+        [
+          -19.269,
+          -37.735
+        ],
+        [
+          -19.572,
+          -37.151
+        ],
+        [
+          -19.752,
+          -35.918
+        ],
+        [
+          -19.537,
+          -34.69
+        ],
+        [
+          -20.058,
+          -34.983
+        ],
+        [
+          -20.674,
+          -35.113
+        ],
+        [
+          -21.052,
+          -35.071
+        ],
+        [
+          -20.696,
+          -37.456
+        ],
+        [
+          -19.738,
+          -44.483
+        ],
+        [
+          -39.518,
+          -47.365
+        ],
+        [
+          -40.002,
+          -40.303
+        ],
+        [
+          -40.633,
+          -40.35
+        ],
+        [
+          -40.978,
+          -36.091
+        ],
+        [
+          -41.174,
+          -33.269
+        ],
+        [
+          -40.524,
+          -33.218
+        ],
+        [
+          -40.938,
+          -26.636
+        ],
+        [
+          -41.046,
+          -25.016
+        ],
+        [
+          -29.46,
+          -23.223
+        ]
+      ],
+      "minimumCoverage": 0.8,
+      "basis": "Named château volume, with a genuine uncovered court and separately mapped chapel and defensive tower."
+    },
+    "featureIds": [
+      "way/766747652",
+      "way/118646619",
+      "way/766747661"
+    ],
+    "source": "https://www.openstreetmap.org/way/766747652",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:167a2884746bb331a776717049d9e8dbdefe9d819691cdb1ce5655d12458d48a",
+    "notes": "The north Renaissance wall has stacked open loggias over the outlying hillside stone base. The inner face has the projecting open spiral staircase. Louis XII’s gate range combines brick with carved pale surrounds; Gaston d’Orléans faces the court in classical pale masonry. The medieval hall and chapel retain steep roofs."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Mapped roof and part heights are approximate. Courtyard grades, fine sculpture and details of partially hidden elevations are interpreted. Interiors and unrelated neighboring buildings are outside the model."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "blois-skyline",
+      "position": [
+        128,
+        83,
+        127
+      ],
+      "lookAt": [
+        4,
+        6.5,
+        6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "blois-district",
+      "position": [
+        128,
+        83,
+        127
+      ],
+      "lookAt": [
+        4,
+        6.5,
+        6
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "blois-street",
+      "position": [
+        128,
+        83,
+        127
+      ],
+      "lookAt": [
+        4,
+        6.5,
+        6
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "blois-closeup",
+      "position": [
+        128,
+        83,
+        127
+      ],
+      "lookAt": [
+        4,
+        6.5,
+        6
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "francois-outer-loggias",
+      "position": [
+        9,
+        5.2,
+        -104
+      ],
+      "lookAt": [
+        8,
+        6.8,
+        -31
+      ]
+    },
+    {
+      "name": "courtyard-stair-and-classical-wing",
+      "position": [
+        23,
+        7.4,
+        18
+      ],
+      "lookAt": [
+        -2,
+        8.9,
+        -14
+      ]
+    },
+    {
+      "name": "louis-xii-brick-gate",
+      "position": [
+        96,
+        8,
+        33
+      ],
+      "lookAt": [
+        53,
+        7.1,
+        15
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 29239,
+    "vertices": 87717,
+    "materials": 6,
+    "bytes": 3753404,
+    "sha256": "sha256:5cd65d064fd5e043d1e66e85883b0c1ec207badf66fd8a8b42cd4e51b9fce001"
+  }
+}

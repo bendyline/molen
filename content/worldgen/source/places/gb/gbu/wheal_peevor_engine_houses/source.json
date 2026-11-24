@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.wheal_peevor_engine_houses",
+  "kind": "static-structure",
+  "title": "Wheal Peevor Engine Houses",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.wheal_peevor_engine_houses",
+        "output": "assets/places/gb/gbu/wheal_peevor_engine_houses/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:90f703ea96747af5bd20937a655290cbfd78021232c5859af9bc4da95d185008"
+      }
+    ],
+    "generators": [
+      {
+        "id": "wheal_peevor_engine_houses",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cornish-engine-houses",
+        "path": "models/cornish-engine-houses.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "format": "molen/scene@3",
+  "name": "Portreath Branch Railway Formation",
+  "seed": "portreath_branch_railway_formation",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": {
+    "mode": "fixed",
+    "position": [-250.2541349414674, 205.682856, 127.49045604410612],
+    "lookAt": [7.123338, 0.682856, 13.851394],
+    "fov": 53
+  },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.portreath_branch_railway_formation",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [-0.53, 0.75, 0.32],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -6.831224, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [1075.40908, 1.18, 1075.40908] },
+          "materialRef": "palette:#898971",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}

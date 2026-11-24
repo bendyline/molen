@@ -1,0 +1,63 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.pazaislis_monastery",
+  "kind": "static-structure",
+  "title": "Pažaislis Monastery",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.pazaislis_monastery",
+        "output": "assets/places/u9/u9c/pazaislis_monastery/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3a656796c954f4f580fc4d5aaa1c84adc2101ccf185cfd16a885b28a84f02269"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-pazaislis-monastery",
+        "path": "models/generate-pazaislis-monastery.mjs"
+      },
+      {
+        "id": "pazaislis-monastery-model",
+        "path": "models/pazaislis-monastery-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/pazaislis-monastery-footprint.json",
+      "native-map/pazaislis-monastery-connected-wings.json",
+      "reference-rights/pazaislis-monastery-architectural-facts.json",
+      "reference-rights/pazaislis-monastery-qualla-original-1.json",
+      "reference-rights/pazaislis-monastery-qualla-original-3.json",
+      "references/pazaislis-kazimieras.jpg",
+      "reference-rights/kazimieras-celiesius-commons-first-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-18570-10384.png",
+      "terrain-sources/terrarium-15-18570-10383.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "reference-rights/pazaislis-orda-library-impression.jpg"
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fountains_abbey",
+  "kind": "static-structure",
+  "title": "Fountains Abbey",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fountains_abbey",
+        "output": "assets/places/gc/gcw/fountains_abbey/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f674c7c1411f40d7169b510188cfc074ec0f00859e5dc3166e26954c30864234"
+      }
+    ],
+    "generators": [
+      {
+        "id": "fountains_abbey",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "fountains-abbey-ruins",
+        "path": "models/fountains-abbey-ruins.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "abbey-plan.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

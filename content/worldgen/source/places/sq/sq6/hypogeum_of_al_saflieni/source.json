@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hypogeum_of_al_saflieni",
+  "kind": "static-structure",
+  "title": "Hypogeum of Ħal Saflieni",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hypogeum_of_al_saflieni",
+        "output": "assets/places/sq/sq6/hypogeum_of_al_saflieni/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8935d5548c58424fcfe8b813bfa0b5a5317b689a1ff1cba78c760c7724e161d2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "hypogeum_of_al_saflieni",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "hypogeum",
+        "path": "models/hypogeum.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "preview.png",
+      "interior-preview.webp",
+      "terrain-review.height.png"
+    ]
+  }
+}

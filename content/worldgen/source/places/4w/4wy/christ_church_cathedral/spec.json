@@ -1,0 +1,457 @@
+{
+  "planId": "christ_church_cathedral",
+  "id": "christ_church_cathedral",
+  "assetId": "molen.worldgen.structure.christ_church_cathedral",
+  "title": "Christ Church Cathedral",
+  "wikidataId": "Q3320132",
+  "category": "church",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -57.85855164210527,
+    "latitude": -51.69236010526316
+  },
+  "size": [
+    34.41680145263672,
+    31.959999442100525,
+    20.22599983215332
+  ],
+  "actualBounds": {
+    "min": [
+      -17.188800811767578,
+      -1.649999976158142,
+      -11.357999801635742
+    ],
+    "max": [
+      17.22800064086914,
+      30.309999465942383,
+      8.868000030517578
+    ]
+  },
+  "visualBrief": "Stanley’s Anglican cathedral in grey local granite and red brick, with a corrugated red roof and northwest clock tower.",
+  "nativeAxes": {
+    "x": "east along the nave",
+    "y": "up",
+    "z": "south away from the harbour"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Port_Stanley_1961_-_NOAA_-_Corp1373.jpg"
+  ],
+  "stories": [
+    {
+      "id": "christ-church-cathedral-falkland-islands-wp",
+      "url": "https://qualla.com/christ-church-cathedral-falkland-islands/"
+    }
+  ],
+  "referenceInputHash": "sha256:c9fbb1e3ef068fd7d73eb53c74314982f8736952e80385727720bca12b571090",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/4w/4wy/christ_church_cathedral/models/christ-church-cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/4w/4wy/christ_church_cathedral/models/christ-church-cathedral-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.72,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.97
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.95
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.93
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.81
+      },
+      "opening": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.87
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.34,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.97
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.97
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.97
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_granite",
+    "brick",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original elevation sampled on the forecourt just north of the northwest tower entry.",
+    "anchor": [
+      -57.85855164210527,
+      -51.69236010526316
+    ],
+    "heading": -0.13745452520141216,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -57.858722308754025,
+        -51.69225297098917
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation sampled on the forecourt just north of the northwest tower entry."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -16.704,
+          4.468
+        ],
+        [
+          -14.899,
+          4.476
+        ],
+        [
+          -14.9,
+          8.646
+        ],
+        [
+          -11.047,
+          8.652
+        ],
+        [
+          -11.046,
+          4.123
+        ],
+        [
+          7.477,
+          4.123
+        ],
+        [
+          7.471,
+          8.114
+        ],
+        [
+          13.135,
+          8.117
+        ],
+        [
+          13.139,
+          4.116
+        ],
+        [
+          15.828,
+          4.114
+        ],
+        [
+          15.829,
+          -0.763
+        ],
+        [
+          16.707,
+          -0.761
+        ],
+        [
+          16.708,
+          -10.83
+        ],
+        [
+          5.825,
+          -10.842
+        ],
+        [
+          5.825,
+          -5.751
+        ],
+        [
+          -9.341,
+          -5.755
+        ],
+        [
+          -9.342,
+          -8.081
+        ],
+        [
+          -13.968,
+          -8.082
+        ],
+        [
+          -16.699,
+          -8.086
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Named cathedral footprint, including the northwest tower and connected rooms."
+    },
+    "featureIds": [
+      "way/168220217"
+    ],
+    "source": "https://www.openstreetmap.org/way/168220217",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:52bdd3c002a20316efb9b46bf9d741f4defa26f73a99c0c62dceb369584725ff",
+    "notes": "The red corrugated steep nave roof falls toward the lower ancillary rooms. Local granite is outlined with brick at the openings and buttresses. Four clocks sit above paired belfry openings under the iron spire."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Uses the historic roof profile and brickwork with approximations for less visible ancillary doors, stained glass, clock fittings and small roof ornaments. The adjacent Whalebone Arch is a separate mapped structure."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "christ-church-cathedral-skyline",
+      "position": [
+        42,
+        18,
+        -49
+      ],
+      "lookAt": [
+        -2,
+        12,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "christ-church-cathedral-district",
+      "position": [
+        42,
+        18,
+        -49
+      ],
+      "lookAt": [
+        -2,
+        12,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "christ-church-cathedral-street",
+      "position": [
+        42,
+        18,
+        -49
+      ],
+      "lookAt": [
+        -2,
+        12,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "christ-church-cathedral-closeup",
+      "position": [
+        42,
+        18,
+        -49
+      ],
+      "lookAt": [
+        -2,
+        12,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "harbour-roofline-and-clock",
+      "position": [
+        41,
+        8.1,
+        -64
+      ],
+      "lookAt": [
+        -1,
+        11.3,
+        -2
+      ]
+    },
+    {
+      "name": "tower-brick-lancets-and-broached-spire",
+      "position": [
+        -32,
+        18,
+        -26
+      ],
+      "lookAt": [
+        -13,
+        17.1,
+        -4.5
+      ]
+    },
+    {
+      "name": "south-and-chancel",
+      "position": [
+        38,
+        16.3,
+        34
+      ],
+      "lookAt": [
+        -1,
+        8.5,
+        0.9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7047,
+    "vertices": 21141,
+    "materials": 5,
+    "bytes": 1089108,
+    "sha256": "sha256:56df126125342b20872b38c18f132adba3e0460ab1e4a9950d5ce3334a7950e2"
+  }
+}

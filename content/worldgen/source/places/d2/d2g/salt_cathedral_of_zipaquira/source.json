@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.salt_cathedral_of_zipaquira",
+  "kind": "static-structure",
+  "title": "Salt Cathedral of Zipaquirá",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.salt_cathedral_of_zipaquira",
+        "output": "assets/places/d2/d2g/salt_cathedral_of_zipaquira/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ef075779bab1839761923254589ef644af8f4a53db2e39a267381726e51ce03e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "salt_cathedral_of_zipaquira",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "salt-mine-portal-and-three-naves",
+        "path": "models/salt-mine-portal-and-three-naves.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "interior-preview.webp",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

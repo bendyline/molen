@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.archbasilica_of_st_john_lateran",
+  "kind": "static-structure",
+  "title": "Archbasilica of St. John Lateran",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.archbasilica_of_st_john_lateran",
+        "output": "assets/places/sr/sr2/archbasilica_of_st_john_lateran/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7477ceeb84f963aa4b562c761ba2a85011490721e8169673b99f2b63861b8c93"
+      }
+    ],
+    "generators": [
+      {
+        "id": "archbasilica_of_st_john_lateran",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "basilica",
+        "path": "models/basilica.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

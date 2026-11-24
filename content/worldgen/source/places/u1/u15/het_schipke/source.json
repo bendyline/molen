@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.het_schipke",
+  "kind": "static-structure",
+  "title": "Het Schipke",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.het_schipke",
+        "output": "assets/places/u1/u15/het_schipke/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:af277be0644f514454ce4333baaa6537f0de245327d3df85a02b994142d51840"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-het-schipke",
+        "path": "models/generate-het-schipke.mjs"
+      },
+      {
+        "id": "het-schipke-model",
+        "path": "models/het-schipke-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/het-schipke-footprint.json",
+      "native-map/het-schipke-native-survey.json",
+      "reference-rights/het-schipke-architectural-facts.json",
+      "reference-rights/het-schipke-qualla-original-1.json",
+      "native-map/het-schipke-flemish-surface.tif",
+      "native-map/het-schipke-heritage-boundary.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/mechelen-dhmv-1m-bare-earth.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

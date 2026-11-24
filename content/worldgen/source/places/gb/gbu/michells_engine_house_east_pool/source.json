@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.michells_engine_house_east_pool",
+  "kind": "static-structure",
+  "title": "Michell's Engine House, East Pool Mine",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.michells_engine_house_east_pool",
+        "output": "assets/places/gb/gbu/michells_engine_house_east_pool/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d9cc46f8453e220f853b8ee5f94acd31fca9e3c94891ea4abc1e11f77bc6aafb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "michells_engine_house_east_pool",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cornish-engine-works",
+        "path": "models/cornish-engine-works.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

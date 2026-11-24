@@ -1,0 +1,439 @@
+{
+  "id": "dakota",
+  "planId": "dakota",
+  "title": "The Dakota",
+  "assetId": "molen.worldgen.structure.dakota",
+  "category": "landmark",
+  "wikidataId": "Q829806",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -73.9763889,
+    "latitude": 40.7766667
+  },
+  "visualBrief": "Ornate brick and stone façades wrap the open Dakota courtyard. Steep slate gables, green oriel cupolas and the south carriage arch define the streetscape.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dr/dr5/dakota/models/slate-gables-and-carriage-court.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:1_West_72nd_Street_(The_Dakota)_by_David_Shankbone.jpg",
+    "https://www.openstreetmap.org/relation/1341944"
+  ],
+  "geographicProposal": {
+    "id": "dakota-new-york",
+    "title": "The Dakota",
+    "asset": "molen.worldgen.structure.dakota",
+    "anchor": [
+      -73.9763889,
+      40.7766667
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 27.15234375,
+    "bounds": [
+      -73.97667812538286,
+      40.776376536438754,
+      -73.9756295746277,
+      40.77717726428498
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q829806",
+      "names": [
+        "The Dakota",
+        "Dakota Apartments",
+        "Dakota Building"
+      ],
+      "maxDistance": 53
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          8.396073,
+          -54.836184
+        ],
+        [
+          32.918338,
+          -41.15493
+        ],
+        [
+          34.283964,
+          -40.386822
+        ],
+        [
+          35.582152,
+          -39.663241
+        ],
+        [
+          62.009549,
+          -24.879948
+        ],
+        [
+          42.705326,
+          9.640262
+        ],
+        [
+          41.769619,
+          9.117061
+        ],
+        [
+          37.596872,
+          16.575454
+        ],
+        [
+          38.532579,
+          17.098654
+        ],
+        [
+          31.139651,
+          30.301103
+        ],
+        [
+          3.801836,
+          15.005852
+        ],
+        [
+          -22.381098,
+          0.389618
+        ],
+        [
+          -14.339076,
+          -14.026269
+        ],
+        [
+          -12.391794,
+          -12.935336
+        ],
+        [
+          2.44464,
+          -39.518525
+        ],
+        [
+          0.463639,
+          -40.631726
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the Dakota multipolygon. Preserve nearby street surfaces, adjoining buildings and Central Park."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          10.823292,
+          -1.71941
+        ],
+        [
+          14.367363,
+          0.261287
+        ],
+        [
+          5.342017,
+          16.410378
+        ],
+        [
+          1.797946,
+          14.429681
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Keep the mapped carriage passage floor clear through the south wing."
+    },
+    "source": "https://www.openstreetmap.org/relation/1341944",
+    "note": "The inner ring retains its open court. The carriage arch faces West 72nd Street at the mapped main entrance.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:03954a4adebfd02c5acde2652ed0a1e0b6320c6e62a45c6629f77a42b2348a87"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.96
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.94
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.95
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.88
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86
+      },
+      "window": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.5
+      }
+    },
+    "errorMeters": 0.91,
+    "module": "content/worldgen/source/places/dr/dr5/dakota/models/slate-gables-and-carriage-court.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.96
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.95
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.88
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5
+          }
+        },
+        "errorMeters": 0.37
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.96
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.95
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.88
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5
+          }
+        },
+        "errorMeters": 0.15
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.96
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.95
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.88
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5
+          }
+        },
+        "errorMeters": 0.057
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        16.875954,
+        21,
+        -6.309925
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "seventy-second-street-carriage-arch",
+      "position": [
+        -11.419726,
+        4.9,
+        44.319657
+      ],
+      "lookAt": [
+        3.826131,
+        13,
+        14.990397
+      ],
+      "fov": 57
+    },
+    {
+      "name": "central-park-west-oriels-and-gables",
+      "position": [
+        55.924287,
+        22,
+        69.35531
+      ],
+      "lookAt": [
+        27.32495,
+        29,
+        9.839951
+      ],
+      "fov": 60
+    },
+    {
+      "name": "open-courtyard-and-slate-roofs",
+      "position": [
+        73.695842,
+        84,
+        -44.434725
+      ],
+      "lookAt": [
+        18.545102,
+        25,
+        -13.396104
+      ],
+      "fov": 49
+    }
+  ],
+  "limitations": [
+    "Fine ironwork, carved stone and the shapes of some secondary roofs interpret the available photo. The model includes the exterior, the courtyard and covered approach."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -22.78297233581543,
+      -1.809999942779541,
+      -55.23805236816406
+    ],
+    "max": [
+      62.411224365234375,
+      50.900001525878906,
+      30.702739715576172
+    ]
+  },
+  "size": [
+    85.1941967010498,
+    52.71000146865845,
+    85.94079208374023
+  ],
+  "mesh": {
+    "triangles": 26267,
+    "vertices": 53337,
+    "materials": 7,
+    "bytes": 2239524,
+    "sha256": "sha256:2e746b1dd0f59e70907b7eeb70f6708db45d146b97c7cab65f334752eea06302"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

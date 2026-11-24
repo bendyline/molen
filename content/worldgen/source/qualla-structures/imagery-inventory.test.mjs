@@ -1643,6 +1643,21 @@ test('a Commons original needs its creator release, matching author and exact na
   };
   write();
   assert.equal(inspectCommonsSelfReference(f.dir, reference).eligible, true);
+  originalRevision.slots.main['*'] =
+    '{{Information\n|Source=self-made\n|Author= [[User:Photographer|Photographer]]\n}}\n{{cc-zero}}';
+  write();
+  assert.equal(inspectCommonsSelfReference(f.dir, reference).eligible, true);
+  originalRevision.slots.main['*'] = originalRevision.slots.main['*'].replace(
+    'self-made',
+    'private archive',
+  );
+  write();
+  assert.equal(inspectCommonsSelfReference(f.dir, reference).eligible, false);
+  originalRevision.slots.main['*'] = originalRevision.slots.main['*'].replace(
+    'private archive',
+    'self-made',
+  );
+  write();
   for (const edits of [
     { user: 'LaterEditor' },
     { parentid: 122 },

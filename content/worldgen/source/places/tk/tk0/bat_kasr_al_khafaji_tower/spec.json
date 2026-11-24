@@ -1,0 +1,232 @@
+{
+  "id": "bat_kasr_al_khafaji_tower",
+  "planId": "bat_kasr_al_khafaji_tower",
+  "title": "Kasr al-Khafaji Tower, Bat",
+  "assetId": "molen.worldgen.structure.bat_kasr_al_khafaji_tower",
+  "category": "archaeological_site",
+  "collectionId": "bat_al_khutm_and_al_ayn_archaeological_sites",
+  "wikidataId": "Q25496",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 56.74794358,
+    "latitude": 23.26231647
+  },
+  "visualBrief": "The surviving round tower foundation encloses low room divisions and a well rim. Broken wall lines extend along the outside of the limestone ring.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tk/tk0/bat_kasr_al_khafaji_tower/models/oman-bronze-age.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/434/",
+    "https://www.nm.gov.om/en/bat?action=first",
+    "https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9",
+    "https://www.jstor.org/stable/j.ctv2t4ct6",
+    "https://www.academia.edu/9061107/Monumentality_and_the_Third_Millennium_Towers_of_the_Oman_Peninsula",
+    "https://www.openstreetmap.org/node/2628676465"
+  ],
+  "geographicProposal": {
+    "id": "bat-kasr-al-khafaji-tower",
+    "title": "Kasr al-Khafaji Tower, Bat",
+    "asset": "molen.worldgen.structure.bat_kasr_al_khafaji_tower",
+    "anchor": [
+      56.74794358,
+      23.26231647
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 486.028505,
+    "bounds": [
+      56.747826243447335,
+      23.262199570487724,
+      56.74807804759157,
+      23.262435418642596
+    ],
+    "minLevel": 15,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q25496",
+      "names": [
+        "Kasr al-Khafaji Tower, Bat",
+        "Kasr al-Khafaji",
+        "Bat Tower 1146"
+      ],
+      "maxDistance": 58.75199
+    },
+    "source": "https://www.openstreetmap.org/node/2628676465",
+    "note": "The documented tower centre and diameter establish placement against the mapped archaeological landscape. Locally sampled Terrarium terrain pins the surviving masonry to the ground.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4ec4b32d1f1adc56b7d32bddfac18d2eb2229f9d9637d1b02876c64c264c1526"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.98
+      },
+      "cut": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.97
+      }
+    },
+    "errorMeters": 0.67,
+    "module": "content/worldgen/source/places/tk/tk0/bat_kasr_al_khafaji_tower/models/oman-bronze-age.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "cut": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.26
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "cut": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.102
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "cut": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.026
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        0.46,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "exposed-round-tower",
+      "position": [
+        -22,
+        20.895414,
+        26
+      ],
+      "lookAt": [
+        0,
+        0.46,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "masonry-and-interior-plan",
+      "position": [
+        11,
+        9.441008,
+        18
+      ],
+      "lookAt": [
+        0,
+        0.48,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "limestone-crest",
+      "position": [
+        14.79854495771701,
+        1.575886,
+        6.083014641970583
+      ],
+      "lookAt": [
+        0,
+        0.74,
+        0
+      ],
+      "fov": 48
+    }
+  ],
+  "limitations": [
+    "Uses the published position of Tower 1146 and the approximately twenty-metre footprint. Exposed wall heights and the smaller divisions are represented at their photographic scale."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -10.413236618041992,
+      -1.5283410549163818,
+      -11.231122016906738
+    ],
+    "max": [
+      11.903707504272461,
+      1.3611557483673096,
+      10.99858570098877
+    ]
+  },
+  "size": [
+    22.316944122314453,
+    2.8894968032836914,
+    22.229707717895508
+  ],
+  "mesh": {
+    "triangles": 3750,
+    "vertices": 7458,
+    "materials": 2,
+    "bytes": 315488,
+    "sha256": "sha256:b9d2df5e23f6d7b8865283b5aa435d619f866f255dc4375c706e54ad01bf22d7"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

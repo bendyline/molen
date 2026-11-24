@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.church_of_saint_george_lalibela",
+  "kind": "static-structure",
+  "title": "Church of Saint George, Lalibela",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.church_of_saint_george_lalibela",
+        "output": "assets/places/sf/sf5/church_of_saint_george_lalibela/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8c6d1cf2e2930db8dcf7f35aade03109b45c5fc72e06894feb8887bf723a62e5"
+      }
+    ],
+    "generators": [
+      {
+        "id": "church_of_saint_george_lalibela",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "rock-cut-cross",
+        "path": "models/rock-cut-cross.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.tampere_workers_hall",
+  "kind": "static-structure",
+  "title": "Tampere Workers' Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.tampere_workers_hall",
+        "output": "assets/places/ud/udb/tampere_workers_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1ec325facc7a97e47c3d33d65a0dca593671e84ea4ab2a57d2adda79734f2a8a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-tampere-workers-hall",
+        "path": "models/generate-tampere-workers-hall.mjs"
+      },
+      {
+        "id": "tampere-workers-hall-model",
+        "path": "models/tampere-workers-hall-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/tampere-workers-hall-footprint.json",
+      "native-map/tampere-hall-municipal-controls.json",
+      "reference-rights/tampere-workers-hall-architectural-facts.json",
+      "reference-rights/tampere-workers-hall-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/tampere-nls-M4212G-crop.asc",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

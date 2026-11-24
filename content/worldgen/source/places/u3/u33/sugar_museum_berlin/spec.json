@@ -1,0 +1,588 @@
+{
+  "planId": "sugar_museum_berlin",
+  "id": "sugar_museum_berlin",
+  "assetId": "molen.worldgen.structure.sugar_museum_berlin",
+  "title": "Sugar Museum (Berlin)",
+  "wikidataId": "Q227776",
+  "category": "historic-museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 13.34539,
+    "latitude": 52.54555
+  },
+  "size": [
+    60.78999900817871,
+    30.749999165534973,
+    17.42965316772461
+  ],
+  "actualBounds": {
+    "min": [
+      -29.56999969482422,
+      -1.1200000047683716,
+      -9.898653030395508
+    ],
+    "max": [
+      31.219999313354492,
+      29.6299991607666,
+      7.531000137329102
+    ]
+  },
+  "visualBrief": "The former Sugar Museum in Anton Adams’s sandstone and plaster institute at Amrumer Straße 32, with its projecting copper lantern and red mansards.",
+  "nativeAxes": {
+    "x": "southeast along Amrumer Straße",
+    "y": "up",
+    "z": "southwest toward Amrumer Straße"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Zuckermuseum_Berlin.jpg"
+  ],
+  "stories": [
+    {
+      "id": "sugar-museum-berlin-wp",
+      "url": "https://qualla.com/sugar-museum-berlin/"
+    }
+  ],
+  "referenceInputHash": "sha256:c6b2182149ada04e66d66a47bbe6c323291dd10ea2b4164bb74613493315d460",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u3/u33/sugar_museum_berlin/models/sugar-museum-berlin-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u3/u33/sugar_museum_berlin/models/sugar-museum-berlin-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.62,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "masonry": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.94
+      },
+      "cutStone": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.89
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.91
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.78
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.56
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94
+          },
+          "cutStone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.78
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.102,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94
+          },
+          "cutStone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.78
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.039,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94
+          },
+          "cutStone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.78
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_sandstone_raw",
+    "stone_sandstone",
+    "tile_flat",
+    "metal_copper",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.02,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "One-metre Berlin DGM1 elevation sampled at the institutional entrance on Amrumer Straße.",
+    "anchor": [
+      13.34539,
+      52.54555
+    ],
+    "heading": -0.895353906273091,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        13.345159808625267,
+        52.545613384235764
+      ],
+      "modelHeight": 0,
+      "basis": "One-metre Berlin DGM1 elevation sampled at the institutional entrance on Amrumer Straße."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -4.1655,
+          -9.7562
+        ],
+        [
+          -12.4571,
+          -9.555
+        ],
+        [
+          -12.433,
+          -9.0152
+        ],
+        [
+          -28.486,
+          -8.8473
+        ],
+        [
+          -28.4488,
+          -9.3033
+        ],
+        [
+          -29.0975,
+          -9.2591
+        ],
+        [
+          -29.0297,
+          6.2527
+        ],
+        [
+          -18.3358,
+          6.2933
+        ],
+        [
+          -17.707,
+          7.0574
+        ],
+        [
+          -15.2951,
+          7.0379
+        ],
+        [
+          -12.7413,
+          7.0194
+        ],
+        [
+          -11.3539,
+          5.5547
+        ],
+        [
+          -11.34,
+          4.9499
+        ],
+        [
+          20.1179,
+          4.7108
+        ],
+        [
+          20.1014,
+          5.4436
+        ],
+        [
+          30.8808,
+          5.4486
+        ],
+        [
+          30.7894,
+          -7.8616
+        ],
+        [
+          21.1788,
+          -7.9191
+        ],
+        [
+          20.7783,
+          -8.3094
+        ],
+        [
+          20.3058,
+          -8.6098
+        ],
+        [
+          19.7874,
+          -8.7996
+        ],
+        [
+          19.2361,
+          -8.877
+        ],
+        [
+          18.6818,
+          -8.8439
+        ],
+        [
+          18.1463,
+          -8.6918
+        ],
+        [
+          17.6509,
+          -8.4295
+        ],
+        [
+          17.2254,
+          -8.0764
+        ],
+        [
+          16.8828,
+          -7.6309
+        ],
+        [
+          16.6397,
+          -7.1317
+        ],
+        [
+          16.5047,
+          -6.5893
+        ],
+        [
+          16.4902,
+          -6.0371
+        ],
+        [
+          16.5918,
+          -5.4873
+        ],
+        [
+          13.3151,
+          -5.5101
+        ],
+        [
+          8.684,
+          -5.5338
+        ],
+        [
+          -4.1734,
+          -5.2952
+        ]
+      ],
+      "minimumCoverage": 0.88,
+      "basis": "Use the historic main building boundary from the named cadastral-derived OSM footprint."
+    },
+    "featureIds": [
+      "way/56138458"
+    ],
+    "source": "https://www.openstreetmap.org/way/56138458",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9b15916712cabc1a23fb3a68039b0987022a68e2e7ccbd66d03ae01d4c60ba58",
+    "notes": "The exact published photograph and heritage descriptions agree on the red sandstone base, restrained plaster upper walls, asymmetrical tower and its copper lantern, and the large street windows. The model preserves the rounded courtyard projection in the mapped outline."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The front geometry follows the exact 2008 photograph and official site records. Small ornament, rear sash divisions, finish colors, and the lantern above the numerical survey resolution are estimates.",
+    "The scope is the historic Amrumer Straße 32 main building. The adjacent laboratory and factory blocks and the museum’s later premises are outside this model."
+  ],
+  "sourceLicense": "Original geometry informed by the exact public-domain Qualla-published photograph by FA2010, the named cadastral-derived OpenStreetMap footprint, and open GDI Berlin numeric elevation data.",
+  "qaLodCameras": [
+    {
+      "name": "sugar-museum-berlin-skyline",
+      "position": [
+        -47,
+        26,
+        76
+      ],
+      "lookAt": [
+        -5,
+        11,
+        0.5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "sugar-museum-berlin-district",
+      "position": [
+        -47,
+        26,
+        76
+      ],
+      "lookAt": [
+        -5,
+        11,
+        0.5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "sugar-museum-berlin-street",
+      "position": [
+        -47,
+        26,
+        76
+      ],
+      "lookAt": [
+        -5,
+        11,
+        0.5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "sugar-museum-berlin-closeup",
+      "position": [
+        -47,
+        26,
+        76
+      ],
+      "lookAt": [
+        -5,
+        11,
+        0.5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "amrumer-strasse",
+      "position": [
+        -47,
+        26,
+        76
+      ],
+      "lookAt": [
+        -5,
+        11,
+        0.5
+      ]
+    },
+    {
+      "name": "red-sandstone-and-copper-lantern",
+      "position": [
+        -19,
+        13.9,
+        27.4
+      ],
+      "lookAt": [
+        -15.1,
+        13.7,
+        4.4
+      ]
+    },
+    {
+      "name": "courtyard-curved-stair-projection",
+      "position": [
+        38,
+        27,
+        -38
+      ],
+      "lookAt": [
+        10.7,
+        9,
+        -4.6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10216,
+    "vertices": 30648,
+    "materials": 7,
+    "bytes": 1447300,
+    "sha256": "sha256:407cd67fc2347b94c0a7527f2f5ba45e5da088859f2208c194a63409fee6669f"
+  }
+}

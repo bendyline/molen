@@ -1,0 +1,455 @@
+{
+  "planId": "kgb_prison_potsdam",
+  "id": "kgb_prison_potsdam",
+  "assetId": "molen.worldgen.structure.kgb_prison_potsdam",
+  "title": "KGB Prison, Potsdam",
+  "wikidataId": "Q1498157",
+  "category": "historic_house",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 13.06434125,
+    "latitude": 52.416456
+  },
+  "size": [
+    38.665842056274414,
+    10.690000027418137,
+    36.48872756958008
+  ],
+  "actualBounds": {
+    "min": [
+      -24.1184139251709,
+      -0.47999998927116394,
+      -16.958419799804688
+    ],
+    "max": [
+      14.547428131103516,
+      10.210000038146973,
+      19.53030776977539
+    ]
+  },
+  "visualBrief": "The historic rectory at Leistikowstraße 1, now the Potsdam memorial, with its grey roofs, weathered courtyard plaster and original window openings.",
+  "nativeAxes": {
+    "x": "east-southeast along the long wall",
+    "y": "up",
+    "z": "south-southwest across the building"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Prison_Leistikowstrasse_Potsdam_03.jpg",
+    "https://commons.wikimedia.org/wiki/File:Prison_Leistikowstrasse_Potsdam_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:KGB-Gef%C3%A4ngnis_Potsdam_WikiCon_2025-10-04_01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kgb-prison-potsdam-wp",
+      "url": "https://qualla.com/kgb-prison-potsdam/"
+    }
+  ],
+  "referenceInputHash": "sha256:f6ea54d8515df8b959d5c982bf0512850f843e515e425f103e292e6c1353de88",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u3/u33/kgb_prison_potsdam/models/kgb-prison-potsdam-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u3/u33/kgb_prison_potsdam/models/kgb-prison-potsdam-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.27,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.86,
+        "metallic": 0.13
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.61
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.138,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.13
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.61
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.062,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.13
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.61
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.023,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.13
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.61
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "concrete_plain",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Terrarium elevation sampled in the inner yard beside the listed house.",
+    "anchor": [
+      13.06434125,
+      52.416456
+    ],
+    "heading": -0.349148423073608,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        13.064280787361827,
+        52.416354706678824
+      ],
+      "modelHeight": 0,
+      "basis": "Original Terrarium elevation sampled in the inner yard beside the listed house."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -13.658,
+          -10.334
+        ],
+        [
+          0.237,
+          -10.334
+        ],
+        [
+          5.547,
+          -10.336
+        ],
+        [
+          9.241,
+          -10.33
+        ],
+        [
+          9.237,
+          1.506
+        ],
+        [
+          9.237,
+          2.797
+        ],
+        [
+          8.965,
+          2.802
+        ],
+        [
+          8.966,
+          10.845
+        ],
+        [
+          4.905,
+          10.843
+        ],
+        [
+          4.904,
+          15.167
+        ],
+        [
+          -1.486,
+          15.16
+        ],
+        [
+          -1.484,
+          12.683
+        ],
+        [
+          -1.481,
+          10.846
+        ],
+        [
+          -4.85,
+          10.84
+        ],
+        [
+          -4.852,
+          2.797
+        ],
+        [
+          -13.662,
+          2.794
+        ],
+        [
+          -13.663,
+          -3.283
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Mapped extent of the listed historic house at Leistikowstraße 1."
+    },
+    "featureIds": [
+      "way/120504913"
+    ],
+    "source": "https://www.openstreetmap.org/way/120504913",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5afee2b70be290c136043400b8f9aa0e279d1f625139d67de4e76abcd5d5d23d",
+    "notes": "Two principal rendered plaster storeys and a low gabled grey roof. The cleared courtyard original controls the aged warm buff plaster, horizontal windows and darker base. Photographs bound the material treatment and documented openings."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The footprint and courtyard details are documented. Roof ridge, street-facing fenestration and fine weathering are approximate."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "kgb-prison-potsdam-skyline",
+      "position": [
+        -34,
+        19,
+        41
+      ],
+      "lookAt": [
+        -2,
+        3.5,
+        2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kgb-prison-potsdam-district",
+      "position": [
+        -34,
+        19,
+        41
+      ],
+      "lookAt": [
+        -2,
+        3.5,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "kgb-prison-potsdam-street",
+      "position": [
+        -34,
+        19,
+        41
+      ],
+      "lookAt": [
+        -2,
+        3.5,
+        2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "kgb-prison-potsdam-closeup",
+      "position": [
+        -34,
+        19,
+        41
+      ],
+      "lookAt": [
+        -2,
+        3.5,
+        2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "leistikowstrasse-courtyard-return",
+      "position": [
+        -13,
+        3.2,
+        14
+      ],
+      "lookAt": [
+        -6.6,
+        3.88,
+        4.1
+      ]
+    },
+    {
+      "name": "listed-house-street-and-roof",
+      "position": [
+        18,
+        11,
+        -25
+      ],
+      "lookAt": [
+        -0.2,
+        4.8,
+        -2
+      ]
+    },
+    {
+      "name": "footprint-and-memorial-wall",
+      "position": [
+        31,
+        46,
+        25
+      ],
+      "lookAt": [
+        -2,
+        3.2,
+        1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2274,
+    "vertices": 6822,
+    "materials": 5,
+    "bytes": 363624,
+    "sha256": "sha256:a35927627cfb4b008feb540195846dee23d9a57842bafac944847919d2f4e2bf"
+  }
+}

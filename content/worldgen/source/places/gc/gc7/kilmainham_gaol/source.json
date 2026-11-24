@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kilmainham_gaol",
+  "kind": "static-structure",
+  "title": "Kilmainham Gaol",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kilmainham_gaol",
+        "output": "assets/places/gc/gc7/kilmainham_gaol/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e1d86b8f0d35f4fcd205676b2c213c4677ca10721e6f1b53641323e41a964375"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-kilmainham-gaol",
+        "path": "models/generate-kilmainham-gaol.mjs"
+      },
+      {
+        "id": "kilmainham-gaol-model",
+        "path": "models/kilmainham-gaol-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/kilmainham-gaol-footprint.json",
+      "native-map/kilmainham-native-building-layout.json",
+      "reference-rights/kilmainham-gaol-architectural-facts.json",
+      "reference-rights/kilmainham-gaol-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-15809-10622.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

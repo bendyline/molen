@@ -1,0 +1,405 @@
+{
+  "planId": "guadalajara_cathedral",
+  "id": "guadalajara_cathedral",
+  "assetId": "molen.worldgen.structure.guadalajara_cathedral",
+  "title": "Guadalajara Cathedral",
+  "wikidataId": "Q1706069",
+  "category": "cathedral",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -103.34698655,
+    "latitude": 20.67708763
+  },
+  "size": [
+    77.66500091552734,
+    68.88999795913696,
+    43.23755073547363
+  ],
+  "actualBounds": {
+    "min": [
+      -37.130001068115234,
+      -2.9000000953674316,
+      -21.587646484375
+    ],
+    "max": [
+      40.53499984741211,
+      65.98999786376953,
+      21.649904251098633
+    ]
+  },
+  "visualBrief": "Guadalajara’s cathedral with its measured twin spires, segmented plaza-facing stone front, and eastern basilica roof.",
+  "nativeAxes": {
+    "x": "west front toward east rear",
+    "y": "up",
+    "z": "toward Sagrario Metropolitano"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Catedral_de_Guadalajara_2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Catedral_de_Guadalajara_en_la_noche_08-09-2022.jpg"
+  ],
+  "stories": [
+    {
+      "id": "guadalajara-cathedral-wp",
+      "url": "https://qualla.com/guadalajara-cathedral/"
+    }
+  ],
+  "referenceInputHash": "sha256:1f2d37d4076b7383fb28fd39ecea964c251f30d2b2e566d419ba43e6d611ebc3",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9e/9ew/guadalajara_cathedral/models/guadalajara-cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9e/9ew/guadalajara_cathedral/models/guadalajara-cathedral-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.55,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.91
+      },
+      "ashlar": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.89
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.86
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.92,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.91
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.86
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.91
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.86
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.085,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.91
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.86
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "stone_ashlar",
+    "tile_flat"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified Plaza Guadalajara elevation immediately west of the principal cathedral entrance.",
+    "anchor": [
+      -103.34698655,
+      20.67708763
+    ],
+    "heading": 0.04764969667840746,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -103.34737246459761,
+        20.677115379354532
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified Plaza Guadalajara elevation immediately west of the principal cathedral entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -36.115,
+          -21.378
+        ],
+        [
+          -25.06,
+          -21.23
+        ],
+        [
+          -1.132,
+          -20.98
+        ],
+        [
+          40.325,
+          -20.541
+        ],
+        [
+          40.325,
+          21.44
+        ],
+        [
+          25.834,
+          21.385
+        ],
+        [
+          25.946,
+          10.725
+        ],
+        [
+          -8.36,
+          10.348
+        ],
+        [
+          -25.286,
+          10.187
+        ],
+        [
+          -36.477,
+          10.044
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Cathedral way only. The Sagrario remains a separate building."
+    },
+    "featureIds": [
+      "way/89819878"
+    ],
+    "source": "https://www.openstreetmap.org/way/89819878",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2d584f04dfb47dd06d6c2b8fb69acef1a2b2846bccc4a60d45b731227af8f7aa",
+    "notes": "The 2016 UNAM geotechnical study reports the different heights and 12 metre structural base widths of the two towers. The Secretariat of Culture identifies the modern replacement spires. The diocesan text establishes the basilican three-nave plan. Two public-domain views establish the spires and western facade details."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "The surviving cathedral and its measured tower heights are represented. The separately named Sagrario, city plaza furniture and cathedral interiors are outside this model’s scope.",
+    "The mapped 76 metre long cathedral envelope controls the local model. Published larger dimensions encompass the wider architectural site. The exact side aisle segmentation, stone ornament, roof levels and lantern detail are approximated.",
+    "Landings are tied to the preserved source terrain. Older plaza grading and the demolished atrium are outside the represented era."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "guadalajara-cathedral-skyline",
+      "position": [
+        -106,
+        54,
+        77
+      ],
+      "lookAt": [
+        -8,
+        22,
+        -4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "guadalajara-cathedral-district",
+      "position": [
+        -106,
+        54,
+        77
+      ],
+      "lookAt": [
+        -8,
+        22,
+        -4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "guadalajara-cathedral-street",
+      "position": [
+        -106,
+        54,
+        77
+      ],
+      "lookAt": [
+        -8,
+        22,
+        -4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "guadalajara-cathedral-closeup",
+      "position": [
+        -106,
+        54,
+        77
+      ],
+      "lookAt": [
+        -8,
+        22,
+        -4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-portals-pediment-and-spires",
+      "position": [
+        -127,
+        23,
+        -2
+      ],
+      "lookAt": [
+        -31,
+        26,
+        -4.8
+      ]
+    },
+    {
+      "name": "south-side-and-cathedral-roof",
+      "position": [
+        -47,
+        53,
+        111
+      ],
+      "lookAt": [
+        -9,
+        19,
+        -4.6
+      ]
+    },
+    {
+      "name": "east-lantern-and-basilica",
+      "position": [
+        104,
+        39,
+        53
+      ],
+      "lookAt": [
+        5,
+        18,
+        -5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11755,
+    "vertices": 35265,
+    "materials": 4,
+    "bytes": 1561960,
+    "sha256": "sha256:e3047e7a2aff7e2c0f1901f23912b4aaba757b9751c4d58209fa17553e05f773"
+  }
+}

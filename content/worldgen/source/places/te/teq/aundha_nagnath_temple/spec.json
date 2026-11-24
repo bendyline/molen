@@ -1,0 +1,594 @@
+{
+  "planId": "aundha_nagnath_temple",
+  "id": "aundha_nagnath_temple",
+  "assetId": "molen.worldgen.structure.aundha_nagnath_temple",
+  "title": "Aundha Nagnath Temple",
+  "wikidataId": "Q15194007",
+  "category": "historical-temple",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 77.041505,
+    "latitude": 19.537054
+  },
+  "size": [
+    39.5855770111084,
+    19.088000118732452,
+    49.7308292388916
+  ],
+  "actualBounds": {
+    "min": [
+      -19.386005401611328,
+      -0.800000011920929,
+      -19.64082908630371
+    ],
+    "max": [
+      20.19957160949707,
+      18.288000106811523,
+      30.09000015258789
+    ]
+  },
+  "visualBrief": "Aundha Nagnath Temple’s incised dark basalt plinth, three pillared porches, two pale stepped shikharas and detached west pavilion.",
+  "nativeAxes": {
+    "x": "toward the south porch",
+    "y": "up",
+    "z": "toward the western entrance"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://archive.org/details/in.ernet.dli.2015.172905/page/n74/mode/1up",
+    "https://archive.org/details/in.ernet.dli.2015.172905/page/n76/mode/1up",
+    "https://archive.org/details/in.ernet.dli.2015.172905/page/n78/mode/1up",
+    "https://archive.org/details/dli.ministry.09361/page/n72/mode/1up"
+  ],
+  "stories": [
+    {
+      "id": "aundha-nagnath-temple-wp",
+      "url": "https://qualla.com/aundha-nagnath-temple/"
+    }
+  ],
+  "referenceInputHash": "sha256:5df9a91df8060bfe22eed7c321a46d244980f41d927a57208f5ecc96045e9eac",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/te/teq/aundha_nagnath_temple/models/aundha-nagnath-temple-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/te/teq/aundha_nagnath_temple/models/aundha-nagnath-temple-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.69,
+    "surfaces": {
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.96
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_basalt",
+        "roughness": 0.94
+      },
+      "carving": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "plaster": {
+        "slot": "roof",
+        "graph": "plaster_lime",
+        "roughness": 0.92
+      },
+      "opening": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_copper",
+        "roughness": 0.89
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.34,
+        "surfaces": {
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.94
+          },
+          "carving": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "plaster": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "opening": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.89
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.113,
+        "surfaces": {
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.94
+          },
+          "carving": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "plaster": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "opening": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.89
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.046,
+        "surfaces": {
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.94
+          },
+          "carving": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "plaster": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "opening": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.89
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_basalt_raw",
+    "stone_basalt",
+    "stone_ashlar",
+    "plaster_lime",
+    "metal_copper"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native ground sampled in the paved temple court between the west stairs and Nandi pavilion.",
+    "anchor": [
+      77.041505,
+      19.537054
+    ],
+    "heading": -1.5166911199830724,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        77.04129465310557,
+        19.53704326390795
+      ],
+      "modelHeight": 0,
+      "basis": "Native ground sampled in the paved temple court between the west stairs and Nandi pavilion."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -2.32,
+          -17.69
+        ],
+        [
+          -3.625,
+          -16.82
+        ],
+        [
+          -4.64,
+          -15.225
+        ],
+        [
+          -7.395,
+          -13.63
+        ],
+        [
+          -7.105,
+          -9.425
+        ],
+        [
+          -4.785,
+          -7.25
+        ],
+        [
+          -6.67,
+          -6.38
+        ],
+        [
+          -7.975,
+          -4.93
+        ],
+        [
+          -8.845,
+          -3.48
+        ],
+        [
+          -9.715,
+          -2.03
+        ],
+        [
+          -16.82,
+          -1.885
+        ],
+        [
+          -17.255,
+          -0.725
+        ],
+        [
+          -17.11,
+          2.61
+        ],
+        [
+          -10.005,
+          2.755
+        ],
+        [
+          -9.28,
+          4.205
+        ],
+        [
+          -8.41,
+          6.815
+        ],
+        [
+          -7.395,
+          8.41
+        ],
+        [
+          -5.655,
+          9.425
+        ],
+        [
+          -3.625,
+          10.005
+        ],
+        [
+          -2.61,
+          10.73
+        ],
+        [
+          -2.465,
+          18.85
+        ],
+        [
+          2.465,
+          18.415
+        ],
+        [
+          2.465,
+          10.295
+        ],
+        [
+          3.77,
+          9.57
+        ],
+        [
+          5.945,
+          8.265
+        ],
+        [
+          7.685,
+          7.25
+        ],
+        [
+          8.555,
+          5.22
+        ],
+        [
+          9.57,
+          2.465
+        ],
+        [
+          18.125,
+          2.175
+        ],
+        [
+          17.69,
+          -2.03
+        ],
+        [
+          9.57,
+          -2.465
+        ],
+        [
+          9.28,
+          -3.625
+        ],
+        [
+          8.12,
+          -4.93
+        ],
+        [
+          7.25,
+          -6.67
+        ],
+        [
+          5.365,
+          -7.685
+        ],
+        [
+          7.83,
+          -9.57
+        ],
+        [
+          7.83,
+          -13.63
+        ],
+        [
+          4.785,
+          -15.225
+        ],
+        [
+          4.06,
+          -16.675
+        ],
+        [
+          2.9,
+          -17.545
+        ],
+        [
+          1.74,
+          -18.995
+        ],
+        [
+          -1.885,
+          -18.995
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The measured Archaeological Department site plan controls the shrine, hall and three projecting porticoes."
+    },
+    "featureIds": [
+      "node/13313260103"
+    ],
+    "source": "https://www.openstreetmap.org/node/13313260103",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d3a6f0f0a5de6553a2fe46f205eb886706104b2c205ad6c4a243eec362fa807a",
+    "notes": "The exact 1918 photographs define the dark stone courses, entry piers and white shikhara. The current district survey records the later tower at about sixty feet."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "The exact 1918 photographs define the dark stone courses, entry piers and white shikhara. The current district survey records the later tower at about sixty feet.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "aundha-nagnath-skyline",
+      "position": [
+        43,
+        34,
+        58
+      ],
+      "lookAt": [
+        0,
+        6.7,
+        2.8
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "aundha-nagnath-district",
+      "position": [
+        43,
+        34,
+        58
+      ],
+      "lookAt": [
+        0,
+        6.7,
+        2.8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "aundha-nagnath-street",
+      "position": [
+        43,
+        34,
+        58
+      ],
+      "lookAt": [
+        0,
+        6.7,
+        2.8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "aundha-nagnath-closeup",
+      "position": [
+        43,
+        34,
+        58
+      ],
+      "lookAt": [
+        0,
+        6.7,
+        2.8
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-porch-and-pavilion",
+      "position": [
+        20,
+        11,
+        44
+      ],
+      "lookAt": [
+        0,
+        5,
+        12
+      ]
+    },
+    {
+      "name": "basalt-courses-and-shikharas",
+      "position": [
+        35,
+        12,
+        -12
+      ],
+      "lookAt": [
+        0,
+        6,
+        -5
+      ]
+    },
+    {
+      "name": "south-carved-plinth",
+      "position": [
+        -23,
+        6,
+        -16
+      ],
+      "lookAt": [
+        -5,
+        4,
+        -10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 28193,
+    "vertices": 84579,
+    "materials": 6,
+    "bytes": 3680844,
+    "sha256": "sha256:7e2f9e07b09057566821350cddb44d3dc54b433ca777faa576fb2fa259569b05"
+  }
+}

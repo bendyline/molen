@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.perth_town_hall",
+  "kind": "static-structure",
+  "title": "Perth Town Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.perth_town_hall",
+        "output": "assets/places/qd/qd6/perth_town_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7d212a22489a09b9e0c58dc3482e4f483bbfd19b61d38a6c9aca4f7067e73bc8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "perth_town_hall",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "hay-barrack-gothic-town-hall",
+        "path": "models/hay-barrack-gothic-town-hall.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

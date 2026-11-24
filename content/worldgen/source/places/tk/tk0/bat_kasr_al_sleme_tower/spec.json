@@ -1,0 +1,232 @@
+{
+  "id": "bat_kasr_al_sleme_tower",
+  "planId": "bat_kasr_al_sleme_tower",
+  "title": "Kasr al-Sleme Tower, Bat",
+  "assetId": "molen.worldgen.structure.bat_kasr_al_sleme_tower",
+  "category": "archaeological_site",
+  "collectionId": "bat_al_khutm_and_al_ayn_archaeological_sites",
+  "wikidataId": "Q25496",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 56.74327723,
+    "latitude": 23.25868664
+  },
+  "visualBrief": "A circular base and collapsed masonry follow the limestone mound, with a stronger standing arc in its northeast quarter.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tk/tk0/bat_kasr_al_sleme_tower/models/oman-bronze-age.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/434/",
+    "https://www.nm.gov.om/en/bat?action=first",
+    "https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9",
+    "https://www.jstor.org/stable/j.ctv2t4ct6",
+    "https://www.academia.edu/9061107/Monumentality_and_the_Third_Millennium_Towers_of_the_Oman_Peninsula",
+    "https://www.openstreetmap.org/node/2628676465"
+  ],
+  "geographicProposal": {
+    "id": "bat-kasr-al-sleme-tower",
+    "title": "Kasr al-Sleme Tower, Bat",
+    "asset": "molen.worldgen.structure.bat_kasr_al_sleme_tower",
+    "anchor": [
+      56.74327723,
+      23.25868664
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 490.50476,
+    "bounds": [
+      56.743150049333046,
+      23.2585719145013,
+      56.74342129785086,
+      23.258805876785207
+    ],
+    "minLevel": 15,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q25496",
+      "names": [
+        "Kasr al-Sleme Tower, Bat",
+        "Kasr al-Sleme",
+        "Bat Tower 1148"
+      ],
+      "maxDistance": 59.734209
+    },
+    "source": "https://www.openstreetmap.org/node/2628676465",
+    "note": "The documented tower centre and diameter establish placement against the mapped archaeological landscape. Locally sampled Terrarium terrain pins the surviving masonry to the ground.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8c2886ca9b974d82e8fa6d8c7cb068475b77527f2fa079982f23710785340503"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.98
+      },
+      "cut": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.97
+      }
+    },
+    "errorMeters": 0.67,
+    "module": "content/worldgen/source/places/tk/tk0/bat_kasr_al_sleme_tower/models/oman-bronze-age.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "cut": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.26
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "cut": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.102
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "cut": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.026
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        0.46,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "exposed-round-tower",
+      "position": [
+        -22,
+        20.730855,
+        26
+      ],
+      "lookAt": [
+        0,
+        0.46,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "masonry-and-interior-plan",
+      "position": [
+        11,
+        12.831358,
+        18
+      ],
+      "lookAt": [
+        0,
+        0.48,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "limestone-crest",
+      "position": [
+        12.02889166625432,
+        0.820229,
+        -10.55015475154357
+      ],
+      "lookAt": [
+        0,
+        0.74,
+        0
+      ],
+      "fov": 48
+    }
+  ],
+  "limitations": [
+    "Uses the published survey centre, diameter, and surviving northeast façade. The uneven wall crest and disturbed stones approximate the visible remains."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -11.004939079284668,
+      -2.733448028564453,
+      -11.260152816772461
+    ],
+    "max": [
+      12.732516288757324,
+      2.251796245574951,
+      10.759783744812012
+    ]
+  },
+  "size": [
+    23.737455368041992,
+    4.985244274139404,
+    22.019936561584473
+  ],
+  "mesh": {
+    "triangles": 3192,
+    "vertices": 6256,
+    "materials": 2,
+    "bytes": 265516,
+    "sha256": "sha256:3aac108348e947e496db8c4ac6cf5cfa430e541c5dbddf21088898026b025b3d"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

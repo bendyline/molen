@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.national_theatre_of_ghana",
+  "kind": "static-structure",
+  "title": "National Theatre of Ghana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.national_theatre_of_ghana",
+        "output": "assets/places/eb/ebz/national_theatre_of_ghana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7d320fb4c136c5c3b126d182bf5421e666bac0355083bd1af5ba851e69e82a3f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "national_theatre_of_ghana",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "accra-flared-concrete-shells",
+        "path": "models/accra-flared-concrete-shells.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

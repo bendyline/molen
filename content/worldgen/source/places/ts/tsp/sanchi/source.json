@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.sanchi",
+  "kind": "static-structure",
+  "title": "Sanchi Stupa No. 1",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.sanchi",
+        "output": "assets/places/ts/tsp/sanchi/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ffdcc53795e28b502fa6de11c97f922e48eade428d29fe1da7559d5c40852b02"
+      }
+    ],
+    "generators": [
+      {
+        "id": "sanchi",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "great-stupa-medhi-and-four-toranas",
+        "path": "models/great-stupa-medhi-and-four-toranas.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

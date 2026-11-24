@@ -1,0 +1,532 @@
+{
+  "planId": "palace_of_the_dukes_of_braganza",
+  "id": "palace_of_the_dukes_of_braganza",
+  "assetId": "molen.worldgen.structure.palace_of_the_dukes_of_braganza",
+  "title": "Palace of the Dukes of Braganza",
+  "wikidataId": "Q4892877",
+  "category": "palace",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -8.29104,
+    "latitude": 41.446458
+  },
+  "size": [
+    63.3397216796875,
+    31.97200083732605,
+    64.69761085510254
+  ],
+  "actualBounds": {
+    "min": [
+      -29.93600845336914,
+      -3.049999952316284,
+      -33.00761032104492
+    ],
+    "max": [
+      33.40371322631836,
+      28.922000885009766,
+      31.690000534057617
+    ]
+  },
+  "visualBrief": "The rebuilt granite ducal palace at Guimarães, with four wings, a two-storey courtyard cloister, steep roofs and 39 red brick chimney shafts.",
+  "nativeAxes": {
+    "x": "cross-courtyard axis toward the east",
+    "y": "up",
+    "z": "toward the south end"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Guimar%C3%A3es_Palace_of_the_Dukes_of_Braganza_2023-08-07_09.15.42_(53112031244).jpg",
+    "https://commons.wikimedia.org/wiki/File:Guimar%C3%A3es_Palace_of_the_Dukes_of_Braganza_2023-08-07_09.24.07_(53112031179).jpg",
+    "https://commons.wikimedia.org/wiki/File:Guimarães_Palace_of_the_Dukes_of_Braganza_2023-08-07_09.22.41_(53112241915).jpg"
+  ],
+  "stories": [
+    {
+      "id": "palace-of-the-dukes-of-braganza-wp",
+      "url": "https://qualla.com/palace-of-the-dukes-of-braganza/"
+    }
+  ],
+  "referenceInputHash": "sha256:352030f4f90c4cb890e45bcc7503a4125ca544467c4999c29e67fbf439f81ecb",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ez/ez6/palace_of_the_dukes_of_braganza/models/palace-of-the-dukes-of-braganza-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ez/ez6/palace_of_the_dukes_of_braganza/models/palace-of-the-dukes-of-braganza-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.72,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.95
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.93
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.89
+      },
+      "ridge": {
+        "slot": "trim",
+        "graph": "tile_ceramic",
+        "roughness": 0.9
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.94
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.68
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.92
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.31,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89
+          },
+          "ridge": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.94
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.92
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89
+          },
+          "ridge": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.94
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.92
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89
+          },
+          "ridge": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.94
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.92
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_granite",
+    "stone_ashlar",
+    "tile_ceramic",
+    "brick",
+    "wood_vertical"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Mapzen Terrarium heights sampled in the mapped courtyard; grade beyond the outer wings comes from the original surrounding values.",
+    "anchor": [
+      -8.29104,
+      41.446458
+    ],
+    "heading": -0.38595848980315844,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -8.291067420560974,
+        41.446359691403224
+      ],
+      "modelHeight": 0,
+      "basis": "Original Mapzen Terrarium heights sampled in the mapped courtyard; grade beyond the outer wings comes from the original surrounding values."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -28.3682,
+          28.6016
+        ],
+        [
+          32.1894,
+          30.4537
+        ],
+        [
+          32.6141,
+          16.559
+        ],
+        [
+          23.5745,
+          16.2789
+        ],
+        [
+          23.9628,
+          3.6246
+        ],
+        [
+          32.0791,
+          3.8714
+        ],
+        [
+          32.5082,
+          -10.1453
+        ],
+        [
+          24.2901,
+          -10.3987
+        ],
+        [
+          24.5653,
+          -19.4743
+        ],
+        [
+          32.8613,
+          -19.2286
+        ],
+        [
+          33.2138,
+          -30.907
+        ],
+        [
+          -29.3582,
+          -32.8177
+        ],
+        [
+          -29.7461,
+          -20.2957
+        ],
+        [
+          -22.0757,
+          -20.0601
+        ],
+        [
+          -22.6233,
+          -4.8058
+        ],
+        [
+          -23.1252,
+          14.2631
+        ],
+        [
+          -27.9205,
+          14.1208
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Named palace and courtyard multipolygon from OpenStreetMap."
+    },
+    "featureIds": [
+      "relation/2433235"
+    ],
+    "source": "https://www.openstreetmap.org/relation/2433235",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:714be6aa8e4019f2db1443ae6d30d0bc3be787bcf650c7ed8aec1c0f3dae5566",
+    "notes": "The independent survey records a four-wing structure around a rectangular courtyard with a two-storey portico and 39 brick chimneys. Current CC0 photos show ashlar, pointed gallery arches, the lighter stone columns above, the lower tile lean-tos and brick chimneys above steep roof slopes."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The footprint and court are tied to the named map geometry. Roof ridges, tower heights, the arrangement of minor openings and the positions of chimneys outside the photographed court view are estimated.",
+    "The four wings, chapel projection, two-level courtyard galleries, and cylindrical brick chimneys are modeled externally. Interior collections, ornaments and the adjacent castle are outside scope."
+  ],
+  "sourceLicense": "Original model under repository license. Building footprint © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "palace-of-the-dukes-of-braganza-skyline",
+      "position": [
+        90,
+        64,
+        107
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "palace-of-the-dukes-of-braganza-district",
+      "position": [
+        90,
+        64,
+        107
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "palace-of-the-dukes-of-braganza-street",
+      "position": [
+        90,
+        64,
+        107
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "palace-of-the-dukes-of-braganza-closeup",
+      "position": [
+        90,
+        64,
+        107
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-entrance-and-roofline",
+      "position": [
+        29,
+        13,
+        71
+      ],
+      "lookAt": [
+        2,
+        13,
+        7
+      ]
+    },
+    {
+      "name": "two-storey-courtyard",
+      "position": [
+        -4,
+        8.5,
+        -10
+      ],
+      "lookAt": [
+        1,
+        10.8,
+        11
+      ]
+    },
+    {
+      "name": "chapel-and-chimneys",
+      "position": [
+        84,
+        52,
+        -37
+      ],
+      "lookAt": [
+        9,
+        14,
+        -3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16761,
+    "vertices": 50283,
+    "materials": 8,
+    "bytes": 2313096,
+    "sha256": "sha256:a2d8d3fd3546f588601c766fdc8d105e0d5627d36f3203da042767304692a3c6"
+  }
+}

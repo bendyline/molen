@@ -1,0 +1,663 @@
+{
+  "planId": "hearst_greek_theatre",
+  "id": "hearst_greek_theatre",
+  "assetId": "molen.worldgen.structure.hearst_greek_theatre",
+  "title": "Hearst Greek Theatre",
+  "wikidataId": "Q671266",
+  "category": "cultural",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -122.25425105,
+    "latitude": 37.87369185
+  },
+  "size": [
+    67.15056037902832,
+    26.859999656677246,
+    87.86899948120117
+  ],
+  "actualBounds": {
+    "min": [
+      -31.1299991607666,
+      -13,
+      -44.202999114990234
+    ],
+    "max": [
+      36.02056121826172,
+      13.859999656677246,
+      43.66600036621094
+    ]
+  },
+  "visualBrief": "The open-air Hearst Greek Theatre, with the natural hillside bowl, concrete bench tiers and three-sided Doric stage.",
+  "nativeAxes": {
+    "x": "stage to seating bank",
+    "y": "up",
+    "z": "across the open orchestra"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hearst_Greek_Theater_graduation.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hearst-greek-theatre-wp",
+      "url": "https://qualla.com/hearst-greek-theatre/"
+    }
+  ],
+  "referenceInputHash": "sha256:c3ba5e9a9c5e753cac9adeae751080a60a4341f90ffb7c4d5168f266aa414bfb",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9q/9q9/hearst_greek_theatre/models/hearst-greek-theatre-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9q/9q9/hearst_greek_theatre/models/hearst-greek-theatre-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.25,
+    "surfaces": {
+      "cast": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "tile": {
+        "slot": "foundation",
+        "graph": "concrete_panel",
+        "roughness": 0.95
+      },
+      "exposed": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.95
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.91
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.93
+      },
+      "opening": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.84
+      },
+      "grass": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.58,
+        "surfaces": {
+          "cast": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.95
+          },
+          "exposed": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "opening": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "cast": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.95
+          },
+          "exposed": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "opening": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "cast": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.95
+          },
+          "exposed": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "opening": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "concrete_panel",
+    "concrete_boardformed",
+    "stone_ashlar",
+    "stone_limestone_weathered",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original elevation at the stage-side open orchestra.",
+    "anchor": [
+      -122.25425105,
+      37.87369185
+    ],
+    "heading": 0.667378223429671,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -122.25431409334107,
+        37.87364977673441
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation at the stage-side open orchestra."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -11.857,
+          39.63
+        ],
+        [
+          -1.139,
+          39.431
+        ],
+        [
+          -0.639,
+          43.666
+        ],
+        [
+          3.009,
+          42.699
+        ],
+        [
+          8.553,
+          40.747
+        ],
+        [
+          9.704,
+          40.294
+        ],
+        [
+          15.212,
+          36.952
+        ],
+        [
+          21.664,
+          32.427
+        ],
+        [
+          26.922,
+          26.976
+        ],
+        [
+          31,
+          20.58
+        ],
+        [
+          33.422,
+          13.843
+        ],
+        [
+          35.251,
+          6.653
+        ],
+        [
+          36.024,
+          -0.419
+        ],
+        [
+          35.149,
+          -7.841
+        ],
+        [
+          33.204,
+          -15.127
+        ],
+        [
+          30.337,
+          -21.228
+        ],
+        [
+          26.4,
+          -27.207
+        ],
+        [
+          20.947,
+          -32.468
+        ],
+        [
+          15.025,
+          -37.134
+        ],
+        [
+          9.139,
+          -40.483
+        ],
+        [
+          7.228,
+          -41.096
+        ],
+        [
+          4.358,
+          -42.053
+        ],
+        [
+          3.523,
+          -42.47
+        ],
+        [
+          -3.334,
+          -44.203
+        ],
+        [
+          -4.289,
+          -39.754
+        ],
+        [
+          -7.4,
+          -39.668
+        ],
+        [
+          -12.304,
+          -39.579
+        ],
+        [
+          -13.256,
+          -39.577
+        ],
+        [
+          -12.242,
+          -24.053
+        ],
+        [
+          -12.345,
+          -22.688
+        ],
+        [
+          -12.288,
+          -21.283
+        ],
+        [
+          -16.413,
+          -21.472
+        ],
+        [
+          -16.41,
+          -25.821
+        ],
+        [
+          -20.562,
+          -25.791
+        ],
+        [
+          -21.107,
+          -25.823
+        ],
+        [
+          -21.105,
+          -24.022
+        ],
+        [
+          -29.251,
+          -24.02
+        ],
+        [
+          -29.251,
+          -7.693
+        ],
+        [
+          -31.175,
+          -7.693
+        ],
+        [
+          -31.177,
+          6.705
+        ],
+        [
+          -28.694,
+          6.706
+        ],
+        [
+          -28.695,
+          22.082
+        ],
+        [
+          -19.956,
+          22.081
+        ],
+        [
+          -19.954,
+          23.712
+        ],
+        [
+          -16.016,
+          23.711
+        ],
+        [
+          -16.011,
+          22.128
+        ],
+        [
+          -14.748,
+          22.23
+        ],
+        [
+          -12.803,
+          22.36
+        ],
+        [
+          -11.748,
+          22.426
+        ],
+        [
+          -11.754,
+          23.498
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "Individually mapped theatre bowl and stage footprint."
+    },
+    "featureIds": [
+      "way/24025050"
+    ],
+    "source": "https://www.openstreetmap.org/way/24025050",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7e299a5f96c038a1bad8b987ae47d83ada1527caba66f783ddd6d974c4536931",
+    "notes": "The National Register records 19 concrete rows, 11 aisles, a semicircular seating bowl and freestanding three-sided stage elevation with Doric members."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The permanent theatre bowl, stage enclosure and immediate theatre retaining architecture. Later detached service areas and temporary concert installations are outside scope.",
+    "Surveyed tier count is retained. Minor decorative elements, individual step sizes and upper landscaping details are estimated."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "hearst-greek-theatre-skyline",
+      "position": [
+        105,
+        55,
+        45
+      ],
+      "lookAt": [
+        -6,
+        6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "hearst-greek-theatre-district",
+      "position": [
+        105,
+        55,
+        45
+      ],
+      "lookAt": [
+        -6,
+        6,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "hearst-greek-theatre-street",
+      "position": [
+        105,
+        55,
+        45
+      ],
+      "lookAt": [
+        -6,
+        6,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "hearst-greek-theatre-closeup",
+      "position": [
+        105,
+        55,
+        45
+      ],
+      "lookAt": [
+        -6,
+        6,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "open-bowl-and-doric-stage",
+      "position": [
+        105,
+        55,
+        45
+      ],
+      "lookAt": [
+        -6,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "stage-enclosure-and-monumental-door",
+      "position": [
+        10,
+        13,
+        18
+      ],
+      "lookAt": [
+        -23,
+        6,
+        -2
+      ]
+    },
+    {
+      "name": "stepped-concrete-audience-bowl",
+      "position": [
+        -65,
+        35,
+        53
+      ],
+      "lookAt": [
+        5,
+        6,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10628,
+    "vertices": 31884,
+    "materials": 8,
+    "bytes": 1612136,
+    "sha256": "sha256:56956836bd18f9db39df5be8aaa862b64be571e05e5677e4bc72c70a5321f399"
+  }
+}

@@ -1,0 +1,377 @@
+{
+  "id": "mahabodhi_temple",
+  "planId": "mahabodhi_temple",
+  "title": "Mahabodhi Temple",
+  "assetId": "molen.worldgen.structure.mahabodhi_temple",
+  "category": "religious",
+  "wikidataId": "Q4513",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 84.9913115,
+    "latitude": 24.6959278
+  },
+  "visualBrief": "Mahabodhi’s 50-metre shikhara rises behind the east entry porch. Four stepped corner spires, repeated chaitya niches and a gold-toned finial establish the temple silhouette.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tu/tuk/mahabodhi_temple/models/temple-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://tourism.bihar.gov.in/en/destinations/gaya/mahabodhi-temple",
+    "https://whc.unesco.org/en/list/1056",
+    "https://www.openstreetmap.org/way/314531108"
+  ],
+  "geographicProposal": {
+    "id": "mahabodhi-temple",
+    "title": "Mahabodhi Temple",
+    "asset": "molen.worldgen.structure.mahabodhi_temple",
+    "anchor": [
+      84.9913115,
+      24.6959278
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 127.5,
+    "bounds": [
+      84.99120273768635,
+      24.69578407013135,
+      84.99157351830104,
+      24.696067038310254
+    ],
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q4513",
+      "names": [
+        "Mahabodhi Temple",
+        "महाबोधि मंदिर"
+      ],
+      "maxDistance": 55
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -8.1821,
+          -14.7498
+        ],
+        [
+          -10.2655,
+          12.6348
+        ],
+        [
+          21.7143,
+          15.0727
+        ],
+        [
+          22.3515,
+          6.7682
+        ],
+        [
+          24.6777,
+          6.9463
+        ],
+        [
+          25.0316,
+          2.1707
+        ],
+        [
+          25.4059,
+          -2.7162
+        ],
+        [
+          23.4539,
+          -2.872
+        ],
+        [
+          24.172,
+          -12.2897
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Suppress the single mapped principal temple and its attached entrance footprint."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -8.1821,
+          -14.7498
+        ],
+        [
+          -10.2655,
+          12.6348
+        ],
+        [
+          21.7143,
+          15.0727
+        ],
+        [
+          22.3515,
+          6.7682
+        ],
+        [
+          24.6777,
+          6.9463
+        ],
+        [
+          25.0316,
+          2.1707
+        ],
+        [
+          25.4059,
+          -2.7162
+        ],
+        [
+          23.4539,
+          -2.872
+        ],
+        [
+          24.172,
+          -12.2897
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Open native ground beneath the raised temple foundation only."
+    },
+    "source": "https://www.openstreetmap.org/way/314531108",
+    "note": "The main temple aligns with the principal mapped footprint and faces east. The Bodhi Tree, wider precinct and separate adjacent buildings remain in the map.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c6815268a6172e39c48cbf9ac18837d1b56dc9856422e18629f47697d5a374c6"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "brick_stack",
+        "roughness": 0.95
+      },
+      "plinth": {
+        "slot": "foundation",
+        "graph": "stone_sandstone",
+        "roughness": 0.96
+      },
+      "carved": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.93
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_copper",
+        "roughness": 0.62
+      }
+    },
+    "errorMeters": 0.98,
+    "module": "content/worldgen/source/places/tu/tuk/mahabodhi_temple/models/temple-model.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_stack",
+            "roughness": 0.95
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.96
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.62
+          }
+        },
+        "errorMeters": 0.46
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_stack",
+            "roughness": 0.95
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.96
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.62
+          }
+        },
+        "errorMeters": 0.23
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_stack",
+            "roughness": 0.95
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.96
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.62
+          }
+        },
+        "errorMeters": 0.09
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        4,
+        20,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "east-approach",
+      "position": [
+        67,
+        19,
+        19
+      ],
+      "lookAt": [
+        3,
+        23.4,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "subsidiary-spires",
+      "position": [
+        -31,
+        24,
+        43
+      ],
+      "lookAt": [
+        -3,
+        21,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "pierced-entry",
+      "position": [
+        34,
+        4,
+        3.55
+      ],
+      "lookAt": [
+        19,
+        5,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "tiers-of-chaitya-niches",
+      "position": [
+        15,
+        27,
+        17
+      ],
+      "lookAt": [
+        -2,
+        26,
+        0
+      ],
+      "fov": 51
+    }
+  ],
+  "limitations": [
+    "The main tower uses the 50-metre height reported by UNESCO. Subsidiary tower heights, individual niches, figures and upper profiles are exterior approximations based on the photo and native footprint.",
+    "The placement covers the principal temple, its attached entry pavilion and the stone podium. The Bodhi Tree, pink arcade and detached stupas and shrines stay in the wider site.",
+    "Terrarium grades supply the placement datum. Submetre exterior heights and materials have been approximated."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -10.265475273132324,
+      -2.4000000953674316,
+      -14.749844551086426
+    ],
+    "max": [
+      25.405881881713867,
+      50,
+      15.072736740112305
+    ]
+  },
+  "size": [
+    35.67135715484619,
+    52.40000009536743,
+    29.82258129119873
+  ],
+  "mesh": {
+    "triangles": 43476,
+    "vertices": 89954,
+    "materials": 4,
+    "bytes": 3762984,
+    "sha256": "sha256:a74aa6a22a2a74d1bac967c752818f1337538b221d68097f3bb30628463d6892"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_stack",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

@@ -1,0 +1,475 @@
+{
+  "planId": "melrose_house",
+  "id": "melrose_house",
+  "assetId": "molen.worldgen.structure.melrose_house",
+  "title": "Melrose House",
+  "wikidataId": "Q1919737",
+  "category": "historic-house",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 28.192484,
+    "latitude": -25.755527
+  },
+  "size": [
+    33.12991523742676,
+    15.000000357627869,
+    23.78869915008545
+  ],
+  "actualBounds": {
+    "min": [
+      -16.589067459106445,
+      -1.149999976158142,
+      -11.937199592590332
+    ],
+    "max": [
+      16.540847778320312,
+      13.850000381469727,
+      11.851499557495117
+    ]
+  },
+  "visualBrief": "The park-facing Victorian mansion with paired shaped Dutch gables, a pointed turret, brick chimneys, glazed bay and side verandas.",
+  "nativeAxes": {
+    "x": "west along the house frontage",
+    "y": "up",
+    "z": "north toward Burgers Park"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.theheritageportal.co.za/article/burgers-park-victorian-heritage-portrayed-picture-postcards-more-century-ago"
+  ],
+  "stories": [
+    {
+      "id": "melrose-house-wp",
+      "url": "https://qualla.com/melrose-house/"
+    }
+  ],
+  "referenceInputHash": "sha256:aedf72b71fe625fc9ce2d0fc0a61106351ff68888f2d840ab18bad901d257890",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ke/kek/melrose_house/models/melrose-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ke/kek/melrose_house/models/melrose-house-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.43,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.92
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.88
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.93
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.78
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77
+      },
+      "window": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.63
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.85
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "stone_limestone",
+    "brick",
+    "metal_standing_seam",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.05,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Copernicus surface height on the north garden approach near the public street.",
+    "anchor": [
+      28.192484,
+      -25.755527
+    ],
+    "heading": -3.072284631903983,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        28.192474191743987,
+        -25.755399746064708
+      ],
+      "modelHeight": 0,
+      "basis": "Original Copernicus surface height on the north garden approach near the public street."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          13.7165,
+          -9.5259
+        ],
+        [
+          5.7871,
+          -9.5295
+        ],
+        [
+          5.7874,
+          -11.7055
+        ],
+        [
+          -5.6496,
+          -11.7072
+        ],
+        [
+          -5.6491,
+          -9.3973
+        ],
+        [
+          -13.7693,
+          -9.403
+        ],
+        [
+          -13.7658,
+          10.0915
+        ],
+        [
+          13.7215,
+          10.0915
+        ]
+      ],
+      "minimumCoverage": 0.86,
+      "basis": "Suppress the mapped historical house within the wider museum property."
+    },
+    "featureIds": [
+      "way/139921760"
+    ],
+    "source": "https://www.openstreetmap.org/way/139921760",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8722862db7688badb11bf5e403c463df2dcb4d20849f3cb31221485306ddba04",
+    "notes": "The Sallo Epstein postcard records the sculpted twin gables, asymmetrical roof, glazed bay, pointed roof lantern and masonry chimneys of the historic north elevation."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "The Sallo Epstein postcard records the sculpted twin gables, asymmetrical roof, glazed bay, pointed roof lantern and masonry chimneys of the historic north elevation.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "melrose-house-skyline",
+      "position": [
+        31.5,
+        20,
+        46
+      ],
+      "lookAt": [
+        0,
+        5.4,
+        1.1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "melrose-house-district",
+      "position": [
+        31.5,
+        20,
+        46
+      ],
+      "lookAt": [
+        0,
+        5.4,
+        1.1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "melrose-house-street",
+      "position": [
+        31.5,
+        20,
+        46
+      ],
+      "lookAt": [
+        0,
+        5.4,
+        1.1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "melrose-house-closeup",
+      "position": [
+        31.5,
+        20,
+        46
+      ],
+      "lookAt": [
+        0,
+        5.4,
+        1.1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "burgers-park-gables",
+      "position": [
+        -17,
+        10,
+        32
+      ],
+      "lookAt": [
+        0,
+        6.2,
+        10
+      ]
+    },
+    {
+      "name": "west-veranda-and-stonework",
+      "position": [
+        23,
+        6.3,
+        6
+      ],
+      "lookAt": [
+        13,
+        2.7,
+        0.8
+      ]
+    },
+    {
+      "name": "rear-wing-and-roof",
+      "position": [
+        14,
+        18,
+        -27
+      ],
+      "lookAt": [
+        0,
+        6,
+        -5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7902,
+    "vertices": 23706,
+    "materials": 6,
+    "bytes": 1155384,
+    "sha256": "sha256:d271cdb9b0b5deecb6f12f6c0b393f197ee2abd639cbfa86b6c4b0d8d3fedb47"
+  }
+}

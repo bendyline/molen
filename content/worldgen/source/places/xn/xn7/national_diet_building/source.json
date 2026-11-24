@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.national_diet_building",
+  "kind": "static-structure",
+  "title": "National Diet Building",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.national_diet_building",
+        "output": "assets/places/xn/xn7/national_diet_building/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2cf0b7d9d9e0a28dff1fccfb64e0ec2541b05bdfd8f8a0d8e7b42b4d21380931"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-national-diet-building",
+        "path": "models/generate-national-diet-building.mjs"
+      },
+      {
+        "id": "national-diet-building-model",
+        "path": "models/national-diet-building-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/national-diet-building-footprint.json",
+      "reference-rights/national-diet-building-architectural-facts.json",
+      "reference-rights/national-diet-building-qualla-original-1.json",
+      "references/diet-w2z-native.jpg",
+      "reference-rights/w2z-commons-first-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/gsi-dem5a-15-29103-12903.png",
+      "terrain-sources/gsi-dem5a-15-29104-12903.png",
+      "terrain-sources/gsi-dem5a-15-29103-12904.png",
+      "terrain-sources/gsi-dem5a-15-29104-12904.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

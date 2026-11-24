@@ -1,0 +1,495 @@
+{
+  "planId": "palace_hotel_broken_hill",
+  "id": "palace_hotel_broken_hill",
+  "assetId": "molen.worldgen.structure.palace_hotel_broken_hill",
+  "title": "Palace Hotel, Broken Hill",
+  "wikidataId": "Q55628401",
+  "category": "historic-hotel",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 141.463804167,
+    "latitude": -31.9598349972
+  },
+  "size": [
+    25.14157485961914,
+    21.700000762939453,
+    53.128299713134766
+  ],
+  "actualBounds": {
+    "min": [
+      -13.581574440002441,
+      -2.5,
+      -25.149999618530273
+    ],
+    "max": [
+      11.5600004196167,
+      19.200000762939453,
+      27.978300094604492
+    ]
+  },
+  "visualBrief": "The Palace Hotel with the three-storey Victorian brick exterior, tall hipped roof and continuous two-level iron verandas on Argent and Sulphide Streets.",
+  "nativeAxes": {
+    "x": "along Argent Street southwest",
+    "y": "up",
+    "z": "out toward Argent Street northwest"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.thepalacehotelbrokenhill.com.au/history"
+  ],
+  "stories": [
+    {
+      "id": "palace-hotel-broken-hill-wp",
+      "url": "https://qualla.com/palace-hotel-broken-hill/"
+    }
+  ],
+  "referenceInputHash": "sha256:c7ac1f420dcbd63e7a4775adf1515ea2b392ac7fcd5caf41a92bc202aff96ccc",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r4/r4k/palace_hotel_broken_hill/models/palace-hotel-broken-hill-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r4/r4k/palace_hotel_broken_hill/models/palace-hotel-broken-hill-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.34,
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94
+      },
+      "plaster": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.86
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.78,
+        "metallic": 0.19
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.86
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.62
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.47,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94
+          },
+          "plaster": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.86
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.78,
+            "metallic": 0.19
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94
+          },
+          "plaster": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.86
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.78,
+            "metallic": 0.19
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94
+          },
+          "plaster": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.86
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.78,
+            "metallic": 0.19
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "concrete_plain",
+    "metal_painted",
+    "metal_corrugated",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.07,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Copernicus grade at the Argent and Sulphide corner beneath the main veranda.",
+    "anchor": [
+      141.463804167,
+      -31.9598349972
+    ],
+    "heading": -2.530980258858643,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        141.46375128470578,
+        -31.959614214546388
+      ],
+      "modelHeight": 0,
+      "basis": "Original Copernicus grade at the Argent and Sulphide corner beneath the main veranda."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -9.8046,
+          11.9291
+        ],
+        [
+          -9.8099,
+          24.2083
+        ],
+        [
+          11.2165,
+          24.2083
+        ],
+        [
+          11.2254,
+          11.8909
+        ],
+        [
+          1.1717,
+          11.8932
+        ],
+        [
+          1.1724,
+          9.8827
+        ],
+        [
+          -1.3816,
+          9.8753
+        ],
+        [
+          -1.3799,
+          -1.2786
+        ],
+        [
+          9.202,
+          -1.278
+        ],
+        [
+          9.2067,
+          -11.5467
+        ],
+        [
+          -1.4332,
+          -11.547
+        ],
+        [
+          -1.4292,
+          -17.4003
+        ],
+        [
+          9.6014,
+          -17.3983
+        ],
+        [
+          9.5989,
+          -24.873
+        ],
+        [
+          -1.5551,
+          -24.8799
+        ],
+        [
+          -9.7862,
+          -24.8793
+        ],
+        [
+          -9.7976,
+          9.9095
+        ]
+      ],
+      "minimumCoverage": 0.86,
+      "basis": "Mapped Palace Hotel footprint for the standing hotel at 227 Argent Street."
+    },
+    "featureIds": [
+      "way/1084373397"
+    ],
+    "source": "https://www.openstreetmap.org/way/1084373397",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6251e7f2f42a667f5f64ebd8c2e218bf1d8dbb67a79588eaf739aacd7d998e99",
+    "notes": "The hotel’s original 1925 photograph, corroborated by the city masterplan, and the state register’s architectural description identify the three storeys, twin steep hips and two-level cast-iron veranda."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "The hotel’s original 1925 photograph, corroborated by the city masterplan, and the state register’s architectural description identify the three storeys, twin steep hips and two-level cast-iron veranda.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "palace-hotel-broken-hill-skyline",
+      "position": [
+        -61,
+        30,
+        65
+      ],
+      "lookAt": [
+        -1,
+        7,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "palace-hotel-broken-hill-district",
+      "position": [
+        -61,
+        30,
+        65
+      ],
+      "lookAt": [
+        -1,
+        7,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "palace-hotel-broken-hill-street",
+      "position": [
+        -61,
+        30,
+        65
+      ],
+      "lookAt": [
+        -1,
+        7,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "palace-hotel-broken-hill-closeup",
+      "position": [
+        -61,
+        30,
+        65
+      ],
+      "lookAt": [
+        -1,
+        7,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "argent-and-sulphide-corner",
+      "position": [
+        -29,
+        7.8,
+        47
+      ],
+      "lookAt": [
+        -7,
+        8,
+        22
+      ]
+    },
+    {
+      "name": "long-iron-veranda",
+      "position": [
+        -52,
+        10,
+        -9
+      ],
+      "lookAt": [
+        -10,
+        7,
+        -1
+      ]
+    },
+    {
+      "name": "mansard-and-courtyard-ranges",
+      "position": [
+        36,
+        28,
+        -29
+      ],
+      "lookAt": [
+        1,
+        8,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13591,
+    "vertices": 40773,
+    "materials": 6,
+    "bytes": 1798792,
+    "sha256": "sha256:f9526f59bf19caabd279ec1f32bb99917bb34cd727f0c988317827e10c32a684"
+  }
+}

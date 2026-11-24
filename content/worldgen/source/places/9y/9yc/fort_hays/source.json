@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fort_hays",
+  "kind": "static-structure",
+  "title": "Fort Hays",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fort_hays",
+        "output": "assets/places/9y/9yc/fort_hays/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1c366aa90469ef039e486817d58256731952d18702f9ac42279571581d77770e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-fort-hays",
+        "path": "models/generate-fort-hays.mjs"
+      },
+      {
+        "id": "fort-hays-model",
+        "path": "models/fort-hays-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/fort-hays-footprint.json",
+      "native-map/fort-hays-structural-footprints.json",
+      "reference-rights/fort-hays-architectural-facts.json",
+      "reference-rights/fort-hays-qualla-original-1.json",
+      "references/fort-hays-usda-naip-2023.png",
+      "reference-rights/fort-hays-2023-naip-item.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/fort-hays-usgs-native-crop.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

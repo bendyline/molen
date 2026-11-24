@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.obelisk_of_axum",
+  "kind": "static-structure",
+  "title": "Obelisk of Axum — Stele 2",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.obelisk_of_axum",
+        "output": "assets/places/sf/sfe/obelisk_of_axum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:0d3b81dc1b73bd88cd2df72fd727e3328be6da5d401de8fd63a7d76f4138df08"
+      }
+    ],
+    "generators": [
+      {
+        "id": "obelisk_of_axum",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "aksum-rome-stele",
+        "path": "models/aksum-rome-stele.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.himeji_castle",
+  "kind": "static-structure",
+  "title": "Himeji Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.himeji_castle",
+        "output": "assets/places/wy/wyp/himeji_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9a8f8076e993b53ad7d68140888f6e51f58f3648c9aa236dd61edd5945a38ad1"
+      }
+    ],
+    "generators": [
+      {
+        "id": "himeji_castle",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "keep-model",
+        "path": "models/keep-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

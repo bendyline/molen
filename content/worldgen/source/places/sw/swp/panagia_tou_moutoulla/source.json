@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.panagia_tou_moutoulla",
+  "kind": "static-structure",
+  "title": "Panagia tou Moutoulla",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.panagia_tou_moutoulla",
+        "output": "assets/places/sw/swp/panagia_tou_moutoulla/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:731a90b93c5a47af0175613bbf121d2b4db01f26ba5c823f60c48bfaa19cda19"
+      }
+    ],
+    "generators": [
+      {
+        "id": "panagia_tou_moutoulla",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "chapel-and-roof",
+        "path": "models/chapel-and-roof.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "church-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

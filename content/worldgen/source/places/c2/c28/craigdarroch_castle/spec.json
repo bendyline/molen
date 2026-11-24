@@ -1,0 +1,572 @@
+{
+  "planId": "craigdarroch_castle",
+  "id": "craigdarroch_castle",
+  "assetId": "molen.worldgen.structure.craigdarroch_castle",
+  "title": "Craigdarroch Castle",
+  "wikidataId": "Q5181657",
+  "category": "historic-mansion",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -123.34375290666665,
+    "latitude": 48.42262187999999
+  },
+  "size": [
+    32.61999988555908,
+    28.630000352859497,
+    27.690431594848633
+  ],
+  "actualBounds": {
+    "min": [
+      -13.359999656677246,
+      -1.4500000476837158,
+      -15.979999542236328
+    ],
+    "max": [
+      19.260000228881836,
+      27.18000030517578,
+      11.710432052612305
+    ]
+  },
+  "visualBrief": "The Craigdarroch stone mansion and round tower, steep red slate roofs, open arched carriage entrance, and flanking chimneys.",
+  "nativeAxes": {
+    "x": "east-southeast along main walls",
+    "y": "up",
+    "z": "south-southwest"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_Craigdarroch_(9).jpg"
+  ],
+  "stories": [
+    {
+      "id": "craigdarroch-castle-wp",
+      "url": "https://qualla.com/craigdarroch-castle/"
+    }
+  ],
+  "referenceInputHash": "sha256:f9c7eb1b43d9bd3af6611cf294da36e311e89c09fdba21d8b26b364fb36920ed",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/c2/c28/craigdarroch_castle/models/craigdarroch-castle-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/c2/c28/craigdarroch_castle/models/craigdarroch-castle-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.59,
+    "surfaces": {
+      "sandstone": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.89
+      },
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.9
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.84
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.58
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.092,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.041,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone_raw",
+    "stone_sandstone",
+    "stone_granite",
+    "tile_flat",
+    "metal_painted",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.08,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged LidarBC ground elevation in front of the carriage-entrance approach. Foundation depths follow surveyed grade.",
+    "anchor": [
+      -123.34375290666665,
+      48.42262187999999
+    ],
+    "heading": -0.18500490071139894,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -123.34373394233488,
+        48.42277214713641
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged LidarBC ground elevation in front of the carriage-entrance approach. Foundation depths follow surveyed grade."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -4.4337,
+          -15.662
+        ],
+        [
+          2.0915,
+          -15.694
+        ],
+        [
+          2.1546,
+          -10.417
+        ],
+        [
+          4.2852,
+          -10.3174
+        ],
+        [
+          6.644,
+          -8.0747
+        ],
+        [
+          6.6874,
+          -4.1077
+        ],
+        [
+          11.597,
+          -4.0979
+        ],
+        [
+          11.6134,
+          -2.2436
+        ],
+        [
+          18.8204,
+          -2.0861
+        ],
+        [
+          18.9133,
+          9.8559
+        ],
+        [
+          11.6956,
+          9.8024
+        ],
+        [
+          10.2586,
+          11.5209
+        ],
+        [
+          7.3646,
+          11.5189
+        ],
+        [
+          5.802,
+          9.7954
+        ],
+        [
+          -3.5244,
+          9.6382
+        ],
+        [
+          -3.9912,
+          10.1559
+        ],
+        [
+          -4.7211,
+          10.553
+        ],
+        [
+          -5.4592,
+          10.4646
+        ],
+        [
+          -6.232,
+          10.1902
+        ],
+        [
+          -6.6468,
+          9.7809
+        ],
+        [
+          -6.8501,
+          9.3772
+        ],
+        [
+          -12.9074,
+          9.299
+        ],
+        [
+          -12.8615,
+          -1.7403
+        ],
+        [
+          -11.7914,
+          -1.7254
+        ],
+        [
+          -11.7777,
+          -7.9568
+        ],
+        [
+          -5.9734,
+          -7.8653
+        ],
+        [
+          -5.8879,
+          -8.9345
+        ],
+        [
+          -5.4378,
+          -9.8228
+        ],
+        [
+          -5.0208,
+          -10.3652
+        ],
+        [
+          -4.411,
+          -10.8417
+        ]
+      ],
+      "minimumCoverage": 0.86,
+      "basis": "Named OpenStreetMap mansion outline places the authored structure."
+    },
+    "featureIds": [
+      "way/137186174"
+    ],
+    "source": "https://www.openstreetmap.org/way/137186174",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fb686a414b6bb1ba4ade4f4e7eca3e7999caeec2f5f92e33375b25683c1c5d67",
+    "notes": "The exact exterior photograph shows the round stair tower and balcony, red slate, carved dormers, flanking stone chimneys and arched carriage entrance. The national designation identifies the masonry and roof materials, the openings and preserved balconies."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Small carving, decorative ironwork and areas away from the documented elevation are approximated. The tallest finial is narrower than the survey grid and is estimated.",
+    "The model is the exterior of the mansion. The interior, grounds and outbuildings are outside the model scope."
+  ],
+  "sourceLicense": "Original geometry informed by Guerinf’s exact CC0 exterior photograph, the named OpenStreetMap footprint, national heritage records and open LidarBC elevation data.",
+  "qaLodCameras": [
+    {
+      "name": "craigdarroch-castle-skyline",
+      "position": [
+        -42,
+        23,
+        -60
+      ],
+      "lookAt": [
+        1.1,
+        9,
+        -1.7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "craigdarroch-castle-district",
+      "position": [
+        -42,
+        23,
+        -60
+      ],
+      "lookAt": [
+        1.1,
+        9,
+        -1.7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "craigdarroch-castle-street",
+      "position": [
+        -42,
+        23,
+        -60
+      ],
+      "lookAt": [
+        1.1,
+        9,
+        -1.7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "craigdarroch-castle-closeup",
+      "position": [
+        -42,
+        23,
+        -60
+      ],
+      "lookAt": [
+        1.1,
+        9,
+        -1.7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "joan-crescent-approach",
+      "position": [
+        -42,
+        23,
+        -60
+      ],
+      "lookAt": [
+        1.1,
+        9,
+        -1.7
+      ]
+    },
+    {
+      "name": "tower-balcony-and-carriage-arches",
+      "position": [
+        -13,
+        11,
+        -30
+      ],
+      "lookAt": [
+        -1,
+        12.2,
+        -9
+      ]
+    },
+    {
+      "name": "rear-bays-and-chimneys",
+      "position": [
+        26,
+        16,
+        36
+      ],
+      "lookAt": [
+        3,
+        8.5,
+        1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11980,
+    "vertices": 35940,
+    "materials": 7,
+    "bytes": 1776728,
+    "sha256": "sha256:ac57f04cddb4f27bf28f17a96863fdfbc580897b7e3578438c6937ce4de45cd1"
+  }
+}

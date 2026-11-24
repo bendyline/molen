@@ -1,0 +1,528 @@
+{
+  "planId": "moreton_house_bideford",
+  "id": "moreton_house_bideford",
+  "assetId": "molen.worldgen.structure.moreton_house_bideford",
+  "title": "Moreton House, Bideford",
+  "wikidataId": "Q6911464",
+  "category": "residence",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -4.231078926923077,
+    "latitude": 51.01484803846154
+  },
+  "size": [
+    60.13487434387207,
+    20.509999752044678,
+    46.10000038146973
+  ],
+  "actualBounds": {
+    "min": [
+      -24.010000228881836,
+      -5.099999904632568,
+      -24.280000686645508
+    ],
+    "max": [
+      36.124874114990234,
+      15.40999984741211,
+      21.81999969482422
+    ]
+  },
+  "visualBrief": "The rendered Georgian house at Bideford with its east portico and canted bays, south lawn front, and stepped northern service ranges.",
+  "nativeAxes": {
+    "x": "western service ranges towards the east side of the main historic block",
+    "y": "up",
+    "z": "north drive toward south lawn"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:MoretonHouse_NorthFront_Bideford_Devon.JPG",
+    "https://commons.wikimedia.org/wiki/File:MoretonHouse_Bideford_Devon_SouthFront.JPG",
+    "https://commons.wikimedia.org/wiki/File:Moreton_House_Bideford_Devon.JPG"
+  ],
+  "stories": [
+    {
+      "id": "moreton-house-bideford-wp",
+      "url": "https://qualla.com/moreton-house-bideford/"
+    }
+  ],
+  "referenceInputHash": "sha256:42e7849df238c6a7f12d3d2e8a58581028339a393b75b4400535a8e66e3694f5",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gch/moreton_house_bideford/models/moreton-house-bideford-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gch/moreton_house_bideford/models/moreton-house-bideford-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.02,
+    "surfaces": {
+      "walls": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.96
+      },
+      "sash": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.89
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.91
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "chimney": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.94
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.66
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "walls": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96
+          },
+          "sash": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "chimney": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "walls": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96
+          },
+          "sash": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "chimney": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "walls": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96
+          },
+          "sash": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "chimney": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "wood_plain",
+    "tile_flat",
+    "stone_ashlar",
+    "brick_flemish"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified elevation on the garden approach immediately south of the higher main range.",
+    "anchor": [
+      -4.231078926923077,
+      51.01484803846154
+    ],
+    "heading": -0.06966177255532147,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -4.2308458868893615,
+        51.01462619242227
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified elevation on the garden approach immediately south of the higher main range."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -1.104,
+          -1.057
+        ],
+        [
+          -21.683,
+          -1.496
+        ],
+        [
+          -20.201,
+          -23.828
+        ],
+        [
+          3.406,
+          -22.451
+        ],
+        [
+          3.097,
+          -16.415
+        ],
+        [
+          11.036,
+          -16.02
+        ],
+        [
+          10.745,
+          -12.049
+        ],
+        [
+          16.952,
+          -11.724
+        ],
+        [
+          17.061,
+          -2.514
+        ],
+        [
+          23.458,
+          -2.19
+        ],
+        [
+          23.496,
+          -7.482
+        ],
+        [
+          34.056,
+          -7.271
+        ],
+        [
+          33.617,
+          21.561
+        ],
+        [
+          -1.407,
+          21.561
+        ],
+        [
+          -1.412,
+          13.851
+        ],
+        [
+          -23.782,
+          13.894
+        ],
+        [
+          -23.492,
+          7.29
+        ],
+        [
+          -19.734,
+          7.217
+        ],
+        [
+          -19.555,
+          4.761
+        ],
+        [
+          -12.739,
+          4.843
+        ],
+        [
+          -12.768,
+          2.212
+        ],
+        [
+          -5.374,
+          2.444
+        ],
+        [
+          -5.393,
+          4.889
+        ],
+        [
+          -3.481,
+          5.325
+        ],
+        [
+          -3.538,
+          7.214
+        ],
+        [
+          -1.263,
+          7.435
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Individually listed house and attached ranges within the mapped outline."
+    },
+    "featureIds": [
+      "way/296308181"
+    ],
+    "source": "https://www.openstreetmap.org/way/296308181",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f782d919f005283f65bdd18669f8f1fde4b6e9e2b00d64bc4c09b120bf08f6b6",
+    "notes": "Historic England lists pale rendered walls, hipped slate roofs, front rendered stacks, rear yellow-brick stacks, bands and barred sash windows. Direct Qualla views establish the higher south front and varied lower northern ranges."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Exterior of the individually listed house and attached ranges. The separately listed former stables, gardens and interiors are outside scope.",
+    "The mapped outline and front and rear Qualla photos control the exterior; exact roof heights, concealed elements and small details are estimated."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "moreton-house-skyline",
+      "position": [
+        70,
+        23,
+        48
+      ],
+      "lookAt": [
+        6,
+        5.5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "moreton-house-district",
+      "position": [
+        70,
+        23,
+        48
+      ],
+      "lookAt": [
+        6,
+        5.5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "moreton-house-street",
+      "position": [
+        70,
+        23,
+        48
+      ],
+      "lookAt": [
+        6,
+        5.5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "moreton-house-closeup",
+      "position": [
+        70,
+        23,
+        48
+      ],
+      "lookAt": [
+        6,
+        5.5,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "principal-house-and-south-lawn",
+      "position": [
+        70,
+        23,
+        48
+      ],
+      "lookAt": [
+        6,
+        5.5,
+        0
+      ]
+    },
+    {
+      "name": "east-portico-and-canted-bays",
+      "position": [
+        57,
+        8,
+        9
+      ],
+      "lookAt": [
+        27,
+        5.6,
+        9
+      ]
+    },
+    {
+      "name": "north-drive-and-stepped-service-ranges",
+      "position": [
+        -21,
+        14,
+        -56
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7204,
+    "vertices": 21612,
+    "materials": 6,
+    "bytes": 1089236,
+    "sha256": "sha256:4cf9fcc5b91101d278abfe9c22a1e5edc53aab1f61fc4159a37f436d67853317"
+  }
+}

@@ -2,7 +2,7 @@
 
 import { readdirSync, readFileSync } from 'node:fs';
 import { mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
+import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const earthRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../content/earth');
@@ -115,8 +115,14 @@ export async function writePlacementFile(path, text) {
 
 /** Writes one authoritative record; unrelated placements are never rewritten. */
 export async function writeStructurePlacement(entry) {
-  const { paths } = await readPlacementSources();
   const path = placementSourcePath(entry);
+  // The compiler's check, before anything is written. Loaded here rather than at the top: the
+  // worldgen build reads placements before this package's dist exists.
+  const { checkPlacementSources } = await import('./build-placement-catalogs.mjs');
+  checkPlacementSources([entry], () =>
+    relative(resolve(earthRoot, '../..'), path).replaceAll('\\', '/'),
+  );
+  const { paths } = await readPlacementSources();
   await writePlacementFile(path, `${JSON.stringify(entry, null, 2)}\n`);
   const previous = paths.get(entry.id);
   if (previous && previous !== path) await unlink(previous);

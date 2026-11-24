@@ -1,0 +1,724 @@
+{
+  "planId": "fort_of_san_diego",
+  "id": "fort_of_san_diego",
+  "assetId": "molen.worldgen.structure.fort_of_san_diego",
+  "title": "Fort of San Diego",
+  "wikidataId": "Q3543967",
+  "category": "historic-fort-museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -99.902425,
+    "latitude": 16.849923
+  },
+  "size": [
+    124.67649841308594,
+    15.76134204864502,
+    129.54560089111328
+  ],
+  "actualBounds": {
+    "min": [
+      -63.974098205566406,
+      -6.961341857910156,
+      -68.91110229492188
+    ],
+    "max": [
+      60.70240020751953,
+      8.800000190734863,
+      60.634498596191406
+    ]
+  },
+  "visualBrief": "Standing Acapulco coastal fortress with five stone points, dry moat, an open museum court and a masonry approach to its neoclassical gate.",
+  "nativeAxes": {
+    "x": "across the approach from the forecourt",
+    "y": "up",
+    "z": "from parade through the entrance to the outer forecourt"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.inegi.org.mx/contenido/productos/prod_serv/contenidos/espanol/bvinegi/productos/historicos/2104/702825460136/702825460136_1.pdf#page=69",
+    "https://www.inegi.org.mx/contenido/productos/prod_serv/contenidos/espanol/bvinegi/productos/historicos/2104/702825460136/702825460136_1.pdf#page=70"
+  ],
+  "stories": [
+    {
+      "id": "fort-of-san-diego-wp",
+      "url": "https://qualla.com/fort-of-san-diego/"
+    }
+  ],
+  "referenceInputHash": "sha256:ff46a4a84aa8250e5ca8230706b0895be3f4f83935e1dc9b7b1a4218f1019cf7",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9f/9fb/fort_of_san_diego/models/fort-of-san-diego-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9f/9fb/fort_of_san_diego/models/fort-of-san-diego-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.52,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.96
+      },
+      "rubble": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.98
+      },
+      "render": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.94
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_sandstone",
+        "roughness": 0.94
+      },
+      "grass": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.98
+      },
+      "pale": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.89
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.87
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.57,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.96
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "render": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.94
+          },
+          "grass": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.89
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.96
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "render": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.94
+          },
+          "grass": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.89
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.071,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.96
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "render": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.94
+          },
+          "grass": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.89
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "stone_drywall",
+    "stucco",
+    "stone_sandstone_raw",
+    "concrete_plain",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.17,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original GLO-30 datum at the center of the mapped open museum court; mapped scarp and landward approach use the same native elevation frame.",
+    "anchor": [
+      -99.902425,
+      16.849923
+    ],
+    "heading": -1.0858250337301993,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -99.902425,
+        16.849923
+      ],
+      "modelHeight": 0,
+      "basis": "Original GLO-30 datum at the center of the mapped open museum court; mapped scarp and landward approach use the same native elevation frame."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -58.2409,
+          -27.065
+        ],
+        [
+          -61.9609,
+          -22.8232
+        ],
+        [
+          -63.9741,
+          -17.1401
+        ],
+        [
+          -62.2778,
+          -11.3569
+        ],
+        [
+          -43.4277,
+          10.992
+        ],
+        [
+          -39.3528,
+          22.1472
+        ],
+        [
+          -40.5115,
+          51.2339
+        ],
+        [
+          -37.9655,
+          56.6941
+        ],
+        [
+          -32.8681,
+          60.5122
+        ],
+        [
+          -26.9683,
+          60.6345
+        ],
+        [
+          -8.9868,
+          51.0341
+        ],
+        [
+          -0.7588,
+          47.0965
+        ],
+        [
+          1.9394,
+          45.7967
+        ],
+        [
+          4.5685,
+          45.9176
+        ],
+        [
+          20.5617,
+          51.6717
+        ],
+        [
+          31.8151,
+          55.7229
+        ],
+        [
+          38.2338,
+          54.2159
+        ],
+        [
+          41.1679,
+          48.982
+        ],
+        [
+          40.452,
+          18.5101
+        ],
+        [
+          44.8555,
+          5.1389
+        ],
+        [
+          59.0687,
+          -14.4315
+        ],
+        [
+          60.7024,
+          -21.6151
+        ],
+        [
+          57.5055,
+          -25.7685
+        ],
+        [
+          52.8723,
+          -28.3183
+        ],
+        [
+          31.8143,
+          -33.2007
+        ],
+        [
+          25.193,
+          -38.5444
+        ],
+        [
+          7.7398,
+          -65.2874
+        ],
+        [
+          0.9545,
+          -68.9111
+        ],
+        [
+          -6.5172,
+          -65.4059
+        ],
+        [
+          -23.4694,
+          -37.1991
+        ]
+      ],
+      "basis": "The model supplies the dry moat floor and museum paving inside the native counterscarp. The headland remains outside the mapped edge."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -9.9355,
+          37.5281
+        ],
+        [
+          -9.3839,
+          28.0522
+        ],
+        [
+          -1.3187,
+          28.2678
+        ],
+        [
+          1.6855,
+          28.3455
+        ],
+        [
+          4.4133,
+          28.4221
+        ],
+        [
+          14.8168,
+          28.6897
+        ],
+        [
+          15.5843,
+          37.6444
+        ],
+        [
+          34.8434,
+          46.2033
+        ],
+        [
+          34.8583,
+          23.872
+        ],
+        [
+          26.9751,
+          19.6096
+        ],
+        [
+          32.9303,
+          -2.8672
+        ],
+        [
+          42.5027,
+          -1.9537
+        ],
+        [
+          53.8677,
+          -16.859
+        ],
+        [
+          33.9028,
+          -22.5262
+        ],
+        [
+          28.6933,
+          -18.395
+        ],
+        [
+          8.7423,
+          -32.1596
+        ],
+        [
+          13.3931,
+          -41.5348
+        ],
+        [
+          -0.0557,
+          -58.0872
+        ],
+        [
+          -11.5047,
+          -38.963
+        ],
+        [
+          -6.685,
+          -31.9434
+        ],
+        [
+          -26.0384,
+          -19.4531
+        ],
+        [
+          -31.4279,
+          -24.3645
+        ],
+        [
+          -53.1545,
+          -18.7367
+        ],
+        [
+          -38.2558,
+          -2.0225
+        ],
+        [
+          -29.4915,
+          -2.7993
+        ],
+        [
+          -22.4207,
+          19.1232
+        ],
+        [
+          -28.8484,
+          23.1785
+        ],
+        [
+          -30.643,
+          45.138
+        ]
+      ],
+      "minimumCoverage": 0.86,
+      "basis": "Replace only the mapped historic fort body at the Acapulco museum."
+    },
+    "featureIds": [
+      "relation/158418",
+      "way/36203906",
+      "way/110318870",
+      "way/1303736660"
+    ],
+    "source": "https://www.openstreetmap.org/relation/158418",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7554485b77d220cdc7739683f4ee676b8d7f03588b2b6fbe3ae4e0009e9a4ad4",
+    "notes": "Original eighteenth-century replacement fort scheme and Ramón Panón’s dated masonry sections, reproduced by INEGI and checked against the INAH reconstruction account."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "Original eighteenth-century replacement fort scheme and Ramón Panón’s dated masonry sections, reproduced by INEGI and checked against the INAH reconstruction account.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "fort-of-san-diego-skyline",
+      "position": [
+        93,
+        98,
+        134
+      ],
+      "lookAt": [
+        0,
+        1,
+        -1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "fort-of-san-diego-district",
+      "position": [
+        93,
+        98,
+        134
+      ],
+      "lookAt": [
+        0,
+        1,
+        -1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "fort-of-san-diego-street",
+      "position": [
+        93,
+        98,
+        134
+      ],
+      "lookAt": [
+        0,
+        1,
+        -1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "fort-of-san-diego-closeup",
+      "position": [
+        93,
+        98,
+        134
+      ],
+      "lookAt": [
+        0,
+        1,
+        -1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "public-bridge-and-neoclassical-gate",
+      "position": [
+        23,
+        12,
+        63
+      ],
+      "lookAt": [
+        0,
+        3,
+        31
+      ]
+    },
+    {
+      "name": "museum-court-and-stone-galleries",
+      "position": [
+        -24,
+        30,
+        32
+      ],
+      "lookAt": [
+        0,
+        1,
+        -6
+      ]
+    },
+    {
+      "name": "coastal-bastion-and-dry-moat",
+      "position": [
+        76,
+        35,
+        -44
+      ],
+      "lookAt": [
+        26,
+        0,
+        -13
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4862,
+    "vertices": 14586,
+    "materials": 8,
+    "bytes": 874880,
+    "sha256": "sha256:13485511c9fd0322da95d71e309a0082f970525a199aba3513a1b26af8c564bc"
+  }
+}

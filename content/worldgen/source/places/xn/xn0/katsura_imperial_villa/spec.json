@@ -1,0 +1,632 @@
+{
+  "planId": "katsura_imperial_villa",
+  "id": "katsura_imperial_villa",
+  "assetId": "molen.worldgen.structure.katsura_imperial_villa",
+  "title": "Katsura Imperial Villa",
+  "wikidataId": "Q1736808",
+  "category": "historic-palace",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 135.70992,
+    "latitude": 34.98448
+  },
+  "size": [
+    136.76275634765625,
+    8.162999927997589,
+    163.87518310546875
+  ],
+  "actualBounds": {
+    "min": [
+      -61.727134704589844,
+      -0.7080000042915344,
+      -84.75823974609375
+    ],
+    "max": [
+      75.0356216430664,
+      7.454999923706055,
+      79.116943359375
+    ]
+  },
+  "visualBrief": "Katsura Imperial Villa’s staggered Shoin residence, moon-viewing platform, open teahouses and bamboo front gate.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Geppa-ro.jpg",
+    "https://commons.wikimedia.org/wiki/File:Shokin-tei_seen_from_the_Geppa-ro.jpg",
+    "https://commons.wikimedia.org/wiki/File:Main_gate_katsura.jpg",
+    "https://commons.wikimedia.org/wiki/File:Geppa-ro_poteau.jpg",
+    "https://commons.wikimedia.org/wiki/File:Shoin.jpg",
+    "https://commons.wikimedia.org/wiki/File:Shokin-tei.jpg"
+  ],
+  "stories": [
+    {
+      "id": "katsura-imperial-villa-wp",
+      "url": "https://qualla.com/katsura-imperial-villa/"
+    }
+  ],
+  "referenceInputHash": "sha256:5c838fed9a790c90faa9fa414787f45e0b43c5f46d9db983ac0fb76881df36a4",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn0/katsura_imperial_villa/models/katsura-imperial-villa-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn0/katsura_imperial_villa/models/katsura-imperial-villa-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.68,
+    "surfaces": {
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.87
+      },
+      "paper": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96
+      },
+      "earth": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "bark": {
+        "slot": "roof",
+        "graph": "shingle_cedar",
+        "roughness": 0.95
+      },
+      "reed": {
+        "slot": "roof",
+        "graph": "wood_board_batten",
+        "roughness": 0.96
+      },
+      "straw": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.96
+      },
+      "bamboo": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.91
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          },
+          "paper": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "earth": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "bark": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.95
+          },
+          "reed": {
+            "slot": "roof",
+            "graph": "wood_board_batten",
+            "roughness": 0.96
+          },
+          "straw": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.96
+          },
+          "bamboo": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.91
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.099,
+        "surfaces": {
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          },
+          "paper": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "earth": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "bark": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.95
+          },
+          "reed": {
+            "slot": "roof",
+            "graph": "wood_board_batten",
+            "roughness": 0.96
+          },
+          "straw": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.96
+          },
+          "bamboo": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.91
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.041,
+        "surfaces": {
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          },
+          "paper": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "earth": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "bark": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.95
+          },
+          "reed": {
+            "slot": "roof",
+            "graph": "wood_board_batten",
+            "roughness": 0.96
+          },
+          "straw": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.96
+          },
+          "bamboo": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.91
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_plain",
+    "plaster_lime",
+    "plaster_lime",
+    "stone_granite",
+    "shingle_cedar",
+    "wood_board_batten",
+    "wood_plain",
+    "wood_vertical"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.04,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged bare-earth datum near the guest path north of the pond. The separate buildings use their locally sampled natural grade.",
+    "anchor": [
+      135.70992,
+      34.98448
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        135.70992,
+        34.98448
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged bare-earth datum near the guest path north of the pond. The separate buildings use their locally sampled natural grade."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -14.0547,
+          27.841
+        ],
+        [
+          -22.0807,
+          42.4573
+        ],
+        [
+          -15.6143,
+          46.0083
+        ],
+        [
+          -16.8091,
+          48.1791
+        ],
+        [
+          -6.0013,
+          54.1124
+        ],
+        [
+          -12.3674,
+          65.7119
+        ],
+        [
+          -18.7882,
+          62.1831
+        ],
+        [
+          -22.7556,
+          69.4188
+        ],
+        [
+          -29.4409,
+          65.7564
+        ],
+        [
+          -32.5145,
+          71.3669
+        ],
+        [
+          -36.5276,
+          69.1628
+        ],
+        [
+          -41.5256,
+          78.2687
+        ],
+        [
+          -60.8975,
+          67.6377
+        ],
+        [
+          -57.4591,
+          61.3704
+        ],
+        [
+          -53.0174,
+          63.8083
+        ],
+        [
+          -48.676,
+          55.9046
+        ],
+        [
+          -51.3392,
+          54.4352
+        ],
+        [
+          -49.4969,
+          51.0845
+        ],
+        [
+          -48.3295,
+          51.7302
+        ],
+        [
+          -43.751,
+          43.3701
+        ],
+        [
+          -34.2383,
+          48.591
+        ],
+        [
+          -30.581,
+          41.9118
+        ],
+        [
+          -31.6755,
+          41.3218
+        ],
+        [
+          -24.7895,
+          28.7761
+        ],
+        [
+          -26.7413,
+          27.7074
+        ],
+        [
+          -23.8683,
+          22.4643
+        ]
+      ],
+      "holes": [
+        [
+          [
+            -32.0676,
+            47.1549
+          ],
+          [
+            -34.968,
+            52.1643
+          ],
+          [
+            -29.0852,
+            55.5596
+          ],
+          [
+            -26.1849,
+            50.5613
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.85,
+      "basis": "The native mapped outline of the main Shoin, with its open courtyard."
+    },
+    "featureIds": [
+      "relation/7889726",
+      "way/552033386",
+      "way/552033379",
+      "node/11409485884"
+    ],
+    "source": "https://www.openstreetmap.org/relation/7889726",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2269f623e70684e2f92a7b7fe90237dcef0b9b4521d88201a4daa858c450f4f5",
+    "notes": "Exact public-domain photographs show the Shoin’s framed plaster walls, raised verandas and dark roofs, the tea pavilions’ lattice shutters and reeds, and the main gate’s bamboo construction. The Imperial Household Agency documents the main house sequence and matching tea pavilions."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_cedar",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_board_batten",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The main residence’s documented building sequence and overall perimeter are fixed. Exact internal roof junctions, heights, gate width and details away from the photographed views are estimates.",
+    "Only the main residence, Gepparō, Shōkintei and Omotemon are represented. Other tea houses, walls and garden structures are outside this model."
+  ],
+  "sourceLicense": "Original geometry informed by Raphael Azevedo Franca’s public-domain photographs, OpenStreetMap survey data and GSI numerical terrain.",
+  "qaLodCameras": [
+    {
+      "name": "katsura-imperial-villa-skyline",
+      "position": [
+        22,
+        22,
+        105
+      ],
+      "lookAt": [
+        -26,
+        3.3,
+        49
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "katsura-imperial-villa-district",
+      "position": [
+        22,
+        22,
+        105
+      ],
+      "lookAt": [
+        -26,
+        3.3,
+        49
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "katsura-imperial-villa-street",
+      "position": [
+        22,
+        22,
+        105
+      ],
+      "lookAt": [
+        -26,
+        3.3,
+        49
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "katsura-imperial-villa-closeup",
+      "position": [
+        22,
+        22,
+        105
+      ],
+      "lookAt": [
+        -26,
+        3.3,
+        49
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "shoin-courtyard-and-roofs",
+      "position": [
+        22,
+        25,
+        105
+      ],
+      "lookAt": [
+        -26,
+        3.3,
+        49
+      ]
+    },
+    {
+      "name": "old-shoin-moon-viewing-veranda",
+      "position": [
+        5,
+        4.9,
+        21.2
+      ],
+      "lookAt": [
+        -16,
+        2.8,
+        32.7
+      ]
+    },
+    {
+      "name": "gepparo-veranda",
+      "position": [
+        13.5,
+        5.5,
+        54.3
+      ],
+      "lookAt": [
+        -3.5,
+        2.7,
+        36.6
+      ]
+    },
+    {
+      "name": "shokintei-pond-approach",
+      "position": [
+        38,
+        5.9,
+        39.5
+      ],
+      "lookAt": [
+        64,
+        2.5,
+        54
+      ]
+    },
+    {
+      "name": "omotemon-bamboo-gate",
+      "position": [
+        4.6,
+        3.6,
+        -94.5
+      ],
+      "lookAt": [
+        10,
+        1.7,
+        -82.7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7252,
+    "vertices": 21756,
+    "materials": 6,
+    "bytes": 1240512,
+    "sha256": "sha256:b24fb596e20bef359d1de2cff76af640fca17298a44eae331eec6391c5a6ae46"
+  }
+}

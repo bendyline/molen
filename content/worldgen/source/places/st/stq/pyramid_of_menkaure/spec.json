@@ -1,0 +1,293 @@
+{
+  "id": "pyramid_of_menkaure",
+  "planId": "pyramid_of_menkaure",
+  "title": "Pyramid of Menkaure",
+  "assetId": "molen.worldgen.structure.pyramid_of_menkaure",
+  "category": "pyramid",
+  "wikidataId": "Q238623",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 31.12826071679592,
+    "latitude": 29.9725093469032
+  },
+  "visualBrief": "The smallest of the main Giza pyramids has the retained lower granite courses, exposed rough limestone above and the tall scar in its north slope.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/st/stq/pyramid_of_menkaure/models/pyramid-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://egymonuments.gov.eg/en/monuments/pyramid-complex-of-menkaure/",
+    "https://www.openstreetmap.org/way/4420398"
+  ],
+  "geographicProposal": {
+    "id": "pyramid-of-menkaure",
+    "title": "Pyramid of Menkaure",
+    "asset": "molen.worldgen.structure.pyramid_of_menkaure",
+    "anchor": [
+      31.12826071679592,
+      29.9725093469032
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 75,
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "bounds": [
+      31.12776517868042,
+      29.972062653188075,
+      31.128754913806915,
+      29.972957202354863
+    ],
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q238623",
+      "names": [
+        "Pyramid of Menkaure",
+        "Pyramid of Mykerinos",
+        "هرم منقرع"
+      ],
+      "maxDistance": 12
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -47.269,
+          -49.855
+        ],
+        [
+          47.657,
+          -49.338
+        ],
+        [
+          47.398,
+          49.726
+        ],
+        [
+          -47.786,
+          49.467
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Replace the same named PMTiles pyramid footprint. Keep the independent monuments and temples."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -47.269,
+          -49.855
+        ],
+        [
+          47.657,
+          -49.338
+        ],
+        [
+          47.398,
+          49.726
+        ],
+        [
+          -47.786,
+          49.467
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Limit terrain trimming to the modeled pyramid base and retain the surrounding plateau paving."
+    },
+    "source": "https://www.openstreetmap.org/way/4420398",
+    "note": "The PMTiles outline establishes the full extent and orientation. A local Terrarium sample sets an approximate base elevation.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7a5866bad86ca6878ed16eff8d2c41ead0b90a21a834acbba6dea7f4ca0de6d9"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "errorMeters": 3.5,
+    "surfaces": {
+      "limestone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96
+      },
+      "casing": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.9
+      },
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      }
+    },
+    "module": "content/worldgen/source/places/st/stq/pyramid_of_menkaure/models/pyramid-model.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 1.6,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "casing": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "casing": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "casing": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          }
+        }
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.8,
+    "focus": {
+      "center": [
+        0,
+        18.599999999999998,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "northeast-overview",
+      "position": [
+        105.12,
+        32.24,
+        -119.52
+      ],
+      "lookAt": [
+        0,
+        23.56,
+        0
+      ],
+      "fov": 43
+    },
+    {
+      "name": "north-face",
+      "position": [
+        0,
+        19.22,
+        -140.4
+      ],
+      "lookAt": [
+        0,
+        24.8,
+        0
+      ],
+      "fov": 44
+    },
+    {
+      "name": "granite-and-breach",
+      "position": [
+        22,
+        19,
+        -80
+      ],
+      "lookAt": [
+        0,
+        16,
+        -27
+      ],
+      "fov": 40
+    }
+  ],
+  "limitations": [
+    "The PMTiles plan and reference photo control the major shapes. Course positions, casing losses and individual masonry blocks are authored estimates.",
+    "The base elevation and footing contact are approximate and depend on the host terrain source.",
+    "The three queens’ pyramids and their temples remain separate mapped structures."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -47.7859992980957,
+      -7,
+      -49.85499954223633
+    ],
+    "max": [
+      47.65700149536133,
+      62,
+      49.72600173950195
+    ]
+  },
+  "size": [
+    95.44300079345703,
+    69,
+    99.58100128173828
+  ],
+  "mesh": {
+    "triangles": 23760,
+    "vertices": 71280,
+    "materials": 2,
+    "bytes": 2853200,
+    "sha256": "sha256:49f469bcc4c1694424271a369ddb12598f8fe9070a751e9b63c312ed1554663e"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

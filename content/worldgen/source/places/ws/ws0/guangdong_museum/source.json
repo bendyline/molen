@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.guangdong_museum",
+  "kind": "static-structure",
+  "title": "Guangdong Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.guangdong_museum",
+        "output": "assets/places/ws/ws0/guangdong_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:225a8d34ba45ea3cc1e37fe37e7e84626d6a9c92fb493622b955a008d5c96fa1"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-guangdong-museum",
+        "path": "models/generate-guangdong-museum.mjs"
+      },
+      {
+        "id": "guangdong-museum-model",
+        "path": "models/guangdong-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/guangdong-museum-footprint.json",
+      "reference-rights/guangdong-museum-architectural-facts.json",
+      "reference-rights/guangdong-museum-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26698-14220.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

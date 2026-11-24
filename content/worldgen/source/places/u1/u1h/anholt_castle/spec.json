@@ -1,0 +1,563 @@
+{
+  "planId": "anholt_castle",
+  "id": "anholt_castle",
+  "assetId": "molen.worldgen.structure.anholt_castle",
+  "title": "Anholt Castle",
+  "wikidataId": "Q880788",
+  "category": "castle",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 6.427442282051282,
+    "latitude": 51.8446613974359
+  },
+  "size": [
+    52.16104507446289,
+    32.85000038146973,
+    45.68755912780762
+  ],
+  "actualBounds": {
+    "min": [
+      -18.152999877929688,
+      -2.5,
+      -25.287559509277344
+    ],
+    "max": [
+      34.0080451965332,
+      30.350000381469727,
+      20.399999618530273
+    ]
+  },
+  "visualBrief": "The Hauptburg of Wasserburg Anholt, with four brick ranges wrapping an open courtyard, slate roofs and the circular medieval Dicke Turm.",
+  "nativeAxes": {
+    "x": "west keep toward east range",
+    "y": "up",
+    "z": "north range toward south entrance"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:2013.06.01.100154_Fassade_Burg_Anholt_Isselburg.jpg",
+    "https://commons.wikimedia.org/wiki/File:2013.06.01.114314_Facade_Burg_Anholt_Isselburg.jpg",
+    "https://commons.wikimedia.org/wiki/File:2013.06.01.113819_Turm_Burg_Anholt_Isselburg.jpg"
+  ],
+  "stories": [
+    {
+      "id": "anholt-castle-wp",
+      "url": "https://qualla.com/anholt-castle/"
+    }
+  ],
+  "referenceInputHash": "sha256:d5d26b76de4714da0cb2c4b96cccd1ad9902b1a990a80f2bc08f06a4f92f47c0",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u1h/anholt_castle/models/anholt-castle-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u1h/anholt_castle/models/anholt-castle-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.48,
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.95
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.88
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.92
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.89
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.66
+      },
+      "gate": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.89
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.62,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "gate": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "gate": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "gate": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "tile_flat",
+    "stone_ashlar",
+    "stone_ashlar"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified native elevation at the south entrance bridge approach, 0.53 m outside the mapped Hauptburg.",
+    "anchor": [
+      6.427442282051282,
+      51.8446613974359
+    ],
+    "heading": -0.5162504608116523,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        6.427365603334664,
+        51.84452115791946
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified native elevation at the south entrance bridge approach, 0.53 m outside the mapped Hauptburg."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          0.645,
+          15.595
+        ],
+        [
+          1.301,
+          15.594
+        ],
+        [
+          1.369,
+          15.645
+        ],
+        [
+          2.352,
+          15.663
+        ],
+        [
+          2.377,
+          15.61
+        ],
+        [
+          5.087,
+          15.634
+        ],
+        [
+          5.132,
+          15.698
+        ],
+        [
+          6.15,
+          15.722
+        ],
+        [
+          6.158,
+          15.653
+        ],
+        [
+          33.242,
+          15.653
+        ],
+        [
+          33.77,
+          15.636
+        ],
+        [
+          33.499,
+          -0.223
+        ],
+        [
+          29.299,
+          -0.003
+        ],
+        [
+          22.669,
+          0.355
+        ],
+        [
+          21.572,
+          -25.109
+        ],
+        [
+          9.098,
+          -24.377
+        ],
+        [
+          9.274,
+          -20.151
+        ],
+        [
+          7.128,
+          -20.059
+        ],
+        [
+          6.945,
+          -24.269
+        ],
+        [
+          0.232,
+          -24.03
+        ],
+        [
+          0.381,
+          -19.839
+        ],
+        [
+          -16.463,
+          -19.213
+        ],
+        [
+          -16.337,
+          -13.153
+        ],
+        [
+          -15.928,
+          -11.095
+        ],
+        [
+          -17.237,
+          -10.825
+        ],
+        [
+          -17.5,
+          -10.701
+        ],
+        [
+          -17.79,
+          -10.447
+        ],
+        [
+          -18.001,
+          -10.135
+        ],
+        [
+          -18.153,
+          -9.665
+        ],
+        [
+          -17.866,
+          -7.46
+        ],
+        [
+          -15.303,
+          -7.43
+        ],
+        [
+          -14.043,
+          -1.297
+        ],
+        [
+          -9.863,
+          9.886
+        ],
+        [
+          -9.568,
+          10.768
+        ],
+        [
+          -9.303,
+          11.347
+        ],
+        [
+          -8.808,
+          12.065
+        ],
+        [
+          -7.92,
+          12.905
+        ],
+        [
+          -8.157,
+          19.9
+        ],
+        [
+          0.558,
+          20.151
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Outer ring of the current Hauptburg footprint. The model retains its mapped inner courtyard."
+    },
+    "featureIds": [
+      "relation/3408683"
+    ],
+    "source": "https://www.openstreetmap.org/relation/3408683",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4705f9e5bfbae2af7e197465b77098e0f144ef90a4534d76d15534ca6158558a",
+    "notes": "The architectural inventory describes the four-wing castle and the keep’s 11 metre diameter. Courtyard, entrance and keep photographs control brick, dark slate, masonry trim and lantern proportions."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Only the northern Hauptburg is represented. The neighboring Vorburg, moat bridges, park and historic rooms remain outside this asset.",
+    "The outer and inner map rings and documented keep diameter control plan proportions. Heights, window bay spacing and secondary carving are photo-based estimates.",
+    "The native terrain supplies exterior contact elevations. Water surface and independent neighboring buildings belong to the world context."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "anholt-skyline",
+      "position": [
+        -33,
+        36,
+        75
+      ],
+      "lookAt": [
+        5,
+        9.8,
+        -1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "anholt-district",
+      "position": [
+        -33,
+        36,
+        75
+      ],
+      "lookAt": [
+        5,
+        9.8,
+        -1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "anholt-street",
+      "position": [
+        -33,
+        36,
+        75
+      ],
+      "lookAt": [
+        5,
+        9.8,
+        -1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "anholt-closeup",
+      "position": [
+        -33,
+        36,
+        75
+      ],
+      "lookAt": [
+        5,
+        9.8,
+        -1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "dicke-turm-and-entrance-ranges",
+      "position": [
+        -33,
+        36,
+        75
+      ],
+      "lookAt": [
+        5,
+        9.8,
+        -1
+      ]
+    },
+    {
+      "name": "courtyard-and-four-ranges",
+      "position": [
+        29,
+        70,
+        38
+      ],
+      "lookAt": [
+        4,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "slate-roof-and-domed-keep",
+      "position": [
+        -42,
+        27,
+        -65
+      ],
+      "lookAt": [
+        3,
+        13,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 14647,
+    "vertices": 43941,
+    "materials": 6,
+    "bytes": 1983404,
+    "sha256": "sha256:427c841e77afd8a2763f66edd936d0497e92e27af6b757908bb626a647efcd4c"
+  }
+}

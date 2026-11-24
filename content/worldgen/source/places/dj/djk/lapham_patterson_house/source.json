@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.lapham_patterson_house",
+  "kind": "static-structure",
+  "title": "Lapham–Patterson House",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.lapham_patterson_house",
+        "output": "assets/places/dj/djk/lapham_patterson_house/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:19978ce100a4d85f451c275b5e57b231367e9c4e4200265cfc154d4f33b89ae0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-lapham-patterson-house",
+        "path": "models/generate-lapham-patterson-house.mjs"
+      },
+      {
+        "id": "lapham-patterson-house-model",
+        "path": "models/lapham-patterson-house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/lapham-patterson-house-footprint.json",
+      "reference-rights/lapham-patterson-house-architectural-facts.json",
+      "reference-rights/lapham-patterson-house-qualla-original-6.json",
+      "reference-rights/lapham-patterson-house-qualla-original-7.json",
+      "references/lapham-usda-naip-2023.png",
+      "reference-rights/lapham-2023-naip-item.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/lapham-patterson-house-usgs-native-crop.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

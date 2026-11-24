@@ -1,0 +1,603 @@
+{
+  "planId": "government_house_nassau",
+  "id": "government_house_nassau",
+  "assetId": "molen.worldgen.structure.government_house_nassau",
+  "title": "Government House, Nassau",
+  "wikidataId": "Q5588894",
+  "category": "historic-residence",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -77.34458,
+    "latitude": 25.07563
+  },
+  "size": [
+    92.46929931640625,
+    19.829999923706055,
+    50.41950035095215
+  ],
+  "actualBounds": {
+    "min": [
+      -46.82590103149414,
+      -2.5,
+      -22.409500122070312
+    ],
+    "max": [
+      45.64339828491211,
+      17.329999923706055,
+      28.010000228881836
+    ]
+  },
+  "visualBrief": "Nassau Government House on Mount Fitzwilliam, with pink walls, white portico and verandas, red hip roofs and a centered cupola.",
+  "nativeAxes": {
+    "x": "along the north front toward the west",
+    "y": "up",
+    "z": "toward the public approach on the north side"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.digitalcommonwealth.org/search/commonwealth:x346fz07b"
+  ],
+  "stories": [
+    {
+      "id": "government-house-nassau-wp",
+      "url": "https://qualla.com/government-house-nassau/"
+    }
+  ],
+  "referenceInputHash": "sha256:03562015c3675e61fff25eb536b7e2a355a5ba1028d355f3c0374ea9d5b974fb",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dk/dk2/government_house_nassau/models/government-house-nassau-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dk/dk2/government_house_nassau/models/government-house-nassau-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.6,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.93
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.91
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.89
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.66
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.027,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "tile_flat",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.13,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Copernicus surface height near the uphill approach. The coarse grid is retained for local terrain review.",
+    "anchor": [
+      -77.34458,
+      25.07563
+    ],
+    "heading": 3.0421088862261167,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -77.34458983483655,
+        25.07594776310977
+      ],
+      "modelHeight": 0,
+      "basis": "Original Copernicus surface height near the uphill approach. The coarse grid is retained for local terrain review."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -13.7092,
+          -2.9387
+        ],
+        [
+          -15.9516,
+          3.4269
+        ],
+        [
+          -33.7434,
+          -2.8521
+        ],
+        [
+          -34.6215,
+          -0.3815
+        ],
+        [
+          -46.8259,
+          -4.6899
+        ],
+        [
+          -40.5592,
+          -22.4095
+        ],
+        [
+          -35.1189,
+          -20.4913
+        ],
+        [
+          -34.7972,
+          -21.4296
+        ],
+        [
+          -10.2412,
+          -12.7605
+        ],
+        [
+          -12.3752,
+          -6.7301
+        ],
+        [
+          -7.2703,
+          -4.9239
+        ],
+        [
+          -7.3195,
+          -0.7461
+        ],
+        [
+          -5.7567,
+          -0.7231
+        ],
+        [
+          -5.7035,
+          -5.7739
+        ],
+        [
+          14.6336,
+          -5.5663
+        ],
+        [
+          14.5904,
+          -0.5166
+        ],
+        [
+          16.4764,
+          -0.5035
+        ],
+        [
+          16.5243,
+          -5.9117
+        ],
+        [
+          24.4964,
+          -5.8348
+        ],
+        [
+          24.5313,
+          -8.9372
+        ],
+        [
+          28.7403,
+          -8.8986
+        ],
+        [
+          28.7065,
+          -5.7852
+        ],
+        [
+          38.7173,
+          -5.688
+        ],
+        [
+          38.757,
+          -9.2495
+        ],
+        [
+          45.6434,
+          -9.1873
+        ],
+        [
+          45.5961,
+          -4.484
+        ],
+        [
+          43.4058,
+          -4.5003
+        ],
+        [
+          43.3146,
+          4.839
+        ],
+        [
+          21.1305,
+          4.6033
+        ],
+        [
+          21.0944,
+          7.7952
+        ],
+        [
+          28.1938,
+          7.8585
+        ],
+        [
+          28.1114,
+          15.8657
+        ],
+        [
+          21.0221,
+          15.8013
+        ],
+        [
+          20.9546,
+          22.0282
+        ],
+        [
+          17.4356,
+          21.9991
+        ],
+        [
+          17.4205,
+          22.7613
+        ],
+        [
+          9.4785,
+          22.6814
+        ],
+        [
+          9.4314,
+          27.0827
+        ],
+        [
+          0.2521,
+          26.9921
+        ],
+        [
+          0.2892,
+          22.5918
+        ],
+        [
+          -8.0786,
+          22.5096
+        ],
+        [
+          -8.0746,
+          21.7373
+        ],
+        [
+          -11.5335,
+          21.7022
+        ],
+        [
+          -11.3055,
+          -0.7846
+        ],
+        [
+          -11.2933,
+          -2.0835
+        ]
+      ],
+      "minimumCoverage": 0.85,
+      "basis": "The named map footprint locates the standing Georgian exterior."
+    },
+    "featureIds": [
+      "way/371290296"
+    ],
+    "source": "https://www.openstreetmap.org/way/371290296",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:031f4545afd2432c5364099fdb6569ff676728f881682f98a198b5da9f2c51ec",
+    "notes": "The Tichnor production postcard shows the restored portico, red hip roofs and centred cupola. The Ministry of Tourism records the pink plaster and white trim of the standing residence."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "The Tichnor production postcard shows the restored portico, red hip roofs and centred cupola. The Ministry of Tourism records the pink plaster and white trim of the standing residence.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "government-house-nassau-skyline",
+      "position": [
+        -49,
+        28,
+        82
+      ],
+      "lookAt": [
+        0,
+        6,
+        6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "government-house-nassau-district",
+      "position": [
+        -49,
+        28,
+        82
+      ],
+      "lookAt": [
+        0,
+        6,
+        6
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "government-house-nassau-street",
+      "position": [
+        -49,
+        28,
+        82
+      ],
+      "lookAt": [
+        0,
+        6,
+        6
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "government-house-nassau-closeup",
+      "position": [
+        -49,
+        28,
+        82
+      ],
+      "lookAt": [
+        0,
+        6,
+        6
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "mount-fitzwilliam-front",
+      "position": [
+        -49,
+        28,
+        82
+      ],
+      "lookAt": [
+        0,
+        6,
+        6
+      ]
+    },
+    {
+      "name": "ionic-portico-and-cupola",
+      "position": [
+        7,
+        15,
+        49
+      ],
+      "lookAt": [
+        4,
+        8,
+        23
+      ]
+    },
+    {
+      "name": "ballroom-veranda-and-linked-wings",
+      "position": [
+        -69,
+        22,
+        36
+      ],
+      "lookAt": [
+        -15,
+        6,
+        7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11531,
+    "vertices": 34593,
+    "materials": 6,
+    "bytes": 1599232,
+    "sha256": "sha256:2d58b59769ad0ba0578a80a6a200c1a62e1cf45cc49086d39a6aa9212562bddc"
+  }
+}

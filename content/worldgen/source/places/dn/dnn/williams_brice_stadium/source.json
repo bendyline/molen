@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.williams_brice_stadium",
+  "kind": "static-structure",
+  "title": "Williams–Brice Stadium (2006)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.williams_brice_stadium",
+        "output": "assets/places/dn/dnn/williams_brice_stadium/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c8f2221252f4237598efef3c8a2cda0a475b001646ce4c43af99bacfc810fe26"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-williams-brice-stadium",
+        "path": "models/generate-williams-brice-stadium.mjs"
+      },
+      {
+        "id": "williams-brice-stadium-model",
+        "path": "models/williams-brice-stadium-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/williams-brice-stadium-footprint.json",
+      "native-map/williams-brice-survey-controls.json",
+      "reference-rights/williams-brice-stadium-architectural-facts.json",
+      "reference-rights/williams-brice-stadium-qualla-original-1.json",
+      "reference-rights/williams-brice-stadium-qualla-original-2.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/williams-brice-usgs-ground-2019.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

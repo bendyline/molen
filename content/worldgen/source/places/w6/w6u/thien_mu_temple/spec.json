@@ -1,0 +1,803 @@
+{
+  "planId": "thien_mu_temple",
+  "id": "thien_mu_temple",
+  "assetId": "molen.worldgen.structure.thien_mu_temple",
+  "title": "Thiên Mụ Temple",
+  "wikidataId": "Q975568",
+  "category": "temple",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 107.544776,
+    "latitude": 16.453424
+  },
+  "size": [
+    40.390554428100586,
+    24.034849405288696,
+    261.10750579833984
+  ],
+  "actualBounds": {
+    "min": [
+      -21.93866539001465,
+      -1.3533804416656494,
+      -137.30050659179688
+    ],
+    "max": [
+      18.451889038085938,
+      22.681468963623047,
+      123.80699920654297
+    ]
+  },
+  "visualBrief": "Thiên Mụ’s seven-storey Phước Duyên Tower, Tam Quan gate, Đại Hùng worship hall and ridge-top axial compound.",
+  "nativeAxes": {
+    "x": "along the main hall frontage to the east-northeast",
+    "y": "up",
+    "z": "along the temple axis toward the river"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:ThienMuPagoda.jpg",
+    "https://commons.wikimedia.org/wiki/File:Chua_Thien_Mu_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:Chua_Thien_Mu_02.jpg",
+    "https://commons.wikimedia.org/wiki/File:Chua_Thien_Mu_04.jpg"
+  ],
+  "stories": [
+    {
+      "id": "thien-mu-temple-wp",
+      "url": "https://qualla.com/thien-mu-temple/"
+    }
+  ],
+  "referenceInputHash": "sha256:557014ca0f5f4c4f846096815d10f8975e579b92d34c7cceaa6a37fecafc4848",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w6/w6u/thien_mu_temple/models/thien-mu-temple-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w6/w6u/thien_mu_temple/models/thien-mu-temple-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.31,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.95
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.91
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.91
+      },
+      "glaze": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.79
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.89
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.57,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.91
+          },
+          "glaze": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.91
+          },
+          "glaze": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.064,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.91
+          },
+          "glaze": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_ashlar",
+    "plaster_lime",
+    "tile_ceramic",
+    "wood_vertical"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original mapped ridge terrain on the tower approach, immediately riverward of the main tower.",
+    "anchor": [
+      107.544776,
+      16.453424
+    ],
+    "heading": 0.24126935800024904,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        107.54504874113744,
+        16.45230904671626
+      ],
+      "modelHeight": 0,
+      "basis": "Original mapped ridge terrain on the tower approach, immediately riverward of the main tower."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          3.98,
+          115.413
+        ],
+        [
+          2.956,
+          113.946
+        ],
+        [
+          0.937,
+          112.589
+        ],
+        [
+          -1.833,
+          112.229
+        ],
+        [
+          -3.546,
+          112.713
+        ],
+        [
+          -5.16,
+          113.818
+        ],
+        [
+          -6.691,
+          116.421
+        ],
+        [
+          -6.869,
+          118.441
+        ],
+        [
+          -6.405,
+          120.218
+        ],
+        [
+          -4.878,
+          122.279
+        ],
+        [
+          -3.398,
+          123.193
+        ],
+        [
+          -1.862,
+          123.605
+        ],
+        [
+          -0.076,
+          123.54
+        ],
+        [
+          1.566,
+          122.947
+        ],
+        [
+          3.277,
+          121.534
+        ],
+        [
+          4.216,
+          119.862
+        ],
+        [
+          4.564,
+          117.999
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            3.98,
+            115.413
+          ],
+          [
+            2.956,
+            113.946
+          ],
+          [
+            0.937,
+            112.589
+          ],
+          [
+            -1.833,
+            112.229
+          ],
+          [
+            -3.546,
+            112.713
+          ],
+          [
+            -5.16,
+            113.818
+          ],
+          [
+            -6.691,
+            116.421
+          ],
+          [
+            -6.869,
+            118.441
+          ],
+          [
+            -6.405,
+            120.218
+          ],
+          [
+            -4.878,
+            122.279
+          ],
+          [
+            -3.398,
+            123.193
+          ],
+          [
+            -1.862,
+            123.605
+          ],
+          [
+            -0.076,
+            123.54
+          ],
+          [
+            1.566,
+            122.947
+          ],
+          [
+            3.277,
+            121.534
+          ],
+          [
+            4.216,
+            119.862
+          ],
+          [
+            4.564,
+            117.999
+          ]
+        ],
+        [
+          [
+            -6.726,
+            93.553
+          ],
+          [
+            -1.47,
+            93.551
+          ],
+          [
+            3.871,
+            93.559
+          ],
+          [
+            3.864,
+            95.598
+          ],
+          [
+            3.866,
+            98.005
+          ],
+          [
+            -1.497,
+            97.993
+          ],
+          [
+            -6.729,
+            97.989
+          ],
+          [
+            -6.723,
+            95.732
+          ]
+        ],
+        [
+          [
+            -16.105,
+            18.713
+          ],
+          [
+            14.332,
+            19.187
+          ],
+          [
+            13.921,
+            45.613
+          ],
+          [
+            -0.501,
+            45.377
+          ],
+          [
+            -16.514,
+            45.129
+          ]
+        ],
+        [
+          [
+            -0.583,
+            -130.202
+          ],
+          [
+            -1.784,
+            -130.234
+          ],
+          [
+            -2.627,
+            -130.786
+          ],
+          [
+            -3.031,
+            -131.424
+          ],
+          [
+            -3.171,
+            -132.375
+          ],
+          [
+            -2.914,
+            -133.195
+          ],
+          [
+            -2.282,
+            -133.888
+          ],
+          [
+            -1.052,
+            -134.239
+          ],
+          [
+            0.222,
+            -133.742
+          ],
+          [
+            0.857,
+            -132.749
+          ],
+          [
+            0.906,
+            -131.831
+          ],
+          [
+            0.614,
+            -131.089
+          ],
+          [
+            0.146,
+            -130.573
+          ]
+        ],
+        [
+          [
+            -6.976,
+            -21.114
+          ],
+          [
+            7.995,
+            -21.454
+          ],
+          [
+            8.287,
+            -8.703
+          ],
+          [
+            -6.693,
+            -8.365
+          ]
+        ],
+        [
+          [
+            -13.353,
+            -58.152
+          ],
+          [
+            11.478,
+            -58.13
+          ],
+          [
+            11.464,
+            -41.9
+          ],
+          [
+            -13.369,
+            -41.912
+          ]
+        ],
+        [
+          [
+            14.635,
+            117.955
+          ],
+          [
+            16.234,
+            117.133
+          ],
+          [
+            17.695,
+            118.077
+          ],
+          [
+            17.595,
+            119.955
+          ],
+          [
+            16.062,
+            120.736
+          ],
+          [
+            14.541,
+            119.766
+          ]
+        ],
+        [
+          [
+            -21.091,
+            116.008
+          ],
+          [
+            -19.482,
+            115.188
+          ],
+          [
+            -18.029,
+            116.119
+          ],
+          [
+            -18.128,
+            117.998
+          ],
+          [
+            -19.664,
+            118.789
+          ],
+          [
+            -21.182,
+            117.808
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Independent native tower, gate, hall, memorial and pavilion footprints at the named temple."
+    },
+    "featureIds": [
+      "way/205795043",
+      "way/1205452741",
+      "way/205794919",
+      "way/206108046",
+      "way/205794918",
+      "way/205794915",
+      "way/1494518277",
+      "way/1494518278"
+    ],
+    "source": "https://www.openstreetmap.org/way/205795043",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3775d2115783ba15f1b6bb808182795e7dcf30324afe5e944a8c3de80312a62c",
+    "notes": "The brick Phước Duyên Tower has seven octagonal levels with tiled rings, arched openings and round windows. Behind it is a colored triple-entry gate and a broad terracotta-roofed worship hall. A smaller stupa stands at the rear of the compound."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Tower height and building plan are documented. Section heights of the roofed halls, eave ornaments and the smaller pavilion details are estimated."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "thien-mu-skyline",
+      "position": [
+        170,
+        106,
+        223
+      ],
+      "lookAt": [
+        0,
+        12,
+        3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "thien-mu-district",
+      "position": [
+        170,
+        106,
+        223
+      ],
+      "lookAt": [
+        0,
+        12,
+        3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "thien-mu-street",
+      "position": [
+        170,
+        106,
+        223
+      ],
+      "lookAt": [
+        0,
+        12,
+        3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "thien-mu-closeup",
+      "position": [
+        170,
+        106,
+        223
+      ],
+      "lookAt": [
+        0,
+        12,
+        3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "phuoc-duyen-from-the-river",
+      "position": [
+        12,
+        5.1,
+        150
+      ],
+      "lookAt": [
+        -1,
+        11,
+        118
+      ]
+    },
+    {
+      "name": "tam-quan-and-tower",
+      "position": [
+        -13.2,
+        8.1,
+        71
+      ],
+      "lookAt": [
+        -1,
+        9.1,
+        102
+      ]
+    },
+    {
+      "name": "dai-hung-hall",
+      "position": [
+        27,
+        9.2,
+        71
+      ],
+      "lookAt": [
+        -1,
+        5.25,
+        34
+      ]
+    },
+    {
+      "name": "rear-memorial-stupa",
+      "position": [
+        10.7,
+        8.3,
+        -113
+      ],
+      "lookAt": [
+        -1,
+        6.6,
+        -132
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 23480,
+    "vertices": 70440,
+    "materials": 7,
+    "bytes": 3006320,
+    "sha256": "sha256:18b364bda2b370881304648cf3a7f3f8126ad86ef76a65e51000a20bf5641e41"
+  }
+}

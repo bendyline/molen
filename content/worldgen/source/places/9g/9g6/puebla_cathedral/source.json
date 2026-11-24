@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.puebla_cathedral",
+  "kind": "static-structure",
+  "title": "Puebla Cathedral",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.puebla_cathedral",
+        "output": "assets/places/9g/9g6/puebla_cathedral/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1750c5c38cd1f4eca671621449527cd3805c6f13a9eb550a6f5b681f30710179"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-puebla-cathedral",
+        "path": "models/generate-puebla-cathedral.mjs"
+      },
+      {
+        "id": "puebla-cathedral-model",
+        "path": "models/puebla-cathedral-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/puebla-cathedral-footprint.json",
+      "native-map/puebla-cathedral-shape-controls.json",
+      "reference-rights/puebla-cathedral-architectural-facts.json",
+      "reference-rights/puebla-front-07-commons-first-upload.json",
+      "reference-rights/puebla-front-05-commons-first-upload.json",
+      "reference-rights/puebla-aerial-01-commons-first-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-glo30-native-puebla-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

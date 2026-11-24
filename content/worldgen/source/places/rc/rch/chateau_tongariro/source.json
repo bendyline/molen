@@ -1,0 +1,64 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.chateau_tongariro",
+  "kind": "static-structure",
+  "title": "Chateau Tongariro",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.chateau_tongariro",
+        "output": "assets/places/rc/rch/chateau_tongariro/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:16c3ce1caab6b428a2256996e6c67183c57ab5ae3994708587aed04ebc7ae2ea"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-chateau-tongariro",
+        "path": "models/generate-chateau-tongariro.mjs"
+      },
+      {
+        "id": "chateau-tongariro-model",
+        "path": "models/chateau-tongariro-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/chateau-tongariro-footprint.json",
+      "native-map/chateau-roof-controls.json",
+      "reference-rights/chateau-tongariro-architectural-facts.json",
+      "references/tongariro-archive-construction.tif",
+      "reference-rights/tongariro-archive-construction.html",
+      "references/tongariro-archive-portico.jpg",
+      "reference-rights/tongariro-archive-portico.html",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/linz-tongariro-dem-BH34.tif",
+      "terrain-sources/linz-tongariro-dem-BJ34.tif",
+      "terrain-sources/linz-tongariro-dsm-BH34.tif",
+      "terrain-sources/linz-tongariro-dsm-BJ34.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

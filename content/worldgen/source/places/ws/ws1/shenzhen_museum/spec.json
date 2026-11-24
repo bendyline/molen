@@ -1,0 +1,520 @@
+{
+  "planId": "shenzhen_museum",
+  "id": "shenzhen_museum",
+  "assetId": "molen.worldgen.structure.shenzhen_museum",
+  "title": "Shenzhen Museum",
+  "wikidataId": "Q2088192",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 114.0562427,
+    "latitude": 22.54628565
+  },
+  "size": [
+    188.6418685913086,
+    55.920098304748535,
+    161.38050079345703
+  ],
+  "actualBounds": {
+    "min": [
+      -118.08937072753906,
+      -5.800000190734863,
+      -77.78050231933594
+    ],
+    "max": [
+      70.55249786376953,
+      50.12009811401367,
+      83.5999984741211
+    ]
+  },
+  "visualBrief": "The History and Folk Culture wing of Shenzhen Museum with its sweeping steel canopy, modular pale facade, glazed sections and flanking entrance ramps.",
+  "nativeAxes": {
+    "x": "east along the Civic Center",
+    "y": "up",
+    "z": "south toward the forecourt"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Building_of_Shenzhen_Museum1.jpg",
+    "https://commons.wikimedia.org/wiki/File:SZ_%E6%B7%B1%E5%9C%B3%E5%B8%82_Shenzhen_%E7%A6%8F%E7%94%B0%E5%8D%80_Futian_%E5%B8%82%E6%B0%91%E4%B8%AD%E5%BF%83_Civic_Center_%E7%A6%8F%E4%B8%AD%E4%B8%89%E8%B7%AF_Fuzhong_3rd_Road_%E9%87%91%E7%94%B0%E8%B7%AF_Jintian_Road_Shenzhen_Museum_January_2026_N13P_01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "shenzhen-museum-wp",
+      "url": "https://qualla.com/shenzhen-museum/"
+    }
+  ],
+  "referenceInputHash": "sha256:1be51e4f16492cf5ce3454f919dc8334604d45858b72ecd7ad2758a3fbb33ca3",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ws/ws1/shenzhen_museum/models/shenzhen-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ws/ws1/shenzhen_museum/models/shenzhen-museum-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.9,
+    "surfaces": {
+      "panel": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.88
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.14
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.88,
+        "metallic": 0.15
+      },
+      "underside": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.68
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.46,
+        "surfaces": {
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.14
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.15
+          },
+          "underside": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.14
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.15
+          },
+          "underside": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.14
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.15
+          },
+          "underside": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_panel",
+    "concrete_plain",
+    "metal_painted",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original source elevation at the mapped public approach to the east wing.",
+    "anchor": [
+      114.0562427,
+      22.54628565
+    ],
+    "heading": 0.011056747527082902,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        114.05668031233171,
+        22.5462946107702
+      ],
+      "modelHeight": 0,
+      "basis": "Original source elevation at the mapped public approach to the east wing."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -63.765,
+          21.154
+        ],
+        [
+          -45.183,
+          23.686
+        ],
+        [
+          -25.122,
+          27.303
+        ],
+        [
+          -10.896,
+          30.4
+        ],
+        [
+          2.537,
+          33.71
+        ],
+        [
+          12.006,
+          36.531
+        ],
+        [
+          29.056,
+          41.907
+        ],
+        [
+          46.995,
+          48.585
+        ],
+        [
+          63.879,
+          55.907
+        ],
+        [
+          63.892,
+          18.513
+        ],
+        [
+          51.914,
+          18.503
+        ],
+        [
+          51.943,
+          -22.264
+        ],
+        [
+          63.921,
+          -22.254
+        ],
+        [
+          63.948,
+          -54.494
+        ],
+        [
+          13.197,
+          -54.432
+        ],
+        [
+          -11.54,
+          -54.527
+        ],
+        [
+          -63.895,
+          -54.527
+        ]
+      ],
+      "holes": [
+        [
+          [
+            -34.658,
+            20.251
+          ],
+          [
+            -14.239,
+            24.073
+          ],
+          [
+            -14.19,
+            -40.841
+          ],
+          [
+            -34.64,
+            -40.856
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.88,
+      "basis": "Mapped museum wing and interior opening below the Civic Center canopy."
+    },
+    "featureIds": [
+      "relation/10837977",
+      "way/781536965",
+      "way/781536966",
+      "way/781536968",
+      "way/781536969",
+      "way/781536970",
+      "way/781536971",
+      "way/781536981",
+      "way/781536982",
+      "way/783584159",
+      "way/783584160",
+      "way/783584161",
+      "way/783584165"
+    ],
+    "source": "https://www.openstreetmap.org/relation/10837977",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:349f8767575abb85d9a83de65b5aae3f7457666e6d25f93789cb119f08a86e45",
+    "notes": "A broad dark-undersided curved roof is held above pale modular wall panels and the forecourt by tall branching structural supports. One central opening and ramps lead to the museum. The office volumes vary in height."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The model covers the history and folk culture venue and its section of the Civic Center canopy. Exact steel joints, panel modules and unobserved openings are approximated."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "shenzhen-museum-skyline",
+      "position": [
+        157,
+        81,
+        148
+      ],
+      "lookAt": [
+        -14,
+        16,
+        9
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "shenzhen-museum-district",
+      "position": [
+        157,
+        81,
+        148
+      ],
+      "lookAt": [
+        -14,
+        16,
+        9
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "shenzhen-museum-street",
+      "position": [
+        157,
+        81,
+        148
+      ],
+      "lookAt": [
+        -14,
+        16,
+        9
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "shenzhen-museum-closeup",
+      "position": [
+        157,
+        81,
+        148
+      ],
+      "lookAt": [
+        -14,
+        16,
+        9
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "museums-south-entrance-and-canopy",
+      "position": [
+        1,
+        3.6,
+        143
+      ],
+      "lookAt": [
+        1,
+        17,
+        24
+      ]
+    },
+    {
+      "name": "east-entrance-panels-and-structure",
+      "position": [
+        116,
+        8,
+        27
+      ],
+      "lookAt": [
+        45,
+        13,
+        -1
+      ]
+    },
+    {
+      "name": "roof-profiles-and-courtyard",
+      "position": [
+        107,
+        99,
+        -126
+      ],
+      "lookAt": [
+        -19,
+        15,
+        6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4033,
+    "vertices": 12099,
+    "materials": 6,
+    "bytes": 597804,
+    "sha256": "sha256:bc8362b0676ce8a456d121005e12197d973324c221dde67b710c2a002e0ed4d6"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.sugar_museum_berlin",
+  "kind": "static-structure",
+  "title": "Sugar Museum (Berlin)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.sugar_museum_berlin",
+        "output": "assets/places/u3/u33/sugar_museum_berlin/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:407cd67fc2347b94c0a7527f2f5ba45e5da088859f2208c194a63409fee6669f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-sugar-museum-berlin",
+        "path": "models/generate-sugar-museum-berlin.mjs"
+      },
+      {
+        "id": "sugar-museum-berlin-model",
+        "path": "models/sugar-museum-berlin-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/sugar-museum-berlin-footprint.json",
+      "native-map/berlin-sugar-roof-controls.json",
+      "reference-rights/sugar-museum-berlin-architectural-facts.json",
+      "reference-rights/sugar-museum-berlin-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/berlin-dgm1-386-5822-crop.xyz",
+      "terrain-sources/berlin-bdom-386-5822-crop.xyz",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

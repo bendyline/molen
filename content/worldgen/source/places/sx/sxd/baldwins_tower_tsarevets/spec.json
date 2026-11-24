@@ -1,0 +1,379 @@
+{
+  "planId": "baldwins_tower_tsarevets",
+  "id": "baldwins_tower_tsarevets",
+  "assetId": "molen.worldgen.structure.baldwins_tower_tsarevets",
+  "title": "Baldwin’s Tower at Tsarevets",
+  "wikidataId": "Q4850503",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 25.6530701,
+    "latitude": 43.080547825
+  },
+  "size": [
+    43.725159645080566,
+    17.164999961853027,
+    36.197632789611816
+  ],
+  "actualBounds": {
+    "min": [
+      -4.612259864807129,
+      -4.760000228881836,
+      -4.983428001403809
+    ],
+    "max": [
+      39.11289978027344,
+      12.404999732971191,
+      31.214204788208008
+    ]
+  },
+  "visualBrief": "Reconstructed stone tower of Tsarevets Fortress with a cantilevered crenellated crown, exposed stairs and mapped curtain walls immediately alongside.",
+  "nativeAxes": {
+    "x": "northwest parallel to the tower front",
+    "y": "up",
+    "z": "northeast toward the approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Baldwin%27s_Tower_of_Tsarevets.JPG"
+  ],
+  "stories": [
+    {
+      "id": "tsarevets-fortress-wp",
+      "url": "https://qualla.com/tsarevets-fortress/"
+    }
+  ],
+  "referenceInputHash": "sha256:959f54463311e4e08e45848169ede8276843e64afd782c48bf800bc7defa127b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sx/sxd/baldwins_tower_tsarevets/models/baldwins-tower-tsarevets-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sx/sxd/baldwins_tower_tsarevets/models/baldwins-tower-tsarevets-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.68,
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.93
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.95
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.31,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.95
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.95
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.044,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.95
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_ashlar",
+    "stone_drywall"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged Mapzen local ground on the landward approach. The exterior cliff below the tower is coarse in this field and is represented by the downward masonry foundation.",
+    "anchor": [
+      25.6530701,
+      43.080547825
+    ],
+    "heading": 2.210134140578905,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        25.65312734501387,
+        43.0805789124255
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged Mapzen local ground on the landward approach. The exterior cliff below the tower is coarse in this field and is represented by the downward masonry foundation."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          3.482,
+          -3.885
+        ],
+        [
+          -3.477,
+          -3.892
+        ],
+        [
+          -3.477,
+          3.889
+        ],
+        [
+          3.472,
+          3.889
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The individually named native tower footprint only."
+    },
+    "featureIds": [
+      "way/309206898"
+    ],
+    "source": "https://www.openstreetmap.org/way/309206898",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f014b0ebff5edc5dedba28e7dfad839dee4fd4e101cfeda829dc583fde43f803",
+    "notes": "The Regional Museum records the tower reuse of two periods of earlier foundations. The fortress describes the 1933 reconstruction by Alexander Rashenov. Kandi’s original shows the square cantilevered parapet, upper openings, external stair and low curtain extending along both sides of the ridge."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The tower and immediately adjoining curtain are modeled. The northern and western castle circuit, skyline church, and other foundations belong to the wider site.",
+    "The standing profile follows the surviving photograph and mapped footprint. Precise stonework, door and stair details, wall top grades and close cliff footing are approximations."
+  ],
+  "sourceLicense": "Original model from a photographer-released Public Domain original, native OpenStreetMap ODbL geometry, and Mapzen open elevation tiles.",
+  "qaLodCameras": [
+    {
+      "name": "baldwins-tower-skyline",
+      "position": [
+        56,
+        26,
+        -35
+      ],
+      "lookAt": [
+        3,
+        5.4,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "baldwins-tower-district",
+      "position": [
+        56,
+        26,
+        -35
+      ],
+      "lookAt": [
+        3,
+        5.4,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "baldwins-tower-street",
+      "position": [
+        56,
+        26,
+        -35
+      ],
+      "lookAt": [
+        3,
+        5.4,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "baldwins-tower-closeup",
+      "position": [
+        56,
+        26,
+        -35
+      ],
+      "lookAt": [
+        3,
+        5.4,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "cliff-side-tower-and-stair",
+      "position": [
+        56,
+        26,
+        -35
+      ],
+      "lookAt": [
+        3,
+        5.4,
+        0
+      ]
+    },
+    {
+      "name": "upper-door-landing-and-crenellations",
+      "position": [
+        25,
+        13,
+        -12
+      ],
+      "lookAt": [
+        2.5,
+        7.4,
+        0
+      ]
+    },
+    {
+      "name": "mapped-curtain-and-tower-roof",
+      "position": [
+        -26,
+        34,
+        46
+      ],
+      "lookAt": [
+        2,
+        5,
+        5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2892,
+    "vertices": 8676,
+    "materials": 4,
+    "bytes": 667948,
+    "sha256": "sha256:3c4e57e870a1ac6f4b70e32cbb4dabb2ce04319f4b19acf638ce8de44bc64ab1"
+  }
+}

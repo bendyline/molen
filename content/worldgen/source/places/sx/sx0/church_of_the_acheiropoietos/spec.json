@@ -1,0 +1,543 @@
+{
+  "planId": "church_of_the_acheiropoietos",
+  "id": "church_of_the_acheiropoietos",
+  "assetId": "molen.worldgen.structure.church_of_the_acheiropoietos",
+  "title": "Church of the Acheiropoietos",
+  "wikidataId": "Q1584774",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 22.947922,
+    "latitude": 40.63499435
+  },
+  "size": [
+    55.32285118103027,
+    24.559999465942383,
+    37.52999973297119
+  ],
+  "actualBounds": {
+    "min": [
+      -25.440000534057617,
+      -7.5,
+      -15.9399995803833
+    ],
+    "max": [
+      29.882850646972656,
+      17.059999465942383,
+      21.59000015258789
+    ]
+  },
+  "visualBrief": "The early Byzantine basilica at Thessaloniki, with paired levels of round-headed windows, south propylon and eastern apse.",
+  "nativeAxes": {
+    "x": "west entrance to east apse",
+    "y": "up",
+    "z": "north aisle to south propylon"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Church_of_the_Acheiropoietos.JPG",
+    "https://commons.wikimedia.org/wiki/File:Acheropoietos_-_propylum.JPG",
+    "https://commons.wikimedia.org/wiki/File:Acheropoietos_-_west.JPG"
+  ],
+  "stories": [
+    {
+      "id": "church-of-the-acheiropoietos-wp",
+      "url": "https://qualla.com/church-of-the-acheiropoietos/"
+    }
+  ],
+  "referenceInputHash": "sha256:ff0917042d3295bee25a1305f1b375119eca67e2f322a20c80a7bec0af277914",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sx/sx0/church_of_the_acheiropoietos/models/church-of-the-acheiropoietos-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sx/sx0/church_of_the_acheiropoietos/models/church-of-the-acheiropoietos-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.05,
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.93
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_longformat",
+        "roughness": 0.95
+      },
+      "surround": {
+        "slot": "trim",
+        "graph": "brick_longformat",
+        "roughness": 0.9
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.91
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.92
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.83
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.87
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.42,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.95
+          },
+          "surround": {
+            "slot": "trim",
+            "graph": "brick_longformat",
+            "roughness": 0.9
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.95
+          },
+          "surround": {
+            "slot": "trim",
+            "graph": "brick_longformat",
+            "roughness": 0.9
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.058,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.95
+          },
+          "surround": {
+            "slot": "trim",
+            "graph": "brick_longformat",
+            "roughness": 0.9
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "brick_longformat",
+    "brick_longformat",
+    "stone_limestone_weathered",
+    "tile_flat",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Ground at the mapped western entry approach. Window and entrance heights were interpreted alongside the public photographs.",
+    "anchor": [
+      22.947922,
+      40.63499435
+    ],
+    "heading": -0.6076275306307205,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        22.94763607291142,
+        40.63509928346336
+      ],
+      "modelHeight": 0,
+      "basis": "Ground at the mapped western entry approach. Window and entrance heights were interpreted alongside the public photographs."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          11.695,
+          15.575
+        ],
+        [
+          -1.694,
+          15.883
+        ],
+        [
+          -23.017,
+          15.701
+        ],
+        [
+          -23.022,
+          8.206
+        ],
+        [
+          -23.019,
+          -15.701
+        ],
+        [
+          23.017,
+          -15.701
+        ],
+        [
+          23.016,
+          -5.951
+        ],
+        [
+          25.581,
+          -5.443
+        ],
+        [
+          27.757,
+          -3.987
+        ],
+        [
+          29.208,
+          -1.81
+        ],
+        [
+          29.722,
+          0.748
+        ],
+        [
+          29.211,
+          3.313
+        ],
+        [
+          27.753,
+          5.493
+        ],
+        [
+          25.585,
+          6.947
+        ],
+        [
+          23.018,
+          7.457
+        ],
+        [
+          23.011,
+          11.516
+        ],
+        [
+          23.019,
+          15.701
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "The mapped rectangular walls and rounded east apse of the basilica."
+    },
+    "featureIds": [
+      "way/32624145"
+    ],
+    "source": "https://www.openstreetmap.org/way/32624145",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cb4a10ff688111ba70d25e10a15abb45d713f25bf5aafb91a0c2fb5195fad40b",
+    "notes": "The municipal monument description establishes the three aisles, gallery and narthex. The three public-domain views document round-headed window groups, terracotta roofs and the brick and stone sections."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The exterior standing basilica, south entrance and apse. Interior mosaics and the Roman bath archaeology are outside scope.",
+    "Upper wall heights, exact roof pitches and concealed details are estimated from the photographs."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "church-of-the-acheiropoietos-skyline",
+      "position": [
+        -64,
+        29,
+        58
+      ],
+      "lookAt": [
+        -1,
+        6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "church-of-the-acheiropoietos-district",
+      "position": [
+        -64,
+        29,
+        58
+      ],
+      "lookAt": [
+        -1,
+        6,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "church-of-the-acheiropoietos-street",
+      "position": [
+        -64,
+        29,
+        58
+      ],
+      "lookAt": [
+        -1,
+        6,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "church-of-the-acheiropoietos-closeup",
+      "position": [
+        -64,
+        29,
+        58
+      ],
+      "lookAt": [
+        -1,
+        6,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-arcades-and-propylon",
+      "position": [
+        -64,
+        29,
+        58
+      ],
+      "lookAt": [
+        -1,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "west-narthex-and-round-headed-windows",
+      "position": [
+        -50,
+        8,
+        22
+      ],
+      "lookAt": [
+        -15,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "eastern-apse",
+      "position": [
+        61,
+        24,
+        41
+      ],
+      "lookAt": [
+        13,
+        7,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7444,
+    "vertices": 22332,
+    "materials": 8,
+    "bytes": 1327984,
+    "sha256": "sha256:f5d260375428fff70b806601f3ae8f240a9f63b53cf3eefba1b9c3bc129240c7"
+  }
+}

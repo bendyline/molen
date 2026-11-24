@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.carapace_pavilion",
+  "kind": "static-structure",
+  "title": "Carapace Pavilion",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.carapace_pavilion",
+        "output": "assets/places/9q/9qj/carapace_pavilion/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d9229e4cd662e312e2b55151fca99a5458313bf3e9bd695437e7cd0f17141dba"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-carapace-pavilion",
+        "path": "models/generate-carapace-pavilion.mjs"
+      },
+      {
+        "id": "carapace-pavilion-model",
+        "path": "models/carapace-pavilion-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/carapace-pavilion-footprint.json",
+      "native-map/carapace-foundation-and-placement.json",
+      "reference-rights/carapace-pavilion-architectural-facts.json",
+      "reference-rights/carapace-pavilion-qualla-original-1.json",
+      "reference-rights/carapace-pavilion-qualla-original-2.json",
+      "reference-rights/carapace-pavilion-qualla-original-3.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/carapace-usgs-one-metre-ground.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

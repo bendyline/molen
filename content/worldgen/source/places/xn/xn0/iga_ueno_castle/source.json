@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.iga_ueno_castle",
+  "kind": "static-structure",
+  "title": "Iga Ueno Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.iga_ueno_castle",
+        "output": "assets/places/xn/xn0/iga_ueno_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4e2102cbfe0d041420cb22b2e1ddc137d54b642b20a5fcb2e99edec79f473588"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-iga-ueno-castle",
+        "path": "models/generate-iga-ueno-castle.mjs"
+      },
+      {
+        "id": "iga-ueno-castle-model",
+        "path": "models/iga-ueno-castle-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/iga-ueno-castle-footprint.json",
+      "reference-rights/iga-ueno-castle-architectural-facts.json",
+      "reference-rights/iga-ueno-castle-qualla-original-1.json",
+      "reference-rights/iga-ueno-photographer-rename.json",
+      "references/iga-ueno-keep-native.jpg",
+      "reference-rights/ブレイズマン~commonswiki-commons-first-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/iga-gsi-dem5a_png-15-28774-13004.png",
+      "terrain-sources/iga-gsi-dem_png-14-14387-6502.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

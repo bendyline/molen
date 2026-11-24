@@ -1,0 +1,469 @@
+{
+  "planId": "seimei_shrine",
+  "id": "seimei_shrine",
+  "assetId": "molen.worldgen.structure.seimei_shrine",
+  "title": "Seimei Shrine",
+  "wikidataId": "Q276830",
+  "category": "religious-building",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 135.75101425714286,
+    "latitude": 35.02775870714286
+  },
+  "size": [
+    14.719999313354492,
+    8.59000015258789,
+    17.050000190734863
+  ],
+  "actualBounds": {
+    "min": [
+      -9.229999542236328,
+      -1.2699999809265137,
+      -7.380000114440918
+    ],
+    "max": [
+      5.489999771118164,
+      7.320000171661377,
+      9.670000076293945
+    ]
+  },
+  "visualBrief": "Seimei Shrine’s main sanctuary in Kyoto, with its raised timber interior, undulating karahafu canopy, stone entrance steps and narrow lower wings.",
+  "nativeAxes": {
+    "x": "west sanctuary toward east gate",
+    "y": "up",
+    "z": "toward the southern wing"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Seimei_Shrine-3520.jpg",
+    "https://commons.wikimedia.org/wiki/File:Seimei_Shrine-3483.jpg"
+  ],
+  "stories": [
+    {
+      "id": "seimei-shrine-wp",
+      "url": "https://qualla.com/seimei-shrine/"
+    }
+  ],
+  "referenceInputHash": "sha256:0a3360fc11910c525db66dc40ace2fe92a1bda37649f0b637e19bc8b0600f1e8",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn0/seimei_shrine/models/seimei-shrine-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn0/seimei_shrine/models/seimei-shrine-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.72,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.95
+      },
+      "tiles": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.88
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.93
+      },
+      "carpentry": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.89
+      },
+      "screens": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88
+      },
+      "doorway": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.33,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95
+          },
+          "tiles": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "carpentry": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "screens": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          },
+          "doorway": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95
+          },
+          "tiles": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "carpentry": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "screens": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          },
+          "doorway": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95
+          },
+          "tiles": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "carpentry": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "screens": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          },
+          "doorway": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "tile_flat",
+    "stone_ashlar",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native elevation at the base of the existing stone steps immediately east of the central worship frontage.",
+    "anchor": [
+      135.75101425714286,
+      35.02775870714286
+    ],
+    "heading": -0.03513079152748864,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        135.7510749917657,
+        35.027754352517874
+      ],
+      "modelHeight": 0,
+      "basis": "Native elevation at the base of the existing stone steps immediately east of the central worship frontage."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          4.482,
+          -1.571
+        ],
+        [
+          4.484,
+          2.116
+        ],
+        [
+          3.426,
+          2.108
+        ],
+        [
+          3.427,
+          9.426
+        ],
+        [
+          0.436,
+          9.431
+        ],
+        [
+          0.426,
+          2.915
+        ],
+        [
+          -8.76,
+          2.915
+        ],
+        [
+          -8.753,
+          0.509
+        ],
+        [
+          -8.755,
+          -2.398
+        ],
+        [
+          0.403,
+          -2.397
+        ],
+        [
+          0.4,
+          -7.164
+        ],
+        [
+          1.959,
+          -7.164
+        ],
+        [
+          3.41,
+          -7.159
+        ],
+        [
+          3.415,
+          -1.567
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Only the mapped sanctuary and connected worship frontage."
+    },
+    "featureIds": [
+      "way/259478778"
+    ],
+    "source": "https://www.openstreetmap.org/way/259478778",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f253ed53a43c0291b31ddb1ca9e45c20f1f6d7bfb6f6b880f1ab159ffab047c2",
+    "notes": "The shrine confirms its present main sanctuary was built in 1905. Both cleared Qualla photographs show the dark rear pitched roof and the strongly curved front central gable, flanked by lower roof wings."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Exterior of the main shrine and attached worship frontage only. The separately mapped torii, auxiliary shrines, gift office, precinct sculptures and interiors remain outside the asset.",
+    "The combined building footprint and steps establish the model plan and facing. Heights, roof transition and smaller woodwork are visually estimated from the cleared front views."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "seimei-skyline",
+      "position": [
+        27,
+        12,
+        16
+      ],
+      "lookAt": [
+        -1.2,
+        2.7,
+        0.53
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "seimei-district",
+      "position": [
+        27,
+        12,
+        16
+      ],
+      "lookAt": [
+        -1.2,
+        2.7,
+        0.53
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "seimei-street",
+      "position": [
+        27,
+        12,
+        16
+      ],
+      "lookAt": [
+        -1.2,
+        2.7,
+        0.53
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "seimei-closeup",
+      "position": [
+        27,
+        12,
+        16
+      ],
+      "lookAt": [
+        -1.2,
+        2.7,
+        0.53
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "approach-and-curved-canopy",
+      "position": [
+        27,
+        12,
+        16
+      ],
+      "lookAt": [
+        -1.2,
+        2.7,
+        0.53
+      ]
+    },
+    {
+      "name": "main-roof-and-north-wing",
+      "position": [
+        -17,
+        15,
+        -18
+      ],
+      "lookAt": [
+        -1.8,
+        2.5,
+        0.6
+      ]
+    },
+    {
+      "name": "steps-and-timber-verge",
+      "position": [
+        16,
+        4.2,
+        -6.1
+      ],
+      "lookAt": [
+        3.5,
+        2.7,
+        0.29
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3382,
+    "vertices": 10146,
+    "materials": 6,
+    "bytes": 574812,
+    "sha256": "sha256:0fc8c94b80b3f508afa00203498169fa3c3c050f01385cdba87ff3c104cac51b"
+  }
+}

@@ -1,0 +1,458 @@
+{
+  "planId": "de_zeeland",
+  "id": "de_zeeland",
+  "assetId": "molen.worldgen.structure.de_zeeland",
+  "title": "De Zeeland Sugar Factory",
+  "wikidataId": "Q3410515",
+  "category": "historic-industrial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 4.275742,
+    "latitude": 51.492606
+  },
+  "size": [
+    98.68000030517578,
+    16.532217413187027,
+    94.18999862670898
+  ],
+  "actualBounds": {
+    "min": [
+      -58.209999084472656,
+      -0.4000000059604645,
+      -36.744998931884766
+    ],
+    "max": [
+      40.470001220703125,
+      16.132217407226562,
+      57.44499969482422
+    ]
+  },
+  "visualBrief": "The preserved De Zeeland sugar factory halls with industrial brick bays, stepped connections and shallow ridged metal roofs.",
+  "nativeAxes": {
+    "x": "across the building from Markiezaatsweg",
+    "y": "up",
+    "z": "south along the frontage"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Zeeland_2006_005.jpg"
+  ],
+  "stories": [
+    {
+      "id": "sugar-factory-zeeland-wp",
+      "url": "https://qualla.com/sugar-factory-zeeland/"
+    }
+  ],
+  "referenceInputHash": "sha256:bb0a83c05bf7b40dc0b79f7f0b91a3bf1f483b760d333656779670599c35cf90",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u15/de_zeeland/models/de-zeeland-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u15/de_zeeland/models/de-zeeland-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.93
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.86
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "detail": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.34,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "metal_painted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original AHN half-metre bare-earth sample along the public frontage west of the southwest hall.",
+    "anchor": [
+      4.275742,
+      51.492606
+    ],
+    "heading": -0.1245,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        4.274816744927548,
+        51.49241555227472
+      ],
+      "modelHeight": 0,
+      "basis": "Original AHN half-metre bare-earth sample along the public frontage west of the southwest hall."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          40.124,
+          -23.476
+        ],
+        [
+          40.77,
+          17.851
+        ],
+        [
+          34.843,
+          17.819
+        ],
+        [
+          34.779,
+          32.322
+        ],
+        [
+          30.887,
+          32.315
+        ],
+        [
+          31.016,
+          54.164
+        ],
+        [
+          -0.041,
+          54.259
+        ],
+        [
+          -0.054,
+          52.645
+        ],
+        [
+          -3.878,
+          52.675
+        ],
+        [
+          -3.633,
+          57.199
+        ],
+        [
+          -57.941,
+          57.264
+        ],
+        [
+          -57.757,
+          26.973
+        ],
+        [
+          -35.346,
+          27.164
+        ],
+        [
+          -35.149,
+          17.244
+        ],
+        [
+          -18.001,
+          17.017
+        ],
+        [
+          -18.21,
+          -23.67
+        ],
+        [
+          -3.464,
+          -23.496
+        ],
+        [
+          -3.461,
+          -26.312
+        ],
+        [
+          -8.334,
+          -26.129
+        ],
+        [
+          -8.34,
+          -36.449
+        ],
+        [
+          26.835,
+          -36.51
+        ],
+        [
+          26.856,
+          -26.191
+        ],
+        [
+          22.005,
+          -26.381
+        ],
+        [
+          22.014,
+          -23.577
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Simplified native BAG-backed building polygon for the three persistent halls and their links."
+    },
+    "featureIds": [
+      "way/48690913"
+    ],
+    "source": "https://www.openstreetmap.org/way/48690913",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7b1c839eec0d23c41cf428887014609838f2a5b283f3d957b6bd45483398ce8c",
+    "notes": "Three tall brick halls with regular blind and shallow-arched bays, stepped external connections and later lower appendages. The AHN surface survey resolves visible ridge and eave levels after conversion."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the standing factory halls and measured exterior volumes. Detailed current shopfront designs, signage, service fixtures and interiors are outside scope.",
+    "The cleared photograph predates the recent conversion. Historic façade openings are retained with representative reopened glazing, and shop entrances and unseen details use bounded estimates."
+  ],
+  "sourceLicense": "Original 3D work under the repository license. OpenStreetMap geometry under ODbL. Dutch AHN altitude survey under its published terms.",
+  "qaLodCameras": [
+    {
+      "name": "de-zeeland-skyline",
+      "position": [
+        -151,
+        63,
+        139
+      ],
+      "lookAt": [
+        -5,
+        7,
+        12
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "de-zeeland-district",
+      "position": [
+        -151,
+        63,
+        139
+      ],
+      "lookAt": [
+        -5,
+        7,
+        12
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "de-zeeland-street",
+      "position": [
+        -151,
+        63,
+        139
+      ],
+      "lookAt": [
+        -5,
+        7,
+        12
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "de-zeeland-closeup",
+      "position": [
+        -151,
+        63,
+        139
+      ],
+      "lookAt": [
+        -5,
+        7,
+        12
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "markiezaatsweg-brick-halls",
+      "position": [
+        -135,
+        13,
+        91
+      ],
+      "lookAt": [
+        -14,
+        6,
+        12
+      ]
+    },
+    {
+      "name": "roof-survey-and-links",
+      "position": [
+        -95,
+        64,
+        -99
+      ],
+      "lookAt": [
+        -4,
+        8,
+        13
+      ]
+    },
+    {
+      "name": "southwest-masonry-and-openings",
+      "position": [
+        -101,
+        9,
+        13
+      ],
+      "lookAt": [
+        -29,
+        6,
+        29
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8994,
+    "vertices": 26982,
+    "materials": 4,
+    "bytes": 1203116,
+    "sha256": "sha256:13e49dcda990afd76bb1a7accf9d7ce0d1222cf63f7e748607d445871d5283b5"
+  }
+}

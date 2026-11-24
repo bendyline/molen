@@ -1,0 +1,461 @@
+{
+  "id": "kigali_convention_centre",
+  "planId": "kigali_convention_centre",
+  "title": "Kigali Convention Centre",
+  "assetId": "molen.worldgen.structure.kigali_convention_centre",
+  "category": "landmark",
+  "wikidataId": "Q25043410",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 30.0938889,
+    "latitude": -1.9547222
+  },
+  "visualBrief": "A silver, stepped dome rises from the long convention pavilion. Slim metal rims and a triangular support gallery distinguish its exterior, above the glazed lobby and elevated eastern hall.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/kx/kxt/kigali_convention_centre/models/kimihurura-dome.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:An_aerial_of_Kigali_Convention_Center_on_June_19%2C_2019._Photo_by_Emmanuel_Kwizera.jpg",
+    "https://commons.wikimedia.org/wiki/File:Kigali_Convention_Center.jpg",
+    "https://wcrp-osc2023.org/venue-kcc",
+    "https://summa.com.tr/en/projects/kigali-convention-center-and-hotel.htm",
+    "https://www.openstreetmap.org/relation/13200013"
+  ],
+  "geographicProposal": {
+    "id": "kigali-convention-centre",
+    "title": "Kigali Convention Centre",
+    "asset": "molen.worldgen.structure.kigali_convention_centre",
+    "anchor": [
+      30.0938889,
+      -1.9547222
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 1498.30078125,
+    "bounds": [
+      30.09330002323211,
+      -1.9553031665746554,
+      30.095208976764393,
+      -1.9541117336139953
+    ],
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q25043410",
+      "names": [
+        "Kigali Convention Centre",
+        "Kigali Convention Center",
+        "Convention Centre",
+        "Kongresszentrum",
+        "Centre de Congrès"
+      ],
+      "maxDistance": 180
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -46.515596,
+          -65.956787
+        ],
+        [
+          144.864762,
+          -20.137695
+        ],
+        [
+          127.4534,
+          62.672884
+        ],
+        [
+          -13.294938,
+          30.123057
+        ],
+        [
+          -25.421702,
+          27.317805
+        ],
+        [
+          -63.515316,
+          18.512432
+        ],
+        [
+          -55.015456,
+          -23.71105
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the mapped convention pavilion and dome. The adjacent hotel, gardens and plaza fountain keep their host features."
+    },
+    "source": "https://www.openstreetmap.org/relation/13200013",
+    "note": "The convention centre fills its mapped multipolygon and dome outline. The placement preserves the lobby approach along the southeast edge of the podium.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:510dfb34af53b002ca51edbeea8326cd19095f82ea2926e1d700564336d8d7b9"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_travertine",
+        "roughness": 0.93
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84
+      },
+      "rims": {
+        "slot": "trim",
+        "graph": "metal_stainless_beadblasted",
+        "roughness": 0.82
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.92
+      },
+      "windows": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.69
+      },
+      "skin": {
+        "slot": "window",
+        "localRef": "palette:#edf4fa",
+        "roughness": 0.69,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.93
+        ]
+      },
+      "canopy": {
+        "slot": "window",
+        "localRef": "palette:#f8fbfd",
+        "roughness": 0.55,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.61
+        ],
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 1.53,
+    "module": "content/worldgen/source/places/kx/kxt/kigali_convention_centre/models/kimihurura-dome.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.93
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          },
+          "rims": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.82
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.92
+          },
+          "windows": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.69
+          },
+          "skin": {
+            "slot": "window",
+            "localRef": "palette:#edf4fa",
+            "roughness": 0.69,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.93
+            ]
+          },
+          "canopy": {
+            "slot": "window",
+            "localRef": "palette:#f8fbfd",
+            "roughness": 0.55,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.61
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.51
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.93
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          },
+          "rims": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.82
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.92
+          },
+          "windows": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.69
+          },
+          "skin": {
+            "slot": "window",
+            "localRef": "palette:#edf4fa",
+            "roughness": 0.69,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.93
+            ]
+          },
+          "canopy": {
+            "slot": "window",
+            "localRef": "palette:#f8fbfd",
+            "roughness": 0.55,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.61
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.168
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.93
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          },
+          "rims": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.82
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.92
+          },
+          "windows": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.69
+          },
+          "skin": {
+            "slot": "window",
+            "localRef": "palette:#edf4fa",
+            "roughness": 0.69,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.93
+            ]
+          },
+          "canopy": {
+            "slot": "window",
+            "localRef": "palette:#f8fbfd",
+            "roughness": 0.55,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.61
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.053
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        27,
+        16,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "dome-rims-and-support-gallery",
+      "position": [
+        -62,
+        20,
+        76
+      ],
+      "lookAt": [
+        1,
+        24,
+        -9
+      ],
+      "fov": 54
+    },
+    {
+      "name": "south-lobby-and-glazed-canopy",
+      "position": [
+        18,
+        7.8,
+        64
+      ],
+      "lookAt": [
+        -19,
+        3.6,
+        29
+      ],
+      "fov": 63
+    },
+    {
+      "name": "dome-and-eastern-hall",
+      "position": [
+        148,
+        52,
+        97
+      ],
+      "lookAt": [
+        34,
+        14,
+        6
+      ],
+      "fov": 58
+    }
+  ],
+  "limitations": [
+    "The dome envelope reaches the documented 46 m height. Individual rim spacing, steel diagonals, lobby subdivisions and canopy dimensions are estimated from photographs. The dome uses its daylight finish."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -63.531982421875,
+      -7.300000190734863,
+      -65.97332000732422
+    ],
+    "max": [
+      144.8813934326172,
+      46,
+      62.68944549560547
+    ]
+  },
+  "size": [
+    208.4133758544922,
+    53.30000019073486,
+    128.6627655029297
+  ],
+  "mesh": {
+    "triangles": 13793,
+    "vertices": 27669,
+    "materials": 8,
+    "bytes": 1166108,
+    "sha256": "sha256:b19d7a8a22938d7cc52b84481f35006840f2f4abf463bf3d90c2b8189bc95644"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_travertine",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

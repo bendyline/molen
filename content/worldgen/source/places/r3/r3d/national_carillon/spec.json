@@ -1,0 +1,344 @@
+{
+  "id": "national_carillon",
+  "planId": "national_carillon",
+  "title": "National Carillon",
+  "assetId": "molen.worldgen.structure.national_carillon",
+  "category": "landmark",
+  "wikidataId": "Q494865",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 149.142,
+    "latitude": -35.2985
+  },
+  "visualBrief": "Three white concrete shafts with sloping crowns rise above Queen Elizabeth II Island. The glazed clavier room and open finned bell chamber fit between them.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r3/r3d/national_carillon/models/queen-elizabeth-island-carillon.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:National_Carillon%2C_Canberra_ACT.jpg",
+    "https://www.nca.gov.au/attractions/lake-burley-griffin",
+    "https://www.nca.gov.au/attractions/national-carillon",
+    "https://www.openstreetmap.org/way/8016458"
+  ],
+  "geographicProposal": {
+    "id": "national-carillon-canberra",
+    "title": "National Carillon",
+    "asset": "molen.worldgen.structure.national_carillon",
+    "anchor": [
+      149.142,
+      -35.2985
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 558.96875,
+    "bounds": [
+      149.1416584865856,
+      -35.298573266777744,
+      149.14182771341024,
+      -35.29842303323637
+    ],
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q494865",
+      "names": [
+        "National Carillon",
+        "National Carillon, Canberra",
+        "Canberra Carillon"
+      ],
+      "maxDistance": 92
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -29.027759,
+          2.593745
+        ],
+        [
+          -28.555319,
+          -3.885049
+        ],
+        [
+          -25.039281,
+          -3.484299
+        ],
+        [
+          -23.122268,
+          -6.567848
+        ],
+        [
+          -17.652875,
+          -2.827515
+        ],
+        [
+          -19.678912,
+          0.144715
+        ],
+        [
+          -18.397875,
+          3.439773
+        ],
+        [
+          -23.967207,
+          6.15597
+        ],
+        [
+          -25.611659,
+          2.749592
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace only the named carillon. The island and its public footbridge remain native map features."
+    },
+    "source": "https://www.openstreetmap.org/way/8016458",
+    "note": "The three legs meet the surveyed base polygon with their triangular arrangement preserved. Lake Burley Griffin uses its documented water level.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f7962224863ad148f1dca2f201d80027a1354f7b083b4714c7bd2ba154e71b6f"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "quartz": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.94
+      },
+      "platform": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.97
+      },
+      "fins": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.89
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.8
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.55
+      }
+    },
+    "errorMeters": 0.73,
+    "module": "content/worldgen/source/places/r3/r3d/national_carillon/models/queen-elizabeth-island-carillon.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "quartz": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.94
+          },
+          "platform": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.97
+          },
+          "fins": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55
+          }
+        },
+        "errorMeters": 0.29
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "quartz": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.94
+          },
+          "platform": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.97
+          },
+          "fins": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55
+          }
+        },
+        "errorMeters": 0.109
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "quartz": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.94
+          },
+          "platform": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.97
+          },
+          "fins": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55
+          }
+        },
+        "errorMeters": 0.045
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -23,
+        23,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "three-concrete-shafts-and-lake",
+      "position": [
+        -76,
+        6,
+        61
+      ],
+      "lookAt": [
+        -23,
+        21,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "sloping-crowns-and-bell-fins",
+      "position": [
+        -47,
+        48,
+        31
+      ],
+      "lookAt": [
+        -23,
+        36,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "looking-through-the-open-base",
+      "position": [
+        -37,
+        2,
+        -14
+      ],
+      "lookAt": [
+        -23,
+        16,
+        0
+      ],
+      "fov": 58
+    }
+  ],
+  "limitations": [
+    "The tower height and bell count follow the National Capital Authority. Crown angles, room subdivisions and the placement and proportions of individual bells are estimated from photos."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -30.75894546508789,
+      -2.4000000953674316,
+      -8.542915344238281
+    ],
+    "max": [
+      -15.857848167419434,
+      50,
+      8.125287055969238
+    ]
+  },
+  "size": [
+    14.901097297668457,
+    52.40000009536743,
+    16.66820240020752
+  ],
+  "mesh": {
+    "triangles": 4625,
+    "vertices": 9035,
+    "materials": 5,
+    "bytes": 384028,
+    "sha256": "sha256:670b8f566cc29c2d84f79abac230f7951ccd8f4d525a2caadd8c0b402ec59a0b"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}
