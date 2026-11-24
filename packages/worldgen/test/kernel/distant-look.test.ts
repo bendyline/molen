@@ -7,6 +7,7 @@ import { describe, expect, it } from 'vitest';
 import { generateBuilding } from '../../src/kernel/building';
 import {
   distantBuildingLook,
+  GLASS_SHEEN,
   glazingFraction,
   SHARED_MATERIAL_MEANS,
   standInTint,
@@ -14,7 +15,7 @@ import {
 } from '../../src/kernel/distant-look';
 import { analyzeFootprint } from '../../src/kernel/footprint';
 import { MeshBufferBuilder } from '../../src/kernel/mesh-buffers';
-import { resolveBuildingRecipe } from '../../src/kernel/recipe';
+import { resolveBuildingRecipe, WINDOW_GLASS } from '../../src/kernel/recipe';
 import { packIdentity, resolveStylePackDocuments } from '../../src/kernel/stylepack';
 import { type BuildingRequest, FLAT_GROUND, type RGB, type Vec2 } from '../../src/kernel/types';
 import '../../src/kernel';
@@ -100,8 +101,45 @@ describe('distant building looks', () => {
     expect(luminance(recipe.parts.wall.color) * TEXTURED_SURFACE_MEAN).toBeGreaterThan(0.3);
     expect(luminance(look.wall)).toBeLessThan(0.25);
     expect(look.wall[2]).toBeGreaterThan(look.wall[0] + 0.03);
-    // A membrane roof is the darkest shared graph (0.40), so the roof reads mid-grey, not white.
-    expect(luminance(look.roof)).toBeLessThan(0.1);
+    // A membrane roof is the darkest shared graph (0.40), so even a white one reads mid-grey.
+    expect(luminance(look.roof)).toBeLessThan(0.36);
+  });
+
+  it('draws flat glass as bright as the textured pane, not at the black of its base color', () => {
+    // The mid-distance batch multiplies the glass tone by the textured mean.
+    const flat = luminance([...WINDOW_GLASS]) * TEXTURED_SURFACE_MEAN;
+    const pane = SHARED_MATERIAL_MEANS.window_grid as readonly number[];
+    const textured =
+      0.2126 * (pane[0] as number) + 0.7152 * (pane[1] as number) + 0.0722 * (pane[2] as number);
+    expect(flat).toBeGreaterThan(textured);
+    expect(flat).toBeLessThan(textured + 2 * GLASS_SHEEN);
+  });
+
+  it('builds tall blocks light: no large wall or roof under a tower is near black', () => {
+    // A city's towers are its skyline, and one near-black style turns the whole of it black.
+    const lightness = (hex: string): number => {
+      const c = [1, 3, 5].map((i) => Number.parseInt(hex.slice(i, i + 2), 16) / 255);
+      return (Math.max(...c) + Math.min(...c)) / 2;
+    };
+    for (const id of ['skyscraper', 'office_block', 'apartment_tower', 'hotel']) {
+      const doc = style(`molen.worldgen.use.${id}`);
+      const keys = new Set(
+        doc.materials.wall.choices.map((choice) => choice.palette ?? doc.materials.wall.palette),
+      );
+      for (const key of keys)
+        for (const entry of doc.palettes[key as string]?.entries ?? [])
+          expect(lightness(entry.color), `${id} ${entry.color}`).toBeGreaterThan(0.55);
+      const roof = doc.palettes[doc.materials.roof.palette as string]?.entries ?? [];
+      const weight = roof.reduce((sum, entry) => sum + entry.weight, 0);
+      const pale = roof
+        .filter((entry) => lightness(entry.color) > 0.7)
+        .reduce((sum, entry) => sum + entry.weight, 0);
+      expect(pale / weight, `${id} roofs`).toBeGreaterThan(0.6);
+      for (let n = 0; n < 24; n++) {
+        const look = distantBuildingLook(doc, identity, { ...TOWER, identity: `f:tall-${n}` });
+        expect(luminance(look.wall), `${id} ${n}`).toBeGreaterThan(0.15);
+      }
+    }
   });
 
   it('paints a box stand-in in the look its full building shows', () => {

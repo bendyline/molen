@@ -6,6 +6,59 @@ people, animals and the animated diorama structures. It complements the
 this page records what a whole-fleet review found, the rules that came out of it, and the
 tools that make the next review fast.
 
+## The human review of 2026-11-23
+
+Seen in the world explorer's designer, the twelve faces looked like one person, braids and locks
+hung free of the hair, the beard was a dark panel on the cheek, and the legs read as too long.
+Every change was judged in rendered sheets (faces from the front, three-quarters and the side;
+every hair style from three sides; the nine body shapes; walk and run at 16 phases a cycle) at
+all three tiers, then in the designer itself.
+
+| Part | What was wrong | What changed |
+| --- | --- | --- |
+| Head | The face stood 0.43 of a head width in front of the neck's axis (a head is about 0.6), so the chin barely cleared the throat and there was no jawline. Features were Gaussian bumps on a 40 x 30 grid: a nose without a bridge or wings, flat white eyes with the iris laid on top, two thin ribbons for lips, ears as upright sausages 18 mm deep. The head shape's fourteen parameters moved those bumps by a few millimeters. | A skull as deep in front as behind, so the jaw overhangs the throat by about 3 cm. The nose is its own planes (ridge, walls, wings, underside with nostrils); the eye is an almond under a lid that stands over it, with a lash line and an iris the lids cut off; lips have a bow, a fuller lower lip and a dark parting; brows taper; ears are shallow shells angled off the head. Five more head parameters (`faceLength`, `noseLength`, `mouthWidth`, `browArch`, `eyeLid`) and stronger effects for the first fourteen. The eleven presets keep their old values and take the new five by the same Latin-hypercube rule. Age shapes any face: softer and fuller on a child, thinner on an elder. |
+| Facial hair | The beard was a flat grid across the front of the face that stopped short of the ears and had no underside. | It wraps the jaw from sideburn to sideburn on the head's own angles, thins to nothing at its ends, hangs from the jaw's outline and tucks under the chin. The mustache is a shaped piece over the lip. |
+| Hair | Braids started 1.2 cm outside the skull behind the ear and hung straight down some centimeters behind the back; locks were ten sticks starting below a helmet; the skull showed through close shells in diamonds; the balding fringe ended on a square edge. | Braids start inside the shell low behind the ear, drop past the nape and lie on the back surface the body hands over, with crossed facets and a tie. Locks rise out of the shell at the crown, run down it as ridges and hang to the shoulders, at medium detail too. The skull above a full shell's hairline is no longer drawn (about 800 triangles near), so nothing can show through. Ears stand off the skull by the thickness of close-cut hair and hide under hair that covers them. The ponytail lies flat against the nape. |
+| Body | Each trouser leg grew out of half the waistband, so the legs appeared to start at the belt, 0.6 of the height. Knee at 0.25 over an ankle at 0.02; hips 0.223 across; no seat (0.107 deep); a flat board in profile; legs as thin as leggings (0.068 through at the knee); shoes 0.154 long with the ankle a third of the way along. | One hip block from the waistband (0.578) to the crotch (0.475), splitting into two legs. Hip joint 0.52, knee 0.275, ankle 0.04; hips 0.199 across and 0.132 deep; rows with their own front and back depths make the chest, shoulder blades, hollow back and seat; trousers cut as cloth (0.081 at the knee, 0.073 at the hem) with crisp hems; set-in sleeves under a deltoid cap; shoes 0.166 long with the ankle 27% from the heel. Hip to ankle stays 0.48, so riders reach what they reached. |
+| Motion | The walk swung the hips as a cosine, so stance feet slid and the stride ignored speed; feet stayed level; standing figures only breathed. | Walk and run are solved from foot paths by two-bone IK with the stride `speed / strideRate`: worst stance slip 0.0002 mm over seven bodies and nine speeds. Heel strike, heel-off and toe-off; pelvis height from what the legs reach; shoulders against the pelvis; arms with a lagging elbow; a flight phase in the run. People take 2.7 leg lengths a stride at Froude 1 (`figureStrideRate`): 112 steps a minute at 1.35 m/s, where the cross-species 2.3 gave 134. Idle shifts weight between the legs with the feet planted. Arms hang clear of hips wider than the shoulders (`FigureMetrics.hipOutline`). |
+
+Triangles fell: the default adult is 5,620 / 1,858 / 964 (was 7,500 / 2,234 / 1,088) and the
+heaviest styling (locs, a beard, a coat over a skirt) 7,352 / 2,388 / 1,072 against caps of
+9,000 / 2,600 / 1,200. The ears went from 576 triangles to 96 and the hidden scalp is gone.
+
+Things that looked right by the numbers and wrong on screen:
+
+- **The legs were not long.** Hip, knee and crotch heights were at or below adult means. What
+  read as length was where the legs appeared to begin. Measure a complaint, then look for what
+  the eye is using as the landmark.
+- **An iris laid on the face's surface sinks.** The socket is hollow, so the white stretched
+  between the lid margins sits in front of an iris placed on the surface under it. The eye has
+  its own surface between the lids, and a ray test pins it.
+- **A coarser shell needs more room.** A hair shell spanning the skull's curve in fewer rows
+  cuts under it: medium and distant shells stand 1.3 and 2.5 mm further off.
+- **Flat shading was tried and not adopted.** On the near tier's 40 x 30 head it reads as
+  noise; the planes come from features with their own vertices (the nose, the lids, hems).
+
+The pinned state hashes in `examples/figures-gallery` and `examples/dioramas` moved with the
+rig and the stride rate. Five landmarks carve their statues from this body (Louisville Water
+Tower, the New York Stock Exchange pediment, the Empress Joséphine, the Trevi Fountain and
+Antigua Guatemala Cathedral), and the asset key does not cover the figures package's build
+output: their GLBs stay as they are until their generators next run, and change then (they pose
+with `mode: 'custom'`, so only the geometry moves).
+
+That next run was the first source build in CI, and it failed: `louisville_water_tower:
+degenerate Float32 triangle`. Lips and eyelids taper to a point at their corners, and each cell
+there kept a second triangle with two corners on that point: 12, 8 and 4 triangles without area
+per body at the three tiers. They draw nothing, but the landmark exporter rejects a mesh that
+holds one. The face patches no longer emit them (`spansNoArea`), a test pins it for every head,
+age and tier, and the five landmarks were regenerated, imported and given their levels of detail
+to check the rest of the build: 97,915 triangles for Louisville (102,479 from the body before
+this review), the Trevi's street level 15,560 of its 16,000. Long hair, hair under a hat and the
+open fronts of coats and jackets still hold such triangles, as they did before this review; no
+statue wears them. Check a figure change against the statues before calling it done:
+`node packages/worldgen/scripts/generate-authored-places.mjs --ids=<the five> --check` must stop
+at "Stale generated output", which is past the mesh checks.
+
 ## The figure review of 2026-11-08
 
 Humans still read wrong in the world explorer (long neck, broad chest), and every pedestrian wore
@@ -267,12 +320,19 @@ Worth adding next:
 
 - Aircraft draw calls: consolidate static detail by material in the per-aircraft builders.
 - Elephants are blocky; birds at rest could use more shape.
-- Figures: a fully seated skirt still shows the knees through its front (each hem vertex follows
-  its thigh at most 0.85); long hair and a ponytail twist where a look-at turns the head past
-  about 60 degrees; the beard is a single sheet without an underside; every top is the same
-  button shirt (no jackets, T-shirts or dresses yet). Model sheets bake the bind pose under
-  their own lighting, which makes the dog's and cat's necks look flatter than they do posed in a
-  scene; judge necks in a scene render.
+- Figures: a skirt shows specks of thigh at the highest knee lift of a run and slivers of seat
+  from a rear three-quarter view when seated; long hair and a ponytail twist where a look-at
+  turns the head past about 60 degrees; long hair over a hoodie stands off the back as a slab;
+  shoes are rounded forms without a separate heel and stay rigid at toe-off; the distant tier's
+  temple hairline is one diagonal between two columns and its crotch a visible notch; short
+  hair styles differ little in silhouette; eyes do not blink. Walking backward steps forward
+  (`state.travel` is not read), a walk above about 2.4 m/s or a run above 5.4 leg lengths a
+  stride slips, elders run like young adults, and seated hands rest on the thighs rather than
+  on a stick or wheel. Long hair, hair tucked under a hat and the open fronts of coats and
+  jackets hold triangles without area (two corners on one point), which a statue carved from
+  such a body would be rejected for. Model sheets bake the bind pose under their own lighting,
+  which makes the dog's and cat's necks look flatter than they do posed in a scene; judge necks
+  in a scene render.
 - Cars do not yet reach 96 on look (refit self-grades 82–94). The most common builder limits
   the refits ran into: a hood-to-grille edge and per-corner fascia lean so noses stop reading as upright slabs under a
   soft hood; a shoulder crease across tailgates and trunk lids with a plate recess and a rear

@@ -28,6 +28,11 @@ export interface FigureMetrics {
   ankleHeight: number;
   footLen: number;
   hipHalf: number;
+  /**
+   * Half the breadth of a biped's hips as drawn, seat fullness included (0 for quadrupeds): what
+   * a hanging arm has to clear.
+   */
+  hipOutline: number;
   shoulderHalf: number;
   upperArmLen: number;
   foreArmLen: number;
@@ -103,20 +108,25 @@ export function deriveMetrics(d: ResolvedFigureDescriptor): FigureMetrics {
   const b = d.build;
   if (d.archetype === 'biped') {
     const form = FIGURE_FORMS[d.features.form] ?? FIGURE_FORMS.neutral;
-    // Landmarks (adult, fractions of stature): knee 0.25, hip joint 0.50, base of the neck
-    // 0.825, shoulder joint 0.80, chin 0.87. Earlier tables put the neck base at 0.80 and the
-    // chin at 0.856, which read as a long neck under a large head.
-    const fAnkle = 0.02;
-    const fLower = 0.23 * P.legRatio;
-    const fUpper = 0.25 * P.legRatio;
-    const fHips = 0.08 * P.torsoRatio;
-    const fSpine = 0.105 * P.torsoRatio;
-    const fChest = 0.14 * P.torsoRatio;
+    // Landmarks (adult, fractions of stature): ankle joint 0.04 (in a shoe), knee 0.275, hip
+    // joint 0.52, crotch 0.475, waist 0.59, base of the neck 0.825, shoulder joint 0.80, chin
+    // 0.87, as adults measure. Earlier tables put the neck base at 0.80 and the chin at 0.856,
+    // which read as a long neck under a large head, and the knee at 0.25 over an ankle in the
+    // sole under hips at 0.50, which read as a long thigh on a short shin. Hip to ankle is 0.48
+    // as it was, so a rider's legs still reach what they reached.
+    const fAnkle = 0.04;
+    const fLower = 0.235 * P.legRatio;
+    const fUpper = 0.245 * P.legRatio;
+    const fHips = 0.07 * P.torsoRatio;
+    const fSpine = 0.1 * P.torsoRatio;
+    const fChest = 0.135 * P.torsoRatio;
     const fNeck = 0.03 * P.neckLength;
     const fHead = HEAD_FRACTION * P.headScale;
     const k = H / (fAnkle + fLower + fUpper + fHips + fSpine + fChest + fNeck + fHead);
     const headLen = fHead * k;
     const hipHeight = (fAnkle + fLower + fUpper) * k;
+    const hipHalf = 0.054 * H * P.hipWidth * form.hip * (1 + 0.25 * b);
+    const limbRadius = 0.035 * H * (1 + 0.4 * b);
     return {
       archetype: 'biped',
       height: H,
@@ -133,8 +143,13 @@ export function deriveMetrics(d: ResolvedFigureDescriptor): FigureMetrics {
       upperLegLen: fUpper * k,
       lowerLegLen: fLower * k,
       ankleHeight: fAnkle * k,
-      footLen: 0.14 * H,
-      hipHalf: 0.06 * H * P.hipWidth * form.hip * (1 + 0.25 * b),
+      // A foot is about 0.152 of stature; the shoe drawn on it is 1.1 of this.
+      footLen: 0.15 * H,
+      // Hip joints about 0.108 of stature apart: the thighs meet below the crotch and the feet
+      // stand under the hips. At 0.12 the legs stood apart and the hips measured 0.22 across.
+      hipHalf,
+      // Hips about 0.2 of stature across at the joints (0.195 masculine, 0.21 feminine).
+      hipOutline: (hipHalf + limbRadius * 1.3) * (1 + ((P.seat ?? 1) - 1) * 0.8),
       // The shoulder joint, not the outside of the deltoid: about 0.2 of stature apart.
       shoulderHalf: 0.099 * H * P.shoulderWidth * form.shoulder * (1 + 0.12 * b),
       upperArmLen: 0.17 * H * P.armRatio,
@@ -142,7 +157,7 @@ export function deriveMetrics(d: ResolvedFigureDescriptor): FigureMetrics {
       handLen: 0.1 * H * P.armRatio,
       // Half the chest depth: about 0.135 of stature front to back.
       torsoRadius: 0.07 * H * form.chest * (1 + 0.3 * b),
-      limbRadius: 0.035 * H * (1 + 0.4 * b),
+      limbRadius,
       hipHeight,
       legLength: (fLower + fUpper) * k,
       bodyLength: 0,
@@ -185,6 +200,7 @@ export function deriveMetrics(d: ResolvedFigureDescriptor): FigureMetrics {
     ankleHeight: 0,
     footLen: 0,
     hipHalf: 0.72 * bodyRadius * P.hipWidth,
+    hipOutline: 0,
     shoulderHalf: 0.7 * bodyRadius * P.shoulderWidth,
     upperArmLen: 0,
     foreArmLen: 0,

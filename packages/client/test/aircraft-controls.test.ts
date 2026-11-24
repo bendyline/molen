@@ -102,6 +102,44 @@ describe('cockpit pilot inputs', () => {
   });
 });
 
+describe('cockpit floor', () => {
+  it("is the bottom of the pedals nearest the pilot's eye, wherever the model stands", () => {
+    const pedalSpec = structuredClone(spec);
+    pedalSpec.pilotEye = [0, 2, 0];
+    pedalSpec.visual.interior = {
+      nodes: ['cockpit'],
+      bindings: ['pedal-left', 'pedal-right', 'rear-pedal-left', 'rear-pedal-right'].map(
+        (node) => ({ node, source: 'yawInput', property: 'position', axis: 'z', scale: 0.05 }),
+      ),
+    };
+    const model = new THREE.Group();
+    const pedal = (name: string, x: number, y: number, z: number): void => {
+      // The pad hangs from its hinge, as authored pedals do: the node's own origin is not its floor.
+      const hinge = new THREE.Group();
+      hinge.name = name;
+      hinge.position.set(x, y + 0.3, z);
+      const pad = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.2, 0.05));
+      pad.position.y = -0.2;
+      hinge.add(pad);
+      model.add(hinge);
+    };
+    pedal('pedal-left', 0.1, 1, 0.8);
+    pedal('pedal-right', -0.1, 1, 0.8);
+    // The second seat's, behind and higher.
+    pedal('rear-pedal-left', 0.1, 1.4, -1.2);
+    pedal('rear-pedal-right', -0.1, 1.4, -1.2);
+    expect(createAircraftCockpit(model, pedalSpec).floor).toBeCloseTo(1, 6);
+    model.position.set(100, 40, -20);
+    model.rotation.y = 1.1;
+    expect(createAircraftCockpit(model, pedalSpec).floor).toBeCloseTo(1, 6);
+  });
+  it('is unknown without pedals', () => {
+    const bare = structuredClone(spec);
+    delete bare.visual.interior;
+    expect(createAircraftCockpit(new THREE.Group(), bare).floor).toBeUndefined();
+  });
+});
+
 describe('cockpit meshes', () => {
   it('wires authored switches and selectors to commands, retaining legacy stick animation', () => {
     const model = new THREE.Group();

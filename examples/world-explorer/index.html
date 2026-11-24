@@ -78,6 +78,10 @@
       #override-controls legend { float: left; margin-right: 8px; color: #a9c2d1; font-size: 12px; line-height: 28px; }
       #override-controls > div { display: flex; flex-wrap: wrap; gap: 7px; clear: both; margin-top: 7px; }
       #override-status { margin: 6px 0 0; color: #9fb8c7; font-size: 11px; }
+      #figure-controls { margin: 10px 0 0; padding: 0; border: 0; pointer-events: auto; }
+      #figure-controls legend { float: left; margin-right: 8px; color: #a9c2d1; font-size: 12px; line-height: 28px; }
+      #figure-controls > div { display: flex; flex-wrap: wrap; gap: 7px; }
+      #figure-status { margin: 6px 0 0; color: #9fb8c7; font-size: 11px; }
       button {
         border: 1px solid rgb(255 255 255 / 18%); border-radius: 7px; padding: 7px 10px;
         color: #deedf6; background: rgb(255 255 255 / 7%); cursor: pointer; font: 600 12px inherit;
@@ -144,6 +148,18 @@
         #help { box-sizing: border-box; left: 14px; max-width: calc(100vw - 28px); margin: 0; padding: 6px 8px; border-radius: 6px; background: rgb(12 24 35 / 90%); color: #deedf6; font-size: 11px; }
       }
       #error { color: #ffd1c7; }
+      /* The character designer (src/explorer-figure.ts). The designer itself is in a shadow tree,
+         so the bare element rules here do not reach it. */
+      #figure-dialog {
+        box-sizing: border-box; width: min(980px, calc(100vw - 24px)); height: min(820px, calc(100dvh - 24px));
+        padding: 0; border: 1px solid rgb(255 255 255 / 25%); border-radius: 12px; overflow: hidden;
+        background: #0c1823; color: #deedf6; box-shadow: 0 14px 45px rgb(0 0 0 / 45%);
+      }
+      #figure-dialog[open] { display: flex; flex-direction: column; }
+      #figure-dialog > header { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 10px 10px 16px; border-bottom: 1px solid rgb(255 255 255 / 12%); }
+      #figure-dialog h2 { margin: 0; font: 650 17px/1.2 inherit; }
+      #figure-dialog > header button { min-height: 44px; padding: 7px 16px; }
+      #figure-dialog > div { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 14px 16px; }
     </style>
   </head>
   <body>
@@ -279,6 +295,14 @@
       </fieldset>
       <p id="worldgen-status" role="status" hidden>Loading buildings…</p>
       <p id="navigation-status" role="status">Fly mode · Explore from above</p>
+      <fieldset id="figure-controls" title="Seen on foot and from outside what you drive or fly (V changes view)">
+        <legend>Your figure</legend>
+        <div>
+          <button type="button" id="figure-design" title="Choose your figure's look">Design…</button>
+          <button type="button" id="figure-random" title="Be someone new, drawn at random">Surprise me</button>
+        </div>
+        <p id="figure-status" role="status"></p>
+      </fieldset>
       <fieldset id="override-controls">
         <legend>Replace building</legend>
         <select id="override-sample" aria-label="What to put in its place"></select>

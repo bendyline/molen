@@ -247,6 +247,10 @@ export class EarthAircraft {
   /** The aircraft `pilotMotion` last followed: a change of seat starts it afresh. */
   private pilotSeat: string | undefined;
 
+  /** Height of an aircraft's cockpit floor in its own frame, once its model has loaded. */
+  cockpitFloor(id: string): number | undefined {
+    return this.visuals.get(id)?.cockpit.floor;
+  }
   /** Active pilot station for the shared mesh picker and accessible control panel. */
   cockpitSession(): AircraftCockpitSession | undefined {
     return this.view === 'cockpit' ? this.controlSession() : undefined;

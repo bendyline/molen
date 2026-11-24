@@ -168,7 +168,7 @@ describe('placement compiler', () => {
     expect(
       Object.values(divided.directory.shards).reduce((sum, shard) => sum + shard.count, 0),
     ).toBe(source.entries.length);
-  });
+  }, 30_000); // Reads every source record and compiles the full catalog three times under suite load.
 
   it('indexes extended bounds and identity neighborhoods across boundaries and at the poles', async () => {
     const entry = (id, anchor) => ({

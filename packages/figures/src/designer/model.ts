@@ -1,7 +1,7 @@
 /**
- * The headless figure designer: one look under edit, the steer that orders its options, undo and
- * redo, and change notifications. Framework-free and DOM-free; the React designer and any host
- * UI drive it. Edits are immutable: every change installs a new look object.
+ * The headless figure designer: one look under edit, undo and redo, and change notifications.
+ * Framework-free and DOM-free; the React designer and any host UI drive it. Edits are immutable:
+ * every change installs a new look object.
  *
  * Transient edits (`commit: false`, a slider or colour picker mid-drag) update the look without
  * an undo step; the next committed edit records one step from where the drag began.
@@ -47,7 +47,10 @@ export interface FigureDesignerModelOptions {
   /** Any value: it is normalized (repaired) first. */
   look: unknown;
   catalog?: FigureLookCatalog;
-  /** Default 'unspecified'. */
+  /**
+   * What every random look leans toward. Left out, each one leans for itself: a new person rolls
+   * a steer, and a new outfit follows the person kept (see `randomFigureLook`).
+   */
   steer?: FigureLookSteer;
   /** Seeds for "surprise me" (default: crypto random). */
   randomSeed?: () => string;
@@ -63,7 +66,8 @@ export type FigureDesignerListener = (
 export interface FigureDesignerModel {
   readonly catalog: FigureLookCatalog;
   readonly look: FigureLook;
-  readonly steer: FigureLookSteer;
+  /** The steer random looks are held to, if the host set one. */
+  readonly steer: FigureLookSteer | undefined;
   /** The figure descriptor of the look (with `outfit` worn instead, when set). */
   readonly figure: FigureDescriptor;
   readonly canUndo: boolean;
@@ -78,8 +82,11 @@ export interface FigureDesignerModel {
   setHeight(meters: number, options?: { commit?: boolean }): void;
   /** A new random look; `keep` names the parts to leave as they are. */
   randomize(keep?: readonly FigureLookPart[]): void;
-  /** Set by the host (option order and random looks follow it); notifies no one. */
-  setSteer(steer: FigureLookSteer): void;
+  /**
+   * Set by the host: random looks follow it, and undefined lets each lean for itself. Notifies no
+   * one.
+   */
+  setSteer(steer: FigureLookSteer | undefined): void;
   /** Replace the look from outside (a host's saved value): no undo step and no `onChange`. */
   setLook(look: unknown): void;
   undo(): boolean;
@@ -101,7 +108,7 @@ export function createFigureDesignerModel(
   const limit = options.historyLimit ?? 50;
   const seed = options.randomSeed ?? defaultSeed;
   let look = normalizeFigureLook(options.look, { catalog }).look;
-  let steer: FigureLookSteer = options.steer ?? 'unspecified';
+  let steer: FigureLookSteer | undefined = options.steer;
   let outfit: FigureLookOutfit | undefined;
   let figure: FigureDescriptor | undefined;
   const past: FigureLook[] = [];
@@ -177,7 +184,7 @@ export function createFigureDesignerModel(
       edit(
         randomFigureLook(seed(), {
           catalog,
-          steer,
+          ...(steer !== undefined ? { steer } : {}),
           age: look.person.age,
           ...(keep !== undefined && keep.length > 0 ? { keep: { look, parts: keep } } : {}),
         }),

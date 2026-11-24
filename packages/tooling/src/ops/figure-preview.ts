@@ -17,10 +17,10 @@ import {
   type FigurePresetId,
   type FigureStateData,
   type FigureTier,
+  figureStrideRate,
   generateFigureBody,
   type ResolvedFigureDescriptor,
   resolveFigureDescriptor,
-  strideRateFor,
 } from '@bendyline/molen-figures/kernel';
 import { FIGURE_LOOK_FORMAT, figureFromLook, figureLookPool } from '@bendyline/molen-figures/look';
 import { hashJson } from '@bendyline/molen-kernel/determinism';
@@ -166,7 +166,7 @@ function stateFor(mode: FigureMode, d: ResolvedFigureDescriptor): FigureStateDat
   return {
     mode,
     speed,
-    strideRate: strideRateFor(speed, rig.legLength),
+    strideRate: figureStrideRate(rig, speed),
     phaseAt: 0,
     phaseAtTick: 0,
     modeAtTick: 0,

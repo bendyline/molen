@@ -19,7 +19,7 @@ import { createFigureMaterial } from '../client/material';
 import { applyPose, type FigureMesh, figureBodyToSkinnedMesh } from '../client/upload';
 import type { FigureStateData } from '../kernel/components';
 import { resolveFigureDescriptor } from '../kernel/descriptor';
-import { strideRateFor } from '../kernel/gait';
+import { figureStrideRate } from '../kernel/gait';
 import { evaluatePose, type FigurePose } from '../kernel/pose';
 import type { FigureRig } from '../kernel/rig';
 import type { FigureTier } from '../kernel/skinned-mesh-builder';
@@ -138,7 +138,7 @@ function stateFor(pose: FigurePreviewPose, rig: FigureRig): FigureStateData {
   return {
     mode: pose,
     speed,
-    strideRate: strideRateFor(speed, rig.legLength),
+    strideRate: figureStrideRate(rig, speed),
     phaseAt: 0,
     phaseAtTick: 0,
     modeAtTick: 0,

@@ -47,6 +47,11 @@ export interface AircraftCockpit {
   controls: readonly AircraftCockpitControl[];
   /** Adapted interior bindings give each physical throttle its own engine signal. */
   interior: AircraftSpec['visual']['interior'];
+  /**
+   * Height of the floor at the pilot's feet in the model's frame: the bottom of the rudder pedals
+   * nearest their eye. Undefined when the model has no pedals.
+   */
+  floor: number | undefined;
   pick(ray: THREE.Ray): AircraftCockpitControl | undefined;
 }
 
@@ -216,6 +221,13 @@ export function createAircraftCockpit(model: THREE.Object3D, spec: AircraftSpec)
   return {
     controls,
     interior,
+    floor: pedalFloor(
+      model,
+      controls
+        .flatMap((c) => (c.action === 'yaw' ? c.nodes : []))
+        .flatMap((n) => nodes.get(n) ?? []),
+      spec.pilotEye,
+    ),
     pick(ray) {
       caster.ray.copy(ray);
       model.updateWorldMatrix(true, true);
@@ -241,6 +253,40 @@ export function createAircraftCockpit(model: THREE.Object3D, spec: AircraftSpec)
       return undefined;
     },
   };
+}
+
+/** The lowest point, in the model's frame, of the pedal nearest the pilot's eye. */
+function pedalFloor(
+  model: THREE.Object3D,
+  pedals: readonly THREE.Object3D[],
+  pilotEye: readonly [number, number, number],
+): number | undefined {
+  if (pedals.length === 0) return undefined;
+  model.updateMatrixWorld(true);
+  const toModel = model.matrixWorld.clone().invert();
+  const eye = new THREE.Vector3().fromArray(pilotEye);
+  let floor: number | undefined;
+  let nearest = Number.POSITIVE_INFINITY;
+  for (const pedal of pedals) {
+    const box = new THREE.Box3();
+    pedal.traverse((object) => {
+      const geometry = (object as THREE.Mesh).isMesh ? (object as THREE.Mesh).geometry : undefined;
+      if (geometry === undefined) return;
+      if (geometry.boundingBox === null) geometry.computeBoundingBox();
+      if (geometry.boundingBox !== null)
+        box.union(
+          geometry.boundingBox
+            .clone()
+            .applyMatrix4(object.matrixWorld.clone().premultiply(toModel)),
+        );
+    });
+    if (box.isEmpty()) continue;
+    const distance = box.getCenter(new THREE.Vector3()).distanceTo(eye);
+    if (distance >= nearest) continue;
+    nearest = distance;
+    floor = box.min.y;
+  }
+  return floor;
 }
 
 export function aircraftControlValue(

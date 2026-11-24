@@ -114,6 +114,13 @@ const headSchema = z
     eyeTilt: headParam.describe('Outer corners down (-1) to up (1).').optional(),
     lips: headParam.describe('Thin (-1) to full (1).').optional(),
     crown: headParam.describe('Flat (-1) to rounded (1) skull top.').optional(),
+    faceLength: headParam.describe('Short (-1) to long (1) face.').optional(),
+    noseLength: headParam.describe('Short (-1) to long (1) nose.').optional(),
+    mouthWidth: headParam.describe('Narrow (-1) to wide (1) mouth.').optional(),
+    browArch: headParam.describe('Straight (-1) to arched (1) eyebrows.').optional(),
+    eyeLid: headParam
+      .describe('A smooth upper lid with no fold (-1) to a deep-set eye under a high fold (1).')
+      .optional(),
   })
   .describe(
     'Human head shape: a preset and/or parameters, each -1..1 with 0 the reference head. Absent, the face follows the body form.',

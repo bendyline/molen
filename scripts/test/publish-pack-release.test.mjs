@@ -38,8 +38,8 @@ function fakeGitHub() {
   let nextId = 100;
   const runGh = (args) => {
     commands.push(args);
-    if (args.some((a) => a.endsWith('/releases?per_page=100')))
-      return JSON.stringify([release ? [release] : []]);
+    if (args.includes('--jq') && args.at(-1).endsWith('/releases?per_page=100'))
+      return release ? `${JSON.stringify(release)}\n` : '';
     if (args.includes('POST')) {
       release = { id: 7, draft: true, tag_name: 'packs' };
       return JSON.stringify(release);

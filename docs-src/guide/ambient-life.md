@@ -306,10 +306,11 @@ a package's finest tiles as fine enough to read in the same way.
 `createAmbientRenderer` draws pedestrians with `AmbientFigures`, which a host can also use for its
 own characters: `update(walkers, camera, tick, tickRate)` takes `WalkerView`s (`id`, `figure`,
 `pos`, `rot`, `speed`, `since`, `hidden`), pools a skinned body per descriptor and poses it from
-its speed. Three optional fields go beyond walking: `mode` (`'run'`, or `'sit'` for a seated pose),
-`anchor: 'eye'` (the position is the eye point, as a vehicle seat names it) and `lookAt` (a world
-point the head turns toward). A seated or eye-anchored figure is drawn only at the animated detail
-tiers. The Earth view draws its actors and the walker's avatar this way.
+its speed. Four optional fields go beyond walking: `mode` (`'run'`, or `'sit'` for a seated pose),
+`anchor: 'eye'` (the position is the eye point, as a vehicle seat names it), `floor` (how far below
+that point the seat's floor is: legs too long to hang above it rest on it, stretched out in front)
+and `lookAt` (a world point the head turns toward). A seated or eye-anchored figure is drawn only at
+the animated detail tiers. The Earth view draws its actors and the walker's avatar this way.
 
 ## In the Earth view
 

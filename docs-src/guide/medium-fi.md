@@ -98,8 +98,8 @@ exported from `@bendyline/molen-earth/client` as `EARTH_SKY_PALETTE`, `EARTH_LIG
 
 | Element | Value | What it means for an asset |
 | --- | --- | --- |
-| Sun | Near-neutral white `#fff8f0`, intensity 6.1, `referenceElevation` 26° | Sunlit horizontal faces render near their authored color at any time of day: above 26° the rig adapts as a camera's exposure would, so midday is not brighter than the palette |
-| Sky fill | `dayAmbient` 1.25 from the sky dome at `skyLightSaturation` 0.3, warm ground bounce `#9a8f70` | Faces in shade sit at roughly a third of lit faces, gently cool rather than blue, so slopes, streets and darks read with photographic contrast |
+| Sun | Near-neutral white `#fff8f0`, intensity 4.9, `referenceElevation` 26° | Sunlit horizontal faces render near their authored color at any time of day: above 26° the rig adapts as a camera's exposure would, so midday is not brighter than the palette |
+| Sky fill | `dayAmbient` 1.4 from the sky dome at `skyLightSaturation` 0.3, warm ground bounce `#9a8f70` that brightens with the sun on the ground | Level ground in shade gets a quarter of the light of the same ground in sun and shows at about 40% of its value (pale paving at half), gently cool rather than blue, so slopes, streets and darks read with photographic contrast and no face goes black |
 | Tone mapping | ACES filmic, exposure 1.05 | Authored colors keep their hue with a little mid-tone contrast; shade reads cool grey, not navy |
 | Cast shadows | On from the Medium tier up, in a shadow map that follows the camera | Do not bake shadows or ambient occlusion into colors or textures |
 | Sky | Saturated zenith `#2a6cc4` over a pale horizon `#b2cde4`, both lifted by ACES on screen | Large pure-white surfaces outshine it; prefer off-whites and creams |
@@ -151,7 +151,7 @@ where real buildings have it. Avoid both grey-on-grey and candy color.
 | Clay tile roof in sun | 48–63% | 35–55% | terracotta `#c06c48`, pale weathered tile `#d1946f`, northern clay `#a25c48` |
 | Flat roof (membrane, gravel) | 45–90% | 0–12% | white membrane `#e6e6e2`, pale grey `#d3d4d0`, gravel `#b0a693`, dark membrane `#74777b`; mostly pale, a few dark |
 | Trim and frames | 85–95% or 22–30% | 0–30% | white `#f4f1ea`, dark frame `#3b3e42` |
-| Untextured window glass | 35–45% | 20–30% | blue-grey pane `#4d6178` |
+| Untextured window glass | 55–65% | 20–30% | blue-grey pane `#8099b5`, drawn at `TEXTURED_SURFACE_MEAN` like every flat surface: the pane's on-screen average, the sky in it included |
 | Glazed facade, as seen in sun | 40–60% | 10–30% | takes the sky: pale blue-grey by day, gold at sunset |
 | Lawn and residential ground | 45–55% | 25–35% | lawn `#8aa065`, grass `#7fa258`, park `#6c9a55` |
 | Paved and commercial ground | 60–70% | 5–12% | paving `#aaa59a`; sidewalks in this band, curbs up to 75% |
@@ -426,9 +426,10 @@ reference and proportion work; Bendy styling is not a substitute for the real ve
 - A material graph that will be tinted averages near white (sRGB 0.85 or above), so palettes
   keep their meaning.
 - Never bake directional light, shadows, ambient occlusion or dirt gradients into base color.
-- Glass is a dark blue-grey pane with a modest reflection, not a mirror: the shared window graphs
-  give frames a satin roughness and panes a smooth one, so the sky reflects in the pane and
-  brightens it toward grazing angles.
+- Glass is a dark blue-grey pane that reflects about a sixth of the sky it faces, not a mirror:
+  the shared window graphs give frames a satin roughness and panes a smooth one, and the engine
+  draws generated windows with a coated pane's reflectance, so the sky lifts the pane's dark base
+  color and brightens it toward grazing angles.
 - Identity lettering is geometry, vertex color, or letters from the one shared glyph atlas
   (storefront names), never a texture per business.
 - Photographs from research are evidence, not textures, and never ship inside a model.

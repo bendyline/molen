@@ -30,6 +30,54 @@ const smooth = (v: number): number => {
   return t * t * (3 - 2 * t);
 };
 
+/** How far the zenith a surface is lit by sits towards the horizon's brightness (see below). */
+const ZENITH_LIFT = 0.5;
+/** The exponent of the palette's gradient from horizon to zenith, by the sine of the elevation. */
+const SKY_GRADIENT = 0.45;
+/** Mean of that gradient over the sky as a level surface sees it (weighted by the cosine). */
+const SKY_GRADIENT_MEAN = 2 / (2 + SKY_GRADIENT);
+
+/** Relative luminance of a linear color. */
+export const luminance = (color: THREE.Color): number =>
+  color.r * 0.2126 + color.g * 0.7152 + color.b * 0.0722;
+
+/**
+ * Sky radiance that lights a level surface exactly as the hemisphere light the map replaces:
+ * `brightness` (its intensity over π) times its sky color, `horizon`.
+ *
+ * A palette's zenith is far darker than its horizon, and most of the sky a surface sees is nearer
+ * the zenith. Passed through as drawn, the Earth palette gave level ground 40% of the hemisphere's
+ * light and walls 70%, so every cast shadow and the shaded side of every street rendered nearly
+ * black. The zenith is drawn deep for the look of it, so it lights from half way to the horizon,
+ * which keeps a gradient in reflections without pushing the horizon far above the sky seen.
+ */
+export function skyFillRadiance(
+  zenith: THREE.Color,
+  horizon: THREE.Color,
+  brightness: number,
+): { zenith: RGB; horizon: RGB } {
+  const lifted = zenith.clone().lerp(horizon, ZENITH_LIFT);
+  const full = luminance(horizon);
+  const mean = full + (luminance(lifted) - full) * SKY_GRADIENT_MEAN;
+  const scale = brightness * (mean > 0 ? full / mean : 1);
+  return {
+    zenith: rgb(lifted.multiplyScalar(scale)),
+    horizon: rgb(horizon.clone().multiplyScalar(scale)),
+  };
+}
+
+/** The share of level ground that is in sun rather than in some building's or tree's shadow. */
+const GROUND_IN_SUN = 0.5;
+
+/**
+ * How much brighter sunlit ground is than its color under the sky alone. Ground in sun lights what
+ * stands on it: at noon in the tropics a wall gets no direct sun at all, and most of what it does
+ * get comes up from the street. `fill` and `sun` are the light intensities.
+ */
+export function groundBounce(fill: number, sun: number, sinElevation: number): number {
+  return fill > 0 ? 1 + (GROUND_IN_SUN * sun * Math.max(0, sinElevation)) / fill : 1;
+}
+
 /** Match the clear-sky palette, then replace directional colour with diffuse cloud radiance. */
 export function sampleSkyReflection(
   state: SkyReflectionState,
@@ -39,7 +87,7 @@ export function sampleSkyReflection(
   out: THREE.Color,
 ): THREE.Color {
   const dot = x * state.sunDirection[0] + y * state.sunDirection[1] + z * state.sunDirection[2];
-  const sky = clamp(y) ** 0.45;
+  const sky = clamp(y) ** SKY_GRADIENT;
   const sunset =
     state.twilightStrength * Math.exp(-Math.abs(y) * 7) * (0.25 + 0.7 * clamp((dot + 1) / 2) ** 8);
   const ground = y < 0 ? smooth(-y / 0.2) : 0;
@@ -188,22 +236,23 @@ export function reflectionStateFromLights(
   // HemisphereLight supplies irradiance; an environment map stores radiance. The PBR shader
   // integrates radiance over the hemisphere (π), so copying light intensity directly triples it.
   const brightness = (ambient?.intensity ?? 0.5) / Math.PI;
-  const horizon = (ambient?.color ?? background).clone().multiplyScalar(brightness);
-  const zenith = background.clone().multiplyScalar(brightness);
-  const ground = (ambient?.groundColor ?? new THREE.Color('#283b32'))
-    .clone()
-    .multiplyScalar(brightness);
+  const sky = skyFillRadiance(background, ambient?.color ?? background, brightness);
   const direction = sun
     ? sun.position.clone().sub(sun.target.position).normalize()
     : new THREE.Vector3(0, 1, 0);
+  const ground = (ambient?.groundColor ?? new THREE.Color('#283b32'))
+    .clone()
+    .multiplyScalar(
+      brightness * groundBounce(ambient?.intensity ?? 0.5, sun?.intensity ?? 0, direction.y),
+    );
   return {
-    zenith: rgb(zenith),
-    horizon: rgb(horizon),
+    zenith: sky.zenith,
+    horizon: sky.horizon,
     ground: rgb(ground),
-    twilight: rgb(horizon),
+    twilight: sky.horizon,
     twilightStrength: 0,
     sunDirection: direction.toArray(),
-    sunColor: rgb(sun?.color ?? horizon),
+    sunColor: sun ? rgb(sun.color) : sky.horizon,
     sunGlow: Math.min(0.22, (sun?.intensity ?? 0) * 0.08),
     clouds,
   };
