@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.khami",
+  "kind": "static-structure",
+  "title": "Khami Hill Complex",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.khami",
+        "output": "assets/places/ks/ksk/khami/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:71671edd3055151ad7671f3fc219b071cc1956ab0212c1e21193a7ea2302bfdd"
+      }
+    ],
+    "generators": [
+      {
+        "id": "khami",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "hill-terraces",
+        "path": "models/hill-terraces.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

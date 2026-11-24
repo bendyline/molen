@@ -1,0 +1,284 @@
+{
+  "id": "treffry_viaduct_luxulyan",
+  "planId": "treffry_viaduct_luxulyan",
+  "title": "Treffry Viaduct",
+  "assetId": "molen.worldgen.structure.treffry_viaduct_luxulyan",
+  "category": "bridge",
+  "collectionId": "cornwall_and_west_devon_mining_landscape",
+  "mapFeatureId": "way/1086486467",
+  "wikidataId": "Q7837780",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -4.73523,
+    "latitude": 50.3823812
+  },
+  "visualBrief": "Ten round granite arches carry the former tramway across the Luxulyan Valley. The narrow gravel crossing and parapets follow the mapped deck.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gb/gbu/treffry_viaduct_luxulyan/models/cornish-viaduct.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/1215/maps/",
+    "https://www.cornwallheritagetrust.org/our_sites/treffry-viaduct/",
+    "https://commons.wikimedia.org/wiki/File:Treffry_Viaduct%2C_Luxulyan%2C_Cornwall_(geograph_4030541).jpg",
+    "https://www.openstreetmap.org/way/1086486467"
+  ],
+  "geographicProposal": {
+    "id": "treffry-viaduct-luxulyan",
+    "title": "Treffry Viaduct",
+    "asset": "molen.worldgen.structure.treffry_viaduct_luxulyan",
+    "anchor": [
+      -4.73523,
+      50.3823812
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 79.713356,
+    "bounds": [
+      -4.736178547702002,
+      50.381883339047405,
+      -4.734348952300397,
+      50.38290096536732
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q7837780",
+      "names": [
+        "Treffry Viaduct",
+        "Treffry Viaduct",
+        "Treffry Aqueduct",
+        "Treffry Aqueduct Line"
+      ],
+      "maxDistance": 99.51776985265933
+    },
+    "replaceRoads": {
+      "length": 160.512532,
+      "width": 8.5,
+      "outline": [
+        [
+          -66.023787,
+          -50.31169
+        ],
+        [
+          55.777807,
+          54.228468
+        ],
+        [
+          61.232361,
+          47.873276
+        ],
+        [
+          -60.569233,
+          -56.666882
+        ]
+      ],
+      "bridgeFeatureIds": [
+        37548602
+      ],
+      "deckEndpoints": [
+        [
+          -63.29651,
+          -53.489286
+        ],
+        [
+          58.505084,
+          51.050872
+        ]
+      ],
+      "deckHeights": [
+        26.2326,
+        25.9153
+      ],
+      "includeConnectedApproaches": true,
+      "deckProfile": [
+        [
+          -63.29651,
+          26.2326,
+          -53.489286
+        ],
+        [
+          58.505084,
+          25.9153,
+          51.050872
+        ]
+      ]
+    },
+    "source": "https://www.openstreetmap.org/way/1086486467",
+    "note": "The authored viaduct is aligned to the native crossings and preserves neighboring roads, buildings and water.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4aec58efd60a06d2473ea2c19ce8907fa57c81d7cccb309e5891ec9f2380760c"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.95
+      },
+      "deck": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98
+      }
+    },
+    "errorMeters": 1.1,
+    "module": "content/worldgen/source/places/gb/gbu/treffry_viaduct_luxulyan/models/cornish-viaduct.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.092
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.031
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0.040319,
+        18.07395,
+        0.871596
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "bridge-overview",
+      "position": [
+        95.68970879309228,
+        54.966206,
+        -103.17759935706938
+      ],
+      "lookAt": [
+        0.040319,
+        18.07395,
+        0.871596
+      ],
+      "fov": 52
+    },
+    {
+      "name": "open-spans",
+      "position": [
+        27.479050431219225,
+        12.07395,
+        -33.56228844359639
+      ],
+      "lookAt": [
+        -4.831745,
+        22.62395,
+        -3.31001
+      ],
+      "fov": 57
+    },
+    {
+      "name": "deck-and-parapets",
+      "position": [
+        -18.51773728439039,
+        35.97395,
+        -44.04848872179819
+      ],
+      "lookAt": [
+        -4.831745,
+        25.97395,
+        -3.31001
+      ],
+      "fov": 57
+    }
+  ],
+  "limitations": [
+    "The outer map outline and transport axis establish the deck fit. The inner aqueduct conduit and historic machinery are outside the exterior model."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -65.331787109375,
+      -1.7793279886245728,
+      -55.860626220703125
+    ],
+    "max": [
+      60.54036331176758,
+      26.967599868774414,
+      53.42221450805664
+    ]
+  },
+  "size": [
+    125.87215042114258,
+    28.746927857398987,
+    109.28284072875977
+  ],
+  "mesh": {
+    "triangles": 3040,
+    "vertices": 6080,
+    "materials": 2,
+    "bytes": 257328,
+    "sha256": "sha256:548c2241f5be6fc8760e153b61c281f71e8c1d177eb09fb49dc27a80c8eab429"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

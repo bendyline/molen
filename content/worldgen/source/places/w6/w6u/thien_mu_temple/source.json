@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.thien_mu_temple",
+  "kind": "static-structure",
+  "title": "Thiên Mụ Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.thien_mu_temple",
+        "output": "assets/places/w6/w6u/thien_mu_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:18b364bda2b370881304648cf3a7f3f8126ad86ef76a65e51000a20bf5641e41"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-thien-mu-temple",
+        "path": "models/generate-thien-mu-temple.mjs"
+      },
+      {
+        "id": "thien-mu-temple-model",
+        "path": "models/thien-mu-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/thien-mu-temple-footprint.json",
+      "native-map/thien-mu-temple-building-footprints.json",
+      "reference-rights/thien-mu-temple-architectural-facts.json",
+      "reference-rights/thien-mu-temple-qualla-original-2.json",
+      "reference-rights/thien-mu-temple-qualla-original-3.json",
+      "reference-rights/thien-mu-temple-qualla-original-4.json",
+      "reference-rights/thien-mu-temple-qualla-original-5.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26172-14865.png",
+      "terrain-sources/terrarium-15-26173-14865.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

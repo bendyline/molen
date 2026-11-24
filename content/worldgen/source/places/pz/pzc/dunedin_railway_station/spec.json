@@ -1,0 +1,434 @@
+{
+  "id": "dunedin_railway_station",
+  "planId": "dunedin_railway_station",
+  "title": "Dunedin Railway Station",
+  "assetId": "molen.worldgen.structure.dunedin_railway_station",
+  "category": "railway",
+  "wikidataId": "Q800694",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 170.5088889,
+    "latitude": -45.8752778
+  },
+  "visualBrief": "A long limestone arcade fronts a dark basalt station with glazed doors, steep tiled roofs, and a domed south clock tower.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/pz/pzc/dunedin_railway_station/models/edwardian-station.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Dunedin_Railway_Station_Full_Exterior.jpg",
+    "https://www.heritage.org.nz/list-details/59/Listing",
+    "https://www.openstreetmap.org/way/88748723"
+  ],
+  "geographicProposal": {
+    "id": "dunedin-railway-station",
+    "title": "Dunedin Railway Station",
+    "asset": "molen.worldgen.structure.dunedin_railway_station",
+    "anchor": [
+      170.5088889,
+      -45.8752778
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 13.28,
+    "bounds": [
+      170.50838409459743,
+      -45.875713971801645,
+      170.50966770540822,
+      -45.87481163130365
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q800694",
+      "names": [
+        "Dunedin Railway Station",
+        "Dunedin Railway Station",
+        "Dunedin railway station"
+      ],
+      "maxDistance": 82
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -37.124006,
+          34.108386
+        ],
+        [
+          -36.751991,
+          36.624221
+        ],
+        [
+          -26.513826,
+          46.553986
+        ],
+        [
+          58.359868,
+          -43.214075
+        ],
+        [
+          51.314832,
+          -49.893195
+        ],
+        [
+          46.58714,
+          -44.917251
+        ],
+        [
+          25.893801,
+          -22.954036
+        ],
+        [
+          21.747382,
+          -26.883599
+        ],
+        [
+          21.786134,
+          -27.36227
+        ],
+        [
+          19.918308,
+          -29.143374
+        ],
+        [
+          17.407206,
+          -29.109978
+        ],
+        [
+          15.430876,
+          -27.106237
+        ],
+        [
+          15.368874,
+          -24.824197
+        ],
+        [
+          11.08295,
+          -20.226718
+        ],
+        [
+          12.113741,
+          -19.258242
+        ],
+        [
+          -5.820486,
+          -0.289431
+        ],
+        [
+          -10.416423,
+          -4.642021
+        ],
+        [
+          -18.321743,
+          3.562225
+        ],
+        [
+          -13.888563,
+          7.747841
+        ],
+        [
+          -36.565984,
+          31.481232
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the named station envelope and keep native rail alignment and platforms."
+    },
+    "source": "https://www.openstreetmap.org/way/88748723",
+    "note": "The mapped station footprint fixes the long diagonal platform side. The arcades face the forecourt and the clock tower stands at the southwest corner.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:786718a5d9d5120412dafda40bfe7f30cf1c14ccc395d005a6fb73e9b7e0dc61"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "basalt": {
+        "slot": "wall",
+        "graph": "stone_basalt",
+        "roughness": 0.96
+      },
+      "limestone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.93
+      },
+      "plinth": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.88
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.47
+      }
+    },
+    "errorMeters": 1.15,
+    "module": "content/worldgen/source/places/pz/pzc/dunedin_railway_station/models/edwardian-station.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.88
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47
+          }
+        },
+        "errorMeters": 0.42
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.88
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47
+          }
+        },
+        "errorMeters": 0.158
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.88
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47
+          }
+        },
+        "errorMeters": 0.051
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        5,
+        9,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "south-clock-tower",
+      "position": [
+        -69,
+        12,
+        16
+      ],
+      "lookAt": [
+        -33,
+        17,
+        33
+      ],
+      "fov": 55
+    },
+    {
+      "name": "plaza-arcade-and-pediment",
+      "position": [
+        -34,
+        5,
+        -27
+      ],
+      "lookAt": [
+        -10,
+        9,
+        1
+      ],
+      "fov": 59
+    },
+    {
+      "name": "north-spire-and-platform",
+      "position": [
+        62,
+        19,
+        10
+      ],
+      "lookAt": [
+        17,
+        9,
+        -18
+      ],
+      "fov": 56
+    }
+  ],
+  "limitations": [
+    "The photographed elevations establish the roof and tower profile. Heights above the mapped eave and individual ornaments are estimates. The exterior covers the station building, with tracks and platform paving supplied by the host map."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -37.98093795776367,
+      -1.4199999570846558,
+      -49.911338806152344
+    ],
+    "max": [
+      58.37803268432617,
+      35.81999969482422,
+      46.57193374633789
+    ]
+  },
+  "size": [
+    96.35897064208984,
+    37.239999651908875,
+    96.48327255249023
+  ],
+  "mesh": {
+    "triangles": 19264,
+    "vertices": 37174,
+    "materials": 7,
+    "bytes": 1573640,
+    "sha256": "sha256:f3571363c45baa1b67603d43d8eec04751a2907a472315ca735850934039f036"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

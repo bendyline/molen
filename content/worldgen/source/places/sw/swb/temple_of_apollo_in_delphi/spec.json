@@ -1,0 +1,321 @@
+{
+  "id": "temple_of_apollo_in_delphi",
+  "planId": "temple_of_apollo_in_delphi",
+  "title": "Temple of Apollo in Delphi",
+  "assetId": "molen.worldgen.structure.temple_of_apollo_in_delphi",
+  "category": "monument",
+  "wikidataId": "Q10751359",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 22.501279,
+    "latitude": 38.482269
+  },
+  "visualBrief": "Six standing Doric columns rise above a roofless stepped cella on Delphi’s hillside terrace.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sw/swb/temple_of_apollo_in_delphi/models/delphi-doric-terrace.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Delphes%2C_Gr%C3%A8ce._Temple_d'Apollon._Six_colonnes.jpg",
+    "https://www.openstreetmap.org/way/145690079"
+  ],
+  "geographicProposal": {
+    "id": "temple-of-apollo-delphi",
+    "title": "Temple of Apollo in Delphi",
+    "asset": "molen.worldgen.structure.temple_of_apollo_in_delphi",
+    "anchor": [
+      22.501279,
+      38.482269
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 594.69140625,
+    "bounds": [
+      22.50078904868519,
+      38.48200073599141,
+      22.501540951315196,
+      38.482560064808105
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q10751359",
+      "names": [
+        "Temple of Apollo in Delphi",
+        "Temple of Apollo",
+        "Ναός Απόλλωνος"
+      ],
+      "maxDistance": 32
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -23.824345,
+          27.86322
+        ],
+        [
+          20.826695,
+          -11.042901
+        ],
+        [
+          3.956201,
+          -30.401411
+        ],
+        [
+          -40.694839,
+          8.504805
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace only the mapped temple. The independent site features and paths remain in the map."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -23.824345,
+          27.86322
+        ],
+        [
+          20.826695,
+          -11.042901
+        ],
+        [
+          3.956201,
+          -30.401411
+        ],
+        [
+          -40.694839,
+          8.504805
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Limit the terrain opening to the native temple outline so the podium steps and interior ruin floor stay visible."
+    },
+    "source": "https://www.openstreetmap.org/way/145690079",
+    "note": "The stepped terrace follows the native footprint. The southeast ruin columns occupy the two photographed faces.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ee3c42375881e098acf843d894242e5af77e21c3978d49781092adf189f7ab5a"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "step": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.98
+      },
+      "drum": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 0.98
+      }
+    },
+    "errorMeters": 0.54,
+    "module": "content/worldgen/source/places/sw/swb/temple_of_apollo_in_delphi/models/delphi-doric-terrace.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "step": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98
+          },
+          "drum": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.22
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "step": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98
+          },
+          "drum": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.087
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "step": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98
+          },
+          "drum": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.035
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -5.410196,
+        2.7,
+        -4.189206
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "southeast-surviving-columns",
+      "position": [
+        35.784897,
+        7,
+        -12.139477
+      ],
+      "lookAt": [
+        11.50888,
+        3.9,
+        -9.555873
+      ],
+      "fov": 54
+    },
+    {
+      "name": "terrace-and-broken-cella",
+      "position": [
+        4.992043,
+        15,
+        23.976078
+      ],
+      "lookAt": [
+        -6.868841,
+        2.5,
+        -4.961728
+      ],
+      "fov": 57
+    },
+    {
+      "name": "drums-and-open-east-portico",
+      "position": [
+        -4.301839,
+        4.8,
+        -6.390254
+      ],
+      "lookAt": [
+        12.262823,
+        4.2,
+        -10.212813
+      ],
+      "fov": 59
+    }
+  ],
+  "limitations": [
+    "Shaft and low wall heights and the positions of detached stone fragments are approximate. The model depicts the present-day ruins."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -40.69483947753906,
+      -16.299999237060547,
+      -30.401411056518555
+    ],
+    "max": [
+      20.82669448852539,
+      9.350000381469727,
+      27.86322021484375
+    ]
+  },
+  "size": [
+    61.52153396606445,
+    25.649999618530273,
+    58.264631271362305
+  ],
+  "mesh": {
+    "triangles": 17235,
+    "vertices": 46323,
+    "materials": 4,
+    "bytes": 1877424,
+    "sha256": "sha256:014d997b029c15e9d8fbe065abd2bff49016322b22a83d4351c778c5bf99a112"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

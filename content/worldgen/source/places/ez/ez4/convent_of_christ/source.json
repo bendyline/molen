@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.convent_of_christ",
+  "kind": "static-structure",
+  "title": "Convent of Christ",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.convent_of_christ",
+        "output": "assets/places/ez/ez4/convent_of_christ/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:68b2d7cb9616ac346d6a17fc2ac667c37fdd18dfa2dc140852e38753f457592d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "convent_of_christ",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "charola-and-eight-cloisters",
+        "path": "models/charola-and-eight-cloisters.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

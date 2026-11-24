@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.saint_sophia_cathedral_vologda",
+  "kind": "static-structure",
+  "title": "Saint Sophia Cathedral, Vologda",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.saint_sophia_cathedral_vologda",
+        "output": "assets/places/uf/ufs/saint_sophia_cathedral_vologda/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6b0ebaa28e0671c212eb369cab840d4ce73460c4a0bd0d4d44bf660c0002f727"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-saint-sophia-cathedral-vologda",
+        "path": "models/generate-saint-sophia-cathedral-vologda.mjs"
+      },
+      {
+        "id": "saint-sophia-cathedral-vologda-model",
+        "path": "models/saint-sophia-cathedral-vologda-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/saint-sophia-cathedral-vologda-footprint.json",
+      "reference-rights/saint-sophia-cathedral-vologda-architectural-facts.json",
+      "reference-rights/saint-sophia-cathedral-vologda-qualla-original-1.json",
+      "reference-rights/saint-sophia-cathedral-vologda-qualla-original-2.json",
+      "reference-rights/saint-sophia-cathedral-vologda-qualla-original-3.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-20014-9655.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

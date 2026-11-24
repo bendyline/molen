@@ -1,0 +1,63 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.temple_of_the_tooth",
+  "kind": "static-structure",
+  "title": "Temple of the Tooth",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.temple_of_the_tooth",
+        "output": "assets/places/tc/tc3/temple_of_the_tooth/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:082fbf57f92905fbc8803b55d4ee9704186af776ff11ab9260afc09c94da616d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-temple-of-the-tooth",
+        "path": "models/generate-temple-of-the-tooth.mjs"
+      },
+      {
+        "id": "temple-of-the-tooth-model",
+        "path": "models/temple-of-the-tooth-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/temple-of-the-tooth-footprint.json",
+      "native-map/temple-of-the-tooth-shape-controls.json",
+      "reference-rights/temple-of-the-tooth-architectural-facts.json",
+      "references/kandy-rijks-scowen.jpg",
+      "reference-rights/kandy-rijks-scowen-record.json",
+      "references/kandy-rijks-entrance.jpg",
+      "reference-rights/kandy-rijks-entrance-record.json",
+      "references/kandy-rijks-castelein.jpg",
+      "reference-rights/kandy-rijks-castelein-record.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-kandy-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

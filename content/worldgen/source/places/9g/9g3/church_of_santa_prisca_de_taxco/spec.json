@@ -1,0 +1,562 @@
+{
+  "planId": "church_of_santa_prisca_de_taxco",
+  "id": "church_of_santa_prisca_de_taxco",
+  "assetId": "molen.worldgen.structure.church_of_santa_prisca_de_taxco",
+  "title": "Church of Santa Prisca de Taxco",
+  "wikidataId": "Q1369633",
+  "category": "historical-church",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -99.604748,
+    "latitude": 18.55632955
+  },
+  "size": [
+    32.709999084472656,
+    50.000001430511475,
+    59.03000068664551
+  ],
+  "actualBounds": {
+    "min": [
+      -16.549999237060547,
+      -5.599999904632568,
+      -28.950000762939453
+    ],
+    "max": [
+      16.15999984741211,
+      44.400001525878906,
+      30.079999923706055
+    ]
+  },
+  "visualBrief": "Santa Prisca’s twin open Baroque belfries, carved pink-stone portal and patterned crossing dome above Taxco’s hill town.",
+  "nativeAxes": {
+    "x": "across the frontage toward the south belfry",
+    "y": "up",
+    "z": "toward Plaza Borda"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://archive.org/details/spanishcoloniala09baxt/page/n20/mode/1up",
+    "https://archive.org/details/spanishcoloniala09baxt/page/n22/mode/1up",
+    "https://archive.org/details/spanishcoloniala09baxt/page/n24/mode/1up",
+    "https://archive.org/details/spanishcoloniala09baxt/page/n26/mode/1up"
+  ],
+  "stories": [
+    {
+      "id": "church-of-santa-prisca-de-taxco-wp",
+      "url": "https://qualla.com/church-of-santa-prisca-de-taxco/"
+    }
+  ],
+  "referenceInputHash": "sha256:921209de663fe527e83866ac6a2de2cb8ec551af55652f426470fe7a8c5f9d6c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9g/9g3/church_of_santa_prisca_de_taxco/models/church-of-santa-prisca-de-taxco-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9g/9g3/church_of_santa_prisca_de_taxco/models/church-of-santa-prisca-de-taxco-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.13,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.92
+      },
+      "relief": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.91
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.87
+      },
+      "pattern": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.84
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.83
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.91
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.9
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.92
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.87
+          },
+          "pattern": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.92
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.87
+          },
+          "pattern": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.061,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.92
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.87
+          },
+          "pattern": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_sandstone_raw",
+    "tile_flat",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native Copernicus datum sampled on the paved plaza immediately in front of the church stair.",
+    "anchor": [
+      -99.604748,
+      18.55632955
+    ],
+    "heading": -1.6175455232280582,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -99.6050792886927,
+        18.55634424301069
+      ],
+      "modelHeight": 0,
+      "basis": "Native Copernicus datum sampled on the paved plaza immediately in front of the church stair."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          9.4099,
+          27.3662
+        ],
+        [
+          9.4181,
+          24.6824
+        ],
+        [
+          9.4125,
+          19.0833
+        ],
+        [
+          9.4168,
+          15.3643
+        ],
+        [
+          9.4206,
+          11.6348
+        ],
+        [
+          9.4172,
+          8.9409
+        ],
+        [
+          9.423,
+          -0.462
+        ],
+        [
+          15.8757,
+          -0.4575
+        ],
+        [
+          15.8829,
+          -11.0226
+        ],
+        [
+          13.6095,
+          -11.0219
+        ],
+        [
+          13.611,
+          -18.8504
+        ],
+        [
+          13.616,
+          -28.7498
+        ],
+        [
+          -10.4889,
+          -28.7525
+        ],
+        [
+          -10.4951,
+          -23.8819
+        ],
+        [
+          -10.4985,
+          -11.8062
+        ],
+        [
+          -10.4991,
+          -2.5303
+        ],
+        [
+          -16.361,
+          -2.5308
+        ],
+        [
+          -16.3646,
+          4.5372
+        ],
+        [
+          -16.3658,
+          11.1825
+        ],
+        [
+          -16.3753,
+          17.6486
+        ],
+        [
+          -6.8472,
+          17.6465
+        ],
+        [
+          -6.8517,
+          23.2672
+        ],
+        [
+          -6.8494,
+          27.3662
+        ],
+        [
+          2.2219,
+          27.3644
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The surveyed outline covers the parish church with its attached chapel and rear rooms."
+    },
+    "featureIds": [
+      "way/503145059"
+    ],
+    "source": "https://www.openstreetmap.org/way/503145059",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:09c173f803cf1b066de6fac0e8e53f622c0a40eab45638449bb839768e9058a1",
+    "notes": "J. Chanfreau measured the tower-cross tips at 44.40 m above the plaza and the facade statue crown at 25.30 m. The barrel vault, south elevation and drum are proportioned using Peabody’s plates and the federal architectural survey."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "J. Chanfreau measured the tower-cross tips at 44.40 m above the plaza and the facade statue crown at 25.30 m. The barrel vault, south elevation and drum are proportioned using Peabody’s plates and the federal architectural survey.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "taxco-skyline",
+      "position": [
+        75,
+        49,
+        85
+      ],
+      "lookAt": [
+        0,
+        18,
+        2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "taxco-district",
+      "position": [
+        75,
+        49,
+        85
+      ],
+      "lookAt": [
+        0,
+        18,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "taxco-street",
+      "position": [
+        75,
+        49,
+        85
+      ],
+      "lookAt": [
+        0,
+        18,
+        2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "taxco-closeup",
+      "position": [
+        75,
+        49,
+        85
+      ],
+      "lookAt": [
+        0,
+        18,
+        2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "plaza-borda-towers-and-retable",
+      "position": [
+        6,
+        17,
+        77
+      ],
+      "lookAt": [
+        1,
+        22,
+        23
+      ]
+    },
+    {
+      "name": "tiled-dome-and-southern-transept",
+      "position": [
+        40,
+        32,
+        -44
+      ],
+      "lookAt": [
+        0,
+        19,
+        -5
+      ]
+    },
+    {
+      "name": "open-belfries-and-pink-quarry-stone",
+      "position": [
+        25,
+        34,
+        51
+      ],
+      "lookAt": [
+        1,
+        32,
+        24
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16103,
+    "vertices": 48309,
+    "materials": 8,
+    "bytes": 2108756,
+    "sha256": "sha256:b4a38eac787704d8fb18fdeb103d1882a5c391a2f43fcc5e37795b45731dbdb6"
+  }
+}

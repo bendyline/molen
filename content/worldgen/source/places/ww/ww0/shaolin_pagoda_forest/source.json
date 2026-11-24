@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.shaolin_pagoda_forest",
+  "kind": "static-structure",
+  "title": "Shaolin Pagoda Forest",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.shaolin_pagoda_forest",
+        "output": "assets/places/ww/ww0/shaolin_pagoda_forest/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:038d580d4786f9ee3f9d16f45c04299540693268195c26ba47386bf5e8c7b43b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "shaolin_pagoda_forest",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "pagodas",
+        "path": "models/pagodas.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

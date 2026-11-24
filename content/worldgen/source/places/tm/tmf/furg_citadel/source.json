@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.furg_citadel",
+  "kind": "static-structure",
+  "title": "Furg Citadel",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.furg_citadel",
+        "output": "assets/places/tm/tmf/furg_citadel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e4ce98e1e329dfee4ef49adde7a2a0f9dbdb4412521be11560ab4a3860d45afa"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-furg-citadel",
+        "path": "models/generate-furg-citadel.mjs"
+      },
+      {
+        "id": "furg-citadel-model",
+        "path": "models/furg-citadel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/furg-citadel-footprint.json",
+      "reference-rights/furg-citadel-architectural-facts.json",
+      "reference-rights/furg-citadel-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-21840-13215.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

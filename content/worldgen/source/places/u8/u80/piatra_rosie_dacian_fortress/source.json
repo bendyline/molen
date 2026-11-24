@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.piatra_rosie_dacian_fortress",
+  "kind": "static-structure",
+  "title": "Luncani-Piatra Roșie Dacian Fortress",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.piatra_rosie_dacian_fortress",
+        "output": "assets/places/u8/u80/piatra_rosie_dacian_fortress/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:749e9cea94323f0490585b05fb08bc2cc5138b3a331d5b09e55541f3ea70ec99"
+      }
+    ],
+    "generators": [
+      {
+        "id": "piatra_rosie_dacian_fortress",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "dacian-fortress",
+        "path": "models/dacian-fortress.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.pyramid_of_djoser",
+  "kind": "static-structure",
+  "title": "Pyramid of Djoser",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.pyramid_of_djoser",
+        "output": "assets/places/st/stq/pyramid_of_djoser/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2475401de72886bab02d98453cf1db798644aef4cef00afbe98a8fb63026d060"
+      }
+    ],
+    "generators": [
+      {
+        "id": "pyramid_of_djoser",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "saqqara-six-terrace-limestone-pyramid",
+        "path": "models/saqqara-six-terrace-limestone-pyramid.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

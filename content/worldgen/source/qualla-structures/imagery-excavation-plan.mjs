@@ -36,6 +36,25 @@ export function inspectExcavationPlanReference(dir, r) {
         const died = Number(c.match(/(?:-|d\.\s*)(\d{4})\s*$/)?.[1]);
         return !/unknown|anonymous/i.test(c) && died >= 1800 && died <= 1955;
       });
+  // The colonial government issued the 1918 guide for the head of its
+  // archaeological survey. Bind the government publication to the Cornell copy.
+  const taxilaGovernmentGuide =
+    id === 'cu31924024121125' &&
+    m?.title === 'A guide to Taxila' &&
+    m?.date === '1918' &&
+    m?.publisher === 'Calcutta, Superintendent government printing, India' &&
+    m?.contributor === 'Cornell University Library' &&
+    creators === 'Marshall, John Hubert, Sir, 1876-1958' &&
+    r.artist === creators &&
+    file?.sha1 === 'aaf3359ef238e7a105c16f561ca0c04b8ebd304e' &&
+    review?.scope === 'original-excavation-plan-and-north-exterior' &&
+    review.titlePdfPage === 9 &&
+    review.planPdfPage === 57 &&
+    review.exteriorPdfPage === 89 &&
+    review.pagesInspected?.includes(review.exteriorPdfPage) &&
+    review.planCaption === 'Plan of the Dharmarajika Stupa' &&
+    review.exteriorCaption === 'View of the Dharmarajika Stupa from North' &&
+    review.rightsBasis === 'expired-government-publication';
   if (
     r.origin !== 'archive-expired-excavation-plan' ||
     r.license !== 'Public domain' ||
@@ -44,7 +63,7 @@ export function inspectExcavationPlanReference(dir, r) {
     r.sourceUrl !== `https://archive.org/details/${id}` ||
     r.downloadUrl !== `https://archive.org/download/${id}/${id}.pdf` ||
     r.rightsEvidence?.sourceUrl !== `https://archive.org/metadata/${id}` ||
-    m?.['possible-copyright-status'] !== 'NOT_IN_COPYRIGHT' ||
+    (!taxilaGovernmentGuide && m?.['possible-copyright-status'] !== 'NOT_IN_COPYRIGHT') ||
     m?.['access-restricted-item'] === 'true' ||
     !m?.contributor?.trim() ||
     !m?.publisher?.trim() ||
@@ -54,12 +73,13 @@ export function inspectExcavationPlanReference(dir, r) {
     review.publicationYear < 1800 ||
     review.publicationYear > 1920 ||
     m?.date !== String(review.publicationYear) ||
-    !expired ||
-    JSON.stringify(r.catalogCreators) !== JSON.stringify(creators) ||
-    r.artist !== creators?.join('; ') ||
+    (!taxilaGovernmentGuide &&
+      (!expired ||
+        JSON.stringify(r.catalogCreators) !== JSON.stringify(creators) ||
+        r.artist !== creators?.join('; '))) ||
     review?.status !== 'inspected' ||
     review.rendition !== 'native-original-pdf' ||
-    review.scope !== 'original-excavation-plan-and-section-only' ||
+    (!taxilaGovernmentGuide && review.scope !== 'original-excavation-plan-and-section-only') ||
     !Number.isInteger(review.planPdfPage) ||
     review.planPdfPage < 1 ||
     !review.pagesInspected?.includes(review.planPdfPage) ||

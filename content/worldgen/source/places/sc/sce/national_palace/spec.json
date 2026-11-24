@@ -1,0 +1,405 @@
+{
+  "id": "national_palace",
+  "planId": "national_palace",
+  "title": "National Palace — Jubilee Palace",
+  "assetId": "molen.worldgen.structure.national_palace",
+  "category": "palace",
+  "wikidataId": "Q3609008",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 38.7604722,
+    "latitude": 9.0165
+  },
+  "visualBrief": "A long two-storey limestone palace has two open four-column porticoes, a smaller curved porch, two rows of blue shutters and a low metal roof.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sc/sce/national_palace/models/jubilee-palace-museum.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.ena.et/web/eng/w/eng_5706933",
+    "https://www.ena.et/web/ara/w/ara_5707395",
+    "https://palacemuseum.gov.et/",
+    "https://www.openstreetmap.org/way/120776245"
+  ],
+  "geographicProposal": {
+    "id": "jubilee-palace-addis-ababa",
+    "title": "National Palace — Jubilee Palace",
+    "asset": "molen.worldgen.structure.national_palace",
+    "anchor": [
+      38.7604722,
+      9.0165
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 2370.5,
+    "bounds": [
+      38.760138408908084,
+      9.015895735011268,
+      38.76063530675609,
+      9.017238866001943
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q3609008",
+      "names": [
+        "National Palace — Jubilee Palace",
+        "Jubilee Palace",
+        "National Palace Museum",
+        "Palace Museum"
+      ],
+      "maxDistance": 105
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -1.737114,
+          65.266564
+        ],
+        [
+          -19.987809,
+          63.596775
+        ],
+        [
+          -12.918413,
+          -13.536452
+        ],
+        [
+          -27.178143,
+          -14.850023
+        ],
+        [
+          -23.934797,
+          -50.294177
+        ],
+        [
+          -34.698309,
+          -51.284922
+        ],
+        [
+          -32.037665,
+          -80.250301
+        ],
+        [
+          11.236271,
+          -76.276187
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the named palace outline. Its separate outbuildings and garden keep their existing map geometry."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          2.947983,
+          12.836316
+        ],
+        [
+          4.218522,
+          -1.025579
+        ],
+        [
+          11.786798,
+          -0.331893
+        ],
+        [
+          10.516259,
+          13.530002
+        ]
+      ],
+      "additionalOutlines": [
+        [
+          [
+            7.592025,
+            -37.831299
+          ],
+          [
+            8.822404,
+            -51.255031
+          ],
+          [
+            15.9326,
+            -50.603332
+          ],
+          [
+            14.702221,
+            -37.1796
+          ]
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Remove the coarse terrain under the two entrance stairs. The mesh supplies the stairs and their grade transitions."
+    },
+    "source": "https://www.openstreetmap.org/way/120776245",
+    "note": "The eastern garden frontage follows the mapped palace outline, with the main portico on the short visitor approach axis.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:aed73e9088f3edb1dfa64c45e50c33a3e32baf52918ec202d282dba0a1594749"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.92
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.92
+      },
+      "stair": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.95
+      },
+      "shutter": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.89
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.62
+      }
+    },
+    "errorMeters": 0.8,
+    "module": "content/worldgen/source/places/sc/sce/national_palace/models/jubilee-palace-museum.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.92
+          },
+          "stair": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "shutter": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          }
+        },
+        "errorMeters": 0.31
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.92
+          },
+          "stair": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "shutter": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          }
+        },
+        "errorMeters": 0.13
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.92
+          },
+          "stair": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "shutter": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          }
+        },
+        "errorMeters": 0.052
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -7,
+        6,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "two-porticoes-and-stepped-approach",
+      "position": [
+        74,
+        7,
+        6
+      ],
+      "lookAt": [
+        2,
+        6,
+        -12
+      ],
+      "fov": 51
+    },
+    {
+      "name": "lion-portico-and-bronze-doors",
+      "position": [
+        46,
+        8,
+        -42
+      ],
+      "lookAt": [
+        9,
+        6,
+        -44
+      ],
+      "fov": 55
+    },
+    {
+      "name": "standing-seam-roof-and-blue-shutters",
+      "position": [
+        61,
+        47,
+        -119
+      ],
+      "lookAt": [
+        0,
+        8,
+        -16
+      ],
+      "fov": 48
+    }
+  ],
+  "limitations": [
+    "Porch depths, individual shutter spacing, roof ridges and the sculpted reliefs are estimated from published exterior views. The model covers the main museum exterior."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -35.0169677734375,
+      -4.28000020980835,
+      -80.56896209716797
+    ],
+    "max": [
+      15.55331802368164,
+      16.8799991607666,
+      65.66879272460938
+    ]
+  },
+  "size": [
+    50.57028579711914,
+    21.15999937057495,
+    146.23775482177734
+  ],
+  "mesh": {
+    "triangles": 10008,
+    "vertices": 20128,
+    "materials": 6,
+    "bytes": 848468,
+    "sha256": "sha256:81ce1dd534498471f168478c4b388248785cf4c67f05e0db2834e0826673b426"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

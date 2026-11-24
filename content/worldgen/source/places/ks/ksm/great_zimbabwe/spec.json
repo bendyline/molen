@@ -1,0 +1,271 @@
+{
+  "id": "great_zimbabwe",
+  "planId": "great_zimbabwe",
+  "title": "Great Zimbabwe",
+  "assetId": "molen.worldgen.structure.great_zimbabwe",
+  "category": "landmark",
+  "wikidataId": "Q209217",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 30.9343082,
+    "latitude": -20.2729268
+  },
+  "visualBrief": "The Great Enclosure’s dry-stone outer wall follows the marked hillside perimeter. Inside, the conical tower stands by the narrow passage and low court ruins.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ks/ksm/great_zimbabwe/models/enclosure-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/364",
+    "https://whc.unesco.org/document/153272",
+    "https://commons.wikimedia.org/wiki/File:Great-zim-aerial-looking-West.JPG",
+    "https://commons.wikimedia.org/wiki/File:Gro%C3%9F_Simbabwe,_Konischer_Turm.JPG",
+    "https://www.openstreetmap.org/way/335665013"
+  ],
+  "geographicProposal": {
+    "id": "great-zimbabwe",
+    "title": "Great Zimbabwe",
+    "asset": "molen.worldgen.structure.great_zimbabwe",
+    "anchor": [
+      30.9343082,
+      -20.2729268
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 1130.27734375,
+    "bounds": [
+      30.933940247197828,
+      -20.273365068329394,
+      30.93475755273084,
+      -20.272601532911064
+    ],
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q209217",
+      "names": [
+        "Great Zimbabwe",
+        "Great Enclosure",
+        "Große Einfriedung",
+        "Great Zimbabwe Great Enclosure"
+      ],
+      "maxDistance": 100
+    },
+    "source": "https://www.openstreetmap.org/way/335665013",
+    "note": "The named Great Enclosure and Conical Tower align with independently mapped PMTiles points. Native stone wall polygons and the west passage establish the model footprint. The rest of the archaeological site and its terrain stay in the host.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:25bc543d3f6e17bb243e69d8d60c56a24a921e7087ddb2926644be19c8fe3d57"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 1
+      },
+      "coping": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.97
+      },
+      "rubble": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 1
+      }
+    },
+    "errorMeters": 0.9,
+    "module": "content/worldgen/source/places/ks/ksm/great_zimbabwe/models/enclosure-model.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 1
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.97
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.46
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 1
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.97
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.21
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 1
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.97
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        2,
+        5,
+        5
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "great-enclosure-from-above",
+      "position": [
+        -63,
+        53,
+        54
+      ],
+      "lookAt": [
+        5,
+        1,
+        4
+      ],
+      "fov": 58
+    },
+    {
+      "name": "southeast-wall-and-chevron",
+      "position": [
+        60,
+        6.1,
+        49
+      ],
+      "lookAt": [
+        33,
+        5.6,
+        27
+      ],
+      "fov": 59
+    },
+    {
+      "name": "conical-tower",
+      "position": [
+        13,
+        4.4,
+        25.9
+      ],
+      "lookAt": [
+        20.57,
+        7.9,
+        39.7
+      ],
+      "fov": 54
+    },
+    {
+      "name": "western-passage",
+      "position": [
+        -42,
+        3.3,
+        4.65
+      ],
+      "lookAt": [
+        -34.85,
+        3.56,
+        4.65
+      ],
+      "fov": 62
+    }
+  ],
+  "limitations": [
+    "The outer enclosure, court and two north wall footprints follow native OpenStreetMap geometry. The heights along the wall, narrow inner passage, lintel and chevron relief use approximate dimensions.",
+    "Ground contact uses Terrarium samples on a five-metre grid. The Great Enclosure and its conical tower form the scope of this model."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -36.42293930053711,
+      -4.55214262008667,
+      -37.06935119628906
+    ],
+    "max": [
+      44.923011779785156,
+      12.821999549865723,
+      46.8780403137207
+    ]
+  },
+  "size": [
+    81.34595108032227,
+    17.374142169952393,
+    83.94739151000977
+  ],
+  "mesh": {
+    "triangles": 3111,
+    "vertices": 8181,
+    "materials": 3,
+    "bytes": 334284,
+    "sha256": "sha256:c509b8a4259a0699535d6f28d72383ab7d5f7a934ebeb2064f8b1b6498ac79eb"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

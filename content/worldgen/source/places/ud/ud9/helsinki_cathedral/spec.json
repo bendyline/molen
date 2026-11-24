@@ -1,0 +1,550 @@
+{
+  "planId": "helsinki_cathedral",
+  "id": "helsinki_cathedral",
+  "assetId": "molen.worldgen.structure.helsinki_cathedral",
+  "title": "Helsinki Cathedral",
+  "wikidataId": "Q738015",
+  "category": "cathedral",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 24.952178231818184,
+    "latitude": 60.1703786090909
+  },
+  "size": [
+    109,
+    68.5799987912178,
+    87.93999862670898
+  ],
+  "actualBounds": {
+    "min": [
+      -54.5,
+      -0.30000001192092896,
+      -31.020000457763672
+    ],
+    "max": [
+      54.5,
+      68.27999877929688,
+      56.91999816894531
+    ]
+  },
+  "visualBrief": "The white Empire cathedral above Helsinki Senate Square, with four porticoes, five green domes and its monumental granite stair.",
+  "nativeAxes": {
+    "x": "east along the south facade",
+    "y": "up",
+    "z": "south toward Senate Square"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Philipp_Melanchthon_-_Helsinki_Lutheran_Cathedral_-_DSC05396.JPG",
+    "https://commons.wikimedia.org/wiki/File:Helsingin_tuomiokirkko_Helsinki_2026-01-04_01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "helsinki-cathedral-wp",
+      "url": "https://qualla.com/helsinki-cathedral/"
+    }
+  ],
+  "referenceInputHash": "sha256:35df5a56f1533776f487cae66c559886a1d38b7169407d8334ebc51b73667778",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ud/ud9/helsinki_cathedral/models/helsinki-cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ud/ud9/helsinki_cathedral/models/helsinki-cathedral-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.71,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92
+      },
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.87,
+        "metallic": 0.14
+      },
+      "ornament": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.62
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.31,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0.14
+          },
+          "ornament": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0.14
+          },
+          "ornament": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.041,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0.14
+          },
+          "ornament": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_granite",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "City of Helsinki one-meter survey on the Senate Square side of the main staircase.",
+    "anchor": [
+      24.952178231818184,
+      60.1703786090909
+    ],
+    "heading": 0.05784206871320035,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        24.952242960187654,
+        60.169822587602745
+      ],
+      "modelHeight": 0,
+      "basis": "City of Helsinki one-meter survey on the Senate Square side of the main staircase."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -12.578,
+          -30.611
+        ],
+        [
+          -0.031,
+          -30.431
+        ],
+        [
+          13.524,
+          -30.237
+        ],
+        [
+          13.461,
+          -21.086
+        ],
+        [
+          12.457,
+          -21.099
+        ],
+        [
+          12.537,
+          -17.203
+        ],
+        [
+          17.605,
+          -16.698
+        ],
+        [
+          17.65,
+          -12.302
+        ],
+        [
+          22.044,
+          -12.427
+        ],
+        [
+          22.057,
+          -13.128
+        ],
+        [
+          30.97,
+          -12.735
+        ],
+        [
+          30.876,
+          13.218
+        ],
+        [
+          21.652,
+          13.13
+        ],
+        [
+          21.683,
+          12.485
+        ],
+        [
+          17.763,
+          12.938
+        ],
+        [
+          17.21,
+          17.802
+        ],
+        [
+          12.409,
+          18.137
+        ],
+        [
+          12.148,
+          21.4
+        ],
+        [
+          13.011,
+          21.45
+        ],
+        [
+          12.902,
+          30.32
+        ],
+        [
+          -0.126,
+          30.301
+        ],
+        [
+          -13.127,
+          30.295
+        ],
+        [
+          -13.178,
+          21.216
+        ],
+        [
+          -12.368,
+          21.218
+        ],
+        [
+          -12.46,
+          17.444
+        ],
+        [
+          -17.377,
+          16.925
+        ],
+        [
+          -17.556,
+          12.544
+        ],
+        [
+          -21.467,
+          12.161
+        ],
+        [
+          -21.519,
+          13.061
+        ],
+        [
+          -30.49,
+          12.72
+        ],
+        [
+          -30.295,
+          -0.125
+        ],
+        [
+          -30.1,
+          -13.082
+        ],
+        [
+          -21.245,
+          -13.127
+        ],
+        [
+          -21.249,
+          -12.48
+        ],
+        [
+          -17.302,
+          -12.631
+        ],
+        [
+          -17.029,
+          -17.165
+        ],
+        [
+          -12.346,
+          -17.674
+        ],
+        [
+          -12.191,
+          -21.59
+        ],
+        [
+          -12.722,
+          -21.621
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Native cathedral outline including porticoes."
+    },
+    "featureIds": [
+      "way/1542850662",
+      "way/29478214",
+      "way/28196957",
+      "way/29344086",
+      "way/33084554",
+      "way/33084556",
+      "way/33084559",
+      "way/33084560",
+      "way/33084562"
+    ],
+    "source": "https://www.openstreetmap.org/way/1542850662",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:440cd6a4ee7c54efe3da9ce95ad7ddcbc245a6dba8385530b312accdf0d666a4",
+    "notes": "Four central columned porticoes, four small green domes and a much taller central drum support the Greek cross composition. The church gives a 60 metre stair width down to Senate Square."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Fine zinc statuary, roof ornament, and portions of the stone terrace beyond the cathedral are simplified."
+  ],
+  "sourceLicense": "Original geometry under repository license. City of Helsinki City Survey Services. © OpenStreetMap contributors.",
+  "qaLodCameras": [
+    {
+      "name": "helsinki-cathedral-skyline",
+      "position": [
+        69,
+        49,
+        120
+      ],
+      "lookAt": [
+        0,
+        28,
+        12
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "helsinki-cathedral-district",
+      "position": [
+        69,
+        49,
+        120
+      ],
+      "lookAt": [
+        0,
+        28,
+        12
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "helsinki-cathedral-street",
+      "position": [
+        69,
+        49,
+        120
+      ],
+      "lookAt": [
+        0,
+        28,
+        12
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "helsinki-cathedral-closeup",
+      "position": [
+        69,
+        49,
+        120
+      ],
+      "lookAt": [
+        0,
+        28,
+        12
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "senate-square-stairs",
+      "position": [
+        -16,
+        6.55,
+        113
+      ],
+      "lookAt": [
+        0,
+        30.5,
+        8
+      ]
+    },
+    {
+      "name": "east-portico-and-roofs",
+      "position": [
+        82,
+        40,
+        33
+      ],
+      "lookAt": [
+        0,
+        32,
+        0
+      ]
+    },
+    {
+      "name": "four-domes-and-central-tower",
+      "position": [
+        51,
+        80,
+        -71
+      ],
+      "lookAt": [
+        0,
+        36,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 15070,
+    "vertices": 45210,
+    "materials": 5,
+    "bytes": 2029572,
+    "sha256": "sha256:98dea632c71cdc8ef5f53dadce107cf1db71153bc02931df1ae9ea3dc34a576c"
+  }
+}

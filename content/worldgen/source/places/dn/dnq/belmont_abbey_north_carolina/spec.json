@@ -1,0 +1,463 @@
+{
+  "planId": "belmont_abbey_north_carolina",
+  "id": "belmont_abbey_north_carolina",
+  "assetId": "molen.worldgen.structure.belmont_abbey_north_carolina",
+  "title": "Belmont Abbey, North Carolina",
+  "wikidataId": "Q373196",
+  "category": "church",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -81.043390665,
+    "latitude": 35.261605375
+  },
+  "size": [
+    55.05999946594238,
+    48.32000112533569,
+    26.718000411987305
+  ],
+  "actualBounds": {
+    "min": [
+      -28.299999237060547,
+      -2.5999999046325684,
+      -13.335000038146973
+    ],
+    "max": [
+      26.760000228881836,
+      45.720001220703125,
+      13.383000373840332
+    ]
+  },
+  "visualBrief": "Belmont Abbey’s cruciform brick basilica, with uneven octagonal spires, a clock on the southern tower, and a three-gabled west narthex.",
+  "nativeAxes": {
+    "x": "west narthex to east sacristy",
+    "y": "up",
+    "z": "toward the south transept"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Belmont-Abbey.JPG",
+    "https://commons.wikimedia.org/wiki/File:BelmontAbbeyTower.JPG"
+  ],
+  "stories": [
+    {
+      "id": "belmont-abbey-north-carolina-wp",
+      "url": "https://qualla.com/belmont-abbey-north-carolina/"
+    }
+  ],
+  "referenceInputHash": "sha256:26cc1772e7dd9e75332dc45ca440c853f35fc6b71e0479dfb843c926179ebed0",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dn/dnq/belmont_abbey_north_carolina/models/belmont-abbey-north-carolina-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dn/dnq/belmont_abbey_north_carolina/models/belmont-abbey-north-carolina-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.27,
+    "surfaces": {
+      "bricks": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.95
+      },
+      "roofing": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.87
+      },
+      "dress": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.91
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.69
+      },
+      "portals": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.87
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.52,
+        "surfaces": {
+          "bricks": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "roofing": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.87
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.69
+          },
+          "portals": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "bricks": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "roofing": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.87
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.69
+          },
+          "portals": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "bricks": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "roofing": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.87
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.69
+          },
+          "portals": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "tile_flat",
+    "stone_ashlar"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native terrain in the public forecourt just west of the narthex portal.",
+    "anchor": [
+      -81.043390665,
+      35.261605375
+    ],
+    "heading": -0.02840302917893256,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -81.04370393536169,
+        35.261616955882985
+      ],
+      "modelHeight": 0,
+      "basis": "Native terrain in the public forecourt just west of the narthex portal."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -27.384,
+          -4.849
+        ],
+        [
+          -21.755,
+          -4.842
+        ],
+        [
+          -21.755,
+          -8.049
+        ],
+        [
+          0.196,
+          -8.049
+        ],
+        [
+          0.2,
+          -12.704
+        ],
+        [
+          6.628,
+          -12.708
+        ],
+        [
+          6.63,
+          -6.906
+        ],
+        [
+          15.914,
+          -6.903
+        ],
+        [
+          15.918,
+          -4.821
+        ],
+        [
+          26.512,
+          -4.821
+        ],
+        [
+          26.51,
+          5.681
+        ],
+        [
+          15.535,
+          5.681
+        ],
+        [
+          15.531,
+          7.485
+        ],
+        [
+          5.792,
+          7.472
+        ],
+        [
+          5.788,
+          12.751
+        ],
+        [
+          0.114,
+          12.756
+        ],
+        [
+          0.12,
+          7.544
+        ],
+        [
+          -21.549,
+          7.536
+        ],
+        [
+          -21.553,
+          3.873
+        ],
+        [
+          -27.391,
+          3.871
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Only the individually mapped Abbey Basilica building."
+    },
+    "featureIds": [
+      "way/256708067"
+    ],
+    "source": "https://www.openstreetmap.org/way/256708067",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f76da70917b99fbd433d1990bef141d08a18ba0bb03751c47813f278b9035233",
+    "notes": "The approved individual nomination describes the two octagonal brick belfries and shingled spires, tower stages, and cruciform form. Published local measurements identify nominal spire heights of 150 and 100 feet. The Qualla photos determine recurring detail and color."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Abbey Basilica exterior only. The separate monastery and college buildings, courtyard statue and church interior are outside the asset.",
+    "The two spire heights follow local published figures. Eaves, belfry sections and secondary brick and glass details are estimated from the mapped geometry and photographs."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "belmont-abbey-skyline",
+      "position": [
+        -84,
+        39,
+        53
+      ],
+      "lookAt": [
+        -5,
+        15,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "belmont-abbey-district",
+      "position": [
+        -84,
+        39,
+        53
+      ],
+      "lookAt": [
+        -5,
+        15,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "belmont-abbey-street",
+      "position": [
+        -84,
+        39,
+        53
+      ],
+      "lookAt": [
+        -5,
+        15,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "belmont-abbey-closeup",
+      "position": [
+        -84,
+        39,
+        53
+      ],
+      "lookAt": [
+        -5,
+        15,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-spires-and-south-transept",
+      "position": [
+        -84,
+        39,
+        53
+      ],
+      "lookAt": [
+        -5,
+        15,
+        0
+      ]
+    },
+    {
+      "name": "narthex-and-clock",
+      "position": [
+        -68,
+        17,
+        -1
+      ],
+      "lookAt": [
+        -18,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "sacristy-crossing-and-nave",
+      "position": [
+        69,
+        29,
+        -49
+      ],
+      "lookAt": [
+        7,
+        13,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10650,
+    "vertices": 31950,
+    "materials": 5,
+    "bytes": 1445928,
+    "sha256": "sha256:7bf896145d33a46aba86090fca8d49a6672289e03a76b455763b481a5538e8b7"
+  }
+}

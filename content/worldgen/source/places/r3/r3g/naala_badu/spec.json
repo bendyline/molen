@@ -1,0 +1,581 @@
+{
+  "id": "naala_badu",
+  "planId": "naala_badu",
+  "title": "Naala Badu",
+  "assetId": "molen.worldgen.structure.naala_badu",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 151.2181,
+    "latitude": -33.86768
+  },
+  "visualBrief": "Naala Badu has interlocking limestone and glass pavilions that step down the slope, planted roofs and a long corrugated canopy sheltering the open entrance plaza. Thin steel columns leave the public approach and both courtyard openings clear.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r3/r3g/naala_badu/models/north-gallery.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://archive.artgallery.nsw.gov.au/volume/2024/plan-your-visit/",
+    "https://architectus.com.au/projects/art-gallery-nsw-naala-badu-building/",
+    "https://www.datocms-assets.com/11161/1747710718-sdp-2024-progress-report_final.pdf",
+    "https://www.openstreetmap.org/relation/19839347"
+  ],
+  "geographicProposal": {
+    "id": "art-gallery-nsw-naala-badu",
+    "title": "Naala Badu",
+    "asset": "molen.worldgen.structure.naala_badu",
+    "anchor": [
+      151.2181,
+      -33.86768
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 22.1,
+    "bounds": [
+      151.21740876236913,
+      -33.868244971371155,
+      151.21878273763306,
+      -33.86714393212833
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "names": [
+        "Naala Badu",
+        "Naala Badu",
+        "AGNSW North Building",
+        "Sydney Modern"
+      ],
+      "maxDistance": 68
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          3.678776,
+          43.414701
+        ],
+        [
+          -3.882125,
+          50.383335
+        ],
+        [
+          -5.601352,
+          51.975212
+        ],
+        [
+          -18.624958,
+          37.358895
+        ],
+        [
+          -28.38573,
+          60.891957
+        ],
+        [
+          -61.892168,
+          46.353549
+        ],
+        [
+          -45.356163,
+          6.957471
+        ],
+        [
+          -38.0818,
+          9.951968
+        ],
+        [
+          -34.939127,
+          4.029766
+        ],
+        [
+          -43.415101,
+          -2.705063
+        ],
+        [
+          -23.9028,
+          -26.694376
+        ],
+        [
+          -15.815039,
+          -36.646306
+        ],
+        [
+          -14.816778,
+          -37.870815
+        ],
+        [
+          -15.260449,
+          -41.243782
+        ],
+        [
+          -2.449436,
+          -45.284661
+        ],
+        [
+          20.427373,
+          -52.486995
+        ],
+        [
+          24.938033,
+          -53.911876
+        ],
+        [
+          26.379965,
+          -49.481385
+        ],
+        [
+          26.98077,
+          -47.644623
+        ],
+        [
+          45.467081,
+          -57.674453
+        ],
+        [
+          48.092137,
+          -52.80982
+        ],
+        [
+          55.773199,
+          -38.694576
+        ],
+        [
+          59.710784,
+          -31.458836
+        ],
+        [
+          61.1065,
+          -28.876232
+        ],
+        [
+          58.065502,
+          -27.228708
+        ],
+        [
+          53.980027,
+          -25.013457
+        ],
+        [
+          40.392589,
+          -17.655255
+        ],
+        [
+          31.31581,
+          -34.675958
+        ],
+        [
+          30.687276,
+          -34.186154
+        ],
+        [
+          36.390303,
+          -17.889025
+        ],
+        [
+          34.9761,
+          -17.466012
+        ],
+        [
+          26.453911,
+          -14.894536
+        ],
+        [
+          39.884215,
+          -10.54195
+        ],
+        [
+          43.701638,
+          -9.306305
+        ],
+        [
+          41.982412,
+          -3.640147
+        ],
+        [
+          57.455454,
+          -2.827515
+        ],
+        [
+          59.20241,
+          -2.738459
+        ],
+        [
+          57.289077,
+          37.83757
+        ],
+        [
+          52.491879,
+          37.626062
+        ],
+        [
+          16.628436,
+          33.52949
+        ],
+        [
+          16.998163,
+          31.503468
+        ],
+        [
+          15.288179,
+          32.705723
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the named north gallery, mapped parts and the two circular structures under its entry canopy."
+    },
+    "source": "https://www.openstreetmap.org/relation/19839347",
+    "note": "The OSM multipolygon places the north building independently from the south gallery. The host retains local roads and the surrounding Art Garden.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:495fc479fe2c2a90b18c15cdc307b7697c380b05a850e9f858dd76d0d3fd3770"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "limestone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_panel",
+        "roughness": 0.94
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73
+      },
+      "solar": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.45
+      },
+      "bed": {
+        "slot": "roof",
+        "graph": "gravel",
+        "roughness": 0.98
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.34,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.51
+        ],
+        "doubleSided": true
+      },
+      "canopy": {
+        "slot": "window",
+        "localRef": "palette:#e7f1f5",
+        "roughness": 0.37,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.64
+        ],
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 1.16,
+    "module": "content/worldgen/source/places/r3/r3g/naala_badu/models/north-gallery.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73
+          },
+          "solar": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.45
+          },
+          "bed": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.51
+            ],
+            "doubleSided": true
+          },
+          "canopy": {
+            "slot": "window",
+            "localRef": "palette:#e7f1f5",
+            "roughness": 0.37,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.64
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.47
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73
+          },
+          "solar": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.45
+          },
+          "bed": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.51
+            ],
+            "doubleSided": true
+          },
+          "canopy": {
+            "slot": "window",
+            "localRef": "palette:#e7f1f5",
+            "roughness": 0.37,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.64
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.175
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73
+          },
+          "solar": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.45
+          },
+          "bed": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.51
+            ],
+            "doubleSided": true
+          },
+          "canopy": {
+            "slot": "window",
+            "localRef": "palette:#e7f1f5",
+            "roughness": 0.37,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.64
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.074
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        2,
+        3,
+        3
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "covered-plaza-and-welcome-hub",
+      "position": [
+        -53,
+        5.12,
+        45
+      ],
+      "lookAt": [
+        -29,
+        6.2,
+        16
+      ],
+      "fov": 64
+    },
+    {
+      "name": "planted-roof-terraces",
+      "position": [
+        98,
+        36,
+        4
+      ],
+      "lookAt": [
+        6,
+        2,
+        4
+      ],
+      "fov": 51
+    },
+    {
+      "name": "glass-and-limestone-pavilions",
+      "position": [
+        51,
+        13,
+        -94
+      ],
+      "lookAt": [
+        -8,
+        2,
+        -4
+      ],
+      "fov": 53
+    }
+  ],
+  "limitations": [
+    "Wall and roof elevations, terrace planting, canopy span spacing and the arrangement of solar panels are estimated from photographs. The model represents the exterior and open entrance plaza."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -62.08891296386719,
+      -13.25,
+      -57.74037551879883
+    ],
+    "max": [
+      61.172481536865234,
+      9.189000129699707,
+      61.238441467285156
+    ]
+  },
+  "size": [
+    123.26139450073242,
+    22.439000129699707,
+    118.97881698608398
+  ],
+  "mesh": {
+    "triangles": 10497,
+    "vertices": 21111,
+    "materials": 7,
+    "bytes": 890064,
+    "sha256": "sha256:d7b6fa47b960083fdb9ebc0528db5e64d2de47ce33b6bbe4dcd452fe23590135"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

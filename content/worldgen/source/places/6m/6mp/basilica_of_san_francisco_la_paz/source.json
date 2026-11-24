@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.basilica_of_san_francisco_la_paz",
+  "kind": "static-structure",
+  "title": "Basilica of San Francisco, La Paz",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.basilica_of_san_francisco_la_paz",
+        "output": "assets/places/6m/6mp/basilica_of_san_francisco_la_paz/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:bf0eee37c788cb52d6222176ba1fc46b71cba3056a95eb6d6fdd57c57549062e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-basilica-of-san-francisco-la-paz",
+        "path": "models/generate-basilica-of-san-francisco-la-paz.mjs"
+      },
+      {
+        "id": "basilica-of-san-francisco-la-paz-model",
+        "path": "models/basilica-of-san-francisco-la-paz-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/basilica-of-san-francisco-la-paz-footprint.json",
+      "native-map/basilica-of-san-francisco-la-paz-shape-controls.json",
+      "reference-rights/basilica-of-san-francisco-la-paz-architectural-facts.json",
+      "references/la-paz-san-francisco-1914-stereograph.jpg",
+      "reference-rights/la-paz-san-francisco-1914-loc-record.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-la-paz-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

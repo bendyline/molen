@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kishiwada_castle",
+  "kind": "static-structure",
+  "title": "Kishiwada Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kishiwada_castle",
+        "output": "assets/places/xn/xn0/kishiwada_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6abc91f9a0c6a09a8f4ef09b0b7f84231a7be92d6cb127bb2fa7e74532ca1fa0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-kishiwada-castle",
+        "path": "models/generate-kishiwada-castle.mjs"
+      },
+      {
+        "id": "kishiwada-castle-model",
+        "path": "models/kishiwada-castle-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/kishiwada-castle-footprint.json",
+      "native-map/kishiwada-site-controls.json",
+      "reference-rights/kishiwada-castle-architectural-facts.json",
+      "reference-rights/kishiwada-castle-qualla-original-1.json",
+      "references/kishiwada-saigen-jiro-honmaru-1.jpg",
+      "reference-rights/saigen-jiro-commons-first-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-28705-13039.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

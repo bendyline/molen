@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.spis_castle",
+  "kind": "static-structure",
+  "title": "Spiš Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.spis_castle",
+        "output": "assets/places/u2/u2w/spis_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:36669f41343607e7267f5fbc5dc011603e9fb317447b27037cd08dbd7207dea3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "spis_castle",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "spis-castle-model",
+        "path": "models/spis-castle-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

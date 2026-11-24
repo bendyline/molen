@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hadrian_s_library",
+  "kind": "static-structure",
+  "title": "Hadrian's Library",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hadrian_s_library",
+        "output": "assets/places/sw/swb/hadrian_s_library/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c2772ebeb0a803423d68df0ff7a8d40ab445ba91af51dc47fc747225ef19e07e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "hadrian_s_library",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "monastiraki-ruins",
+        "path": "models/monastiraki-ruins.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

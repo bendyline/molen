@@ -1,0 +1,282 @@
+{
+  "id": "nan_madol",
+  "planId": "nan_madol",
+  "title": "Nan Madol — Nan Douwas",
+  "assetId": "molen.worldgen.structure.nan_madol",
+  "category": "landmark",
+  "wikidataId": "Q846967",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 158.3357674,
+    "latitude": 6.8445775
+  },
+  "visualBrief": "Nan Douwas rises out of a tidal channel with heavy courses of dark basalt logs. Its double enclosure keeps the west passage open and the central mortuary court exposed.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/x9/x90/nan_madol/models/nan-douwas-basalt-enclosure.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.csrmfoundation.org/new-page-1",
+    "https://whc.unesco.org/en/documents/141542",
+    "https://whc.unesco.org/en/documents/141520",
+    "https://whc.unesco.org/en/list/1503/",
+    "https://www.openstreetmap.org/node/5340626322"
+  ],
+  "geographicProposal": {
+    "id": "nan-madol-nan-douwas",
+    "title": "Nan Madol — Nan Douwas",
+    "asset": "molen.worldgen.structure.nan_madol",
+    "anchor": [
+      158.3357674,
+      6.8445775
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 0.85,
+    "bounds": [
+      158.33540110473285,
+      6.844300534057348,
+      158.33614289527293,
+      6.8448410660930215
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q846967",
+      "names": [
+        "Nan Madol — Nan Douwas",
+        "Nan Douwas",
+        "Nandowas",
+        "Nan Dowas",
+        "Nan Madol ancient ruins"
+      ],
+      "maxDistance": 132
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -29.930475,
+          -27.340074
+        ],
+        [
+          -38.485197,
+          28.074768
+        ],
+        [
+          39.502038,
+          28.83174
+        ],
+        [
+          29.554686,
+          -20.861277
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "The occupied islet clears the coarse canopy heights while the model supplies its tidal foundation and court floor."
+    },
+    "source": "https://www.openstreetmap.org/node/5340626322",
+    "note": "The Nan Douwas enclosure follows the mapped islet. The west gate opens toward its visitor approach.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:172cb7921a707c9feac715295ee3c11913ff0699e5001a673f7f8560992012bb"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "basalt": {
+        "slot": "wall",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.98
+      },
+      "block": {
+        "slot": "trim",
+        "graph": "stone_basalt",
+        "roughness": 0.97
+      },
+      "core": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.97
+      }
+    },
+    "errorMeters": 0.96,
+    "module": "content/worldgen/source/places/x9/x90/nan_madol/models/nan-douwas-basalt-enclosure.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98
+          },
+          "block": {
+            "slot": "trim",
+            "graph": "stone_basalt",
+            "roughness": 0.97
+          },
+          "core": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.39
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98
+          },
+          "block": {
+            "slot": "trim",
+            "graph": "stone_basalt",
+            "roughness": 0.97
+          },
+          "core": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.162
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98
+          },
+          "block": {
+            "slot": "trim",
+            "graph": "stone_basalt",
+            "roughness": 0.97
+          },
+          "core": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.052
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        3,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "west-entrance-and-basalt-courses",
+      "position": [
+        -48,
+        4.7,
+        -3
+      ],
+      "lookAt": [
+        -25,
+        2.6,
+        -3
+      ],
+      "fov": 58
+    },
+    {
+      "name": "inner-court-and-tomb",
+      "position": [
+        13,
+        20,
+        19
+      ],
+      "lookAt": [
+        1,
+        2,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "north-wall-collapse-and-tidal-channel",
+      "position": [
+        -18,
+        17,
+        -47
+      ],
+      "lookAt": [
+        -3,
+        3,
+        -14
+      ],
+      "fov": 55
+    }
+  ],
+  "limitations": [
+    "The inner enclosures, blocks, gate proportions and extent of the north wall collapse are estimated from the available photographs. The placement covers the Nan Douwas islet."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -38.48519515991211,
+      -1.5299999713897705,
+      -27.34007453918457
+    ],
+    "max": [
+      39.502037048339844,
+      8.220000267028809,
+      28.83173942565918
+    ]
+  },
+  "size": [
+    77.98723220825195,
+    9.750000238418579,
+    56.17181396484375
+  ],
+  "mesh": {
+    "triangles": 26456,
+    "vertices": 48168,
+    "materials": 3,
+    "bytes": 2053992,
+    "sha256": "sha256:5365a2e4bd416c3aed695fc27c00852d1b6b32c2a7c9020adcbb29482cc4110f"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

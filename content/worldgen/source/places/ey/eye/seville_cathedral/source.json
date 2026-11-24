@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.seville_cathedral",
+  "kind": "static-structure",
+  "title": "Seville Cathedral",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.seville_cathedral",
+        "output": "assets/places/ey/eye/seville_cathedral/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:72e718d90bf5bf5b9bd024fb4c8b3b091c171f18a45d4f643475a588c3e2b1bf"
+      }
+    ],
+    "generators": [
+      {
+        "id": "seville_cathedral",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cathedral",
+        "path": "models/cathedral.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

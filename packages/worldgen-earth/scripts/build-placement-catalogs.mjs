@@ -1,6 +1,6 @@
 /** Compile independent authoring records to compact, independently loadable geographic regions. */
 import { readdir, readFile, unlink } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getSchema } from '../../schema/dist/index.mjs';
 import {
@@ -12,7 +12,7 @@ import {
 import {
   earthRoot,
   placementCell,
-  readStructurePlacements,
+  readPlacementSources,
   writePlacementFile,
   writePlacementPreview,
 } from './placement-sources.mjs';
@@ -37,6 +37,30 @@ export function runtimePlacement(entry) {
     }
   }
   return result;
+}
+
+/** What the published authoring schema, `structure-placements`, rejects in one source record. */
+export function placementSourceIssues(entry) {
+  const result = getSchema('structure-placements').zod.safeParse({
+    format: 'molen/structure-placements@1',
+    title: String(entry.id),
+    entries: [entry],
+  });
+  return result.success
+    ? []
+    : result.error.issues.map((issue) => {
+        const field = issue.path.slice(2).join('.');
+        return field ? `${field}: ${issue.message}` : issue.message;
+      });
+}
+
+/** Rejects records an authoring tool wrote, or an author edited, that the compiler would refuse. */
+export function checkPlacementSources(entries, describe = (entry) => entry.id) {
+  const failures = entries.flatMap((entry) =>
+    placementSourceIssues(entry).map((issue) => `${describe(entry)}: ${issue}`),
+  );
+  if (failures.length)
+    throw new Error(`Invalid placement sources (${failures.length}):\n${failures.join('\n')}`);
 }
 
 export function compilePlacementCatalog(catalog, { maxShardBytes = 192 * 1024 } = {}) {
@@ -107,7 +131,12 @@ export function compilePlacementCatalog(catalog, { maxShardBytes = 192 * 1024 } 
 }
 
 export async function buildPlacementCatalogs({ check = false } = {}) {
-  const catalog = await readStructurePlacements();
+  const { catalog, paths } = await readPlacementSources();
+  const repoRoot = resolve(earthRoot, '../..');
+  // Every bad record at once, by file; the catalog parse below reports only sorted indices.
+  checkPlacementSources(catalog.entries, (entry) =>
+    relative(repoRoot, paths.get(entry.id)).replaceAll('\\', '/'),
+  );
   const project = JSON.parse(
     await readFile(resolve(earthRoot, '../worldgen/project.json'), 'utf8'),
   );

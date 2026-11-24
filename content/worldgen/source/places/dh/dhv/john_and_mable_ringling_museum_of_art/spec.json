@@ -1,0 +1,773 @@
+{
+  "planId": "john_and_mable_ringling_museum_of_art",
+  "id": "john_and_mable_ringling_museum_of_art",
+  "assetId": "molen.worldgen.structure.john_and_mable_ringling_museum_of_art",
+  "title": "John and Mable Ringling Museum of Art",
+  "wikidataId": "Q612530",
+  "category": "art-museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -82.56053,
+    "latitude": 27.381485
+  },
+  "size": [
+    180.61000061035156,
+    15.770000219345093,
+    115.86999893188477
+  ],
+  "actualBounds": {
+    "min": [
+      -96.36000061035156,
+      -3.7200000286102295,
+      -62.91999816894531
+    ],
+    "max": [
+      84.25,
+      12.050000190734863,
+      52.95000076293945
+    ]
+  },
+  "visualBrief": "The Ringling Museum of Art in Sarasota with open pink colonnades, a terraced sculpture garden, the tiled east range and the attached Searing and Chao wings.",
+  "nativeAxes": {
+    "x": "east along the main courtyard",
+    "y": "up",
+    "z": "south across the court"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:The_John_and_Mable_Ringling_Museum_of_Art_Open_Air_Atrium.jpg",
+    "https://commons.wikimedia.org/wiki/File:Courtyard_-_John_and_Mable_Ringling_Museum_of_Art_-_Sarasota,_FL_-_DSC00656.jpg"
+  ],
+  "stories": [
+    {
+      "id": "john-and-mable-ringling-museum-of-art-wp",
+      "url": "https://qualla.com/john-and-mable-ringling-museum-of-art/"
+    }
+  ],
+  "referenceInputHash": "sha256:8425b96a0d78240d6435e0b02e83239818318f1ab2383fe176b871534ba1f461",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dh/dhv/john_and_mable_ringling_museum_of_art/models/john-and-mable-ringling-museum-of-art-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dh/dhv/john_and_mable_ringling_museum_of_art/models/john-and-mable-ringling-museum-of-art-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "limestone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.95
+      },
+      "clay": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.86
+      },
+      "flatRoof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.91
+      },
+      "jade": {
+        "slot": "wall",
+        "localRef": "palette:#fefefe",
+        "roughness": 0.42
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.52
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.76
+      },
+      "grass": {
+        "slot": "wall",
+        "localRef": "palette:#fdfdfd",
+        "roughness": 1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.86,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.95
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86
+          },
+          "flatRoof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "jade": {
+            "slot": "wall",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.42
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.76
+          },
+          "grass": {
+            "slot": "wall",
+            "localRef": "palette:#fdfdfd",
+            "roughness": 1
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.95
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86
+          },
+          "flatRoof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "jade": {
+            "slot": "wall",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.42
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.76
+          },
+          "grass": {
+            "slot": "wall",
+            "localRef": "palette:#fdfdfd",
+            "roughness": 1
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.95
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86
+          },
+          "flatRoof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "jade": {
+            "slot": "wall",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.42
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.76
+          },
+          "grass": {
+            "slot": "wall",
+            "localRef": "palette:#fdfdfd",
+            "roughness": 1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "tile_ceramic",
+    "concrete_plain",
+    "metal_bronze_cast"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.16,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original bare-earth USGS 3DEP at the east promenade beyond the rusticated historic entry.",
+    "anchor": [
+      -82.56053,
+      27.381485
+    ],
+    "heading": -0.0012217304763960308,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -82.55958915756892,
+        27.381488470883227
+      ],
+      "modelHeight": 0,
+      "basis": "Original bare-earth USGS 3DEP at the east promenade beyond the rusticated historic entry."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -33.7541,
+          -14.290000000000001
+        ],
+        [
+          62.590799999999994,
+          -14.290000000000001
+        ],
+        [
+          62.590799999999994,
+          31.419999999999998
+        ],
+        [
+          -33.7541,
+          31.419999999999998
+        ]
+      ],
+      "basis": "The museum owns the steps and sunken parterre between the loggias. Native terrain outside the court remains at original grade."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -30.6684,
+          -29.0169
+        ],
+        [
+          -30.601,
+          -14.3006
+        ],
+        [
+          -27.171,
+          -14.3048
+        ],
+        [
+          62.7704,
+          -14.5037
+        ],
+        [
+          62.8659,
+          31.2819
+        ],
+        [
+          -27.115,
+          31.4809
+        ],
+        [
+          -89.8041,
+          31.6132
+        ],
+        [
+          -89.5727,
+          43.0788
+        ],
+        [
+          -93.4079,
+          43.1057
+        ],
+        [
+          -93.3969,
+          43.9963
+        ],
+        [
+          -96.1942,
+          44.0999
+        ],
+        [
+          -96.0773,
+          50.8012
+        ],
+        [
+          -93.4678,
+          50.7201
+        ],
+        [
+          -93.4058,
+          52.9575
+        ],
+        [
+          -85.7748,
+          52.9148
+        ],
+        [
+          -83.7978,
+          52.9013
+        ],
+        [
+          -82.0779,
+          52.8992
+        ],
+        [
+          -72.7764,
+          52.8544
+        ],
+        [
+          -72.5741,
+          48.5238
+        ],
+        [
+          -32.7879,
+          48.4529
+        ],
+        [
+          -32.5339,
+          46.0259
+        ],
+        [
+          55.5992,
+          46.3746
+        ],
+        [
+          55.5999,
+          46.8867
+        ],
+        [
+          81.5374,
+          46.8216
+        ],
+        [
+          83.1126,
+          17.2977
+        ],
+        [
+          83.0914,
+          8.0693
+        ],
+        [
+          83.0702,
+          -1.1702
+        ],
+        [
+          81.3009,
+          -1.1569
+        ],
+        [
+          81.235,
+          -30.8234
+        ],
+        [
+          66.2991,
+          -30.7941
+        ],
+        [
+          66.301,
+          -29.2245
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -30.6684,
+            -29.0169
+          ],
+          [
+            -30.601,
+            -14.3006
+          ],
+          [
+            -27.171,
+            -14.3048
+          ],
+          [
+            62.7704,
+            -14.5037
+          ],
+          [
+            62.8659,
+            31.2819
+          ],
+          [
+            -27.115,
+            31.4809
+          ],
+          [
+            -89.8041,
+            31.6132
+          ],
+          [
+            -89.5727,
+            43.0788
+          ],
+          [
+            -93.4079,
+            43.1057
+          ],
+          [
+            -93.3969,
+            43.9963
+          ],
+          [
+            -96.1942,
+            44.0999
+          ],
+          [
+            -96.0773,
+            50.8012
+          ],
+          [
+            -93.4678,
+            50.7201
+          ],
+          [
+            -93.4058,
+            52.9575
+          ],
+          [
+            -85.7748,
+            52.9148
+          ],
+          [
+            -83.7978,
+            52.9013
+          ],
+          [
+            -82.0779,
+            52.8992
+          ],
+          [
+            -72.7764,
+            52.8544
+          ],
+          [
+            -72.5741,
+            48.5238
+          ],
+          [
+            -32.7879,
+            48.4529
+          ],
+          [
+            -32.5339,
+            46.0259
+          ],
+          [
+            55.5992,
+            46.3746
+          ],
+          [
+            55.5999,
+            46.8867
+          ],
+          [
+            81.5374,
+            46.8216
+          ],
+          [
+            83.1126,
+            17.2977
+          ],
+          [
+            83.0914,
+            8.0693
+          ],
+          [
+            83.0702,
+            -1.1702
+          ],
+          [
+            81.3009,
+            -1.1569
+          ],
+          [
+            81.235,
+            -30.8234
+          ],
+          [
+            66.2991,
+            -30.7941
+          ],
+          [
+            66.301,
+            -29.2245
+          ]
+        ],
+        [
+          [
+            -30.6684,
+            -29.0169
+          ],
+          [
+            -30.7491,
+            -62.7355
+          ],
+          [
+            -90.196,
+            -62.6073
+          ],
+          [
+            -90.0874,
+            -14.1722
+          ],
+          [
+            -30.601,
+            -14.3006
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.87,
+      "basis": "Replace the original mapped gallery envelope and the attached Searing Wing. Keep neighboring estate buildings."
+    },
+    "featureIds": [
+      "way/32451494",
+      "way/189875976"
+    ],
+    "source": "https://www.openstreetmap.org/way/32451494",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1c4fc284f66ce1abc4f0c56da9e80167a8fd77b153ee0f744be3f7e99f4d4983",
+    "notes": "The verified Qualla atrium photo establishes the Searing Wing’s square open aperture. Daderot’s dedicated courtyard original establishes the pink plaster loggias, roof balustrades and stepped court. National Register documentation describes the rusticated east entry."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "The verified Qualla atrium photo establishes the Searing Wing’s square open aperture. Daderot’s dedicated courtyard original establishes the pink plaster loggias, roof balustrades and stepped court. National Register documentation describes the rusticated east entry.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "ringling-museum-skyline",
+      "position": [
+        -91,
+        92,
+        112
+      ],
+      "lookAt": [
+        -10,
+        2.7,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "ringling-museum-district",
+      "position": [
+        -91,
+        92,
+        112
+      ],
+      "lookAt": [
+        -10,
+        2.7,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "ringling-museum-street",
+      "position": [
+        -91,
+        92,
+        112
+      ],
+      "lookAt": [
+        -10,
+        2.7,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "ringling-museum-closeup",
+      "position": [
+        -91,
+        92,
+        112
+      ],
+      "lookAt": [
+        -10,
+        2.7,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "renaissance-court-overhead",
+      "position": [
+        -52,
+        103,
+        76
+      ],
+      "lookAt": [
+        -6,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "courtyard-arcades-and-parterre",
+      "position": [
+        -28,
+        4.6,
+        19
+      ],
+      "lookAt": [
+        42,
+        3,
+        -4
+      ]
+    },
+    {
+      "name": "historic-east-entry",
+      "position": [
+        114,
+        9,
+        9
+      ],
+      "lookAt": [
+        73,
+        4,
+        8
+      ]
+    },
+    {
+      "name": "searing-wing-open-roof",
+      "position": [
+        -82,
+        52,
+        -66
+      ],
+      "lookAt": [
+        -62,
+        4,
+        -42
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 31491,
+    "vertices": 94473,
+    "materials": 8,
+    "bytes": 3956676,
+    "sha256": "sha256:2f49fe8857b00b4896123b300065c6e6b2e61dcb8df5a2ec8f9c203c3ede04d9"
+  }
+}

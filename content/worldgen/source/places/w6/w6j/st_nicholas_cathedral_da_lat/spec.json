@@ -1,0 +1,495 @@
+{
+  "planId": "st_nicholas_cathedral_da_lat",
+  "id": "st_nicholas_cathedral_da_lat",
+  "assetId": "molen.worldgen.structure.st_nicholas_cathedral_da_lat",
+  "title": "St. Nicholas Cathedral, Da Lat",
+  "wikidataId": "Q10800904",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 108.43769715,
+    "latitude": 11.93614471111111
+  },
+  "size": [
+    32.10000038146973,
+    53.0229606628418,
+    59.16201400756836
+  ],
+  "actualBounds": {
+    "min": [
+      -16.010000228881836,
+      -6,
+      -31.520000457763672
+    ],
+    "max": [
+      16.09000015258789,
+      47.0229606628418,
+      27.642013549804688
+    ]
+  },
+  "visualBrief": "The ochre-and-cream St. Nicholas Cathedral of Da Lat, with the 47 metre bell tower, conical stair turrets, and stepped tile roofs.",
+  "nativeAxes": {
+    "x": "west aisle to east aisle",
+    "y": "up",
+    "z": "front belfry to rear sanctuary"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Cathedral_of_Da_Lat_08.JPG",
+    "https://commons.wikimedia.org/wiki/File:Cathedral_of_Da_Lat_14.jpg"
+  ],
+  "stories": [
+    {
+      "id": "st-nicholas-cathedral-da-lat-wp",
+      "url": "https://qualla.com/st-nicholas-cathedral-da-lat/"
+    }
+  ],
+  "referenceInputHash": "sha256:44ff8bc0d1f007a76392efe8ac63077191888070050df9108e41137e59558f99",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w6/w6j/st_nicholas_cathedral_da_lat/models/st-nicholas-cathedral-da-lat-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w6/w6j/st_nicholas_cathedral_da_lat/models/st-nicholas-cathedral-da-lat-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.02,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.91
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_basalt",
+        "roughness": 0.95
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.9
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.83
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.61
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.95
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.61
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.95
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.61
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.95
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.61
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "stone_limestone",
+    "stone_basalt",
+    "tile_flat",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified ground on the entrance approach immediately north of the mapped tower.",
+    "anchor": [
+      108.43769715,
+      11.93614471111111
+    ],
+    "heading": 0.10237283407674358,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        108.43766524750818,
+        11.936448537846584
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified ground on the entrance approach immediately north of the mapped tower."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -7.849,
+          -22.548
+        ],
+        [
+          -7.849,
+          2.283
+        ],
+        [
+          -15.728,
+          3.947
+        ],
+        [
+          -15.741,
+          10.895
+        ],
+        [
+          -12.721,
+          11.978
+        ],
+        [
+          -12.529,
+          19.909
+        ],
+        [
+          -3.779,
+          27.354
+        ],
+        [
+          4.437,
+          27.202
+        ],
+        [
+          12.792,
+          19.41
+        ],
+        [
+          12.669,
+          11.766
+        ],
+        [
+          15.8,
+          10.062
+        ],
+        [
+          15.738,
+          3.733
+        ],
+        [
+          8.124,
+          1.966
+        ],
+        [
+          7.883,
+          -22.544
+        ],
+        [
+          3.728,
+          -22.59
+        ],
+        [
+          3.813,
+          -30.135
+        ],
+        [
+          -4.4,
+          -30.117
+        ],
+        [
+          -4.387,
+          -22.573
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The identified footprint of the cathedral and bell tower."
+    },
+    "featureIds": [
+      "way/452519411"
+    ],
+    "source": "https://www.openstreetmap.org/way/452519411",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:088c01be8f7a3004a42bdaf0bdf4b079cf3fa7828392d8f52ee2a887a8114dc1",
+    "notes": "Cleared photos show the cream pilasters and archivolts, grey spire with rooster and round dormers, ochre wall panels and red aisle roofs, plus the tall double rows of arched windows."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Current cathedral building exterior. Separate support buildings and interiors lie outside scope.",
+    "The mapped outline controls the individual exterior footprint; heights other than the belfry and concealed details are estimates."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "da-lat-cathedral-skyline",
+      "position": [
+        84,
+        40,
+        -89
+      ],
+      "lookAt": [
+        0,
+        17,
+        -3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "da-lat-cathedral-district",
+      "position": [
+        84,
+        40,
+        -89
+      ],
+      "lookAt": [
+        0,
+        17,
+        -3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "da-lat-cathedral-street",
+      "position": [
+        84,
+        40,
+        -89
+      ],
+      "lookAt": [
+        0,
+        17,
+        -3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "da-lat-cathedral-closeup",
+      "position": [
+        84,
+        40,
+        -89
+      ],
+      "lookAt": [
+        0,
+        17,
+        -3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "entrance-tower-and-rooster",
+      "position": [
+        84,
+        40,
+        -89
+      ],
+      "lookAt": [
+        0,
+        17,
+        -3
+      ]
+    },
+    {
+      "name": "east-aisle-and-clerestory",
+      "position": [
+        66,
+        16,
+        -10
+      ],
+      "lookAt": [
+        5,
+        16,
+        -6
+      ]
+    },
+    {
+      "name": "rounded-sanctuary-and-transept",
+      "position": [
+        -51,
+        28,
+        59
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10735,
+    "vertices": 32205,
+    "materials": 6,
+    "bytes": 1534952,
+    "sha256": "sha256:61a9b0f1c41e1e286f42c6ff9282700fc19f8930b08be54312966e245ca910a0"
+  }
+}

@@ -1,0 +1,625 @@
+{
+  "planId": "all_saints_church_nottingham",
+  "id": "all_saints_church_nottingham",
+  "assetId": "molen.worldgen.structure.all_saints_church_nottingham",
+  "title": "All Saints' Church, Nottingham",
+  "wikidataId": "Q4504669",
+  "category": "church",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -1.1612511523076923,
+    "latitude": 52.96016563538461
+  },
+  "size": [
+    47.56491279602051,
+    56.540000200271606,
+    26.800000190734863
+  ],
+  "actualBounds": {
+    "min": [
+      -24.424989700317383,
+      -3.200000047683716,
+      -13.699999809265137
+    ],
+    "max": [
+      23.139923095703125,
+      53.34000015258789,
+      13.100000381469727
+    ]
+  },
+  "visualBrief": "Raleigh Street’s polychrome Gothic Revival church, with an octagonal broach spire, clerestoried nave and apsidal chancel.",
+  "nativeAxes": {
+    "x": "along church east",
+    "y": "up",
+    "z": "toward the south aisle"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:AllSaintsNottingham.JPG",
+    "https://commons.wikimedia.org/wiki/File:Nottingham_(2021-05-28)_33.jpg"
+  ],
+  "stories": [
+    {
+      "id": "all-saints-church-nottingham-wp",
+      "url": "https://qualla.com/all-saints-church-nottingham/"
+    }
+  ],
+  "referenceInputHash": "sha256:85f0cfbd4a29d77881d156861c7c02827c08d5b4a1758a1a5b2ed9bdaee7a77b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcr/all_saints_church_nottingham/models/all-saints-church-nottingham-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gcr/all_saints_church_nottingham/models/all-saints-church-nottingham-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.24,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.93
+      },
+      "dress": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.9
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.91
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.83
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.58,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone_raw",
+    "stone_ashlar",
+    "tile_flat"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original independent terrain at the base of the west tower.",
+    "anchor": [
+      -1.1612511523076923,
+      52.96016563538461
+    ],
+    "heading": -0.07186834134670494,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -1.1616150408416384,
+        52.96018591896613
+      ],
+      "modelHeight": 0,
+      "basis": "Original independent terrain at the base of the west tower."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          15.99,
+          4.34
+        ],
+        [
+          17.43,
+          4.33
+        ],
+        [
+          18.86,
+          3.77
+        ],
+        [
+          19.23,
+          4.67
+        ],
+        [
+          20.33,
+          4.29
+        ],
+        [
+          19.88,
+          3.33
+        ],
+        [
+          21.42,
+          1.98
+        ],
+        [
+          22.42,
+          2.46
+        ],
+        [
+          22.99,
+          1.36
+        ],
+        [
+          22.02,
+          0.85
+        ],
+        [
+          22.05,
+          -1.58
+        ],
+        [
+          23.09,
+          -2.07
+        ],
+        [
+          22.6,
+          -3.13
+        ],
+        [
+          21.74,
+          -2.72
+        ],
+        [
+          19.82,
+          -4.72
+        ],
+        [
+          20.15,
+          -5.53
+        ],
+        [
+          19.29,
+          -5.88
+        ],
+        [
+          18.94,
+          -5.04
+        ],
+        [
+          17.56,
+          -5.42
+        ],
+        [
+          16.12,
+          -5.45
+        ],
+        [
+          16.04,
+          -10.72
+        ],
+        [
+          10.2,
+          -10.63
+        ],
+        [
+          10.2,
+          -11.38
+        ],
+        [
+          9.07,
+          -11.36
+        ],
+        [
+          9.08,
+          -10.65
+        ],
+        [
+          3.11,
+          -10.58
+        ],
+        [
+          2.94,
+          -10.15
+        ],
+        [
+          -10.08,
+          -10.15
+        ],
+        [
+          -10.08,
+          -13.49
+        ],
+        [
+          -12.4,
+          -13.49
+        ],
+        [
+          -14.48,
+          -13.47
+        ],
+        [
+          -14.48,
+          -10.25
+        ],
+        [
+          -15.67,
+          -10.25
+        ],
+        [
+          -15.67,
+          -9.6
+        ],
+        [
+          -20.84,
+          -9.6
+        ],
+        [
+          -20.84,
+          -5.13
+        ],
+        [
+          -22.73,
+          -5.12
+        ],
+        [
+          -22.75,
+          -3.65
+        ],
+        [
+          -24.35,
+          -3.66
+        ],
+        [
+          -24.37,
+          -2.62
+        ],
+        [
+          -22.8,
+          -2.58
+        ],
+        [
+          -22.9,
+          3.03
+        ],
+        [
+          -23.68,
+          3.52
+        ],
+        [
+          -24.09,
+          4.24
+        ],
+        [
+          -24.03,
+          4.93
+        ],
+        [
+          -23.35,
+          5.49
+        ],
+        [
+          -22.39,
+          5.43
+        ],
+        [
+          -21.53,
+          4.7
+        ],
+        [
+          -21.32,
+          4.2
+        ],
+        [
+          -15.98,
+          4.21
+        ],
+        [
+          -15.99,
+          9.58
+        ],
+        [
+          -14.72,
+          9.58
+        ],
+        [
+          -14.73,
+          12.87
+        ],
+        [
+          -12.64,
+          12.88
+        ],
+        [
+          -10.34,
+          12.88
+        ],
+        [
+          -10.34,
+          9.52
+        ],
+        [
+          2.53,
+          9.57
+        ],
+        [
+          2.53,
+          11.04
+        ],
+        [
+          4.01,
+          11.04
+        ],
+        [
+          4.02,
+          9.51
+        ],
+        [
+          8.76,
+          9.53
+        ],
+        [
+          8.76,
+          10.9
+        ],
+        [
+          10.23,
+          10.91
+        ],
+        [
+          10.24,
+          9.57
+        ],
+        [
+          15.92,
+          9.58
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Only the named Grade II church footprint on the Raleigh Street site."
+    },
+    "featureIds": [
+      "way/217477393"
+    ],
+    "source": "https://www.openstreetmap.org/way/217477393",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:eb32645d8ab6cc8c4ae92a8d3bc2d51b1049c01b3c5ef5593be39aae25f8c732",
+    "notes": "National Heritage List notes identify the clerestory, aisles, three-stage west tower, two tiers of lucarnes, apsidal chancel, transept rose windows and subsidiary turrets. The parish history and the contemporary Imperial Gazetteer put the steeple at 175 feet. The cleared Qualla view identifies the stone bands and general roof colors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the listed church. The independently listed school, vicarage, community centre, gates and railings remain outside its scope.",
+    "The rock-faced sandstone massing follows the mapped footprint. The nominal 53.34 metre spire follows the 175-foot parish and Victorian gazetteer accounts. A 1924 local source gives 154 feet, and the height has not been independently surveyed.",
+    "Approximate upper wall heights, isometric roof junctions, stone band spacing and tracery represent the documented exterior at medium fidelity."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "all-saints-nottingham-skyline",
+      "position": [
+        -85,
+        46,
+        82
+      ],
+      "lookAt": [
+        -2,
+        17.8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "all-saints-nottingham-district",
+      "position": [
+        -85,
+        46,
+        82
+      ],
+      "lookAt": [
+        -2,
+        17.8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "all-saints-nottingham-street",
+      "position": [
+        -85,
+        46,
+        82
+      ],
+      "lookAt": [
+        -2,
+        17.8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "all-saints-nottingham-closeup",
+      "position": [
+        -85,
+        46,
+        82
+      ],
+      "lookAt": [
+        -2,
+        17.8,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-tower-and-south-aisle",
+      "position": [
+        -77,
+        25,
+        70
+      ],
+      "lookAt": [
+        -8.5,
+        19.5,
+        0
+      ]
+    },
+    {
+      "name": "east-apse-and-transepts",
+      "position": [
+        68,
+        24,
+        52
+      ],
+      "lookAt": [
+        4,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "north-aisle-and-steeple",
+      "position": [
+        -43,
+        17,
+        -76
+      ],
+      "lookAt": [
+        -8,
+        20,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7259,
+    "vertices": 21777,
+    "materials": 4,
+    "bytes": 1011012,
+    "sha256": "sha256:5e7735f77e3d925d060b2b11e8fbf0f33d1dcc9c235dc2fd6c4b7c957a516c3d"
+  }
+}

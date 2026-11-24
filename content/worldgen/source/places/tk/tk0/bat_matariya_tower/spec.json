@@ -1,0 +1,228 @@
+{
+  "id": "bat_matariya_tower",
+  "planId": "bat_matariya_tower",
+  "title": "Matariya Tower, Bat",
+  "assetId": "molen.worldgen.structure.bat_matariya_tower",
+  "category": "archaeological_site",
+  "collectionId": "bat_al_khutm_and_al_ayn_archaeological_sites",
+  "wikidataId": "Q25496",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 56.7551182,
+    "latitude": 23.25781128
+  },
+  "visualBrief": "Low limestone foundations trace the circular platform of Matariya. The exposed fragmentary ring and rough stone spreads sit on the dry bench.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tk/tk0/bat_matariya_tower/models/oman-bronze-age.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/434/",
+    "https://www.nm.gov.om/en/bat?action=first",
+    "https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9",
+    "https://www.jstor.org/stable/j.ctv2t4ct6",
+    "https://www.academia.edu/9061107/Monumentality_and_the_Third_Millennium_Towers_of_the_Oman_Peninsula",
+    "https://www.openstreetmap.org/node/2628676465"
+  ],
+  "geographicProposal": {
+    "id": "bat-matariya-tower",
+    "title": "Matariya Tower, Bat",
+    "asset": "molen.worldgen.structure.bat_matariya_tower",
+    "anchor": [
+      56.7551182,
+      23.25781128
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 492.835901,
+    "bounds": [
+      56.75499680800869,
+      23.257694086559972,
+      56.755265281873214,
+      23.257932165376232
+    ],
+    "minLevel": 15,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q25496",
+      "names": [
+        "Matariya Tower, Bat",
+        "Matariya",
+        "Mattariyya",
+        "Bat Tower 1147"
+      ],
+      "maxDistance": 60.04256
+    },
+    "source": "https://www.openstreetmap.org/node/2628676465",
+    "note": "The documented tower centre and diameter establish placement against the mapped archaeological landscape. Locally sampled Terrarium terrain pins the surviving masonry to the ground.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f3a79e18d1ec38ceeee39142d468b4c7dc4d8b67d58a95ed77be7a567ede8269"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.98
+      },
+      "cut": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.97
+      }
+    },
+    "errorMeters": 0.67,
+    "module": "content/worldgen/source/places/tk/tk0/bat_matariya_tower/models/oman-bronze-age.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "cut": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.26
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "cut": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.102
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "cut": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.026
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        0.46,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "exposed-round-tower",
+      "position": [
+        -22,
+        17.520655,
+        26
+      ],
+      "lookAt": [
+        0,
+        0.46,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "masonry-and-interior-plan",
+      "position": [
+        11,
+        8.468525,
+        18
+      ],
+      "lookAt": [
+        0,
+        0.48,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "limestone-crest",
+      "position": [
+        14.79854495771701,
+        1.637296,
+        6.083014641970583
+      ],
+      "lookAt": [
+        0,
+        0.74,
+        0
+      ],
+      "fov": 48
+    }
+  ],
+  "limitations": [
+    "Uses the published survey centre and the approximately twenty-metre stone tower outline. The low wall and loose rock remain approximations of the exposed surface."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -10.412276268005371,
+      -1.45380699634552,
+      -11.455530166625977
+    ],
+    "max": [
+      13.00698184967041,
+      1.7317430973052979,
+      11.044952392578125
+    ]
+  },
+  "size": [
+    23.41925811767578,
+    3.185550093650818,
+    22.5004825592041
+  ],
+  "mesh": {
+    "triangles": 3122,
+    "vertices": 6114,
+    "materials": 1,
+    "bytes": 259092,
+    "sha256": "sha256:d93b2b0a7a7096df6f1392bf5607fd076d3263553d1d4cfefd5e07eed2b431d5"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats"
+    }
+  ]
+}

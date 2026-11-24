@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.falaknuma_palace",
+  "kind": "static-structure",
+  "title": "Falaknuma Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.falaknuma_palace",
+        "output": "assets/places/te/tep/falaknuma_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4d153403b0629882f507e19c658e6bfcc6b40c3cc38e44168c64167a337395d4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-falaknuma-palace",
+        "path": "models/generate-falaknuma-palace.mjs"
+      },
+      {
+        "id": "falaknuma-palace-model",
+        "path": "models/falaknuma-palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/falaknuma-palace-footprint.json",
+      "native-map/falaknuma-palace-shape-controls.json",
+      "reference-rights/falaknuma-palace-architectural-facts.json",
+      "references/falaknuma-palace-1898-exterior.jpg",
+      "reference-rights/falaknuma-campbell-archive.json",
+      "reference-rights/falaknuma-1898-title-leaf.jpg",
+      "reference-rights/falaknuma-asiatic-library-record.html",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-glo30-native-falaknuma-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

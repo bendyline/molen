@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.novodevichy_convent",
+  "kind": "static-structure",
+  "title": "Novodevichy Convent",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.novodevichy_convent",
+        "output": "assets/places/uc/ucf/novodevichy_convent/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:bee37c99641bf27dd28c9f9a3c1d8b02b2419ce9b5fc5f773a8bf963984ad76e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "novodevichy_convent",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "convent",
+        "path": "models/convent.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

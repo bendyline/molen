@@ -1,0 +1,460 @@
+{
+  "planId": "abbey_of_our_lady_of_atlas",
+  "id": "abbey_of_our_lady_of_atlas",
+  "assetId": "molen.worldgen.structure.abbey_of_our_lady_of_atlas",
+  "title": "Abbey of Our Lady of Atlas",
+  "wikidataId": "Q1775739",
+  "category": "monastery",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 2.715441633333333,
+    "latitude": 36.2955969
+  },
+  "size": [
+    50.53548049926758,
+    17.268974721431732,
+    53.167396545410156
+  ],
+  "actualBounds": {
+    "min": [
+      -16.049999237060547,
+      -0.9889740347862244,
+      -38.80341339111328
+    ],
+    "max": [
+      34.48548126220703,
+      16.280000686645508,
+      14.363983154296875
+    ]
+  },
+  "visualBrief": "Tibhirine Abbey on the slope above Médéa, with an ochre farmhouse gable and round gate piers, connected monastery roofs and hipped garden pavilions.",
+  "nativeAxes": {
+    "x": "roughly south uphill",
+    "y": "up",
+    "z": "roughly west"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Monast%C3%A8re_de_Tibhirine_%D8%AF%D9%8A%D8%B1_%D8%AA%D9%8A%D8%A8%D8%AD%D8%B1%D9%8A%D9%86.jpg",
+    "https://commons.wikimedia.org/wiki/File:Monastere_de_tibhirine.jpg"
+  ],
+  "stories": [
+    {
+      "id": "abbey-of-our-lady-of-atlas-wp",
+      "url": "https://qualla.com/abbey-of-our-lady-of-atlas/"
+    }
+  ],
+  "referenceInputHash": "sha256:2f71d2cfcce52e914792006373c18f93d8ebbaf0f353ad6d77386740b4d08abf",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sn/sn3/abbey_of_our_lady_of_atlas/models/abbey-of-our-lady-of-atlas-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sn/sn3/abbey_of_our_lady_of_atlas/models/abbey-of-our-lady-of-atlas-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.74,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.97
+      },
+      "masonry": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.98
+      },
+      "sill": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.96
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.91
+      },
+      "iron": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.82
+      },
+      "shadow": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.34,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98
+          },
+          "sill": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98
+          },
+          "sill": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98
+          },
+          "sill": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_sandstone_raw",
+    "stone_sandstone",
+    "tile_ceramic",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original hillside datum at the estimated entrance threshold on the downhill edge of the attached range.",
+    "anchor": [
+      2.715441633333333,
+      36.2955969
+    ],
+    "heading": -1.4816860508232947,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        2.7157204664433947,
+        36.29576669279437
+      ],
+      "modelHeight": 0,
+      "basis": "Original hillside datum at the estimated entrance threshold on the downhill edge of the attached range."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -7.352,
+          -13.157
+        ],
+        [
+          31.564,
+          -13.157
+        ],
+        [
+          34.346,
+          12.368
+        ],
+        [
+          -11.557,
+          14.266
+        ],
+        [
+          -12.083,
+          10.273
+        ],
+        [
+          -10.037,
+          6.015
+        ],
+        [
+          -8.409,
+          3.305
+        ],
+        [
+          -10.045,
+          -9.659
+        ],
+        [
+          -6.427,
+          -10.255
+        ]
+      ],
+      "minimumCoverage": 0.8,
+      "basis": "Mapped outline of the named abbey building."
+    },
+    "featureIds": [
+      "way/310079005",
+      "way/590467553"
+    ],
+    "source": "https://www.openstreetmap.org/way/310079005",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:38f0e40116390cb1b6e971a13494a88d4509f3861d75d58634b4b9c9e216ee65",
+    "notes": "Ochre entrance gable with a clay-tile roof, barred upper opening, black paired gate and capped round pillars. Older masonry and paired hipped pavilions are visible on the garden-facing elevation. Floor heights follow the slope in steps."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "Gate placement beside the downhill end of the attached mapped range and the subdivision of the garden elevation are inferred from the reference views and hillside geometry. Roof and storey heights are estimated.",
+    "Model covers the mapped attached masonry group. Detached agricultural and village buildings, interiors and gardens are outside this model."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "tibhirine-abbey-skyline",
+      "position": [
+        -66,
+        24,
+        56
+      ],
+      "lookAt": [
+        6,
+        5,
+        -7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "tibhirine-abbey-district",
+      "position": [
+        -66,
+        24,
+        56
+      ],
+      "lookAt": [
+        6,
+        5,
+        -7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "tibhirine-abbey-street",
+      "position": [
+        -66,
+        24,
+        56
+      ],
+      "lookAt": [
+        6,
+        5,
+        -7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "tibhirine-abbey-closeup",
+      "position": [
+        -66,
+        24,
+        56
+      ],
+      "lookAt": [
+        6,
+        5,
+        -7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "entrance-gate-and-ochre-gable",
+      "position": [
+        -33,
+        3.1,
+        -33
+      ],
+      "lookAt": [
+        -12,
+        3.45,
+        -20
+      ]
+    },
+    {
+      "name": "masonry-and-garden-pavilions",
+      "position": [
+        -38,
+        14,
+        51
+      ],
+      "lookAt": [
+        11,
+        8,
+        7
+      ]
+    },
+    {
+      "name": "roof-and-attached-range",
+      "position": [
+        46,
+        30,
+        -56
+      ],
+      "lookAt": [
+        8,
+        7,
+        -11
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5414,
+    "vertices": 16242,
+    "materials": 6,
+    "bytes": 800568,
+    "sha256": "sha256:4107869c37d89f76864ea9c67f6ac2a6bbfecd8c18d24d7361d864252a00b912"
+  }
+}

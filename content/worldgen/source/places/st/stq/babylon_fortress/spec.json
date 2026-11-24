@@ -1,0 +1,571 @@
+{
+  "planId": "babylon_fortress",
+  "id": "babylon_fortress",
+  "assetId": "molen.worldgen.structure.babylon_fortress",
+  "title": "Babylon Fortress",
+  "wikidataId": "Q2421968",
+  "category": "historical-fortress",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 31.229887889655174,
+    "latitude": 30.005923768965523
+  },
+  "size": [
+    52.998199462890625,
+    17.886499881744385,
+    158.02478790283203
+  ],
+  "actualBounds": {
+    "min": [
+      -27,
+      -4.480000019073486,
+      -66.54620361328125
+    ],
+    "max": [
+      25.998199462890625,
+      13.406499862670898,
+      91.47858428955078
+    ]
+  },
+  "visualBrief": "The two round towers, sunken canal-side court and south gate of Babylon Fortress in Coptic Cairo.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://archive.org/details/ancientcopticchu01butliala/page/n181/mode/1up",
+    "https://archive.org/details/ancientcopticchu01butliala/page/n244/mode/1up",
+    "https://digitalcollections.nypl.org/items/510d47e0-20b0-a3d9-e040-e00a18064a99"
+  ],
+  "stories": [
+    {
+      "id": "babylon-fortress-wp",
+      "url": "https://qualla.com/babylon-fortress/"
+    }
+  ],
+  "referenceInputHash": "sha256:d2043ad8f4a14745bf971bdaed1806bbea50cd04227c327c07c13b0e45bd91d1",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/st/stq/babylon_fortress/models/babylon-fortress-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/st/stq/babylon_fortress/models/babylon-fortress-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick_longformat",
+        "roughness": 0.95
+      },
+      "broken": {
+        "slot": "roof",
+        "graph": "stone_limestone",
+        "roughness": 0.98
+      },
+      "ground": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 0.99
+      },
+      "iron": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.92
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.33,
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_longformat",
+            "roughness": 0.95
+          },
+          "broken": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.98
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.92
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_longformat",
+            "roughness": 0.95
+          },
+          "broken": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.98
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.92
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_longformat",
+            "roughness": 0.95
+          },
+          "broken": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.98
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.92
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "brick_longformat",
+    "stone_limestone",
+    "earth_rammed",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged Copernicus GLO-30 sampled at the modern west approach. The ruins are bounded at the excavated court where Roman street levels sit approximately three to five metres below the present precinct.",
+    "anchor": [
+      31.229887889655174,
+      30.005923768965523
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        31.229690794613653,
+        30.005910294297898
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged Copernicus GLO-30 sampled at the modern west approach. The ruins are bounded at the excavated court where Roman street levels sit approximately three to five metres below the present precinct."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -24,
+          -19
+        ],
+        [
+          -12,
+          -20
+        ],
+        [
+          -7,
+          -15
+        ],
+        [
+          -12,
+          -10
+        ],
+        [
+          -15,
+          1
+        ],
+        [
+          -12,
+          12
+        ],
+        [
+          -6,
+          17
+        ],
+        [
+          -15,
+          23
+        ],
+        [
+          -23,
+          19
+        ],
+        [
+          -27,
+          6
+        ],
+        [
+          -27,
+          -10
+        ]
+      ],
+      "minHeight": -4.5,
+      "basis": "The southern tower has a narrow excavated court beside the surviving wall. The original height field continues at the cutout rim."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -0.0279,
+          -13.5733
+        ],
+        [
+          2.6809,
+          -13.295
+        ],
+        [
+          3.9148,
+          -13.1058
+        ],
+        [
+          6.5851,
+          -12.115
+        ],
+        [
+          9.4578,
+          -10.2671
+        ],
+        [
+          11.81,
+          -7.7958
+        ],
+        [
+          13.5162,
+          -4.8347
+        ],
+        [
+          14.4802,
+          -1.5619
+        ],
+        [
+          14.6538,
+          1.8444
+        ],
+        [
+          14.0175,
+          5.1952
+        ],
+        [
+          12.6101,
+          8.301
+        ],
+        [
+          10.5086,
+          10.9949
+        ],
+        [
+          7.8383,
+          13.1211
+        ],
+        [
+          4.7439,
+          14.5683
+        ],
+        [
+          1.3988,
+          15.2362
+        ],
+        [
+          -2.0138,
+          15.1026
+        ],
+        [
+          -5.2913,
+          14.1675
+        ],
+        [
+          -8.2701,
+          12.4977
+        ],
+        [
+          -10.7572,
+          10.1711
+        ],
+        [
+          -12.637,
+          7.3325
+        ],
+        [
+          -13.4853,
+          5.262
+        ],
+        [
+          -14.1023,
+          2.2452
+        ],
+        [
+          -14.0541,
+          -0.9831
+        ],
+        [
+          -13.3214,
+          -4.0444
+        ],
+        [
+          -11.9333,
+          -6.8607
+        ],
+        [
+          -10.0149,
+          -9.2764
+        ],
+        [
+          -6.2457,
+          -12.026
+        ],
+        [
+          -4.1635,
+          -12.8831
+        ],
+        [
+          -1.8981,
+          -13.4175
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The named ruin footprint identifies the southern Roman tower."
+    },
+    "featureIds": [
+      "way/215304756",
+      "way/197960953",
+      "butler-1884-south-gate"
+    ],
+    "source": "https://www.openstreetmap.org/way/215304756",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:104d9d830423a3ed925b9b5cc65db7a983022e331a75d6b0dba766cbd3d1df7f",
+    "notes": "Butler’s surveyed five stone courses with three brick courses between them and an outer masonry diameter of approximately 29 m establish the preserved walls. The south gate profile and bastion ends follow the original 1809 engraving."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The modeled north tower stops at the Roman wall beneath Saint George. The unrelated church superstructures and museum are separate physical structures.",
+    "The dates of the surveys differ from the current setting. The historic gate sections, exact interior floor elevations, exposed masonry breaks and archaeological court levels are approximated."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "babylon-fortress-skyline",
+      "position": [
+        -147,
+        84,
+        68
+      ],
+      "lookAt": [
+        1,
+        4,
+        18
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "babylon-fortress-district",
+      "position": [
+        -147,
+        84,
+        68
+      ],
+      "lookAt": [
+        1,
+        4,
+        18
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "babylon-fortress-street",
+      "position": [
+        -147,
+        84,
+        68
+      ],
+      "lookAt": [
+        1,
+        4,
+        18
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "babylon-fortress-closeup",
+      "position": [
+        -147,
+        84,
+        68
+      ],
+      "lookAt": [
+        1,
+        4,
+        18
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "canal-tower-and-excavated-court",
+      "position": [
+        -38,
+        4,
+        20
+      ],
+      "lookAt": [
+        -3,
+        1.9,
+        1
+      ]
+    },
+    {
+      "name": "radial-rooms-and-northern-base",
+      "position": [
+        36,
+        27,
+        -14
+      ],
+      "lookAt": [
+        1,
+        4,
+        -14
+      ]
+    },
+    {
+      "name": "south-gate-and-banded-bastions",
+      "position": [
+        -46,
+        10,
+        100
+      ],
+      "lookAt": [
+        -7,
+        5,
+        74
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18176,
+    "vertices": 54528,
+    "materials": 5,
+    "bytes": 2541360,
+    "sha256": "sha256:da2aade33ff489c5f4f893a221dedb5d979c3f5e0e1839ad080f29453bded16f"
+  }
+}

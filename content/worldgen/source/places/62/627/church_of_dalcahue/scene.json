@@ -1,0 +1,57 @@
+{
+  "format": "molen/scene@3",
+  "name": "Church of Dalcahue",
+  "seed": "church_of_dalcahue",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": {
+    "mode": "fixed",
+    "position": [21.93247, 6.1, 37.303802],
+    "lookAt": [5.846645, 7.6362000000000005, 15.528001],
+    "fov": 52
+  },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.church_of_dalcahue",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [0.31, 0.77, -0.47],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -0.62, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [292, 1.18, 292] },
+          "materialRef": "palette:#90927b",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}

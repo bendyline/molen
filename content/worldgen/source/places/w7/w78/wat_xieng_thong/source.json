@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.wat_xieng_thong",
+  "kind": "static-structure",
+  "title": "Wat Xieng Thong",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.wat_xieng_thong",
+        "output": "assets/places/w7/w78/wat_xieng_thong/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e95e5ea0306b12813c5fc5b58d0c25926abdce87a59a16df83c3dedb016c8d85"
+      }
+    ],
+    "generators": [
+      {
+        "id": "wat_xieng_thong",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "swept-sim-roofs-and-tree-mosaic",
+        "path": "models/swept-sim-roofs-and-tree-mosaic.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

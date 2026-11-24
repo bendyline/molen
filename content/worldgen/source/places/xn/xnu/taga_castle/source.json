@@ -1,0 +1,67 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.taga_castle",
+  "kind": "static-structure",
+  "title": "Taga Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.taga_castle",
+        "output": "assets/places/xn/xnu/taga_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f99ac6e9e66fcfd8486ebf40ac9e25f10ded31b04953f8743564f62b59d8dc54"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-taga-castle",
+        "path": "models/generate-taga-castle.mjs"
+      },
+      {
+        "id": "taga-castle-model",
+        "path": "models/taga-castle-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/taga-castle-footprint.json",
+      "native-map/taga-castle-government-compound.json",
+      "reference-rights/taga-castle-architectural-facts.json",
+      "reference-rights/taga-castle-qualla-original-1.json",
+      "reference-rights/taga-castle-qualla-original-2.json",
+      "reference-rights/taga-castle-qualla-original-3.json",
+      "reference-rights/taga-castle-qualla-original-4.json",
+      "reference-rights/taga-castle-qualla-original-5.json",
+      "reference-rights/taga-castle-qualla-original-6.json",
+      "reference-rights/taga-castle-qualla-original-7.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/taga-castle-gsi-dem1a_png-17-116868-50416.png",
+      "terrain-sources/taga-castle-gsi-dem1a_png-17-116867-50415.png",
+      "terrain-sources/taga-castle-gsi-dem1a_png-17-116868-50415.png",
+      "terrain-sources/taga-castle-gsi-dem1a_png-17-116867-50416.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

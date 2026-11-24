@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.ribat_of_sousse",
+  "kind": "static-structure",
+  "title": "Ribat of Sousse",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.ribat_of_sousse",
+        "output": "assets/places/sn/snr/ribat_of_sousse/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:fd875732e826976115e6d9b0494ceda89f4bb3d57230486f102f8278407f101a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "ribat_of_sousse",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "sousse-ribat-arcades-and-minaret",
+        "path": "models/sousse-ribat-arcades-and-minaret.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

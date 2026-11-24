@@ -1,0 +1,502 @@
+{
+  "planId": "roman_theatre_of_dougga",
+  "id": "roman_theatre_of_dougga",
+  "assetId": "molen.worldgen.structure.roman_theatre_of_dougga",
+  "title": "Roman Theatre of Dougga",
+  "wikidataId": "Q2291068",
+  "category": "theatre",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 9.220253831922744,
+    "latitude": 36.42371196835969
+  },
+  "size": [
+    64.77909851074219,
+    17.82306694984436,
+    52.38959503173828
+  ],
+  "actualBounds": {
+    "min": [
+      -32.38927459716797,
+      -1.083132028579712,
+      -31.489595413208008
+    ],
+    "max": [
+      32.38982391357422,
+      16.73993492126465,
+      20.899999618530273
+    ]
+  },
+  "visualBrief": "Standing Roman theatre with a limestone seating bowl, stepped aisles, small orchestra and partial stage colonnade.",
+  "nativeAxes": {
+    "x": "along the stage toward the east",
+    "y": "up",
+    "z": "toward the southern stage and lower ground"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:The_Roman_Theatre_01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "roman-theatre-of-dougga-wp",
+      "url": "https://qualla.com/roman-theatre-of-dougga/"
+    }
+  ],
+  "referenceInputHash": "sha256:d4f5f28877539fdff1705319464aacc5fa35709192c4bebac372437e1721646f",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sn/snq/roman_theatre_of_dougga/models/roman-theatre-of-dougga-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sn/snq/roman_theatre_of_dougga/models/roman-theatre-of-dougga-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.94,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "seat": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.95
+      },
+      "column": {
+        "slot": "trim",
+        "graph": "stone_travertine",
+        "roughness": 0.91
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.93
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.97
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "seat": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95
+          },
+          "column": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.91
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "seat": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95
+          },
+          "column": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.91
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.071,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "seat": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95
+          },
+          "column": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.91
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_limestone_weathered",
+    "stone_travertine"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Mapzen native surface immediately behind the theatre stage, taking the local stage precinct as the elevation datum.",
+    "anchor": [
+      9.220253831922744,
+      36.42371196835969
+    ],
+    "heading": -0.025545610970724632,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        9.220250695153773,
+        36.423613186370694
+      ],
+      "modelHeight": 0,
+      "basis": "Mapzen native surface immediately behind the theatre stage, taking the local stage precinct as the elevation datum."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          25.3037,
+          20.4519
+        ],
+        [
+          25.1735,
+          4.4868
+        ],
+        [
+          30.592,
+          4.3929
+        ],
+        [
+          30.6281,
+          -3.3139
+        ],
+        [
+          28.4068,
+          -13.101
+        ],
+        [
+          24.2826,
+          -20.2115
+        ],
+        [
+          18.7607,
+          -25.215
+        ],
+        [
+          10.446,
+          -29.7575
+        ],
+        [
+          0.2494,
+          -31.1561
+        ],
+        [
+          -8.0358,
+          -29.9868
+        ],
+        [
+          -15.9023,
+          -27.1578
+        ],
+        [
+          -22.3519,
+          -21.4809
+        ],
+        [
+          -27.7597,
+          -13.6035
+        ],
+        [
+          -31.0637,
+          -4.0427
+        ],
+        [
+          -31.2926,
+          4.8828
+        ],
+        [
+          -21.8945,
+          4.4868
+        ],
+        [
+          -21.4876,
+          20.4114
+        ],
+        [
+          -17.405,
+          20.2848
+        ],
+        [
+          -17.3225,
+          23.512
+        ],
+        [
+          -12.3887,
+          23.3859
+        ],
+        [
+          -12.2195,
+          29.3058
+        ],
+        [
+          -9.8739,
+          32.3861
+        ],
+        [
+          -5.8431,
+          34.7886
+        ],
+        [
+          0.331,
+          36.2121
+        ],
+        [
+          6.5486,
+          35.8305
+        ],
+        [
+          11.3796,
+          33.7806
+        ],
+        [
+          16.054,
+          29.463
+        ],
+        [
+          16.5695,
+          23.3364
+        ],
+        [
+          18.9323,
+          23.2315
+        ],
+        [
+          18.934,
+          20.4921
+        ]
+      ],
+      "minimumCoverage": 0.88,
+      "basis": "Mapped Roman theatre envelope, seating cavea and stage terraces."
+    },
+    "featureIds": [
+      "way/96369578"
+    ],
+    "source": "https://www.openstreetmap.org/way/96369578",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6a11f4a06f010cfe0a70332fb59ae28b7e493625f278f856644c034f0c367682",
+    "notes": "The CC0 2025 view shows a stepped horseshoe cavea with sector stairs, broad low first rings, low orchestra in front of the platform, and disconnected groups of column bases, lintels, partial wall and broken shafts behind the stage."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_travertine",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The standing and restored theatre is represented as a ruin. Stone fractures, angles and individual column remnants are approximated using the cleared view and published dimensions.",
+    "The associated archaeological precinct and inaccessible spaces below the stands are outside scope."
+  ],
+  "sourceLicense": "Original 3D work under the repository license, OpenStreetMap geography under ODbL and Mapzen elevations under source attribution terms.",
+  "qaLodCameras": [
+    {
+      "name": "roman-theatre-of-dougga-skyline",
+      "position": [
+        48,
+        42,
+        -63
+      ],
+      "lookAt": [
+        0,
+        4.6,
+        -0.8
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "roman-theatre-of-dougga-district",
+      "position": [
+        48,
+        42,
+        -63
+      ],
+      "lookAt": [
+        0,
+        4.6,
+        -0.8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "roman-theatre-of-dougga-street",
+      "position": [
+        48,
+        42,
+        -63
+      ],
+      "lookAt": [
+        0,
+        4.6,
+        -0.8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "roman-theatre-of-dougga-closeup",
+      "position": [
+        48,
+        42,
+        -63
+      ],
+      "lookAt": [
+        0,
+        4.6,
+        -0.8
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "cavea-and-standing-stage-colonnade",
+      "position": [
+        0,
+        18,
+        -30
+      ],
+      "lookAt": [
+        0,
+        4,
+        3
+      ]
+    },
+    {
+      "name": "stage-ruins-and-radial-stairways",
+      "position": [
+        28,
+        23,
+        20
+      ],
+      "lookAt": [
+        0,
+        6,
+        -12
+      ]
+    },
+    {
+      "name": "orchestra-and-three-cavea-tiers",
+      "position": [
+        0.8,
+        4.2,
+        3.4
+      ],
+      "lookAt": [
+        0,
+        7.6,
+        -13
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12066,
+    "vertices": 36198,
+    "materials": 4,
+    "bytes": 1696336,
+    "sha256": "sha256:f5f474c3177c9f11028e420b4f2332be3ea651d4147912a898dcb4eefed9f49b"
+  }
+}

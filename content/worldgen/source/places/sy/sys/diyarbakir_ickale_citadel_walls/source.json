@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.diyarbakir_ickale_citadel_walls",
+  "kind": "static-structure",
+  "title": "Diyarbakır İçkale Citadel Walls",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.diyarbakir_ickale_citadel_walls",
+        "output": "assets/places/sy/sys/diyarbakir_ickale_citadel_walls/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e7a8b918f2e072f7f4ab209e6aecda39f64ef020eea002a43f705eb6c37645fb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "diyarbakir_ickale_citadel_walls",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "fortress-sector-model",
+        "path": "models/fortress-sector-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

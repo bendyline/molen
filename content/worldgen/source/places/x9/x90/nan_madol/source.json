@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.nan_madol",
+  "kind": "static-structure",
+  "title": "Nan Madol — Nan Douwas",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.nan_madol",
+        "output": "assets/places/x9/x90/nan_madol/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:5365a2e4bd416c3aed695fc27c00852d1b6b32c2a7c9020adcbb29482cc4110f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "nan_madol",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "nan-douwas-basalt-enclosure",
+        "path": "models/nan-douwas-basalt-enclosure.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

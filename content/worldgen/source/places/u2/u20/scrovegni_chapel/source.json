@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.scrovegni_chapel",
+  "kind": "static-structure",
+  "title": "Scrovegni Chapel",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.scrovegni_chapel",
+        "output": "assets/places/u2/u20/scrovegni_chapel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9a12646ed05bf3872386ee1eec972b73f2c5eba3eba0699b13add90f075ede1b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-scrovegni-chapel",
+        "path": "models/generate-scrovegni-chapel.mjs"
+      },
+      {
+        "id": "scrovegni-chapel-model",
+        "path": "models/scrovegni-chapel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/scrovegni-chapel-footprint.json",
+      "native-map/scrovegni-standing-chapel-controls.json",
+      "reference-rights/scrovegni-chapel-architectural-facts.json",
+      "references/scrovegni-moschetti-engraving.jpg",
+      "reference-rights/scrovegni-moschetti-original-record.json",
+      "reference-rights/scrovegni-moschetti-title.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/padua-italy-dtm-native-samples.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

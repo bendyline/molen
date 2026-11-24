@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.bat_kasr_al_rojoom_tower",
+  "kind": "static-structure",
+  "title": "Kasr al-Rojoom Tower, Bat",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.bat_kasr_al_rojoom_tower",
+        "output": "assets/places/tk/tk0/bat_kasr_al_rojoom_tower/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:132897f20fc5a510d912c153334587bd105edf0e7ed3e729ba9d7a7f5ff89272"
+      }
+    ],
+    "generators": [
+      {
+        "id": "bat_kasr_al_rojoom_tower",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "oman-bronze-age",
+        "path": "models/oman-bronze-age.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

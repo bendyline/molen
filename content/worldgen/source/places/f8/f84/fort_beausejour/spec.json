@@ -1,0 +1,514 @@
+{
+  "planId": "fort_beausejour",
+  "id": "fort_beausejour",
+  "assetId": "molen.worldgen.structure.fort_beausejour",
+  "title": "Fort Beauséjour",
+  "wikidataId": "Q844533",
+  "category": "historic-fort",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -64.29144533160238,
+    "latitude": 45.86457195201797
+  },
+  "size": [
+    161.30309295654297,
+    8.605586528778076,
+    181.19771575927734
+  ],
+  "actualBounds": {
+    "min": [
+      -76.64779663085938,
+      -4.479271411895752,
+      -91.1500015258789
+    ],
+    "max": [
+      84.6552963256836,
+      4.126315116882324,
+      90.04771423339844
+    ]
+  },
+  "visualBrief": "Fort Beauséjour–Fort Cumberland as it survives in Aulac, including its five grass banks, surrounding ditch, exposed stone foundations and recessed magazine.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south toward the access path"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://hdl.huntington.org/digital/collection/p15150coll4/id/16146"
+  ],
+  "stories": [
+    {
+      "id": "fort-beausejour-wp",
+      "url": "https://qualla.com/fort-beausejour/"
+    }
+  ],
+  "referenceInputHash": "sha256:db6b37bf3d06ad6e3fd7494e7ad1f920374e32b02d1a5837e399f28f77682724",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/f8/f84/fort_beausejour/models/fort-beausejour-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/f8/f84/fort_beausejour/models/fort-beausejour-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.1,
+    "surfaces": {
+      "grass": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 1
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_drywall",
+        "roughness": 0.98
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.94
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#fdfdfd",
+        "roughness": 0.98
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "grass": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#fdfdfd",
+            "roughness": 0.98
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "grass": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#fdfdfd",
+            "roughness": 0.98
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "grass": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#fdfdfd",
+            "roughness": 0.98
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_drywall",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.16,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original GeoNB LiDAR floor elevation at the center of the fort’s surviving open court.",
+    "anchor": [
+      -64.29144533160238,
+      45.86457195201797
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -64.29144533160238,
+        45.86457195201797
+      ],
+      "modelHeight": 0,
+      "basis": "Original GeoNB LiDAR floor elevation at the center of the fort’s surviving open court."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -53.0479936,
+          -51.666832
+        ],
+        [
+          -76.0346176,
+          -8.5814944
+        ],
+        [
+          -71.2519872,
+          33.291024
+        ],
+        [
+          -30.699920000000002,
+          71.192864
+        ],
+        [
+          50.571664,
+          69.4863264
+        ],
+        [
+          83.9780576,
+          43.5868928
+        ],
+        [
+          80.79244800000001,
+          -20.1045664
+        ],
+        [
+          60.3945472,
+          -70.363552
+        ],
+        [
+          -17.3037536,
+          -90.4208
+        ]
+      ],
+      "basis": "Inside the surveyed ditch boundary the model supplies the LiDAR earthworks. A narrow overlap at the rim meets the surrounding terrain."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -20.1445,
+          48.7971
+        ],
+        [
+          -24.8576,
+          30.6075
+        ],
+        [
+          -21.6716,
+          26.6668
+        ],
+        [
+          -33.9892,
+          8.8668
+        ],
+        [
+          -38.0357,
+          4.5142
+        ],
+        [
+          -41.4077,
+          5.1376
+        ],
+        [
+          -55.3842,
+          -4.2132
+        ],
+        [
+          -38.6946,
+          -16.0131
+        ],
+        [
+          -33.3846,
+          -15.3452
+        ],
+        [
+          -20.4856,
+          -30.941
+        ],
+        [
+          -22.5321,
+          -37.5089
+        ],
+        [
+          -14.7027,
+          -52.5481
+        ],
+        [
+          -0.5789,
+          -43.9988
+        ],
+        [
+          2.0644,
+          -34.058
+        ],
+        [
+          20.3509,
+          -27.7128
+        ],
+        [
+          25.6377,
+          -32.7667
+        ],
+        [
+          45.087,
+          -29.3714
+        ],
+        [
+          39.4902,
+          -12.7069
+        ],
+        [
+          31.8546,
+          -8.9888
+        ],
+        [
+          32.281,
+          12.7073
+        ],
+        [
+          37.901,
+          15.5905
+        ],
+        [
+          41.0405,
+          31.0194
+        ],
+        [
+          19.6145,
+          31.409
+        ],
+        [
+          13.9635,
+          24.7744
+        ],
+        [
+          7.1884,
+          27.9804
+        ],
+        [
+          5.7698,
+          28.7707
+        ],
+        [
+          2.6613,
+          30.1288
+        ],
+        [
+          -4.1293,
+          33.3571
+        ],
+        [
+          -3.3386,
+          38.2997
+        ]
+      ],
+      "minimumCoverage": 0.87,
+      "basis": "Only the enclosure of the surviving fort is reserved. The detached visitor museum is beyond it."
+    },
+    "featureIds": [
+      "relation/20512981",
+      "way/1501630275",
+      "way/1501630277",
+      "way/1501630279",
+      "way/1501630280"
+    ],
+    "source": "https://www.openstreetmap.org/relation/20512981",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:94a6603a4ffb2b91d636e63c5f4620ed4cf1e3b9a5468bc00828b34a9129de07",
+    "notes": "Original bare-earth elevation preserves the extant rampart slopes. The Canadian designation record and current named map ways identify the low foundations, powder magazine and stone retaining segments."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "Original bare-earth elevation preserves the extant rampart slopes. The Canadian designation record and current named map ways identify the low foundations, powder magazine and stone retaining segments.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "fort-beausejour-skyline",
+      "position": [
+        24,
+        139,
+        43
+      ],
+      "lookAt": [
+        0,
+        0,
+        -6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "fort-beausejour-district",
+      "position": [
+        24,
+        139,
+        43
+      ],
+      "lookAt": [
+        0,
+        0,
+        -6
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "fort-beausejour-street",
+      "position": [
+        24,
+        139,
+        43
+      ],
+      "lookAt": [
+        0,
+        0,
+        -6
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "fort-beausejour-closeup",
+      "position": [
+        24,
+        139,
+        43
+      ],
+      "lookAt": [
+        0,
+        0,
+        -6
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "measured-five-bastions",
+      "position": [
+        24,
+        139,
+        43
+      ],
+      "lookAt": [
+        0,
+        0,
+        -6
+      ]
+    },
+    {
+      "name": "ditch-approach-and-parade-ground",
+      "position": [
+        44,
+        10.9,
+        56
+      ],
+      "lookAt": [
+        0,
+        0.15,
+        -4
+      ]
+    },
+    {
+      "name": "barracks-and-magazine",
+      "position": [
+        -31,
+        8.4,
+        -3
+      ],
+      "lookAt": [
+        -4,
+        0.6,
+        -18.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26195,
+    "vertices": 78585,
+    "materials": 4,
+    "bytes": 3263788,
+    "sha256": "sha256:f774306866f766a3ac43e12b189f156151b42629265b5912dd3d1a8957d80fd4"
+  }
+}

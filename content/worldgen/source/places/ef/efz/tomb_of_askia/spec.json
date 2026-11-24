@@ -1,0 +1,378 @@
+{
+  "id": "tomb_of_askia",
+  "planId": "tomb_of_askia",
+  "title": "Tomb of Askia",
+  "assetId": "molen.worldgen.structure.tomb_of_askia",
+  "category": "monument",
+  "wikidataId": "Q503823",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -0.044444,
+    "latitude": 16.289722
+  },
+  "visualBrief": "A battered, tiered adobe tower with a recessed northwest stair approach and timber toron rises between two low prayer halls.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ef/efz/tomb_of_askia/models/gao-earthen-tomb-and-prayer-halls.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Askia.jpg",
+    "https://whc.unesco.org/en/list/1139",
+    "https://www.openstreetmap.org/way/201065322"
+  ],
+  "geographicProposal": {
+    "id": "tomb-of-askia-gao",
+    "title": "Tomb of Askia",
+    "asset": "molen.worldgen.structure.tomb_of_askia",
+    "anchor": [
+      -0.044444,
+      16.289722
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 257.1015625,
+    "bounds": [
+      -0.04510861771752143,
+      16.2891218360921,
+      -0.04457668228523787,
+      16.289667166462856
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q503823",
+      "names": [
+        "Tomb of Askia",
+        "Tombeau des Askia",
+        "Tomb of King Askia"
+      ],
+      "maxDistance": 111
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -54.098479,
+          34.063738
+        ],
+        [
+          -52.410239,
+          46.509234
+        ],
+        [
+          -41.575584,
+          45.03982
+        ],
+        [
+          -43.263824,
+          32.594323
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -54.098479,
+            34.063738
+          ],
+          [
+            -52.410239,
+            46.509234
+          ],
+          [
+            -41.575584,
+            45.03982
+          ],
+          [
+            -43.263824,
+            32.594323
+          ]
+        ],
+        [
+          [
+            -69.014828,
+            14.30455
+          ],
+          [
+            -62.016111,
+            13.358335
+          ],
+          [
+            -55.166985,
+            63.863898
+          ],
+          [
+            -62.176387,
+            64.810111
+          ]
+        ],
+        [
+          [
+            -39.26761,
+            10.308182
+          ],
+          [
+            -32.429169,
+            60.813753
+          ],
+          [
+            -16.177187,
+            58.609633
+          ],
+          [
+            -23.004943,
+            8.104057
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the main pyramid and its two individually mapped prayer halls. The archaeological buffer boundary and surrounding Gao buildings remain host features."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -54.236205,
+          33.941135
+        ],
+        [
+          -43.134003,
+          32.435435
+        ],
+        [
+          -41.408487,
+          45.158439
+        ],
+        [
+          -52.510689,
+          46.664139
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Keep the earthen pyramid’s base and west approach clear of coarse relief."
+    },
+    "source": "https://www.openstreetmap.org/way/201065322",
+    "note": "The tower and two halls use independent native map footprints. The west stair, toron layout and battered walls interpret the available exterior photograph.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:181a978388c9777b1b0b8fa969b949e510596e61cc7c39cb2025d7464304c677"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "mud": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.99
+      },
+      "terrace": {
+        "slot": "roof",
+        "graph": "earth_rammed",
+        "roughness": 0.99
+      },
+      "palms": {
+        "slot": "trim",
+        "graph": "wood_log",
+        "roughness": 0.96
+      },
+      "plinth": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 0.99
+      }
+    },
+    "errorMeters": 0.43,
+    "module": "content/worldgen/source/places/ef/efz/tomb_of_askia/models/gao-earthen-tomb-and-prayer-halls.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "mud": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.99
+          },
+          "terrace": {
+            "slot": "roof",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          },
+          "palms": {
+            "slot": "trim",
+            "graph": "wood_log",
+            "roughness": 0.96
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.21
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "mud": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.99
+          },
+          "terrace": {
+            "slot": "roof",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          },
+          "palms": {
+            "slot": "trim",
+            "graph": "wood_log",
+            "roughness": 0.96
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.082
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "mud": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.99
+          },
+          "terrace": {
+            "slot": "roof",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          },
+          "palms": {
+            "slot": "trim",
+            "graph": "wood_log",
+            "roughness": 0.96
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.037
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -47.187131,
+        5.1,
+        39.463638
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "west-stair-and-projecting-toron",
+      "position": [
+        -55.441687,
+        4.29,
+        55.33724
+      ],
+      "lookAt": [
+        -49.152091,
+        7.3,
+        38.539589
+      ],
+      "fov": 59
+    },
+    {
+      "name": "three-earth-tiers-and-courtyard",
+      "position": [
+        -24.62157,
+        26,
+        65.386443
+      ],
+      "lookAt": [
+        -46.115512,
+        6,
+        37.118608
+      ],
+      "fov": 57
+    },
+    {
+      "name": "prayer-halls-and-earthen-enclosure",
+      "position": [
+        -31.425346,
+        15,
+        7.778209
+      ],
+      "lookAt": [
+        -47.077778,
+        4.1,
+        41.184816
+      ],
+      "fov": 54
+    }
+  ],
+  "limitations": [
+    "The west stair and individual palm poles interpret the photographs. The surrounding cemetery and mosque interiors are outside the modeled scope."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -69.06636047363281,
+      -2.390000104904175,
+      8.052528381347656
+    ],
+    "max": [
+      -16.125656127929688,
+      17.209999084472656,
+      64.86164093017578
+    ]
+  },
+  "size": [
+    52.940704345703125,
+    19.59999918937683,
+    56.809112548828125
+  ],
+  "mesh": {
+    "triangles": 12094,
+    "vertices": 24316,
+    "materials": 4,
+    "bytes": 1023404,
+    "sha256": "sha256:3aab6ad224c69e452dec0a833db9f6e08f7a888c277114bc9ffdb507db037f6e"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_log",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

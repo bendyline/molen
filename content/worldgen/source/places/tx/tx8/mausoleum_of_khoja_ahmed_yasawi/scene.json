@@ -1,0 +1,57 @@
+{
+  "format": "molen/scene@3",
+  "name": "Mausoleum of Khoja Ahmed Yasawi",
+  "seed": "mausoleum_of_khoja_ahmed_yasawi",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": {
+    "mode": "fixed",
+    "position": [35.442, 39, 99.563],
+    "lookAt": [0.811, 17, 0.585],
+    "fov": 49
+  },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.mausoleum_of_khoja_ahmed_yasawi",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [0.65, 0.8, 0.3],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -0.62, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [440, 1.18, 440] },
+          "materialRef": "palette:#b4a17e",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}

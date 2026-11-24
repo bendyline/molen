@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.dakota",
+  "kind": "static-structure",
+  "title": "The Dakota",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.dakota",
+        "output": "assets/places/dr/dr5/dakota/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2e746b1dd0f59e70907b7eeb70f6708db45d146b97c7cab65f334752eea06302"
+      }
+    ],
+    "generators": [
+      {
+        "id": "dakota",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "slate-gables-and-carriage-court",
+        "path": "models/slate-gables-and-carriage-court.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

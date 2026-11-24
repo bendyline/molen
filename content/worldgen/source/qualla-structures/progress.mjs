@@ -23,7 +23,11 @@ import {
 } from './imagery-policy.mjs';
 import { readCurrentReferences } from './member-references.mjs';
 import { inspectPrimaryFactsReconstruction } from './primary-facts-reconstruction.mjs';
-import { structureCatalogEntries, structureCatalogMatches } from './work-ownership.mjs';
+import {
+  readImportantLandmarks,
+  structureCatalogEntries,
+  structureCatalogMatches,
+} from './work-ownership.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '../../../..');
@@ -378,6 +382,7 @@ export async function buildProgress({
   const reserved = structureCatalogEntries(
     read(path.join(repository, 'content/worldgen/source/structure-catalog/candidates.json')),
     read(path.join(repository, 'content/worldgen/source/structure-catalog/collections.json')),
+    readImportantLandmarks(repository),
   );
   const project = read(path.join(repository, 'content/worldgen/project.json')),
     stylepack = read(path.join(repository, 'content/worldgen/stylepack.json')),

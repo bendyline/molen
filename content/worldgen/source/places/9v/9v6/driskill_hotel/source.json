@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.driskill_hotel",
+  "kind": "static-structure",
+  "title": "Driskill Hotel",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.driskill_hotel",
+        "output": "assets/places/9v/9v6/driskill_hotel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:da06788e65a24ec7be0037935272f59b0174e5c97ceb0dc1f4f3d41441acb6b1"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-driskill-hotel",
+        "path": "models/generate-driskill-hotel.mjs"
+      },
+      {
+        "id": "driskill-hotel-model",
+        "path": "models/driskill-hotel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/driskill-hotel-footprint.json",
+      "native-map/driskill-urban-survey-controls.json",
+      "reference-rights/driskill-hotel-architectural-facts.json",
+      "reference-rights/driskill-hotel-qualla-original-3.json",
+      "references/driskill-highsmith-full.jp2",
+      "reference-rights/highsmith-loc-rights.html",
+      "reference-rights/highsmith-loc-catalog.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-7487-13491.png",
+      "terrain-sources/terrarium-15-7487-13490.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

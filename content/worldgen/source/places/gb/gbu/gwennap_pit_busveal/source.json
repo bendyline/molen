@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.gwennap_pit_busveal",
+  "kind": "static-structure",
+  "title": "Gwennap Pit",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.gwennap_pit_busveal",
+        "output": "assets/places/gb/gbu/gwennap_pit_busveal/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a636a10d865caa1f16f23d0396cef0c502d4b014c706c0e61aafc96023e681ef"
+      }
+    ],
+    "generators": [
+      {
+        "id": "gwennap_pit_busveal",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cornish-heritage",
+        "path": "models/cornish-heritage.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

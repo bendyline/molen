@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.sacred_heart_cathedral_suva",
+  "kind": "static-structure",
+  "title": "Sacred Heart Cathedral, Suva",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.sacred_heart_cathedral_suva",
+        "output": "assets/places/ru/ruy/sacred_heart_cathedral_suva/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:864d6e427974131f37dfa10d4f380e4ffcf571f496eb28519a5c11edd0d747eb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "sacred_heart_cathedral_suva",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "suva-sandstone-towers-and-pratt-street-loggia",
+        "path": "models/suva-sandstone-towers-and-pratt-street-loggia.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

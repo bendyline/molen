@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.dunedin_railway_station",
+  "kind": "static-structure",
+  "title": "Dunedin Railway Station",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.dunedin_railway_station",
+        "output": "assets/places/pz/pzc/dunedin_railway_station/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f3571363c45baa1b67603d43d8eec04751a2907a472315ca735850934039f036"
+      }
+    ],
+    "generators": [
+      {
+        "id": "dunedin_railway_station",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "edwardian-station",
+        "path": "models/edwardian-station.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

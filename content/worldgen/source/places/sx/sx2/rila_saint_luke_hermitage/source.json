@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.rila_saint_luke_hermitage",
+  "kind": "static-structure",
+  "title": "Saint Luke and Intercession Hermitage",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.rila_saint_luke_hermitage",
+        "output": "assets/places/sx/sx2/rila_saint_luke_hermitage/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1e465c21fed6dd8b86db6e49592268ed9a3f7d11775b8f9b3746edec8d590061"
+      }
+    ],
+    "generators": [
+      {
+        "id": "rila_saint_luke_hermitage",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "rila-courtyard-and-stone-chapels",
+        "path": "models/rila-courtyard-and-stone-chapels.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

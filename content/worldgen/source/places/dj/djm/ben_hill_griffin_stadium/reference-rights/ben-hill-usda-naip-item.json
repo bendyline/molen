@@ -1,0 +1,167 @@
+{
+  "id": "fl_m_2908222_sw_17_030_20230126_20230511",
+  "bbox": [
+    -82.377922,
+    29.622532,
+    -82.3096,
+    29.689965
+  ],
+  "type": "Feature",
+  "links": [
+    {
+      "rel": "collection",
+      "type": "application/json",
+      "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"
+    },
+    {
+      "rel": "parent",
+      "type": "application/json",
+      "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"
+    },
+    {
+      "rel": "root",
+      "type": "application/json",
+      "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+    },
+    {
+      "rel": "self",
+      "type": "application/geo+json",
+      "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2908222_sw_17_030_20230126_20230511"
+    },
+    {
+      "rel": "preview",
+      "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=naip&item=fl_m_2908222_sw_17_030_20230126_20230511",
+      "title": "Map of item",
+      "type": "text/html"
+    }
+  ],
+  "assets": {
+    "image": {
+      "href": "https://naipeuwest.blob.core.windows.net/naip/v002/fl/2023/fl_030cm_2023/29082/m_2908222_sw_17_030_20230126_20230511.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data"
+      ],
+      "title": "RGBIR COG tile",
+      "eo:bands": [
+        {
+          "name": "Red",
+          "common_name": "red"
+        },
+        {
+          "name": "Green",
+          "common_name": "green"
+        },
+        {
+          "name": "Blue",
+          "common_name": "blue"
+        },
+        {
+          "name": "NIR",
+          "common_name": "nir",
+          "description": "near-infrared"
+        }
+      ]
+    },
+    "thumbnail": {
+      "href": "https://naipeuwest.blob.core.windows.net/naip/v002/fl/2023/fl_030cm_2023/29082/m_2908222_sw_17_030_20230126_20230511.200.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Thumbnail"
+    },
+    "tilejson": {
+      "title": "TileJSON with default rendering",
+      "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=naip&item=fl_m_2908222_sw_17_030_20230126_20230511&assets=image&asset_bidx=image%7C1,2,3&format=png",
+      "type": "application/json",
+      "roles": [
+        "tiles"
+      ]
+    },
+    "rendered_preview": {
+      "title": "Rendered preview",
+      "rel": "preview",
+      "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=naip&item=fl_m_2908222_sw_17_030_20230126_20230511&assets=image&asset_bidx=image%7C1,2,3&format=png",
+      "roles": [
+        "overview"
+      ],
+      "type": "image/png"
+    }
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -82.3096,
+          29.623215
+        ],
+        [
+          -82.310465,
+          29.689965
+        ],
+        [
+          -82.377922,
+          29.68928
+        ],
+        [
+          -82.377012,
+          29.622532
+        ],
+        [
+          -82.3096,
+          29.623215
+        ]
+      ]
+    ]
+  },
+  "collection": "naip",
+  "properties": {
+    "gsd": 0.3,
+    "datetime": "2023-01-26T16:00:00Z",
+    "naip:year": "2023",
+    "proj:bbox": [
+      366684.0,
+      3277752.0,
+      373212.0,
+      3285150.0
+    ],
+    "proj:epsg": 26917,
+    "providers": [
+      {
+        "url": "https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/",
+        "name": "USDA Farm Service Agency",
+        "roles": [
+          "producer",
+          "licensor"
+        ]
+      }
+    ],
+    "naip:state": "fl",
+    "proj:shape": [
+      24660,
+      21760
+    ],
+    "proj:centroid": {
+      "lat": 29.65625,
+      "lon": -82.34375
+    },
+    "proj:transform": [
+      0.3,
+      0.0,
+      366684.0,
+      0.0,
+      -0.3,
+      3285150.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "stac_extensions": [
+    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
+  ],
+  "stac_version": "1.0.0"
+}

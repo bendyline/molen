@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.old_st_paul_s",
+  "kind": "static-structure",
+  "title": "Old St Paul’s, Wellington",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.old_st_paul_s",
+        "output": "assets/places/rb/rbs/old_st_paul_s/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:0176bb2e08e0d86c44ae78560771e056cee033952eb596dda18e0b1f5b0e69a9"
+      }
+    ],
+    "generators": [
+      {
+        "id": "old_st_paul_s",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "mulgrave-street-timber-church",
+        "path": "models/mulgrave-street-timber-church.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

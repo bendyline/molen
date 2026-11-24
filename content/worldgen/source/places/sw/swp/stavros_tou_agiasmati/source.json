@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.stavros_tou_agiasmati",
+  "kind": "static-structure",
+  "title": "Stavros tou Agiasmati",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.stavros_tou_agiasmati",
+        "output": "assets/places/sw/swp/stavros_tou_agiasmati/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:5f9355050b1e465aaf4b77cce50d458d640813f4762de31820ac1e7cc498df3d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "stavros_tou_agiasmati",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "chapel-and-roof",
+        "path": "models/chapel-and-roof.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "church-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

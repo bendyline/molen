@@ -1,0 +1,254 @@
+{
+  "id": "mausoleum_of_the_first_qin_emperor",
+  "planId": "mausoleum_of_the_first_qin_emperor",
+  "title": "Mausoleum of the First Qin Emperor",
+  "assetId": "molen.worldgen.structure.mausoleum_of_the_first_qin_emperor",
+  "category": "monument",
+  "wikidataId": "Q910180",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 109.2538889,
+    "latitude": 34.3816667
+  },
+  "visualBrief": "The Qin mausoleum is represented by the standing wooded tumulus inside the mapped enclosure. Its slopes and crest come from local elevation samples.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wq/wqj/mausoleum_of_the_first_qin_emperor/models/wooded-tumulus.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/441/",
+    "https://www.xinhuanet.com/politics/20240909/b38182a961654f37aa1d316a22fe9c22/c.html",
+    "https://www.openstreetmap.org/way/257071487"
+  ],
+  "geographicProposal": {
+    "id": "mausoleum-of-first-qin-emperor-lintong",
+    "title": "Mausoleum of the First Qin Emperor",
+    "asset": "molen.worldgen.structure.mausoleum_of_the_first_qin_emperor",
+    "anchor": [
+      109.2538889,
+      34.3816667
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 484.95,
+    "bounds": [
+      109.25179143042728,
+      34.37971566765543,
+      109.25586396957539,
+      34.383047169145925
+    ],
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q910180",
+      "names": [
+        "Mausoleum of the First Qin Emperor",
+        "Qin Shi Huang Mausoleum",
+        "秦始皇帝陵",
+        "秦始皇陵"
+      ],
+      "maxDistance": 80
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -173.324458,
+          -150.549695
+        ],
+        [
+          -190.697327,
+          215.189224
+        ],
+        [
+          -42.894726,
+          205.705017
+        ],
+        [
+          164.541559,
+          213.341363
+        ],
+        [
+          179.452276,
+          -151.67404
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Replace coarse ground geometry inside the surveyed tomb fence with the detailed, matched terrain mesh."
+    },
+    "source": "https://www.openstreetmap.org/way/257071487",
+    "note": "The earthwork meets the surrounding slope at the mapped enclosure. The source scene reviews the northern approach and the different grades on the west and east sides.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:83f2dd10783e89527e0ac0f3b523ce5d548786607121b665587600e724b284b8"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "earth": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 0.95
+      },
+      "canopy": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "name": "qin-mound-evergreen-canopy",
+        "roughness": 0.97
+      }
+    },
+    "errorMeters": 5.45,
+    "module": "content/worldgen/source/places/wq/wqj/mausoleum_of_the_first_qin_emperor/models/wooded-tumulus.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.95
+          },
+          "canopy": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "name": "qin-mound-evergreen-canopy",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 2.4
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.95
+          },
+          "canopy": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "name": "qin-mound-evergreen-canopy",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.95
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.95
+          },
+          "canopy": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "name": "qin-mound-evergreen-canopy",
+            "roughness": 0.97
+          }
+        },
+        "errorMeters": 0.31
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -10,
+        16,
+        29
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "northern-approach-and-wooded-slope",
+      "position": [
+        -55,
+        35,
+        -295
+      ],
+      "lookAt": [
+        0,
+        19,
+        80
+      ],
+      "fov": 67
+    },
+    {
+      "name": "western-terrace-and-rising-crest",
+      "position": [
+        -313,
+        74,
+        -74
+      ],
+      "lookAt": [
+        18,
+        19,
+        57
+      ],
+      "fov": 56
+    },
+    {
+      "name": "southeast-slope-and-footprint",
+      "position": [
+        252,
+        132,
+        361
+      ],
+      "lookAt": [
+        9,
+        17,
+        30
+      ],
+      "fov": 59
+    }
+  ],
+  "limitations": [
+    "The model covers the mapped burial mound enclosure. The modern visitor precinct, separately named museum and excavation halls remain map context. The evergreen crowns represent dense planting without a tree-by-tree survey. Elevation returns include canopy effects."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -190.69732666015625,
+      -6.538043022155762,
+      -151.67404174804688
+    ],
+    "max": [
+      179.4522705078125,
+      40.58150100708008,
+      215.18922424316406
+    ]
+  },
+  "size": [
+    370.14959716796875,
+    47.11954402923584,
+    366.86326599121094
+  ],
+  "mesh": {
+    "triangles": 29551,
+    "vertices": 88653,
+    "materials": 2,
+    "bytes": 3548048,
+    "sha256": "sha256:a0cf2fdff10376454f6955c714003eea061096ac3c5a65d417bf0be7d156e007"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

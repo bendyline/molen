@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.pontcysyllte_aqueduct",
+  "kind": "static-structure",
+  "title": "Pontcysyllte Aqueduct",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.pontcysyllte_aqueduct",
+        "output": "assets/places/gc/gcm/pontcysyllte_aqueduct/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2a1cd8cc6865c317c1911b07345ad77986f824dd6e2033f96368834469edbc2b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "pontcysyllte_aqueduct",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "aqueduct",
+        "path": "models/aqueduct.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

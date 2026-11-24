@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.royal_palace_of_nuku_alofa",
+  "kind": "static-structure",
+  "title": "Royal Palace of Nukuʻalofa",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.royal_palace_of_nuku_alofa",
+        "output": "assets/places/2h/2h5/royal_palace_of_nuku_alofa/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ce8a100e8521fa928db90cf854df71f07e13758a3149e1e567f85b3dd11cd32e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "royal_palace_of_nuku_alofa",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "nuku-alofa-royal-palace-and-verandahs",
+        "path": "models/nuku-alofa-royal-palace-and-verandahs.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

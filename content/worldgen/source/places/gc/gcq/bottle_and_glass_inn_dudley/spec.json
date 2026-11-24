@@ -1,0 +1,518 @@
+{
+  "planId": "bottle_and_glass_inn_dudley",
+  "id": "bottle_and_glass_inn_dudley",
+  "assetId": "molen.worldgen.structure.bottle_and_glass_inn_dudley",
+  "title": "Bottle & Glass Inn, Dudley",
+  "wikidataId": "Q880185",
+  "category": "inn",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -2.077252325,
+    "latitude": 52.523375550000004
+  },
+  "size": [
+    10.099999904632568,
+    9.339999556541443,
+    18.75
+  ],
+  "actualBounds": {
+    "min": [
+      -4.130000114440918,
+      -1.149999976158142,
+      -9.369999885559082
+    ],
+    "max": [
+      5.96999979019165,
+      8.1899995803833,
+      9.380000114440918
+    ]
+  },
+  "visualBrief": "The canalside village inn with its cream and green painted pub frontage and brick rear ranges.",
+  "nativeAxes": {
+    "x": "east-northeast along the front of the inn",
+    "y": "up",
+    "z": "south-southeast along Coppice Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Blackcountrystreet.jpg"
+  ],
+  "stories": [
+    {
+      "id": "black-country-living-museum-wp",
+      "url": "https://qualla.com/black-country-living-museum/"
+    }
+  ],
+  "referenceInputHash": "sha256:245b4ca1788b7365bc7cbe7c7498901f79683d592d18c37b1a1da08dde8c6b75",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcq/bottle_and_glass_inn_dudley/models/bottle-and-glass-inn-dudley-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gcq/bottle_and_glass_inn_dudley/models/bottle-and-glass-inn-dudley-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.35,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.93
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.92
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.86
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.88
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.52
+      },
+      "paint": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.93
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.86
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.075,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.93
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.86
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.027,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.93
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.86
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "plaster_lime",
+    "stone_limestone",
+    "tile_flat",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Mapzen elevation field at the inn’s Coppice Street entrance, checked against the building orientation and canal-side grading.",
+    "anchor": [
+      -2.077252325,
+      52.523375550000004
+    ],
+    "heading": 0.24776189706456045,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -2.077212859345763,
+        52.52328062407079
+      ],
+      "modelHeight": 0,
+      "basis": "Original Mapzen elevation field at the inn’s Coppice Street entrance, checked against the building orientation and canal-side grading."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -3.91,
+          8.559
+        ],
+        [
+          -3.91,
+          -9.228
+        ],
+        [
+          -0.52,
+          -9.232
+        ],
+        [
+          -0.526,
+          -7.912
+        ],
+        [
+          2.072,
+          -7.91
+        ],
+        [
+          2.071,
+          2.482
+        ],
+        [
+          2.07,
+          3.01
+        ],
+        [
+          5.745,
+          3.009
+        ],
+        [
+          5.747,
+          6.121
+        ],
+        [
+          5.747,
+          8.579
+        ],
+        [
+          4.184,
+          8.574
+        ],
+        [
+          4.183,
+          9.182
+        ],
+        [
+          2.429,
+          9.186
+        ],
+        [
+          2.43,
+          8.658
+        ],
+        [
+          0.633,
+          8.663
+        ],
+        [
+          -1.106,
+          8.659
+        ],
+        [
+          -1.106,
+          9.13
+        ],
+        [
+          -2.676,
+          9.123
+        ],
+        [
+          -2.681,
+          8.56
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Named native outlines of the inn and attached rear wings."
+    },
+    "featureIds": [
+      "way/1259064718"
+    ],
+    "source": "https://www.openstreetmap.org/way/1259064718",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:20297b936d920c764d0170d25728cf4be455a9cd40f8cf027b6a86efd2cc7f39",
+    "notes": "The exact Jack1956 Qualla photograph documents the painted pub frontage at the end of Coppice Street. The museum building sheet confirms the historic pub and its translocation. Rear roof and heights are estimated from the mapped outline and scale of the front."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The model covers the inn and its attached ranges. The village’s other independent buildings remain outside this placement.",
+    "Street elevation, window count, cream and green painted front and historic lettering follow the Qualla photo. Rear openings and small secondary ornament are representative."
+  ],
+  "sourceLicense": "Original 3D work, OpenStreetMap footprint under ODbL, and Mapzen terrain under source attribution.",
+  "qaLodCameras": [
+    {
+      "name": "bottle-and-glass-inn-skyline",
+      "position": [
+        18,
+        11,
+        31
+      ],
+      "lookAt": [
+        0,
+        2.8,
+        1.4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "bottle-and-glass-inn-district",
+      "position": [
+        18,
+        11,
+        31
+      ],
+      "lookAt": [
+        0,
+        2.8,
+        1.4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "bottle-and-glass-inn-street",
+      "position": [
+        18,
+        11,
+        31
+      ],
+      "lookAt": [
+        0,
+        2.8,
+        1.4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "bottle-and-glass-inn-closeup",
+      "position": [
+        18,
+        11,
+        31
+      ],
+      "lookAt": [
+        0,
+        2.8,
+        1.4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "coppice-street-front",
+      "position": [
+        -4,
+        4,
+        25
+      ],
+      "lookAt": [
+        0.7,
+        3.45,
+        7.9
+      ]
+    },
+    {
+      "name": "painted-letters-and-pub-bays",
+      "position": [
+        3.5,
+        4.2,
+        20.5
+      ],
+      "lookAt": [
+        0.9,
+        3.3,
+        8.7
+      ]
+    },
+    {
+      "name": "brick-canal-side-ranges",
+      "position": [
+        -22,
+        12,
+        -12
+      ],
+      "lookAt": [
+        0,
+        3.2,
+        -1.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3653,
+    "vertices": 10959,
+    "materials": 7,
+    "bytes": 674984,
+    "sha256": "sha256:d024c686fdb034100f1c1dc8ded8b80798b6a600d3234e0d82fe786766ba4ca6"
+  }
+}

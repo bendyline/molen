@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.church_of_achao",
+  "kind": "static-structure",
+  "title": "Church of Achao",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.church_of_achao",
+        "output": "assets/places/62/627/church_of_achao/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:65df86bd0403d31f5d48b52f8cfe0ef7188fa44176dd9dfc05dc84a745bdd28e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "church_of_achao",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "church-nave-porch-and-belfry",
+        "path": "models/church-nave-porch-and-belfry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "church-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

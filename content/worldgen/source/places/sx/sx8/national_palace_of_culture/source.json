@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.national_palace_of_culture",
+  "kind": "static-structure",
+  "title": "National Palace of Culture",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.national_palace_of_culture",
+        "output": "assets/places/sx/sx8/national_palace_of_culture/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ad6ab8286ccf90aba7582d19509e80ecce0ed7fdb5aa26b38473187d73a86192"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-national-palace-of-culture",
+        "path": "models/generate-national-palace-of-culture.mjs"
+      },
+      {
+        "id": "national-palace-of-culture-model",
+        "path": "models/national-palace-of-culture-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/national-palace-of-culture-footprint.json",
+      "reference-rights/national-palace-of-culture-architectural-facts.json",
+      "reference-rights/national-palace-of-culture-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-18506-12079.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

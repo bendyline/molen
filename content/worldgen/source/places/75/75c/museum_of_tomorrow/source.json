@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.museum_of_tomorrow",
+  "kind": "static-structure",
+  "title": "Museum of Tomorrow",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.museum_of_tomorrow",
+        "output": "assets/places/75/75c/museum_of_tomorrow/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:5f1a006305357ddf9e06dbd08771ff1eb46c4327a8bb22101a7da01bf1056bfe"
+      }
+    ],
+    "generators": [
+      {
+        "id": "museum_of_tomorrow",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "pier-maua-cantilevers",
+        "path": "models/pier-maua-cantilevers.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

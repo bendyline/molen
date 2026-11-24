@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.red_pyramid",
+  "kind": "static-structure",
+  "title": "Red Pyramid",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.red_pyramid",
+        "output": "assets/places/st/stq/red_pyramid/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:acf4d0091fe7c525711ec151cd1c4e481b03c7b958b101ea1424a410ee850d38"
+      }
+    ],
+    "generators": [
+      {
+        "id": "red_pyramid",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "dahshur-north-face-limestone-pyramid",
+        "path": "models/dahshur-north-face-limestone-pyramid.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

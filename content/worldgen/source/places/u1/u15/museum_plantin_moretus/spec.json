@@ -1,0 +1,494 @@
+{
+  "id": "museum_plantin_moretus",
+  "planId": "museum_plantin_moretus",
+  "title": "Museum Plantin-Moretus",
+  "assetId": "molen.worldgen.structure.museum_plantin_moretus",
+  "category": "museum",
+  "wikidataId": "Q595802",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 4.3981639,
+    "latitude": 51.2182944
+  },
+  "visualBrief": "A stone-fronted printing house wraps a narrow planted brick courtyard with tall cross-mullioned windows, stepped dormers and slate roofs.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u15/museum_plantin_moretus/models/flemish-printing-house-and-garden.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Courtyard_of_the_Plantin-Moretus_Museum_in_Antwerp_(26008941706).jpg",
+    "https://whichmuseum.nl/museum/museum-plantin-moretus-antwerpen-1372",
+    "https://www.openstreetmap.org/relation/3428464"
+  ],
+  "geographicProposal": {
+    "id": "plantin-moretus-museum-antwerp",
+    "title": "Museum Plantin-Moretus",
+    "asset": "molen.worldgen.structure.museum_plantin_moretus",
+    "anchor": [
+      4.3981639,
+      51.2182944
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 10.2421875,
+    "bounds": [
+      4.3976359160884915,
+      51.21813813560331,
+      4.398377883911954,
+      51.218849763414774
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q595802",
+      "names": [
+        "Museum Plantin-Moretus",
+        "Plantin-Moretusmuseum",
+        "Plantin-Moretus House-Workshops-Museum Complex"
+      ],
+      "maxDistance": 38
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -34.813949,
+          -5.443526
+        ],
+        [
+          -26.363216,
+          -24.579403
+        ],
+        [
+          -27.994793,
+          -25.447699
+        ],
+        [
+          -24.320259,
+          -33.373692
+        ],
+        [
+          -26.147067,
+          -34.208594
+        ],
+        [
+          -24.173835,
+          -38.628009
+        ],
+        [
+          -33.34274,
+          -43.481578
+        ],
+        [
+          -30.246927,
+          -48.591188
+        ],
+        [
+          -29.877382,
+          -49.236847
+        ],
+        [
+          -29.131319,
+          -48.891754
+        ],
+        [
+          -26.432942,
+          -54.212879
+        ],
+        [
+          -23.678784,
+          -59.823444
+        ],
+        [
+          -18.7213,
+          -57.01816
+        ],
+        [
+          -13.247847,
+          -53.979105
+        ],
+        [
+          0.118533,
+          -45.94176
+        ],
+        [
+          3.883711,
+          -43.626294
+        ],
+        [
+          7.565218,
+          -40.787624
+        ],
+        [
+          7.746504,
+          -40.620643
+        ],
+        [
+          12.920138,
+          -33.028599
+        ],
+        [
+          7.474575,
+          -20.004152
+        ],
+        [
+          -0.083671,
+          -1.914696
+        ],
+        [
+          -4.42757,
+          8.482538
+        ],
+        [
+          -0.871569,
+          9.784974
+        ],
+        [
+          -0.634502,
+          9.083662
+        ],
+        [
+          4.336927,
+          10.831375
+        ],
+        [
+          2.789021,
+          15.395462
+        ],
+        [
+          2.252134,
+          15.228484
+        ],
+        [
+          -2.593789,
+          13.514168
+        ],
+        [
+          -3.06095,
+          15.117165
+        ],
+        [
+          -7.10503,
+          13.380585
+        ],
+        [
+          -14.049691,
+          10.219119
+        ],
+        [
+          -12.432059,
+          5.799742
+        ],
+        [
+          -12.362333,
+          5.565972
+        ],
+        [
+          -20.966462,
+          1.758848
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the mapped museum shell and its separately mapped building parts. The adjacent row houses and public plaza remain host features."
+    },
+    "source": "https://www.openstreetmap.org/relation/3428464",
+    "note": "The street portal opens toward Vrijdagmarkt. The Renaissance brick façades and clipped beds face the mapped internal courtyard.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3ee9be27a1dce1ea1ec92be041047da9a87b8721ab4a9cf242d91a2b4f879a50"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.96
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.93
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76
+      },
+      "oak": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.9
+      },
+      "paved": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "garden": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.97,
+        "name": "museum-garden-planting"
+      }
+    },
+    "errorMeters": 0.99,
+    "module": "content/worldgen/source/places/u1/u15/museum_plantin_moretus/models/flemish-printing-house-and-garden.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.93
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          },
+          "oak": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "paved": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "garden": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "name": "museum-garden-planting"
+          }
+        },
+        "errorMeters": 0.37
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.93
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          },
+          "oak": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "paved": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "garden": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "name": "museum-garden-planting"
+          }
+        },
+        "errorMeters": 0.146
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.93
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          },
+          "oak": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "paved": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "garden": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "name": "museum-garden-planting"
+          }
+        },
+        "errorMeters": 0.058
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -11,
+        4,
+        -24
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "vrijdagmarkt-stone-portal",
+      "position": [
+        36,
+        6,
+        -13
+      ],
+      "lookAt": [
+        3,
+        6,
+        -21
+      ],
+      "fov": 51
+    },
+    {
+      "name": "courtyard-brick-and-step-gables",
+      "position": [
+        -20.9,
+        3.05,
+        -9.25
+      ],
+      "lookAt": [
+        -11.9,
+        7.4,
+        -27.85
+      ],
+      "fov": 64
+    },
+    {
+      "name": "renaissance-garden-and-slate-roofs",
+      "position": [
+        -3,
+        37,
+        -14
+      ],
+      "lookAt": [
+        -17,
+        2,
+        -21
+      ],
+      "fov": 53
+    }
+  ],
+  "limitations": [
+    "Roof and window rhythms are matched to exterior pictures. The entry ornament and garden planting are modeled interpretations. Workshops and collections inside the museum are outside the exterior scope."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -34.81394958496094,
+      -0.6200000047683716,
+      -59.82344436645508
+    ],
+    "max": [
+      13.27072811126709,
+      15.600000381469727,
+      15.395462036132812
+    ]
+  },
+  "size": [
+    48.08467769622803,
+    16.220000386238098,
+    75.21890640258789
+  ],
+  "mesh": {
+    "triangles": 12778,
+    "vertices": 25542,
+    "materials": 7,
+    "bytes": 1077044,
+    "sha256": "sha256:7399cee64b2bba9f70a130154b51c44bca9a1501a7417c9416653c7578ee2d8e"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats"
+    }
+  ]
+}

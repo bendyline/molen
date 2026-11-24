@@ -1,0 +1,465 @@
+{
+  "planId": "st_john_s_cathedral_hong_kong",
+  "id": "st_john_s_cathedral_hong_kong",
+  "assetId": "molen.worldgen.structure.st_john_s_cathedral_hong_kong",
+  "title": "St John's Cathedral (Hong Kong)",
+  "wikidataId": "Q2942473",
+  "category": "church",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 114.15961990666666,
+    "latitude": 22.27884474
+  },
+  "size": [
+    54.4950008392334,
+    30.05000066757202,
+    30.100001335144043
+  ],
+  "actualBounds": {
+    "min": [
+      -22.975000381469727,
+      -3.5999999046325684,
+      -13.8100004196167
+    ],
+    "max": [
+      31.520000457763672,
+      26.450000762939453,
+      16.290000915527344
+    ]
+  },
+  "visualBrief": "Garden Road’s 1849 Gothic cathedral with a square crenellated west tower, dark green crossed roofs, roughcast walls and granite dressings.",
+  "nativeAxes": {
+    "x": "west tower toward east choir",
+    "y": "up",
+    "z": "toward south aisle"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:St_John_Cathedral_Hong_Kong_(cropped).jpg",
+    "https://commons.wikimedia.org/wiki/File:Hongkongskhsjc.jpg",
+    "https://commons.wikimedia.org/wiki/File:HK_StJohnsCathedral.jpg"
+  ],
+  "stories": [
+    {
+      "id": "st-john-s-cathedral-hong-kong-wp",
+      "url": "https://qualla.com/st-john-s-cathedral-hong-kong/"
+    }
+  ],
+  "referenceInputHash": "sha256:20e9b711fdbc331b02b43872701330b8bdfedcd899e184812738654e43c5d44e",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/we/wec/st_john_s_cathedral_hong_kong/models/st-john-s-cathedral-hong-kong-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/we/wec/st_john_s_cathedral_hong_kong/models/st-john-s-cathedral-hong-kong-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "roughcast": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.96
+      },
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.92
+      },
+      "dress": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.9
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.84
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.66
+      },
+      "doors": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.89
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.54,
+        "surfaces": {
+          "roughcast": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.92
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "doors": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "roughcast": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.92
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "doors": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "roughcast": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.92
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          },
+          "doors": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "stone_ashlar",
+    "stone_ashlar",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native source elevation immediately west of the principal tower entrance.",
+    "anchor": [
+      114.15961990666666,
+      22.27884474
+    ],
+    "heading": -0.7069230477998594,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        114.15943190941996,
+        22.27895435113548
+      ],
+      "modelHeight": 0,
+      "basis": "Native source elevation immediately west of the principal tower entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          14.85,
+          -8.989
+        ],
+        [
+          30.823,
+          -8.989
+        ],
+        [
+          30.822,
+          15.593
+        ],
+        [
+          -0.594,
+          15.593
+        ],
+        [
+          -0.592,
+          11.33
+        ],
+        [
+          -13.795,
+          11.336
+        ],
+        [
+          -13.801,
+          7.095
+        ],
+        [
+          -21.715,
+          7.092
+        ],
+        [
+          -21.717,
+          -0.491
+        ],
+        [
+          -14.385,
+          -0.488
+        ],
+        [
+          -14.377,
+          -4.872
+        ],
+        [
+          -0.462,
+          -4.87
+        ],
+        [
+          -0.46,
+          -13.114
+        ],
+        [
+          10.557,
+          -13.111
+        ],
+        [
+          14.847,
+          -13.116
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Only the named cathedral footprint."
+    },
+    "featureIds": [
+      "way/107497695"
+    ],
+    "source": "https://www.openstreetmap.org/way/107497695",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3adebd66fb784b3c6442210dcae55874a0100e759b0d38cf9ca1f370a5ad7d17",
+    "notes": "Use declared monument history and original surveys for architectural character. Section heights are estimates from source photographs against footprint widths."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Current exterior of the principal cathedral. Separately mapped precinct facilities, adjacent towers and interior fittings are outside scope.",
+    "Story photographs fix proportions and materials. Tower height, roof terraces, stone carvings and traceries are visually estimated."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Hong Kong Lands Department open spatial data.",
+  "qaLodCameras": [
+    {
+      "name": "st-johns-skyline",
+      "position": [
+        -60,
+        32,
+        -62
+      ],
+      "lookAt": [
+        1,
+        8,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "st-johns-district",
+      "position": [
+        -60,
+        32,
+        -62
+      ],
+      "lookAt": [
+        1,
+        8,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "st-johns-street",
+      "position": [
+        -60,
+        32,
+        -62
+      ],
+      "lookAt": [
+        1,
+        8,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "st-johns-closeup",
+      "position": [
+        -60,
+        32,
+        -62
+      ],
+      "lookAt": [
+        1,
+        8,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "bell-tower-and-north-crossing",
+      "position": [
+        -60,
+        32,
+        -62
+      ],
+      "lookAt": [
+        1,
+        8,
+        1
+      ]
+    },
+    {
+      "name": "eastern-lancet-and-granite-buttresses",
+      "position": [
+        67,
+        23,
+        44
+      ],
+      "lookAt": [
+        16,
+        7,
+        4
+      ]
+    },
+    {
+      "name": "low-west-tower-and-entrance",
+      "position": [
+        -52,
+        12,
+        15
+      ],
+      "lookAt": [
+        -18,
+        11,
+        3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8550,
+    "vertices": 25650,
+    "materials": 6,
+    "bytes": 1200640,
+    "sha256": "sha256:32263a460a63bac0be7862c1d86ec6d609936a4b8bb25ce8677ce72cfe7f0d53"
+  }
+}

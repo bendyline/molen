@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.stoclet_palace",
+  "kind": "static-structure",
+  "title": "Stoclet Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.stoclet_palace",
+        "output": "assets/places/u1/u15/stoclet_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:152e772bcbd5da485936bf58f22245a694cdd031bcb5809a818d72678eb21a15"
+      }
+    ],
+    "generators": [
+      {
+        "id": "stoclet_palace",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "house",
+        "path": "models/house.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

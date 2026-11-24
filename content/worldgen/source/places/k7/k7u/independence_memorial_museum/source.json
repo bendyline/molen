@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.independence_memorial_museum",
+  "kind": "static-structure",
+  "title": "Independence Memorial Museum, Windhoek",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.independence_memorial_museum",
+        "output": "assets/places/k7/k7u/independence_memorial_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:07233c81002c08fbacfec2c09fe4ae1d8a6b88906fa2111e63ae023a3b901793"
+      }
+    ],
+    "generators": [
+      {
+        "id": "independence_memorial_museum",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "windhoek-memorial-museum",
+        "path": "models/windhoek-memorial-museum.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

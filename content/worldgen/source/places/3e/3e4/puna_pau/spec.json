@@ -1,0 +1,227 @@
+{
+  "id": "puna_pau",
+  "planId": "puna_pau",
+  "title": "Puna Pau",
+  "assetId": "molen.worldgen.structure.puna_pau",
+  "category": "monument",
+  "wikidataId": "Q3496141",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -109.4039,
+    "latitude": -27.1482
+  },
+  "visualBrief": "Nine representative red scoria pukao, upright and fallen, sit beside the mapped trail at the Puna Pau archaeological quarry.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/3e/3e4/puna_pau/models/rapa-nui-scoria-quarry-pukao.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Chile-03556_-_Puna_a_Pau_(49072547843).jpg",
+    "https://www.openstreetmap.org/node/6556430294"
+  ],
+  "geographicProposal": {
+    "id": "puna-pau-rapa-nui",
+    "title": "Puna Pau",
+    "asset": "molen.worldgen.structure.puna_pau",
+    "anchor": [
+      -109.4039,
+      -27.1482
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 162.30859375,
+    "bounds": [
+      -109.40401205857198,
+      -27.147812824379997,
+      -109.4034275368316,
+      -27.14755860001698
+    ],
+    "minLevel": 15,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q3496141",
+      "names": [
+        "Puna Pau",
+        "Puna a Pau",
+        "Puna Pau Quarry"
+      ],
+      "maxDistance": 82
+    },
+    "source": "https://www.openstreetmap.org/node/6556430294",
+    "note": "The placement follows the named PMTiles site and adjacent quarry paths. The model provides the carved scoria pieces and the host supplies the crater and trail.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6586aec085eae77915519ccef8188720e6744a24cdee07fc47ab1e6a2764c97f"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "scoria": {
+        "slot": "wall",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.98
+      },
+      "cut": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.98
+      }
+    },
+    "errorMeters": 0.23,
+    "module": "content/worldgen/source/places/3e/3e4/puna_pau/models/rapa-nui-scoria-quarry-pukao.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "scoria": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.1
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "scoria": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.046
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "scoria": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.025
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        14,
+        1,
+        -56
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "red-scoria-along-the-quarry-path",
+      "position": [
+        -19,
+        3.8,
+        -62
+      ],
+      "lookAt": [
+        3,
+        1.9,
+        -52
+      ],
+      "fov": 58
+    },
+    {
+      "name": "weathered-drums-in-the-grass",
+      "position": [
+        21,
+        5.1,
+        -39
+      ],
+      "lookAt": [
+        22,
+        0.6,
+        -54
+      ],
+      "fov": 49
+    },
+    {
+      "name": "fallen-pukao-and-cut-ends",
+      "position": [
+        45,
+        1.1,
+        -50
+      ],
+      "lookAt": [
+        37,
+        -0.96,
+        -59
+      ],
+      "fov": 53
+    }
+  ],
+  "limitations": [
+    "Individual pukao positions, sizes and poses are approximate. PMTiles identifies the quarry and footpaths but does not map each stone. The photo observations guide the arrangement."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -7.050524711608887,
+      -2.847503662109375,
+      -65.93206024169922
+    ],
+    "max": [
+      42.000816345214844,
+      4.487770080566406,
+      -47.56230545043945
+    ]
+  },
+  "size": [
+    49.05134105682373,
+    7.335273742675781,
+    18.369754791259766
+  ],
+  "mesh": {
+    "triangles": 4140,
+    "vertices": 8694,
+    "materials": 2,
+    "bytes": 364660,
+    "sha256": "sha256:1546f9f6cd1fca4dffa8c5c4598917559f1592b83eb1b246072be733e61f3760"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    }
+  ]
+}

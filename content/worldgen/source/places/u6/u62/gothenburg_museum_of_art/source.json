@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.gothenburg_museum_of_art",
+  "kind": "static-structure",
+  "title": "Gothenburg Museum of Art",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.gothenburg_museum_of_art",
+        "output": "assets/places/u6/u62/gothenburg_museum_of_art/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1958c6deb1e6729e2bf0fe9d692827e0ed09fd7ca7499c0d2db76bfccf47d590"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-gothenburg-museum-of-art",
+        "path": "models/generate-gothenburg-museum-of-art.mjs"
+      },
+      {
+        "id": "gothenburg-museum-of-art-model",
+        "path": "models/gothenburg-museum-of-art-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/gothenburg-museum-of-art-footprint.json",
+      "reference-rights/gothenburg-museum-of-art-architectural-facts.json",
+      "references/gothenburg-karnell-collection.jpg",
+      "reference-rights/gothenburg-karnell-catalog.html",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/gothenburg-rh2000-city-05m.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

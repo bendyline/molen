@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.vezelay_abbey",
+  "kind": "static-structure",
+  "title": "Vézelay Abbey",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.vezelay_abbey",
+        "output": "assets/places/u0/u06/vezelay_abbey/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f09098544a3c93c2ce1ea3298129c8dfc873de6003dc5804a61713299177c962"
+      }
+    ],
+    "generators": [
+      {
+        "id": "vezelay_abbey",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "romanesque-portals-and-radiating-chevet",
+        "path": "models/romanesque-portals-and-radiating-chevet.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

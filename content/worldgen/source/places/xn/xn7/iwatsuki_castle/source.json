@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.iwatsuki_castle",
+  "kind": "static-structure",
+  "title": "Iwatsuki Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.iwatsuki_castle",
+        "output": "assets/places/xn/xn7/iwatsuki_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:5f56a1caafe25fefa97400370f512a102d55775cbe17a105e291b696915f3422"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-iwatsuki-castle",
+        "path": "models/generate-iwatsuki-castle.mjs"
+      },
+      {
+        "id": "iwatsuki-castle-model",
+        "path": "models/iwatsuki-castle-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/iwatsuki-castle-footprint.json",
+      "native-map/iwatsuki-gate-rings.json",
+      "reference-rights/iwatsuki-castle-architectural-facts.json",
+      "reference-rights/iwatsuki-castle-qualla-original-1.json",
+      "reference-rights/iwatsuki-castle-qualla-original-4.json",
+      "reference-rights/iwatsuki-castle-qualla-original-5.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-29100-12873.png",
+      "terrain-sources/terrarium-15-29100-12872.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

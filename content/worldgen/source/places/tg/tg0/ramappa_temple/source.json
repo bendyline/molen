@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.ramappa_temple",
+  "kind": "static-structure",
+  "title": "Ramappa Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.ramappa_temple",
+        "output": "assets/places/tg/tg0/ramappa_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:00aa98dda212647b4e597698a08ac3c27bc24abb0c30528417ff162ad6cc79d9"
+      }
+    ],
+    "generators": [
+      {
+        "id": "ramappa_temple",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "ramappa-vimana-and-mandapa",
+        "path": "models/ramappa-vimana-and-mandapa.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "ramappa-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

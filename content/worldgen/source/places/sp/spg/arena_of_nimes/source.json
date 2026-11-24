@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.arena_of_nimes",
+  "kind": "static-structure",
+  "title": "Arena of Nîmes",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.arena_of_nimes",
+        "output": "assets/places/sp/spg/arena_of_nimes/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e7d9d470811d29dbc512a04270f448e994da95863485d5df3623c5c2a0dadd43"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-arena-of-nimes",
+        "path": "models/generate-arena-of-nimes.mjs"
+      },
+      {
+        "id": "arena-of-nimes-model",
+        "path": "models/arena-of-nimes-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/arena-of-nimes-footprint.json",
+      "native-map/nimes-arena-geometry-controls.json",
+      "reference-rights/arena-of-nimes-architectural-facts.json",
+      "references/nimes-arena-andrieu-original.jpg",
+      "reference-rights/nimes-arena-andrieu-record.json",
+      "references/nimes-arena-etching-original.jpg",
+      "reference-rights/nimes-arena-etching-record.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/nimes-ign-rge-alti-1m.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

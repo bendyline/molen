@@ -1,0 +1,435 @@
+{
+  "id": "carondelet_palace",
+  "planId": "carondelet_palace",
+  "title": "Carondelet Palace",
+  "assetId": "molen.worldgen.structure.carondelet_palace",
+  "category": "civic",
+  "wikidataId": "Q3288157",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -78.512612886,
+    "latitude": -0.219703514
+  },
+  "visualBrief": "An open stone colonnade and white end arcades rise above the dark base along Plaza Grande. The central clock pediment and wrought railings mark the long tiled palace frontage.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6r/6rb/carondelet_palace/models/presidential-palace.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Carondelet_-_Quito.JPG",
+    "https://commons.wikimedia.org/wiki/File:Plaza_Grande_de_Quito_con_el_Palacio_de_Carondelet_y_la_bandera_del_Ecuador.jpg",
+    "https://www.openstreetmap.org/way/381053952"
+  ],
+  "geographicProposal": {
+    "id": "carondelet-palace",
+    "title": "Carondelet Palace",
+    "asset": "molen.worldgen.structure.carondelet_palace",
+    "anchor": [
+      -78.512612886,
+      -0.219703514
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 2825.5,
+    "bounds": [
+      -78.51295416643558,
+      -0.2201086663249488,
+      -78.51226143356025,
+      -0.2193717336893742
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q3288157",
+      "names": [
+        "Carondelet Palace",
+        "Palacio de Carondelet",
+        "Carondelet Palace",
+        "Palacio de Gobierno"
+      ],
+      "maxDistance": 65
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          13.612715,
+          -34.933614
+        ],
+        [
+          37.123219,
+          -15.586287
+        ],
+        [
+          29.965428,
+          -6.903367
+        ],
+        [
+          27.149066,
+          -3.474727
+        ],
+        [
+          -0.491361,
+          30.110364
+        ],
+        [
+          -6.324459,
+          37.201416
+        ],
+        [
+          -11.189085,
+          43.101349
+        ],
+        [
+          -35.990885,
+          22.685354
+        ],
+        [
+          -27.697644,
+          12.61094
+        ],
+        [
+          -25.34882,
+          14.547899
+        ],
+        [
+          -22.944337,
+          11.631328
+        ],
+        [
+          -13.415458,
+          19.468221
+        ],
+        [
+          -1.671339,
+          5.18593
+        ],
+        [
+          -11.189085,
+          -2.650962
+        ],
+        [
+          -4.342987,
+          -10.97766
+        ],
+        [
+          6.421529,
+          -2.116629
+        ],
+        [
+          15.460605,
+          -13.092731
+        ],
+        [
+          4.69609,
+          -21.953762
+        ],
+        [
+          6.811144,
+          -24.525242
+        ],
+        [
+          5.753617,
+          -25.393534
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the mapped palace footprint and its six overlapping parts. Preserve the open courts, adjacent civic buildings and plaza."
+    },
+    "source": "https://www.openstreetmap.org/way/381053952",
+    "note": "The main balcony faces southeast toward Plaza Grande. Both street ends and the open rear recesses follow the mapped polygon.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c0920e1da7515cf733c69341725ac9a319c58c8c8a1b134e881d1c9651d54cb3"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "ashlar": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "granite": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.91
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.92
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_vertical",
+        "roughness": 0.87
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.56
+      }
+    },
+    "errorMeters": 1.3,
+    "module": "content/worldgen/source/places/6r/6rb/carondelet_palace/models/presidential-palace.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "ashlar": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "granite": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.87
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 0.48
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "ashlar": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "granite": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.87
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 0.17
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "ashlar": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "granite": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.87
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 0.045
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        2,
+        11,
+        4
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "plaza-colonnade",
+      "position": [
+        57,
+        8.1,
+        31
+      ],
+      "lookAt": [
+        13,
+        9,
+        2
+      ],
+      "fov": 59
+    },
+    {
+      "name": "end-arcades-and-stone-base",
+      "position": [
+        24,
+        3.4,
+        54
+      ],
+      "lookAt": [
+        2,
+        8,
+        25
+      ],
+      "fov": 54
+    },
+    {
+      "name": "clock-and-terracotta-roofs",
+      "position": [
+        54,
+        25,
+        49
+      ],
+      "lookAt": [
+        8,
+        17,
+        8
+      ],
+      "fov": 52
+    }
+  ],
+  "limitations": [
+    "The photographed elevations and Terrarium grades guide the story heights and arch proportions. Roof pitches, side windows and ironwork patterns are approximate."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -36.137577056884766,
+      -5.699999809265137,
+      -35.080326080322266
+    ],
+    "max": [
+      37.66309356689453,
+      28.489999771118164,
+      43.59543991088867
+    ]
+  },
+  "size": [
+    73.8006706237793,
+    34.1899995803833,
+    78.67576599121094
+  ],
+  "mesh": {
+    "triangles": 17839,
+    "vertices": 35627,
+    "materials": 7,
+    "bytes": 1500848,
+    "sha256": "sha256:0449469ea6eba6b2209592cfac00f9131f12cc6333ea4b070ca9f87019a034c6"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "door",
+      "uv": "repeats"
+    }
+  ]
+}

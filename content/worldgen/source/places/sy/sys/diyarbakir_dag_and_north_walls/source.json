@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.diyarbakir_dag_and_north_walls",
+  "kind": "static-structure",
+  "title": "Diyarbakır Dağ Gate and the North Walls",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.diyarbakir_dag_and_north_walls",
+        "output": "assets/places/sy/sys/diyarbakir_dag_and_north_walls/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9740a63ac055deff0e0bda32c7e0c5a5de8c65c2b222fa0d0c387f15452c1943"
+      }
+    ],
+    "generators": [
+      {
+        "id": "diyarbakir_dag_and_north_walls",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "fortress-sector-model",
+        "path": "models/fortress-sector-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

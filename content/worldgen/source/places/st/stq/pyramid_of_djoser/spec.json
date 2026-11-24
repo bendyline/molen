@@ -1,0 +1,390 @@
+{
+  "id": "pyramid_of_djoser",
+  "planId": "pyramid_of_djoser",
+  "title": "Pyramid of Djoser",
+  "assetId": "molen.worldgen.structure.pyramid_of_djoser",
+  "category": "monument",
+  "wikidataId": "Q192418",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 31.2167,
+    "latitude": 29.8711
+  },
+  "visualBrief": "Six battered limestone mastabas form the stepped pyramid. Their surveyed setbacks and irregular masonry courses follow the Saqqara silhouette.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/st/stq/pyramid_of_djoser/models/saqqara-six-terrace-limestone-pyramid.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Giza%2C_Dahshur_and_Saqqara_-_Giza8268.jpg",
+    "https://egymonuments.gov.eg/en/monuments/the-step-pyramid-complex-of-djoser?sa=X",
+    "https://www.openstreetmap.org/way/33909574"
+  ],
+  "geographicProposal": {
+    "id": "pyramid-of-djoser-saqqara",
+    "title": "Pyramid of Djoser",
+    "asset": "molen.worldgen.structure.pyramid_of_djoser",
+    "anchor": [
+      31.2167,
+      29.8711
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 59.75,
+    "bounds": [
+      31.21590828115416,
+      29.87069123650674,
+      31.217222618843508,
+      29.871747965050364
+    ],
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q192418",
+      "names": [
+        "Pyramid of Djoser",
+        "Djoser Step Pyramid",
+        "Saqqara Pyramid",
+        "هرم زوسر المدرج"
+      ],
+      "maxDistance": 108
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -67.26244,
+          -70.131501
+        ],
+        [
+          -74.425002,
+          35.644444
+        ],
+        [
+          -15.174592,
+          39.651932
+        ],
+        [
+          41.652903,
+          43.503572
+        ],
+        [
+          44.712919,
+          -1.803376
+        ],
+        [
+          45.996775,
+          -20.727709
+        ],
+        [
+          48.448649,
+          -56.940066
+        ],
+        [
+          13.321207,
+          -59.311183
+        ],
+        [
+          13.688022,
+          -64.654548
+        ],
+        [
+          13.803859,
+          -66.391143
+        ],
+        [
+          0.984611,
+          -67.25944
+        ],
+        [
+          0.868774,
+          -65.522846
+        ],
+        [
+          -29.885837,
+          -67.604533
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the named main outline and its six native building parts. Other monuments in the funerary complex stay in the host map."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -67.26244,
+          -70.131501
+        ],
+        [
+          -74.425002,
+          35.644444
+        ],
+        [
+          -15.174592,
+          39.651932
+        ],
+        [
+          41.652903,
+          43.503572
+        ],
+        [
+          44.712919,
+          -1.803376
+        ],
+        [
+          45.996775,
+          -20.727709
+        ],
+        [
+          48.448649,
+          -56.940066
+        ],
+        [
+          13.321207,
+          -59.311183
+        ],
+        [
+          13.688022,
+          -64.654548
+        ],
+        [
+          13.803859,
+          -66.391143
+        ],
+        [
+          0.984611,
+          -67.25944
+        ],
+        [
+          0.868774,
+          -65.522846
+        ],
+        [
+          -29.885837,
+          -67.604533
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "The main pyramid replaces terrain only inside its mapped footprint, preserving the modeled basal stone courses."
+    },
+    "source": "https://www.openstreetmap.org/way/33909574",
+    "note": "The main footprint and each successive tier match the native building part positions and orientation.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:abf0d8a32a33af5bdb558ae080329177c67b073d9df72a3caee4cab7e944f405"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "limestone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98
+      },
+      "worn": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.99
+      },
+      "niche": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98
+      }
+    },
+    "errorMeters": 1.3,
+    "module": "content/worldgen/source/places/st/stq/pyramid_of_djoser/models/saqqara-six-terrace-limestone-pyramid.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98
+          },
+          "worn": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.99
+          },
+          "niche": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.48
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98
+          },
+          "worn": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.99
+          },
+          "niche": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.174
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98
+          },
+          "worn": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.99
+          },
+          "niche": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.066
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -12,
+        24,
+        -12
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "six-battered-limestone-terraces",
+      "position": [
+        -151,
+        8,
+        127
+      ],
+      "lookAt": [
+        -10,
+        28,
+        -13
+      ],
+      "fov": 53
+    },
+    {
+      "name": "north-stone-courses-and-steps",
+      "position": [
+        -7,
+        11,
+        -100
+      ],
+      "lookAt": [
+        -14,
+        24,
+        -29
+      ],
+      "fov": 62
+    },
+    {
+      "name": "terrace-setbacks-and-crown",
+      "position": [
+        92,
+        93,
+        -141
+      ],
+      "lookAt": [
+        -14,
+        33,
+        -12
+      ],
+      "fov": 52
+    }
+  ],
+  "limitations": [
+    "Exterior only. The model uses the published six-terrace outline and native height tags. Surface wear, repairs and the plateau grade are approximations from the site photograph and map data."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -74.42500305175781,
+      -3.200000047683716,
+      -70.13150024414062
+    ],
+    "max": [
+      48.44865036010742,
+      62.5,
+      43.503570556640625
+    ]
+  },
+  "size": [
+    122.87365341186523,
+    65.70000004768372,
+    113.63507080078125
+  ],
+  "mesh": {
+    "triangles": 20835,
+    "vertices": 41693,
+    "materials": 4,
+    "bytes": 1753816,
+    "sha256": "sha256:2475401de72886bab02d98453cf1db798644aef4cef00afbe98a8fb63026d060"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.cincinnati_art_museum",
+  "kind": "static-structure",
+  "title": "Cincinnati Art Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.cincinnati_art_museum",
+        "output": "assets/places/dn/dng/cincinnati_art_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:da0a5dd524a04b0f13ffb24c84ce3e8fdc27f07637aa666a56451faf2f3f04e6"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-cincinnati-art-museum",
+        "path": "models/generate-cincinnati-art-museum.mjs"
+      },
+      {
+        "id": "cincinnati-art-museum-model",
+        "path": "models/cincinnati-art-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/cincinnati-art-museum-footprint.json",
+      "native-map/cincy-art-building-parts.json",
+      "reference-rights/cincinnati-art-museum-architectural-facts.json",
+      "reference-rights/cincinnati-art-museum-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-8692-12509.png",
+      "terrain-sources/terrarium-15-8693-12509.png",
+      "terrain-sources/terrarium-15-8693-12510.png",
+      "terrain-sources/terrarium-15-8692-12510.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

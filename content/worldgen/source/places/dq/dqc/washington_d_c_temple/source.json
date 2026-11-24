@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.washington_d_c_temple",
+  "kind": "static-structure",
+  "title": "Washington D.C. Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.washington_d_c_temple",
+        "output": "assets/places/dq/dqc/washington_d_c_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:bc1988bdfc22eea0711abc002a884525a53ef7c7a5a4cd2b14a8eba62850e5b4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-washington-d-c-temple",
+        "path": "models/generate-washington-d-c-temple.mjs"
+      },
+      {
+        "id": "washington-d-c-temple-model",
+        "path": "models/washington-d-c-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/washington-d-c-temple-footprint.json",
+      "native-map/washington-temple-pylon-plans.json",
+      "reference-rights/washington-d-c-temple-architectural-facts.json",
+      "reference-rights/washington-d-c-temple-qualla-original-1.json",
+      "reference-rights/washington-d-c-temple-qualla-original-7.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/washington-temple-usgs-ground.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,442 @@
+{
+  "planId": "fort_keogh",
+  "id": "fort_keogh",
+  "assetId": "molen.worldgen.structure.fort_keogh",
+  "title": "Fort Keogh Water Wagon Shed",
+  "wikidataId": "Q2326790",
+  "category": "historic-building",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -105.87820979775282,
+    "latitude": 46.38110269916143
+  },
+  "size": [
+    11.674170017242432,
+    5.025000050663948,
+    6.991469860076904
+  ],
+  "actualBounds": {
+    "min": [
+      -5.722084999084473,
+      -0.20999999344348907,
+      -3.495734930038452
+    ],
+    "max": [
+      5.952085018157959,
+      4.815000057220459,
+      3.495734930038452
+    ]
+  },
+  "visualBrief": "The restored 1883 water wagon shed, a modest brick building with round-headed openings and a low hipped roof.",
+  "nativeAxes": {
+    "x": "eastward along the roof ridge",
+    "y": "up",
+    "z": "toward the south yard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/mt_m_4610533_se_13_060_20230814_20240103"
+  ],
+  "stories": [
+    {
+      "id": "fort-keogh-wp",
+      "url": "https://qualla.com/fort-keogh/"
+    }
+  ],
+  "referenceInputHash": "sha256:14a2ae7fd0ad931ee715ba98dad21312e4a2a2cc213f50c0be36173a05a732ac",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/c8/c8h/fort_keogh/models/fort-keogh-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/c8/c8h/fort_keogh/models/fort-keogh-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.28,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.95
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.93
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.89
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.91
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.55
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.41,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.89
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.89
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.89
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "stone_ashlar",
+    "tile_flat",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.91,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "USGS ground elevation on the approach along the north wall of the restored shed.",
+    "anchor": [
+      -105.87820979775282,
+      46.38110269916143
+    ],
+    "heading": 0.3517081630072291,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -105.87822754433768,
+        46.38113606096436
+      ],
+      "modelHeight": 0,
+      "basis": "USGS ground elevation on the approach along the north wall of the restored shed."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -5.5320849999999995,
+          -3.305735
+        ],
+        [
+          5.5320849999999995,
+          -3.305735
+        ],
+        [
+          5.5320849999999995,
+          3.305735
+        ],
+        [
+          -5.5320849999999995,
+          3.305735
+        ]
+      ],
+      "minimumCoverage": 0.85,
+      "basis": "Replaces a generic building only within the roof outline interpreted from the exact aerial."
+    },
+    "featureIds": [
+      "naip/mt_m_4610533_se_13_060_20230814_20240103"
+    ],
+    "source": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/mt_m_4610533_se_13_060_20230814_20240103",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bd7d89bb94e4e4891a184a1c85f487103fe5824ac4d2e92125a7a670467d5625",
+    "notes": "State historic register sign documents the unornamented brick exterior, hipped roof, arched windows and 2004 restoration. The opening arrangement and dimensions below the visible roof are estimated."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "This represents the restored water wagon shed. The dispersed historic district and other photographed, demolished or relocated post buildings are outside this structure.",
+    "Roof footprint comes from the original overhead image; elevation and façade layout, arched window spacing, door orientation and finish colors are approximate."
+  ],
+  "sourceLicense": "Original model based on exact public-domain USDA aerial imagery, U.S. Geological Survey terrain and published state historic-register descriptions.",
+  "qaLodCameras": [
+    {
+      "name": "fort-keogh-water-wagon-shed-skyline",
+      "position": [
+        15,
+        7.8,
+        -13.8
+      ],
+      "lookAt": [
+        0,
+        2.24,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "fort-keogh-water-wagon-shed-district",
+      "position": [
+        15,
+        7.8,
+        -13.8
+      ],
+      "lookAt": [
+        0,
+        2.24,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "fort-keogh-water-wagon-shed-street",
+      "position": [
+        15,
+        7.8,
+        -13.8
+      ],
+      "lookAt": [
+        0,
+        2.24,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "fort-keogh-water-wagon-shed-closeup",
+      "position": [
+        15,
+        7.8,
+        -13.8
+      ],
+      "lookAt": [
+        0,
+        2.24,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "wagon-entry-and-long-wall",
+      "position": [
+        15,
+        7.8,
+        -13.8
+      ],
+      "lookAt": [
+        0,
+        2.24,
+        0
+      ]
+    },
+    {
+      "name": "hip-roof-and-rear-brickwork",
+      "position": [
+        -15,
+        10,
+        10
+      ],
+      "lookAt": [
+        0,
+        2.24,
+        0
+      ]
+    },
+    {
+      "name": "arched-brick-openings",
+      "position": [
+        1,
+        2.8,
+        -8
+      ],
+      "lookAt": [
+        0,
+        2.03,
+        -3.305735
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 630,
+    "vertices": 1890,
+    "materials": 6,
+    "bytes": 287724,
+    "sha256": "sha256:2422b325194a0f23176948c829ca782da363e1be68e2dccb69ee22d68fe173a6"
+  }
+}

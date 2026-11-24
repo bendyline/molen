@@ -1,0 +1,411 @@
+{
+  "id": "margravial_opera_house",
+  "planId": "margravial_opera_house",
+  "title": "Margravial Opera House",
+  "assetId": "molen.worldgen.structure.margravial_opera_house",
+  "category": "theatre",
+  "wikidataId": "Q278908",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 11.5786636,
+    "latitude": 49.9443447
+  },
+  "visualBrief": "The broad slate mansard covers a long masonry shell. Its sandstone street front has three doors beneath an iron balcony, projecting columns, dormers and sculpted figures, with a separate arched stage door at the rear.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u2/u2b/margravial_opera_house/models/sandstone-facade-and-mansard.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/1379/",
+    "https://commons.wikimedia.org/wiki/File:Markgr%C3%A4fliches_Opernhaus_Front_2019-07-29.jpg",
+    "https://commons.wikimedia.org/wiki/File:Markgr%C3%A4fliches_Opernhaus_R%C3%BCckseite_2019.jpg",
+    "https://schloesserblog.bayern.de/hinter-den-kulissen/versteckte-zimmermannskunst-von-weltrang-das-dachwerk-des-markgraeflichen-opernhauses-bayreuth",
+    "https://www.openstreetmap.org/way/24620374"
+  ],
+  "geographicProposal": {
+    "id": "margravial-opera-house-bayreuth",
+    "title": "Margravial Opera House",
+    "asset": "molen.worldgen.structure.margravial_opera_house",
+    "anchor": [
+      11.5786636,
+      49.9443447
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 344.4453,
+    "bounds": [
+      11.578148981694882,
+      49.94418503555681,
+      11.579194018306271,
+      49.94448696499336
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q278908",
+      "names": [
+        "Margravial Opera House",
+        "Markgräfliches Opernhaus",
+        "Margravial Opera House Bayreuth"
+      ],
+      "maxDistance": 65
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -32.244079,
+          14.27114
+        ],
+        [
+          -33.10373,
+          14.260008
+        ],
+        [
+          -33.132385,
+          8.716309
+        ],
+        [
+          -34.565137,
+          8.760837
+        ],
+        [
+          -34.866015,
+          -4.998247
+        ],
+        [
+          -33.676831,
+          -5.009379
+        ],
+        [
+          -33.705486,
+          -9.963104
+        ],
+        [
+          -15.846235,
+          -10.297063
+        ],
+        [
+          -15.960855,
+          -12.979868
+        ],
+        [
+          1.984361,
+          -13.280432
+        ],
+        [
+          18.747557,
+          -13.569863
+        ],
+        [
+          34.772886,
+          -13.837031
+        ],
+        [
+          35.217039,
+          -3.606753
+        ],
+        [
+          35.467771,
+          2.181862
+        ],
+        [
+          35.997889,
+          14.21548
+        ],
+        [
+          -9.305723,
+          15.773949
+        ],
+        [
+          -9.277068,
+          13.970578
+        ],
+        [
+          -19.392296,
+          14.104161
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the opera house footprint while preserving the adjacent synagogue and nearby street buildings."
+    },
+    "source": "https://www.openstreetmap.org/way/24620374",
+    "note": "The principal façade is oriented toward Opernstraße. The rear stage entrance follows the opposite mapped wall.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:08a6fbb1c05293affe2333458089c048910be785449e6a8440514348cf5691a8"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.93
+      },
+      "dressed": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.89
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.89
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_vertical",
+        "roughness": 0.87
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.26
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "name": "bayreuth-window-recesses",
+        "roughness": 0.58
+      }
+    },
+    "errorMeters": 0.95,
+    "module": "content/worldgen/source/places/u2/u2b/margravial_opera_house/models/sandstone-facade-and-mansard.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.87
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.26
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "bayreuth-window-recesses",
+            "roughness": 0.58
+          }
+        },
+        "errorMeters": 0.31
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.87
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.26
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "bayreuth-window-recesses",
+            "roughness": 0.58
+          }
+        },
+        "errorMeters": 0.12
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.87
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.26
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "bayreuth-window-recesses",
+            "roughness": 0.58
+          }
+        },
+        "errorMeters": 0.045
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -8,
+        10,
+        1
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "opernstrasse-balcony-and-portals",
+      "position": [
+        -61,
+        7.4,
+        9.5
+      ],
+      "lookAt": [
+        -34.6,
+        8.6,
+        2
+      ],
+      "fov": 55
+    },
+    {
+      "name": "mansard-and-dormers",
+      "position": [
+        -75,
+        32,
+        25
+      ],
+      "lookAt": [
+        -25,
+        16,
+        2
+      ],
+      "fov": 53
+    },
+    {
+      "name": "rear-stage-door-and-slate-roof",
+      "position": [
+        69,
+        11,
+        21
+      ],
+      "lookAt": [
+        33,
+        10,
+        0
+      ],
+      "fov": 56
+    }
+  ],
+  "limitations": [
+    "Exterior sculpture, fenestration and the mansard’s interior structure are simplified. The auditorium and stage interiors are outside this exterior model."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -36.3930549621582,
+      -3.069999933242798,
+      -14.314455032348633
+    ],
+    "max": [
+      36.33979034423828,
+      25.360000610351562,
+      16.305564880371094
+    ]
+  },
+  "size": [
+    72.73284530639648,
+    28.43000054359436,
+    30.620019912719727
+  ],
+  "mesh": {
+    "triangles": 13433,
+    "vertices": 26281,
+    "materials": 6,
+    "bytes": 1111040,
+    "sha256": "sha256:f296d57432900bacc267d2689e521b2e11b0bd3ebdef3e1e514f46856aca4abb"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "door",
+      "uv": "repeats"
+    }
+  ]
+}

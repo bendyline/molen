@@ -1,0 +1,2923 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:fb="http://ogp.me/ns/fb#">
+<head>
+<script>
+window.pageType = 'project';
+window.baseURL = 'https://www.lovellchen.com.au/';
+window.slug = 'projects/broken-hill-trades-hall';
+window.deviceType = 'desktop';
+window.isMobile = false;
+window.isTablet = false;
+window.isSafari = false;
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<title>Broken Hill Trades Hall | Lovell Chen</title>
+<link rel="canonical" href="https://www.lovellchen.com.au/projects/broken-hill-trades-hall/" />
+<meta name="title" content="Broken Hill Trades Hall | Lovell Chen" />
+<meta name="description" content="Lovell Chen is a nationally recognised design practice that creates, enriches and sustains places of significance." />
+<meta name="keywords" content="Lovell Chen, Architecture, Heritage, Heritage Architects, Architects, Peter Lovell, Kai Chen, Melbourne Architecture Firm, Conservation Works, Heritage Asset Management, Strategic Planning Architecture, Heritage Landscape Design, Passive House Design, Architectural Heritage Melbourne, Historic Building Restoration, Heritage Planning Consultants" />
+<link rel="image_src" href="https://www.lovellchen.com.au/assets/uploads/images/IMG_8930_facebook.jpg" />
+<link rel="icon" href="https://www.lovellchen.com.au/LC_Favicon.png">
+
+<meta property="og:title" content="Broken Hill Trades Hall | Lovell Chen" />
+<meta property="og:description" content="Lovell Chen is a nationally recognised design practice that creates, enriches and sustains places of significance." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.lovellchen.com.au/projects/broken-hill-trades-hall/" />
+<meta property="og:image" content="https://www.lovellchen.com.au/assets/uploads/images/IMG_8930_facebook.jpg" />
+<meta property="og:site_name" content="Lovell Chen" />
+
+<link type="text/css" rel="stylesheet" href="https://www.lovellchen.com.au/assets/css/fonts.css" />
+<link type="text/css" rel="stylesheet" href="https://www.lovellchen.com.au/assets/css/style3.css" />
+<script src="https://www.lovellchen.com.au/assets/js/jquery-3.6.0.min.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZNJ6E95NS7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZNJ6E95NS7');
+</script>
+
+<script>
+
+window.psuedoHash = window.location.hash; // Store the hash for later
+history.replaceState(null, null, ' '); // Remove it from the address bar and don't store it in the history
+
+$(function() {
+	$('body').addClass('loaded');
+	$('.menutrigger').on('click', function(e) {
+		if($('.menu').hasClass('active')) {
+			$('.menu').removeClass('active');
+			$('.menu').css('overflow','hidden');
+			$('.menu').removeClass('expanded');
+		} else {
+			if($('.search').hasClass('active')) {
+				$('.search-close').trigger('click');
+			}
+			$('.menu').addClass('active');
+			$('.menu').one(whichTransitionEvent(),function(e) {
+				$('.menu').css('overflow','visible');
+				$('.menu').addClass('expanded');
+			});
+		}
+	});
+	$('body').on('click', function(e) {
+		if($(e.target).closest('.menu').length)
+			return; 
+		if($('.menu').hasClass('active')) {
+			$('.menutrigger').trigger('click');
+		}
+	});
+
+	$('.featured').on('click', function(e) {
+		if($('#wrapper').hasClass('intransition')) {
+			e.preventDefault();
+			e.stopPropagation();
+			return;			
+		}
+		
+		if($(this).hasClass('active')) {
+			$(this).removeClass('active');
+			$(this).find('span').text('Featured');
+			$('#wrapper').removeClass('featured');
+			$('#wrapper').addClass('intransition');
+			$('#wrapper').one(whichTransitionEvent(), function() {
+				setTimeout(function() {
+					$('.carousel').slick('setPosition');
+					$('#wrapper').removeClass('intransition');
+					$('body').hide().show(0);
+				},2000);
+			});
+			e.preventDefault();
+			e.stopPropagation();
+			
+		} else {
+			$(this).addClass('active');
+			$(this).find('span').text('Close');
+			$('#wrapper').addClass('featured')
+			$('#wrapper').addClass('intransition');
+			$('#wrapper').one(whichTransitionEvent(), function() {
+				setTimeout(function() {
+					$('#wrapper').removeClass('intransition');
+					$('.carousel').slick('setPosition');
+					
+				},2000);
+			});
+			$('.accordion-item-title.selected').trigger('click');
+			e.preventDefault();
+			e.stopPropagation();
+		}
+	});
+	$('.main').on('click', function(e) {
+		if($('#wrapper').hasClass('featured')) {
+			$('.featured').trigger('click');
+		}
+	});
+	$('.menupanel').on('click', function(e) {
+		
+		if($(e.target).hasClass('accordion-item'))
+			return;
+		if($(e.target).closest('.accordion-item').length)
+			return;  
+		$('.menutrigger').trigger('click');
+	});
+	
+	$('.searchpanel').on('click', function(e) {
+		
+		if($(e.target).hasClass('search-results-container'))
+			return;
+		if($(e.target).closest('.search-results-container').length)
+			return;  
+		$('.search-close').trigger('click');
+	});
+	
+	if (window.psuedoHash) {
+		setTimeout(function() {
+			var key = window.psuedoHash.substring(1);
+			var el = $('a[name="'+key+'"]');
+			$('html, body').animate({
+
+				scrollTop: el.offset().top - 75
+
+			}, 1000);
+		},1000);
+	}
+	
+	$('.submenu a').on('click', function() {
+		if($(this).prop('hash') && $(this).attr('href').indexOf('projects/broken-hill-trades-hall') != -1) {
+			var key = $(this).prop('hash').substring(1);
+			var el = $('a[name="'+key+'"]');
+			$('html, body').animate({
+
+				scrollTop: el.offset().top - 75
+
+			}, 1000);
+			$('.menutrigger').trigger('click');
+		}
+	});
+	
+	$('.search :input').on('click',function(e) {
+		if($('.menupanel').hasClass('open')) {
+			$('.menutrigger').trigger('click');
+		}
+		$('.search').addClass('active');
+		
+	});
+	
+	$('.search-close').on('click',function(e) {
+		$('.search').removeClass('active');
+		$('.searchpanel').removeClass('open');
+		$('body').css('overflow','auto');
+		setTimeout(function() {
+			$('.searchpanel').css('opacity',0);
+			$('.search-meta').show();
+			$('.search-results-content').html('');
+			document.getElementById('search-form').reset();
+		},800);
+	});
+	$('.search-close-button').on('click',function(e) {
+		$('.search').removeClass('active');
+		$('.searchpanel').removeClass('open');
+		$('body').css('overflow','auto');
+		setTimeout(function() {
+			//alert();
+			
+			$('.searchpanel').css('opacity',0);
+			$('.search-meta').show();
+			$('.search-results-content').html('');
+			document.getElementById('search-form').reset();
+		},800);
+		e.preventDefault();
+		e.stopPropagation();
+	});
+	
+});
+
+function showResults() {
+	$('.search-container').fadeOut(500);
+	$('#spinner').show();
+	setTimeout(function() {
+		$('#spinner').hide();
+		$('.search-results-container').fadeIn(1000);
+	},1000);
+}
+function searchAll(f) {
+	if($(f).find('input[name="q"]').val() == '') {
+		$(f).find('input[name="q"]').focus();
+		return false;
+	}
+    var d = $(f).serialize();
+    var u = $(f).attr('action');
+	$('#search').val($(f).find('input[name="q"]').val());
+	
+	$('#spinner').show();
+	$.ajax({
+        url: u,
+        type: 'POST',
+        data: d,
+        dataType: 'text',
+		success: function(text){
+			$('.searchpanel').addClass('open');
+			$('.searchpanel').css('opacity',1);
+			$('body').css('overflow','hidden');
+			$('.search-results-content').html(text);
+			$('#search').attr('placeholder','');
+			$('body').css('overflow','hidden');
+	 	},
+		error: function(text) {
+			alert('We\'re sorry, but an unexpected error has occurred while performing the search.\n\nPlease try again later\n\n');
+			alert(text.responseText);
+		}
+	});
+	return false;
+}
+</script>
+<style>
+    .grecaptcha-badge{visibility: hidden}
+</style>
+<script src="https://www.google.com/recaptcha/enterprise.js?render=6LePURosAAAAAE2jPnVUJr7PkI8M35-YaQ6UJtmq"></script>
+<script>
+window.site_key = '6LePURosAAAAAE2jPnVUJr7PkI8M35-YaQ6UJtmq';
+</script>
+</head>
+<body>
+
+<h1 class="seo">Lovell Chen creates enduring value through responsible stewardship, design-excellence and strategic foresight</h1>
+<h2 class="seo">Architectural Services and Heritage Planning</h2>
+<h3 class="seo">Heritage Consultation and Strategic Planning</h3>
+
+<div class="masthead">
+<div class="masthead-left">
+<div class="menu">
+<span class="menutrigger"><span>Menu</span></span>
+<div class="mainmenu">
+
+
+<span class="menuitem">
+
+<a href="https://www.lovellchen.com.au/practice/">Practice</a>
+
+<span class="submenu">
+<ul>
+
+<!--<li><a href="https://www.lovellchen.com.au/practice/">Overview</a></li>-->
+
+
+
+
+<li><a href="https://www.lovellchen.com.au/practice/studio/">Studio</a></li>
+
+
+<li><a href="https://www.lovellchen.com.au/practice/values/">Values</a></li>
+
+
+<li><a href="https://www.lovellchen.com.au/practice/team/">Team</a></li>
+
+
+<li><a href="https://www.lovellchen.com.au/practice/careers/">Careers</a></li>
+
+
+<li><a href="https://www.lovellchen.com.au/practice/awards/">Awards</a></li>
+
+
+<li><a href="https://www.lovellchen.com.au/practice/social-responsibility/">Social Responsibility</a></li>
+
+
+</ul>
+
+</span>
+</span>
+
+
+<span class="menuitem">
+
+<a href="https://www.lovellchen.com.au/architecture/">Architecture</a>
+
+<span class="submenu">
+<ul>
+
+<!--<li><a href="https://www.lovellchen.com.au/architecture/">Overview</a></li>-->
+
+
+<li><a href="https://www.lovellchen.com.au/architecture/#services">Services</a></li>
+<li><a href="https://www.lovellchen.com.au/architecture/#projects">Projects</a></li>
+<li><a href="https://www.lovellchen.com.au/architecture/#team">Team</a></li>
+
+
+
+
+</ul>
+
+</span>
+</span>
+
+
+<span class="menuitem">
+
+<a href="https://www.lovellchen.com.au/heritage/">Heritage</a>
+
+<span class="submenu">
+<ul>
+
+<!--<li><a href="https://www.lovellchen.com.au/heritage/">Overview</a></li>-->
+
+
+
+<li><a href="https://www.lovellchen.com.au/heritage/#services">Services</a></li>
+<li><a href="https://www.lovellchen.com.au/heritage/#projects">Projects</a></li>
+<li><a href="https://www.lovellchen.com.au/heritage/#team">Team</a></li>
+
+
+
+</ul>
+
+</span>
+</span>
+
+
+<span class="menuitem">
+
+<a href="https://www.lovellchen.com.au/expertise/">Expertise</a>
+
+<span class="submenu">
+<ul>
+
+<!--<li><a href="https://www.lovellchen.com.au/expertise/">Overview</a></li>-->
+
+
+
+
+<li><a href="https://www.lovellchen.com.au/expertise/design-adaptation/">Design & Adaptation</a></li>
+
+
+<li><a href="https://www.lovellchen.com.au/expertise/strategy-stewardship/">Strategy & Stewardship</a></li>
+
+
+<li><a href="https://www.lovellchen.com.au/expertise/masterplanning-placemaking/">Masterplanning & Placemaking</a></li>
+
+
+<li><a href="https://www.lovellchen.com.au/expertise/landscape-infrastructure/">Landscape & Infrastructure</a></li>
+
+
+<li><a href="https://www.lovellchen.com.au/expertise/sustainability-conservation/">Sustainability & Conservation</a></li>
+
+
+</ul>
+
+</span>
+</span>
+
+
+</div>
+</div>
+</div>
+<div class="masthead-center">
+<a class="wordmark" href="https://www.lovellchen.com.au/"><span><img src="https://www.lovellchen.com.au/assets/css/wordmark-text.svg" /></span></a>
+</div>
+<div class="masthead-right">
+<span class="search">
+<div id="search-form-container" class="search-field-container">
+<form novalidate autocomplete="off" id="search-form" method="get" action="https://www.lovellchen.com.au/search/ajax_search_all/" onsubmit="searchAll(this);return false;">
+<input name="searchsubmit" type="submit" value="" /><input id="search" name="q" type="text" placeholder="" /><span class="search-close"></span>
+</form>
+</div>
+</span>
+<a class="contact" href="https://www.lovellchen.com.au/contact/"><span>Contact</span></a> <a class="featured" href="#"><span>Featured</span></a>
+</div>
+</div>
+
+<div class="searchpanel">
+<div class="search-results-container">
+<span id="searchclose" class="search-close-button"></span>
+<div class="search-meta">
+
+<div>
+<p class="heading">Recent searches</p>
+<p class="recent-search-item">None yet available</p>
+</div>
+
+</div>
+
+<div class="search-results-content">
+
+&nbsp;
+
+</div>
+
+</div>
+</div>
+
+<div id="wrapper"><!-- begin main content -->
+
+<div class="main">
+
+
+
+
+
+
+
+
+<div id="main-header-module2213" class="content-object main-header-module">
+
+<div class="slider-carousel">
+
+
+
+<div class="carousel-item current" style="background:url('https://www.lovellchen.com.au/assets/uploads/images/IMG_8930RevA_landscape_large.jpg') center center no-repeat;background-size:cover;">
+<div class="carousel-tinted-overlay" style="background-color:rgba(0,0,0,0.1);"></div>
+
+
+
+
+<div class="description-text white text-bottom">
+<p></p>
+</div>
+
+<div class="center-heading white">
+<h3>broken hill trades hall</h3></div>
+
+
+
+
+</div>
+
+
+<div class="controls">
+<span class="prev-button disabled"></span> <span class="next-button"></span>
+</div>
+
+</div>
+
+<script>
+$(function() {
+var currentIndex2213 = 0;
+var totalUniqueSlides2213 = 1;
+var totalSlides2213 = 1;
+var paused2213 = false;
+var in_animation2213 = false;
+
+$('#main-header-module2213 .next-button').on('click', function(e) {
+	
+		
+	if(in_animation2213) {
+		return false;
+	}
+	
+	in_animation2213 = true;
+	
+	currentIndex2213++;
+	if(currentIndex2213 >= totalUniqueSlides2213) {
+		currentIndex2213 = 0;
+	}
+	
+	$('#main-header-module2213 .carousel-item.current').addClass('leaving-left');
+	
+	
+	var el = $('#main-header-module2213 .carousel-item')[currentIndex2213];
+
+	$(el).removeClass('notransition')
+	$(el).addClass('wipeleft');
+	setTimeout(function() {
+		$(el).addClass('intransition');
+		$(el).one(whichTransitionEvent(), function() {
+			$('#main-header-module2213 .carousel-item').removeClass('current');
+			$('#main-header-module2213 .carousel-item').removeClass('leaving-left');
+			$(el).removeClass('wipeleft').removeClass('intransition').addClass('current');
+			in_animation2213 = false;
+		});
+	},100);
+	$('#carouselslidenumber2213').text(currentIndex2213 + 1);
+	
+	e.preventDefault();
+	e.stopPropagation();
+});
+$('#main-header-module2213 .prev-button').on('click', function(e) {
+	
+
+
+		
+	if(in_animation2213) {
+		return false;
+	}
+	
+	in_animation2213 = true;
+	
+	currentIndex2213--;
+	if(currentIndex2213 < 0) {
+		currentIndex2213 = totalUniqueSlides2213 - 1;
+	}
+	
+	$('#main-header-module2213 .carousel-item.current').addClass('leaving-right');
+	
+	var el = $('#main-header-module2213 .carousel-item')[currentIndex2213];
+
+	$(el).removeClass('notransition')
+	$(el).addClass('wiperight');
+	setTimeout(function() {
+		$(el).addClass('intransition');
+		$(el).one(whichTransitionEvent(), function() {
+			$('#main-header-module2213 .carousel-item').removeClass('current');
+			$('#main-header-module2213 .carousel-item').removeClass('leaving-right');
+			$(el).removeClass('wiperight').removeClass('intransition').addClass('current');
+			in_animation2213 = false;
+		});
+	},100);
+	$('#carouselslidenumber2213').text(currentIndex2213 + 1);
+	e.preventDefault();
+	e.stopPropagation();
+});
+
+
+	window.addEventListener('blur', function (event) {
+	   paused2213 = true;
+	});
+	window.addEventListener('focus', function (event) {
+	   paused2213 = false;
+	});
+});
+
+
+
+</script>
+<style>
+.main-header-module .slider-carousel .carousel-item.wipeleft.intransition {
+	transition-duration:1s;
+}
+.main-header-module .slider-carousel .carousel-item.wiperight.intransition {
+	transition-duration:1s;
+}
+.main-header-module .slider-carousel .carousel-item.wipeleft.intransition .description-text {
+	transition-duration:1s;
+}
+.main-header-module .slider-carousel .carousel-item.wiperight.intransition .description-text {
+	transition-duration:1s;
+}
+.main-header-module .slider-carousel .carousel-item.current.leaving-left .description-text {
+	transition-duration:1s, 1s;
+}
+.main-header-module .slider-carousel .carousel-item.current.leaving-right .description-text {
+	transition-duration:1s, 1s;
+}
+</style>
+</div>
+
+<style>
+
+#wrapper {
+	padding-top:0;
+}
+
+</style>
+
+
+
+
+
+
+
+<div id="two-column-text-and-carousel-module-landscape2214" class="content-object two-column-text-and-carousel-module-landscape">
+
+
+<div id="carousel-container2214" class="carousel-container">
+
+
+
+
+<div class="carousel" id="carousel2214">
+
+
+
+<div>
+
+<img alt="" src="https://www.lovellchen.com.au/assets/uploads/images/1911TradeUnionLaborDayparadeArgentStPRG280111108SLSA_landscape_large.jpg" />
+
+<div class="additional-controls">
+<a id="additionalinfo1124" class="additional-info" href="#"></a>
+<script>
+$(function() {
+	$('#additionalcontentcontainer1124').hide();
+	$('#additionalinfo1124').on('click',function(e) {
+		if($(this).hasClass('active')) {
+			$('#additionalcontentcontainer1124').fadeOut(300);
+			$(this).removeClass('active');
+		} else {
+			$('#additionalcontentcontainer1124').fadeIn(300);
+			$(this).addClass('active');
+			$('body').one('click', function(e) {
+				$('#additionalcontentcontainer1124').fadeOut(300);
+				$('#additionalinfo1124').removeClass('active');
+			});
+		}
+		e.preventDefault();
+		e.stopPropagation();
+	});
+	$('#lightbox1124').on('click',function(e) {
+		doLightBox(e.target);
+		e.preventDefault();
+		e.stopPropagation();		
+	});
+});
+</script>
+</div>
+
+<div id="additionalcontentcontainer1124" class="additional-content-container">
+<div class="additional-content-text">
+<h4>Broken Hill Trades Hall in 1911</h4>
+<p>Trade Union Labor Day procession in Argent Street, Broken Hill, 1911</p>
+<p class="credits">Image sourced from SLSA [PRG 280/1/11/108]</p>
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+$(function() {
+	
+	$('#carousel2214').on('init', function(event, slick){
+		$('#carouseltotal2214').text(slick.slideCount);
+		$('.slick-slide').each(function(index) {
+			var maxWidthValue = ($(this).find('.image-container').width() / $(this).width() * 100)+'%';
+			$(this).find('.caption').css('max-width',maxWidthValue);
+		})
+	});	
+	$('#carousel2214').slick({
+		autoplay: false,
+		arrows: false,
+		autoplaySpeed: 5000,
+		speed: 1000,
+		dots: false,
+		useCSS: true,
+		infinite: true,
+		fade: false,
+		slidesToShow: 1
+	});
+	
+	$('#carousel2214').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+		$('#carouselslidenumber2214').text(nextSlide+1);
+		//$('#carousel-container2214 .cursor').removeClass('shown');
+	});
+	$('#carousel2214').on('afterChange', function(event, slick, currentSlide, nextSlide){
+			//$('#carousel2214').trigger('mouseenter')
+	});
+		
+	$('#carousel2214 .slick-slide').on('click','.video-control',function(e) {
+		
+		if($('#carousel2214 .slick-current .video-control').hasClass('playing')) {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			setTimeout(function() {
+				
+				if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+					
+				var vid = document.getElementById(window.vidId); 
+				vid.pause();
+				$('#carousel2214 .slick-current .video-control').removeClass('playing');
+				$('#'+window.vidId).off('ended');
+				
+				} else {
+					
+					var vid = document.getElementById(vidId);
+					var player = new Vimeo.Player(vid);
+					player.pause();
+					$('#carousel2214 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2214 .slick-current').find('.video-container').removeClass('playing');
+					$('#carousel2214 .slick-current').find('.events-overlay').removeClass('playing');	
+					
+				}
+				
+			},100)
+			
+		} else {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+				
+				var vid = document.getElementById(vidId);
+				
+				$('#'+window.vidId).addClass('shown');
+
+				setTimeout(function() {
+				var playPromise = vid.play();
+				  if (playPromise !== undefined) {
+					playPromise.then(_ => {
+					  console.log('play called');
+					})
+					.catch(error => {
+					  console.log('play call failed');
+					});
+				  }
+				  $('#'+window.vidId).parent().find('.video-control').addClass('playing');
+					$('#'+window.vidId).on('ended', function(e) {
+						var vid = document.getElementById(window.vidId); 
+						$('#carousel2214 .slick-current .video-control').removeClass('playing');
+						//vid.currentTime = 0;
+						$('#'+window.vidId).removeClass('shown');
+					});
+				},100);
+				
+			} else {
+				
+				var vid = document.getElementById(vidId);
+				var player = new Vimeo.Player(vid);
+				player.play();
+				$('#carousel2214 .slick-current').find('.video-control').addClass('playing');
+				$('#carousel2214 .slick-current').find('.video-container').addClass('playing');
+				setTimeout(function() {
+					$('#carousel2214 .slick-current').find('.events-overlay').addClass('playing');
+				},1000);
+				player.on('ended', function(data) {
+					$('#carousel2214 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2214 .slick-current').find('.video-container').removeClass('playing');	
+					$('#carousel2214 .slick-current').find('.events-overlay').removeClass('playing');				
+				});
+				
+			}
+			
+		}
+	});
+	
+});
+
+</script><!-- end carousel -->
+
+<div class="text-container">
+<div class="text-content">
+
+<p>The Broken Hill Trades Hall was constructed over two stages in 1898 and 1905, in the burgeoning mining town where the efforts of the unions were key to the safety of local workers. The establishment of the trades hall was a significant moment in the town, and the two-storey building comprises a main hall, offices and other spaces for union members to gather, fundraise and organise. The main building substantially intact, and is a significant contributor to the Victorian-era fabric of Broken Hill. Broken Hill Trades Hall remains as the centre for championing workers&rsquo; rights in this remote part of the country. The trades hall is part of the National Heritage listing of the town, and with the Victorian Trades Hall, it is one of several international trades halls included in the World Heritage bid for Workers&rsquo; Assembly Halls.</p>
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div id="project-details-module2215" class="content-object project-details-module">
+
+<div class="text-container">
+
+<h3>Conservation Management Plan </h3>
+
+<div class="text-content">
+
+<p>Lovell Chen prepared a conservation management plan for the Barrier Industrial Council in 2022-2024, to clarify the significance of the place and to provide guidance in managing heritage values. Travelling to Broken Hill, we undertook a site visit and survey, and investigation of locally held archives. The assessment built on the analysis of historical material and physical fabric, and confirmed the National level historical significance of the place and its collection for its associations with the history of Australian industrial relations, and the significant union movement of Broken Hill.</p>
+</div>
+
+</div>
+
+<div class="text-container details">
+
+
+<h3>Details</h3>
+
+
+<div class="text-content">
+
+<div class="column">
+
+<div class="attribute"><h4 style="margin-bottom:0;text-transform:uppercase;">Client</h4><p>Broken Hill Trades Hall Trust</p></div>
+<div class="attribute"><h4 style="margin-bottom:0;text-transform:uppercase;">Date</h4><p>2024</p></div>
+<div class="attribute"><h4 style="margin-bottom:0;text-transform:uppercase;">Status</h4><p>Completed</p></div>
+<div class="attribute"><h4 style="margin-bottom:0;text-transform:uppercase;">Original Architect</h4><p>Thomas Jackson</p></div>
+</div>
+<div class="column">
+<div class="attribute"><h4 style="margin-bottom:0;text-transform:uppercase;">Location</h4><p>New South Wales</p></div>
+<div class="attribute"><h4 style="margin-bottom:0;text-transform:uppercase;">Traditional Owners</h4><p>Wilyakali people of the Barkindji nation</p></div>
+<div class="attribute"><h4 style="margin-bottom:0;text-transform:uppercase;">Services</h4><p><a href="/practice/studio/">Heritage Management Plans</a></p></div>
+<div class="attribute"><h4 style="margin-bottom:0;text-transform:uppercase;">Sector</h4><p><a href="/projects/">Arts/Culture & Sport</a></p></div>
+<div class="attribute"><h4 style="margin-bottom:0;text-transform:uppercase;">Expertise</h4><p><a href="/expertise/strategy-stewardship/">Strategy & Stewardship</a></p></div>
+</div>
+
+</div>
+
+</div>
+
+<div id="carousel-container2215" class="carousel-container">
+
+
+
+
+<div class="carousel" id="carousel2215">
+
+
+
+<div>
+
+<img alt="" src="https://www.lovellchen.com.au/assets/uploads/images/Untitled1_1_portrait_large.jpg" />
+
+<div class="additional-controls">
+<a id="additionalinfo1272" class="additional-info" href="#"></a>
+<script>
+$(function() {
+	$('#additionalcontentcontainer1272').hide();
+	$('#additionalinfo1272').on('click',function(e) {
+		if($(this).hasClass('active')) {
+			$('#additionalcontentcontainer1272').fadeOut(300);
+			$(this).removeClass('active');
+		} else {
+			$('#additionalcontentcontainer1272').fadeIn(300);
+			$(this).addClass('active');
+			$('body').one('click', function(e) {
+				$('#additionalcontentcontainer1272').fadeOut(300);
+				$('#additionalinfo1272').removeClass('active');
+			});
+		}
+		e.preventDefault();
+		e.stopPropagation();
+	});
+	$('#lightbox1272').on('click',function(e) {
+		doLightBox(e.target);
+		e.preventDefault();
+		e.stopPropagation();		
+	});
+});
+</script>
+</div>
+
+<div id="additionalcontentcontainer1272" class="additional-content-container">
+<div class="additional-content-text">
+<p>Broken Hill Trades Hall, c. 1910s, 15/46/770</p>
+<p class="credits">Image sourced from Broken Hill Outback Archives, Broken Hill Library</p>
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+$(function() {
+	
+	$('#carousel2215').on('init', function(event, slick){
+		$('#carouseltotal2215').text(slick.slideCount);
+		$('.slick-slide').each(function(index) {
+			var maxWidthValue = ($(this).find('.image-container').width() / $(this).width() * 100)+'%';
+			$(this).find('.caption').css('max-width',maxWidthValue);
+		})
+	});	
+	$('#carousel2215').slick({
+		autoplay: false,
+		arrows: false,
+		autoplaySpeed: 5000,
+		speed: 1000,
+		dots: false,
+		useCSS: true,
+		infinite: true,
+		fade: false,
+		slidesToShow: 1
+	});
+	
+	$('#carousel2215').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+		$('#carouselslidenumber2215').text(nextSlide+1);
+		//$('#carousel-container2215 .cursor').removeClass('shown');
+	});
+	$('#carousel2215').on('afterChange', function(event, slick, currentSlide, nextSlide){
+			//$('#carousel2215').trigger('mouseenter')
+	});
+		
+	$('#carousel2215 .slick-slide').on('click','.video-control',function(e) {
+		
+		if($('#carousel2215 .slick-current .video-control').hasClass('playing')) {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			setTimeout(function() {
+				
+				if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+					
+				var vid = document.getElementById(window.vidId); 
+				vid.pause();
+				$('#carousel2215 .slick-current .video-control').removeClass('playing');
+				$('#'+window.vidId).off('ended');
+				
+				} else {
+					
+					var vid = document.getElementById(vidId);
+					var player = new Vimeo.Player(vid);
+					player.pause();
+					$('#carousel2215 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2215 .slick-current').find('.video-container').removeClass('playing');
+					$('#carousel2215 .slick-current').find('.events-overlay').removeClass('playing');	
+					
+				}
+				
+			},100)
+			
+		} else {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+				
+				var vid = document.getElementById(vidId);
+				
+				$('#'+window.vidId).addClass('shown');
+
+				setTimeout(function() {
+				var playPromise = vid.play();
+				  if (playPromise !== undefined) {
+					playPromise.then(_ => {
+					  console.log('play called');
+					})
+					.catch(error => {
+					  console.log('play call failed');
+					});
+				  }
+				  $('#'+window.vidId).parent().find('.video-control').addClass('playing');
+					$('#'+window.vidId).on('ended', function(e) {
+						var vid = document.getElementById(window.vidId); 
+						$('#carousel2215 .slick-current .video-control').removeClass('playing');
+						//vid.currentTime = 0;
+						$('#'+window.vidId).removeClass('shown');
+					});
+				},100);
+				
+			} else {
+				
+				var vid = document.getElementById(vidId);
+				var player = new Vimeo.Player(vid);
+				player.play();
+				$('#carousel2215 .slick-current').find('.video-control').addClass('playing');
+				$('#carousel2215 .slick-current').find('.video-container').addClass('playing');
+				setTimeout(function() {
+					$('#carousel2215 .slick-current').find('.events-overlay').addClass('playing');
+				},1000);
+				player.on('ended', function(data) {
+					$('#carousel2215 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2215 .slick-current').find('.video-container').removeClass('playing');	
+					$('#carousel2215 .slick-current').find('.events-overlay').removeClass('playing');				
+				});
+				
+			}
+			
+		}
+	});
+	
+});
+
+</script><!-- end carousel -->
+
+</div>
+
+
+
+
+
+
+
+<div id="two-column-carousel-module-2260" class="content-object two-column-carousel-module none">
+
+
+<div id="carousel-container2261" class="carousel-container portrait carousel-left">
+
+
+
+<div class="carousel" id="carousel2261">
+
+
+
+<div>
+<img alt="" src="https://www.lovellchen.com.au/assets/uploads/images/1935BoxingPostcard_landscape_large.jpg" />
+<div class="slide-text"></div>
+
+<div class="additional-controls">
+<a id="additionalinfo1268" class="additional-info" href="#"></a>
+<script>
+$(function() {
+	$('#additionalcontentcontainer1268').hide();
+	$('#additionalinfo1268').on('click',function(e) {
+		if($(this).hasClass('active')) {
+			$('#additionalcontentcontainer1268').fadeOut(300);
+			$(this).removeClass('active');
+		} else {
+			$('#additionalcontentcontainer1268').fadeIn(300);
+			$(this).addClass('active');
+			$('body').one('click', function(e) {
+				$('#additionalcontentcontainer1268').fadeOut(300);
+				$('#additionalinfo1268').removeClass('active');
+			});
+		}
+		e.preventDefault();
+		e.stopPropagation();
+	});
+	$('#lightbox1268').on('click',function(e) {
+		doLightBox(e.target);
+		e.preventDefault();
+		e.stopPropagation();		
+	});
+});
+</script>
+</div>
+
+<div id="additionalcontentcontainer1268" class="additional-content-container">
+<div class="additional-content-text">
+<p>Crowd at Trades Hall Stadium, 8 March 1930, 10/1/1345</p>
+<p class="credits">Image sourced from Broken Hill Outback Archives, Broken Hill Library</p>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+$(function() {
+	
+	$('#carousel2261').on('init', function(event, slick){
+		$('#carouseltotal2261').text(slick.slideCount);
+		var minHeight = 0;
+		$('#carousel2261 .slick-slide').each(function(index) {
+			//var maxWidthValue = ($(this).find('.image-container').width() / $(this).width() * 100)+'%';
+			//$(this).find('.caption').css('max-width',maxWidthValue);
+			
+			minHeight = $(this).find('.slide-text').height() > minHeight ? $(this).find('.slide-text').height() : minHeight;
+			
+		})
+		//$('#carousel-container2261 .caption').css('height',(minHeight / 16) +'rem');
+		$('#carousel-container2261 .caption').html($('#carousel2261 .slick-current .slide-text').html());
+		//$('#carousel-container2261 .caption').html()
+	});	
+	$('#carousel2261').slick({
+		autoplay: false,
+		arrows: false,
+		autoplaySpeed: 5000,
+		speed: 1000,
+		dots: false,
+		useCSS: true,
+		infinite: true,
+		fade: false,
+		slidesToShow: 1
+	});
+	
+	$('#carousel2261').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+		$('#carouselslidenumber2261').text(nextSlide+1);
+		//$('#carousel-container2261 .cursor').removeClass('shown');
+	});
+	$('#carousel2261').on('afterChange', function(event, slick, currentSlide, nextSlide){
+			//$('#carousel2261').trigger('mouseenter');
+			$('#carousel-container2261 .caption').html($('#carousel2261 .slick-current .slide-text').html());
+	});
+		
+	$('#carousel2261 .slick-slide').on('click','.video-control',function(e) {
+		
+		if($('#carousel2261 .slick-current .video-control').hasClass('playing')) {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			setTimeout(function() {
+				
+				if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+					
+				var vid = document.getElementById(window.vidId); 
+				vid.pause();
+				$('#carousel2261 .slick-current .video-control').removeClass('playing');
+				$('#'+window.vidId).off('ended');
+				
+				} else {
+					
+					var vid = document.getElementById(vidId);
+					var player = new Vimeo.Player(vid);
+					player.pause();
+					$('#carousel2261 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2261 .slick-current').find('.video-container').removeClass('playing');
+					$('#carousel2261 .slick-current').find('.events-overlay').removeClass('playing');	
+					
+				}
+				
+			},100)
+			
+		} else {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+				
+				var vid = document.getElementById(vidId);
+				
+				$('#'+window.vidId).addClass('shown');
+
+				setTimeout(function() {
+				var playPromise = vid.play();
+				  if (playPromise !== undefined) {
+					playPromise.then(_ => {
+					  console.log('play called');
+					})
+					.catch(error => {
+					  console.log('play call failed');
+					});
+				  }
+				  $('#'+window.vidId).parent().find('.video-control').addClass('playing');
+					$('#'+window.vidId).on('ended', function(e) {
+						var vid = document.getElementById(window.vidId); 
+						$('#carousel2261 .slick-current .video-control').removeClass('playing');
+						//vid.currentTime = 0;
+						$('#'+window.vidId).removeClass('shown');
+					});
+				},100);
+				
+			} else {
+				
+				var vid = document.getElementById(vidId);
+				var player = new Vimeo.Player(vid);
+				player.play();
+				$('#carousel2261 .slick-current').find('.video-control').addClass('playing');
+				$('#carousel2261 .slick-current').find('.video-container').addClass('playing');
+				setTimeout(function() {
+					$('#carousel2261 .slick-current').find('.events-overlay').addClass('playing');
+				},1000);
+				player.on('ended', function(data) {
+					$('#carousel2261 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2261 .slick-current').find('.video-container').removeClass('playing');	
+					$('#carousel2261 .slick-current').find('.events-overlay').removeClass('playing');				
+				});
+				
+			}
+			
+		}
+	});
+	
+});
+
+</script><!-- end carousel -->
+
+</div>
+
+
+<div id="carousel-container2262" class="carousel-container portrait carousel-left">
+
+
+
+<div class="carousel" id="carousel2262">
+
+
+
+<div>
+<img alt="" src="https://www.lovellchen.com.au/assets/uploads/images/IMG_8819_landscape_large.jpg" />
+<div class="slide-text"></div>
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+$(function() {
+	
+	$('#carousel2262').on('init', function(event, slick){
+		$('#carouseltotal2262').text(slick.slideCount);
+		var minHeight = 0;
+		$('#carousel2262 .slick-slide').each(function(index) {
+			//var maxWidthValue = ($(this).find('.image-container').width() / $(this).width() * 100)+'%';
+			//$(this).find('.caption').css('max-width',maxWidthValue);
+			
+			minHeight = $(this).find('.slide-text').height() > minHeight ? $(this).find('.slide-text').height() : minHeight;
+			
+		})
+		//$('#carousel-container2262 .caption').css('height',(minHeight / 16) +'rem');
+		$('#carousel-container2262 .caption').html($('#carousel2262 .slick-current .slide-text').html());
+		//$('#carousel-container2262 .caption').html()
+	});	
+	$('#carousel2262').slick({
+		autoplay: false,
+		arrows: false,
+		autoplaySpeed: 5000,
+		speed: 1000,
+		dots: false,
+		useCSS: true,
+		infinite: true,
+		fade: false,
+		slidesToShow: 1
+	});
+	
+	$('#carousel2262').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+		$('#carouselslidenumber2262').text(nextSlide+1);
+		//$('#carousel-container2262 .cursor').removeClass('shown');
+	});
+	$('#carousel2262').on('afterChange', function(event, slick, currentSlide, nextSlide){
+			//$('#carousel2262').trigger('mouseenter');
+			$('#carousel-container2262 .caption').html($('#carousel2262 .slick-current .slide-text').html());
+	});
+		
+	$('#carousel2262 .slick-slide').on('click','.video-control',function(e) {
+		
+		if($('#carousel2262 .slick-current .video-control').hasClass('playing')) {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			setTimeout(function() {
+				
+				if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+					
+				var vid = document.getElementById(window.vidId); 
+				vid.pause();
+				$('#carousel2262 .slick-current .video-control').removeClass('playing');
+				$('#'+window.vidId).off('ended');
+				
+				} else {
+					
+					var vid = document.getElementById(vidId);
+					var player = new Vimeo.Player(vid);
+					player.pause();
+					$('#carousel2262 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2262 .slick-current').find('.video-container').removeClass('playing');
+					$('#carousel2262 .slick-current').find('.events-overlay').removeClass('playing');	
+					
+				}
+				
+			},100)
+			
+		} else {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+				
+				var vid = document.getElementById(vidId);
+				
+				$('#'+window.vidId).addClass('shown');
+
+				setTimeout(function() {
+				var playPromise = vid.play();
+				  if (playPromise !== undefined) {
+					playPromise.then(_ => {
+					  console.log('play called');
+					})
+					.catch(error => {
+					  console.log('play call failed');
+					});
+				  }
+				  $('#'+window.vidId).parent().find('.video-control').addClass('playing');
+					$('#'+window.vidId).on('ended', function(e) {
+						var vid = document.getElementById(window.vidId); 
+						$('#carousel2262 .slick-current .video-control').removeClass('playing');
+						//vid.currentTime = 0;
+						$('#'+window.vidId).removeClass('shown');
+					});
+				},100);
+				
+			} else {
+				
+				var vid = document.getElementById(vidId);
+				var player = new Vimeo.Player(vid);
+				player.play();
+				$('#carousel2262 .slick-current').find('.video-control').addClass('playing');
+				$('#carousel2262 .slick-current').find('.video-container').addClass('playing');
+				setTimeout(function() {
+					$('#carousel2262 .slick-current').find('.events-overlay').addClass('playing');
+				},1000);
+				player.on('ended', function(data) {
+					$('#carousel2262 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2262 .slick-current').find('.video-container').removeClass('playing');	
+					$('#carousel2262 .slick-current').find('.events-overlay').removeClass('playing');				
+				});
+				
+			}
+			
+		}
+	});
+	
+});
+
+</script><!-- end carousel -->
+
+</div>
+
+</div>
+
+
+
+
+
+
+<div id="two-column-text-and-carousel-module-landscape2236" class="content-object two-column-text-and-carousel-module-landscape">
+
+
+<div id="carousel-container2236" class="carousel-container">
+
+
+
+
+<div class="carousel" id="carousel2236">
+
+
+
+<div>
+
+<img alt="" src="https://www.lovellchen.com.au/assets/uploads/images/IMG_0234_landscape_large.jpg" />
+
+
+
+</div>
+
+
+
+<div>
+
+<img alt="" src="https://www.lovellchen.com.au/assets/uploads/images/IMG_0213_landscape_large.jpg" />
+
+
+
+</div>
+
+
+</div>
+<div class="cursor">
+<span class="prevbutton">&#x2B24;</span><span class="slidenumbers"><span id="carouselslidenumber2236" class="currentslide">1</span><span>&nbsp;|&nbsp;</span><span id="carouseltotal2236" class="totalslides"></span></span><span class="nextbutton">&#x2B24;</span>
+</div>
+
+
+</div>
+
+
+
+<script>
+
+$(function() {
+	
+	$('#carousel2236').on('init', function(event, slick){
+		$('#carouseltotal2236').text(slick.slideCount);
+		$('.slick-slide').each(function(index) {
+			var maxWidthValue = ($(this).find('.image-container').width() / $(this).width() * 100)+'%';
+			$(this).find('.caption').css('max-width',maxWidthValue);
+		})
+	});	
+	$('#carousel2236').slick({
+		autoplay: true,
+		arrows: false,
+		autoplaySpeed: 2000,
+		speed: 2000,
+		dots: false,
+		useCSS: true,
+		infinite: true,
+		fade: false,
+		slidesToShow: 1
+	});
+	
+	$('#carousel2236').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+		$('#carouselslidenumber2236').text(nextSlide+1);
+		//$('#carousel-container2236 .cursor').removeClass('shown');
+	});
+	$('#carousel2236').on('afterChange', function(event, slick, currentSlide, nextSlide){
+			//$('#carousel2236').trigger('mouseenter')
+	});
+	
+	$('#carousel2236').on('mouseenter', function() {
+			var el = $('#carousel-container2236 .cursor');
+			var rect = $(this)[0].getBoundingClientRect();
+			el.addClass('shown');
+			
+			//console.log(el);
+
+			$(this).on('mousemove', function(e) {
+				el.css({
+					transform: "translate(" + (e.clientX - 40) + "px, " + (e.clientY - 15) + "px)"
+				});
+				var xpos = (e.clientX - $(this).offset().left) + $(window).scrollLeft();
+				var ypos = (e.clientY - $(this).offset().top) + $(window).scrollTop();
+				if(xpos > $('#carousel2236 .slick-current').width() / 3 * 2 && xpos < $('#carousel2236 .slick-current').width()) {
+					$('.prevbutton').hide();
+					$('.nextbutton').show();
+					el.addClass('shown');
+					$(this).css('cursor', 'none');
+				} else if(xpos < $('#carousel2236 .slick-current').width() / 3) {
+					$('.prevbutton').show();
+					$('.nextbutton').hide();
+					el.addClass('shown');					
+					$(this).css('cursor', 'none');					
+				} else {
+					//console.log('middle');
+					el.removeClass('shown');
+					$(this).css('cursor', 'default');					
+				}
+			})
+	});
+	$('#carousel2236').on('mouseleave', function() {
+			var el = $('#carousel-container2236 .cursor');
+			el.removeClass('shown');			
+	});
+	
+	$('#carousel2236').on('click', function(e) {
+		$('.additional-content-container').fadeOut(300);
+		$('.additional-info').removeClass('active');
+		var xpos = (e.clientX - $(this).offset().left) + $(window).scrollLeft();
+		var ypos = (e.clientY - $(this).offset().top) + $(window).scrollTop();
+		console.log(xpos);
+		if(xpos > $('#carousel2236 .slick-current').width() / 3 * 2 && xpos < $('#carousel2236 .slick-current').width()) {
+			setTimeout(function() {
+				$('#carousel2236').slick('slickNext');
+			},100);
+			if($('#carousel2236 .slick-current .video-control').hasClass('playing')) {
+				var vid = document.getElementById(window.vidId); 
+				vid.pause();
+				vid.currentTime = 0;
+				$('#'+window.vidId).removeClass('shown');
+				$('#carousel2236 .slick-current .video-control').removeClass('playing');
+			}
+			return false;
+		} else if(xpos < $('#carousel2236 .slick-current').width() / 3) {
+			if($('#carousel2236 .slick-current .video-control').hasClass('playing')) {
+				var vid = document.getElementById(window.vidId); 
+				vid.pause();
+				vid.currentTime = 0;
+				$('#'+window.vidId).removeClass('shown');
+				$('#carousel2236 .slick-current .video-control').removeClass('playing');
+			}
+			setTimeout(function() {
+				$('#carousel2236').slick('slickPrev');
+			},100);
+			return false;
+		} else {
+			return true;
+		}
+	})
+	
+	$('#carousel2236 .additional-controls, #carousel2236 .additional-content-container').on('mouseenter', function() {
+		console.log('additional-controls mouseenter');
+		var el = $('#carousel-container2236 .cursor');
+		el.hide();
+	});
+	
+	$('#carousel2236 .additional-controls, #carousel2236 .additional-content-container').on('mouseleave', function() {
+		console.log('additional-controls mouseleave');
+		var el = $('#carousel-container2236 .cursor');
+		el.show();		
+	});
+		
+	$('#carousel2236 .slick-slide').on('click','.video-control',function(e) {
+		
+		if($('#carousel2236 .slick-current .video-control').hasClass('playing')) {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			setTimeout(function() {
+				
+				if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+					
+				var vid = document.getElementById(window.vidId); 
+				vid.pause();
+				$('#carousel2236 .slick-current .video-control').removeClass('playing');
+				$('#'+window.vidId).off('ended');
+				
+				} else {
+					
+					var vid = document.getElementById(vidId);
+					var player = new Vimeo.Player(vid);
+					player.pause();
+					$('#carousel2236 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2236 .slick-current').find('.video-container').removeClass('playing');
+					$('#carousel2236 .slick-current').find('.events-overlay').removeClass('playing');	
+					
+				}
+				
+			},100)
+			
+		} else {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+				
+				var vid = document.getElementById(vidId);
+				
+				$('#'+window.vidId).addClass('shown');
+
+				setTimeout(function() {
+				var playPromise = vid.play();
+				  if (playPromise !== undefined) {
+					playPromise.then(_ => {
+					  console.log('play called');
+					})
+					.catch(error => {
+					  console.log('play call failed');
+					});
+				  }
+				  $('#'+window.vidId).parent().find('.video-control').addClass('playing');
+					$('#'+window.vidId).on('ended', function(e) {
+						var vid = document.getElementById(window.vidId); 
+						$('#carousel2236 .slick-current .video-control').removeClass('playing');
+						//vid.currentTime = 0;
+						$('#'+window.vidId).removeClass('shown');
+					});
+				},100);
+				
+			} else {
+				
+				var vid = document.getElementById(vidId);
+				var player = new Vimeo.Player(vid);
+				player.play();
+				$('#carousel2236 .slick-current').find('.video-control').addClass('playing');
+				$('#carousel2236 .slick-current').find('.video-container').addClass('playing');
+				setTimeout(function() {
+					$('#carousel2236 .slick-current').find('.events-overlay').addClass('playing');
+				},1000);
+				player.on('ended', function(data) {
+					$('#carousel2236 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2236 .slick-current').find('.video-container').removeClass('playing');	
+					$('#carousel2236 .slick-current').find('.events-overlay').removeClass('playing');				
+				});
+				
+			}
+			
+		}
+	});
+	
+});
+
+</script><!-- end carousel -->
+
+<div class="text-container">
+<div class="text-content">
+
+<p>The current use of the site and its remote location was considered in relation to the ongoing and future management of the place, and informed the development of conservation and management policies.&nbsp; Stakeholder engagement with both the place managers and the Commonwealth department further assisted the preparation of the report.&nbsp; The policies addressed a number of issues including the potential for change, and identify opportunities for trades hall to continue to contribute to the community of Broken Hill, recognising the importance of Broken Hill Trades Hall to the town.</p>
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div id="three-column-carousel-module-2237" class="content-object three-column-carousel-module none">
+
+<div id="carousel-container2238" class="carousel-container portrait carousel-left">
+
+
+
+<div>
+<div class="carousel" id="carousel2238">
+
+
+
+<div>
+<img alt="" src="https://www.lovellchen.com.au/assets/uploads/images/IMG_0117_portrait_large.jpg" />
+<div class="slide-text"></div>
+
+
+
+
+</div>
+
+
+</div>
+</div>
+<div class="caption"></div>
+
+
+<script>
+
+$(function() {
+	
+	$('#carousel2238').on('init', function(event, slick){
+		$('#carouseltotal2238').text(slick.slideCount);
+		var minHeight = 0;
+		$('#carousel2238 .slick-slide').each(function(index) {
+			//var maxWidthValue = ($(this).find('.image-container').width() / $(this).width() * 100)+'%';
+			//$(this).find('.caption').css('max-width',maxWidthValue);
+			
+			minHeight = $(this).find('.slide-text').height() > minHeight ? $(this).find('.slide-text').height() : minHeight;
+			
+		})
+		$('#carousel-container2238 .caption').css('height',(minHeight / 16) +'rem');
+		$('#carousel-container2238 .caption').html($('#carousel2238 .slick-current .slide-text').html());
+		//$('#carousel-container2238 .caption').html()
+	});	
+	$('#carousel2238').slick({
+		autoplay: false,
+		arrows: false,
+		autoplaySpeed: 5000,
+		speed: 1000,
+		dots: false,
+		useCSS: true,
+		infinite: true,
+		fade: false,
+		slidesToShow: 1
+	});
+	
+	$('#carousel2238').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+		$('#carouselslidenumber2238').text(nextSlide+1);
+		//$('#carousel-container2238 .cursor').removeClass('shown');
+	});
+	$('#carousel2238').on('afterChange', function(event, slick, currentSlide, nextSlide){
+			//$('#carousel2238').trigger('mouseenter');
+			$('#carousel-container2238 .caption').html($('#carousel2238 .slick-current .slide-text').html());
+	});
+		
+	$('#carousel2238 .slick-slide').on('click','.video-control',function(e) {
+		
+		if($('#carousel2238 .slick-current .video-control').hasClass('playing')) {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			setTimeout(function() {
+				
+				if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+					
+				var vid = document.getElementById(window.vidId); 
+				vid.pause();
+				$('#carousel2238 .slick-current .video-control').removeClass('playing');
+				$('#'+window.vidId).off('ended');
+				
+				} else {
+					
+					var vid = document.getElementById(vidId);
+					var player = new Vimeo.Player(vid);
+					player.pause();
+					$('#carousel2238 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2238 .slick-current').find('.video-container').removeClass('playing');
+					$('#carousel2238 .slick-current').find('.events-overlay').removeClass('playing');	
+					
+				}
+				
+			},100)
+			
+		} else {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+				
+				var vid = document.getElementById(vidId);
+				
+				$('#'+window.vidId).addClass('shown');
+
+				setTimeout(function() {
+				var playPromise = vid.play();
+				  if (playPromise !== undefined) {
+					playPromise.then(_ => {
+					  console.log('play called');
+					})
+					.catch(error => {
+					  console.log('play call failed');
+					});
+				  }
+				  $('#'+window.vidId).parent().find('.video-control').addClass('playing');
+					$('#'+window.vidId).on('ended', function(e) {
+						var vid = document.getElementById(window.vidId); 
+						$('#carousel2238 .slick-current .video-control').removeClass('playing');
+						//vid.currentTime = 0;
+						$('#'+window.vidId).removeClass('shown');
+					});
+				},100);
+				
+			} else {
+				
+				var vid = document.getElementById(vidId);
+				var player = new Vimeo.Player(vid);
+				player.play();
+				$('#carousel2238 .slick-current').find('.video-control').addClass('playing');
+				$('#carousel2238 .slick-current').find('.video-container').addClass('playing');
+				setTimeout(function() {
+					$('#carousel2238 .slick-current').find('.events-overlay').addClass('playing');
+				},1000);
+				player.on('ended', function(data) {
+					$('#carousel2238 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2238 .slick-current').find('.video-container').removeClass('playing');	
+					$('#carousel2238 .slick-current').find('.events-overlay').removeClass('playing');				
+				});
+				
+			}
+			
+		}
+	});
+	
+});
+
+</script><!-- end carousel -->
+
+</div>
+
+
+<div id="carousel-container2239" class="carousel-container portrait carousel-left">
+
+
+
+<div>
+<div class="carousel" id="carousel2239">
+
+
+
+<div>
+<img alt="" src="https://www.lovellchen.com.au/assets/uploads/images/IMG_8958RevA_portrait_large.jpg" />
+<div class="slide-text"></div>
+
+
+
+
+</div>
+
+
+</div>
+</div>
+<div class="caption"></div>
+
+
+<script>
+
+$(function() {
+	
+	$('#carousel2239').on('init', function(event, slick){
+		$('#carouseltotal2239').text(slick.slideCount);
+		var minHeight = 0;
+		$('#carousel2239 .slick-slide').each(function(index) {
+			//var maxWidthValue = ($(this).find('.image-container').width() / $(this).width() * 100)+'%';
+			//$(this).find('.caption').css('max-width',maxWidthValue);
+			
+			minHeight = $(this).find('.slide-text').height() > minHeight ? $(this).find('.slide-text').height() : minHeight;
+			
+		})
+		$('#carousel-container2239 .caption').css('height',(minHeight / 16) +'rem');
+		$('#carousel-container2239 .caption').html($('#carousel2239 .slick-current .slide-text').html());
+		//$('#carousel-container2239 .caption').html()
+	});	
+	$('#carousel2239').slick({
+		autoplay: false,
+		arrows: false,
+		autoplaySpeed: 5000,
+		speed: 1000,
+		dots: false,
+		useCSS: true,
+		infinite: true,
+		fade: false,
+		slidesToShow: 1
+	});
+	
+	$('#carousel2239').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+		$('#carouselslidenumber2239').text(nextSlide+1);
+		//$('#carousel-container2239 .cursor').removeClass('shown');
+	});
+	$('#carousel2239').on('afterChange', function(event, slick, currentSlide, nextSlide){
+			//$('#carousel2239').trigger('mouseenter');
+			$('#carousel-container2239 .caption').html($('#carousel2239 .slick-current .slide-text').html());
+	});
+		
+	$('#carousel2239 .slick-slide').on('click','.video-control',function(e) {
+		
+		if($('#carousel2239 .slick-current .video-control').hasClass('playing')) {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			setTimeout(function() {
+				
+				if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+					
+				var vid = document.getElementById(window.vidId); 
+				vid.pause();
+				$('#carousel2239 .slick-current .video-control').removeClass('playing');
+				$('#'+window.vidId).off('ended');
+				
+				} else {
+					
+					var vid = document.getElementById(vidId);
+					var player = new Vimeo.Player(vid);
+					player.pause();
+					$('#carousel2239 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2239 .slick-current').find('.video-container').removeClass('playing');
+					$('#carousel2239 .slick-current').find('.events-overlay').removeClass('playing');	
+					
+				}
+				
+			},100)
+			
+		} else {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+				
+				var vid = document.getElementById(vidId);
+				
+				$('#'+window.vidId).addClass('shown');
+
+				setTimeout(function() {
+				var playPromise = vid.play();
+				  if (playPromise !== undefined) {
+					playPromise.then(_ => {
+					  console.log('play called');
+					})
+					.catch(error => {
+					  console.log('play call failed');
+					});
+				  }
+				  $('#'+window.vidId).parent().find('.video-control').addClass('playing');
+					$('#'+window.vidId).on('ended', function(e) {
+						var vid = document.getElementById(window.vidId); 
+						$('#carousel2239 .slick-current .video-control').removeClass('playing');
+						//vid.currentTime = 0;
+						$('#'+window.vidId).removeClass('shown');
+					});
+				},100);
+				
+			} else {
+				
+				var vid = document.getElementById(vidId);
+				var player = new Vimeo.Player(vid);
+				player.play();
+				$('#carousel2239 .slick-current').find('.video-control').addClass('playing');
+				$('#carousel2239 .slick-current').find('.video-container').addClass('playing');
+				setTimeout(function() {
+					$('#carousel2239 .slick-current').find('.events-overlay').addClass('playing');
+				},1000);
+				player.on('ended', function(data) {
+					$('#carousel2239 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2239 .slick-current').find('.video-container').removeClass('playing');	
+					$('#carousel2239 .slick-current').find('.events-overlay').removeClass('playing');				
+				});
+				
+			}
+			
+		}
+	});
+	
+});
+
+</script><!-- end carousel -->
+
+</div>
+
+
+<div id="carousel-container2240" class="carousel-container portrait carousel-left">
+
+
+
+<div>
+<div class="carousel" id="carousel2240">
+
+
+
+<div>
+<img alt="" src="https://www.lovellchen.com.au/assets/uploads/images/IMG_0125_portrait_large.jpg" />
+<div class="slide-text"></div>
+
+
+
+
+</div>
+
+
+</div>
+</div>
+<div class="caption"></div>
+
+
+<script>
+
+$(function() {
+	
+	$('#carousel2240').on('init', function(event, slick){
+		$('#carouseltotal2240').text(slick.slideCount);
+		var minHeight = 0;
+		$('#carousel2240 .slick-slide').each(function(index) {
+			//var maxWidthValue = ($(this).find('.image-container').width() / $(this).width() * 100)+'%';
+			//$(this).find('.caption').css('max-width',maxWidthValue);
+			
+			minHeight = $(this).find('.slide-text').height() > minHeight ? $(this).find('.slide-text').height() : minHeight;
+			
+		})
+		$('#carousel-container2240 .caption').css('height',(minHeight / 16) +'rem');
+		$('#carousel-container2240 .caption').html($('#carousel2240 .slick-current .slide-text').html());
+		//$('#carousel-container2240 .caption').html()
+	});	
+	$('#carousel2240').slick({
+		autoplay: false,
+		arrows: false,
+		autoplaySpeed: 5000,
+		speed: 1000,
+		dots: false,
+		useCSS: true,
+		infinite: true,
+		fade: false,
+		slidesToShow: 1
+	});
+	
+	$('#carousel2240').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+		$('#carouselslidenumber2240').text(nextSlide+1);
+		//$('#carousel-container2240 .cursor').removeClass('shown');
+	});
+	$('#carousel2240').on('afterChange', function(event, slick, currentSlide, nextSlide){
+			//$('#carousel2240').trigger('mouseenter');
+			$('#carousel-container2240 .caption').html($('#carousel2240 .slick-current .slide-text').html());
+	});
+		
+	$('#carousel2240 .slick-slide').on('click','.video-control',function(e) {
+		
+		if($('#carousel2240 .slick-current .video-control').hasClass('playing')) {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			setTimeout(function() {
+				
+				if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+					
+				var vid = document.getElementById(window.vidId); 
+				vid.pause();
+				$('#carousel2240 .slick-current .video-control').removeClass('playing');
+				$('#'+window.vidId).off('ended');
+				
+				} else {
+					
+					var vid = document.getElementById(vidId);
+					var player = new Vimeo.Player(vid);
+					player.pause();
+					$('#carousel2240 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2240 .slick-current').find('.video-container').removeClass('playing');
+					$('#carousel2240 .slick-current').find('.events-overlay').removeClass('playing');	
+					
+				}
+				
+			},100)
+			
+		} else {
+			
+			//window.vidId = $(this).parent().find('video').attr('id') || $(this).parent().find('iframe').attr('id');
+			
+			window.vidId = $(this).attr('id') || $(this).parent().find('video').attr('id');
+			
+			if($('#'+window.vidId).prop('tagName') == 'VIDEO') {
+				
+				var vid = document.getElementById(vidId);
+				
+				$('#'+window.vidId).addClass('shown');
+
+				setTimeout(function() {
+				var playPromise = vid.play();
+				  if (playPromise !== undefined) {
+					playPromise.then(_ => {
+					  console.log('play called');
+					})
+					.catch(error => {
+					  console.log('play call failed');
+					});
+				  }
+				  $('#'+window.vidId).parent().find('.video-control').addClass('playing');
+					$('#'+window.vidId).on('ended', function(e) {
+						var vid = document.getElementById(window.vidId); 
+						$('#carousel2240 .slick-current .video-control').removeClass('playing');
+						//vid.currentTime = 0;
+						$('#'+window.vidId).removeClass('shown');
+					});
+				},100);
+				
+			} else {
+				
+				var vid = document.getElementById(vidId);
+				var player = new Vimeo.Player(vid);
+				player.play();
+				$('#carousel2240 .slick-current').find('.video-control').addClass('playing');
+				$('#carousel2240 .slick-current').find('.video-container').addClass('playing');
+				setTimeout(function() {
+					$('#carousel2240 .slick-current').find('.events-overlay').addClass('playing');
+				},1000);
+				player.on('ended', function(data) {
+					$('#carousel2240 .slick-current').find('.video-control').removeClass('playing');
+					$('#carousel2240 .slick-current').find('.video-container').removeClass('playing');	
+					$('#carousel2240 .slick-current').find('.events-overlay').removeClass('playing');				
+				});
+				
+			}
+			
+		}
+	});
+	
+});
+
+</script><!-- end carousel -->
+
+</div>
+
+</div>
+
+
+
+
+
+<div id="project-leaders-module2234" class="content-object project-leaders-module">
+
+<div class="text-container">
+
+<div class="text-content">
+<span style="vertical-align:top;">Meet&nbsp;the&nbsp;team</span>
+</div>
+
+</div>
+
+<div class="leaders-container">
+
+<div class="leader-item">
+
+<div class="leader-text">
+<p>
+Stuart Hanafin<br />
+Associate Principal</p>
+<div id="additional-content1019" class="additional-content" style="display:none;">
+Registered Architect (ACT ADR no.00588537, VIC 19773)<br /><br />Stuart is a highly experienced member of our multi-disciplinary architecture and conservation team. He leads projects focused on the conservation, refurbishment and adaptation of buildings in heritage contexts that require detailed knowledge of conservation methodologies as well as architectural skills. His work involves the preparation of condition surveys and reports, advice, documentation and tender documents, and he undertakes programming, client liaison, consultant coordination, construction services and contract administration. </div>
+
+</div>
+<div class="display-image">
+
+<span style="display:inline-block;vertical-align:top;margin-right:1.25rem;" class="contact-button"><span class="link-container"><a href="mailto:shanafin@lovellchen.com.au">shanafin@lovellchen.com.au</a> | 0410 186 845</span><span class="label">Contact</span></span>
+<img alt="Stuart Hanafin" src="https://www.lovellchen.com.au/assets/uploads/images/TEAM8_landscape_small.jpg?1795508415" />
+
+</div>
+
+
+<span id="additional1019" class="additional"></span>
+
+
+
+
+</div>
+
+<div class="leader-item">
+
+<div class="leader-text">
+<p>
+Suzanne Zahra<br />
+Associate Principal</p>
+<div id="additional-content533" class="additional-content" style="display:none;">
+Registered Architect (QLD 6475, VIC 16172)<br /><br />Central to Suzanne's work is the assessment of the scope for adaptation of heritage buildings, particularly post-war structures. She often works on the adaptive reuse and/or refurbishment of large scale complexes, such as university campuses, and is responsible for the delivery of heritage services in relation to many of Melbourne’s major infrastructure projects. <br /><br />Her work often starts at the strategic level, helping determine strategic direction, then delivering on specific projects. She advises on all heritage aspects, assists in applications for approvals, and works closely with our architecture team during construction phases and is highly experienced in the provision of conservation and heritage management plans, and heritage planning assessments.</div>
+
+</div>
+<div class="display-image">
+
+<span style="display:inline-block;vertical-align:top;margin-right:1.25rem;" class="contact-button"><span class="link-container"><a href="mailto:szahra@lovellchen.com.au">szahra@lovellchen.com.au</a> | 0419 445 881</span><span class="label">Contact</span></span>
+<img alt="Suzanne Zahra" src="https://www.lovellchen.com.au/assets/uploads/images/Reduced_LOVELLCHEN_SUZANNE_bw_landscape_small.jpg?1795508415" />
+
+</div>
+
+
+<span id="additional533" class="additional"></span>
+
+
+
+
+</div>
+
+<div class="leader-item">
+
+<div class="leader-text">
+<p>
+Libby Blamey<br />
+Senior Associate</p>
+<div id="additional-content532" class="additional-content" style="display:none;">
+Libby is a professional historian with nearly 20 years’ experience in the built heritage industry. Her work underpins the work of the heritage team and contributes to conservation and heritage management plans, heritage policy development, municipal heritage studies, predictive archaeological studies, land use histories for large infrastructure projects, heritage assessments, oral histories and submissions to tribunals and hearings. Her role includes the preparation of histories for heritage buildings and places, and setting them in their wider historical and social contexts.</div>
+
+</div>
+<div class="display-image">
+
+<span style="display:inline-block;vertical-align:top;margin-right:1.25rem;" class="contact-button"><span class="link-container"><a href="mailto:lblamey@lovellchen.com.au">lblamey@lovellchen.com.au</a></span><span class="label">Contact</span></span>
+<img alt="Libby Blamey" src="https://www.lovellchen.com.au/assets/uploads/images/TEAM11_landscape_small.jpg?1795508415" />
+
+</div>
+
+
+<span id="additional532" class="additional"></span>
+
+
+
+
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+$(function() {
+	$('#project-leaders-module2234').on('click', '.additional', function(e) { 
+		if($(this).hasClass('active')) {
+			$(this).removeClass('active');
+			$(this).closest('.leader-item').removeClass('active');
+			$(this).closest('.leader-item').find('.additional-content').slideUp(1000);
+			//$(this).closest('.leader-item').find('.leader-text p').slideDown(1000);
+			
+		} else {
+			$(this).addClass('active');
+			$(this).closest('.leader-item').addClass('active');
+			$(this).closest('.leader-item').find('.additional-content').slideDown(1000);
+			//$(this).closest('.leader-item').find('.leader-text p').slideUp(1000);
+		}
+	})
+	
+	$('#project-leaders-module2234 .single-check').on('change', function(e) {
+		loadTeamMembers2234($(this).val());
+	});
+	
+});
+
+function loadTeamMembers2234(category_id) {
+		
+		var d = "discipline="+category_id;
+		var u = "https://www.lovellchen.com.au/pages/ajax_get_project_leaders";
+		
+		var heightVal = $('#project-leaders-module2234 .leaders-container').height();
+		
+		$('#project-leaders-module2234 .leaders-container').fadeTo(125, 0, function() {
+			
+			$.ajax({
+				url: u,
+				type: 'POST',
+				data: d,
+				dataType: 'text',
+				success: function(r){
+					//alert(r);
+					$('#project-leaders-module2234 .leaders-container').height(heightVal);
+					$('#project-leaders-module2234 .leaders-container').html(r);
+					$('#project-leaders-module2234 .leaders-container').css('height','auto');
+					$('#project-leaders-module2234 .leaders-container').fadeTo(125, 1);
+				},
+				error: function(x,y,z) {
+					alert('We\'re sorry, but an unexpected server error has occurred while adding you to our mailing list.\n\nPlease try again later\n\n'+x.responseText);
+				}
+			});
+		})		
+}
+
+</script>
+
+
+
+
+
+
+
+
+<div id="featured-projects-module2235" class="content-object featured-projects-module">
+<div class="header grid-span4">
+<div class="header-contents">
+<div class="heading">
+Related&nbsp;projects</div>
+<div class="controls">
+<a href="https://www.lovellchen.com.au/projects/" id="viewall2235" class="control viewall">View All</a>
+</div>
+</div>
+</div>
+
+<div id="grid-container2235" class="grid-container">
+
+
+
+
+<div class="listviewcolumn">
+<div id="p_241" class="grid-item ">
+<a href="https://www.lovellchen.com.au/projects/victorian-trades-hall/">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="Victorian Trades Hall" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/00_58_listview_small.jpg" />
+</div>
+</a>
+<div class="text-container">
+<a class="pill" href="https://www.lovellchen.com.au/expertise/design-adaptation/"><span>Design & Adaptation</span></a>
+<a class="pill" href="https://www.lovellchen.com.au/expertise/strategy-stewardship/"><span>Strategy & Stewardship</span></a>
+<a class="pill" href="https://www.lovellchen.com.au/expertise/sustainability-conservation/"><span>Sustainability & Conservation</span></a>
+<div class="text-content">
+<h4>
+Victorian Trades Hall</h4>
+
+<p>
+Works that conserve and enable one of the world’s oldest trade union buildings to continue to serve the community</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="listviewcolumn">
+<div id="p_282" class="grid-item ">
+<a href="https://www.lovellchen.com.au/projects/birch-building/">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="Birch Building, Australian National University" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/010124031_2_listview_small.jpg" />
+</div>
+</a>
+<div class="text-container">
+<a class="pill" href="https://www.lovellchen.com.au/expertise/strategy-stewardship/"><span>Strategy & Stewardship</span></a>
+<div class="text-content">
+<h4>
+Birch Building</h4>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="listviewcolumn">
+<div id="p_233" class="grid-item ">
+<a href="https://www.lovellchen.com.au/projects/guildford-hardware-laneways/">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="Guildford & Hardware Laneways" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/00_35_listview_small.jpg" />
+</div>
+</a>
+<div class="text-container">
+<a class="pill" href="https://www.lovellchen.com.au/expertise/strategy-stewardship/"><span>Strategy & Stewardship</span></a>
+<div class="text-content">
+<h4>
+Guildford & Hardware Laneways</h4>
+
+<p>
+Historical research and heritage assessment to determine heritage protecton in Melbourne CBD</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="listviewcolumn omega">
+<div id="p_277" class="grid-item ">
+<a href="https://www.lovellchen.com.au/projects/melbourne-cricket-ground/">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="Melbourne Cricket Ground" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/03shutterstock_1072901396_2_listview_small.jpg" />
+</div>
+</a>
+<div class="text-container">
+<a class="pill" href="https://www.lovellchen.com.au/expertise/strategy-stewardship/"><span>Strategy & Stewardship</span></a>
+<div class="text-content">
+<h4>
+Melbourne Cricket Ground</h4>
+
+<p>
+A national icon</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+
+</div>
+
+<div class="featuredcontentpanel">
+
+<div class="desktop-grid">
+
+<div class="header grid-span3">
+<div class="header-contents">
+<div class="heading">Featured</div>
+<div class="controls"><a href="https://www.lovellchen.com.au/projects/" class="control viewall">View All Projects</a></div>
+</div>
+</div>
+
+
+<div class="grid">
+<div class="grid-sizer">&nbsp;</div>
+
+<!--<div class="listviewcolumn col1">-->
+<div id="p_145" class="grid-item">
+<a href="https://www.business.qld.gov.au/industries/building-property-development/urban-design-architecture/designing-with-heritage-places" target="_blank">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/LiminalWonderlandAIA1601_listview_small.jpg" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+Victorian Chapter Honours  2026</h4>
+
+<p>
+Congratulations to Anne-Marie Treweeke and the AIA Victorian Chapter Heritage Committee, recipients of the 2026 President’s Prize for leadership in heritage practice.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="p_287" class="grid-item">
+<a href="https://www.instagram.com/p/DfTFNz4EpT9/?utm_source=ig_web_copy_link&exln=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==" target="_blank">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/Screenshot20261104103420_listview_small.png" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+295 Queen Street (Former Records Office)</h4>
+
+<p>
+As conservation works at Melbourne's Former Records Office near completion, restored façades are emerging and the building's iconic griffin sculptures are being carefully reinstated</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="p_291" class="grid-item">
+<a href="https://www.instagram.com/reel/De_IiahyICU/?utm_source=ig_web_copy_link" target="_blank">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/Edit20261022_004319978_iOS_listview_small.jpg" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+Billilla Mansion Sculpture Biennale 2026</h4>
+
+<p>
+Billilla Homestead alive with community and culture during the Melbourne Sculpture Biennale, highlighting the importance of accessibility and amenity improvements for future generations</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="p_344" class="grid-item">
+<a href="https://www.instagram.com/p/DeiIopakg-i/?utm_source=ig_web_copy_link&psln=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==" target="_blank">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/20261015_062841412_iOS_listview_small.jpg" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+A visit to the ICS Lab</h4>
+
+<p>
+Our team visited the International Conservation Services Lab, gaining insight into heritage conservation techniques and reconnecting with collaborators on the Trades Hall Honour Boards project</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="p_338" class="grid-item">
+<a href="/projects/university-house/">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/Screenshot20260928175447_listview_small.png" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+Dinner at University House</h4>
+
+<p>
+13 staff travelled to Canberra  to celebrate the restoration of University House</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="p_333" class="grid-item">
+<a href="https://www.instagram.com/p/DcsdsvBie7n/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA==" target="_blank">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/Screenshot20260831163831_listview_small.png" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+Chimney Investigations at the Former Records Office Victoria</h4>
+
+<p>
+Will and Olivia were scoping chimneys at Melbourne's former Records Office, a landmark built in 1900-04 to protect Victoria's vital records, as part of ongoing conservation works</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!--</div>-->
+<!--<div class="listviewcolumn col2">-->
+<div id="p_290" class="grid-item">
+<a href="/projects/university-house/">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/Screenshot20260814100311_listview_small.png" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+Happy 80th Anniversary ANU</h4>
+
+<p>
+Celebrating ANU’s 80th anniversary and the reopening of University House, Lovell Chen proudly delivered conservation-led design and heritage services, preserving its character for future generations.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="p_152" class="grid-item">
+<a href="https://www.instagram.com/p/Dchp0kIiXy-/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA==" target="_blank">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/Img_001_listview_small.jpg" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+Current scope of works approaching completion at Werribee Park Mansion</h4>
+
+<p>
+Lovell Chen has been providing conservation and heritage services to the mansion since the 1970s and we are proud to continue our association with the site</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="p_288" class="grid-item">
+<a href="https://www.instagram.com/p/DcPmv8Fia_Y/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/0020260817_231615360_iOS_listview_small.jpg" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+At-height assessments at the University of Melbourne</h4>
+
+<p>
+Zoe, Will, and Max are undertaking inspections at the Parkville Campus as part of the University's annual audit program to guide the planning for building conservation, maintenance and capital works</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="p_312" class="grid-item">
+<a href="https://www.instagram.com/p/Db2Q3oRCUcO/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/image001_1_listview_small.jpg" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+Scots' Church Melbourne</h4>
+
+<p>
+Lovell Chen is leading roof and façade restoration works on historic Scots' Church Melbourne, repairing timber structures, stonework, and slate roofing to preserve the 1874 landmark</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="p_286" class="grid-item">
+<a href="https://www.linkedin.com/feed/update/urn:li:activity:7490634707131604992" target="_blank">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/Screenshot20260805150321_listview_small.png" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+PIA Victoria Summit at Wesley Place Precinct</h4>
+
+<p>
+Kate introduced PIA VIC Emerging Planners to the opportunities available when choosing to integrate heritage conservation with contemporary city development.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="p_332" class="grid-item">
+<a href="https://www.instagram.com/p/DcknlFNiY3p/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA==" target="_blank">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/Screenshot20260828155345_listview_small.png" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+Staff visit the Royal Historical Society of Victoria</h4>
+
+<p>
+RHSV staff took us through the Former Army Medical Corps Drill Hall</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!--</div>-->
+<!--<div class="listviewcolumn col3 omega">-->
+<div id="p_285" class="grid-item">
+<a href="https://www.instagram.com/p/DU1f1T7EiP2/?img_index=1" target="_blank">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/WebsiteSnippet_listview_small.jpg" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+Trades Hall Stage 3 Opening</h4>
+
+<p>
+Associate Principal Stuart Hanafin spoke at the Trades Hall opening, highlighting the restoration of century‑concealed honour boards and celebrating the building’s enduring union heritage.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="p_151" class="grid-item">
+<a href="https://events.humanitix.com/trades-hall-and-literary-institute-making-a-heritage-building-modern" target="_blank">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/MasterLBOp2_listview_small.jpg" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+'Making a Heritage Building Modern' tour</h4>
+
+<p>
+How do you put modern services into a building that has handmade nails holding the floors together?</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="p_311" class="grid-item">
+<a href="https://www.instagram.com/p/Dburg9SCb8y/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/Edit07_listview_small.jpg" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+Lovell Chen Trivia Night, 2026 edition</h4>
+
+<p>
+hecklers, recounts and a very close contest</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="p_292" class="grid-item">
+<a href="https://designweek.melbourne/event/adapt-designing-new-lives-for-old-buildings/" target="_blank">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/Screenshot20260505130122_listview_small.png" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+'ADAPT!' to launch with MDW 2026 panel</h4>
+
+<p>
+Suzanne will discuss best practice in the adaptation and reuse of historic buildings at the former Collingwood Tech complex – also home to our tailor-made facility for Circus Oz</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="p_289" class="grid-item">
+<a href="https://www.historians.org.au/new-issue-of-circa-the-journal-of-professional-historians" target="_blank">
+<div class="image-zoom-wrapper">
+<img class="zoomable" alt="" style="vertical-align:middle;" width="100%" src="https://www.lovellchen.com.au/assets/uploads/images/Retouched_Image_listview_small.jpg" />
+</div>
+</a>
+<div class="text-container">
+<div class="text-content">
+<h4>
+Libby wins Professional Historians Australia essay prize</h4>
+
+<p>
+Congratulations to Senior Associate Libby Blamey – winner of best peer-reviewed article by Professional Historians Australia!</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!--</div>-->
+</div>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script>
+  const grid = document.querySelector('.grid');
+  imagesLoaded(grid, () => {
+	$('.grid').width(1000);
+    window.mg = new Masonry(grid, {
+      itemSelector: '.grid-item',
+      columnWidth: '.grid-sizer',
+      gutter: 8,
+      percentPosition: true,
+	  resize: true,
+	  transitionDuration:'0.15s',
+	  originLeft: false
+    });
+	//window.mg.layout(true);
+	$('.grid').css('width','100%');
+
+  });
+	
+	const onResize2 = (entries) => {
+	  console.log('featured content panel resized');
+	  if($('#wrapper').hasClass('intransition')) {
+		window.mg.layout(true);
+	  }
+	}
+		
+	const resizeObserver2 = new ResizeObserver(onResize2);
+	resizeObserver2.observe(
+	  document.querySelector(".featuredcontentpanel")
+	 );
+
+
+  //});
+</script>
+
+</div>
+
+</div>
+
+</div><!-- end main content -->
+
+<div class="footer">
+
+<div class="footer-controls">
+
+<div>
+&copy;2026 Lovell Chen
+</div>
+
+<div>
+<span class="footer-control">Practice</span>
+</div>
+
+<div>
+<span class="footer-control">Projects</span>
+</div>
+
+<div>
+<span class="footer-control">Expertise</span>
+</div>
+
+<div>
+<span class="footer-control">Corporate</span>
+</div>
+
+<div>
+<span class="footer-control">Contact</span>
+</div>
+
+</div>
+
+<div class="footer-content">
+
+<div>
+<img style="width:8.125rem;height:auto;" src="https://www.lovellchen.com.au/assets/css/color-strip.svg" />
+</div>
+
+<div>
+<a href="/practice/studio/">Studio</a><br /> 
+<a href="/practice/values/">Values</a><br /> 
+<a href="/practice/team/">Team</a><br /> 
+<a href="/practice/careers/">Careers</a><br /> 
+
+
+</div>
+
+<div>
+<a href="/projects/#sportleisure">Arts, Culture & Sport</a><br /> 
+<a href="/projects/#civic">Civic</a><br /> 
+<a href="/projects/#commercial">Commercial</a><br /> 
+<a href="/projects/#education">Education</a><br /> 
+<a href="/projects/#faith">Faith</a><br /> 
+<a href="/projects/#government">Government</a><br /> 
+<a href="/projects/#residential">Residential</a><br /> 
+<a href="/projects/#transport">Transport</a><br /> 
+<a href="/projects/#urbanrenewal">Urban renewal</a><br /> 
+
+
+</div>
+
+<div>
+<a href="/expertise/design-adaptation/">Design & Adaptation</a><br /> 
+<a href="/expertise/strategy-stewardship/">Strategy & Stewardship</a><br /> 
+<a href="/expertise/masterplanning-placemaking/">Masterplanning & Placemaking</a><br /> 
+<a href="/expertise/landscape-infrastructure/">Landscape & Infrastructure</a><br /> 
+<a href="/expertise/sustainability-conservation/">Sustainability & Conservation</a><br /> 
+
+
+</div>
+
+<div>
+<a href="/practice/social-responsibility/">Social Responsibility</a><br /> 
+<a href="/privacy-policy/">Privacy Policy & Terms</a><br /> 
+
+
+</div>
+
+<div>
+<a href="/contact/">General enquiries</a><br /> 
+<a href="/contact/">New project enquiries</a><br /> 
+
+
+<br />
+<a href="https://www.instagram.com/lovellchen" target="_blank">Instagram</a><br /> 
+<a href="https://www.linkedin.com/company/lovellchen" target="_blank">LinkedIn</a><br /> 
+
+
+</div>
+
+<div>
+Level 5, 176 Wellington Parade<br />
+East Melbourne, VIC Australia 3002<br />
+E   <a href="mailto:hello@lovellchen.com.au">hello@lovellchen.com.au</a><br />
+T   +61 3 9667 0800
+</div>
+
+<div>
+We acknowledge and pay our respects to the<br />
+Traditional Custodians of the lands on which <br />
+we work. We extend this respect to elders past <br />
+and present.
+</div>
+
+<div>&nbsp;</div>
+
+<div>
+
+Nominated Architect | Anne-Marie Treweeke<br />ACT ADR no.00578660 NSW DR 15206 QLD 6413
+
+</div>
+
+<div>&nbsp;</div>
+
+<div>
+
+Site by <a href="https://www.3deep.com.au" target="_blank">3 Deep</a>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+$(function() {
+	$('.footer-content').hide();
+	$('.footer-control').on('click', function(e) {
+		if($('.footer-content').hasClass('active')) {
+			$('.footer-content').removeClass('active');
+			$('.footer-content').slideUp(500);
+		} else {
+			$('.footer-content').addClass('active');
+			$('.footer-content').slideDown(500);
+			$('html, body').animate({
+				scrollTop: $(document).height()
+			}, 500);
+		}
+		e.preventDefault();
+		e.stopPropagation();
+	})
+	
+	$('a.cta-button').text('cta');
+});
+</script>
+
+
+
+<script src="https://www.lovellchen.com.au/assets/js/slick.min.js"></script>
+<script src="https://www.lovellchen.com.au/assets/js/jquery.isonscreen.min.js"></script>
+<script src="https://www.lovellchen.com.au/assets/js/utils.js"></script>
+
+<script>
+
+$(function() {
+	
+	const onResize = (entries) => {
+	  console.log('main resized');
+	  $('.carousel').slick('setPosition');
+	}
+		
+	const resizeObserver = new ResizeObserver(onResize);
+	resizeObserver.observe(
+	  document.querySelector(".main")
+	 );
+	 
+});
+
+</script>
+
+<div id="fullscreen-overlay" class="fullscreen-overlay">
+
+<span id="form-close-button"></span>
+
+<img class="lightbox-image" />
+
+</div>
+
+</body>
+
+</html>

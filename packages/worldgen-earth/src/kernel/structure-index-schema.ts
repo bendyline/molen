@@ -64,6 +64,16 @@ const roadReplacement = z
     (road) => !road.approachFeatureIds || (!!road.outline && !!road.deckProfile),
     'explicit road approach IDs require an outline and deck profile',
   );
+const mapIdentityFields = {
+  wikidata: z
+    .string()
+    .regex(/^Q[1-9][0-9]*$/)
+    .optional(),
+  names: z.array(z.string().min(1)).min(1).optional(),
+  maxDistance: finite.positive().max(10000).optional(),
+};
+const hasRuntimeIdentity = (identity?: { wikidata?: string; names?: string[] }) =>
+  !!identity?.wikidata || !!identity?.names?.length;
 const placementSchema = (runtime: boolean) =>
   z
     .strictObject({
@@ -121,6 +131,20 @@ const placementSchema = (runtime: boolean) =>
                 .refine(
                   validGroundOutline,
                   'building cutout must be a simple polygon with positive area',
+                ),
+            )
+            .min(1)
+            .max(MAX_STRUCTURE_GROUND_OUTLINES)
+            .optional(),
+          holes: z
+            .array(
+              z
+                .array(z.tuple([finite, finite]))
+                .min(3)
+                .max(512)
+                .refine(
+                  validGroundOutline,
+                  'building cutout hole must be a simple polygon with positive area',
                 ),
             )
             .min(1)
@@ -203,20 +227,14 @@ const placementSchema = (runtime: boolean) =>
           basis: runtime ? z.never().optional() : z.string().trim().min(1),
         })
         .optional(),
-      mapIdentity: z
-        .strictObject({
-          wikidata: z
-            .string()
-            .regex(/^Q[1-9][0-9]*$/)
-            .optional(),
-          names: z.array(z.string().min(1)).min(1).optional(),
-          maxDistance: finite.positive().max(10000).optional(),
-        })
-        .refine(
-          (identity) => !!identity.wikidata || !!identity.names?.length,
-          'map identity needs an id or exact names',
-        )
-        .optional(),
+      // A source record keeps whatever map evidence it was matched from; only these three fields
+      // reach runtime, and an identity without an id or names is dropped there.
+      mapIdentity: runtime
+        ? z
+            .strictObject(mapIdentityFields)
+            .refine(hasRuntimeIdentity, 'map identity needs an id or exact names')
+            .optional()
+        : z.looseObject(mapIdentityFields).optional(),
       orientation: z.enum(['fixed', 'mapped']).optional(),
       lengthAxis: z.enum(['x', 'z']).optional(),
       minLevel: z.int().min(0).max(26).optional(),
@@ -228,6 +246,7 @@ const placementSchema = (runtime: boolean) =>
           representedDate: z.string().trim().min(1).optional(),
           validFrom: z.string().refine(isStructureViewingDate),
           validUntil: z.string().refine(isStructureViewingDate),
+          basis: runtime ? z.never().optional() : z.string().trim().min(1).optional(),
         })
         .refine(
           isHistoricalStructureAppearance,
@@ -281,7 +300,7 @@ const placementSchema = (runtime: boolean) =>
       'road replacement and surface passages require an indexed extent',
     )
     .refine(
-      (entry) => entry.orientation !== 'mapped' || !!entry.mapIdentity,
+      (entry) => entry.orientation !== 'mapped' || hasRuntimeIdentity(entry.mapIdentity),
       'mapped orientation requires a confirmed source identity',
     );
 

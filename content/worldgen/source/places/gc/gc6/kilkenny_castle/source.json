@@ -1,0 +1,64 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kilkenny_castle",
+  "kind": "static-structure",
+  "title": "Kilkenny Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kilkenny_castle",
+        "output": "assets/places/gc/gc6/kilkenny_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:5c482ee7771aa469a8cd3447bd0bd968485dff27ccbdebbfccf410481ea2c838"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-kilkenny-castle",
+        "path": "models/generate-kilkenny-castle.mjs"
+      },
+      {
+        "id": "kilkenny-castle-model",
+        "path": "models/kilkenny-castle-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/kilkenny-castle-footprint.json",
+      "native-map/kilkenny-castle-native-parts.json",
+      "reference-rights/kilkenny-castle-architectural-facts.json",
+      "reference-rights/kilkenny-castle-qualla-original-1.json",
+      "reference-rights/kilkenny-castle-qualla-original-5.json",
+      "references/kilkenny-main-ranges.jpg",
+      "reference-rights/Jorge1767-commons-first-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-15724-10726.png",
+      "terrain-sources/terrarium-15-15724-10727.png",
+      "terrain-sources/terrarium-15-15723-10726.png",
+      "terrain-sources/terrarium-15-15723-10727.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

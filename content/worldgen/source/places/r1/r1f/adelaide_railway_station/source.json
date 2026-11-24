@@ -1,0 +1,54 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.adelaide_railway_station",
+  "kind": "static-structure",
+  "title": "Adelaide Railway Station",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.adelaide_railway_station",
+        "output": "assets/places/r1/r1f/adelaide_railway_station/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:256ef894d887831e85a857c32985198ec7fe2f2d8e2b32d29401bd4c8c38c256"
+      }
+    ],
+    "generators": [
+      {
+        "id": "adelaide_railway_station",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "station",
+        "path": "models/station.mjs"
+      },
+      {
+        "id": "classical",
+        "path": "models/classical.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fort_of_san_diego",
+  "kind": "static-structure",
+  "title": "Fort of San Diego",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fort_of_san_diego",
+        "output": "assets/places/9f/9fb/fort_of_san_diego/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:13485511c9fd0322da95d71e309a0082f970525a199aba3513a1b26af8c564bc"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-fort-of-san-diego",
+        "path": "models/generate-fort-of-san-diego.mjs"
+      },
+      {
+        "id": "fort-of-san-diego-model",
+        "path": "models/fort-of-san-diego-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/fort-of-san-diego-footprint.json",
+      "native-map/fort-of-san-diego-shape-controls.json",
+      "reference-rights/fort-of-san-diego-architectural-facts.json",
+      "reference-rights/fort-of-san-diego-archive-page-69-receipt.json",
+      "reference-rights/fort-of-san-diego-archive-page-70-receipt.json",
+      "reference-rights/unam-1779-panon-archive-photo17.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-acapulco-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

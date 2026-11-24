@@ -1,0 +1,877 @@
+{
+  "planId": "kazan_cathedral_saint_petersburg",
+  "id": "kazan_cathedral_saint_petersburg",
+  "assetId": "molen.worldgen.structure.kazan_cathedral_saint_petersburg",
+  "title": "Kazan Cathedral, Saint Petersburg",
+  "wikidataId": "Q404571",
+  "category": "cathedral",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 30.324594444444,
+    "latitude": 59.934227777778
+  },
+  "size": [
+    121.12007141113281,
+    73.5,
+    116.54608917236328
+  ],
+  "actualBounds": {
+    "min": [
+      -59.44696044921875,
+      -2,
+      -38.150001525878906
+    ],
+    "max": [
+      61.67311096191406,
+      71.5,
+      78.39608764648438
+    ]
+  },
+  "visualBrief": "The monumental limestone cathedral, with the two open sweeping colonnades, three classical porticoes and the tall cupola.",
+  "nativeAxes": {
+    "x": "west along cathedral axis",
+    "y": "up",
+    "z": "north toward Nevsky Prospekt"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://id.rijksmuseum.nl/200491466",
+    "https://id.rijksmuseum.nl/200333511",
+    "https://www.loc.gov/pictures/item/2001697504/"
+  ],
+  "stories": [
+    {
+      "id": "kazan-cathedral-saint-petersburg-wp",
+      "url": "https://qualla.com/kazan-cathedral-saint-petersburg/"
+    }
+  ],
+  "referenceInputHash": "sha256:920efb31d28e3d3a7cd88e03eb8f4377ae8307125affad6893fc60f0433342a7",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ud/udt/kazan_cathedral_saint_petersburg/models/kazan-cathedral-saint-petersburg-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ud/udt/kazan_cathedral_saint_petersburg/models/kazan-cathedral-saint-petersburg-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 3.7,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.88
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.9
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.74,
+        "metallic": 0.27
+      },
+      "fittings": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.71,
+        "metallic": 0.28
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.43
+      },
+      "door": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.29
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0.27
+          },
+          "fittings": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.28
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.29
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0.27
+          },
+          "fittings": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.28
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.29
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0.27
+          },
+          "fittings": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.28
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.29
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_raw",
+    "stone_limestone_raw",
+    "stone_ashlar",
+    "metal_standing_seam",
+    "metal_painted",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.82,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Bare-earth interpolation from open plaza and street samples in the provider DTM.",
+    "anchor": [
+      30.324594444444,
+      59.934227777778
+    ],
+    "heading": 2.846516013543077,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        30.324803022449768,
+        59.934571572193086
+      ],
+      "modelHeight": 0,
+      "basis": "Bare-earth interpolation from open plaza and street samples in the provider DTM."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -15.4577,
+          -28.06267
+        ],
+        [
+          -15.31546,
+          -21.05521
+        ],
+        [
+          -15.24886,
+          -17.80607
+        ],
+        [
+          -23.98449,
+          -17.78034
+        ],
+        [
+          -24.05455,
+          -10.68508
+        ],
+        [
+          -26.69868,
+          -10.10246
+        ],
+        [
+          -27.82728,
+          -9.59654
+        ],
+        [
+          -28.82692,
+          -8.83894
+        ],
+        [
+          -29.63741,
+          -7.70834
+        ],
+        [
+          -30.01155,
+          -6.40787
+        ],
+        [
+          -30.25746,
+          -5.08821
+        ],
+        [
+          -30.41361,
+          -3.76091
+        ],
+        [
+          -30.30164,
+          -2.43367
+        ],
+        [
+          -30.1392,
+          -1.01706
+        ],
+        [
+          -29.76043,
+          0.22908
+        ],
+        [
+          -29.25342,
+          1.49442
+        ],
+        [
+          -28.45749,
+          2.57887
+        ],
+        [
+          -27.63865,
+          3.47019
+        ],
+        [
+          -26.72351,
+          4.06465
+        ],
+        [
+          -24.57764,
+          5.06455
+        ],
+        [
+          -24.37739,
+          13.56691
+        ],
+        [
+          -14.0866,
+          13.49897
+        ],
+        [
+          -14.02717,
+          18.23955
+        ],
+        [
+          -18.64754,
+          19.49266
+        ],
+        [
+          -23.1434,
+          21.28966
+        ],
+        [
+          -26.9138,
+          23.13376
+        ],
+        [
+          -30.52217,
+          25.56853
+        ],
+        [
+          -34.84935,
+          29.07112
+        ],
+        [
+          -39.03067,
+          33.11111
+        ],
+        [
+          -41.11247,
+          35.58218
+        ],
+        [
+          -43.0243,
+          38.09465
+        ],
+        [
+          -46.31503,
+          43.43465
+        ],
+        [
+          -47.66785,
+          46.4055
+        ],
+        [
+          -48.91209,
+          49.59931
+        ],
+        [
+          -51.59003,
+          49.61047
+        ],
+        [
+          -59.44696,
+          49.4971
+        ],
+        [
+          -56.6574,
+          77.46863
+        ],
+        [
+          -48.26964,
+          77.90932
+        ],
+        [
+          -42.54662,
+          78.13609
+        ],
+        [
+          -42.82158,
+          70.69194
+        ],
+        [
+          -42.69774,
+          66.15163
+        ],
+        [
+          -42.25268,
+          62.89823
+        ],
+        [
+          -41.70721,
+          59.6492
+        ],
+        [
+          -40.8348,
+          56.76621
+        ],
+        [
+          -39.6645,
+          54.53729
+        ],
+        [
+          -37.99554,
+          51.55179
+        ],
+        [
+          -36.40188,
+          48.74044
+        ],
+        [
+          -34.61289,
+          45.88135
+        ],
+        [
+          -32.59776,
+          43.26767
+        ],
+        [
+          -29.97451,
+          40.41097
+        ],
+        [
+          -27.08523,
+          37.56649
+        ],
+        [
+          -23.97233,
+          35.18924
+        ],
+        [
+          -20.7673,
+          33.24938
+        ],
+        [
+          -17.26885,
+          31.54611
+        ],
+        [
+          -15.98839,
+          31.09874
+        ],
+        [
+          -13.61422,
+          30.26077
+        ],
+        [
+          -13.30773,
+          38.23053
+        ],
+        [
+          -10.08061,
+          38.26188
+        ],
+        [
+          -6.65055,
+          38.28971
+        ],
+        [
+          14.35401,
+          38.49068
+        ],
+        [
+          14.89022,
+          31.18393
+        ],
+        [
+          17.16854,
+          32.17848
+        ],
+        [
+          19.07568,
+          33.00662
+        ],
+        [
+          23.52342,
+          35.36623
+        ],
+        [
+          27.45674,
+          38.21961
+        ],
+        [
+          30.65412,
+          41.08725
+        ],
+        [
+          33.98849,
+          44.04124
+        ],
+        [
+          36.71335,
+          47.48299
+        ],
+        [
+          38.8668,
+          50.59813
+        ],
+        [
+          40.71716,
+          54.15444
+        ],
+        [
+          42.0913,
+          57.77404
+        ],
+        [
+          43.024,
+          60.95772
+        ],
+        [
+          43.56309,
+          64.66825
+        ],
+        [
+          43.93688,
+          71.5937
+        ],
+        [
+          43.5344,
+          77.23093
+        ],
+        [
+          53.50006,
+          77.37817
+        ],
+        [
+          59.54918,
+          77.35457
+        ],
+        [
+          61.67311,
+          50.70521
+        ],
+        [
+          55.36871,
+          50.38755
+        ],
+        [
+          51.54367,
+          50.09582
+        ],
+        [
+          49.51805,
+          44.42871
+        ],
+        [
+          46.03648,
+          39.11106
+        ],
+        [
+          42.44471,
+          34.08287
+        ],
+        [
+          39.45898,
+          30.56915
+        ],
+        [
+          36.0312,
+          27.80645
+        ],
+        [
+          32.14266,
+          24.92782
+        ],
+        [
+          27.72131,
+          22.11806
+        ],
+        [
+          22.29668,
+          19.2293
+        ],
+        [
+          15.5282,
+          17.36565
+        ],
+        [
+          15.6301,
+          12.98326
+        ],
+        [
+          42.32328,
+          12.99097
+        ],
+        [
+          42.46139,
+          16.91646
+        ],
+        [
+          47.4733,
+          16.89398
+        ],
+        [
+          47.73546,
+          12.52105
+        ],
+        [
+          54.0952,
+          12.42631
+        ],
+        [
+          54.00508,
+          -3.34637
+        ],
+        [
+          53.92368,
+          -18.01639
+        ],
+        [
+          48.47806,
+          -18.0017
+        ],
+        [
+          48.41957,
+          -21.74196
+        ],
+        [
+          42.21744,
+          -21.79984
+        ],
+        [
+          42.11507,
+          -17.9176
+        ],
+        [
+          17.9792,
+          -17.91143
+        ],
+        [
+          18.34627,
+          -27.42393
+        ],
+        [
+          13.82204,
+          -27.56131
+        ],
+        [
+          13.87567,
+          -37.22287
+        ],
+        [
+          -10.69926,
+          -37.22287
+        ],
+        [
+          -10.66834,
+          -28.20366
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "The exact mapped outline of the cathedral envelope and both colonnades."
+    },
+    "featureIds": [
+      "relation/11763697"
+    ],
+    "source": "https://www.openstreetmap.org/relation/11763697",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:84a62bd784fe0425efe21b03c2ccce93878ae2dbfefdceb32abfd0a91af4e407",
+    "notes": "Original public-domain prints from opposing viewpoints define the north elevations. The cathedral and conservation survey document the axis, wall materials, height and dome, portico vocabulary and arrangement of columns."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Exterior covers the cathedral, both sweeping wings and the terminal pavilions. The detached statues, fountain, landscaping and building interiors are outside its scope.",
+    "Historic fabric is grounded in the surveyed footprints and published architectural dimensions. Individual reliefs and capitals are simplified, roof and window finishes approximate. Elevation interpolation uses open ground samples because even the provider DTM retains residual building heights around the monument. The review grade is locally interpolated from sampled open ground."
+  ],
+  "sourceLicense": "Original model using Rijksmuseum public-domain photographs, an original Library of Congress color print, published measurements, native place mapping and open bare-earth elevation data.",
+  "qaLodCameras": [
+    {
+      "name": "kazan-cathedral-saint-petersburg-skyline",
+      "position": [
+        104,
+        70,
+        163
+      ],
+      "lookAt": [
+        0,
+        25,
+        22
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kazan-cathedral-saint-petersburg-district",
+      "position": [
+        104,
+        70,
+        163
+      ],
+      "lookAt": [
+        0,
+        25,
+        22
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "kazan-cathedral-saint-petersburg-street",
+      "position": [
+        104,
+        70,
+        163
+      ],
+      "lookAt": [
+        0,
+        25,
+        22
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "kazan-cathedral-saint-petersburg-closeup",
+      "position": [
+        104,
+        70,
+        163
+      ],
+      "lookAt": [
+        0,
+        25,
+        22
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-pavilion-and-curving-wings",
+      "position": [
+        104,
+        70,
+        163
+      ],
+      "lookAt": [
+        0,
+        25,
+        22
+      ]
+    },
+    {
+      "name": "nevsky-prospekt-and-north-portico",
+      "position": [
+        -42,
+        22,
+        145
+      ],
+      "lookAt": [
+        0,
+        22,
+        36
+      ]
+    },
+    {
+      "name": "east-apse-south-and-dome",
+      "position": [
+        -103,
+        62,
+        -83
+      ],
+      "lookAt": [
+        0,
+        27,
+        11
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 31680,
+    "vertices": 95040,
+    "materials": 7,
+    "bytes": 4103756,
+    "sha256": "sha256:d4733696a57afb807e65774f3f385619ea8de6f915cf0a2eaf492bc4a6ebe71b"
+  }
+}

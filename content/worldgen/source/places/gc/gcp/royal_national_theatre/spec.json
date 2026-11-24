@@ -1,0 +1,585 @@
+{
+  "planId": "royal_national_theatre",
+  "id": "royal_national_theatre",
+  "assetId": "molen.worldgen.structure.royal_national_theatre",
+  "title": "Royal National Theatre",
+  "wikidataId": "Q511108",
+  "category": "cultural",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -0.11400484999999999,
+    "latitude": 51.507028250000005
+  },
+  "size": [
+    118.5999984741211,
+    46.79999923706055,
+    150.21900177001953
+  ],
+  "actualBounds": {
+    "min": [
+      -61.41999816894531,
+      -6,
+      -75.86199951171875
+    ],
+    "max": [
+      57.18000030517578,
+      40.79999923706055,
+      74.35700225830078
+    ]
+  },
+  "visualBrief": "The Royal National Theatre on the South Bank, with board-marked fly towers, glazed foyers and stepped concrete terraces.",
+  "nativeAxes": {
+    "x": "toward the Upper Ground side",
+    "y": "up",
+    "z": "from Thames frontage to inland edge"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Royal_National_Theatre_1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Royal_National_Theatre_6.jpg",
+    "https://commons.wikimedia.org/wiki/File:Royal_National_Theatre_9.jpg"
+  ],
+  "stories": [
+    {
+      "id": "royal-national-theatre-wp",
+      "url": "https://qualla.com/royal-national-theatre/"
+    }
+  ],
+  "referenceInputHash": "sha256:be263c68e503fe9edcb460611feabe42c699dbf10eeedc8e4504b7fe8c1a8f21",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcp/royal_national_theatre/models/royal-national-theatre-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gcp/royal_national_theatre/models/royal-national-theatre-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.6,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.91
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_boardformed",
+        "roughness": 0.91
+      },
+      "ground": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "flatRoof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "glazed": {
+        "slot": "window",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.51
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.64
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.62,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_boardformed",
+            "roughness": 0.91
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "flatRoof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "glazed": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.51
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_boardformed",
+            "roughness": 0.91
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "flatRoof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "glazed": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.51
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.072,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_boardformed",
+            "roughness": 0.91
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "flatRoof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "glazed": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.51
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_boardformed",
+    "concrete_boardformed",
+    "concrete_plain",
+    "concrete_plain",
+    "glass_frit_triangular",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The open pedestrian approach west of the footprint, using the original source elevation.",
+    "anchor": [
+      -0.11400484999999999,
+      51.507028250000005
+    ],
+    "heading": 0.4993481896866716,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -0.11474640766945875,
+        51.50671509413816
+      ],
+      "modelHeight": 0,
+      "basis": "The open pedestrian approach west of the footprint, using the original source elevation."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -31.001,
+          56.972
+        ],
+        [
+          -29.715,
+          57.306
+        ],
+        [
+          -27.169,
+          60.178
+        ],
+        [
+          -8.457,
+          59.86
+        ],
+        [
+          -5.58,
+          62.862
+        ],
+        [
+          2.773,
+          62.727
+        ],
+        [
+          2.525,
+          73.585
+        ],
+        [
+          46.878,
+          74.357
+        ],
+        [
+          47.241,
+          52.682
+        ],
+        [
+          47.829,
+          28.048
+        ],
+        [
+          57.18,
+          28.051
+        ],
+        [
+          57.18,
+          -55.322
+        ],
+        [
+          29.405,
+          -55.319
+        ],
+        [
+          29.41,
+          -57.89
+        ],
+        [
+          29.411,
+          -59.513
+        ],
+        [
+          29.421,
+          -61.093
+        ],
+        [
+          -5.136,
+          -61.086
+        ],
+        [
+          -1.364,
+          -65.166
+        ],
+        [
+          -1.293,
+          -68.551
+        ],
+        [
+          -22.103,
+          -68.946
+        ],
+        [
+          -22.064,
+          -70.941
+        ],
+        [
+          -26.855,
+          -75.862
+        ],
+        [
+          -33.801,
+          -75.542
+        ],
+        [
+          -33.515,
+          -69.338
+        ],
+        [
+          -28.955,
+          -64.936
+        ],
+        [
+          -26.503,
+          -65.12
+        ],
+        [
+          -26.476,
+          -56.458
+        ],
+        [
+          -26.44,
+          -47.828
+        ],
+        [
+          -61.42,
+          -47.697
+        ],
+        [
+          -61.302,
+          -15.096
+        ],
+        [
+          -61.27,
+          -7.356
+        ],
+        [
+          -50.295,
+          -7.393
+        ],
+        [
+          -50.241,
+          -5.829
+        ],
+        [
+          -54.826,
+          -5.756
+        ],
+        [
+          -54.306,
+          31.199
+        ],
+        [
+          -53.944,
+          57.087
+        ]
+      ],
+      "holes": [
+        [
+          [
+            -4.016,
+            -2.108
+          ],
+          [
+            8.997,
+            -2.061
+          ],
+          [
+            8.98,
+            2.166
+          ],
+          [
+            8.947,
+            10.504
+          ],
+          [
+            -4.06,
+            10.446
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "The mapped theatre perimeter and service light court."
+    },
+    "featureIds": [
+      "relation/2023676"
+    ],
+    "source": "https://www.openstreetmap.org/relation/2023676",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:be8e44658ed9ec97cb3c37e26ebcdcf9502277569b40e0e72def754d45e72369",
+    "notes": "The statutory description distinguishes the two fly towers and the smaller third theatre, linked stepped terraces and board-marked reinforced concrete. The mapped sections record heights including 40.8 and 32 metres."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.glass_frit_triangular",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.05,
+        0.08660254
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Interior auditoria, temporary furnishings and lighting are outside the model scope.",
+    "Measured native footprint and mapped mass heights guide the shell. Unpublished terrace depths, glazing positions and glazing divisions are estimated."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "royal-national-theatre-skyline",
+      "position": [
+        -182,
+        83,
+        -188
+      ],
+      "lookAt": [
+        0,
+        14,
+        -4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "royal-national-theatre-district",
+      "position": [
+        -182,
+        83,
+        -188
+      ],
+      "lookAt": [
+        0,
+        14,
+        -4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "royal-national-theatre-street",
+      "position": [
+        -182,
+        83,
+        -188
+      ],
+      "lookAt": [
+        0,
+        14,
+        -4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "royal-national-theatre-closeup",
+      "position": [
+        -182,
+        83,
+        -188
+      ],
+      "lookAt": [
+        0,
+        14,
+        -4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-bank-fly-towers",
+      "position": [
+        -182,
+        83,
+        -188
+      ],
+      "lookAt": [
+        0,
+        14,
+        -4
+      ]
+    },
+    {
+      "name": "foyer-terraces-and-glazing",
+      "position": [
+        -104,
+        17,
+        -50
+      ],
+      "lookAt": [
+        -24,
+        15,
+        -28
+      ]
+    },
+    {
+      "name": "inland-stage-volumes",
+      "position": [
+        139,
+        58,
+        133
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 17800,
+    "vertices": 53400,
+    "materials": 6,
+    "bytes": 2296508,
+    "sha256": "sha256:139ee799e1ee7e7bfa0e83dfb6943621b2f986b681d044a3759fc7027e68139e"
+  }
+}

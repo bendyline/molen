@@ -1,0 +1,455 @@
+{
+  "id": "fort_jesus",
+  "planId": "fort_jesus",
+  "title": "Fort Jesus",
+  "assetId": "molen.worldgen.structure.fort_jesus",
+  "category": "castle",
+  "wikidataId": "Q379080",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 39.6794444,
+    "latitude": -4.0627778
+  },
+  "visualBrief": "Battered coral-stone walls and projecting bastions follow the full coastal perimeter. The open rampart, arched entrance and inner museum buildings retain their mapped positions.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/kz/kzk/fort_jesus/models/coral-fort.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fort_jesus_mombasa_int.jpg",
+    "https://whc.unesco.org/en/list/1295/maps/",
+    "https://www.openstreetmap.org/way/94444068"
+  ],
+  "geographicProposal": {
+    "id": "fort-jesus",
+    "title": "Fort Jesus",
+    "asset": "molen.worldgen.structure.fort_jesus",
+    "anchor": [
+      39.6794444,
+      -4.0627778
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 22,
+    "bounds": [
+      39.67896158842721,
+      -4.063242466714614,
+      39.68047181156975,
+      -4.06205403355657
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q379080",
+      "names": [
+        "Fort Jesus",
+        "Fort Jesus",
+        "Fort Jesus, Mombasa",
+        "Forte de São Jesus de Mombaça"
+      ],
+      "maxDistance": 87
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          16.067451,
+          15.039264
+        ],
+        [
+          19.243188,
+          22.664651
+        ],
+        [
+          63.292656,
+          4.274669
+        ],
+        [
+          59.939256,
+          -3.762599
+        ],
+        [
+          57.651837,
+          -2.805251
+        ],
+        [
+          56.497023,
+          -5.577106
+        ],
+        [
+          17.000185,
+          10.909311
+        ],
+        [
+          18.332662,
+          14.093049
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            16.067451,
+            15.039264
+          ],
+          [
+            19.243188,
+            22.664651
+          ],
+          [
+            63.292656,
+            4.274669
+          ],
+          [
+            59.939256,
+            -3.762599
+          ],
+          [
+            57.651837,
+            -2.805251
+          ],
+          [
+            56.497023,
+            -5.577106
+          ],
+          [
+            17.000185,
+            10.909311
+          ],
+          [
+            18.332662,
+            14.093049
+          ]
+        ],
+        [
+          [
+            -41.462242,
+            -13.447393
+          ],
+          [
+            -46.214743,
+            -18.122811
+          ],
+          [
+            -37.387083,
+            -24.022743
+          ],
+          [
+            -33.989267,
+            -18.85752
+          ]
+        ],
+        [
+          [
+            3.197945,
+            40.008234
+          ],
+          [
+            0.222079,
+            33.329062
+          ],
+          [
+            12.891715,
+            27.685162
+          ],
+          [
+            15.86758,
+            34.364333
+          ]
+        ],
+        [
+          [
+            31.45756,
+            -43.214216
+          ],
+          [
+            42.728095,
+            -47.53341
+          ],
+          [
+            44.793434,
+            -42.145549
+          ],
+          [
+            33.511796,
+            -37.837487
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the museum, Arabian House and two mapped rooms within the walls. Preserve the waterfront, slope and adjoining city buildings."
+    },
+    "source": "https://www.openstreetmap.org/way/94444068",
+    "note": "The four bastions follow the fort perimeter and the entrance is centered on the mapped northern gate. Seaward foundations meet the grade above the Mombasa shoreline.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a1218bcda3cbc2391b377d05f028477cbadca8f8f9ffe5ba4d20fd47a216bb6d"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.98
+      },
+      "sill": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.95
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.88
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_weatherboard",
+        "roughness": 0.94
+      },
+      "recess": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.79
+      }
+    },
+    "errorMeters": 1.29,
+    "module": "content/worldgen/source/places/kz/kzk/fort_jesus/models/coral-fort.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98
+          },
+          "sill": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.88
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.94
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          }
+        },
+        "errorMeters": 0.53
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98
+          },
+          "sill": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.88
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.94
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          }
+        },
+        "errorMeters": 0.19
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98
+          },
+          "sill": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.88
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.94
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          }
+        },
+        "errorMeters": 0.069
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        29,
+        2,
+        -12
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "north-gate-and-approach",
+      "position": [
+        19.5,
+        2.7,
+        -51.1
+      ],
+      "lookAt": [
+        27.5,
+        1.43,
+        -52.2
+      ],
+      "fov": 60
+    },
+    {
+      "name": "rampart-and-museum-court",
+      "position": [
+        9,
+        11,
+        -20
+      ],
+      "lookAt": [
+        32,
+        6,
+        13
+      ],
+      "fov": 60
+    },
+    {
+      "name": "seaward-bastions",
+      "position": [
+        149,
+        13,
+        9
+      ],
+      "lookAt": [
+        85,
+        5,
+        -16
+      ],
+      "fov": 58
+    }
+  ],
+  "limitations": [
+    "Wall thicknesses, crenellation spacing, stone arches and roof pitches are approximate. Ground contact follows the available terrain grid."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -51.61127471923828,
+      -12.579000473022461,
+      -78.56925964355469
+    ],
+    "max": [
+      112.17788696289062,
+      10.724139213562012,
+      49.82496643066406
+    ]
+  },
+  "size": [
+    163.7891616821289,
+    23.303139686584473,
+    128.39422607421875
+  ],
+  "mesh": {
+    "triangles": 11041,
+    "vertices": 21617,
+    "materials": 6,
+    "bytes": 914496,
+    "sha256": "sha256:06e8590e50748719af0ca9e23ce33fdcc3f2bc1d78dc819b8a213e1efd1d58b8"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

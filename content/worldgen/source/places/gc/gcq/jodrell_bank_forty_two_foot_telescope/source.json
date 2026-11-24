@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.jodrell_bank_forty_two_foot_telescope",
+  "kind": "static-structure",
+  "title": "Jodrell Bank 42-foot Telescope",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.jodrell_bank_forty_two_foot_telescope",
+        "output": "assets/places/gc/gcq/jodrell_bank_forty_two_foot_telescope/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f234a18ce705f76d2a8236770ad37c268c9ee30e5ed07f88ce3fcd0e3a6a8119"
+      }
+    ],
+    "generators": [
+      {
+        "id": "jodrell_bank_forty_two_foot_telescope",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "forty-two-foot-dish-and-service-balcony",
+        "path": "models/forty-two-foot-dish-and-service-balcony.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

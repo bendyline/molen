@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.archaeological_museum_of_eleusis",
+  "kind": "static-structure",
+  "title": "Archaeological Museum of Eleusis",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.archaeological_museum_of_eleusis",
+        "output": "assets/places/sw/swb/archaeological_museum_of_eleusis/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4fafd8e9492249871475f52fb2caae4329f3b2bb624965ad16f96d44f27b727c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-archaeological-museum-of-eleusis",
+        "path": "models/generate-archaeological-museum-of-eleusis.mjs"
+      },
+      {
+        "id": "archaeological-museum-of-eleusis-model",
+        "path": "models/archaeological-museum-of-eleusis-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/archaeological-museum-of-eleusis-footprint.json",
+      "reference-rights/archaeological-museum-of-eleusis-architectural-facts.json",
+      "reference-rights/archaeological-museum-of-eleusis-qualla-original-1.json",
+      "reference-rights/archaeological-museum-of-eleusis-qualla-original-2.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-18526-12634.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.puna_pau",
+  "kind": "static-structure",
+  "title": "Puna Pau",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.puna_pau",
+        "output": "assets/places/3e/3e4/puna_pau/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1546f9f6cd1fca4dffa8c5c4598917559f1592b83eb1b246072be733e61f3760"
+      }
+    ],
+    "generators": [
+      {
+        "id": "puna_pau",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "rapa-nui-scoria-quarry-pukao",
+        "path": "models/rapa-nui-scoria-quarry-pukao.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

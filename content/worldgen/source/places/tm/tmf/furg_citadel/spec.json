@@ -1,0 +1,394 @@
+{
+  "planId": "furg_citadel",
+  "id": "furg_citadel",
+  "assetId": "molen.worldgen.structure.furg_citadel",
+  "title": "Furg Citadel",
+  "wikidataId": "Q5509526",
+  "category": "castle",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 59.9481939125,
+    "latitude": 32.844858637499996
+  },
+  "size": [
+    139.58710098266602,
+    39.6543288230896,
+    118.45049285888672
+  ],
+  "actualBounds": {
+    "min": [
+      -58.19234085083008,
+      -4.0952887535095215,
+      -62.87196731567383
+    ],
+    "max": [
+      81.39476013183594,
+      35.55904006958008,
+      55.57852554321289
+    ]
+  },
+  "visualBrief": "Forg’s ridge-top citadel, with an uneven earthen perimeter, round battered towers, the higher western compound, and the lower eastern gate.",
+  "nativeAxes": {
+    "x": "high west compound to lower east entry",
+    "y": "up",
+    "z": "toward Forg village to the south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Furg_citadel_Darmian_County_birjand_iran_1.jpg"
+  ],
+  "stories": [
+    {
+      "id": "furg-citadel-wp",
+      "url": "https://qualla.com/furg-citadel/"
+    }
+  ],
+  "referenceInputHash": "sha256:841b1356dc09d5e972088343453329230028328dbfd6b06f64c551f42d0d8e5b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tm/tmf/furg_citadel/models/furg-citadel-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tm/tmf/furg_citadel/models/furg-citadel-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.9,
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.96
+      },
+      "adobe": {
+        "slot": "trim",
+        "graph": "earth_rammed",
+        "roughness": 0.98
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.97
+      },
+      "recess": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.97
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "adobe": {
+            "slot": "trim",
+            "graph": "earth_rammed",
+            "roughness": 0.98
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.97
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "adobe": {
+            "slot": "trim",
+            "graph": "earth_rammed",
+            "roughness": 0.98
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.97
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "adobe": {
+            "slot": "trim",
+            "graph": "earth_rammed",
+            "roughness": 0.98
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.97
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone_raw",
+    "earth_rammed",
+    "stone_drywall"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Source elevation beside the documented lower east gate, at the midpoint of the mapped eastern curtain.",
+    "anchor": [
+      59.9481939125,
+      32.844858637499996
+    ],
+    "heading": 0.03622679847450616,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        59.9490205645856,
+        32.8448433576733
+      ],
+      "modelHeight": 0,
+      "basis": "Source elevation beside the documented lower east gate, at the midpoint of the mapped eastern curtain."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          76.522,
+          -58.566
+        ],
+        [
+          -9.37,
+          -43.611
+        ],
+        [
+          -24.199,
+          -22.305
+        ],
+        [
+          -47.667,
+          -5.087
+        ],
+        [
+          -42.632,
+          29.237
+        ],
+        [
+          -52.441,
+          50.469
+        ],
+        [
+          23.265,
+          18.57
+        ],
+        [
+          76.522,
+          31.294
+        ]
+      ],
+      "minimumCoverage": 0.89,
+      "basis": "Bounded to the separately mapped castle enclosure. Forg village lies outside this footprint."
+    },
+    "featureIds": [
+      "way/690391439"
+    ],
+    "source": "https://www.openstreetmap.org/way/690391439",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b47828406ddd329fd6c5b0f7ebdeedd81de35bac873d2812d280697dc64f5c91",
+    "notes": "The official visitor inventory identifies the low east gate, middle zone and highest western compound, with rounded earthen masonry towers and successive repairs. Proportions of individual towers and incomplete masonry are estimated against the mapped width and the cleared ground view."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the hilltop structure’s present exterior character. Internal rooms, underground features and exact individual interior ruins have no verified geometric record here.",
+    "Overall plan and terrain follow the native map and elevation. Tower positions between vertices, wall heights, unseen exterior detail and repair phases use conservative estimates."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "furg-skyline",
+      "position": [
+        -132,
+        64,
+        178
+      ],
+      "lookAt": [
+        2,
+        13,
+        -1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "furg-district",
+      "position": [
+        -132,
+        64,
+        178
+      ],
+      "lookAt": [
+        2,
+        13,
+        -1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "furg-street",
+      "position": [
+        -132,
+        64,
+        178
+      ],
+      "lookAt": [
+        2,
+        13,
+        -1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "furg-closeup",
+      "position": [
+        -132,
+        64,
+        178
+      ],
+      "lookAt": [
+        2,
+        13,
+        -1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-escarpment-and-west-towers",
+      "position": [
+        -132,
+        64,
+        178
+      ],
+      "lookAt": [
+        2,
+        13,
+        -1
+      ]
+    },
+    {
+      "name": "eastern-gateway-and-curtain",
+      "position": [
+        156,
+        32,
+        -6
+      ],
+      "lookAt": [
+        48,
+        6,
+        2
+      ]
+    },
+    {
+      "name": "irregular-enclosure-from-above",
+      "position": [
+        49,
+        164,
+        76
+      ],
+      "lookAt": [
+        13,
+        9,
+        -5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5082,
+    "vertices": 15246,
+    "materials": 4,
+    "bytes": 777684,
+    "sha256": "sha256:e4ce98e1e329dfee4ef49adde7a2a0f9dbdb4412521be11560ab4a3860d45afa"
+  }
+}

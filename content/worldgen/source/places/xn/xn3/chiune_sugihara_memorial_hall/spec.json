@@ -1,0 +1,445 @@
+{
+  "planId": "chiune_sugihara_memorial_hall",
+  "id": "chiune_sugihara_memorial_hall",
+  "assetId": "molen.worldgen.structure.chiune_sugihara_memorial_hall",
+  "title": "Chiune Sugihara Memorial Hall",
+  "wikidataId": "Q47417030",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 137.1683646125,
+    "latitude": 35.4748939875
+  },
+  "size": [
+    31.020000457763672,
+    15.78000020980835,
+    25.600000381469727
+  ],
+  "actualBounds": {
+    "min": [
+      -16.6200008392334,
+      -5.099999904632568,
+      -11.0600004196167
+    ],
+    "max": [
+      14.399999618530273,
+      10.680000305175781,
+      14.539999961853027
+    ]
+  },
+  "visualBrief": "The hinoki memorial hall in Yaotsu, with the diamond-shaped timber lattice, projecting high gable, and attached lower gallery.",
+  "nativeAxes": {
+    "x": "west extension toward main eastern gable",
+    "y": "up",
+    "z": "front gable toward rear"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:The_Chiune_Sugihara_Memorial_Hall_20210723_02.jpg",
+    "https://commons.wikimedia.org/wiki/File:The_Chiune_Sugihara_Memorial_Hall_20210723_01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "chiune-sugihara-memorial-hall-wp",
+      "url": "https://qualla.com/chiune-sugihara-memorial-hall/"
+    }
+  ],
+  "referenceInputHash": "sha256:fb05742f8fe6d3031b68dcf3a89ca5b1be5435cf5fb2c2adf97390ce414399f9",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn3/chiune_sugihara_memorial_hall/models/chiune-sugihara-memorial-hall-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn3/chiune_sugihara_memorial_hall/models/chiune-sugihara-memorial-hall-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.02,
+    "surfaces": {
+      "walls": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.93
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.87
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.62
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "portal": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.82
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "walls": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.93
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "portal": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "walls": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.93
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "portal": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "walls": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.93
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "portal": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "wood_plain",
+    "metal_standing_seam",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified elevation at the parking approach immediately outside the main timber porch.",
+    "anchor": [
+      137.1683646125,
+      35.4748939875
+    ],
+    "heading": -0.27644798903011536,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        137.16848020533055,
+        35.4749345112341
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified elevation at the parking approach immediately outside the main timber porch."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -16.531,
+          -10.898
+        ],
+        [
+          -16.53,
+          2.49
+        ],
+        [
+          4.352,
+          2.49
+        ],
+        [
+          4.353,
+          14.35
+        ],
+        [
+          14.03,
+          14.347
+        ],
+        [
+          14.032,
+          -5.938
+        ],
+        [
+          -1.857,
+          -5.943
+        ],
+        [
+          -1.849,
+          -10.898
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Only the mapped memorial building and its attached wing."
+    },
+    "featureIds": [
+      "way/304926640"
+    ],
+    "source": "https://www.openstreetmap.org/way/304926640",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8fba4d387d88d40d9e5f1bf4b3b224810fdaffefd0ee9652131bf2adfb276477",
+    "notes": "The town’s municipal facility plan records a two-story wood building of 293.7 square metres completed in 2000. The operator identifies Gifu hinoki timber. The exact Qualla photos fix the projecting gable and angled timber lattice, glazed upper gable and lower wood wing."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Exterior of the memorial hall and attached low wing. Detached park features, interpretive plaques, interiors and landscaping are outside this asset.",
+    "The map fixes the building plan. Roof levels, individual windows and timber spacing are estimates from the two closely spaced photograph angles."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "sugihara-hall-skyline",
+      "position": [
+        39,
+        17,
+        -45
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "sugihara-hall-district",
+      "position": [
+        39,
+        17,
+        -45
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "sugihara-hall-street",
+      "position": [
+        39,
+        17,
+        -45
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "sugihara-hall-closeup",
+      "position": [
+        39,
+        17,
+        -45
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "timber-gable-and-lattice-porch",
+      "position": [
+        39,
+        17,
+        -45
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "diagonal-lattice-and-glazed-gable",
+      "position": [
+        20,
+        8,
+        -28
+      ],
+      "lookAt": [
+        7,
+        4.4,
+        -3
+      ]
+    },
+    {
+      "name": "main-hall-and-lower-wing",
+      "position": [
+        -37,
+        22,
+        35
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2988,
+    "vertices": 8964,
+    "materials": 6,
+    "bytes": 468856,
+    "sha256": "sha256:1cd9951e69fb7377da4d6b21356fbef1bcaa9bb29e1990dca2a8afa6287c95cb"
+  }
+}

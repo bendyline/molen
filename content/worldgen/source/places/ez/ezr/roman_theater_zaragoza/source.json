@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.roman_theater_zaragoza",
+  "kind": "static-structure",
+  "title": "Roman Theater of Caesaraugusta, Zaragoza",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.roman_theater_zaragoza",
+        "output": "assets/places/ez/ezr/roman_theater_zaragoza/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7a57536db28b7bd703abfd2bc973897ed1ec1fc6599e641f7b4eced3609bde5e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-roman-theater-zaragoza",
+        "path": "models/generate-roman-theater-zaragoza.mjs"
+      },
+      {
+        "id": "roman-theater-zaragoza-model",
+        "path": "models/roman-theater-zaragoza-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/roman-theater-zaragoza-footprint.json",
+      "native-map/roman-theater-zaragoza-mapped-parts.json",
+      "reference-rights/roman-theater-zaragoza-architectural-facts.json",
+      "reference-rights/roman-theater-zaragoza-qualla-original-1.json",
+      "references/caesaraugusta-escarlati-panorama.jpg",
+      "reference-rights/escarlati-commons-first-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-16304-12206.png",
+      "terrain-sources/terrarium-15-16303-12206.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

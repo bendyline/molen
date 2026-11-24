@@ -1,0 +1,384 @@
+{
+  "id": "royal_palace_of_nuku_alofa",
+  "planId": "royal_palace_of_nuku_alofa",
+  "title": "Royal Palace of Nukuʻalofa",
+  "assetId": "molen.worldgen.structure.royal_palace_of_nuku_alofa",
+  "category": "palace",
+  "wikidataId": "Q2992825",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -175.2005556,
+    "latitude": -21.1313889
+  },
+  "visualBrief": "The royal palace has white timber walls, a deep open verandah and a red-roofed tower facing the Nukuʻalofa waterfront.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/2h/2h5/royal_palace_of_nuku_alofa/models/nuku-alofa-royal-palace-and-verandahs.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Royal_Palace%2C_Nuku'alofa%2C_Nov_18.jpg",
+    "https://commons.wikimedia.org/wiki/File:Tonga_Royal_Palace.jpg",
+    "https://www.openstreetmap.org/way/307399349"
+  ],
+  "geographicProposal": {
+    "id": "royal-palace-of-nuku-alofa",
+    "title": "Royal Palace of Nukuʻalofa",
+    "asset": "molen.worldgen.structure.royal_palace_of_nuku_alofa",
+    "anchor": [
+      -175.2005556,
+      -21.1313889
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 6.35,
+    "bounds": [
+      -175.2009479615253,
+      -21.13168096754743,
+      -175.20026273847216,
+      -21.131108732978333
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q2992825",
+      "names": [
+        "Royal Palace of Nukuʻalofa",
+        "Royal Palace",
+        "Royal Palace, Tonga"
+      ],
+      "maxDistance": 68
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -38.740444,
+          -3.361848
+        ],
+        [
+          -20.642188,
+          -29.187945
+        ],
+        [
+          0.560703,
+          -14.337944
+        ],
+        [
+          4.662144,
+          -20.204475
+        ],
+        [
+          11.920137,
+          -15.11718
+        ],
+        [
+          8.161348,
+          -9.751585
+        ],
+        [
+          28.408967,
+          4.419384
+        ],
+        [
+          10.123809,
+          30.512701
+        ],
+        [
+          -8.379399,
+          17.555093
+        ],
+        [
+          -2.336264,
+          8.927826
+        ],
+        [
+          -13.695697,
+          0.96848
+        ],
+        [
+          -19.904967,
+          9.829514
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the palace polygon at the mapped seafront bearing."
+    },
+    "source": "https://www.openstreetmap.org/way/307399349",
+    "note": "The wrapped verandahs and projecting tower face the waterfront. Shoreline, road and other buildings remain in the host.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:798d110667df56551591736b65e6be1372738df760af3de39d7bc14041c0d8e9"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "siding": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.93
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.91
+      },
+      "deck": {
+        "slot": "trim",
+        "graph": "wood_weatherboard",
+        "roughness": 0.97
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.74,
+        "metallic": 0.14
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.54
+      }
+    },
+    "errorMeters": 0.72,
+    "module": "content/worldgen/source/places/2h/2h5/royal_palace_of_nuku_alofa/models/nuku-alofa-royal-palace-and-verandahs.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "deck": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.97
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0.14
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "deck": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.97
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0.14
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54
+          }
+        },
+        "errorMeters": 0.106
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "deck": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.97
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0.14
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54
+          }
+        },
+        "errorMeters": 0.042
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -0.091384,
+        6,
+        -6.238767
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "waterfront-verandah-and-tower",
+      "position": [
+        18.453308,
+        7,
+        -64.066923
+      ],
+      "lookAt": [
+        0.811346,
+        7,
+        -9.269457
+      ],
+      "fov": 54
+    },
+    {
+      "name": "fretwork-and-red-gables",
+      "position": [
+        31.766781,
+        5.25,
+        -18.592621
+      ],
+      "lookAt": [
+        9.872434,
+        8,
+        -10.002058
+      ],
+      "fov": 58
+    },
+    {
+      "name": "wings-and-rear-court",
+      "position": [
+        11.748278,
+        31,
+        69.218667
+      ],
+      "lookAt": [
+        -2.960824,
+        7,
+        -2.144097
+      ],
+      "fov": 50
+    }
+  ],
+  "limitations": [
+    "Tower height, roof pitches, white fretwork and local ground transitions are estimated from exterior photographs and map elevations. The model covers the main palace exterior."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -38.55978775024414,
+      -3.950000047683716,
+      -29.21193504333496
+    ],
+    "max": [
+      28.42816925048828,
+      22.899999618530273,
+      30.304014205932617
+    ]
+  },
+  "size": [
+    66.98795700073242,
+    26.84999966621399,
+    59.51594924926758
+  ],
+  "mesh": {
+    "triangles": 26683,
+    "vertices": 53345,
+    "materials": 6,
+    "bytes": 2244396,
+    "sha256": "sha256:ce8a100e8521fa928db90cf854df71f07e13758a3149e1e567f85b3dd11cd32e"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

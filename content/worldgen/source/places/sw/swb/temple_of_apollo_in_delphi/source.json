@@ -1,0 +1,54 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.temple_of_apollo_in_delphi",
+  "kind": "static-structure",
+  "title": "Temple of Apollo in Delphi",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.temple_of_apollo_in_delphi",
+        "output": "assets/places/sw/swb/temple_of_apollo_in_delphi/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:014d997b029c15e9d8fbe065abd2bff49016322b22a83d4351c778c5bf99a112"
+      }
+    ],
+    "generators": [
+      {
+        "id": "temple_of_apollo_in_delphi",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "delphi-doric-terrace",
+        "path": "models/delphi-doric-terrace.mjs"
+      },
+      {
+        "id": "doric-ruin",
+        "path": "models/doric-ruin.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

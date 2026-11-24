@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.pilgrimage_church_of_saint_john_of_nepomuk",
+  "kind": "static-structure",
+  "title": "Pilgrimage Church of Saint John of Nepomuk",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.pilgrimage_church_of_saint_john_of_nepomuk",
+        "output": "assets/places/u2/u2g/pilgrimage_church_of_saint_john_of_nepomuk/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7a981791137784a3485ff9d700876085e6717865b7d1f8fa5643e4729330226d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "pilgrimage_church_of_saint_john_of_nepomuk",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "star-shaped-church-and-ambulatory",
+        "path": "models/star-shaped-church-and-ambulatory.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "zelenaHora-surveyed-geometry.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

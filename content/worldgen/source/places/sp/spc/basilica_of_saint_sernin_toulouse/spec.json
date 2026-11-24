@@ -1,0 +1,1834 @@
+{
+  "planId": "basilica_of_saint_sernin_toulouse",
+  "id": "basilica_of_saint_sernin_toulouse",
+  "assetId": "molen.worldgen.structure.basilica_of_saint_sernin_toulouse",
+  "title": "Basilica of Saint-Sernin, Toulouse",
+  "wikidataId": "Q1010268",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 1.44215745,
+    "latitude": 43.608483925
+  },
+  "size": [
+    62.11000061035156,
+    66.95000004768372,
+    110.15719223022461
+  ],
+  "actualBounds": {
+    "min": [
+      -30.860000610351562,
+      -1.9500000476837158,
+      -33.8871955871582
+    ],
+    "max": [
+      31.25,
+      65,
+      76.2699966430664
+    ]
+  },
+  "visualBrief": "The Romanesque Basilica of Saint-Sernin in Toulouse, with a five-tier octagonal bell tower, tiled aisles, stone portals and layered eastern chapels.",
+  "nativeAxes": {
+    "x": "south across the transepts",
+    "y": "up",
+    "z": "west toward the principal doors"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Tympan_-_Porte_Mi%C3%A9geville_-_Basilique_Saint-Sernin.jpg",
+    "https://commons.wikimedia.org/wiki/File:Console_aux_personnages_symm%C3%A9tiques.JPG",
+    "https://commons.wikimedia.org/wiki/File:Basilique_Saint_Sernin_Toulouse.jpg",
+    "https://commons.wikimedia.org/wiki/File:Basilique_Saint-Sernin_de_Toulouse_2020_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:Basilique_Saint-Sernin_de_Toulouse_2020_04.jpg",
+    "https://commons.wikimedia.org/wiki/File:Basilique_Saint-Sernin_de_Toulouse_2020_11.jpg"
+  ],
+  "stories": [
+    {
+      "id": "basilica-of-saint-sernin-toulouse-wp",
+      "url": "https://qualla.com/basilica-of-saint-sernin-toulouse/"
+    }
+  ],
+  "referenceInputHash": "sha256:dfe9f22042936fe61baa8887f53161867ea76e1c013a98f425e788cb1bbda80e",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sp/spc/basilica_of_saint_sernin_toulouse/models/basilica-of-saint-sernin-toulouse-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sp/spc/basilica_of_saint_sernin_toulouse/models/basilica-of-saint-sernin-toulouse-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.88,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.94
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.89
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.91
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.91
+      },
+      "spire": {
+        "slot": "roof",
+        "graph": "stone_ashlar",
+        "roughness": 0.92
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.79
+      },
+      "iron": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.77,
+        "metallic": 0.16
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.39,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.89
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "stone_ashlar",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77,
+            "metallic": 0.16
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.89
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "stone_ashlar",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77,
+            "metallic": 0.16
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.061,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.89
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "stone_ashlar",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.79
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77,
+            "metallic": 0.16
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_limestone_weathered",
+    "stone_ashlar",
+    "tile_ceramic"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.57,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original bare-earth tile at the middle of the open west entrance forecourt.",
+    "anchor": [
+      1.44215745,
+      43.608483925
+    ],
+    "heading": -1.0246289986515724,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        1.4413392597177,
+        43.6080922844612
+      ],
+      "modelHeight": 0,
+      "basis": "Original bare-earth tile at the middle of the open west entrance forecourt."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          6.7701,
+          76.1373
+        ],
+        [
+          6.7621,
+          75.5288
+        ],
+        [
+          6.7572,
+          75.1296
+        ],
+        [
+          7.239,
+          75.1301
+        ],
+        [
+          7.239,
+          74.6585
+        ],
+        [
+          10.0051,
+          74.6514
+        ],
+        [
+          10.0103,
+          75.6072
+        ],
+        [
+          11.3174,
+          75.6
+        ],
+        [
+          11.3164,
+          74.6373
+        ],
+        [
+          14.3123,
+          74.6378
+        ],
+        [
+          14.3134,
+          75.129
+        ],
+        [
+          14.7582,
+          75.1258
+        ],
+        [
+          14.7627,
+          76.1472
+        ],
+        [
+          16.7677,
+          76.1492
+        ],
+        [
+          16.7674,
+          75.1209
+        ],
+        [
+          17.2861,
+          75.1248
+        ],
+        [
+          17.2808,
+          74.6406
+        ],
+        [
+          17.9186,
+          74.6415
+        ],
+        [
+          17.8998,
+          72.7436
+        ],
+        [
+          17.8613,
+          57.3546
+        ],
+        [
+          16.8567,
+          57.3571
+        ],
+        [
+          16.8515,
+          44.271
+        ],
+        [
+          17.0075,
+          44.2715
+        ],
+        [
+          16.9889,
+          41.1946
+        ],
+        [
+          16.9755,
+          38.1303
+        ],
+        [
+          16.9733,
+          38.0912
+        ],
+        [
+          16.8267,
+          38.0965
+        ],
+        [
+          16.6353,
+          13.7007
+        ],
+        [
+          16.8176,
+          13.6795
+        ],
+        [
+          16.988,
+          13.6133
+        ],
+        [
+          17.1741,
+          13.5001
+        ],
+        [
+          17.3873,
+          13.2995
+        ],
+        [
+          17.4699,
+          13.1422
+        ],
+        [
+          30.2567,
+          13.1516
+        ],
+        [
+          30.2397,
+          5.8499
+        ],
+        [
+          31.841,
+          5.8517
+        ],
+        [
+          31.8393,
+          4.2471
+        ],
+        [
+          31.8384,
+          2.3412
+        ],
+        [
+          31.8375,
+          0.4353
+        ],
+        [
+          31.8399,
+          -0.4688
+        ],
+        [
+          31.836,
+          -2.5841
+        ],
+        [
+          31.8259,
+          -4.6465
+        ],
+        [
+          31.8356,
+          -6.0554
+        ],
+        [
+          30.2248,
+          -6.063
+        ],
+        [
+          30.2283,
+          -9.3906
+        ],
+        [
+          30.2513,
+          -11.1216
+        ],
+        [
+          28.3982,
+          -11.1161
+        ],
+        [
+          28.4028,
+          -11.5095
+        ],
+        [
+          27.7365,
+          -11.5278
+        ],
+        [
+          27.7491,
+          -11.7842
+        ],
+        [
+          27.6342,
+          -11.7881
+        ],
+        [
+          27.627,
+          -12.2263
+        ],
+        [
+          27.5532,
+          -12.4692
+        ],
+        [
+          27.3885,
+          -12.7769
+        ],
+        [
+          27.2081,
+          -13.0374
+        ],
+        [
+          26.9825,
+          -13.2878
+        ],
+        [
+          26.7538,
+          -13.5117
+        ],
+        [
+          26.5316,
+          -13.7033
+        ],
+        [
+          26.1131,
+          -13.9577
+        ],
+        [
+          25.7455,
+          -14.1246
+        ],
+        [
+          25.4087,
+          -14.2349
+        ],
+        [
+          25.0617,
+          -14.2855
+        ],
+        [
+          24.6854,
+          -14.2879
+        ],
+        [
+          24.3417,
+          -14.2798
+        ],
+        [
+          23.8931,
+          -14.1847
+        ],
+        [
+          23.511,
+          -14.049
+        ],
+        [
+          23.1042,
+          -13.7869
+        ],
+        [
+          22.6171,
+          -13.3284
+        ],
+        [
+          22.2608,
+          -12.8281
+        ],
+        [
+          22.0317,
+          -12.4297
+        ],
+        [
+          21.8147,
+          -11.9013
+        ],
+        [
+          21.812,
+          -11.0824
+        ],
+        [
+          18.872,
+          -11.0678
+        ],
+        [
+          18.8679,
+          -11.7683
+        ],
+        [
+          18.8223,
+          -12.079
+        ],
+        [
+          18.742,
+          -12.3542
+        ],
+        [
+          18.6462,
+          -12.5822
+        ],
+        [
+          18.4381,
+          -12.9257
+        ],
+        [
+          18.2315,
+          -13.1644
+        ],
+        [
+          18.0313,
+          -13.371
+        ],
+        [
+          17.8864,
+          -13.4968
+        ],
+        [
+          17.6303,
+          -13.7185
+        ],
+        [
+          17.27,
+          -13.9187
+        ],
+        [
+          16.95,
+          -14.0566
+        ],
+        [
+          16.6132,
+          -14.167
+        ],
+        [
+          16.2175,
+          -14.266
+        ],
+        [
+          15.9013,
+          -14.2601
+        ],
+        [
+          15.5398,
+          -14.2441
+        ],
+        [
+          15.0279,
+          -14.1307
+        ],
+        [
+          14.7794,
+          -14.0648
+        ],
+        [
+          14.464,
+          -13.8887
+        ],
+        [
+          14.174,
+          -13.6688
+        ],
+        [
+          13.9525,
+          -13.4544
+        ],
+        [
+          13.7059,
+          -13.1987
+        ],
+        [
+          13.4901,
+          -12.8866
+        ],
+        [
+          13.3256,
+          -12.6375
+        ],
+        [
+          13.1791,
+          -12.3965
+        ],
+        [
+          13.076,
+          -12.1196
+        ],
+        [
+          13.0276,
+          -11.8471
+        ],
+        [
+          12.9948,
+          -11.6218
+        ],
+        [
+          12.9963,
+          -11.0455
+        ],
+        [
+          10.3661,
+          -11.0691
+        ],
+        [
+          10.3642,
+          -13.9377
+        ],
+        [
+          10.8037,
+          -13.9535
+        ],
+        [
+          11.2261,
+          -14.0269
+        ],
+        [
+          11.3342,
+          -14.3762
+        ],
+        [
+          12.1455,
+          -14.9395
+        ],
+        [
+          12.402,
+          -14.8685
+        ],
+        [
+          12.6692,
+          -15.2438
+        ],
+        [
+          12.8424,
+          -15.6573
+        ],
+        [
+          12.9078,
+          -15.8722
+        ],
+        [
+          12.6171,
+          -16.0583
+        ],
+        [
+          12.6652,
+          -16.8875
+        ],
+        [
+          12.9616,
+          -17.0751
+        ],
+        [
+          12.8719,
+          -17.3561
+        ],
+        [
+          12.6965,
+          -17.6891
+        ],
+        [
+          12.48,
+          -18.0187
+        ],
+        [
+          12.0196,
+          -17.9685
+        ],
+        [
+          11.1566,
+          -18.6062
+        ],
+        [
+          11.1711,
+          -18.9087
+        ],
+        [
+          10.7164,
+          -18.9964
+        ],
+        [
+          10.1817,
+          -19.0384
+        ],
+        [
+          10.0848,
+          -19.5218
+        ],
+        [
+          10.0197,
+          -19.9292
+        ],
+        [
+          9.882,
+          -20.3242
+        ],
+        [
+          9.7569,
+          -20.7398
+        ],
+        [
+          9.6021,
+          -21.1924
+        ],
+        [
+          9.5039,
+          -21.4595
+        ],
+        [
+          9.3434,
+          -21.7741
+        ],
+        [
+          9.1619,
+          -22.0542
+        ],
+        [
+          9.31,
+          -22.1906
+        ],
+        [
+          9.5387,
+          -22.4383
+        ],
+        [
+          9.7275,
+          -22.6631
+        ],
+        [
+          9.8805,
+          -22.8719
+        ],
+        [
+          9.7797,
+          -23.2633
+        ],
+        [
+          9.9495,
+          -24.2071
+        ],
+        [
+          10.2448,
+          -24.4144
+        ],
+        [
+          10.2129,
+          -24.7262
+        ],
+        [
+          10.1482,
+          -25.0484
+        ],
+        [
+          10.0292,
+          -25.2812
+        ],
+        [
+          9.9124,
+          -25.4748
+        ],
+        [
+          9.5889,
+          -25.4356
+        ],
+        [
+          8.9379,
+          -26.0577
+        ],
+        [
+          8.8847,
+          -26.4202
+        ],
+        [
+          8.2975,
+          -26.6544
+        ],
+        [
+          8.0932,
+          -26.3825
+        ],
+        [
+          6.8865,
+          -26.3048
+        ],
+        [
+          6.7107,
+          -26.4871
+        ],
+        [
+          6.2891,
+          -26.2434
+        ],
+        [
+          5.8156,
+          -25.786
+        ],
+        [
+          5.5048,
+          -26.0033
+        ],
+        [
+          4.9637,
+          -26.3133
+        ],
+        [
+          4.5558,
+          -26.5424
+        ],
+        [
+          4.165,
+          -26.7139
+        ],
+        [
+          3.6213,
+          -26.9124
+        ],
+        [
+          3.0661,
+          -27.0706
+        ],
+        [
+          2.721,
+          -27.1672
+        ],
+        [
+          2.2107,
+          -27.185
+        ],
+        [
+          2.1983,
+          -31.9653
+        ],
+        [
+          2.1333,
+          -32.1369
+        ],
+        [
+          2.0207,
+          -32.3374
+        ],
+        [
+          1.905,
+          -32.5115
+        ],
+        [
+          2.2818,
+          -32.8956
+        ],
+        [
+          1.6741,
+          -33.4819
+        ],
+        [
+          1.3446,
+          -33.154
+        ],
+        [
+          1.2038,
+          -33.2867
+        ],
+        [
+          0.9173,
+          -33.4798
+        ],
+        [
+          0.4451,
+          -33.7102
+        ],
+        [
+          0.0254,
+          -33.7484
+        ],
+        [
+          -0.3826,
+          -33.7416
+        ],
+        [
+          -0.867,
+          -33.6305
+        ],
+        [
+          -1.2361,
+          -33.4304
+        ],
+        [
+          -1.5554,
+          -33.1623
+        ],
+        [
+          -1.8918,
+          -33.4233
+        ],
+        [
+          -2.3961,
+          -32.7866
+        ],
+        [
+          -2.0681,
+          -32.5118
+        ],
+        [
+          -2.2032,
+          -32.3109
+        ],
+        [
+          -2.3261,
+          -31.9801
+        ],
+        [
+          -2.3678,
+          -27.2608
+        ],
+        [
+          -2.7251,
+          -27.2517
+        ],
+        [
+          -3.1727,
+          -27.1369
+        ],
+        [
+          -3.5654,
+          -27.0266
+        ],
+        [
+          -3.9433,
+          -26.8979
+        ],
+        [
+          -4.4631,
+          -26.6857
+        ],
+        [
+          -4.9574,
+          -26.4296
+        ],
+        [
+          -5.4,
+          -26.1516
+        ],
+        [
+          -5.8738,
+          -25.7793
+        ],
+        [
+          -6.3605,
+          -26.1788
+        ],
+        [
+          -6.6987,
+          -26.3939
+        ],
+        [
+          -6.9628,
+          -26.5167
+        ],
+        [
+          -7.0336,
+          -26.3145
+        ],
+        [
+          -8.1481,
+          -26.3882
+        ],
+        [
+          -8.2809,
+          -26.6199
+        ],
+        [
+          -8.5108,
+          -26.6275
+        ],
+        [
+          -9.0295,
+          -26.3957
+        ],
+        [
+          -9.0702,
+          -26.0715
+        ],
+        [
+          -9.8279,
+          -25.2964
+        ],
+        [
+          -10.1095,
+          -25.3261
+        ],
+        [
+          -10.2408,
+          -24.9814
+        ],
+        [
+          -10.3581,
+          -24.317
+        ],
+        [
+          -10.1291,
+          -24.2438
+        ],
+        [
+          -9.9188,
+          -23.1538
+        ],
+        [
+          -10.0402,
+          -22.9541
+        ],
+        [
+          -9.705,
+          -22.4768
+        ],
+        [
+          -9.2857,
+          -22.0522
+        ],
+        [
+          -9.4646,
+          -21.7364
+        ],
+        [
+          -9.7029,
+          -21.2587
+        ],
+        [
+          -9.8905,
+          -20.7785
+        ],
+        [
+          -10.0051,
+          -20.4614
+        ],
+        [
+          -10.0858,
+          -20.1143
+        ],
+        [
+          -10.1483,
+          -19.6901
+        ],
+        [
+          -10.1917,
+          -19.0185
+        ],
+        [
+          -10.8527,
+          -19.0241
+        ],
+        [
+          -11.2055,
+          -18.9367
+        ],
+        [
+          -11.2645,
+          -18.6896
+        ],
+        [
+          -12.3544,
+          -17.9467
+        ],
+        [
+          -12.5728,
+          -17.9945
+        ],
+        [
+          -12.7342,
+          -17.7719
+        ],
+        [
+          -12.8712,
+          -17.5251
+        ],
+        [
+          -12.9934,
+          -17.2598
+        ],
+        [
+          -12.802,
+          -17.1246
+        ],
+        [
+          -12.8025,
+          -15.7949
+        ],
+        [
+          -12.9959,
+          -15.6483
+        ],
+        [
+          -12.9285,
+          -15.4376
+        ],
+        [
+          -12.8266,
+          -15.2624
+        ],
+        [
+          -12.6135,
+          -14.9914
+        ],
+        [
+          -12.3882,
+          -15.062
+        ],
+        [
+          -11.4321,
+          -14.3204
+        ],
+        [
+          -11.4785,
+          -14.094
+        ],
+        [
+          -11.1113,
+          -14.0123
+        ],
+        [
+          -10.9131,
+          -13.9955
+        ],
+        [
+          -10.2932,
+          -13.9866
+        ],
+        [
+          -10.2962,
+          -11.0455
+        ],
+        [
+          -13.0063,
+          -11.0233
+        ],
+        [
+          -13.0318,
+          -11.5387
+        ],
+        [
+          -13.0679,
+          -11.8436
+        ],
+        [
+          -13.1447,
+          -12.0601
+        ],
+        [
+          -13.2703,
+          -12.325
+        ],
+        [
+          -13.4042,
+          -12.5762
+        ],
+        [
+          -13.5613,
+          -12.8321
+        ],
+        [
+          -13.7679,
+          -13.0709
+        ],
+        [
+          -13.9935,
+          -13.3212
+        ],
+        [
+          -14.1925,
+          -13.5082
+        ],
+        [
+          -14.46,
+          -13.6896
+        ],
+        [
+          -14.7115,
+          -13.8331
+        ],
+        [
+          -14.963,
+          -13.9765
+        ],
+        [
+          -15.2123,
+          -14.0809
+        ],
+        [
+          -15.4771,
+          -14.1381
+        ],
+        [
+          -15.7408,
+          -14.1757
+        ],
+        [
+          -16.0719,
+          -14.1883
+        ],
+        [
+          -16.3595,
+          -14.1651
+        ],
+        [
+          -16.683,
+          -14.1259
+        ],
+        [
+          -17.0209,
+          -14.02
+        ],
+        [
+          -17.3775,
+          -13.8406
+        ],
+        [
+          -17.677,
+          -13.6265
+        ],
+        [
+          -17.9038,
+          -13.4248
+        ],
+        [
+          -18.1641,
+          -13.168
+        ],
+        [
+          -18.3989,
+          -12.8674
+        ],
+        [
+          -18.5508,
+          -12.639
+        ],
+        [
+          -18.7034,
+          -12.345
+        ],
+        [
+          -18.8591,
+          -12.0246
+        ],
+        [
+          -18.9493,
+          -11.6833
+        ],
+        [
+          -18.9809,
+          -11.4384
+        ],
+        [
+          -19.0023,
+          -11.0175
+        ],
+        [
+          -21.8833,
+          -11.0142
+        ],
+        [
+          -21.9251,
+          -11.417
+        ],
+        [
+          -21.9802,
+          -11.7334
+        ],
+        [
+          -22.0605,
+          -12.0086
+        ],
+        [
+          -22.1716,
+          -12.3402
+        ],
+        [
+          -22.2853,
+          -12.5603
+        ],
+        [
+          -22.417,
+          -12.7724
+        ],
+        [
+          -22.5433,
+          -12.9718
+        ],
+        [
+          -22.7457,
+          -13.2174
+        ],
+        [
+          -23.0261,
+          -13.4633
+        ],
+        [
+          -23.2122,
+          -13.5859
+        ],
+        [
+          -23.4488,
+          -13.7109
+        ],
+        [
+          -23.7129,
+          -13.8336
+        ],
+        [
+          -23.9663,
+          -13.9311
+        ],
+        [
+          -24.2471,
+          -14.0263
+        ],
+        [
+          -24.512,
+          -14.0836
+        ],
+        [
+          -24.7072,
+          -14.1267
+        ],
+        [
+          -24.9328,
+          -14.1413
+        ],
+        [
+          -25.1741,
+          -14.1087
+        ],
+        [
+          -25.5143,
+          -14.042
+        ],
+        [
+          -25.77,
+          -13.9427
+        ],
+        [
+          -26.1236,
+          -13.7897
+        ],
+        [
+          -26.3549,
+          -13.6663
+        ],
+        [
+          -26.6765,
+          -13.4373
+        ],
+        [
+          -26.8812,
+          -13.2505
+        ],
+        [
+          -27.1248,
+          -13.0212
+        ],
+        [
+          -27.2934,
+          -12.7653
+        ],
+        [
+          -27.4537,
+          -12.5231
+        ],
+        [
+          -27.5697,
+          -12.3107
+        ],
+        [
+          -27.671,
+          -12.0798
+        ],
+        [
+          -27.7589,
+          -11.6994
+        ],
+        [
+          -27.8369,
+          -11.6996
+        ],
+        [
+          -27.8412,
+          -11.4569
+        ],
+        [
+          -28.4884,
+          -11.4636
+        ],
+        [
+          -28.4938,
+          -11.0047
+        ],
+        [
+          -29.6544,
+          -11.0027
+        ],
+        [
+          -29.722,
+          -5.9408
+        ],
+        [
+          -30.8427,
+          -5.9617
+        ],
+        [
+          -30.8463,
+          -4.6056
+        ],
+        [
+          -30.9103,
+          5.8727
+        ],
+        [
+          -29.8677,
+          5.8934
+        ],
+        [
+          -29.9637,
+          13.1452
+        ],
+        [
+          -28.3172,
+          13.1368
+        ],
+        [
+          -26.8213,
+          13.1405
+        ],
+        [
+          -23.2657,
+          13.1417
+        ],
+        [
+          -22.027,
+          13.14
+        ],
+        [
+          -18.6643,
+          13.1372
+        ],
+        [
+          -18.672,
+          13.3212
+        ],
+        [
+          -18.011,
+          13.3268
+        ],
+        [
+          -17.9882,
+          13.4821
+        ],
+        [
+          -17.8253,
+          13.8358
+        ],
+        [
+          -17.5617,
+          14.1092
+        ],
+        [
+          -17.306,
+          14.2458
+        ],
+        [
+          -16.943,
+          14.3344
+        ],
+        [
+          -16.5267,
+          14.3139
+        ],
+        [
+          -16.086,
+          14.3176
+        ],
+        [
+          -16.0968,
+          15.7071
+        ],
+        [
+          -16.1296,
+          19.0829
+        ],
+        [
+          -16.1297,
+          20.0261
+        ],
+        [
+          -16.1406,
+          22.1229
+        ],
+        [
+          -16.1512,
+          24.3048
+        ],
+        [
+          -16.1577,
+          25.2158
+        ],
+        [
+          -16.3329,
+          57.4157
+        ],
+        [
+          -17.4167,
+          57.3984
+        ],
+        [
+          -17.6829,
+          74.7245
+        ],
+        [
+          -16.9028,
+          74.7271
+        ],
+        [
+          -16.9082,
+          75.186
+        ],
+        [
+          -16.4169,
+          75.1922
+        ],
+        [
+          -16.414,
+          76.1089
+        ],
+        [
+          -14.487,
+          76.1106
+        ],
+        [
+          -14.4953,
+          75.1812
+        ],
+        [
+          -14.0641,
+          75.1791
+        ],
+        [
+          -14.0656,
+          74.6029
+        ],
+        [
+          -10.8684,
+          74.5937
+        ],
+        [
+          -10.8575,
+          75.6474
+        ],
+        [
+          -9.7201,
+          75.6407
+        ],
+        [
+          -9.7295,
+          74.6918
+        ],
+        [
+          -6.8896,
+          74.6918
+        ],
+        [
+          -6.8855,
+          75.1565
+        ],
+        [
+          -6.4079,
+          75.1638
+        ],
+        [
+          -6.4049,
+          75.609
+        ],
+        [
+          -6.4027,
+          76.1197
+        ],
+        [
+          -6.405,
+          76.3164
+        ],
+        [
+          6.7677,
+          76.334
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "The native basilica envelope and attached chapels around its eastern ambulatory."
+    },
+    "featureIds": [
+      "way/260584755"
+    ],
+    "source": "https://www.openstreetmap.org/way/260584755",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6c7d778686e56e28196ed76d340df99c74f9b96a1ba5adcb5c0f6842137734ba",
+    "notes": "Octagonal five-story tower with mixed rounded and pointed paired openings, low tiled roofs, stepped brick and stone chevet, and wide west mass with two arched portals and a rose."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The outline and tower height follow the map and municipal record. The detailed sculpture and carved stone bands are stylistic interpretations; individual roof eaves and podium steps are estimated where sources disagree."
+  ],
+  "sourceLicense": "Original model based on firsthand CC0 Qualla and supplemental photography, native OpenStreetMap geometry under ODbL and open Mapzen terrain.",
+  "qaLodCameras": [
+    {
+      "name": "saint-sernin-toulouse-skyline",
+      "position": [
+        106,
+        57,
+        123
+      ],
+      "lookAt": [
+        1,
+        23,
+        18
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "saint-sernin-toulouse-district",
+      "position": [
+        106,
+        57,
+        123
+      ],
+      "lookAt": [
+        1,
+        23,
+        18
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "saint-sernin-toulouse-street",
+      "position": [
+        106,
+        57,
+        123
+      ],
+      "lookAt": [
+        1,
+        23,
+        18
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "saint-sernin-toulouse-closeup",
+      "position": [
+        106,
+        57,
+        123
+      ],
+      "lookAt": [
+        1,
+        23,
+        18
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-rose-and-crossing-tower",
+      "position": [
+        106,
+        57,
+        123
+      ],
+      "lookAt": [
+        1,
+        23,
+        18
+      ]
+    },
+    {
+      "name": "miegeville-portal-and-south-nave",
+      "position": [
+        67,
+        13,
+        50
+      ],
+      "lookAt": [
+        16.8,
+        11,
+        40
+      ]
+    },
+    {
+      "name": "chevet-and-radial-chapels",
+      "position": [
+        68,
+        27,
+        -88
+      ],
+      "lookAt": [
+        0,
+        23,
+        -9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18668,
+    "vertices": 56004,
+    "materials": 7,
+    "bytes": 2528060,
+    "sha256": "sha256:94dff3f9f29d62e11030a566e8bc533c8062e17c9d37f9803fe1907bf94929d5"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "format": "molen/scene@3",
+  "name": "Royal Monastery of San Lorenzo de El Escorial",
+  "seed": "royal_monastery_of_san_lorenzo_de_el_escorial",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": { "mode": "fixed", "position": [-244, 145, 207], "lookAt": [-25, 17, 0], "fov": 48 },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.royal_monastery_of_san_lorenzo_de_el_escorial",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [-39, 40, 31],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -0.62, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [696, 1.18, 696] },
+          "materialRef": "palette:#a8a084",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,255 @@
+{
+  "id": "shaolin_pagoda_forest",
+  "planId": "shaolin_pagoda_forest",
+  "title": "Shaolin Pagoda Forest",
+  "assetId": "molen.worldgen.structure.shaolin_pagoda_forest",
+  "category": "religious",
+  "wikidataId": "Q1081096",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 112.93109804391861,
+    "latitude": 34.50467342065835
+  },
+  "visualBrief": "Rows of square, hexagonal, octagonal and round brick-and-stone memorials rise across the slopes of the Pagoda Forest. A taller seven-tier pagoda stands inside a low stone enclosure near the approach. Narrow mapped footways thread between the groups.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ww/ww0/shaolin_pagoda_forest/models/pagodas.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.zhengzhou.gov.cn/view22/6590185.jhtml",
+    "https://xinmi.zfcg.henan.gov.cn/cmsweb81e27e/nas/webfile2024/dengfeng/rootfiles/2025/11/19/714ddb94260e4e4fa2f9518917195f07.pdf",
+    "https://www.openstreetmap.org/way/181147410"
+  ],
+  "geographicProposal": {
+    "id": "shaolin-pagoda-forest",
+    "title": "Shaolin Pagoda Forest",
+    "asset": "molen.worldgen.structure.shaolin_pagoda_forest",
+    "anchor": [
+      112.93109804391861,
+      34.50467342065835
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 604.3203125,
+    "bounds": [
+      112.9301928983468,
+      34.5040571395384,
+      112.93257960165386,
+      34.505660866017806
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q1081096",
+      "names": [
+        "Shaolin Pagoda Forest",
+        "塔林",
+        "少林寺塔林",
+        "Songshan Pagoda Forest",
+        "Pagoda Forest at Shaolin Temple"
+      ],
+      "maxDistance": 137
+    },
+    "source": "https://www.openstreetmap.org/way/181147410",
+    "note": "Aerial observations are fitted to the mapped Pagoda Forest boundary and paths. Terrain elevations and the enclosing site are geographic. Individual pagoda positions and dimensions are approximate.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8ad2924864cb0c1620954d7b10f0c2dd7061d5ad1f116740c440e4cc404018d2"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.97
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97
+      },
+      "cap": {
+        "slot": "roof",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96
+      }
+    },
+    "errorMeters": 1.34,
+    "module": "content/worldgen/source/places/ww/ww0/shaolin_pagoda_forest/models/pagodas.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "cap": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.61
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "cap": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.27
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "cap": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        1,
+        2,
+        -2
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "seven-tier-pagoda-and-stone-enclosure",
+      "position": [
+        8,
+        12,
+        59
+      ],
+      "lookAt": [
+        8.92,
+        1.1,
+        21.17
+      ],
+      "fov": 56
+    },
+    {
+      "name": "terraces-and-pagoda-groups",
+      "position": [
+        62,
+        42,
+        36
+      ],
+      "lookAt": [
+        -11,
+        4,
+        -8
+      ],
+      "fov": 62
+    },
+    {
+      "name": "brick-courses-and-eave-profiles",
+      "position": [
+        25,
+        9,
+        16
+      ],
+      "lookAt": [
+        -1,
+        2,
+        -8
+      ],
+      "fov": 63
+    }
+  ],
+  "limitations": [
+    "The cataloged inventory is represented at full density. The available PMTiles and OSM data supply the site perimeter and footways. Of the 228 modeled pagodas, 116 positions are fitted from the oblique aerial photo and 112 are inferred within the mapped terraces. Individual dimensions and decorations are approximations."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -71.46546936035156,
+      -11.194999694824219,
+      -76.31578826904297
+    ],
+    "max": [
+      89.67842864990234,
+      21.942119598388672,
+      36.34638595581055
+    ]
+  },
+  "size": [
+    161.1438980102539,
+    33.13711929321289,
+    112.66217422485352
+  ],
+  "mesh": {
+    "triangles": 54696,
+    "vertices": 109046,
+    "materials": 3,
+    "bytes": 4584516,
+    "sha256": "sha256:038d580d4786f9ee3f9d16f45c04299540693268195c26ba47386bf5e8c7b43b"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats"
+    }
+  ]
+}

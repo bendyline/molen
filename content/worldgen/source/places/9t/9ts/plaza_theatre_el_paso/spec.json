@@ -1,0 +1,554 @@
+{
+  "planId": "plaza_theatre_el_paso",
+  "id": "plaza_theatre_el_paso",
+  "assetId": "molen.worldgen.structure.plaza_theatre_el_paso",
+  "title": "Plaza Theatre (El Paso)",
+  "wikidataId": "Q573955",
+  "category": "theatre",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -106.48966,
+    "latitude": 31.759061
+  },
+  "size": [
+    56.26490020751953,
+    27.35999983549118,
+    105.68159866333008
+  ],
+  "actualBounds": {
+    "min": [
+      -31.703500747680664,
+      -0.44999998807907104,
+      -49.371299743652344
+    ],
+    "max": [
+      24.561399459838867,
+      26.90999984741211,
+      56.310298919677734
+    ]
+  },
+  "visualBrief": "The Spanish Colonial Revival Plaza Theatre in El Paso, with its scrolled stucco gable, mosaic balcony, decorated marquee, auditorium and tall stage house.",
+  "nativeAxes": {
+    "x": "east-northeast across the front facade",
+    "y": "up",
+    "z": "south-southeast toward Pioneer Plaza"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/tx_m_3110613_sw_13_060_20220529",
+    "https://www.loc.gov/item/2014630837/"
+  ],
+  "stories": [
+    {
+      "id": "plaza-theatre-el-paso-wp",
+      "url": "https://qualla.com/plaza-theatre-el-paso/"
+    }
+  ],
+  "referenceInputHash": "sha256:f8effcfe79deb37df503a89017b7e3779e1949019d4e47977a8b7ae5b72f4d20",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9t/9ts/plaza_theatre_el_paso/models/plaza-theatre-el-paso-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9t/9ts/plaza_theatre_el_paso/models/plaza-theatre-el-paso-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.91,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.74
+      },
+      "tile": {
+        "slot": "trim",
+        "graph": "tile_ceramic",
+        "roughness": 0.76
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.89
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.82
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.9
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.45
+      },
+      "accent": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.68
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.38,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.76
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.89
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.82
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.76
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.89
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.82
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.053,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.76
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.89
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.82
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "metal_painted",
+    "tile_ceramic",
+    "metal_standing_seam",
+    "wood_plain",
+    "stone_limestone"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.75,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original bare-earth elevation from USGS 3DEP on the paved approach immediately in front of the marquee.",
+    "anchor": [
+      -106.48966,
+      31.759061
+    ],
+    "heading": 0.2478976045050591,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -106.48933192011697,
+        31.758590837350795
+      ],
+      "modelHeight": 0,
+      "basis": "Original bare-earth elevation from USGS 3DEP on the paved approach immediately in front of the marquee."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -20.2822,
+          21.0362
+        ],
+        [
+          -20.1191,
+          18.0001
+        ],
+        [
+          -17.8327,
+          -10.6684
+        ],
+        [
+          -22.4254,
+          -8.9945
+        ],
+        [
+          -23.8997,
+          -12.6978
+        ],
+        [
+          -31.7035,
+          -32.3223
+        ],
+        [
+          9.1862,
+          -49.3713
+        ],
+        [
+          15.7908,
+          -33.9201
+        ],
+        [
+          14.5363,
+          -15.5778
+        ],
+        [
+          13.087,
+          -15.7149
+        ],
+        [
+          9.5493,
+          22.1792
+        ],
+        [
+          12.2246,
+          22.1788
+        ],
+        [
+          18.5132,
+          51.1459
+        ],
+        [
+          19.9658,
+          51.0772
+        ],
+        [
+          21.0505,
+          56.3583
+        ],
+        [
+          17.0914,
+          56.4931
+        ],
+        [
+          13.474,
+          56.3583
+        ],
+        [
+          13.4369,
+          50.217
+        ],
+        [
+          -6.0316,
+          48.1717
+        ],
+        [
+          -4.1007,
+          23.1453
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Replace the building outlined as Plaza Theatre, while retaining adjacent historic structures."
+    },
+    "featureIds": [
+      "way/262818922"
+    ],
+    "source": "https://www.openstreetmap.org/way/262818922",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:05d5fca3692059e7b5368a966366dcccf5c8be4dc9f0fb5007a72e5526b680af",
+    "notes": "The original Highsmith shot verifies the curved Spanish Colonial Revival gable, small round-arched balcony panel, relief sign, four pairs of doors and the geometric marquee. The theatre plan and technical records distinguish the auditorium from the adjacent mixed-use tower."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "OpenStreetMap and the USDA orthophoto establish the extents. Main heights, the secondary roof equipment and rear opening details are estimated.",
+    "The marquee’s decorative pattern and lettering are model geometry. The message board is unlettered and the interior is outside the scope.",
+    "The connected Centre Building and adjacent Art Museum are separate structures."
+  ],
+  "sourceLicense": "Original model from Carol M. Highsmith’s public-domain Library of Congress photograph, public-domain USDA aerial imagery, the named OpenStreetMap outline and USGS 3DEP terrain.",
+  "qaLodCameras": [
+    {
+      "name": "plaza-theatre-el-paso-skyline",
+      "position": [
+        78,
+        64,
+        132
+      ],
+      "lookAt": [
+        0,
+        10.2,
+        3.4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "plaza-theatre-el-paso-district",
+      "position": [
+        78,
+        64,
+        132
+      ],
+      "lookAt": [
+        0,
+        10.2,
+        3.4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "plaza-theatre-el-paso-street",
+      "position": [
+        78,
+        64,
+        132
+      ],
+      "lookAt": [
+        0,
+        10.2,
+        3.4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "plaza-theatre-el-paso-closeup",
+      "position": [
+        78,
+        64,
+        132
+      ],
+      "lookAt": [
+        0,
+        10.2,
+        3.4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "pioneer-plaza-entrance",
+      "position": [
+        18.2622,
+        8.9,
+        81.8583
+      ],
+      "lookAt": [
+        17.2622,
+        6.55,
+        54.7083
+      ]
+    },
+    {
+      "name": "auditorium-stage-house-and-entry-wing",
+      "position": [
+        78,
+        64,
+        132
+      ],
+      "lookAt": [
+        0,
+        10.2,
+        3.4
+      ]
+    },
+    {
+      "name": "stage-house-and-rear-roofs",
+      "position": [
+        -79,
+        64,
+        -98
+      ],
+      "lookAt": [
+        -3,
+        10.8,
+        -17
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4384,
+    "vertices": 13152,
+    "materials": 8,
+    "bytes": 718308,
+    "sha256": "sha256:860fd7a6b35bb02a566b4000800389a4cd88e6627772c76f3ce36e967e09bf50"
+  }
+}

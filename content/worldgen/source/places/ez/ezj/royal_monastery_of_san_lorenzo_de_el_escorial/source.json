@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.royal_monastery_of_san_lorenzo_de_el_escorial",
+  "kind": "static-structure",
+  "title": "Royal Monastery of San Lorenzo de El Escorial",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.royal_monastery_of_san_lorenzo_de_el_escorial",
+        "output": "assets/places/ez/ezj/royal_monastery_of_san_lorenzo_de_el_escorial/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:45634369f2c1fc8c9337e423859ae37f7b55162a084ac3032714021cf99a7835"
+      }
+    ],
+    "generators": [
+      {
+        "id": "royal_monastery_of_san_lorenzo_de_el_escorial",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "monastery-model",
+        "path": "models/monastery-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,0 +1,749 @@
+{
+  "planId": "california_memorial_stadium",
+  "id": "california_memorial_stadium",
+  "assetId": "molen.worldgen.structure.california_memorial_stadium",
+  "title": "California Memorial Stadium",
+  "wikidataId": "Q1026837",
+  "category": "stadium",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -122.25076117500001,
+    "latitude": 37.871004424999995
+  },
+  "size": [
+    180.7370834350586,
+    30.06999909877777,
+    236.48694610595703
+  ],
+  "actualBounds": {
+    "min": [
+      -90.09093475341797,
+      -0.36000001430511475,
+      -116.87142181396484
+    ],
+    "max": [
+      90.64614868164062,
+      29.709999084472656,
+      119.61552429199219
+    ]
+  },
+  "visualBrief": "The current California Memorial Stadium bowl with Berkeley’s historic west arches, gold bleachers, west press box and the hillside east terraces.",
+  "nativeAxes": {
+    "x": "northeast across the field",
+    "y": "up",
+    "z": "southeast down the field"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:California_Memorial_Stadium_2_(6-11).jpg",
+    "https://commons.wikimedia.org/wiki/File:California_Memorial_Stadium_2_(1-31).jpg",
+    "https://commons.wikimedia.org/wiki/File:California_Memorial_Stadium_(3-30).jpg",
+    "https://commons.wikimedia.org/wiki/File:California_Memorial_Stadium,_November_2025.jpg",
+    "https://commons.wikimedia.org/wiki/File:California_Memorial_Stadium_from_Tightwad_Mtn.jpg"
+  ],
+  "stories": [
+    {
+      "id": "california-memorial-stadium-wp",
+      "url": "https://qualla.com/california-memorial-stadium/"
+    }
+  ],
+  "referenceInputHash": "sha256:867c0a789c3de502ed08028e1102df195273b4de0668d9e218c6e17ced625164",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9q/9q9/california_memorial_stadium/models/california-memorial-stadium-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9q/9q9/california_memorial_stadium/models/california-memorial-stadium-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.98,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94
+      },
+      "concrete": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.18
+      },
+      "grass": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.99
+      },
+      "bleacher": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93
+      },
+      "paint": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.97
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.71
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.91
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.46,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "bleacher": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.71
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "bleacher": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.71
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.074,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "bleacher": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.71
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Measured 3DEP playing surface and the current surrounding grade at Strawberry Canyon.",
+    "anchor": [
+      -122.25076117500001,
+      37.871004424999995
+    ],
+    "heading": 0.727528000598122,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -122.25076117500001,
+        37.871004424999995
+      ],
+      "modelHeight": 0,
+      "basis": "USGS 3DEP field elevation at the centerline of the native mapped football field. Surveys retain the slope between the east earth bank and west arcade plaza."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -87.086314,
+          9.028006
+        ],
+        [
+          -84.808128,
+          32.107910000000004
+        ],
+        [
+          -81.51893,
+          50.962602
+        ],
+        [
+          -77.623904,
+          60.964608
+        ],
+        [
+          -74.064908,
+          70.623766
+        ],
+        [
+          -65.101186,
+          84.804232
+        ],
+        [
+          -52.99534,
+          97.29772999999999
+        ],
+        [
+          -38.450598,
+          108.261074
+        ],
+        [
+          -18.86638,
+          114.492726
+        ],
+        [
+          0.28733,
+          116.536178
+        ],
+        [
+          17.94108,
+          115.269978
+        ],
+        [
+          34.427978,
+          110.64153
+        ],
+        [
+          46.969201999999996,
+          104.228714
+        ],
+        [
+          58.126371999999996,
+          95.173436
+        ],
+        [
+          72.224048,
+          79.329378
+        ],
+        [
+          79.963452,
+          63.456100000000006
+        ],
+        [
+          85.79966,
+          43.144304
+        ],
+        [
+          88.29310000000001,
+          20.292316
+        ],
+        [
+          87.161312,
+          -22.194537999999998
+        ],
+        [
+          83.394854,
+          -44.683223999999996
+        ],
+        [
+          75.497662,
+          -66.292388
+        ],
+        [
+          65.8424,
+          -81.974762
+        ],
+        [
+          57.119256,
+          -91.60080400000001
+        ],
+        [
+          43.263132,
+          -101.921308
+        ],
+        [
+          38.548972,
+          -104.14397600000001
+        ],
+        [
+          27.989838,
+          -109.13377799999999
+        ],
+        [
+          12.74966,
+          -112.352848
+        ],
+        [
+          -3.295042,
+          -113.70476
+        ],
+        [
+          -19.469286,
+          -111.39735399999999
+        ],
+        [
+          -32.45855,
+          -107.429278
+        ],
+        [
+          -46.375062,
+          -99.626564
+        ],
+        [
+          -59.169526,
+          -88.38563
+        ],
+        [
+          -70.23416599999999,
+          -74.76229199999999
+        ],
+        [
+          -78.233628,
+          -59.151019999999995
+        ],
+        [
+          -83.44744999999999,
+          -43.08976
+        ],
+        [
+          -86.631456,
+          -22.885104
+        ]
+      ],
+      "minHeight": -0.65,
+      "basis": "The recess follows the stadium bowl and the surveyed playing field. Adjoining canyon terrain stays at source grade."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -89.411,
+          9.269
+        ],
+        [
+          -87.072,
+          32.965
+        ],
+        [
+          -83.695,
+          52.323
+        ],
+        [
+          -79.696,
+          62.592
+        ],
+        [
+          -76.042,
+          72.509
+        ],
+        [
+          -66.839,
+          87.068
+        ],
+        [
+          -54.41,
+          99.895
+        ],
+        [
+          -39.477,
+          111.151
+        ],
+        [
+          -19.37,
+          117.549
+        ],
+        [
+          0.295,
+          119.647
+        ],
+        [
+          18.42,
+          118.347
+        ],
+        [
+          35.347,
+          113.595
+        ],
+        [
+          48.223,
+          107.011
+        ],
+        [
+          59.678,
+          97.714
+        ],
+        [
+          74.152,
+          81.447
+        ],
+        [
+          82.098,
+          65.15
+        ],
+        [
+          88.09,
+          44.296
+        ],
+        [
+          90.65,
+          20.834
+        ],
+        [
+          89.488,
+          -22.787
+        ],
+        [
+          85.621,
+          -45.876
+        ],
+        [
+          77.513,
+          -68.062
+        ],
+        [
+          67.6,
+          -84.163
+        ],
+        [
+          58.644,
+          -94.046
+        ],
+        [
+          44.418,
+          -104.642
+        ],
+        [
+          39.578,
+          -106.924
+        ],
+        [
+          28.737,
+          -112.047
+        ],
+        [
+          13.09,
+          -115.352
+        ],
+        [
+          -3.383,
+          -116.74
+        ],
+        [
+          -19.989,
+          -114.371
+        ],
+        [
+          -33.325,
+          -110.297
+        ],
+        [
+          -47.613,
+          -102.286
+        ],
+        [
+          -60.749,
+          -90.745
+        ],
+        [
+          -72.109,
+          -76.758
+        ],
+        [
+          -80.322,
+          -60.73
+        ],
+        [
+          -85.675,
+          -44.24
+        ],
+        [
+          -88.944,
+          -23.496
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "The named stadium’s mapped outer perimeter."
+    },
+    "featureIds": [
+      "way/24025053"
+    ],
+    "source": "https://www.openstreetmap.org/way/24025053",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2fcf77543174590cb1f472cfe716d3cdcb645df09ac36b0ffea0ac94b200b9f6",
+    "notes": "The university documents the preserved arched western façade, lower playing surface, hillside seating, and glazed two-level press box above the western rim. Qualla’s exact reconstruction imagery reveals the open arches and modern deck structure."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Stadium, field and press box use the measured map and LiDAR. Row exactness, small concessions and rail profiles are representative.",
+    "Team logos, temporary event signage and adjacent athletic-center interiors are outside the model."
+  ],
+  "sourceLicense": "Original model. Creator-dedicated CC0 photographs, OpenStreetMap ODbL outlines and public-domain U.S. Geological Survey elevation.",
+  "qaLodCameras": [
+    {
+      "name": "california-memorial-stadium-skyline",
+      "position": [
+        -231,
+        112,
+        165
+      ],
+      "lookAt": [
+        -1,
+        8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "california-memorial-stadium-district",
+      "position": [
+        -231,
+        112,
+        165
+      ],
+      "lookAt": [
+        -1,
+        8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "california-memorial-stadium-street",
+      "position": [
+        -231,
+        112,
+        165
+      ],
+      "lookAt": [
+        -1,
+        8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "california-memorial-stadium-closeup",
+      "position": [
+        -231,
+        112,
+        165
+      ],
+      "lookAt": [
+        -1,
+        8,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-stadium-and-historic-west-arcade",
+      "position": [
+        -231,
+        112,
+        165
+      ],
+      "lookAt": [
+        -1,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "open-bowl-from-the-east-hillside",
+      "position": [
+        122,
+        46,
+        -101
+      ],
+      "lookAt": [
+        -7,
+        8,
+        10
+      ]
+    },
+    {
+      "name": "west-facade-and-two-storey-press-box",
+      "position": [
+        -164,
+        19,
+        18
+      ],
+      "lookAt": [
+        -83,
+        16,
+        6
+      ]
+    },
+    {
+      "name": "playing-surface-and-seating-aisles",
+      "position": [
+        46,
+        21,
+        77
+      ],
+      "lookAt": [
+        -20,
+        3,
+        -9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 21030,
+    "vertices": 63090,
+    "materials": 6,
+    "bytes": 2592524,
+    "sha256": "sha256:c891bd3e620d00d9329f6e149ea76b2465dd81483089793d640de51fe3948b63"
+  }
+}

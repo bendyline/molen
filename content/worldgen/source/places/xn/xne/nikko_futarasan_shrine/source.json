@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.nikko_futarasan_shrine",
+  "kind": "static-structure",
+  "title": "Nikkō Futarasan Shrine",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.nikko_futarasan_shrine",
+        "output": "assets/places/xn/xne/nikko_futarasan_shrine/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:755a7aa40f96f7e6784304c0a242140e3c1fa1b780c1f7228c68eb36139d19e2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "nikko_futarasan_shrine",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "precinct",
+        "path": "models/precinct.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

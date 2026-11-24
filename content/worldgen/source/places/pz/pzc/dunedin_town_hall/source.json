@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.dunedin_town_hall",
+  "kind": "static-structure",
+  "title": "Dunedin Town Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.dunedin_town_hall",
+        "output": "assets/places/pz/pzc/dunedin_town_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:60a7d2fe633c46ac6dcb0ea97d094087f8ece2888f9ecfe2360c021ba71c4236"
+      }
+    ],
+    "generators": [
+      {
+        "id": "dunedin_town_hall",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "octagon-civic-halls",
+        "path": "models/octagon-civic-halls.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

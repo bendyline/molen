@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.government_house_nassau",
+  "kind": "static-structure",
+  "title": "Government House, Nassau",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.government_house_nassau",
+        "output": "assets/places/dk/dk2/government_house_nassau/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2d58b59769ad0ba0578a80a6a200c1a62e1cf45cc49086d39a6aa9212562bddc"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-government-house-nassau",
+        "path": "models/generate-government-house-nassau.mjs"
+      },
+      {
+        "id": "government-house-nassau-model",
+        "path": "models/government-house-nassau-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/government-house-nassau-footprint.json",
+      "native-map/government-house-nassau-shape-controls.json",
+      "reference-rights/government-house-nassau-architectural-facts.json",
+      "references/nassau-government-house-71833-front.jpg",
+      "reference-rights/nassau-government-house-record.html",
+      "reference-rights/nassau-government-house-manifest.json",
+      "reference-rights/nassau-government-house-71833-back.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-glo30-native-government-house-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

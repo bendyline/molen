@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.ali_qapu",
+  "kind": "static-structure",
+  "title": "Ali Qapu",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.ali_qapu",
+        "output": "assets/places/tj/tju/ali_qapu/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:0777986cd22c800f53ae03742687f88004e0e66c1a3b70734d4d20dbab0cd416"
+      }
+    ],
+    "generators": [
+      {
+        "id": "ali_qapu",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "palace",
+        "path": "models/palace.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

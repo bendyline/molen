@@ -1,0 +1,497 @@
+{
+  "planId": "tower_hill_memorial",
+  "id": "tower_hill_memorial",
+  "assetId": "molen.worldgen.structure.tower_hill_memorial",
+  "title": "Tower Hill Memorial",
+  "wikidataId": "Q2911428",
+  "category": "memorial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -0.0776759,
+    "latitude": 51.5098475
+  },
+  "size": [
+    32.25820732116699,
+    8.885999858379364,
+    46.84424686431885
+  ],
+  "actualBounds": {
+    "min": [
+      -17.17036247253418,
+      -0.7260000109672546,
+      -11.617737770080566
+    ],
+    "max": [
+      15.087844848632812,
+      8.15999984741211,
+      35.22650909423828
+    ]
+  },
+  "visualBrief": "Lutyens’s Portland stone Merchant Navy pavilion and Maufe’s adjoining sunken bronze memorial garden at Tower Hill.",
+  "nativeAxes": {
+    "x": "pavilion east",
+    "y": "up",
+    "z": "street side"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Entrance_to_the_%27Tower_Hill_Memorial%27_in_London..jpg",
+    "https://www.usmodernist.org/AJUK/AJUK-1928-12-19.pdf#page=4"
+  ],
+  "stories": [
+    {
+      "id": "tower-hill-memorial-wp",
+      "url": "https://qualla.com/tower-hill-memorial/"
+    }
+  ],
+  "referenceInputHash": "sha256:b78c8ba29b39478c363cbe73dcc9ff0c0b484192e88e6c3ef43117bd6ad70222",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcp/tower_hill_memorial/models/tower-hill-memorial-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gcp/tower_hill_memorial/models/tower-hill-memorial-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.46,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.91
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "stone_limestone",
+        "roughness": 0.96
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "lawn": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.99
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.86,
+        "metallic": 0.35
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.89
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "lawn": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.86,
+            "metallic": 0.35
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "lawn": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.86,
+            "metallic": 0.35
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.047,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "lawn": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.86,
+            "metallic": 0.35
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_ashlar",
+    "metal_bronze_cast",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unaltered Environment Agency bare-earth height from the southern street edge at the pavilion.",
+    "anchor": [
+      -0.0776759,
+      51.5098475
+    ],
+    "heading": 0.07466953487340236,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -0.07759503430822917,
+        51.509535977606134
+      ],
+      "modelHeight": 0,
+      "basis": "Unaltered Environment Agency bare-earth height from the southern street edge at the pavilion."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -9.7218,
+          13.15254
+        ],
+        [
+          -9.64324,
+          1.81855
+        ],
+        [
+          -9.97712,
+          -1.0813000000000001
+        ],
+        [
+          -8.91656,
+          -4.19741
+        ],
+        [
+          -8.01312,
+          -5.75055
+        ],
+        [
+          -6.35354,
+          -7.82468
+        ],
+        [
+          -4.1244000000000005,
+          -9.10258
+        ],
+        [
+          -1.00164,
+          -9.9283
+        ],
+        [
+          0.90344,
+          -9.721870000000001
+        ],
+        [
+          3.9967400000000004,
+          -9.08292
+        ],
+        [
+          6.4615599999999995,
+          -7.991790000000001
+        ],
+        [
+          7.954199999999999,
+          -5.91766
+        ],
+        [
+          8.9362,
+          -4.2072400000000005
+        ],
+        [
+          9.66288,
+          -1.1796
+        ],
+        [
+          9.5254,
+          13.10339
+        ]
+      ],
+      "minHeight": -0.53,
+      "basis": "Restricted to the documented depression within the north memorial’s surveyed inner retaining wall."
+    },
+    "featureIds": [
+      "way/1182295535",
+      "way/54949420",
+      "way/625341129",
+      "way/1182291254",
+      "way/1182291252",
+      "way/1182291253"
+    ],
+    "source": "https://www.openstreetmap.org/way/1182295535",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8a7e1633a48141e386f3b07d24cb1ef08f55286c7a2fe2b359fe3838cc174de3",
+    "notes": "The Environment Agency 1 m terrain delineates the sunken garden’s floor, stair rise and street platform. Individual dimensions for the pavilion superstructure and the gate pylons are approximate from the original photographs and verified architecture description."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Pavilion roof profile and individual pylon heights are reconstructed from photography at model scale. The plates, decorative relief blocks and compass convey the forms of the memorial at medium detail. Engraved names and individual sculptural likeness are outside the model scope.",
+    "Nearby park, 2005 Falklands monument, and unrelated buildings remain supplied by the existing world."
+  ],
+  "sourceLicense": "Original geometry from exact public-domain photography, ODbL mapped construction and Environment Agency open lidar.",
+  "qaLodCameras": [
+    {
+      "name": "tower-hill-memorial-skyline",
+      "position": [
+        35,
+        24,
+        55
+      ],
+      "lookAt": [
+        0,
+        2.5,
+        13
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "tower-hill-memorial-district",
+      "position": [
+        35,
+        24,
+        55
+      ],
+      "lookAt": [
+        0,
+        2.5,
+        13
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "tower-hill-memorial-street",
+      "position": [
+        35,
+        24,
+        55
+      ],
+      "lookAt": [
+        0,
+        2.5,
+        13
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "tower-hill-memorial-closeup",
+      "position": [
+        35,
+        24,
+        55
+      ],
+      "lookAt": [
+        0,
+        2.5,
+        13
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "pavilion-and-sunken-court",
+      "position": [
+        35,
+        24,
+        55
+      ],
+      "lookAt": [
+        0,
+        2.5,
+        13
+      ]
+    },
+    {
+      "name": "curved-bronze-garden-and-pylons",
+      "position": [
+        13,
+        11,
+        -15
+      ],
+      "lookAt": [
+        0,
+        1,
+        6
+      ]
+    },
+    {
+      "name": "portland-stone-doric-pavilion",
+      "position": [
+        16,
+        7,
+        42
+      ],
+      "lookAt": [
+        1.5,
+        3.79,
+        31
+      ]
+    },
+    {
+      "name": "paired-pylons-and-stone-of-remembrance",
+      "position": [
+        10.2,
+        3.7,
+        21.2
+      ],
+      "lookAt": [
+        0.7,
+        1.9,
+        13.8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11742,
+    "vertices": 35226,
+    "materials": 6,
+    "bytes": 1588396,
+    "sha256": "sha256:620e1d346302fd25d0c545c3d121e3f1d07ff035e0ce4e442bfdf9bbea9a1d59"
+  }
+}

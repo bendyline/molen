@@ -1,0 +1,579 @@
+{
+  "planId": "falaknuma_palace",
+  "id": "falaknuma_palace",
+  "assetId": "molen.worldgen.structure.falaknuma_palace",
+  "title": "Falaknuma Palace",
+  "wikidataId": "Q2263539",
+  "category": "historic-palace",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 78.467504,
+    "latitude": 17.330955
+  },
+  "size": [
+    161.7401885986328,
+    34.26926803588867,
+    228.50737762451172
+  ],
+  "actualBounds": {
+    "min": [
+      -120.0901870727539,
+      -6.5,
+      -120.69000244140625
+    ],
+    "max": [
+      41.650001525878906,
+      27.769268035888672,
+      107.81737518310547
+    ]
+  },
+  "visualBrief": "Falaknuma Palace in Hyderabad, with a two-storey classical portico above twin north stairs and connected ranges around an open court.",
+  "nativeAxes": {
+    "x": "east along the facade",
+    "y": "up",
+    "z": "south toward the rear range"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://archive.org/details/india.history.resource.643/page/n225/mode/1up"
+  ],
+  "stories": [
+    {
+      "id": "falaknuma-palace-wp",
+      "url": "https://qualla.com/falaknuma-palace/"
+    }
+  ],
+  "referenceInputHash": "sha256:a23afa0bd4abb428e755819f104366b4574e925bf46caf9c429d841ad90db142",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/te/tep/falaknuma_palace/models/falaknuma-palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/te/tep/falaknuma_palace/models/falaknuma-palace-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.8,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.89
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.66,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.16,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Copernicus surface elevation sampled on the main north approach axis directly ahead of the staircase.",
+    "anchor": [
+      78.467504,
+      17.330955
+    ],
+    "heading": -0.017453292519943295,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        78.46752337950585,
+        17.33201484574226
+      ],
+      "modelHeight": 0,
+      "basis": "Original Copernicus surface elevation sampled on the main north approach axis directly ahead of the staircase."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -40.0139,
+          -112.5753
+        ],
+        [
+          -8.2481,
+          -112.072
+        ],
+        [
+          -8.0593,
+          -115.2596
+        ],
+        [
+          -0.0707,
+          -115.4769
+        ],
+        [
+          9.3627,
+          -115.7307
+        ],
+        [
+          9.2591,
+          -112.5335
+        ],
+        [
+          41.2614,
+          -113.0921
+        ],
+        [
+          40.7598,
+          -86.4183
+        ],
+        [
+          36.2215,
+          -85.2034
+        ],
+        [
+          35.2332,
+          -76.0677
+        ],
+        [
+          30.1916,
+          -71.4149
+        ],
+        [
+          21.7182,
+          -66.7022
+        ],
+        [
+          20.7305,
+          -58.1343
+        ],
+        [
+          33.2679,
+          -58.3532
+        ],
+        [
+          34.4033,
+          78.5374
+        ],
+        [
+          30.5281,
+          78.7721
+        ],
+        [
+          30.4065,
+          97.9909
+        ],
+        [
+          6.4065,
+          98.51
+        ],
+        [
+          6.6775,
+          107.3343
+        ],
+        [
+          -4.6794,
+          107.5993
+        ],
+        [
+          -4.5907,
+          98.6797
+        ],
+        [
+          -41.4368,
+          99.3896
+        ],
+        [
+          -42.1271,
+          92.7215
+        ],
+        [
+          -117.4838,
+          92.5561
+        ],
+        [
+          -117.6464,
+          73.4981
+        ],
+        [
+          -68.6219,
+          73.3104
+        ],
+        [
+          -68.5225,
+          87.5263
+        ],
+        [
+          -42.8755,
+          86.9896
+        ],
+        [
+          -43.2599,
+          55.8332
+        ],
+        [
+          -85.1019,
+          54.682
+        ],
+        [
+          -85.229,
+          50.4423
+        ],
+        [
+          -98.9096,
+          49.7125
+        ],
+        [
+          -98.2712,
+          12.0028
+        ],
+        [
+          -85.2539,
+          11.8758
+        ],
+        [
+          -84.8201,
+          -2.8504
+        ],
+        [
+          -65.8668,
+          -3.2703
+        ],
+        [
+          -65.7517,
+          -31.3848
+        ],
+        [
+          -119.8726,
+          -33.9472
+        ],
+        [
+          -119.4078,
+          -49.9433
+        ],
+        [
+          -101.2438,
+          -49.9152
+        ],
+        [
+          -101.1181,
+          -52.4558
+        ],
+        [
+          -85.032,
+          -51.523
+        ],
+        [
+          -84.9727,
+          -47.516
+        ],
+        [
+          -67.5855,
+          -46.9399
+        ],
+        [
+          -67.5657,
+          -35.4503
+        ],
+        [
+          -26.5852,
+          -34.9409
+        ],
+        [
+          -26.9016,
+          -37.2401
+        ],
+        [
+          -21.6749,
+          -37.3759
+        ],
+        [
+          -20.7474,
+          -49.9953
+        ],
+        [
+          -21.5997,
+          -65.9461
+        ],
+        [
+          -29.0649,
+          -69.2338
+        ],
+        [
+          -34.7632,
+          -72.9755
+        ],
+        [
+          -35.4686,
+          -79.8994
+        ],
+        [
+          -39.9427,
+          -80.4893
+        ]
+      ],
+      "minimumCoverage": 0.88,
+      "basis": "Native palace envelope with the open courtyard preserved in the model."
+    },
+    "featureIds": [
+      "relation/10601598"
+    ],
+    "source": "https://www.openstreetmap.org/relation/10601598",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b64a933c14846c91243310200b810d0df74052ad6e676aa8f7ffd12e9792edfa",
+    "notes": "The 1898 view shows open two-storey columns, the central classical pediment and low balustrades above a three-arch podium and paired stairs."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "The 1898 view shows open two-storey columns, the central classical pediment and low balustrades above a three-arch podium and paired stairs.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "falaknuma-palace-skyline",
+      "position": [
+        0.6,
+        9.5,
+        -192
+      ],
+      "lookAt": [
+        0.6,
+        12.1,
+        -109
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "falaknuma-palace-district",
+      "position": [
+        0.6,
+        9.5,
+        -192
+      ],
+      "lookAt": [
+        0.6,
+        12.1,
+        -109
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "falaknuma-palace-street",
+      "position": [
+        0.6,
+        9.5,
+        -192
+      ],
+      "lookAt": [
+        0.6,
+        12.1,
+        -109
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "falaknuma-palace-closeup",
+      "position": [
+        0.6,
+        9.5,
+        -192
+      ],
+      "lookAt": [
+        0.6,
+        12.1,
+        -109
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "north-classical-front",
+      "position": [
+        0.6,
+        9.5,
+        -192
+      ],
+      "lookAt": [
+        0.6,
+        12.1,
+        -109
+      ]
+    },
+    {
+      "name": "north-stairs-and-colonnades",
+      "position": [
+        35,
+        9.4,
+        -153
+      ],
+      "lookAt": [
+        3,
+        10,
+        -114
+      ]
+    },
+    {
+      "name": "open-court-and-ranges",
+      "position": [
+        -130,
+        113,
+        144
+      ],
+      "lookAt": [
+        -25,
+        8,
+        -6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 33078,
+    "vertices": 99234,
+    "materials": 4,
+    "bytes": 4112252,
+    "sha256": "sha256:4d153403b0629882f507e19c658e6bfcc6b40c3cc38e44168c64167a337395d4"
+  }
+}

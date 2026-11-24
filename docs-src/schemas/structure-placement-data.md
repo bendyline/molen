@@ -570,6 +570,30 @@ Geographic placement data with authoring explanations omitted.
                   }
                 }
               },
+              "holes": {
+                "minItems": 1,
+                "maxItems": 64,
+                "type": "array",
+                "items": {
+                  "minItems": 3,
+                  "maxItems": 512,
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 2,
+                    "maxItems": 2
+                  }
+                }
+              },
               "basis": {
                 "not": {}
               }
@@ -794,6 +818,9 @@ Geographic placement data with authoring explanations omitted.
               },
               "validUntil": {
                 "type": "string"
+              },
+              "basis": {
+                "not": {}
               }
             },
             "required": [

@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.pyramid_of_menkaure",
+  "kind": "static-structure",
+  "title": "Pyramid of Menkaure",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.pyramid_of_menkaure",
+        "output": "assets/places/st/stq/pyramid_of_menkaure/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:49f469bcc4c1694424271a369ddb12598f8fe9070a751e9b63c312ed1554663e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "pyramid_of_menkaure",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "pyramid-course-model",
+        "path": "models/pyramid-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

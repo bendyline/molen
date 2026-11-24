@@ -1,0 +1,182 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.japan_national_stadium",
+  "status": "completed",
+  "reviewedOn": "2026-11-21",
+  "reviewedBy": "Codex",
+  "inputHash": "sha256:e1b9376de6f6ac184c8d7150343546e8875b71b9e6eae0c9bf4a68e07daf6e6d",
+  "sourceHash": "sha256:589237299ffce99e31ba2f9489dab8ef648b43bc0f0b07a8b000fa8c2b0b4bc0",
+  "runtimeHash": "sha256:1d04fea4b518f748cc807847a7b0364a81d63f320b5ca1f5bb87be6a0752f94b",
+  "visualReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:de58c5ed0b5d8e61ac67469847b7aa0bdfc407915ca3e53e04c5d729cf6628ce",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/gate-c-lattices-and-terraces.png",
+      "shots/open-roof-and-track.png",
+      "shots/field-and-three-seating-decks.png"
+    ],
+    "notes": "The current references and previews align on the broad overhanging roof, inclined pale supports, planted eave bands, and layered timber galleries. The elevated and field views show the open mapped roof, red running track, striped pitch and three seating tiers."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:d80661a48292ef42793be7a7806c5d1741dabaf7727ac751be19e23373e41ef5",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/gate-c-lattices-and-terraces.png",
+      "shots/shared/open-roof-and-track.png",
+      "shots/shared/field-and-three-seating-decks.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "The canopy, timber soffits, rails, terrace plantings and glazing remain distinct in the shared renderer, with the field and terraces visible in the appropriate views. Attachment and unload checks passed."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:c3f06cbc71756e52c35ae1b182b39e9ee7cf1617a322d0b143de6707e8789e15",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/gate-c-lattices-and-terraces.png",
+      "medium-fi/open-roof-and-track.png",
+      "medium-fi/field-and-three-seating-decks.png",
+      "medium-fi/tokyo-stadium-skyline.png",
+      "medium-fi/tokyo-stadium-district.png",
+      "medium-fi/tokyo-stadium-street.png",
+      "medium-fi/tokyo-stadium-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All four authored levels retain the exterior overhang, tiered bands and open bowl. Near levels carry the nine lane divisions, seating colors and tapered diagonal supports. All medium-fi frames verify active bounded bowl clearance without altering native elevation samples."
+  },
+  "captureReportHash": "sha256:de58c5ed0b5d8e61ac67469847b7aa0bdfc407915ca3e53e04c5d729cf6628ce",
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:f84505a6d1d686c630b22b68966af64e4d9e353fb4c3c5a6924ced2ce9211d0c",
+    "mapGeometryHash": "sha256:95402098cdd2fa11a3b1d2ab1923c322802343b9a9dd387817a2871e3848b8e1",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:4dd469e04509dc5e9061496c33a134788817752369d7b1576128a056ef27d8cc",
+      "descriptorHash": "sha256:aad3ea70c935ab16af41afce65bf1754ed8e9cef37accb55f465181235f854cc",
+      "heightfieldHash": "sha256:db3daf2a77cc314386119e8dec171986f5a95c19f246afbd48a664a9dc88f641",
+      "originalSourceFieldInspected": true,
+      "groundCutoutApplied": true,
+      "grade": "The official native GSI DEM5A west concourse samples at 24.201 m. The east side sample is 32.3901 m. The raw official field was inspected without clipping, and the checked placement applies a bounded interior clearance over the model-owned field and bowl."
+    },
+    "groundContactVerified": false,
+    "approximateGeographicPreview": true,
+    "notes": "Placed on the named native outer roof and aperture outlines, aligned to the mapped pitch. GSI level data preserves the east-west height difference and restores the actual view of the west concourse. The floor and seating cover the bounded interior terrain opening."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "The completed Japan National Stadium bowl, open-field roof ring, stepped timber-and-planted terraces and visible oval track and pitch.",
+    "notes": "The major roof and bowl geometry uses physical and native survey dimensions. The concourse details, individual seat blocks and small plantings are approximations. The pitch uses the published competition-design field level."
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-11-21",
+    "inputHash": "sha256:e1b9376de6f6ac184c8d7150343546e8875b71b9e6eae0c9bf4a68e07daf6e6d",
+    "referenceInputHash": "sha256:386b5b88fbbafbd5cf240e371a6827663443b21461681d42b0ed0cfe5d17f20c",
+    "acceptedReferencePaths": [
+      "_m/x/n/7/6/japan-national-stadium-wp/japan-national-stadium.jpg"
+    ],
+    "auxiliaryReferencePaths": [],
+    "imageryEvidenceHash": "sha256:59583b11e4cf2c25d4134a321f2a2d01d007e43c16ffe7edbb4ae8a86e092c5c",
+    "excludedHistoricalImagery": [],
+    "notes": "Syced’s exact original 2021 CC0 image of Gate C is the cleared Qualla source for the exterior design, colors, planting bands and angled upper columns."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:de262e15990216c51b600a814ee015111fa7616e00befbd17ba3f96657ccd571",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:3e208c2aefff2cf14a0c120c50b2d5b5c616b3fea06950f51cc5c21d812c8ef9",
+        "bytes": 80028,
+        "gzipBytes": 25193,
+        "triangles": 948,
+        "cpuBytes": 71748,
+        "gpuBytes": 71748,
+        "errorMeters": 3.65,
+        "drawCalls": 7
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:cae8f2af4521cb2e0e5dfe1cb1cd6b4db6f120932c4740186a99d89855974330",
+        "bytes": 258400,
+        "gzipBytes": 75549,
+        "triangles": 3412,
+        "cpuBytes": 250044,
+        "gpuBytes": 250044,
+        "errorMeters": 1.65,
+        "drawCalls": 7
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:8838aa6c2e35a28e104ecb13d94302b2e43a82406250dafa1dd5c48bd8b30bc5",
+        "bytes": 1151944,
+        "gzipBytes": 340396,
+        "triangles": 15888,
+        "cpuBytes": 1143540,
+        "gpuBytes": 1143540,
+        "errorMeters": 0.64,
+        "drawCalls": 7
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:300a1ed6e767fb667e7831918d38621df0153622a37259068a079c7ecaed7176",
+        "bytes": 3072028,
+        "gzipBytes": 913624,
+        "triangles": 42718,
+        "cpuBytes": 3063588,
+        "gpuBytes": 3063588,
+        "errorMeters": 0.23,
+        "drawCalls": 7
+      }
+    ]
+  },
+  "validation": {
+    "completed": true,
+    "exactSourceRegeneration": true,
+    "assetInspectVerified": true,
+    "mediumFiAudit": "passed without findings",
+    "currentFramesInspected": 40,
+    "activePlacement": "japan-national-stadium",
+    "storyAnnotation": "bounded-sync-follows",
+    "sceneValidation": true,
+    "simulationTicks": 30,
+    "stateHash": "sha256:8def7ad9853e46d7f8ff08deb2d3056acae6a482269fa3c7c7344e11ae4925cd",
+    "sharedCaptureScope": "Standing roof ring, open installed track and pitch, seating tiers and layered exterior galleries."
+  },
+  "limitations": [
+    "The permanent stadium is modeled without temporary Olympic graphics and event fencing. The roof opening, terraces and bowl proportions follow the native map and public structural records.",
+    "Individual seats, small gallery elements and planting species are approximated at Earth-view scale.",
+    "Official GSI surveyed elevation controls the exterior concourse. The level athletics surface uses the documented design elevation. The original Mapzen sample is retained for comparison."
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mountaineer_power_plant",
+  "kind": "static-structure",
+  "title": "Mountaineer Power Plant",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mountaineer_power_plant",
+        "output": "assets/places/dn/dnv/mountaineer_power_plant/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:66493d30e8a751edc21774c931c0773ec8385ecc605a103822a3dc76a123f717"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-mountaineer-power-plant",
+        "path": "models/generate-mountaineer-power-plant.mjs"
+      },
+      {
+        "id": "mountaineer-power-plant-model",
+        "path": "models/mountaineer-power-plant-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/mountaineer-power-plant-footprint.json",
+      "native-map/mountaineer-plant-site-controls.json",
+      "reference-rights/mountaineer-power-plant-architectural-facts.json",
+      "reference-rights/mountaineer-power-plant-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-8926-12525.png",
+      "terrain-sources/terrarium-15-8925-12525.png",
+      "terrain-sources/terrarium-15-8925-12526.png",
+      "terrain-sources/terrarium-15-8926-12526.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

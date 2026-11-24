@@ -1,0 +1,608 @@
+{
+  "planId": "lushun_museum_main_building",
+  "id": "lushun_museum_main_building",
+  "assetId": "molen.worldgen.structure.lushun_museum_main_building",
+  "title": "Lüshun Museum Main Building",
+  "wikidataId": "Q5944378",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 121.22968733,
+    "latitude": 38.80750525
+  },
+  "size": [
+    66.68999862670898,
+    26.19999921321869,
+    62.75399971008301
+  ],
+  "actualBounds": {
+    "min": [
+      -34.25,
+      -1.899999976158142,
+      -32.68000030517578
+    ],
+    "max": [
+      32.439998626708984,
+      24.299999237060547,
+      30.073999404907227
+    ]
+  },
+  "visualBrief": "The historic Lüshun museum building with a tall classical north façade, an arched entrance and a small central cupola.",
+  "nativeAxes": {
+    "x": "west-southwest along the forecourt facade",
+    "y": "up",
+    "z": "north-northwest toward the forecourt"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://ndlsearch.ndl.go.jp/books/R100000002-I000000547112"
+  ],
+  "stories": [
+    {
+      "id": "lushun-museum-wp",
+      "url": "https://qualla.com/lushun-museum/"
+    }
+  ],
+  "referenceInputHash": "sha256:858b97dc6246d1dc079fa7a1ba3f79f7759661f6cd095412313a629e1eaed1ce",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ww/wwy/lushun_museum_main_building/models/lushun-museum-main-building-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ww/wwy/lushun_museum_main_building/models/lushun-museum-main-building-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.72,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.93
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.88
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.83
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.88
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.12
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.48
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.83
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.83
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.83
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_ashlar",
+    "stone_limestone",
+    "tile_flat",
+    "metal_painted",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Mapzen terrain at the middle of the museum’s north steps and arrival court.",
+    "anchor": [
+      121.22968733,
+      38.80750525
+    ],
+    "heading": -2.7279034419932047,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        121.22953861001292,
+        38.807760955530384
+      ],
+      "modelHeight": 0,
+      "basis": "Original Mapzen terrain at the middle of the museum’s north steps and arrival court."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          32.038,
+          20.576
+        ],
+        [
+          17.994,
+          20.586
+        ],
+        [
+          17.996,
+          27.724
+        ],
+        [
+          -17.256,
+          27.724
+        ],
+        [
+          -17.254,
+          21.913
+        ],
+        [
+          -30.291,
+          21.916
+        ],
+        [
+          -30.289,
+          23.315
+        ],
+        [
+          -33.824,
+          23.319
+        ],
+        [
+          -33.841,
+          10.473
+        ],
+        [
+          -31.62,
+          10.464
+        ],
+        [
+          -31.64,
+          2.029
+        ],
+        [
+          -16.422,
+          2
+        ],
+        [
+          -16.456,
+          -11.279
+        ],
+        [
+          -32.443,
+          -11.247
+        ],
+        [
+          -32.678,
+          -19.301
+        ],
+        [
+          -29.531,
+          -19.305
+        ],
+        [
+          -29.606,
+          -23.362
+        ],
+        [
+          -22.512,
+          -23.834
+        ],
+        [
+          -22.507,
+          -32.391
+        ],
+        [
+          4.42,
+          -32.374
+        ],
+        [
+          4.427,
+          -26.025
+        ],
+        [
+          11.53,
+          -26.019
+        ],
+        [
+          11.527,
+          -17.704
+        ],
+        [
+          6.022,
+          -17.702
+        ],
+        [
+          6.015,
+          2.318
+        ],
+        [
+          17.834,
+          2.134
+        ],
+        [
+          18.044,
+          0.791
+        ],
+        [
+          18.464,
+          -0.058
+        ],
+        [
+          19.055,
+          -0.649
+        ],
+        [
+          19.748,
+          -1.062
+        ],
+        [
+          20.724,
+          -1.169
+        ],
+        [
+          21.846,
+          -0.834
+        ],
+        [
+          22.54,
+          -0.408
+        ],
+        [
+          23.152,
+          0.14
+        ],
+        [
+          23.557,
+          1.096
+        ],
+        [
+          23.625,
+          2.646
+        ],
+        [
+          23.527,
+          11.478
+        ],
+        [
+          32.042,
+          11.484
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Named native heritage building footprint, including the irregular attached rear ranges."
+    },
+    "featureIds": [
+      "way/202067280"
+    ],
+    "source": "https://www.openstreetmap.org/way/202067280",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ce791b45b97a33e7d63d2b25a8b654e875eafea587f69f22359188d584a307ef",
+    "notes": "The exact public-domain 1925 plate shows a central pediment and cupola, an open deep entrance, tall Ionic orders, roofline projections and recessed walls. The museum’s present building is the protected historic main building."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Covered north entrance, projecting bays and central tower follow the 1925 photographic evidence. Rear wall heights, paint tones and small sculptural details are approximate.",
+    "The model covers the protected former Kwantung Government Museum and attached ranges. The later separate museum building is outside the placement."
+  ],
+  "sourceLicense": "Original 3D work, OpenStreetMap footprint under ODbL, and Mapzen terrain under source attribution.",
+  "qaLodCameras": [
+    {
+      "name": "lushun-museum-main-building-skyline",
+      "position": [
+        51,
+        28,
+        88
+      ],
+      "lookAt": [
+        0.4,
+        8.4,
+        12
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "lushun-museum-main-building-district",
+      "position": [
+        51,
+        28,
+        88
+      ],
+      "lookAt": [
+        0.4,
+        8.4,
+        12
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "lushun-museum-main-building-street",
+      "position": [
+        51,
+        28,
+        88
+      ],
+      "lookAt": [
+        0.4,
+        8.4,
+        12
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "lushun-museum-main-building-closeup",
+      "position": [
+        51,
+        28,
+        88
+      ],
+      "lookAt": [
+        0.4,
+        8.4,
+        12
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "north-elevation-and-pediment",
+      "position": [
+        1,
+        11,
+        88
+      ],
+      "lookAt": [
+        0.36,
+        9.7,
+        25.5
+      ]
+    },
+    {
+      "name": "entry-arch-and-window-orders",
+      "position": [
+        12,
+        7,
+        51
+      ],
+      "lookAt": [
+        0.37,
+        7.6,
+        26.5
+      ]
+    },
+    {
+      "name": "cupola-and-rear-side-wings",
+      "position": [
+        61,
+        30,
+        -48
+      ],
+      "lookAt": [
+        0,
+        10.5,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12740,
+    "vertices": 38220,
+    "materials": 7,
+    "bytes": 1802192,
+    "sha256": "sha256:bdc5ea89287cf0f939ee8f6ca12b69276f854e9eae3d1e956ec8a59d46191d8a"
+  }
+}

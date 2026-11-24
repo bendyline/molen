@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.plaza_theatre_el_paso",
+  "kind": "static-structure",
+  "title": "Plaza Theatre (El Paso)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.plaza_theatre_el_paso",
+        "output": "assets/places/9t/9ts/plaza_theatre_el_paso/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:860fd7a6b35bb02a566b4000800389a4cd88e6627772c76f3ce36e967e09bf50"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-plaza-theatre-el-paso",
+        "path": "models/generate-plaza-theatre-el-paso.mjs"
+      },
+      {
+        "id": "plaza-theatre-el-paso-model",
+        "path": "models/plaza-theatre-el-paso-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/plaza-theatre-el-paso-footprint.json",
+      "native-map/el-paso-plaza-roof-controls.json",
+      "reference-rights/plaza-theatre-el-paso-architectural-facts.json",
+      "references/el-paso-plaza-theatre-naip.png",
+      "reference-rights/el-paso-plaza-theatre-naip-item.json",
+      "references/el-paso-plaza-highsmith-native.jp2",
+      "reference-rights/highsmith-loc-rights.html",
+      "reference-rights/highsmith-loc-catalog.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/plaza-theatre-usgs-3dep.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

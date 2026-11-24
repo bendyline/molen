@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.church_of_ichuac",
+  "kind": "static-structure",
+  "title": "Church of Ichuac",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.church_of_ichuac",
+        "output": "assets/places/62/627/church_of_ichuac/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1b9d53eff8a40b144aa888843e54dab10a5f2fdb8e9565a0b9b659f8fa4a4f33"
+      }
+    ],
+    "generators": [
+      {
+        "id": "church_of_ichuac",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "church-nave-porch-and-belfry",
+        "path": "models/church-nave-porch-and-belfry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "church-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

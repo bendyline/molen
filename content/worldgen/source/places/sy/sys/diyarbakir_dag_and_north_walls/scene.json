@@ -1,0 +1,57 @@
+{
+  "format": "molen/scene@3",
+  "name": "Diyarbakır Dağ Gate and the North Walls",
+  "seed": "diyarbakir_dag_and_north_walls",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": {
+    "mode": "fixed",
+    "position": [-30.451234999999997, 333.657069, -436.2925825],
+    "lookAt": [53.068965000000006, 8.37321, -5.504182500000002],
+    "fov": 52
+  },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.diyarbakir_dag_and_north_walls",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [0.62, 0.68, -0.39],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -2.6, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [1418, 1.18, 1418] },
+          "materialRef": "palette:#948e69",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.orlitsa_convent_complex",
+  "kind": "static-structure",
+  "title": "Orlitsa Convent Complex",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.orlitsa_convent_complex",
+        "output": "assets/places/sx/sx2/orlitsa_convent_complex/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9f0f0da12b2a46253123e1ca32e83221dc1b7143a27949cf226e4a4bb488dffb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "orlitsa_convent_complex",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "rila-courtyard-and-stone-chapels",
+        "path": "models/rila-courtyard-and-stone-chapels.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

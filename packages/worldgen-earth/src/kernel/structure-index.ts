@@ -83,6 +83,8 @@ export interface StructurePlacement {
     outline: [number, number][];
     /** Complete set of independent occupied masks; supersedes outline when present. */
     outlines?: [number, number][][];
+    /** Areas carved out of the masks (courtyards, a walled town); what is mapped there stays. */
+    holes?: [number, number][][];
     /** Replace a whole mapped building only above this covered-area fraction; preserve others intact. */
     minimumCoverage?: number;
     basis?: string;
@@ -412,6 +414,17 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
                 outline.length > 512 ||
                 outline.some((p) => p.length !== 2 || p.some((v) => !Number.isFinite(v))) ||
                 !validGroundOutline(outline),
+            ))) ||
+        (entry.buildingCutout.holes !== undefined &&
+          (!Array.isArray(entry.buildingCutout.holes) ||
+            entry.buildingCutout.holes.length < 1 ||
+            entry.buildingCutout.holes.length > MAX_STRUCTURE_GROUND_OUTLINES ||
+            entry.buildingCutout.holes.some(
+              (hole) =>
+                hole.length < 3 ||
+                hole.length > 512 ||
+                hole.some((p) => p.length !== 2 || p.some((v) => !Number.isFinite(v))) ||
+                !validGroundOutline(hole),
             ))))
     )
       throw new Error(

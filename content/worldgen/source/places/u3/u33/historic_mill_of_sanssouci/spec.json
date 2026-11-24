@@ -1,0 +1,476 @@
+{
+  "planId": "historic_mill_of_sanssouci",
+  "id": "historic_mill_of_sanssouci",
+  "assetId": "molen.worldgen.structure.historic_mill_of_sanssouci",
+  "title": "Historic Mill of Sanssouci",
+  "wikidataId": "Q1620893",
+  "category": "cultural",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 13.03568965,
+    "latitude": 52.404142199999995
+  },
+  "size": [
+    22.875356674194336,
+    38.881568908691406,
+    18.288000106811523
+  ],
+  "actualBounds": {
+    "min": [
+      -11.776178359985352,
+      -4,
+      -9.42300033569336
+    ],
+    "max": [
+      11.099178314208984,
+      34.881568908691406,
+      8.864999771118164
+    ]
+  },
+  "visualBrief": "The Historic Windmill of Sanssouci with a timber-braced gallery, dark octagonal smock, and four open lattice sails.",
+  "nativeAxes": {
+    "x": "along a gallery side",
+    "y": "up",
+    "z": "from the sail cross toward the tailpole"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Historic_Windmill_Potsdam.JPG"
+  ],
+  "stories": [
+    {
+      "id": "historic-mill-of-sanssouci-wp",
+      "url": "https://qualla.com/historic-mill-of-sanssouci/"
+    }
+  ],
+  "referenceInputHash": "sha256:bf94bd5a673ca14e2e5fa270d7f8d57a306c3f2a20b570a72d810ee9f0afd43f",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u3/u33/historic_mill_of_sanssouci/models/historic-mill-of-sanssouci-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u3/u33/historic_mill_of_sanssouci/models/historic-mill-of-sanssouci-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.95,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.96
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_weatherboard",
+        "roughness": 0.88
+      },
+      "floor": {
+        "slot": "trim",
+        "graph": "wood_weatherboard",
+        "roughness": 0.92
+      },
+      "shingle": {
+        "slot": "roof",
+        "graph": "wood_painted_shingle",
+        "roughness": 0.93
+      },
+      "sail": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.91
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81
+      },
+      "window": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.63
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.88
+          },
+          "floor": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.92
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.93
+          },
+          "sail": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.88
+          },
+          "floor": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.92
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.93
+          },
+          "sail": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.88
+          },
+          "floor": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.92
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.93
+          },
+          "sail": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone_raw",
+    "wood_weatherboard",
+    "wood_weatherboard",
+    "wood_painted_shingle",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original approach-side elevation immediately outside the mapped masonry octagon.",
+    "anchor": [
+      13.03568965,
+      52.404142199999995
+    ],
+    "heading": -0.754848588331325,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        13.035623827395158,
+        52.40408377796105
+      ],
+      "modelHeight": 0,
+      "basis": "Original approach-side elevation immediately outside the mapped masonry octagon."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -9.716,
+          3.454
+        ],
+        [
+          -8.727,
+          -4.078
+        ],
+        [
+          -3.704,
+          -8.987
+        ],
+        [
+          3.355,
+          -9.423
+        ],
+        [
+          8.907,
+          -4.314
+        ],
+        [
+          8.907,
+          3.893
+        ],
+        [
+          3.892,
+          8.81
+        ],
+        [
+          -4.225,
+          8.865
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "The native perimeter of the individually named windmill gallery."
+    },
+    "featureIds": [
+      "relation/9679067",
+      "way/696408607"
+    ],
+    "source": "https://www.openstreetmap.org/relation/9679067",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5848622d152aa4bfe402e4dda893f301a5c0750c05d33d55b75de4c2ff17ef1e",
+    "notes": "The original Qualla photograph shows an octagonal skirt, a raised gallery with timber brackets, dark shingled smock, a boat-shaped cap and four open lattice vanes."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_shingle",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The cap is shown in a representative parked orientation and the sails remain stationary.",
+    "Roof profiles, timber dimensions and rear enclosure details are estimated from the available photograph and mapped structures."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "historic-mill-of-sanssouci-skyline",
+      "position": [
+        25,
+        15,
+        -48
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "historic-mill-of-sanssouci-district",
+      "position": [
+        25,
+        15,
+        -48
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "historic-mill-of-sanssouci-street",
+      "position": [
+        25,
+        15,
+        -48
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "historic-mill-of-sanssouci-closeup",
+      "position": [
+        25,
+        15,
+        -48
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "working-gallery-and-sails",
+      "position": [
+        25,
+        15,
+        -48
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "gallery-braces-and-masonry",
+      "position": [
+        -16,
+        3,
+        -24
+      ],
+      "lookAt": [
+        0,
+        9.5,
+        0
+      ]
+    },
+    {
+      "name": "tailpole-and-rounded-cap",
+      "position": [
+        25,
+        21,
+        30
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6296,
+    "vertices": 18888,
+    "materials": 6,
+    "bytes": 930236,
+    "sha256": "sha256:4eb781ee26c83886fa04bc382f73ccdd71052516810866900640b1a67dc566ec"
+  }
+}

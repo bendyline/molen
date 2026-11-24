@@ -1,0 +1,642 @@
+{
+  "planId": "empress_hotel",
+  "id": "empress_hotel",
+  "assetId": "molen.worldgen.structure.empress_hotel",
+  "title": "The Empress (hotel)",
+  "wikidataId": "Q1139845",
+  "category": "historic-hotel",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -123.36755,
+    "latitude": 48.4218
+  },
+  "size": [
+    153.59850311279297,
+    52.00000071525574,
+    100.50530242919922
+  ],
+  "actualBounds": {
+    "min": [
+      -81.21110534667969,
+      -3.049999952316284,
+      -65.85530090332031
+    ],
+    "max": [
+      72.38739776611328,
+      48.95000076293945,
+      34.650001525878906
+    ]
+  },
+  "visualBrief": "The Empress Hotel in Victoria, with its harbor-facing stone entrance, brick wings, steep copper roofs and domed turrets.",
+  "nativeAxes": {
+    "x": "along the principal facade toward the south",
+    "y": "up",
+    "z": "toward the Inner Harbour"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.flickr.com/photos/151887236@N05/34182327803/"
+  ],
+  "stories": [
+    {
+      "id": "the-empress-hotel-wp",
+      "url": "https://qualla.com/the-empress-hotel/"
+    }
+  ],
+  "referenceInputHash": "sha256:54f9a9f0c092f159220775dfc6d864da794d9ef3af7fdcbe80761feb0aba937a",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/c2/c28/empress_hotel/models/empress-hotel-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/c2/c28/empress_hotel/models/empress-hotel-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.71,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.95
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.91
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.89
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.86
+      },
+      "coping": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.63
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.093,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.024,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_limestone",
+    "stone_sandstone",
+    "metal_painted",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.21,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original bare-earth ground sample on the main harbor-facing approach. Small gaps underneath building masses were interpolated for the review ground.",
+    "anchor": [
+      -123.36755,
+      48.4218
+    ],
+    "heading": -1.7208946424664089,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -123.36814999676747,
+        48.42173000041831
+      ],
+      "modelHeight": 0,
+      "basis": "Original bare-earth ground sample on the main harbor-facing approach. Small gaps underneath building masses were interpolated for the review ground."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -27.3352,
+          -32.2304
+        ],
+        [
+          -27.5998,
+          -28.9925
+        ],
+        [
+          -50.5551,
+          -28.6888
+        ],
+        [
+          -42.0936,
+          -59.5412
+        ],
+        [
+          -62.3456,
+          -65.8553
+        ],
+        [
+          -80.9802,
+          -6.0136
+        ],
+        [
+          -62.615,
+          -0.0418
+        ],
+        [
+          -62.4747,
+          7.065
+        ],
+        [
+          -54.9653,
+          6.9155
+        ],
+        [
+          -55.0231,
+          3.8534
+        ],
+        [
+          -46.762,
+          3.6874
+        ],
+        [
+          -40.4138,
+          -4.5126
+        ],
+        [
+          -39.0203,
+          -4.5291
+        ],
+        [
+          -34.8297,
+          -4.5876
+        ],
+        [
+          -34.6994,
+          4.3138
+        ],
+        [
+          -41.1708,
+          4.4034
+        ],
+        [
+          -40.8542,
+          28.0107
+        ],
+        [
+          -34.3267,
+          27.9201
+        ],
+        [
+          -34.2914,
+          30.1638
+        ],
+        [
+          -30.628,
+          30.1178
+        ],
+        [
+          -24.5717,
+          30.0387
+        ],
+        [
+          -24.6004,
+          27.7642
+        ],
+        [
+          -18.162,
+          27.6796
+        ],
+        [
+          -18.4499,
+          4.1875
+        ],
+        [
+          -26.0573,
+          4.2845
+        ],
+        [
+          -26.1837,
+          -5.559
+        ],
+        [
+          -8.9447,
+          -5.7677
+        ],
+        [
+          -8.9098,
+          -2.4107
+        ],
+        [
+          -6.9207,
+          -2.4351
+        ],
+        [
+          -6.7523,
+          11.8551
+        ],
+        [
+          -10.54,
+          11.8974
+        ],
+        [
+          -10.3678,
+          27.1807
+        ],
+        [
+          -6.405,
+          27.1792
+        ],
+        [
+          -6.4034,
+          32.2521
+        ],
+        [
+          8.402,
+          32.2545
+        ],
+        [
+          18.42,
+          32.2412
+        ],
+        [
+          46.5458,
+          32.2539
+        ],
+        [
+          47.4352,
+          32.2539
+        ],
+        [
+          47.4377,
+          26.7619
+        ],
+        [
+          51.5249,
+          26.7639
+        ],
+        [
+          51.5299,
+          21.7347
+        ],
+        [
+          60.3008,
+          21.7382
+        ],
+        [
+          60.3027,
+          19.1453
+        ],
+        [
+          60.2957,
+          16.4192
+        ],
+        [
+          51.5259,
+          16.423
+        ],
+        [
+          51.5211,
+          11.6269
+        ],
+        [
+          47.2546,
+          11.6296
+        ],
+        [
+          47.2514,
+          -2.4614
+        ],
+        [
+          72.3797,
+          -2.4661
+        ],
+        [
+          72.3874,
+          -18.8675
+        ],
+        [
+          38.9944,
+          -18.8681
+        ],
+        [
+          36.3724,
+          -18.8601
+        ],
+        [
+          33.6711,
+          -18.855
+        ],
+        [
+          33.649,
+          -25.1802
+        ],
+        [
+          31.0776,
+          -25.135
+        ],
+        [
+          27.8326,
+          -25.0776
+        ],
+        [
+          27.7703,
+          -32.338
+        ]
+      ],
+      "minimumCoverage": 0.86,
+      "basis": "Named OSM relation 1371841 places the full hotel footprint."
+    },
+    "featureIds": [
+      "relation/1371841"
+    ],
+    "source": "https://www.openstreetmap.org/relation/1371841",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9e55e258d26700a9b381b76568cad47b00ec573e1902b2736afde618e11cd59d",
+    "notes": "Parks Canada documents the brick, stone, steep copper roofs, ornate gables, domed turrets, oriels and loggia. FPK-367 shows the expanded hotel from the harbor."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "Parks Canada documents the brick, stone, steep copper roofs, ornate gables, domed turrets, oriels and loggia. FPK-367 shows the expanded hotel from the harbor.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "empress-hotel-skyline",
+      "position": [
+        129,
+        61,
+        151
+      ],
+      "lookAt": [
+        -5,
+        14,
+        -2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "empress-hotel-district",
+      "position": [
+        129,
+        61,
+        151
+      ],
+      "lookAt": [
+        -5,
+        14,
+        -2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "empress-hotel-street",
+      "position": [
+        129,
+        61,
+        151
+      ],
+      "lookAt": [
+        -5,
+        14,
+        -2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "empress-hotel-closeup",
+      "position": [
+        129,
+        61,
+        151
+      ],
+      "lookAt": [
+        -5,
+        14,
+        -2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "inner-harbour-front",
+      "position": [
+        129,
+        61,
+        151
+      ],
+      "lookAt": [
+        -5,
+        14,
+        -2
+      ]
+    },
+    {
+      "name": "front-loggia-and-roof",
+      "position": [
+        39,
+        18,
+        85
+      ],
+      "lookAt": [
+        20,
+        15,
+        24
+      ]
+    },
+    {
+      "name": "rear-wing-and-copper-roofs",
+      "position": [
+        -93,
+        70,
+        -107
+      ],
+      "lookAt": [
+        -10,
+        17,
+        -13
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 38373,
+    "vertices": 115119,
+    "materials": 6,
+    "bytes": 4841356,
+    "sha256": "sha256:fd5aedace943009d1df51b5759ae9ab2263e895676aa4bf9f918acdf3a377877"
+  }
+}

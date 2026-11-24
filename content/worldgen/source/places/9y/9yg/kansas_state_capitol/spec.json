@@ -1,0 +1,671 @@
+{
+  "planId": "kansas_state_capitol",
+  "id": "kansas_state_capitol",
+  "assetId": "molen.worldgen.structure.kansas_state_capitol",
+  "title": "Kansas State Capitol",
+  "wikidataId": "Q2613943",
+  "category": "civic",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -95.67793973709678,
+    "latitude": 39.048102848387096
+  },
+  "size": [
+    134.4099998474121,
+    101.50446605682373,
+    103.77000045776367
+  ],
+  "actualBounds": {
+    "min": [
+      -74.77999877929688,
+      -8.199999809265137,
+      -52.29999923706055
+    ],
+    "max": [
+      59.630001068115234,
+      93.3044662475586,
+      51.470001220703125
+    ]
+  },
+  "visualBrief": "The Kansas State Capitol in Topeka, with its limestone wings, classical colonnades and copper dome.",
+  "nativeAxes": {
+    "x": "west legislative wing toward east legislative wing",
+    "y": "up",
+    "z": "north entry to south portico"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Kansas_State_Capitol_(March_17,_2023)_02.jpg",
+    "https://commons.wikimedia.org/wiki/File:Kansas_State_Capitol_(March_17,_2023)_01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kansas-state-capitol-wp",
+      "url": "https://qualla.com/kansas-state-capitol/"
+    }
+  ],
+  "referenceInputHash": "sha256:8b4f0c566e1a8147d0c0a6a57cb0adbd793febbc54bede356ab52e6fe72f11cd",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9y/9yg/kansas_state_capitol/models/kansas-state-capitol-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9y/9yg/kansas_state_capitol/models/kansas-state-capitol-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.02,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.91
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.93
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.72
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.65
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.72
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.72
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.72
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_ashlar",
+    "stone_granite",
+    "metal_copper",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified ground at the north visitor approach.",
+    "anchor": [
+      -95.67793973709678,
+      39.048102848387096
+    ],
+    "heading": -0.3242223222521233,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -95.67782889826412,
+        39.04856482044332
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified ground at the north visitor approach."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -27.325,
+          -42.754
+        ],
+        [
+          -21.835,
+          -42.755
+        ],
+        [
+          -21.831,
+          -46.597
+        ],
+        [
+          -18.895,
+          -46.515
+        ],
+        [
+          -16.748,
+          -46.532
+        ],
+        [
+          -7.391,
+          -46.588
+        ],
+        [
+          2.447,
+          -46.571
+        ],
+        [
+          4.391,
+          -46.566
+        ],
+        [
+          7.441,
+          -46.581
+        ],
+        [
+          7.441,
+          -42.647
+        ],
+        [
+          12.269,
+          -42.637
+        ],
+        [
+          12.262,
+          -21.708
+        ],
+        [
+          15.929,
+          -21.707
+        ],
+        [
+          17.607,
+          -21.707
+        ],
+        [
+          17.602,
+          -16.268
+        ],
+        [
+          17.602,
+          -12.874
+        ],
+        [
+          49.784,
+          -12.886
+        ],
+        [
+          50.998,
+          -12.883
+        ],
+        [
+          50.996,
+          -12.048
+        ],
+        [
+          50.996,
+          -10.991
+        ],
+        [
+          55.316,
+          -10.999
+        ],
+        [
+          55.317,
+          -9.613
+        ],
+        [
+          55.323,
+          -5.904
+        ],
+        [
+          55.414,
+          0.149
+        ],
+        [
+          55.341,
+          5.657
+        ],
+        [
+          55.35,
+          10.106
+        ],
+        [
+          55.356,
+          11.536
+        ],
+        [
+          51.019,
+          11.549
+        ],
+        [
+          51.021,
+          12.288
+        ],
+        [
+          51.028,
+          13.014
+        ],
+        [
+          49.899,
+          13.018
+        ],
+        [
+          17.623,
+          13.131
+        ],
+        [
+          17.63,
+          16.652
+        ],
+        [
+          17.651,
+          23.01
+        ],
+        [
+          15.795,
+          23.024
+        ],
+        [
+          12.761,
+          23.033
+        ],
+        [
+          12.831,
+          42.998
+        ],
+        [
+          7.513,
+          43.023
+        ],
+        [
+          7.522,
+          46.144
+        ],
+        [
+          3.606,
+          46.133
+        ],
+        [
+          1.669,
+          46.15
+        ],
+        [
+          -7.418,
+          46.197
+        ],
+        [
+          -16.711,
+          46.091
+        ],
+        [
+          -18.44,
+          46.073
+        ],
+        [
+          -21.784,
+          46.246
+        ],
+        [
+          -21.801,
+          42.341
+        ],
+        [
+          -26.066,
+          42.353
+        ],
+        [
+          -26.131,
+          21.671
+        ],
+        [
+          -31.577,
+          21.693
+        ],
+        [
+          -31.602,
+          12.611
+        ],
+        [
+          -66.075,
+          12.7
+        ],
+        [
+          -66.076,
+          10.281
+        ],
+        [
+          -70.57,
+          10.288
+        ],
+        [
+          -70.575,
+          6.121
+        ],
+        [
+          -70.584,
+          -0.148
+        ],
+        [
+          -70.594,
+          -6.04
+        ],
+        [
+          -70.594,
+          -10.843
+        ],
+        [
+          -65.991,
+          -10.851
+        ],
+        [
+          -65.996,
+          -13.445
+        ],
+        [
+          -31.402,
+          -13.445
+        ],
+        [
+          -31.398,
+          -22.09
+        ],
+        [
+          -27.34,
+          -22.091
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The named mapped footprint of the Capitol building."
+    },
+    "featureIds": [
+      "way/616200094"
+    ],
+    "source": "https://www.openstreetmap.org/way/616200094",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:dab8212ac478b169b348e275c7455de334680307e1b47a511670d3015728a73d",
+    "notes": "Kansas Historical Society documents the north and south eight-column porticoes, limestone facades, copper dome, and 306 feet to the present sculptural silhouette."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Standing exterior including attached entry levels. Grounds, gardens and interior spaces lie outside scope.",
+    "Unpublished detail heights and small roof ornament are estimated. The contemporary rooftop figure is represented as a distant silhouette."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "kansas-state-capitol-skyline",
+      "position": [
+        138,
+        67,
+        -175
+      ],
+      "lookAt": [
+        -7,
+        32,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kansas-state-capitol-district",
+      "position": [
+        138,
+        67,
+        -175
+      ],
+      "lookAt": [
+        -7,
+        32,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "kansas-state-capitol-street",
+      "position": [
+        138,
+        67,
+        -175
+      ],
+      "lookAt": [
+        -7,
+        32,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "kansas-state-capitol-closeup",
+      "position": [
+        138,
+        67,
+        -175
+      ],
+      "lookAt": [
+        -7,
+        32,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "north-front-and-copper-dome",
+      "position": [
+        138,
+        67,
+        -175
+      ],
+      "lookAt": [
+        -7,
+        32,
+        0
+      ]
+    },
+    {
+      "name": "restored-north-entry-and-portico",
+      "position": [
+        -18,
+        23,
+        -110
+      ],
+      "lookAt": [
+        -7,
+        32,
+        -24
+      ]
+    },
+    {
+      "name": "west-wing-south-portico-and-dome",
+      "position": [
+        -151,
+        71,
+        155
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22815,
+    "vertices": 68445,
+    "materials": 6,
+    "bytes": 3103552,
+    "sha256": "sha256:54cf09b1e819fe0fbe13418eda89178c0e2a318939dcbd640c333a48b064f14d"
+  }
+}

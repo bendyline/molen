@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.babylon_fortress",
+  "kind": "static-structure",
+  "title": "Babylon Fortress",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.babylon_fortress",
+        "output": "assets/places/st/stq/babylon_fortress/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:da2aade33ff489c5f4f893a221dedb5d979c3f5e0e1839ad080f29453bded16f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-babylon-fortress",
+        "path": "models/generate-babylon-fortress.mjs"
+      },
+      {
+        "id": "babylon-fortress-model",
+        "path": "models/babylon-fortress-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/babylon-fortress-footprint.json",
+      "native-map/babylon-fortress-shape-controls.json",
+      "reference-rights/babylon-fortress-architectural-facts.json",
+      "references/babylon-butler-1884-round-towers.jpg",
+      "reference-rights/babylon-butler-getty-archive.json",
+      "reference-rights/babylon-butler-1884-imprint.jpg",
+      "references/babylon-butler-1884-south-gate.jpg",
+      "reference-rights/babylon-1809-nypl-deposit.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-old-cairo-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

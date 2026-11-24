@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.casa_rosada",
+  "kind": "static-structure",
+  "title": "Casa Rosada",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.casa_rosada",
+        "output": "assets/places/69/69y/casa_rosada/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a677d6db71c241fd03aaec29e2ea634b905880fac86608a2755457d60fe9339e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "casa_rosada",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "pink-house",
+        "path": "models/pink-house.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.szczecin_cathedral",
+  "kind": "static-structure",
+  "title": "Szczecin Cathedral",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.szczecin_cathedral",
+        "output": "assets/places/u3/u36/szczecin_cathedral/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1a44f6a4039704f8bc0ac042342897b80264fceff1de95c67f016f74955d7c63"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-szczecin-cathedral",
+        "path": "models/generate-szczecin-cathedral.mjs"
+      },
+      {
+        "id": "szczecin-cathedral-model",
+        "path": "models/szczecin-cathedral-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/szczecin-cathedral-footprint.json",
+      "reference-rights/szczecin-cathedral-architectural-facts.json",
+      "references/szczecin-cathedral-original-6.jpg",
+      "reference-rights/schlott-2008-restored-cathedral-commons-first-upload.json",
+      "references/szczecin-cathedral-original-8.jpg",
+      "reference-rights/kapitel-restored-spire-commons-first-upload.json",
+      "references/szczecin-cathedral-original-9.jpg",
+      "reference-rights/horvat-cathedral-choir-commons-first-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-17708-10609.png",
+      "terrain-sources/terrarium-15-17709-10609.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

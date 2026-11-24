@@ -1,0 +1,54 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.shaolin_monastery",
+  "kind": "static-structure",
+  "title": "Shaolin Monastery",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.shaolin_monastery",
+        "output": "assets/places/ww/ww0/shaolin_monastery/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d82bb515edd0b0cffed4f063d0a23ad05089471ea6fe5225591e2342f33385ca"
+      }
+    ],
+    "generators": [
+      {
+        "id": "shaolin_monastery",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "monastery",
+        "path": "models/monastery.mjs"
+      },
+      {
+        "id": "temple-architecture",
+        "path": "models/temple-architecture.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "import-report.json",
+      "preview.png"
+    ]
+  }
+}

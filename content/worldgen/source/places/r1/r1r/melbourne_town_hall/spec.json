@@ -1,0 +1,386 @@
+{
+  "id": "melbourne_town_hall",
+  "planId": "melbourne_town_hall",
+  "title": "Melbourne Town Hall",
+  "assetId": "molen.worldgen.structure.melbourne_town_hall",
+  "category": "landmark",
+  "wikidataId": "Q2091322",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 144.966777,
+    "latitude": -37.815145
+  },
+  "visualBrief": "The Swanston Street portico has open ground-floor arches, freestone columns and a triangular pediment. The clock tower rises at the Collins Street corner above the sloping bluestone base.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r1/r1r/melbourne_town_hall/models/swanston-civic-hall.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Melbourne_Town_Hall_St_Pauls.jpg",
+    "https://whatson.melbourne.vic.gov.au/things-to-do/melbourne-town-hall",
+    "https://www.openstreetmap.org/way/17036922"
+  ],
+  "geographicProposal": {
+    "id": "melbourne-town-hall",
+    "title": "Melbourne Town Hall",
+    "asset": "molen.worldgen.structure.melbourne_town_hall",
+    "anchor": [
+      144.966777,
+      -37.815145
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 29.62,
+    "bounds": [
+      144.96643865763772,
+      -37.81532356769274,
+      144.96730964236306,
+      -37.81464183188493
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q2091322",
+      "names": [
+        "Melbourne Town Hall",
+        "Town Hall, Melbourne",
+        "Melbourne Town Hall, Swanston Street"
+      ],
+      "maxDistance": 96
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -26.743045,
+          -34.475574
+        ],
+        [
+          25.300803,
+          -54.012039
+        ],
+        [
+          44.84143,
+          -1.981487
+        ],
+        [
+          -8.064246,
+          17.87793
+        ],
+        [
+          -14.879721,
+          -0.278299
+        ],
+        [
+          -21.739167,
+          2.293182
+        ],
+        [
+          -27.754374,
+          -13.725682
+        ],
+        [
+          -20.041894,
+          -16.619983
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the surveyed principal town hall. The council administration building and Athenaeum have separate footprints."
+    },
+    "source": "https://www.openstreetmap.org/way/17036922",
+    "note": "The hall fits the named footprint and the projecting Swanston Street portico. Its clock tower occupies the Collins Street corner.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2d432a9f35a7e5372a142f958fa529d8e1dcbd5423206ffb78e2437cd3d7c249"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "sandstone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.93
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_basalt",
+        "roughness": 0.97
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.94
+      },
+      "crown": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.88
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.58
+      }
+    },
+    "errorMeters": 1.06,
+    "module": "content/worldgen/source/places/r1/r1r/melbourne_town_hall/models/swanston-civic-hall.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.97
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94
+          },
+          "crown": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58
+          }
+        },
+        "errorMeters": 0.42
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.97
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94
+          },
+          "crown": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58
+          }
+        },
+        "errorMeters": 0.156
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.97
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94
+          },
+          "crown": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58
+          }
+        },
+        "errorMeters": 0.051
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        4,
+        12,
+        -17
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "swanston-arches-and-columned-portico",
+      "position": [
+        -46,
+        5.8,
+        1
+      ],
+      "lookAt": [
+        -23,
+        9,
+        -6
+      ],
+      "fov": 65
+    },
+    {
+      "name": "collins-street-clock-and-crown",
+      "position": [
+        13,
+        35,
+        63
+      ],
+      "lookAt": [
+        -2,
+        25,
+        10
+      ],
+      "fov": 55
+    },
+    {
+      "name": "sloping-bluestone-and-hall-windows",
+      "position": [
+        19,
+        10,
+        54
+      ],
+      "lookAt": [
+        12,
+        8,
+        2
+      ],
+      "fov": 55
+    }
+  ],
+  "limitations": [
+    "The clock tower dimensions, bell vents, balcony carving and roof heights are estimated from the exterior photograph."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -28.155895233154297,
+      -3.5,
+      -54.246089935302734
+    ],
+    "max": [
+      45.075469970703125,
+      39.86000061035156,
+      18.111984252929688
+    ]
+  },
+  "size": [
+    73.23136520385742,
+    43.36000061035156,
+    72.35807418823242
+  ],
+  "mesh": {
+    "triangles": 13317,
+    "vertices": 25753,
+    "materials": 7,
+    "bytes": 1091104,
+    "sha256": "sha256:abaf005054f0ff721eaca07a4ffea67ac97a7fcd4f68aada948d56da17c0ac28"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

@@ -1,0 +1,463 @@
+{
+  "planId": "olde_pink_house",
+  "id": "olde_pink_house",
+  "assetId": "molen.worldgen.structure.olde_pink_house",
+  "title": "The Olde Pink House",
+  "wikidataId": "Q85808054",
+  "category": "historic",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -81.08989825,
+    "latitude": 32.07968135
+  },
+  "size": [
+    32.339999198913574,
+    17.739999771118164,
+    21.378000259399414
+  ],
+  "actualBounds": {
+    "min": [
+      -14.032999992370605,
+      -4.5,
+      -10.619999885559082
+    ],
+    "max": [
+      18.30699920654297,
+      13.239999771118164,
+      10.758000373840332
+    ]
+  },
+  "visualBrief": "The Olde Pink House in Savannah, with its stuccoed Georgian exterior, slate gable, Palladian window and four-column Doric porch.",
+  "nativeAxes": {
+    "x": "from rear toward the front portico",
+    "y": "up",
+    "z": "along the frontage away from East Bryan Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Habersham_House,_Savannah.jpg",
+    "https://commons.wikimedia.org/wiki/File:Habersham_House,_Reynolds_Square_2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "the-olde-pink-house-wp",
+      "url": "https://qualla.com/the-olde-pink-house/"
+    }
+  ],
+  "referenceInputHash": "sha256:a9bd3503be1bd157455457ddc5c122bae8b68025177fac7e992ba5d857e5852b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dj/djw/olde_pink_house/models/olde-pink-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dj/djw/olde_pink_house/models/olde-pink-house-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.93,
+    "surfaces": {
+      "pink": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.92
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.91
+      },
+      "window": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.52
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.91
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.87
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.41,
+        "surfaces": {
+          "pink": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "pink": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "pink": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "tile_flat",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original sidewalk elevation between the porch and Abercorn Street.",
+    "anchor": [
+      -81.08989825,
+      32.07968135
+    ],
+    "heading": -0.3023925356238535,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -81.08972644602673,
+        32.079632173600544
+      ],
+      "modelHeight": 0,
+      "basis": "Original sidewalk elevation between the porch and Abercorn Street."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          13.794,
+          10.407
+        ],
+        [
+          13.792,
+          -10.407
+        ],
+        [
+          -13.794,
+          -10.407
+        ],
+        [
+          -13.802,
+          -9.134
+        ],
+        [
+          -13.792,
+          10.407
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "The individually named mapped house on Abercorn Street."
+    },
+    "featureIds": [
+      "way/330749977"
+    ],
+    "source": "https://www.openstreetmap.org/way/330749977",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:35ae43b75de19399a8964ae35c43170723973b370710d8ca767861e86e34b6b7",
+    "notes": "The stuccoed brick house has two storeys over a basement, end parapets and chimneys, slate gable, corner quoins, regular six-over-six windows with metal hoods and a Palladian window over the balustraded Doric entrance porch."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Exterior of the standing historic residence and its connected wing. Decorative ironwork and later interior fit-outs are simplified or outside scope.",
+    "Unpublished vertical dimensions and secondary window positions are estimated from the survey photographs."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "olde-pink-house-skyline",
+      "position": [
+        41,
+        9.7,
+        26
+      ],
+      "lookAt": [
+        5.6,
+        5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "olde-pink-house-district",
+      "position": [
+        41,
+        9.7,
+        26
+      ],
+      "lookAt": [
+        5.6,
+        5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "olde-pink-house-street",
+      "position": [
+        41,
+        9.7,
+        26
+      ],
+      "lookAt": [
+        5.6,
+        5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "olde-pink-house-closeup",
+      "position": [
+        41,
+        9.7,
+        26
+      ],
+      "lookAt": [
+        5.6,
+        5,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "abercorn-front-corner",
+      "position": [
+        41,
+        9.7,
+        26
+      ],
+      "lookAt": [
+        5.6,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "doric-porch-and-palladian-window",
+      "position": [
+        29,
+        3.4,
+        9
+      ],
+      "lookAt": [
+        14.45,
+        4.58,
+        0.9
+      ]
+    },
+    {
+      "name": "gable-and-attached-wing",
+      "position": [
+        -20,
+        19,
+        -30
+      ],
+      "lookAt": [
+        1,
+        5.8,
+        -1.7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6008,
+    "vertices": 18024,
+    "materials": 7,
+    "bytes": 936940,
+    "sha256": "sha256:8245c4006c30c8cc80a5f1ff39e3b01515b445667f7f58ca1179ff9f9d961d91"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mausoleum_of_the_first_qin_emperor",
+  "kind": "static-structure",
+  "title": "Mausoleum of the First Qin Emperor",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mausoleum_of_the_first_qin_emperor",
+        "output": "assets/places/wq/wqj/mausoleum_of_the_first_qin_emperor/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a0cf2fdff10376454f6955c714003eea061096ac3c5a65d417bf0be7d156e007"
+      }
+    ],
+    "generators": [
+      {
+        "id": "mausoleum_of_the_first_qin_emperor",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "wooded-tumulus",
+        "path": "models/wooded-tumulus.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "qinMound-surveyed-geometry.json",
+      "qinMound-clipped-elevation-grids.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

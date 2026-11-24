@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.palacio_da_alvorada",
+  "kind": "static-structure",
+  "title": "Palácio da Alvorada",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.palacio_da_alvorada",
+        "output": "assets/places/6v/6vj/palacio_da_alvorada/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e3639c53c5a5d69f0f171768c5891fd5f49e071cc1b27e1fafd40c44e4672f6d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "palacio_da_alvorada",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "alvorada-marble-colonnades",
+        "path": "models/alvorada-marble-colonnades.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

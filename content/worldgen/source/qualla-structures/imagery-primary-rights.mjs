@@ -307,6 +307,7 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       'commons-native-expired-us-book-photo',
       'commons-native-expired-named-book-photo',
       'commons-native-expired-historical-print',
+      'commons-native-louisbourg-lighthouse-plan',
       'commons-native-sule-archival-prints',
       'commons-native-slq-archival-photo',
       'commons-native-qsa-government-plan',
@@ -337,7 +338,8 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
   }
   const page = Object.values(record.query?.pages ?? {}).find((p) => p.title === title),
     info = page?.imageinfo?.[0],
-    wiki = page?.revisions?.[0]?.slots?.main?.['*'] ?? '',
+    wiki =
+      page?.revisions?.[0]?.slots?.main?.['*'] ?? page?.revisions?.[0]?.slots?.main?.content ?? '',
     clean = text(wiki),
     photographer = text(proof.photographer);
   let nativeUrl;
@@ -937,6 +939,43 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
     basis = rowe
       ? 'Exact Qualla original matches the expired Rowe & Co. publication digitized by Cornell University Library.'
       : 'Exact Qualla reproduction of Klier’s nineteenth-century print, matched to its British Library catalogue and the public-domain Rijksmuseum print numbered 380.';
+  } else if (proof.kind === 'commons-native-louisbourg-lighthouse-plan') {
+    const catalogue = record.catalogue,
+      archive = path.join(path.dirname(file), 'louisbourg-40284-archive.html'),
+      artist = "attribution à Verrier - Archives nationales d'outre-mer (France)";
+    if (
+      catalogue?.source !== 'https://nouvelle-france.org/fra/item/details?id=40284' ||
+      !fs.existsSync(archive) ||
+      info.sha1 !== 'fab211cff86f99181bfd426c46d39529c2ca2851' ||
+      info.size !== original.length ||
+      page.revisions[0].revid !== 186019809 ||
+      page.revisions[0].parentid !== 0 ||
+      reference.artist !== artist ||
+      !wiki.includes(`|author=${artist}\n`) ||
+      !wiki.includes('|date=1732\n') ||
+      !wiki.includes('IdNumber=40284\n') ||
+      !wiki.includes('{{PD-old-70-1923}}') ||
+      /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+      info.extmetadata?.Copyrighted?.value !== 'False' ||
+      info.extmetadata?.AttributionRequired?.value !== 'false' ||
+      text(info.extmetadata?.Restrictions?.value)
+    )
+      return failed;
+    const archiveBytes = fs.readFileSync(archive);
+    if (
+      createHash('sha256').update(archiveBytes).digest('hex') !== catalogue.sha256 ||
+      ![
+        '<p id="IdNumber">40284</p>',
+        '<p id="UnitDateText">1732</p>',
+        `<p id="Repository">Archives nationales d'outre-mer (France)</p>`,
+        'FR CAOM 3DFC172B',
+        'Au verso attribution à Verrier',
+        "pendant l'année 1733.",
+      ].every((field) => archiveBytes.toString().includes(field))
+    )
+      return failed;
+    basis =
+      'Exact Qualla reproduction of the original Louisbourg lighthouse plan, catalogue item 40284 and shelfmark FR CAOM 3DFC172B, attributed to Verrier and explicitly public domain at its first Commons upload.';
   } else if (proof.kind === 'commons-native-expired-historical-print') {
     const field = (name) =>
         wiki.match(new RegExp(`\\|\\s*${name}\\s*=([^\\n]+)`, 'i'))?.[1]?.trim() ?? '',

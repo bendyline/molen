@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.old_government_buildings_wellington",
+  "kind": "static-structure",
+  "title": "Old Government Buildings, Wellington",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.old_government_buildings_wellington",
+        "output": "assets/places/rb/rbs/old_government_buildings_wellington/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7078d8d7aa04ebd9061a2cc28a0ec985457fc78df3d86df1dff36dd399288dc3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "old_government_buildings_wellington",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "lambton-quay-timber-wings",
+        "path": "models/lambton-quay-timber-wings.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,0 +1,500 @@
+{
+  "planId": "christ_church_cathedral_grafton",
+  "id": "christ_church_cathedral_grafton",
+  "assetId": "molen.worldgen.structure.christ_church_cathedral_grafton",
+  "title": "Christ Church Cathedral, Grafton",
+  "wikidataId": "Q55607544",
+  "category": "historic-cathedral",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 152.93480485,
+    "latitude": -29.69306862
+  },
+  "size": [
+    30.090842247009277,
+    19.129999935626984,
+    49.20235633850098
+  ],
+  "actualBounds": {
+    "min": [
+      -11.800841331481934,
+      -0.550000011920929,
+      -23.965356826782227
+    ],
+    "max": [
+      18.290000915527344,
+      18.579999923706055,
+      25.23699951171875
+    ]
+  },
+  "visualBrief": "Grafton’s salmon-brick Gothic cathedral with its recessed double west arch, lancet bays and steep grey slate roofs.",
+  "nativeAxes": {
+    "x": "along the western porch facade from north to south",
+    "y": "up",
+    "z": "out through the principal west entrance"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.clarence.nsw.gov.au/files/assets/public/v/1/community/files/heritage/grafton-thematic-history-2008.pdf#page=28"
+  ],
+  "stories": [
+    {
+      "id": "christ-church-cathedral-grafton-wp",
+      "url": "https://qualla.com/christ-church-cathedral-grafton/"
+    }
+  ],
+  "referenceInputHash": "sha256:3368e8dc5deba9aeb80f590a9959e15c7c9ffef47c56acd9bbda9b831916d48a",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r6/r6s/christ_church_cathedral_grafton/models/christ-church-cathedral-grafton-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r6/r6s/christ_church_cathedral_grafton/models/christ-church-cathedral-grafton-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.65,
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.965
+      },
+      "decoration": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.945
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.92
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.975
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.9
+      },
+      "shade": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93
+      },
+      "flashings": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.26,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.965
+          },
+          "decoration": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.945
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.975
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "flashings": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.087,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.965
+          },
+          "decoration": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.945
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.975
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "flashings": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.038,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.965
+          },
+          "decoration": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.945
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.975
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "flashings": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "slate",
+    "stone_sandstone_raw",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.12,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Copernicus datum on the lawn of the main west approach.",
+    "anchor": [
+      152.93480485,
+      -29.69306862
+    ],
+    "heading": -1.8556650691917662,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        152.934471309267,
+        -29.6929793552922
+      ],
+      "modelHeight": 0,
+      "basis": "Original Copernicus datum on the lawn of the main west approach."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -11.2595,
+          23.747
+        ],
+        [
+          10.3154,
+          23.747
+        ],
+        [
+          10.304,
+          -4.5742
+        ],
+        [
+          17.7497,
+          -4.578
+        ],
+        [
+          17.74,
+          -13.5633
+        ],
+        [
+          8.588,
+          -13.5635
+        ],
+        [
+          8.5861,
+          -23.7501
+        ],
+        [
+          -7.6399,
+          -23.7446
+        ],
+        [
+          -7.6352,
+          -12.9542
+        ],
+        [
+          -9.1542,
+          -12.9527
+        ],
+        [
+          -9.1482,
+          -3.0293
+        ],
+        [
+          -5.7623,
+          -3.0334
+        ],
+        [
+          -5.755,
+          14.064
+        ],
+        [
+          -11.2537,
+          14.062
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The outer walls and attached vestries use the native footprint on the cathedral grounds."
+    },
+    "featureIds": [
+      "way/480751855",
+      "way/567103954"
+    ],
+    "source": "https://www.openstreetmap.org/way/480751855",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:40488875ab46633c3cd307211701b2e271d0bebd9c1a9cb1df93a884a9db7fe5",
+    "notes": "The published 1888 bird’s-eye view shows the first phase, main roof and lower aisle. Heritage NSW and the cathedral conservators record the 1937 continuation with eight nave bays, west double arch, baptistry, and repeating salmon brick."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "The published 1888 bird’s-eye view shows the first phase, main roof and lower aisle. Heritage NSW and the cathedral conservators record the 1937 continuation with eight nave bays, west double arch, baptistry, and repeating salmon brick.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "christ-church-cathedral-grafton-skyline",
+      "position": [
+        54,
+        42,
+        80
+      ],
+      "lookAt": [
+        1,
+        7,
+        -1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "christ-church-cathedral-grafton-district",
+      "position": [
+        54,
+        42,
+        80
+      ],
+      "lookAt": [
+        1,
+        7,
+        -1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "christ-church-cathedral-grafton-street",
+      "position": [
+        54,
+        42,
+        80
+      ],
+      "lookAt": [
+        1,
+        7,
+        -1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "christ-church-cathedral-grafton-closeup",
+      "position": [
+        54,
+        42,
+        80
+      ],
+      "lookAt": [
+        1,
+        7,
+        -1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-gable-and-recessed-double-arch",
+      "position": [
+        -3,
+        5.6,
+        50
+      ],
+      "lookAt": [
+        -0.6,
+        8.1,
+        20.6
+      ]
+    },
+    {
+      "name": "handmade-brick-and-nave-bays",
+      "position": [
+        35,
+        13.5,
+        45
+      ],
+      "lookAt": [
+        3,
+        7.5,
+        4
+      ]
+    },
+    {
+      "name": "slate-roofs-and-attached-vestries",
+      "position": [
+        58,
+        47,
+        -44
+      ],
+      "lookAt": [
+        2,
+        7,
+        -6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9210,
+    "vertices": 27630,
+    "materials": 7,
+    "bytes": 1278632,
+    "sha256": "sha256:c8922036d736a5c62ed39199ad459ee459bd44b3ad88151c9cc98799c61d32f4"
+  }
+}

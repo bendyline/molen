@@ -1,0 +1,365 @@
+{
+  "planId": "williams_brice_stadium",
+  "id": "williams_brice_stadium",
+  "assetId": "molen.worldgen.structure.williams_brice_stadium",
+  "title": "Williams–Brice Stadium (2006)",
+  "wikidataId": "Q940522",
+  "category": "football-stadium",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -81.01918295,
+    "latitude": 33.973085525
+  },
+  "size": [
+    241.70978546142578,
+    44.51000094413757,
+    205.61000061035156
+  ],
+  "actualBounds": {
+    "min": [
+      -125.16999816894531,
+      -1.2200000286102295,
+      -98
+    ],
+    "max": [
+      116.53978729248047,
+      43.290000915527344,
+      107.61000061035156
+    ]
+  },
+  "visualBrief": "The 2006 Williams–Brice Stadium bowl, concrete side decks and lights, stacked access ramps and enlarged south end.",
+  "nativeAxes": {
+    "x": "along the field sidelines' cross axis toward the east stands",
+    "y": "up",
+    "z": "toward the south end zone"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2006-10-28",
+    "validFrom": "2006-01-01",
+    "validUntil": "2007-01-01"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Williams-Brice_Stadium.jpg",
+    "https://commons.wikimedia.org/wiki/File:Williams-Brice_Stadium_night.jpg"
+  ],
+  "stories": [
+    {
+      "id": "williams-brice-stadium-wp",
+      "url": "https://qualla.com/williams-brice-stadium/"
+    }
+  ],
+  "referenceInputHash": "sha256:1fff8e84c12039ce307d4dc51969ab3cc87188d4b721da582f5ed62fc38bead9",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dn/dnn/williams_brice_stadium/models/williams-brice-stadium-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dn/dnn/williams_brice_stadium/models/williams-brice-stadium-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.45,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.92
+      },
+      "steps": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83
+      },
+      "detail": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.68,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.92
+          },
+          "steps": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.27,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.92
+          },
+          "steps": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.082,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.92
+          },
+          "steps": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_boardformed",
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original USGS one-metre bare-earth survey sampled at the center of the mapped playing surface.",
+    "anchor": [
+      -81.01918295,
+      33.973085525
+    ],
+    "heading": 0.515233965357622,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -81.01918295,
+        33.973085525
+      ],
+      "modelHeight": 0,
+      "basis": "Original USGS one-metre bare-earth survey sampled at the center of the mapped playing surface."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/151179820",
+      "way/187031723",
+      "way/187031724",
+      "way/187031725"
+    ],
+    "source": "https://www.openstreetmap.org/way/151179820",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5e8ef9f46b63f1c982d31407d37682f8e91084c4f65226917d90c3d0406b84b4",
+    "notes": "The university documents the two main upper decks, end-zone additions and the date of the later north scoreboard. The 2006 photographs provide the major bearing frames, ramp tiers, lighting beams and press box proportions."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The depiction is dated October 2006. Later renovations, including the 2012 north video board and subsequent concourse upgrades, are outside this configuration.",
+    "Mapped plan controls fix the field, main deck spans and site orientation. Deck sectional heights, individual benches, signwork, services and small fixture details use bounded estimates."
+  ],
+  "sourceLicense": "Original 3D work under the repository license. Mapped geometry under ODbL and USGS elevation data in the public domain.",
+  "qaLodCameras": [
+    {
+      "name": "williams-brice-stadium-skyline",
+      "position": [
+        -260,
+        155,
+        216
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "williams-brice-stadium-district",
+      "position": [
+        -260,
+        155,
+        216
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "williams-brice-stadium-street",
+      "position": [
+        -260,
+        155,
+        216
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "williams-brice-stadium-closeup",
+      "position": [
+        -260,
+        155,
+        216
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-deck-and-south-entrance",
+      "position": [
+        -225,
+        27,
+        182
+      ],
+      "lookAt": [
+        -8,
+        15,
+        0
+      ]
+    },
+    {
+      "name": "north-scoreboard-and-lower-bowl",
+      "position": [
+        38,
+        87,
+        152
+      ],
+      "lookAt": [
+        0,
+        13,
+        -16
+      ]
+    },
+    {
+      "name": "east-cantilevers-and-light-bars",
+      "position": [
+        248,
+        19,
+        -64
+      ],
+      "lookAt": [
+        20,
+        19,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 15290,
+    "vertices": 45870,
+    "materials": 4,
+    "bytes": 1928904,
+    "sha256": "sha256:c8f2221252f4237598efef3c8a2cda0a475b001646ce4c43af99bacfc810fe26"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.wellington_cathedral_of_st_paul",
+  "kind": "static-structure",
+  "title": "Wellington Cathedral of St Paul",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.wellington_cathedral_of_st_paul",
+        "output": "assets/places/rb/rbs/wellington_cathedral_of_st_paul/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:29768abdb68fce52bd8856afb45a16679f35ebe52ddfa0af13511becf00b7a55"
+      }
+    ],
+    "generators": [
+      {
+        "id": "wellington_cathedral_of_st_paul",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "holm-window-and-concrete-bell-tower",
+        "path": "models/holm-window-and-concrete-bell-tower.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

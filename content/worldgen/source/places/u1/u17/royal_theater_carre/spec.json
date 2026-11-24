@@ -1,0 +1,846 @@
+{
+  "planId": "royal_theater_carre",
+  "id": "royal_theater_carre",
+  "assetId": "molen.worldgen.structure.royal_theater_carre",
+  "title": "Royal Theatre Carré",
+  "wikidataId": "Q1106490",
+  "category": "theatre",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 4.904245,
+    "latitude": 52.362451
+  },
+  "size": [
+    51.9379997253418,
+    33.12600189447403,
+    63.01499938964844
+  ],
+  "actualBounds": {
+    "min": [
+      -23.781999588012695,
+      -0.5600000023841858,
+      -29.71500015258789
+    ],
+    "max": [
+      28.1560001373291,
+      32.566001892089844,
+      33.29999923706055
+    ]
+  },
+  "visualBrief": "Amsterdam’s Royal Theatre Carré with its plastered Neo-Renaissance Amstel facade and bowed zinc roof.",
+  "nativeAxes": {
+    "x": "south-southeast along the theatre frontage",
+    "y": "up",
+    "z": "west-southwest toward the Amstel"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:2024_Amstelsluizen_met_Carre,_Asd.jpg",
+    "https://commons.wikimedia.org/wiki/File:Carre_amsterdam_facade.jpg"
+  ],
+  "stories": [
+    {
+      "id": "royal-theater-carre-wp",
+      "url": "https://qualla.com/royal-theater-carre/"
+    }
+  ],
+  "referenceInputHash": "sha256:027a4dfc7cb3da88ccea6b11ed4e1c4fdda0e690dbc9e5f4ffa74cc720a996a0",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u17/royal_theater_carre/models/royal-theater-carre-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u17/royal_theater_carre/models/royal-theater-carre-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.98,
+    "surfaces": {
+      "stucco": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "molded": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.91
+      },
+      "rusticated": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.93
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84
+      },
+      "zinc": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.79
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.56
+      },
+      "canopy": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.43,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.57
+        ],
+        "doubleSided": true
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.38,
+        "surfaces": {
+          "stucco": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "molded": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91
+          },
+          "rusticated": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.93
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          },
+          "canopy": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.57
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stucco": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "molded": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91
+          },
+          "rusticated": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.93
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          },
+          "canopy": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.57
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.056,
+        "surfaces": {
+          "stucco": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "molded": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91
+          },
+          "rusticated": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.93
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          },
+          "canopy": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.57
+            ],
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_raw",
+    "stone_ashlar",
+    "brick_flemish",
+    "metal_painted",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original elevation from the paved Amstel entrance approach immediately outside the central façade.",
+    "anchor": [
+      4.904245,
+      52.362451
+    ],
+    "heading": -1.2758501968594016,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        4.903794996038131,
+        52.36233418404835
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation from the paved Amstel entrance approach immediately outside the central façade."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          6.141,
+          -29.48
+        ],
+        [
+          10.839,
+          -29.474
+        ],
+        [
+          10.847,
+          -28.427
+        ],
+        [
+          11.928,
+          -28.425
+        ],
+        [
+          11.931,
+          -29.469
+        ],
+        [
+          16.632,
+          -29.469
+        ],
+        [
+          16.627,
+          -28.419
+        ],
+        [
+          17.708,
+          -28.417
+        ],
+        [
+          17.702,
+          -29.47
+        ],
+        [
+          22.411,
+          -29.461
+        ],
+        [
+          22.406,
+          -26.457
+        ],
+        [
+          23.977,
+          -26.456
+        ],
+        [
+          23.972,
+          -27.246
+        ],
+        [
+          24.419,
+          -27.224
+        ],
+        [
+          24.863,
+          -27.153
+        ],
+        [
+          25.078,
+          -27.095
+        ],
+        [
+          25.314,
+          -27.03
+        ],
+        [
+          25.545,
+          -26.946
+        ],
+        [
+          25.992,
+          -26.732
+        ],
+        [
+          26.431,
+          -26.456
+        ],
+        [
+          26.795,
+          -26.161
+        ],
+        [
+          27.124,
+          -25.826
+        ],
+        [
+          27.427,
+          -25.443
+        ],
+        [
+          27.673,
+          -25.027
+        ],
+        [
+          27.877,
+          -24.589
+        ],
+        [
+          28.027,
+          -24.124
+        ],
+        [
+          28.115,
+          -23.65
+        ],
+        [
+          28.156,
+          -23.019
+        ],
+        [
+          28.14,
+          -22.775
+        ],
+        [
+          28.05,
+          -22.171
+        ],
+        [
+          27.837,
+          -21.51
+        ],
+        [
+          27.623,
+          -21.071
+        ],
+        [
+          27.204,
+          -20.459
+        ],
+        [
+          26.863,
+          -20.101
+        ],
+        [
+          26.486,
+          -19.782
+        ],
+        [
+          25.858,
+          -19.398
+        ],
+        [
+          25.405,
+          -19.209
+        ],
+        [
+          24.932,
+          -19.068
+        ],
+        [
+          24.442,
+          -18.989
+        ],
+        [
+          24.193,
+          -18.973
+        ],
+        [
+          23.947,
+          -18.969
+        ],
+        [
+          23.936,
+          -19.697
+        ],
+        [
+          22.317,
+          -19.692
+        ],
+        [
+          22.3,
+          -15.193
+        ],
+        [
+          22.352,
+          -8.278
+        ],
+        [
+          22.294,
+          1.409
+        ],
+        [
+          22.285,
+          4.54
+        ],
+        [
+          22.971,
+          4.542
+        ],
+        [
+          22.966,
+          5.514
+        ],
+        [
+          22.291,
+          5.515
+        ],
+        [
+          22.285,
+          8.561
+        ],
+        [
+          22.96,
+          8.56
+        ],
+        [
+          22.967,
+          9.457
+        ],
+        [
+          22.283,
+          9.448
+        ],
+        [
+          22.278,
+          12.374
+        ],
+        [
+          22.238,
+          18.941
+        ],
+        [
+          22.259,
+          28.829
+        ],
+        [
+          7.674,
+          28.853
+        ],
+        [
+          7.683,
+          30.66
+        ],
+        [
+          -0.429,
+          30.669
+        ],
+        [
+          -0.438,
+          28.861
+        ],
+        [
+          -15.018,
+          28.829
+        ],
+        [
+          -15,
+          14.029
+        ],
+        [
+          -18.476,
+          13.981
+        ],
+        [
+          -18.487,
+          4.941
+        ],
+        [
+          -23.753,
+          5.039
+        ],
+        [
+          -23.782,
+          -25.271
+        ],
+        [
+          -23.781,
+          -26.5
+        ],
+        [
+          -16.977,
+          -26.493
+        ],
+        [
+          -16.982,
+          -29.5
+        ],
+        [
+          -12.284,
+          -29.494
+        ],
+        [
+          -12.276,
+          -28.447
+        ],
+        [
+          -11.195,
+          -28.445
+        ],
+        [
+          -11.202,
+          -29.492
+        ],
+        [
+          -6.504,
+          -29.485
+        ],
+        [
+          -6.496,
+          -28.439
+        ],
+        [
+          -5.415,
+          -28.437
+        ],
+        [
+          -5.421,
+          -29.49
+        ],
+        [
+          -0.712,
+          -29.48
+        ],
+        [
+          -0.715,
+          -28.437
+        ],
+        [
+          0.367,
+          -28.435
+        ],
+        [
+          0.359,
+          -29.482
+        ],
+        [
+          5.059,
+          -29.482
+        ],
+        [
+          5.065,
+          -28.429
+        ],
+        [
+          6.147,
+          -28.427
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Matched BAG building outline with the adjoining houses outside the placement."
+    },
+    "featureIds": [
+      "way/269000174"
+    ],
+    "source": "https://www.openstreetmap.org/way/269000174",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7e17793a859ac2f4815f9a58f92e6e33ca619e6a5dec131dbe70b13350059948",
+    "notes": "Pale plaster neo-Renaissance street front above a dark rusticated ground storey, upper columns and black balcony rails, bowed blue-gray zinc roof, central lantern, and plain rear stage volumes."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The decorative capitals and balustrades are simplified, and the rear glazing and services use architectural estimates.",
+    "Terrain and the model cover the building and its immediate site. The canal locks, nearby houses and temporary signs are outside the scope."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain. Survey measurements: © 3DBAG by tudelft3d and 3DGI, https://docs.3dbag.nl/en/copyright/.",
+  "qaLodCameras": [
+    {
+      "name": "carre-theatre-skyline",
+      "position": [
+        -47,
+        29,
+        89
+      ],
+      "lookAt": [
+        3,
+        13.25,
+        4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "carre-theatre-district",
+      "position": [
+        -47,
+        29,
+        89
+      ],
+      "lookAt": [
+        3,
+        13.25,
+        4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "carre-theatre-street",
+      "position": [
+        -47,
+        29,
+        89
+      ],
+      "lookAt": [
+        3,
+        13.25,
+        4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "carre-theatre-closeup",
+      "position": [
+        -47,
+        29,
+        89
+      ],
+      "lookAt": [
+        3,
+        13.25,
+        4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "amstel-canal-elevation",
+      "position": [
+        -33,
+        15,
+        83
+      ],
+      "lookAt": [
+        3,
+        13.8,
+        23
+      ]
+    },
+    {
+      "name": "street-portico-and-windows",
+      "position": [
+        16.5,
+        8.8,
+        61
+      ],
+      "lookAt": [
+        2.3,
+        9.65,
+        27.5
+      ]
+    },
+    {
+      "name": "zinc-roof-and-stage-tower",
+      "position": [
+        52,
+        48,
+        -40
+      ],
+      "lookAt": [
+        1,
+        15.07,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8499,
+    "vertices": 25497,
+    "materials": 8,
+    "bytes": 1304904,
+    "sha256": "sha256:2a0ec61cc71846dd8aef65c5f411a24d2924d915941501ea6b33eb3f485a4739"
+  }
+}

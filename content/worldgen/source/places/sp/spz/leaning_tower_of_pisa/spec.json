@@ -1,0 +1,426 @@
+{
+  "id": "leaning_tower_of_pisa",
+  "planId": "leaning_tower_of_pisa",
+  "title": "Leaning Tower of Pisa",
+  "assetId": "molen.worldgen.structure.leaning_tower_of_pisa",
+  "category": "tower",
+  "wikidataId": "Q39054",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 10.39663235,
+    "latitude": 43.7230066
+  },
+  "visualBrief": "The south-leaning marble campanile has a broad blind-arcaded base, six open loggias and a narrower arcaded belfry.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sp/spz/leaning_tower_of_pisa/models/tower-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.opapisa.it/wp-content/uploads/2024/07/Scheda_informativa_Campanile_V01.pdf",
+    "https://spiral.imperial.ac.uk/entities/publication/fe83f08f-89d7-4396-91a5-1e40c293546c",
+    "https://academic.oup.com/jge/article/11/5/055004/5110272",
+    "https://www.turismo.pisa.it/en/culture/detail/Piazza-del-Duomo-La-torre-pendente?context=220",
+    "https://www.openstreetmap.org/relation/12982355"
+  ],
+  "geographicProposal": {
+    "id": "leaning-tower-of-pisa",
+    "title": "Leaning Tower of Pisa",
+    "asset": "molen.worldgen.structure.leaning_tower_of_pisa",
+    "anchor": [
+      10.39663235,
+      43.7230066
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "minLevel": 13,
+    "datum": "terrain",
+    "elevation": 0,
+    "status": "source-map-preview",
+    "bounds": [
+      10.3965294,
+      43.7229323,
+      10.3967353,
+      43.7230809
+    ],
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q39054",
+      "names": [
+        "Leaning Tower of Pisa",
+        "Torre Pendente",
+        "Torre di Pisa"
+      ],
+      "maxDistance": 14
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -0.64,
+          -8.271
+        ],
+        [
+          -3.375,
+          -7.57
+        ],
+        [
+          -5.41,
+          -6.278
+        ],
+        [
+          -7.067,
+          -4.319
+        ],
+        [
+          -7.993,
+          -2.171
+        ],
+        [
+          -8.282,
+          0.1
+        ],
+        [
+          -7.969,
+          2.249
+        ],
+        [
+          -6.971,
+          4.464
+        ],
+        [
+          -5.829,
+          5.878
+        ],
+        [
+          -3.833,
+          7.336
+        ],
+        [
+          -2.104,
+          8.004
+        ],
+        [
+          -0.149,
+          8.271
+        ],
+        [
+          1.79,
+          8.082
+        ],
+        [
+          3.946,
+          7.28
+        ],
+        [
+          5.563,
+          6.134
+        ],
+        [
+          6.955,
+          4.497
+        ],
+        [
+          7.896,
+          2.516
+        ],
+        [
+          8.282,
+          0.267
+        ],
+        [
+          7.936,
+          -2.393
+        ],
+        [
+          7.035,
+          -4.386
+        ],
+        [
+          5.732,
+          -5.989
+        ],
+        [
+          3.576,
+          -7.481
+        ],
+        [
+          1.637,
+          -8.126
+        ]
+      ],
+      "minimumCoverage": 0.88,
+      "basis": "Suppress the named mapped footprint and any matching parts while the authored model is resident."
+    },
+    "source": "https://www.openstreetmap.org/relation/12982355",
+    "note": "The mapped plinth is centered on the current campanile. The authored geometry leans south.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:99864aa0021a7420511a26ed5ba0df4ace5000d0f8e58a390dbd9f65f5bab801",
+    "terrainReference": {
+      "anchor": [
+        10.39663235,
+        43.7230066
+      ],
+      "modelHeight": 0,
+      "basis": "Centre of the mapped campanile plinth on the approximately level stone piazza."
+    }
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "errorMeters": 1.12,
+    "surfaces": {
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.87
+      },
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.91
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.76
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.91
+      }
+    },
+    "module": "content/worldgen/source/places/sp/spz/leaning_tower_of_pisa/models/tower-model.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.87
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.76
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.87
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.76
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.87
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.91
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.76
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          }
+        }
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.83,
+    "focus": {
+      "center": [
+        0,
+        28,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "campanile-profile",
+      "position": [
+        64,
+        27,
+        1
+      ],
+      "lookAt": [
+        0,
+        28,
+        1
+      ],
+      "fov": 55
+    },
+    {
+      "name": "base-blind-arcade",
+      "position": [
+        -14,
+        5.2,
+        15
+      ],
+      "lookAt": [
+        -4,
+        5.5,
+        3
+      ],
+      "fov": 49
+    },
+    {
+      "name": "open-loggias",
+      "position": [
+        14,
+        24,
+        15
+      ],
+      "lookAt": [
+        2,
+        25,
+        1
+      ],
+      "fov": 55
+    },
+    {
+      "name": "belfry",
+      "position": [
+        14,
+        53,
+        -17
+      ],
+      "lookAt": [
+        0,
+        51,
+        2
+      ],
+      "fov": 49
+    }
+  ],
+  "limitations": [
+    "The map fixes the base and the published inclination fixes the principal lean. The belfry correction, door position, ornament and bell arrangement are approximate.",
+    "The cathedral, baptistery and the rest of the piazza remain independent map features."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -8.25,
+      -1.2397313117980957,
+      -8.25
+    ],
+    "max": [
+      8.25,
+      56.081825256347656,
+      10.733650207519531
+    ]
+  },
+  "size": [
+    16.5,
+    57.32155656814575,
+    18.98365020751953
+  ],
+  "mesh": {
+    "triangles": 32302,
+    "vertices": 66212,
+    "materials": 5,
+    "bytes": 2774600,
+    "sha256": "sha256:02cbf15c10c62696502904ad79aacb573e6be09a0f6e8c2b4545db5face80b2d"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats"
+    }
+  ]
+}

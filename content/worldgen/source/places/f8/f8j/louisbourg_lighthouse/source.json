@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.louisbourg_lighthouse",
+  "kind": "static-structure",
+  "title": "Louisbourg Lighthouse",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.louisbourg_lighthouse",
+        "output": "assets/places/f8/f8j/louisbourg_lighthouse/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:31113009440cfb143961a76e5638cbf744e78e9ac9cb08bdf20a259f5335d252"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-louisbourg-lighthouse",
+        "path": "models/generate-louisbourg-lighthouse.mjs"
+      },
+      {
+        "id": "louisbourg-lighthouse-model",
+        "path": "models/louisbourg-lighthouse-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/louisbourg-lighthouse-footprint.json",
+      "native-map/louisbourg-first-tower-controls.json",
+      "reference-rights/louisbourg-lighthouse-architectural-facts.json",
+      "reference-rights/louisbourg-lighthouse-qualla-original-1.json",
+      "reference-rights/louisbourg-40284-archive.html",
+      "reference-rights/louisbourg-commons-plan-rights.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/louisbourg-high-resolution-dem.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

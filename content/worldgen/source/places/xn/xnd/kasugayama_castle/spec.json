@@ -1,0 +1,462 @@
+{
+  "planId": "kasugayama_castle",
+  "id": "kasugayama_castle",
+  "assetId": "molen.worldgen.structure.kasugayama_castle",
+  "title": "Kasugayama Castle",
+  "wikidataId": "Q1197131",
+  "category": "archaeological",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 138.2057715,
+    "latitude": 37.1468193
+  },
+  "size": [
+    248,
+    84.68276739120483,
+    185
+  ],
+  "actualBounds": {
+    "min": [
+      -111,
+      -77,
+      -96
+    ],
+    "max": [
+      137,
+      7.682767391204834,
+      89
+    ]
+  },
+  "visualBrief": "Kasugayama Castle’s engineered hilltop platforms, approach steps, well terrace and preserved summit markers.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Kasugayama_jousi_2008.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kasugayama-castle-wp",
+      "url": "https://qualla.com/kasugayama-castle/"
+    }
+  ],
+  "referenceInputHash": "sha256:a63dc4243e69242ad66a0f1c542c27dba840105520de1558621ae8b624eb0afe",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xnd/kasugayama_castle/models/kasugayama-castle-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xnd/kasugayama_castle/models/kasugayama-castle-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 4.12,
+    "surfaces": {
+      "ground": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.99
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.95
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.88
+      },
+      "detail": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 2.2,
+        "surfaces": {
+          "ground": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88
+          },
+          "detail": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.84,
+        "surfaces": {
+          "ground": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88
+          },
+          "detail": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "ground": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88
+          },
+          "detail": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_granite",
+    "wood_plain",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3.1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original GSI DEM1A grade at the center of the preserved summit enclosure.",
+    "anchor": [
+      138.2057715,
+      37.1468193
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        138.2057715,
+        37.1468193
+      ],
+      "modelHeight": 0,
+      "basis": "Original GSI DEM1A grade at the center of the preserved summit enclosure."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -104,
+          -64
+        ],
+        [
+          -76,
+          -96
+        ],
+        [
+          63,
+          -96
+        ],
+        [
+          130,
+          -62
+        ],
+        [
+          137,
+          15
+        ],
+        [
+          126,
+          66
+        ],
+        [
+          70,
+          89
+        ],
+        [
+          -56,
+          89
+        ],
+        [
+          -99,
+          63
+        ],
+        [
+          -111,
+          21
+        ]
+      ],
+      "minHeight": -77,
+      "basis": "Replaces terrain only inside the central ridge outline with the preserved one-metre GSI landform."
+    },
+    "featureIds": [
+      "node/1948765554",
+      "node/9660417130",
+      "node/9660417131",
+      "node/9660417132",
+      "node/9660417133",
+      "node/9660417134",
+      "node/9660417135",
+      "node/7339689276",
+      "node/9660417114",
+      "node/7339767013",
+      "node/7339767006",
+      "way/1051236689",
+      "way/1051236691",
+      "way/1051236687",
+      "way/1051236684",
+      "way/1051236685",
+      "way/1051236681",
+      "way/1051236669",
+      "way/1051236688",
+      "way/1051236683",
+      "way/1051236682",
+      "way/1051236680",
+      "way/1051236679",
+      "way/1051236668",
+      "way/190211181",
+      "way/1273258621"
+    ],
+    "source": "https://www.openstreetmap.org/node/1948765554",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4990bcc1fbca752b43f61033dc12221d78022b351e805ba01aac8c32e36847fc",
+    "notes": "Joetsu City identifies an earth castle with many excavated hilltop terraces. An exact Qualla photograph documents the surviving summit marker, roofed noticeboard, pine backdrop and compacted earthen platform."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "This central ridge model ends above the wider eastern castle grounds and excludes the modern shrine, outer defensive perimeter and reconstructed gate features.",
+    "The terrain is survey-derived. The featured summit marker and signs match the exterior photograph in form. Individual plants, trail surfaces, furnishings and stone inscriptions are represented approximately."
+  ],
+  "sourceLicense": "Original reconstruction based on Soica2001’s creator-released Qualla photograph, GSI DEM1A, Joetsu City records and public OpenStreetMap geometry.",
+  "qaLodCameras": [
+    {
+      "name": "kasugayama-castle-skyline",
+      "position": [
+        151,
+        124,
+        128
+      ],
+      "lookAt": [
+        8,
+        -22,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kasugayama-castle-district",
+      "position": [
+        151,
+        124,
+        128
+      ],
+      "lookAt": [
+        8,
+        -22,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "kasugayama-castle-street",
+      "position": [
+        151,
+        124,
+        128
+      ],
+      "lookAt": [
+        8,
+        -22,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "kasugayama-castle-closeup",
+      "position": [
+        151,
+        124,
+        128
+      ],
+      "lookAt": [
+        8,
+        -22,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "summit-and-east-terraced-spur",
+      "position": [
+        151,
+        124,
+        128
+      ],
+      "lookAt": [
+        8,
+        -22,
+        0
+      ]
+    },
+    {
+      "name": "summit-marker-board-and-pines",
+      "position": [
+        12.3,
+        4.7,
+        7.2
+      ],
+      "lookAt": [
+        -5,
+        1.73,
+        0
+      ]
+    },
+    {
+      "name": "well-and-southwest-bank",
+      "position": [
+        -72,
+        15,
+        55
+      ],
+      "lookAt": [
+        -31,
+        -8.4,
+        26
+      ]
+    },
+    {
+      "name": "upper-earthworks-and-stepped-spur",
+      "position": [
+        97,
+        72,
+        -77
+      ],
+      "lookAt": [
+        11,
+        -16,
+        10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 20525,
+    "vertices": 61575,
+    "materials": 5,
+    "bytes": 2666996,
+    "sha256": "sha256:dacd4511b5ff365325b2453634f8aeacfc4a5a0970977e71526622ee67b71611"
+  }
+}

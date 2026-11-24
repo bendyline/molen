@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.delphi_archaeological_museum",
+  "kind": "static-structure",
+  "title": "Delphi Archaeological Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.delphi_archaeological_museum",
+        "output": "assets/places/sq/sqz/delphi_archaeological_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f3d5c650068718ad02cd3b1df2fcf2a1a2b1ef38b206e189b6930f9370517811"
+      }
+    ],
+    "generators": [
+      {
+        "id": "delphi_archaeological_museum",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "hillside-galleries",
+        "path": "models/hillside-galleries.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

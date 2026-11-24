@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.petajavesi_old_church",
+  "kind": "static-structure",
+  "title": "Petäjävesi Old Church",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.petajavesi_old_church",
+        "output": "assets/places/ue/ue1/petajavesi_old_church/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6a1e711892b5e074b96f67fb360d12360a4691888cbc85006da4921172ba8f75"
+      }
+    ],
+    "generators": [
+      {
+        "id": "petajavesi_old_church",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "church",
+        "path": "models/church.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

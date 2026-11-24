@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.palacio_salvo",
+  "kind": "static-structure",
+  "title": "Palacio Salvo",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.palacio_salvo",
+        "output": "assets/places/6c/6cb/palacio_salvo/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3aa49ace1eebb8918fa12362aa15233d90efed55f58fdb11b438c596c9f52233"
+      }
+    ],
+    "generators": [
+      {
+        "id": "palacio_salvo",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "plaza-independencia-tiered-tower",
+        "path": "models/plaza-independencia-tiered-tower.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

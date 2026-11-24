@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.flinders_street_station",
+  "kind": "static-structure",
+  "title": "Flinders Street Station",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.flinders_street_station",
+        "output": "assets/places/r1/r1r/flinders_street_station/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c569f6ea331d55b5d3c127880dc9c2b52deb1e6fd674b2ef871b84ef70145de9"
+      }
+    ],
+    "generators": [
+      {
+        "id": "flinders_street_station",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "flinders-station",
+        "path": "models/flinders-station.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

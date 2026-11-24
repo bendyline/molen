@@ -1,5 +1,6 @@
 /** Authoring collections contain independent assets, never an aggregate runtime placement. */
 import { readFile } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
 import { structureKeyPattern, validateStructureCandidateIds } from './structure-identity.mjs';
 
 const qid = /^Q[1-9][0-9]*$/;
@@ -152,6 +153,24 @@ export function validateStructureCollections(document, candidates = []) {
 
 export async function readStructureCollections(path, candidates = []) {
   return validateStructureCollections(JSON.parse(await readFile(path, 'utf8')), candidates);
+}
+
+/** Authoring can select collections from both the release catalog and the landmark backlog. */
+export async function readAuthoringCollections(path, candidates = []) {
+  const release = await readStructureCollections(path, candidates);
+  const backlog = await readFile(resolve(dirname(path), 'IMPORTANT-LANDMARKS.json'), 'utf8').catch(
+    (error) => {
+      if (error.code === 'ENOENT') return undefined;
+      throw error;
+    },
+  );
+  if (backlog === undefined) return release;
+  const { format: backlogFormat, entries, collections = [] } = JSON.parse(backlog);
+  if (backlogFormat !== 'molen/important-landmark-backlog@1' || !Array.isArray(entries))
+    throw new Error('Invalid important landmark backlog');
+  const format = 'molen/structure-collections@1';
+  const important = validateStructureCollections({ format, collections }, entries);
+  return validateStructureCollections({ format, collections: [...release, ...important] });
 }
 
 export function collectionMember(collections, memberId) {

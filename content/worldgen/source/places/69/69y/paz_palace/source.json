@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.paz_palace",
+  "kind": "static-structure",
+  "title": "Paz Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.paz_palace",
+        "output": "assets/places/69/69y/paz_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:0a6d00a0a0e54bdf1ec698ac26e8d7e9123197409028970a54af223ba78c3005"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-paz-palace",
+        "path": "models/generate-paz-palace.mjs"
+      },
+      {
+        "id": "paz-palace-model",
+        "path": "models/paz-palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/paz-palace-footprint.json",
+      "native-map/paz-palace-shape-controls.json",
+      "reference-rights/paz-palace-architectural-facts.json",
+      "reference-rights/paz-palace-plus-ultra-1916-archive.json",
+      "reference-rights/iai-leaf-thumbnail-6.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/caba-original-ground-contours.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

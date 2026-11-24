@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.pori_theatre",
+  "kind": "static-structure",
+  "title": "Pori Theatre",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.pori_theatre",
+        "output": "assets/places/u6/u6z/pori_theatre/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8c242be59ae9840c9dcfe97f6d3f7085dfca25e7deb6e666d23b591462f21350"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-pori-theatre",
+        "path": "models/generate-pori-theatre.mjs"
+      },
+      {
+        "id": "pori-theatre-model",
+        "path": "models/pori-theatre-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/pori-theatre-footprint.json",
+      "reference-rights/pori-theatre-architectural-facts.json",
+      "reference-rights/pori-theatre-qualla-original-1.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/pori-nls-m3412d-ground.asc",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

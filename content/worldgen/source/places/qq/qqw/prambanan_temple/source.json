@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.prambanan_temple",
+  "kind": "static-structure",
+  "title": "Prambanan Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.prambanan_temple",
+        "output": "assets/places/qq/qqw/prambanan_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:90aab7acd399a1e51f4307e3570a8d7de700251bf9b8d8628b4bf30c256422f4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "prambanan_temple",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "precinct-model",
+        "path": "models/precinct-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

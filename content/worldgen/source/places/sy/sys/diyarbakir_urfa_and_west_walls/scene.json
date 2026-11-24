@@ -1,0 +1,57 @@
+{
+  "format": "molen/scene@3",
+  "name": "Diyarbakır Urfa Gate and the West Walls",
+  "seed": "diyarbakir_urfa_and_west_walls",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": {
+    "mode": "fixed",
+    "position": [-422.789116, 546.623078, 93.47392700000003],
+    "lookAt": [280.204084, 12.025075, -49.994072999999986],
+    "fov": 52
+  },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.diyarbakir_urfa_and_west_walls",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [0.62, 0.68, -0.39],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -14.6, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [2314, 1.18, 2314] },
+          "materialRef": "palette:#948e69",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}

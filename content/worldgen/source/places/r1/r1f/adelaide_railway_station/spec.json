@@ -1,0 +1,329 @@
+{
+  "id": "adelaide_railway_station",
+  "planId": "adelaide_railway_station",
+  "title": "Adelaide Railway Station",
+  "assetId": "molen.worldgen.structure.adelaide_railway_station",
+  "category": "landmark",
+  "wikidataId": "Q4681770",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 138.59720527,
+    "latitude": -34.92095444
+  },
+  "visualBrief": "The chamfered clock pavilion faces North Terrace and Station Road. A recessed street entrance, tall column bays and two rows of sandstone window surrounds distinguish the historic station exterior.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r1/r1f/adelaide_railway_station/models/station.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.openstreetmap.org/way/26624512"
+  ],
+  "geographicProposal": {
+    "id": "adelaide-railway-station",
+    "title": "Adelaide Railway Station",
+    "asset": "molen.worldgen.structure.adelaide_railway_station",
+    "anchor": [
+      138.59720527,
+      -34.92095444
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 35.3086,
+    "bounds": [
+      138.59685368833308,
+      -34.92150807142643,
+      138.59767221166652,
+      -34.9204128320669
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q4681770",
+      "names": [
+        "Adelaide Railway Station",
+        "Adelaide Station",
+        "SkyCity Adelaide",
+        "Adelaide Railway Station"
+      ],
+      "maxDistance": 115
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -30.090824,
+          -54.450653
+        ],
+        [
+          -21.474408,
+          -54.728951
+        ],
+        [
+          -13.168329,
+          -55.085171
+        ],
+        [
+          18.705107,
+          -57.278151
+        ],
+        [
+          34.194574,
+          -58.291152
+        ],
+        [
+          40.620376,
+          45.747972
+        ],
+        [
+          31.447179,
+          55.610934
+        ],
+        [
+          -17.275731,
+          59.2845
+        ],
+        [
+          -21.036285,
+          59.562801
+        ],
+        [
+          -21.921658,
+          59.629593
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace only the mapped sandstone station and casino block. The track approaches, adjacent hotel, convention centre and separately mapped station entrance remain identifiable."
+    },
+    "source": "https://www.openstreetmap.org/way/26624512",
+    "note": "The angled clock and doorway face the mapped North Terrace and Station Road corner. The registered footprint covers the historic station block.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6fd5302a29bf7234505fc59356c97988090876da941c5fc5a8c92865fa1e58e3"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "sandstone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.94
+      },
+      "ashlar": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.91
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.56
+      }
+    },
+    "errorMeters": 1.04,
+    "module": "content/worldgen/source/places/r1/r1f/adelaide_railway_station/models/station.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94
+          },
+          "ashlar": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 0.43
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94
+          },
+          "ashlar": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 0.17
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94
+          },
+          "ashlar": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 0.058
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        4,
+        7.5,
+        12
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "clock-and-station-entrance",
+      "position": [
+        62,
+        7.7,
+        84
+      ],
+      "lookAt": [
+        35,
+        9.1,
+        51
+      ],
+      "fov": 47
+    },
+    {
+      "name": "station-road-columns",
+      "position": [
+        80,
+        8.1,
+        21
+      ],
+      "lookAt": [
+        35,
+        8.3,
+        5
+      ],
+      "fov": 51
+    }
+  ],
+  "limitations": [
+    "The visual scope is the historic station exterior. Interior platforms, the concourse and newer casino additions remain host content. Window, floor and cornice dimensions are estimated from photographs."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -30.49408721923828,
+      -6.599999904632568,
+      -58.6942138671875
+    ],
+    "max": [
+      42.36317443847656,
+      18.459999084472656,
+      60.37721252441406
+    ]
+  },
+  "size": [
+    72.85726165771484,
+    25.059998989105225,
+    119.07142639160156
+  ],
+  "mesh": {
+    "triangles": 24922,
+    "vertices": 48850,
+    "materials": 5,
+    "bytes": 2060980,
+    "sha256": "sha256:256ef894d887831e85a857c32985198ec7fe2f2d8e2b32d29401bd4c8c38c256"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.church_of_tenaun",
+  "kind": "static-structure",
+  "title": "Church of Tenaún",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.church_of_tenaun",
+        "output": "assets/places/62/627/church_of_tenaun/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:36d01b272a2f243ecb2b237f84f4ecb8b7ede3aa987796587f5ecb3218b6f04b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "church_of_tenaun",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "church-nave-porch-and-belfry",
+        "path": "models/church-nave-porch-and-belfry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "church-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

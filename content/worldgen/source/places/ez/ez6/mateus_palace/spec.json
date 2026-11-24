@@ -1,0 +1,412 @@
+{
+  "planId": "mateus_palace",
+  "id": "mateus_palace",
+  "assetId": "molen.worldgen.structure.mateus_palace",
+  "title": "Mateus Palace",
+  "wikidataId": "Q1410441",
+  "category": "historic-palace",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -7.7125,
+    "latitude": 41.296944444444
+  },
+  "size": [
+    46.76999855041504,
+    20.320000171661377,
+    85.85529899597168
+  ],
+  "actualBounds": {
+    "min": [
+      -26.719999313354492,
+      -5.21999979019165,
+      -23.775297164916992
+    ],
+    "max": [
+      20.049999237060547,
+      15.100000381469727,
+      62.08000183105469
+    ]
+  },
+  "visualBrief": "Mateus Palace in Vila Real, with a U-shaped Baroque arrival court, two stone stairs, tiled roofs and the adjoining Nossa Senhora dos Prazeres Chapel.",
+  "nativeAxes": {
+    "x": "northeast along the west arrival elevation",
+    "y": "up",
+    "z": "east-southeast toward the garden"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.flickr.com/photos/wbayercom/54886467038/",
+    "https://www.flickr.com/photos/wbayercom/54885368997/",
+    "https://www.flickr.com/photos/wbayercom/54886466908/",
+    "https://www.flickr.com/photos/wbayercom/54886467083/",
+    "https://www.flickr.com/photos/wbayercom/54886535770/"
+  ],
+  "stories": [
+    {
+      "id": "mateus-palace-wp",
+      "url": "https://qualla.com/mateus-palace/"
+    }
+  ],
+  "referenceInputHash": "sha256:b9440a6a23be0b8c93132f79a06f9415867aceee06c2387db4ab158b565cde33",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ez/ez6/mateus_palace/models/mateus-palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ez/ez6/mateus_palace/models/mateus-palace-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.12,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "granite": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.96
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.44,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "granite": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.135,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "granite": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.031,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "granite": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_granite",
+    "tile_ceramic"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.24,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Copernicus surface height sampled on the centerline of the west entrance court.",
+    "anchor": [
+      -7.7125,
+      41.296944444444
+    ],
+    "heading": 1.137954672300303,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -7.712638554571437,
+        41.296894773815076
+      ],
+      "modelHeight": 0,
+      "basis": "Original Copernicus surface height sampled on the centerline of the west entrance court."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -15.79,
+          1.4549
+        ],
+        [
+          -15.6558,
+          -23.0955
+        ],
+        [
+          -26.0334,
+          -23.1556
+        ],
+        [
+          -26.356,
+          35.7268
+        ],
+        [
+          -13.9779,
+          35.9498
+        ],
+        [
+          -2.8484,
+          36.1508
+        ],
+        [
+          3.2592,
+          36.2585
+        ],
+        [
+          6.6279,
+          36.2773
+        ],
+        [
+          6.5276,
+          -23.202
+        ],
+        [
+          -3.8466,
+          -23.2546
+        ],
+        [
+          -3.9875,
+          1.52
+        ]
+      ],
+      "minimumCoverage": 0.87,
+      "basis": "The named palace outline retains the two advanced entrance wings and the mapped enclosed court."
+    },
+    "featureIds": [
+      "relation/2001027",
+      "way/805169963"
+    ],
+    "source": "https://www.openstreetmap.org/relation/2001027",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a09cf716ddc92e84cc9d250336819e430de8dad73da18882680fac8b6a2382c9",
+    "notes": "Verified CC0 photos specify the granite-trimmed white exterior, tile roofs, entrance steps, split stone pediments, finials, rear fenestration and carved chapel facade."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "Verified CC0 photos specify the granite-trimmed white exterior, tile roofs, entrance steps, split stone pediments, finials, rear fenestration and carved chapel facade.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "mateus-palace-skyline",
+      "position": [
+        -9.9,
+        9.5,
+        -71
+      ],
+      "lookAt": [
+        -9.9,
+        6,
+        -12
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "mateus-palace-district",
+      "position": [
+        -9.9,
+        9.5,
+        -71
+      ],
+      "lookAt": [
+        -9.9,
+        6,
+        -12
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "mateus-palace-street",
+      "position": [
+        -9.9,
+        9.5,
+        -71
+      ],
+      "lookAt": [
+        -9.9,
+        6,
+        -12
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "mateus-palace-closeup",
+      "position": [
+        -9.9,
+        9.5,
+        -71
+      ],
+      "lookAt": [
+        -9.9,
+        6,
+        -12
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-palace-front",
+      "position": [
+        -9.9,
+        9.5,
+        -71
+      ],
+      "lookAt": [
+        -9.9,
+        6,
+        -12
+      ]
+    },
+    {
+      "name": "return-stairs-and-crest",
+      "position": [
+        -9.9,
+        4.65,
+        -15
+      ],
+      "lookAt": [
+        -9.9,
+        6.35,
+        0
+      ]
+    },
+    {
+      "name": "chapel-and-garden",
+      "position": [
+        35,
+        22,
+        21
+      ],
+      "lookAt": [
+        9,
+        5,
+        42
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18009,
+    "vertices": 54027,
+    "materials": 4,
+    "bytes": 2369612,
+    "sha256": "sha256:07e3fa590cf814d2bd979c40325b75aeb6ef762a4a11c34434ffc12ea42b0f9d"
+  }
+}

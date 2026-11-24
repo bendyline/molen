@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.queen_victoria_building",
+  "kind": "static-structure",
+  "title": "Queen Victoria Building",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.queen_victoria_building",
+        "output": "assets/places/r3/r3g/queen_victoria_building/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e84ec9181e6e539dc01e47690b336b9eacf68f88c87943ef1988b9bbd64e7173"
+      }
+    ],
+    "generators": [
+      {
+        "id": "queen_victoria_building",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "george-street-sandstone-market-hall",
+        "path": "models/george-street-sandstone-market-hall.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

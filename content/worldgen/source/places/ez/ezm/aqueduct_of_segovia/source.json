@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.aqueduct_of_segovia",
+  "kind": "static-structure",
+  "title": "Aqueduct of Segovia",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.aqueduct_of_segovia",
+        "output": "assets/places/ez/ezm/aqueduct_of_segovia/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:27d88e30e6534bfb1bd6c517e853fbbd8833547a352a3863531eb6e8f0dcbab1"
+      }
+    ],
+    "generators": [
+      {
+        "id": "aqueduct_of_segovia",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "granite-arcades-and-elevated-channel",
+        "path": "models/granite-arcades-and-elevated-channel.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}
