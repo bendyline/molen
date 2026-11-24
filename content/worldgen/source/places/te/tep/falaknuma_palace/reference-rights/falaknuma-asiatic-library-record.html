@@ -1,0 +1,1404 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <title>Granth Sanjeevani</title>
+    <meta name="Description" content="Granth Sanjeevani">
+    <meta name="Keywords" content="Granth Sanjeevani">
+    <link rel="shortcut icon" type="image/x-icon" href="/jspui/favicon.ico" />
+
+    <!-- Common CSS -->
+    <link href="/jspui/ds.css" rel="stylesheet" />
+    <link href="/jspui/css/bootstrap.css" rel="stylesheet" />
+    <link href="/jspui/css/ds-style.css" rel="stylesheet" />
+    <link href="/jspui/css/form.css" rel="stylesheet" />
+    <link href="/jspui/css//main.css" rel="stylesheet" />
+    <!-- Common CSS -->
+    <!-- J-Query 1.11.3 -->
+    <script src="/jspui/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <!-- J-Query 1.11.3 -->
+    <!-- Bootstrap JS -->
+    <script src="/jspui/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/jspui/js/bootstrap.offcanvas.js" type="text/javascript"></script>
+    <!-- Bootstrap JS -->
+
+    <link rel="stylesheet" href="/jspui/css/jquery.webui-popover.css" type="text/css">
+
+    <link href="/jspui/css/metismenu.min.css" rel="stylesheet" />
+    <script src="/jspui/js/metismenu.min.js"></script>
+    <script src="/jspui/js/submenu.js"></script>
+
+    <!--  Fancy Box Script -->
+    <link rel="stylesheet" href="/jspui/css/jquery.fancybox.css" type="text/css" />
+    <script type="text/javascript" src="/jspui/js/jquery.fancybox.min.js"></script>
+    <script type="text/javascript" src="/jspui/js/jquery.fancybox-media.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".fancybox").fancybox({
+                openEffect: 'fade',
+                closeEffect: 'none',
+                padding: 5,
+                margin: 30,
+                helpers: {
+                    overlay: {
+                        locked: false
+                    }
+                }
+            });
+            
+            $(".help").fancybox({
+                maxWidth: 700,
+                fitToView: false,
+                width: '70%',
+                height: 'auto',
+                autoSize: true,
+                closeClick: false,
+                openEffect: 'fade',
+                closeEffect: 'fade',
+                padding: 0
+            });
+        });
+
+        $(document).ready(function () {
+            $(".terms").fancybox({
+                maxWidth: 800,
+                fitToView: true,
+                width: '70%',
+                height: '70%',
+                autoSize: false,
+                closeClick: false,
+                openEffect: 'fade',
+                closeEffect: 'fade',
+                padding: 0
+            });
+            
+        });
+    </script>
+    <!--  Fancy Box Script -->
+
+    <script>
+        jQuery(document).ready(function ($) {
+            $("#members-login").on("click", function () {
+                $("#login-area").stop().slideToggle(400);
+            });
+        });
+    </script>
+
+    <script>
+        $(document).mouseup(function (e) {
+            var container = $("#login-area");
+            if (!container.is(e.target) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0) // ... nor a descendant of the container
+            {
+                container.slideUp();
+            }
+        });
+
+        
+    </script>
+
+</head>
+<body class="body" ondragstart="return false;" ondrop="return false;">
+    <div class="wrapper">
+        <!-- HEADER -->
+        
+
+
+
+
+
+
+
+
+  
+
+<html>
+<head>
+<link rel="stylesheet" href="/jspui/static/css/jquery-ui-1.10.3.custom/redmond/jquery-ui-1.10.3.custom.css" type="text/css" />
+<script type='text/javascript' src='/jspui/static/js/jquery/jquery-ui-1.10.3.custom.min.js'></script>
+<style>
+.ui-autocomplete{
+	cursor: pointer;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	z-index: 2000;
+	position:fixed !important;
+}
+#ui-datepicker-div {
+    z-index: 2000 !important;
+}
+.ui-datepicker-header {
+	 z-index: 2000 !important;
+}
+#ui-id-1{
+	z-index: 2000;
+	position:fixed !important;
+}	
+.clr-red-br {
+    border: 2px solid #fcd24a;
+    background: #fcd24a !important;
+    color: #c80000;
+    font-weight: bold;
+    -webkit-transition: all .3s ease 0s;
+    -o-transition: all .3s ease 0s;
+    transition: all .3s ease 0s;
+    padding: 6px 13px;
+}
+.clr-red-br:hover {
+    border: 2px solid #c80000;
+    color: #fff !important;
+    background: #c80000 !important;
+}
+</style>
+
+</head>
+
+<script>
+	var selectedFilters = [];
+</script>
+
+<script type="text/javascript">
+function removeFilters(index){
+	
+	if(selectedFilters.length > 0)
+	{
+		// remove value of selected remove div fields from array
+		var fieldName = $("#filter_field_"+index).val();
+		var fieldType = $("#filter_type_"+index).val();
+		var fieldValue = $("#filter_value_"+index).val();
+		var fieldNameIndex = selectedFilters.indexOf(fieldName);
+		var fieldValueIndex = selectedFilters.indexOf(fieldValue);
+		if(fieldNameIndex != -1) {
+			selectedFilters.splice(fieldNameIndex, 3);
+		}
+		// remove div
+		$("#dynamic_div_"+index).remove();
+	}
+}
+function resetAdvanceSearch(){
+	if($("#filtername").val() == "datecreated") {
+		$("#filterquery").attr("onkeypress", "onChangeDynamicFilter(this.value)");
+		$("#filterquery").datepicker("destroy");
+		$("#filterquery2").datepicker("destroy");
+		$("#filterquery2").remove();
+		$("#filterqueryOuterDiv").addClass("col-sm-5");
+		$("#filterqueryOuterDiv").removeClass("col-sm-2");
+		$("#toField").remove();
+		$("#yearFilterName").remove();
+		$("#yearInput").remove();
+	}
+	selectedFilters = [];
+	$("#filtername").prop('selectedIndex', 0);
+	$("#filtertype").prop('selectedIndex', 0);
+	$("#filterquery").val("");
+	$("#resourceTypeName").prop('selectedIndex', 0);
+	$("#scope1").prop('selectedIndex', 0);
+	
+	var dynamicDivLength = $('[id^=dynamic_div]').length;
+	$( 'div[id^=dynamic_div]' ).each(function(el){
+	  var dynamcuDivId = $(this).attr('id');
+	  $("#"+dynamcuDivId).remove();
+	});
+}
+
+function filterTypeChange() {
+	if($("#filtername").val() == "datecreated")
+	{
+		if($("#filtertype").val() == "between")
+		{
+			var mainContent = '<div class="col-sm-1" id="yearFilterName">' +
+								'<div class="form-group">' +
+								'<input id="toField" type="text" value="To" disabled>' +
+								'</div>' +
+								'</div>' +
+								'<div class="col-sm-2" id="yearInput">' +
+								'<div class="form-group">' +
+									'<input type="text" id="filterquery2" name="filterquery2" onkeyup="enterForFilter(event)">' +
+								'</div>' +
+							'</div>';
+			
+			$("#filterqueryOuterDiv").removeClass("col-sm-5");
+			$("#filterqueryOuterDiv").addClass("col-sm-2");
+			$("#filterqueryOuterDiv").after(mainContent);
+			$("#filterquery").datepicker({onChangeMonthYear : function(){$(".dropdown-search").css({ display: "block" });}, dateFormat: "yy-mm-dd",changeYear: true,yearRange: "1000:c", onSelect: function(dateText, inst) { $(".dropdown-search").css({ display: "block" }); }});
+			$("#filterquery2").datepicker({onChangeMonthYear : function(){$(".dropdown-search").css({ display: "block" });},dateFormat: "yy-mm-dd",changeYear: true,yearRange: "1000:c", onSelect: function(dateText, inst) { $(".dropdown-search").css({ display: "block" }); }});
+		}else
+		{
+			var element =  document.getElementById("yearInput");
+			if(typeof(element) != 'undefined' && element != null)
+			{
+				$("#filterquery2").datepicker("destroy");
+				$(element).remove();
+				$("#yearFilterName").remove();
+				$("#filterqueryOuterDiv").removeClass("col-sm-2");
+				$("#filterqueryOuterDiv").addClass("col-sm-5");
+			}
+		}
+	}		
+}
+	
+function filterNameChange(){	
+	
+	if($("#filtername").val() == "datecreated")
+	{
+		/*$("#filtertype").html('<option value="equals">Equals</option><option value="between">Between</option><option value="before">Before</option><option value="after">After</option>');*/
+		$("#filtertype").html('<option value="equals">Equals</option><option value="between">Between</option>');
+		if ($("#filtertype").val() != "equals" ) {
+			$("#filterquery").datepicker({onChangeMonthYear : function(){$(".dropdown-search").css({ display: "block" });},dateFormat: "yy-mm-dd",changeYear: true,yearRange: "1000:c", onSelect: function(dateText, inst) { $(".dropdown-search").css({ display: "block" }); }});
+		}
+	}
+	else
+	{
+		$("#filtertype").html('<option value="equals">Equals</option><option value="contains">Contains</option><option value="notequals">Not Equals</option><option value="notcontains">Not Contains</option>');
+		$("#filterquery").datepicker("destroy");
+		if(selectedFilters.indexOf("datecreated") == -1) {
+			var element =  document.getElementById("yearInput");
+			if(typeof(element) != 'undefined' && element != null)
+			{
+				$("#filterquery2").datepicker("destroy");
+				$(element).remove();
+				$("#dynamicYearSpacer").remove();
+				$("#mainSearchQuery").removeClass("col-sm-2");
+				$("#mainSearchQuery").addClass("col-sm-5");
+			}
+		}
+	}
+	$("#filterquery").prop("disabled", false);
+}
+
+$(document).ready(function () {
+	$("#filterquery").autocomplete({
+		source: function(request, response){
+			var filter = $("#filtername").val();
+			$("#scope").val($("#scope1").val());	
+			$("#appliedFilters").val("");		
+			var httpReq = "";
+			if (selectedFilters != null && selectedFilters.length >0 ) 
+			{
+			    var idx = 1;
+			    for(var i = 0 ; i<=selectedFilters.length-3;i++ ){
+			    	if(i == 0){
+			    	 httpReq = httpReq +"?filter_field_"+idx+"="+ selectedFilters[i++];
+			    	}else{
+			    	 httpReq = httpReq +"&filter_field_"+idx+"="+ selectedFilters[i++];
+			    	}
+			    	 httpReq = httpReq +"&filter_type_"+idx+"="+ selectedFilters[i++];
+			    	 httpReq = httpReq +"&filter_value_"+idx+"="+ selectedFilters[i];
+			    	 idx++;
+			    }
+			}
+			$.ajax({
+				url: "/jspui/json/discovery/autocomplete" + httpReq,
+				dataType: "json",
+				cache: false,
+				data: {
+					auto_idx: filter,
+					auto_query: $("#filterquery").val(),
+					auto_sort: "count",
+					auto_type: $("#filtertype").val(),
+					location: $("#scope1").val()
+				},
+				success: function(data){
+					response($.map(data.autocomplete, function(item){
+						var displayLabel = item.displayedValue + " (" + item.count + ")";
+						var valueLabel = item.displayedValue;
+						return {label:displayLabel,value:valueLabel}
+					}));
+				}
+			})
+		},
+        select: function(event, ui) {
+			$(".dropdown-search").css({ display: "block" });
+        }
+		
+	});
+});
+	
+	function querySearch(){
+		var query = $("#query").val().trim();
+		if(query.length === 0){
+			return;
+		}
+		//var allowedPattern = /^[a-zA-Z0-9\u0080-\u9fff\s._\-\+\*\:\"\[\]]*$/;
+		var allowedPattern = /^[a-zA-Z0-9\u0900-\u097F\s._\-\+\*\:\"\[\]]*$/;
+		if(!allowedPattern.test(query)){
+			alert("Please enter only letters, numbers and basic characters. Special characters like @#$%^&(){}|\\<>?,/ are not allowed.");
+			return;
+		}
+		var encodedQuery = encodeURIComponent(query);
+		var baseURL = "/jspui";
+		var url = baseURL + "/simple-search?query=" + encodedQuery + "&rpp="+ 20 +"&sort_by=score&order=desc";
+
+		window.location.assign(url);
+	}
+	
+	function keyupForQuery(e){
+		if(e.keyCode == 13){
+			querySearch();
+		}
+	}
+</script>
+
+<script type="text/javascript">
+
+function onChangeDynamicFilter(val) {
+	if($("#filtername").val() == "datecreated") {
+		return;
+	}
+	$("#filterquery").autocomplete({
+		source: function(request, response){
+			var filter = $("#filtername").val();			
+			$("#scope").val($("#scope1").val());
+			$("#appliedFilters").val("");			
+			var httpReq = "";
+			if (selectedFilters != null && selectedFilters.length >0 ) 
+			{
+				var idx = 1;
+				for(var i = 0 ; i<=selectedFilters.length-3;i++ ){
+					if(i == 0){
+					 httpReq = httpReq +"?filter_field_"+idx+"="+ selectedFilters[i++];
+					}else{
+					 httpReq = httpReq +"&filter_field_"+idx+"="+ selectedFilters[i++];
+					}
+					 httpReq = httpReq +"&filter_type_"+idx+"="+ selectedFilters[i++];
+					 httpReq = httpReq +"&filter_value_"+idx+"="+ selectedFilters[i];
+					 idx++;
+				}
+			}
+			$.ajax({
+				url: "/jspui/json/discovery/autocomplete" + httpReq,
+				dataType: "json",
+				cache: false,
+				data: {
+					auto_idx: filter,
+					auto_query: $("#filterquery").val(),
+					auto_sort: "count",
+					auto_type: $("#filtertype").val(),
+					location: $("#scope1").val()
+				},
+				success: function(data){
+					response($.map(data.autocomplete, function(item){
+						var displayLabel = item.displayedValue + " (" + item.count + ")";
+						var valueLabel = item.displayedValue;
+						return {label:displayLabel,value:valueLabel}
+					}));
+				}
+			})
+		},
+        select: function(event, ui) {
+			$(".dropdown-search").css({ display: "block" });
+        }
+	});  
+}
+
+function datecreatedValue() {
+	var value = $("#filterquery").val();	
+	var type = $("#filtertype").val();		
+	if(type == "between")
+	{
+		value = "[" + value + "+TO+" + $("#filterquery2").val() +"]";
+	}
+	/*else if(type == "before")
+	{
+		value = "[0000" + "+TO+" + value +"]";
+	}
+	else if(type == "after")
+	{
+		value = "[" + value + "+TO+*]";
+	}*/
+	return value;
+}
+
+var counter = 1;
+
+$(document).on("click","#btnadd",function(){
+	
+	// validation of filter already selected
+		if (selectedFilters.indexOf($("#filtername").val()) != -1) {
+			alert("Filter already exist!");
+			return;
+		}
+	var value = $("#filterquery").val();
+	if(value.length > 0) {
+		
+		if($("#filtername").val() == "datecreated")
+		{
+			value = datecreatedValue();
+		}
+			
+		selectedFilters.push($("#filtername").val());
+		selectedFilters.push($("#filtertype").val());
+		selectedFilters.push(value);
+		//disabled fields
+		$("#filtername").prop('disabled', true);
+		$("#filtertype").prop('disabled', true);
+		$("#filterquery").prop('disabled', true);
+		
+		// remove and change attr
+		$("#filtername").attr('name', 'filter_field_'+counter);
+		$("#filtername").attr('id', 'filter_field_'+counter);
+		$("#filtername").attr('class', 'filter_field_'+counter);
+		$("#filtertype").attr('name', 'filter_type_'+counter);
+		$("#filtertype").attr('id', 'filter_type_'+counter);
+		$("#filtertype").attr('class', 'filter_type_'+counter);
+		$("#filterquery").attr('name', 'filter_value_'+counter);
+		$("#filterquery").attr('id', 'filter_value_'+counter);
+		$("#filterquery").attr('class', 'filter_value_'+counter);
+		$("#dynamicDiv").attr('id', 'dynamic_div_'+counter);
+		$("#filterqueryOuterDiv").removeAttr('id');
+		
+		var html='                    <div class="row" id="dynamicDiv">'+
+	'        	<div class="col-sm-3">'+
+	'            	<div class="form-group" id="filternameDiv">'+
+	'                	<select id="filtername" name="filtername" onchange="filterNameChange()">'+
+	'                    	<option value="title">Title</option>'+
+	'                        <option value="author">Author</option>'+
+	'                        <option value="datecreated">Year/Date of Publication </option>'+
+	'                        <option value="publisher">Publisher</option>'+
+	'                        <option value="lang">Language</option>'+
+	'                        <option value="subject">Subject</option>'+
+	'                        <option value="location">Place of Publication</option>'+
+	'                    </select>'+
+	'				</div>'+
+	'          	</div>'+
+	'          	<div class="col-sm-2">'+
+	'          		<div class="form-group" id="filtertypeDiv">'+
+	'          			<select id="filtertype" name="filtertype"onchange="filterTypeChange()">'+
+	'          				<option value="equals">Equals</option>'+
+	'          	            <option value="contains">Contains</option>'+
+	'          				<option value="notequals">Not Equals</option>'+
+	'          				<option value="notcontains">Not Contains</option>'+
+	'          	        </select>'+
+	'          		</div>'+
+	'          	</div>'+
+	'  			<div class="col-sm-5" id="filterqueryOuterDiv">'+
+	'	            <div class="form-group" id="filterqueryDiv">'+
+	'					<input type="text" id="filterquery" name="filterquery" class="filter" onkeypress="onChangeDynamicFilter(this.value)">'+
+	'                </div>'+
+	'            </div>'+
+	'            <div class="col-sm-2">'+
+	'            	<div class="form-group">'+
+	'                	<button id="btnadd" type="submit" class="clr-brown-br"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;ADD'+'</button>'+
+	'                </div>'+
+	'            </div>';
+
+		$( "#btnadd" ).replaceWith('<a id="remove_'+counter +'" href="#" onclick="removeFilters(' + counter + ')" class="clr-brown-br"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>');
+		$('#advanceSearch').append(html);
+		$("#filtername").prop('selectedIndex', 0);
+		$("#filtertype").prop('selectedIndex', 0);
+		$("#filterquery").val('');
+		$("#filtername").focus();
+		counter++;
+	}	
+});
+	
+function onCollectionSpecificFilter1(){
+   	var location = document.getElementById("scope1").value;
+	$("#scope").val(location);
+	$("#appliedFilters").val("");
+	var filtername = document.getElementById("filtername").value;
+	var filtertype = document.getElementById("filtertype").value;
+	var filterquery = document.getElementById("filterquery").value;
+	if($("#filtername").val() == "datecreated") {
+		filterquery = datecreatedValue();
+	}
+	var apQuery = "";
+	var rp = "&query=&sort_by=dc.date.accessioned_dt&order=desc&rpp=20&etal=0" ;
+   	var baseURL = "/jspui";
+	var url = ""; 
+	if (selectedFilters != null && selectedFilters.length >1 ) 
+	{
+		var idx = 1;
+		for(var i = 0 ; i<=selectedFilters.length-3;i++ ){
+			 apQuery = apQuery +"&filter_field_"+idx+"="+ selectedFilters[i++];
+			 apQuery = apQuery +"&filter_type_"+idx+"="+ selectedFilters[i++];
+			 apQuery = apQuery +"&filter_value_"+idx+"="+ selectedFilters[i];
+			 idx++;
+		}
+		url = baseURL + "/simple-search?location=" + location + rp;
+		if (filterquery == '') {
+			url = url + apQuery;
+		} else {
+			rp = "&filtername=";
+			url = url + rp + filtername + "&filtertype=" + filtertype + "&filterquery=" + filterquery + apQuery;
+		}
+	} else if(selectedFilters.length == 1) {
+		rp = "&filtername=";
+		url = baseURL + "/simple-search?location=" + location + rp + selectedFilters[0] + "&filtertype=" + selectedFilters[1] + "&filterquery=" + selectedFilters[2] + apQuery;
+	} else {
+		if ($("#filterquery").val() === '') {
+			url = baseURL + "/simple-search?location=" + location + rp;
+		} else {
+			rp = "&filtername=";
+			url = baseURL + "/simple-search?location=" + location + rp + filtername + "&filtertype=" + filtertype + "&filterquery=" + filterquery;
+		}
+	}
+	//	alert(apQuery);
+	
+   	/*	var location = "";
+   		if(document.getElementById(id).checked){
+   			location = $('#' + id).val();
+   		}
+   	*/
+   //	var url = 
+	//alert(url);
+   	window.location.assign(url);
+}
+
+</script>
+
+
+<script type="text/javascript">
+
+	//below javascript is used for Disabling right-click on HTML page
+	document.oncontextmenu = new Function("return true");
+	
+	//below javascript is used for Disabling text selection in web page
+	//Disabling text selection in web page
+	document.onselectstart = new Function("return true"); //Disabling text selection in web page
+	if (window.sidebar) {	
+	    //Disable Cut into HTML form using Javascript
+	    document.oncut = new Function("return false");
+	
+	    //Disable Copy into HTML form using Javascript
+	    document.oncopy = new Function("return true");
+	
+	    //Disable Paste into HTML form using Javascript
+	    document.onpaste = new Function("return true");
+	}
+        
+     $(document).bind('keydown', function(e) {
+   	  if(e.ctrlKey && (e.which == 83)) {
+   	    e.preventDefault();
+   	    return false;
+   	  }
+   	});
+        
+</script>
+<!-- to check browser closed -->
+<script type="text/javascript" src="/jspui/js/check_browser_close.js"></script>
+<!-- to check browser closed -->
+<style type="text/css" media="print">
+		body {display:none; visibility:hidden;}
+</style>
+<Script  type="text/javascript">
+    var instituteName = 'null';
+	var errorTypes = '';
+	if (instituteName === "null" || instituteName === "NULL"  || instituteName === null ) {
+            instituteName = '';
+    }
+	if(errorTypes !== '' || instituteName !== '') {
+		  $("body").css({"padding-top":"160px"});
+	}
+
+    function closeTab(e) {
+
+        // call ajax
+        if (!validNavigation) {
+			sessionStorage.setItem("instituteName", instituteName);
+            $.get("/jspui/close-event?IsRefresh=close&instituteName="+instituteName, function (responseText) {
+            });
+        }
+    }
+    function doNotCloseTab(e) {
+        // call ajax
+
+        var instName = sessionStorage.getItem("instituteName");
+        if (instName === "null" || instName === "NULL"  || instName === null ) {
+            instName = '';
+        }
+		
+        if (instName !== '') {
+			$.get("/jspui/close-event?IsRefresh=activeLogin&instituteName="+instName, function  (data, status) {
+                if (data !== "") {
+					if($("#banner").length == 0) {
+                    var showDiv = $(document.createElement('div'))
+                        .attr("class", "after-login");
+                    showDiv.after().html('<div  id="banner" class="container">You are logged in from: <b>'+instName+'</b><a class="top-btn" href="/jspui/institute-logout"><b style="color:white">LogOut</b></a></div>');
+                    showDiv.appendTo("nav.navbar-fixed-top").insertBefore("#instituteNameForRelogin");
+					}
+                    instituteName = instName;
+                }
+
+            });
+        }
+        sessionStorage.removeItem("instituteName");
+    }
+
+
+</Script>
+
+<script>
+            $(document).ready(function () {
+				
+				/*$(document).on('click', '.ui-datepicker-header', function (e) { 
+					$(".dropdown-search").css({ display: "block" });
+				});*/
+				
+                // Expand Search Panel
+                $("#search-toggle").click(function () {
+                    $(".dropdown-search").slideDown();
+                });
+
+                $(".btn-close").click(function () {
+                    $(".dropdown-search").slideUp();
+                });
+            });
+
+            $(document).mouseup(function (e) {
+                var container = $(".dropdown-search");
+
+                if (!container.is(e.target) // if the target of the click isn't the container...
+                    && container.has(e.target).length === 0) // ... nor a descendant of the container
+                {
+
+                    container.hide();
+
+                }
+            });
+        </script>
+
+<script type="text/javascript">
+
+subdirectory = "null";
+
+document.write('<nav class="navbar navbar-light bg-nav navbar-fixed-top">');
+document.write('<input name="scope" id="scope" type="hidden"/>');
+document.write('<input name="appliedFilters" id="appliedFilters" type="hidden"/>');
+document.write('   <input name="instituteNameForRelogin" id="instituteNameForRelogin" type="hidden"/>');
+if("" !== ""){
+    document.write('   <div id="banner" class="after-login">');
+    document.write('    <div class="container">');
+    document.write('   You are logged in from: <b>null</b><a class="top-btn" href="/jspui/institute-logout"><b style="color:white">LogOut</b></a>');
+    document.write('   </div>');
+    document.write('  </div>');
+} else if ("" != "" && "" == "instituteSubscription") {
+	document.write('   <div id="banner" class="after-login">');
+    document.write('    <div class="container">');
+    document.write('   The concurrent session limit of your institute is full. Please try again after some time or contact your administrator for support.');
+    document.write('   </div>');
+    document.write('  </div>');
+} else if ("" != "" && "" == "login") {
+	document.write('   <div id="banner" class="after-login">');
+    document.write('    <div class="container">');
+    document.write('   IP Address is not registered. Please contact your administrator for support.');
+    document.write('   </div>');
+    document.write('  </div>');
+} else if ("" != "" && "" == "instituteError") {
+	document.write('   <div id="banner" class="after-login">');
+    document.write('    <div class="container">');
+    document.write('   Entered institute is not registered with us.Please check by different keywords.');
+    document.write('   </div>');
+    document.write('  </div>');
+} else if ("" != "" && "" == "memebershipExpired") {
+	document.write('   <div id="banner" class="after-login">');
+    document.write('    <div class="container">');
+    document.write('   Sorry, your memebership is expired.please email us on info@asiaticsociety.org.in to extend your membership.');
+    document.write('   </div>');
+    document.write('  </div>');
+}
+/* maintenance 
+document.write('   <div id="banner" class="after-login">');
+document.write(' The website is scheduled for a preventive maintenance between 5th July 10 AM IST and 9th July 6 PM IST and will not be available for access. ');
+document.write('  </div>'); */
+
+document.write('            <div class="container">');
+document.write('                <div class="navbar-brand">');
+document.write('                    <a href="/jspui/">');
+document.write('                    <img src="/jspui/images/logo-asiatic.png" alt="" title="" class="img-fluid">');
+document.write('                    </a>');
+document.write('                </div>');
+document.write('                    <div id="offcanvas-overlay"></div>');
+document.write('                    <button id="offcanvas-toggle" type="button" class="navbar-toggle collapsed offcanvas-toggle hidden-xl-up pull-xs-right" data-toggle="offcanvas" data-target="#navbar" aria-expanded="false" aria-controls="navbar">');
+document.write('                        <span class="icon-bar"></span>');
+document.write('                        <span class="icon-bar"></span>');
+document.write('                        <span class="icon-bar"></span>');
+document.write('                    </button>');
+
+document.write('                <div class="search-area text-xl-right text-xs-right">');
+document.write('                    <div class="input-group">');
+document.write('                        <input name="query" id="query" type="text" class="form-control" placeholder="Search" onkeyup="keyupForQuery(event)">');
+document.write('                        <span class="search-btn">');
+document.write('                            <a href="#" onclick="querySearch()"><i class="fa fa-search"></i></a>');
+document.write('                        </span>');
+document.write('                    </div>');
+document.write('                    <ul class="searchlist">');
+document.write('                      <li><a href="/jspui/GS Search Guide.pdf"  target="_blank"  class="help "><b><i class="fa fa-question-circle" aria-hidden="true"></i> How to Optimize Search</b></a></li>');
+document.write('                      <li class="dropdown_link"><a id="search-toggle" href="#">ADVANCED SEARCH</a>');
+
+document.write('                      <div class="dropdown-search"><div class="search_panel">');
+document.write('                      <div class="btn-close pull-xs-right"><i class="fa fa-times-circle" aria-hidden="true"></i></div>');
+document.write('                      <h4> Advanced Search is useful for more specific search options.  </h4>');
+document.write('                      <h4> You can use a single or a combination of fields to perform Advanced Search. </h4>');
+document.write('                      <div class="spacer1"></div>');
+document.write('	<div id="advanceSearch" class="search_data">');
+document.write('    	<div class="row">');
+document.write('        	<div class="col-sm-3">');
+document.write('            	<div class="form-group">');
+document.write('                	<select id="resourceTypeName">');
+document.write('                    	<option value="ResourceType">Resource Type</option>');
+document.write('                    </select>');
+document.write('				</div>');
+document.write('          	</div>');
+document.write('          	<div class="col-sm-7">');
+document.write('          		<div class="form-group">');
+document.write('          			<select id="scope1" name="scope1">');
+document.write('          				<option value="">All</option>');
+document.write('          				<option value="123456789/2">Book</option>');
+document.write('          	            <option value="123456789/3">Newspaper</option>');
+document.write('          	            <option value="123456789/4">Manuscript </option>');
+document.write('          				<option value="123456789/6">Government Publication</option>');
+document.write('          				<option value="123456789/8">Journal</option>');
+document.write('          				<option value="123456789/7">Map</option>');
+document.write('          				<option value="123456789/106857">Newspaper Clippings</option>');
+document.write('          	        </select>');
+document.write('          		</div>');
+document.write('          	</div>');
+document.write('           </div>');
+document.write('                    <div class="row" id="dynamicDiv">');
+document.write('        	<div class="col-sm-3">');
+document.write('            	<div class="form-group">');
+document.write('                	<select id="filtername" name="filtername" onchange="filterNameChange()">');
+document.write('                    	<option value="title">Title</option>');
+document.write('                        <option value="author">Author</option>');
+document.write('                        <option value="datecreated">Year/Date of Publication </option>');
+document.write('                        <option value="publisher">Publisher</option>');
+document.write('                        <option value="lang">Language</option>');
+document.write('                        <option value="subject">Subject</option>');
+document.write('                        <option value="location">Place of Publication</option>');
+document.write('                    </select>');
+document.write('				</div>');
+document.write('          	</div>');
+document.write('          	<div class="col-sm-2">');
+document.write('          		<div class="form-group">');
+document.write('          			<select id="filtertype" name="filtertype" onchange="filterTypeChange()">');
+document.write('          				<option value="equals">Equals</option>');
+document.write('          	            <option value="contains">Contains</option>');
+document.write('          				<option value="notequals">Not Equals</option>');
+document.write('          				<option value="notcontains">Not Contains</option>');
+document.write('          	        </select>');
+document.write('          		</div>');
+document.write('          	</div>');
+document.write('  			<div class="col-sm-5" id="filterqueryOuterDiv">');
+document.write('	            <div class="form-group">');
+document.write('					<input type="text" id="filterquery" name="filterquery">');
+document.write('                </div>');
+document.write('            </div>');
+document.write('            <div class="col-sm-2">');
+document.write('            	<div class="form-group">');
+document.write('                	<button id="btnadd" type="submit" class="clr-brown-br"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;ADD</button>');
+document.write('                </div>');
+document.write('            </div>');
+
+document.write('		 </div>');
+document.write('   	</div>');
+document.write('    <div class="spacer1"></div>');
+document.write('    <div class="row">');
+document.write('		<div class="col-sm-12">');
+document.write('	    	<button type="submit" class="btn-brown" onclick="resetAdvanceSearch()">Reset</button>');
+document.write('            <button type="submit" class="btn-brown" onClick="onCollectionSpecificFilter1()">Search</button>');
+document.write('        </div>');
+document.write('    </div>');
+
+document.write('                    </div></div>');
+document.write('                    </li>');
+document.write('                    </ul>');
+document.write('                    <div class="spacer2"></div>');
+document.write('                    <div class="pull-xs-right navbar-offcanvas-right navbar-offcanvas" id="navbar">');/*This line is added on 24-April-2017*/
+document.write('                        <ul class="nav navbar-nav navbar-padding">');/*This line is updated on 24-April-2017*/
+
+
+
+if(false){
+	document.write('                            <li class="nav-item"><a href="/jspui/adminDashboard?sorts[views]=-1"><span class="hidden-md-up">Manage</span> <i class="fa fa-cogs" aria-hidden="true" title="Manage"></i></a></li>');
+	document.write('                            <li class="nav-item"><a href="/jspui/submit"><span class="hidden-md-up">Upload</span> <i class="fa fa-upload" aria-hidden="true" title="Upload"></i></a></li>');
+}else if(false){
+	document.write('                            <li class="nav-item"><a href="/jspui/submit"><span class="hidden-md-up">Upload</span> <i class="fa fa-upload" aria-hidden="true" title="Upload"></i></a></li>');
+}
+
+
+if(subdirectory == "home"){
+	document.write('                            <li class="nav-item active"><a href="/jspui/">Home</a></li>');
+}else{
+	document.write('                            <li class="nav-item"><a href="/jspui/">Home</a></li>');
+}
+
+if (subdirectory == "about") {
+    document.write('                            <li class="nav-item active"><a href="/jspui/contextInfo?redirect=about">About</a></li>');
+}
+else {
+    document.write('                            <li class="nav-item"><a href="/jspui/contextInfo?redirect=about">About</a></li>');
+}
+
+if (subdirectory == "contact") {
+    document.write('                            <li class="nav-item active"><a href="/jspui/contextInfo?redirect=contact">Contact</a></li>');
+}
+else {
+    document.write('                            <li class="nav-item"><a href="/jspui/contextInfo?redirect=contact">Contact</a></li>');
+}
+if("" === "") {
+    document.write('                                <li class="nav-item members-login">');
+
+    if ("" === "") {
+        document.write('                                <a id="members-login" href="/jspui/password-login" class=""><span>Login / Register</span></a>');
+    }
+    else {
+        if ("" !== "") {
+            document.write('                                <a id="members-login" class="active"><span>Welcome </span> <i class="fa fa-user" aria-hidden="true"></i></a>');
+        }
+        document.write('                                <div id="login-area" class="login-content">');
+        document.write('                                    <div class="memebers-login-info">');
+        document.write('                                        <ul>');
+        document.write('                                            <li><a href="/jspui/userAccount?rpp=6">My Account</a></li>');
+        document.write('                                            <li><a href="/jspui/logout">Logout</a></li>');
+        document.write('                                        </ul>');
+        document.write('                                    </div>');
+        document.write('                                </div>');
+    }
+
+    document.write('                            </li>');
+}
+document.write('                        </ul>');
+document.write('                </div>');
+document.write('                </div>');
+document.write('            </div>');
+document.write('            <div class="container-fluid bg-subnav">');
+document.write('            </div>');
+document.write('        </nav>');
+
+</script>
+
+
+</html>
+
+        <!-- HEADER -->
+        <!-- BODY -->
+        <div class="spacer3"></div>
+        <section class="container-fluid" id="book-detail">
+            <div class="row">
+                <div class="container">
+                    <div class="row">
+                        <div class="container wow fadeInDown">
+                        	 <div class="row marg-b-xs">
+					 	 <div class="col-xl-8 col-md-8>  
+                                <nav aria-label="breadcrumb">
+            						<ol class=" breadcrumb-arrow">
+									<li><a href="/jspui/">Home</a></li>
+									<li><a href="/jspui/simple-search?location=&query=&rpp=20&sort_by=dc.date.accessioned_dt&order=desc" >Resources</a></li>
+									<li><a href="/jspui/handle/123456789/2"> Books</a></li>
+									<li class="active"><span>Book Details</span></li>
+									</ol>
+        						</nav>
+					 		</div>  
+
+                            </div>
+                            
+								<div class="spacer1"> </div>
+								 <div class="row">
+								
+                            <div class="row">
+                                <div class="col-xl-7 col-lg-8 col-md-7 marg-b-xs">
+                                    <h1>Glimpses of the Nizam's Domnions; being an exahaustive photographic history of the Hyderabad State, Deccan, India; with nearly 600 superbly reproduced views of Peoples, Cities, Towers, Mosques, Cave Temples, Forts, Tombs, Ruins, Palaces, Public Buildings and Natural Wonders, all of which have been specially taken for the purpose by high-class photographers</h1>
+                                    <table class="bookdetail">
+
+                                        <tr>
+                                            <td class="col1">Resource Type</td>
+                                            <td class="col2">:</td>
+                                            <td class="col3">Book</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="col1">Author</td>
+                                            <td class="col2">:</td>
+                                            <td class="col3">Campbell, A. Claude</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="col1">Year/Date of Publication</td>
+                                            <td class="col2">:</td>
+                                            <td class="col3">1898</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="col1">Subject</td>
+                                            <td class="col2">:</td>
+                                            <td class="col3">History of Asia</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="col1">Publisher</td>
+                                            <td class="col2">:</td>
+                                            <td class="col3">Burrows, C. B.</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="col1">Place of Publication</td>
+                                            <td class="col2">:</td>
+                                            <td class="col3">Bombay</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="col1">Language</td>
+                                            <td class="col2">:</td>
+                                            <td class="col3">English</td>
+                                        </tr>
+
+										<tr>
+                                            <td class="col1">Pages/Folios</td>
+                                            <td class="col2">:</td>
+                                            <td class="col3">525p.</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="col1">Identifier</td>
+                                            <td class="col2">:</td>
+                                            <td class="col3">BK_00140739</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="col1">Digitization Sponsor</td>
+                                            <td class="col2">:</td>
+                                            <td class="col3">NSDL</td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                                <div class="col-xl-5 col-lg-4 col-md-5">
+                                    <div class="col-xl-7">
+                                        <ul class="booklist booklist2">
+                                            <li>
+                                                <figure class="wow fadeInUp">
+                                                    <img style="max-height:182px;" src="/jspui/bitstream/123456789/643/6/BK_00140739_TIT_01.jpg" alt="" title="" class="img-fluid" />
+                                                </figure>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xl-5">
+
+										<h5></h5>
+
+                                        <div class="spacer5"></div>
+                                        <div class="spacer2"></div>
+
+										<a href="" class="link-btn clr-blk-br fancybox" rel="1" style="display:none; pointer-events: none; cursor: default; opacity: 0.6;">Table of Content</a>						
+
+                                        <div class="spacer1"></div>
+                                        <a href="/jspui/viewer?searchWord=&viewType=single&doc=BK_00140739.pdf123456789/643/5/&backquery=[]&itemHandle=123456789/643" class="link-btn clr-blk-br" style="display:block">Read</a>
+
+                                    </div>
+                                    <div class="spacer1"></div>
+                                    <div class="col-xl-8">
+                                      
+
+                                        <div id="bookmark" style="display:none;">
+                                            <div class="input-group">
+                                                <input name="bookmarkname" id="bookmarkname" type="text" class="addfolder" placeholder="Bookmark Name">
+                                                <input type="submit" value="Add" class="addfolder" onClick="onAddBookmark()">
+                                            </div>
+                                        </div>
+                                    </div>
+
+									
+                                    <div class="spacer3"></div>
+                                    <div class="rw">
+                                        <div class="col-xl-12 col-lg-7 col-md-7">
+                                            
+
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="spacer3"></div>
+                        <hr />
+                        <div class="spacer3"></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    
+
+								<div class="col-xl-8 col-md-9 col-xs-7">
+                                        <div class="row wow fadeInUp">
+                                            <h4>Other Similar Items</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-md-3 col-xs-5 text-xl-right text-xs-right">
+                                        <!-- <div class="row">
+                                            <a href="" class="link-btn clr-drkblue-br">View All</a>
+                                        </div> -->
+                                    </div>
+                                    <div class="spacer1"></div>
+                                    <ul class="booklist booklist1 bxSlider">
+
+                                        <li>
+                                            <figure class="wow fadeInUp">
+                                                <ul class="iconlist">
+
+													<li style="display: none;"></li>
+
+                                                </ul>
+                                                <a href="/jspui/handle/123456789/53343?searchWord=&backquery=[]">
+                                                    <img src="/jspui/bitstream/123456789/53343/2/BK_00048786_TIT_01.jpg" alt="" title="" class="img-fluid" />
+                                                </a>
+                                                <figcaption>
+                                                    <ul>
+                                                        <li class="hd"><a href="/jspui/handle/123456789/53343?searchWord=&backquery=[]">The Monumental History of Egypt as Recorded on the Ruin ...</a></li>
+
+                                                        <li><b>Year:</b> 1854</li>
+
+                                                        <li><b>Author:</b> Osburn, William</li>
+
+                                                    </ul>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+
+                                        <li>
+                                            <figure class="wow fadeInUp">
+                                                <ul class="iconlist">
+
+													<li style="display: none;"></li>
+
+                                                </ul>
+                                                <a href="/jspui/handle/123456789/94405?searchWord=&backquery=[]">
+                                                    <img src="/jspui/bitstream/123456789/94405/2/BK_00109673_TIT_01.jpg" alt="" title="" class="img-fluid" />
+                                                </a>
+                                                <figcaption>
+                                                    <ul>
+                                                        <li class="hd"><a href="/jspui/handle/123456789/94405?searchWord=&backquery=[]">French Art and Scenery nearly two hundred photographic  ...</a></li>
+
+                                                        <li><b>Year:</b> 1895</li>
+
+                                                        <li><b>Author:</b> Howard, H. W. B.; Ridpath, John Clark; Giudicelli et al.</li>
+
+                                                    </ul>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+
+                                        <li>
+                                            <figure class="wow fadeInUp">
+                                                <ul class="iconlist">
+
+													<li style="display: none;"></li>
+
+                                                </ul>
+                                                <a href="/jspui/handle/123456789/100277?searchWord=&backquery=[]">
+                                                    <img src="/jspui/bitstream/123456789/100277/1/BK_00140741_TIT_01.jpg" alt="" title="" class="img-fluid" />
+                                                </a>
+                                                <figcaption>
+                                                    <ul>
+                                                        <li class="hd"><a href="/jspui/handle/123456789/100277?searchWord=&backquery=[]">The Land of the Rupee: A Comprehensive description of B ...</a></li>
+
+                                                        <li><b>Year:</b> 1912</li>
+
+                                                        <li><b>Author:</b> The Times of India</li>
+
+                                                    </ul>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+
+                                        <li>
+                                            <figure class="wow fadeInUp">
+                                                <ul class="iconlist">
+
+													<li style="display: none;"></li>
+
+                                                </ul>
+                                                <a href="/jspui/handle/123456789/90606?searchWord=&backquery=[]">
+                                                    <img src="/jspui/bitstream/123456789/90606/1/BK_00065943_TIT_01.jpg" alt="" title="" class="img-fluid" />
+                                                </a>
+                                                <figcaption>
+                                                    <ul>
+                                                        <li class="hd"><a href="/jspui/handle/123456789/90606?searchWord=&backquery=[]">Hindostan; its Landscapes, Palaces, Temples, Tombs; the ...</a></li>
+
+                                                        <li><b>Year:</b> 1845</li>
+
+                                                        <li><b>Author:</b> Roberts, Emma</li>
+
+                                                    </ul>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+
+                                        <li>
+                                            <figure class="wow fadeInUp">
+                                                <ul class="iconlist">
+
+													<li style="display: none;"></li>
+
+                                                </ul>
+                                                <a href="/jspui/handle/123456789/93556?searchWord=&backquery=[]">
+                                                    <img src="/jspui/bitstream/123456789/93556/1/BK_00014110_TIT_01.jpg" alt="" title="" class="img-fluid" />
+                                                </a>
+                                                <figcaption>
+                                                    <ul>
+                                                        <li class="hd"><a href="/jspui/handle/123456789/93556?searchWord=&backquery=[]">The Bombay Code, in Four Volumes, Vol. I- containing th ...</a></li>
+
+                                                        <li><b>Year:</b> 1907</li>
+
+                                                        <li><b>Author:</b> India. Legislative Department</li>
+
+                                                    </ul>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+
+                                        <li>
+                                            <figure class="wow fadeInUp">
+                                                <ul class="iconlist">
+
+													<li style="display: none;"></li>
+
+                                                </ul>
+                                                <a href="/jspui/handle/123456789/185216?searchWord=&backquery=[]">
+                                                    <img src="/jspui/bitstream/123456789/185216/688518/BK_00079010_TIT_01.jpg" alt="" title="" class="img-fluid" />
+                                                </a>
+                                                <figcaption>
+                                                    <ul>
+                                                        <li class="hd"><a href="/jspui/handle/123456789/185216?searchWord=&backquery=[]">The Bombay Code, in Five Volumes, Vol. I- containing th ...</a></li>
+
+                                                        <li><b>Author:</b> India. Legislative Department</li>
+
+                                                    </ul>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+
+                                        <li>
+                                            <figure class="wow fadeInUp">
+                                                <ul class="iconlist">
+
+													<li style="display: none;"></li>
+
+                                                </ul>
+                                                <a href="/jspui/handle/123456789/14802?searchWord=&backquery=[]">
+                                                    <img src="/jspui/bitstream/123456789/14802/2/BK_00050360_TIT_01.jpg" alt="" title="" class="img-fluid" />
+                                                </a>
+                                                <figcaption>
+                                                    <ul>
+                                                        <li class="hd"><a href="/jspui/handle/123456789/14802?searchWord=&backquery=[]">Notes on the Rock Cut Temples and  Rock-nut Palaces Nea ...</a></li>
+
+                                                        <li><b>Year:</b> 1856</li>
+
+                                                    </ul>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+
+                                        <li>
+                                            <figure class="wow fadeInUp">
+                                                <ul class="iconlist">
+
+													<li style="display: none;"></li>
+
+                                                </ul>
+                                                <a href="/jspui/handle/123456789/71602?searchWord=&backquery=[]">
+                                                    <img src="/jspui/bitstream/123456789/71602/2/BK_00031115_TIT_01.jpg" alt="" title="" class="img-fluid" />
+                                                </a>
+                                                <figcaption>
+                                                    <ul>
+                                                        <li class="hd"><a href="/jspui/handle/123456789/71602?searchWord=&backquery=[]">The History of Japan; giving an Account of the ancient  ...</a></li>
+
+                                                        <li><b>Year:</b> 1727</li>
+
+                                                        <li><b>Author:</b> Kaempfer, Engelbertus; Scheuchzer, J. G. (Tr.)</li>
+
+                                                    </ul>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+
+                                        <li>
+                                            <figure class="wow fadeInUp">
+                                                <ul class="iconlist">
+
+													<li style="display: none;"></li>
+
+                                                </ul>
+                                                <a href="/jspui/handle/123456789/100417?searchWord=&backquery=[]">
+                                                    <img src="/jspui/bitstream/123456789/100417/1/BK_00080899_TIT_01.jpg" alt="" title="" class="img-fluid" />
+                                                </a>
+                                                <figcaption>
+                                                    <ul>
+                                                        <li class="hd"><a href="/jspui/handle/123456789/100417?searchWord=&backquery=[]">The Antiquities, Natural History, Ruins and other Curio ...</a></li>
+
+                                                        <li><b>Year:</b> 1792</li>
+
+                                                        <li><b>Author:</b> Norden, Frederic Lewis</li>
+
+                                                    </ul>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+
+                                        <li>
+                                            <figure class="wow fadeInUp">
+                                                <ul class="iconlist">
+
+													<li style="display: none;"></li>
+
+                                                </ul>
+                                                <a href="/jspui/handle/123456789/107355?searchWord=&backquery=[]">
+                                                    <img src="/jspui/bitstream/123456789/107355/2/BK_00082108_TIT_01.jpg" alt="" title="" class="img-fluid" />
+                                                </a>
+                                                <figcaption>
+                                                    <ul>
+                                                        <li class="hd"><a href="/jspui/handle/123456789/107355?searchWord=&backquery=[]">The Ruins of Pompeii: A Series of Eighteen Photographic ...</a></li>
+
+                                                        <li><b>Year:</b> 1867</li>
+
+                                                        <li><b>Author:</b> Dyer, Thomas H.</li>
+
+                                                    </ul>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+
+                                        <li>
+                                            <figure class="wow fadeInUp">
+                                                <ul class="iconlist">
+
+													<li style="display: none;"></li>
+
+                                                </ul>
+                                                <a href="/jspui/handle/123456789/92856?searchWord=&backquery=[]">
+                                                    <img src="/jspui/bitstream/123456789/92856/2/BK_00082473_TIT_01.jpg" alt="" title="" class="img-fluid" />
+                                                </a>
+                                                <figcaption>
+                                                    <ul>
+                                                        <li class="hd"><a href="/jspui/handle/123456789/92856?searchWord=&backquery=[]">Cyprus: Its Ancients Cities Tombs and Temples; a Narrat ...</a></li>
+
+                                                        <li><b>Year:</b> 1877</li>
+
+                                                        <li><b>Author:</b> Cesnola, Louis Palma di Gen.</li>
+
+                                                    </ul>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+
+                                        <li>
+                                            <figure class="wow fadeInUp">
+                                                <ul class="iconlist">
+
+													<li style="display: none;"></li>
+
+                                                </ul>
+                                                <a href="/jspui/handle/123456789/100562?searchWord=&backquery=[]">
+                                                    <img src="/jspui/bitstream/123456789/100562/1/BK_00138961_TIT_01.jpg" alt="" title="" class="img-fluid" />
+                                                </a>
+                                                <figcaption>
+                                                    <ul>
+                                                        <li class="hd"><a href="/jspui/handle/123456789/100562?searchWord=&backquery=[]">The Temples of Satrunjaya; the Celebrated Jaina Place o ...</a></li>
+
+                                                        <li><b>Year:</b> 1869</li>
+
+                                                        <li><b>Author:</b> Burgess, James</li>
+
+                                                    </ul>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="spacer2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="push"></div>
+    </div>
+    <!--::: FOOTER :::-->
+    
+
+<script type="text/javascript">
+	document.write('<div class="footer">');
+	document.write('        <div class="container ftr-container text-xs-center">');
+	document.write('            <div class="col-xl-4 col-md-2 col-xs-12 text-xl-left">');
+	<!--document.write('                <img src="../images/logo-asiatic.png" alt="" title="" class="img-fluid" />');-->
+	document.write('            </div>');
+	document.write('            <div class="col-xl-12 col-md-12 col-xs-12 ">');
+	document.write('                <ul class="ftrlist">');
+	document.write('                    <li><a href="/jspui/general-info/terms-conditions.htm" class="terms fancybox.iframe">Terms of service & Disclaimer</a></li>');
+	document.write('                    <li><a href="/jspui/general-info/privacy-policy.htm" class="terms fancybox.iframe">Privacy Policy</a></li>');
+	document.write('                    <li><a href="/jspui/general-info/copyright.htm" class="terms fancybox.iframe">Copyright & Take Down Policy</a></li>');
+	document.write('                    <li><a href="/jspui/general-info/supported-browsers.htm" class="help fancybox.iframe">Supported Browsers</a></li>');
+	document.write('					<li><a id="faq" href="/jspui/general-info/faq.htm" class="terms fancybox.iframe">FAQ</a></li>');
+	document.write('					<li><a target="_blank" id="userguide" href="/jspui/general-info/userguide.pdf">User Guide</a></li>');
+	document.write('                    <li><a href="/jspui/contextInfo?redirect=sitemap">Sitemap</a></li>');
+	document.write('                </ul>');
+	document.write('            </div>');
+	document.write('        </div>');
+	document.write('    </div>');
+	document.write('<a href="#" class="scrollup" title="Scroll Back to Top">');
+	document.write('<i class="fa fa-chevron-up"></i> TOP');
+	document.write('    </a>');
+</script>
+
+<!-- Code for google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99997609-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- Code for google analytics -->
+    <!--::: FOOTER :::-->
+
+    <script src="/jspui/js/jquery.webui-popover.min.js"></script>
+    <script>
+        (function () {
+            var settings = {
+                trigger: 'click',
+                placement: function (el) { return el.data('placement') },
+                title: '',
+                width: 300,
+                multi: false,
+                style: '',
+                padding: true
+            };
+
+            function initPopover() {
+
+            initPopover();
+        })();
+    </script>
+
+    <!-- Common J-Query -->
+    <script src="/jspui/js/main.min.js" type="text/javascript"></script>
+    <!-- Common J-Query -->
+</body>
+</html>

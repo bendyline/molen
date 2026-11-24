@@ -1,0 +1,487 @@
+{
+  "planId": "temple_of_the_feathered_serpent_teotihuacan",
+  "id": "temple_of_the_feathered_serpent_teotihuacan",
+  "assetId": "molen.worldgen.structure.temple_of_the_feathered_serpent_teotihuacan",
+  "title": "Temple of the Feathered Serpent, Teotihuacan",
+  "wikidataId": "Q7698758",
+  "category": "archaeological-temple",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -98.8461708,
+    "latitude": 19.681902375
+  },
+  "size": [
+    65.1400032043457,
+    20.799999594688416,
+    104.33000183105469
+  ],
+  "actualBounds": {
+    "min": [
+      -32.58000183105469,
+      -1.399999976158142,
+      -32.779998779296875
+    ],
+    "max": [
+      32.560001373291016,
+      19.399999618530273,
+      71.55000305175781
+    ]
+  },
+  "visualBrief": "Teotihuacan’s excavated pyramid with a relief-covered western façade and the adjoining four-tier Plataforma Adosada.",
+  "nativeAxes": {
+    "x": "south along the temple facade",
+    "y": "up",
+    "z": "west toward Ciudadela"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:ETH-BIB-Friedlaender-Mexico,_La_piramide_del_Dios_Quetzacoatl-Hs_1309-0039-024.tif",
+    "https://commons.wikimedia.org/wiki/File:ETH-BIB-Friedlaender-Mexico,_San_Juan_Teotihuacan,_Piramide_de_Quetzacoatl-Hs_1309-0039-019.tif"
+  ],
+  "stories": [
+    {
+      "id": "temple-of-the-feathered-serpent-teotihuacan-wp",
+      "url": "https://qualla.com/temple-of-the-feathered-serpent-teotihuacan/"
+    }
+  ],
+  "referenceInputHash": "sha256:28768a94ca96e6accad06579145b98890a15f2433c7420b2e714c7efc7d56888",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9g/9g3/temple_of_the_feathered_serpent_teotihuacan/models/temple-of-the-feathered-serpent-teotihuacan-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9g/9g3/temple_of_the_feathered_serpent_teotihuacan/models/temple-of-the-feathered-serpent-teotihuacan-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.25,
+    "surfaces": {
+      "rubble": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95
+      },
+      "cap": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.92
+      },
+      "carving": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96
+      },
+      "shadow": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95
+          },
+          "cap": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "carving": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96
+          },
+          "shadow": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.21,
+        "surfaces": {
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95
+          },
+          "cap": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "carving": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96
+          },
+          "shadow": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95
+          },
+          "cap": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "carving": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96
+          },
+          "shadow": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_limestone_raw",
+    "stone_limestone"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Copernicus datum on the public Ciudadela court directly west of the attached platform’s stair.",
+    "anchor": [
+      -98.8461708,
+      19.681902375
+    ],
+    "heading": -1.8539080345880885,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -98.84691390737059,
+        19.68211014407365
+      ],
+      "modelHeight": 0,
+      "basis": "Original Copernicus datum on the public Ciudadela court directly west of the attached platform’s stair."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -26.3977,
+          32.8088
+        ],
+        [
+          -26.3937,
+          66.735
+        ],
+        [
+          -5.4803,
+          66.731
+        ],
+        [
+          -5.4809,
+          71.1522
+        ],
+        [
+          -0.3583,
+          71.1465
+        ],
+        [
+          4.5117,
+          71.1488
+        ],
+        [
+          4.507,
+          66.3907
+        ],
+        [
+          24.4038,
+          66.3987
+        ],
+        [
+          24.405,
+          32.8094
+        ],
+        [
+          32.6003,
+          32.8049
+        ],
+        [
+          32.3782,
+          18.3728
+        ],
+        [
+          32.6076,
+          -32.8033
+        ],
+        [
+          -32.6057,
+          -32.8033
+        ],
+        [
+          -32.6025,
+          26.8634
+        ],
+        [
+          -32.6023,
+          32.8018
+        ]
+      ],
+      "basis": "Inside the joined footprints the ancient masonry and narrow excavated gap supply the visible surface, preserving the original terrain outside."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -26.3977,
+          32.8088
+        ],
+        [
+          -0.5676,
+          32.8481
+        ],
+        [
+          24.405,
+          32.8094
+        ],
+        [
+          32.6003,
+          32.8049
+        ],
+        [
+          32.3782,
+          18.3728
+        ],
+        [
+          32.6076,
+          -32.8033
+        ],
+        [
+          -32.6057,
+          -32.8033
+        ],
+        [
+          -32.6025,
+          26.8634
+        ],
+        [
+          -32.6023,
+          32.8018
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The main pyramid follows the named and independently measured rectangular footprint."
+    },
+    "featureIds": [
+      "way/16126827",
+      "way/148380658",
+      "way/27519349"
+    ],
+    "source": "https://www.openstreetmap.org/way/16126827",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fbe8dcfd3399f2e8ffbee982c55f6d49c8db956510337d85293a7446878163c8",
+    "notes": "Contemporary excavator measurements fix the main square base and surviving rubble height. The archival west elevation shows the three well-preserved carved courses and the stair. INAH documents four plain levels on the adjoining western platform."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "Contemporary excavator measurements fix the main square base and surviving rubble height. The archival west elevation shows the three well-preserved carved courses and the stair. INAH documents four plain levels on the adjoining western platform.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "temple-of-the-feathered-serpent-skyline",
+      "position": [
+        80,
+        55,
+        125
+      ],
+      "lookAt": [
+        0,
+        5,
+        21
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "temple-of-the-feathered-serpent-district",
+      "position": [
+        80,
+        55,
+        125
+      ],
+      "lookAt": [
+        0,
+        5,
+        21
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "temple-of-the-feathered-serpent-street",
+      "position": [
+        80,
+        55,
+        125
+      ],
+      "lookAt": [
+        0,
+        5,
+        21
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "temple-of-the-feathered-serpent-closeup",
+      "position": [
+        80,
+        55,
+        125
+      ],
+      "lookAt": [
+        0,
+        5,
+        21
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "western-court-and-adosada-stairs",
+      "position": [
+        -25,
+        14,
+        111
+      ],
+      "lookAt": [
+        0,
+        7,
+        25
+      ]
+    },
+    {
+      "name": "three-carved-courses-and-central-stair",
+      "position": [
+        -36,
+        12,
+        51
+      ],
+      "lookAt": [
+        -9,
+        5,
+        22
+      ]
+    },
+    {
+      "name": "projecting-serpents-and-mask-carvings",
+      "position": [
+        19,
+        5.3,
+        36.7
+      ],
+      "lookAt": [
+        13,
+        4.75,
+        27
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9964,
+    "vertices": 29892,
+    "materials": 4,
+    "bytes": 1505024,
+    "sha256": "sha256:55a46f9884136a35818b062d4589d839c2e9ff5b24e80cbd4c8655e0e2821aee"
+  }
+}

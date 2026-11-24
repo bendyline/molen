@@ -1,0 +1,564 @@
+{
+  "planId": "abhayagiri_vihara",
+  "id": "abhayagiri_vihara",
+  "assetId": "molen.worldgen.structure.abhayagiri_vihara",
+  "title": "Abhayagiri Vihāra",
+  "wikidataId": "Q320543",
+  "category": "historic-buddhist-stupa",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 80.395278488,
+    "latitude": 8.370993737
+  },
+  "size": [
+    185.30379486083984,
+    79.30559849739075,
+    185.28820037841797
+  ],
+  "actualBounds": {
+    "min": [
+      -94.67662811279297,
+      -2.200000047683716,
+      -93.00289916992188
+    ],
+    "max": [
+      90.62716674804688,
+      77.10559844970703,
+      92.2853012084961
+    ]
+  },
+  "visualBrief": "Anuradhapura’s restored Abhayagiri stupa with a brick dome, three basal rings, four stone frontispieces and a paved square terrace.",
+  "nativeAxes": {
+    "x": "across the southern terrace",
+    "y": "up",
+    "z": "toward the public south entrance"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://archive.org/details/ancientceylonacc00park/page/n351/mode/1up"
+  ],
+  "stories": [
+    {
+      "id": "abhayagiri-vihara-wp",
+      "url": "https://qualla.com/abhayagiri-vihara/"
+    }
+  ],
+  "referenceInputHash": "sha256:0ca040968240f05dd5a2ca61b12cd77a3f7a999478d3fe7b1fe79baefc502b60",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tc/tc3/abhayagiri_vihara/models/abhayagiri-vihara-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tc/tc3/abhayagiri_vihara/models/abhayagiri-vihara-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.22,
+    "surfaces": {
+      "dome": {
+        "slot": "wall",
+        "graph": "brick_longformat",
+        "roughness": 0.97
+      },
+      "wall": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.965
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.93
+      },
+      "pavement": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.965
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.89
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.46,
+        "surfaces": {
+          "dome": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.97
+          },
+          "wall": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.965
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "pavement": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.965
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "dome": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.97
+          },
+          "wall": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.965
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "pavement": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.965
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "dome": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.97
+          },
+          "wall": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.965
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "pavement": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.965
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_longformat",
+    "brick",
+    "stone_sandstone",
+    "stone_sandstone_raw",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.13,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Copernicus datum on the public southern approach to the terrace, outside the enclosing wall.",
+    "anchor": [
+      80.395278488,
+      8.370993737
+    ],
+    "heading": -0.029196779971703758,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        80.39523273429329,
+        8.370078615599592
+      ],
+      "modelHeight": 0,
+      "basis": "Original Copernicus datum on the public southern approach to the terrace, outside the enclosing wall."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -91.2248247,
+          -89.5615497
+        ],
+        [
+          -91.2222429,
+          88.8489729
+        ],
+        [
+          87.1257207,
+          88.8489729
+        ],
+        [
+          87.2055579,
+          11.4133434
+        ],
+        [
+          87.12234450000001,
+          3.3207906
+        ],
+        [
+          87.1231389,
+          -89.5615497
+        ]
+      ],
+      "basis": "Within the mapped wall the model uses the conserved flat paving, while the original Copernicus surface remains visible outside."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -54.8521,
+          -10.377
+        ],
+        [
+          -55.8229,
+          0.5208
+        ],
+        [
+          -54.6458,
+          11.4003
+        ],
+        [
+          -51.366,
+          21.8399
+        ],
+        [
+          -46.1275,
+          31.4426
+        ],
+        [
+          -39.1063,
+          39.8351
+        ],
+        [
+          -30.5761,
+          46.7023
+        ],
+        [
+          -20.8866,
+          51.765
+        ],
+        [
+          -10.3846,
+          54.8438
+        ],
+        [
+          0.5186,
+          55.8172
+        ],
+        [
+          11.4032,
+          54.6418
+        ],
+        [
+          21.841,
+          51.3746
+        ],
+        [
+          31.4498,
+          46.127
+        ],
+        [
+          39.8386,
+          39.0998
+        ],
+        [
+          46.7075,
+          30.5801
+        ],
+        [
+          51.7678,
+          20.877
+        ],
+        [
+          54.855,
+          10.3852
+        ],
+        [
+          55.8255,
+          -0.5237
+        ],
+        [
+          54.6483,
+          -11.4033
+        ],
+        [
+          51.3686,
+          -21.8428
+        ],
+        [
+          46.119,
+          -31.4453
+        ],
+        [
+          39.0978,
+          -39.8378
+        ],
+        [
+          30.5786,
+          -46.7053
+        ],
+        [
+          20.8781,
+          -51.7676
+        ],
+        [
+          10.3761,
+          -54.8465
+        ],
+        [
+          -0.5161,
+          -55.8202
+        ],
+        [
+          -11.4006,
+          -54.6448
+        ],
+        [
+          -21.8382,
+          -51.3665
+        ],
+        [
+          -31.4469,
+          -46.1189
+        ],
+        [
+          -39.8361,
+          -39.1028
+        ],
+        [
+          -46.7046,
+          -30.5719
+        ],
+        [
+          -51.7653,
+          -20.88
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The named circular footprint encloses the stupa and its three basal brick courses."
+    },
+    "featureIds": [
+      "way/278865152",
+      "way/257619168",
+      "way/389744536",
+      "way/257620299",
+      "way/1533186810"
+    ],
+    "source": "https://www.openstreetmap.org/way/278865152",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0524c1d6e552858867eee0b20529bccd79d5c458dbcafbe60ce37d9d1c8625b7",
+    "notes": "Smither’s measured section as published by Parker establishes the three basal rings, square chamber, stone frontispieces and dome outline. The engineering survey and Central Cultural Fund records report the modern exterior size and the restoration of the brick cap and spire."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "Smither’s measured section as published by Parker establishes the three basal rings, square chamber, stone frontispieces and dome outline. The engineering survey and Central Cultural Fund records report the modern exterior size and the restoration of the brick cap and spire.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "abhayagiri-vihara-skyline",
+      "position": [
+        183,
+        115,
+        194
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "abhayagiri-vihara-district",
+      "position": [
+        183,
+        115,
+        194
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "abhayagiri-vihara-street",
+      "position": [
+        183,
+        115,
+        194
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "abhayagiri-vihara-closeup",
+      "position": [
+        183,
+        115,
+        194
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-entry-and-brick-dome",
+      "position": [
+        -2,
+        14,
+        133
+      ],
+      "lookAt": [
+        0,
+        32,
+        0
+      ]
+    },
+    {
+      "name": "stone-frontispiece-and-three-rings",
+      "position": [
+        39,
+        13,
+        94
+      ],
+      "lookAt": [
+        0,
+        9,
+        48
+      ]
+    },
+    {
+      "name": "square-chamber-and-restored-spire",
+      "position": [
+        105,
+        81,
+        100
+      ],
+      "lookAt": [
+        3,
+        61,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 14130,
+    "vertices": 42390,
+    "materials": 5,
+    "bytes": 1897212,
+    "sha256": "sha256:8da349a659cb0c842384a58282cd88dca717ec58bb698c118a509567ba3b5d7f"
+  }
+}

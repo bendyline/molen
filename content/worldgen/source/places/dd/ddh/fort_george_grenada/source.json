@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fort_george_grenada",
+  "kind": "static-structure",
+  "title": "Fort George, Grenada",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fort_george_grenada",
+        "output": "assets/places/dd/ddh/fort_george_grenada/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:cd6db124e9278c58afb9097413d43ab4333a194d2f4175cacc47f66a3d6f8036"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-fort-george-grenada",
+        "path": "models/generate-fort-george-grenada.mjs"
+      },
+      {
+        "id": "fort-george-grenada-model",
+        "path": "models/fort-george-grenada-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/fort-george-grenada-footprint.json",
+      "native-map/fort-george-grenada-shape-controls.json",
+      "reference-rights/fort-george-grenada-architectural-facts.json",
+      "references/loc-1762-london.jpg",
+      "reference-rights/loc-1762-catalog-full.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-grenada-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

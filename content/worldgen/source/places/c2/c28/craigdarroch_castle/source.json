@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.craigdarroch_castle",
+  "kind": "static-structure",
+  "title": "Craigdarroch Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.craigdarroch_castle",
+        "output": "assets/places/c2/c28/craigdarroch_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ac57f04cddb4f27bf28f17a96863fdfbc580897b7e3578438c6937ce4de45cd1"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-craigdarroch-castle",
+        "path": "models/generate-craigdarroch-castle.mjs"
+      },
+      {
+        "id": "craigdarroch-castle-model",
+        "path": "models/craigdarroch-castle-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/craigdarroch-castle-footprint.json",
+      "native-map/craigdarroch-roof-controls.json",
+      "reference-rights/craigdarroch-castle-architectural-facts.json",
+      "references/craigdarroch-guerinf-castle-original.jpg",
+      "reference-rights/guerinf-commons-first-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/lidarbc-dem-2023-092b044-crop.tif",
+      "terrain-sources/lidarbc-dsm-2023-092b044-crop.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

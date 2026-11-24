@@ -547,6 +547,31 @@ function cordobaPhotochromMatches(reference, image, record) {
   );
 }
 
+function kazanPhotochromMatches(dir, reference, image, record) {
+  const id = '2001697504';
+  const catalog = `https://www.loc.gov/pictures/item/${id}/`;
+  const publishedRights = readBound(dir, reference.catalogEvidence)?.toString('utf8');
+  const item = record.item;
+  const scan = record.resources?.find(({ id }) => id === 'ppmsc.03896');
+  return (
+    reference.sourceUrl === catalog &&
+    reference.rightsEvidence?.sourceUrl === `${catalog}?fo=json` &&
+    reference.catalogEvidence?.sourceUrl === 'https://wwws.loc.gov/rr/print/res/244_phot.html' &&
+    publishedRights?.includes('Items published in the United States more than 95 years ago') &&
+    item?.link === catalog &&
+    item.id === id &&
+    item.title === '[Kasan Cathedral, St. Petersburg, Russia]' &&
+    item.created_published === '[between ca. 1890 and ca. 1900].' &&
+    item.notes?.some(({ note }) => note.includes('Detroit Publishing Company, 1905')) &&
+    item.notes?.some(({ note }) => note === 'Print no. "8920".') &&
+    scan?.large === reference.downloadUrl &&
+    scan.large_s === image.length &&
+    hash(image) === '2e1d63c12d985f9a0e040280bb3f648e187bba7e3844c15ab193b964b40f465a' &&
+    reference.artist === 'Photoglob Zürich' &&
+    reference.originalReview?.rendition === 'native-archive-jpeg'
+  );
+}
+
 function matsonWinterPalaceMatches(reference, image, record) {
   const item = record.catalog?.item;
   const scan = record.catalog?.resources?.find((resource) => resource.id === 'matpc.00282');
@@ -612,29 +637,54 @@ function tughlaqabadFanshawePlateMatches(dir, reference, image, record) {
   );
 }
 
-function cooktownStateLibraryMatches(reference, record) {
-  const downloads = record.downloads?.FL9491;
+const stateLibraryQueenslandImages = {
+  'slq-cooktown-expired-original': {
+    archiveId: 'IE9151',
+    derivativeId: '69051',
+    negative: '70851',
+    title: "St Mary's Convent at Cooktown",
+    downloadGroup: 'FL9491',
+    downloadId: 'FL9493',
+    sizeLabel: 'Medium quality',
+  },
+  'slq-normanton-expired-original': {
+    archiveId: 'IE125352',
+    derivativeId: '104318',
+    negative: '142299',
+    title: 'Burns Philp and Co. Ltd. at Normanton',
+    downloadGroup: 'FL130939',
+    downloadId: 'FL130939',
+    sizeLabel: 'High quality',
+    sha256: '863a685af226e4b6ce5d885c7acc0f891632812a13ec938851296fae986e871e',
+  },
+};
+
+function stateLibraryQueenslandMatches(reference, image, record) {
+  const expected = stateLibraryQueenslandImages[reference.origin];
+  const downloadUrl = `https://digital.slq.qld.gov.au/delivery/DeliveryManagerServlet?dps_func=download&dps_pid=${expected.downloadId}`;
+  const downloads = record.downloads?.[expected.downloadGroup];
   const download =
     Array.isArray(downloads) &&
-    downloads.find((item) => item?.ext === 'jpg' && item.term === reference.downloadUrl);
+    downloads.find((item) => item?.ext === 'jpg' && item.term === downloadUrl);
   return (
-    reference.sourceUrl === 'https://hdl.handle.net/10462/deriv/69051' &&
-    reference.rightsEvidence?.sourceUrl === 'https://collections.slq.qld.gov.au/api/IE9151' &&
-    record.id === 'IE9151' &&
+    reference.sourceUrl === `https://hdl.handle.net/10462/deriv/${expected.derivativeId}` &&
+    reference.rightsEvidence?.sourceUrl ===
+      `https://collections.slq.qld.gov.au/api/${expected.archiveId}` &&
+    record.id === expected.archiveId &&
     record.permalink === reference.sourceUrl &&
-    record.title === "St Mary's Convent at Cooktown" &&
+    record.title === expected.title &&
     record.type === 'image' &&
     record.copyright === 'Out of copyright.' &&
     record.contentPolicy === 'AR_EVERYONE' &&
     typeof record.original === 'string' &&
-    record.original.includes('Negative number: 70851') &&
-    reference.archiveItem === '70851' &&
+    record.original.includes(`Negative number: ${expected.negative}`) &&
+    reference.archiveItem === expected.negative &&
     reference.artist === 'Unknown author' &&
-    reference.downloadUrl ===
-      'https://digital.slq.qld.gov.au/delivery/DeliveryManagerServlet?dps_func=download&dps_pid=FL9493' &&
+    reference.downloadUrl === downloadUrl &&
     typeof download?.text === 'string' &&
-    download.text.includes('70851.tif - Medium quality') &&
-    reference.originalReview?.rendition === 'native-archive-jpeg'
+    download.text.includes(`${expected.negative}.tif - ${expected.sizeLabel}`) &&
+    reference.originalReview?.rendition === 'native-archive-jpeg' &&
+    (!expected.sha256 || hash(image) === expected.sha256)
   );
 }
 
@@ -831,6 +881,85 @@ function maconTerminalPostcardMatches(reference, image, manifest) {
   );
 }
 
+function irvingHousePhotoMatches(dir, reference, image, record) {
+  const catalogue = 'https://archives.newwestcity.ca/permalink/97905/';
+  const original =
+    'https://archives.newwestcity.ca/Photos//NWPL%20Historic%20Photos%20Low%20Res/94.jpg';
+  const snapshot = readBound(dir, reference.catalogEvidence);
+  return (
+    !!snapshot &&
+    hash(snapshot) === '2894e9a056e134c5ec0c5a203db907dcb8ddcff3c38257c6ec1bc231a4c9f330' &&
+    record.originalSnapshotSha256 === `sha256:${hash(snapshot)}` &&
+    reference.catalogEvidence?.sourceUrl === catalogue &&
+    reference.sourceUrl === catalogue &&
+    reference.rightsEvidence?.sourceUrl === catalogue &&
+    reference.downloadUrl === original &&
+    reference.archiveItem === '254' &&
+    reference.artist === 'Unknown author' &&
+    record.item === '254' &&
+    record.title === 'Irving House' &&
+    record.date === 'ca. 1880' &&
+    record.collection === 'NWPL heritage collection - Photos' &&
+    record.archive === 'New Westminster Archives' &&
+    record.source === catalogue &&
+    record.image === original &&
+    reference.originalReview?.rendition === 'native-archive-jpeg' &&
+    hash(image) === '2d211002396c5ea8ac7313291322750d79e48d55359335b537ad791f79172360'
+  );
+}
+
+function bataviaLighthousePhotoMatches(reference, image, record) {
+  const accession = 'RV-A440-ee-35O';
+  const catalogue = 'https://hdl.handle.net/20.500.11840/929087';
+  const page = record.query?.pages?.[0];
+  const info = page?.imageinfo?.[0];
+  const first = page?.revisions?.[0];
+  const nativeDescription = first?.slots?.main?.content ?? '';
+  return (
+    catalogue === reference.rightsEvidence?.sourceUrl &&
+    catalogue === reference.sourceUrl &&
+    reference.archiveItem === accession &&
+    reference.artist === 'Woodbury & Page' &&
+    info?.url?.split('?')[0] === reference.downloadUrl &&
+    info?.sha1 === hash(image, 'sha1') &&
+    info?.size === image.length &&
+    info?.extmetadata?.LicenseShortName?.value === 'Public domain' &&
+    first?.revid === 483507816 &&
+    first?.parentid === 0 &&
+    nativeDescription.includes(`|accession number = ${accession}`) &&
+    nativeDescription.includes(catalogue) &&
+    nativeDescription.includes('Q27897924') &&
+    nativeDescription.includes('Vuurtoren te Batavia 1875') &&
+    nativeDescription.includes('{{PD-old-70}}') &&
+    reference.originalReview?.rendition === 'native-archive-jpeg' &&
+    hash(image) === 'a0a91296fd103e32e73a0a5319ef99cfeca7ea323d042f56754fdfce854a6b18'
+  );
+}
+
+function babylonFortressEngravingMatches(reference, image, record) {
+  const catalogue =
+    'https://digitalcollections.nypl.org/items/510d47e0-20b0-a3d9-e040-e00a18064a99';
+  const info = record.query?.pages?.[0]?.imageinfo?.[0];
+  const fields = info?.extmetadata;
+  return (
+    reference.sourceUrl === catalogue &&
+    reference.rightsEvidence?.sourceUrl === catalogue &&
+    reference.archiveItem === '1268188' &&
+    reference.artist === 'Impr. impériale' &&
+    reference.originalReview?.rendition === 'native-archive-jpeg' &&
+    info?.timestamp === '2016-07-05T18:23:09Z' &&
+    info?.url?.split('?')[0] === reference.downloadUrl &&
+    info?.size === image.length &&
+    info?.sha1 === hash(image, 'sha1') &&
+    fields?.LicenseShortName?.value === 'Public domain' &&
+    fields?.Artist?.value === reference.artist &&
+    fields?.Credit?.value.includes(catalogue) &&
+    fields?.ObjectName?.value.endsWith('(NYPL b14212718-1268188)') &&
+    fields?.DateTimeOriginal?.value === '1809' &&
+    hash(image) === 'bd992e044ee361e9e83244b0c979a0674a7ca204a79e2ef465ae163551a9e030'
+  );
+}
+
 export function inspectPublicArchiveReference(dir, reference) {
   const image = readBound(dir, reference);
   const record = readRecord(dir, reference.rightsEvidence);
@@ -848,9 +977,25 @@ export function inspectPublicArchiveReference(dir, reference) {
     reference.visuallyReviewedForThisPolicy !== true ||
     reference.originalReview?.status !== 'inspected' ||
     (!(
-      reference.origin === 'usgs-national-map-amos-naip' &&
-      amosNaipMatches(reference, image, record)
+      reference.origin === 'wereldmuseum-batavia-lighthouse-1875' &&
+      bataviaLighthousePhotoMatches(reference, image, record)
     ) &&
+      !(
+        reference.origin === 'nypl-babylon-fortress-1809-plate' &&
+        babylonFortressEngravingMatches(reference, image, record)
+      ) &&
+      !(
+        reference.origin === 'nwpl-irving-house-ca1880' &&
+        irvingHousePhotoMatches(dir, reference, image, record)
+      ) &&
+      !(
+        reference.origin === 'usgs-national-map-amos-naip' &&
+        amosNaipMatches(reference, image, record)
+      ) &&
+      !(
+        reference.origin === 'loc-kazan-photochrom-public-domain' &&
+        kazanPhotochromMatches(dir, reference, image, record)
+      ) &&
       !(reference.origin === 'dlg-macon-terminal-public-domain-postcard'
         ? maconTerminalPostcardMatches(reference, image, record)
         : reference.origin === 'loc-matson-winter-palace-public-domain'
@@ -871,8 +1016,8 @@ export function inspectPublicArchiveReference(dir, reference) {
                         ? rijksmuseumMatches(reference, record)
                         : reference.origin === 'loc-cordoba-photochrom-public-domain'
                           ? cordobaPhotochromMatches(reference, image, record)
-                          : reference.origin === 'slq-cooktown-expired-original'
-                            ? cooktownStateLibraryMatches(reference, record)
+                          : Object.hasOwn(stateLibraryQueenslandImages, reference.origin)
+                            ? stateLibraryQueenslandMatches(reference, image, record)
                             : reference.origin === 'commons-museu-paulista-expired-postcard'
                               ? museuPaulistaPostcardMatches(dir, reference, image, record)
                               : reference.origin === 'usgs-national-map-pr-naip'

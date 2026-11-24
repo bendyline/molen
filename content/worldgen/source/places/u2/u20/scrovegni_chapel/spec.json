@@ -1,0 +1,512 @@
+{
+  "planId": "scrovegni_chapel",
+  "id": "scrovegni_chapel",
+  "assetId": "molen.worldgen.structure.scrovegni_chapel",
+  "title": "Scrovegni Chapel",
+  "wikidataId": "Q963954",
+  "category": "chapel",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 11.879566292857143,
+    "latitude": 45.41189156428572
+  },
+  "size": [
+    31.795931816101074,
+    19.52000069618225,
+    14.23488712310791
+  ],
+  "actualBounds": {
+    "min": [
+      -22.528409957885742,
+      -1.7400000095367432,
+      -7.073117256164551
+    ],
+    "max": [
+      9.267521858215332,
+      17.780000686645508,
+      7.161769866943359
+    ]
+  },
+  "visualBrief": "The standing medieval brick chapel and its west trifora, six-window south wall, polygonal apse, belfry and north sacristy.",
+  "nativeAxes": {
+    "x": "towards nave apse",
+    "y": "up",
+    "z": "towards south flank"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://archive.org/details/lacappelladeglis00mosc/page/n16/mode/1up"
+  ],
+  "stories": [
+    {
+      "id": "scrovegni-chapel-wp",
+      "url": "https://qualla.com/scrovegni-chapel/"
+    }
+  ],
+  "referenceInputHash": "sha256:1af87054579141638d0e73fac6659b504dc31558049abf06eb4c27734c0de741",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u2/u20/scrovegni_chapel/models/scrovegni-chapel-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u2/u20/scrovegni_chapel/models/scrovegni-chapel-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.35,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.95
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.91
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.9
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.58
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.42
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.49,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.42
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.42
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.42
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "stone_limestone_raw",
+    "stone_ashlar",
+    "tile_ceramic",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.95,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified provider elevation at the documented west entrance.",
+    "anchor": [
+      11.879566292857143,
+      45.41189156428572
+    ],
+    "heading": 0.43711028459082907,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        11.879313778986962,
+        45.411789916439204
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified provider elevation at the documented west entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -22.01534,
+          6.8372
+        ],
+        [
+          -22.02148,
+          -3.15517
+        ],
+        [
+          -1.57576,
+          -3.16125
+        ],
+        [
+          -0.72405,
+          -3.15648
+        ],
+        [
+          0.14653,
+          -3.15517
+        ],
+        [
+          0.149,
+          -6.8156
+        ],
+        [
+          5.68393,
+          -6.80969
+        ],
+        [
+          5.65224,
+          -0.77919
+        ],
+        [
+          7.26602,
+          -0.76238
+        ],
+        [
+          9.16371,
+          0.56667
+        ],
+        [
+          9.00023,
+          3.27947
+        ],
+        [
+          7.17758,
+          5.05729
+        ],
+        [
+          1.05986,
+          4.98796
+        ],
+        [
+          1.03755,
+          7.06635
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Native way 131997214 covers the chapel envelope and attached sacristy."
+    },
+    "featureIds": [
+      "way/131997214"
+    ],
+    "source": "https://www.openstreetmap.org/way/131997214",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ab059a40fd26f38b97bb5255474bde921f3cb9b6d815998a017232b1cd3dae67",
+    "notes": "The 1904 engraving and Andrea Moschetti’s architectural survey establish the west trifora and round-headed entrance, brick Lombard frieze, narrow south windows and the arcaded belfry. The overall height follows the 17.78 m total-station survey. Intermediate heights and roof pitches are proportioned estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "Visible exterior only. The frescoed interior, separate Roman arena, removed portico and palace, and unrelated visitor buildings are outside the model scope.",
+    "Intermediate heights, brick colors, west window stone tracery, belfry fittings and small sacristy details are approximations. No historically conjectural portico or exterior frescoes are reconstructed."
+  ],
+  "sourceLicense": "Original model based on a public-domain 1904 archival print, published architectural measurements, mapped footprint and open bare-earth elevation data.",
+  "qaLodCameras": [
+    {
+      "name": "scrovegni-chapel-skyline",
+      "position": [
+        -39,
+        14,
+        37
+      ],
+      "lookAt": [
+        -6,
+        6.8,
+        0.7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "scrovegni-chapel-district",
+      "position": [
+        -39,
+        14,
+        37
+      ],
+      "lookAt": [
+        -6,
+        6.8,
+        0.7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "scrovegni-chapel-street",
+      "position": [
+        -39,
+        14,
+        37
+      ],
+      "lookAt": [
+        -6,
+        6.8,
+        0.7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "scrovegni-chapel-closeup",
+      "position": [
+        -39,
+        14,
+        37
+      ],
+      "lookAt": [
+        -6,
+        6.8,
+        0.7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "arena-west-trifora-and-south-lancets",
+      "position": [
+        -39,
+        14,
+        37
+      ],
+      "lookAt": [
+        -6,
+        6.8,
+        0.7
+      ]
+    },
+    {
+      "name": "polygonal-apse-and-belfry",
+      "position": [
+        25,
+        12,
+        25
+      ],
+      "lookAt": [
+        1,
+        7.3,
+        2.5
+      ]
+    },
+    {
+      "name": "north-sacristy-and-plain-flank",
+      "position": [
+        15,
+        12,
+        -30
+      ],
+      "lookAt": [
+        -2,
+        6.1,
+        1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3197,
+    "vertices": 9591,
+    "materials": 7,
+    "bytes": 627616,
+    "sha256": "sha256:9a12646ed05bf3872386ee1eec972b73f2c5eba3eba0699b13add90f075ede1b"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.christ_church_cathedral_grafton",
+  "kind": "static-structure",
+  "title": "Christ Church Cathedral, Grafton",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.christ_church_cathedral_grafton",
+        "output": "assets/places/r6/r6s/christ_church_cathedral_grafton/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c8922036d736a5c62ed39199ad459ee459bd44b3ad88151c9cc98799c61d32f4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-christ-church-cathedral-grafton",
+        "path": "models/generate-christ-church-cathedral-grafton.mjs"
+      },
+      {
+        "id": "christ-church-cathedral-grafton-model",
+        "path": "models/christ-church-cathedral-grafton-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/christ-church-cathedral-grafton-footprint.json",
+      "native-map/christ-church-cathedral-grafton-shape-controls.json",
+      "reference-rights/christ-church-cathedral-grafton-architectural-facts.json",
+      "references/grafton-cathedral-1888-lithograph.png",
+      "reference-rights/grafton-cathedral-1888-illustration-record.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-grafton-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

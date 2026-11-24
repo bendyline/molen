@@ -1,0 +1,607 @@
+{
+  "planId": "citadel_of_tripoli",
+  "id": "citadel_of_tripoli",
+  "assetId": "molen.worldgen.structure.citadel_of_tripoli",
+  "title": "Citadel of Tripoli",
+  "wikidataId": "Q49977",
+  "category": "historical-fortress",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 35.84451859487179,
+    "latitude": 34.433508076923076
+  },
+  "size": [
+    69.68231201171875,
+    23.824699878692627,
+    152.6641387939453
+  ],
+  "actualBounds": {
+    "min": [
+      -37.04890823364258,
+      -5.324699878692627,
+      -82.60700988769531
+    ],
+    "max": [
+      32.63340377807617,
+      18.5,
+      70.05712890625
+    ]
+  },
+  "visualBrief": "The Citadel of Tripoli on its river ridge, with stepped limestone curtain walls, projecting towers, pointed portals and the courtyard museum wing.",
+  "nativeAxes": {
+    "x": "northwest across the ridge",
+    "y": "up",
+    "z": "north-northeast along the ridge"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/aee52480-d0b4-102d-bcf8-003048976d84",
+    "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/aee52534-d0b4-102d-bcf8-003048976d84",
+    "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/aee52b10-d0b4-102d-bcf8-003048976d84",
+    "https://archive.org/details/picturesquepales03wilsuoft/page/n28/mode/1up"
+  ],
+  "stories": [
+    {
+      "id": "citadel-of-tripoli-wp",
+      "url": "https://qualla.com/citadel-of-tripoli/"
+    }
+  ],
+  "referenceInputHash": "sha256:1656adaae65edaca048a905db854f3870100aa95712d3af305f85d7668188242",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sy/sy1/citadel_of_tripoli/models/citadel-of-tripoli-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sy/sy1/citadel_of_tripoli/models/citadel-of-tripoli-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.78,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.94
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.98
+      },
+      "court": {
+        "slot": "roof",
+        "graph": "earth_rammed",
+        "roughness": 0.99
+      },
+      "museum": {
+        "slot": "window",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.92
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.32,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98
+          },
+          "court": {
+            "slot": "roof",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          },
+          "museum": {
+            "slot": "window",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98
+          },
+          "court": {
+            "slot": "roof",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          },
+          "museum": {
+            "slot": "window",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.032,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98
+          },
+          "court": {
+            "slot": "roof",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          },
+          "museum": {
+            "slot": "window",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_limestone",
+    "stone_sandstone_raw",
+    "earth_rammed",
+    "plaster_lime",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.13,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged Copernicus GLO-30 at the crest near the mapped second gate. The stepped masonry meets local grade around the perimeter.",
+    "anchor": [
+      35.84451859487179,
+      34.433508076923076
+    ],
+    "heading": 2.719103524522294,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        35.84480549849591,
+        34.433947498376796
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged Copernicus GLO-30 at the crest near the mapped second gate. The stepped masonry meets local grade around the perimeter."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -31.7196,
+          -66.6817
+        ],
+        [
+          -35.4785,
+          -65.9072
+        ],
+        [
+          -36.7991,
+          -32.1888
+        ],
+        [
+          -34.3362,
+          -10.6555
+        ],
+        [
+          -35.3063,
+          13.3853
+        ],
+        [
+          -35.1565,
+          28.3181
+        ],
+        [
+          -33.8038,
+          27.8564
+        ],
+        [
+          -29.4244,
+          41.1806
+        ],
+        [
+          -25.8852,
+          39.8947
+        ],
+        [
+          -20.9051,
+          52.7414
+        ],
+        [
+          -18.2367,
+          51.0413
+        ],
+        [
+          -17.1273,
+          58.2562
+        ],
+        [
+          -4.0703,
+          57.4515
+        ],
+        [
+          -3.9685,
+          55.4163
+        ],
+        [
+          -3.9543,
+          53.2984
+        ],
+        [
+          0.4043,
+          53.365
+        ],
+        [
+          0.3195,
+          57.4308
+        ],
+        [
+          10.5136,
+          56.5949
+        ],
+        [
+          10.2003,
+          49.5835
+        ],
+        [
+          21.6297,
+          52.2566
+        ],
+        [
+          24.0279,
+          50.6048
+        ],
+        [
+          27.0973,
+          29.4648
+        ],
+        [
+          30.0872,
+          30.0247
+        ],
+        [
+          31.264,
+          21.245
+        ],
+        [
+          28.4447,
+          20.7061
+        ],
+        [
+          31.7993,
+          6.2239
+        ],
+        [
+          29.5963,
+          -21.9194
+        ],
+        [
+          32.3854,
+          -22.0748
+        ],
+        [
+          30.993,
+          -33.0315
+        ],
+        [
+          26.5368,
+          -32.151
+        ],
+        [
+          22.4637,
+          -49.5186
+        ],
+        [
+          24.7445,
+          -50.4463
+        ],
+        [
+          22.8411,
+          -54.5459
+        ],
+        [
+          26.6402,
+          -66.0911
+        ],
+        [
+          6.6751,
+          -78.2793
+        ],
+        [
+          6.2202,
+          -82.3588
+        ],
+        [
+          -22.295,
+          -78.9252
+        ],
+        [
+          -22.8302,
+          -81.504
+        ],
+        [
+          -33.587,
+          -80.0612
+        ]
+      ],
+      "minimumCoverage": 0.89,
+      "basis": "The mapped named castle outline and the included museum wing define the area occupied by the model."
+    },
+    "featureIds": [
+      "way/108248588",
+      "node/10291824327",
+      "node/4963292368",
+      "way/506629346",
+      "way/685004316"
+    ],
+    "source": "https://www.openstreetmap.org/way/108248588",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1494a8bc657c2d1efae3a547ba9ca713206a599d67bf889f52d409df8a0e3850",
+    "notes": "The phased outer walls, gate profiles and upper parapets reflect the inspected original engraving and archive CC0 photographs. Native grades retain the rise toward the inner citadel and drop toward the river."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Wall heights, minor terrace arrangement, material hues and stone loss vary across the monument and are approximated.",
+    "The interior is represented by the entrance passage, open court, aboveground room walls and the exterior of the museum wing."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "citadel-of-tripoli-skyline",
+      "position": [
+        -122,
+        83,
+        116
+      ],
+      "lookAt": [
+        0,
+        7,
+        -7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "citadel-of-tripoli-district",
+      "position": [
+        -122,
+        83,
+        116
+      ],
+      "lookAt": [
+        0,
+        7,
+        -7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "citadel-of-tripoli-street",
+      "position": [
+        -122,
+        83,
+        116
+      ],
+      "lookAt": [
+        0,
+        7,
+        -7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "citadel-of-tripoli-closeup",
+      "position": [
+        -122,
+        83,
+        116
+      ],
+      "lookAt": [
+        0,
+        7,
+        -7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "two-pointed-entrance-portals",
+      "position": [
+        -2.6,
+        3.15,
+        82
+      ],
+      "lookAt": [
+        -3.6,
+        2.65,
+        58
+      ]
+    },
+    {
+      "name": "inner-gate-and-ashlar-arch",
+      "position": [
+        -13,
+        3,
+        55.2
+      ],
+      "lookAt": [
+        -1.5,
+        2.55,
+        55.3
+      ]
+    },
+    {
+      "name": "river-curtain-and-bastions",
+      "position": [
+        -105,
+        44,
+        -72
+      ],
+      "lookAt": [
+        -19,
+        9,
+        -18
+      ]
+    },
+    {
+      "name": "interior-terraces-and-museum",
+      "position": [
+        24,
+        60,
+        -26
+      ],
+      "lookAt": [
+        -6,
+        8,
+        -5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5992,
+    "vertices": 17976,
+    "materials": 6,
+    "bytes": 1078588,
+    "sha256": "sha256:7e22a74e7193d57c93da65b6e6261b2fca5e98b24cf55af9223297ec0a6dafbe"
+  }
+}

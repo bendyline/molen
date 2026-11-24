@@ -1,0 +1,222 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head><meta http-equiv="X-UA-Compatible" content="IE=8" />
+<script type='text/javascript' src='/layout/scripts/jquery-1.4.4.js'></script>
+
+<!-- NewWestCity -->
+<link href="../../layout/NewWestCity.css" rel="stylesheet" type="text/css" />
+<!-- ANDORNOT STYLES -->
+<link href="../../layout/AOStarter.css" rel="stylesheet" type="text/css" /><link href="../../layout/slimbox.css" rel="stylesheet" type="text/css" />
+  <script type='text/javascript' src='/layout/Scripts/AndornotUtilities_Results_1_13.js'></script>
+  <script type='text/javascript' src='/layout/scripts/slimbox2.js'></script>
+
+  <script type="text/javascript">
+
+    var safeForUrl = function (value) {
+        return value.replace(/[^\w\s-]/g, "").replace(/\s/g, "-");
+    };
+
+    var setAddThisUrl = function () {
+        var id = $("#recordId").val();
+        if (id === undefined) {
+            return 
+        };
+        var title = $("#recordTitle").val();
+        var key = "permalink";
+        var baseUrl = 'https://archives.newwestcity.ca/';
+        var url = baseUrl + key + "/" + id + "/" + (title === undefined ? "" : safeForUrl(title) + "/");
+        $("a.addthis_button").attr("addthis:url", url);
+    };
+
+    $(document).ready(function () {
+        // update permalink
+        setAddThisUrl();
+		          // store back to results url
+          var tn = GetQueryParamByKey("TN", dbtw_params); 
+          back_to_block_cookie(tn);
+	  // added to replace the mail address
+          document.body.innerHTML = document.body.innerHTML.replace(/museum@newwestcity.ca/g, 'archives@newwestcity.ca');
+    });
+</script>
+  <script type="text/javascript">
+jQuery(function(){
+
+    var minimized_elements = $('p.minimize');
+
+    minimized_elements.each(function(){    
+        var t = $(this).text();        
+        if(t.length < 200) return;
+
+        $(this).html(
+            t.slice(0,200)+'<span>... </span><a href="#" class="more">More</a>'+
+            '<span style="display:none;">'+ t.slice(200,t.length)+' <a href="#" class="less">Less</a></span>'
+        );
+
+    }); 
+
+    $('a.more', minimized_elements).click(function(event){
+        event.preventDefault();
+        $(this).hide().prev().hide();
+        $(this).next().show();        
+    });
+
+    $('a.less', minimized_elements).click(function(event){
+        event.preventDefault();
+        $(this).parent().hide().prev().show().prev().show();    
+    });
+
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61169510-2', 'auto');
+  ga('send', 'pageview');
+//document.body.innerHTML = document.body.innerHTML.replace(/museum@/g, 'archives@');
+
+</script>
+<title>
+	Irving House - New Westminster Archives Results Page
+</title></head>
+
+<body>
+<form method="post" action="./?AC=qbe_query&amp;TN=internet&amp;RF=WebFullShare&amp;DF=WebFullShare&amp;DL=0&amp;RL=0&amp;NP=255&amp;MR=10&amp;QY=find+DescriptionsId+%3d97905" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJMzYxODAyNzUwD2QWAmYPZBYCAgMPZBYCAgMPZBYCAgEPDxYCHgtXZWJQdWJRdWVyeQXNAUFDPXFiZV9xdWVyeSZRWT1maW5kIERlc2NyaXB0aW9uc0lkID05NzkwNSZUTj1pbnRlcm5ldCZNUj0xMCZERj1XZWJGdWxsU2hhcmUmUkY9V2ViRnVsbFNoYXJlJk5QPTI1NSZETD0wJlJMPTAmT0VIPXV0Zi04JlhDPSZNRj1HRU5FUklDRU5HV1BNU0cuSU5JJkJVPWh0dHBzJTNhJTJmJTJmYXJjaGl2ZXMubmV3d2VzdGNpdHkuY2ElMmZzZWFyY2guYXNweCZJRD1kZGQ7qglQwQVoMSK26VDZslynvJORpmBj0zE5imJ+C75liQ==" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="63301E89" />
+<div id="container"> 
+ <div id="header" class="NoPrint"><img src="../../layout/images/NewWestArchivesHeaderBkg2.jpg" id="NewWestArchivesHeader" name="NewWestArchivesHeader" width="980" height="177" border="0" usemap="#m_NewWestArchivesHeader" alt="New Westminster Archives" /><map name="m_NewWestArchivesHeader" id="m_NewWestArchivesHeader">
+<area shape="poly" coords="65,13,204,13,204,24,65,24,65,13" href="http://www.newwestcity.ca/" target="_blank" title="Return to New West City" alt="Return to New West City" />
+</map>
+</div>
+
+ <div id="content">
+ 
+  <div id="left">
+  <div id="dp_left">
+  <div class="navigation_secondary NoPrint">
+  <ul>
+  <li><a href="/search.aspx">Search the Archives</a></li>
+  <li><a href="/results.aspx?TN=Internet&RF=WebRelevance&DF=WebFull&BU=http%3A%2F%2Farchives.newwestcity.ca%2Fsearch.aspx&QY=find%20(DateUploaded%20%3E%3D%40DATE-90)&MR=10&AC=QBE_QUERY&XC=%2Fdbtw-wpd%2Fexec%2Fdbtwpub.dll">View New Records</a></li>
+  <li class="subnav">&nbsp;</li>
+  <li class="subnav"><a href="https://www.newwestcity.ca/services/arts-and-heritage/museums-and-archives">Museum and Archives</a></li>
+ </ul>
+  </div>
+  
+  </div>
+  </div>
+   <div id="main">
+
+
+       
+<noscript>
+  <div style="border:1px solid red;background-color:#ffbaba;color:#d8000c;width:400px;padding:16px;margin:16px 0;">
+    For full functionality javascript must be enabled for this site.
+  </div>
+</noscript>
+<div>
+	
+<span id="main_Results1"><script type="text/javascript" language="JavaScript" src="/ics-wpd/jscript/ics-r-main.js"></script>
+
+<script type="text/javascript" language="JavaScript">
+<!--
+dbtw_params="&amp;XC=/results.aspx&amp;BU=https%3A%2F%2Farchives.newwestcity.ca%2Fsearch.aspx&amp;GI=&amp;TN=internet&amp;SN=AUTO3502&amp;SE=410&amp;RN=0&amp;MR=10&amp;TR=0&amp;TX=1000&amp;ES=0&amp;XP=&amp;RF=WebFullShare&amp;EF=&amp;DF=WebFullShare&amp;RL=0&amp;EL=0&amp;DL=0&amp;NP=255&amp;ID=&amp;MF=GENERICENGWPMSG.INI&amp;DT=&amp;ST=0&amp;IR=0&amp;NR=0&amp;NB=0&amp;SV=0&amp;SS=0&amp;BG=&amp;FG=&amp;QS=";
+page_type="report";
+page_edata=0;
+//-->
+</script>
+
+<div class="userData" style="BEHAVIOR: url(#default#userdata)" id="uData"></div>
+
+<div id="ResultContent">
+<div id="ResultInfo">
+
+<h2>Irving House - Record Detail</h2>
+</div><!--
+<font size="1" color="#000000">--><p> <strong>Irving House. </strong>  - [ca. 1880]. </p><!--</font>
+--><img src="http://archives.newwestcity.ca/Photos//NWPL Historic Photos Low Res/94.jpg" style="padding-bottom:20px;" border="0" alt="Image" /></a><!--<!--
+--><table id="DisplayTable"  cellspacing="0" cellpadding="0">
+
+<tr><td class="display_label">Part Of:</div></td><td class="display_text">NWPL heritage collection - Photos&nbsp;&nbsp;<a href="http://archives.newwestcity.ca/results.aspx?QB0=AND&QF0=PartOf&QI0=&quot;NWPL heritage collection - Photos&quot;&QB1=AND&QF1=DescriptionLevel&QI1=Fonds/Collection&TN=internet&RF=WebFond&DF=WebFond&AC=QBE_QUERY" target="_blank">[Description]</a>
+<!--&nbsp;&nbsp<a href="http://archives.newwestcity.ca/results.aspx?results.aspx?QB0=AND&QF0=PartOf&QI0=&quot;NWPL heritage collection - Photos&quot;&TN=internet&BU="http://archives.newwestcity.ca/results.aspx?search.aspx&AC=QBE_QUERY" target="_blank">[View all records in this collection]</a>--></td>
+</tr>
+  <tr>
+    <td class="display_label">Description Level</td>
+    <td class="display_text">Item</td>
+  </tr>
+  <tr>
+    <td class="display_label">Item No.</td>
+    <td class="display_text">254</td>
+  </tr>
+  <tr>
+    <td class="display_label">Date Range</td>
+    <td class="display_text">[ca. 1880]</td>
+  </tr>
+  <tr>
+    <td class="display_label">Physical Description</td>
+    <td class="display_text">1 photograph</td>
+  </tr>
+<font size="1" color="#000000"><tr>
+  <td class="display_label">Scope & Content</td>
+  <td class="display_text"><!--Photograph shows Irving House. This fine home was completed in 1864 for Captain William Irving, a pioneer of the riverboat trade in this province, especially on the Fraser River.  The house was built by members of the Royal Engineers, under contract to Captain Irving.  The house remained in possession of Irving descendants until 1950, when it was purchased by the City of New Westminster.  The house has changed very little in appearance.--> Photograph shows Irving House. This fine home was completed in 1864 for Captain William Irving, a pioneer of the riverboat trade in this province, especially on the Fraser River.  The house was built by members of the Royal Engineers, under contract to Captain Irving.  The house remained in possession of Irving descendants until 1950, when it was purchased by the City of New Westminster.  The house has changed very little in appearance. <!--Photograph shows Irving House. This fine home was completed in 1864 for Captain William Irving, a pioneer of the riverboat trade in this province, especially on the Fraser River.  The house was built by members of the Royal Engineers, under contract to Captain Irving.  The house remained in possession of Irving descendants until 1950, when it was purchased by the City of New Westminster.  The house has changed very little in appearance.--></td>
+</tr></font>
+  <tr>
+    <td class="display_label">Name Access </td>
+    <td class="display_text">Irving House</td>
+  </tr>
+  <tr>
+    <td class="display_label">Subject Access </td>
+    <td class="display_text">Buildings - Residential - Houses</td>
+  </tr>
+  <tr>
+    <td class="display_label">Geographic Location</td>
+    <td class="display_text">New Westminster (B.C.)</td>
+  </tr>
+  <tr>
+    <td class="display_label">Record ID</td>
+    <td class="display_text">97905</td>
+  </tr>
+  <tr>
+    <td style="font-style:italic; color:#535353;">Comment on this record</td>
+    <td><a href='mailto:museum@newwestcity.ca?subject=Comment for Archive Record ID 97905'</a>museum@newwestcity.ca</td>
+  </tr>
+</table>
+</div>
+<hr style="visibility:hidden" />
+<input type="hidden" id="WPP_BU" value="https%3a%2f%2farchives.newwestcity.ca%2fsearch.aspx" /></span>
+
+	</div>
+
+</div><!-- main -->
+
+ <div id="footer" class="NoPrint">
+  <div id="footertop"></div>
+  <div id="footerbottom">
+  <div id="dp_footerbottom">
+  <div class="left_items"><ul class="listing"><li><a href="http://www.newwestcity.ca/admin.php">Login</a></li><li><a href="http://www.newwestcity.ca/privacy.php">Privacy</a></li><li><a href="http://www.newwestcity.ca/sitemap.php">Sitemap</a></li><li><a href="http://www.newwestpcr.ca/about_us/enews_signup.php">eNews Subscription</a></li></ul><div class="clearer"></div>
+  </div>
+  </div>
+ </div>
+ </div>
+
+</div> <!--content-->
+</div> <!--container-->
+
+</form>
+
+<script type="text/javascript">
+var addthis_config = addthis_config||{};
+addthis_config.data_use_cookies = false;
+var name = "__atuvc";
+document.cookie = name + '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
+</script>              
+
+</body>
+
+</html>

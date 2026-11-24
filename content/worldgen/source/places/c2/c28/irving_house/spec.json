@@ -1,0 +1,463 @@
+{
+  "planId": "irving_house",
+  "id": "irving_house",
+  "assetId": "molen.worldgen.structure.irving_house",
+  "title": "Irving House",
+  "wikidataId": "Q96382887",
+  "category": "historical-house",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -122.90628317000001,
+    "latitude": 49.207776439999996
+  },
+  "size": [
+    16.717546463012695,
+    14.705000400543213,
+    23.64133358001709
+  ],
+  "actualBounds": {
+    "min": [
+      -9.563773155212402,
+      -2.7300000190734863,
+      -11.920000076293945
+    ],
+    "max": [
+      7.153773307800293,
+      11.975000381469727,
+      11.721333503723145
+    ]
+  },
+  "visualBrief": "Irving House on Royal Avenue, with steep shingled gables, carved bargeboards, a Palladian balcony and a wraparound timber verandah.",
+  "nativeAxes": {
+    "x": "along the Royal Avenue front toward the southwest",
+    "y": "up",
+    "z": "toward Royal Avenue"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://archives.newwestcity.ca/permalink/97905/"
+  ],
+  "stories": [
+    {
+      "id": "irving-house-wp",
+      "url": "https://qualla.com/irving-house/"
+    }
+  ],
+  "referenceInputHash": "sha256:667b57152bd21d4951e5b5682efebed911fee5b5c8adb5b9e1ade833655a5b12",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/c2/c28/irving_house/models/irving-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/c2/c28/irving_house/models/irving-house-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.59,
+    "surfaces": {
+      "siding": {
+        "slot": "wall",
+        "graph": "siding_lap",
+        "roughness": 0.95
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "shingle_cedar",
+        "roughness": 0.96
+      },
+      "brick": {
+        "slot": "foundation",
+        "graph": "brick",
+        "roughness": 0.95
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_painted_lap",
+        "roughness": 0.92
+      },
+      "boards": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.92
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.81
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.27,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "siding_lap",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.96
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.92
+          },
+          "boards": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.81
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.097,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "siding_lap",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.96
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.92
+          },
+          "boards": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.81
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.027,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "siding_lap",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.96
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.92
+          },
+          "boards": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.81
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "siding_lap",
+    "shingle_cedar",
+    "brick",
+    "wood_painted_lap",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged Copernicus GLO-30 DSM sampled from the Royal Avenue front gate toward the downhill basement.",
+    "anchor": [
+      -122.90628317000001,
+      49.207776439999996
+    ],
+    "heading": -2.457841475694037,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -122.9063700542095,
+        49.20786344663668
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged Copernicus GLO-30 DSM sampled from the Royal Avenue front gate toward the downhill basement."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          5.5878,
+          10.2773
+        ],
+        [
+          5.572,
+          9.9629
+        ],
+        [
+          7.0183,
+          9.9495
+        ],
+        [
+          6.9195,
+          -3.5144
+        ],
+        [
+          3.9904,
+          -3.4889
+        ],
+        [
+          3.9198,
+          -11.6454
+        ],
+        [
+          -6.994,
+          -11.5496
+        ],
+        [
+          -6.9535,
+          -5.1407
+        ],
+        [
+          -9.5812,
+          -5.128
+        ],
+        [
+          -9.479,
+          10.2773
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "The native Irving House footprint includes its attached verandah, roof and downhill wing."
+    },
+    "featureIds": [
+      "way/391276941"
+    ],
+    "source": "https://www.openstreetmap.org/way/391276941",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:13098b8708b85f4c6f64e62fd98876d6f4df92cba88913f991472ac99245f493",
+    "notes": "The original ca. 1880 municipal archive photograph sets the shapes of the steep front gable, balcony, porch trim and chimneys. The official register describes the exposed rear basement and main roof."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.siding_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_cedar",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "The original ca. 1880 municipal archive photograph sets the shapes of the steep front gable, balcony, porch trim and chimneys. The official register describes the exposed rear basement and main roof.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "irving-house-skyline",
+      "position": [
+        -25,
+        16,
+        36
+      ],
+      "lookAt": [
+        -1.22,
+        4.73,
+        0.45
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "irving-house-district",
+      "position": [
+        -25,
+        16,
+        36
+      ],
+      "lookAt": [
+        -1.22,
+        4.73,
+        0.45
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "irving-house-street",
+      "position": [
+        -25,
+        16,
+        36
+      ],
+      "lookAt": [
+        -1.22,
+        4.73,
+        0.45
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "irving-house-closeup",
+      "position": [
+        -25,
+        16,
+        36
+      ],
+      "lookAt": [
+        -1.22,
+        4.73,
+        0.45
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "royal-avenue-gable-and-balcony",
+      "position": [
+        0,
+        8.5,
+        27
+      ],
+      "lookAt": [
+        -1.22,
+        5.7,
+        8.8
+      ]
+    },
+    {
+      "name": "wraparound-verandah-and-shutters",
+      "position": [
+        -21,
+        7.9,
+        16
+      ],
+      "lookAt": [
+        -2,
+        3.9,
+        2.7
+      ]
+    },
+    {
+      "name": "brick-basement-on-downhill-side",
+      "position": [
+        20,
+        5.8,
+        -22
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        -6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9747,
+    "vertices": 29241,
+    "materials": 6,
+    "bytes": 1326248,
+    "sha256": "sha256:2cc97a450f3ef25883c613b9e3bb3fc458672e7c6743e8add60ee85ede8bc244"
+  }
+}

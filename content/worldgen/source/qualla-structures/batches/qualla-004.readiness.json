@@ -4,12 +4,12 @@
   "policy": "A source or import is not completion. Ready requires verified references or a separately supported primary-factual reconstruction, exact source/runtime/LOD bytes, inspected portable/shared/context captures, fidelity appropriate to the declared method, and terrain/placement evidence. Structure catalog work is excluded. Imagery must be public domain, match published Qualla media and original attribution, and have current bytes. Conflicting or incomplete records are excluded.",
   "counts": {
     "target": 500,
-    "ready": 183,
-    "started": 183,
+    "ready": 243,
+    "started": 243,
     "pilotsReady": 0,
-    "technicallyValidated": 183,
-    "publicDomainImageryVerified": 183,
-    "publicDomainFidelityReviewed": 183,
+    "technicallyValidated": 243,
+    "publicDomainImageryVerified": 243,
+    "publicDomainFidelityReviewed": 243,
     "primaryFactsReconstructionsVerified": 0
   },
   "candidates": [
@@ -676,20 +676,47 @@
       "candidateId": "argentine_national_observatory",
       "backlogTargetId": "QS-ec6a37939f12",
       "title": "Argentine National Observatory",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.argentine_national_observatory",
+      "sourcePath": "content/worldgen/source/places/6d/6d6/argentine_national_observatory",
       "order": 8,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "argentine-national-observatory",
+        "placementHash": "sha256:14b10afd7e3b65f4984811302bc30d25d5d3f5038520aded995a4fa6142af303",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:464a3647f8de4e0a994993626e3163c38c149899b0fbae072588e7710a8ff64c",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/cordoba-observatory-caras-y-caretas-plate.jpg",
+              "sourceUrl": "https://archive.org/details/Caras_y_Caretas_Buenos_Aires_1899-01-00_N_13/page/n18/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -1162,20 +1189,53 @@
       "candidateId": "chateau_tongariro",
       "backlogTargetId": "QS-841400480368",
       "title": "Chateau Tongariro",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.chateau_tongariro",
+      "sourcePath": "content/worldgen/source/places/rc/rch/chateau_tongariro",
       "order": 15,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "chateau-tongariro",
+        "placementHash": "sha256:0b0725904f484ce6fc62a170e2c7468b73f9ea8362710f442144eee8425c2d9b",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:bfe57ba084795a23bd75763fbe27efc622979c41af15e8a1facfc52bd4b6f4fb",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/tongariro-archive-construction.tif",
+              "sourceUrl": "https://manawatuheritage.pncc.govt.nz/item/edc28628-10d5-4382-a96c-dfe65eb5bfb5",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/tongariro-archive-portico.jpg",
+              "sourceUrl": "https://collections.tepapa.govt.nz/object/440584",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -1628,40 +1688,106 @@
       "candidateId": "basilica_and_convent_of_san_francisco_lima",
       "backlogTargetId": "QS-9a5d953ef019",
       "title": "Basilica and Convent of San Francisco, Lima",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.basilica_and_convent_of_san_francisco_lima",
+      "sourcePath": "content/worldgen/source/places/6m/6mc/basilica_and_convent_of_san_francisco_lima",
       "order": 24,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "basilica-and-convent-of-san-francisco-lima",
+        "placementHash": "sha256:cd52b2a656240fb2acf2795d9e915a1d923ad06a4182879c2a8e81a1c5fe0bd5",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:b896bcddba877c863281aad8ed72b4ea09bd8cd57383f88184f6d3c8c8c460dd",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/san-francisco-lima-loc-basilica-front.jpg",
+              "sourceUrl": "https://www.loc.gov/item/2006679722/",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/san-francisco-lima-loc-convent-roofs.jpg",
+              "sourceUrl": "https://www.loc.gov/item/2006679728/",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/san-francisco-lima-loc-garden.jpg",
+              "sourceUrl": "https://www.loc.gov/item/2006679743/",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
       "candidateId": "abhayagiri_vihara",
       "backlogTargetId": "QS-8b335ceb27ab",
       "title": "Abhayagiri Vihāra",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.abhayagiri_vihara",
+      "sourcePath": "content/worldgen/source/places/tc/tc3/abhayagiri_vihara",
       "order": 25,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "abhayagiri-vihara",
+        "placementHash": "sha256:78c075ea3ddbd22fa2f77c8213052659e233f3c4a657b6c53c2603fc4a569863",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:eb4d815d33b20eea2598376c068d3d0dae7562cccae7a0c16ea0b9add462ac31",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/abhayagiri-dagoba-1909-measured-elevation.jpg",
+              "sourceUrl": "https://archive.org/details/ancientceylonacc00park/page/n351/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -3086,20 +3212,47 @@
       "candidateId": "government_house_nassau",
       "backlogTargetId": "QS-74ae9d755df8",
       "title": "Government House, Nassau",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.government_house_nassau",
+      "sourcePath": "content/worldgen/source/places/dk/dk2/government_house_nassau",
       "order": 51,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "government-house-nassau",
+        "placementHash": "sha256:e79436e5333739527ce1c3691cf174a1acef67f9ab17263cfec0da86cddcb1f6",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:7ded3b2b2f5afc4c5126fe5e86ecaf8914feda671233e4380a2f183b800e6038",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/nassau-government-house-71833-front.jpg",
+              "sourceUrl": "https://www.digitalcommonwealth.org/search/commonwealth:x346fz07b",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -3342,20 +3495,65 @@
       "candidateId": "aundha_nagnath_temple",
       "backlogTargetId": "QS-899d0a329309",
       "title": "Aundha Nagnath Temple",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.aundha_nagnath_temple",
+      "sourcePath": "content/worldgen/source/places/te/teq/aundha_nagnath_temple",
       "order": 57,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "aundha-nagnath-temple",
+        "placementHash": "sha256:423150e791277e793f480840141666f2da8baa939cbfbb30a62aaf71f2f77e02",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:46b16e3c62b311fca982fd2c84c7e0933416fa2d1dc39252cdc2df14a942b9c4",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/aundha-exterior-plate.jpg",
+              "sourceUrl": "https://archive.org/details/in.ernet.dli.2015.172905/page/n74/mode/1up",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/aundha-carvings-plate.jpg",
+              "sourceUrl": "https://archive.org/details/in.ernet.dli.2015.172905/page/n76/mode/1up",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/aundha-shikhara-plate.jpg",
+              "sourceUrl": "https://archive.org/details/in.ernet.dli.2015.172905/page/n78/mode/1up",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/aundha-plan-plate.jpg",
+              "sourceUrl": "https://archive.org/details/dli.ministry.09361/page/n72/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -3382,20 +3580,47 @@
       "candidateId": "grenada_national_museum",
       "backlogTargetId": "QS-4336adae1b81",
       "title": "Grenada National Museum",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.grenada_national_museum",
+      "sourcePath": "content/worldgen/source/places/dd/ddh/grenada_national_museum",
       "order": 59,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "grenada-national-museum",
+        "placementHash": "sha256:f061b6a62cba827ecc89915bcc047f20ebd697a4b18099a643724542300c99be",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:4058a966f2ad9f285a8391f67b819ae7d2eecc8b17568aeadaab807afa87960d",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/grenada-home-hotel-frontispiece-1902.png",
+              "sourceUrl": "https://museum.gd/about/",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -3742,20 +3967,47 @@
       "candidateId": "paz_palace",
       "backlogTargetId": "QS-81f49f556df7",
       "title": "Paz Palace",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.paz_palace",
+      "sourcePath": "content/worldgen/source/places/69/69y/paz_palace",
       "order": 64,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "paz-palace",
+        "placementHash": "sha256:9cb9e2c028c6fc80d1dcbac7ee67dae2324e85d8c76f55e91254bdd4265e21b8",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:2a2dd09b9082e5d341769172db2e429ad79ef445c5e6b6e892c9075c9c69dc5d",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/paz-1916-commons-native.png",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:Palacio_Paz_en_1916._Buenos_Aires.png",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -3802,20 +4054,47 @@
       "candidateId": "national_theatre_of_costa_rica",
       "backlogTargetId": "QS-983f0e39a6a1",
       "title": "National Theatre of Costa Rica",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.national_theatre_of_costa_rica",
+      "sourcePath": "content/worldgen/source/places/d1/d1u/national_theatre_of_costa_rica",
       "order": 67,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "national-theatre-of-costa-rica",
+        "placementHash": "sha256:6bd42389b8e14588b9097025ded5336c6263b4e7cc964be631b651b227e10c98",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:1035879e23dcaec1e23955142924e22fc754f893f7be3e6a4a0e10636671f447",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/san-jose-theatre-1911-bulletin-plate.jpg",
+              "sourceUrl": "https://archive.org/details/sim_bulletin-of-the-pan-american-union_1911-06_32_6/page/n72/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -4742,20 +5021,47 @@
       "candidateId": "basilica_of_san_francisco_la_paz",
       "backlogTargetId": "QS-f84948bef238",
       "title": "Basilica of San Francisco, La Paz",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.basilica_of_san_francisco_la_paz",
+      "sourcePath": "content/worldgen/source/places/6m/6mp/basilica_of_san_francisco_la_paz",
       "order": 80,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "basilica-of-san-francisco-la-paz",
+        "placementHash": "sha256:53c8cd5844e05973e695b5d819b80e76d29887122d91038e5d81debb86ce1f87",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:0c95fa26da4f0cf520be1b9c391602fa7b0cc68506b3842427dccf2ab853bde3",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/la-paz-san-francisco-1914-stereograph.jpg",
+              "sourceUrl": "https://www.loc.gov/item/2019630216/",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -4782,20 +5088,59 @@
       "candidateId": "babylon_fortress",
       "backlogTargetId": "QS-9fb6604f14df",
       "title": "Babylon Fortress",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.babylon_fortress",
+      "sourcePath": "content/worldgen/source/places/st/stq/babylon_fortress",
       "order": 82,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "babylon-fortress",
+        "placementHash": "sha256:95109ec857f1d40b99020d0053fa67e243f7987624a6c52a2b32fca380104a21",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:2b981df96c6d979b5e8424e25d9cff9c5406e5cf6dfb8f5215d6b68cf12272a0",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/babylon-butler-1884-round-towers.jpg",
+              "sourceUrl": "https://archive.org/details/ancientcopticchu01butliala/page/n181/mode/1up",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/babylon-butler-1884-south-gate.jpg",
+              "sourceUrl": "https://archive.org/details/ancientcopticchu01butliala/page/n244/mode/1up",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/babylon-1809-nypl-1268188.jpg",
+              "sourceUrl": "https://digitalcollections.nypl.org/items/510d47e0-20b0-a3d9-e040-e00a18064a99",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -5086,20 +5431,59 @@
       "candidateId": "kazan_cathedral_saint_petersburg",
       "backlogTargetId": "QS-6225ac678a94",
       "title": "Kazan Cathedral, Saint Petersburg",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.kazan_cathedral_saint_petersburg",
+      "sourcePath": "content/worldgen/source/places/ud/udt/kazan_cathedral_saint_petersburg",
       "order": 85,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "kazan-cathedral-saint-petersburg",
+        "placementHash": "sha256:3038e481c7380b88ab7a6ce09e48ca420de8daeb6efe7c58858023ac8d9f74e5",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:8f0a35e0a9464ff099a82c8ae0ef46e3cdc6ce64835db8eb8e465213bd6f432e",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/kazan-cathedral-albumen.jpg",
+              "sourceUrl": "https://id.rijksmuseum.nl/200491466",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/kazan-cathedral-stereograph.jpg",
+              "sourceUrl": "https://id.rijksmuseum.nl/200333511",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/kazan-cathedral-8920-photochrom.jpg",
+              "sourceUrl": "https://www.loc.gov/pictures/item/2001697504/",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -5917,20 +6301,47 @@
       "candidateId": "bourke_post_office",
       "backlogTargetId": "QS-4fdc30b7f118",
       "title": "Bourke Post Office",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.bourke_post_office",
+      "sourcePath": "content/worldgen/source/places/r4/r4x/bourke_post_office",
       "order": 102,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "bourke-post-office",
+        "placementHash": "sha256:a1a6e5ada5335b0febe1fa205120de81a064666ca2167c24bac059eb0444e4f2",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:0b3178232ca0d5c4f3aeab6ebeb42dee940df52caa31bb111052dd2f55841683",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/bourke-post-office-nsw-archive-original.jpg",
+              "sourceUrl": "https://www.flickr.com/photos/state-records-nsw/2711655229/",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -6213,20 +6624,47 @@
       "candidateId": "fort_keogh",
       "backlogTargetId": "QS-66aeb3a8ce2f",
       "title": "Fort Keogh",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.fort_keogh",
+      "sourcePath": "content/worldgen/source/places/c8/c8h/fort_keogh",
       "order": 109,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "fort-keogh",
+        "placementHash": "sha256:6fbdd6706daf55726c43d76f90f45692af19f08c1eb920b89c2eaf0f47a18d76",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:27ef5cc844c1dfed118601cd6f066f1cb3621c2b9215cc39f2fb12c97acd9d91",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/fort-keogh-water-wagon-naip.png",
+              "sourceUrl": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/mt_m_4610533_se_13_060_20230814_20240103",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -6684,20 +7122,53 @@
       "candidateId": "cascade_brewery",
       "backlogTargetId": "QS-9c4bf4c1372a",
       "title": "Cascade Brewery",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.cascade_brewery",
+      "sourcePath": "content/worldgen/source/places/r2/r22/cascade_brewery",
       "order": 118,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "cascade-brewery",
+        "placementHash": "sha256:936140c1827481d0d3e90c9d9398e9766cd930f676e670ad9d2bdb39b6cdeab2",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:b4b72061d62a26ad0cce54c8741a8ac5a12207d4898f7e8785e1c967f30edb52",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/beattie-1910-original-card.jpg",
+              "sourceUrl": "https://www.flickr.com/photos/107895189@N03/44327565012/",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/mercury-1937-scan.jpg",
+              "sourceUrl": "https://www.pittwateronlinenews.com/Australian-Trade-Tokens-The-Cascade-Shilling.php",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -7561,20 +8032,47 @@
       "candidateId": "fort_dundas",
       "backlogTargetId": "QS-9f239a797db0",
       "title": "Fort Dundas",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.fort_dundas",
+      "sourcePath": "content/worldgen/source/places/qv/qvu/fort_dundas",
       "order": 134,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "fort-dundas",
+        "placementHash": "sha256:e1df87322a28340c1d2724798b8ff13cba53195c0d8ca0c13e4b181a836983a5",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:79ddfd22d590ebf5d73dcdf7fc75a14a5f926c181cf206d1738e72241e0ce64b",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/fort-dundas-roe-1824-engraving.jpg",
+              "sourceUrl": "https://archive.org/details/narrativeofsurve02king_0/page/n257/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -7641,20 +8139,53 @@
       "candidateId": "plaza_theatre_el_paso",
       "backlogTargetId": "QS-c617f64dd154",
       "title": "Plaza Theatre (El Paso)",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.plaza_theatre_el_paso",
+      "sourcePath": "content/worldgen/source/places/9t/9ts/plaza_theatre_el_paso",
       "order": 138,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "plaza-theatre-el-paso",
+        "placementHash": "sha256:24a3dd40ffa153e65f058a4c5228889a16fa84a7cd443d7d781a8233011e9253",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:9c4f0ae9ad1589aa55890fc897a137725ffc318e0abf1c9bb5141a496b67d747",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/el-paso-plaza-highsmith-native.jp2",
+              "sourceUrl": "https://www.loc.gov/item/2014630837/",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/el-paso-plaza-theatre-naip.png",
+              "sourceUrl": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/tx_m_3110613_sw_13_060_20220529",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -8227,20 +8758,59 @@
       "candidateId": "bourke_court_house",
       "backlogTargetId": "QS-ebcad02315d4",
       "title": "Bourke Court House",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.bourke_court_house",
+      "sourcePath": "content/worldgen/source/places/r4/r4x/bourke_court_house",
       "order": 150,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "bourke-court-house",
+        "placementHash": "sha256:f46c6ca02cb017646397937074a81ba0c71a5da5645e49c07812b4719d6c261f",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:54fd8ce8aae18fe9ccc28216f4261dc25e851df9328ea418dde7c92ec2484f8e",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/bourke-court-archive-55.jpg",
+              "sourceUrl": "https://www.flickr.com/photos/state-records-nsw/2800767681/",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/bourke-court-archive-56.jpg",
+              "sourceUrl": "https://www.flickr.com/photos/state-records-nsw/2800767797/",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/bourke-court-archive-58.jpg",
+              "sourceUrl": "https://www.flickr.com/photos/state-records-nsw/2800768037/",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -8698,40 +9268,94 @@
       "candidateId": "broken_hill_trades_hall",
       "backlogTargetId": "QS-9e41fb8c9b63",
       "title": "Broken Hill Trades Hall",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.broken_hill_trades_hall",
+      "sourcePath": "content/worldgen/source/places/r4/r4k/broken_hill_trades_hall",
       "order": 158,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "broken-hill-trades-hall",
+        "placementHash": "sha256:9d896644effec503b07fbcc5a4bbdfd81d09795ee7d68ca871f8d83d388ac31a",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:0f12974ef2082ea5a63aa2102b97bb4fa184328d1480c0690c4720da123b135c",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/outback-archive-15-46-770.jpg",
+              "sourceUrl": "https://www.lovellchen.com.au/projects/broken-hill-trades-hall/",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
       "candidateId": "basilica_and_convent_of_san_francisco_quito",
       "backlogTargetId": "QS-1909ddd8eae9",
       "title": "Basilica and Convent of San Francisco, Quito",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.basilica_and_convent_of_san_francisco_quito",
+      "sourcePath": "content/worldgen/source/places/6r/6rb/basilica_and_convent_of_san_francisco_quito",
       "order": 159,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "basilica-and-convent-of-san-francisco-quito",
+        "placementHash": "sha256:4461a5cf39e0c71b0d1d90729f0bb5ae05123dded378ab7e136392e852f939f6",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:7067bebcdeed24112a844e6c55fadbf9e8bf3d8580fe74a2d2d2f064c4643d3f",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/quito-san-francisco-september-1909-leaf68.jpg",
+              "sourceUrl": "https://archive.org/details/sim_bulletin-of-the-pan-american-union_1909-09_29_3/page/n68/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -9438,20 +10062,47 @@
       "candidateId": "fort_george_grenada",
       "backlogTargetId": "QS-c1e37c2bd726",
       "title": "Fort George, Grenada",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.fort_george_grenada",
+      "sourcePath": "content/worldgen/source/places/dd/ddh/fort_george_grenada",
       "order": 178,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "fort-george-grenada",
+        "placementHash": "sha256:97d29fa1d6cc3f53ff5e62ad0cc8ab85ac4a7bbe6ab347792f22519e7032ec9f",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:7865ab55810c08e5d6e4e9b8a705e62b24f916d7b4e34d88e2bc706dbb191fd9",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/loc-1762-london.jpg",
+              "sourceUrl": "https://www.loc.gov/item/2010593380/",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -10235,20 +10886,47 @@
       "candidateId": "palace_hotel_broken_hill",
       "backlogTargetId": "QS-9d40def2b004",
       "title": "Palace Hotel, Broken Hill",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.palace_hotel_broken_hill",
+      "sourcePath": "content/worldgen/source/places/r4/r4k/palace_hotel_broken_hill",
       "order": 190,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "palace-hotel-broken-hill",
+        "placementHash": "sha256:012ee0270c479cfe9e0a825c15c4461671467bb22350d9958b3a152b9131b961",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:f0224a616b92eec337930829e353bb88f11f4e5c54b27ff3f011a78842c7b00f",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/palace-hotel-1925-archival-print.jpg",
+              "sourceUrl": "https://www.thepalacehotelbrokenhill.com.au/history",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -10315,20 +10993,53 @@
       "candidateId": "church_of_san_francisco_acatepec",
       "backlogTargetId": "QS-87e7c6b40ef1",
       "title": "Church of San Francisco Acatepec",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.church_of_san_francisco_acatepec",
+      "sourcePath": "content/worldgen/source/places/9g/9g6/church_of_san_francisco_acatepec",
       "order": 194,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "church-of-san-francisco-acatepec",
+        "placementHash": "sha256:cff680b16cfbceeaf448902e3c0697888fec2f04986bd56352c40e01e1c61932",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:89839051a9f46cfef33495659750726ccef85f5154d42dbb81863d406f55f94c",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/acatepec-front-01.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fachada_del_Templo_de_San_Francisco_Acatepec_desde_un_dron_01.jpg",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/acatepec-dome-01.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:C%C3%BApula_del_Templo_de_San_Francisco_Acatepec_desde_un_dron_01.jpg",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -10434,20 +11145,95 @@
       "candidateId": "louisbourg_lighthouse",
       "backlogTargetId": "QS-599a37c727cb",
       "title": "Louisbourg Lighthouse",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.louisbourg_lighthouse",
+      "sourcePath": "content/worldgen/source/places/f8/f8j/louisbourg_lighthouse",
       "order": 197,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "louisbourg-lighthouse",
+        "placementHash": "sha256:b583744a07db02def2d5ee82fb98e424440a698d0d817b09c606cac4ea173caa",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:dea70de574f867e2aa2f1fb02010f9d2afc6d8b5b83763ec6d11d233f5b9c682",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [
+          {
+            "path": "_m/f/8/j/m/louisbourg-lighthouse-wp/plan-et-profil-de-la-tour-de-l.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plan_et_profil_de_la_Tour_de_la_Lanterne_a_l_entr%C3%A9e_du_port_de_Louisbourg_pour_representer_ce_qui_reste_a_faire_pour_la_perfectionner_pendant_l_ann%C3%A9e_1733.jpg",
+            "license": "Public domain",
+            "artist": "attribution à Verrier - Archives nationales d'outre-mer (France)",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "Exact Qualla reproduction of the original Louisbourg lighthouse plan, catalogue item 40284 and shelfmark FR CAOM 3DFC172B, attributed to Verrier and explicitly public domain at its first Commons upload."
+            ],
+            "primaryRights": {
+              "eligible": true,
+              "basis": "Exact Qualla reproduction of the original Louisbourg lighthouse plan, catalogue item 40284 and shelfmark FR CAOM 3DFC172B, attributed to Verrier and explicitly public domain at its first Commons upload.",
+              "path": "content/worldgen/source/places/f8/f8j/louisbourg_lighthouse/reference-rights/louisbourg-commons-plan-rights.json",
+              "sha256": "3516d06d68ac3e2326ecabb5611c245712afc3bf5ce090bad898834b6dd08f9b",
+              "nativeSha1": "fab211cff86f99181bfd426c46d39529c2ca2851",
+              "revision": 186019809
+            },
+            "publishedIn": [
+              {
+                "storyId": "louisbourg-lighthouse-wp",
+                "articlePath": "_c/art/f/8/j/m/louisbourg-lighthouse-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/f/8/j/m/louisbourg-lighthouse-wp/metadata.json",
+            "sha256": "ab7d970df3303ed018b6f5e69739de51dcea5da359871957cd512cd45de3f72d"
+          }
+        ],
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "passed",
+            "references": [
+              {
+                "path": "_m/f/8/j/m/louisbourg-lighthouse-wp/plan-et-profil-de-la-tour-de-l.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plan_et_profil_de_la_Tour_de_la_Lanterne_a_l_entr%C3%A9e_du_port_de_Louisbourg_pour_representer_ce_qui_reste_a_faire_pour_la_perfectionner_pendant_l_ann%C3%A9e_1733.jpg",
+                "license": "Public domain",
+                "artist": "attribution à Verrier - Archives nationales d'outre-mer (France)",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "Exact Qualla reproduction of the original Louisbourg lighthouse plan, catalogue item 40284 and shelfmark FR CAOM 3DFC172B, attributed to Verrier and explicitly public domain at its first Commons upload."
+                ],
+                "primaryRights": {
+                  "eligible": true,
+                  "basis": "Exact Qualla reproduction of the original Louisbourg lighthouse plan, catalogue item 40284 and shelfmark FR CAOM 3DFC172B, attributed to Verrier and explicitly public domain at its first Commons upload.",
+                  "path": "content/worldgen/source/places/f8/f8j/louisbourg_lighthouse/reference-rights/louisbourg-commons-plan-rights.json",
+                  "sha256": "3516d06d68ac3e2326ecabb5611c245712afc3bf5ce090bad898834b6dd08f9b",
+                  "nativeSha1": "fab211cff86f99181bfd426c46d39529c2ca2851",
+                  "revision": 186019809
+                },
+                "publishedIn": [
+                  {
+                    "storyId": "louisbourg-lighthouse-wp",
+                    "articlePath": "_c/art/f/8/j/m/louisbourg-lighthouse-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/f/8/j/m/louisbourg-lighthouse-wp/metadata.json",
+                "sha256": "ab7d970df3303ed018b6f5e69739de51dcea5da359871957cd512cd45de3f72d"
+              }
+            ]
+          },
+          "additional": []
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -10514,40 +11300,130 @@
       "candidateId": "citadel_of_tripoli",
       "backlogTargetId": "QS-8ecf8b1243fc",
       "title": "Citadel of Tripoli",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.citadel_of_tripoli",
+      "sourcePath": "content/worldgen/source/places/sy/sy1/citadel_of_tripoli",
       "order": 201,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "citadel-of-tripoli",
+        "placementHash": "sha256:a987ae1ca256238fb871d002feae009e203677cb2da62ebb5bae27043118a166",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:fb9ba33632bef89f02f5dcc1568c20af68b4b16668f1b2dbb18157154821c876",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/tripoli-van-de-poll-255-6389.jpg",
+              "sourceUrl": "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/aee52480-d0b4-102d-bcf8-003048976d84",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/tripoli-van-de-poll-255-6390.jpg",
+              "sourceUrl": "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/aee52534-d0b4-102d-bcf8-003048976d84",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/tripoli-van-de-poll-255-6398.jpg",
+              "sourceUrl": "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/aee52b10-d0b4-102d-bcf8-003048976d84",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/tripoli-woodward-engraving.jpg",
+              "sourceUrl": "https://archive.org/details/picturesquepales03wilsuoft/page/n28/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
       "candidateId": "church_of_santa_prisca_de_taxco",
       "backlogTargetId": "QS-607500ed5e3a",
       "title": "Church of Santa Prisca de Taxco",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.church_of_santa_prisca_de_taxco",
+      "sourcePath": "content/worldgen/source/places/9g/9g3/church_of_santa_prisca_de_taxco",
       "order": 202,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "church-of-santa-prisca-de-taxco",
+        "placementHash": "sha256:e6404aa754446bf9e67005658db4d89e5a45935dcd7607d69ae5fd0c552793ae",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:5db3c59781b8bf8d35b17cd5ca9b9111ebcf175e1d1d7efaba6b8f7ca37fc9c3",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/taxco-baxter-dome.jpg",
+              "sourceUrl": "https://archive.org/details/spanishcoloniala09baxt/page/n20/mode/1up",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/taxco-baxter-tower.jpg",
+              "sourceUrl": "https://archive.org/details/spanishcoloniala09baxt/page/n22/mode/1up",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/taxco-baxter-facade.jpg",
+              "sourceUrl": "https://archive.org/details/spanishcoloniala09baxt/page/n24/mode/1up",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/taxco-baxter-south.jpg",
+              "sourceUrl": "https://archive.org/details/spanishcoloniala09baxt/page/n26/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -10947,20 +11823,53 @@
       "candidateId": "fort_of_san_diego",
       "backlogTargetId": "QS-3e8a3950f239",
       "title": "Fort of San Diego",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.fort_of_san_diego",
+      "sourcePath": "content/worldgen/source/places/9f/9fb/fort_of_san_diego",
       "order": 210,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "fort-of-san-diego",
+        "placementHash": "sha256:ad7b42ac18396bd7346cf2f49df5621d23f3d1384d680ede5f874bf4ac0d57f2",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:d4f78a0086154217fb6257d4e1d61a1d05903c611f3c239a7345fd3641783e36",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/proposed-18th-century-plan.jpg",
+              "sourceUrl": "https://www.inegi.org.mx/contenido/productos/prod_serv/contenidos/espanol/bvinegi/productos/historicos/2104/702825460136/702825460136_1.pdf#page=69",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/panon-1779-archival-profile.jpg",
+              "sourceUrl": "https://www.inegi.org.mx/contenido/productos/prod_serv/contenidos/espanol/bvinegi/productos/historicos/2104/702825460136/702825460136_1.pdf#page=70",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -11288,20 +12197,59 @@
       "candidateId": "puebla_cathedral",
       "backlogTargetId": "QS-915527401580",
       "title": "Puebla Cathedral",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.puebla_cathedral",
+      "sourcePath": "content/worldgen/source/places/9g/9g6/puebla_cathedral",
       "order": 218,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "puebla-cathedral",
+        "placementHash": "sha256:969c3e8524675e4a54c08dcf8678c5b1f56b5abd491da80626b8ae69ee85e005",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:e688ae973dc30299dbc2108991e3033c68ccf348dff96b318a25d573ce480066",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/puebla-front-07.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:Catedral_de_Puebla_desde_un_dron_07.jpg",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/puebla-front-05.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:Catedral_de_Puebla_desde_un_dron_05.jpg",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/puebla-aerial-01.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:Catedral_de_Puebla_(toma_cenital)_desde_un_dron_01.jpg",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -11585,20 +12533,47 @@
       "candidateId": "christ_church_cathedral_grafton",
       "backlogTargetId": "QS-a3c4c01f94fc",
       "title": "Christ Church Cathedral, Grafton",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.christ_church_cathedral_grafton",
+      "sourcePath": "content/worldgen/source/places/r6/r6s/christ_church_cathedral_grafton",
       "order": 222,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "christ-church-cathedral-grafton",
+        "placementHash": "sha256:436ffa734d550de3da057b5a38417312d6aa2a912a258c90ed807dc9a78f259b",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:2c10271a807a3d857ab7f077b7c81a19649adb4a2804a14fb664dfba89703ad7",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/grafton-cathedral-1888-lithograph.png",
+              "sourceUrl": "https://www.clarence.nsw.gov.au/files/assets/public/v/1/community/files/heritage/grafton-thematic-history-2008.pdf#page=28",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -11665,20 +12640,53 @@
       "candidateId": "temple_of_the_feathered_serpent_teotihuacan",
       "backlogTargetId": "QS-07dad296d492",
       "title": "Temple of the Feathered Serpent, Teotihuacan",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.temple_of_the_feathered_serpent_teotihuacan",
+      "sourcePath": "content/worldgen/source/places/9g/9g3/temple_of_the_feathered_serpent_teotihuacan",
       "order": 226,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "temple-of-the-feathered-serpent-teotihuacan",
+        "placementHash": "sha256:f7d6ab6835f44103227d62519b407eca7e1a99daf36774943914847eec4819b7",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:778c51a86532e4177bd6ab13f07ed0830e87daee8b9ceda90cb655cc0ad8ebd3",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/friedlaender-teotihuacan-024.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Friedlaender-Mexico,_La_piramide_del_Dios_Quetzacoatl-Hs_1309-0039-024.tif",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/friedlaender-teotihuacan-019.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Friedlaender-Mexico,_San_Juan_Teotihuacan,_Piramide_de_Quetzacoatl-Hs_1309-0039-019.tif",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -12155,20 +13163,47 @@
       "candidateId": "royal_bull_s_head_inn",
       "backlogTargetId": "QS-57e35caa1658",
       "title": "Royal Bull's Head Inn",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.royal_bull_s_head_inn",
+      "sourcePath": "content/worldgen/source/places/r7/r7h/royal_bull_s_head_inn",
       "order": 237,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "royal-bull-s-head-inn",
+        "placementHash": "sha256:0501002464308da5753b4d7ccfe78da3439f8a74e69af0f457c7a89f98d48787",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:fd5b2821e4bdcf02e977d6f1a6dfb969eb1e6a5e7f21345cff3a23b7546ba4af",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/drayton-bulls-head-lynch-1880s.jpg",
+              "sourceUrl": "https://nationaltrustqld.org.au/memories-of-a-time-at-the-bulls-head-drayton/",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -12195,20 +13230,59 @@
       "candidateId": "temple_of_the_tooth",
       "backlogTargetId": "QS-f633e591ad39",
       "title": "Temple of the Tooth",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.temple_of_the_tooth",
+      "sourcePath": "content/worldgen/source/places/tc/tc3/temple_of_the_tooth",
       "order": 239,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "temple-of-the-tooth",
+        "placementHash": "sha256:a54f069abb65f26992f45356c92240fa03cca539f16de39a1cb585513df614bc",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:332db27c9d38a62faa8e2c2a829acc719562bc098bc49aa97de1f201c0ceff66",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/kandy-rijks-scowen.jpg",
+              "sourceUrl": "https://id.rijksmuseum.nl/200323955",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/kandy-rijks-entrance.jpg",
+              "sourceUrl": "https://id.rijksmuseum.nl/200324457",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/kandy-rijks-castelein.jpg",
+              "sourceUrl": "https://id.rijksmuseum.nl/200713915",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -13025,20 +14099,47 @@
       "candidateId": "cathedral_basilica_of_potosi",
       "backlogTargetId": "QS-832c2437b431",
       "title": "Cathedral Basilica of Potosí",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.cathedral_basilica_of_potosi",
+      "sourcePath": "content/worldgen/source/places/6s/6s9/cathedral_basilica_of_potosi",
       "order": 256,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "cathedral-basilica-of-potosi",
+        "placementHash": "sha256:ac74b00c1c430bb42a1e4be09e9202693d800ed8d2ca5460bb87bb0d86ca67b1",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:7b2224db49675a11175be7f54818e1f329130f7f0eceab52f26e6ecc4aed4f3d",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/potosi-cathedral-september-1908-leaf109.jpg",
+              "sourceUrl": "https://archive.org/details/sim_bulletin-of-the-pan-american-union_1908-09_27_3/page/n109/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -13065,20 +14166,47 @@
       "candidateId": "palace_of_king_bell",
       "backlogTargetId": "QS-0f228683faf2",
       "title": "Palace of King Bell",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.palace_of_king_bell",
+      "sourcePath": "content/worldgen/source/places/s0/s0w/palace_of_king_bell",
       "order": 258,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "palace-of-king-bell",
+        "placementHash": "sha256:19425a9e70d6561d8ffe8571219b79303157ef9bb4332bf67a38d393893e0534",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:d15eacef63b0118c764d589c730f71a840891f85085b033c47e8486b905cf16a",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/king-bell-scribner-1907.pdf",
+              "sourceUrl": "https://archive.org/details/congocoastsofafr00daviiala",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -13562,20 +14690,47 @@
       "candidateId": "kruger_house_pretoria",
       "backlogTargetId": "QS-643d4174623f",
       "title": "Kruger House, Pretoria",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.kruger_house_pretoria",
+      "sourcePath": "content/worldgen/source/places/ke/kek/kruger_house_pretoria",
       "order": 270,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "kruger-house-pretoria",
+        "placementHash": "sha256:f02f822bb6ba74f95a29f11fca534310716c8030e9192bebcba2843c1ebeaa01",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:cbd186e5dbc38edad7986ff6327e9afbc03dd04dd8a3a8aa1379f3eb4e54bb74",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/kruger-awm-3963373.jpg",
+              "sourceUrl": "https://www.awm.gov.au/collection/C62588",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -15086,20 +16241,59 @@
       "candidateId": "monastery_of_saint_george_of_choziba",
       "backlogTargetId": "QS-a7634ff4ceff",
       "title": "Monastery of Saint George of Choziba",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.monastery_of_saint_george_of_choziba",
+      "sourcePath": "content/worldgen/source/places/sv/sv9/monastery_of_saint_george_of_choziba",
       "order": 300,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "monastery-of-saint-george-of-choziba",
+        "placementHash": "sha256:54a3a3255ffdfbef881cd6b39573f988f9c678a4031c4019d35c5d77e1e63eca",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:5ef4038b2523864946363672fd6b029ecf4c72d35b79e869c3a56aeaf713c54f",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/choziba-survey-plate.jpg",
+              "sourceUrl": "https://archive.org/details/surveyofwesternp03conduoft/page/192/mode/1up",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/choziba-photo-plate.jpg",
+              "sourceUrl": "https://archive.org/details/holyland00hichrich/page/n280/mode/1up",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/choziba-illustration-plate.jpg",
+              "sourceUrl": "https://archive.org/details/outofdoorsinholy00regi/page/n168/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -15205,20 +16399,47 @@
       "candidateId": "empress_hotel",
       "backlogTargetId": "QS-ecaea256afda",
       "title": "The Empress (hotel)",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.empress_hotel",
+      "sourcePath": "content/worldgen/source/places/c2/c28/empress_hotel",
       "order": 303,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "empress-hotel",
+        "placementHash": "sha256:a9a1679301a544c8359b4a71b955e2464084464e00380d719abce0321cb90b8a",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:7023719596c09c24cd47670ded891ec32d2230c875406b700394f334e5907a41",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/empress-hotel-keen-1930-original.jpg",
+              "sourceUrl": "https://www.flickr.com/photos/151887236@N05/34182327803/",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -15866,20 +17087,206 @@
       "candidateId": "katsura_imperial_villa",
       "backlogTargetId": "QS-528a43a5da9a",
       "title": "Katsura Imperial Villa",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.katsura_imperial_villa",
+      "sourcePath": "content/worldgen/source/places/xn/xn0/katsura_imperial_villa",
       "order": 321,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "katsura-imperial-villa",
+        "placementHash": "sha256:44eb4cbfc9488dc120848bcd9ba46cf8f69b5c0f4e9fcd22e1f67555c81e7522",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:ebcd537c061cf3e74c4583709476ae0c2124c71562bcdd2a4fd953fb1f679a41",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [
+          {
+            "path": "_m/x/n/0/x/katsura-imperial-villa-wp/geppa-ro-tea-pavillion.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Geppa-ro.jpg",
+            "license": "Public domain",
+            "artist": "Raphael Azevedo Franca",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "PD-self"
+            ],
+            "publishedIn": [
+              {
+                "storyId": "katsura-imperial-villa-wp",
+                "articlePath": "_c/art/x/n/0/x/katsura-imperial-villa-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/x/n/0/x/katsura-imperial-villa-wp/metadata.json",
+            "sha256": "6efdd47cd43abc8d61a7226990492e548718ef9a289398736c49997a4143db88"
+          },
+          {
+            "path": "_m/x/n/0/x/katsura-imperial-villa-wp/shokin-tei-seen-geppa.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shokin-tei_seen_from_the_Geppa-ro.jpg",
+            "license": "Public domain",
+            "artist": "Raphael Azevedoo Franca",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "PD-self"
+            ],
+            "publishedIn": [
+              {
+                "storyId": "katsura-imperial-villa-wp",
+                "articlePath": "_c/art/x/n/0/x/katsura-imperial-villa-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/x/n/0/x/katsura-imperial-villa-wp/metadata.json",
+            "sha256": "1c7b8c4ee380de93f8257a1503ebaf652c91b06688e8cb4e96d88f8cb5b83834"
+          },
+          {
+            "path": "_m/x/n/0/x/katsura-imperial-villa-wp/main-gate-palace.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Main_gate_katsura.jpg",
+            "license": "Public domain",
+            "artist": "Raphael Azevedo Franca",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "PD-self"
+            ],
+            "publishedIn": [
+              {
+                "storyId": "katsura-imperial-villa-wp",
+                "articlePath": "_c/art/x/n/0/x/katsura-imperial-villa-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/x/n/0/x/katsura-imperial-villa-wp/metadata.json",
+            "sha256": "fc9e0b912e745badba777d4f3bbe3b9671e3a12a88ec7cd8b679a1de28dadfc6"
+          },
+          {
+            "path": "_m/x/n/0/x/katsura-imperial-villa-wp/poteau-geppa-ro-pavill.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Geppa-ro_poteau.jpg",
+            "license": "Public domain",
+            "artist": "Raphael Azevedo Franca",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "PD-self"
+            ],
+            "publishedIn": [
+              {
+                "storyId": "katsura-imperial-villa-wp",
+                "articlePath": "_c/art/x/n/0/x/katsura-imperial-villa-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/x/n/0/x/katsura-imperial-villa-wp/metadata.json",
+            "sha256": "365023ee5aa62b4f6241708460ee78e3f81b786315eebfacf1123d2274e70913"
+          }
+        ],
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "passed",
+            "references": [
+              {
+                "path": "_m/x/n/0/x/katsura-imperial-villa-wp/geppa-ro-tea-pavillion.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Geppa-ro.jpg",
+                "license": "Public domain",
+                "artist": "Raphael Azevedo Franca",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "PD-self"
+                ],
+                "publishedIn": [
+                  {
+                    "storyId": "katsura-imperial-villa-wp",
+                    "articlePath": "_c/art/x/n/0/x/katsura-imperial-villa-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/x/n/0/x/katsura-imperial-villa-wp/metadata.json",
+                "sha256": "6efdd47cd43abc8d61a7226990492e548718ef9a289398736c49997a4143db88"
+              },
+              {
+                "path": "_m/x/n/0/x/katsura-imperial-villa-wp/shokin-tei-seen-geppa.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shokin-tei_seen_from_the_Geppa-ro.jpg",
+                "license": "Public domain",
+                "artist": "Raphael Azevedoo Franca",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "PD-self"
+                ],
+                "publishedIn": [
+                  {
+                    "storyId": "katsura-imperial-villa-wp",
+                    "articlePath": "_c/art/x/n/0/x/katsura-imperial-villa-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/x/n/0/x/katsura-imperial-villa-wp/metadata.json",
+                "sha256": "1c7b8c4ee380de93f8257a1503ebaf652c91b06688e8cb4e96d88f8cb5b83834"
+              },
+              {
+                "path": "_m/x/n/0/x/katsura-imperial-villa-wp/main-gate-palace.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Main_gate_katsura.jpg",
+                "license": "Public domain",
+                "artist": "Raphael Azevedo Franca",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "PD-self"
+                ],
+                "publishedIn": [
+                  {
+                    "storyId": "katsura-imperial-villa-wp",
+                    "articlePath": "_c/art/x/n/0/x/katsura-imperial-villa-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/x/n/0/x/katsura-imperial-villa-wp/metadata.json",
+                "sha256": "fc9e0b912e745badba777d4f3bbe3b9671e3a12a88ec7cd8b679a1de28dadfc6"
+              },
+              {
+                "path": "_m/x/n/0/x/katsura-imperial-villa-wp/poteau-geppa-ro-pavill.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Geppa-ro_poteau.jpg",
+                "license": "Public domain",
+                "artist": "Raphael Azevedo Franca",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "PD-self"
+                ],
+                "publishedIn": [
+                  {
+                    "storyId": "katsura-imperial-villa-wp",
+                    "articlePath": "_c/art/x/n/0/x/katsura-imperial-villa-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/x/n/0/x/katsura-imperial-villa-wp/metadata.json",
+                "sha256": "365023ee5aa62b4f6241708460ee78e3f81b786315eebfacf1123d2274e70913"
+              }
+            ]
+          },
+          "additional": [
+            {
+              "path": "references/katsura-shoin-native.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shoin.jpg",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/katsura-shokintei-native.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shokin-tei.jpg",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -16511,20 +17918,47 @@
       "candidateId": "irving_house",
       "backlogTargetId": "QS-66a4ee2428c7",
       "title": "Irving House",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.irving_house",
+      "sourcePath": "content/worldgen/source/places/c2/c28/irving_house",
       "order": 333,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "irving-house",
+        "placementHash": "sha256:75ec5f9b8cbec97acda35173f579ffcd9032beecf188e8140f1cedba3e00a913",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:d1460d5ab6f647375d6c0f38189e4912a054b94f0588c4636db89c3497cdc024",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/irving-house-front-1880-original.jpg",
+              "sourceUrl": "https://archives.newwestcity.ca/permalink/97905/",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -16551,40 +17985,145 @@
       "candidateId": "st_michael_and_all_angels_church_blantyre",
       "backlogTargetId": "QS-3fa17215f73a",
       "title": "St Michael and All Angels Church, Blantyre",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.st_michael_and_all_angels_church_blantyre",
+      "sourcePath": "content/worldgen/source/places/kv/kv0/st_michael_and_all_angels_church_blantyre",
       "order": 335,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "st-michael-and-all-angels-church-blantyre",
+        "placementHash": "sha256:73a216c2355dcad0b7e91aa27d7fdc0bcdbecd191173f093f9de5135a0c67d3d",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:8d4f849342b3cc16233a8762806e3a1116b95123ebd091f641540d4a790803d5",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/blantyre-century-1896-photo.jpg",
+              "sourceUrl": "https://archive.org/details/sim_century-illustrated-monthly-magazine_1896-08_52_4/page/n118/mode/1up",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/blantyre-johnston-1897-photo.jpg",
+              "sourceUrl": "https://archive.org/details/britishcentrala00john/page/n232/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
       "candidateId": "marble_hall_hong_kong",
       "backlogTargetId": "QS-ad8168c8a744",
       "title": "Marble Hall (Hong Kong)",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.marble_hall_hong_kong",
+      "sourcePath": "content/worldgen/source/places/we/wec/marble_hall_hong_kong",
       "order": 336,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "marble-hall-hong-kong",
+        "placementHash": "sha256:65b26529f95864cac7705ba8a5ccb010d71de5430cce61205998e3cb7d741487",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:6900cff66fcee576e432839ef026863b51226819f2c475690bba6ed63cc94ec8",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [
+          {
+            "path": "_m/w/e/c/n/marble-hall-hong-kong-wp/hero.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tcitp_d164_a_hong_kong_residence.jpg",
+            "license": "Public domain",
+            "artist": "Arnold Wright",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "PD US"
+            ],
+            "publishedIn": [
+              {
+                "storyId": "marble-hall-hong-kong-wp",
+                "articlePath": "_c/art/w/e/c/n/marble-hall-hong-kong-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/w/e/c/n/marble-hall-hong-kong-wp/metadata.json",
+            "sha256": "d69523cefd32c675ab682a6bf7f8141dfd12a204d6cfe2c250e5bc4079edd241"
+          }
+        ],
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "passed",
+            "references": [
+              {
+                "path": "_m/w/e/c/n/marble-hall-hong-kong-wp/hero.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tcitp_d164_a_hong_kong_residence.jpg",
+                "license": "Public domain",
+                "artist": "Arnold Wright",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "PD US"
+                ],
+                "publishedIn": [
+                  {
+                    "storyId": "marble-hall-hong-kong-wp",
+                    "articlePath": "_c/art/w/e/c/n/marble-hall-hong-kong-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/w/e/c/n/marble-hall-hong-kong-wp/metadata.json",
+                "sha256": "d69523cefd32c675ab682a6bf7f8141dfd12a204d6cfe2c250e5bc4079edd241"
+              }
+            ]
+          },
+          "additional": [
+            {
+              "path": "references/marble-hall-1906-plan.jpg",
+              "sourceUrl": "https://archive.org/details/far-eastern-review-1906.1/page/n23/mode/1up",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/marble-hall-1906-elevation.jpg",
+              "sourceUrl": "https://archive.org/details/far-eastern-review-1906.1/page/n24/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -17266,20 +18805,47 @@
       "candidateId": "melrose_house",
       "backlogTargetId": "QS-d8e8c0d4f5cf",
       "title": "Melrose House",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.melrose_house",
+      "sourcePath": "content/worldgen/source/places/ke/kek/melrose_house",
       "order": 350,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "melrose-house",
+        "placementHash": "sha256:5d60d160aef6cf921a84962d42ba3d1d38c6cb1cdefbfc37933342e8653da81a",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:f43e94ba393d3e19fd8d31e36fc16324c7d0c18a8d84b521c7901d3892a2c290",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/sallo-epstein-original.jpg",
+              "sourceUrl": "https://www.theheritageportal.co.za/article/burgers-park-victorian-heritage-portrayed-picture-postcards-more-century-ago",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -17657,20 +19223,47 @@
       "candidateId": "falaknuma_palace",
       "backlogTargetId": "QS-1cebd7c96bc1",
       "title": "Falaknuma Palace",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.falaknuma_palace",
+      "sourcePath": "content/worldgen/source/places/te/tep/falaknuma_palace",
       "order": 359,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "falaknuma-palace",
+        "placementHash": "sha256:6601d911a4edca30ff3fd4f3bffc84e0a06a51305480eda1c4eb60e2fbbebb04",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:9e6376d7b8f5ae7ec1204a0f567b4054ae3e0847786ddc6cdc4b4a0559d3212f",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/falaknuma-palace-1898-exterior.jpg",
+              "sourceUrl": "https://archive.org/details/india.history.resource.643/page/n225/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -17694,43 +19287,148 @@
       }
     },
     {
-      "candidateId": "lighthouse_that_defined_zero",
+      "candidateId": "sunda_kelapa_lighthouse",
       "backlogTargetId": "QS-9ef0d4498d4d",
-      "title": "The Lighthouse That Defined Zero",
-      "asset": null,
-      "sourcePath": null,
+      "title": "Sunda Kelapa Lighthouse",
+      "asset": "molen.worldgen.structure.sunda_kelapa_lighthouse",
+      "sourcePath": "content/worldgen/source/places/qq/qqg/sunda_kelapa_lighthouse",
       "order": 361,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "sunda-kelapa-lighthouse",
+        "placementHash": "sha256:cb91d230ec0ffa6d41388774f4a4880cbb47e518a152f9b5e9e00142b3601be7",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:ffcd3f1cdd2f76ebc1d1f1c8bb3bfc98f17592aa16425b7207d02c89b7990cf2",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/sunda-kelapa-woodbury-page-1875-original.jpg",
+              "sourceUrl": "https://hdl.handle.net/20.500.11840/929087",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
       "candidateId": "monastery_of_the_holy_trinity_vilnius",
       "backlogTargetId": "QS-89222b9e2677",
       "title": "Monastery of the Holy Trinity, Vilnius",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.monastery_of_the_holy_trinity_vilnius",
+      "sourcePath": "content/worldgen/source/places/u9/u99/monastery_of_the_holy_trinity_vilnius",
       "order": 362,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "monastery-of-the-holy-trinity-vilnius",
+        "placementHash": "sha256:26fcd1933740fece9ef963b03534e1ba850bc034f0d47db1172763efbfac6cb3",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:3c1d4ebd0b258d45acb008782caf272f292b62085520e0abb75ee3ea1091285d",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [
+          {
+            "path": "_m/u/9/9/z/monastery-of-the-holy-trinity-vilnius-wp/holy-trinity-greek-orthodox-ch.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Holy_Trinity_Greek_Orthodox_church_in_Vilnius2.jpg",
+            "license": "Public domain",
+            "artist": "Alma Pater",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "PD-self"
+            ],
+            "publishedIn": [
+              {
+                "storyId": "monastery-of-the-holy-trinity-vilnius-wp",
+                "articlePath": "_c/art/u/9/9/z/monastery-of-the-holy-trinity-vilnius-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/u/9/9/z/monastery-of-the-holy-trinity-vilnius-wp/metadata.json",
+            "sha256": "8a983ce85595ab51bbeddfe58c71e997eefa45bc5ae9cdaa2dcea93db2395ac0"
+          }
+        ],
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "passed",
+            "references": [
+              {
+                "path": "_m/u/9/9/z/monastery-of-the-holy-trinity-vilnius-wp/holy-trinity-greek-orthodox-ch.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Holy_Trinity_Greek_Orthodox_church_in_Vilnius2.jpg",
+                "license": "Public domain",
+                "artist": "Alma Pater",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "PD-self"
+                ],
+                "publishedIn": [
+                  {
+                    "storyId": "monastery-of-the-holy-trinity-vilnius-wp",
+                    "articlePath": "_c/art/u/9/9/z/monastery-of-the-holy-trinity-vilnius-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/u/9/9/z/monastery-of-the-holy-trinity-vilnius-wp/metadata.json",
+                "sha256": "8a983ce85595ab51bbeddfe58c71e997eefa45bc5ae9cdaa2dcea93db2395ac0"
+              }
+            ]
+          },
+          "additional": [
+            {
+              "path": "references/vilnius-holy-trinity-august-1-original.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:Unijatski_samostan_u_Vilniusu.jpg",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/vilnius-holy-trinity-ypsilon-gate-original.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gate_leading_to_the_Holy_Trinity_Uniate_Church.jpg",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/vilnius-holy-trinity-alma-gate-2-original.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:HolyTrinityGate2.jpg",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -18823,20 +20521,47 @@
       "candidateId": "christ_church_cathedral_montreal",
       "backlogTargetId": "QS-0c1dc7e7d929",
       "title": "Christ Church Cathedral (Montreal)",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.christ_church_cathedral_montreal",
+      "sourcePath": "content/worldgen/source/places/f2/f25/christ_church_cathedral_montreal",
       "order": 393,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "christ-church-cathedral-montreal",
+        "placementHash": "sha256:9fe037c2966256d8d70cbafda1d0ea3b5c47da6264468094ede763e09414854b",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:3470c4c0c5c1d1a6c726b742251793b716114196c4e6d8c64c0a28b6fc42ded2",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/nypl-offered-459.jpg",
+              "sourceUrl": "https://digitalcollections.nypl.org/items/00e60d20-c62c-012f-be6d-58d385a7bc34",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -19214,20 +20939,47 @@
       "candidateId": "craigdarroch_castle",
       "backlogTargetId": "QS-8a9abd640b91",
       "title": "Craigdarroch Castle",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.craigdarroch_castle",
+      "sourcePath": "content/worldgen/source/places/c2/c28/craigdarroch_castle",
       "order": 402,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "craigdarroch-castle",
+        "placementHash": "sha256:1074d078e65978c0d71a6e75f70572124c9e9b86ace6eeb62fce71cdabb15e9a",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:9e1604d3a41d51c7edbf1c1994c56f4630c6a64ec017e1a1b6c25d9656e7124d",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/craigdarroch-guerinf-castle-original.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_Craigdarroch_(9).jpg",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -19370,20 +21122,47 @@
       "candidateId": "scrovegni_chapel",
       "backlogTargetId": "QS-79b0f6d1ab78",
       "title": "Scrovegni Chapel",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.scrovegni_chapel",
+      "sourcePath": "content/worldgen/source/places/u2/u20/scrovegni_chapel",
       "order": 405,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "scrovegni-chapel",
+        "placementHash": "sha256:6d818c1d8e88a1456d153471d9c6b8bcab5faf5e55bc175d39f4238501a63761",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:3860f1ff9f90085edd4e6b4bf9d4b05bfd62ba2e03d75bb45cf4a6e957fb2452",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/scrovegni-moschetti-engraving.jpg",
+              "sourceUrl": "https://archive.org/details/lacappelladeglis00mosc/page/n16/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -19984,20 +21763,79 @@
       "candidateId": "sugar_museum_berlin",
       "backlogTargetId": "QS-401df7c284e1",
       "title": "Sugar Museum (Berlin)",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.sugar_museum_berlin",
+      "sourcePath": "content/worldgen/source/places/u3/u33/sugar_museum_berlin",
       "order": 417,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "sugar-museum-berlin",
+        "placementHash": "sha256:e375a96432852ec305073b5b9179cb16529a221361e282d2ede45a9623223b13",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:cbfabc4a46eedd20fde7c02b7bd7885ddf0388e4a2f063099afd071a1d0f09ef",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [
+          {
+            "path": "_m/u/3/3/6/sugar-museum-berlin-wp/zucker-museum-berlin-a.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zuckermuseum_Berlin.jpg",
+            "license": "Public domain",
+            "artist": "Photo: User:FA2010",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "PD-self"
+            ],
+            "publishedIn": [
+              {
+                "storyId": "sugar-museum-berlin-wp",
+                "articlePath": "_c/art/u/3/3/6/sugar-museum-berlin-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/u/3/3/6/sugar-museum-berlin-wp/metadata.json",
+            "sha256": "9f01e1bbae780aa638c000c1f3ac8d3433413a00b4012cdde8eb234aee042eb5"
+          }
+        ],
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "passed",
+            "references": [
+              {
+                "path": "_m/u/3/3/6/sugar-museum-berlin-wp/zucker-museum-berlin-a.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zuckermuseum_Berlin.jpg",
+                "license": "Public domain",
+                "artist": "Photo: User:FA2010",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "PD-self"
+                ],
+                "publishedIn": [
+                  {
+                    "storyId": "sugar-museum-berlin-wp",
+                    "articlePath": "_c/art/u/3/3/6/sugar-museum-berlin-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/u/3/3/6/sugar-museum-berlin-wp/metadata.json",
+                "sha256": "9f01e1bbae780aa638c000c1f3ac8d3433413a00b4012cdde8eb234aee042eb5"
+              }
+            ]
+          },
+          "additional": []
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -20117,20 +21955,47 @@
       "candidateId": "dharmarajika_stupa",
       "backlogTargetId": "QS-21938250b78a",
       "title": "Dharmarajika Stupa",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.dharmarajika_stupa",
+      "sourcePath": "content/worldgen/source/places/tt/ttg/dharmarajika_stupa",
       "order": 419,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "dharmarajika-stupa",
+        "placementHash": "sha256:0261bee6d45838076e73b0a48e80763bb077779057050b13693e1b43dd439fe9",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:929b5c09da31defdd26ea3adedbf7299aeea1cbdb11de9f04df0ae170f0d3d44",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/taxila-guide-government-1918.pdf",
+              "sourceUrl": "https://archive.org/details/cu31924024121125",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -20157,20 +22022,53 @@
       "candidateId": "arena_of_nimes",
       "backlogTargetId": "QS-4c2e84e54e84",
       "title": "Arena of Nîmes",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.arena_of_nimes",
+      "sourcePath": "content/worldgen/source/places/sp/spg/arena_of_nimes",
       "order": 421,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "arena-of-nimes",
+        "placementHash": "sha256:55bc1ce360251ce17425154734463730800370aafc57cb395c5116c18b6b2938",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:c5a0d4b3dd584be60d36c3525d116dd41a7944e90c75e42ea462d0e7657e3a61",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/nimes-arena-andrieu-original.jpg",
+              "sourceUrl": "https://id.rijksmuseum.nl/200331474",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/nimes-arena-etching-original.jpg",
+              "sourceUrl": "https://id.rijksmuseum.nl/200236056",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -20906,20 +22804,59 @@
       "candidateId": "rietveld_schroder_house",
       "backlogTargetId": "QS-6ec59773ab75",
       "title": "Rietveld Schröder House",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.rietveld_schroder_house",
+      "sourcePath": "content/worldgen/source/places/u1/u17/rietveld_schroder_house",
       "order": 430,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "rietveld-schroder-house",
+        "placementHash": "sha256:6d720b9ff139375a08706407789db7bb29568cf326b1fb013348f4bddaf814a1",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:998e0a0c588d17018a89938a2b504284e4a63f9de5791454f2e0e60e0d8732db",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/rietveld-luctor-2008.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rietveld-Schr%C3%B6derhuis.jpg",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/rietveld-anefo-9354.jpg",
+              "sourceUrl": "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/ad5e7972-d0b4-102d-bcf8-003048976d84",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/rietveld-anefo-9355.jpg",
+              "sourceUrl": "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/ad5e7a94-d0b4-102d-bcf8-003048976d84",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -21395,40 +23332,146 @@
       "candidateId": "hofilena_ancestral_house",
       "backlogTargetId": "QS-5606ba24780f",
       "title": "Hofilena Ancestral House",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.hofilena_ancestral_house",
+      "sourcePath": "content/worldgen/source/places/w9/w9z/hofilena_ancestral_house",
       "order": 438,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "hofilena-ancestral-house",
+        "placementHash": "sha256:c9a5744670c2981189c8c67b71ef17750300c35fa0cab9c573de413b74575bb4",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:85e3d283ca722ac8d9c90dcb4db91209dba68a7cab11b775dae35284ba4c977d",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [
+          {
+            "path": "_m/w/9/z/m/hofilena-ancestral-house-wp/holfilena-museum.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Holfilena_museum.jpg",
+            "license": "CC0",
+            "artist": "CharMel Creations",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [],
+            "publishedIn": [
+              {
+                "storyId": "hofilena-ancestral-house-wp",
+                "articlePath": "_c/art/w/9/z/m/hofilena-ancestral-house-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/w/9/z/m/hofilena-ancestral-house-wp/metadata.json",
+            "sha256": "57cdc487986d486fc70797999fc1ed7fdf84593b70cdea8fa05af3fad0c95ee7"
+          }
+        ],
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "passed",
+            "references": [
+              {
+                "path": "_m/w/9/z/m/hofilena-ancestral-house-wp/holfilena-museum.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Holfilena_museum.jpg",
+                "license": "CC0",
+                "artist": "CharMel Creations",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [],
+                "publishedIn": [
+                  {
+                    "storyId": "hofilena-ancestral-house-wp",
+                    "articlePath": "_c/art/w/9/z/m/hofilena-ancestral-house-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/w/9/z/m/hofilena-ancestral-house-wp/metadata.json",
+                "sha256": "57cdc487986d486fc70797999fc1ed7fdf84593b70cdea8fa05af3fad0c95ee7"
+              }
+            ]
+          },
+          "additional": []
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
       "candidateId": "mateus_palace",
       "backlogTargetId": "QS-399228600879",
       "title": "Mateus Palace",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.mateus_palace",
+      "sourcePath": "content/worldgen/source/places/ez/ez6/mateus_palace",
       "order": 439,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "mateus-palace",
+        "placementHash": "sha256:e953f9ea90c6efc43f89cee5fcc90110f458714559f0f2389301db494665564d",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:354322a93269e26e085e1ced382a0f15b88e2425011cd4eb09858b1ad823fa93",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/mateus-bayer-exterior-54886467038.jpg",
+              "sourceUrl": "https://www.flickr.com/photos/wbayercom/54886467038/",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/mateus-bayer-exterior-54885368997.jpg",
+              "sourceUrl": "https://www.flickr.com/photos/wbayercom/54885368997/",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/mateus-bayer-exterior-54886466908.jpg",
+              "sourceUrl": "https://www.flickr.com/photos/wbayercom/54886466908/",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/mateus-bayer-exterior-54886467083.jpg",
+              "sourceUrl": "https://www.flickr.com/photos/wbayercom/54886467083/",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/mateus-bayer-exterior-54886535770.jpg",
+              "sourceUrl": "https://www.flickr.com/photos/wbayercom/54886535770/",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -21554,20 +23597,82 @@
       "candidateId": "john_and_mable_ringling_museum_of_art",
       "backlogTargetId": "QS-50c844f5162a",
       "title": "John and Mable Ringling Museum of Art",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.john_and_mable_ringling_museum_of_art",
+      "sourcePath": "content/worldgen/source/places/dh/dhv/john_and_mable_ringling_museum_of_art",
       "order": 443,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "john-and-mable-ringling-museum-of-art",
+        "placementHash": "sha256:716690c7d88c9ac35d78374c7868b13c15627204e80295a9cc91605de1eee672",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:0aa618e001ee3c296160efd1cff3619ede5e4ca43790d0157f2a4026c19bfd9b",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [
+          {
+            "path": "_m/d/h/v/7/john-and-mable-ringling-museum-of-art-wp/the-john-and-mable-ringling-mu.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_John_and_Mable_Ringling_Museum_of_Art_Open_Air_Atrium.jpg",
+            "license": "CC0",
+            "artist": "A345321",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [],
+            "publishedIn": [
+              {
+                "storyId": "john-and-mable-ringling-museum-of-art-wp",
+                "articlePath": "_c/art/d/h/v/7/john-and-mable-ringling-museum-of-art-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/d/h/v/7/john-and-mable-ringling-museum-of-art-wp/metadata.json",
+            "sha256": "f5e56a5ca9be2b503de90152f71183bfb0903026a3d51ca22ee78e7e21e916fc"
+          }
+        ],
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "passed",
+            "references": [
+              {
+                "path": "_m/d/h/v/7/john-and-mable-ringling-museum-of-art-wp/the-john-and-mable-ringling-mu.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_John_and_Mable_Ringling_Museum_of_Art_Open_Air_Atrium.jpg",
+                "license": "CC0",
+                "artist": "A345321",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [],
+                "publishedIn": [
+                  {
+                    "storyId": "john-and-mable-ringling-museum-of-art-wp",
+                    "articlePath": "_c/art/d/h/v/7/john-and-mable-ringling-museum-of-art-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/d/h/v/7/john-and-mable-ringling-museum-of-art-wp/metadata.json",
+                "sha256": "f5e56a5ca9be2b503de90152f71183bfb0903026a3d51ca22ee78e7e21e916fc"
+              }
+            ]
+          },
+          "additional": [
+            {
+              "path": "references/ringling-daderot-courtyard.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:Courtyard_-_John_and_Mable_Ringling_Museum_of_Art_-_Sarasota,_FL_-_DSC00656.jpg",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -21641,20 +23746,47 @@
       "candidateId": "fort_beausejour",
       "backlogTargetId": "QS-930a2909337b",
       "title": "Fort Beauséjour",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.fort_beausejour",
+      "sourcePath": "content/worldgen/source/places/f8/f84/fort_beausejour",
       "order": 446,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "fort-beausejour",
+        "placementHash": "sha256:3d48bc74e423a263bf1603837b388f510f2fb92d0e00a8da3da6266ece5be592",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:d7e0964856d0adf58d9b1b111da1d40a2f618ca9c7ae7c9a75635f889cbf29cd",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/beausejour-holland-brewse-1756-original-recto.jpg",
+              "sourceUrl": "https://hdl.huntington.org/digital/collection/p15150coll4/id/16146",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -23960,40 +26092,94 @@
       "candidateId": "suffolk_house_penang",
       "backlogTargetId": "QS-1b2610cecad9",
       "title": "Suffolk House, Penang",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.suffolk_house_penang",
+      "sourcePath": "content/worldgen/source/places/w0/w0z/suffolk_house_penang",
       "order": 486,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "suffolk-house-penang",
+        "placementHash": "sha256:50a51ee0021465e340800fb09c1f9718e42bd2e9daa0f380af965eac3ef1bd0f",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:ce728944c70675b22fb4b6fc19c99ce3dc1d62cdc88b93192bd5c50945c25474",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/suffolk-house-1821-aquatint-original.jpg",
+              "sourceUrl": "https://www.abebooks.co.uk/art-prints/Malaysia-View-Suffolk-House-Prince-Wales/32225801175/bd",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
       "candidateId": "national_archaeological_museum_athens",
       "backlogTargetId": "QS-19fc1dc4cc30",
       "title": "National Archaeological Museum, Athens",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.national_archaeological_museum_athens",
+      "sourcePath": "content/worldgen/source/places/sw/swb/national_archaeological_museum_athens",
       "order": 487,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "national-archaeological-museum-athens",
+        "placementHash": "sha256:6acee0176f56ae686e8704eba04442fac93f53d6583134602fb598e2889afbe3",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:758c0bd9acd392226841c6984aae01b4ff1f61009e0ef887d9f77064851c603f",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/athens-national-museum-mustang-native.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:National_Archaeological_Museum,_Athens_(53812971825).jpg",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -24198,20 +26384,193 @@
       "candidateId": "kannonji_castle",
       "backlogTargetId": "QS-a80f8a011e74",
       "title": "Kannonji Castle",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.kannonji_castle",
+      "sourcePath": "content/worldgen/source/places/xn/xn0/kannonji_castle",
       "order": 492,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "kannonji-castle",
+        "placementHash": "sha256:415909e25ed8b1f99f8907d200dbd7a711913f1fd5fd0337505ea85926f9cde7",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:a3914909030dcb1b522148fc6526e991eb87e9ca9d6481b1410d26afd5ff57f0",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [
+          {
+            "path": "_m/x/n/0/z/kannonji-castle-wp/gallery-3.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kannonjij3.jpg",
+            "license": "Public domain",
+            "artist": "投稿者が撮影",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "PD-self"
+            ],
+            "publishedIn": [
+              {
+                "storyId": "kannonji-castle-wp",
+                "articlePath": "_c/art/x/n/0/z/kannonji-castle-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/x/n/0/z/kannonji-castle-wp/metadata.json",
+            "sha256": "7b3b5d117dd7ac8a2d7ec30dea0d689ec46a7d25d34a8f69dc78fe12eb2e5805"
+          },
+          {
+            "path": "_m/x/n/0/z/kannonji-castle-wp/gallery-4.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kannonjij7.jpg",
+            "license": "Public domain",
+            "artist": "投稿者が撮影",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "PD-self"
+            ],
+            "publishedIn": [
+              {
+                "storyId": "kannonji-castle-wp",
+                "articlePath": "_c/art/x/n/0/z/kannonji-castle-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/x/n/0/z/kannonji-castle-wp/metadata.json",
+            "sha256": "1dde1339c0461f141fb02c14ae63ea2c6a352095df5b1611e04f28c5c3e17e7a"
+          },
+          {
+            "path": "_m/x/n/0/z/kannonji-castle-wp/gallery-5.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kannonjij10.jpg",
+            "license": "Public domain",
+            "artist": "投稿者が撮影",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "PD-self"
+            ],
+            "publishedIn": [
+              {
+                "storyId": "kannonji-castle-wp",
+                "articlePath": "_c/art/x/n/0/z/kannonji-castle-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/x/n/0/z/kannonji-castle-wp/metadata.json",
+            "sha256": "371b45f03050e19aed0e9f2c474b6c8476df3ed9ae43b6634101eacc2874de58"
+          },
+          {
+            "path": "_m/x/n/0/z/kannonji-castle-wp/gallery-6.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kannonjij12.jpg",
+            "license": "Public domain",
+            "artist": "ブレイズマン (talk) 03:55, 13 June 2008 (UTC)",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "PD-self"
+            ],
+            "publishedIn": [
+              {
+                "storyId": "kannonji-castle-wp",
+                "articlePath": "_c/art/x/n/0/z/kannonji-castle-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/x/n/0/z/kannonji-castle-wp/metadata.json",
+            "sha256": "5aff2caf32d6a4fb457efeed6aebce94955781589d5d795588c66a5d314290c8"
+          }
+        ],
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "passed",
+            "references": [
+              {
+                "path": "_m/x/n/0/z/kannonji-castle-wp/gallery-3.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kannonjij3.jpg",
+                "license": "Public domain",
+                "artist": "投稿者が撮影",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "PD-self"
+                ],
+                "publishedIn": [
+                  {
+                    "storyId": "kannonji-castle-wp",
+                    "articlePath": "_c/art/x/n/0/z/kannonji-castle-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/x/n/0/z/kannonji-castle-wp/metadata.json",
+                "sha256": "7b3b5d117dd7ac8a2d7ec30dea0d689ec46a7d25d34a8f69dc78fe12eb2e5805"
+              },
+              {
+                "path": "_m/x/n/0/z/kannonji-castle-wp/gallery-4.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kannonjij7.jpg",
+                "license": "Public domain",
+                "artist": "投稿者が撮影",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "PD-self"
+                ],
+                "publishedIn": [
+                  {
+                    "storyId": "kannonji-castle-wp",
+                    "articlePath": "_c/art/x/n/0/z/kannonji-castle-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/x/n/0/z/kannonji-castle-wp/metadata.json",
+                "sha256": "1dde1339c0461f141fb02c14ae63ea2c6a352095df5b1611e04f28c5c3e17e7a"
+              },
+              {
+                "path": "_m/x/n/0/z/kannonji-castle-wp/gallery-5.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kannonjij10.jpg",
+                "license": "Public domain",
+                "artist": "投稿者が撮影",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "PD-self"
+                ],
+                "publishedIn": [
+                  {
+                    "storyId": "kannonji-castle-wp",
+                    "articlePath": "_c/art/x/n/0/z/kannonji-castle-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/x/n/0/z/kannonji-castle-wp/metadata.json",
+                "sha256": "371b45f03050e19aed0e9f2c474b6c8476df3ed9ae43b6634101eacc2874de58"
+              },
+              {
+                "path": "_m/x/n/0/z/kannonji-castle-wp/gallery-6.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kannonjij12.jpg",
+                "license": "Public domain",
+                "artist": "ブレイズマン (talk) 03:55, 13 June 2008 (UTC)",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "PD-self"
+                ],
+                "publishedIn": [
+                  {
+                    "storyId": "kannonji-castle-wp",
+                    "articlePath": "_c/art/x/n/0/z/kannonji-castle-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/x/n/0/z/kannonji-castle-wp/metadata.json",
+                "sha256": "5aff2caf32d6a4fb457efeed6aebce94955781589d5d795588c66a5d314290c8"
+              }
+            ]
+          },
+          "additional": []
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -24587,20 +26946,47 @@
       "candidateId": "burns_philp_building_normanton",
       "backlogTargetId": "QS-f1f636556ab3",
       "title": "Burns Philp Building, Normanton",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.burns_philp_building_normanton",
+      "sourcePath": "content/worldgen/source/places/rh/rhu/burns_philp_building_normanton",
       "order": 499,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "burns-philp-building-normanton",
+        "placementHash": "sha256:1e9662783bb44a7d3215f9186e3b6e7cfda6be8ef30d782708d583d2861605fa",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:ef3ff4283e1f092a0f406b4475a1887c9e87b15d01a4ee282be3e4eb9275d3b8",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/normanton-store-slq-142299-original.jpg",
+              "sourceUrl": "https://hdl.handle.net/10462/deriv/104318",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {

@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.palace_hotel_broken_hill",
+  "kind": "static-structure",
+  "title": "Palace Hotel, Broken Hill",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.palace_hotel_broken_hill",
+        "output": "assets/places/r4/r4k/palace_hotel_broken_hill/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f9526f59bf19caabd279ec1f32bb99917bb34cd727f0c988317827e10c32a684"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-palace-hotel-broken-hill",
+        "path": "models/generate-palace-hotel-broken-hill.mjs"
+      },
+      {
+        "id": "palace-hotel-broken-hill-model",
+        "path": "models/palace-hotel-broken-hill-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/palace-hotel-broken-hill-footprint.json",
+      "native-map/palace-hotel-broken-hill-shape-controls.json",
+      "reference-rights/palace-hotel-broken-hill-architectural-facts.json",
+      "references/palace-hotel-1925-archival-print.jpg",
+      "reference-rights/palace-hotel-history.html",
+      "reference-rights/nla-photograph-rights.html",
+      "reference-rights/palace-hotel-council-page58-image1776.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-broken-hill-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

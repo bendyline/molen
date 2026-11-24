@@ -1,0 +1,523 @@
+{
+  "planId": "dharmarajika_stupa",
+  "id": "dharmarajika_stupa",
+  "assetId": "molen.worldgen.structure.dharmarajika_stupa",
+  "title": "Dharmarajika Stupa",
+  "wikidataId": "Q5269314",
+  "category": "archaeological-stupa",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 72.84211875,
+    "latitude": 33.744544306
+  },
+  "size": [
+    65.7996768951416,
+    14.880258679389954,
+    72.4214916229248
+  ],
+  "actualBounds": {
+    "min": [
+      -30.22267723083496,
+      -1.3300000429153442,
+      -30.700490951538086
+    ],
+    "max": [
+      35.57699966430664,
+      13.55025863647461,
+      41.72100067138672
+    ]
+  },
+  "visualBrief": "Surviving Dharmarajika Stupa at Taxila with its broken limestone drum, processional terrace, radial stairs and surrounding chapel foundations.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://archive.org/details/cu31924024121125"
+  ],
+  "stories": [
+    {
+      "id": "dharmarajika-stupa-wp",
+      "url": "https://qualla.com/dharmarajika-stupa/"
+    }
+  ],
+  "referenceInputHash": "sha256:b8094e223d10c362999578c3e8614991f44e41bb3b8d4bed502b9d21b8eaae72",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tt/ttg/dharmarajika_stupa/models/dharmarajika-stupa-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tt/ttg/dharmarajika_stupa/models/dharmarajika-stupa-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.62,
+    "surfaces": {
+      "core": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97
+      },
+      "ashlar": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.93
+      },
+      "paving": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.97
+      },
+      "shadow": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.26,
+        "surfaces": {
+          "core": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93
+          },
+          "paving": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.97
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.081,
+        "surfaces": {
+          "core": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93
+          },
+          "paving": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.97
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.028,
+        "surfaces": {
+          "core": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93
+          },
+          "paving": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.97
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_raw",
+    "stone_limestone_weathered",
+    "stone_limestone"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.21,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Copernicus surface height at the southern path immediately outside the reconstructed circular terrace.",
+    "anchor": [
+      72.84211875,
+      33.744544306
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        72.84211875,
+        33.74426043966871
+      ],
+      "modelHeight": 0,
+      "basis": "Original Copernicus surface height at the southern path immediately outside the reconstructed circular terrace."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          24.6,
+          0
+        ],
+        [
+          24.2971,
+          3.8483
+        ],
+        [
+          23.396,
+          7.6018
+        ],
+        [
+          21.9188,
+          11.1682
+        ],
+        [
+          19.9018,
+          14.4595
+        ],
+        [
+          17.3948,
+          17.3948
+        ],
+        [
+          14.4595,
+          19.9018
+        ],
+        [
+          11.1682,
+          21.9188
+        ],
+        [
+          7.6018,
+          23.396
+        ],
+        [
+          3.8483,
+          24.2971
+        ],
+        [
+          0,
+          24.6
+        ],
+        [
+          -3.8483,
+          24.2971
+        ],
+        [
+          -7.6018,
+          23.396
+        ],
+        [
+          -11.1682,
+          21.9188
+        ],
+        [
+          -14.4595,
+          19.9018
+        ],
+        [
+          -17.3948,
+          17.3948
+        ],
+        [
+          -19.9018,
+          14.4595
+        ],
+        [
+          -21.9188,
+          11.1682
+        ],
+        [
+          -23.396,
+          7.6018
+        ],
+        [
+          -24.2971,
+          3.8483
+        ],
+        [
+          -24.6,
+          0
+        ],
+        [
+          -24.2971,
+          -3.8483
+        ],
+        [
+          -23.396,
+          -7.6018
+        ],
+        [
+          -21.9188,
+          -11.1682
+        ],
+        [
+          -19.9018,
+          -14.4595
+        ],
+        [
+          -17.3948,
+          -17.3948
+        ],
+        [
+          -14.4595,
+          -19.9018
+        ],
+        [
+          -11.1682,
+          -21.9188
+        ],
+        [
+          -7.6018,
+          -23.396
+        ],
+        [
+          -3.8483,
+          -24.2971
+        ],
+        [
+          0,
+          -24.6
+        ],
+        [
+          3.8483,
+          -24.2971
+        ],
+        [
+          7.6018,
+          -23.396
+        ],
+        [
+          11.1682,
+          -21.9188
+        ],
+        [
+          14.4595,
+          -19.9018
+        ],
+        [
+          17.3948,
+          -17.3948
+        ],
+        [
+          19.9018,
+          -14.4595
+        ],
+        [
+          21.9188,
+          -11.1682
+        ],
+        [
+          23.396,
+          -7.6018
+        ],
+        [
+          24.2971,
+          -3.8483
+        ]
+      ],
+      "minimumCoverage": 0.82,
+      "basis": "Circular heritage monument terrace from the original excavation plan and named government site."
+    },
+    "featureIds": [
+      "way/495843822"
+    ],
+    "source": "https://www.openstreetmap.org/way/495843822",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8613306ef2c2a7d108bb3b7830de8d0fae75a9b88af8d9ae829cb49fea5d261f",
+    "notes": "Plates IV and IX of the 1918 guide establish the ground plan and rough damaged limestone drum and immediate masonry. The Taxila Museum specifies the 131 ft drum diameter and 45 ft surviving height."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "Plates IV and IX of the 1918 guide establish the ground plan and rough damaged limestone drum and immediate masonry. The Taxila Museum specifies the 131 ft drum diameter and 45 ft surviving height.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "dharmarajika-stupa-skyline",
+      "position": [
+        -52,
+        40,
+        69
+      ],
+      "lookAt": [
+        0,
+        5,
+        3.2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "dharmarajika-stupa-district",
+      "position": [
+        -52,
+        40,
+        69
+      ],
+      "lookAt": [
+        0,
+        5,
+        3.2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "dharmarajika-stupa-street",
+      "position": [
+        -52,
+        40,
+        69
+      ],
+      "lookAt": [
+        0,
+        5,
+        3.2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "dharmarajika-stupa-closeup",
+      "position": [
+        -52,
+        40,
+        69
+      ],
+      "lookAt": [
+        0,
+        5,
+        3.2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "stupa-and-processional-terrace",
+      "position": [
+        -52,
+        40,
+        69
+      ],
+      "lookAt": [
+        0,
+        5,
+        3.2
+      ]
+    },
+    {
+      "name": "north-stair-and-core",
+      "position": [
+        11,
+        8.1,
+        -42
+      ],
+      "lookAt": [
+        0,
+        6,
+        -10
+      ]
+    },
+    {
+      "name": "excavation-plan-and-broken-crown",
+      "position": [
+        17,
+        67,
+        30
+      ],
+      "lookAt": [
+        0,
+        2,
+        3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6129,
+    "vertices": 18387,
+    "materials": 4,
+    "bytes": 1044788,
+    "sha256": "sha256:69a3861fa719759d87b461f6b551ee0cb103b7dd87ff104d91708bcce3dddea7"
+  }
+}

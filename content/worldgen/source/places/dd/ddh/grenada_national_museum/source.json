@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.grenada_national_museum",
+  "kind": "static-structure",
+  "title": "Grenada National Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.grenada_national_museum",
+        "output": "assets/places/dd/ddh/grenada_national_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4d44614837db073888e88f8389940cbca78e3e929eb5d07f8bcfedc4a575ea7b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-grenada-national-museum",
+        "path": "models/generate-grenada-national-museum.mjs"
+      },
+      {
+        "id": "grenada-national-museum-model",
+        "path": "models/grenada-national-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/grenada-national-museum-footprint.json",
+      "native-map/grenada-national-museum-shape-controls.json",
+      "reference-rights/grenada-national-museum-architectural-facts.json",
+      "references/grenada-home-hotel-frontispiece-1902.png",
+      "reference-rights/grenada-museum-archive-description.html",
+      "reference-rights/grenada-handbook-1902-catalog.html",
+      "reference-rights/grenada-handbook-1902-title-leaf.png",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-st-georges-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

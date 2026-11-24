@@ -1,0 +1,309 @@
+{
+ "extent": {
+  "ymin": 2814170.0391000002,
+  "xmin": -13894616.6461,
+  "ymax": 6350102.6391000003,
+  "xmax": -7450907.0460999999,
+  "spatialReference": {
+   "latestWkid": 3857,
+   "wkid": 102100
+  }
+ },
+ "blockWidth": 2048,
+ "mosaicOperator": "First",
+ "serviceSourceType": "esriImageServiceSourceTypeMosaicDataset",
+ "hasMultidimensions": false,
+ "maxImageWidth": 115000,
+ "maxRecordCount": 1000,
+ "meanValues": [
+  110.74594522669122,
+  118.96971870002628,
+  95.359920895259066,
+  169.29484754019967
+ ],
+ "hasColormap": false,
+ "compressionType": "None",
+ "defaultCompressionQuality": 75,
+ "maxValues": [
+  255,
+  255,
+  255,
+  255
+ ],
+ "hasHistograms": true,
+ "datasetFormat": "AMD",
+ "maxImageHeight": 115000,
+ "sortField": "",
+ "bandNames": [
+  "Band_1",
+  "Band_2",
+  "Band_3",
+  "Band_4"
+ ],
+ "spatialReference": {
+  "latestWkid": 3857,
+  "wkid": 102100
+ },
+ "fullExtent": {
+  "ymin": 2814170.0391000002,
+  "xmin": -13894616.6461,
+  "ymax": 6350102.6391000003,
+  "xmax": -7450907.0460999999,
+  "spatialReference": {
+   "latestWkid": 3857,
+   "wkid": 102100
+  }
+ },
+ "bandCount": 4,
+ "rasterFunctionInfos": [{
+  "help": "",
+  "name": "None",
+  "description": "Make a Raster or Raster Dataset into a Function Raster Dataset."
+ }],
+ "supportsStatistics": true,
+ "sortableFields": "minps,maxps,lowps,highps,centerx,centery,zorder,st_area(shape),st_perimeter(shape),year",
+ "minValues": [
+  0,
+  0,
+  0,
+  0
+ ],
+ "allowRasterFunction": true,
+ "allowComputeTiePoints": false,
+ "serviceDataType": "esriImageServiceDataTypeGeneric",
+ "supportsAdvancedQueries": true,
+ "maxDownloadSizeLimit": 2048,
+ "currentVersion": 12,
+ "sortValue": null,
+ "objectIdField": "objectid",
+ "blockHeight": 256,
+ "initialExtent": {
+  "ymin": 2814170.0391000002,
+  "xmin": -13894616.6461,
+  "ymax": 6350102.6391000003,
+  "xmax": -7450907.0460999999,
+  "spatialReference": {
+   "latestWkid": 3857,
+   "wkid": 102100
+  }
+ },
+ "pixelSizeX": 0.29999999999999999,
+ "pixelSizeY": 0.29999999999999999,
+ "defaultMosaicMethod": "Northwest",
+ "name": "NAIP/NAIP2023_CONUS",
+ "allowedMosaicMethods": "NorthWest,Center,LockRaster,ByAttribute,Nadir,Viewpoint,Seamline,None",
+ "maxDownloadImageCount": 20,
+ "fields": [
+  {
+   "domain": null,
+   "name": "objectid",
+   "alias": "objectid",
+   "type": "esriFieldTypeOID"
+  },
+  {
+   "domain": null,
+   "name": "name",
+   "length": 200,
+   "alias": "name",
+   "type": "esriFieldTypeString"
+  },
+  {
+   "domain": null,
+   "name": "minps",
+   "alias": "minps",
+   "type": "esriFieldTypeDouble"
+  },
+  {
+   "domain": null,
+   "name": "maxps",
+   "alias": "maxps",
+   "type": "esriFieldTypeDouble"
+  },
+  {
+   "domain": null,
+   "name": "lowps",
+   "alias": "lowps",
+   "type": "esriFieldTypeDouble"
+  },
+  {
+   "domain": null,
+   "name": "highps",
+   "alias": "highps",
+   "type": "esriFieldTypeDouble"
+  },
+  {
+   "domain": {
+    "splitPolicy": "esriSPTDefaultValue",
+    "name": "MosaicCatalogItemCategoryDomain",
+    "description": "Catalog item categories.",
+    "type": "codedValue",
+    "codedValues": [
+     {
+      "code": 0,
+      "name": "Unknown"
+     },
+     {
+      "code": 1,
+      "name": "Primary"
+     },
+     {
+      "code": 2,
+      "name": "Overview"
+     },
+     {
+      "code": 3,
+      "name": "Unprocessed Overview"
+     },
+     {
+      "code": 4,
+      "name": "Partial Overview"
+     },
+     {
+      "code": 5,
+      "name": "Inactive"
+     },
+     {
+      "code": 253,
+      "name": "Uploaded"
+     },
+     {
+      "code": 254,
+      "name": "Incomplete"
+     },
+     {
+      "code": 255,
+      "name": "Custom"
+     }
+    ],
+    "mergePolicy": "esriMPTDefaultValue"
+   },
+   "name": "category",
+   "alias": "category",
+   "type": "esriFieldTypeInteger"
+  },
+  {
+   "domain": null,
+   "name": "tag",
+   "length": 100,
+   "alias": "tag",
+   "type": "esriFieldTypeString"
+  },
+  {
+   "domain": null,
+   "name": "groupname",
+   "length": 100,
+   "alias": "groupname",
+   "type": "esriFieldTypeString"
+  },
+  {
+   "domain": null,
+   "name": "productname",
+   "length": 100,
+   "alias": "productname",
+   "type": "esriFieldTypeString"
+  },
+  {
+   "domain": null,
+   "name": "centerx",
+   "alias": "centerx",
+   "type": "esriFieldTypeDouble"
+  },
+  {
+   "domain": null,
+   "name": "centery",
+   "alias": "centery",
+   "type": "esriFieldTypeDouble"
+  },
+  {
+   "domain": null,
+   "name": "zorder",
+   "alias": "zorder",
+   "type": "esriFieldTypeInteger"
+  },
+  {
+   "domain": null,
+   "name": "shape",
+   "alias": "shape",
+   "type": "esriFieldTypeGeometry"
+  },
+  {
+   "domain": null,
+   "name": "public",
+   "length": 3,
+   "alias": "public",
+   "type": "esriFieldTypeString"
+  },
+  {
+   "domain": null,
+   "name": "year",
+   "alias": "Year",
+   "type": "esriFieldTypeSmallInteger"
+  },
+  {
+   "domain": null,
+   "name": "state",
+   "length": 255,
+   "alias": "State",
+   "type": "esriFieldTypeString"
+  },
+  {
+   "domain": null,
+   "name": "metadata",
+   "length": 255,
+   "alias": "metadata",
+   "type": "esriFieldTypeString"
+  },
+  {
+   "domain": null,
+   "name": "resolution",
+   "alias": "resolution",
+   "type": "esriFieldTypeDouble"
+  }
+ ],
+ "allowAnalysis": true,
+ "hasRasterAttributeTable": false,
+ "useStandardizedQueries": true,
+ "description": "<div style='text-align:Left;'><div><div><p>These are digital orthophotos covering all, or selected portions of<span style='background-color:rgb(255, 255, 255);'> <span style='color:rgb(76, 76, 76); font-family:&quot;Segoe UI&quot;, Arial, sans-serif;'><font size='3'>AL;AR;AZ;CT;DE;FL;GA;IA;ID;LA;MA;MD;ME;MN;MS;MT;ND;NH;NJ;OH;RI;SD;SC;VA;VT; WA<\/font><\/span><\/span> acquired in 2023 ranging from 0.3 to 0.6 meter resolution, as provided by the USDA&quot;s Farm Production and Conservation office (FPAC). The data contains four bands, representing red, green, blue, and near infrared wavelengths, making the data suitable for analysis using either a true-color band combination or a false-color band combination.<font size='3'> <span style='background-color:rgb(255, 255, 255); color:rgb(76, 76, 76); font-family:&quot;Segoe UI&quot;, Arial, sans-serif;'>Several states in this production year are incomplete: ID, MT, ME.<\/span><\/font><\/p><p>This data set contains imagery from the National Agriculture Imagery Program (NAIP). NAIP acquires digital ortho imagery during the agricultural growing seasons in the continental U.S. A primary goal of the NAIP program is to enable availability of ortho imagery within one year of acquisition. Approximately half of the US is collected each year and each state is typically collected every other year. NAIP provides two main products: 1 meter/60 centimeter ground sample distance (GSD) ortho imagery rectified to a horizontal accuracy of within +/- 5 meters of reference digital ortho quarter quads (DOQQ&quot;s) from the National Digital Ortho Program (NDOP); and 1 meter/60 centimeter GSD ortho imagery rectified to within +/- 6 meters to true ground. The tiling format of NAIP imagery is based on a 3.75&quot; x 3.75&quot; quarter quadrangle with a 300 meter buffer on all four sides. NAIP quarter quads are formatted to the UTM coordinate system using NAD83. The NAIP services are published in Web Mercator. NAIP imagery may contain as much as 10% cloud cover per tile.<\/p><p>A digital orthophoto is a georeferenced image prepared from aerial imagery, or other remotely-sensed data in which the displacement within the image due to sensor orientation and terrain relief has been removed. Orthophotos combine the characteristics of an image with the geometric qualities of a map. Orthoimages show ground features such as roads, buildings, and streams in their proper positions, without the distortion characteristic of unrectified aerial imagery. Digital orthoimages produced and used within the Forest Service are developed from imagery acquired through various national and regional image acquisition programs. The resulting orthoimages, also known as orthomaps, can be directly applied in remote sensing, GIS and mapping applications. They serve a variety of purposes, from interim maps to references for earth science investigations and analysis. Because of the orthographic property, an orthoimage can be used like a map for measurement of distances, angles, and areas with scale being constant everywhere. Also, they can be used as map layers in GIS or other computer-based manipulation, overlaying, and analysis. An orthoimage differs from a map in a manner of depiction of detail; on a map only selected detail is shown by conventional symbols, whereas on an orthoimage all details appear just as in original aerial or satellite imagery.<\/p><\/div><\/div><\/div>",
+ "pixelType": "U8",
+ "meanPixelSize": 0.29999999999999999,
+ "exportTilesAllowed": false,
+ "editFieldsInfo": null,
+ "rasterTypeInfos": [{
+  "help": "",
+  "name": "Raster Dataset",
+  "description": "Supports all ArcGIS Raster Datasets"
+ }],
+ "defaultResamplingMethod": "Bilinear",
+ "itemAccess": false,
+ "minScale": 0,
+ "serviceProperties": "<ImageServer><ImageServiceProperties><MosaicMethod>NorthWest<\/MosaicMethod><MosaicOperator>First<\/MosaicOperator><SortAscending>true<\/SortAscending><LockImageID><\/LockImageID><TileOrderField>name<\/TileOrderField><TileOrderBase>0<\/TileOrderBase><AvgImageSpacingX>600.000000<\/AvgImageSpacingX><AvgImageSpacingY>300.000000<\/AvgImageSpacingY><ViewPointX>0.0<\/ViewPointX><ViewPointY>0.0<\/ViewPointY><ViewPointDefShiftX>0.0<\/ViewPointDefShiftX><ViewPointDefShiftY>0.0<\/ViewPointDefShiftY><CompressionMethod>None<\/CompressionMethod><CompressionQuality>75<\/CompressionQuality><CompressionTolerance>0.010000<\/CompressionTolerance><SamplingMethod>Bilinear<\/SamplingMethod><\/ImageServiceProperties><\/ImageServer>",
+ "advancedQueryCapabilities": {
+  "supportsStatistics": true,
+  "supportsSqlExpression": true,
+  "supportsOrderBy": true,
+  "useStandardizedQueries": true,
+  "supportsPagination": true,
+  "supportsDistinct": true
+ },
+ "serviceItemId": "faa9da5a1eec4c4c9154837c3dc18814",
+ "capabilities": "Image,Metadata,Catalog,Mensuration",
+ "maxScale": 0,
+ "stdvValues": [
+  41.894921927081597,
+  33.706173196952108,
+  31.833477583789367,
+  47.326240051437878
+ ],
+ "allowedFields": "name,minps,maxps,lowps,highps,tag,groupname,productname,centerx,centery,zorder,public,year,state,public,metadata,resolution",
+ "minPixelSize": 0,
+ "sortAscending": true,
+ "maxMosaicImageCount": 100,
+ "inspectionCapabilities": "",
+ "maxPixelSize": 0,
+ "uncompressedSize": 1012645459536576,
+ "serviceDescription": "<DIV STYLE=\"text-align:Left;\"><DIV><DIV><P><SPAN>These are digital orthophotos covering all, or selected portions of AL; AR;AZ;CT;DE;FL;GA;IA;MA;MD;MS;ND;NH;NJ;OH;RI;SC;VA;VT acquired in 2023 ranging from 0.3 to 0.6 meter resolution, as provided by the USDA's Farm Production and Conservation office (FPAC). The data contains four bands, representing red, green, blue, and near infrared wavelengths, making the data suitable for analysis using either a true-color band combination or a false-color band combination.<\/SPAN><\/P><P><SPAN>This data set contains imagery from the National Agriculture Imagery Program (NAIP). NAIP acquires digital ortho imagery during the agricultural growing seasons in the continental U.S. A primary goal of the NAIP program is to enable availability of ortho imagery within one year of acquisition. Approximately half of the US is collected each year and each state is typically collected every other year. NAIP provides two main products: 1 meter/60 centimeter ground sample distance (GSD) ortho imagery rectified to a horizontal accuracy of within +/- 5 meters of reference digital ortho quarter quads (DOQQ's) from the National Digital Ortho Program (NDOP); and 1 meter/60 centimeter GSD ortho imagery rectified to within +/- 6 meters to true ground. The tiling format of NAIP imagery is based on a 3.75' x 3.75' quarter quadrangle with a 300 meter buffer on all four sides. NAIP quarter quads are formatted to the UTM coordinate system using NAD83. The NAIP services are published in Web Mercator. NAIP imagery may contain as much as 10% cloud cover per tile.<\/SPAN><\/P><P><SPAN>A digital orthophoto is a georeferenced image prepared from aerial imagery, or other remotely-sensed data in which the displacement within the image due to sensor orientation and terrain relief has been removed. Orthophotos combine the characteristics of an image with the geometric qualities of a map. Orthoimages show ground features such as roads, buildings, and streams in their proper positions, without the distortion characteristic of unrectified aerial imagery. Digital orthoimages produced and used within the Forest Service are developed from imagery acquired through various national and regional image acquisition programs. The resulting orthoimages, also known as orthomaps, can be directly applied in remote sensing, GIS and mapping applications. They serve a variety of purposes, from interim maps to references for earth science investigations and analysis. Because of the orthographic property, an orthoimage can be used like a map for measurement of distances, angles, and areas with scale being constant everywhere. Also, they can be used as map layers in GIS or other computer-based manipulation, overlaying, and analysis. An orthoimage differs from a map in a manner of depiction of detail; on a map only selected detail is shown by conventional symbols, whereas on an orthoimage all details appear just as in original aerial or satellite imagery.<\/SPAN><\/P><\/DIV><\/DIV><\/DIV>",
+ "allowCopy": true,
+ "copyrightText": "These datasets were provided by the USDA's Farm Production and Conservation office (FPAC) and are served by the U.S. Forest Service Geospatial Technology & Applications Center (GTAC), in cooperation with the U.S. Department of the Interior's Geospatial Platform (GeoPlatform), as part of the Interdepartmental Imagery Publication Platform (IIPP).",
+ "mensurationCapabilities": "Basic",
+ "ownershipBasedAccessControlForRasters": null
+}

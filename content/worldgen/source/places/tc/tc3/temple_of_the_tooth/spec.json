@@ -1,0 +1,526 @@
+{
+  "planId": "temple_of_the_tooth",
+  "id": "temple_of_the_tooth",
+  "assetId": "molen.worldgen.structure.temple_of_the_tooth",
+  "title": "Temple of the Tooth",
+  "wikidataId": "Q289175",
+  "category": "buddhist-temple",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 80.6413453,
+    "latitude": 7.29361475
+  },
+  "size": [
+    83.17618560791016,
+    19.929999113082886,
+    67.5618953704834
+  ],
+  "actualBounds": {
+    "min": [
+      -37.67287826538086,
+      -2.799999952316284,
+      -16.489999771118164
+    ],
+    "max": [
+      45.5033073425293,
+      17.1299991607666,
+      51.071895599365234
+    ]
+  },
+  "visualBrief": "Kandy’s public stone gateway, moat, covered octagonal pavilion, courtyard shrine and gilded canopy.",
+  "nativeAxes": {
+    "x": "south along the western temple frontage",
+    "y": "up",
+    "z": "west toward the public entrance"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://id.rijksmuseum.nl/200323955",
+    "https://id.rijksmuseum.nl/200324457",
+    "https://id.rijksmuseum.nl/200713915"
+  ],
+  "stories": [
+    {
+      "id": "temple-of-the-tooth-wp",
+      "url": "https://qualla.com/temple-of-the-tooth/"
+    }
+  ],
+  "referenceInputHash": "sha256:901cc0c00fe347ffdb36c5d970c33cc0f99d668cc6a3f1f9f92c1320c0b8d411",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tc/tc3/temple_of_the_tooth/models/temple-of-the-tooth-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tc/tc3/temple_of_the_tooth/models/temple-of-the-tooth-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.96
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.91
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.87
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.53,
+        "metallic": 0.51
+      },
+      "shade": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.95
+      },
+      "water": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.46
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.58,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.53,
+            "metallic": 0.51
+          },
+          "shade": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.53,
+            "metallic": 0.51
+          },
+          "shade": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.53,
+            "metallic": 0.51
+          },
+          "shade": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_granite",
+    "tile_ceramic",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.12,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native Copernicus datum on the paved public approach west of the arched entrance.",
+    "anchor": [
+      80.6413453,
+      7.29361475
+    ],
+    "heading": -1.575653823332612,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        80.6407844091636,
+        7.293739722179526
+      ],
+      "modelHeight": 0,
+      "basis": "Native Copernicus datum on the paved public approach west of the arched entrance."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -19.05,
+          43.86
+        ],
+        [
+          -16.5,
+          50.2
+        ],
+        [
+          -11.75,
+          50.22
+        ],
+        [
+          -10.75,
+          47
+        ],
+        [
+          5.95,
+          46.39
+        ],
+        [
+          9.95,
+          50.18
+        ],
+        [
+          19.49,
+          49.61
+        ],
+        [
+          24.35,
+          45.69
+        ],
+        [
+          44.55,
+          44.98
+        ],
+        [
+          44.35,
+          37.27
+        ],
+        [
+          26.15,
+          36.66
+        ],
+        [
+          22.3,
+          -14.96
+        ],
+        [
+          -20.45,
+          -15.06
+        ]
+      ],
+      "basis": "Within the mapped moat and built courtyard the ancient paving and controlled water level replace the coarse Copernicus roof elevations."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          5.6813,
+          8.8391
+        ],
+        [
+          5.6845,
+          -8.8391
+        ],
+        [
+          -5.6813,
+          -8.8391
+        ],
+        [
+          -5.6845,
+          8.8391
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The two-storey shrine plinth follows the named OSM footprint at the centre of the temple."
+    },
+    "featureIds": [
+      "way/191377765",
+      "way/217317800",
+      "way/1278185932",
+      "way/1278185936",
+      "way/1278185935"
+    ],
+    "source": "https://www.openstreetmap.org/way/191377765",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f5a957e3bf4e6970b991a426b94643ced3292321bd2d8aeddee4a4528fd71a93",
+    "notes": "Scowen’s exterior and portal views calibrate the front and octagon. Castelein records the original shrine section. The temple’s 2026 announcement documents the area and gilded finish of the current canopy."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "Scowen’s exterior and portal views calibrate the front and octagon. Castelein records the original shrine section. The temple’s 2026 announcement documents the area and gilded finish of the current canopy.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "temple-of-the-tooth-skyline",
+      "position": [
+        71,
+        38,
+        99
+      ],
+      "lookAt": [
+        4,
+        6,
+        21
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "temple-of-the-tooth-district",
+      "position": [
+        71,
+        38,
+        99
+      ],
+      "lookAt": [
+        4,
+        6,
+        21
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "temple-of-the-tooth-street",
+      "position": [
+        71,
+        38,
+        99
+      ],
+      "lookAt": [
+        4,
+        6,
+        21
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "temple-of-the-tooth-closeup",
+      "position": [
+        71,
+        38,
+        99
+      ],
+      "lookAt": [
+        4,
+        6,
+        21
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "arched-west-gate-and-elephant-stones",
+      "position": [
+        -14.1,
+        6.7,
+        65
+      ],
+      "lookAt": [
+        -13.55,
+        4.18,
+        44.5
+      ]
+    },
+    {
+      "name": "octagonal-pavilion-from-the-moat",
+      "position": [
+        38,
+        12,
+        63
+      ],
+      "lookAt": [
+        11.6,
+        7.1,
+        35.6
+      ]
+    },
+    {
+      "name": "sacred-court-and-gilded-canopy",
+      "position": [
+        32,
+        24,
+        -19
+      ],
+      "lookAt": [
+        0,
+        10,
+        3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13131,
+    "vertices": 39393,
+    "materials": 7,
+    "bytes": 1840460,
+    "sha256": "sha256:082fbf57f92905fbc8803b55d4ee9704186af776ff11ab9260afc09c94da616d"
+  }
+}

@@ -1,0 +1,540 @@
+{
+  "planId": "marble_hall_hong_kong",
+  "id": "marble_hall_hong_kong",
+  "assetId": "molen.worldgen.structure.marble_hall_hong_kong",
+  "title": "Marble Hall (Hong Kong)",
+  "wikidataId": "Q81303",
+  "category": "historic-residence",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 114.151694,
+    "latitude": 22.277838
+  },
+  "size": [
+    53.92713165283203,
+    18.25,
+    37.60367202758789
+  ],
+  "actualBounds": {
+    "min": [
+      -26.963565826416016,
+      -0.5,
+      -16.440000534057617
+    ],
+    "max": [
+      26.963565826416016,
+      17.75,
+      21.163671493530273
+    ]
+  },
+  "visualBrief": "Sir Paul Chater’s hilltop Marble Hall at 1 Conduit Road, with two levels of verandahs, the split curved entrance stair, stone basement, and the western cupola.",
+  "nativeAxes": {
+    "x": "west-northwest along the main facade",
+    "y": "up",
+    "z": "north-northeast toward Victoria Harbour"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1906-01-01",
+    "validFrom": "1906-01-01",
+    "validUntil": "1946-05-01"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Tcitp_d164_a_hong_kong_residence.jpg",
+    "https://archive.org/details/far-eastern-review-1906.1/page/n23/mode/1up",
+    "https://archive.org/details/far-eastern-review-1906.1/page/n24/mode/1up"
+  ],
+  "stories": [
+    {
+      "id": "marble-hall-hong-kong-wp",
+      "url": "https://qualla.com/marble-hall-hong-kong/"
+    }
+  ],
+  "referenceInputHash": "sha256:b0d7bfb336382d5030cad5ff0bd8faed727ee0457c06ae11403fa4339085d766",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/we/wec/marble_hall_hong_kong/models/marble-hall-hong-kong-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/we/wec/marble_hall_hong_kong/models/marble-hall-hong-kong-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.12,
+    "surfaces": {
+      "lime": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92
+      },
+      "dressed": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.87
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.83
+      },
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.96
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.92
+      },
+      "teak": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.89
+      },
+      "light": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.45
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.83
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "teak": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "light": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.83
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "teak": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "light": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.052,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.83
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "teak": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "light": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "stone_marble",
+    "stone_granite",
+    "slate",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.75,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Lands Department terrain immediately downhill of the historic main stair, representing the present approach grade.",
+    "anchor": [
+      114.151694,
+      22.277838
+    ],
+    "heading": 2.705260340591211,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        114.15177523275983,
+        22.27799920098979
+      ],
+      "modelHeight": 0,
+      "basis": "Original Lands Department terrain immediately downhill of the historic main stair, representing the present approach grade."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -10.58742,
+          -28.11588
+        ],
+        [
+          -21.85238,
+          -29.53247
+        ],
+        [
+          -23.49359,
+          -15.60006
+        ],
+        [
+          -36.55438,
+          -14.16487
+        ],
+        [
+          -35.553,
+          -2.85267
+        ],
+        [
+          -23.13168,
+          -3.97738
+        ],
+        [
+          -20.98142,
+          -3.97288
+        ],
+        [
+          -18.67518,
+          -3.39012
+        ],
+        [
+          6.46178,
+          8.39749
+        ],
+        [
+          9.02405,
+          10.1874
+        ],
+        [
+          10.96088,
+          12.29351
+        ],
+        [
+          15.65512,
+          18.92356
+        ],
+        [
+          24.75051,
+          12.29946
+        ],
+        [
+          19.57229,
+          4.82649
+        ],
+        [
+          25.42588,
+          -2.60737
+        ],
+        [
+          28.60643,
+          -6.65758
+        ],
+        [
+          20.22792,
+          -13.55944
+        ],
+        [
+          17.28944,
+          -9.84319
+        ],
+        [
+          11.30066,
+          -2.28488
+        ],
+        [
+          -12.85671,
+          -13.19047
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "Suppress the mapped successor flats while the earlier residence is visible."
+    },
+    "featureIds": [
+      "way/539895762"
+    ],
+    "source": "https://archive.org/details/far-eastern-review-1906.1/page/n23/mode/1up",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e3d4d5883faf2db84e6f0d9f28fc13b96708350a81b3947e18b062d5a22095db",
+    "notes": "The two 1906 exterior photographs establish the tall stone plinth, lower and upper galleries, curved stair, clustered roof ornaments and western cupola. The original report gives the verandah and room dimensions."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Models the mansion exterior with the immediate stair and verandah. The larger grounds, distant servant outbuildings, collection and surviving gatekeeper’s lodge are outside the asset.",
+    "Geographic registration and rotation are approximate within the documented lot. Historical terrace heights, colors, rear elevation openings and hidden roof slopes are estimated.",
+    "The separate 1906 residence uses modern bare-earth heights as a geographic reference."
+  ],
+  "sourceLicense": "Original reconstruction from public-domain 1906 and 1908 publications, OpenStreetMap positional control and an open Hong Kong Lands Department terrain grid.",
+  "qaLodCameras": [
+    {
+      "name": "marble-hall-hong-kong-skyline",
+      "position": [
+        42,
+        24,
+        64
+      ],
+      "lookAt": [
+        0,
+        7.3,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "marble-hall-hong-kong-district",
+      "position": [
+        42,
+        24,
+        64
+      ],
+      "lookAt": [
+        0,
+        7.3,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "marble-hall-hong-kong-street",
+      "position": [
+        42,
+        24,
+        64
+      ],
+      "lookAt": [
+        0,
+        7.3,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "marble-hall-hong-kong-closeup",
+      "position": [
+        42,
+        24,
+        64
+      ],
+      "lookAt": [
+        0,
+        7.3,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "harbour-facade-and-cupola",
+      "position": [
+        42,
+        24,
+        64
+      ],
+      "lookAt": [
+        0,
+        7.3,
+        0
+      ]
+    },
+    {
+      "name": "curved-arrival-stair-and-verandahs",
+      "position": [
+        -11,
+        8.6,
+        38
+      ],
+      "lookAt": [
+        0,
+        5,
+        10
+      ]
+    },
+    {
+      "name": "gallery-layout-from-above",
+      "position": [
+        -37,
+        46,
+        48
+      ],
+      "lookAt": [
+        0,
+        3,
+        1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 41444,
+    "vertices": 124332,
+    "materials": 7,
+    "bytes": 5334556,
+    "sha256": "sha256:0a0a40363505836277d22bc11e090e21a7274c47b8fdfa9f3a5605da224c4b1b"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.cascade_brewery",
+  "kind": "static-structure",
+  "title": "Cascade Brewery",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.cascade_brewery",
+        "output": "assets/places/r2/r22/cascade_brewery/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7d9d5b0e8f58f459221494f2e344b56bc67d0d620bddccae0a6cbe48d0a70a45"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-cascade-brewery",
+        "path": "models/generate-cascade-brewery.mjs"
+      },
+      {
+        "id": "cascade-brewery-model",
+        "path": "models/cascade-brewery-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/cascade-brewery-footprint.json",
+      "native-map/cascade-brewery-shape-controls.json",
+      "reference-rights/cascade-brewery-architectural-facts.json",
+      "references/beattie-1910-original-card.jpg",
+      "reference-rights/flickr-beattie.html",
+      "reference-rights/nla-photograph-rights.html",
+      "references/mercury-1937-scan.jpg",
+      "reference-rights/mercury-reproduction-catalog.html",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/tasmania-dtm-native-window.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

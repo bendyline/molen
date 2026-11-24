@@ -1,0 +1,491 @@
+{
+  "planId": "sunda_kelapa_lighthouse",
+  "id": "sunda_kelapa_lighthouse",
+  "assetId": "molen.worldgen.structure.sunda_kelapa_lighthouse",
+  "title": "Sunda Kelapa Lighthouse",
+  "wikidataId": "Q19729220",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 106.80541725882354,
+    "latitude": -6.10512074117647
+  },
+  "size": [
+    4.162861108779907,
+    16.910000026226044,
+    4.007332801818848
+  ],
+  "actualBounds": {
+    "min": [
+      -2.1591947078704834,
+      -0.9100000262260437,
+      -2.003666400909424
+    ],
+    "max": [
+      2.003666400909424,
+      16,
+      2.003666400909424
+    ]
+  },
+  "visualBrief": "The round white tower of Sunda Kelapa Lighthouse with two portholes, a projecting stone gallery and its historic glazed lantern.",
+  "nativeAxes": {
+    "x": "toward the south along the west mole",
+    "y": "up",
+    "z": "toward the harbor"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://hdl.handle.net/20.500.11840/929087"
+  ],
+  "stories": [
+    {
+      "id": "sunda-kelapa-lighthouse-wp",
+      "url": "https://qualla.com/sunda-kelapa-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "sha256:f2bde8a08bb74ea4effd152d4fd26ffc50031886402b19f20a3f7c6a1aea0d70",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/qq/qqg/sunda_kelapa_lighthouse/models/sunda-kelapa-lighthouse-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/qq/qqg/sunda_kelapa_lighthouse/models/sunda-kelapa-lighthouse-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.23,
+    "surfaces": {
+      "shaft": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96
+      },
+      "gallery": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.94
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.9
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.72
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.93
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "shaft": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "gallery": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "shaft": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "gallery": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.018,
+        "surfaces": {
+          "shaft": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          },
+          "gallery": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_weathered",
+    "stone_limestone",
+    "metal_painted",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged Copernicus GLO-30 DSM sampled at the foot of the mapped lighthouse, inside the present fish port.",
+    "anchor": [
+      106.80541725882354,
+      -6.10512074117647
+    ],
+    "heading": 1.5707963267948966,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        106.8054461687454,
+        -6.10512074117647
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged Copernicus GLO-30 DSM sampled at the foot of the mapped lighthouse, inside the present fish port."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -1.5205,
+          0.9122
+        ],
+        [
+          -1.0863,
+          1.3992
+        ],
+        [
+          -0.5075,
+          1.6981
+        ],
+        [
+          0.1382,
+          1.7756
+        ],
+        [
+          0.7727,
+          1.5985
+        ],
+        [
+          1.2959,
+          1.2111
+        ],
+        [
+          1.6521,
+          0.6687
+        ],
+        [
+          1.7746,
+          0.0267
+        ],
+        [
+          1.6632,
+          -0.6153
+        ],
+        [
+          1.3293,
+          -1.1798
+        ],
+        [
+          0.8172,
+          -1.5783
+        ],
+        [
+          0.1827,
+          -1.7665
+        ],
+        [
+          -0.463,
+          -1.7111
+        ],
+        [
+          -1.053,
+          -1.4344
+        ],
+        [
+          -1.4982,
+          -0.9584
+        ],
+        [
+          -1.7431,
+          -0.3496
+        ],
+        [
+          -1.7543,
+          0.3034
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "The mapped OSM ring contains the current cylindrical lighthouse shaft."
+    },
+    "featureIds": [
+      "way/1359868373"
+    ],
+    "source": "https://www.openstreetmap.org/way/1359868373",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cc5b4c5455b91b947966a2e47817e90fd4f39c3c316787f973eafbcf59aa0089",
+    "notes": "The 1875 Woodbury and Page waterfront photograph shows the tapered shaft, two round windows, corbelled gallery and glazed cylinder. The mapped shaft is approximately 3.55 m across."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "The 1875 Woodbury and Page waterfront photograph shows the tapered shaft, two round windows, corbelled gallery and glazed cylinder. The mapped shaft is approximately 3.55 m across.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "sunda-kelapa-skyline",
+      "position": [
+        15,
+        12.8,
+        29.5
+      ],
+      "lookAt": [
+        0,
+        7.65,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "sunda-kelapa-district",
+      "position": [
+        15,
+        12.8,
+        29.5
+      ],
+      "lookAt": [
+        0,
+        7.65,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "sunda-kelapa-street",
+      "position": [
+        15,
+        12.8,
+        29.5
+      ],
+      "lookAt": [
+        0,
+        7.65,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "sunda-kelapa-closeup",
+      "position": [
+        15,
+        12.8,
+        29.5
+      ],
+      "lookAt": [
+        0,
+        7.65,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "harbor-face-and-portholes",
+      "position": [
+        4.6,
+        7.9,
+        21
+      ],
+      "lookAt": [
+        0,
+        7.36,
+        0
+      ]
+    },
+    {
+      "name": "stone-gallery-and-lantern",
+      "position": [
+        5.2,
+        16.8,
+        13.5
+      ],
+      "lookAt": [
+        0,
+        13.48,
+        0
+      ]
+    },
+    {
+      "name": "west-mole-entry",
+      "position": [
+        -10.4,
+        4,
+        8.6
+      ],
+      "lookAt": [
+        0,
+        3.36,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3709,
+    "vertices": 11127,
+    "materials": 6,
+    "bytes": 771984,
+    "sha256": "sha256:99e5e054329d4af78416b759dda927ecdb52fb4a584182fed899dc677f5e6fed"
+  }
+}

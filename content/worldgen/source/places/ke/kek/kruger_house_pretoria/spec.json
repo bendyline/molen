@@ -1,0 +1,446 @@
+{
+  "planId": "kruger_house_pretoria",
+  "id": "kruger_house_pretoria",
+  "assetId": "molen.worldgen.structure.kruger_house_pretoria",
+  "title": "Kruger House, Pretoria",
+  "wikidataId": "Q1541745",
+  "category": "historic-house",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 28.1813938,
+    "latitude": -25.7467049
+  },
+  "size": [
+    27.75809955596924,
+    7.749999940395355,
+    19.880399703979492
+  ],
+  "actualBounds": {
+    "min": [
+      -13.312199592590332,
+      -0.9200000166893005,
+      -10.71560001373291
+    ],
+    "max": [
+      14.445899963378906,
+      6.829999923706055,
+      9.164799690246582
+    ]
+  },
+  "visualBrief": "The Pretoria house museum with its broad one-storey street front, iron-bracketed stoep and pair of stone lions.",
+  "nativeAxes": {
+    "x": "east along the stoep",
+    "y": "up",
+    "z": "south toward the public street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.awm.gov.au/collection/C62588"
+  ],
+  "stories": [
+    {
+      "id": "kruger-house-pretoria-wp",
+      "url": "https://qualla.com/kruger-house-pretoria/"
+    }
+  ],
+  "referenceInputHash": "sha256:88b13f95af48529f9f1fc1921fb8dbf293a64aad7d3726f9d76907019c3662ae",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ke/kek/kruger_house_pretoria/models/kruger-house-pretoria-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ke/kek/kruger_house_pretoria/models/kruger-house-pretoria-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.25,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.94
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.83
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.76
+      },
+      "iron": {
+        "slot": "trim",
+        "localRef": "palette:#fdfdfd",
+        "roughness": 0.72
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.57
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.63,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#fdfdfd",
+            "roughness": 0.72
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.57
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#fdfdfd",
+            "roughness": 0.72
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.57
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#fdfdfd",
+            "roughness": 0.72
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.57
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.96,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Copernicus surface height on the south garden approach near the public street.",
+    "anchor": [
+      28.1813938,
+      -25.7467049
+    ],
+    "heading": 0.07875162667936439,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        28.181403842826263,
+        -25.7468195274602
+      ],
+      "modelHeight": 0,
+      "basis": "Original Copernicus surface height on the south garden approach near the public street."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -12.9222,
+          -8.5683
+        ],
+        [
+          -12.9186,
+          7.4448
+        ],
+        [
+          11.8442,
+          7.4448
+        ],
+        [
+          11.842,
+          -2.2145
+        ],
+        [
+          14.2059,
+          -2.2177
+        ],
+        [
+          14.1998,
+          -10.4256
+        ],
+        [
+          5.0568,
+          -10.4213
+        ],
+        [
+          5.0522,
+          -8.5792
+        ]
+      ],
+      "minimumCoverage": 0.86,
+      "basis": "The southern street-facing house and its attached return are replaced within the museum property."
+    },
+    "featureIds": [
+      "way/700264250",
+      "way/433789307"
+    ],
+    "source": "https://www.openstreetmap.org/way/700264250",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:45fe7b965cc691c4abbf49e109424de11ec011666fcf0532155804436af9c637",
+    "notes": "The native Underwood and Underwood photograph shows the original low veranda, spaced supports, X-pattern railings and symmetric central entry. The museum documents the lion pair and south placement."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.",
+    "The native Underwood and Underwood photograph shows the original low veranda, spaced supports, X-pattern railings and symmetric central entry. The museum documents the lion pair and south placement.",
+    "Terrain sampling/contact, geographic alignment and site activation remain pending. Runtime LODs are produced by the registered after-import pipeline and require visual review.",
+    "Reference photos remain in the local Qualla corpus; only provenance, paths and hashes are retained here."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "kruger-house-skyline",
+      "position": [
+        23,
+        13,
+        30
+      ],
+      "lookAt": [
+        0,
+        2.55,
+        -0.64
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kruger-house-district",
+      "position": [
+        23,
+        13,
+        30
+      ],
+      "lookAt": [
+        0,
+        2.55,
+        -0.64
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "kruger-house-street",
+      "position": [
+        23,
+        13,
+        30
+      ],
+      "lookAt": [
+        0,
+        2.55,
+        -0.64
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "kruger-house-closeup",
+      "position": [
+        23,
+        13,
+        30
+      ],
+      "lookAt": [
+        0,
+        2.55,
+        -0.64
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "street-facing-stoep",
+      "position": [
+        0,
+        5.4,
+        27
+      ],
+      "lookAt": [
+        -0.2,
+        2.45,
+        5.1
+      ]
+    },
+    {
+      "name": "iron-brackets-and-lions",
+      "position": [
+        5.2,
+        3.23,
+        13.4
+      ],
+      "lookAt": [
+        0,
+        2.06,
+        6.25
+      ]
+    },
+    {
+      "name": "roof-and-attached-return",
+      "position": [
+        19,
+        18,
+        -24
+      ],
+      "lookAt": [
+        0,
+        3,
+        -1.8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2030,
+    "vertices": 6090,
+    "materials": 6,
+    "bytes": 407340,
+    "sha256": "sha256:c09d1860ee338a1038be52c0c60c33fad2d650569baa70d5aa16fe8182280ef6"
+  }
+}
