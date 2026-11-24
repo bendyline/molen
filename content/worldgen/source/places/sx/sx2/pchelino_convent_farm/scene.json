@@ -1,0 +1,57 @@
+{
+  "format": "molen/scene@3",
+  "name": "Pchelino Convent Farm",
+  "seed": "pchelino_convent_farm",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": {
+    "mode": "fixed",
+    "position": [93.254762, 61.183593, 61.354437],
+    "lookAt": [-29.637418, -1.77196, 18.640733],
+    "fov": 54
+  },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.pchelino_convent_farm",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [-0.58, 0.75, 0.37],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -0.62, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [507.790056, 1.18, 507.790056] },
+          "materialRef": "palette:#8e9077",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}

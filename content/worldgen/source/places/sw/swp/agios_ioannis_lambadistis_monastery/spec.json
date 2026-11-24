@@ -1,0 +1,424 @@
+{
+  "id": "agios_ioannis_lambadistis_monastery",
+  "planId": "agios_ioannis_lambadistis_monastery",
+  "title": "Agios Ioannis Lambadistis Monastery",
+  "assetId": "molen.worldgen.structure.agios_ioannis_lambadistis_monastery",
+  "category": "religious",
+  "collectionId": "painted_churches_in_the_troodos_region",
+  "mapFeatureId": "way/253967124",
+  "wikidataId": "Q16677650",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 32.8303028,
+    "latitude": 34.9921928
+  },
+  "visualBrief": "The main pitched roof spans the chapel group. Stone ranges surround the courtyard, with projecting timber balconies and a covered entrance.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sw/swp/agios_ioannis_lambadistis_monastery/models/chapel-and-roof.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/351/",
+    "https://commons.wikimedia.org/wiki/File:ZyKalopanayiotis01.jpg",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N34_00_E032_00_DEM/Copernicus_DSM_COG_10_N34_00_E032_00_DEM.tif",
+    "https://www.wikidata.org/wiki/Q16677650",
+    "https://www.openstreetmap.org/way/253967124"
+  ],
+  "geographicProposal": {
+    "id": "agios-ioannis-lambadistis-monastery",
+    "title": "Agios Ioannis Lambadistis Monastery",
+    "asset": "molen.worldgen.structure.agios_ioannis_lambadistis_monastery",
+    "anchor": [
+      32.8303028,
+      34.9921928
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 673.938,
+    "bounds": [
+      32.83008636928282,
+      34.9919692353179,
+      32.830433730717374,
+      34.992474390872246
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q16677650",
+      "names": [
+        "Agios Ioannis Lambadistis Monastery",
+        "Monastery of Saint John Lampadistes",
+        "Μονή Αγίου Ιωάννου του Λαμπαδιστού"
+      ],
+      "maxDistance": 28
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -9.2290643,
+          -28.7650018
+        ],
+        [
+          7.0038749,
+          -28.7872658
+        ],
+        [
+          7.0312338,
+          -7.4806728
+        ],
+        [
+          6.7211664,
+          -7.4806728
+        ],
+        [
+          6.830602,
+          -5.0427743
+        ],
+        [
+          8.0435126,
+          -5.13183
+        ],
+        [
+          9.9403954,
+          19.6923966
+        ],
+        [
+          4.9154799,
+          20.0708821
+        ],
+        [
+          0.4651011,
+          21.0504914
+        ],
+        [
+          -0.9028433,
+          21.3733172
+        ],
+        [
+          -5.6906484,
+          22.8872586
+        ],
+        [
+          -17.737678,
+          -15.5068183
+        ],
+        [
+          -12.9498729,
+          -17.0096341
+        ],
+        [
+          -9.8856776,
+          -7.2469017
+        ],
+        [
+          -1.5047388,
+          19.4697581
+        ],
+        [
+          0.0364785,
+          19.1358004
+        ],
+        [
+          4.7330873,
+          18.1005312
+        ],
+        [
+          2.9912382,
+          -4.7533435
+        ],
+        [
+          3.3925019,
+          -4.7756074
+        ],
+        [
+          3.2648271,
+          -7.4806728
+        ],
+        [
+          3.0733149,
+          -7.4806728
+        ],
+        [
+          -1.4135425,
+          -7.4695409
+        ],
+        [
+          -9.2017055,
+          -7.4584089
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "The independently mapped exterior footprint replaces the existing building extrusion."
+    },
+    "source": "https://www.openstreetmap.org/way/253967124",
+    "note": "The pitched roof is aligned to the independently mapped church. Neighboring churches and other site features retain their map geometry.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e3dba3874af91d7f9420c400e86d7ed92df3a09bd9e4f761d09ad748856ca241"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.96
+      },
+      "cut": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.92
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.92
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.89
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96
+      },
+      "shadow": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "name": "troodos-recesses",
+        "roughness": 0.91
+      }
+    },
+    "errorMeters": 0.49,
+    "module": "content/worldgen/source/places/sw/swp/agios_ioannis_lambadistis_monastery/models/chapel-and-roof.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.89
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "troodos-recesses",
+            "roughness": 0.91
+          }
+        },
+        "errorMeters": 0.2
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.89
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "troodos-recesses",
+            "roughness": 0.91
+          }
+        },
+        "errorMeters": 0.083
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.89
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "troodos-recesses",
+            "roughness": 0.91
+          }
+        },
+        "errorMeters": 0.028
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        3.5,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "roof-and-entrance",
+      "position": [
+        17.614272,
+        17,
+        43.757712
+      ],
+      "lookAt": [
+        0,
+        3.5,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "roof-pitch-and-eastern-wall",
+      "position": [
+        -18.600176,
+        10,
+        -42.743811
+      ],
+      "lookAt": [
+        0,
+        3.5,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "placement-and-approach",
+      "position": [
+        18.236212,
+        42,
+        16.746359
+      ],
+      "lookAt": [
+        0,
+        3.5,
+        0
+      ],
+      "fov": 49
+    }
+  ],
+  "limitations": [
+    "Fine masonry, timber fittings and roof weathering are simplified. The model covers the exterior. Sampled elevation establishes the foundation."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -18.72060203552246,
+      -6.802000045776367,
+      -29.42740249633789
+    ],
+    "max": [
+      12.617986679077148,
+      10.37600040435791,
+      23.19820785522461
+    ]
+  },
+  "size": [
+    31.33858871459961,
+    17.178000450134277,
+    52.6256103515625
+  ],
+  "mesh": {
+    "triangles": 2275,
+    "vertices": 4549,
+    "materials": 5,
+    "bytes": 194344,
+    "sha256": "sha256:1d821a0caddd8f44e417899ca7396a35b8af2dc481fbcfb4df3d6b73ee3b2cd3"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats"
+    }
+  ]
+}

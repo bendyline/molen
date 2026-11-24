@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.ferapontov_monastery",
+  "kind": "static-structure",
+  "title": "Ferapontov Monastery",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.ferapontov_monastery",
+        "output": "assets/places/uf/ufe/ferapontov_monastery/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4c771494c43a7516b951557e533335c6b7e05c086446b543fce09030f0c262a8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "ferapontov_monastery",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "white-enclosure-and-domed-churches",
+        "path": "models/white-enclosure-and-domed-churches.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "format": "molen/scene@3",
+  "name": "Temple of Zeus in Olympia",
+  "seed": "temple_of_zeus_in_olympia",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": {
+    "mode": "fixed",
+    "position": [52.682709, 28, 45.57637],
+    "lookAt": [30.125391, 1.1, -7.80174],
+    "fov": 51
+  },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.temple_of_zeus_in_olympia",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [0.52, 0.71, 0.48],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -0.62, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [314, 1.18, 314] },
+          "materialRef": "palette:#858662",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}

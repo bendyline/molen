@@ -1,0 +1,318 @@
+{
+  "id": "red_pyramid",
+  "planId": "red_pyramid",
+  "title": "Red Pyramid",
+  "assetId": "molen.worldgen.structure.red_pyramid",
+  "category": "monument",
+  "wikidataId": "Q135332",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 31.2058333,
+    "latitude": 29.8083333
+  },
+  "visualBrief": "Sneferu’s Red Pyramid has four shallow limestone faces, a worn apex and a recessed north doorway reached by stone steps.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/st/stq/red_pyramid/models/dahshur-north-face-limestone-pyramid.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Red_Pyramid_at_Dahshur.jpg",
+    "https://egymonuments.gov.eg/monuments/the-red-pyramid",
+    "https://www.openstreetmap.org/way/39918835"
+  ],
+  "geographicProposal": {
+    "id": "red-pyramid-dahshur",
+    "title": "Red Pyramid",
+    "asset": "molen.worldgen.structure.red_pyramid",
+    "anchor": [
+      31.2058333,
+      29.8083333
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 62.96875,
+    "bounds": [
+      31.205116494173573,
+      29.807600039918395,
+      31.207372405829464,
+      29.809502567082664
+    ],
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q135332",
+      "names": [
+        "Red Pyramid",
+        "North Pyramid",
+        "Pyramid of Sneferu",
+        "الهرم الأحمر"
+      ],
+      "maxDistance": 155
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -66.676878,
+          -128.162867
+        ],
+        [
+          -67.237107,
+          79.04769
+        ],
+        [
+          146.10379,
+          79.626547
+        ],
+        [
+          146.664019,
+          -127.583999
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the single named pyramid footprint. Keep the surrounding Dahshur structures, plateau and routes."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -66.676878,
+          -128.162867
+        ],
+        [
+          -67.237107,
+          79.04769
+        ],
+        [
+          146.10379,
+          79.626547
+        ],
+        [
+          146.664019,
+          -127.583999
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Keep the modeled base clear of coarse elevations within the mapped monument footprint."
+    },
+    "source": "https://www.openstreetmap.org/way/39918835",
+    "note": "The base, apex and elevated north doorway follow the native map features.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0b27c91d0f0359e2dc9c150ceb4cc2f232bea6884f5a9ecb6319727ca3ea84bb"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.99
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.99
+      },
+      "cut": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.98
+      },
+      "shadow": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.99
+      }
+    },
+    "errorMeters": 1.54,
+    "module": "content/worldgen/source/places/st/stq/red_pyramid/models/dahshur-north-face-limestone-pyramid.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.99
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.99
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.98
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.53
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.99
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.99
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.98
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.2
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.99
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.99
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.98
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.076
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        40,
+        37,
+        -23
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "north-and-west-pyramid-faces",
+      "position": [
+        -196,
+        9,
+        -231
+      ],
+      "lookAt": [
+        39,
+        42,
+        -25
+      ],
+      "fov": 58
+    },
+    {
+      "name": "raised-north-entrance-and-steps",
+      "position": [
+        30,
+        10,
+        -153
+      ],
+      "lookAt": [
+        41,
+        22,
+        -105
+      ],
+      "fov": 62
+    },
+    {
+      "name": "battered-limestone-corner-and-apex",
+      "position": [
+        198,
+        144,
+        98
+      ],
+      "lookAt": [
+        48,
+        58,
+        -31
+      ],
+      "fov": 53
+    }
+  ],
+  "limitations": [
+    "The stair treads, stone weathering and desert approach are exterior approximations. The model includes the entry recess. Interior chambers are outside its scope."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -67.23710632324219,
+      -4.099999904632568,
+      -128.21829223632812
+    ],
+    "max": [
+      146.6640167236328,
+      104,
+      79.62654876708984
+    ]
+  },
+  "size": [
+    213.901123046875,
+    108.09999990463257,
+    207.84484100341797
+  ],
+  "mesh": {
+    "triangles": 14678,
+    "vertices": 29358,
+    "materials": 4,
+    "bytes": 1235868,
+    "sha256": "sha256:acf4d0091fe7c525711ec151cd1c4e481b03c7b958b101ea1424a410ee850d38"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

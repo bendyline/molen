@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.bat_matariya_tower",
+  "kind": "static-structure",
+  "title": "Matariya Tower, Bat",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.bat_matariya_tower",
+        "output": "assets/places/tk/tk0/bat_matariya_tower/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d93b2b0a7a7096df6f1392bf5607fd076d3263553d1d4cfefd5e07eed2b431d5"
+      }
+    ],
+    "generators": [
+      {
+        "id": "bat_matariya_tower",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "oman-bronze-age",
+        "path": "models/oman-bronze-age.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

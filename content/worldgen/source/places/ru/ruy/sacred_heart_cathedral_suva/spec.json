@@ -1,0 +1,391 @@
+{
+  "id": "sacred_heart_cathedral_suva",
+  "planId": "sacred_heart_cathedral_suva",
+  "title": "Sacred Heart Cathedral, Suva",
+  "assetId": "molen.worldgen.structure.sacred_heart_cathedral_suva",
+  "category": "cathedral",
+  "wikidataId": "Q18416905",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 178.425383,
+    "latitude": -18.139837
+  },
+  "visualBrief": "The Pratt Street cathedral has two sandstone towers, an open upper loggia and twin lower and upper entrances.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ru/ruy/sacred_heart_cathedral_suva/models/suva-sandstone-towers-and-pratt-street-loggia.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Sacred_Heart_Suva_MatthiasSuessen-8140.jpg",
+    "https://commons.wikimedia.org/wiki/File:Sacred_Heart_Cathedral%2C_Suva_Fiji_July_2014.jpg",
+    "https://www.openstreetmap.org/way/720329965"
+  ],
+  "geographicProposal": {
+    "id": "sacred-heart-cathedral-suva-pratt-street",
+    "title": "Sacred Heart Cathedral, Suva",
+    "asset": "molen.worldgen.structure.sacred_heart_cathedral_suva",
+    "anchor": [
+      178.425383,
+      -18.139837
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 17.4609375,
+    "bounds": [
+      178.42513615580708,
+      -18.139990166796085,
+      178.42560830594053,
+      -18.139657333258462
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q18416905",
+      "names": [
+        "Sacred Heart Cathedral, Suva",
+        "Sacred Heart Cathedral",
+        "Catholic Cathedral Suva"
+      ],
+      "maxDistance": 46
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          21.834407,
+          7.569727
+        ],
+        [
+          19.031055,
+          -3.77373
+        ],
+        [
+          15.518932,
+          -18.000353
+        ],
+        [
+          -7.955172,
+          -12.211744
+        ],
+        [
+          -6.728044,
+          -7.235766
+        ],
+        [
+          -22.225818,
+          -3.417508
+        ],
+        [
+          -19.686934,
+          6.857282
+        ],
+        [
+          -17.666405,
+          15.050401
+        ],
+        [
+          -1.565645,
+          11.076292
+        ],
+        [
+          -1.036711,
+          13.213628
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the mapped Sacred Heart Cathedral polygon on Pratt Street."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -20.870027,
+          2.143442
+        ],
+        [
+          -19.019161,
+          9.648586
+        ],
+        [
+          -22.262005,
+          10.448314
+        ],
+        [
+          -24.112871,
+          2.943169
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Keep the lower portal threshold and its small stone landing clear."
+    },
+    "source": "https://www.openstreetmap.org/way/720329965",
+    "note": "The long axis follows the native footprint and the twin towers face Pratt Street. Nearby institutions and the roadway stay in the host map.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ea24d2bf58ea9925676c9960ddeefc47932c0463f8ce42ddafee57ded9288d13"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.96
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_basalt",
+        "roughness": 0.98
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.93
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.91
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.58
+      }
+    },
+    "errorMeters": 0.66,
+    "module": "content/worldgen/source/places/ru/ruy/sacred_heart_cathedral_suva/models/suva-sandstone-towers-and-pratt-street-loggia.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.93
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.93
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58
+          }
+        },
+        "errorMeters": 0.096
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.93
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58
+          }
+        },
+        "errorMeters": 0.04
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -8.299381,
+        8.3,
+        2.916008
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "pratt-street-towers-and-portal",
+      "position": [
+        -55.118621,
+        5.9,
+        13.535273
+      ],
+      "lookAt": [
+        -17.899431,
+        10.7,
+        5.335003
+      ],
+      "fov": 56
+    },
+    {
+      "name": "loggia-balustrade-and-arches",
+      "position": [
+        -36.950207,
+        6.5,
+        20.38427
+      ],
+      "lookAt": [
+        -19.678594,
+        6.74,
+        5.763467
+      ],
+      "fov": 58
+    },
+    {
+      "name": "gable-statue-and-belfry",
+      "position": [
+        -59.16278,
+        29,
+        -11.216389
+      ],
+      "lookAt": [
+        -15.095761,
+        15.1,
+        4.592083
+      ],
+      "fov": 54
+    }
+  ],
+  "limitations": [
+    "Heights, small carvings and secondary elevations are estimated. The model includes the loggia, entrance recesses and exterior stairs, with the interior beyond the doors closed."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -23.94225311279297,
+      -1.3600000143051147,
+      -18.22637176513672
+    ],
+    "max": [
+      21.89373016357422,
+      22.239999771118164,
+      15.760066032409668
+    ]
+  },
+  "size": [
+    45.83598327636719,
+    23.59999978542328,
+    33.98643779754639
+  ],
+  "mesh": {
+    "triangles": 9213,
+    "vertices": 18373,
+    "materials": 6,
+    "bytes": 775720,
+    "sha256": "sha256:864d6e427974131f37dfa10d4f380e4ffcf571f496eb28519a5c11edd0d747eb"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

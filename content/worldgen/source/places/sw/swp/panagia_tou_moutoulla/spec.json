@@ -1,0 +1,346 @@
+{
+  "id": "panagia_tou_moutoulla",
+  "planId": "panagia_tou_moutoulla",
+  "title": "Panagia tou Moutoulla",
+  "assetId": "molen.worldgen.structure.panagia_tou_moutoulla",
+  "category": "religious",
+  "collectionId": "painted_churches_in_the_troodos_region",
+  "mapFeatureId": "way/253959946",
+  "wikidataId": "Q13548161",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 32.8242703,
+    "latitude": 34.9826507
+  },
+  "visualBrief": "A compact chapel with deep red-brown eaves, plain stone gables, wooden doors and a small eastern apse.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sw/swp/panagia_tou_moutoulla/models/chapel-and-roof.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/351/",
+    "https://commons.wikimedia.org/wiki/File:Panagia_church_Moutoullas_cyprus_2010.jpg",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N34_00_E032_00_DEM/Copernicus_DSM_COG_10_N34_00_E032_00_DEM.tif",
+    "https://www.openstreetmap.org/way/253959946"
+  ],
+  "geographicProposal": {
+    "id": "panagia-tou-moutoulla",
+    "title": "Panagia tou Moutoulla",
+    "asset": "molen.worldgen.structure.panagia_tou_moutoulla",
+    "anchor": [
+      32.8242703,
+      34.9826507
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 834.1823,
+    "bounds": [
+      32.824175338102776,
+      34.98259227179273,
+      32.824366111372264,
+      34.98270945174253
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q13548161",
+      "names": [
+        "Panagia tou Moutoulla",
+        "Panagia tou Moutoulla"
+      ],
+      "maxDistance": 28
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.2385532,
+          -3.1948699
+        ],
+        [
+          5.6913117,
+          -4.1076901
+        ],
+        [
+          6.2476739,
+          3.1948688
+        ],
+        [
+          -5.682191,
+          4.1076883
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "The independently mapped exterior footprint replaces the existing building extrusion."
+    },
+    "source": "https://www.openstreetmap.org/way/253959946",
+    "note": "The pitched roof is aligned to the independently mapped church. Neighboring churches and other site features retain their map geometry.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5322b0332a3dafa9dff93e40b4b554e00bebd51aaa0cbf1e96c254ad9d42ef50"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.96
+      },
+      "cut": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.92
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.92
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.89
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96
+      },
+      "shadow": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "name": "troodos-recesses",
+        "roughness": 0.91
+      }
+    },
+    "errorMeters": 0.49,
+    "module": "content/worldgen/source/places/sw/swp/panagia_tou_moutoulla/models/chapel-and-roof.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.89
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "troodos-recesses",
+            "roughness": 0.91
+          }
+        },
+        "errorMeters": 0.2
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.89
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "troodos-recesses",
+            "roughness": 0.91
+          }
+        },
+        "errorMeters": 0.083
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.89
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "troodos-recesses",
+            "roughness": 0.91
+          }
+        },
+        "errorMeters": 0.028
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        2.25,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "roof-and-entrance",
+      "position": [
+        -13.65931,
+        9.1,
+        18.094841
+      ],
+      "lookAt": [
+        0,
+        2.25,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "roof-pitch-and-eastern-wall",
+      "position": [
+        22.556787,
+        10,
+        -19.778559
+      ],
+      "lookAt": [
+        0,
+        2.25,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "placement-and-approach",
+      "position": [
+        -15.577188,
+        23,
+        19.244511
+      ],
+      "lookAt": [
+        0,
+        2.25,
+        0
+      ],
+      "fov": 49
+    }
+  ],
+  "limitations": [
+    "Fine masonry, timber fittings and roof weathering are simplified. The model covers the exterior. Sampled elevation establishes the foundation."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -6.744643688201904,
+      -5.057000160217285,
+      -4.59464693069458
+    ],
+    "max": [
+      6.996004104614258,
+      5.366000175476074,
+      4.5560197830200195
+    ]
+  },
+  "size": [
+    13.740647792816162,
+    10.42300033569336,
+    9.1506667137146
+  ],
+  "mesh": {
+    "triangles": 349,
+    "vertices": 743,
+    "materials": 5,
+    "bytes": 34184,
+    "sha256": "sha256:731a90b93c5a47af0175613bbf121d2b4db01f26ba5c823f60c48bfaa19cda19"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats"
+    }
+  ]
+}

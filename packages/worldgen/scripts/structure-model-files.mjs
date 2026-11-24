@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { biomeJson } from './format-json.mjs';
 import {
-  readStructureCollections,
+  readAuthoringCollections,
   selectedStructureIds,
   validateCollectionSpec,
 } from './structure-collections.mjs';
@@ -62,7 +62,7 @@ export async function registerSourceDocuments(dir, paths) {
 }
 
 export async function authoredModels() {
-  const collections = await readStructureCollections(
+  const collections = await readAuthoringCollections(
     resolve(content, 'source/structure-catalog/collections.json'),
   );
   const selected = process.argv

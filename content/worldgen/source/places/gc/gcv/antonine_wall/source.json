@@ -1,0 +1,52 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.antonine_wall",
+  "kind": "static-structure",
+  "title": "Antonine Wall at Rough Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.antonine_wall",
+        "output": "assets/places/gc/gcv/antonine_wall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:438c2052aa8fc9528b43ee0fd4590f1f0dff4481c039c5a40ec1101a479c5215"
+      }
+    ],
+    "generators": [
+      {
+        "id": "antonine_wall",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "rough-castle-earthworks",
+        "path": "models/rough-castle-earthworks.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "rough-castle-plan.json",
+      "roughCastle-elevation.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

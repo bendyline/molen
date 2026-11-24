@@ -1,0 +1,142 @@
+{
+  "id": "wheal_trewavas_engine_houses",
+  "planId": "wheal_trewavas_engine_houses",
+  "title": "Wheal Trewavas Engine Houses",
+  "assetId": "molen.worldgen.structure.wheal_trewavas_engine_houses",
+  "category": "landmark",
+  "collectionId": "cornwall_and_west_devon_mining_landscape",
+  "mapFeatureId": "way/390101844",
+  "wikidataId": "Q464566",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": { "longitude": -5.3573808, "latitude": 50.0900741 },
+  "visualBrief": "The two Wheal Trewavas pumping-house ruins and tall tapered stacks follow separate shelves on the sea cliffs.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gb/gbu/wheal_trewavas_engine_houses/models/cornish-engine-houses.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/1215/maps/",
+    "https://commons.wikimedia.org/wiki/File:Wheal_Trewavas_mine_pump_engine_houses_and_chimneys_-_geograph.org.uk_-_484494.jpg",
+    "https://www.openstreetmap.org/way/390101844"
+  ],
+  "geographicProposal": {
+    "id": "wheal-trewavas-engine-houses",
+    "title": "Wheal Trewavas Engine Houses",
+    "asset": "molen.worldgen.structure.wheal_trewavas_engine_houses",
+    "anchor": [-5.3573808, 50.0900741],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 34.473122,
+    "bounds": [-5.357985249735893, 50.09001393434462, -5.355482777734254, 50.09091870746596],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q464566",
+      "names": [
+        "Wheal Trewavas Engine Houses",
+        "Wheal Trewavas",
+        "Old Shaft Engine House and Capstan Platform",
+        "Trewavas Mine"
+      ],
+      "maxDistance": 105
+    },
+    "source": "https://www.openstreetmap.org/way/390101844",
+    "note": "The named mine and its mapped buildings locate each masonry range. Their orientations follow the mapped contours of the site.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ce3812a45cbc3cb14a3a97ead6ba9e7be664aca3f348e3e3e2cae27257dc3a2d"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "rubble": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+      "granite": { "slot": "trim", "graph": "stone_granite", "roughness": 0.96 },
+      "brick": { "slot": "trim", "graph": "brick", "roughness": 0.96 }
+    },
+    "errorMeters": 0.56,
+    "module": "content/worldgen/source/places/gb/gbu/wheal_trewavas_engine_houses/models/cornish-engine-houses.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "rubble": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+          "granite": { "slot": "trim", "graph": "stone_granite", "roughness": 0.96 },
+          "brick": { "slot": "trim", "graph": "brick", "roughness": 0.96 }
+        },
+        "errorMeters": 0.19
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "rubble": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+          "granite": { "slot": "trim", "graph": "stone_granite", "roughness": 0.96 },
+          "brick": { "slot": "trim", "graph": "brick", "roughness": 0.96 }
+        },
+        "errorMeters": 0.069
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "rubble": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+          "granite": { "slot": "trim", "graph": "stone_granite", "roughness": 0.96 },
+          "brick": { "slot": "trim", "graph": "brick", "roughness": 0.96 }
+        },
+        "errorMeters": 0.024
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": { "center": [56.0521715, 7.617243, -38.4668835] },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": { "path": "native-water.json" }
+  },
+  "qaCameras": [
+    {
+      "name": "stone-walls-and-stepped-cliff",
+      "position": [65.0521715, 59.617243, 106.5331165],
+      "lookAt": [59.0521715, 8.617243, -38.4668835],
+      "fov": 55
+    },
+    {
+      "name": "roofless-engine-house",
+      "position": [0.716713, 9.885591, 20.578936000000002],
+      "lookAt": [0.716713, 5.435591, 0.778936],
+      "fov": 56
+    },
+    {
+      "name": "chimneys-and-mining-terraces",
+      "position": [1.5605217799999949, 46.349052, 52.352532700000005],
+      "lookAt": [56.0521715, 7.617243, -38.4668835],
+      "fov": 54
+    }
+  ],
+  "limitations": [
+    "Mapped building and stack footprints are retained. Roofless wall levels and surviving stack elevations are estimated from photographs."
+  ],
+  "importOptions": { "optimize": false },
+  "actualBounds": {
+    "min": [-41.2329216003418, -5.9874677658081055, -92.07211303710938],
+    "max": [133.6206817626953, 26.370250701904297, 4.71058464050293]
+  },
+  "size": [174.8536033630371, 32.3577184677124, 96.7826976776123],
+  "mesh": {
+    "triangles": 2526,
+    "vertices": 5048,
+    "materials": 3,
+    "bytes": 214476,
+    "sha256": "sha256:168127ec6a70fd3324e0a405e36ca55cc2dc1d46a1af73ff24819885b55a7e3a"
+  },
+  "sharedSurfaces": [
+    { "ref": "matgraph:molen.worldgen.material.stone_drywall", "slot": "wall", "uv": "repeats" },
+    { "ref": "matgraph:molen.worldgen.material.brick", "slot": "trim", "uv": "repeats" },
+    { "ref": "matgraph:molen.worldgen.material.stone_granite", "slot": "trim", "uv": "repeats" }
+  ]
+}

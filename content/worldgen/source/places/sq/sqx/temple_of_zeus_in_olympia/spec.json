@@ -1,0 +1,346 @@
+{
+  "id": "temple_of_zeus_in_olympia",
+  "planId": "temple_of_zeus_in_olympia",
+  "title": "Temple of Zeus in Olympia",
+  "assetId": "molen.worldgen.structure.temple_of_zeus_in_olympia",
+  "category": "monument",
+  "wikidataId": "Q197019",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 21.63,
+    "latitude": 37.6378611
+  },
+  "visualBrief": "The restored northwest Doric column rises from the stepped podium above the open cella and fallen column drums.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sq/sqx/temple_of_zeus_in_olympia/models/olympia-doric-ruins.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:View_of_the_Temple_of_Zeus_in_Olympia_on_October_14%2C_2020.jpg",
+    "https://ancientolympiamuseum.com/index.php/2025/10/24/the-temple-of-zeus-2/",
+    "https://www.openstreetmap.org/way/146770889"
+  ],
+  "geographicProposal": {
+    "id": "temple-of-zeus-olympia",
+    "title": "Temple of Zeus in Olympia",
+    "asset": "molen.worldgen.structure.temple_of_zeus_in_olympia",
+    "anchor": [
+      21.63,
+      37.6378611
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 32.7421875,
+    "bounds": [
+      21.629900612017657,
+      37.637742734561634,
+      21.63071998798392,
+      37.638113464978865
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q197019",
+      "names": [
+        "Temple of Zeus in Olympia",
+        "Temple of Zeus",
+        "Ναός Διός"
+      ],
+      "maxDistance": 32
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.761287,
+          -18.089437
+        ],
+        [
+          -4.980609,
+          -18.312077
+        ],
+        [
+          57.836775,
+          -26.09333
+        ],
+        [
+          59.88191,
+          -9.606878
+        ],
+        [
+          61.468653,
+          3.183737
+        ],
+        [
+          -3.129409,
+          11.176469
+        ],
+        [
+          -3.640693,
+          7.046521
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace only the mapped temple. The independent site features and paths remain in the map."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -6.761287,
+          -18.089437
+        ],
+        [
+          -4.980609,
+          -18.312077
+        ],
+        [
+          57.836775,
+          -26.09333
+        ],
+        [
+          59.88191,
+          -9.606878
+        ],
+        [
+          61.468653,
+          3.183737
+        ],
+        [
+          -3.129409,
+          11.176469
+        ],
+        [
+          -3.640693,
+          7.046521
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Limit the terrain opening to the native temple outline so the podium steps and interior ruin floor stay visible."
+    },
+    "source": "https://www.openstreetmap.org/way/146770889",
+    "note": "The podium follows the native footprint, with the re-erected column on its northwest corner.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a7172045cea15a3a0df277c492a936fb15ed3a9f77015ff51c13b2686f74f4ca"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "step": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.98
+      },
+      "drum": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 0.98
+      }
+    },
+    "errorMeters": 0.54,
+    "module": "content/worldgen/source/places/sq/sqx/temple_of_zeus_in_olympia/models/olympia-doric-ruins.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "step": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98
+          },
+          "drum": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.22
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "step": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98
+          },
+          "drum": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.087
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "step": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98
+          },
+          "drum": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.035
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        34.003201,
+        2.7,
+        -7.390551
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "restored-northwest-column",
+      "position": [
+        -17.673023,
+        3.91,
+        -15.026862
+      ],
+      "lookAt": [
+        -0.259274,
+        6.38,
+        -14.362521
+      ],
+      "fov": 53
+    },
+    {
+      "name": "west-stylobate-and-fallen-drums",
+      "position": [
+        -12.280583,
+        9,
+        20.371226
+      ],
+      "lookAt": [
+        14.904193,
+        2.06,
+        -7.104991
+      ],
+      "fov": 61
+    },
+    {
+      "name": "roofless-cella-and-peristyle",
+      "position": [
+        46.086241,
+        21,
+        23.217697
+      ],
+      "lookAt": [
+        25.063743,
+        2.2,
+        -7.471928
+      ],
+      "fov": 56
+    }
+  ],
+  "limitations": [
+    "Shaft and low wall heights and the positions of detached stone fragments are approximate. The model depicts the present-day ruins."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -6.761287212371826,
+      -3.2699999809265137,
+      -26.09333038330078
+    ],
+    "max": [
+      61.46865463256836,
+      11.890000343322754,
+      11.176468849182129
+    ]
+  },
+  "size": [
+    68.22994184494019,
+    15.160000324249268,
+    37.26979923248291
+  ],
+  "mesh": {
+    "triangles": 8763,
+    "vertices": 21173,
+    "materials": 4,
+    "bytes": 870352,
+    "sha256": "sha256:629693d488ee9be43421a4d8e8b0440cd86f9dfb11d99070139aaa5fde0c50f8"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

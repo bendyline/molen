@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.walt_disney_concert_hall",
+  "kind": "static-structure",
+  "title": "Walt Disney Concert Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.walt_disney_concert_hall",
+        "output": "assets/places/9q/9q5/walt_disney_concert_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d7c3a27feead80e44ea5a67d17cf397eee741783d37bd0492135e424bc988ed1"
+      }
+    ],
+    "generators": [
+      {
+        "id": "walt_disney_concert_hall",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "grand-avenue-steel-sails",
+        "path": "models/grand-avenue-steel-sails.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,0 +1,375 @@
+{
+  "id": "perth_town_hall",
+  "planId": "perth_town_hall",
+  "title": "Perth Town Hall",
+  "assetId": "molen.worldgen.structure.perth_town_hall",
+  "category": "civic",
+  "wikidataId": "Q7170899",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 115.860478,
+    "latitude": -31.9549198
+  },
+  "visualBrief": "The red-brick Gothic Town Hall has a northwest clock tower, four turreted corners, shingled roofs, pale trim and pointed arches around an open undercroft.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/qd/qd6/perth_town_hall/models/hay-barrack-gothic-town-hall.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Perth_Town_Hall_-_Perth.jpg",
+    "https://www.perth.wa.gov.au/-/media/Project/COP/COP/COP/Documents-and-Forms/Live-and-Work/Forms/Hire-and-Bookings/Perth-Town-Hall-Hire-Guide.pdf",
+    "https://www.openstreetmap.org/way/25560004"
+  ],
+  "geographicProposal": {
+    "id": "perth-town-hall",
+    "title": "Perth Town Hall",
+    "asset": "molen.worldgen.structure.perth_town_hall",
+    "anchor": [
+      115.860478,
+      -31.9549198
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 36.54296875,
+    "bounds": [
+      115.86022582492399,
+      -31.955097767413424,
+      115.86075767507253,
+      -31.954714332769232
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q7170899",
+      "names": [
+        "Perth Town Hall",
+        "Perth Town Hall",
+        "HMAS Perth Memorial"
+      ],
+      "maxDistance": 59
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -12.373037,
+          -20.872383
+        ],
+        [
+          -21.818104,
+          3.640148
+        ],
+        [
+          -11.088508,
+          7.770103
+        ],
+        [
+          14.979876,
+          17.811134
+        ],
+        [
+          24.415497,
+          -6.701431
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace only the native Town Hall outline. Keep the turn at Hay and Barrack and the neighboring commercial block."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -12.373037,
+          -20.872383
+        ],
+        [
+          -21.818104,
+          3.640148
+        ],
+        [
+          -11.088508,
+          7.770103
+        ],
+        [
+          14.979876,
+          17.811134
+        ],
+        [
+          24.415497,
+          -6.701431
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Expose the platform and restored open undercroft below the historic building footprint."
+    },
+    "source": "https://www.openstreetmap.org/way/25560004",
+    "note": "The clock tower marks the northwest street corner. The pointed arcades wrap both mapped street façades.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:993136d0067040f456b3ce0292b0ee8399f543315f2d906120b3a689f428e776"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.97
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "shingle_cedar",
+        "roughness": 0.94
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.99
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.85
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.66
+      }
+    },
+    "errorMeters": 0.98,
+    "module": "content/worldgen/source/places/qd/qd6/perth_town_hall/models/hay-barrack-gothic-town-hall.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.99
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          }
+        },
+        "errorMeters": 0.35
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.99
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          }
+        },
+        "errorMeters": 0.136
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.99
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66
+          }
+        },
+        "errorMeters": 0.055
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0.11043670601011168,
+        15,
+        -3.2042511171054713
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "hay-and-barrack-clock-tower",
+      "position": [
+        -23.335450105419994,
+        7,
+        -64.74521626736622
+      ],
+      "lookAt": [
+        -7.997625400426211,
+        21,
+        -12.757225987697948
+      ],
+      "fov": 58
+    },
+    {
+      "name": "open-north-undercroft",
+      "position": [
+        13.838759290337418,
+        2.9,
+        -33.279708869576154
+      ],
+      "lookAt": [
+        4.133488746877022,
+        4,
+        -8.084317948254055
+      ],
+      "fov": 64
+    },
+    {
+      "name": "shingled-towers-and-hall-roof",
+      "position": [
+        38.83408632582055,
+        48,
+        -53.656990984452165
+      ],
+      "lookAt": [
+        -5.2742853567132695,
+        23,
+        -3.1351981865372416
+      ],
+      "fov": 53
+    }
+  ],
+  "limitations": [
+    "Tower height, roof pitch and floor grade are exterior estimates. The preview terrain blends an estimated street approach into sharply varying Terrarium samples. Runtime terrain outside the landmark follows the host elevation source."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -21.995397567749023,
+      -2.9000000953674316,
+      -21.11798095703125
+    ],
+    "max": [
+      24.59281349182129,
+      46.79999923706055,
+      17.988441467285156
+    ]
+  },
+  "size": [
+    46.58821105957031,
+    49.69999933242798,
+    39.106422424316406
+  ],
+  "mesh": {
+    "triangles": 16238,
+    "vertices": 31074,
+    "materials": 6,
+    "bytes": 1317268,
+    "sha256": "sha256:7d212a22489a09b9e0c58dc3482e4f483bbfd19b61d38a6c9aca4f7067e73bc8"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_cedar",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

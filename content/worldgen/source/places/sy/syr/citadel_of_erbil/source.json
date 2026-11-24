@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.citadel_of_erbil",
+  "kind": "static-structure",
+  "title": "Citadel of Erbil",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.citadel_of_erbil",
+        "output": "assets/places/sy/syr/citadel_of_erbil/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:34203441ed584ed1133ee18bd90534a2e5a58863465f8e1b7946d22084d2b21a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "citadel_of_erbil",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "tell-ramparts-and-main-gate",
+        "path": "models/tell-ramparts-and-main-gate.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "citadel-layout.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

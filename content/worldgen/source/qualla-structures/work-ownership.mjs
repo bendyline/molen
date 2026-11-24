@@ -26,6 +26,7 @@ export function structureCatalogEntries(candidates, collections, importantLandma
     ...candidates.candidates.map((c) => ({ ...c, assetId: c.modelRef })),
     ...collections.collections.flatMap((c) => c.members),
     ...(importantLandmarks?.entries ?? []),
+    ...(importantLandmarks?.collections ?? []).flatMap((c) => c.members),
   ];
 }
 

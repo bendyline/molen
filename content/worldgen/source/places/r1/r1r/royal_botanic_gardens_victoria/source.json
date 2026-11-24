@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.royal_botanic_gardens_victoria",
+  "kind": "static-structure",
+  "title": "Royal Botanic Gardens Victoria",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.royal_botanic_gardens_victoria",
+        "output": "assets/places/r1/r1r/royal_botanic_gardens_victoria/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:0e8e719f45c8d1e3d9bdfefad5bce4cdf4c72ac41c1b0e7b1177ccdfd6059201"
+      }
+    ],
+    "generators": [
+      {
+        "id": "royal_botanic_gardens_victoria",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "temple-of-the-winds-and-observatories",
+        "path": "models/temple-of-the-winds-and-observatories.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

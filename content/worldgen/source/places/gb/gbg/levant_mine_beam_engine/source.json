@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.levant_mine_beam_engine",
+  "kind": "static-structure",
+  "title": "Levant Mine and Beam Engine",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.levant_mine_beam_engine",
+        "output": "assets/places/gb/gbg/levant_mine_beam_engine/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:222ba2fa8f2e5612455ba15d3f962de3f10d37ea4cbb036eb460b7f290306411"
+      }
+    ],
+    "generators": [
+      {
+        "id": "levant_mine_beam_engine",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cornish-engine-houses",
+        "path": "models/cornish-engine-houses.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

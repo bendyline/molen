@@ -1,0 +1,153 @@
+{
+  "id": "portreath_harbour",
+  "planId": "portreath_harbour",
+  "title": "Portreath Harbour and Daymark",
+  "assetId": "molen.worldgen.structure.portreath_harbour",
+  "category": "landmark",
+  "collectionId": "cornwall_and_west_devon_mining_landscape",
+  "mapFeatureId": "way/1488908397",
+  "wikidataId": "Q464566",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": { "longitude": -5.291289, "latitude": 50.262334 },
+  "visualBrief": "The tidal outer and inner basins retain their granite edges, the long seaward breakwater and the small pale daymark on the cliff above.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gb/gbu/portreath_harbour/models/cornish-harbour.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/1215/maps/",
+    "https://commons.wikimedia.org/wiki/File:Portreath_harbour_-_geograph.org.uk_-_104198.jpg",
+    "https://www.openstreetmap.org/way/1488908397"
+  ],
+  "geographicProposal": {
+    "id": "portreath-harbour",
+    "title": "Portreath Harbour and Daymark",
+    "asset": "molen.worldgen.structure.portreath_harbour",
+    "anchor": [-5.291289, 50.262334],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 4.354695,
+    "bounds": [-5.292863304262611, 50.26104286426815, -5.289111895737377, 50.264037143909505],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q464566",
+      "names": [
+        "Portreath Harbour and Daymark",
+        "Portreath Harbour",
+        "Portreath Inner Basin",
+        "Portreath Breakwater",
+        "Huer’s Hut"
+      ],
+      "maxDistance": 207.595103
+    },
+    "source": "https://www.openstreetmap.org/way/1488908397",
+    "note": "The harbour works align to the native shoreline, mapped structures and basin. Native water and surrounding paths remain available.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3c83ae10a6fe41fb591b4a4b2d5281449cda1f374f6f4653e5ced55e6ef77471"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "stone": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+      "paving": { "slot": "foundation", "graph": "gravel", "roughness": 0.97 },
+      "iron": { "slot": "trim", "graph": "metal_painted", "roughness": 0.91 },
+      "wood": { "slot": "trim", "graph": "wood_vertical", "roughness": 0.96 },
+      "plaster": { "slot": "wall", "graph": "plaster_lime", "roughness": 0.96 }
+    },
+    "errorMeters": 1.05,
+    "module": "content/worldgen/source/places/gb/gbu/portreath_harbour/models/cornish-harbour.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "stone": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+          "paving": { "slot": "foundation", "graph": "gravel", "roughness": 0.97 },
+          "iron": { "slot": "trim", "graph": "metal_painted", "roughness": 0.91 },
+          "wood": { "slot": "trim", "graph": "wood_vertical", "roughness": 0.96 },
+          "plaster": { "slot": "wall", "graph": "plaster_lime", "roughness": 0.96 }
+        },
+        "errorMeters": 0.28
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "stone": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+          "paving": { "slot": "foundation", "graph": "gravel", "roughness": 0.97 },
+          "iron": { "slot": "trim", "graph": "metal_painted", "roughness": 0.91 },
+          "wood": { "slot": "trim", "graph": "wood_vertical", "roughness": 0.96 },
+          "plaster": { "slot": "wall", "graph": "plaster_lime", "roughness": 0.96 }
+        },
+        "errorMeters": 0.093
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "stone": { "slot": "wall", "graph": "stone_drywall", "roughness": 0.98 },
+          "paving": { "slot": "foundation", "graph": "gravel", "roughness": 0.97 },
+          "iron": { "slot": "trim", "graph": "metal_painted", "roughness": 0.91 },
+          "wood": { "slot": "trim", "graph": "wood_vertical", "roughness": 0.96 },
+          "plaster": { "slot": "wall", "graph": "plaster_lime", "roughness": 0.96 }
+        },
+        "errorMeters": 0.03
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": { "center": [90, -0.884695, 42] },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": { "path": "native-water.json" }
+  },
+  "qaCameras": [
+    {
+      "name": "two-basins-and-daymark",
+      "position": [-122, 107.215305, 99],
+      "lookAt": [90, -0.884695, 42],
+      "fov": 55
+    },
+    {
+      "name": "quay-coping-and-inner-basin",
+      "position": [107, 16.715305, 84],
+      "lookAt": [163, -2.584695, 105],
+      "fov": 56
+    },
+    {
+      "name": "seaward-wall-and-daymark",
+      "position": [9, 33.215305, -84],
+      "lookAt": [-16, 12.215305, -16],
+      "fov": 53
+    }
+  ],
+  "limitations": [
+    "The mapped shoreline and breakwater set the plan. Quay coping heights, the tide in the reference view and the daymark details are approximations."
+  ],
+  "importOptions": { "optimize": false },
+  "actualBounds": {
+    "min": [-110.05865478515625, -6.144694805145264, -187.24810791015625],
+    "max": [153.1131591796875, 27.256149291992188, 141.91395568847656]
+  },
+  "size": [263.17181396484375, 33.40084409713745, 329.1620635986328],
+  "mesh": {
+    "triangles": 3425,
+    "vertices": 6667,
+    "materials": 5,
+    "bytes": 284476,
+    "sha256": "sha256:9fe11743b46e26a9f41dfa992f51c8ddcc013e2f60452405c54cbed797eab764"
+  },
+  "sharedSurfaces": [
+    { "ref": "matgraph:molen.worldgen.material.plaster_lime", "slot": "wall", "uv": "repeats" },
+    { "ref": "matgraph:molen.worldgen.material.stone_drywall", "slot": "wall", "uv": "repeats" },
+    { "ref": "matgraph:molen.worldgen.material.metal_painted", "slot": "trim", "uv": "repeats" },
+    { "ref": "matgraph:molen.worldgen.material.wood_vertical", "slot": "trim", "uv": "repeats" },
+    { "ref": "matgraph:molen.worldgen.material.gravel", "slot": "foundation", "uv": "repeats" }
+  ]
+}

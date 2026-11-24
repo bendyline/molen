@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.princely_abbey_of_corvey",
+  "kind": "static-structure",
+  "title": "Princely Abbey of Corvey",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.princely_abbey_of_corvey",
+        "output": "assets/places/u1/u1n/princely_abbey_of_corvey/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:af62868faa6406051eba3cca1dee72a7c2c2ee670760cbe46827b450f5d8357a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "princely_abbey_of_corvey",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "carolingian-westwork-and-abbey-courts",
+        "path": "models/carolingian-westwork-and-abbey-courts.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

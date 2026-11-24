@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.national_gallery_of_australia",
+  "kind": "static-structure",
+  "title": "National Gallery of Australia",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.national_gallery_of_australia",
+        "output": "assets/places/r3/r3d/national_gallery_of_australia/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6210837ba1119d0acf5d1e545cb444c666cef47497d0f4634d0d3b1897594745"
+      }
+    ],
+    "generators": [
+      {
+        "id": "national_gallery_of_australia",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "madigan-gallery-and-portico",
+        "path": "models/madigan-gallery-and-portico.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

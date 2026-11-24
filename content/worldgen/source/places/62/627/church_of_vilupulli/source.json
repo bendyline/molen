@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.church_of_vilupulli",
+  "kind": "static-structure",
+  "title": "Church of Vilupulli",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.church_of_vilupulli",
+        "output": "assets/places/62/627/church_of_vilupulli/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f345cbdcf0b160b4ed517649f96384fdbb8bc68a6f6287ed8e2af821f828ee68"
+      }
+    ],
+    "generators": [
+      {
+        "id": "church_of_vilupulli",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "church-nave-porch-and-belfry",
+        "path": "models/church-nave-porch-and-belfry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "church-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

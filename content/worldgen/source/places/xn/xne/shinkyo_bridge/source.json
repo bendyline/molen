@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.shinkyo_bridge",
+  "kind": "static-structure",
+  "title": "Shinkyō Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.shinkyo_bridge",
+        "output": "assets/places/xn/xne/shinkyo_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9e0c4c25be6851c17db82282338fdf2df29112cf2e9058873e280fe07bdc2797"
+      }
+    ],
+    "generators": [
+      {
+        "id": "shinkyo_bridge",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "lacquered-humpback",
+        "path": "models/lacquered-humpback.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

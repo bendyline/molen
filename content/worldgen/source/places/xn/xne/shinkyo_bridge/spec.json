@@ -1,0 +1,383 @@
+{
+  "id": "shinkyo_bridge",
+  "planId": "shinkyo_bridge",
+  "title": "Shinkyō Bridge",
+  "assetId": "molen.worldgen.structure.shinkyo_bridge",
+  "category": "bridge",
+  "collectionId": "shrines_and_temples_of_nikko",
+  "mapFeatureId": "way/431806706",
+  "wikidataId": "Q28040588",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 139.60403575,
+    "latitude": 36.75331635
+  },
+  "visualBrief": "A red lacquered pedestrian bridge arches over the Daiya River. Blackened timber stringers cross between two masonry abutments, with bronze-topped railing posts above the deck.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xne/shinkyo_bridge/models/lacquered-humpback.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/913/",
+    "https://www.city.nikko.lg.jp/material/files/group/42/sekaiisan-map.pdf",
+    "https://www.openstreetmap.org/relation/13044127",
+    "https://commons.wikimedia.org/wiki/File:Shinkyo_Bridge_over_the_Daiya_River_at_Nikko%2C_Japan.jpg",
+    "https://www.openstreetmap.org/way/431806706"
+  ],
+  "geographicProposal": {
+    "id": "shinkyo-bridge",
+    "title": "Shinkyō Bridge",
+    "asset": "molen.worldgen.structure.shinkyo_bridge",
+    "anchor": [
+      139.60403575,
+      36.75331635
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 593.904584,
+    "bounds": [
+      139.60387107629109,
+      36.75318493463372,
+      139.60420402371207,
+      36.75345066552234
+    ],
+    "minLevel": 15,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q28040588",
+      "names": [
+        "Shinkyō Bridge",
+        "神橋",
+        "Shinkyo Bridge",
+        "Shin-kyō",
+        "Sacred Bridge"
+      ],
+      "maxDistance": 76
+    },
+    "replaceRoads": {
+      "length": 28.229217,
+      "width": 8.346591,
+      "outline": [
+        [
+          -12.687464,
+          -7.241336
+        ],
+        [
+          7.344904,
+          12.629187
+        ],
+        [
+          10.199026,
+          9.757148
+        ],
+        [
+          13.008553,
+          6.918504
+        ],
+        [
+          -7.023816,
+          -12.952033
+        ],
+        [
+          -10.199026,
+          -9.757159
+        ]
+      ],
+      "deckEndpoints": [
+        [
+          -10.199026,
+          -9.757159
+        ],
+        [
+          10.199026,
+          9.757148
+        ]
+      ],
+      "deckHeights": [
+        1.764887,
+        1.855499
+      ],
+      "bridgeFeatureIds": [
+        686372581
+      ],
+      "includeConnectedApproaches": true,
+      "deckProfile": [
+        [
+          -10.199026,
+          1.764887,
+          -9.757159
+        ],
+        [
+          -7.649269,
+          2.384339,
+          -7.317871
+        ],
+        [
+          -5.099513,
+          2.83004,
+          -4.878582
+        ],
+        [
+          -2.549756,
+          3.101992,
+          -2.439294
+        ],
+        [
+          0,
+          3.200193,
+          -0.000005
+        ],
+        [
+          2.549756,
+          3.124644,
+          2.439283
+        ],
+        [
+          5.099513,
+          2.875346,
+          4.878571
+        ],
+        [
+          7.649269,
+          2.452297,
+          7.31786
+        ],
+        [
+          10.199026,
+          1.855499,
+          9.757148
+        ]
+      ]
+    },
+    "source": "https://www.openstreetmap.org/way/431806706",
+    "note": "PMTiles provides the Daiya water outline and mapped bridge area. The source footway fixes both deck endpoints.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5df5e90745f0327dfb441a235ceca02a4698feaac733c092a458d70bdef10a39"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "deck": {
+        "slot": "wall",
+        "graph": "wood_plain",
+        "roughness": 0.88
+      },
+      "lacquer": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.75
+      },
+      "pier": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "cap": {
+        "slot": "trim",
+        "graph": "metal_copper",
+        "roughness": 0.88
+      }
+    },
+    "errorMeters": 0.76,
+    "module": "content/worldgen/source/places/xn/xne/shinkyo_bridge/models/lacquered-humpback.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "deck": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "lacquer": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.75
+          },
+          "pier": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "cap": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.88
+          }
+        },
+        "errorMeters": 0.27
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "deck": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "lacquer": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.75
+          },
+          "pier": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "cap": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.88
+          }
+        },
+        "errorMeters": 0.09
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "deck": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "lacquer": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.75
+          },
+          "pier": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "cap": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.88
+          }
+        },
+        "errorMeters": 0.032
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        1,
+        -0.000005499999999436511
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "red-rail-and-daiya-river",
+      "position": [
+        -19.324548,
+        4,
+        21.646284
+      ],
+      "lookAt": [
+        0,
+        1,
+        -0.000005
+      ],
+      "fov": 53
+    },
+    {
+      "name": "deck-and-north-abutment",
+      "position": [
+        -11.026634,
+        5,
+        -18.852415
+      ],
+      "lookAt": [
+        2.890346,
+        2,
+        2.765116
+      ],
+      "fov": 60
+    },
+    {
+      "name": "open-channel-below-the-deck",
+      "position": [
+        -15.836839,
+        -6.299807,
+        19.447219
+      ],
+      "lookAt": [
+        -0.722587,
+        -5.299807,
+        -0.691286
+      ],
+      "fov": 62
+    }
+  ],
+  "limitations": [
+    "The modeled scope concentrates on the principal exterior structures in this precinct. Interior finishes and small sculpture use simplified volumes or remain outside the model.",
+    "Abutment, deck and water elevations are estimated from Terrarium samples, the mapped banks and the exterior photograph."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -13.120378494262695,
+      -8.599806785583496,
+      -12.799915313720703
+    ],
+    "max": [
+      13.120378494262695,
+      4.550192832946777,
+      12.799904823303223
+    ]
+  },
+  "size": [
+    26.24075698852539,
+    13.149999618530273,
+    25.599820137023926
+  ],
+  "mesh": {
+    "triangles": 6130,
+    "vertices": 12158,
+    "materials": 4,
+    "bytes": 514156,
+    "sha256": "sha256:9e0c4c25be6851c17db82282338fdf2df29112cf2e9058873e280fe07bdc2797"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

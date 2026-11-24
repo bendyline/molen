@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.south_caradon_mine_engine_houses",
+  "kind": "static-structure",
+  "title": "South Caradon Mine Engine Houses",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.south_caradon_mine_engine_houses",
+        "output": "assets/places/gb/gbu/south_caradon_mine_engine_houses/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b6025521556408d81428c25bf2d6b0c018dee667f6da48455e838f2ac95f4cd2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "south_caradon_mine_engine_houses",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cornish-engine-houses",
+        "path": "models/cornish-engine-houses.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

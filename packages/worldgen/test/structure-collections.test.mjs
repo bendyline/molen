@@ -1,9 +1,11 @@
 import { readFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import {
   authoredMapMatchRadius,
   collectionModelRefs,
   distinctMappedCollectionPlacement,
+  readAuthoringCollections,
   selectedStructureIds,
   structureImportArgs,
   validateCollectionSpec,
@@ -24,6 +26,20 @@ const collections = validateStructureCollections(document, catalog.candidates);
 const collection = collections.find((entry) => entry.id === 'seven_sisters');
 
 describe('independent landmark collections', () => {
+  it('expands an important landmark collection to both independently authored buildings', async () => {
+    const path = fileURLToPath(
+      new URL(
+        '../../../content/worldgen/source/structure-catalog/collections.json',
+        import.meta.url,
+      ),
+    );
+    const authoring = await readAuthoringCollections(path, catalog.candidates);
+    expect(selectedStructureIds(['churches_of_peace'], authoring)).toEqual([
+      'church_of_peace_jawor',
+      'church_of_peace_swidnica',
+    ]);
+    expect(collections.some((entry) => entry.id === 'churches_of_peace')).toBe(false);
+  });
   it('reuses the same mapped asset across site and OSM collection identity modes', () => {
     const changed = structuredClone(document);
     const original = changed.collections.find((entry) => entry.id === 'towers_of_silence_in_yazd');

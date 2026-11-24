@@ -1,0 +1,57 @@
+{
+  "format": "molen/scene@3",
+  "name": "Portreath Harbour and Daymark",
+  "seed": "portreath_harbour",
+  "tickRate": 30,
+  "physics": { "engine": "none" },
+  "camera": {
+    "mode": "fixed",
+    "position": [-122, 107.215305, 99],
+    "lookAt": [90, -0.884695, 42],
+    "fov": 55
+  },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.portreath_harbour",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "sun": {
+            "direction": [-0.5, 0.75, 0.32],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -6.984695, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [886.380412, 1.18, 886.380412] },
+          "materialRef": "palette:#878775",
+          "shadows": { "receive": true }
+        }
+      }
+    }
+  ]
+}

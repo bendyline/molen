@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.agios_ioannis_lambadistis_monastery",
+  "kind": "static-structure",
+  "title": "Agios Ioannis Lambadistis Monastery",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.agios_ioannis_lambadistis_monastery",
+        "output": "assets/places/sw/swp/agios_ioannis_lambadistis_monastery/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1d821a0caddd8f44e417899ca7396a35b8af2dc481fbcfb4df3d6b73ee3b2cd3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "agios_ioannis_lambadistis_monastery",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "chapel-and-roof",
+        "path": "models/chapel-and-roof.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "church-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

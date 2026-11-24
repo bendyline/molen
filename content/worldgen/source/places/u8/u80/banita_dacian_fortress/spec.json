@@ -1,0 +1,226 @@
+{
+  "id": "banita_dacian_fortress",
+  "planId": "banita_dacian_fortress",
+  "title": "Bănița Dacian Fortress",
+  "assetId": "molen.worldgen.structure.banita_dacian_fortress",
+  "category": "archaeological_site",
+  "collectionId": "dacian_fortresses_of_the_orastie_mountains",
+  "mapFeatureId": "way/369958061",
+  "wikidataId": "Q542391",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 23.3144,
+    "latitude": 45.45189
+  },
+  "visualBrief": "Broken limestone courses and isolated dressed blocks mark the surviving Dacian wall on the steep ridge. Low foundation fragments lie within the separate mapped construction-remains area.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u8/u80/banita_dacian_fortress/models/dacian-fortress.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/906/maps/",
+    "https://www.cimec.ro/Arheologie/Cetatile-Dacice-Muntii-Orastiei/Banita/index.htm",
+    "https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9",
+    "https://www.openstreetmap.org/way/369958061"
+  ],
+  "geographicProposal": {
+    "id": "banita-dacian-fortress",
+    "title": "Bănița Dacian Fortress",
+    "asset": "molen.worldgen.structure.banita_dacian_fortress",
+    "anchor": [
+      23.3144,
+      45.45189
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 758.35627,
+    "bounds": [
+      23.314105992627024,
+      45.45165307438178,
+      23.3145583171707,
+      45.452175844865714
+    ],
+    "minLevel": 15,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q542391",
+      "names": [
+        "Bănița Dacian Fortress",
+        "Cetatea dacică Bănița",
+        "Cetatea de pe Dealul Bolii"
+      ],
+      "maxDistance": 87.820387
+    },
+    "source": "https://www.openstreetmap.org/way/369958061",
+    "note": "Terrarium terrain pins the shared masonry bases to the slope. Native named features fix each site. Open courtyards and approaches retain the host ground and roads.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e57e847687cec33b1d31c3d8d030960d4bd619ed615049526988021bee657aab"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.97
+      },
+      "rubble": {
+        "slot": "trim",
+        "graph": "stone_drywall",
+        "roughness": 0.98
+      }
+    },
+    "errorMeters": 0.62,
+    "module": "content/worldgen/source/places/u8/u80/banita_dacian_fortress/models/dacian-fortress.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.97
+          },
+          "rubble": {
+            "slot": "trim",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.24
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.97
+          },
+          "rubble": {
+            "slot": "trim",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.1
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.97
+          },
+          "rubble": {
+            "slot": "trim",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.026
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -2.337339884144345,
+        -5.740496,
+        -9.138785797080692
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "surviving-ridge-fragments",
+      "position": [
+        46,
+        58.395646,
+        39
+      ],
+      "lookAt": [
+        -2.337339884144345,
+        -5.740496,
+        -9.138785797080692
+      ],
+      "fov": 58
+    },
+    {
+      "name": "broken-murus-dacicus",
+      "position": [
+        0.33511824999999984,
+        -4.626249,
+        -13.716082
+      ],
+      "lookAt": [
+        -4.46488175,
+        -14.116554,
+        -21.916082
+      ],
+      "fov": 58
+    },
+    {
+      "name": "scattered-construction-stones",
+      "position": [
+        9.117743847566963,
+        18.938142,
+        25.21580660875792
+      ],
+      "lookAt": [
+        1.9177438475669626,
+        10.125677,
+        16.41580660875792
+      ],
+      "fov": 57
+    }
+  ],
+  "limitations": [
+    "The mapped wall and foundation-remains zones locate the fragments. Their individual positions, dimensions and heights are representative. The enclosing protected polygon identifies the broader site."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -20.992347717285156,
+      -19.55838394165039,
+      -29.853256225585938
+    ],
+    "max": [
+      10.587878227233887,
+      15.651956558227539,
+      24.735605239868164
+    ]
+  },
+  "size": [
+    31.580225944519043,
+    35.21034049987793,
+    54.5888614654541
+  ],
+  "mesh": {
+    "triangles": 2028,
+    "vertices": 3978,
+    "materials": 1,
+    "bytes": 169076,
+    "sha256": "sha256:6d071ed1052ce8041039bf499214a306e37fef7fdb4fef47840845f5827d6b8c"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "trim",
+      "uv": "repeats"
+    }
+  ]
+}

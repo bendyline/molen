@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.archangelos_michael_pedoulas",
+  "kind": "static-structure",
+  "title": "Archangelos Michael, Pedoulas",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.archangelos_michael_pedoulas",
+        "output": "assets/places/sw/swp/archangelos_michael_pedoulas/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:79fe69ae70c82a2b80e4b8ab2ef4b02b9455ea6963a2f5e8362e060c66ca08f3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "archangelos_michael_pedoulas",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "chapel-and-roof",
+        "path": "models/chapel-and-roof.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "church-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

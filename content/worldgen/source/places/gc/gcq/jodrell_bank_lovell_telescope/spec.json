@@ -1,0 +1,281 @@
+{
+  "id": "jodrell_bank_lovell_telescope",
+  "planId": "jodrell_bank_lovell_telescope",
+  "title": "Lovell Telescope",
+  "assetId": "molen.worldgen.structure.jodrell_bank_lovell_telescope",
+  "category": "landmark",
+  "collectionId": "jodrell_bank_observatory",
+  "mapFeatureId": "way/4908046",
+  "wikidataId": "Q555130",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -2.308591,
+    "latitude": 53.236542
+  },
+  "visualBrief": "A 76 m bowl, two tall open lattice towers and concentric rail tracks reproduce the Lovell Telescope in a representative observing pose.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcq/jodrell_bank_lovell_telescope/models/lovell-rotating-steel-lattice.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.jodrellbank.net/explore/science/telescopes/",
+    "https://www.jodrellbank.net/wp-content/uploads/2022/04/lo_res_3278_Jodrell_Bank_World_Heritage_Nomination_Dossier_v4.pdf",
+    "https://www.nature.com/articles/s41550-017-0292-0",
+    "https://www.openstreetmap.org/way/4908046"
+  ],
+  "geographicProposal": {
+    "id": "jodrell-bank-lovell-telescope",
+    "title": "Lovell Telescope",
+    "asset": "molen.worldgen.structure.jodrell_bank_lovell_telescope",
+    "anchor": [
+      -2.308591,
+      53.236542
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 77.9453125,
+    "bounds": [
+      -2.3096116204541643,
+      53.23593115274204,
+      -2.3075703795458353,
+      53.23715284725796
+    ],
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q555130",
+      "names": [
+        "Lovell Telescope",
+        "Lovell Telescope",
+        "Mark I Radio Telescope"
+      ],
+      "maxDistance": 64
+    },
+    "source": "https://www.openstreetmap.org/way/4908046",
+    "note": "Place at the center of the individual mapped telescope way. The dish sits at a representative photographic bearing and elevation.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:faa69035d7898c566d59120c5f49f445598f43de5864529b2c5de911f32a09b1"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "dish": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.81
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.96
+      },
+      "housing": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.89
+      }
+    },
+    "errorMeters": 1.5,
+    "module": "content/worldgen/source/places/gc/gcq/jodrell_bank_lovell_telescope/models/lovell-rotating-steel-lattice.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "dish": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96
+          },
+          "housing": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.89
+          }
+        },
+        "errorMeters": 0.55
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "dish": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96
+          },
+          "housing": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.89
+          }
+        },
+        "errorMeters": 0.19
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "dish": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.81
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96
+          },
+          "housing": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.89
+          }
+        },
+        "errorMeters": 0.074
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        35,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "reflector-and-feed",
+      "position": [
+        30.44267,
+        11.935,
+        -48.555348
+      ],
+      "lookAt": [
+        0,
+        33.759,
+        0
+      ],
+      "fov": 61
+    },
+    {
+      "name": "rear-trusses-and-mount",
+      "position": [
+        -50.707405,
+        22.847,
+        57.871919
+      ],
+      "lookAt": [
+        0,
+        30.349,
+        0
+      ],
+      "fov": 62
+    },
+    {
+      "name": "bearing-platform-and-structure",
+      "position": [
+        -40.707233,
+        6.479,
+        -44.525534
+      ],
+      "lookAt": [
+        0,
+        20.801000000000002,
+        0
+      ],
+      "fov": 61
+    }
+  ],
+  "limitations": [
+    "The dish is fixed at a representative observing angle. Lattice members, mechanical housings and service details are exterior interpretations. Nearby offices and visitor buildings remain native."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -54.040000915527344,
+      -0.5099999904632568,
+      -54.040000915527344
+    ],
+    "max": [
+      54.040000915527344,
+      69.07615661621094,
+      54.040000915527344
+    ]
+  },
+  "size": [
+    108.08000183105469,
+    69.5861566066742,
+    108.08000183105469
+  ],
+  "mesh": {
+    "triangles": 11232,
+    "vertices": 22592,
+    "materials": 4,
+    "bytes": 951036,
+    "sha256": "sha256:211c6d5d78a1e192bf505fd3ee825b2d699391da028121dea8ef14597e13d2e8"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.port_arthur",
+  "kind": "static-structure",
+  "title": "Port Arthur Historic Site",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.port_arthur",
+        "output": "assets/places/r2/r23/port_arthur/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9c8f7aecd0b8390b40e3eaf86dc1cae3132ccd58b57151566da30ac25f2dbbd5"
+      }
+    ],
+    "generators": [
+      {
+        "id": "port_arthur",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "mason-cove-stone-and-brick-ruins",
+        "path": "models/mason-cove-stone-and-brick-ruins.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

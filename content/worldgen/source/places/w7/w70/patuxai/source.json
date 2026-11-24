@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.patuxai",
+  "kind": "static-structure",
+  "title": "Patuxai",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.patuxai",
+        "output": "assets/places/w7/w70/patuxai/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d80f44d4d1f8c3e299cec0be49058a8be637ce97ccc54ac49dc9d159aeeb9403"
+      }
+    ],
+    "generators": [
+      {
+        "id": "patuxai",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "lane-xang-four-way-victory-gate",
+        "path": "models/lane-xang-four-way-victory-gate.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

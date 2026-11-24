@@ -4,7 +4,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { importAsset, inspectAsset } from '../../tooling/dist/index.mjs';
 import { structureAssetDirectory, structureAssetSidecarPath } from './structure-asset-paths.mjs';
-import { collectionModelRefs, readStructureCollections } from './structure-collections.mjs';
+import { collectionModelRefs, readAuthoringCollections } from './structure-collections.mjs';
 import {
   authoredModels,
   content,
@@ -21,7 +21,7 @@ const biome = resolve(root, 'packages/worldgen/node_modules/@biomejs/biome/bin/b
 const check = process.argv.includes('--check');
 const pack = JSON.parse(await readFile(stylepackPath, 'utf8'));
 const catalog = JSON.parse(await readFile(catalogPath, 'utf8'));
-const collections = await readStructureCollections(
+const collections = await readAuthoringCollections(
   resolve(content, 'source/structure-catalog/collections.json'),
   catalog.candidates,
 );
@@ -69,7 +69,10 @@ for (const { dir, spec, sourcePath, sourceHash } of models) {
       entry.members.some((member) => member.id === spec.id),
     )) {
       const record = catalog.candidates.find((entry) => entry.id === collection.id);
-      if (!record.modelRefs?.some((entry) => entry.id === spec.id && entry.asset === spec.assetId))
+      if (
+        record &&
+        !record.modelRefs?.some((entry) => entry.id === spec.id && entry.asset === spec.assetId)
+      )
         throw new Error(`${spec.id}: missing collection reference`);
     }
   } else {
@@ -84,6 +87,7 @@ for (const { dir, spec, sourcePath, sourceHash } of models) {
       entry.members.some((member) => member.id === spec.id),
     )) {
       const record = catalog.candidates.find((entry) => entry.id === collection.id);
+      if (!record) continue;
       record.modelRefs = collectionModelRefs(collection, pack.assets);
       record.modelRef = null;
       record.status =

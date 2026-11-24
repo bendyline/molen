@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.perran_foundry",
+  "kind": "static-structure",
+  "title": "Perran Foundry",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.perran_foundry",
+        "output": "assets/places/gb/gbu/perran_foundry/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:97b79f58d79bea2f3284254e8041b633622fa79c2d41bc4800b4c87375be3833"
+      }
+    ],
+    "generators": [
+      {
+        "id": "perran_foundry",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cornish-heritage",
+        "path": "models/cornish-heritage.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

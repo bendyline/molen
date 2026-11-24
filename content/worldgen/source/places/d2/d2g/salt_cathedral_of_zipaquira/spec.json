@@ -1,0 +1,380 @@
+{
+  "id": "salt_cathedral_of_zipaquira",
+  "planId": "salt_cathedral_of_zipaquira",
+  "title": "Salt Cathedral of Zipaquirá",
+  "assetId": "molen.worldgen.structure.salt_cathedral_of_zipaquira",
+  "category": "cathedral",
+  "wikidataId": "Q2565876",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -74.0100753,
+    "latitude": 5.0187226
+  },
+  "visualBrief": "A carved hillside portal leads toward the Salt Cathedral’s three rock-cut naves. The central nave has a cross, stepped altar and two rows of benches.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/d2/d2g/salt_cathedral_of_zipaquira/models/salt-mine-portal-and-three-naves.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.catedraldesal.gov.co/wp-content/uploads/2025/03/MAPA-MINA_v05-interior-y-exterior.pdf",
+    "https://commons.wikimedia.org/wiki/File:Catedral_de_la_Sal_de_Zipaquir%C3%A1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Zipaquira_Salt_Cathedral_(9287350499).jpg",
+    "https://www.openstreetmap.org/node/1239916197"
+  ],
+  "geographicProposal": {
+    "id": "salt-cathedral-of-zipaquira",
+    "title": "Salt Cathedral of Zipaquirá",
+    "asset": "molen.worldgen.structure.salt_cathedral_of_zipaquira",
+    "anchor": [
+      -74.0100753,
+      5.0187226
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 2693.06640625,
+    "bounds": [
+      -74.01119977996578,
+      5.018308843726304,
+      -74.00982198251914,
+      5.019017991881191
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q2565876",
+      "names": [
+        "Salt Cathedral of Zipaquirá",
+        "Catedral de Sal",
+        "Catedral de Sal de Zipaquirá",
+        "Minas de sal de Zipaquira"
+      ],
+      "maxDistance": 61
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -3.924481,
+          3.785082
+        ],
+        [
+          -4.794791,
+          -2.595839
+        ],
+        [
+          6.708255,
+          -4.09412
+        ],
+        [
+          20.802744,
+          -6.571595
+        ],
+        [
+          21.802789,
+          0.76052
+        ],
+        [
+          7.559645,
+          2.148086
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Expose the localized approach and first mine opening at the end of the mapped footway."
+    },
+    "source": "https://www.openstreetmap.org/node/1239916197",
+    "note": "The exterior aligns to the mapped adit and footway. The three modeled interior naves remain below the surface and use the visitor plan as a schematic layout.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f064941f43a3e52c7784d0323f75c01dc41b9511139312803b7dbbe0c8035e25"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "rock": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.97
+      },
+      "concrete": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "carved": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.95
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.94
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88
+      },
+      "light": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.75
+      }
+    },
+    "errorMeters": 1.18,
+    "module": "content/worldgen/source/places/d2/d2g/salt_cathedral_of_zipaquira/models/salt-mine-portal-and-three-naves.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88
+          },
+          "light": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75
+          }
+        },
+        "errorMeters": 0.46
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88
+          },
+          "light": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75
+          }
+        },
+        "errorMeters": 0.16
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88
+          },
+          "light": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75
+          }
+        },
+        "errorMeters": 0.066
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        4.954132,
+        -0.7,
+        -0.675706
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "carved-miners-relief-and-entrance",
+      "position": [
+        14.506607,
+        -1.3,
+        -1.675815
+      ],
+      "lookAt": [
+        3.36881,
+        0.2,
+        -0.45948
+      ],
+      "fov": 57
+    },
+    {
+      "name": "central-nave-and-altar",
+      "position": [
+        -64.205547,
+        -27.58,
+        8.757154
+      ],
+      "lookAt": [
+        -110.477137,
+        -23.45,
+        15.068252
+      ],
+      "fov": 63
+    },
+    {
+      "name": "rock-piers-and-side-naves",
+      "position": [
+        -87.449235,
+        -25.8,
+        18.891303
+      ],
+      "lookAt": [
+        -107.333647,
+        -26.75,
+        9.996914
+      ],
+      "fov": 69
+    }
+  ],
+  "limitations": [
+    "The lower route, cavern dimensions and depth are schematic. The three naves and entrance are modeled; the full tour and excavated network fall outside this model scope. A fixed below-ground review camera shows the nave."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -118.30668640136719,
+      -31.604999542236328,
+      -13.761499404907227
+    ],
+    "max": [
+      21.852331161499023,
+      4.210000038146973,
+      38.82209777832031
+    ]
+  },
+  "size": [
+    140.1590175628662,
+    35.8149995803833,
+    52.58359718322754
+  ],
+  "mesh": {
+    "triangles": 5493,
+    "vertices": 12395,
+    "materials": 7,
+    "bytes": 516368,
+    "sha256": "sha256:ef075779bab1839761923254589ef644af8f4a53db2e39a267381726e51ce03e"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

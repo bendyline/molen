@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.bat_tower_1156",
+  "kind": "static-structure",
+  "title": "Tower 1156, Bat",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.bat_tower_1156",
+        "output": "assets/places/tk/tk0/bat_tower_1156/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b86198c2454909974deb6f84ee157e86c6f3eb17da12d770e1205be706617b46"
+      }
+    ],
+    "generators": [
+      {
+        "id": "bat_tower_1156",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "oman-bronze-age",
+        "path": "models/oman-bronze-age.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

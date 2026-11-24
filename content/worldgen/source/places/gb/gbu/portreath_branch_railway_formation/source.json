@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.portreath_branch_railway_formation",
+  "kind": "static-structure",
+  "title": "Portreath Branch Railway Formation",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.portreath_branch_railway_formation",
+        "output": "assets/places/gb/gbu/portreath_branch_railway_formation/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1951d754da8f84241e0dfaa0cdf7c1b312c4db1187e9025e02a1adc70c43baeb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "portreath_branch_railway_formation",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "portreath-railway-formation",
+        "path": "models/portreath-railway-formation.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

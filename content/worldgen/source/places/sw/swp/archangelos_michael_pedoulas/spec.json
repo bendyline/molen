@@ -1,0 +1,457 @@
+{
+  "id": "archangelos_michael_pedoulas",
+  "planId": "archangelos_michael_pedoulas",
+  "title": "Archangelos Michael, Pedoulas",
+  "assetId": "molen.worldgen.structure.archangelos_michael_pedoulas",
+  "category": "religious",
+  "collectionId": "painted_churches_in_the_troodos_region",
+  "mapFeatureId": "way/277120622",
+  "wikidataId": "Q31024834",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 32.8314271,
+    "latitude": 34.967702
+  },
+  "visualBrief": "The asymmetric tiled roof descends nearly to the ground on one side, over a fieldstone gable and timber door.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sw/swp/archangelos_michael_pedoulas/models/chapel-and-roof.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/351/",
+    "https://commons.wikimedia.org/wiki/File:Pedoulas_Saint_Michael_1.JPG",
+    "https://www.openstreetmap.org/way/277120622"
+  ],
+  "geographicProposal": {
+    "id": "archangelos-michael-pedoulas",
+    "title": "Archangelos Michael, Pedoulas",
+    "asset": "molen.worldgen.structure.archangelos_michael_pedoulas",
+    "anchor": [
+      32.8314271,
+      34.967702
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 1066.5977,
+    "bounds": [
+      32.831289516670964,
+      34.9676142833357,
+      32.8315649744709,
+      34.96778916330547
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q31024834",
+      "names": [
+        "Archangelos Michael, Pedoulas",
+        "Church of Archangelos Michail",
+        "Ιερός Ναός Αρχαγγέλου Μιχαήλ"
+      ],
+      "maxDistance": 28
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.9147464,
+          -4.9537187
+        ],
+        [
+          7.4255983,
+          -4.129954
+        ],
+        [
+          6.9147464,
+          4.953716
+        ],
+        [
+          -7.4347207,
+          4.1410841
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "The independently mapped exterior footprint replaces the existing building extrusion."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -9.740045,
+          -7.703034
+        ],
+        [
+          -9.942744,
+          -4.123769
+        ],
+        [
+          -10.145443,
+          -0.544504
+        ],
+        [
+          -10.348142,
+          3.034762
+        ],
+        [
+          -10.550842,
+          6.614027
+        ],
+        [
+          -7.164601,
+          6.805795
+        ],
+        [
+          -3.778359,
+          6.997562
+        ],
+        [
+          -0.392118,
+          7.18933
+        ],
+        [
+          2.994123,
+          7.381098
+        ],
+        [
+          6.380364,
+          7.572866
+        ],
+        [
+          9.766605,
+          7.764634
+        ],
+        [
+          9.969304,
+          4.185369
+        ],
+        [
+          10.172003,
+          0.606104
+        ],
+        [
+          10.374702,
+          -2.973161
+        ],
+        [
+          10.577401,
+          -6.552426
+        ],
+        [
+          7.19116,
+          -6.744194
+        ],
+        [
+          3.804919,
+          -6.935962
+        ],
+        [
+          0.418678,
+          -7.12773
+        ],
+        [
+          -2.967563,
+          -7.319498
+        ],
+        [
+          -6.353804,
+          -7.511266
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Fit a small level court against the hillside, joining the sampled ground at its boundary."
+    },
+    "source": "https://www.openstreetmap.org/way/277120622",
+    "note": "The pitched roof is aligned to the independently mapped church. Neighboring churches and other site features retain their map geometry. The court keeps the entrances clear above the slope.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:06c4415eb482925160be5cbb8ec7281e41aa7dfd86dcb02bd212974d3ecceb47"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.96
+      },
+      "cut": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.92
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.92
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.89
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96
+      },
+      "shadow": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "name": "troodos-recesses",
+        "roughness": 0.91
+      },
+      "court": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96
+      }
+    },
+    "errorMeters": 0.49,
+    "module": "content/worldgen/source/places/sw/swp/archangelos_michael_pedoulas/models/chapel-and-roof.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.89
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "troodos-recesses",
+            "roughness": 0.91
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.2
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.89
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "troodos-recesses",
+            "roughness": 0.91
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.083
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.89
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "troodos-recesses",
+            "roughness": 0.91
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.028
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        2.65,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "roof-and-entrance",
+      "position": [
+        -17.934,
+        9.1,
+        16.01161
+      ],
+      "lookAt": [
+        0,
+        2.65,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "roof-pitch-and-eastern-wall",
+      "position": [
+        24.979343,
+        10,
+        -16.614224
+      ],
+      "lookAt": [
+        0,
+        2.65,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "placement-and-approach",
+      "position": [
+        -17.990541,
+        23,
+        17.01001
+      ],
+      "lookAt": [
+        0,
+        2.65,
+        0
+      ],
+      "fov": 49
+    }
+  ],
+  "limitations": [
+    "Fine masonry, timber fittings and roof weathering are simplified. The model covers the exterior. Sampled elevation establishes the foundation."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -10.55084228515625,
+      -4.638000011444092,
+      -7.703033924102783
+    ],
+    "max": [
+      10.577401161193848,
+      5.796000003814697,
+      7.764634132385254
+    ]
+  },
+  "size": [
+    21.128243446350098,
+    10.434000015258789,
+    15.467668056488037
+  ],
+  "mesh": {
+    "triangles": 419,
+    "vertices": 943,
+    "materials": 6,
+    "bytes": 42724,
+    "sha256": "sha256:79fe69ae70c82a2b80e4b8ab2ef4b02b9455ea6963a2f5e8362e060c66ca08f3"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

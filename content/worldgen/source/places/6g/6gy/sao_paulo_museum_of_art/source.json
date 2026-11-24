@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.sao_paulo_museum_of_art",
+  "kind": "static-structure",
+  "title": "São Paulo Museum of Art",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.sao_paulo_museum_of_art",
+        "output": "assets/places/6g/6gy/sao_paulo_museum_of_art/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ec89763db761d775c6da9d9e0d59642bc2569c12baba9de79f1a3de766c4cb8e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "sao_paulo_museum_of_art",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "masp-lina-bo-bardi-and-pietro-maria-bardi",
+        "path": "models/masp-lina-bo-bardi-and-pietro-maria-bardi.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

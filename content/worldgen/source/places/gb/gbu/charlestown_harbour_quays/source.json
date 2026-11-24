@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.charlestown_harbour_quays",
+  "kind": "static-structure",
+  "title": "Charlestown Harbour and Quays",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.charlestown_harbour_quays",
+        "output": "assets/places/gb/gbu/charlestown_harbour_quays/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:69cf0dc0acfb8f94d6794b9320c75ead845b3a8d72d678284e5bab440194d6c8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "charlestown_harbour_quays",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cornish-harbour",
+        "path": "models/cornish-harbour.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

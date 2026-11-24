@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.jodrell_bank_lovell_telescope",
+  "kind": "static-structure",
+  "title": "Lovell Telescope",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.jodrell_bank_lovell_telescope",
+        "output": "assets/places/gc/gcq/jodrell_bank_lovell_telescope/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:211c6d5d78a1e192bf505fd3ee825b2d699391da028121dea8ef14597e13d2e8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "jodrell_bank_lovell_telescope",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "lovell-rotating-steel-lattice",
+        "path": "models/lovell-rotating-steel-lattice.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

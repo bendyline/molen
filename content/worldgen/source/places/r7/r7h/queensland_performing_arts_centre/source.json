@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.queensland_performing_arts_centre",
+  "kind": "static-structure",
+  "title": "Queensland Performing Arts Centre",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.queensland_performing_arts_centre",
+        "output": "assets/places/r7/r7h/queensland_performing_arts_centre/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a5810ddb2cefe7c56a1685ed257647a452aed2cf20d5b03a74723628d67ff49f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "queensland_performing_arts_centre",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "south-bank-concrete-halls-and-glasshouse",
+        "path": "models/south-bank-concrete-halls-and-glasshouse.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

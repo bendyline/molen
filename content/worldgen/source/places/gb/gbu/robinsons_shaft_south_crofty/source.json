@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.robinsons_shaft_south_crofty",
+  "kind": "static-structure",
+  "title": "Robinson's Shaft, South Crofty",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.robinsons_shaft_south_crofty",
+        "output": "assets/places/gb/gbu/robinsons_shaft_south_crofty/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:940ce2ff7bb10469577da94f85aa43f24e70297f5c18a78bda0400b183a7dd0a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "robinsons_shaft_south_crofty",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cornish-engine-works",
+        "path": "models/cornish-engine-works.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

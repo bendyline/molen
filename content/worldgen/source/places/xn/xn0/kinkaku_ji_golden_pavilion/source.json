@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kinkaku_ji_golden_pavilion",
+  "kind": "static-structure",
+  "title": "Kinkaku-ji Golden Pavilion",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kinkaku_ji_golden_pavilion",
+        "output": "assets/places/xn/xn0/kinkaku_ji_golden_pavilion/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:86a02f85a62e9b8897406bc2fe36b3355926307aa46e08b0a1258d0642585ee0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "kinkaku_ji_golden_pavilion",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "gilt-timber-pavilion-and-phoenix",
+        "path": "models/gilt-timber-pavilion-and-phoenix.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "native-water.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

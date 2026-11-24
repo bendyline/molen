@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.diocletian_s_palace",
+  "kind": "static-structure",
+  "title": "Diocletian's Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.diocletian_s_palace",
+        "output": "assets/places/sr/sre/diocletian_s_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2aa7cb9dab1028865ce9285cb2575389187799fbf29bc0f8b6f472737d80cbac"
+      }
+    ],
+    "generators": [
+      {
+        "id": "diocletian_s_palace",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "palace-arcades-gates-and-cathedral",
+        "path": "models/palace-arcades-gates-and-cathedral.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "palace-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "id": "charlestown_harbour_quays",
+  "planId": "charlestown_harbour_quays",
+  "title": "Charlestown Harbour and Quays",
+  "assetId": "molen.worldgen.structure.charlestown_harbour_quays",
+  "category": "landmark",
+  "collectionId": "cornwall_and_west_devon_mining_landscape",
+  "mapFeatureId": "way/58294593",
+  "wikidataId": "Q17534846",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -4.7570694,
+    "latitude": 50.3319
+  },
+  "visualBrief": "The narrow wet dock opens into the lower tidal basin past its timber gate. Stone-framed quay steps and the two sea walls follow the mapped harbour entrance.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gb/gbu/charlestown_harbour_quays/models/cornish-harbour.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/1215/maps/",
+    "https://commons.wikimedia.org/wiki/File:Charlestown_Harbour%2C_Cornwall_-_October_2024.jpg",
+    "https://www.openstreetmap.org/way/58294593"
+  ],
+  "geographicProposal": {
+    "id": "charlestown-harbour-quays",
+    "title": "Charlestown Harbour and Quays",
+    "asset": "molen.worldgen.structure.charlestown_harbour_quays",
+    "anchor": [
+      -4.7570694,
+      50.3319
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 5.475316,
+    "bounds": [
+      -4.75760425250476,
+      50.3304077722712,
+      -4.755750954619979,
+      50.33245908686439
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q17534846",
+      "names": [
+        "Charlestown Harbour and Quays",
+        "Charlestown Dock",
+        "Charlestown Harbour",
+        "Charlestown Quays"
+      ],
+      "maxDistance": 184.115779
+    },
+    "source": "https://www.openstreetmap.org/way/58294593",
+    "note": "The harbour works align to the native shoreline, mapped structures and basin. Native water and surrounding paths remain available.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f5a8bbe45c167924a19dae3782dd5fe6b55440899f8a542ef590c3881633c884"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.98
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.97
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.91
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.96
+      }
+    },
+    "errorMeters": 1.05,
+    "module": "content/worldgen/source/places/gb/gbu/charlestown_harbour_quays/models/cornish-harbour.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.97
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.91
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.97
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.91
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.093
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.97
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.91
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.03
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        35,
+        -2.215316,
+        65
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "dock-and-breakwaters",
+      "position": [
+        160,
+        70.884684,
+        151
+      ],
+      "lookAt": [
+        35,
+        -2.215316,
+        65
+      ],
+      "fov": 56
+    },
+    {
+      "name": "gate-and-quay-stairs",
+      "position": [
+        20,
+        7.384684,
+        93
+      ],
+      "lookAt": [
+        48,
+        -3.155316,
+        76
+      ],
+      "fov": 59
+    },
+    {
+      "name": "sea-wall-and-dock-mouth",
+      "position": [
+        -31,
+        17.884684,
+        132
+      ],
+      "lookAt": [
+        53,
+        -2.855316,
+        108
+      ],
+      "fov": 55
+    }
+  ],
+  "limitations": [
+    "The dock walls and gate follow the mapped plan. The gate is modeled as a fixed, closed landmark with a representative tidal level."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -36.006412506103516,
+      -7.575315952301025,
+      -60.237918853759766
+    ],
+    "max": [
+      91.68821716308594,
+      -0.6953160166740417,
+      164.11578369140625
+    ]
+  },
+  "size": [
+    127.69462966918945,
+    6.879999935626984,
+    224.35370254516602
+  ],
+  "mesh": {
+    "triangles": 2367,
+    "vertices": 4711,
+    "materials": 4,
+    "bytes": 200908,
+    "sha256": "sha256:69cf0dc0acfb8f94d6794b9320c75ead845b3a8d72d678284e5bab440194d6c8"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

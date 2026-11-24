@@ -61,3 +61,38 @@ test('queued important landmarks reserve alternate names for the catalog workstr
     true,
   );
 });
+
+test('an important landmark collection reserves each member identity', () => {
+  const entries = structureCatalogEntries(
+    { candidates: [] },
+    { collections: [] },
+    {
+      entries: [{ id: 'churches_of_peace', title: 'Churches of Peace', wikidataId: 'Q589634' }],
+      collections: [
+        {
+          id: 'churches_of_peace',
+          members: [
+            {
+              id: 'church_of_peace_jawor',
+              title: 'Church of Peace in Jawor',
+              wikidataId: 'Q13586340',
+            },
+            {
+              id: 'church_of_peace_swidnica',
+              title: 'Church of Peace in Świdnica',
+              wikidataId: 'Q1456840',
+            },
+          ],
+        },
+      ],
+    },
+  );
+  for (const [wikidataId, id] of [
+    ['Q13586340', 'church_of_peace_jawor'],
+    ['Q1456840', 'church_of_peace_swidnica'],
+  ]) {
+    const assignment = workAssignment({ name: 'Church of Peace', wikidataId }, entries);
+    assert.equal(assignment.localAuthoringAllowed, false);
+    assert.deepEqual(assignment.structureCatalogIds, [id]);
+  }
+});

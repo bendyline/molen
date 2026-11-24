@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.torre_latinoamericana",
+  "kind": "static-structure",
+  "title": "Torre Latinoamericana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.torre_latinoamericana",
+        "output": "assets/places/9g/9g3/torre_latinoamericana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:145e0133c1b8cccaf8bd1837d1f948ee2f44909c570e18fabe39e25812560ba0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "torre_latinoamericana",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "ribbon-glass-setbacks-and-antenna",
+        "path": "models/ribbon-glass-setbacks-and-antenna.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

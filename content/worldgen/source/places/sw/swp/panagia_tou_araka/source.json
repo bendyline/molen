@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.panagia_tou_araka",
+  "kind": "static-structure",
+  "title": "Panagia tou Araka",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.panagia_tou_araka",
+        "output": "assets/places/sw/swp/panagia_tou_araka/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:723dd98e171f1ae417ea240063d08b45a095e9610671fb986526fc20b967b8a1"
+      }
+    ],
+    "generators": [
+      {
+        "id": "panagia_tou_araka",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "chapel-and-roof",
+        "path": "models/chapel-and-roof.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "church-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

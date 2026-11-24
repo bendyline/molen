@@ -1,0 +1,357 @@
+{
+  "id": "palacio_salvo",
+  "planId": "palacio_salvo",
+  "title": "Palacio Salvo",
+  "assetId": "molen.worldgen.structure.palacio_salvo",
+  "category": "palace",
+  "wikidataId": "Q1519373",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -56.1983083,
+    "latitude": -34.906725
+  },
+  "visualBrief": "The dark stone tower rises over the Plaza Independencia corner of its lower block. Open arch bands, projecting balconies, four corner turrets and an ornamented crown define the skyline.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6c/6cb/palacio_salvo/models/plaza-independencia-tiered-tower.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:2016_vista_de_la_Plaza_de_la_Independencia_Torre_del_Palacio_Salvo.jpg",
+    "https://montevideo.gub.uy/areas-tematicas/turismo/palacio-salvo",
+    "https://www.openstreetmap.org/way/463297039"
+  ],
+  "geographicProposal": {
+    "id": "palacio-salvo-montevideo",
+    "title": "Palacio Salvo",
+    "asset": "molen.worldgen.structure.palacio_salvo",
+    "anchor": [
+      -56.1983083,
+      -34.906725
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 43.69140625,
+    "bounds": [
+      -56.19859240786037,
+      -34.907024368607324,
+      -56.19812209213605,
+      -34.90650753261637
+    ],
+    "minLevel": 13,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q1519373",
+      "names": [
+        "Palacio Salvo",
+        "Salvo Palace",
+        "Edificio Palacio Salvo"
+      ],
+      "maxDistance": 71
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          11.420556,
+          -22.208211
+        ],
+        [
+          14.999179,
+          28.842926
+        ],
+        [
+          5.358806,
+          29.521977
+        ],
+        [
+          -20.357985,
+          31.325358
+        ],
+        [
+          -22.777208,
+          -3.183737
+        ],
+        [
+          -23.936608,
+          -19.725792
+        ],
+        [
+          -8.554005,
+          -20.805589
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the podium and its two independently mapped tower masses. Keep the civic plaza and adjacent buildings."
+    },
+    "source": "https://www.openstreetmap.org/way/463297039",
+    "note": "The tall corner block occupies the northwest tower polygon facing Plaza Independencia. The center of the upper crown follows the mapped oval.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a0c33eb3696f9b8f5bfe268e688e50cf4619deb3f1ac99f7ea5afc7275b6b2f5"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.96
+      },
+      "carved": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.98
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.91
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.64
+      }
+    },
+    "errorMeters": 1.22,
+    "module": "content/worldgen/source/places/6c/6cb/palacio_salvo/models/plaza-independencia-tiered-tower.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64
+          }
+        },
+        "errorMeters": 0.45
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64
+          }
+        },
+        "errorMeters": 0.165
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64
+          }
+        },
+        "errorMeters": 0.069
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -9,
+        37,
+        -8
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "plaza-independencia-corner-tower",
+      "position": [
+        -84,
+        21,
+        -67
+      ],
+      "lookAt": [
+        -14,
+        39,
+        -10
+      ],
+      "fov": 58
+    },
+    {
+      "name": "balconies-and-four-round-turrets",
+      "position": [
+        -48,
+        65,
+        -55
+      ],
+      "lookAt": [
+        -15,
+        65,
+        -11
+      ],
+      "fov": 55
+    },
+    {
+      "name": "stone-crown-detail",
+      "position": [
+        -38,
+        92,
+        -40
+      ],
+      "lookAt": [
+        -15,
+        88,
+        -12
+      ],
+      "fov": 53
+    }
+  ],
+  "limitations": [
+    "The 95 m architectural height follows Montevideo’s municipal listing. The map’s 105 m upper tag and the photographed architectural crown give different overall heights. Small ornament is modeled in simplified relief."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -25.527801513671875,
+      -2.799999952316284,
+      -22.659011840820312
+    ],
+    "max": [
+      15.450033187866211,
+      95,
+      31.776201248168945
+    ]
+  },
+  "size": [
+    40.977834701538086,
+    97.79999995231628,
+    54.43521308898926
+  ],
+  "mesh": {
+    "triangles": 21245,
+    "vertices": 42333,
+    "materials": 6,
+    "bytes": 1782684,
+    "sha256": "sha256:3aa49ace1eebb8918fa12362aa15233d90efed55f58fdb11b438c596c9f52233"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

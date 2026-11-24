@@ -1,0 +1,51 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.church_of_caguach",
+  "kind": "static-structure",
+  "title": "Church of Caguach",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.church_of_caguach",
+        "output": "assets/places/62/627/church_of_caguach/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1cc4e1faf59b6a49a85a902673530f245b6089726f4ea6b6cb6d18e8daa9a47f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "church_of_caguach",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "church-nave-porch-and-belfry",
+        "path": "models/church-nave-porch-and-belfry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "church-plan.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

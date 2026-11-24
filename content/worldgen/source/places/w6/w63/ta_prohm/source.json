@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.ta_prohm",
+  "kind": "static-structure",
+  "title": "Ta Prohm",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.ta_prohm",
+        "output": "assets/places/w6/w63/ta_prohm/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b49dd1620c7479315acd10fa64a4fea5d9356fb01a5f76584bd63b1c45331e75"
+      }
+    ],
+    "generators": [
+      {
+        "id": "ta_prohm",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "ta-prohm-galleries-gopuras-and-rooted-ruins",
+        "path": "models/ta-prohm-galleries-gopuras-and-rooted-ruins.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

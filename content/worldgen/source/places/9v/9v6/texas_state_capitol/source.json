@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.texas_state_capitol",
+  "kind": "static-structure",
+  "title": "Texas State Capitol",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.texas_state_capitol",
+        "output": "assets/places/9v/9v6/texas_state_capitol/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:69dd533416e3964110d4bfeafc04de47db3fd9a4ceb6af0648e78e13504e1f42"
+      }
+    ],
+    "generators": [
+      {
+        "id": "texas_state_capitol",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "sunset-granite-wings-and-iron-dome",
+        "path": "models/sunset-granite-wings-and-iron-dome.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

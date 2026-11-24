@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.diyarbakir_mardin_and_southwest_walls",
+  "kind": "static-structure",
+  "title": "Diyarbakır Mardin Gate and the Southwest Walls",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.diyarbakir_mardin_and_southwest_walls",
+        "output": "assets/places/sy/sys/diyarbakir_mardin_and_southwest_walls/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ba2bcbd5a6ffa944005dd3337e118c44d0228d7d364ee34388c87918cd8b6b39"
+      }
+    ],
+    "generators": [
+      {
+        "id": "diyarbakir_mardin_and_southwest_walls",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "fortress-sector-model",
+        "path": "models/fortress-sector-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

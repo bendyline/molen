@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.church_of_peace_swidnica",
+  "kind": "static-structure",
+  "title": "Church of Peace in Świdnica",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.church_of_peace_swidnica",
+        "output": "assets/places/u3/u35/church_of_peace_swidnica/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:879635d8694fb2154c30d9290eb2385f9fad1366b8743bbc0e7fbb9ad3318241"
+      }
+    ],
+    "generators": [
+      {
+        "id": "church_of_peace_swidnica",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "cross-gables-and-domed-porticos",
+        "path": "models/cross-gables-and-domed-porticos.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,10 +1,11 @@
 /** Register explicit authored geographic proposals; never promote coordinate-only candidates. */
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { matchesEvidenceText } from '../../worldgen/scripts/evidence-text-hash.mjs';
 import {
   authoredMapMatchRadius,
   distinctMappedCollectionPlacement,
-  readStructureCollections,
+  readAuthoringCollections,
 } from '../../worldgen/scripts/structure-collections.mjs';
 import { structurePlacementId } from '../../worldgen/scripts/structure-identity.mjs';
 import {
@@ -26,7 +27,7 @@ if (!process.argv.some((arg) => arg.startsWith('--ids=')))
 const catalog = await readStructurePlacements();
 const project = JSON.parse(await readFile(resolve(content, 'project.json'), 'utf8'));
 const check = process.argv.includes('--check');
-const collections = await readStructureCollections(
+const collections = await readAuthoringCollections(
   resolve(content, 'source/structure-catalog/collections.json'),
 );
 for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
@@ -36,10 +37,48 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
     throw new Error(`${spec.id}: authored placement needs an explicit valid Wikidata identity`);
   if (proposal.wikidataId && proposal.wikidataId !== spec.wikidataId)
     throw new Error(`${spec.id}: geographic proposal and source identity disagree`);
-  if (spec.appearance?.currentWorldEligible === false && proposal.status === 'preview-proposal')
+  if (
+    spec.appearance?.currentWorldEligible === false &&
+    ['preview-proposal', 'source-map-preview'].includes(proposal.status)
+  )
     throw new Error(
       `${spec.id}: dated historical geometry cannot activate as a current-world preview`,
     );
+  const sidecarPath = project.assets?.[spec.assetId];
+  if (!sidecarPath) throw new Error(`${spec.id}: runtime asset is not registered`);
+  const sidecar = await readOptionalJson(resolve(content, sidecarPath));
+  if (sidecar?.sourceHash !== sourceHash)
+    throw new Error(`${spec.id}: import current geometry first`);
+
+  const existing = catalog.entries.find((item) => item.asset === spec.assetId);
+  const reportPath = resolve(dir, 'placement-report.json');
+  const previous = await readOptionalJson(reportPath);
+  if (proposal.status === 'source-map-preview') {
+    const { mapGeometrySource, mapGeometryHash, ...entry } = proposal;
+    entry.status = 'preview';
+    checkPlacementSources([entry], () => `${spec.id} geographicProposal`);
+    if (
+      entry.asset !== spec.assetId ||
+      entry.mapIdentity?.wikidata !== spec.wikidataId ||
+      previous?.format !== 'molen/structure-placement-review@1' ||
+      previous.candidateId !== spec.id ||
+      previous.placementId !== entry.id ||
+      previous.placementHash !== hashBytes(JSON.stringify(entry)) ||
+      mapGeometrySource !== 'map-frame.json' ||
+      !matchesEvidenceText(await readFile(resolve(dir, mapGeometrySource)), mapGeometryHash)
+    )
+      throw new Error(`${spec.id}: missing or stale source map placement evidence`);
+    if (existing && JSON.stringify(existing) !== JSON.stringify(entry))
+      throw new Error(`${spec.id}: existing placement differs from the reviewed source map`);
+    if (!existing) {
+      if (check) throw new Error(`${spec.id}: missing source map placement`);
+      createStructureIndex({ ...catalog, entries: [...catalog.entries, entry] });
+      await writeStructurePlacement(entry);
+      catalog.entries.push(entry);
+    }
+    console.log(`${spec.id}: verified source map preview ${entry.id}`);
+    continue;
+  }
   if (spec.collectionId) {
     const duplicate = catalog.entries.find(
       (item) =>
@@ -49,11 +88,6 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
     );
     if (duplicate) throw new Error(`${spec.id}: reuse existing placed identity ${duplicate.id}`);
   }
-  const sidecarPath = project.assets?.[spec.assetId];
-  if (!sidecarPath) throw new Error(`${spec.id}: runtime asset is not registered`);
-  const sidecar = await readOptionalJson(resolve(content, sidecarPath));
-  if (sidecar?.sourceHash !== sourceHash)
-    throw new Error(`${spec.id}: import current geometry first`);
   const absolute = proposal.elevationMode === 'sea-level';
   if (absolute && !Number.isFinite(proposal.elevationMeters))
     throw new Error(`${spec.id}: absolute placement needs an explicit finite sea-level elevation`);
@@ -97,9 +131,6 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
   createStructureIndex({ ...catalog, entries: [entry] });
   // The proposal is copied verbatim; reject keys the compiler would refuse, in --check too.
   checkPlacementSources([entry], () => `${spec.id} geographicProposal`);
-  const existing = catalog.entries.find((item) => item.asset === spec.assetId);
-  const reportPath = resolve(dir, 'placement-report.json');
-  const previous = await readOptionalJson(reportPath);
   const entryHash = hashBytes(JSON.stringify(entry));
   if (check) {
     if (

@@ -1,0 +1,230 @@
+{
+  "id": "obelisk_of_axum",
+  "planId": "obelisk_of_axum",
+  "title": "Obelisk of Axum — Stele 2",
+  "assetId": "molen.worldgen.structure.obelisk_of_axum",
+  "category": "monument",
+  "wikidataId": "Q2308606",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 38.7191902,
+    "latitude": 14.1319458
+  },
+  "visualBrief": "The 24-metre granite Stele 2 stands in Aksum’s Northern Stelae Field. The false door, carved timber-like window rows and rounded crown are modeled in shallow relief.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sf/sfe/obelisk_of_axum/models/aksum-rome-stele.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ethiopian_Steele.jpg",
+    "https://whc.unesco.org/en/news/456/",
+    "https://www.openstreetmap.org/node/1990934342"
+  ],
+  "geographicProposal": {
+    "id": "aksum-stele-2",
+    "title": "Obelisk of Axum — Stele 2",
+    "asset": "molen.worldgen.structure.obelisk_of_axum",
+    "anchor": [
+      38.7191902,
+      14.1319458
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 2154.53125,
+    "bounds": [
+      38.71915011722007,
+      14.131905280104904,
+      38.71923028277993,
+      14.131986319895097
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q2308606",
+      "names": [
+        "Obelisk of Axum — Stele 2",
+        "Stele 2",
+        "Rome Stele",
+        "Aksum Obelisk",
+        "Axum Obelisk"
+      ],
+      "maxDistance": 22
+    },
+    "source": "https://www.openstreetmap.org/node/1990934342",
+    "note": "The asset is fixed to the PMTiles Stele 2 point. Its broad carved front follows the southeast-facing alignment of the stele row.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c114948e5eae597403cd77f1492be53e8ff755152ddc82944508380f34005638"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "granite": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.99
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98
+      }
+    },
+    "errorMeters": 0.44,
+    "module": "content/worldgen/source/places/sf/sfe/obelisk_of_axum/models/aksum-rome-stele.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.99
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.17
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.99
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.072
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.99
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.027
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        10.6,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "base-false-door-and-carved-courses",
+      "position": [
+        5.9,
+        2.3,
+        6
+      ],
+      "lookAt": [
+        0,
+        4.1,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crown-and-upper-carvings",
+      "position": [
+        7.8,
+        22.8,
+        7.2
+      ],
+      "lookAt": [
+        0,
+        20.5,
+        0
+      ],
+      "fov": 47
+    },
+    {
+      "name": "granite-monolith-southeast",
+      "position": [
+        24,
+        13,
+        24
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 47
+    }
+  ],
+  "limitations": [
+    "The overall height follows UNESCO. Individual carved openings, restored joints, cap profile and footprint width are estimated from exterior photos. The other stelae are separate features."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -2.3269567489624023,
+      -0.5400000214576721,
+      -2.5106639862060547
+    ],
+    "max": [
+      2.3269567489624023,
+      24,
+      2.5106639862060547
+    ]
+  },
+  "size": [
+    4.653913497924805,
+    24.540000021457672,
+    5.021327972412109
+  ],
+  "mesh": {
+    "triangles": 2762,
+    "vertices": 5598,
+    "materials": 2,
+    "bytes": 236668,
+    "sha256": "sha256:0d3b81dc1b73bd88cd2df72fd727e3328be6da5d401de8fd63a7d76f4138df08"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

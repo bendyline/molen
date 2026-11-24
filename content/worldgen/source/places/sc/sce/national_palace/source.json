@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.national_palace",
+  "kind": "static-structure",
+  "title": "National Palace — Jubilee Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.national_palace",
+        "output": "assets/places/sc/sce/national_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:81ce1dd534498471f168478c4b388248785cf4c67f05e0db2834e0826673b426"
+      }
+    ],
+    "generators": [
+      {
+        "id": "national_palace",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "jubilee-palace-museum",
+        "path": "models/jubilee-palace-museum.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

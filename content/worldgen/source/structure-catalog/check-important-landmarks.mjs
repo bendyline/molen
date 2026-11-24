@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'node:url';
+import { validateStructureCollections } from '../../../../packages/worldgen/scripts/structure-collections.mjs';
 import { validateStructureCandidateIds } from '../../../../packages/worldgen/scripts/structure-identity.mjs';
 import { readImportantLandmarks } from '../qualla-structures/work-ownership.mjs';
 import {
@@ -15,6 +16,11 @@ const args = process.argv.slice(2);
 if (args.length > 1 || (args.length === 1 && !['--check', '--next'].includes(args[0])))
   throw new Error('Usage: node check-important-landmarks.mjs [--check|--next]');
 validateStructureCandidateIds(manifest.entries);
+const collections = validateStructureCollections(
+  { format: 'molen/structure-collections@1', collections: manifest.collections ?? [] },
+  manifest.entries,
+);
+const membersById = new Map(collections.map((collection) => [collection.id, collection.members]));
 const coverage = loadLandmarkCoverage(root);
 const findOverlap = createLandmarkOverlapIndex(coverage);
 const identityIds = new Set();
@@ -49,18 +55,33 @@ for (const [index, entry] of manifest.entries.entries()) {
     failures.push(`${entry.id}: missing or duplicate public identity`);
   identityIds.add(identity);
 
-  const match = findOverlap(entry);
-  const ownAsset = `molen.worldgen.structure.${entry.id}`;
-  if (match && (entry.status === 'queued' || match.assetId !== ownAsset)) {
-    failures.push(
-      `${entry.id}: already covered or reserved as ${match.id ?? match.assetId ?? match.names[0]} in ${match.source}`,
-    );
+  const members = membersById.get(entry.id);
+  const ownAsset = members ? undefined : `molen.worldgen.structure.${entry.id}`;
+  for (const candidate of [{ ...entry, assetId: ownAsset }, ...(members ?? [])]) {
+    let match = findOverlap(candidate);
+    if (candidate.id === entry.id && members?.some((member) => member.assetId === match?.assetId)) {
+      // Mapped members can inherit the collection's Wikidata identity. Check for a separate
+      // claimant after excluding its declared assets, which are checked individually below.
+      const memberAssets = new Set(members.map((member) => member.assetId));
+      match = createLandmarkOverlapIndex(
+        coverage.filter((item) => !memberAssets.has(item.assetId)),
+      )(candidate);
+    }
+    if (
+      match &&
+      (entry.status === 'queued' || !candidate.assetId || match.assetId !== candidate.assetId)
+    ) {
+      failures.push(
+        `${candidate.id}: already covered or reserved as ${match.id ?? match.assetId ?? match.names[0]} in ${match.source}`,
+      );
+    }
   }
-  if (
-    entry.status === 'reviewed' &&
-    !coverage.some((item) => item.assetId === ownAsset && item.hasModel)
-  )
-    failures.push(`${entry.id}: reviewed entry has no indexed source model`);
+  if (entry.status === 'reviewed') {
+    for (const candidate of members ?? [{ id: entry.id, assetId: ownAsset }]) {
+      if (!coverage.some((item) => item.assetId === candidate.assetId && item.hasModel))
+        failures.push(`${candidate.id}: reviewed entry has no indexed source model`);
+    }
+  }
   states[entry.status]++;
 }
 if (failures.length) throw new Error(failures.join('\n'));

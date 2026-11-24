@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.diyarbakir_yeni_and_east_walls",
+  "kind": "static-structure",
+  "title": "Diyarbakır Yeni Gate and the East Walls",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.diyarbakir_yeni_and_east_walls",
+        "output": "assets/places/sy/sys/diyarbakir_yeni_and_east_walls/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4db7de270303f6a96e6b01681dc7d2db18458a0988a5c85555e644d50869bd80"
+      }
+    ],
+    "generators": [
+      {
+        "id": "diyarbakir_yeni_and_east_walls",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "fortress-sector-model",
+        "path": "models/fortress-sector-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

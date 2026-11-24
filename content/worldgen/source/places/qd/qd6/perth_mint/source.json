@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.perth_mint",
+  "kind": "static-structure",
+  "title": "Perth Mint",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.perth_mint",
+        "output": "assets/places/qd/qd6/perth_mint/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7e1a841c3fb65bacc28eb07f887b7d37eedf17fc0126b8c42f2ce7a383297588"
+      }
+    ],
+    "generators": [
+      {
+        "id": "perth_mint",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "hay-street-mint-and-gatehouse",
+        "path": "models/hay-street-mint-and-gatehouse.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

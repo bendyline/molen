@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.basilica_of_saint_paul_outside_the_walls",
+  "kind": "static-structure",
+  "title": "Basilica of Saint Paul Outside the Walls",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.basilica_of_saint_paul_outside_the_walls",
+        "output": "assets/places/sr/sr2/basilica_of_saint_paul_outside_the_walls/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e19a03cb078d278ea0cf6f040f9939a2520ba92a4db5122c027889cbbd79f98c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "basilica_of_saint_paul_outside_the_walls",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "quadriportico-and-mosaic-front",
+        "path": "models/quadriportico-and-mosaic-front.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}

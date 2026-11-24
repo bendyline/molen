@@ -1,0 +1,378 @@
+{
+  "id": "queen_victoria_building",
+  "planId": "queen_victoria_building",
+  "title": "Queen Victoria Building",
+  "assetId": "molen.worldgen.structure.queen_victoria_building",
+  "category": "civic",
+  "wikidataId": "Q54518",
+  "quality": "medium-fi-exterior",
+  "fidelityTarget": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 151.207,
+    "latitude": -33.8718
+  },
+  "visualBrief": "The sandstone market hall has a central copper dome, twenty mapped subsidiary domes, two long skylights and arched George Street facades.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r3/r3g/queen_victoria_building/models/george-street-sandstone-market-hall.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:QBV_from_above_(cropped).jpg",
+    "https://commons.wikimedia.org/wiki/File:Queen_Victoria_Building_on_George_Street%2C_Sydney.jpg",
+    "https://www.openstreetmap.org/way/40717424"
+  ],
+  "geographicProposal": {
+    "id": "queen-victoria-building-sydney",
+    "title": "Queen Victoria Building",
+    "asset": "molen.worldgen.structure.queen_victoria_building",
+    "anchor": [
+      151.207,
+      -33.8718
+    ],
+    "heading": 0,
+    "orientation": "fixed",
+    "datum": "sea-level",
+    "elevation": 45.5390625,
+    "bounds": [
+      151.20645926131897,
+      -33.87263387509313,
+      151.20691173868187,
+      -33.87090613294974
+    ],
+    "minLevel": 14,
+    "status": "source-map-preview",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "wikidata": "Q54518",
+      "names": [
+        "Queen Victoria Building",
+        "Queen Victoria Building",
+        "QVB",
+        "Queen Victoria Market Building"
+      ],
+      "maxDistance": 120
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -39.078175,
+          90.826007
+        ],
+        [
+          -25.713217,
+          90.169215
+        ],
+        [
+          -10.157737,
+          89.690537
+        ],
+        [
+          -10.887911,
+          71.122289
+        ],
+        [
+          -14.058161,
+          -1.179987
+        ],
+        [
+          -17.246895,
+          -80.706288
+        ],
+        [
+          -17.903128,
+          -97.504242
+        ],
+        [
+          -32.839346,
+          -97.136891
+        ],
+        [
+          -47.978904,
+          -96.324267
+        ],
+        [
+          -47.313429,
+          -79.359334
+        ],
+        [
+          -43.690287,
+          -1.792244
+        ],
+        [
+          -39.808349,
+          72.291152
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Replace the named market hall and all of its native dome and end-pavilion polygons. Keep the adjacent stations, sidewalks and streets."
+    },
+    "source": "https://www.openstreetmap.org/way/40717424",
+    "note": "The building follows the named footprint along George Street. The main copper dome and twenty smaller domes match their mapped centers.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d8adcc4e2b5efb63c8b513b778bd50ca5d9f5281aef226882bdb79234358cdd4"
+  },
+  "runtimeLodOverlay": {
+    "export": "buildSkyline",
+    "surfaces": {
+      "sandstone": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.96
+      },
+      "relief": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.93
+      },
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.99
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.9
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.92
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.63
+      }
+    },
+    "errorMeters": 1.17,
+    "module": "content/worldgen/source/places/r3/r3g/queen_victoria_building/models/george-street-sandstone-market-hall.mjs",
+    "level": "skyline",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.99
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.92
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          }
+        },
+        "errorMeters": 0.45
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.99
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.92
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          }
+        },
+        "errorMeters": 0.16
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.99
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.92
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63
+          }
+        },
+        "errorMeters": 0.064
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -28,
+        17,
+        -5
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "george-street-sandstone-bays",
+      "position": [
+        -1,
+        5,
+        -80
+      ],
+      "lookAt": [
+        -19,
+        11,
+        -20
+      ],
+      "fov": 66
+    },
+    {
+      "name": "copper-drum-and-satellite-cupolas",
+      "position": [
+        25,
+        47,
+        -26
+      ],
+      "lookAt": [
+        -29,
+        23,
+        -9
+      ],
+      "fov": 53
+    },
+    {
+      "name": "rooflights-and-end-pavilions",
+      "position": [
+        6,
+        62,
+        108
+      ],
+      "lookAt": [
+        -26,
+        21,
+        34
+      ],
+      "fov": 52
+    }
+  ],
+  "limitations": [
+    "The canopy, window bays, dome ornament and estimated pavement grade follow exterior photos and PMTiles. Interior shops, passages and glazing are outside the model scope."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -49.72755813598633,
+      -9.600000381469727,
+      -99.25371551513672
+    ],
+    "max": [
+      -8.409088134765625,
+      35.849998474121094,
+      92.57389831542969
+    ]
+  },
+  "size": [
+    41.3184700012207,
+    45.44999885559082,
+    191.8276138305664
+  ],
+  "mesh": {
+    "triangles": 28056,
+    "vertices": 56084,
+    "materials": 6,
+    "bytes": 2359480,
+    "sha256": "sha256:e84ec9181e6e539dc01e47690b336b9eacf68f88c87943ef1988b9bbd64e7173"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

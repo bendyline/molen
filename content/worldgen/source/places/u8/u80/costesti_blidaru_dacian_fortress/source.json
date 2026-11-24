@@ -1,0 +1,50 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.costesti_blidaru_dacian_fortress",
+  "kind": "static-structure",
+  "title": "Costești-Blidaru Dacian Fortress",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-controls.json",
+      "reference-observations.json",
+      "terrain-review.terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.costesti_blidaru_dacian_fortress",
+        "output": "assets/places/u8/u80/costesti_blidaru_dacian_fortress/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6da73616753515e6bf91fad1cc3547f0716836438da23ab84c6495558d56f487"
+      }
+    ],
+    "generators": [
+      {
+        "id": "costesti_blidaru_dacian_fortress",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "dacian-fortress",
+        "path": "models/dacian-fortress.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-review.height.png",
+      "preview.png"
+    ]
+  }
+}
