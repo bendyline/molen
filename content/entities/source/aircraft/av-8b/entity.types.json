@@ -6232,16 +6232,16 @@
               "pitchAuthority": 0.25,
               "pitchResponse": 2.5,
               "stallPitchRate": 0.18,
-              "rollAuthority": 1.8,
-              "rollResponse": 2,
+              "rollAuthority": 2.076,
+              "rollResponse": 3.932,
               "rudderAuthority": 1,
               "groundSteerSpeed": 8,
               "groundLevelRate": 2,
               "maxGroundPitch": 0.22,
               "camberAngle": 0.045,
-              "flapLift": 0.8,
+              "flapLift": 0.6,
               "postStallFlapEffect": 0.4,
-              "stallAngle": 0.28,
+              "stallAngle": 0.3962,
               "stallTransitionAngle": 0.12,
               "pitchFrequency": 3.5,
               "pitchDamping": 0.7,
@@ -6253,10 +6253,10 @@
               "dihedralEffect": 2.5,
               "propellerEffects": 0,
               "stallSpeed": 60,
-              "liftSlope": 4.8,
+              "liftSlope": 3.786,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.04285079141833834,
+              "profileDrag": 0.01609794103542889,
               "inducedDrag": 0.10257779795279455,
               "gearDrag": 0.018,
               "flapDrag": 0.075,
@@ -6277,6 +6277,7 @@
               "maxEquivalentAirspeed": 175,
               "gearLimitSpeed": 130,
               "flapLimitSpeed": 115,
+              "rollInertia": 6845,
               "speedBrakeDrag": 0.08
             },
             "engines": [
@@ -6305,7 +6306,7 @@
                 "dryThrust": 105000,
                 "highAltitudeDensityRatio": 0.907485269966788,
                 "highAltitudeExponent": 1.2,
-                "ramRise": 0.15
+                "bypassRatio": 1.2
               }
             ],
             "poweredLift": {
@@ -6315,6 +6316,9 @@
               "rollAuthority": 1.5,
               "yawAuthority": 0.8,
               "damping": 2.2
+            },
+            "fuel": {
+              "capacity": 2240
             },
             "actuators": {
               "canopy": {
@@ -6397,10 +6401,7 @@
                   "engine-1"
                 ]
               }
-            ],
-            "fuel": {
-              "capacity": 2240
-            }
+            ]
           }
         },
         "aircraftInput": {

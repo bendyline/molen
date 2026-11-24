@@ -5143,6 +5143,44 @@ Required: `kind`, `spec`
               "type": "number",
               "minimum": 0
             },
+            "propellerDiameter": {
+              "description": "Propeller diameter in meters. With it, thrust follows momentum theory: shaft power makes less thrust at low airspeed than the constant-efficiency model gives, down to a finite static thrust. Omitted keeps the constant-efficiency model.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "lowSpeedThrust": {
+              "description": "Loss of a real propeller when slow, beyond momentum theory: blades set or governed for cruise, and a fixed-pitch one holding the engine below rated speed. Needs propellerDiameter.",
+              "type": "object",
+              "properties": {
+                "atRest": {
+                  "type": "number",
+                  "minimum": 0.3,
+                  "maximum": 1,
+                  "description": "Share of the thrust power the propeller delivers standing still."
+                },
+                "fullSpeed": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "True airspeed in m/s from which it delivers all of it."
+                }
+              },
+              "required": [
+                "atRest",
+                "fullSpeed"
+              ]
+            },
+            "windmillDrag": {
+              "description": "Drag of the idling propeller as a coefficient on its disc area, fading out by a quarter throttle. Default 0. Needs propellerDiameter.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "bypassRatio": {
+              "description": "Turbofan bypass ratio. With it, thrust falls with Mach number as a fan does, faster for a higher ratio, in place of ramRise.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 15
+            },
             "fuelConsumption": {
               "description": "Specific fuel consumption when the aircraft declares fuel: kg per joule of shaft work for a propeller or rotor engine (default 7.5e-8 with a manual mixture, 9.5e-8 otherwise), kg per newton-second of thrust for a jet (default 2e-5).",
               "type": "number",
@@ -5316,6 +5354,44 @@ Required: `kind`, `spec`
                 "description": "Propeller polar moment of inertia in kg m², for gyroscopic precession. Default 0.",
                 "type": "number",
                 "minimum": 0
+              },
+              "propellerDiameter": {
+                "description": "Propeller diameter in meters. With it, thrust follows momentum theory: shaft power makes less thrust at low airspeed than the constant-efficiency model gives, down to a finite static thrust. Omitted keeps the constant-efficiency model.",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "lowSpeedThrust": {
+                "description": "Loss of a real propeller when slow, beyond momentum theory: blades set or governed for cruise, and a fixed-pitch one holding the engine below rated speed. Needs propellerDiameter.",
+                "type": "object",
+                "properties": {
+                  "atRest": {
+                    "type": "number",
+                    "minimum": 0.3,
+                    "maximum": 1,
+                    "description": "Share of the thrust power the propeller delivers standing still."
+                  },
+                  "fullSpeed": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "description": "True airspeed in m/s from which it delivers all of it."
+                  }
+                },
+                "required": [
+                  "atRest",
+                  "fullSpeed"
+                ]
+              },
+              "windmillDrag": {
+                "description": "Drag of the idling propeller as a coefficient on its disc area, fading out by a quarter throttle. Default 0. Needs propellerDiameter.",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "bypassRatio": {
+                "description": "Turbofan bypass ratio. With it, thrust falls with Mach number as a fan does, faster for a higher ratio, in place of ramRise.",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 15
               },
               "fuelConsumption": {
                 "description": "Specific fuel consumption when the aircraft declares fuel: kg per joule of shaft work for a propeller or rotor engine (default 7.5e-8 with a manual mixture, 9.5e-8 otherwise), kg per newton-second of thrust for a jet (default 2e-5).",
@@ -5705,6 +5781,115 @@ Required: `kind`, `spec`
               "description": "Sustained positive g the pilot holds before vision dims. Default 4.5, or 6.5 when maxLoadFactor is 7.5 or more.",
               "type": "number",
               "exclusiveMinimum": 0
+            },
+            "surfaces": {
+              "description": "Tailplane, fin and control surfaces. With them the rotation in flight comes from forces on wing panels, tail and fin; without them from the response constants.",
+              "type": "object",
+              "properties": {
+                "dihedral": {
+                  "type": "number",
+                  "description": "Effective wing dihedral in radians."
+                },
+                "aileron": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Lift coefficient full aileron adds to one outer wing panel."
+                },
+                "bodyYaw": {
+                  "description": "Yaw moment coefficient per radian of sideslip with which the fuselage turns the nose away from a slip. Default 0.",
+                  "type": "number",
+                  "minimum": 0
+                },
+                "sideForce": {
+                  "description": "Side force coefficient of the airframe per radian of sideslip, on wing area. Omitted, lateralDamping stands in.",
+                  "type": "number",
+                  "minimum": 0
+                },
+                "liftArm": {
+                  "description": "How far ahead of the center of mass the wing's lift acts, m. Default 0.",
+                  "type": "number",
+                  "minimum": 0
+                },
+                "tailArm": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Center of mass back to the tailplane, m."
+                },
+                "tailArea": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Tailplane area, m²."
+                },
+                "tailLiftSlope": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Tailplane lift-curve slope per radian."
+                },
+                "tailIncidence": {
+                  "type": "number",
+                  "description": "Tailplane setting in radians."
+                },
+                "downwash": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "Downwash at the tail per radian of wing lift angle."
+                },
+                "elevator": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Angle of attack full elevator adds to the tail, rad."
+                },
+                "finArm": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Center of mass back to the fin, m."
+                },
+                "finHeight": {
+                  "type": "number",
+                  "description": "Height of the fin above the center of mass, m."
+                },
+                "finArea": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Fin area, m²."
+                },
+                "finLiftSlope": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Fin lift-curve slope per radian."
+                },
+                "rudder": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Angle full rudder adds to the fin, rad."
+                },
+                "slipstream": {
+                  "description": "Share of the tail in the propeller slipstream. Default 0.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "flyByWire": {
+                  "description": "Flown only through flight computers: direct control is not offered.",
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "dihedral",
+                "aileron",
+                "tailArm",
+                "tailArea",
+                "tailLiftSlope",
+                "tailIncidence",
+                "downwash",
+                "elevator",
+                "finArm",
+                "finHeight",
+                "finArea",
+                "finLiftSlope",
+                "rudder"
+              ]
             }
           },
           "required": [
@@ -5858,6 +6043,223 @@ Required: `kind`, `spec`
               "exclusiveMinimum": 0,
               "description": "External liftMultiplier setting."
             },
+            "rotor": {
+              "description": "The rotors as built. With it the helicopter flies on them: thrust and power from the blades and the air they move, a disc that tilts with the cyclic and flaps back from the air it flies into, the torque on the fuselage, and a tail rotor that has to hold it.",
+              "type": "object",
+              "properties": {
+                "blades": {
+                  "type": "integer",
+                  "minimum": 2,
+                  "maximum": 9,
+                  "description": "Number of main rotor blades."
+                },
+                "chord": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Main rotor blade chord in meters."
+                },
+                "tipSpeed": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Blade tip speed at full rotor speed, m/s."
+                },
+                "rotation": {
+                  "description": "Which way the main rotor turns seen from above. Default counterclockwise: the fuselage is twisted right and left pedal adds tail rotor thrust.",
+                  "type": "string",
+                  "enum": [
+                    "counterclockwise",
+                    "clockwise"
+                  ]
+                },
+                "shaftTilt": {
+                  "description": "Forward tilt of the rotor shaft in radians. Default 0.05.",
+                  "type": "number"
+                },
+                "lock": {
+                  "description": "Lock number of the blades. Default 7.",
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "hingeOffset": {
+                  "description": "Flap hinge offset as a share of the radius: 0 teetering, about 0.04 articulated, about 0.12 hingeless. Default 0.04.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 0.3
+                },
+                "collective": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "description": "Blade pitch at three quarters of the radius with the collective fully down and fully up, radians."
+                },
+                "cyclic": {
+                  "description": "Greatest swashplate tilt each way, radians. Default 0.2.",
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "groundEffect": {
+                  "description": "How much less air the rotor has to move standing on the ground than in free air, fading out by a rotor radius of height. Default: the helicopter's groundEffect.",
+                  "type": "number",
+                  "minimum": 0
+                },
+                "inducedFactor": {
+                  "description": "Induced power over the ideal. Default 1.15.",
+                  "type": "number",
+                  "minimum": 1
+                },
+                "profileDrag": {
+                  "description": "Profile drag coefficient of the blades. Default 0.008.",
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "maxLift": {
+                  "description": "Mean blade lift coefficient at which the blades stall in a hover. Default 1.2.",
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "dragArea": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Equivalent flat-plate drag area of the fuselage, m²."
+                },
+                "download": {
+                  "description": "Share of the thrust lost to the rotor's wash on the fuselage in a hover. Default 0.04.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 0.3
+                },
+                "transmission": {
+                  "description": "Share of shaft power that reaches the rotors through the gearbox. Default 0.97.",
+                  "type": "number",
+                  "minimum": 0.5,
+                  "maximum": 1
+                },
+                "tail": {
+                  "description": "The anti-torque rotor. Omitted, nothing holds the main rotor's torque.",
+                  "type": "object",
+                  "properties": {
+                    "radius": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "description": "Tail rotor radius in meters."
+                    },
+                    "blades": {
+                      "type": "integer",
+                      "minimum": 2,
+                      "maximum": 18,
+                      "description": "Number of tail rotor blades."
+                    },
+                    "chord": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "description": "Tail rotor blade chord in meters."
+                    },
+                    "tipSpeed": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "description": "Tail rotor tip speed at full rotor speed, m/s."
+                    },
+                    "arm": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "description": "Distance from the main rotor's shaft back to the tail rotor, m."
+                    },
+                    "height": {
+                      "type": "number",
+                      "description": "Height of the tail rotor's hub above the main rotor's, m."
+                    },
+                    "pitch": {
+                      "description": "Blade pitch at full right and full left pedal, radians. Default -0.14 and 0.42.",
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    }
+                  },
+                  "required": [
+                    "radius",
+                    "blades",
+                    "chord",
+                    "tipSpeed",
+                    "arm",
+                    "height"
+                  ],
+                  "additionalProperties": false
+                },
+                "finArea": {
+                  "description": "Area of the vertical fin, m².",
+                  "type": "number",
+                  "minimum": 0
+                },
+                "stabilizerArea": {
+                  "description": "Area of the horizontal stabilizer, m².",
+                  "type": "number",
+                  "minimum": 0
+                },
+                "inertia": {
+                  "description": "Moments of inertia. Default from the rotor's size.",
+                  "type": "object",
+                  "properties": {
+                    "roll": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "description": "Moment of inertia about the roll axis, kg m²."
+                    },
+                    "pitch": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "description": "Moment of inertia about the pitch axis, kg m²."
+                    },
+                    "yaw": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "description": "Moment of inertia about the yaw axis, kg m²."
+                    }
+                  },
+                  "required": [
+                    "roll",
+                    "pitch",
+                    "yaw"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "blades",
+                "chord",
+                "tipSpeed",
+                "collective",
+                "dragArea"
+              ],
+              "additionalProperties": false
+            },
+            "liftLimit": {
+              "description": "The rotor's greatest thrust at sea-level density and full rotor speed, as a multiple of the weight of liftMass. Default liftMultiplier.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "liftMass": {
+              "description": "Mass in kg whose weight liftLimit is a multiple of. Default the aircraft's mass.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
             "groundEffect": {
               "type": "number",
               "minimum": 0,
@@ -5912,6 +6314,55 @@ Required: `kind`, `spec`
             "quadraticDrag",
             "groundDeceleration"
           ],
+          "additionalProperties": false
+        },
+        "gear": {
+          "description": "Dimensions of the undercarriage, whose struts and tires carry the aircraft on the ground. Omitted, they follow from the airframe's size, with the nose or tail wheel carrying about a tenth of the weight.",
+          "type": "object",
+          "properties": {
+            "wheelbase": {
+              "description": "Distance from the main wheels to the nose or tail wheel in meters; for a helicopter the length of skid on the ground. Default 0.33 of the length (0.55 with a tailwheel, 0.22 on skids).",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "track": {
+              "description": "Distance between the main wheels, or the skids, in meters. Default from the span or rotor.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "auxiliaryShare": {
+              "description": "Share of the weight on the nose or tail wheel at rest. Default 0.1 (0.07 for a tailwheel).",
+              "type": "number",
+              "minimum": 0.02,
+              "maximum": 0.4
+            },
+            "frequency": {
+              "description": "Bounce frequency on the struts in Hz. Default 1.4 (2.2 on skids).",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "damping": {
+              "description": "Damping ratio of the struts. Default 0.65 (0.55 on skids).",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "travel": {
+              "description": "Strut travel from rest to its stop in meters. Default 0.6 of the static deflection.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "wheelRadius": {
+              "description": "Main wheel radius in meters. Default from the length.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "grip": {
+              "description": "Peak tire friction on a dry runway. Default 0.8.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          },
           "additionalProperties": false
         },
         "poweredLift": {
@@ -7054,12 +7505,34 @@ Required: `power`, `pitch`, `roll`, `yaw`, `brake`, `engine`, `gear`, `flaps`
       "maximum": 1
     },
     "cyclicMode": {
-      "description": "Helicopter cyclic: assisted (default) commands a bounded, self-levelling tilt; direct commands pitch and roll rates with full authority (loops, rolls, straight down). Both are assisted on the ground.",
+      "description": "Helicopter cyclic: assisted (default) commands a bounded, self-levelling tilt; direct is full authority (loops, rolls, straight down). On a rotor block direct is the swashplate itself, about a trim that starts where the assist had it and follows a held stick; without one it commands pitch and roll rates and is assisted on the ground.",
       "type": "string",
       "enum": [
         "assisted",
         "direct"
       ]
+    },
+    "pedalMode": {
+      "description": "A helicopter's pedals where it flies on its rotors: assisted asks for a rate of turn and the tail rotor is worked to give it; direct is the tail rotor's pitch, about a trim that starts where the assist had the pedals and follows a held pedal. Default: as cyclicMode.",
+      "type": "string",
+      "enum": [
+        "assisted",
+        "direct"
+      ]
+    },
+    "controlMode": {
+      "description": "Airplane controls with surfaces: assisted (default) holds the flight path and coordinates the rudder; direct moves elevator, ailerons and rudder themselves. Ignored by fly-by-wire types.",
+      "type": "string",
+      "enum": [
+        "assisted",
+        "direct"
+      ]
+    },
+    "pitchTrim": {
+      "description": "Elevator trim rate in direct control, -1 nose down to 1 nose up. Omitted, the trim follows a held stick slowly.",
+      "type": "number",
+      "minimum": -1,
+      "maximum": 1
     }
   },
   "required": [
@@ -7307,6 +7780,122 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
     "pitchTrim": {
       "description": "Airplane trimmed angle of attack in radians, flown with the stick centered.",
       "type": "number"
+    },
+    "elevatorTrim": {
+      "description": "Elevator trim in direct control, as a share of full travel.",
+      "type": "number",
+      "minimum": -1,
+      "maximum": 1
+    },
+    "surfaces": {
+      "description": "Elevator, aileron and rudder positions, -1..1, when flying on surfaces.",
+      "type": "object",
+      "properties": {
+        "elevator": {
+          "type": "number",
+          "description": "Elevator position, -1..1; positive raises the nose."
+        },
+        "aileron": {
+          "type": "number",
+          "description": "Aileron position, -1..1; positive rolls right."
+        },
+        "rudder": {
+          "type": "number",
+          "description": "Rudder position, -1..1; positive turns the nose right."
+        }
+      },
+      "required": [
+        "elevator",
+        "aileron",
+        "rudder"
+      ]
+    },
+    "rotor": {
+      "description": "A helicopter flying on its rotors: its inflow, blade pitches and mast torque.",
+      "type": "object",
+      "properties": {
+        "inflow": {
+          "type": "number",
+          "description": "Air the main rotor is pulling down through itself, m/s."
+        },
+        "collective": {
+          "type": "number",
+          "description": "Main rotor blade pitch at three quarters radius, radians."
+        },
+        "cyclic": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "items": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Swashplate tilt forward and to the left, radians."
+        },
+        "pedal": {
+          "type": "number",
+          "description": "Tail rotor blade pitch, radians."
+        },
+        "trim": {
+          "description": "Cyclic trim held in direct control, as shares of full travel.",
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "items": false,
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "pedalTrim": {
+          "description": "Pedal trim held in direct control, as a share of full travel; positive is right pedal.",
+          "type": "number"
+        },
+        "torque": {
+          "type": "number",
+          "description": "Torque on the mast as a share of the gearbox limit."
+        }
+      },
+      "required": [
+        "inflow",
+        "collective",
+        "cyclic",
+        "pedal",
+        "torque"
+      ]
+    },
+    "wheels": {
+      "description": "The undercarriage. An airplane's legs are its nose or tail wheel, left main and right main; a helicopter's the front left, front right, rear left and rear right ends of its skids.",
+      "type": "object",
+      "properties": {
+        "spin": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "Wheel speeds in radians per second, one per leg."
+        },
+        "load": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "Load on each leg in newtons."
+        }
+      },
+      "required": [
+        "spin",
+        "load"
+      ]
     },
     "thrustVectorPosition": {
       "description": "Actual thrust-vector position after actuator travel, 0 forward to 1 vertical.",
@@ -10214,6 +10803,27 @@ Required: `kind`, `color`, `spec`, `visual`
           "description": "Stability control brakes one wheel to catch a slide. Default true.",
           "type": "boolean"
         },
+        "wheels": {
+          "description": "Four wheels on struts: each wheel carries its own load, meets its own road and turns at its own speed. Cars only.",
+          "type": "object",
+          "properties": {
+            "inertia": {
+              "description": "Rotating inertia of one wheel and tire, kg m². Default from mass and radius.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "travel": {
+              "description": "Suspension travel from ride height to the bump stop, m. Default 0.09.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "antiLock": {
+              "description": "Anti-lock brakes. Default true.",
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
         "limitedSlip": {
           "description": "How far the driven axle resists one-wheel spin: 0 open differential (the unloaded inside wheel spins first), 1 locked. Default 0.",
           "type": "number",
@@ -10249,6 +10859,11 @@ Required: `kind`, `color`, `spec`, `visual`
             "flat": {
               "description": "A cycle whose runners stay flat on the snow in a turn (a pair of skis) instead of banking as one plank (a snowboard); the lean stays in vehicleState.bodyRoll for the rider pose. Default false.",
               "type": "boolean"
+            },
+            "sidecut": {
+              "description": "Sidecut radius in meters: on edge the runner carves a turn of this radius times the cosine of the lean. Absent, it turns as it is steered.",
+              "type": "number",
+              "exclusiveMinimum": 0
             }
           },
           "required": [
@@ -10265,6 +10880,11 @@ Required: `kind`, `color`, `spec`, `visual`
               "exclusiveMinimum": 0,
               "maximum": 1.2,
               "description": "Maximum balanced inward lean in radians."
+            },
+            "camber": {
+              "description": "Camber thrust: side force of a leaned tire per radian of lean and unit of load. Default 0.9.",
+              "type": "number",
+              "minimum": 0
             },
             "riderLean": {
               "type": "number",
@@ -11130,6 +11750,20 @@ Required: `throttle`, `steering`, `brake`
     "handbrake": {
       "description": "Lock the rear wheels while true: they slide instead of rolling, for handbrake turns.",
       "type": "boolean"
+    },
+    "brakePedal": {
+      "description": "How hard the brake pedal is pressed while brake is true, 0..1. Default 1.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "controlMode": {
+      "description": "assisted (default): the steering is held to what the tires can use and countersteers a slide, and the car has its traction, stability and anti-lock controls. direct: steering is the wheel angle and none of those act.",
+      "type": "string",
+      "enum": [
+        "assisted",
+        "direct"
+      ]
     }
   },
   "required": [
@@ -11348,6 +11982,107 @@ Required: `speed`, `steer`, `yaw`, `pitch`, `roll`, `vy`, `grounded`, `waitingFo
     "bodyRollRate": {
       "description": "Suspension roll rate in radians per second.",
       "type": "number"
+    },
+    "bodyHeave": {
+      "description": "With wheels on struts: the body above its ride height in meters.",
+      "type": "number"
+    },
+    "bodyHeaveRate": {
+      "description": "Rate of bodyHeave in meters per second.",
+      "type": "number"
+    },
+    "wheelSpin": {
+      "description": "With wheels on struts: wheel speeds in rad/s, front left, front right, rear left, rear right.",
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "items": false,
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "wheelLoad": {
+      "description": "With wheels on struts: load on each wheel in newtons, in the same order.",
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "items": false,
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "freeBody": {
+      "description": "Present while a car on four wheels is off the plane of its road: in the air, tipping over, tumbling, or lying on its side or roof. The transform is then its true pose, pitch and roll are its own attitude, and it moves as a free rigid body until it stands on its wheels again.",
+      "type": "object",
+      "properties": {
+        "velocity": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "items": false,
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Velocity of the center of mass in world axes, m/s; the horizontal parts include the travel boost."
+        },
+        "omega": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "items": false,
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Angular velocity about the body axes, rad/s: nose down, turning left, right side down."
+        },
+        "still": {
+          "description": "Seconds it has lain still off its wheels; after half a second it rests.",
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "velocity",
+        "omega"
+      ]
     },
     "skid": {
       "description": "0–1: how far the tires are past their grip (sliding, wheelspin, locked wheels).",

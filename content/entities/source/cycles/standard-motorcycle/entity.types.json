@@ -60,7 +60,7 @@
             "steeringRate": 2.5,
             "steeringFadeSpeed": 12,
             "rollingResistance": 0.12,
-            "aerodynamicResistance": 0.003,
+            "aerodynamicResistance": 0.00156,
             "terrainAlignRate": 2.5,
             "supportTolerance": 0.06,
             "maxStepHeight": 0.2,
@@ -154,7 +154,25 @@
                   ]
                 ]
               }
-            ]
+            ],
+            "powertrain": {
+              "power": 52000,
+              "peakPowerRpm": 8500,
+              "redline": 10000,
+              "curve": "gasoline",
+              "gears": [
+                16.65,
+                13.82,
+                11.48,
+                9.53,
+                7.91,
+                6.57
+              ],
+              "efficiency": 0.9,
+              "idle": 1300,
+              "inertia": 0.03,
+              "shiftTime": 0.15
+            }
           },
           "visual": {
             "wheelNodes": [

@@ -33,8 +33,8 @@ export interface LiftOptions {
   gain?: number;
   /** Further multipliers by binding source (`pitchInput: -1` reverses just the pitch). */
   gains?: Readonly<Record<string, number>>;
-  /** Trims the copy before it is bound (a linkage that would stand in front of a pedal). */
-  prune?: (root: THREE.Object3D) => void;
+  /** Reworks the copies before they are bound (drops a linkage, leans a pedal's pad). */
+  prepare?: (root: THREE.Object3D) => void;
 }
 
 /** The node's transform relative to `frame`, from current world matrices. */
@@ -107,7 +107,7 @@ export function liftControls(options: LiftOptions): LiftedControls {
     });
     proxy.add(copy);
   }
-  options.prune?.(root);
+  options.prepare?.(root);
   const names = new Set<string>();
   root.traverse((node) => names.add(node.name));
   const bindings = options.spec.bindings

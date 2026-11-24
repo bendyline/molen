@@ -39,6 +39,7 @@ import {
 } from './kit';
 import { controlFrame, type LiftedControls, liftControls, liftTarget } from './lift';
 import { type ConsolePart, createControlPart, createGaugePart } from './parts';
+import { leanPedals } from './pedals';
 
 /** An aircraft the viewer flies. */
 export interface ConsoleAircraftSubject {
@@ -357,7 +358,7 @@ function liftedPart(options: {
   spec: Pick<ModelSignalSpec, 'derived' | 'bindings'>;
   picked: { targets: THREE.Object3D[]; frame: THREE.Object3D };
   gain?: number;
-  prune?: (root: THREE.Object3D) => void;
+  prepare?: (root: THREE.Object3D) => void;
   view: ConsoleView;
   samples: readonly ModelSignals[];
   /** Readings a thumb's preview stands for. */
@@ -378,7 +379,7 @@ function liftedPart(options: {
       frame: options.picked.frame,
       ...(options.gain !== undefined ? { gain: options.gain } : {}),
       ...(gains !== undefined ? { gains } : {}),
-      ...(options.prune !== undefined ? { prune: options.prune } : {}),
+      ...(options.prepare !== undefined ? { prepare: options.prepare } : {}),
     });
   let lifted = lift();
   const reverse = options.convention?.(lifted);
@@ -539,13 +540,14 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
             gain: pedalTravel > 0 ? Math.max(1, Math.min(3, 0.06 / pedalTravel)) : 1,
             convention: pedalConvention,
             // Linkage rods can stand in front of the pads from the seat; the pads are the point.
-            prune: (root) => {
+            prepare: (root) => {
               const links: THREE.Object3D[] = [];
               root.traverse((node) => {
                 if (/link/i.test(node.name) && !bindings.bindings.some((b) => b.node === node.name))
                   links.push(node);
               });
               for (const link of links) link.removeFromParent();
+              leanPedals(root);
             },
             view: PEDAL_VIEW,
             samples: yawSamples,

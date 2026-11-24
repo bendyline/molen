@@ -773,11 +773,11 @@
                 1,
                 0
               ],
-              "power": 1334000,
+              "power": 838000,
               "idleRpm": 1,
               "spoolRate": 0.16,
               "rotorAngularSpeed": 38,
-              "ratedDensityRatio": 0.7,
+              "ratedDensityRatio": 0.628,
               "densityExponent": 1
             },
             "helicopter": {
@@ -794,22 +794,51 @@
               "maxTilt": 0.65,
               "yawRate": 0.85,
               "liftMultiplier": 2.05,
-              "groundEffect": 0.12,
+              "groundEffect": 0.053,
               "translationalLift": 0.1,
               "translationalLiftSpeed": 18,
               "verticalDrag": 486,
               "horizontalDrag": 43.199567440414505,
-              "quadraticDrag": 0.6128013756634186,
+              "quadraticDrag": 0.6128013756634189,
               "groundDeceleration": 9,
               "vortexRing": true,
               "retreatingBladeSpeed": 75.57182359999999,
               "rotorDiscs": 1,
               "powerLimitedRotor": true,
-              "rotorEfficiency": 0.75,
+              "rotorEfficiency": 0.723,
               "profilePowerFraction": 0.12,
               "fixedGear": true,
               "gearTransitTime": 0,
-              "rotorInertiaTime": 2
+              "rotorInertiaTime": 2,
+              "liftMass": 2700,
+              "liftLimit": 2.05,
+              "rotor": {
+                "blades": 4,
+                "chord": 0.318,
+                "tipSpeed": 218.8,
+                "shaftTilt": 0.0524,
+                "lock": 7,
+                "hingeOffset": 0.12,
+                "collective": [
+                  0.02,
+                  0.2762
+                ],
+                "inducedFactor": 1,
+                "groundEffect": 0.071,
+                "maxLift": 1.2,
+                "dragArea": 2.375,
+                "tail": {
+                  "radius": 0.575,
+                  "blades": 10,
+                  "chord": 0.0903,
+                  "tipSpeed": 180,
+                  "arm": 6.125,
+                  "height": -0.4
+                }
+              }
+            },
+            "fuel": {
+              "capacity": 378
             },
             "actuators": {
               "eject": {
@@ -908,10 +937,7 @@
                 },
                 "engines": []
               }
-            ],
-            "fuel": {
-              "capacity": 378
-            }
+            ]
           }
         },
         "aircraftInput": {

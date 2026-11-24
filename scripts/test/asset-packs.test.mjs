@@ -20,6 +20,7 @@ import {
   ReleaseMissingError,
   readStamp,
   SEED,
+  SIDECAR_PATCH,
   seedAssets,
   validateManifest,
   verifyArchive,
@@ -742,15 +743,13 @@ test('check rejects a sidecar whose runtime LODs are not its variants', async ()
   const root = await fixture();
   await asset(root, 'assets/test/model.glb');
   await asset(root, 'assets/test/model.skyline.glb');
-  await installFixture(root);
+  const { files } = await installFixture(root);
+  const hash = `sha256:${files.find((f) => f.path.endsWith('/model.glb')).sha256}`;
   const sidecar = {
     format: 'molen/asset@1',
     files: { main: 'model.glb', variants: {} },
-    hash: 'sha256:master',
-    runtimeLods: {
-      masterHash: 'sha256:master',
-      levels: [{ name: 'skyline', file: 'model.skyline.glb' }],
-    },
+    hash,
+    runtimeLods: { masterHash: hash, levels: [{ name: 'skyline', file: 'model.skyline.glb' }] },
   };
   const write = () => writeFile(join(root, 'assets/test/asset.json'), JSON.stringify(sidecar));
   // What an import replay followed by an LOD reuse used to leave behind.
@@ -762,9 +761,97 @@ test('check rejects a sidecar whose runtime LODs are not its variants', async ()
   sidecar.files.variants.skyline = 'model.skyline.glb';
   await write();
   await checkAssets({ root, log: quiet });
-  sidecar.hash = 'sha256:reimported';
+  sidecar.runtimeLods.masterHash = 'sha256:reimported';
   await write();
   await assert.rejects(checkAssets({ root, log: quiet }), /derived from another master/);
+});
+
+/** A checkout whose commit holds one sidecar, with a build that rewrites it beside its GLBs. */
+async function sidecarFixture() {
+  const root = await fixture();
+  const git = (...args) =>
+    execFileSync('git', ['-c', 'user.name=Test', '-c', 'user.email=test@localhost', ...args], {
+      cwd: root,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+  git('config', 'core.autocrlf', 'false');
+  const directory = 'content/worldgen/assets/places/c2/c23/test';
+  const sidecar = `${directory}/asset.json`;
+  const digest = (text) => `sha256:${createHash('sha256').update(text).digest('hex')}`;
+  const build = async (main, skyline = 'skyline') => {
+    await asset(root, `${directory}/model.glb`, Buffer.from(main));
+    await asset(root, `${directory}/model.skyline.glb`, Buffer.from(skyline));
+    await installFixture(root);
+    const document = {
+      format: 'molen/asset@1',
+      files: { main: 'model.glb', variants: { skyline: 'model.skyline.glb' } },
+      hash: digest(main),
+      runtimeLods: {
+        masterHash: digest(main),
+        levels: [{ name: 'skyline', file: 'model.skyline.glb', hash: digest(skyline) }],
+      },
+    };
+    await asset(root, sidecar, Buffer.from(`${JSON.stringify(document, null, 2)}\n`));
+  };
+  const commit = () => {
+    git('add', '--', sidecar);
+    git('commit', '-q', '--no-verify', '-m', 'sidecar');
+  };
+  await build('first');
+  commit();
+  return { root, git, sidecar, build, commit };
+}
+
+test('check rejects a sidecar that records other bytes than the bundle holds', async () => {
+  const { root, git, sidecar, build } = await sidecarFixture();
+  await checkAssets({ root, log: quiet });
+  // A restored bundle of rebuilt GLBs beside the committed sidecar.
+  await build('second');
+  git('checkout', '--', sidecar);
+  await assert.rejects(
+    checkAssets({ root, log: quiet }),
+    /test\/asset\.json: records other bytes than model\.glb\n.*asset-sidecars artifact/,
+  );
+  await build('second', 'simplified again');
+  git('checkout', '--', sidecar);
+  await assert.rejects(checkAssets({ root, log: quiet }), /than model\.glb, model\.skyline\.glb\n/);
+  // A level can change while its master does not.
+  await build('first', 'simplified again');
+  git('checkout', '--', sidecar);
+  await assert.rejects(
+    checkAssets({ root, log: quiet }),
+    /^Error: content\/\S+\/asset\.json: records other bytes than model\.skyline\.glb\n/,
+  );
+});
+
+test('check --committed rejects sidecars a build changed and keeps them as a patch', async () => {
+  const { root, git, sidecar, build, commit } = await sidecarFixture();
+  const committed = () => checkAssets({ root, committed: true, log: quiet });
+  await committed();
+  await build('second');
+  const rewritten = await readFile(join(root, sidecar), 'utf8');
+  // The build made the sidecar match its GLBs, so only the commit still disagrees.
+  await checkAssets({ root, log: quiet });
+  await assert.rejects(committed(), (error) => {
+    assert.match(error.message, /^The build changed these committed sidecars/);
+    assert.ok(error.message.includes(`\n${sidecar}\n`), error.message);
+    return true;
+  });
+  const command = spawnSync(
+    process.execPath,
+    [resolve('scripts/asset-packs.mjs'), 'check', '--committed', '--root', root],
+    { encoding: 'utf8' },
+  );
+  assert.equal(command.status, 1);
+  assert.match(command.stderr, /-n asset-sidecars && git apply sidecars\.patch/);
+  // The patch turns a clean checkout of the commit into the one the bundle needs.
+  git('checkout', '--', sidecar);
+  git('apply', SIDECAR_PATCH);
+  assert.equal(await readFile(join(root, sidecar), 'utf8'), rewritten);
+  commit();
+  await committed();
+  await assert.rejects(readFile(join(root, SIDECAR_PATCH)), { code: 'ENOENT' });
 });
 
 async function sourceBundleFixture(

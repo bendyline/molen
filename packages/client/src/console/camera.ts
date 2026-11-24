@@ -27,6 +27,8 @@ export interface ConsoleView {
   fov?: number;
   /** Room left around the swept part (default 1.06: 6%). */
   margin?: number;
+  /** Toward the key light, as right, up and back of the view (default above and to the left). */
+  key?: readonly [right: number, up: number, back: number];
 }
 
 /**
@@ -107,8 +109,22 @@ export const DECK_ELEVATION: number = THREE.MathUtils.degToRad(28);
 
 /** From the seat behind a stick, yoke or cyclic, a little to the side and well above. */
 export const SEAT_VIEW: ConsoleView = { direction: new THREE.Vector3(-0.12, 0.62, -0.78) };
-/** Looking down at the pedals from the seat, low enough that their pads face the viewer. */
-export const PEDAL_VIEW: ConsoleView = { direction: new THREE.Vector3(0, 0.42, -1), margin: 1.08 };
+/**
+ * Pedals from the seat, 17 degrees above, near enough that their pads narrow going away. The key
+ * light is centered overhead: from a side it catches one metal pad of a pair more than the other.
+ */
+export const PEDAL_VIEW: ConsoleView = {
+  direction: new THREE.Vector3(0, 0.3, -1),
+  fov: 34,
+  margin: 1.08,
+  key: [0, 1.6, 0.4],
+};
+/**
+ * How far forward of upright the top of every pedal leans, radians: away from the viewer. It must
+ * be well over the angle `PEDAL_VIEW` looks down at, or a pad's top edge is the nearer one and it
+ * reads as leaning toward the viewer.
+ */
+export const PEDAL_LEAN: number = THREE.MathUtils.degToRad(33);
 /** A steering wheel or helm from the driver's seat, nearly square-on. */
 export const WHEEL_VIEW: ConsoleView = { direction: new THREE.Vector3(0, 0.32, -1), margin: 1.08 };
 /** Handlebars from above and behind the rider. */

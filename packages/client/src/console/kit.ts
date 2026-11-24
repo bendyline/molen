@@ -5,6 +5,7 @@
 
 import * as THREE from 'three';
 import type { ModelSignals } from '../model-signals';
+import { PEDAL_LEAN } from './camera';
 
 /** A kit control: its group, how it is posed, and the geometry it owns. */
 export interface KitControl {
@@ -389,9 +390,6 @@ export function kitHandbrake(): KitControl {
     dispose: own(root),
   };
 }
-
-/** How far a kit pedal's top leans forward at rest, radians. */
-const PEDAL_LEAN = 0.35;
 
 /** One treaded pad on a short floor arm, hinged at the floor ahead of it. */
 function pedal(

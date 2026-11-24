@@ -122,9 +122,10 @@ const travel = new THREE.Vector3();
  * Bind a loaded entity GLB to generic wheel/steering animation using external node names.
  *
  * The simulation leans the whole model with its sprung body (`vehicleState.bodyRoll` and
- * `bodyPitch`). Given those as signals, the wheels take up the lean as suspension travel instead:
- * each moves along the body's up axis to keep its centre at its resting height, so the outside
- * wheels stay on the road in a turn rather than sinking into it.
+ * `bodyPitch`) and, for a car on struts, raises and lowers it (`bodyHeave`). Given those as
+ * signals, the wheels take up the motion as suspension travel instead: each moves along the
+ * body's up axis to keep its centre at its resting height, so the outside wheels stay on the
+ * road in a turn rather than sinking into it.
  */
 export function createVehicleVisual(
   model: THREE.Object3D,
@@ -229,7 +230,11 @@ export function createVehicleVisual(
     update(steer, angle, signals, timeSeconds, glassState, damageState) {
       const roll = signals?.bodyRoll ?? 0;
       const pitch = signals?.bodyPitch ?? 0;
-      const lean = Number.isFinite(roll) && Number.isFinite(pitch) && (roll !== 0 || pitch !== 0);
+      const heave = Number.isFinite(signals?.bodyHeave) ? (signals?.bodyHeave ?? 0) : 0;
+      const lean =
+        Number.isFinite(roll) &&
+        Number.isFinite(pitch) &&
+        (roll !== 0 || pitch !== 0 || heave !== 0);
       if (lean) bodyLean.setFromEuler(leanEuler.set(pitch, 0, roll));
       for (const wheel of wheels) {
         wheel.node.rotation.y = wheel.baseY + (wheel.front ? -steer : 0);
@@ -242,7 +247,8 @@ export function createVehicleVisual(
         // The model leans about its ground origin; move the wheel along the body's up axis by the
         // height the lean added or took away.
         const up = travel.set(0, 1, 0).applyQuaternion(bodyLean).y;
-        const lift = (wheel.center.y - leaned.copy(wheel.center).applyQuaternion(bodyLean).y) / up;
+        const lift =
+          (wheel.center.y - leaned.copy(wheel.center).applyQuaternion(bodyLean).y - heave) / up;
         wheel.node.position.add(travel.set(0, lift, 0).applyQuaternion(wheel.toParent));
       }
       if (interior === undefined && steeringWheel !== undefined)

@@ -166,8 +166,9 @@ the dials at most 20 times a second; a console nobody touches costs no draws. Ea
 scene with its own camera: the throttle, handles and switches face you head-on from the
 operator's seat, a little from above so a lever's travel shows (the kit's panels slope back to
 face you square, the gear knob a wheel and the flap knob a wing toward you); the stick from the
-seat behind it; pedals from the seat, low enough that their pads face you. A thin dark outline keeps parts readable over bright sky and
-snow. `prefers-reduced-motion` turns off the fades.
+seat behind it; pedals from the seat, their pads facing you and their tops leaning away. A thin
+dark outline keeps parts readable over bright sky and snow. `prefers-reduced-motion` turns off the
+fades.
 
 Without WebGL the controls still work, drawn as labelled outlines, with the two-circle stick.
 
@@ -180,3 +181,6 @@ Without WebGL the controls still work, drawn as labelled outlines, with the two-
   the right pedal forward for right rudder. The console measures each copy against the
   convention in the [vehicle interiors guide](vehicle-interiors.md) and reverses a channel a model
   binds the other way, so the console can move where a model's own cockpit does not.
+- Pedals stand at one lean in the console whatever their model's: seen from above, an upright pad
+  reads as leaning toward you. Each copy is measured (by its pad's broad face, or its arm for a
+  plain tube) and turned about its middle until its top leans 33 degrees away.

@@ -44,7 +44,7 @@
             "steeringRate": 2.5,
             "steeringFadeSpeed": 12,
             "rollingResistance": 0.12,
-            "aerodynamicResistance": 0.003,
+            "aerodynamicResistance": 0.00156,
             "terrainAlignRate": 2.5,
             "supportTolerance": 0.06,
             "maxStepHeight": 0.2,
@@ -82,7 +82,18 @@
                 "nodes": ["wheel-front"],
                 "probes": [[0, 0.404461, 0.753024]]
               }
-            ]
+            ],
+            "powertrain": {
+              "power": 52000,
+              "peakPowerRpm": 8500,
+              "redline": 10000,
+              "curve": "gasoline",
+              "gears": [16.65, 13.82, 11.48, 9.53, 7.91, 6.57],
+              "efficiency": 0.9,
+              "idle": 1300,
+              "inertia": 0.03,
+              "shiftTime": 0.15
+            }
           },
           "visual": {
             "wheelNodes": ["wheel-front", "wheel-rear"],
@@ -282,7 +293,7 @@
             "steeringRate": 2.5,
             "steeringFadeSpeed": 12,
             "rollingResistance": 0.12,
-            "aerodynamicResistance": 0.003,
+            "aerodynamicResistance": 0.00144,
             "terrainAlignRate": 2.5,
             "supportTolerance": 0.06,
             "maxStepHeight": 0.2,
@@ -320,7 +331,18 @@
                 "nodes": ["wheel-front"],
                 "probes": [[0, 0.403508, 0.839408]]
               }
-            ]
+            ],
+            "powertrain": {
+              "power": 50000,
+              "peakPowerRpm": 5500,
+              "redline": 6200,
+              "curve": "diesel",
+              "gears": [13.8, 11.01, 8.79, 7.01, 5.6],
+              "efficiency": 0.9,
+              "idle": 900,
+              "inertia": 0.06,
+              "shiftTime": 0.2
+            }
           },
           "visual": {
             "wheelNodes": ["wheel-front", "wheel-rear"],
@@ -571,7 +593,7 @@
             "steeringRate": 2.5,
             "steeringFadeSpeed": 12,
             "rollingResistance": 0.12,
-            "aerodynamicResistance": 0.003,
+            "aerodynamicResistance": 0.00232,
             "terrainAlignRate": 2.5,
             "supportTolerance": 0.06,
             "maxStepHeight": 0.2,
@@ -609,7 +631,18 @@
                 "nodes": ["wheel-front"],
                 "probes": [[0.006476, 0.446202, 0.678319]]
               }
-            ]
+            ],
+            "powertrain": {
+              "power": 9000,
+              "peakPowerRpm": 7500,
+              "redline": 8500,
+              "curve": "gasoline",
+              "gears": [24.63, 8.21],
+              "continuous": true,
+              "efficiency": 0.85,
+              "idle": 1600,
+              "inertia": 0.012
+            }
           },
           "visual": {
             "wheelNodes": ["wheel-front", "wheel-rear"],
@@ -1646,7 +1679,7 @@
             "steeringRate": 2.5,
             "steeringFadeSpeed": 12,
             "rollingResistance": 0.12,
-            "aerodynamicResistance": 0.003,
+            "aerodynamicResistance": 0.0021,
             "terrainAlignRate": 2.5,
             "supportTolerance": 0.06,
             "maxStepHeight": 0.18,
@@ -1684,7 +1717,18 @@
                 "nodes": ["wheel-front"],
                 "probes": [[0, 0.39038, 0.627994]]
               }
-            ]
+            ],
+            "powertrain": {
+              "power": 6500,
+              "peakPowerRpm": 7500,
+              "redline": 9000,
+              "curve": "gasoline",
+              "gears": [34.16, 22.29, 14.54, 9.49],
+              "efficiency": 0.88,
+              "idle": 1400,
+              "inertia": 0.01,
+              "shiftTime": 0.25
+            }
           },
           "visual": {
             "wheelNodes": ["wheel-front", "wheel-rear"],
@@ -1889,7 +1933,7 @@
             "steeringRate": 2.5,
             "steeringFadeSpeed": 12,
             "rollingResistance": 0.1,
-            "aerodynamicResistance": 0.004,
+            "aerodynamicResistance": 0.0023,
             "terrainAlignRate": 2.5,
             "supportTolerance": 0.06,
             "maxStepHeight": 0.16,
@@ -1927,7 +1971,17 @@
                 "nodes": ["wheel-front"],
                 "probes": [[0, 0.287786, 0.668312]]
               }
-            ]
+            ],
+            "powertrain": {
+              "power": 3000,
+              "peakPowerRpm": 2400,
+              "redline": 5000,
+              "curve": "electric",
+              "gears": [8.68],
+              "efficiency": 0.9,
+              "idle": 0,
+              "inertia": 0.01
+            }
           },
           "visual": {
             "wheelNodes": ["wheel-front", "wheel-rear"],
@@ -2900,7 +2954,8 @@
               "friction": 0.05,
               "bareDrag": 3.5,
               "pushSpeed": 4.5,
-              "flat": true
+              "flat": true,
+              "sidecut": 14
             },
             "cycle": {
               "maxLean": 0.6,
@@ -3126,7 +3181,8 @@
             "runners": {
               "friction": 0.055,
               "bareDrag": 3.5,
-              "pushSpeed": 3.5
+              "pushSpeed": 3.5,
+              "sidecut": 8
             },
             "cycle": {
               "maxLean": 0.65,

@@ -158,7 +158,9 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
 - `@bendyline/molen-kernel` depends only on schema (+ `ses` for the script Compartment). No
   DOM/three.js/WASM. Subpaths: `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`,
   `/platformer`, `/determinism`, `/content`, `/vehicles`, `/boats`, `/aircraft`, `/world` (the ECS
-  World without the SES scripting runtime, for main-thread hosts).
+  World without the SES scripting runtime, for main-thread hosts) and `/trials` (scripted pilots
+  and drivers that fly and drive the production solvers through test procedures; the kernel's
+  tests, calibration and the trial scorecards share them).
   `buildWorld` is the one build order every host uses (data systems → commands → entities →
   physics hook → terrain hook → setup → scripts).
 - `@bendyline/molen-client` depends on schema + materials (+ three.js); never imports kernel

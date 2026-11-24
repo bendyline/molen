@@ -1,6 +1,11 @@
 /** Driving-only metadata calibration for road vehicles. Never generates or changes a mesh. */
 import { readFileSync } from 'node:fs';
-import { initialVehicleState, stepVehicle } from '@bendyline/molen-kernel/vehicles';
+import {
+  accelerationTime,
+  steadyCornering,
+  stoppingDistance as stoppingDistanceFrom,
+  topSpeed as topSpeedMs,
+} from '@bendyline/molen-kernel/trials';
 
 export const dynamicsLedger = JSON.parse(
   readFileSync(
@@ -12,83 +17,30 @@ export const dynamicsProfiles = new Map(dynamicsLedger.vehicles.map((row) => [ro
 
 const G = 9.81;
 const AIR_DENSITY = 1.225;
-const FLAT = { groundHeight: () => 0 };
 const clamp = (value, low, high) => Math.min(high, Math.max(low, value));
 const round = (value, digits = 3) => Number(value.toFixed(digits));
 
-function run(spec, seconds, controls, start = {}, watch = () => false) {
-  let transform = { pos: [0, 0, 0], rot: [0, 0, 0, 1] };
-  let state = { ...initialVehicleState(), ...start };
-  for (let tick = 0; tick < seconds * 60; tick++) {
-    const result = stepVehicle(transform, state, controls(state, tick / 60), spec, 1 / 60, FLAT);
-    transform = result.transform;
-    state = result.state;
-    if (watch(state, (tick + 1) / 60, transform)) break;
-  }
-  return { transform, state };
-}
-
 /** Seconds from rest to 100 km/h at full throttle; Infinity if it never gets there. */
 export function zeroTo100(spec) {
-  let time = Infinity;
-  run(
-    spec,
-    60,
-    () => ({ throttle: 1, steering: 0, brake: false }),
-    {},
-    (state, t) => {
-      if (state.speed < 27.78) return false;
-      time = t;
-      return true;
-    },
-  );
-  return time;
+  return accelerationTime(spec, 27.78);
 }
 
 /** Highest speed in km/h reached in two minutes at full throttle. */
 export function topSpeed(spec) {
-  return run(spec, 120, () => ({ throttle: 1, steering: 0, brake: false })).state.speed * 3.6;
+  return topSpeedMs(spec) * 3.6;
 }
 
 /** Meters to stop from 100 km/h. */
 export function stoppingDistance(spec) {
-  let distance = Infinity;
-  run(
-    spec,
-    15,
-    () => ({ throttle: 0, steering: 0, brake: true }),
-    { speed: 27.78 },
-    (state, _t, transform) => {
-      if (state.speed > 0.01) return false;
-      distance = transform.pos[2];
-      return true;
-    },
-  );
-  return distance;
+  return stoppingDistanceFrom(spec, 27.78);
 }
 
 /**
  * Steady cornering in g with the wheel held over, as on a skidpad: the mean of speed × yaw
- * rate once the car has settled. The driver holds the entry speed if the engine can; a heavy
- * vehicle that cannot slows down in the turn, which leaves its cornering grip unchanged.
+ * rate once the car has settled.
  */
-export function skidpad(spec, speed = Math.min(20, spec.maxSpeed * 0.7)) {
-  let sum = 0;
-  let count = 0;
-  run(
-    spec,
-    6,
-    (state) => ({ throttle: clamp((speed - state.speed) * 0.5, 0, 1), steering: 1, brake: false }),
-    { speed },
-    (state, t) => {
-      if (t > 3 && state.speed > 8) {
-        sum += Math.abs(state.speed * (state.yawRate ?? 0));
-        count++;
-      }
-      return false;
-    },
-  );
-  return sum / Math.max(1, count) / G;
+export function skidpad(spec, speed) {
+  return steadyCornering(spec, speed).lateralG;
 }
 
 /** Bisect `knob` in [low, high] until measure(knob) reaches `target`; measure rises with knob. */
@@ -184,6 +136,9 @@ export function tuneVehicleDynamics(row, components) {
   const heavy = row.massKg > 4500;
   spec.mass = Math.round(row.massKg + 75);
   spec.drive = row.drive;
+  // Every road vehicle stands on four wheels with their own loads, grip and spin; the fits below
+  // run on that model.
+  spec.wheels = {};
   spec.centerOfMass = [
     spec.centerOfMass[0],
     spec.centerOfMass[1],
@@ -231,8 +186,9 @@ export function tuneVehicleDynamics(row, components) {
   const setGrip = (grip) => {
     spec.grip = round(grip, 2);
     if (row.rearGripScale !== 1) spec.rearGrip = round(grip * row.rearGripScale, 2);
-    // Brakes strong enough that the tires, not the calipers, set the stopping distance.
-    spec.brakeDeceleration = round(grip * (heavy ? 1 : 1.12), 1);
+    // Brakes strong enough that the tires, not the calipers, set the stopping distance. A
+    // truck's or bus's air brakes are the limit instead: about what it corners at.
+    spec.brakeDeceleration = round(heavy ? row.lateralG * G : grip * 1.12, 1);
   };
   // Start from enough tire for the launch, fit the launch, then fit the tire to the skidpad
   // and the launch once more (wheelspin couples the two).

@@ -12,7 +12,7 @@ import {
 } from '../src/flight-aerodynamics';
 import { vehicleRotation } from '../src/vehicles';
 import { sampleAtmosphere } from '../src/weather';
-import { molenAircraft } from './helpers/entities';
+import { assistedHelicopter, molenAircraft } from './helpers/entities';
 
 const f14 = molenAircraft('molen.entities.aircraft.f_14d').spec;
 const f16 = molenAircraft('molen.entities.aircraft.f_16b').spec;
@@ -40,7 +40,7 @@ describe('physical flight envelope', () => {
     expect(Math.abs(result.yawRate ?? 0)).toBeLessThan(0.2);
   });
   it('governs rotor RPM separately from collective and reduces blade speed margin at altitude', () => {
-    const rotor = molenAircraft('molen.entities.aircraft.oh6').spec;
+    const rotor = assistedHelicopter(molenAircraft('molen.entities.aircraft.oh6').spec);
     const sample = (altitude: number) =>
       stepAircraft(
         { pos: [0, altitude, 0], rot: [0, 0, 0, 1] },
@@ -55,7 +55,7 @@ describe('physical flight envelope', () => {
     expect(sample(5000).overspeed).toBe(true);
   });
   it('limits rotor lift by installed power instead of allowing payload to create free power', () => {
-    const rotor = molenAircraft('molen.entities.aircraft.oh6').spec;
+    const rotor = assistedHelicopter(molenAircraft('molen.entities.aircraft.oh6').spec);
     const sample = (mass: number, climb = 0) =>
       stepAircraft(
         { pos: [0, 1000, 0], rot: [0, 0, 0, 1] },
@@ -70,7 +70,7 @@ describe('physical flight envelope', () => {
     expect(sample(rotor.mass, 15) - 15).toBeLessThan(sample(rotor.mass));
   });
   it('models rotor vortex-ring onset in powered slow descent and relief with forward airspeed', () => {
-    const rotor = molenAircraft('molen.entities.aircraft.oh6').spec;
+    const rotor = assistedHelicopter(molenAircraft('molen.entities.aircraft.oh6').spec);
     const sample = (horizontal: number) =>
       stepAircraft(
         { pos: [0, 1000, 0], rot: [0, 0, 0, 1] },

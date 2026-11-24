@@ -40,6 +40,7 @@ import {
   Mounted,
   mountEntity,
   repairVehicle,
+  rightVehicle,
   stepActuators,
   type TrackGuide,
   trailAt,
@@ -1410,9 +1411,15 @@ export class EarthVehicles {
     }
     this.world.set(id, VehicleInput, { ...input, actuators });
   }
-  /** Restore broken parts on the mounted road vehicle once it has stopped. */
+  /**
+   * Set the mounted road vehicle back on its wheels if it has come to rest off them, and
+   * restore its broken parts, once it has stopped.
+   */
   recover(): boolean {
-    return this.mountedId !== undefined && repairVehicle(this.world, this.mountedId);
+    const id = this.mountedId;
+    if (id === undefined) return false;
+    const righted = rightVehicle(this.world, id, this.environment);
+    return repairVehicle(this.world, id) || righted;
   }
   update(dt: number, input: VehicleInputData): void {
     this.settleSpawned();
@@ -1551,6 +1558,9 @@ export class EarthVehicles {
       const state = this.world.get(id, VehicleState);
       const spec = this.world.get(id, Vehicle)?.spec;
       if (!t || !state || !spec || Math.abs(state.speed) > 0.2 || !state.grounded) continue;
+      // A car off the plane of its road (on a bank too steep to drive, or overturned) lies
+      // where its own body put it.
+      if (state.freeBody !== undefined) continue;
       // Rail vehicles stand on the track the kernel laid them on.
       if (state.track !== undefined || this.world.has(id, Coupled)) continue;
       // Walking around a parked car must refresh its collision neighborhood too. Otherwise a
@@ -1611,6 +1621,7 @@ export class EarthVehicles {
           brake: Number(input?.brake ?? false),
           bodyRoll: typeof state.bodyRoll === 'number' ? state.bodyRoll : 0,
           bodyPitch: typeof state.bodyPitch === 'number' ? state.bodyPitch : 0,
+          bodyHeave: typeof state.bodyHeave === 'number' ? state.bodyHeave : 0,
           pedalAngle: typeof state.pedalAngle === 'number' ? state.pedalAngle : 0,
           ...readModelSignals(this.data(id)?.visual.interior?.sources, (name) =>
             this.world.get(id, { name }),

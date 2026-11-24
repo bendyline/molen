@@ -60,6 +60,31 @@ export interface AircraftEngineSpec extends JsonObject {
   propellerRotation?: 'clockwise' | 'counterclockwise';
   /** Propeller polar moment of inertia in kg m², for gyroscopic precession; default 0. */
   propellerInertia?: number;
+  /**
+   * Propeller diameter in meters. With it, thrust follows momentum theory: the propeller turns
+   * shaft power into thrust by speeding up the air through its disc, so the same power makes
+   * less thrust when slow than `propellerEfficiency × power / speed` gives, down to a finite
+   * static thrust. Omitted keeps that constant-efficiency model.
+   */
+  propellerDiameter?: number;
+  /**
+   * What a real propeller loses when slow, beyond the ideal disc of momentum theory: its blades
+   * are set or governed for cruise, and a fixed-pitch one also holds the engine below its rated
+   * speed. The share `atRest` of the thrust power is delivered standing still, rising linearly
+   * to all of it at `fullSpeed` (true, m/s). Needs `propellerDiameter`.
+   */
+  lowSpeedThrust?: { atRest: number; fullSpeed: number };
+  /**
+   * Drag of the idling propeller as a coefficient on its disc area, fading out by a quarter
+   * throttle; default 0. It is why a power-off glide is steeper than the airframe's own.
+   * Needs `propellerDiameter`.
+   */
+  windmillDrag?: number;
+  /**
+   * Turbofan bypass ratio. With it, thrust falls with Mach number as a fan's does (faster for a
+   * higher ratio) in place of `ramRise`.
+   */
+  bypassRatio?: number;
   /** Rotate this engine's thrust from +Z toward +Y with the common vector lever. */
   vectored?: boolean;
   /**
@@ -103,7 +128,67 @@ export interface AircraftEngineStateData extends JsonObject {
   afterburner?: number;
 }
 
+/**
+ * An airplane's lifting surfaces beside the wing itself: where its tailplane and fin stand and
+ * how strong they and the control surfaces are. With these the airframe's handling comes from
+ * forces at their positions; without them it follows the response constants below.
+ */
+export interface AirplaneSurfacesSpec extends JsonObject {
+  /** Effective dihedral of the wing in radians: what rights the airplane in a slip. */
+  dihedral: number;
+  /** Lift coefficient full aileron adds to one outer wing panel and takes from the other. */
+  aileron: number;
+  /**
+   * How far ahead of the center of mass the wing's lift acts, m; default 0. The tailplane
+   * carries the difference, and is sized for it.
+   */
+  liftArm?: number;
+  /** Distance from the center of mass back to the tailplane, m. */
+  tailArm: number;
+  tailArea: number;
+  /** Lift-curve slope of the tailplane, per radian. */
+  tailLiftSlope: number;
+  /** Tailplane setting in radians: the angle that trims the airplane with the elevator neutral. */
+  tailIncidence: number;
+  /** Angle the wing's wake is turned down at the tail, per radian of the wing's lift angle. */
+  downwash: number;
+  /** Angle of attack full elevator adds to the tailplane, rad. */
+  elevator: number;
+  /** Distance from the center of mass back to the fin, and the fin's height above it, m. */
+  finArm: number;
+  finHeight: number;
+  finArea: number;
+  /** Lift-curve slope of the fin, per radian. */
+  finLiftSlope: number;
+  /** Angle full rudder adds to the fin, rad. */
+  rudder: number;
+  /**
+   * How hard the fuselage (and propellers ahead of the center of mass) turn the nose away from
+   * a slip, working against the fin: yaw moment coefficient per radian of sideslip, on wing
+   * area times span. Default 0.
+   */
+  bodyYaw?: number;
+  /**
+   * Side force of the whole airframe in a slip: coefficient per radian of sideslip, on wing
+   * area. Omitted, the airplane's `lateralDamping` stands in for it.
+   */
+  sideForce?: number;
+  /** Share of the tail that stands in the propeller slipstream, 0..1; default 0. */
+  slipstream?: number;
+  /**
+   * The real airplane is flown only through its flight computers: `direct` control is not
+   * offered. Default false.
+   */
+  flyByWire?: boolean;
+}
+
 export interface AirplanePhysicsSpec extends JsonObject {
+  /**
+   * Tailplane, fin and control surfaces. With them the airplane's rotation in flight comes from
+   * its wing panels, tail and fin; on the wheels, and without them, from the response
+   * constants.
+   */
+  surfaces?: AirplaneSurfacesSpec;
   /** Mach at which wave drag starts rising. Omitted disables compressibility drag. */
   criticalMach?: number;
   /** Added wave-drag coefficient at criticalMach + 0.25. Default 0. */
@@ -226,7 +311,80 @@ export interface AirplanePhysicsSpec extends JsonObject {
   pilotGTolerance?: number;
 }
 
+/** A helicopter's anti-torque rotor (a tail rotor, or a shrouded fan). */
+export interface HelicopterTailRotorSpec extends JsonObject {
+  radius: number;
+  blades: number;
+  chord: number;
+  /** Tip speed at full rotor speed, m/s. */
+  tipSpeed: number;
+  /** Distance from the main rotor's shaft back to the tail rotor, m. */
+  arm: number;
+  /** Height of the tail rotor's hub above the main rotor's, m (negative below). */
+  height: number;
+  /** Blade pitch at full right and full left pedal, rad; default -0.14 and 0.42. */
+  pitch?: [number, number];
+}
+
+/**
+ * A helicopter's rotors as they are built. With this the helicopter flies on them: a main
+ * rotor whose thrust and power come from its blades and the air it moves, whose disc tilts
+ * with the cyclic and flaps back from the air it flies into, acting at the hub above the center
+ * of mass; the torque that turning it puts on the fuselage; and a tail rotor that has to hold
+ * that torque. Without it the helicopter follows the response constants above.
+ */
+export interface HelicopterRotorSpec extends JsonObject {
+  blades: number;
+  chord: number;
+  /** Tip speed at full rotor speed, m/s. */
+  tipSpeed: number;
+  /**
+   * Which way the main rotor turns seen from above; default counterclockwise (American
+   * practice: the fuselage is twisted to the right, and left pedal adds tail rotor thrust).
+   */
+  rotation?: 'counterclockwise' | 'clockwise';
+  /** Forward tilt of the rotor shaft, rad; default 0.05. */
+  shaftTilt?: number;
+  /** Lock number of the blades (air force over inertia); default 7. */
+  lock?: number;
+  /**
+   * Flap hinge offset as a share of the radius: 0 for a teetering rotor, which has no control
+   * with no thrust; about 0.04 articulated; 0.12 or so for a hingeless one. Default 0.04.
+   */
+  hingeOffset?: number;
+  /** Blade pitch at three quarters of the radius with the collective fully down and fully up, rad. */
+  collective: [number, number];
+  /** Greatest tilt of the swashplate each way, rad; default 0.2. */
+  cyclic?: number;
+  /** Induced power over the ideal; default 1.15. */
+  inducedFactor?: number;
+  /**
+   * How much less air the rotor has to move standing on the ground than in free air, fading
+   * out by a rotor radius of height: its cushion. Default: the helicopter's `groundEffect`.
+   */
+  groundEffect?: number;
+  /** Profile drag coefficient of the blades; default 0.008. */
+  profileDrag?: number;
+  /** Mean blade lift coefficient at which the blades stall in a hover; default 1.2. */
+  maxLift?: number;
+  /** Equivalent flat-plate drag area of the fuselage, m². */
+  dragArea: number;
+  /** Share of the thrust lost to the rotor's wash on the fuselage in a hover; default 0.04. */
+  download?: number;
+  /** Share of shaft power that reaches the rotors through the gearbox; default 0.97. */
+  transmission?: number;
+  /** Tail rotor. Omitted, nothing holds the main rotor's torque. */
+  tail?: HelicopterTailRotorSpec;
+  /** Areas of the vertical fin and the horizontal stabilizer, m²; defaults from the disc. */
+  finArea?: number;
+  stabilizerArea?: number;
+  /** Moments of inertia about the roll, pitch and yaw axes, kg m²; defaults from the rotor's size. */
+  inertia?: { roll: number; pitch: number; yaw: number };
+}
+
 export interface HelicopterPhysicsSpec extends JsonObject {
+  /** The rotors as built: with it, the helicopter flies on them. */
+  rotor?: HelicopterRotorSpec;
   /** Fixed skids/wheels by default; false enables retractable gear. */
   fixedGear?: boolean;
   gearTransitTime?: number;
@@ -276,6 +434,19 @@ export interface HelicopterPhysicsSpec extends JsonObject {
   maxTilt: number;
   yawRate: number;
   liftMultiplier: number;
+  /**
+   * The rotor's greatest thrust at sea-level density and full rotor speed, as a multiple of the
+   * weight of `liftMass`: the blades carry no more however far the collective is pulled, and
+   * less in thin air, which is what puts a ceiling on a helicopter with power to spare.
+   * Default: `liftMultiplier`.
+   */
+  liftLimit?: number;
+  /**
+   * The mass in kg whose weight `liftLimit` is a multiple of; default the aircraft's mass. With
+   * it the rotor's greatest thrust stays what it is when the helicopter is flown heavier or
+   * lighter.
+   */
+  liftMass?: number;
   groundEffect: number;
   translationalLift: number;
   translationalLiftSpeed: number;
@@ -283,6 +454,36 @@ export interface HelicopterPhysicsSpec extends JsonObject {
   horizontalDrag: number;
   quadraticDrag: number;
   groundDeceleration: number;
+}
+
+/**
+ * The undercarriage: where the wheels (or skids) stand and how their struts ride. Every
+ * dimension has a default from the airframe's size, with the main wheels placed so the nose or
+ * tail wheel carries about a tenth of the weight.
+ */
+export interface AircraftGearSpec extends JsonObject {
+  /**
+   * Distance from the main wheels to the nose or tail wheel, m; for a helicopter, the length of
+   * skid on the ground. Default 0.33 of the length (0.55 with a tailwheel, 0.22 on skids).
+   */
+  wheelbase?: number;
+  /**
+   * Distance between the main wheels, or the skids, m. Default a fifth of the span (0.44 of the
+   * rotor radius on skids).
+   */
+  track?: number;
+  /** Share of the weight on the nose or tail wheel at rest; default 0.1 (0.07 for a tailwheel). */
+  auxiliaryShare?: number;
+  /** Bounce frequency on the struts, Hz; default 1.4 (2.2 on skids). */
+  frequency?: number;
+  /** Damping ratio of the struts; default 0.65 (0.55 on skids). */
+  damping?: number;
+  /** Strut travel from rest to its stop, m; default 0.6 of the static deflection. */
+  travel?: number;
+  /** Main wheel radius, m; default from the length. */
+  wheelRadius?: number;
+  /** Peak tire friction on a dry runway; default 0.8. */
+  grip?: number;
 }
 
 export interface AircraftVisualBinding extends JsonObject {
@@ -385,6 +586,8 @@ export interface AircraftSpec extends JsonObject {
   engines?: AircraftNamedEngineSpec[];
   airplane?: AirplanePhysicsSpec;
   helicopter?: HelicopterPhysicsSpec;
+  /** Dimensions of the undercarriage; omitted, they follow from the airframe's size. */
+  gear?: AircraftGearSpec;
   /** Assisted powered-lift controls for tiltrotors and vectored jets, blended into wing flight. */
   poweredLift?: {
     /** Seconds to travel from forward thrust to vertical thrust (90 degrees). */
@@ -442,11 +645,35 @@ export interface AircraftInputData extends JsonObject {
   thrustVector?: number;
   /**
    * Helicopter cyclic. `assisted` (the default) commands a bounded tilt that levels itself when
-   * the stick is released. `direct` commands pitch and roll rates with full authority, so the
-   * helicopter can loop, roll or point straight down, and holds its attitude when released.
-   * On the ground both behave as assisted.
+   * the stick is released. `direct` is full authority, so the helicopter can loop, roll or point
+   * straight down. Flying on its rotors (`helicopter.rotor`), `direct` is the swashplate itself,
+   * about a trim that starts where the assist had it and follows a held stick: nothing levels
+   * the helicopter or holds its attitude, and the assist no longer eases the collective to keep
+   * the rotor turning. Without a rotor block it commands pitch and roll rates, holds the
+   * attitude when released, and behaves as assisted on the ground.
    */
   cyclicMode?: 'assisted' | 'direct';
+  /**
+   * A helicopter's pedals, where it flies on its rotors. `assisted`: the pedals ask for a rate
+   * of turn and the tail rotor is worked to give it, holding the main rotor's torque whatever
+   * the collective does. `direct`: the pedals are the tail rotor's pitch, about a trim that
+   * starts where the assist had them and follows a held pedal, and every change of power needs
+   * a foot. Default: as `cyclicMode`.
+   */
+  pedalMode?: 'assisted' | 'direct';
+  /**
+   * Airplane controls, for an airplane with `surfaces`. `assisted` (the default): the stick
+   * asks for an angle of attack around a trim that follows the flight path, so releasing it
+   * holds the path, and the rudder is coordinated. `direct`: the stick moves the elevator,
+   * ailerons and rudder themselves; the airplane then holds a speed, not a path, and needs
+   * trimming and rudder. Ignored by fly-by-wire types.
+   */
+  controlMode?: 'assisted' | 'direct';
+  /**
+   * Elevator trim rate in direct control, -1 (nose down) to 1 (nose up). Omitted, the trim
+   * follows a held stick slowly, so a pull that is kept becomes the new trim.
+   */
+  pitchTrim?: number;
 }
 export interface AircraftStateData extends JsonObject {
   actuators?: ActuatorPositions;
@@ -466,6 +693,22 @@ export interface AircraftStateData extends JsonObject {
   departure?: number;
   /** Rotor vortex-ring lift-loss fraction, 0..1. */
   vortexRing?: number;
+  /**
+   * A helicopter flying on its rotors: the air its main rotor is pulling down through itself,
+   * m/s; its collective, cyclic and tail rotor blade pitch, rad; the cyclic and pedal trims held
+   * in direct control, as shares of full travel (where the stick and pedals rest: they start
+   * where the assist had the controls, and follow a stick or pedal that is held); and the torque
+   * on the mast as a share of the gearbox limit.
+   */
+  rotor?: {
+    inflow: number;
+    collective: number;
+    cyclic: [number, number];
+    pedal: number;
+    trim?: [number, number];
+    pedalTrim?: number;
+    torque: number;
+  };
   velocity: [number, number, number];
   yaw: number;
   pitch: number;
@@ -489,6 +732,16 @@ export interface AircraftStateData extends JsonObject {
   thrustVectorPosition?: number;
   /** Trimmed angle of attack in radians that the airframe flies with the stick centered. */
   pitchTrim?: number;
+  /** Elevator trim in direct control, as a share of full travel: -1 nose down to 1 nose up. */
+  elevatorTrim?: number;
+  /** Elevator, aileron and rudder positions, -1..1, of an airplane flying on its surfaces. */
+  surfaces?: { elevator: number; aileron: number; rudder: number };
+  /**
+   * The undercarriage: wheel speeds in rad/s and the load on each leg in newtons. An airplane's
+   * legs are its nose or tail wheel, left main and right main; a helicopter's the front left,
+   * front right, rear left and rear right ends of its skids.
+   */
+  wheels?: { spin: number[]; load: number[] };
   /** Sideslip angle in radians, positive with the relative wind from the left. */
   sideslip?: number;
   /** Aerodynamic and thrust load along the airframe's up axis, in g. */

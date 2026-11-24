@@ -31,7 +31,7 @@ export { vehiclePartProbes } from './vehicle-damage';
 import { type ComponentType, defineComponent, Transform, type TransformData } from './component';
 import { dmath as m } from './dmath';
 import { applyGlassCrash, type GlassCrashLoad, installGlass } from './glass';
-import { approach, yawOf } from './math3d';
+import { approach, quatNormalize, quatRotateVec3, yawOf } from './math3d';
 import {
   type ConsistCar,
   Coupled,
@@ -64,7 +64,17 @@ export {
 export { type TrackLineInput, TrackNetwork, type TrackNetworkPose } from './track-network';
 
 import { groundFieldOf } from './terrain';
+import {
+  type CarBody,
+  type CarBodyContact,
+  carBodyGroundContacts,
+  carBodyInertia,
+  carBodyOutline,
+  resolveCarBodyContacts,
+  stepCarBody,
+} from './vehicle-body';
 import { type PowertrainState, stepPowertrain } from './vehicle-powertrain';
+import { initialWheelsState, stepWheels, type WheelsState, wheelsGeometry } from './vehicle-wheels';
 
 export {
   engineTorqueCurve,
@@ -85,6 +95,14 @@ export interface VehicleInputData extends JsonObject {
   brake: boolean;
   /** Locks the rear wheels so they slide instead of rolling, for handbrake turns. */
   handbrake?: boolean;
+  /** How hard the brake pedal is pressed while `brake` is true, 0..1; default 1. */
+  brakePedal?: number;
+  /**
+   * `assisted` (the default): the steering is held to what the tires can use and countersteers
+   * a slide, and the car has its traction, stability and anti-lock controls. `direct`: the
+   * steering is the wheel angle and none of those act: the bare car.
+   */
+  controlMode?: 'assisted' | 'direct';
 }
 export interface VehicleStateData extends VehicleDamageState {
   actuators?: ActuatorPositions;
@@ -116,6 +134,27 @@ export interface VehicleStateData extends VehicleDamageState {
   /** Suspension roll on top of the terrain, right side down positive, and its rate. */
   bodyRoll?: number;
   bodyRollRate?: number;
+  /** With wheels on struts: the body above its ride height in meters, and its rate. */
+  bodyHeave?: number;
+  bodyHeaveRate?: number;
+  /** With wheels on struts: wheel speeds in rad/s, front left, front right, rear left, rear right. */
+  wheelSpin?: [number, number, number, number];
+  /** With wheels on struts: the load on each wheel in newtons, in the same order. */
+  wheelLoad?: [number, number, number, number];
+  /**
+   * Present while a car on four wheels is off the plane of its road: in the air, tipping over,
+   * tumbling, or lying on its side or roof. Its transform is then its true pose and it moves as
+   * a free rigid body until it stands on its wheels again; `pitch` and `roll` are its own
+   * attitude, not the terrain's.
+   */
+  freeBody?: {
+    /** Velocity of the center of mass in world axes, m/s (horizontal parts include a boost). */
+    velocity: [number, number, number];
+    /** Angular velocity about the body's left, up and forward axes, rad/s. */
+    omega: [number, number, number];
+    /** Seconds it has lain still off its wheels; after half a second it rests. */
+    still?: number;
+  };
   /** 0–1: how far the tires are past their grip (sliding, wheelspin or locked wheels). */
   skid?: number;
   /** With a powertrain: the selected gear, -1 reverse and 1 upward the forward gears. */
@@ -190,6 +229,39 @@ export function repairVehicle(world: World, id: string): boolean {
   delete repaired.damage;
   delete repaired.debris;
   world.set(id, VehicleState, repaired);
+  return true;
+}
+/**
+ * Set a stopped car that has come to rest off its wheels (on its side, its roof, or wedged)
+ * back on them where it lies, facing the way it faced. Returns false for a car that is moving,
+ * is on its wheels already, or has no ground under it.
+ */
+export function rightVehicle(world: World, id: string, env: VehicleEnvironment): boolean {
+  const state = world.get(id, VehicleState);
+  const t = world.get(id, Transform);
+  const spec = world.get(id, Vehicle)?.spec;
+  if (!state?.freeBody || !t || !spec) return false;
+  if (m.hypot(...state.freeBody.velocity) > 0.7 || m.hypot(...state.freeBody.omega) > 0.5)
+    return false;
+  // Where its center of mass is, not where its floor has ended up.
+  const center = vehicleLocalPoint(t, spec.centerOfMass);
+  const yaw = state.yaw;
+  const offset = vehicleLocalPoint(
+    { pos: [0, 0, 0], rot: vehicleRotation(yaw) },
+    spec.centerOfMass,
+  );
+  const x = center[0] - offset[0];
+  const z = center[2] - offset[2];
+  const ground = env.groundHeight(x, z, center[1]);
+  if (ground === undefined || !Number.isFinite(ground)) return false;
+  const righted = { ...state, ...initialVehicleState(yaw) };
+  delete righted.freeBody;
+  delete righted.wheelSpin;
+  delete righted.wheelLoad;
+  delete righted.bodyHeave;
+  delete righted.bodyHeaveRate;
+  world.set(id, VehicleState, righted);
+  world.patch(id, Transform, { pos: [x, ground, z], rot: vehicleRotation(yaw) });
   return true;
 }
 export function vehicleMounts(spec: VehicleSpec): MountableData {
@@ -425,6 +497,18 @@ function contactNormal(
 }
 
 /**
+ * Roll or pitch on the struts, rad, past which a car with one whole side (or end) of its wheels
+ * off the road is no longer a car in the road's plane: it is balancing on the other pair.
+ */
+const TIP_ANGLE = 0.08;
+
+/** Transform origin of a free car body: the point under its middle at ride height. */
+function bodyOrigin(body: CarBody, spec: VehicleSpec): [number, number, number] {
+  const offset = quatRotateVec3(body.rot, spec.centerOfMass);
+  return [body.center[0] - offset[0], body.center[1] - offset[1], body.center[2] - offset[2]];
+}
+
+/**
  * One car, substepped at 120 Hz or finer: a dynamic bicycle model. Each axle's tires turn slip
  * into side force up to the road's grip and then let go, sharing that grip with drive and brakes
  * (a friction circle), so a car can understeer, oversteer, spin its wheels or slide; a handbrake
@@ -433,6 +517,19 @@ function contactNormal(
  * including gusts, pushes on the body. Collisions bounce and spin the car by an impulse at the
  * corner that hit. At walking pace the model blends into pure rolling geometry, so a car never
  * turns in place and parks exactly.
+ *
+ * A cycle is ridden: the rider leans it by steering (out of the turn first, then into it) and
+ * holds it up by steering under the lean, and the lean is a real balance between gravity and
+ * the tires' side force. Leaned tires push sideways by themselves (camber thrust). Runners
+ * with a sidecut carve the turn their edge angle gives.
+ *
+ * A car whose spec has `wheels` stands on four of them instead of two axles: see
+ * vehicle-wheels.ts. Everything around the tires (steering, powertrain, air, terrain, snow,
+ * collisions) is the same. Such a car is solved in the plane of its road only while it is on
+ * it. Off a ledge or a crest it leaves faster than gravity follows, onto two wheels in a
+ * rollover, or wherever the ground falls away too steeply to be a road, it becomes a free
+ * rigid body (vehicle-body.ts, `state.freeBody`) on the same wheels, and comes back to the
+ * road's plane when it stands on them again.
  */
 export function stepVehicle(
   t: TransformData,
@@ -535,12 +632,18 @@ export function stepVehicle(
   const stiffness = spec.corneringStiffness ?? 18;
   // Slip angle at which a tire's side force peaks.
   const peakFront = (TIRE_PEAK * TIRE_SHAPE * friction) / stiffness;
-  const peakRear = (TIRE_PEAK * TIRE_SHAPE * frictionRear) / stiffness;
   const car = spec.cycle === undefined;
+  // A cycle's rear tire is the wider and stiffer of its two, which is what keeps the tail
+  // behind the front at speed.
+  const stiffnessRear = car ? stiffness : 1.35 * stiffness;
+  const peakRear = (TIRE_PEAK * TIRE_SHAPE * frictionRear) / stiffnessRear;
   const sensitivity = car ? (spec.tireLoadSensitivity ?? 0.25) : 0;
   const rollBalance = spec.rollBalance ?? 0.6;
-  const tractionControl = spec.tractionControl ?? car;
-  const stabilityControl = (spec.stabilityControl ?? true) && car;
+  // Direct control: the bare car, with the steering wheel on the wheels and no controllers.
+  const direct = input.controlMode === 'direct';
+  // A rider feathers the throttle as traction control would.
+  const tractionControl = (spec.tractionControl ?? true) && !direct;
+  const stabilityControl = (spec.stabilityControl ?? true) && car && !direct;
   // Traction control also brakes a spinning wheel, which works like a limited-slip differential.
   const lockedShare = m.max(spec.limitedSlip ?? 0, tractionControl && car ? 0.5 : 0);
   const powertrain = spec.powertrain;
@@ -573,6 +676,97 @@ export function stepVehicle(
   let skid = 0;
   let impact = 0;
   const impacts: GlassCrashLoad[] = [];
+  // The rider's balance: how high the mass sits over the tire line, and how briskly the rider
+  // moves the lean (a tall, slow pendulum is leaned slowly).
+  const leanHeight = m.max(0.3, spec.centerOfMass[1]);
+  const leanRate = 1.6 * m.sqrt(g / leanHeight);
+  // Lean the rider is asking for, radians, right side down positive, and the side grip in
+  // m/s² the steering is asking of the tires to get it.
+  let riderLean = 0;
+  let riderGrip = 0;
+  // Sideways acceleration (to the left, m/s²) the rider is steering the tire line for.
+  let riderSide = 0;
+  // 0–1: how far the tail has stepped out. Sliding, the rider stands the machine up by moving
+  // over it; there is no balance to steer for.
+  let riderSlide = 0;
+  // Drag in m/s² of a ski or board turned harder than it can carve: it skids, and scrubs speed.
+  let edgeDrag = 0;
+  // Camber thrust as the slip angle that would make the same side force.
+  const camber = spec.cycle && !runners ? (spec.cycle.camber ?? 0.9) / stiffness : 0;
+  // Four wheels on struts, where the spec has them.
+  const geometry =
+    car && !runners && spec.wheels && spec.wheelTrack > 0
+      ? wheelsGeometry(spec, baseMass)
+      : undefined;
+  let wheels: WheelsState | undefined;
+  if (geometry) {
+    wheels = initialWheelsState(geometry, u / spec.wheelRadius);
+    if (state.wheelSpin) wheels.spin = [...state.wheelSpin];
+    if (state.wheelLoad) wheels.load = [...state.wheelLoad];
+    wheels.heave = state.bodyHeave ?? 0;
+    wheels.heaveRate = state.bodyHeaveRate ?? 0;
+    wheels.pitch = bodyPitch;
+    wheels.pitchRate = bodyPitchRate;
+    wheels.roll = bodyRoll;
+    wheels.rollRate = bodyRollRate;
+  }
+  // Off the plane of its road the car is a free rigid body; on it, the transform carries the
+  // body's heave on the struts and the solver follows the road beneath.
+  const outline = geometry ? carBodyOutline(spec, geometry) : undefined;
+  let body: CarBody | undefined;
+  let still = state.freeBody?.still ?? 0;
+  if (wheels && state.freeBody) {
+    const rot = quatNormalize(t.rot);
+    const offset = quatRotateVec3(rot, spec.centerOfMass);
+    body = {
+      center: [pos[0] + offset[0], pos[1] + offset[1], pos[2] + offset[2]],
+      rot,
+      velocity: [
+        state.freeBody.velocity[0] / previousTravel,
+        state.freeBody.velocity[1],
+        state.freeBody.velocity[2] / previousTravel,
+      ],
+      omega: [...state.freeBody.omega],
+      spin: wheels.spin,
+      load: wheels.load,
+    };
+  } else if (wheels) pos[1] -= wheels.heave;
+  /** The car as it is in the road's plane, let go as a free body with origin at `at`. */
+  const release = (at: [number, number, number], vertical: number): CarBody | undefined => {
+    if (!wheels) return undefined;
+    const rot = vehicleRotation(next.yaw, next.pitch + bodyPitch, next.roll + bodyRoll * banks);
+    const offset = quatRotateVec3(rot, spec.centerOfMass);
+    const sy = m.sin(next.yaw);
+    const cy = m.cos(next.yaw);
+    return {
+      center: [at[0] + offset[0], at[1] + wheels.heave + offset[1], at[2] + offset[2]],
+      rot,
+      velocity: [sy * u + cy * v, vertical + wheels.heaveRate, cy * u - sy * v],
+      omega: [bodyPitchRate, r, bodyRollRate],
+      spin: wheels.spin,
+      load: wheels.load,
+    };
+  };
+  // The road under each wheel against the road under the middle of the car: split grip.
+  const patch: [number, number, number, number] = [1, 1, 1, 1];
+  if (geometry && env.surface && surface) {
+    const sy = m.sin(state.yaw);
+    const cy = m.cos(state.yaw);
+    const middle = surface.grip + m.max(0, 1 - surface.grip) * 0.5 * tread;
+    for (let i = 0; i < 4; i++) {
+      const x = geometry.x[i] ?? 0;
+      const z = geometry.z[i] ?? 0;
+      const under = env.surface(pos[0] + sy * z + cy * x, pos[2] + cy * z - sy * x, pos[1]);
+      if (under && middle > 0)
+        patch[i] = (under.grip + m.max(0, 1 - under.grip) * 0.5 * tread) / middle;
+    }
+  }
+  let drivenSpeed = u;
+  if (wheels) {
+    const share = spec.drive === 'rear' ? 0 : spec.drive === 'all' ? 0.4 : 1;
+    const [fl, fr, rl, rr] = wheels.spin;
+    drivenSpeed = (share * (fl + fr) + (1 - share) * (rl + rr)) * 0.5 * spec.wheelRadius;
+  }
   for (let step = 0; step < steps; step++) {
     const remainingMass = m.max(
       0.2,
@@ -587,6 +781,14 @@ export function stepVehicle(
     const inertia = baseInertia * remainingMass;
     const frontHealth = vehiclePartAuthority(spec, next, 'frontWheel');
     const rearHealth = vehiclePartAuthority(spec, next, 'rearWheel');
+    if (body) {
+      // The steering and the driveline see the body's own motion.
+      const ahead = quatRotateVec3(body.rot, [0, 0, 1]);
+      const aside = quatRotateVec3(body.rot, [1, 0, 0]);
+      u = body.velocity[0] * ahead[0] + body.velocity[1] * ahead[1] + body.velocity[2] * ahead[2];
+      v = body.velocity[0] * aside[0] + body.velocity[1] * aside[1] + body.velocity[2] * aside[2];
+      r = body.omega[1];
+    }
     // Lock and steering speed both fade with road speed, as a driver's hands do, and full lock
     // asks for at most half again the cornering the tires can give at this speed.
     const fade = 1 + m.abs(u) / spec.steeringFadeSpeed;
@@ -594,14 +796,20 @@ export function stepVehicle(
     // Tire friction may impose a lower limit, particularly in wet or snowy weather. A car's
     // lock is the angle that turns it as hard as its tires can corner.
     const corneringLimit = spec.cycle
-      ? m.min(1.5 * friction * g, g * m.tan(spec.cycle.maxLean))
+      ? m.min(0.8 * friction * g, g * m.tan(spec.cycle.maxLean))
       : friction * g;
     const lock = m.min(
       spec.maxSteer / fade,
       m.atan((corneringLimit * wheelbase) / m.max(u * u, 1)),
     );
     const speedNow = m.hypot(u, v);
-    if (car && spec.maxSteer > 0) {
+    if (direct)
+      next.steer = approach(
+        next.steer,
+        m.clamp(input.steering, -1, 1) * spec.maxSteer * frontHealth,
+        h * spec.steeringRate,
+      );
+    else if (car && spec.maxSteer > 0) {
       // The driver's hands follow the front tires. A car that runs wide needs more lock than
       // the turn alone: up to the slip angle where its front tires have all but their last
       // percent of grip, and no more (extra lock only slides them, and a tire at its very peak
@@ -638,6 +846,70 @@ export function stepVehicle(
               ? lock / lockTime
               : most / 1.2;
       next.steer = approach(next.steer, held, h * rate);
+    } else if (spec.cycle) {
+      // The rider. The steering input asks for a lean, as far as the tires and the machine
+      // allow. Above a walking pace the rider gets it by steering: the handlebar goes where it
+      // puts the tire line under the lean the rider wants, which means out of the turn first
+      // (countersteering) and then into it. Below that pace the feet are down and the bar
+      // simply points the wheel.
+      const upright = m.clamp((speedNow - 1) / 1.5, 0, 1);
+      // The rider asks for a little less lean than the tires could hold, and keeps the rest to
+      // steer with. If the tail steps out anyway, the rider stands the machine up until it
+      // grips again.
+      const tail = m.abs(m.atan2(v - rear * r, m.max(m.abs(u), 3)));
+      riderSlide = m.clamp(tail / m.max(peakRear, 1e-3) - 0.5, 0, 1);
+      riderLean =
+        m.clamp(input.steering, -1, 1) *
+        m.atan((0.85 * corneringLimit) / g) *
+        frontHealth *
+        (1 - riderSlide);
+      let balanced: number;
+      if (runners?.sidecut) {
+        // On edge a ski or board carves the arc its sidecut and edge angle give, no tighter
+        // than the snow can hold at this speed.
+        const carve =
+          m.smoothstep(m.abs(bodyRoll) / 0.12) / (runners.sidecut * m.max(m.cos(bodyRoll), 0.3));
+        const held = corneringLimit / m.max(u * u, 1);
+        balanced = m.sign(bodyRoll) * m.atan(wheelbase * m.min(carve, held));
+        // Faster than the edge can hold its arc, the runner is across its path and skidding:
+        // half the side force of the turn comes back as drag, which is how a skier slows down.
+        edgeDrag = carve > held ? 0.5 * (1 - held / carve) * u * u * held * upright : 0;
+      } else {
+        // The lean is brought round at a rate the tires can still stop: what is left of their
+        // grip beyond holding the lean asked for is all there is to catch it with, so the rider
+        // slows the lean as it arrives.
+        const error = riderLean - bodyRoll;
+        const reach = 0.8 * friction * g;
+        const spare = m.max(0.05, (0.6 * (reach - g * m.tan(m.abs(riderLean)))) / leanHeight);
+        const turning = m.sign(error) * m.min(0.3 * leanRate, m.sqrt(2 * spare * m.abs(error)));
+        const asked = 1.25 * leanRate * (turning - bodyRollRate);
+        // Sideways acceleration (to the left) of the tire line that tips the lean that way.
+        const needed = m.clamp(
+          (leanHeight * asked - g * m.sin(bodyRoll)) / m.max(m.cos(bodyRoll), 0.3),
+          -reach,
+          reach,
+        );
+        // The front tire is never asked to slip past its peak: in a slide the wheel follows the
+        // way the machine is going, which is the countersteer that catches it.
+        const along = -m.atan2((v + front * r) * (u < 0 ? -1 : 1), m.max(m.abs(u), 3));
+        // The bar is worked until the machine is turning as hard as that: unevenly loaded
+        // tires, drive and slip all change how much bar a turn takes, and the rider feels for
+        // it rather than computing it.
+        balanced = m.clamp(
+          next.steer - ((h * 10 * (needed - u * r) * wheelbase) / m.max(u * u, 9)) * upright,
+          along - 0.8 * peakFront,
+          along + 0.8 * peakFront,
+        );
+        riderGrip = m.abs(needed) * upright;
+        riderSide = needed;
+      }
+      const pointed = m.clamp(input.steering, -1, 1) * lock * frontHealth;
+      next.steer = approach(
+        next.steer,
+        m.clamp(upright * balanced + (1 - upright) * pointed, -spec.maxSteer, spec.maxSteer),
+        h * spec.steeringRate * (1 + 2 * upright),
+      );
+      if (runners?.sidecut) riderSide = 0;
     } else
       next.steer = approach(
         next.steer,
@@ -664,6 +936,7 @@ export function stepVehicle(
     let spinning = false;
     // The engine turns with the wheels in flight too, so the gearbox steps either way.
     let drive = 0;
+    let drivelineInertia = 0;
     if (engine && powertrain) {
       const direction =
         throttle > 0 ? (u < -0.1 ? -1 : 1) : throttle < 0 ? (u > 0.1 ? 1 : -1) : engine.gear;
@@ -673,23 +946,405 @@ export function stepVehicle(
         powertrain,
         spec.wheelRadius,
         engine,
-        u,
+        // On four wheels the engine is geared to the driven wheels, which may be spinning, and
+        // its inertia is theirs to spin up.
+        wheels ? drivenSpeed : u,
         braking || governed ? 0 : m.abs(throttle),
         direction,
         h,
-        mass,
+        wheels ? 0 : mass,
       );
       engine = result.state;
       drive = result.force * vehiclePartAuthority(spec, next, 'engine');
+      // Under braking the converter or clutch lets the engine go: the brakes stop the car,
+      // not the flywheel.
+      drivelineInertia =
+        (braking ? 0 : 1) *
+        (powertrain.inertia ??
+          (powertrain.curve === 'electric' ? 0.06 : 0.1 + powertrain.power / 1_000_000)) *
+        result.ratio *
+        result.ratio *
+        (powertrain.efficiency ?? 0.9);
     } else if (
       !braking &&
       !(throttle > 0 && u >= (runners?.pushSpeed ?? spec.maxSpeed)) &&
       !(throttle < 0 && u <= -spec.reverseSpeed)
     )
       drive = throttle * spec.engineForce * vehiclePartAuthority(spec, next, 'engine');
+    if (body && wheels && geometry && outline) {
+      const before: CarBody = { ...body };
+      const groundAt = (x: number, z: number, y?: number): number | undefined =>
+        env.groundHeight(x, z, y);
+      const out = stepCarBody(body, {
+        controls: {
+          spec,
+          geometry,
+          mass,
+          friction: [
+            friction * m.max(0.03, frontHealth) * patch[0],
+            friction * m.max(0.03, frontHealth) * patch[1],
+            frictionRear * m.max(0.03, rearHealth) * patch[2],
+            frictionRear * m.max(0.03, rearHealth) * patch[3],
+          ],
+          drive,
+          frontDrive,
+          health: [frontHealth, rearHealth],
+          drivelineInertia,
+          brake: braking ? (input.brake ? m.clamp(input.brakePedal ?? 1, 0, 1) : 1) : 0,
+          handbrake: input.handbrake === true,
+          antiLock: (spec.wheels?.antiLock ?? true) && !direct,
+          traction: tractionControl,
+          stability: stabilityControl,
+          h,
+        },
+        steer: delta,
+        yawInertia: inertia,
+        drag: spec.aerodynamicResistance,
+        side,
+        ...(wind ? { wind: [wind[0], wind[1], wind[2]] as [number, number, number] } : {}),
+        resistance: spec.rollingResistance + surfaceDrag + (2 - frontHealth - rearHealth) * 1.5,
+        travel,
+        groundHeight: groundAt,
+      });
+      const hull = out.ok
+        ? carBodyGroundContacts(body, outline, groundAt, spec.maxStepHeight, h * travel)
+        : undefined;
+      if (!hull) {
+        body = before;
+        next.waitingForTerrain = true;
+        break;
+      }
+      // The body's own corners on the ground come first; what the host reports follows.
+      const grounded = hull.length;
+      const contacts: CarBodyContact[] = hull;
+      if (spec.collisionParts) {
+        const pose: TransformData = { pos: bodyOrigin(body, spec), rot: body.rot };
+        // A wheel that comes down hard loads its joint.
+        for (const landing of out.landed) {
+          if (landing.speed <= 2) continue;
+          const role = landing.wheel < 2 ? 'frontWheel' : 'rearWheel';
+          const leftSide = landing.wheel % 2 === 0;
+          const part = spec.collisionParts.find(
+            (candidate) => candidate.role === role && candidate.center[0] > 0 === leftSide,
+          );
+          if (part)
+            resolveVehiclePartContacts(
+              pose,
+              next,
+              spec,
+              [
+                {
+                  part: part.id,
+                  point: vehicleLocalPoint(pose, part.center),
+                  normal: [0, 1, 0],
+                  depth: 0,
+                },
+              ],
+              { velocity: [0, -landing.speed, 0], yawRate: 0 },
+              travel,
+              false,
+            );
+        }
+        stepPartDebris(next, spec.collisionParts, env, id, h);
+        if (env.contacts) {
+          const probes = vehiclePartProbes(pose, spec, next);
+          const reported = env.contacts(probes, id);
+          const touching =
+            out.wheelsDown >= 3 && out.upright > 0.9
+              ? withoutClimbableWheelContacts(reported, probes, spec)
+              : reported;
+          const gone = new Set(
+            spec.collisionParts
+              .filter((part) => next.damage?.[part.id]?.detached)
+              .map((part) => part.id),
+          );
+          impact = m.max(
+            impact,
+            resolveVehiclePartContacts(
+              pose,
+              next,
+              spec,
+              touching,
+              { velocity: [...body.velocity], yawRate: body.omega[1] },
+              travel,
+              false,
+            ),
+          );
+          for (const contact of touching) {
+            const part = spec.collisionParts.find((candidate) => candidate.id === contact.part);
+            const length = m.hypot(...contact.normal);
+            if (!part || gone.has(part.id) || !(length > 1e-9) || !(contact.depth >= 0)) continue;
+            contacts.push({
+              point: contact.point,
+              normal: [
+                contact.normal[0] / length,
+                contact.normal[1] / length,
+                contact.normal[2] / length,
+              ],
+              depth: contact.depth,
+              // A part that has just broken off passes on only what its joint could carry.
+              ...(next.damage?.[part.id]?.detached
+                ? {
+                    joint: {
+                      breakSpeed: part.breakSpeed,
+                      share: m.min(0.25, part.massFraction * 3),
+                    },
+                  }
+                : {}),
+            });
+          }
+        }
+      }
+      const struck = { velocity: body.velocity, omega: body.omega };
+      const closing: number[] = [];
+      const hit = resolveCarBodyContacts(
+        body,
+        mass,
+        carBodyInertia(geometry, inertia),
+        contacts,
+        closing,
+      );
+      if (spec.collisionParts && closing.some((speed, i) => i < grounded && speed > 2)) {
+        // The body's own corners coming down hard load the joints beside them.
+        const pose: TransformData = { pos: bodyOrigin(body, spec), rot: body.rot };
+        const probes = vehiclePartProbes(pose, spec, next);
+        for (let i = 0; i < grounded; i++) {
+          const speed = closing[i] ?? 0;
+          const contact = contacts[i];
+          if (!contact || speed <= 2) continue;
+          resolveVehiclePartContacts(
+            pose,
+            next,
+            spec,
+            probes
+              .filter(
+                (probe) =>
+                  m.hypot(
+                    probe.center[0] - contact.point[0],
+                    probe.center[1] - contact.point[1],
+                    probe.center[2] - contact.point[2],
+                  ) <=
+                  probe.radius + 0.6,
+              )
+              .map((probe) => ({
+                part: probe.part,
+                point: contact.point,
+                normal: contact.normal,
+                depth: 0,
+              })),
+            {
+              velocity: [
+                -contact.normal[0] * speed,
+                -contact.normal[1] * speed,
+                -contact.normal[2] * speed,
+              ],
+              yawRate: 0,
+            },
+            travel,
+            false,
+          );
+        }
+      }
+      if (env.canOccupy) {
+        const ahead = quatRotateVec3(body.rot, [0, 0, 1]);
+        if (!env.canOccupy(bodyOrigin(body, spec), m.atan2(ahead[0], ahead[2]), spec, id)) {
+          // A host that can only say "blocked": stay at the last free pose and come off it.
+          impact = m.max(impact, m.hypot(body.velocity[0], body.velocity[2]));
+          body.center = before.center;
+          body.rot = before.rot;
+          body.velocity = [-0.2 * body.velocity[0], body.velocity[1], -0.2 * body.velocity[2]];
+          body.omega = [0.5 * body.omega[0], 0.5 * body.omega[1], 0.5 * body.omega[2]];
+        }
+      }
+      if (hit > 1) {
+        impact = m.max(impact, hit);
+        impacts.push({
+          deltaVelocity: [
+            (body.velocity[0] - struck.velocity[0]) * travel,
+            body.velocity[1] - struck.velocity[1],
+            (body.velocity[2] - struck.velocity[2]) * travel,
+          ],
+          deltaAngularVelocity: quatRotateVec3(body.rot, [
+            body.omega[0] - struck.omega[0],
+            body.omega[1] - struck.omega[1],
+            body.omega[2] - struck.omega[2],
+          ]),
+          velocity: [struck.velocity[0] * travel, struck.velocity[1], struck.velocity[2] * travel],
+          angularVelocity: quatRotateVec3(body.rot, struck.omega),
+          centerOfMass: spec.centerOfMass,
+        });
+      }
+      // Lying still off its wheels it rests; standing on them with the brakes on it holds.
+      const moving = m.hypot(...body.velocity);
+      const turning = m.hypot(...body.omega);
+      still =
+        out.wheelsDown === 0 && contacts.length > 0 && moving < 0.3 && turning < 0.3
+          ? still + h
+          : 0;
+      const settling =
+        m.hypot(
+          body.velocity[0] - before.velocity[0],
+          body.velocity[1] - before.velocity[1],
+          body.velocity[2] - before.velocity[2],
+        ) +
+        m.hypot(
+          body.omega[0] - before.omega[0],
+          body.omega[1] - before.omega[1],
+          body.omega[2] - before.omega[2],
+        );
+      if (
+        still > 0.5 ||
+        (out.wheelsDown >= 3 &&
+          braking &&
+          contacts.length === 0 &&
+          moving < 0.05 &&
+          turning < 0.03 &&
+          settling < 0.5 * h)
+      ) {
+        body.velocity = [0, 0, 0];
+        body.omega = [0, 0, 0];
+      }
+      pos = bodyOrigin(body, spec);
+      wheels.spin = body.spin;
+      wheels.load = body.load;
+      next.grounded = out.wheelsDown > 0;
+      skid = out.skid;
+      assist = m.max(assist, out.assist);
+      drivenSpeed = out.drivenSpeed;
+      next.wheelAngle =
+        (next.wheelAngle +
+          ((body.spin[0] + body.spin[1] + body.spin[2] + body.spin[3]) / 4) * h * travel) %
+        m.TAU;
+      // Back on its wheels, and near enough level on ground it can drive: the road's plane
+      // takes it again.
+      if (
+        out.wheelsDown >= 3 &&
+        out.upright > 0.97 &&
+        contacts.length === 0 &&
+        m.abs(body.omega[0]) < 2 &&
+        m.abs(body.omega[2]) < 2
+      ) {
+        const ahead = quatRotateVec3(body.rot, [0, 0, 1]);
+        const aside = quatRotateVec3(body.rot, [1, 0, 0]);
+        const top = quatRotateVec3(body.rot, [0, 1, 0]);
+        const heading = m.atan2(ahead[0], ahead[2]);
+        const hs = m.sin(heading);
+        const hc = m.cos(heading);
+        const under: number[] = [];
+        for (const z of [spec.wheelbase / 2, -spec.wheelbase / 2])
+          for (const x of [-span / 2, span / 2]) {
+            const ground = env.groundHeight(
+              pos[0] + hc * x + hs * z,
+              pos[2] - hs * x + hc * z,
+              pos[1],
+            );
+            if (ground !== undefined && Number.isFinite(ground)) under.push(ground);
+          }
+        if (under.length === 4) {
+          const [fl, fr, rl, rr] = under as [number, number, number, number];
+          const support = (fl + fr + rl + rr) / 4;
+          const pitch = m.atan2((rl + rr - fl - fr) / 2, spec.wheelbase);
+          const roll = m.atan2((fr + rr - fl - rl) / 2, span);
+          const lean = -m.asin(m.clamp(ahead[1], -1, 1)) - pitch;
+          const bank = m.atan2(aside[1], top[1]) - roll;
+          const heave = pos[1] - support;
+          const along = body.velocity[0] * hs + body.velocity[2] * hc;
+          const across = body.velocity[0] * hc - body.velocity[2] * hs;
+          const climb = 0 + (-along * m.tan(pitch) + across * m.tan(roll));
+          if (
+            m.abs(pitch) <= spec.maxSlope &&
+            m.abs(roll) <= spec.maxSlope &&
+            m.abs(lean) < 0.18 &&
+            m.abs(bank) < 0.18 &&
+            m.abs(heave) < 1.6 * geometry.travel &&
+            m.abs(body.velocity[1] - climb) < 2.5
+          ) {
+            next.yaw = heading;
+            next.pitch = pitch;
+            next.roll = roll;
+            next.vy = climb;
+            next.grounded = true;
+            u = along;
+            v = across;
+            r = body.omega[1];
+            bodyPitch = lean;
+            bodyPitchRate = body.omega[0];
+            bodyRoll = bank;
+            bodyRollRate = body.omega[2];
+            wheels.heave = heave;
+            wheels.heaveRate = body.velocity[1] - climb;
+            wheels.pitch = lean;
+            wheels.pitchRate = bodyPitchRate;
+            wheels.roll = bank;
+            wheels.rollRate = bodyRollRate;
+            pos = [pos[0], support, pos[2]];
+            body = undefined;
+            still = 0;
+          }
+        }
+      }
+      continue;
+    }
     // What the tires or runners push with along the vehicle, before any resistance.
     let propel = 0;
-    if (next.grounded) {
+    if (wheels && geometry) {
+      const bump = next.grounded ? roughness * m.min(1, speedNow / 8) : 0;
+      let offsets: [number, number, number, number] | undefined;
+      if (bump > 0) {
+        offsets = [0, 0, 0, 0];
+        for (let i = 0; i < 4; i++) {
+          const x = geometry.x[i] ?? 0;
+          const z = geometry.z[i] ?? 0;
+          const ripple = (pos[0] + sx * z + cz * x) * 1.9 + (pos[2] + cz * z - sx * x) * 2.3;
+          offsets[i] = 0.02 * bump * (m.sin(ripple * 0.22) + m.sin(ripple * 0.47 + 1.7));
+        }
+      }
+      const out = stepWheels(wheels, {
+        spec,
+        geometry,
+        mass,
+        u,
+        v,
+        r,
+        steer: delta,
+        friction: [
+          friction * m.max(0.03, frontHealth) * patch[0],
+          friction * m.max(0.03, frontHealth) * patch[1],
+          frictionRear * m.max(0.03, rearHealth) * patch[2],
+          frictionRear * m.max(0.03, rearHealth) * patch[3],
+        ],
+        drive,
+        frontDrive,
+        health: [frontHealth, rearHealth],
+        drivelineInertia,
+        brake: braking ? (input.brake ? m.clamp(input.brakePedal ?? 1, 0, 1) : 1) : 0,
+        handbrake: input.handbrake === true,
+        antiLock: (spec.wheels?.antiLock ?? true) && !direct,
+        traction: tractionControl,
+        stability: stabilityControl,
+        lift: mass * (spec.aerodynamicLift ?? 0) * airForward * airForward,
+        ...(offsets ? { bump: offsets } : {}),
+        grounded: next.grounded,
+        h,
+      });
+      drivenSpeed = out.drivenSpeed;
+      bodyPitch = wheels.pitch;
+      bodyPitchRate = wheels.pitchRate;
+      bodyRoll = wheels.roll;
+      bodyRollRate = wheels.rollRate;
+      if (next.grounded) {
+        propel = out.forward;
+        fx =
+          propel -
+          mass *
+            (spec.rollingResistance + surfaceDrag + (2 - frontHealth - rearHealth) * 1.5) *
+            m.clamp(u / stiction, -1, 1);
+        fy = out.left;
+        moment = out.moment;
+        skid = out.skid;
+        assist = m.max(assist, out.assist);
+      }
+    } else if (next.grounded) {
       // Weight shifts through the springs: the body's dive or squat says how much moved forward
       // and its roll how much moved to the outside wheels. Lift at speed takes some off both.
       const height = spec.centerOfMass[1];
@@ -721,11 +1376,22 @@ export function stepVehicle(
       const frontLateral = v + front * r;
       const rolling = u * m.cos(delta) - frontLateral * m.sin(delta);
       const sliding = frontLateral * m.cos(delta) + u * m.sin(delta);
-      const slipFront = m.atan2(sliding, m.max(m.abs(rolling), 3));
+      // A leaned tire pushes toward the lean before it slips at all.
+      const slipFront = m.atan2(sliding, m.max(m.abs(rolling), 3)) + camber * bodyRoll;
       const rearLateral = v - rear * r;
-      const slipRear = m.atan2(rearLateral, m.max(m.abs(u), 3));
-      const useFront = m.min(1, m.abs(slipFront) / peakFront);
-      const useRear = m.min(1, m.abs(slipRear) / peakRear);
+      const slipRear =
+        m.atan2(rearLateral, m.max(m.abs(u), 3)) +
+        ((camber * stiffness) / stiffnessRear) * bodyRoll;
+      // A leaned cycle needs the side grip its lean stands on, slipping or not: the rider rolls
+      // the throttle on and squeezes the brakes only as far as leaves it.
+      const leaning = spec.cycle
+        ? m.min(
+            0.98,
+            (1.1 * m.max(g * m.tan(m.abs(bodyRoll)), riderGrip)) / (m.max(friction, 0.05) * g),
+          )
+        : 0;
+      const useFront = m.max(leaning, m.min(1, m.abs(slipFront) / peakFront));
+      const useRear = m.max(leaning, m.min(1, m.abs(slipRear) / peakRear));
       // Stability control: when the rear tires slide past their peak it brakes the outside
       // front wheel, which turns the car back into line, slows it and backs off the engine.
       let stability = 0;
@@ -754,7 +1420,9 @@ export function stepVehicle(
       // Traction control backs the engine off to keep the tire at its limit instead.
       const push = (force: number, traction: number, use: number): number => {
         const hold = tractionControl
-          ? 0.97 * traction * m.sqrt(m.max(0.05, 1 - (0.9 * use) ** 2))
+          ? spec.cycle
+            ? 0.95 * traction * m.sqrt(m.max(0.02, 1 - use * use))
+            : 0.97 * traction * m.sqrt(m.max(0.05, 1 - (0.9 * use) ** 2))
           : traction;
         if (m.abs(force) <= hold) return force;
         if (tractionControl) {
@@ -779,10 +1447,13 @@ export function stepVehicle(
       // to steer with. The rear brakes ease off a cornering tire (brake-force distribution), so
       // the lightly loaded tail keeps its side grip and the car stays in line while stopping.
       const brake = braking ? mass * spec.brakeDeceleration : 0;
-      const brakeFront = m.min(brake * bias, 0.95 * straightFront);
+      const brakeFront = m.min(
+        brake * bias,
+        0.95 * straightFront * (spec.cycle ? m.sqrt(m.max(0.02, 1 - useFront * useFront)) : 1),
+      );
       const brakeRear = m.min(
         brake * (1 - bias),
-        0.95 * straightRear * m.sqrt(1 - (0.9 * useRear) ** 2),
+        0.95 * straightRear * m.sqrt(m.max(0.02, 1 - (spec.cycle ? useRear : 0.9 * useRear) ** 2)),
       );
       const longFront = pushFront - brakeFront * m.clamp(rolling / stiction, -1, 1);
       const frontTire = tire(
@@ -806,7 +1477,7 @@ export function stepVehicle(
           slipRear,
           limitRear * m.sqrt(m.max(0, 1 - (longRear / straightRear) ** 2)),
           gripRear,
-          stiffness,
+          stiffnessRear,
         );
         sideRear = rearTire.force;
         skid = m.max(skid, rearTire.over);
@@ -823,7 +1494,7 @@ export function stepVehicle(
       moment = front * frontLeft - rear * sideRear + stability;
     }
     // Wheels spinning free of the road run the engine up to its limiter.
-    if (engine && powertrain && spinning)
+    if (engine && powertrain && spinning && !wheels)
       engine.rpm = approach(
         engine.rpm,
         0.96 * (powertrain.redline ?? powertrain.peakPowerRpm * 1.1),
@@ -832,6 +1503,10 @@ export function stepVehicle(
     // Air drag and crosswind. The side force acts ahead of the center of mass, so a gust
     // also turns the nose downwind.
     const sideForce = mass * spec.aerodynamicResistance * side * air * airLeft;
+    // What the tires push along the road with: only that shifts weight between a cycle's two
+    // wheels. The air's drag acts about as high as the mass sits and tips nothing.
+    if (next.grounded && edgeDrag > 0) fx -= mass * edgeDrag * m.clamp(u / stiction, -1, 1);
+    const tireForward = fx / mass;
     fx -= mass * spec.aerodynamicResistance * air * airForward;
     fy -= sideForce;
     if (car) moment -= sideForce * 0.1 * wheelbase;
@@ -892,19 +1567,54 @@ export function stepVehicle(
     // under power and rolls out of a turn, then settles on its springs.
     // Rough ground works the springs: undulations five to fifteen meters long, which a car
     // at a town pace meets about as fast as its body bounces.
-    const bump = next.grounded ? roughness * m.min(1, speedNow / 8) : 0;
-    const ripple = pos[0] * 1.9 + pos[2] * 2.3;
-    const pitchTarget =
-      (-pitchPerG * feltForward) / g +
-      (bump > 0 ? 0.008 * bump * (m.sin(ripple * 0.22) + m.sin(ripple * 0.47 + 1.7)) : 0);
-    bodyPitchRate += (omega * omega * (pitchTarget - bodyPitch) - damping * bodyPitchRate) * h;
-    const rollTarget = spec.cycle
-      ? m.clamp(-m.atan2(u * r, g), -spec.cycle.maxLean, spec.cycle.maxLean)
-      : (rollPerG * feltLeft) / g +
-        (bump > 0 ? 0.01 * bump * (m.sin(ripple * 0.17 + 0.6) + m.sin(ripple * 0.39 + 4.1)) : 0);
-    bodyRollRate += (omega * omega * (rollTarget - bodyRoll) - damping * bodyRollRate) * h;
-    bodyPitch += bodyPitchRate * h;
-    bodyRoll += bodyRollRate * h;
+    if (!wheels) {
+      const bump = next.grounded ? roughness * m.min(1, speedNow / 8) : 0;
+      const ripple = pos[0] * 1.9 + pos[2] * 2.3;
+      const pitchTarget =
+        (-pitchPerG * (spec.cycle ? tireForward : feltForward)) / g +
+        (bump > 0 ? 0.008 * bump * (m.sin(ripple * 0.22) + m.sin(ripple * 0.47 + 1.7)) : 0);
+      bodyPitchRate += (omega * omega * (pitchTarget - bodyPitch) - damping * bodyPitchRate) * h;
+      if (spec.cycle) {
+        const upright = m.clamp((speedNow - 1) / 1.5, 0, 1);
+        // No further than the machine leans, or than the road could hold it at.
+        const most = m.min(spec.cycle.maxLean, m.atan(friction)) + 0.04;
+        if (runners?.sidecut)
+          // A skier or boarder sets the edge by moving over it.
+          bodyRollRate +=
+            (leanRate * leanRate * (riderLean * upright - bodyRoll) - 2 * leanRate * bodyRollRate) *
+            h;
+        else if (!next.grounded)
+          // In the air nothing tips it.
+          bodyRollRate -= 2 * leanRate * bodyRollRate * h;
+        // Balance: gravity tips the lean further, and the tire line moving out from under it
+        // stands it up. The lean follows the turn the rider is steering for; the rider is
+        // taken to keep that balance where the tires are slow to deliver it or slide instead:
+        // nobody falls off.
+        // At a walking pace the rider's feet hold it.
+        else
+          bodyRollRate +=
+            (upright *
+              ((1 - riderSlide) *
+                ((g * m.sin(bodyRoll) + riderSide * m.cos(bodyRoll)) / leanHeight) +
+                riderSlide *
+                  (leanRate * leanRate * (riderLean - bodyRoll) - 2 * leanRate * bodyRollRate)) +
+              (1 - upright) * (-omega * omega * bodyRoll - damping * bodyRollRate)) *
+            h;
+        bodyRoll += bodyRollRate * h;
+        // Past what the machine can lean, the rider catches it.
+        if (m.abs(bodyRoll) > most) {
+          bodyRoll = m.sign(bodyRoll) * most;
+          bodyRollRate = 0;
+        }
+      } else {
+        const rollTarget =
+          (rollPerG * feltLeft) / g +
+          (bump > 0 ? 0.01 * bump * (m.sin(ripple * 0.17 + 0.6) + m.sin(ripple * 0.39 + 4.1)) : 0);
+        bodyRollRate += (omega * omega * (rollTarget - bodyRoll) - damping * bodyRollRate) * h;
+        bodyRoll += bodyRollRate * h;
+      }
+      bodyPitch += bodyPitchRate * h;
+    }
     const yaw = next.yaw + r * h;
     const fs = m.sin(yaw);
     const fc = m.cos(yaw);
@@ -945,6 +1655,16 @@ export function stepVehicle(
       m.abs(pitch) > spec.maxSlope ||
       m.abs(roll) > spec.maxSlope
     ) {
+      // Ground that falls away under a car on four wheels is no barrier: it drives off it,
+      // as a free body. Ground that rises like that still stops it.
+      if (
+        wheels &&
+        support - pos[1] <= spec.maxStepHeight &&
+        -u * m.sin(pitch) + v * m.sin(roll) < 0
+      ) {
+        body = release(pos, next.vy);
+        continue;
+      }
       u = 0;
       v = 0;
       r = 0;
@@ -953,8 +1673,12 @@ export function stepVehicle(
     next.vy -= 9.81 * h;
     candidate[1] += next.vy * h;
     const wasGrounded = next.grounded;
+    // A car on four wheels is carried by the road only where the road is under it: over a
+    // crest that falls away faster than gravity follows, it flies. Its wheels reach the road
+    // for the first few centimeters.
+    const landing = wheels ? candidate[1] <= support : false;
     next.grounded = candidate[1] <= support + spec.supportTolerance;
-    if (next.grounded) {
+    if (wheels ? landing : next.grounded) {
       if (!wasGrounded && next.vy < -2 && spec.collisionParts) {
         const landingPose: TransformData = {
           pos: candidate,
@@ -991,8 +1715,11 @@ export function stepVehicle(
           angularVelocity: [0, r, 0],
           centerOfMass: spec.centerOfMass,
         });
+      // The wheels are down; the body goes on sinking onto its springs.
+      if (!wasGrounded && wheels) wheels.heaveRate += m.max(next.vy, -6);
       candidate[1] = support;
-      next.vy = 0;
+      // On the road the car rises and falls with it, which is what it leaves a crest with.
+      next.vy = wheels ? 0 + (-u * m.tan(next.pitch) + v * m.tan(next.roll)) : 0;
     }
     if (spec.collisionParts) {
       stepPartDebris(next, spec.collisionParts, env, id, h);
@@ -1142,7 +1869,14 @@ export function stepVehicle(
     next.yaw = yaw;
     next.pitch = approach(next.pitch, pitch, h * spec.terrainAlignRate);
     next.roll = approach(next.roll, roll, h * spec.terrainAlignRate);
-    next.wheelAngle = (next.wheelAngle + (u * h * travel) / spec.wheelRadius) % m.TAU;
+    // On four wheels the drawn wheels turn as the real ones do on average: a locked wheel
+    // stops and a spinning one blurs.
+    next.wheelAngle =
+      (next.wheelAngle +
+        (wheels
+          ? ((wheels.spin[0] + wheels.spin[1] + wheels.spin[2] + wheels.spin[3]) / 4) * h * travel
+          : (u * h * travel) / spec.wheelRadius)) %
+      m.TAU;
     if (spec.cycle?.pedals && throttle > 0 && !braking && next.grounded)
       next.pedalAngle =
         ((next.pedalAngle ?? 0) +
@@ -1161,6 +1895,54 @@ export function stepVehicle(
       next.kick = approach(next.kick ?? 0, pushing || next.pedalAngle !== 0 ? 1 : 0, h * 4);
     }
     pos = candidate;
+    if (wheels) {
+      // In the air, or over onto one pair of wheels: no longer a car in the plane of its road.
+      const rolled =
+        m.abs(wheels.roll) > TIP_ANGLE &&
+        (wheels.roll > 0 ? wheels.load[0] + wheels.load[2] : wheels.load[1] + wheels.load[3]) <= 0;
+      const pitched =
+        m.abs(wheels.pitch) > TIP_ANGLE &&
+        (wheels.pitch > 0 ? wheels.load[2] + wheels.load[3] : wheels.load[0] + wheels.load[1]) <= 0;
+      if (!next.grounded || rolled || pitched) body = release(pos, next.vy);
+    }
+  }
+  let pose: TransformData;
+  if (body) {
+    // Off the road's plane the pose is the body's own, and the angles its attitude.
+    const ahead = quatRotateVec3(body.rot, [0, 0, 1]);
+    const aside = quatRotateVec3(body.rot, [1, 0, 0]);
+    const top = quatRotateVec3(body.rot, [0, 1, 0]);
+    u = body.velocity[0] * ahead[0] + body.velocity[1] * ahead[1] + body.velocity[2] * ahead[2];
+    v = body.velocity[0] * aside[0] + body.velocity[1] * aside[1] + body.velocity[2] * aside[2];
+    r = body.omega[1];
+    // At rest it is at rest: no signed zeros from the projections.
+    if (u === 0) u = 0;
+    if (v === 0) v = 0;
+    if (m.hypot(ahead[0], ahead[2]) > 1e-3) next.yaw = m.atan2(ahead[0], ahead[2]);
+    next.pitch = -m.asin(m.clamp(ahead[1], -1, 1));
+    next.roll = m.atan2(aside[1], top[1]);
+    next.vy = body.velocity[1];
+    bodyPitch = 0;
+    bodyPitchRate = 0;
+    bodyRoll = 0;
+    bodyRollRate = 0;
+    if (wheels) {
+      wheels.heave = 0;
+      wheels.heaveRate = 0;
+    }
+    next.freeBody = {
+      velocity: [body.velocity[0] * travel, body.velocity[1], body.velocity[2] * travel],
+      omega: body.omega,
+      ...(still > 0 ? { still } : {}),
+    };
+    pose = { ...t, pos: bodyOrigin(body, spec), rot: body.rot };
+  } else {
+    delete next.freeBody;
+    pose = {
+      ...t,
+      pos: wheels ? [pos[0], pos[1] + wheels.heave, pos[2]] : pos,
+      rot: vehicleRotation(next.yaw, next.pitch + bodyPitch, next.roll + bodyRoll * banks),
+    };
   }
   next.speed = u * travel;
   next.lateralSpeed = v * travel;
@@ -1171,6 +1953,12 @@ export function stepVehicle(
   next.bodyPitchRate = bodyPitchRate;
   next.bodyRoll = bodyRoll;
   next.bodyRollRate = bodyRollRate;
+  if (wheels) {
+    next.bodyHeave = wheels.heave;
+    next.bodyHeaveRate = wheels.heaveRate;
+    next.wheelSpin = wheels.spin;
+    next.wheelLoad = wheels.load;
+  }
   next.skid = skid;
   if (engine) {
     next.gear = engine.gear;
@@ -1185,16 +1973,7 @@ export function stepVehicle(
   else delete next.snowDepth;
   if (stuck) next.stuck = true;
   else delete next.stuck;
-  return {
-    transform: {
-      ...t,
-      pos,
-      rot: vehicleRotation(next.yaw, next.pitch + bodyPitch, next.roll + bodyRoll * banks),
-    },
-    state: next,
-    impact: impact * travel,
-    impacts,
-  };
+  return { transform: pose, state: next, impact: impact * travel, impacts };
 }
 export function mountEntity(
   world: World,
@@ -1257,12 +2036,16 @@ export function unmountEntity(world: World, actor: string, env: VehicleEnvironme
     mount = world.get(mounted.vehicle, Mountable);
   if (!t || !mount || groundSpeed(world.get(mounted.vehicle, VehicleState)) > 0.7) return false;
   const driver = mount.seats.find((s) => s.id === mounted.seat)?.role !== 'passenger';
+  // A car lying on its side or roof is left beside where it lies, not through its floor.
+  const overturned = world.get(mounted.vehicle, VehicleState)?.freeBody !== undefined;
+  const beside: TransformData = overturned ? { ...t, rot: vehicleRotation(yawOf(t.rot)) } : t;
   for (const offset of mount.exits) {
-    const pos = vehicleLocalPoint(t, offset);
+    const pos = vehicleLocalPoint(beside, offset);
     const ground = env.groundHeight(pos[0], pos[2], t.pos[1]);
     if (
       ground === undefined ||
-      m.abs(ground - (world.has(mounted.vehicle, { name: 'boat' }) ? pos[1] : t.pos[1])) > 0.6
+      (!overturned &&
+        m.abs(ground - (world.has(mounted.vehicle, { name: 'boat' }) ? pos[1] : t.pos[1])) > 0.6)
     )
       continue;
     pos[1] = ground + 0.02;
@@ -1271,7 +2054,8 @@ export function unmountEntity(world: World, actor: string, env: VehicleEnvironme
     world.remove(actor, Mounted);
     world.patch(actor, Transform, {
       pos,
-      ...(world.get(mounted.vehicle, Vehicle)?.spec.cycle !== undefined ||
+      ...(overturned ||
+      world.get(mounted.vehicle, Vehicle)?.spec.cycle !== undefined ||
       world.has(mounted.vehicle, { name: 'boat' })
         ? { rot: vehicleRotation(yawOf(t.rot)) }
         : {}),

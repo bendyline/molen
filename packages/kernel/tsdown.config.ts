@@ -15,6 +15,7 @@ export default defineConfig({
     'src/glass.ts',
     'src/boats.ts',
     'src/aircraft.ts',
+    'src/trials.ts',
     'src/world-entry.ts',
   ],
   format: 'esm',

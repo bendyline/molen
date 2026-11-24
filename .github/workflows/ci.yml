@@ -51,7 +51,20 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - id: assets
         uses: ./.github/actions/fetch-assets
-      - run: pnpm assets:check
+      # Fail here, not in the jobs below, when the commit's sidecars do not describe these GLBs.
+      # Those jobs install the bundle into a clean checkout, so a sidecar this build rewrote has
+      # to be committed first. The bundle is cached by now: a push that commits it reuses it.
+      - run: pnpm assets:check --committed
+      # The sidecars to commit, as a patch for `git apply`. There is none if anything else failed.
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-sidecars
+          path: .artifacts/asset-build/sidecars.patch
+          include-hidden-files: true
+          if-no-files-found: ignore
+          overwrite: true
+          retention-days: 14
       # Hand the checked bundle to the jobs that wait for this one. An artifact belongs to the
       # run, so nothing another job saves can evict it, and its size has no 10 GB ceiling: the
       # Actions cache lost the bundle between this job and the next ones (see restore-assets).

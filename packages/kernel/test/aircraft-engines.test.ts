@@ -28,25 +28,21 @@ const single: AircraftSpec = {
 const engine = single.engine;
 if (!engine || !single.airplane) throw new Error('Missing Mustang fixture');
 const { engine: _singleEngine, ...airframe } = single;
-// Synthetic twin with the same total shaft power as the Mustang: isolates engine layout.
+// Synthetic twin with the same total shaft power as the Mustang: isolates engine layout. Each
+// propeller sweeps half the Mustang's disc, so the pair moves the same air as the one.
+const half = {
+  power: engine.power / 2,
+  maxThrust: (engine.maxThrust ?? single.airplane.maxThrust) / 2,
+  ...(engine.propellerDiameter === undefined
+    ? {}
+    : { propellerDiameter: engine.propellerDiameter / Math.SQRT2 }),
+};
 const twin: AircraftSpec = {
   ...airframe,
   label: 'Test twin',
   engines: [
-    {
-      ...engine,
-      id: 'left',
-      position: [2.5, 1, 1],
-      power: engine.power / 2,
-      maxThrust: (engine.maxThrust ?? single.airplane.maxThrust) / 2,
-    },
-    {
-      ...engine,
-      id: 'right',
-      position: [-2.5, 1, 1],
-      power: engine.power / 2,
-      maxThrust: (engine.maxThrust ?? single.airplane.maxThrust) / 2,
-    },
+    { ...engine, id: 'left', position: [2.5, 1, 1], ...half },
+    { ...engine, id: 'right', position: [-2.5, 1, 1], ...half },
   ],
 };
 const flat = { groundHeight: () => 0 };

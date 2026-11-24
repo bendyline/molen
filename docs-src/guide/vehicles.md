@@ -100,7 +100,8 @@ Outside a scene, resolve a type's components from the pack's type documents with
 
 Declare commands and input bindings in the scene using the normal input schema. Give `drive`
 a payload schema with `throttle` and `steering` numbers in [-1,1], a boolean `brake` and an
-optional boolean `handbrake`.
+optional boolean `handbrake`; a host with an analog brake or a driver who wants the bare car
+adds `brakePedal` (0 to 1) and `controlMode` (`assisted` or `direct`).
 Run this setup through `buildWorld`, the Worker, or `molen sim run --setup`.
 
 `mountable.seats` is reusable for passenger seats or non-car mounts. Each seat has a unique
@@ -113,22 +114,63 @@ Passenger seats: every stock car carries a `passenger` seat beside the driver, m
 the centreline, and the OH-6 one on the pilot's left; the P-51D has a rear `passenger` seat behind
 the pilot, like the TF-51D trainer. Only the `driver` seat controls the vehicle.
 
-The solver is a dynamic bicycle model substepped at 120 Hz or finer. Each axle's tires turn slip
-angle into side force (`corneringStiffness` per unit load per radian) up to the road's grip, then
-let go to about 85% of it as they slide. Side grip is `grip` (m/s², so `grip / 9.81` is the
-friction coefficient; `rearGrip` where wider rear tires differ); straight-line grip is 15%
-higher, and drive and brakes share it with cornering, so a car braking or under power at the
-limit steers less. `drive` picks the front, rear or all wheels. `handbrake` locks the rear
-wheels, which then slide. State carries the forward `speed`, the sideways `lateralSpeed`,
-`yawRate` and a 0–1 `skid` for tire sounds or effects.
+On the road the solver moves the car in the plane of the road (forward speed, sideways speed
+and yaw), substepped at 120 Hz or finer, on the forces of its tires; a car that leaves that
+plane becomes a [free body](#off-its-wheels).  A tire turns slip into force up to
+the road's grip, then lets go to about 85% of it as it slides: sideways slip (the slip angle,
+`corneringStiffness` per unit load per radian) into side force, and lengthwise slip (the wheel
+turning faster or slower than the road passes under it) into drive or braking. Side grip is
+`grip` (m/s², so `grip / 9.81` is the friction coefficient; `rearGrip` where wider rear tires
+differ); straight-line grip is 15% higher, and the two share one grip, so a car braking or
+under power at the limit steers less. `drive` picks the front, rear or all wheels. State
+carries the forward `speed`, the sideways `lateralSpeed`, `yawRate` and a 0–1 `skid` for tire
+sounds or effects.
+
+### Four wheels
+
+A car whose spec has `wheels` (every calibrated road vehicle does) stands on four of them, each
+on its own strut. Each wheel carries its own load, meets its own patch of road (the host's
+`surface` is sampled under each, so two wheels on ice and two on asphalt is exactly that) and
+turns at its own speed: `vehicleState.wheelSpin` in rad/s and `wheelLoad` in newtons, front
+left, front right, rear left, rear right.
+
+- **Wheelspin and lock-up are what the wheels do.** Engine torque reaches the driven wheels
+  through a differential that gives both the same torque: when the lightly loaded inside wheel
+  breaks loose in a corner it runs away with the engine and its partner gets only what it can
+  hold, unless `limitedSlip` drags them together. More brake than a tire can take stops the
+  wheel, and a locked, sliding tire steers almost nothing. `handbrake` clamps the rear pair.
+- **The controls are controllers.** Anti-lock brakes (`wheels.antiLock`, default true) hold
+  each wheel just short of its tire's peak, keep the rear pair to what the worse-placed of
+  them can take on a road that grips one side better, and ease off a wheel that has gone past
+  the peak until it turns again. Traction control (`tractionControl`) does the same for each
+  driven axle's torque. Stability control (`stabilityControl`) brakes the outside front wheel
+  when the tail slides.
+- **Weight moves through the springs.** See the next section.
+
+Without `wheels` (cycles, and any hand-written spec that leaves it out) the same solver runs on
+two axles, each a pair of tires, with wheelspin and lock-up as limits on the force and no
+per-wheel state.
+
+`vehicleInput.controlMode` picks how much help the driver gets. `assisted` (the default) is
+as described under Controls: the lock is held to what the tires can use, a slide countersteers
+itself, and the car has whichever of the three controllers its spec gives it. `direct` is the
+bare car: `steering` is the wheel angle up to `maxSteer` at any speed, and anti-lock, traction
+and stability control are off. `brakePedal` (0–1, default 1) is how hard the pedal is pressed
+while `brake` is true.
 
 ### Tire loads and balance
 
-Weight moves between the wheels through the suspension: the sprung body pitches by
-`pitchStiffness` and rolls by `rollStiffness` (radians per g) on springs of
-`suspensionFrequency` and `suspensionDamping`. Braking loads the front tires. Cornering loads
-the outside ones, each axle taking the share its roll stiffness gives it: `rollBalance` is the
-front's (default 0.6). A tire's friction falls as its load rises (`tireLoadSensitivity`, the
+Weight moves between the wheels through the suspension. On four wheels the body heaves,
+pitches and rolls on its springs under the tire forces at the road, and each wheel's load is
+what its strut carries: spring and damper rates follow from `suspensionFrequency` and
+`suspensionDamping` and the load each corner bears at rest, anti-roll bars make up the roll
+stiffness `rollStiffness` (radians per g) asks for and split it between the axles by
+`rollBalance` (the front's share, default 0.6), and `pitchStiffness` does the same in pitch.
+A wheel can unload completely; the body meets a bump stop at `wheels.travel`; a car that
+drops onto the road lands on its springs (`bodyHeave`). Without `wheels` the body's pitch and
+roll are springs driven by the acceleration, with the same parameters. Either way braking
+loads the front tires and cornering loads the outside ones, each axle taking the share its
+roll stiffness gives it. A tire's friction falls as its load rises (`tireLoadSensitivity`, the
 share lost when the load doubles; default 0.25), so two unevenly loaded tires grip less than
 two evenly loaded ones. That is what gives a car its balance: the heavier axle and the
 stiffer-sprung axle give up first. A nose-heavy car (`centerOfMass` ahead of the wheelbase's
@@ -137,10 +179,50 @@ rotates. It also means a car corners at less than its tires' rated `grip`: the n
 sedan holds about 0.85 g on tires rated 1.0. Set `tireLoadSensitivity` to 0 for grip proportional to load, which
 makes every car neutral at any weight distribution.
 
-`bodyPitch` and `bodyRoll` add to the terrain `pitch` and `roll` in the transform, so the
-cockpit view feels them too. Passed to the car visual as signals, they become suspension
+`bodyPitch` and `bodyRoll` add to the terrain `pitch` and `roll` in the transform, and
+`bodyHeave` to its height, so the cockpit view feels them too. Passed to the car visual as signals, they become suspension
 travel: the wheels move against the lean and stay on the road. At walking pace the car simply
 rolls where its wheels point, so it never turns in place and parks exactly.
+
+### Off its wheels
+
+A car with `wheels` is in the plane of its road only while the road holds it there. It
+becomes a free rigid body, six degrees of freedom on the same four struts and tires, when:
+
+- it is in the air: off a ledge, a ramp or a crest taken too fast;
+- one whole side of its wheels, or one end, has come off the road and the body has leaned
+  past about 5° on the other pair;
+- the ground falls away ahead more steeply than `maxSlope` (the car goes over the edge, where
+  it used to stop at it; a slope that steep rising ahead is still a barrier).
+
+Free, each wheel finds its own ground and pushes along the body's own up axis, the tires,
+differentials, brakes and controllers work as they did, and where no wheel reaches, the body
+meets the ground itself: on its sills, the corners of its roof and its bottomed wheels, with
+friction and very little bounce. What follows is not scripted:
+
+- **A jump.** A car leaves a ramp with the climb the ramp gave it, flies a ballistic arc
+  (the world's travel boost carries it four times as far), pitches nose-down off a ledge
+  because its rear wheels are still on it as the front falls, and lands on its springs.
+- **A rollover.** A vehicle tips when its tires grip harder than its track and the height of
+  its center of mass can stand. On a tilting table it goes over near the angle whose tangent
+  is half its track over the height of its mass. On flat, dry pavement none of the shipped
+  fleet does on its own tires; every one slides first. The motorhomes, the box truck and the
+  bus come closest (half the track over the height of mass is 0.68 to 0.8, on tires that
+  hold 0.5 to 0.8 g), and go over with a little help: a side slope, or stickier tires.
+- **A tumble.** Down a bank it rolls and slides without gaining energy, and comes to rest on
+  its wheels, its side or its roof.
+
+It is a car on the road again once it is back on at least three wheels, upright, nearly
+still in roll and pitch, and on ground it could drive on. A car that has stopped off its
+wheels stays there: its driver can get out beside it, and `rightVehicle(world, id, env)` from
+`kernel/vehicles` sets a stopped car back on its wheels where it lies. Earth view and World Explorer do that on **R**, with
+the repair. `vehicleState.freeBody` carries the body's velocity and angular velocity while
+it is free, and is absent on the road, so a keyframe taken in mid-air resumes there. A
+vehicle without `wheels` (the two-axle model, cycles, rail) is never released.
+
+Not modeled: one vehicle pushing or tipping another (other vehicles are static obstacles to
+the free body as they are on the road), tripping over a curb as a cause of rollover, and
+body deformation.
 
 ### Engine and gearbox
 
@@ -263,14 +345,13 @@ can rest against a wall), scraping friction along the obstacle, and a spin. `ins
 `vehicle-impact` (5 m/s or more) and `vehicle-bump` (1.5 m/s or more) with the car's `entity` and
 the closing `speed`; the Earth soundscape plays a metal impact for each. World explorer uses an
 oriented chassis against other cars and nearby triangles for walls, fixtures and buildings; the
-car it hits stays put. Terrain gaps pause motion; abrupt steps and slopes above 35 degrees stop
-the car. Cockpit views use the full chassis quaternion; chase views shorten at obstructions.
+car it hits stays put. Terrain gaps pause motion; abrupt steps stop the car, and so do slopes
+above 35 degrees rising ahead of it (falling away, it goes over). Cockpit views use the full
+chassis quaternion; chase views shorten at obstructions.
 
-This is a grounded driving model with assisted steering. It does not implement airborne
-rotation, rollovers, crash deformation, pushing other cars, manual gear selection or a clutch,
-individual wheel speeds (wheelspin and lock-up are force limits, not spinning wheels), tire
-temperature and wear, fuel, different surfaces under different wheels, passenger animation,
-multiplayer ownership, or disk persistence. Background traffic is a
+This is a driving model with assisted steering. It does not implement crash deformation,
+pushing other cars, manual gear selection or a clutch, tire temperature and wear, fuel,
+passenger animation, multiplayer ownership, or disk persistence. Background traffic is a
 separate package: [ambient life](ambient-life.md) moves NPC cars along lanes without this solver,
 and they stop for a car someone is driving. Without collision hooks, the reusable kernel solver
 supplies terrain driving only. Do not attach a second physics body to the same vehicle; the
@@ -283,8 +364,8 @@ exterior panels to `spec.collisionParts`.
 Hard contact reduces the struck part's joint integrity; a broken joint releases its named GLB
 geometry as debris with its own velocity, spin, gravity and collisions. Other parts stay attached.
 Lost wheels reduce grip and drive force on their axle; front-wheel loss also reduces steering.
-Hard landings can break wheel joints. This remains a grounded chassis approximation: the body
-does not roll over or simulate individual suspension collapse after losing a wheel.
+Hard landings can break wheel joints, and so can the ground when a car rolls onto them. A
+lost wheel's strut still carries its corner: suspension collapse is not simulated.
 
 Each part declares `id`, `role` (`frontWheel`, `rearWheel`, `panel` or `engine`), model-space
 `center`, sphere `probes` and `radius`, `massFraction`, `breakSpeed` in m/s, and exact GLB `nodes`.
@@ -298,8 +379,9 @@ and nearby vehicles. Detailed contacts additionally detect parts extending beyon
 `vehicleState.damage` and `debris` survive keyframes. Debris expires after 20 simulation seconds;
 the part stays missing. Pass the state as the sixth argument to `VehicleVisual.update` to apply
 damage after animation; Earth view and World Explorer do this automatically. Press **R** once
-stopped to repair parts in place. Hosts can call `EarthVehicles.recover()`, `EarthView.recover()`
-in drive mode, or `repairVehicle(world, id)` from `kernel/vehicles`. Glass has its own fracture
+stopped to repair parts in place, and to set a car that has come to rest off its wheels back
+on them. Hosts can call `EarthVehicles.recover()`, `EarthView.recover()` in drive mode, or
+`repairVehicle(world, id)` and `rightVehicle(world, id, env)` from `kernel/vehicles`. Glass has its own fracture
 state and is not repaired by this operation. Other vehicles remain static collision targets;
 debris-to-debris collisions and damage transfer into the struck vehicle are not simulated.
 
@@ -519,11 +601,32 @@ accepts the full type ID:
 view.setMode('drive', { vehicle: 'molen.entities.cycle.city_bicycle', force: true });
 ```
 
-`vehicle.spec.cycle` opts into two centreline tire contacts and automatic balance: the cycle
-leans into the turn, limited by `maxLean`, and returns upright as it stops. Lean follows lateral
-acceleration through damped springs; `g * tan(maxLean)` also limits steering at speed, so reducing the lean
-limit increases the minimum turning radius. Braking, tire grip, weather, terrain gaps, collision hooks and safe exits use the existing solver. Bicycles have
-lighter mass and lower power and speed limits. `cycle.pedals.ratio` specifies wheel revolutions
+`vehicle.spec.cycle` opts into two centreline tire contacts and a rider. The steering input
+asks for a lean, not a wheel angle: full input is the lean that uses about two thirds of what
+the tires can hold on the road they are on, or `maxLean` if that is less. Above a jogging pace
+the rider gets it the way riders do, by steering: the handlebar turns out of the turn first,
+which tips the machine in (watch `vehicleState.steer` change sign), then into it to hold the
+lean, and the lean is the balance between gravity and the turn (`bodyRoll`, about 0.7 s to
+arrive on a motorcycle). The rider slows the lean as it arrives so that the grip left over can
+stop it, works the bar until the machine is actually turning as hard as the lean needs, rolls
+the throttle on and squeezes the brakes only as far as the lean leaves grip for, and stands
+the machine up if the tail steps out. Nobody falls off: where the tires cannot deliver what
+balance needs, the rider is taken to save it. Below a jogging pace the feet are down and the
+bar simply points the wheel.
+
+A leaned tire pushes sideways before it slips at all (`cycle.camber`, camber thrust per radian
+of lean and unit of load, default 0.9), which is what carries a two-wheeler round a corner with
+hardly any slip angle; the rear tire is the stiffer of the two, which keeps the tail behind
+the front at speed. Reducing `maxLean` increases the minimum turning radius. Braking, tire
+grip, weather, terrain gaps, collision hooks and safe exits use the same solver as cars. The
+motorcycles, scooter and mopeds have a `powertrain` (gears and engine speed; a variator on the
+scooter, one ratio on the electric moped); bicycles and boards keep a constant push up to their
+speed limit and have lighter mass and lower limits.
+
+Runners with a `sidecut` (the skis and the snowboard) carve: the rider sets the edge by moving
+over it, and on edge the runner follows an arc of the sidecut's radius times the cosine of the
+lean, so more edge is a tighter turn, down to what the snow will hold at that speed. Flat, it
+runs straight. `cycle.pedals.ratio` specifies wheel revolutions
 per crank revolution; snapshot-safe `vehicleState.pedalAngle` advances under forward power and
 holds while coasting or braking. Wheel spin continues while coasting.
 

@@ -181,7 +181,9 @@ describe('earth vehicles', () => {
       expect(vehicles.board(id as string)).toBe(true);
       for (let i = 0; i < 480; i++) {
         vehicles.update(1 / 60, { throttle: 1, steering: 0, brake: false });
-        expect(vehicles.world.get(id as string, Transform)?.pos[1]).toBeCloseTo(10.3, 4);
+        // On the road, not in the dips ten meters under it. The body rides its springs, most
+        // of a millimeter up by the end of the run.
+        expect(vehicles.world.get(id as string, Transform)?.pos[1]).toBeCloseTo(10.3, 2);
       }
       expect(vehicles.world.get(id as string, Transform)?.pos[2]).toBeGreaterThan(70);
     } finally {

@@ -103,7 +103,8 @@ describe('aircraft performance and recovery envelope', () => {
     expect(result.state.crashed).toBe(false);
     expect(result.state.grounded).toBe(false);
     expect(result.transform.pos[1]).toBeGreaterThan(20);
-    expect(result.state.airspeed).toBeGreaterThan(55);
+    // Climbing away with speed in hand over its flaps-down stall (about 41 m/s).
+    expect(result.state.airspeed).toBeGreaterThan(50);
   });
 
   it('accelerates the clean Mustang past 300 kt while maintaining altitude, with useful cruise throttle', () => {
@@ -124,16 +125,21 @@ describe('aircraft performance and recovery envelope', () => {
   });
 
   it('delivers proportional steady throttle power while retaining engine spool-up', () => {
-    const advance = (power: number, rpm: number) => {
+    const run = (power: number, rpm: number) => {
       const start = airborne({ rpm });
       return stepAircraft(start.transform, start.state, { ...clean, power }, mustang, 1 / 120, flat)
-        .state.velocity[2];
+        .state;
     };
+    const advance = (power: number, rpm: number) => run(power, rpm).velocity[2];
     const idle = advance(0, mustangEngine.idleRpm);
     // The governed propeller can already be at full RPM when the throttle is reduced.
     const half = advance(0.5, 1);
     const full = advance(1, 1);
-    expect((half - idle) / (full - idle)).toBeCloseTo(0.5, 6);
+    const shaft = (power: number) => run(power, 1).engines?.main?.shaftPower ?? 0;
+    expect(shaft(0.5) / shaft(1)).toBeCloseTo(0.5, 6);
+    // Half the power makes a little more than half the thrust: a slower slipstream wastes less.
+    expect((half - idle) / (full - idle)).toBeGreaterThan(0.5);
+    expect((half - idle) / (full - idle)).toBeLessThan(0.6);
     expect(advance(1, 0) - idle).toBeLessThan((full - idle) * 0.01);
   });
 
@@ -174,10 +180,10 @@ describe('aircraft performance and recovery envelope', () => {
     );
     const thrust = (on.state.velocity[0] - off.state.velocity[0]) * 120 * spec.mass;
     expect(thrust).toBeGreaterThan(0);
-    expect(thrust * 100).toBeCloseTo(
-      mustangEngine.power * (spec.airplane?.propellerEfficiency ?? 0),
-      5,
-    );
+    // Thrust times speed is the power the blades deliver, less what the slipstream carries off.
+    const delivered = mustangEngine.power * (spec.airplane?.propellerEfficiency ?? 0);
+    expect(thrust * 100).toBeLessThan(delivered);
+    expect(thrust * 100).toBeGreaterThan(delivered * 0.9);
     expect(on.state.velocity[2]).toBeCloseTo(off.state.velocity[2], 10);
   });
 
@@ -190,6 +196,9 @@ describe('aircraft performance and recovery envelope', () => {
         liftSlope: 0,
         postStallLift: 0,
         lateralDamping: 0,
+        ...(mustang.airplane.surfaces
+          ? { surfaces: { ...mustang.airplane.surfaces, sideForce: 0 } }
+          : {}),
       },
     };
     // The banked, pitched airframe still rotates under its own stability, but with no lift
@@ -274,8 +283,11 @@ describe('aircraft performance and recovery envelope', () => {
   it.each([mustang, helicopter])('uses air-relative forces in moving air for $label', (spec) => {
     const calm = airborne({ velocity: [0, 0, 10] });
     const wind = airborne({ velocity: [0, 0, 0] });
-    const a = stepAircraft(calm.transform, calm.state, clean, spec, 1 / 60, flat);
-    const b = stepAircraft(wind.transform, wind.state, clean, spec, 1 / 60, {
+    // The bare aircraft: a helicopter's assist holds its hover over the ground, by eye, which
+    // is the one thing here that knows the ground is moving.
+    const bare = { ...clean, cyclicMode: 'direct' as const };
+    const a = stepAircraft(calm.transform, calm.state, bare, spec, 1 / 60, flat);
+    const b = stepAircraft(wind.transform, wind.state, bare, spec, 1 / 60, {
       ...flat,
       wind: [0, 0, -10],
     });

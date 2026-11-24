@@ -78,6 +78,7 @@ page mount `@bendyline/molen-client` on it.
 | `./vehicles` | mountable vehicles, seats, and `stepVehicle` driving |
 | `./glass` | `Glass`, `GlassState`, `damageGlass` and `applyGlassCrash` — fracture and independent frame/interlayer retention |
 | `./aircraft` | `installAircraft` / `stepAircraft` — fixed-wing and helicopter flight |
+| `./trials` | scripted pilots and drivers that put `stepAircraft` and `stepVehicle` through test procedures (a stall, a level acceleration, a roll, a standing start, a skidpad) and measure the result |
 | `./world` | `World`, `Transform`, `defineComponent` and the RNG without the scripting runtime — for main-thread hosts that must not load SES (it hardens the whole page) |
 
 ## Status

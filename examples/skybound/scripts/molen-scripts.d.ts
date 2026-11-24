@@ -48,6 +48,13 @@ type MolenAircraftData = {
       minPropellerSpeed?: number;
       propellerRotation?: 'clockwise' | 'counterclockwise';
       propellerInertia?: number;
+      propellerDiameter?: number;
+      lowSpeedThrust?: {
+        atRest: number;
+        fullSpeed: number;
+      };
+      windmillDrag?: number;
+      bypassRatio?: number;
       fuelConsumption?: number;
       afterburnerFuelConsumption?: number;
     };
@@ -77,6 +84,13 @@ type MolenAircraftData = {
       minPropellerSpeed?: number;
       propellerRotation?: 'clockwise' | 'counterclockwise';
       propellerInertia?: number;
+      propellerDiameter?: number;
+      lowSpeedThrust?: {
+        atRest: number;
+        fullSpeed: number;
+      };
+      windmillDrag?: number;
+      bypassRatio?: number;
       fuelConsumption?: number;
       afterburnerFuelConsumption?: number;
       id: string;
@@ -151,6 +165,26 @@ type MolenAircraftData = {
       tailwheel?: boolean;
       gearRebound?: number;
       pilotGTolerance?: number;
+      surfaces?: {
+        dihedral: number;
+        aileron: number;
+        bodyYaw?: number;
+        sideForce?: number;
+        liftArm?: number;
+        tailArm: number;
+        tailArea: number;
+        tailLiftSlope: number;
+        tailIncidence: number;
+        downwash: number;
+        elevator: number;
+        finArm: number;
+        finHeight: number;
+        finArea: number;
+        finLiftSlope: number;
+        rudder: number;
+        slipstream?: number;
+        flyByWire?: boolean;
+      };
     };
     helicopter?: {
       fixedGear?: boolean;
@@ -174,6 +208,42 @@ type MolenAircraftData = {
       maxTilt: number;
       yawRate: number;
       liftMultiplier: number;
+      rotor?: {
+        blades: number;
+        chord: number;
+        tipSpeed: number;
+        rotation?: 'counterclockwise' | 'clockwise';
+        shaftTilt?: number;
+        lock?: number;
+        hingeOffset?: number;
+        collective: [number, number];
+        cyclic?: number;
+        groundEffect?: number;
+        inducedFactor?: number;
+        profileDrag?: number;
+        maxLift?: number;
+        dragArea: number;
+        download?: number;
+        transmission?: number;
+        tail?: {
+          radius: number;
+          blades: number;
+          chord: number;
+          tipSpeed: number;
+          arm: number;
+          height: number;
+          pitch?: [number, number];
+        };
+        finArea?: number;
+        stabilizerArea?: number;
+        inertia?: {
+          roll: number;
+          pitch: number;
+          yaw: number;
+        };
+      };
+      liftLimit?: number;
+      liftMass?: number;
       groundEffect: number;
       translationalLift: number;
       translationalLiftSpeed: number;
@@ -181,6 +251,16 @@ type MolenAircraftData = {
       horizontalDrag: number;
       quadraticDrag: number;
       groundDeceleration: number;
+    };
+    gear?: {
+      wheelbase?: number;
+      track?: number;
+      auxiliaryShare?: number;
+      frequency?: number;
+      damping?: number;
+      travel?: number;
+      wheelRadius?: number;
+      grip?: number;
     };
     poweredLift?: {
       transitTime: number;
@@ -331,6 +411,9 @@ type MolenAircraftInputData = {
   flaps: boolean | number;
   thrustVector?: number;
   cyclicMode?: 'assisted' | 'direct';
+  pedalMode?: 'assisted' | 'direct';
+  controlMode?: 'assisted' | 'direct';
+  pitchTrim?: number;
 };
 /** Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. */
 type MolenAircraftStateData = {
@@ -364,6 +447,25 @@ type MolenAircraftStateData = {
   gearPosition?: number;
   flapPosition?: number;
   pitchTrim?: number;
+  elevatorTrim?: number;
+  surfaces?: {
+    elevator: number;
+    aileron: number;
+    rudder: number;
+  };
+  rotor?: {
+    inflow: number;
+    collective: number;
+    cyclic: [number, number];
+    pedal: number;
+    trim?: [number, number];
+    pedalTrim?: number;
+    torque: number;
+  };
+  wheels?: {
+    spin: number[];
+    load: number[];
+  };
   thrustVectorPosition?: number;
   sideslip?: number;
   loadFactor?: number;
@@ -1426,6 +1528,11 @@ type MolenVehicleData = {
     aerodynamicLift?: number;
     tractionControl?: boolean;
     stabilityControl?: boolean;
+    wheels?: {
+      inertia?: number;
+      travel?: number;
+      antiLock?: boolean;
+    };
     limitedSlip?: number;
     looseSurfaceGrip?: number;
     runners?: {
@@ -1433,9 +1540,11 @@ type MolenVehicleData = {
       bareDrag?: number;
       pushSpeed?: number;
       flat?: boolean;
+      sidecut?: number;
     };
     cycle?: {
       maxLean: number;
+      camber?: number;
       riderLean: number;
       handlebarPivot: [number, number, number];
       grips: [[number, number, number], [number, number, number]];
@@ -1531,6 +1640,8 @@ type MolenVehicleInputData = {
   steering: number;
   brake: boolean;
   handbrake?: boolean;
+  brakePedal?: number;
+  controlMode?: 'assisted' | 'direct';
 };
 /** Snapshot-safe chassis state. Speeds in m/s, angles in radians; owned by installVehicles. */
 type MolenVehicleStateData = {
@@ -1565,6 +1676,15 @@ type MolenVehicleStateData = {
   bodyPitchRate?: number;
   bodyRoll?: number;
   bodyRollRate?: number;
+  bodyHeave?: number;
+  bodyHeaveRate?: number;
+  wheelSpin?: [number, number, number, number];
+  wheelLoad?: [number, number, number, number];
+  freeBody?: {
+    velocity: [number, number, number];
+    omega: [number, number, number];
+    still?: number;
+  };
   skid?: number;
   gear?: number;
   rpm?: number;

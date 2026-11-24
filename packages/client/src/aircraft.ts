@@ -452,7 +452,11 @@ export function aircraftCameraPose(
     up = up.addScaledVector(left, 0.0042 * shake * wobble(67, 3)).normalize();
   }
   if (options.view === 'chase') {
-    target = origin.clone().add(new THREE.Vector3(0, 1.5, 0));
+    // Aim at the center of mass, the point the airframe turns about in flight. The transform's
+    // origin is the landing contact under the fuselage (2 m below a fighter's center): a camera
+    // following that swung through a circle on every roll, and the airplane was seen turning
+    // about a point beneath itself.
+    target = new THREE.Vector3().fromArray(spec.centerOfMass).applyQuaternion(q).add(origin);
     position = target
       .clone()
       .addScaledVector(direction, -spec.length * 1.5)

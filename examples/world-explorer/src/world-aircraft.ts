@@ -95,7 +95,7 @@ function skipWhenHidden(object: THREE.Object3D): void {
   };
 }
 export const AIRCRAFT_HELP: string =
-  'I engine · =/− power · W/S pitch · A/D bank · Z/C pedals · Space brakes · G gear · F flaps · B speed brake · H hook · O canopy · J nozzle/nacelles · M helicopter cyclic assisted/direct · V view · F5 flyby · E exit (in flight, eject) · R recover after impact';
+  'I engine · =/− power · W/S pitch · A/D bank · Z/C pedals · Space brakes · G gear · F flaps · B speed brake · H hook · O canopy · J nozzle/nacelles · M assisted/direct controls (helicopter cyclic, airplane surfaces) · V view · F5 flyby · E exit (in flight, eject) · R recover after impact';
 
 /** Whether `box` overlaps any parked or flying aircraft other than `except`: an obstacle for cars. */
 export function aircraftBlocks(world: World, box: OBB, except?: string): boolean {
@@ -661,23 +661,27 @@ export class WorldAircraft {
     if (code === 'KeyF') this.inputs.flaps = !this.inputs.flaps;
     if (code === 'KeyJ' && this.aircraftData(this.typeId(this.mountedKind)).spec.poweredLift)
       this.inputs.thrustVector = ((Math.round((this.inputs.thrustVector ?? 0) * 4) + 1) % 5) / 4;
-    if (
-      code === 'KeyM' &&
-      this.aircraftData(this.typeId(this.mountedKind)).spec.model === 'helicopter'
-    )
-      this.inputs.cyclicMode = this.inputs.cyclicMode === 'direct' ? 'assisted' : 'direct';
+    if (code === 'KeyM') {
+      const spec = this.aircraftData(this.typeId(this.mountedKind)).spec;
+      if (spec.model === 'helicopter')
+        this.inputs.cyclicMode = this.inputs.cyclicMode === 'direct' ? 'assisted' : 'direct';
+      // An airplane with its own control surfaces can be flown on them, without the assist.
+      else if (spec.airplane?.surfaces && !spec.airplane.surfaces.flyByWire)
+        this.inputs.controlMode = this.inputs.controlMode === 'direct' ? 'assisted' : 'direct';
+    }
     if (code === 'KeyR' && this.state?.crashed) {
       const kind = this.mountedKind;
       const yaw = this.spawnYaw(kind);
-      const cyclicMode = this.inputs.cyclicMode;
+      const { cyclicMode, controlMode } = this.inputs;
       this.world.set(`aircraft-${kind}`, Transform, {
         pos: this.spawnPosition(kind),
         rot: [0, Math.sin(yaw / 2), 0, Math.cos(yaw / 2)],
       });
-      // The pilot's cyclic choice survives the reset.
+      // The pilot's choice of controls survives the reset.
       this.inputs = {
         ...this.types.component<AircraftInputData>(this.typeId(kind), 'aircraftInput'),
         ...(cyclicMode === undefined ? {} : { cyclicMode }),
+        ...(controlMode === undefined ? {} : { controlMode }),
       };
       this.world.set(`aircraft-${kind}`, AircraftState, {
         ...initialAircraftState(yaw),
@@ -904,7 +908,7 @@ export class WorldAircraft {
       spec.fuel === undefined
         ? ''
         : `Fuel ${Math.round(((s.fuel ?? spec.fuel.capacity) / spec.fuel.capacity) * 100)}% · `;
-    return `${spec.label} · ${(s.airspeed * 1.94384).toFixed(0)} KTAS · ${airData}${(s.altitudeAGL * 3.28084).toFixed(0)} ft AGL · ${(s.verticalSpeed * 196.85).toFixed(0)} ft/min · ${load}${airplane ? 'Throttle' : 'Collective'} ${(this.inputs.power * 100).toFixed(0)}% · RPM ${(s.rpm * 100).toFixed(0)}% · ${this.inputs.engine ? 'Engine on' : 'Engine off'} · ${fuel}${airplane ? `Gear ${gear} · Flaps ${flaps} · ` : ''}${spec.poweredLift ? `Vector ${Math.round((s.thrustVectorPosition ?? 0) * 90)}° · ` : ''}${spec.model === 'helicopter' ? `Cyclic ${this.inputs.cyclicMode === 'direct' ? 'direct' : 'assisted'} · ` : ''}${alert}`;
+    return `${spec.label} · ${(s.airspeed * 1.94384).toFixed(0)} KTAS · ${airData}${(s.altitudeAGL * 3.28084).toFixed(0)} ft AGL · ${(s.verticalSpeed * 196.85).toFixed(0)} ft/min · ${load}${airplane ? 'Throttle' : 'Collective'} ${(this.inputs.power * 100).toFixed(0)}% · RPM ${(s.rpm * 100).toFixed(0)}% · ${this.inputs.engine ? 'Engine on' : 'Engine off'} · ${fuel}${airplane ? `Gear ${gear} · Flaps ${flaps} · ` : ''}${spec.poweredLift ? `Vector ${Math.round((s.thrustVectorPosition ?? 0) * 90)}° · ` : ''}${spec.model === 'helicopter' ? `Cyclic ${this.inputs.cyclicMode === 'direct' ? 'direct' : 'assisted'} · ` : ''}${this.inputs.controlMode === 'direct' ? 'Direct controls · ' : ''}${alert}`;
   }
   exitHint(): void {
     this.message =

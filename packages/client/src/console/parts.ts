@@ -78,9 +78,10 @@ export function createControlPart(options: {
   scene.add(new THREE.HemisphereLight('#f4f7ff', '#3a3f48', 1.7));
   const key = new THREE.DirectionalLight('#fff6ea', 2.6);
   scene.add(key, key.target);
+  const from = options.view.key ?? [-1.2, 1.6, 0.6];
   let camera = fitCamera(bounds, options.view, 1);
   const light = (): void => {
-    // A key light above and to the left of the camera, a little in front of the part.
+    // Unless the view says, above and to the left of the camera, a little in front of the part.
     const right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0);
     const up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1);
     const back = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 2);
@@ -88,9 +89,9 @@ export function createControlPart(options: {
     key.target.position.copy(center);
     key.position
       .copy(center)
-      .addScaledVector(right, -1.2)
-      .addScaledVector(up, 1.6)
-      .addScaledVector(back, 0.6);
+      .addScaledVector(right, from[0])
+      .addScaledVector(up, from[1])
+      .addScaledVector(back, from[2]);
   };
   light();
   const changed = changeWatch(options.moving);

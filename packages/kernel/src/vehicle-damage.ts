@@ -7,6 +7,7 @@ import type {
 } from '@bendyline/molen-schema';
 import type { TransformData } from './component';
 import { dmath as m } from './dmath';
+import { applyPlanarContactImpulse, type PlanarBody, planarIncoming } from './dynamics/contact';
 import { quatFromAxisAngle, quatRotateVec3 } from './math3d';
 
 type Vec3 = [number, number, number];
@@ -62,7 +63,13 @@ export function resolveVehiclePartContacts(
 ): number {
   const seen = new Set<string>();
   const com = quatRotateVec3(t.rot, spec.centerOfMass).map((v, i) => v + (t.pos[i] ?? 0)) as Vec3;
-  const inertia = spec.yawInertia ?? (spec.mass * (spec.length ** 2 + spec.width ** 2)) / 12;
+  // On its wheels a car moves in the plane of its road: the contact pushes and turns it there.
+  const body: PlanarBody = {
+    mass: spec.mass,
+    yawInertia: spec.yawInertia ?? (spec.mass * (spec.length ** 2 + spec.width ** 2)) / 12,
+    velocity: motion.velocity,
+    yawRate: motion.yawRate,
+  };
   let impact = 0;
   const ordered = contacts
     .filter((c) => c.depth >= 0 && [...c.point, ...c.normal, c.depth].every(Number.isFinite))
@@ -86,15 +93,7 @@ export function resolveVehiclePartContacts(
     const part = spec.collisionParts?.find((p) => p.id === contact.part);
     if (!part || state.damage?.[part.id]?.detached || seen.has(part.id)) continue;
     const arm: Vec3 = contact.point.map((v, i) => v - (com[i] ?? 0)) as Vec3;
-    const velocity: Vec3 = [
-      motion.velocity[0] + motion.yawRate * arm[2],
-      motion.velocity[1],
-      motion.velocity[2] - motion.yawRate * arm[0],
-    ];
-    const incoming = m.max(
-      0,
-      -velocity.reduce((sum, v, i) => sum + v * (contact.normal[i] ?? 0), 0),
-    );
+    const incoming = planarIncoming(body, arm, contact.normal);
     if (incoming <= 0) continue;
     seen.add(part.id);
     impact = m.max(impact, incoming);
@@ -116,16 +115,16 @@ export function resolveVehiclePartContacts(
           rot: [...t.rot],
           velocity: [
             (motion.velocity[0] +
-              motion.yawRate * (center[2] - com[2]) +
+              body.yawRate * (center[2] - com[2]) +
               contact.normal[0] * incoming * 0.2) *
               travel,
             motion.velocity[1] + m.min(2, incoming * 0.1),
             (motion.velocity[2] -
-              motion.yawRate * (center[0] - com[0]) +
+              body.yawRate * (center[0] - com[0]) +
               contact.normal[2] * incoming * 0.2) *
               travel,
           ],
-          angularVelocity: [0, motion.yawRate, incoming * 0.15 * m.sign(part.center[0])],
+          angularVelocity: [0, body.yawRate, incoming * 0.15 * m.sign(part.center[0])],
           age: 0,
         },
       ];
@@ -133,17 +132,11 @@ export function resolveVehiclePartContacts(
     // Ground support already resolves the vertical axis. Parts transfer horizontal impact
     // and yaw only; separation caps the impulse that a mirror or wheel can carry.
     if (!transferImpulse) continue;
-    const [nx, , nz] = contact.normal;
-    const horizontal = nx * nx + nz * nz;
-    if (horizontal < 1e-6) continue;
-    const lever = arm[2] * nx - arm[0] * nz;
     const joint = detached
       ? m.min(1, part.breakSpeed / incoming) * m.min(0.25, part.massFraction * 3)
       : 1;
-    const j = (incoming * 1.05 * joint) / (horizontal / spec.mass + (lever * lever) / inertia);
-    motion.velocity[0] += (j * nx) / spec.mass;
-    motion.velocity[2] += (j * nz) / spec.mass;
-    motion.yawRate += (j * lever) / inertia;
+    applyPlanarContactImpulse(body, arm, contact.normal, incoming, { bounce: 1.05, joint });
+    motion.yawRate = body.yawRate;
   }
   return impact;
 }

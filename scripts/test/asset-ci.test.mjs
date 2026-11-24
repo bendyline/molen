@@ -109,7 +109,7 @@ test('every CI job that restores GLBs waits for the job that builds them', () =>
 test("the bundle reaches the other jobs as this run's artifact, never through the cache", () => {
   const jobs = workflowJobs('ci.yml');
   const steps = jobs.get('assets').split(/(?=^ {6}- )/m);
-  const upload = steps.find((step) => step.includes('uses: actions/upload-artifact@'));
+  const upload = steps.find((step) => step.includes('name: asset-bundle'));
   assert.ok(upload, 'assets uploads the bundle');
   for (const line of [
     'name: asset-bundle',
@@ -135,6 +135,32 @@ test("the bundle reaches the other jobs as this run's artifact, never through th
   for (const [id, job] of jobs)
     if (id !== 'assets')
       assert.doesNotMatch(job, /key: molen-assets-/, `${id} reads the bundle from the cache`);
+});
+
+test('sidecars a build changed fail `assets` unless committed, and come back as a patch', () => {
+  const steps = workflowJobs('ci.yml')
+    .get('assets')
+    .split(/(?=^ {6}- )/m);
+  const index = (text) => steps.findIndex((step) => step.includes(text));
+  // Without --committed a build is compared with the sidecars it just rewrote, and passes.
+  const check = index('run: pnpm assets:check --committed');
+  assert.ok(check >= 0, 'assets compares the bundle with the committed sidecars');
+  assert.doesNotMatch(steps[check], /continue-on-error|\|\|/);
+  // The action caches the bundle first, so the push that commits the sidecars does not rebuild it,
+  // and nothing is handed to the jobs that would fail on it.
+  assert.ok(index('fetch-assets') < check);
+  assert.ok(check < index('name: asset-bundle'));
+  const patch = steps[check + 1];
+  for (const line of [
+    'if: failure()',
+    'uses: actions/upload-artifact@',
+    'name: asset-sidecars',
+    'path: .artifacts/asset-build/sidecars.patch',
+    'include-hidden-files: true',
+    'if-no-files-found: ignore',
+    'overwrite: true',
+  ])
+    assert.ok(patch.includes(line), `the sidecar upload sets ${line}`);
 });
 
 test('the cache keeps one bundle, and none that would evict every other cache', () => {

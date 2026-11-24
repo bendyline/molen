@@ -16,6 +16,9 @@ import {
   onFootDeck,
   subjectButtons,
 } from '../src/console';
+import { PEDAL_LEAN, PEDAL_VIEW } from '../src/console/camera';
+import { kitCarPedals, kitRudderPedals } from '../src/console/kit';
+import { leanPedals, pedalLean } from '../src/console/pedals';
 import { TouchLever } from '../src/navigation';
 
 describe('touch lever', () => {
@@ -245,6 +248,15 @@ const item = (items: ConsoleItem[], id: string): ConsoleItem => {
   if (!found) throw new Error(`No ${id}`);
   return found;
 };
+/** How far from the camera the middles of a pad's top and bottom edges are (+Y its own up). */
+const edgeDistances = (pad: THREE.Object3D, camera: THREE.Camera) => {
+  pad.updateWorldMatrix(true, false);
+  const at = (y: number): number =>
+    camera
+      .getWorldPosition(new THREE.Vector3())
+      .distanceTo(pad.localToWorld(new THREE.Vector3(0, y, 0)));
+  return { top: at(0.06), bottom: at(-0.06) };
+};
 const names = (scene: THREE.Object3D): Set<string> => {
   const found = new Set<string>();
   scene.traverse((node) => found.add(node.name));
@@ -313,9 +325,32 @@ describe('aircraft deck', () => {
     if (!part) throw new Error('No pedals');
     const right = part.scene.getObjectByName('rudder-control--1');
     const left = part.scene.getObjectByName('rudder-control-1');
+    if (!right || !left) throw new Error('No pads');
+    const rest = [right.position.z, left.position.z] as const;
     part.pose({ yawInput: 1 });
-    expect(right?.position.z).toBeGreaterThan(0);
-    expect(left?.position.z).toBeLessThan(0);
+    expect(right.position.z).toBeGreaterThan(rest[0] + 0.01);
+    expect(left.position.z).toBeLessThan(rest[1] - 0.01);
+    expect(right.position.x).toBeCloseTo(0);
+  });
+  it('stands the pedals leaning away: the top of each pad is its far edge', () => {
+    const { model, items } = flying(false);
+    const part = item(items, 'pedals').part?.();
+    const pad = part?.scene.getObjectByName('rudder-pedal-1');
+    if (!part || !pad) throw new Error('No pad');
+    part.pose({ yawInput: 0 });
+    // The model's own pad is upright, so the view from above would show its top edge nearer.
+    expect(edgeDistances(pad, part.camera).bottom).toBeLessThan(
+      edgeDistances(pad, part.camera).top,
+    );
+    expect(pedalLean(pad)).toBeCloseTo(PEDAL_LEAN);
+    // Leaned about its middle, in the copy only.
+    const live = model.getObjectByName('rudder-pedal-1');
+    if (!live) throw new Error('No live pad');
+    const frame = model.getObjectByName('cockpit') as THREE.Object3D;
+    const middle = (node: THREE.Object3D): THREE.Vector3 =>
+      new THREE.Box3().setFromObject(node, true).getCenter(new THREE.Vector3());
+    expect(middle(pad).distanceTo(frame.worldToLocal(middle(live)))).toBeLessThan(0.02);
+    expect(pedalLean(live)).not.toBeCloseTo(PEDAL_LEAN, 1);
   });
   it('works the throttle, refuses the gear on the ground, and settles flaps on notches', () => {
     const ground = flying(true);
@@ -347,6 +382,85 @@ describe('aircraft deck', () => {
     expect(actions.get('nav-yaw-left')).toBe(0);
     pedals.release?.(0);
     expect(actions.get('nav-yaw-right')).toBe(0);
+  });
+});
+
+describe('pedals', () => {
+  /** A copy of `pedal` as the lift makes it: under a proxy for its parent, beneath the root. */
+  const lifted = (pedal: THREE.Object3D) => {
+    const root = new THREE.Group();
+    const proxy = new THREE.Group();
+    proxy.position.set(0.2, 1.3, 3.6);
+    proxy.rotation.set(0.23, 0, 0);
+    proxy.add(pedal);
+    root.add(proxy);
+    root.updateMatrixWorld(true);
+    return root;
+  };
+  const plate = (size: [number, number, number], tilt: number): THREE.Object3D => {
+    const pedal = new THREE.Group();
+    const mesh = new THREE.Mesh(new THREE.BoxGeometry(...size));
+    // Upright in the cockpit plus `tilt`, under the proxy's own tilt.
+    mesh.rotation.x = tilt - 0.23;
+    pedal.add(mesh);
+    return pedal;
+  };
+  it('measures a pad by its broad face, however it was built', () => {
+    for (const [size, tilt, lean] of [
+      [[0.12, 0.14, 0.025], 0, 0],
+      [[0.12, 0.14, 0.025], -0.28, -0.28],
+      [[0.16, 0.12, 0.025], 0.28, 0.28],
+      // A board lying flat, its tread on top, and one leaning past flat.
+      [[0.19, 0.08, 0.13], 0, Math.PI / 2],
+      [[0.19, 0.08, 0.13], 0.2, 0.2 + Math.PI / 2],
+    ] as [[number, number, number], number, number][]) {
+      const pedal = plate(size, tilt);
+      lifted(pedal);
+      expect(pedalLean(pedal), `${size} at ${tilt}`).toBeCloseTo(lean);
+    }
+  });
+  it('turns pads, boards and tubes to one lean about their middles', () => {
+    const tube = new THREE.Group();
+    // A helicopter's: a bar across, on an arm running down and forward to the floor.
+    const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.14, 8).rotateZ(1.5708));
+    const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.134, 8));
+    arm.position.set(0, -0.045, 0.05);
+    arm.rotation.x = -Math.atan2(0.1, 0.09);
+    tube.add(bar, arm);
+    for (const pedal of [
+      plate([0.12, 0.14, 0.025], 0),
+      plate([0.12, 0.14, 0.025], -0.28),
+      plate([0.12, 0.2, 0.025], 0.45),
+      plate([0.19, 0.08, 0.13], 0),
+      tube,
+    ]) {
+      const root = lifted(pedal);
+      const middle = () =>
+        new THREE.Box3().setFromObject(pedal, true).getCenter(new THREE.Vector3());
+      const before = middle();
+      leanPedals(root);
+      root.updateMatrixWorld(true);
+      expect(pedalLean(pedal)).toBeCloseTo(PEDAL_LEAN);
+      if (pedal !== tube) expect(middle().distanceTo(before)).toBeLessThan(1e-6);
+      expect(pedal.scale.x).toBeCloseTo(1);
+    }
+  });
+  it('leans by well over the angle the console looks down at, yet nearer upright than flat', () => {
+    const { x, y, z } = PEDAL_VIEW.direction;
+    expect(PEDAL_LEAN - Math.atan2(y, Math.hypot(x, z))).toBeGreaterThan(0.25);
+    expect(PEDAL_LEAN).toBeLessThan(Math.PI / 4);
+  });
+  it('draws the kit pedals leaning away too, further when pressed', () => {
+    const rudder = kitRudderPedals();
+    rudder.pose({ yawInput: 0 });
+    rudder.root.updateMatrixWorld(true);
+    for (const pad of rudder.moving) expect(pedalLean(pad)).toBeCloseTo(PEDAL_LEAN);
+    const car = kitCarPedals();
+    car.pose({ throttle: 0 }, 1);
+    car.root.updateMatrixWorld(true);
+    const [accelerator, brake] = car.moving as [THREE.Object3D, THREE.Object3D];
+    expect(pedalLean(accelerator)).toBeCloseTo(PEDAL_LEAN);
+    expect(pedalLean(brake)).toBeGreaterThan(PEDAL_LEAN + 0.2);
   });
 });
 

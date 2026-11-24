@@ -149,8 +149,10 @@ tree. `pnpm all` and `pnpm dev` fetch automatically.
 When the release for the current inputs is not published yet, `pnpm assets:fetch` builds the
 bundle locally instead (`--no-build` exits with status 3, which CI uses to build it itself).
 `pnpm assets:check` fails when the installed bundle was built from other inputs, a bundled file is
-missing or changed, or a runtime sidecar disagrees with its GLB; after editing a generator, run
-`pnpm assets:build` and check again.
+missing or changed, or a runtime sidecar records other bytes than its GLB or detail levels have;
+after editing a generator, run `pnpm assets:build` and check again. `--committed` also fails when a
+sidecar on disk is not the committed one, and leaves the difference in
+`.artifacts/asset-build/sidecars.patch`.
 
 To build everything from source instead, with no network access for models (Node 24, the major
 `asset-build.json` pins):
@@ -206,12 +208,28 @@ report and one log per generator are in `.artifacts/asset-build/`.
   surface in minutes. The full package builds run content validators that open GLBs
   (`validate-structure-materials` reads every `source.glb`); `unit` runs them in `pretest:unit`.
 - `assets` restores or builds this commit's bundle (`.github/actions/fetch-assets`), runs
-  `assets:check`, uploads the bundle's archives as the run's `asset-bundle` artifact, then runs
-  `source:check`.
+  `assets:check --committed`, uploads the bundle's archives as the run's `asset-bundle` artifact,
+  then runs `source:check`.
 - `unit`, `docs-site`, `packed` and `golden` read GLBs. Each waits for `check` and `assets`, then
   downloads that artifact and installs it offline (`.github/actions/restore-assets`). They never
   download a release or build, so a run has one bundle: the one `assets` checked.
   `publish-assets` uploads the same artifact's archives as the release.
+
+A source build rewrites the sidecar of every GLB it builds differently, but only the GLBs reach
+the other jobs, which have the committed sidecars. So `assets` fails when a build changed a
+committed sidecar, and uploads those changes as the `asset-sidecars` artifact (kept 14 days).
+Review and commit them:
+
+```sh
+gh run download <run id> -n asset-sidecars && git apply sidecars.patch
+```
+
+The push that commits them normally reuses the bundle: sidecars are not asset inputs, so its name
+does not change, and the failed run saved it to the cache first. A rerun without them restores the
+same bundle and fails too, without a patch, since nothing was rebuilt: use the first run's. This
+is what catches an engine change that reshapes models without naming a new bundle, such as a
+`packages/figures` edit (six landmarks carve statues from it). On 2026-11-23 one left `assets`
+green and failed `docs-site` and `golden`.
 
 The artifact belongs to the workflow run. Nothing another job saves can remove it and its size
 has no ceiling; GitHub deletes it after two days. "Re-run failed jobs" within that time reads the

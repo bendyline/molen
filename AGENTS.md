@@ -154,7 +154,7 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
   to the general CI guidance above.
 - **ESM-only, Node ≥ 22.13.** Subpath exports matter: `@bendyline/molen-kernel` also exposes
   `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`, `/platformer`,
-  `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/world`; `@bendyline/molen-client`
+  `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/trials`, `/world`; `@bendyline/molen-client`
   also exposes `/camera-track`, `/vite`, `/vehicles`, `/aircraft`, `/navigation`, `/markers`, `/audio`, `/snow`,
   `/console`;
   `@bendyline/molen-terrain` and `@bendyline/molen-ambient` expose only `/kernel` and `/client`

@@ -468,7 +468,7 @@ describe('surface styles', () => {
     });
     const cars = object.userData.vehicles as unknown[];
     const digest = createHash('sha256').update(JSON.stringify(cars)).digest('hex').slice(0, 16);
-    expect({ count: cars.length, digest }).toEqual({ count: 26, digest: '9523b91f7cbadbad' });
+    expect({ count: cars.length, digest }).toEqual({ count: 26, digest: 'bdba4ac6b4e07343' });
   });
 
   it('draws parked cars from an injected vehicle list', () => {
@@ -481,7 +481,7 @@ describe('surface styles', () => {
     };
     const same = place(fromLibrary).cars;
     const digest = createHash('sha256').update(JSON.stringify(same)).digest('hex').slice(0, 16);
-    expect(digest).toBe('9523b91f7cbadbad');
+    expect(digest).toBe('bdba4ac6b4e07343');
     const van = fromLibrary.find((vehicle) => vehicle.id === 'molen.entities.vehicle.van');
     expect(van).toBeDefined();
     const vans = place([van as TerrainParkedVehicle]).cars;

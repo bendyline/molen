@@ -38,6 +38,8 @@ const OUTPUT = '.artifacts/asset-packs';
 // A copy of a finished build's installed.json, kept beside its job records so a later build on
 // another machine can start from that bundle (see seedAssets).
 export const SEED = '.artifacts/asset-build/seed.json';
+// The sidecar changes `check --committed` found, for `git apply`. CI uploads it as an artifact.
+export const SIDECAR_PATCH = '.artifacts/asset-build/sidecars.patch';
 // Which bundle the GLBs on disk are, whether it was built or fetched, and every file it holds.
 const STAMP = 'installed.json';
 const STAMP_FORMAT = 'molen/asset-install@1';
@@ -495,25 +497,67 @@ export async function packAssets({
   return manifest;
 }
 
-/** The installed GLBs are this checkout's bundle: its inputs' key, with every file intact. */
-/** Runtime LODs a sidecar records but does not name in files.variants, where packs look them up. */
-async function sidecarProblems(root, directory) {
+/**
+ * What a sidecar gets wrong about the GLBs beside it. `stale`: it records other bytes than the
+ * bundle holds, which every pack build rejects. `lods`: runtime LODs it records but does not name
+ * in files.variants, where packs look them up.
+ */
+async function sidecarProblems(root, directory, bundled) {
   const path = `${directory}/asset.json`;
   const sidecar = await readFile(join(root, path), 'utf8').then(JSON.parse, (error) => {
     if (error.code !== 'ENOENT') throw error;
   });
-  const lods = sidecar?.format === 'molen/asset@1' ? sidecar.runtimeLods : undefined;
-  if (!lods) return [];
-  const problems = [];
-  if (lods.masterHash !== sidecar.hash)
-    problems.push(`${path}: runtimeLods were derived from another master`);
-  for (const level of lods.levels ?? [])
+  const problems = { stale: [], lods: [] };
+  if (sidecar?.format !== 'molen/asset@1') return problems;
+  const stale = [];
+  const compare = (file, hash) => {
+    const glb = bundled.get(`${directory}/${file}`);
+    if (hash && glb && hash !== `sha256:${glb.sha256}`) stale.push(file);
+  };
+  compare(sidecar.files?.main, sidecar.hash);
+  const lods = sidecar.runtimeLods;
+  if (lods && lods.masterHash !== sidecar.hash)
+    problems.lods.push(`${path}: runtimeLods were derived from another master`);
+  for (const level of lods?.levels ?? []) {
+    compare(level.file, level.hash);
     if (sidecar.files?.variants?.[level.name] !== level.file)
-      problems.push(`${path}: files.variants.${level.name} must name ${level.file}`);
+      problems.lods.push(`${path}: files.variants.${level.name} must name ${level.file}`);
+  }
+  if (stale.length) problems.stale.push(`${path}: records other bytes than ${stale.join(', ')}`);
   return problems;
 }
 
-export async function checkAssets({ root = ROOT, prefix = '', log = console.log } = {}) {
+/** Committed sidecars whose content on disk differs from the commit, and those changes as a patch. */
+function changedSidecars(root) {
+  const diff = (...options) =>
+    execFileSync(
+      'git',
+      [
+        'diff',
+        '--no-ext-diff',
+        ...options,
+        'HEAD',
+        '--',
+        ...ASSET_ROOTS.map((name) => `:(glob)${name}/**/asset.json`),
+      ],
+      { cwd: root, maxBuffer: MAX_FILE, stdio: ['ignore', 'pipe', 'pipe'] },
+    );
+  const paths = diff('--name-only', '-z').toString().split('\0').filter(Boolean);
+  return { paths, patch: paths.length ? diff('--binary') : undefined };
+}
+
+/**
+ * The installed GLBs are this checkout's bundle: its inputs' key, with every file intact and every
+ * sidecar describing them. `committed` also requires those sidecars to be the committed ones. A
+ * source build rewrites the sidecar of each GLB it builds differently, so without it such a build
+ * is compared with its own edits, while a clean checkout that installs the bundle has the commit's.
+ */
+export async function checkAssets({
+  root = ROOT,
+  prefix = '',
+  committed = false,
+  log = console.log,
+} = {}) {
   const current = await assetInputs(root);
   const stamp = await readStamp(root);
   if (!stamp)
@@ -535,12 +579,37 @@ export async function checkAssets({ root = ROOT, prefix = '', log = console.log 
   }
   if (errors.length) throw new Error(errors.join('\n'));
   // Builds rewrite runtime sidecars beside these GLBs, so check what they say about them too.
-  for (const directory of new Set(files.map((f) => dirname(f.path))))
-    errors.push(...(await sidecarProblems(root, directory)));
-  if (errors.length)
-    throw new Error(
-      `${errors.join('\n')}\nRegenerate their LOD metadata: node packages/tooling/scripts/generate-landmark-lods.mjs`,
+  const bundled = new Map(stamp.files.map((f) => [f.path, f]));
+  const stale = [];
+  const lods = [];
+  for (const directory of new Set(files.map((f) => dirname(f.path)))) {
+    const problems = await sidecarProblems(root, directory, bundled);
+    stale.push(...problems.stale);
+    lods.push(...problems.lods);
+  }
+  if (stale.length)
+    errors.push(
+      ...stale,
+      'Commit each of these sidecars with the change that rebuilt its GLB. The CI run that built the bundle has them as its asset-sidecars artifact; locally, pnpm assets:build rewrites them.',
     );
+  if (lods.length)
+    errors.push(
+      ...lods,
+      'Regenerate their LOD metadata: node packages/tooling/scripts/generate-landmark-lods.mjs',
+    );
+  if (errors.length) throw new Error(errors.join('\n'));
+  if (committed) {
+    const file = join(root, SIDECAR_PATCH);
+    const { paths, patch } = changedSidecars(root);
+    if (paths.length) {
+      await mkdir(dirname(file), { recursive: true });
+      await writeFile(file, patch);
+      throw new Error(
+        `The build changed these committed sidecars, and a checkout that installs its bundle still has the old ones:\n${paths.join('\n')}\nReview the changes and commit them. They are in ${SIDECAR_PATCH}; from CI:\ngh run download ${process.env.GITHUB_RUN_ID ?? '<run id>'} -n asset-sidecars && git apply sidecars.patch`,
+      );
+    }
+    await rm(file, { force: true });
+  }
   const listed = new Set(stamp.files.map((f) => f.path));
   const masters = await readMasters(root);
   const local = (await inventory(root)).filter(
@@ -1085,6 +1154,7 @@ async function main() {
       force: { type: 'boolean' },
       'no-build': { type: 'boolean' },
       explain: { type: 'boolean' },
+      committed: { type: 'boolean' },
       target: { type: 'string' },
     },
   });
@@ -1140,7 +1210,7 @@ async function main() {
       await pruneArchives({ root, archiveDir });
       break;
     case 'check':
-      await checkAssets({ root, prefix: values.prefix });
+      await checkAssets({ root, prefix: values.prefix, committed: values.committed });
       break;
     case 'publish':
       await publishAssets({ root, archiveDir, target: values.target });

@@ -1,0 +1,3101 @@
+{
+  "format": "molen/trial-ledger@1",
+  "checked": "2026-11-23",
+  "description": "Published figures each aircraft is flown against, beyond the single calibration anchor in aircraft-performance.json. role \"fit\": calibration may use the figure (stall speeds fix the lift curve, a glide ratio the drag or the idling propeller, a roll rate the ailerons, a hover ceiling the rotor, a helicopter's service ceiling the blades' limit). role \"check\": calibration may not. A figure with massKg is flown at that mass. evidence says how far the figure and its conditions can be trusted; \"seen\" is the figure as printed. data holds engine and propeller facts calibration reads. standards are bands a handling standard allows (min, max) instead of a figure; they are flown, with the handling cards, on the bare airframe in direct control, by every airplane with surfaces that is not fly-by-wire, at 1.8 times its clean stall speed at 1,000 m unless a row says otherwise.",
+  "sources": {
+    "lanchester-phugoid": {
+      "url": "https://en.wikipedia.org/wiki/Phugoid",
+      "rights": "Physics relation; facts only",
+      "supports": "Lanchester approximation for the phugoid of a speed-stable airplane: period = pi * sqrt(2) * true airspeed / g. It leaves out the airplane's own stability and reads short of a full analysis: 30.3 s against 34.9 s for the Cessna 182 of NASA CR-1975."
+    },
+    "bypass-ratio-estimate": {
+      "estimate": true,
+      "supports": "Engineering estimates of turbofan bypass ratio where none was found. Not sourced."
+    },
+    "lift-to-drag-estimate": {
+      "estimate": true,
+      "supports": "Engineering estimates of best lift-to-drag ratio by class for fan-engined transports, where no figure was found. Not sourced."
+    },
+    "cessna-172s-1": {
+      "url": "https://www.befa.org/wp-content/uploads/2019/12/POH-Cessna-172S.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Cessna 172S Information Manual (POH copy), Performance - Specifications page and Figure 5-3"
+    },
+    "cessna-182t-1": {
+      "url": "https://sanfernando35.cap.gov/media/documents/182poh_23224F1C15332.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Cessna 182T NAV III POH, Performance - Specifications page"
+    },
+    "pa-28-180-1": {
+      "url": "https://mach5aviation.com/s/N5233L-PA-28-180-Cherokee-POH.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Piper Cherokee 180 E Owner's Handbook (753 806), Section I and Stall Speed Table"
+    },
+    "cirrus-sr22t-1": {
+      "url": "https://www.manualslib.com/manual/1261686/Cirrus-Sr22t.html?page=170",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Cirrus SR22T Pilot's Operating Handbook P/N 13772-005, Section 5 Stall Speeds"
+    },
+    "cirrus-sr22t-2": {
+      "url": "https://cirrusaircraft.com/wp-content/uploads/2024/01/NorthAmerica_SR22T_PriceList_2026.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Cirrus 2026 SR Series SR22T price list, Specifications page"
+    },
+    "cirrus-sr22t-3": {
+      "url": "https://www.manualslib.com/manual/1261686/Cirrus-Sr22t.html?page=73",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Cirrus SR22T Pilot's Operating Handbook P/N 13772-005, Section 3 Maximum Glide (page 3-17)"
+    },
+    "bonanza-g36-1": {
+      "url": "https://www.aopa.org/go-fly/aircraft-and-ownership/aircraft-guide/aircraft/beechcraft-bonanza",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "AOPA Aircraft Guide: Beechcraft Bonanza (G36 figures)"
+    },
+    "bonanza-g36-2": {
+      "url": "https://txtav.com/-/media/textron-aviation/images/demo-downloads/bonanza/bonanza-g36-specification-and-description.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Textron Aviation, Bonanza G36 Specification and Description, June 2022, section 2 Performance"
+    },
+    "bonanza-g36-3": {
+      "url": "https://rotatepilot.com/guides/beechcraft-bonanza-guide",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "RotatePilot Beechcraft Bonanza guide (cites G36 POH/AFM)"
+    },
+    "baron-g58-1": {
+      "url": "https://www.aopa.org/go-fly/aircraft-and-ownership/aircraft-guide/aircraft/beechcraft-baron",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "AOPA Aircraft Guide: Beechcraft Baron (G58 figures)"
+    },
+    "baron-g58-2": {
+      "url": "https://beechcraft.txtav.com/-/media/beechcraft/files/product-card/baron_product_card.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Textron Aviation, Beechcraft Baron product card (2023)"
+    },
+    "baron-g58-3": {
+      "url": "https://txtav.com/-/media/textron-aviation/images/demo-downloads/baron/baron-g58-specification-and-description.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Textron Aviation, Baron G58 Specification and Description, June 2022, section 2 Performance"
+    },
+    "diamond-da42-1": {
+      "url": "https://www.keilir.net/static/files/Flugakademian/Diamond/DA42-NG-AFM-r1.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Diamond DA 42 NG Airplane Flight Manual, 5.3.4 Stalling Speeds"
+    },
+    "dhc-2-1": {
+      "url": "https://en.wikipedia.org/wiki/De_Havilland_Canada_DHC-2_Beaver",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia, de Havilland Canada DHC-2 Beaver, Specifications (DHC-2)"
+    },
+    "pc-6-1": {
+      "url": "https://pc-6.com/vPilatus-Fact%20Sheet.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Pilatus PC-6 Turbo Porter fact sheet (PC-6/B2-H4 performance)"
+    },
+    "pc-6-2": {
+      "url": "https://migflug.com/aircraft/pilatus-pc-6-porter/",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "MiGFlug, Pilatus PC-6 Porter (cites FlightGlobal flight test)"
+    },
+    "beech-18-1": {
+      "url": "https://planeandpilotmag.com/beech-model-18/",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Plane & Pilot, Beech Model 18 (D18S specifications)"
+    },
+    "dc-3-1": {
+      "url": "https://www.aopa.org/news-and-media/all-news/1994/june/pilot/flying-the-dc-3",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "AOPA Pilot, 'Flying the DC-3' (Barry Schiff, June 1994), Douglas DC-3 spec sheet"
+    },
+    "dc-3-2": {
+      "url": "https://en.wikipedia.org/wiki/Douglas_DC-3",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia, Douglas DC-3, Specifications (DC-3A-S1C3G)"
+    },
+    "p51d-1": {
+      "url": "https://aopa.org/news-and-media/all-news/2007/august/01/north-american-aviation-p-51d-mustang",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "AOPA Pilot (Aug 2007), North American P-51D Mustang spec sheet (from F-51D Flight Handbook)"
+    },
+    "p51d-2": {
+      "url": "http://www.wwiiaircraftperformance.org/mustang/p51d-15342.html",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Flight Tests on the North American P-51D Airplane, AAF No. 44-15342 (Wright Field memo report TSCEP5E-1908, 15 June 1945)"
+    },
+    "p51d-3": {
+      "url": "https://ntrs.nasa.gov/api/citations/19930090943/downloads/19930090943.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "NACA Report 868, Summary of Lateral-Control Research (Toll, 1947), Figure 47 (report page 40)"
+    },
+    "ov-10-1": {
+      "url": "https://migflug.com/aircraft/ov-10-bronco/",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "MiGFlug, North American OV-10 Bronco (OV-10A specifications)"
+    },
+    "ov-10-2": {
+      "url": "https://aero-web.org/specs/narock/ov-10a.htm",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Aero-Web, North American Rockwell OV-10A Bronco specifications"
+    },
+    "ov-10-3": {
+      "url": "https://ntrs.nasa.gov/api/citations/19960012200/downloads/19960012200.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "NASA Langley, Overview of the Preparation and Use of an OV-10 Aircraft for Wake Vortex Hazards Flight Experiments (1995), Table 1"
+    },
+    "cessna-208b-1": {
+      "url": "https://cessna.txtav.com/en/turboprop/grand-caravan-ex",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Textron Aviation: Cessna Grand Caravan EX specifications"
+    },
+    "cessna-208b-2": {
+      "url": "https://www.faa.gov/sites/faa.gov/files/2022-12/FTW03FA089.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "NTSB Aviation Accident Final Report FTW03FA089 (Cessna 208B)"
+    },
+    "pilatus-pc12-1": {
+      "url": "https://oldwww.pilatus-aircraft.com/data/document/2024_PC-12_NGX_Just_The_Facts_6667f3a4e3383.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Pilatus: PC-12 NGX Just The Facts (2024)"
+    },
+    "pilatus-pc12-2": {
+      "url": "https://www.aopa.org/news-and-media/all-news/2006/january/pilot/pilatus-odyssey",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "AOPA Pilot, January 2006: Pilatus Odyssey"
+    },
+    "king-air-350i-1": {
+      "url": "https://www.africair.com/wp-content/uploads/2016/03/SD-KA350i-Unit-1031-to-TBD-2015-Oct.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Beechcraft: King Air 350i Specification and Description (October 2015)"
+    },
+    "king-air-350i-2": {
+      "url": "https://beechcraft.txtav.com/en/king-air-360",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Textron Aviation: Beechcraft King Air 360 specifications"
+    },
+    "dhc-6-1": {
+      "url": "https://www.faa.gov/airports/engineering/aircraft_char_database/aircraft_data",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "FAA Aircraft Characteristics Database (October 2024 spreadsheet)"
+    },
+    "dhc-6-2": {
+      "url": "https://www.aopa.org/go-fly/aircraft-and-ownership/aircraft-guide/aircraft/viking-air-dhc-6-twin-otter",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "AOPA aircraft guide: Viking Air DHC-6 Twin Otter (Series 400)"
+    },
+    "dhc-6-3": {
+      "url": "https://dehavilland.com/twin-otter/",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "De Havilland Canada: Twin Otter (Series 400) product page"
+    },
+    "atr-72-600-1": {
+      "url": "https://www.atr-aircraft.com/wp-content/uploads/2020/07/Factsheets_-_ATR_72-600.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "ATR: ATR 72-600 factsheet (2020, PW127M/N)"
+    },
+    "dash-8-q400-1": {
+      "url": "https://tc.canada.ca/en/aviation/commercial-air-services/operational-evaluation-reports/appendix-1-operational-evaluation-report-bombardier-dhc8-400",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Transport Canada: Operational Evaluation Report, Bombardier DHC8-400, Appendix 1"
+    },
+    "citation-cj4-1": {
+      "url": "https://twinandturbine.com/issue/July21/files/basic-html/page16.html",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Twin & Turbine, July 2021: Citation CJ4 Gen2 flight report (Rich Pickett)"
+    },
+    "citation-cj4-2": {
+      "url": "https://cessna.txtav.com/en/citation/cj4-gen2",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Textron Aviation: Cessna Citation CJ4 specifications (page now shows CJ4 Gen3)"
+    },
+    "airbus-a320neo-1": {
+      "url": "https://en.wikipedia.org/wiki/Lift-to-drag_ratio",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Lift-to-drag ratio"
+    },
+    "boeing-737-800-1": {
+      "url": "https://www.boeing.com/content/dam/boeing/v2/airports/faq/arcandapproachspeeds.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Boeing: Aerodrome Reference Code and Approach Speeds (Rev A)"
+    },
+    "c-5m-1": {
+      "url": "https://en.wikipedia.org/wiki/Lockheed_C-5_Galaxy",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Lockheed C-5 Galaxy, Specifications (C-5M)"
+    },
+    "f-16b-1": {
+      "url": "https://en.wikipedia.org/wiki/General_Dynamics_F-16_Fighting_Falcon",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: General Dynamics F-16 Fighting Falcon, Specifications (F-16C Block 50 and 52)"
+    },
+    "f-16b-2": {
+      "url": "https://ntrs.nasa.gov/api/citations/19800005879/downloads/19800005879.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "NASA TP-1538, Simulator Study of Stall/Post-Stall Characteristics of a Fighter Airplane With Relaxed Longitudinal Static Stability (Nguyen et al., Dec 1979)"
+    },
+    "f-15c-1": {
+      "url": "https://en.wikipedia.org/wiki/McDonnell_Douglas_F-15_Eagle",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: McDonnell Douglas F-15 Eagle, Specifications (F-15C)"
+    },
+    "f-15c-2": {
+      "url": "https://webharvest.gov/peth04/20041023184005/http://www.af.mil/factsheets/factsheet.asp?fsID=101",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "USAF F-15 Eagle fact sheet (April 2003, archived)"
+    },
+    "f-14d-1": {
+      "url": "https://en.wikipedia.org/wiki/Grumman_F-14_Tomcat",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Grumman F-14 Tomcat, Specifications (F-14D)"
+    },
+    "fa-18c-1": {
+      "url": "https://en.wikipedia.org/wiki/McDonnell_Douglas_F/A-18_Hornet",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: McDonnell Douglas F/A-18 Hornet, Specifications (F/A-18C/D)"
+    },
+    "fa-18c-2": {
+      "url": "https://www.gao.gov/assets/nsiad-96-98.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "GAO/NSIAD-96-98, Navy Aviation: F/A-18E/F will Provide Marginal Operational Improvement at High Cost (June 1996), p. 30"
+    },
+    "f-22a-1": {
+      "url": "https://en.wikipedia.org/wiki/Lockheed_Martin_F-22_Raptor",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Lockheed Martin F-22 Raptor, Specifications (F-22A)"
+    },
+    "f-35a-1": {
+      "url": "https://en.wikipedia.org/wiki/Lockheed_Martin_F-35_Lightning_II",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Lockheed Martin F-35 Lightning II, Specifications (F-35A)"
+    },
+    "typhoon-1": {
+      "url": "https://en.wikipedia.org/wiki/Eurofighter_Typhoon",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Eurofighter Typhoon, Specifications"
+    },
+    "rafale-c-1": {
+      "url": "https://en.wikipedia.org/wiki/Dassault_Rafale",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Dassault Rafale, Specifications (Rafale C, B and M)"
+    },
+    "rafale-c-2": {
+      "url": "https://www.dassault-aviation.com/en/defense/rafale/specifications-and-performance-data/",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Dassault Aviation: Rafale specifications and performance data"
+    },
+    "gripen-c-1": {
+      "url": "https://en.wikipedia.org/wiki/Saab_JAS_39_Gripen",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Saab JAS 39 Gripen, Specifications (JAS 39C/D)"
+    },
+    "mig-29a-1": {
+      "url": "https://www.airforce-technology.com/projects/mig29/",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "airforce-technology.com: MiG-29 Fulcrum"
+    },
+    "mig-29a-2": {
+      "url": "https://en.wikipedia.org/wiki/Mikoyan_MiG-29",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Mikoyan MiG-29, Specifications (MiG-29)"
+    },
+    "mv-22b-1": {
+      "url": "https://community.sketchucation.com/uploads/imported_attachments/K2W7_V-22_64214_pGuide.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Bell Boeing V-22 Osprey Pocket Guide (2007)"
+    },
+    "mv-22b-2": {
+      "url": "https://www.bellflight.com/products/bell-boeing-v-22",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Bell: Bell Boeing V-22 Osprey"
+    },
+    "oh6-1": {
+      "url": "https://en.wikipedia.org/wiki/Hughes_OH-6_Cayuse",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Hughes OH-6 Cayuse, Specifications (OH-6A)"
+    },
+    "oh6-2": {
+      "url": "https://all-aero.com/2025/01/22/hughes-369-500",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "all-aero.com: Hughes 369 / Hughes 500 / OH-6"
+    },
+    "oh6-3": {
+      "url": "https://www.faa.gov/sites/faa.gov/files/2022-11/MD369.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "MD Helicopters CSP-HE/HS-1 Rotorcraft Flight Manual, MD 500 (369HE/HS/HM), Emergency Floats, Part III"
+    },
+    "robinson-r44-1": {
+      "url": "https://www.robinsonheli.com/helicopters/r44-raven-ii-clipper-ii",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Robinson Helicopter Company: R44 Raven II and Clipper II specifications"
+    },
+    "robinson-r44-2": {
+      "url": "https://web.archive.org/web/20230628200424/https://robinsonheli.com/wp-content/uploads/2022/01/r44ii_poh_3.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Robinson R44 II Pilot's Operating Handbook, Section 3 Emergency Procedures"
+    },
+    "bell-206b-1": {
+      "url": "https://www.thewednesdayreport.com/twr/aircraft/bell%20hellicopters/206B3_2004april_web.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Bell Helicopter Textron: 206B-3 Product Specifications, April 2004, Specification Summary"
+    },
+    "bell-407-1": {
+      "url": "https://web.archive.org/web/20260308164443/https://www.bellflight.com/-/media/site-specific/bell-flight/documents/products/407-gxi/bell-407gxi-product-specifications.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Bell 407GXi Product Specifications, January 2025, Specification Summary (U.S. Units)"
+    },
+    "bell-412ep-1": {
+      "url": "https://web.archive.org/web/20120911170639/http://www.bellhelicopter.com/MungoBlobs/38/570/412EP_ProductSpecs02-2012.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Bell 412EP Product Specifications, May 2012, Specification Summary (U.S. Units)"
+    },
+    "bell-412ep-2": {
+      "url": "https://en.wikipedia.org/wiki/Bell_412",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Bell 412, Specifications (Bell 412EP)"
+    },
+    "uh-1h-1": {
+      "url": "https://vva.vietnam.ttu.edu/images.php?img=/images/297/2970101001.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "TM 55-1520-210-10 Operator's Manual, Army Model UH-1D/H Helicopter (1969), figure 7-6 Weight limitations chart, Standard Day Performance"
+    },
+    "uh-1h-2": {
+      "url": "https://en.wikipedia.org/wiki/Bell_UH-1_Iroquois",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Bell UH-1 Iroquois, Specifications (UH-1H)"
+    },
+    "uh-60m-1": {
+      "url": "https://web.archive.org/web/20251013235858/https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/black-hawk/9221_S-70_Brochure_2024_web.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Sikorsky / Lockheed Martin: S-70 Black Hawk Helicopter brochure (2024), Specifications"
+    },
+    "uh-60m-2": {
+      "url": "https://everyspec.com/ARMY/TM-Tech-Manual/TM_1-1520-237-10_CHG-10_13437/",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "TM 1-1520-237-10 Operator's Manual for UH-60A, UH-60L, EH-60A Helicopter (Change 10, 2002), Figure 9-4 Autorotative Glide Distance Chart"
+    },
+    "ch-47f-1": {
+      "url": "https://en.wikipedia.org/wiki/Boeing_CH-47_Chinook",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Boeing CH-47 Chinook, Specifications (CH-47F)"
+    },
+    "ch-47f-2": {
+      "url": "https://www.boeing.com/defense/military-rotorcraft/h-47-chinook",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Boeing: H-47 Chinook, CH-47F Chinook Block II Specifications"
+    },
+    "aw139-1": {
+      "url": "https://helicopters.leonardo.com/en/products/aw139",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Leonardo Helicopters: AW139 technical data"
+    },
+    "aw139-2": {
+      "url": "https://en.wikipedia.org/wiki/AgustaWestland_AW139",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: AgustaWestland AW139, Specifications (AW139)"
+    },
+    "airbus-h125-1": {
+      "url": "https://www.airbus.com/en/products-services/helicopters/civil-helicopters/h125/h125-technical-information",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Airbus: H125 technical information"
+    },
+    "airbus-h125-2": {
+      "url": "https://en.wikipedia.org/wiki/Eurocopter_AS350_%C3%89cureuil",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Eurocopter AS350 Ecureuil, Specifications (AS350 B3)"
+    },
+    "airbus-h145-1": {
+      "url": "https://www.airbus.com/en/products-services/helicopters/civil-helicopters/h145/h145-technical-information",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Airbus: H145 technical information"
+    },
+    "airbus-h145-2": {
+      "url": "https://en.wikipedia.org/wiki/Eurocopter_EC145",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Eurocopter EC145, Specifications (H145)"
+    },
+    "pa-28-180-2": {
+      "url": "https://www.williamsonflyingclub.com/documents/aircraftHandbook180.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Piper PA-28-180 Cherokee 180 E (30 ft span, 160 sq ft wing, 2400 lb) - Owner's Handbook 753 806. A later 1972-73 Cherokee 180 handbook (761 513: 32 ft span, 170"
+    },
+    "cirrus-sr22t-4": {
+      "url": "https://caa.co.uk/Documents/Download/3934/ca692457-336e-4190-840e-cd26cf498935/3600",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Cirrus SR22T, Continental TSIO-550-K 315 hp, serials 0442 and subsequent (3600 lb)"
+    },
+    "bonanza-g36-4": {
+      "url": "https://www.easa.europa.eu/en/downloads/7204/en",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Beechcraft Bonanza G36, Continental IO-550-B 300 hp. TWO WEIGHT STANDARDS: 3,650 lb MTOW (EASA TCDS, earlier serials) and 3,805 lb MTOW (Textron June 2022 speci"
+    },
+    "baron-g58-4": {
+      "url": "https://www.easa.europa.eu/pl/downloads/7202/en",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Beechcraft Baron G58, two Continental IO-550-C 300 hp (Textron Specification and Description, June 2022, serials TH-2538 on)"
+    },
+    "pc-6-3": {
+      "url": "https://en.wikipedia.org/wiki/Pilatus_PC-6_Porter",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Pilatus PC-6/B2-H4 Turbo Porter, P&WC PT6A-27 flat-rated 550 shp"
+    },
+    "beech-18-2": {
+      "url": "https://pilotfriend.com/aircraft%20performance/Beech/model%2018.htm",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Beechcraft Model 18. No flight manual or type certificate data sheet could be fetched; figures are for two variants: wartime UC-45 Expeditor (7,500 lb, Jane's 1"
+    },
+    "p51d-4": {
+      "url": "https://en.wikipedia.org/wiki/North_American_P-51_Mustang",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "North American P-51D Mustang, Packard V-1650-7. Performance depends strongly on power rating: WEP = 67 in Hg / 3000 rpm, military = 61 in Hg, normal = 46 in Hg "
+    },
+    "ov-10-4": {
+      "url": "https://en.wikipedia.org/wiki/North_American_Rockwell_OV-10_Bronco",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "North American Rockwell OV-10A Bronco, two Garrett T76-G-10/-12 (715 shp). WEAKEST SET: no flight manual, NATOPS or USAF fact sheet page could be fetched (403/4"
+    },
+    "dhc-6-4": {
+      "url": "https://www.easa.europa.eu/en/downloads/7070/en",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Supporting data"
+    },
+    "dash-8-q400-2": {
+      "url": "https://www.easa.europa.eu/en/downloads/7257/en",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Supporting data"
+    },
+    "gulfstream-g650er-1": {
+      "url": "https://aviationweek.com/business-aviation/aircraft-overview/aircraft-overview-gulfstream-g650-g650er",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Supporting data"
+    },
+    "embraer-e175-1": {
+      "url": "https://www.embraer.com/media/5hun3qcb/e175_spec.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Supporting data"
+    },
+    "a220-300-1": {
+      "url": "https://aircraft.airbus.com/en/aircraft/a220/a220-300",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Supporting data"
+    },
+    "airbus-a320neo-2": {
+      "url": "https://aircraft.airbus.com/en/aircraft/a320-family/a320neo",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Supporting data"
+    },
+    "boeing-737-800-2": {
+      "url": "https://en.wikipedia.org/wiki/Boeing_737_Next_Generation",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Supporting data"
+    },
+    "c-130j-1": {
+      "url": "https://www.lockheedmartin.com/content/dam/lockheed-martin/aero/documents/C-130FastFacts/C-130J_Fast_Facts_.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Supporting data"
+    },
+    "a400m-1": {
+      "url": "https://en.wikipedia.org/wiki/Airbus_A400M_Atlas",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Supporting data"
+    },
+    "c-17a-1": {
+      "url": "https://webarchive.library.unt.edu/web/20120915090657mp_/http://www.af.mil/information/factsheets/factsheet.asp?fsID=86",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Supporting data"
+    },
+    "c-5m-2": {
+      "url": "https://webarchive.library.unt.edu/web/20120915085525mp_/http://www.af.mil/information/factsheets/factsheet.asp?id=84",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Supporting data"
+    },
+    "an-124-1": {
+      "url": "https://en.wikipedia.org/wiki/Antonov_An-124_Ruslan",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Supporting data"
+    },
+    "robinson-r44-3": {
+      "url": "https://web.archive.org/web/20230620110320/https://robinsonheli.com/wp-content/uploads/2022/01/r44ii_poh_1.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "R44 Raven II (R44 II)"
+    },
+    "uh-60m-3": {
+      "url": "https://www.lockheedmartin.com/content/dam/lockheed-martin/rms/documents/black-hawk/sikorsky-UH60M-brochure.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "UH-60M; S-70 (international UH-60M-family, T700-GE-701D) and UH-60A/L figures are labelled in each note"
+    },
+    "aw139-3": {
+      "url": "https://www.easa.europa.eu/en/downloads/7949/en",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "AW139"
+    },
+    "mil-f-8785c": {
+      "url": "https://everyspec.com/MIL-SPECS/MIL-SPECS-MIL-F/MIL-F-8785C_5295/",
+      "rights": "US Government work; facts only",
+      "supports": "MIL-F-8785C, Flying Qualities of Piloted Airplanes (1980): Level 1 limits for Category B flight phases (climb, cruise, loiter, descent). Phugoid 3.2.1.2; short period Table IV; Dutch roll Table VI; roll mode Table VII; spiral Table VIII."
+    },
+    "nasa-cr-1975": {
+      "url": "https://ntrs.nasa.gov/citations/19720018355",
+      "rights": "US Government work; facts only",
+      "supports": "Smetana, Summey and Johnson, Riding and Handling Qualities of Light Aircraft: A Review and Analysis, NASA CR-1975 (1972), Table 44: computed longitudinal roots of a Cessna 182 in cruise at 219 ft/s, 5,000 ft, center of gravity at 26.4% of the mean chord."
+    },
+    "nasa-cr-2144": {
+      "url": "https://ntrs.nasa.gov/citations/19730003312",
+      "rights": "US Government work; facts only",
+      "supports": "Heffley and Jewell, Aircraft Handling Qualities Data, NASA CR-2144 (1972): C-5A flight conditions (Table X-2) and the factors of its longitudinal and lateral transfer functions with the stability augmentation off (Tables X-4 and X-10). Also the mass properties behind the class roll inertias and weathercock stability used in calibration (B-747, C-5A, F-4C, F-104A)."
+    },
+    "bk117-d2-kawasaki": {
+      "url": "https://global.kawasaki.com/en/corp/rd/magazine/179/pdf/n179en15.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Kawasaki Technical Review No. 179, Table 1: BK117 D-2 (H145) main gearbox limits with all engines, take-off 838 kW (30 min) and continuous 653 kW. The EASA type certificate (R.010) gives the same pair as torque, 2 x 95% and 2 x 74%."
+    },
+    "ch-47d-usaaefa-82-07": {
+      "url": "https://web.archive.org/web/20240703113937/https://apps.dtic.mil/sti/pdfs/ADA151380.pdf",
+      "rights": "US Government work; facts only",
+      "supports": "USAAEFA Project 82-07, CH-47D flight evaluation (DTIC ADA151380), aircraft description: transmission rating 7,500 hp with both engines at 225 rpm. A CH-47D figure, read from an overprinted scan; the CH-47F keeps the rating."
+    },
+    "aw139-leonardo-sar": {
+      "url": "https://www.leonardodrs.com/wp-content/uploads/2023/08/aw139_search_and_rescue-brochure.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Leonardo AW139 search and rescue brochure: performance at ISA, sea level and maximum gross weight, maximum rate of climb 10.9 m/s (2,140 ft/min). Internal maximum take-off weight 6,400 kg."
+    },
+    "h125-easa-r008": {
+      "url": "https://www.easa.europa.eu/en/downloads/7945/en",
+      "rights": "EASA type certificate data sheet; facts only",
+      "supports": "EASA.R.008 Issue 19, AS350 B3e (H125): 100% torque is 535 kW at 386 rpm; take-off torque applies from 0 to 40 kt only; maximum continuous torque 92.7%."
+    },
+    "oh-6a-usaavcom-67-13": {
+      "url": "https://web.archive.org/web/20200326212416/https://apps.dtic.mil/dtic/tr/fulltext/u2/a951595.pdf",
+      "rights": "US Government work; facts only",
+      "supports": "US Army Aviation Test Activity, Engineering Flight Test of the OH-6A, USAAVCOM Project 67-13 (DTIC ADA951595): sea-level rate of climb 1,860 ft/min at take-off power and 1,250 ft/min at maximum continuous power, unarmed at 2,290 lb."
+    },
+    "rotor-oh6": {
+      "url": "https://ntrs.nasa.gov/api/citations/19800002851/downloads/19800002851.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "NASA CR-3144 (Heffley et al., A Compilation and Analysis of Helicopter Handling Qualities Data, vol. 1), OH-6A tables: main and tail rotor blade counts, chords, speeds and positions, and where given the hub's hinge offset, shaft tilt, Lock number, fin and stabilizer areas, flat-plate area and moments of inertia. Also https://www.faa.gov/sites/faa.gov/files/2022-11/MD369.pdf and https://aerospaceweb.org/question/helicopters/q0212b.shtml."
+    },
+    "rotor-uh-1h": {
+      "url": "https://ntrs.nasa.gov/api/citations/19800002851/downloads/19800002851.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "NASA CR-3144 and NASA TM-73254 (Talbot and Corliss, UH-1H model), UH-1H tables: main and tail rotor blade counts, chords, speeds and positions, and where given the hub's hinge offset, shaft tilt, Lock number, fin and stabilizer areas, flat-plate area and moments of inertia. Also https://ntrs.nasa.gov/api/citations/19770024231/downloads/19770024231.pdf and https://www.thisdayinaviation.com/tag/bell-uh-1h-iroquois/."
+    },
+    "rotor-bell-206b": {
+      "url": "https://www.thewednesdayreport.com/twr/aircraft/bell%20hellicopters/206B3_2004april_web.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Bell 206B-3 product specification and EASA type certificate data sheet: main and tail rotor blade counts, chords, speeds and positions, and where given the hub's hinge offset, shaft tilt, Lock number, fin and stabilizer areas, flat-plate area and moments of inertia. Also https://www.easa.europa.eu/en/downloads/7909/en and https://www.thisdayinaviation.com/tag/turboshaft-engine/."
+    },
+    "rotor-bell-407": {
+      "url": "https://www.easa.europa.eu/en/downloads/7909/en",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "EASA type certificate data sheet and Bell 407 product specification: main and tail rotor blade counts, chords, speeds and positions, and where given the hub's hinge offset, shaft tilt, Lock number, fin and stabilizer areas, flat-plate area and moments of inertia. Also https://web.archive.org/web/20260308164443/https://www.bellflight.com/-/media/site-specific/bell-flight/documents/products/407-gxi/bell-407gxi-product-specifications.pdf and https://aerospaceweb.org/question/helicopters/q0212b.shtml."
+    },
+    "rotor-bell-412ep": {
+      "url": "https://www.easa.europa.eu/en/downloads/20671/en",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "EASA type certificate data sheet and Bell 412EP product specification: main and tail rotor blade counts, chords, speeds and positions, and where given the hub's hinge offset, shaft tilt, Lock number, fin and stabilizer areas, flat-plate area and moments of inertia. Also https://web.archive.org/web/20120911170639/http://www.bellhelicopter.com/MungoBlobs/38/570/412EP_ProductSpecs02-2012.pdf and https://aerospaceweb.org/question/helicopters/q0212b.shtml."
+    },
+    "rotor-robinson-r44": {
+      "url": "https://web.archive.org/web/20230620110320/https://robinsonheli.com/wp-content/uploads/2022/01/r44ii_poh_1.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Robinson R44 II pilot's operating handbook, section 1: main and tail rotor blade counts, chords, speeds and positions, and where given the hub's hinge offset, shaft tilt, Lock number, fin and stabilizer areas, flat-plate area and moments of inertia. Also https://aerospaceweb.org/question/helicopters/q0212b.shtml."
+    },
+    "rotor-airbus-h125": {
+      "url": "https://www.easa.europa.eu/en/downloads/7945/en",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "EASA type certificate data sheet R.008: main and tail rotor blade counts, chords, speeds and positions, and where given the hub's hinge offset, shaft tilt, Lock number, fin and stabilizer areas, flat-plate area and moments of inertia. Also https://www.thisdayinaviation.com/tag/as-350-b3/ and https://mediaassets.airbus.com/pm_38_379_379561-fmldw2vvut.pdf."
+    },
+    "rotor-airbus-h145": {
+      "url": "https://www.easa.europa.eu/en/downloads/7941/en",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "EASA type certificate data sheet R.010: main and tail rotor blade counts, chords, speeds and positions, and where given the hub's hinge offset, shaft tilt, Lock number, fin and stabilizer areas, flat-plate area and moments of inertia. Also https://dspace-erf.nlr.nl/bitstreams/793cfda0-cc51-42cd-b876-6468e33e70c7/download and https://aerospaceweb.org/question/helicopters/q0212b.shtml."
+    },
+    "rotor-uh-60m": {
+      "url": "https://ntrs.nasa.gov/api/citations/19840015585/downloads/19840015585.pdf",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "NASA TM-85890 and NASA CR-166309 (UH-60A engineering simulation). UH-60A figures: the UH-60M has wider blades: main and tail rotor blade counts, chords, speeds and positions, and where given the hub's hinge offset, shaft tilt, Lock number, fin and stabilizer areas, flat-plate area and moments of inertia. Also https://ntrs.nasa.gov/api/citations/19840020737/downloads/19840020737.pdf and https://www.thisdayinaviation.com/tag/sikorsky-uh-60a-black-hawk/."
+    },
+    "rotor-aw139": {
+      "url": "https://www.easa.europa.eu/en/downloads/7949/en",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "EASA type certificate data sheet R.006: main and tail rotor blade counts, chords, speeds and positions, and where given the hub's hinge offset, shaft tilt, Lock number, fin and stabilizer areas, flat-plate area and moments of inertia. Also https://www.scribd.com/document/796863208/Chapter-63 and https://vertipedia.vtol.org/aircraft/getAircraft/aircraftID/94."
+    }
+  },
+  "aircraft": [
+    {
+      "id": "molen.entities.aircraft.cessna_172s",
+      "data": {
+        "propellerDiameterM": 1.93,
+        "propellerBlades": 2,
+        "propeller": "fixed-pitch",
+        "source": "cessna-172s-1"
+      },
+      "cards": [
+        {
+          "card": "stall-clean",
+          "value": 53,
+          "massKg": 1157,
+          "role": "fit",
+          "evidence": "published",
+          "source": "cessna-172s-1",
+          "seen": "Flaps Up, Power Off 53 KCAS"
+        },
+        {
+          "card": "stall-landing",
+          "value": 48,
+          "massKg": 1157,
+          "role": "fit",
+          "evidence": "published",
+          "source": "cessna-172s-1",
+          "seen": "Flaps Down, Power Off 48 KCAS"
+        },
+        {
+          "card": "top-speed",
+          "value": 126,
+          "massKg": 1157,
+          "altitudeM": 0,
+          "role": "check",
+          "evidence": "published",
+          "source": "cessna-172s-1",
+          "seen": "Maximum at Sea Level 126 KNOTS"
+        },
+        {
+          "card": "climb-rate",
+          "value": 730,
+          "massKg": 1157,
+          "role": "fit",
+          "evidence": "published",
+          "source": "cessna-172s-1",
+          "seen": "RATE-OF-CLIMB AT SEA LEVEL 730 FPM"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 14000,
+          "massKg": 1157,
+          "role": "check",
+          "evidence": "published",
+          "source": "cessna-172s-1",
+          "seen": "SERVICE CEILING 14,000 FEET"
+        },
+        {
+          "card": "takeoff-roll",
+          "value": 292.6,
+          "massKg": 1157,
+          "flaps": 0.33,
+          "role": "check",
+          "evidence": "published",
+          "source": "cessna-172s-1",
+          "seen": "Ground Roll 960 FEET",
+          "note": "Short-field technique, flaps 10 degrees."
+        },
+        {
+          "card": "glide-ratio",
+          "value": 9.1,
+          "massKg": 1157,
+          "role": "fit",
+          "evidence": "published-chart-reading",
+          "source": "cessna-172s-1",
+          "seen": "SPEED 68 KIAS; PROPELLER WINDMILLING; FLAPS UP; ZERO WIND",
+          "note": "Read from the maximum-glide chart; propeller windmilling, flaps up."
+        },
+        {
+          "card": "phugoid-period",
+          "value": 24.5,
+          "speedKt": 100,
+          "role": "check",
+          "evidence": "theory",
+          "source": "lanchester-phugoid",
+          "tolerance": 0.25,
+          "note": "Lanchester reads 15 to 20% short of a full analysis; see the source."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.cessna_182t",
+      "data": {
+        "propellerDiameterM": 2.01,
+        "propellerBlades": 3,
+        "propeller": "constant-speed",
+        "source": "cessna-182t-1"
+      },
+      "cards": [
+        {
+          "card": "stall-clean",
+          "value": 54,
+          "massKg": 1406,
+          "role": "fit",
+          "evidence": "published",
+          "source": "cessna-182t-1",
+          "seen": "Flaps UP, Power Idle 54 KCAS"
+        },
+        {
+          "card": "stall-landing",
+          "value": 49,
+          "massKg": 1406,
+          "role": "fit",
+          "evidence": "published",
+          "source": "cessna-182t-1",
+          "seen": "Flaps FULL, Power Idle 49 KCAS"
+        },
+        {
+          "card": "top-speed",
+          "value": 150,
+          "massKg": 1406,
+          "altitudeM": 0,
+          "role": "check",
+          "evidence": "published",
+          "source": "cessna-182t-1",
+          "seen": "Maximum at Sea Level 150 KNOTS"
+        },
+        {
+          "card": "climb-rate",
+          "value": 924,
+          "massKg": 1406,
+          "role": "fit",
+          "evidence": "published",
+          "source": "cessna-182t-1",
+          "seen": "RATE OF CLIMB AT SEA LEVEL: 924 FPM"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 18100,
+          "massKg": 1406,
+          "role": "check",
+          "evidence": "published",
+          "source": "cessna-182t-1",
+          "seen": "SERVICE CEILING: 18,100 FEET"
+        },
+        {
+          "card": "takeoff-roll",
+          "value": 242.3,
+          "massKg": 1406,
+          "flaps": 0.5,
+          "role": "check",
+          "evidence": "published",
+          "source": "cessna-182t-1",
+          "seen": "Ground Roll 795 FEET",
+          "note": "Short-field technique, flaps 20 degrees."
+        },
+        {
+          "card": "glide-ratio",
+          "value": 8.7,
+          "massKg": 1406,
+          "role": "fit",
+          "evidence": "published-chart-reading",
+          "source": "cessna-182t-1",
+          "seen": "Best Glide Speed 3100 Pounds 76 KIAS",
+          "note": "Read from the maximum-glide chart."
+        },
+        {
+          "card": "short-period-frequency",
+          "value": 5.98,
+          "speedKt": 120.5,
+          "altitudeM": 1524,
+          "massKg": 1197,
+          "role": "check",
+          "evidence": "published-analysis",
+          "source": "nasa-cr-1975",
+          "seen": "Short-period roots -4.0848 +/- 4.3679i",
+          "note": "Computed from the airplane's geometry in the report, not flight-measured. 219 ft/s true at 5,000 ft is 120.5 kt equivalent; the weight is the one its lift coefficient of 0.309 implies."
+        },
+        {
+          "card": "short-period-damping",
+          "value": 0.68,
+          "speedKt": 120.5,
+          "altitudeM": 1524,
+          "massKg": 1197,
+          "role": "check",
+          "evidence": "published-analysis",
+          "source": "nasa-cr-1975",
+          "seen": "Short-period roots -4.0848 +/- 4.3679i",
+          "note": "Computed from the airplane's geometry in the report, not flight-measured. 219 ft/s true at 5,000 ft is 120.5 kt equivalent; the weight is the one its lift coefficient of 0.309 implies."
+        },
+        {
+          "card": "phugoid-period",
+          "value": 34.9,
+          "speedKt": 120.5,
+          "altitudeM": 1524,
+          "massKg": 1197,
+          "role": "check",
+          "evidence": "published-analysis",
+          "source": "nasa-cr-1975",
+          "seen": "Phugoid roots -0.0136 +/- 0.1801i",
+          "note": "Computed from the airplane's geometry in the report, not flight-measured. 219 ft/s true at 5,000 ft is 120.5 kt equivalent; the weight is the one its lift coefficient of 0.309 implies."
+        },
+        {
+          "card": "phugoid-damping",
+          "value": 0.075,
+          "speedKt": 120.5,
+          "altitudeM": 1524,
+          "massKg": 1197,
+          "role": "check",
+          "evidence": "published-analysis",
+          "source": "nasa-cr-1975",
+          "seen": "Phugoid roots -0.0136 +/- 0.1801i",
+          "note": "Computed from the airplane's geometry in the report, not flight-measured. 219 ft/s true at 5,000 ft is 120.5 kt equivalent; the weight is the one its lift coefficient of 0.309 implies."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.pa_28_180",
+      "data": {
+        "propellerDiameterM": 1.93,
+        "propeller": "fixed-pitch",
+        "source": "pa-28-180-2"
+      },
+      "cards": [
+        {
+          "card": "stall-clean",
+          "value": 58.2,
+          "massKg": 1089,
+          "role": "fit",
+          "evidence": "published",
+          "source": "pa-28-180-1",
+          "seen": "Flaps Retracted 67 MPH; Power Off - Gross Weight 2400 lbs.",
+          "note": "Handbook mph, not stated as indicated or calibrated."
+        },
+        {
+          "card": "stall-landing",
+          "value": 49.5,
+          "massKg": 1089,
+          "role": "fit",
+          "evidence": "published",
+          "source": "pa-28-180-1",
+          "seen": "Flaps 40 deg 57 MPH"
+        },
+        {
+          "card": "top-speed",
+          "value": 132.1,
+          "massKg": 1089,
+          "altitudeM": 0,
+          "role": "check",
+          "evidence": "published",
+          "source": "pa-28-180-1",
+          "seen": "Top Speed (mph) 152"
+        },
+        {
+          "card": "climb-rate",
+          "value": 725,
+          "massKg": 1089,
+          "role": "fit",
+          "evidence": "published",
+          "source": "pa-28-180-1",
+          "seen": "Rate of Climb (ft per min) 725"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 13000,
+          "massKg": 1089,
+          "role": "check",
+          "evidence": "published",
+          "source": "pa-28-180-1",
+          "seen": "Service Ceiling (ft) 13,000"
+        },
+        {
+          "card": "takeoff-roll",
+          "value": 219.5,
+          "massKg": 1089,
+          "flaps": 0.6,
+          "role": "check",
+          "evidence": "published",
+          "source": "pa-28-180-1",
+          "seen": "Take-off Run (maximum effort, 25 deg flap) (ft) 720",
+          "note": "Maximum effort, 25 degrees of flap."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.cirrus_sr22t",
+      "data": {
+        "propellerDiameterM": 1.98,
+        "propellerBlades": 3,
+        "propeller": "constant-speed",
+        "source": "cirrus-sr22t-4"
+      },
+      "cards": [
+        {
+          "card": "stall-clean",
+          "value": 73,
+          "massKg": 1633,
+          "role": "fit",
+          "evidence": "published",
+          "source": "cirrus-sr22t-1",
+          "seen": "Weight 3600 LB; Flaps 0%: 74 KIAS / 73 KCAS and 72 KIAS / 70 KCAS"
+        },
+        {
+          "card": "stall-landing",
+          "value": 61,
+          "massKg": 1633,
+          "role": "fit",
+          "evidence": "published",
+          "source": "cirrus-sr22t-1",
+          "seen": "Flaps 100%: 64 KIAS / 61 KCAS and 63 KIAS / 60 KCAS"
+        },
+        {
+          "card": "climb-rate",
+          "value": 1203,
+          "massKg": 1633,
+          "role": "fit",
+          "evidence": "published",
+          "source": "cirrus-sr22t-2",
+          "seen": "Climb Rate 1,203 ft/min"
+        },
+        {
+          "card": "takeoff-roll",
+          "value": 462,
+          "massKg": 1633,
+          "flaps": 0.5,
+          "role": "check",
+          "evidence": "published",
+          "source": "cirrus-sr22t-2",
+          "seen": "Takeoff 1,517 ft (462 m)"
+        },
+        {
+          "card": "glide-ratio",
+          "value": 8.6,
+          "massKg": 1633,
+          "role": "fit",
+          "evidence": "published",
+          "source": "cirrus-sr22t-3",
+          "seen": "Maximum Glide Ratio ~ 8.6 : 1; 92 KIAS at 3600 lb",
+          "note": "Propeller windmilling, flaps up."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.bonanza_g36",
+      "data": {
+        "propellerDiameterM": 2.03,
+        "propellerBlades": 3,
+        "propeller": "constant-speed",
+        "source": "bonanza-g36-4"
+      },
+      "cards": [
+        {
+          "card": "stall-clean",
+          "value": 68,
+          "massKg": 1656,
+          "role": "fit",
+          "evidence": "published",
+          "source": "bonanza-g36-1",
+          "seen": "VS1 68 KIAS",
+          "note": "Indicated airspeed."
+        },
+        {
+          "card": "stall-landing",
+          "value": 59,
+          "massKg": 1656,
+          "role": "fit",
+          "evidence": "published",
+          "source": "bonanza-g36-1",
+          "seen": "VSO 59 KCAS"
+        },
+        {
+          "card": "climb-rate",
+          "value": 1230,
+          "massKg": 1656,
+          "role": "fit",
+          "evidence": "published",
+          "source": "bonanza-g36-1",
+          "seen": "Rate of climb, sea level 1,230 fpm"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 18500,
+          "massKg": 1656,
+          "role": "check",
+          "evidence": "published",
+          "source": "bonanza-g36-2",
+          "seen": "SERVICE CEILING 18,500 ft (5,639 m) @ 3,605 lb"
+        },
+        {
+          "card": "takeoff-roll",
+          "value": 293,
+          "massKg": 1656,
+          "role": "check",
+          "evidence": "published",
+          "source": "bonanza-g36-2",
+          "seen": "TAKEOFF GROUND ROLL 962 ft (293 m) @ 3,650 lb"
+        },
+        {
+          "card": "glide-ratio",
+          "value": 10.3,
+          "massKg": 1656,
+          "role": "fit",
+          "evidence": "published-secondhand",
+          "source": "bonanza-g36-3",
+          "seen": "110 KIAS; about 1.7 nm per 1,000 ft",
+          "note": "A pilot guide citing the handbook: 1.7 nautical miles per 1000 ft."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.baron_g58",
+      "data": {
+        "propellerDiameterM": 1.96,
+        "propellerBlades": 3,
+        "propeller": "constant-speed",
+        "source": "baron-g58-4"
+      },
+      "cards": [
+        {
+          "card": "stall-clean",
+          "value": 85,
+          "massKg": 2495,
+          "role": "fit",
+          "evidence": "published",
+          "source": "baron-g58-1",
+          "seen": "VS1 85 KIAS",
+          "note": "Indicated airspeed."
+        },
+        {
+          "card": "stall-landing",
+          "value": 73,
+          "massKg": 2495,
+          "role": "fit",
+          "evidence": "published",
+          "source": "baron-g58-1",
+          "seen": "VSO 73 KCAS"
+        },
+        {
+          "card": "climb-rate",
+          "value": 1700,
+          "massKg": 2495,
+          "role": "fit",
+          "evidence": "published",
+          "source": "baron-g58-2",
+          "seen": "Max Climb Rate 1,700 fpm 518 mpm"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 20688,
+          "massKg": 2495,
+          "role": "check",
+          "evidence": "published",
+          "source": "baron-g58-3",
+          "seen": "SERVICE CEILING 20,688 ft (6,306 m)"
+        },
+        {
+          "card": "takeoff-roll",
+          "value": 418,
+          "massKg": 2495,
+          "role": "check",
+          "evidence": "published",
+          "source": "baron-g58-3",
+          "seen": "TAKEOFF GROUND ROLL 1,373 ft (418 m)"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.diamond_da42",
+      "data": {
+        "propellerDiameterM": 1.87,
+        "propellerBlades": 3,
+        "propeller": "constant-speed",
+        "source": "diamond-da42-1"
+      },
+      "cards": [
+        {
+          "card": "stall-clean",
+          "value": 69,
+          "massKg": 1900,
+          "role": "fit",
+          "evidence": "published",
+          "source": "diamond-da42-1",
+          "seen": "1900 kg (4189 lb) UP UP 69",
+          "note": "Indicated airspeed; DA42 NG at 1900 kg."
+        },
+        {
+          "card": "stall-landing",
+          "value": 62,
+          "massKg": 1900,
+          "role": "fit",
+          "evidence": "published",
+          "source": "diamond-da42-1",
+          "seen": "1900 kg (4189 lb) DOWN LDG 62",
+          "note": "Indicated airspeed; DA42 NG at 1900 kg."
+        },
+        {
+          "card": "climb-rate",
+          "value": 1180,
+          "massKg": 1900,
+          "role": "fit",
+          "evidence": "published",
+          "source": "diamond-da42-1",
+          "seen": "rate of climb with a power setting of 100% is 1180 ft/min (6.0 m/s) at MSL and ISA"
+        },
+        {
+          "card": "takeoff-roll",
+          "value": 458,
+          "massKg": 1900,
+          "role": "check",
+          "evidence": "published",
+          "source": "diamond-da42-1",
+          "seen": "Take-off ground roll 458 m (1503 ft)"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.dhc_2",
+      "data": {
+        "propellerDiameterM": 2.59,
+        "propellerBlades": 2,
+        "propeller": "constant-speed",
+        "source": "dhc-2-1"
+      },
+      "cards": [
+        {
+          "card": "climb-rate",
+          "value": 1020,
+          "massKg": 2313,
+          "tolerance": 0.15,
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "dhc-2-1",
+          "seen": "Rate of climb: 1,020 ft/min (5.2 m/s)"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 18000,
+          "massKg": 2313,
+          "role": "check",
+          "evidence": "published",
+          "source": "dhc-2-1",
+          "seen": "Service ceiling: 18,000 ft (5,500 m)"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.pc_6",
+      "data": {
+        "propellerDiameterM": 2.67,
+        "propellerBlades": 3,
+        "propeller": "constant-speed",
+        "source": "pc-6-3"
+      },
+      "cards": [
+        {
+          "card": "stall-clean",
+          "value": 58,
+          "massKg": 2800,
+          "role": "fit",
+          "evidence": "published",
+          "source": "pc-6-1",
+          "seen": "Stall speed (MTOW) - flaps up (Vs) 58 KEAS (107 km/h)"
+        },
+        {
+          "card": "stall-landing",
+          "value": 52,
+          "massKg": 2800,
+          "role": "fit",
+          "evidence": "published",
+          "source": "pc-6-1",
+          "seen": "full flaps set (Vso) 52 KEAS (96 km/h)"
+        },
+        {
+          "card": "climb-rate",
+          "value": 1010,
+          "massKg": 2800,
+          "role": "fit",
+          "evidence": "published",
+          "source": "pc-6-1",
+          "seen": "Rate of climb (MTOW) 1,010 ft/min (5.13 m/sec)"
+        },
+        {
+          "card": "takeoff-roll",
+          "value": 197,
+          "massKg": 2800,
+          "flaps": 0.5,
+          "role": "check",
+          "evidence": "published-secondhand",
+          "source": "pc-6-2",
+          "seen": "197 m (646 ft) at maximum take-off weight (FlightGlobal)"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.beech_18",
+      "data": {
+        "propeller": "constant-speed",
+        "source": "beech-18-2"
+      },
+      "cards": [
+        {
+          "card": "stall-landing",
+          "value": 66.9,
+          "massKg": 3969,
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "beech-18-1",
+          "seen": "Stall: 77 mph",
+          "note": "Printed as \"stall\" with no configuration; taken as landing."
+        },
+        {
+          "card": "climb-rate",
+          "value": 1190,
+          "massKg": 3969,
+          "role": "check",
+          "evidence": "published",
+          "source": "beech-18-1",
+          "seen": "Initial climb rate: 1,190 fpm"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 20500,
+          "massKg": 3969,
+          "role": "check",
+          "evidence": "published",
+          "source": "beech-18-1",
+          "seen": "Ceiling: 20,500 ft."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.dc_3",
+      "data": {
+        "propellerDiameterM": 3.51,
+        "propellerBlades": 3,
+        "propeller": "constant-speed",
+        "source": "dc-3-2"
+      },
+      "cards": [
+        {
+          "card": "stall-clean",
+          "value": 67,
+          "massKg": 11431,
+          "role": "fit",
+          "evidence": "published",
+          "source": "dc-3-1",
+          "seen": "VS1 (stall clean): 67 KIAS",
+          "note": "Indicated airspeed."
+        },
+        {
+          "card": "stall-landing",
+          "value": 62,
+          "massKg": 11431,
+          "role": "fit",
+          "evidence": "published",
+          "source": "dc-3-1",
+          "seen": "VSO (stall in landing configuration): 62 KIAS",
+          "note": "Indicated airspeed."
+        },
+        {
+          "card": "climb-rate",
+          "value": 1140,
+          "massKg": 11431,
+          "role": "fit",
+          "evidence": "published",
+          "source": "dc-3-1",
+          "seen": "Rate of climb, sea level: 1,140 fpm"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 23200,
+          "massKg": 11431,
+          "role": "check",
+          "evidence": "published",
+          "source": "dc-3-2",
+          "seen": "ceiling ft=23,200"
+        },
+        {
+          "card": "takeoff-roll",
+          "value": 518.2,
+          "massKg": 11431,
+          "role": "check",
+          "evidence": "published",
+          "source": "dc-3-1",
+          "seen": "Takeoff distance, ground run: 1,700 ft"
+        },
+        {
+          "card": "phugoid-period",
+          "value": 29.3,
+          "speedKt": 120,
+          "role": "check",
+          "evidence": "theory",
+          "source": "lanchester-phugoid",
+          "tolerance": 0.25,
+          "note": "Lanchester reads 15 to 20% short of a full analysis; see the source."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.p51d",
+      "data": {
+        "propellerDiameterM": 3.4,
+        "propellerBlades": 4,
+        "propeller": "constant-speed",
+        "source": "p51d-4"
+      },
+      "cards": [
+        {
+          "card": "stall-clean",
+          "value": 87.8,
+          "massKg": 4082,
+          "role": "fit",
+          "evidence": "published",
+          "source": "p51d-1",
+          "seen": "VS1 (stall, clean, 9,000 lb): 101 mph"
+        },
+        {
+          "card": "stall-landing",
+          "value": 81.7,
+          "massKg": 4082,
+          "role": "fit",
+          "evidence": "published",
+          "source": "p51d-1",
+          "seen": "VSO (stall, in landing configuration, 9,000 lb): 94 mph"
+        },
+        {
+          "card": "top-speed",
+          "value": 325.9,
+          "massKg": 4427,
+          "altitudeM": 0,
+          "role": "check",
+          "evidence": "published",
+          "source": "p51d-2",
+          "seen": "Max speed at sea level, War Emergency power: 375 MPH",
+          "note": "Flight test at war emergency power."
+        },
+        {
+          "card": "climb-rate",
+          "value": 3600,
+          "massKg": 4427,
+          "role": "fit",
+          "evidence": "published",
+          "source": "p51d-2",
+          "seen": "Rate of climb, War Emergency power, low blower: 3600 ft/min",
+          "note": "Flight test at war emergency power."
+        },
+        {
+          "card": "service-ceiling",
+          "value": 41600,
+          "massKg": 4427,
+          "role": "check",
+          "evidence": "published",
+          "source": "p51d-2",
+          "seen": "Service ceiling 41,600 ft",
+          "note": "Flight test at war emergency power."
+        },
+        {
+          "card": "glide-ratio",
+          "value": 15.3,
+          "role": "fit",
+          "evidence": "published",
+          "source": "p51d-1",
+          "seen": "Max glide ratio (propeller in high pitch) 15.3:1; Best glide speed 175 mph",
+          "note": "Propeller in high pitch."
+        },
+        {
+          "card": "takeoff-roll",
+          "value": 304.8,
+          "massKg": 4082,
+          "role": "check",
+          "evidence": "published",
+          "source": "p51d-1",
+          "seen": "Takeoff distance, ground roll (9,000 lb): 1,000 ft"
+        },
+        {
+          "card": "roll-rate",
+          "value": 94,
+          "speedKt": 261,
+          "altitudeM": 3048,
+          "role": "fit",
+          "evidence": "published-other-variant",
+          "source": "p51d-3",
+          "seen": "P-51B-1-NA curve; Rolling velocity, deg/sec; Indicated airspeed, Vi, mph; Altitude, 10,000 feet",
+          "note": "P-51B (the same wing), 50 lb stick force, about 300 mph indicated; read from NACA Report 868."
+        },
+        {
+          "card": "phugoid-period",
+          "value": 48.9,
+          "speedKt": 200,
+          "role": "check",
+          "evidence": "theory",
+          "source": "lanchester-phugoid",
+          "tolerance": 0.25,
+          "note": "Lanchester reads 15 to 20% short of a full analysis; see the source."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.ov_10",
+      "data": {
+        "propellerDiameterM": 2.59,
+        "propellerBlades": 3,
+        "propeller": "constant-speed",
+        "source": "ov-10-4"
+      },
+      "cards": [
+        {
+          "card": "stall-clean",
+          "value": 80,
+          "role": "fit",
+          "evidence": "published-low-confidence",
+          "source": "ov-10-1",
+          "seen": "148 km/h (80 kn) clean",
+          "note": "Aggregator page; no weight given."
+        },
+        {
+          "card": "stall-landing",
+          "value": 70,
+          "role": "fit",
+          "evidence": "published-low-confidence",
+          "source": "ov-10-1",
+          "seen": "130 km/h (70 kn) flaps down",
+          "note": "Aggregator page; no weight given."
+        },
+        {
+          "card": "climb-rate",
+          "value": 2600,
+          "tolerance": 0.15,
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "ov-10-2",
+          "seen": "Climb: 2,600 ft/min"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 25000,
+          "role": "check",
+          "evidence": "published-unstated-condition",
+          "source": "ov-10-3",
+          "seen": "Ceiling: 25,000 ft MSL"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.cessna_208b",
+      "data": {
+        "propellerDiameterM": 2.69,
+        "propellerBlades": 4,
+        "source": "cessna-208b-1"
+      },
+      "cards": [
+        {
+          "card": "stall-landing",
+          "value": 61,
+          "role": "fit",
+          "evidence": "published",
+          "source": "cessna-208b-1",
+          "seen": "61 kcas (113 km/h)",
+          "massKg": 3856
+        },
+        {
+          "card": "stall-clean",
+          "value": 78,
+          "massKg": 3969,
+          "role": "fit",
+          "evidence": "published-other-variant",
+          "source": "cessna-208b-2",
+          "seen": "78 knots calibrated airspeed (KCAS)",
+          "note": "Earlier 208B with the same wing."
+        },
+        {
+          "card": "climb-rate",
+          "value": 1275,
+          "massKg": 3995,
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "cessna-208b-1",
+          "seen": "1,275 fpm (389 mpm)",
+          "note": "Weight not stated; taken as maximum takeoff weight."
+        },
+        {
+          "card": "takeoff-roll",
+          "value": 426,
+          "massKg": 3995,
+          "flaps": 0.67,
+          "role": "check",
+          "evidence": "published",
+          "source": "cessna-208b-1",
+          "seen": "1,399 ft (426 m)"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.pilatus_pc12",
+      "data": {
+        "propellerDiameterM": 2.67,
+        "propellerBlades": 5,
+        "source": "pilatus-pc12-1"
+      },
+      "cards": [
+        {
+          "card": "stall-landing",
+          "value": 67,
+          "massKg": 4500,
+          "role": "fit",
+          "evidence": "published",
+          "source": "pilatus-pc12-1",
+          "seen": "Landing configuration 67 KIAS 124 km/h",
+          "note": "Indicated airspeed, maximum landing weight."
+        },
+        {
+          "card": "stall-clean",
+          "value": 91,
+          "massKg": 4500,
+          "role": "fit",
+          "evidence": "published-other-variant",
+          "source": "pilatus-pc12-2",
+          "seen": "V S1 (stall, clean): 91 KIAS",
+          "note": "Earlier PC-12; indicated airspeed."
+        },
+        {
+          "card": "climb-rate",
+          "value": 1920,
+          "massKg": 4740,
+          "role": "fit",
+          "evidence": "published",
+          "source": "pilatus-pc12-1",
+          "seen": "Max take-off weight, sea level 1,920 ft/min 9.75 m/s"
+        },
+        {
+          "card": "glide-ratio",
+          "value": 16.4,
+          "massKg": 4500,
+          "role": "check",
+          "evidence": "derived",
+          "source": "pilatus-pc12-2",
+          "seen": "a 2.7-to-1 power-off glide ratio at maximum gross weight",
+          "note": "Printed as 2.7 nautical miles per 1000 ft with the propeller feathered: the airframe alone."
+        },
+        {
+          "card": "takeoff-distance",
+          "value": 758,
+          "massKg": 4740,
+          "flaps": 0.5,
+          "role": "check",
+          "evidence": "published",
+          "source": "pilatus-pc12-1",
+          "seen": "Over 50 ft (15 m) obstacle 2,485 ft 758 m"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.king_air_350i",
+      "data": {
+        "propellerDiameterM": 2.667,
+        "propellerBlades": 4,
+        "source": "king-air-350i-1"
+      },
+      "cards": [
+        {
+          "card": "stall-landing",
+          "value": 81,
+          "massKg": 6804,
+          "role": "fit",
+          "evidence": "published",
+          "source": "king-air-350i-1",
+          "seen": "81 kt (150 km/hr) IAS",
+          "note": "Indicated airspeed at 15,000 lb."
+        },
+        {
+          "card": "climb-rate",
+          "value": 2700,
+          "massKg": 6804,
+          "role": "fit",
+          "evidence": "published-other-variant",
+          "source": "king-air-350i-2",
+          "seen": "2,700 fpm (823 mpm)",
+          "note": "King Air 360 figure; weight taken as maximum takeoff weight."
+        },
+        {
+          "card": "phugoid-period",
+          "value": 44,
+          "speedKt": 180,
+          "role": "check",
+          "evidence": "theory",
+          "source": "lanchester-phugoid",
+          "tolerance": 0.25,
+          "note": "Lanchester reads 15 to 20% short of a full analysis; see the source."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.dhc_6",
+      "data": {
+        "propellerDiameterM": 2.591,
+        "propellerBlades": 3,
+        "source": "dhc-6-4"
+      },
+      "cards": [
+        {
+          "card": "stall-landing",
+          "value": 56.9,
+          "massKg": 5579,
+          "role": "fit",
+          "evidence": "derived",
+          "source": "dhc-6-1",
+          "seen": "Approach_Speed_knot=74",
+          "note": "Approach speed 74 kt divided by 1.3 (reference speed over stall speed)."
+        },
+        {
+          "card": "climb-rate",
+          "value": 1600,
+          "massKg": 5670,
+          "role": "fit",
+          "evidence": "published",
+          "source": "dhc-6-2",
+          "seen": "1,600 fpm"
+        },
+        {
+          "card": "takeoff-roll",
+          "value": 244,
+          "massKg": 5670,
+          "flaps": 0.33,
+          "role": "check",
+          "evidence": "published",
+          "source": "dhc-6-3",
+          "seen": "Takeoff Ground Roll - Wheels 244 m 800 ft"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.atr_72_600",
+      "data": {
+        "propellerDiameterM": 3.93,
+        "propellerBlades": 6,
+        "source": "atr-72-600-1"
+      },
+      "cards": [
+        {
+          "card": "stall-landing",
+          "value": 91.9,
+          "massKg": 22350,
+          "role": "fit",
+          "evidence": "derived",
+          "source": "atr-72-600-1",
+          "seen": "Reference speed at landing 113 KIAS",
+          "note": "Approach speed 113 kt divided by 1.23 (reference speed over stall speed)."
+        },
+        {
+          "card": "climb-rate",
+          "value": 1355,
+          "massKg": 22800,
+          "role": "fit",
+          "evidence": "published",
+          "source": "atr-72-600-1",
+          "seen": "Rate of climb (ISA, SL, MTOW) 1,355 ft/min"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.dash_8_q400",
+      "data": {
+        "propellerDiameterM": 4.11,
+        "propellerBlades": 6,
+        "source": "dash-8-q400-2"
+      },
+      "cards": [
+        {
+          "card": "stall-landing",
+          "value": 101.6,
+          "massKg": 28009,
+          "role": "fit",
+          "evidence": "derived",
+          "source": "dhc-6-1",
+          "seen": "Approach_Speed_knot=125",
+          "note": "Approach speed 125 kt divided by 1.23 (reference speed over stall speed)."
+        },
+        {
+          "card": "climb-rate",
+          "value": 3500,
+          "massKg": 28690,
+          "role": "fit",
+          "evidence": "published",
+          "source": "dash-8-q400-1",
+          "seen": "3500FPM SL-5000 MTOW"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.citation_cj4",
+      "data": {
+        "bypassRatio": 3,
+        "source": "bypass-ratio-estimate"
+      },
+      "cards": [
+        {
+          "card": "stall-landing",
+          "value": 84.6,
+          "massKg": 6123,
+          "role": "fit",
+          "evidence": "derived",
+          "source": "citation-cj4-1",
+          "seen": "landing weight was 13,500 pounds ... at a Vref of 104 and Vapp of 111",
+          "note": "Approach speed 104 kt divided by 1.23 (reference speed over stall speed)."
+        },
+        {
+          "card": "climb-rate",
+          "value": 3854,
+          "massKg": 7761,
+          "role": "check",
+          "evidence": "published-unstated-condition",
+          "source": "citation-cj4-2",
+          "seen": "3,854 fpm (1,175 mpm)",
+          "note": "Weight not stated; taken as maximum takeoff weight."
+        },
+        {
+          "card": "glide-ratio",
+          "value": 14,
+          "role": "fit",
+          "evidence": "estimate",
+          "source": "lift-to-drag-estimate"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.gulfstream_g650er",
+      "data": {
+        "bypassRatio": 4.2,
+        "source": "gulfstream-g650er-1"
+      },
+      "cards": [
+        {
+          "card": "glide-ratio",
+          "value": 18.5,
+          "role": "fit",
+          "evidence": "estimate",
+          "source": "lift-to-drag-estimate"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.embraer_e175",
+      "data": {
+        "bypassRatio": 5,
+        "source": "embraer-e175-1"
+      },
+      "cards": [
+        {
+          "card": "stall-landing",
+          "value": 102.4,
+          "massKg": 34000,
+          "role": "fit",
+          "evidence": "derived",
+          "source": "dhc-6-1",
+          "seen": "Approach_Speed_knot=126",
+          "note": "Approach speed 126 kt divided by 1.23 (reference speed over stall speed)."
+        },
+        {
+          "card": "glide-ratio",
+          "value": 15.5,
+          "role": "fit",
+          "evidence": "estimate",
+          "source": "lift-to-drag-estimate"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.a220_300",
+      "data": {
+        "bypassRatio": 12,
+        "source": "a220-300-1"
+      },
+      "cards": [
+        {
+          "card": "stall-landing",
+          "value": 109.8,
+          "massKg": 60600,
+          "role": "fit",
+          "evidence": "derived",
+          "source": "dhc-6-1",
+          "seen": "Approach_Speed_knot=135",
+          "note": "Approach speed 135 kt divided by 1.23 (reference speed over stall speed)."
+        },
+        {
+          "card": "glide-ratio",
+          "value": 18,
+          "role": "fit",
+          "evidence": "estimate",
+          "source": "lift-to-drag-estimate"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.airbus_a320neo",
+      "data": {
+        "bypassRatio": 11,
+        "source": "airbus-a320neo-2"
+      },
+      "cards": [
+        {
+          "card": "stall-landing",
+          "value": 111.4,
+          "massKg": 67400,
+          "role": "fit",
+          "evidence": "derived",
+          "source": "dhc-6-1",
+          "seen": "Approach_Speed_knot=137",
+          "note": "Approach speed 137 kt divided by 1.23 (reference speed over stall speed)."
+        },
+        {
+          "card": "glide-ratio",
+          "value": 16.3,
+          "role": "fit",
+          "evidence": "published-other-variant",
+          "source": "airbus-a320neo-1",
+          "seen": "Airbus A320-200 16.3",
+          "note": "Computed cruise lift-to-drag ratio of the A320-200."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.boeing_737_800",
+      "data": {
+        "bypassRatio": 5.1,
+        "source": "boeing-737-800-2"
+      },
+      "cards": [
+        {
+          "card": "stall-landing",
+          "value": 115.4,
+          "massKg": 66361,
+          "role": "fit",
+          "evidence": "derived",
+          "source": "boeing-737-800-1",
+          "seen": "737-800 D-III IIC 142 174,900 79,333 146,300 66,361",
+          "note": "Approach speed 142 kt divided by 1.23 (reference speed over stall speed)."
+        },
+        {
+          "card": "glide-ratio",
+          "value": 17.5,
+          "role": "fit",
+          "evidence": "estimate",
+          "source": "lift-to-drag-estimate"
+        },
+        {
+          "card": "phugoid-period",
+          "value": 61.1,
+          "speedKt": 250,
+          "role": "check",
+          "evidence": "theory",
+          "source": "lanchester-phugoid",
+          "tolerance": 0.25,
+          "note": "Lanchester reads 15 to 20% short of a full analysis; see the source."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.c_130j",
+      "data": {
+        "propellerDiameterM": 4.115,
+        "propellerBlades": 6,
+        "source": "c-130j-1"
+      },
+      "cards": [
+        {
+          "card": "stall-landing",
+          "value": 98.5,
+          "massKg": 58967,
+          "role": "fit",
+          "evidence": "derived",
+          "source": "dhc-6-1",
+          "seen": "Approach_Speed_knot=128",
+          "note": "Approach speed 128 kt divided by 1.3 (reference speed over stall speed)."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.a400m",
+      "data": {
+        "propellerDiameterM": 5.3,
+        "propellerBlades": 8,
+        "source": "a400m-1"
+      },
+      "cards": [
+        {
+          "card": "stall-landing",
+          "value": 105.7,
+          "massKg": 122999,
+          "role": "fit",
+          "evidence": "derived",
+          "source": "dhc-6-1",
+          "seen": "Approach_Speed_knot=130",
+          "note": "Approach speed 130 kt divided by 1.23 (reference speed over stall speed)."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.c_17a",
+      "data": {
+        "bypassRatio": 6,
+        "source": "c-17a-1"
+      },
+      "cards": [
+        {
+          "card": "stall-landing",
+          "value": 93.5,
+          "massKg": 202720,
+          "role": "fit",
+          "evidence": "derived",
+          "source": "dhc-6-1",
+          "seen": "Approach_Speed_knot=115",
+          "note": "Approach speed 115 kt divided by 1.23. Flown with blown flaps, which this wing does not model."
+        },
+        {
+          "card": "glide-ratio",
+          "value": 15,
+          "role": "fit",
+          "evidence": "estimate",
+          "source": "lift-to-drag-estimate"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.c_5m",
+      "data": {
+        "bypassRatio": 5,
+        "source": "c-5m-2"
+      },
+      "cards": [
+        {
+          "card": "service-ceiling",
+          "value": 41000,
+          "massKg": 340194,
+          "role": "check",
+          "evidence": "published",
+          "source": "c-5m-1",
+          "seen": "41,000 ft (12,000 m) at 750,000 lb (340,194 kg)"
+        },
+        {
+          "card": "glide-ratio",
+          "value": 18,
+          "role": "fit",
+          "evidence": "estimate",
+          "source": "lift-to-drag-estimate"
+        },
+        {
+          "card": "short-period-frequency",
+          "value": 1.57,
+          "speedKt": 298,
+          "altitudeM": 0,
+          "massKg": 296830,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "nasa-cr-2144",
+          "seen": "Short period: damping ratio 0.712, frequency 1.57 rad/s",
+          "note": "C-5A, flight condition 3: sea level, Mach 0.45 (298 kt), 654,399 lb, stability augmentation off."
+        },
+        {
+          "card": "short-period-damping",
+          "value": 0.712,
+          "speedKt": 298,
+          "altitudeM": 0,
+          "massKg": 296830,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "nasa-cr-2144",
+          "seen": "Short period: damping ratio 0.712, frequency 1.57 rad/s",
+          "note": "C-5A, flight condition 3: sea level, Mach 0.45 (298 kt), 654,399 lb, stability augmentation off."
+        },
+        {
+          "card": "phugoid-damping",
+          "value": 0.0612,
+          "speedKt": 298,
+          "altitudeM": 0,
+          "massKg": 296830,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "nasa-cr-2144",
+          "seen": "Phugoid: damping ratio 0.0612, frequency 0.0594 rad/s",
+          "note": "C-5A, flight condition 3: sea level, Mach 0.45 (298 kt), 654,399 lb, stability augmentation off."
+        },
+        {
+          "card": "dutch-roll-frequency",
+          "value": 0.875,
+          "speedKt": 298,
+          "altitudeM": 0,
+          "massKg": 296830,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "nasa-cr-2144",
+          "seen": "Dutch roll: damping ratio 0.209, frequency 0.875 rad/s",
+          "note": "C-5A, flight condition 3: sea level, Mach 0.45 (298 kt), 654,399 lb, stability augmentation off."
+        },
+        {
+          "card": "dutch-roll-damping",
+          "value": 0.209,
+          "speedKt": 298,
+          "altitudeM": 0,
+          "massKg": 296830,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "nasa-cr-2144",
+          "seen": "Dutch roll: damping ratio 0.209, frequency 0.875 rad/s",
+          "note": "C-5A, flight condition 3: sea level, Mach 0.45 (298 kt), 654,399 lb, stability augmentation off."
+        },
+        {
+          "card": "roll-time-constant",
+          "value": 0.694,
+          "speedKt": 298,
+          "altitudeM": 0,
+          "massKg": 296830,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "nasa-cr-2144",
+          "seen": "Roll mode: 1/TR 1.44 per second",
+          "note": "C-5A, flight condition 3: sea level, Mach 0.45 (298 kt), 654,399 lb, stability augmentation off. The time constant is the inverse of the printed factor."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.an_124",
+      "data": {
+        "bypassRatio": 5.7,
+        "source": "an-124-1"
+      },
+      "cards": [
+        {
+          "card": "glide-ratio",
+          "value": 17,
+          "role": "fit",
+          "evidence": "estimate",
+          "source": "lift-to-drag-estimate"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.airliner",
+      "data": {
+        "bypassRatio": 5,
+        "source": "bypass-ratio-estimate"
+      },
+      "cards": [
+        {
+          "card": "glide-ratio",
+          "value": 17,
+          "role": "fit",
+          "evidence": "estimate",
+          "source": "lift-to-drag-estimate"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.f_16b",
+      "cards": [
+        {
+          "card": "top-speed",
+          "value": 1.2,
+          "altitudeM": 0,
+          "unit": "mach",
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "f-16b-1",
+          "seen": "Mach 1.2, 800 kn at sea level"
+        },
+        {
+          "card": "roll-rate",
+          "value": 308,
+          "speedKt": 400,
+          "altitudeM": 3000,
+          "role": "fit",
+          "evidence": "published",
+          "source": "f-16b-2",
+          "seen": "up to a maximum of 308°/sec",
+          "note": "The flight control system's greatest roll-rate command; flown here at 400 kt."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.f_15c",
+      "cards": [
+        {
+          "card": "top-speed",
+          "value": 1.2,
+          "altitudeM": 0,
+          "unit": "mach",
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "f-15c-1",
+          "seen": "Mach 1.2, 800 kn at sea level"
+        },
+        {
+          "card": "climb-rate",
+          "value": 67050,
+          "tolerance": 0.15,
+          "role": "check",
+          "evidence": "published-unstated-condition",
+          "source": "f-15c-1",
+          "seen": "climb rate ftmin = 67,050 ... maximum (with 3 pylons)"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 65000,
+          "role": "check",
+          "evidence": "published",
+          "source": "f-15c-2",
+          "seen": "65,000 feet (19,812 meters)"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.f_14d",
+      "cards": [
+        {
+          "card": "top-speed",
+          "value": 1.2,
+          "altitudeM": 0,
+          "unit": "mach",
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "f-14d-1",
+          "seen": "Mach 1.2, 794 kn at sea level"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.fa_18c",
+      "cards": [
+        {
+          "card": "top-speed",
+          "value": 1.06,
+          "altitudeM": 0,
+          "unit": "mach",
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "fa-18c-1",
+          "seen": "Mach 1.06, 700 knots at sea level"
+        },
+        {
+          "card": "climb-rate",
+          "value": 50000,
+          "tolerance": 0.15,
+          "role": "check",
+          "evidence": "published-unstated-condition",
+          "source": "fa-18c-1",
+          "seen": "climb rate ftmin = 50000"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 50000,
+          "role": "check",
+          "evidence": "published",
+          "source": "fa-18c-1",
+          "seen": "ceiling ft = 50000"
+        },
+        {
+          "card": "sustained-turn",
+          "value": 19.2,
+          "altitudeM": 0,
+          "role": "check",
+          "evidence": "published",
+          "source": "fa-18c-2",
+          "seen": "At sea level, the F/A-18C's sustained turn rate is 19.2 degrees per second",
+          "note": "Navy data: two AIM-9, two AIM-120, no tanks, 60% fuel."
+        },
+        {
+          "card": "sustained-turn",
+          "value": 12.3,
+          "altitudeM": 4572,
+          "role": "check",
+          "evidence": "published",
+          "source": "fa-18c-2",
+          "seen": "At 15,000 feet, the F/A-18C's sustained turn rate is 12.3 degrees per second"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.f_22a",
+      "cards": [
+        {
+          "card": "top-speed",
+          "value": 1.21,
+          "altitudeM": 0,
+          "unit": "mach",
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "f-22a-1",
+          "seen": "Mach 1.21, 800 knots at sea level"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.f_35a",
+      "cards": [
+        {
+          "card": "top-speed",
+          "value": 1.06,
+          "altitudeM": 0,
+          "unit": "mach",
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "f-35a-1",
+          "seen": "Mach 1.06, 700 knots at sea level"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 50000,
+          "role": "check",
+          "evidence": "published",
+          "source": "f-35a-1",
+          "seen": "ceiling ft = 50000"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.typhoon",
+      "cards": [
+        {
+          "card": "top-speed",
+          "value": 1.25,
+          "altitudeM": 0,
+          "unit": "mach",
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "typhoon-1",
+          "seen": "1530 km/h at sea level - or Mach 1.25"
+        },
+        {
+          "card": "climb-rate",
+          "value": 62000,
+          "tolerance": 0.15,
+          "role": "check",
+          "evidence": "published-unstated-condition",
+          "source": "typhoon-1",
+          "seen": "climb rate ms = 315"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 55000,
+          "role": "check",
+          "evidence": "published",
+          "source": "typhoon-1",
+          "seen": "ceiling m = 16,764 ... Max flight altitude: 20,000 m (65,000 ft)"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.rafale_c",
+      "cards": [
+        {
+          "card": "top-speed",
+          "value": 1.1,
+          "altitudeM": 0,
+          "unit": "mach",
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "rafale-c-1",
+          "seen": "1390 km/h / Mach 1.1 at low altitude"
+        },
+        {
+          "card": "climb-rate",
+          "value": 60000,
+          "tolerance": 0.15,
+          "role": "check",
+          "evidence": "published-unstated-condition",
+          "source": "rafale-c-1",
+          "seen": "climb rate ms = 304.8"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 50000,
+          "role": "check",
+          "evidence": "published",
+          "source": "rafale-c-2",
+          "seen": "Service ceiling: 50,000 ft"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.gripen_c",
+      "cards": [
+        {
+          "card": "top-speed",
+          "value": 1.2,
+          "altitudeM": 0,
+          "unit": "mach",
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "gripen-c-1",
+          "seen": "1.2 Mach ... at sea level"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 50000,
+          "role": "check",
+          "evidence": "published",
+          "source": "gripen-c-1",
+          "seen": "ceiling m=15,240"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.mig_29a",
+      "cards": [
+        {
+          "card": "top-speed",
+          "value": 810,
+          "altitudeM": 0,
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "mig-29a-1",
+          "seen": "Max speed near ground: 1,500km/h"
+        },
+        {
+          "card": "climb-rate",
+          "value": 64960,
+          "tolerance": 0.15,
+          "role": "check",
+          "evidence": "published-unstated-condition",
+          "source": "mig-29a-2",
+          "seen": "climb rate ms = 330"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 59055,
+          "role": "check",
+          "evidence": "published",
+          "source": "mig-29a-2",
+          "seen": "ceiling m = 18000"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.av_8b",
+      "data": {
+        "bypassRatio": 1.2,
+        "source": "bypass-ratio-estimate"
+      },
+      "cards": []
+    },
+    {
+      "id": "molen.entities.aircraft.mv_22b",
+      "cards": [
+        {
+          "card": "climb-rate",
+          "value": 3200,
+          "massKg": 21319,
+          "role": "check",
+          "evidence": "published",
+          "source": "mv-22b-1",
+          "seen": "Max RC, A/P mode SL, fpm (m/m) 3,200 (975)",
+          "note": "Airplane mode at 47,000 lb."
+        },
+        {
+          "card": "service-ceiling",
+          "value": 25000,
+          "massKg": 21319,
+          "role": "check",
+          "evidence": "published",
+          "source": "mv-22b-2",
+          "seen": "Service Ceiling ISA: 25,000 ft / 7,620 m"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.oh6",
+      "data": {
+        "rotorPowerW": 188000,
+        "enginePowerW": 236000,
+        "source": "oh6-1",
+        "rotor": {
+          "blades": 4,
+          "chordM": 0.171,
+          "rpm": 470,
+          "hub": "articulated",
+          "shaftTiltDeg": 3,
+          "lockNumber": 4.92,
+          "tail": {
+            "blades": 2,
+            "diameterM": 1.296,
+            "chordM": 0.12,
+            "rpm": 3030,
+            "armM": 4.623,
+            "heightM": -0.729
+          },
+          "finAreaM2": 0.467,
+          "stabilizerAreaM2": 0.678,
+          "inertia": {
+            "massKg": 1157,
+            "roll": 446,
+            "pitch": 1219,
+            "yaw": 979
+          }
+        },
+        "rotorSource": "rotor-oh6"
+      },
+      "cards": [
+        {
+          "card": "hover-ceiling-oge",
+          "value": 7300,
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "oh6-1",
+          "seen": "Hover ceiling OGE: 7,300 ft (2,225 m)"
+        },
+        {
+          "card": "hover-ceiling-ige",
+          "value": 11800,
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "oh6-1",
+          "seen": "Hover ceiling IGE: 11,800 ft (3,597 m)"
+        },
+        {
+          "card": "climb-rate",
+          "value": 1860,
+          "tolerance": 0.15,
+          "role": "check",
+          "evidence": "published-secondhand",
+          "source": "oh-6a-usaavcom-67-13",
+          "seen": "The actual rate of climb at sea level was 1860 fpm (Configuration I, 2290 pounds, takeoff power)",
+          "massKg": 1039
+        },
+        {
+          "card": "service-ceiling",
+          "value": 15800,
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "oh6-1",
+          "seen": "Service ceiling: 15,800 ft (4,800 m)"
+        },
+        {
+          "card": "autorotation-descent",
+          "value": 1800,
+          "speedKt": 60,
+          "tolerance": 0.2,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "oh6-3",
+          "seen": "stabilized autorotational rate of descent of 1800 feet per minute",
+          "note": "Civil MD 500 handbook figure; airspeed taken as 60 kt."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.robinson_r44",
+      "data": {
+        "rotorPowerW": 182700,
+        "source": "robinson-r44-3",
+        "rotor": {
+          "blades": 2,
+          "chordM": 0.254,
+          "rpm": 400,
+          "hub": "teetering",
+          "tail": {
+            "blades": 2,
+            "diameterM": 1.473,
+            "chordM": 0.1295,
+            "rpm": 2380,
+            "armM": 5.89
+          }
+        },
+        "rotorSource": "rotor-robinson-r44"
+      },
+      "cards": [
+        {
+          "card": "hover-ceiling-oge",
+          "value": 7500,
+          "massKg": 1043,
+          "role": "fit",
+          "evidence": "published",
+          "source": "robinson-r44-1",
+          "seen": "7500 ft @ 2300 lb"
+        },
+        {
+          "card": "hover-ceiling-ige",
+          "value": 8950,
+          "massKg": 1134,
+          "role": "fit",
+          "evidence": "published",
+          "source": "robinson-r44-1",
+          "seen": "8950 ft @ 2500 lb"
+        },
+        {
+          "card": "autorotation-descent",
+          "value": 1350,
+          "speedKt": 55,
+          "tolerance": 0.2,
+          "role": "check",
+          "evidence": "published",
+          "source": "robinson-r44-2",
+          "seen": "Minimum rate of descent is about 1350 feet per minute."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.bell_206b",
+      "data": {
+        "rotorPowerW": 236400,
+        "enginePowerW": 313200,
+        "source": "bell-206b-1",
+        "rotor": {
+          "blades": 2,
+          "chordM": 0.33,
+          "rpm": 395,
+          "hub": "teetering",
+          "hingeOffset": 0,
+          "tail": {
+            "blades": 2,
+            "diameterM": 1.65,
+            "chordM": 0.12,
+            "rpm": 2550,
+            "armM": 5.944
+          },
+          "stabilizerAreaM2": 0.89
+        },
+        "rotorSource": "rotor-bell-206b"
+      },
+      "cards": [
+        {
+          "card": "hover-ceiling-oge",
+          "value": 5300,
+          "massKg": 1451,
+          "role": "fit",
+          "evidence": "published",
+          "source": "bell-206b-1",
+          "seen": "OGE Hovering Ceiling ISA ft 14,900 10,300 5300 (3350lbs@SL)*"
+        },
+        {
+          "card": "hover-ceiling-oge",
+          "value": 10300,
+          "massKg": 1361,
+          "key": "1361kg",
+          "role": "check",
+          "evidence": "published",
+          "source": "bell-206b-1",
+          "seen": "OGE Hovering Ceiling ISA ft 14,900 10,300 5300 (3350lbs@SL)*"
+        },
+        {
+          "card": "hover-ceiling-ige",
+          "value": 13200,
+          "massKg": 1451,
+          "role": "fit",
+          "evidence": "published",
+          "source": "bell-206b-1",
+          "seen": "IGE Hovering Ceiling ISA ft 19,600 15,200 13,200 11,800*"
+        },
+        {
+          "card": "climb-rate",
+          "value": 1350,
+          "massKg": 1451,
+          "role": "check",
+          "evidence": "published",
+          "source": "bell-206b-1",
+          "seen": "Sea Level Max R/C (TOP) ISA ft/min 1940 1525 1350 1230*"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 13500,
+          "massKg": 1451,
+          "powerFraction": 0.852,
+          "role": "fit",
+          "evidence": "published",
+          "source": "bell-206b-1",
+          "seen": "Service Ceiling (MCP) ISA ft 20,000+ 18,200 13,500 13,500*",
+          "note": "At maximum continuous power, 270 of 317 shp."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.bell_407",
+      "data": {
+        "rotorPowerW": 502600,
+        "enginePowerW": 643000,
+        "source": "bell-407-1",
+        "rotor": {
+          "blades": 4,
+          "chordM": 0.27,
+          "rpm": 413,
+          "hub": "bearingless",
+          "shaftTiltDeg": 5,
+          "tail": {
+            "blades": 2,
+            "diameterM": 1.65,
+            "chordM": 0.16,
+            "armM": 6.46
+          }
+        },
+        "rotorSource": "rotor-bell-407"
+      },
+      "cards": [
+        {
+          "card": "hover-ceiling-oge",
+          "value": 11940,
+          "massKg": 2268,
+          "role": "fit",
+          "evidence": "published",
+          "source": "bell-407-1",
+          "seen": "OGE Hovering Ceiling ISA ft 18,720 15,260 11,940 5,420"
+        },
+        {
+          "card": "hover-ceiling-ige",
+          "value": 13550,
+          "massKg": 2268,
+          "role": "fit",
+          "evidence": "published",
+          "source": "bell-407-1",
+          "seen": "IGE Hovering Ceiling ISA ft 19,900 16,790 13,550 5,420"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 18940,
+          "massKg": 2268,
+          "powerFraction": 0.935,
+          "role": "fit",
+          "evidence": "published",
+          "source": "bell-407-1",
+          "seen": "Service Ceiling (MCP) ISA ft 20,000+ 20,000+ 18,940 17,490",
+          "note": "At maximum continuous power, 630 of 674 shp."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.bell_412ep",
+      "data": {
+        "rotorPowerW": 1021600,
+        "enginePowerW": 1416800,
+        "source": "bell-412ep-1",
+        "rotor": {
+          "blades": 4,
+          "rpm": 324,
+          "hub": "bearingless",
+          "tail": {
+            "blades": 2,
+            "diameterM": 2.62,
+            "chordM": 0.27,
+            "armM": 8.87
+          }
+        },
+        "rotorSource": "rotor-bell-412ep"
+      },
+      "cards": [
+        {
+          "card": "hover-ceiling-oge",
+          "value": 5200,
+          "massKg": 5398,
+          "role": "fit",
+          "evidence": "published",
+          "source": "bell-412ep-1",
+          "seen": "OGE Hovering Ceiling ISA ft 13,800 10,400 5,200"
+        },
+        {
+          "card": "hover-ceiling-oge",
+          "value": 10400,
+          "massKg": 4763,
+          "key": "4763kg",
+          "role": "check",
+          "evidence": "published",
+          "source": "bell-412ep-1",
+          "seen": "OGE Hovering Ceiling ISA ft 13,800 10,400 5,200"
+        },
+        {
+          "card": "hover-ceiling-ige",
+          "value": 10200,
+          "massKg": 5398,
+          "role": "fit",
+          "evidence": "published",
+          "source": "bell-412ep-1",
+          "seen": "IGE Hovering Ceiling ISA ft 17,400 14,300 10,200"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 16290,
+          "massKg": 5398,
+          "powerFraction": 0.81,
+          "role": "fit",
+          "evidence": "published",
+          "source": "bell-412ep-1",
+          "seen": "Service Ceiling (AEO) ISA ft 19,840 18,760 16,290",
+          "note": "At maximum continuous power, 1,110 of 1,370 shp."
+        },
+        {
+          "card": "climb-rate",
+          "value": 1350,
+          "tolerance": 0.15,
+          "role": "check",
+          "evidence": "published-unstated-condition",
+          "source": "bell-412ep-2",
+          "seen": "climb rate ftmin=1350"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.uh_1h",
+      "data": {
+        "rotorPowerW": 820300,
+        "enginePowerW": 1044000,
+        "source": "uh-1h-2",
+        "rotor": {
+          "blades": 2,
+          "chordM": 0.533,
+          "rpm": 324,
+          "hub": "teetering",
+          "hingeOffset": 0,
+          "shaftTiltDeg": 5,
+          "lockNumber": 6.53,
+          "tail": {
+            "blades": 2,
+            "diameterM": 2.591,
+            "chordM": 0.2134,
+            "rpm": 1660,
+            "armM": 8.786,
+            "heightM": 0.028
+          },
+          "finAreaM2": 1.11,
+          "stabilizerAreaM2": 1.52,
+          "flatPlateAreaM2": 1.784,
+          "inertia": {
+            "massKg": 3629,
+            "roll": 3966,
+            "pitch": 14684,
+            "yaw": 12541
+          }
+        },
+        "rotorSource": "rotor-uh-1h"
+      },
+      "cards": [
+        {
+          "card": "hover-ceiling-ige",
+          "value": 5500,
+          "massKg": 4309,
+          "skidHeightM": 1.2,
+          "role": "fit",
+          "evidence": "published",
+          "source": "uh-1h-1",
+          "seen": "(FT) 18,200 14,200 9900 5500",
+          "note": "Take-off power, 4 ft skid height."
+        },
+        {
+          "card": "hover-ceiling-ige",
+          "value": 9900,
+          "massKg": 3856,
+          "key": "3856kg",
+          "skidHeightM": 1.2,
+          "role": "check",
+          "evidence": "published",
+          "source": "uh-1h-1",
+          "seen": "(FT) 18,200 14,200 9900 5500"
+        },
+        {
+          "card": "climb-rate",
+          "value": 1600,
+          "massKg": 4309,
+          "role": "check",
+          "evidence": "published",
+          "source": "uh-1h-2",
+          "seen": "climb rate ftmin= 1,600"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 12600,
+          "massKg": 4309,
+          "powerFraction": 0.818,
+          "role": "fit",
+          "evidence": "published",
+          "source": "uh-1h-1",
+          "seen": "(FT) 23,900 20,200 16,.400 12,600",
+          "note": "At normal rated power, 900 of 1,100 hp."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.uh_60m",
+      "data": {
+        "rotorPowerW": 2916000,
+        "source": "uh-60m-3",
+        "rotor": {
+          "blades": 4,
+          "chordM": 0.527,
+          "rpm": 257.8,
+          "hub": "articulated",
+          "hingeOffset": 0.0466,
+          "shaftTiltDeg": 3,
+          "lockNumber": 8.1936,
+          "tail": {
+            "blades": 4,
+            "diameterM": 3.353,
+            "chordM": 0.247,
+            "rpm": 1190,
+            "armM": 9.926,
+            "heightM": 0.246
+          },
+          "finAreaM2": 3.001,
+          "stabilizerAreaM2": 4.181,
+          "flatPlateAreaM2": 2.387,
+          "inertia": {
+            "massKg": 7439,
+            "roll": 7632,
+            "pitch": 54233,
+            "yaw": 50436
+          }
+        },
+        "rotorSource": "rotor-uh-60m"
+      },
+      "cards": [
+        {
+          "card": "hover-ceiling-oge",
+          "value": 6200,
+          "massKg": 9979,
+          "role": "fit",
+          "evidence": "published-other-variant",
+          "source": "uh-60m-1",
+          "seen": "Hover Ceiling - OGE 6,200 ft 1,890 m",
+          "note": "S-70 with the same engines; manufacturer estimate."
+        },
+        {
+          "card": "hover-ceiling-ige",
+          "value": 10270,
+          "massKg": 9979,
+          "role": "fit",
+          "evidence": "published-other-variant",
+          "source": "uh-60m-1",
+          "seen": "Hover Ceiling - IGE 10,270 ft 3,130 m"
+        },
+        {
+          "card": "climb-rate",
+          "value": 2020,
+          "massKg": 9979,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "uh-60m-1",
+          "seen": "Maximum Rate of Climb 2,020 ft/min 10.26 m/sec"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 15000,
+          "massKg": 9979,
+          "role": "fit",
+          "evidence": "published-other-variant",
+          "source": "uh-60m-1",
+          "seen": "Service Ceiling 15,000 ft 4,572 m"
+        },
+        {
+          "card": "autorotation-descent",
+          "value": 2325,
+          "massKg": 8165,
+          "speedKt": 50,
+          "tolerance": 0.2,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "uh-60m-2",
+          "seen": "READ R / D = 2,325 FT / MIN",
+          "note": "UH-60A/L manual, worked example."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.ch_47f",
+      "data": {
+        "rotorPowerW": 5593000,
+        "source": "ch-47d-usaaefa-82-07",
+        "enginePowerW": 7124000
+      },
+      "cards": [
+        {
+          "card": "climb-rate",
+          "value": 1522,
+          "tolerance": 0.2,
+          "role": "check",
+          "evidence": "published-unstated-condition",
+          "source": "ch-47f-1",
+          "seen": "climb rate ftmin=1522"
+        },
+        {
+          "card": "service-ceiling",
+          "value": 20000,
+          "role": "fit",
+          "evidence": "published-unstated-condition",
+          "source": "ch-47f-2",
+          "seen": "20,000 feet (6,096 meters)"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.aw139",
+      "data": {
+        "rotorPowerW": 1640000,
+        "enginePowerW": 2284000,
+        "source": "aw139-3",
+        "rotor": {
+          "blades": 5,
+          "rpm": 296,
+          "hub": "articulated",
+          "tail": {
+            "blades": 4,
+            "diameterM": 2.7
+          }
+        },
+        "rotorSource": "rotor-aw139"
+      },
+      "cards": [
+        {
+          "card": "hover-ceiling-oge",
+          "value": 8123,
+          "massKg": 6400,
+          "role": "fit",
+          "evidence": "published",
+          "source": "aw139-1",
+          "seen": "2,476 m 8,123 ft"
+        },
+        {
+          "card": "hover-ceiling-ige",
+          "value": 15327,
+          "massKg": 6400,
+          "role": "fit",
+          "evidence": "published",
+          "source": "aw139-1",
+          "seen": "4,672 m 15,327 ft"
+        },
+        {
+          "card": "climb-rate",
+          "value": 2140,
+          "tolerance": 0.15,
+          "role": "check",
+          "evidence": "published-unstated-condition",
+          "source": "aw139-leonardo-sar",
+          "seen": "Performance (ISA, S.L., MGW): Max Rate of Climb 10.9 m/s 2,140 ft/min",
+          "massKg": 6400,
+          "note": "The brochure does not say which power rating; flown at take-off power."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.airbus_h125",
+      "data": {
+        "rotorPowerW": 535000,
+        "enginePowerW": 710000,
+        "source": "airbus-h125-1",
+        "rotor": {
+          "blades": 3,
+          "rpm": 386,
+          "rotation": "clockwise",
+          "hub": "articulated",
+          "tail": {
+            "blades": 2,
+            "diameterM": 1.86
+          }
+        },
+        "rotorSource": "rotor-airbus-h125"
+      },
+      "cards": [
+        {
+          "card": "hover-ceiling-oge",
+          "value": 12700,
+          "massKg": 2370,
+          "role": "fit",
+          "evidence": "published",
+          "source": "airbus-h125-1",
+          "seen": "12,700 ft (EASA certification)"
+        },
+        {
+          "card": "hover-ceiling-ige",
+          "value": 14500,
+          "massKg": 2370,
+          "role": "fit",
+          "evidence": "published",
+          "source": "airbus-h125-1",
+          "seen": "14,500 ft"
+        },
+        {
+          "card": "climb-rate",
+          "value": 1673,
+          "massKg": 2250,
+          "tolerance": 0.15,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "airbus-h125-2",
+          "seen": "climb rate ms=8.5",
+          "powerFraction": 0.927,
+          "note": "Flown at maximum continuous torque (92.7%): the type certificate allows take-off torque only up to 40 kt, below the best climb speed."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.airbus_h145",
+      "data": {
+        "rotorPowerW": 838000,
+        "source": "bk117-d2-kawasaki",
+        "enginePowerW": 1334000,
+        "rotor": {
+          "blades": 4,
+          "rpm": 387,
+          "hub": "hingeless",
+          "tail": {
+            "blades": 10,
+            "diameterM": 1.15
+          }
+        },
+        "rotorSource": "rotor-airbus-h145"
+      },
+      "cards": [
+        {
+          "card": "hover-ceiling-oge",
+          "value": 8955,
+          "massKg": 3800,
+          "role": "fit",
+          "evidence": "published",
+          "source": "airbus-h145-1",
+          "seen": "8,955 ft"
+        },
+        {
+          "card": "hover-ceiling-ige",
+          "value": 12490,
+          "massKg": 3800,
+          "role": "fit",
+          "evidence": "published",
+          "source": "airbus-h145-1",
+          "seen": "12,490 ft"
+        },
+        {
+          "card": "climb-rate",
+          "value": 1594,
+          "tolerance": 0.15,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "airbus-h145-2",
+          "seen": "climb rate ms = 8.1"
+        }
+      ]
+    }
+  ],
+  "standards": [
+    {
+      "card": "phugoid-damping",
+      "min": 0.04,
+      "role": "check",
+      "evidence": "standard",
+      "source": "mil-f-8785c",
+      "seen": "3.2.1.2 Level 1: damping ratio at least 0.04"
+    },
+    {
+      "card": "short-period-damping",
+      "min": 0.3,
+      "max": 2,
+      "role": "check",
+      "evidence": "standard",
+      "source": "mil-f-8785c",
+      "seen": "Table IV, Level 1, Category B: 0.30 minimum, 2.00 maximum"
+    },
+    {
+      "card": "dutch-roll-damping",
+      "min": 0.08,
+      "role": "check",
+      "evidence": "standard",
+      "source": "mil-f-8785c",
+      "seen": "Table VI, Level 1, Category B: 0.08"
+    },
+    {
+      "card": "dutch-roll-frequency",
+      "min": 0.4,
+      "role": "check",
+      "evidence": "standard",
+      "source": "mil-f-8785c",
+      "seen": "Table VI, Level 1, Category B: 0.4 rad/s"
+    },
+    {
+      "card": "roll-time-constant",
+      "max": 1.4,
+      "role": "check",
+      "evidence": "standard",
+      "source": "mil-f-8785c",
+      "seen": "Table VII, Level 1, Category B: 1.4 s"
+    },
+    {
+      "card": "spiral-bank",
+      "max": 20,
+      "role": "check",
+      "evidence": "standard",
+      "source": "mil-f-8785c",
+      "seen": "Table VIII, Level 1, Category B: 20 sec to double",
+      "note": "A bank that has not doubled 20 s after release at 10 degrees has a time to double of more than 20 s."
+    }
+  ]
+}
