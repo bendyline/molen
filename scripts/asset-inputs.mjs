@@ -2,11 +2,13 @@
 // asset-build.json, every generator script with the relative modules it imports, the authored
 // masters and the source data asset-build.json declares. Outputs are not inputs, so every machine
 // computes the same key whatever bytes its builds produce. Engine code (packages/*/src and their
-// dist) is not hashed: bump `inputs.version` when an engine change should rebuild the assets.
+// dist) is not hashed, except where a generator declares it (see asset-engine.mjs): bump
+// `inputs.version` when any other engine change should rebuild the assets.
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
+import { existsSync, readFileSync } from 'node:fs';
 import { lstat, readdir, readFile } from 'node:fs/promises';
-import { dirname, join, relative, resolve, sep } from 'node:path';
+import { dirname, join, posix as posixPath, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -14,6 +16,7 @@ const FORMAT = 'molen/asset-inputs@1';
 const sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const posix = (root, path) => relative(root, path).split(sep).join('/');
 const IMPORT = /(?:\bfrom\s*|\bimport\s*\(?\s*)['"](\.{1,2}\/[^'"]+)['"]/g;
+export const ENGINE_ENTRY = /^packages\/([a-z0-9-]+)\/src\/(?!.*\.\.)([\w./-]+)\.ts$/;
 
 async function exists(path) {
   try {
@@ -34,6 +37,42 @@ async function moduleClosure(root, script, found = new Set()) {
       await moduleClosure(root, path, found);
   }
   return found;
+}
+
+/** The engine entry points `job` declares, checked. */
+export function engineEntries(job) {
+  if (job.engine === undefined) return [];
+  if (!Array.isArray(job.engine) || !job.engine.every((entry) => ENGINE_ENTRY.test(entry)))
+    throw new Error(`Generator ${job.id}: "engine" lists packages/<name>/src/<entry>.ts files.`);
+  return job.engine;
+}
+
+/** `entry` and the files it imports relatively, transitively, in path order. */
+export function importClosure(root, entry, candidates) {
+  const found = new Set();
+  const pending = [entry];
+  while (pending.length) {
+    const path = pending.pop();
+    if (found.has(path)) continue;
+    found.add(path);
+    for (const [, specifier] of readFileSync(join(root, path), 'utf8').matchAll(IMPORT)) {
+      const base = posixPath.join(posixPath.dirname(path), specifier);
+      const target = candidates(base).find((file) => existsSync(join(root, file)));
+      if (!target) throw new Error(`${path} imports ${specifier}, which does not exist.`);
+      pending.push(target);
+    }
+  }
+  return [...found].sort();
+}
+
+/** The package sources behind an engine entry point. */
+export function engineSources(root, entry) {
+  return importClosure(root, entry, (base) => [
+    `${base}.ts`,
+    `${base}/index.ts`,
+    base.replace(/\.m?js$/, '.ts'),
+    base,
+  ]);
 }
 
 async function jobCode(root, [program, script]) {
@@ -96,8 +135,11 @@ export async function assetInputs(root = ROOT, { fileCache } = {}) {
   const plan = JSON.parse(await readFile(join(root, 'asset-build.json'), 'utf8'));
   const inputs = validateInputs(plan);
   const paths = new Set(['asset-build.json', ...(plan.masters ?? [])]);
-  for (const job of [...plan.generators, ...(plan.afterImport ?? [])])
+  for (const job of [...plan.generators, ...(plan.afterImport ?? [])]) {
     for (const path of await jobCode(root, job.command)) paths.add(path);
+    for (const entry of engineEntries(job))
+      for (const path of engineSources(root, entry)) paths.add(path);
+  }
   const masters = new Set(plan.masters ?? []);
   const listed = execFileSync(
     'git',

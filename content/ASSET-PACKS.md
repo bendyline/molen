@@ -3,9 +3,9 @@
 Every GLB in this repository is a build output of checked-in source, except five small authored
 masters. Git holds the generators, their specs, shared materials and textures, sidecars and
 review reports. Full-size review captures stay local (see below). Asset inputs name the reproducible model bundle. When
-no release exists for a commit's inputs, the CI `assets` job builds the bundle from a clean
-checkout, and a push to `main` publishes it as a GitHub release that `pnpm assets:fetch`
-downloads as a cache. Building and fetching produce identical files.
+no release exists for a commit's inputs, the Assets workflow builds the bundle from a clean
+checkout, on the pull request that changes them, and publishes it as a GitHub release that
+`pnpm assets:fetch` downloads. Building and fetching produce identical files.
 
 ## How the pieces fit
 
@@ -44,7 +44,11 @@ review records and `*.test.mjs` files (`scripts/asset-inputs.mjs`). Outputs are
 not inputs, so every machine computes the same name. `node scripts/asset-packs.mjs key --explain`
 prints the name and the inputs that differ from the installed bundle. Engine code under
 `packages/` is not an input; bump `inputs.version` in `asset-build.json` when an engine change
-should rebuild the assets.
+should rebuild the assets. The exception is a generator that carves engine code into its models and
+says so: a job's `engine` lists package entry points, whose sources are then inputs, and the job
+runs again when their compiled code differs (`scripts/asset-engine.mjs`). Six landmarks take their
+statues from `packages/figures` this way, through `worldgen-authored-places`. Rebuild the packages
+before `pnpm assets:build` so the job runs the new code.
 
 ## Get the GLBs
 
@@ -195,28 +199,30 @@ there from `examples/lantern-dungeon/tools/requirements.txt` (the first install 
 access). Later builds reuse that environment without installing again. System Python packages
 are left alone. Set `PYTHON` to choose an interpreter explicitly; that override must already
 have the required version and pinned packages. All Python checks finish before generators start.
-A full build (about 1,100 generators and 2,400 imports, then the landmark LODs) takes roughly
-1.5–2 hours on a workstation and 90 minutes on a hosted CI runner, and writes about 18 GB. The
-report and one log per generator are in `.artifacts/asset-build/`.
+A full build (about 2,100 generators and 3,500 imports, then the landmark LODs) takes hours (see
+[In CI](#in-ci)) and writes about 35 GB. The report and one log per generator are in
+`.artifacts/asset-build/`.
 
 ### In CI
 
-`.github/workflows/ci.yml` splits by what a job needs:
+Three workflows read GLBs and one builds them:
 
-- `check` needs no GLBs and waits for nothing. It compiles packages with plain `tsdown`, then
-  runs `tsc`, lint, the docs check, `assets:test` and the production audit, so those errors
-  surface in minutes. The full package builds run content validators that open GLBs
+- `.github/workflows/assets.yml` builds and publishes. CI calls it as its `assets` job. Its `key`
+  job computes the bundle's name; when that release exists, which is the usual case, nothing is
+  built and it is done in minutes. Otherwise its `build` job builds the bundle and publishes it,
+  from pull requests as well as `main`. Builds of one bundle queue behind each other (a concurrency
+  group named after it), so a pull request, its merge and a rerun build it once between them.
+- `.github/workflows/ci.yml`: `check` needs no GLBs and waits for nothing. It compiles packages with
+  plain `tsdown`, then runs `tsc`, lint, the docs check, `assets:test` and the production audit, so
+  those errors surface in minutes. The full package builds run content validators that open GLBs
   (`validate-structure-materials` reads every `source.glb`); `unit` runs them in `pretest:unit`.
-- `assets` restores or builds this commit's bundle (`.github/actions/fetch-assets`), runs
-  `assets:check --committed`, uploads the bundle's archives as the run's `asset-bundle` artifact,
-  then runs `source:check`.
-- `unit`, `docs-site`, `packed` and `golden` read GLBs. Each waits for `check` and `assets`, then
-  downloads that artifact and installs it offline (`.github/actions/restore-assets`). They never
-  download a release or build, so a run has one bundle: the one `assets` checked.
-  `publish-assets` uploads the same artifact's archives as the release.
+  `content` (`assets:check` and `source:check`), `unit`, `lods`, `docs-site`, `packed` and `golden`
+  read GLBs. Each waits for `check` and `assets`, then restores the bundle from its release
+  (`.github/actions/restore-assets`). They never build.
+- `.github/workflows/site.yml` restores the bundle the same way. Release reads no GLBs at all.
 
-A source build rewrites the sidecar of every GLB it builds differently, but only the GLBs reach
-the other jobs, which have the committed sidecars. So `assets` fails when a build changed a
+A source build rewrites the sidecar of every GLB it builds differently, but only the GLBs are
+published; the other jobs have the committed sidecars. So `build` fails when a build changed a
 committed sidecar, and uploads those changes as the `asset-sidecars` artifact (kept 14 days).
 Review and commit them:
 
@@ -224,51 +230,40 @@ Review and commit them:
 gh run download <run id> -n asset-sidecars && git apply sidecars.patch
 ```
 
-The push that commits them normally reuses the bundle: sidecars are not asset inputs, so its name
-does not change, and the failed run saved it to the cache first. A rerun without them restores the
-same bundle and fails too, without a patch, since nothing was rebuilt: use the first run's. This
-is what catches an engine change that reshapes models without naming a new bundle, such as a
-`packages/figures` edit (six landmarks carve statues from it). On 2026-11-23 one left `assets`
-green and failed `docs-site` and `golden`.
+The bundle is published by then. Sidecars are not asset inputs, so the push that commits them names
+the same bundle and builds nothing. A push or rerun without them fails in `key`, which compares every
+committed sidecar with the manifest's hashes (`asset-packs.mjs state --check`, or locally
+`pnpm assets:check --published`) before any other job pairs the two. That run has no patch, since nothing was rebuilt: use the first run's.
 
-The artifact belongs to the workflow run. Nothing another job saves can remove it and its size
-has no ceiling; GitHub deletes it after two days. "Re-run failed jobs" within that time reads the
-first attempt's artifact; after it, use "Re-run all jobs" so `assets` uploads it again.
+When no bundle exists for the inputs, `build` starts from an earlier one instead of from nothing:
 
-`fetch-assets` looks for the bundle in the Actions cache (`molen-assets-<release>`), then in its
-release, and builds it when neither has it. The cache is only a shortcut between runs for the
-`assets` job. GitHub keeps 10 GB of caches for a repository and evicts the least recently used
-ones whenever a new cache takes the total over that, and one bundle's archives are 8.3 GB
-(2026-11-23: 17,228 GLBs in 427 archives). So the action saves one bundle and nothing else (the
-`prune` step below), and saves none once the archives pass 9 GB: a cache that size would evict
-every other cache, the job records among them, and be evicted in turn. Past that size a bundle
-reaches later runs through its release, or is rebuilt from the job records.
+1. `node scripts/asset-packs.mjs seed` looks at the newest few published bundles and installs the one
+   whose inputs differ least from this checkout's: the pull request's own last bundle, else main's.
+   It comes with the job records that built it, an attachment of the same release
+   (`asset-records.tar.gz`: the job records, the landmark LOD reports and the build's inputs).
+2. `pnpm assets:build` reruns only the jobs whose recorded inputs or outputs differ. Records are
+   checked against the bytes on disk, so a seed that does not match costs reruns, never a wrong GLB.
+   With no records at all, generators rerun but unchanged imports and LODs are still verified and
+   kept.
+3. `pnpm assets:pack` archives what no published bundle holds (see [Releases](#releases)).
+4. `pnpm assets:publish` uploads those archives, the manifest and this build's job records.
+5. `pnpm assets:check --committed` compares the sidecars, as above.
 
-When no bundle exists for the inputs (a pull request that changes models), `fetch-assets` builds
-it, starting from an earlier build instead of from nothing:
+A release is the only place a bundle or its records are kept. The Actions cache held both until
+2026-11-24. GitHub keeps 10 GB of caches for a repository and evicts the least recently used; one
+bundle is most of that, so bundles evicted each other and the 14 MB of records, and a pull request's
+caches are invisible to `main`. In the 32 hours before a release timed out, one bundle was built from
+nothing ten times.
 
-1. It restores the newest job records this branch can see from the Actions cache
-   (`molen-asset-seed-*`: this pull request's last build, else main's), with the landmark LOD
-   reports and `seed.json`, a copy of that build's `installed.json`.
-2. `node scripts/asset-packs.mjs seed` installs the bundle those records describe, from its
-   cached archives or its release. Without one, it installs the newest published bundle.
-3. `pnpm assets:build --compile` reruns only the jobs whose recorded inputs or outputs differ.
-   Records are checked against the bytes on disk, so a seed that does not match costs reruns,
-   never a wrong GLB. With no records at all, generators rerun but unchanged imports and LODs are
-   still verified and kept.
-4. `pnpm assets:pack` reuses every archive whose files and bytes are unchanged (from the seed or
-   any manifest in `.artifacts/asset-packs/`), compressing only changed groups.
-5. `node scripts/asset-packs.mjs prune` deletes the seed's archives the new bundle did not reuse.
-6. The job saves its records as the next seed, and its archives under `molen-assets-<release>`
-   while they fit the cache.
+A pull request from a fork cannot publish, so one that changes asset inputs fails in `build`; push its
+branch to this repository. Downloads from a release (manifests, archives and the release list) are
+tried four times, 2, 8 and 30 seconds apart, when the network or a busy server fails them; a missing
+release or a checksum mismatch fails at once.
 
-The jobs once took the bundle from the cache. On 2026-11-23 it held the seed's archives as well
-(11.1 GB), a new pnpm store saved after a lockfile change evicted it between `assets` and
-`docs-site`, and the four waiting jobs each started a source build of their own.
-
-Downloads from a release (manifests, archives and the release list) are tried four times, 2, 8
-and 30 seconds apart, when the network or a busy server fails them; a missing release or a
-checksum mismatch fails at once.
+The build job has to finish within GitHub's six hours. A seeded build took between 4 and 50 minutes on
+2026-11-24. Building everything from nothing (a Node major, an `inputs.version` bump, an edit to
+`scripts/asset-job-cache.mjs` or `scripts/trace-asset-job.mjs`) is estimated at about five hours for
+2,109 generators. It grows with them, so split it across jobs before it outgrows the limit.
 
 ## Change a model
 
@@ -497,8 +492,9 @@ checkpoint exposes a relevant change or failure.
    upload. When the build reports that generators "would change" committed metadata it kept,
    those bundles' pins no longer match what their generator produces; regenerate them with their
    own command and review them before committing.
-4. CI finds no published bundle for the new inputs, builds it from source and shares it with the
-   other jobs. After the merge, the push to `main` publishes it as the release those inputs name.
+4. The pull request's Assets workflow finds no published bundle for the new inputs, builds what
+   changed and publishes it as the release those inputs name. Its other jobs, the merge to `main` and
+   a release all restore that bundle.
 
 To add a generator, append it to `generators` in `asset-build.json`. Every GLB the build produces
 must be in the lock, and every locked GLB must be produced. A GLB that is neither locked nor a
@@ -572,15 +568,25 @@ weathered-wood maps.
 
 ## Releases
 
-CI's `assets` job runs on every pull request and every push to `main`. When a push to `main` has
-asset inputs with no published release, the `publish-assets` job runs
-`pnpm assets:publish --target <commit>`; a pull request never publishes. A publish that failed is
-retried by the next push, from the bundle in the Actions cache or a rebuild. Publishing packs the built GLBs
-into `.tar.gz` archives grouped by content role and geohash2 cell, about 256 MiB each. It uploads
-them with `asset-manifest.json` and `ASSET-NOTICES.txt` to a draft release, checks every
+The Assets workflow publishes a bundle as soon as it is built (`pnpm assets:publish --target <commit>`),
+so the release exists before anything reads it. Packing groups the built GLBs into `.tar.gz` archives
+by content role and geohash2 region, about 256 MiB each. Publishing uploads them with
+`asset-manifest.json`, `asset-records.tar.gz` and `ASSET-NOTICES.txt` to a draft release, checks every
 attachment's digest, then publishes the release without marking it latest. A release that is
-already published is left untouched, and older releases stay for older commits. The owner can run
-the same command with GitHub CLI credentials that have release write access.
+already published is left untouched. Its tag marks main's newest commit at the time; its notes name
+the commit that was built. The owner can run the same command with GitHub CLI credentials that have
+release write access.
+
+**A bundle lists its archives wherever they are.** Packing starts from the manifests of published
+bundles it knows (`.artifacts/asset-packs/published/`: each one fetched, seeded from or published
+here). An earlier archive that still holds mostly files of the new bundle, at least two thirds by
+size, is listed again in the release that has it; only the remaining files need new archives. A new
+place therefore uploads that place, and not the rest of its region: replayed over the five bundles up
+to 2026-11-23, the last four would have uploaded 2.8 GB instead of 14.8 GB, for 2.5% more to download
+in a full restore. A region that gets a new archive takes its small ones into it, so archives do not
+pile up. Publishing checks that every listed archive is still where the manifest says.
+
+So **releases named `assets-*` must not be deleted**: later bundles list their archives.
 
 | Archive example | Contents |
 | --- | --- |
@@ -590,7 +596,7 @@ the same command with GitHub CLI credentials that have release write access.
 | `entities-models-part-001.tar.gz` | Imported entity models |
 | `lantern-dungeon-sources-part-001.tar.gz` | The example's generated source GLBs |
 
-These archives restore repository build inputs. Applications use the `molen/pack@1` content
+These archives restore repository build outputs. Applications use the `molen/pack@1` content
 packs and geographic model archives published with the site; a browser never downloads a
 repository snapshot.
 

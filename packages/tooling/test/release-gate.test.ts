@@ -11,7 +11,17 @@ afterEach(() => {
   for (const root of fixtures.splice(0)) rmSync(root, { recursive: true, force: true });
 });
 
-function fixture(workflow?: string): string {
+const steps = (...commands: string[]) => commands.map((command) => `- run: ${command}\n`).join('');
+const RELEASE = steps('node scripts/require-green-ci.mjs', 'pnpm exec multi-semantic-release');
+const SITE = steps(
+  'node scripts/require-green-ci.mjs',
+  'pnpm build',
+  'node scripts/publish-pack-release.mjs',
+);
+const CI = steps('pnpm lint', 'pnpm -r typecheck');
+
+/** A repository with the checker and the given workflows; `undefined` leaves the directory out. */
+function fixture(workflows?: Record<string, string>): string {
   const root = mkdtempSync(join(tmpdir(), 'molen-release-gate-'));
   fixtures.push(root);
   mkdirSync(join(root, 'scripts'));
@@ -30,12 +40,16 @@ function fixture(workflow?: string): string {
       },
     }),
   );
-  if (workflow !== undefined) {
-    mkdirSync(join(root, '.github/workflows'), { recursive: true });
-    writeFileSync(join(root, '.github/workflows/release.yml'), workflow);
+  if (workflows !== undefined) {
+    const dir = join(root, '.github/workflows');
+    mkdirSync(dir, { recursive: true });
+    for (const [name, text] of Object.entries(workflows)) writeFileSync(join(dir, name), text);
   }
   return root;
 }
+
+const complete = (changes: Record<string, string> = {}) =>
+  fixture({ 'release.yml': RELEASE, 'site.yml': SITE, 'ci.yml': CI, ...changes });
 
 function run(root: string, ci = ''): string {
   return execFileSync(process.execPath, [join(root, 'scripts/check-release-gate.mjs')], {
@@ -52,27 +66,64 @@ describe('release gate script', () => {
     expect(run(root, 'false')).toContain('skipped');
   });
 
-  it('requires the release workflow in CI', () => {
+  it('requires the workflows in CI, and wherever any workflow metadata is present', () => {
     expect(() => run(fixture(), 'true')).toThrow('missing .github/workflows/release.yml');
+    expect(() => run(fixture({}))).toThrow('missing .github/workflows/release.yml');
+    const noCi = fixture({ 'release.yml': RELEASE, 'site.yml': SITE });
+    expect(() => run(noCi)).toThrow('missing .github/workflows/ci.yml');
   });
 
-  it('rejects a missing release file when other workflow metadata is present', () => {
-    const root = fixture();
-    mkdirSync(join(root, '.github/workflows'), { recursive: true });
-    expect(() => run(root)).toThrow('missing .github/workflows/release.yml');
+  it('accepts a gated release whose checks CI runs, through scripts and lifecycle hooks', () => {
+    expect(run(complete(), 'true')).toContain('CI runs all 2 checks of `pnpm verify`');
   });
 
-  it('checks the workflow against transitive scripts and lifecycle hooks', () => {
-    const root = fixture('- run: pnpm verify\n- run: pnpm build\n');
-    expect(run(root, 'true')).toContain('all reachable from `pnpm all`');
+  it('rejects a workflow script missing from pnpm all', () => {
+    const ci = complete({ 'ci.yml': CI + steps('pnpm test:unit') });
+    expect(() => run(ci)).toThrow('ci.yml runs `pnpm test:unit`, which `pnpm all` does not');
+    const site = complete({ 'site.yml': SITE + steps('pnpm test:unit') });
+    expect(() => run(site)).toThrow('site.yml runs `pnpm test:unit`');
+    // A wrapper does not hide the script it runs.
+    const wrapped = complete({ 'ci.yml': CI + steps('node scripts/wrap.mjs -- pnpm test:unit') });
+    expect(() => run(wrapped)).toThrow('ci.yml runs `pnpm test:unit`');
   });
 
-  it('still rejects a release check missing from pnpm all', () => {
-    const root = fixture('- run: pnpm verify\n- run: pnpm test:unit\n');
-    expect(() => run(root)).toThrow('runs checks that `pnpm all` does not');
+  it('rejects a check of pnpm verify that CI does not run', () => {
+    const missing = complete({ 'ci.yml': steps('pnpm lint') });
+    expect(() => run(missing)).toThrow('`pnpm verify` runs `pnpm typecheck`, but no step of');
+    // A commented-out step is not a step.
+    const commented = complete({ 'ci.yml': `${steps('pnpm lint')}# - run: pnpm -r typecheck\n` });
+    expect(() => run(commented)).toThrow('`pnpm verify` runs `pnpm typecheck`');
+  });
+
+  it('counts checks inside block scalars and the reusable workflows CI calls', () => {
+    const block = complete({
+      'ci.yml': `${steps('pnpm lint')}- run: |\n    echo first\n    pnpm -r typecheck\n- id: last\n`,
+    });
+    expect(run(block)).toContain('CI runs all 2 checks');
+    const called = complete({
+      'ci.yml': `${steps('pnpm lint')}types:\n  uses: ./.github/workflows/types.yml\n`,
+      'types.yml': steps('pnpm -r typecheck'),
+    });
+    expect(run(called)).toContain('CI runs all 2 checks');
+  });
+
+  it('rejects a release or site that does not require green CI first', () => {
+    const ungated = complete({ 'release.yml': steps('pnpm exec multi-semantic-release') });
+    expect(() => run(ungated)).toThrow(
+      'release.yml never runs `node scripts/require-green-ci.mjs`',
+    );
+    const late = complete({
+      'site.yml': steps(
+        'node scripts/publish-pack-release.mjs',
+        'node scripts/require-green-ci.mjs',
+      ),
+    });
+    expect(() => run(late)).toThrow('site.yml runs publish-pack-release.mjs before');
   });
 
   it('still rejects a workflow without run steps', () => {
-    expect(() => run(fixture('name: Release\n'))).toThrow('no `run:` steps found');
+    expect(() => run(complete({ 'release.yml': 'name: Release\n' }))).toThrow(
+      'no `run:` steps found',
+    );
   });
 });

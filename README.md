@@ -176,7 +176,7 @@ those inputs. `pnpm assets:fetch` downloads the bundle CI built and published fo
 `pnpm assets:build` builds the same bytes from source. See [repository GLBs](content/ASSET-PACKS.md).
 
 ```sh
-pnpm verify        # lint, typecheck, docs:check, test:unit, production audit — also the release gate
+pnpm verify        # lint, typecheck, docs:check, unit and landmark LOD tests, production audit
 pnpm test:golden   # browser and image tests
 pnpm all           # everything above, in order, from a clean install
 ```

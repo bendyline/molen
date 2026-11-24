@@ -88,11 +88,12 @@ build. The one committed artifact is `.vitepress/generated-nav.json`, because
 
 ## Publishing to GitHub Pages
 
-The manual `Release` workflow on `main` builds this site from the shipped docs and package
-declarations. It builds again after the release stamps new package versions, then uploads
-`.vitepress/dist/` and deploys it to the `github-pages` environment after the package release
-and metadata commit succeed. A run with only `docs:` commits does not publish npm packages, but
-still deploys the refreshed site. Generated pages stay out of Git; the deployed artifact includes
+The `Site` workflow builds this site from the shipped docs and package declarations, publishes the
+content packs, uploads `.vitepress/dist/` and deploys it to the `github-pages` environment. The
+`Release` workflow starts it once the packages are on npm, with the commit that records their
+versions, so the site quotes versions npm has. Run `Site` by hand on `main` to refresh the site
+without a package release, for example after `docs:` commits. It refuses a commit CI has not passed
+and builds the site once. Generated pages stay out of Git; the deployed artifact includes
 them, sample previews, `/llms.txt`, the playable samples under `/play/` and the content packs
 under `/packs/`.
 

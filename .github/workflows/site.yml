@@ -1,0 +1,82 @@
+name: Site
+
+# molen.dev and the runtime content packs, from one commit of main that CI passed. Release starts
+# this with the commit that records its versions; run it by hand to refresh the site without a
+# package release.
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: Commit of main to publish (default, its newest)
+        type: string
+        required: false
+
+# Two runs would deploy over each other. The one that is running finishes; of those waiting, GitHub
+# keeps the newest, which is the one to deploy.
+concurrency:
+  group: site
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    permissions:
+      # The rolling `packs` release.
+      contents: write
+      pages: read
+      # Read CI's result.
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.commit || github.sha }}
+          # Enough to step back over release metadata commits to the one CI ran on.
+          fetch-depth: 20
+      - name: Require green CI
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/require-green-ci.mjs
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # CI published this commit's bundle before it went green. Nothing here builds a GLB.
+      - uses: ./.github/actions/restore-assets
+      # Fails while Pages is not enabled, before the long build.
+      - uses: actions/configure-pages@v5
+      # `predocs:site:build` builds every package and example first, the content packs included.
+      - run: pnpm docs:site:build
+      # The runtime content packs the build just made, landmark model archives included, become
+      # the assets of the rolling `packs` release: `npx molen pack fetch
+      # https://github.com/bendyline/molen/releases/download/packs/index.json`. molen.dev/packs
+      # keeps only the core packs (Pages publishes at most 1 GB). Only changed packs upload.
+      - name: Publish content packs to GitHub
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/publish-pack-release.mjs --target "$(git rev-parse HEAD)"
+      - name: Upload documentation site
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: docs-site/.vitepress/dist/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy documentation to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

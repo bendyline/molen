@@ -1,5 +1,8 @@
 name: Release
 
+# npm packages only. They hold the code tsdown compiles and no content, so this reads no GLB, builds
+# no content pack and repeats no check: CI is the gate (scripts/require-green-ci.mjs). molen.dev and
+# the content packs are the Site workflow's, which the last step starts.
 on:
   workflow_dispatch:
 
@@ -14,14 +17,23 @@ jobs:
   release:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    # About ten minutes of work. A hang must not hold the tags it pushed for GitHub's six hours.
+    timeout-minutes: 45
     permissions:
+      # Tags and the metadata commit.
       contents: write
+      # npm trusted publishing. Its publisher names this file, so packages publish from here only.
       id-token: write
-      pages: read
+      # Read CI's result; start the Site workflow.
+      actions: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Require green CI
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/require-green-ci.mjs
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
@@ -30,24 +42,8 @@ jobs:
       # Trusted publishing needs npm >=11.5.1. Keep this pinned alongside the release toolchain.
       - run: npm install --global npm@11.19.1
       - run: pnpm install --frozen-lockfile
-      - uses: ./.github/actions/fetch-assets
-      - run: pnpm build
-      # All release checks are also reachable from `pnpm all` locally.
-      - run: pnpm verify
-      - run: pnpm docs:site:check
-      # Verify that Pages is enabled before publishing packages, then build the entire site.
-      # Publishing rebuilds it after stamping new versions; on a run that publishes nothing,
-      # this build is the artifact that gets deployed.
-      - uses: actions/configure-pages@v5
-      - run: pnpm docs:site:build
-      # The runtime content packs the build just made, landmark model archives included, become
-      # the assets of the rolling `packs` release: `npx molen pack fetch
-      # https://github.com/bendyline/molen/releases/download/packs/index.json`. molen.dev/packs
-      # keeps only the core packs (Pages publishes at most 1 GB). Only changed packs upload.
-      - name: Publish content packs to GitHub
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node scripts/publish-pack-release.mjs --target ${{ github.sha }}
+      # Nothing is tagged until the packages compile here.
+      - run: pnpm -r --filter './packages/**' exec tsdown
       # Each package has its own version line. multi-semantic-release stamps, changelogs and
       # tags every package with releasable commits, and every package whose Molen dependencies
       # release (see .releaserc.cjs and scripts/semantic-release-molen.mjs). Nothing publishes
@@ -64,44 +60,37 @@ jobs:
           export REAL_GIT="$(command -v git)"
           export PATH="$shim:$PATH"
           pnpm exec multi-semantic-release --ignore-private-packages
-      # Rebuild and verify with the stamped versions, then publish every version npm does not
-      # have yet, dependencies first. npm's CLI exchanges this job's OIDC identity for a
-      # short-lived publish credential.
-      - name: Publish packages
-        run: node scripts/publish-release.mjs
-      # Record the stamped versions in one commit, after publishing and even when publishing
-      # failed: the tags are already pushed, and rerunning the workflow publishes what is still
-      # missing at these versions. If versioning itself stopped partway, only the packages whose
-      # tags reached GitHub are recorded (scripts/stage-release-metadata.mjs); the rerun versions
-      # the rest. The commit is authored as GitHub's own Actions bot, the identity GITHUB_TOKEN
-      # pushes as.
+      # Record the stamped versions in one commit as soon as their tags are on GitHub, before
+      # anything publishes: whatever stops this run after it, a rerun has nothing new to version
+      # and publishes what is still missing from npm. It runs even when versioning stopped
+      # partway or the run was cancelled or timed out, and records only the packages whose tags
+      # reached GitHub (scripts/stage-release-metadata.mjs); the rerun versions the rest. The
+      # commit is authored as GitHub's own Actions bot, the identity GITHUB_TOKEN pushes as.
       - name: Commit release metadata
-        if: ${{ !cancelled() && steps.version.outcome != 'skipped' }}
+        id: metadata
+        if: ${{ always() && steps.version.outcome != 'skipped' }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           released=$(node scripts/stage-release-metadata.mjs)
           if git diff --cached --quiet; then
             echo "No release metadata changed."
+            echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git commit -m 'chore(release): update package versions [skip ci]' ${released:+-m "$released"}
-          git push origin HEAD:main
-      - name: Upload documentation site
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: docs-site/.vitepress/dist/
-
-  deploy-docs:
-    needs: release
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy documentation to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+          commit=$(node scripts/push-release-commit.mjs)
+          echo "commit=$commit" >> "$GITHUB_OUTPUT"
+      # Compile with the stamped versions, then pack, check and publish every version npm does not
+      # have yet, dependencies first. npm's CLI exchanges this job's OIDC identity for a
+      # short-lived publish credential.
+      - name: Publish packages
+        run: node scripts/publish-release.mjs
+      # The site quotes the new versions and the packs follow the packages that read them. It is
+      # its own run: rebuilding it for an hour cannot hold back or undo a package release. A
+      # workflow_dispatch is the one event GITHUB_TOKEN may start a workflow with.
+      - name: Start the Site workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+          COMMIT: ${{ steps.metadata.outputs.commit }}
+        run: gh workflow run site.yml --repo "$GITHUB_REPOSITORY" --ref main -f commit="$COMMIT"

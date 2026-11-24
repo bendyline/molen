@@ -1,0 +1,140 @@
+name: Assets
+
+# The repository's GLBs for one commit, built once and published as the GitHub release that the
+# commit's asset inputs name (content/ASSET-PACKS.md). CI calls this before every job that reads
+# GLBs; nothing else builds them. A release is the only place a bundle is kept: the Actions cache
+# holds 10 GB for the whole repository, which one bundle nearly fills.
+on:
+  workflow_call:
+    outputs:
+      release:
+        description: The release this commit's asset inputs name, published once this succeeds.
+        value: ${{ jobs.key.outputs.release }}
+  # By hand, to build a branch's bundle before its pull request needs it.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # Most commits change no asset input, so their bundle exists and this is all that runs.
+  key:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      release: ${{ steps.state.outputs.release }}
+      published: ${{ steps.state.outputs.published }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # A sidecar can change without its GLB, which names no new bundle. The manifest has every
+      # GLB's hash, so with --check a sidecar that does not describe its GLB fails here, not in each
+      # job that pairs the two. The shell is named so the pipe fails when its first command does.
+      - id: state
+        shell: bash
+        run: node scripts/asset-packs.mjs state --check | tee -a "$GITHUB_OUTPUT"
+
+  build:
+    needs: key
+    if: needs.key.outputs.published != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    # One build of a bundle, whoever asks for it: a pull request, its merge to main, a rerun. The
+    # others wait here, then find it published.
+    concurrency:
+      group: asset-bundle-${{ needs.key.outputs.release }}
+      cancel-in-progress: false
+    permissions:
+      # Publish the bundle. Only the publishing steps are given the token.
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+      # asset-build.json pins the Node major the committed metadata was generated with; a test
+      # keeps .node-version on it.
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # Another run may have published it while this one waited.
+      - id: state
+        shell: bash
+        run: node scripts/asset-packs.mjs state --check | tee -a "$GITHUB_OUTPUT"
+      - name: Require a branch that can publish
+        if: >-
+          steps.state.outputs.published != 'true' &&
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          echo "::error::This pull request comes from a fork and changes asset inputs. A fork cannot publish the bundle its other jobs read; push the branch to $GITHUB_REPOSITORY."
+          exit 1
+      - if: steps.state.outputs.published != 'true'
+        uses: ./.github/actions/prepare-asset-runner
+      # Bundles published before they carried their job records kept those in the Actions cache.
+      # Remove this step once the newest few releases all have an asset-records.tar.gz.
+      - if: steps.state.outputs.published != 'true'
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            .artifacts/asset-build/jobs/*.json
+            .artifacts/asset-build/seed.json
+            .artifacts/landmark-lods/*.json
+          key: molen-asset-seed-${{ steps.state.outputs.release }}
+          restore-keys: molen-asset-seed-
+      # Start from the published bundle whose inputs differ least, with the job records that built
+      # it. Records are checked against the bytes on disk, so a seed that does not match only costs
+      # reruns, never a wrong GLB.
+      - name: Start from the nearest bundle
+        if: steps.state.outputs.published != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/asset-packs.mjs seed --no-cache
+      - if: steps.state.outputs.published != 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - if: steps.state.outputs.published != 'true'
+        run: pip install -r examples/lantern-dungeon/tools/requirements.txt
+      - if: steps.state.outputs.published != 'true'
+        run: pnpm -r --filter './packages/**' exec tsdown
+      - name: Build GLBs from source
+        if: steps.state.outputs.published != 'true'
+        run: pnpm assets:build
+      # New archives for what changed, the list of the rest, and the job records of this build.
+      - if: steps.state.outputs.published != 'true'
+        run: pnpm assets:pack
+      # Before the sidecars are checked: the bundle is right for its inputs whatever the commit's
+      # sidecars say, and the push that fixes them must find it here instead of building it again.
+      # The tag marks main's newest commit: a pull request's merge commit goes away with it, and
+      # GITHUB_TOKEN may not tag one that changes a workflow. The notes name the commit built.
+      - name: Publish the bundle
+        if: steps.state.outputs.published != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          target=$(gh api "repos/$GITHUB_REPOSITORY/commits/main" --jq .sha)
+          pnpm assets:publish --target "$target" --built-from "$GITHUB_SHA"
+      # A source build rewrites the sidecar of every GLB it builds differently. The jobs that read
+      # the bundle install it into a clean checkout, so those sidecars have to be committed first.
+      - if: steps.state.outputs.published != 'true'
+        run: pnpm assets:check --committed
+      # The sidecars to commit, as a patch for `git apply`. There is none if anything else failed.
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-sidecars
+          path: .artifacts/asset-build/sidecars.patch
+          include-hidden-files: true
+          if-no-files-found: ignore
+          overwrite: true
+          retention-days: 14

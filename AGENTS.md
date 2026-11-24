@@ -134,10 +134,11 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
   and builds the examples with golden suites. `pnpm assets:test` builds its schema prerequisite,
   including when asset restoration downloads or reuses cached GLBs without compiling packages.
 - **Agents run exactly what CI runs**: `pnpm verify` (lint, typecheck, source and docs checks,
-  test:unit, production audit), then `pnpm smoke:packed` (the release tarballs installed with npm
-  into a fresh project), `pnpm docs:site:check` and `pnpm test:golden`. `pnpm all` is all of it in order, and
-  `verify` is also the Release workflow's gate, so a green `pnpm all` means a release will not
-  fail on a check you could have run yourself. `pnpm docs:gen` regenerates `docs-src/schemas/*.md` (including
+  test:unit, test:lods, production audit), then `pnpm smoke:packed` (the release tarballs installed with npm
+  into a fresh project), `pnpm docs:site:check` and `pnpm test:golden`. `pnpm all` is all of it in order.
+  CI is the only gate of the Release and Site workflows, which refuse a commit it has not passed and
+  repeat none of its checks, so a green `pnpm all` means a release will not fail on a check you
+  could have run yourself. `pnpm docs:gen` regenerates `docs-src/schemas/*.md` (including
   components.md) from the registry; `pnpm docs:site:gen` regenerates the public site in
   [docs-site/](docs-site/README.md) — API reference from the built `.d.mts`, CLI/MCP reference
   from `OPS_CATALOG`, sample pages from `examples/`. Preview it with `pnpm docs:site:dev`. Pages
