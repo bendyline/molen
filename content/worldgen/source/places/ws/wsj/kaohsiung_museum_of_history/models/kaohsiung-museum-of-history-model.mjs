@@ -1,5 +1,10 @@
 import fs from 'node:fs';
 import {
+  cap,
+  face,
+  up,
+} from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import {
   abox,
   extrude,
   facade,
@@ -12,11 +17,6 @@ import {
   roundArch,
   wallFace,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
-import {
-  cap,
-  face,
-  up,
-} from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
 
 const read = (name) =>
   JSON.parse(fs.readFileSync(new URL('../' + name + '.json', import.meta.url)));

@@ -1,11 +1,8 @@
 import { readFileSync } from 'node:fs';
 import {
-  abox,
-  facade,
-  fbox,
-  quad4,
-  rgb,
-} from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
+  beam,
+  beamPath,
+} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import {
   at,
   cap,
@@ -16,9 +13,12 @@ import {
   pairs,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
 import {
-  beam,
-  beamPath,
-} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+  abox,
+  facade,
+  fbox,
+  quad4,
+  rgb,
+} from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
 
 const read = (file) => JSON.parse(readFileSync(new URL('../' + file + '.json', import.meta.url)));
 const plan = read('plan-controls');

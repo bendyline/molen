@@ -1,5 +1,10 @@
 import fs from 'node:fs';
 import {
+  loft,
+  radialRing,
+  sphere,
+} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import {
   abox,
   extrude,
   facade,
@@ -11,11 +16,6 @@ import {
   ribbon,
   tri,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
-import {
-  loft,
-  radialRing,
-  sphere,
-} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
 const plan = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));

@@ -3,7 +3,6 @@ import {
   beamPath,
   loft,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 import {
   abox,
   extrude,
@@ -12,10 +11,11 @@ import {
   lathe,
   opening,
   outwardRing,
-  ribbon,
   rgb,
+  ribbon,
   wallFace,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
+import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
 const settings = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
 const frame = JSON.parse(fs.readFileSync(new URL('../map-frame.json', import.meta.url)));

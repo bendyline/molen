@@ -4,8 +4,8 @@ import {
   normalFor,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
-import { buildGreatTorii, toriiSurfaces } from './great-torii.mjs';
 import site from '../site-controls.json' with { type: 'json' };
+import { buildGreatTorii, toriiSurfaces } from './great-torii.mjs';
 
 export const surfaces = {
   ...toriiSurfaces,

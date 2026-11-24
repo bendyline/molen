@@ -219,7 +219,13 @@ function pavilion(out, detail, outline) {
   loft(out, 'slate', [ring(eave + 0.11, 1.017), ring(17.08, 0.57), ring(18, 0.077)], roof, {
     cap: false,
   });
-  cap(out, 'slate', ring(18, 0.077).map(([x, , z]) => [x, z]), 18, roof);
+  cap(
+    out,
+    'slate',
+    ring(18, 0.077).map(([x, , z]) => [x, z]),
+    18,
+    roof,
+  );
   if (detail > 0) {
     for (const [i, a] of outlineRing.entries()) {
       const F = wallFace(a, outlineRing[(i + 1) % outlineRing.length]);
@@ -236,9 +242,15 @@ function clockTower(out, detail) {
     capY = 31.32;
   const shape = outwardRing(part(427585182));
   const towerBase = outwardRing(part(427579588));
-  loft(out, 'stone', [11.5, 21].map(y => towerBase.map(([x, z]) => [x, y, z])), stone, {
-    cap: false,
-  });
+  loft(
+    out,
+    'stone',
+    [11.5, 21].map((y) => towerBase.map(([x, z]) => [x, y, z])),
+    stone,
+    {
+      cap: false,
+    },
+  );
   for (const [i, a] of shape.entries()) {
     const F = wallFace(a, shape[(i + 1) % shape.length]),
       L = F.length,
@@ -335,9 +347,15 @@ function build(out, detail) {
   if (detail > 0) {
     for (const id of site.frontPilasters) {
       const r = outwardRing(part(id));
-      loft(o, 'carved', [y0, 11].map(y => r.map(([x, z]) => [x, y, z])), pale, {
-        cap: false,
-      });
+      loft(
+        o,
+        'carved',
+        [y0, 11].map((y) => r.map(([x, z]) => [x, y, z])),
+        pale,
+        {
+          cap: false,
+        },
+      );
     }
   }
   clockTower(o, detail);

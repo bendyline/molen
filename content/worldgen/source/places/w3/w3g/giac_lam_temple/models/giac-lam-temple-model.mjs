@@ -2,8 +2,8 @@ import fs from 'node:fs';
 import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import {
   abox,
-  fan,
   facade,
+  fan,
   fbox,
   lathe,
   opening,

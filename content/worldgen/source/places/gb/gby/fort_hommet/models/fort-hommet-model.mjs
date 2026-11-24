@@ -1,5 +1,8 @@
 import fs from 'node:fs';
-import { beam, loft } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import {
+  beam,
+  loft,
+} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import {
   abox,
   facade,
@@ -11,7 +14,8 @@ import {
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
 import triangulate from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
-const read = (name) => JSON.parse(fs.readFileSync(new URL('../' + name + '.json', import.meta.url)));
+const read = (name) =>
+  JSON.parse(fs.readFileSync(new URL('../' + name + '.json', import.meta.url)));
 const frame = read('map-frame');
 const plan = read('plan-controls');
 const terrain = read('terrain-grid');
@@ -43,8 +47,11 @@ function ground(x, z) {
   const b = v - j;
   const lower = terrain.heightsMeters[j];
   const upper = terrain.heightsMeters[j + 1];
-  return (lower[i] * (1 - a) + lower[i + 1] * a) * (1 - b) +
-    (upper[i] * (1 - a) + upper[i + 1] * a) * b - terrain.modelDatumElevationMeters;
+  return (
+    (lower[i] * (1 - a) + lower[i + 1] * a) * (1 - b) +
+    (upper[i] * (1 - a) + upper[i + 1] * a) * b -
+    terrain.modelDatumElevationMeters
+  );
 }
 
 function cap(out, slot, path, y, tint) {
@@ -60,23 +67,36 @@ function towerCore(out, level) {
   const path = level === 0 ? outline.filter((_, i) => i % 2 === 0) : outline;
   const top = plan.dimensions.towerVisibleHeightM;
   const ring = (s, y) => path.map(([x, z]) => [s * x, y, z * s]);
-  loft(out, 'stone', [ring(1.04, -0.48), ring(1.01, 0.65), ring(0.91, top)], color.granite, { cap: false });
-  loft(out, 'masonry', [ring(0.987, top - 0.16), ring(0.973, top + 0.08)], color.coping, { cap: false });
+  loft(out, 'stone', [ring(1.04, -0.48), ring(1.01, 0.65), ring(0.91, top)], color.granite, {
+    cap: false,
+  });
+  loft(out, 'masonry', [ring(0.987, top - 0.16), ring(0.973, top + 0.08)], color.coping, {
+    cap: false,
+  });
   const deck = path.map(([x, z]) => [x * 0.925, z * 0.925]);
   cap(out, 'stone', deck, top - 0.28, color.slate);
 
   const slot = facade([-0.26, 2.93], [1, 0]);
   fbox(out, 'masonry', slot, -0.54, 0.54, 2.92, 4.06, -0.05, 0.105, color.ashlar);
-  quad4(out, 'dark', slot.P(-0.29, 3.13, 0.122), slot.P(0.30, 3.13, 0.122),
-    slot.P(0.30, 3.86, 0.122), slot.P(-0.29, 3.86, 0.122), color.darker);
+  quad4(
+    out,
+    'dark',
+    slot.P(-0.29, 3.13, 0.122),
+    slot.P(0.3, 3.13, 0.122),
+    slot.P(0.3, 3.86, 0.122),
+    slot.P(-0.29, 3.86, 0.122),
+    color.darker,
+  );
   if (level > 0) {
     for (const x of [-0.18, -0.06, 0.06, 0.18]) {
       fbox(out, 'metal', slot, x - 0.016, x + 0.016, 3.13, 3.87, 0.125, 0.175, color.metal);
     }
   }
   if (level > 1) {
-    loft(out, 'stone', [ring(0.957, 2.30), ring(0.951, 2.41)], color.slate, { cap: false });
-    abox(out, 'masonry', [-0.69, top - 0.28, -2.09], [0.48, top + 0.21, -0.87], color.coping, { bottom: false });
+    loft(out, 'stone', [ring(0.957, 2.3), ring(0.951, 2.41)], color.slate, { cap: false });
+    abox(out, 'masonry', [-0.69, top - 0.28, -2.09], [0.48, top + 0.21, -0.87], color.coping, {
+      bottom: false,
+    });
   }
 }
 
@@ -125,29 +145,76 @@ function stoneEnclosure(out, level) {
       top: plan.dimensions.stoneWallTypicalTopM + Math.min(0.18, gx * 0.39) + (i < 3 ? 0.22 : 0),
     };
   });
-  wallStrip(out, rows, 'stone', 0.64, (p) => p.ground - 0.77, (p) => p.top, color.granite);
+  wallStrip(
+    out,
+    rows,
+    'stone',
+    0.64,
+    (p) => p.ground - 0.77,
+    (p) => p.top,
+    color.granite,
+  );
   if (level > 0)
-    wallStrip(out, rows, 'masonry', 0.71, (p) => p.top - 0.06, (p) => p.top + 0.12, color.coping);
+    wallStrip(
+      out,
+      rows,
+      'masonry',
+      0.71,
+      (p) => p.top - 0.06,
+      (p) => p.top + 0.12,
+      color.coping,
+    );
   if (level > 1)
-    wallStrip(out, rows, 'stone', 0.651, (p) => p.ground + 0.84, (p) => p.ground + 1.05, color.slate);
+    wallStrip(
+      out,
+      rows,
+      'stone',
+      0.651,
+      (p) => p.ground + 0.84,
+      (p) => p.ground + 1.05,
+      color.slate,
+    );
   if (level > 2) {
     for (const i of [2, 7]) {
       const [a, b] = path.slice(i, i + 2);
       const f = facade(a, [b[0] - a[0], b[1] - a[1]]);
       const u = Math.hypot(b[0] - a[0], b[1] - a[1]) * 0.38;
-      fbox(out, 'dark', f, u - 0.095, u + 0.095, rows[i].ground + 1.55,
-        rows[i].ground + 1.91, 0.644, 0.67, color.darker);
+      fbox(
+        out,
+        'dark',
+        f,
+        u - 0.095,
+        u + 0.095,
+        rows[i].ground + 1.55,
+        rows[i].ground + 1.91,
+        0.644,
+        0.67,
+        color.darker,
+      );
     }
   }
   const z = -6.3;
-  const landing = [[-9.63, z - 0.2], [-5.1, z - 0.2], [-5.1, z + 3.25], [-9.62, z + 3.25]];
-  abox(out, 'stone', [-9.57, -0.45, z - 0.19], [-5.11, 1.43, z + 3.23], color.slate, { bottom: false });
+  const landing = [
+    [-9.63, z - 0.2],
+    [-5.1, z - 0.2],
+    [-5.1, z + 3.25],
+    [-9.62, z + 3.25],
+  ];
+  abox(out, 'stone', [-9.57, -0.45, z - 0.19], [-5.11, 1.43, z + 3.23], color.slate, {
+    bottom: false,
+  });
   cap(out, 'masonry', landing, 1.47, color.coping);
   if (level > 0) {
     for (let i = 0; i < 4; i++) {
       const x = -4.72 + 0.43 * i;
-      abox(out, 'masonry', [x, -0.25, z + 0.31], [x + 0.48, 0.31 + 0.23 * i, z + 2.39],
-        color.ashlar, { bottom: false });
+      abox(
+        out,
+        'masonry',
+        [x, -0.25, z + 0.31],
+        [x + 0.48, 0.31 + 0.23 * i, z + 2.39],
+        color.ashlar,
+        { bottom: false },
+      );
     }
   }
   if (level > 1) {
@@ -165,11 +232,23 @@ function adjoiningBlock(out, level) {
   const g = ground(x, z);
   const top = g + plan.dimensions.concreteBlockHeightM;
   const ring = (s, y) => path.map(([a, b]) => [x + (a - x) * s, y, z + (b - z) * s]);
-  loft(out, 'concrete', [ring(1, g - 1.4), ring(1, top - 0.63), ring(0.94, top - 0.22), ring(0.83, top)],
-    color.concrete, { cap: false });
-  cap(out, 'concrete', ring(0.83, top).map(([a, , b]) => [a, b]), top, color.concrete);
+  loft(
+    out,
+    'concrete',
+    [ring(1, g - 1.4), ring(1, top - 0.63), ring(0.94, top - 0.22), ring(0.83, top)],
+    color.concrete,
+    { cap: false },
+  );
+  cap(
+    out,
+    'concrete',
+    ring(0.83, top).map(([a, , b]) => [a, b]),
+    top,
+    color.concrete,
+  );
   const south = (a, b) => (a[1] + b[1]) / 2;
-  const edge = path.map((a, i) => [a, path[(i + 1) % path.length]])
+  const edge = path
+    .map((a, i) => [a, path[(i + 1) % path.length]])
     .sort(([a, b], [c, d]) => south(c, d) - south(a, b))[0];
   const f = facade(edge[0], [edge[1][0] - edge[0][0], edge[1][1] - edge[0][1]]);
   const w = Math.hypot(edge[1][0] - edge[0][0], edge[1][1] - edge[0][1]);
@@ -211,7 +290,8 @@ export const model = {
   geographicStatus: 'active-geographic-preview',
   orientationPolicy: 'mapped-footprint',
   groundContactBasis: frame.terrainContact.basis,
-  brief: 'Stone Martello tower, curving enclosure and the weathered concrete exterior on Guernsey’s Vazon Bay headland.',
+  brief:
+    'Stone Martello tower, curving enclosure and the weathered concrete exterior on Guernsey’s Vazon Bay headland.',
   camera,
   lookAt,
   sunDirection: [-36, 65, 43],
@@ -219,7 +299,12 @@ export const model = {
     scale: 1,
     terrain: { descriptor: 'terrain-review.terrain.json', heightmap: 'terrain-review.height.png' },
   },
-  embeddedCanonicalGraphs: ['stone_drywall', 'stone_ashlar', 'concrete_boardformed', 'metal_painted'],
+  embeddedCanonicalGraphs: [
+    'stone_drywall',
+    'stone_ashlar',
+    'concrete_boardformed',
+    'metal_painted',
+  ],
   recipeDependencies: ['place-recipe-kit.mjs', 'polygon-triangulation.mjs'],
   sourceDocuments: plan.requiredSourceDocuments,
   progressLedger: 'qualla-004.PROGRESS.md',
@@ -247,5 +332,6 @@ export const model = {
     },
   },
   limitations: plan.limitations,
-  sourceLicense: 'Original 3D work under the repository license. Native footprints under ODbL and Mapzen open elevation tiles under their published attribution.',
+  sourceLicense:
+    'Original 3D work under the repository license. Native footprints under ODbL and Mapzen open elevation tiles under their published attribution.',
 };

@@ -30,9 +30,7 @@ buildMaster(author.wrap(builder));
 const mesh = builder.finalize();
 validateAuthoredMesh(mesh, spec.assetId);
 const materials = author.materials(mesh.groups);
-const bytes = Buffer.from(
-  encodeGlb(mesh, materials, 'Molen Great Sphinx of Giza master'),
-);
+const bytes = Buffer.from(encodeGlb(mesh, materials, 'Molen Great Sphinx of Giza master'));
 const sha256 = hashBytes(bytes);
 const min = [Infinity, Infinity, Infinity],
   max = [-Infinity, -Infinity, -Infinity];

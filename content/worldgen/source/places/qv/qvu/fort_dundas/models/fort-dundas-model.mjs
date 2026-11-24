@@ -351,7 +351,9 @@ function building(out, h, i, level) {
 function build(out, level) {
   earthwork(out, level);
   palisade(out, level);
-  profile.houses.forEach((house, i) => building(out, house, i, level));
+  profile.houses.forEach((house, i) => {
+    building(out, house, i, level);
+  });
 }
 
 export const skyline = (out) => build(out, 0);

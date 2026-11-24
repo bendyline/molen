@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import {
   abox,
   extrude,
@@ -11,7 +12,6 @@ import {
   tri,
   wallFace,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
-import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
 const plan = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));

@@ -1,5 +1,9 @@
 import { readFileSync } from 'node:fs';
 import {
+  cap,
+  face,
+} from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import {
   abox,
   extrude,
   facade,
@@ -12,10 +16,6 @@ import {
   roundArch,
   wallFace,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
-import {
-  cap,
-  face,
-} from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
 
 const read = (name) => JSON.parse(readFileSync(new URL('../' + name + '.json', import.meta.url)));
 const frame = read('map-frame');
@@ -93,7 +93,9 @@ function block(out, slot, range, low, high, tint) {
 
 function eachWall(ring, fn) {
   const boundary = outwardRing(ring);
-  boundary.forEach((point, i) => fn(wallFace(point, boundary[(i + 1) % boundary.length])));
+  boundary.forEach((point, i) => {
+    fn(wallFace(point, boundary[(i + 1) % boundary.length]));
+  });
 }
 
 function course(out, ring, low, high, depth, tint = trim) {

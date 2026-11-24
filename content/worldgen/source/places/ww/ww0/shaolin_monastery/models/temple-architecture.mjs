@@ -1,8 +1,8 @@
 import { MeshBufferBuilder } from '../../../../../../../../packages/worldgen/dist/kernel.mjs';
 import {
   beam,
-  normalFor,
   loft,
+  normalFor,
   radialRing,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { buildChineseHipRoof } from '../../../../../../../../packages/worldgen/scripts/chinese-roof-geometry.mjs';

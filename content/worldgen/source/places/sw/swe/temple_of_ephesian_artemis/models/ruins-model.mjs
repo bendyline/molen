@@ -1,6 +1,6 @@
 import { loft } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-import { box } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
+import { box } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 import site from '../site-controls.json' with { type: 'json' };
 
 export const surfaces = {

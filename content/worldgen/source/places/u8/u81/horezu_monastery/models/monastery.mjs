@@ -15,9 +15,9 @@ import {
   opening,
   outwardRing,
   quad4,
+  rgb,
   ribbon,
   roundArch,
-  rgb,
   tri,
   wallFace,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';

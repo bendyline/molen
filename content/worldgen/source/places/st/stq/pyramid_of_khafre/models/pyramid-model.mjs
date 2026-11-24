@@ -1,4 +1,7 @@
-import { buildGizaPyramid, pyramidSurfaces } from '../../../../../../../../packages/worldgen/scripts/structure-giza-pyramid-courses.mjs';
+import {
+  buildGizaPyramid,
+  pyramidSurfaces,
+} from '../../../../../../../../packages/worldgen/scripts/structure-giza-pyramid-courses.mjs';
 import site from '../site-controls.json' with { type: 'json' };
 
 export const surfaces = pyramidSurfaces;

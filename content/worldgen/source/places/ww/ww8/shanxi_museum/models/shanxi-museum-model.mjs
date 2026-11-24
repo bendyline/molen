@@ -1,4 +1,6 @@
 import { readFileSync } from 'node:fs';
+import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import { cap } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
 import {
   abox,
   extrude,
@@ -12,8 +14,6 @@ import {
   tri,
   wallFace,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
-import { cap } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
-import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 
 const read = (file) => JSON.parse(readFileSync(new URL('../' + file, import.meta.url)));
 const frame = read('map-frame.json');
@@ -455,7 +455,9 @@ function courtyard(out, lod) {
 }
 function build(out, lod) {
   bowl(out, lod);
-  annexes.forEach((shape, index) => annex(out, shape, index, lod));
+  annexes.forEach((shape, index) => {
+    annex(out, shape, index, lod);
+  });
   entrySteps(out, lod);
   courtyard(out, lod);
 }

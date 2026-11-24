@@ -267,9 +267,9 @@ function marker(out, point, letter, level) {
 }
 
 function build(out, level) {
-  Object.values(remains.walls).forEach((section, index) =>
-    wall(out, section, level, 109 + index * 19),
-  );
+  Object.values(remains.walls).forEach((section, index) => {
+    wall(out, section, level, 109 + index * 19);
+  });
   staircase(out, remains.stairs.mainStair, level, false);
   staircase(out, remains.stairs.hiraiStair, level, true);
   marker(out, remains.markers.castle, 3, level);

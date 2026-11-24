@@ -3,8 +3,8 @@ import {
   beamPath,
   loft,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 import {
+  extrude,
   facade,
   fan,
   fbox,
@@ -12,8 +12,8 @@ import {
   quad4,
   rgb,
   tri,
-  extrude,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
+import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
 const plan = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
 const frame = JSON.parse(fs.readFileSync(new URL('../map-frame.json', import.meta.url)));

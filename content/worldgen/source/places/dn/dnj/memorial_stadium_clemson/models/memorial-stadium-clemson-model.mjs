@@ -4,7 +4,6 @@ import {
   beamPath,
   normalFor,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-import { quad } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 import {
   abox,
   extrude,
@@ -13,6 +12,7 @@ import {
   lathe,
   rgb,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
+import { quad } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 
 const plan = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
 const frame = JSON.parse(fs.readFileSync(new URL('../map-frame.json', import.meta.url)));

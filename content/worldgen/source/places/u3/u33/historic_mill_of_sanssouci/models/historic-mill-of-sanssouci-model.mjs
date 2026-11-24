@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import {
   fan,
   fbox,
@@ -8,7 +9,6 @@ import {
   rgb,
   wallFace,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
-import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 
 const plan = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
 const frame = JSON.parse(fs.readFileSync(new URL('../map-frame.json', import.meta.url)));

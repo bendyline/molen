@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { floorSampler } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
 import {
   abox,
   facade,
@@ -9,7 +10,6 @@ import {
   rgb,
   tri,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
-import { floorSampler } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
 
 const read = (key) => JSON.parse(readFileSync(new URL('../' + key + '.json', import.meta.url)));
 const plan = read('plan-controls');

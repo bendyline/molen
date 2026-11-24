@@ -4,8 +4,8 @@ import {
   normalFor,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
-import { buildStatue } from './statue.mjs';
 import site from '../site-controls.json' with { type: 'json' };
+import { buildStatue } from './statue.mjs';
 
 export const surfaces = {
   statue: { slot: 'trim', graph: 'stone_sandstone_raw', roughness: 0.98 },

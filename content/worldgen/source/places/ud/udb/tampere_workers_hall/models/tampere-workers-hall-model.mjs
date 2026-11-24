@@ -4,19 +4,19 @@ import {
   beamPath,
   loft,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 import {
   abox,
   extrude,
   facade,
   fbox,
   opening,
-  quad4,
   outwardRing,
+  quad4,
   rgb,
   tri,
   wallFace,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
+import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
 const read = (path) => JSON.parse(fs.readFileSync(new URL(path, import.meta.url)));
 const plan = read('../plan-controls.json');

@@ -16,13 +16,13 @@ import {
   fbox,
   gableRoof,
   opening,
+  outwardRing,
   quad4,
   rgb,
   roundArch,
   spire,
   tri,
   wallFace,
-  outwardRing,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
 import site from '../site-controls.json' with { type: 'json' };
 

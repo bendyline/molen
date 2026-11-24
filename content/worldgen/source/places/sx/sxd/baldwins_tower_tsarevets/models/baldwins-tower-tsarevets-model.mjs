@@ -1,4 +1,10 @@
 import fs from 'node:fs';
+import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import {
+  face,
+  floorSampler,
+  up,
+} from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
 import {
   abox,
   extrude,
@@ -10,12 +16,6 @@ import {
   rgb,
   wallFace,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
-import {
-  face,
-  floorSampler,
-  up,
-} from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
-import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 
 const read = (name) => JSON.parse(fs.readFileSync(new URL('../' + name, import.meta.url)));
 const plan = read('plan-controls.json');

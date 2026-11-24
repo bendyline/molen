@@ -1,17 +1,17 @@
 import fs from 'node:fs';
 import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 import {
   extrude,
   fbox,
   gableRoof,
   opening,
+  outwardRing,
   quad4,
   rgb,
   tri,
   wallFace,
-  outwardRing,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
+import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
 const plan = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
 const frame = JSON.parse(fs.readFileSync(new URL('../map-frame.json', import.meta.url)));

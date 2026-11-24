@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { face } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
 import {
   abox,
   extrude,
@@ -10,7 +11,6 @@ import {
   roundArch,
   wallFace,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
-import { face } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
 
 const read = (name) => JSON.parse(readFileSync(new URL('../' + name + '.json', import.meta.url)));
 const frame = read('map-frame');
@@ -65,12 +65,7 @@ const ranges = [
     tiles: tile,
   },
   {
-    ring: [
-      [-24.03, 17.0],
-      [-29.46, -24.59],
-      [-18.584, -24.52],
-      court[0],
-    ],
+    ring: [[-24.03, 17.0], [-29.46, -24.59], [-18.584, -24.52], court[0]],
     eave: 7.18,
     ridge: 11.48,
     tint: shadeBrick,
@@ -78,12 +73,7 @@ const ranges = [
   },
   {
     // The higher regents' range has a level cornice above the second row of windows.
-    ring: [
-      court[1],
-      court[2],
-      [18.24, -24.4],
-      [-18.08, -24.63],
-    ],
+    ring: [court[1], court[2], [18.24, -24.4], [-18.08, -24.63]],
     eave: 8.38,
     ridge: 12.45,
     tint: brick,
@@ -367,7 +357,7 @@ function lantern(out, lod) {
 function modelMesh(out, lod) {
   extrude(out, 'brick', outline, -0.42, 0.53, shell, { holes: [court], top: false });
   for (const [i, range] of ranges.entries()) {
-    extrude(out, 'brick', range.ring, 0.50, range.eave, range.tint, { top: false });
+    extrude(out, 'brick', range.ring, 0.5, range.eave, range.tint, { top: false });
     rangeRoof(out, range);
     if (lod >= 2) {
       for (const end of [0, 2]) {

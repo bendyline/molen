@@ -5,13 +5,13 @@ import {
   facade,
   fbox,
   lathe,
+  opening,
   outwardRing,
   quad4,
   rgb,
   roundArch,
   tri,
   wallFace,
-  opening,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
 
 const read = (file) => JSON.parse(readFileSync(new URL(`../${file}.json`, import.meta.url)));

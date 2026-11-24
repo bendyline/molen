@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import {
   beam,
-  radialRing,
   loft,
+  radialRing,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import {
   abox,

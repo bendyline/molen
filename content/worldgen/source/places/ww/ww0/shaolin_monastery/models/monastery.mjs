@@ -12,6 +12,7 @@ import {
   tri,
   wallFace,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
+import site from '../site-controls.json' with { type: 'json' };
 import {
   color,
   courtFace,
@@ -29,9 +30,9 @@ import {
   stairs,
   surfaces,
 } from './temple-architecture.mjs';
-import site from '../site-controls.json' with { type: 'json' };
 
 export { surfaces };
+
 const angle = (site.planAngleDegrees * Math.PI) / 180;
 const key = (id) => site.buildingFootprints.find((b) => b.id === id);
 const halls = [

@@ -12,7 +12,8 @@ import {
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
 import triangulate from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
-const read = (name) => JSON.parse(fs.readFileSync(new URL('../' + name + '.json', import.meta.url)));
+const read = (name) =>
+  JSON.parse(fs.readFileSync(new URL('../' + name + '.json', import.meta.url)));
 const frame = read('map-frame');
 const plan = read('plan-controls');
 const [, main, southWing, northWing, auditorium, stage, canopy] = frame.features;
@@ -55,7 +56,15 @@ function volume(out, slot, outline, bottom, top, color, topSlot, topColor = colo
 }
 
 function panel(out, surface, f, a, b, y0, y1, offset, tint) {
-  quad4(out, surface, f.P(a, y0, offset), f.P(b, y0, offset), f.P(b, y1, offset), f.P(a, y1, offset), tint);
+  quad4(
+    out,
+    surface,
+    f.P(a, y0, offset),
+    f.P(b, y0, offset),
+    f.P(b, y1, offset),
+    f.P(a, y1, offset),
+    tint,
+  );
 }
 
 function block(out, slot, lo, hi, tint) {
@@ -65,9 +74,14 @@ function block(out, slot, lo, hi, tint) {
 function steps(out, level) {
   const count = level > 0 ? 4 : 2;
   for (let i = 0; i < count; i++) {
-    const z = 21.56 - i * 2.23 / count;
-    block(out, 'platform', [left - 0.48, -0.44, z - 1.05],
-      [right + 0.44, 0.12 + 0.48 * i / count, z + 1.01], colors.ground);
+    const z = 21.56 - (i * 2.23) / count;
+    block(
+      out,
+      'platform',
+      [left - 0.48, -0.44, z - 1.05],
+      [right + 0.44, 0.12 + (0.48 * i) / count, z + 1.01],
+      colors.ground,
+    );
   }
   block(out, 'platform', [left - 0.24, -0.37, 16.55], [right + 0.27, 0.56, 20.62], colors.ground);
 }
@@ -76,13 +90,22 @@ function plazaLobby(out, level) {
   const ring = main.points.map(([x, z]) => [x, Math.min(z, 17.9)]);
   volume(out, 'platform', frame.geometry.outline, -2.85, 0.18, colors.ground);
   volume(out, 'stone', ring, 0.18, 3.75, colors.limestone);
-  volume(out, 'stone', main.points, 3.75, plan.dimensions.lobbyHeightM, colors.limestone, 'roof', colors.roof);
+  volume(
+    out,
+    'stone',
+    main.points,
+    3.75,
+    plan.dimensions.lobbyHeightM,
+    colors.limestone,
+    'roof',
+    colors.roof,
+  );
   volume(out, 'stone', canopy.points, 3.76, 4.52, colors.light, 'roof', colors.roof);
   steps(out, level);
 
   fbox(out, 'stone', lobby, 0, width, 4.19, 5.28, 0.004, 0.26, colors.light);
   fbox(out, 'stone', lobby, 0, width, 13.36, 15.22, 0.004, 0.22, colors.light);
-  panel(out, 'glass', lobby, 0.10, width - 0.09, 5.26, 13.39, 0.065, colors.backdrop);
+  panel(out, 'glass', lobby, 0.1, width - 0.09, 5.26, 13.39, 0.065, colors.backdrop);
   panel(out, 'glass', base, 0.45, width - 0.56, 0.56, 3.76, 0.05, colors.lower);
 
   const bays = 18;
@@ -95,27 +118,51 @@ function plazaLobby(out, level) {
       panel(out, 'glass', lobby, side, end, 5.44, 7.18, 0.115, colors.clerestory);
       panel(out, 'glass', lobby, side, end, 7.23, 10.6, 0.12, colors.glazing[i % 4]);
       panel(out, 'glass', lobby, side, end, 11.34, 13.22, 0.12, colors.glazing[(i + 1) % 4]);
-      panel(out, 'glass', base, side + 0.085, end - 0.085, 0.62, 3.54, 0.10,
-        i % 4 === 0 ? colors.backdrop : colors.lower);
+      panel(
+        out,
+        'glass',
+        base,
+        side + 0.085,
+        end - 0.085,
+        0.62,
+        3.54,
+        0.1,
+        i % 4 === 0 ? colors.backdrop : colors.lower,
+      );
       if (level > 1) {
-        for (const y of [5.34, 7.2, 10.75, 11.20, 13.22]) {
+        for (const y of [5.34, 7.2, 10.75, 11.2, 13.22]) {
           fbox(out, 'frame', lobby, side, end, y, y + 0.085, 0.12, 0.19, colors.metal);
         }
-        fbox(out, 'frame', base, side, side + 0.115, 0.55, 3.75, 0.10, 0.22, colors.metal);
+        fbox(out, 'frame', base, side, side + 0.115, 0.55, 3.75, 0.1, 0.22, colors.metal);
       }
       if (level > 2 && i % 2 === 0) {
-        fbox(out, 'frame', base, x + cell * 0.51, x + cell * 0.55, 1.20, 2.13,
-          0.11, 0.24, colors.bronze);
+        fbox(
+          out,
+          'frame',
+          base,
+          x + cell * 0.51,
+          x + cell * 0.55,
+          1.2,
+          2.13,
+          0.11,
+          0.24,
+          colors.bronze,
+        );
       }
     }
   }
   for (let i = 0; i <= bays; i += level === 0 ? 2 : 1) {
     const x = i * cell;
-    fbox(out, 'frame', lobby, x - 0.075, x + 0.075, 4.87, 13.49,
-      0.078, 0.50, colors.bronze);
+    fbox(out, 'frame', lobby, x - 0.075, x + 0.075, 4.87, 13.49, 0.078, 0.5, colors.bronze);
     if (level > 1 && i > 0 && i < bays) {
-      tri(out, 'frame', lobby.P(x - 0.072, 4.90, 0.51), lobby.P(x + 0.075, 4.9, 0.51),
-        lobby.P(x - 0.011, 4.48, 0.18), colors.bronze);
+      tri(
+        out,
+        'frame',
+        lobby.P(x - 0.072, 4.9, 0.51),
+        lobby.P(x + 0.075, 4.9, 0.51),
+        lobby.P(x - 0.011, 4.48, 0.18),
+        colors.bronze,
+      );
     }
   }
 }
@@ -126,10 +173,12 @@ function longSideWindows(out, level) {
     const side = facade([x, -12.8], [0, -Math.sign(x)]);
     const count = level > 1 ? 10 : 5;
     for (let i = 0; i < count; i++) {
-      const u = (i + 0.5) * 56 / count - 28;
-      for (const [low, high] of [[2, 3.24], [6.5, 9.66]]) {
-        panel(out, 'glass', side, u - 1.18, u + 1.18, low, high, 0.055,
-          colors.glazing[i % 4]);
+      const u = ((i + 0.5) * 56) / count - 28;
+      for (const [low, high] of [
+        [2, 3.24],
+        [6.5, 9.66],
+      ]) {
+        panel(out, 'glass', side, u - 1.18, u + 1.18, low, high, 0.055, colors.glazing[i % 4]);
       }
       if (level > 1) {
         fbox(out, 'stone', side, u - 1.46, u + 1.46, 6.28, 6.5, 0, 0.22, colors.light);
@@ -157,10 +206,19 @@ function roofs(out, level) {
       const count = Math.max(2, Math.round(f.length / pitch));
       for (let n = 0; n < count; n++) {
         const u = ((n + 0.5) * f.length) / count;
-        panel(out, 'glass', f, u - 0.57, u + 0.57, y1 - 4.7,
-          part === auditorium ? y1 - 1.63 : y1 - 1.94, 0.06, colors.lower);
+        panel(
+          out,
+          'glass',
+          f,
+          u - 0.57,
+          u + 0.57,
+          y1 - 4.7,
+          part === auditorium ? y1 - 1.63 : y1 - 1.94,
+          0.06,
+          colors.lower,
+        );
         if (level > 1 && part !== auditorium) {
-          fbox(out, 'stone', f, u - 0.74, u + 0.74, y1 - 4.79, y1 - 4.60, 0, 0.21, colors.light);
+          fbox(out, 'stone', f, u - 0.74, u + 0.74, y1 - 4.79, y1 - 4.6, 0, 0.21, colors.light);
         }
       }
     }
@@ -201,7 +259,8 @@ export const model = {
   geographicStatus: 'active-geographic-preview',
   orientationPolicy: 'mapped-footprint',
   groundContactBasis: frame.terrainContact.basis,
-  brief: 'Dnipro’s 1974 theatre with its overhanging glazed gallery, horizontal stone cladding and taller stage house.',
+  brief:
+    'Dnipro’s 1974 theatre with its overhanging glazed gallery, horizontal stone cladding and taller stage house.',
   camera,
   lookAt,
   sunDirection: [-27, 62, 49],
@@ -242,5 +301,6 @@ export const model = {
     },
   },
   limitations: plan.limitations,
-  sourceLicense: 'Original 3D work under the repository license, native map under ODbL, and Mapzen open elevation tiles under their published attribution.',
+  sourceLicense:
+    'Original 3D work under the repository license, native map under ODbL, and Mapzen open elevation tiles under their published attribution.',
 };

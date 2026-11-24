@@ -242,7 +242,7 @@ function upperGallery(out, detail) {
     [entryFloor, middleFloor - 0.76],
     [middleFloor, roofLine - 0.76],
   ]) {
-    columns.forEach((x, i) =>
+    columns.forEach((x, i) => {
       column(
         out,
         x,
@@ -251,8 +251,8 @@ function upperGallery(out, detail) {
         y1,
         detail,
         i === 0 || i === columns.length - 1,
-      ),
-    );
+      );
+    });
     for (const x of [columns[0], columns.at(-1)]) column(out, x, -104.45, y0, y1, detail, true);
   }
   const f = facade([center, -99.94], [-1, 0]);

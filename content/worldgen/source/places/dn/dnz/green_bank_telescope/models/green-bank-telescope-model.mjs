@@ -11,7 +11,8 @@ import {
   tri,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
 
-const read = (name) => JSON.parse(fs.readFileSync(new URL('../' + name + '.json', import.meta.url)));
+const read = (name) =>
+  JSON.parse(fs.readFileSync(new URL('../' + name + '.json', import.meta.url)));
 const plan = read('plan-controls');
 const frame = read('map-frame');
 const terrain = read('terrain-grid');
@@ -35,16 +36,23 @@ const surfaces = {
 const trackY = dimensions.trackElevationMetersNAVD88 - terrain.modelDatumElevationMeters;
 const axleY = trackY + dimensions.elevationAxleAboveTrackM;
 const trackRadius = dimensions.trackDiameterM / 2;
-const tilt = dimensions.modeledElevationDegrees * Math.PI / 180;
+const tilt = (dimensions.modeledElevationDegrees * Math.PI) / 180;
 const sine = Math.sin(tilt);
 const cosine = Math.cos(tilt);
 const focus = dimensions.parentParaboloidDiameterM * dimensions.parentFocalRatio;
 const dishCenter = [0, axleY + 31.4, -12.0];
 
 function box(out, slot, x, y, z, width, height, depth, tint) {
-  abox(out, slot, [x - width / 2, y, z - depth / 2], [x + width / 2, y + height, z + depth / 2], tint, {
-    bottom: false,
-  });
+  abox(
+    out,
+    slot,
+    [x - width / 2, y, z - depth / 2],
+    [x + width / 2, y + height, z + depth / 2],
+    tint,
+    {
+      bottom: false,
+    },
+  );
 }
 
 function strut(out, a, b, width, tint = palette.steel) {
@@ -74,8 +82,13 @@ function braceStack(out, sections, postWidth, level, braces = true) {
         const b = i % 2 ? here[k] : here[j];
         strut(out, a, b, postWidth * 0.47, palette.web);
         if (level > 2)
-          strut(out, i % 2 ? below[k] : below[j], i % 2 ? here[j] : here[k],
-            postWidth * 0.31, palette.web);
+          strut(
+            out,
+            i % 2 ? below[k] : below[j],
+            i % 2 ? here[j] : here[k],
+            postWidth * 0.31,
+            palette.web,
+          );
       }
     }
   }
@@ -93,22 +106,25 @@ function ringRail(out, inner, outer, y, count, tint) {
 function bearing(out, x, y, z, radius, width, level) {
   const count = level < 2 ? 10 : 18;
   const rings = [-width / 2, width / 2].map((offset) =>
-    radialRing(0, radius, radius, count).map(([a, , b]) => [x + offset, y - a, z + b]));
+    radialRing(0, radius, radius, count).map(([a, , b]) => [x + offset, y - a, z + b]),
+  );
   loft(out, 'steel', rings, palette.axle);
 }
 
 function foundation(out, level) {
   const sides = [16, 32, 48, 64][level];
-  loft(out, 'base', [
-    radialRing(-1.45, 35.5, 35.5, sides),
-    radialRing(trackY - 0.10, 34.8, 34.8, sides),
-  ], palette.concrete);
-  ringRail(out, trackRadius - 0.50, trackRadius + 0.50, trackY + 0.019, sides, palette.tread);
+  loft(
+    out,
+    'base',
+    [radialRing(-1.45, 35.5, 35.5, sides), radialRing(trackY - 0.1, 34.8, 34.8, sides)],
+    palette.concrete,
+  );
+  ringRail(out, trackRadius - 0.5, trackRadius + 0.5, trackY + 0.019, sides, palette.tread);
 
   if (level > 0) box(out, 'base', 0, trackY - 0.09, 0, 12, 3.6, 10, palette.concrete);
   const feet = section(0, trackY + 2.25, 0, 20.05, 23.9);
   for (const [x, , z] of feet) {
-    box(out, 'steel', x, trackY + 0.15, z, 5.4, 5.70, 8.7, palette.steel);
+    box(out, 'steel', x, trackY + 0.15, z, 5.4, 5.7, 8.7, palette.steel);
     if (level > 0) bearing(out, x, trackY + 1.16, z, 1.12, 6.15, level);
   }
   const shoulders = section(0, trackY + 26, 1.3, 15.5, 13.2);
@@ -127,32 +143,55 @@ function foundation(out, level) {
 }
 
 function dishPoint(r, a, depth = 0) {
-  const x = r * dimensions.dishDiameterAcrossAxleM / 2 * Math.cos(a);
-  const v = r * dimensions.dishLengthTowardFeedM / 2 * Math.sin(a);
+  const x = ((r * dimensions.dishDiameterAcrossAxleM) / 2) * Math.cos(a);
+  const v = ((r * dimensions.dishLengthTowardFeedM) / 2) * Math.sin(a);
   const sag = (x * x + v * v) / (4 * focus);
-  return [x, dishCenter[1] - cosine * v + sine * (sag - depth),
-    dishCenter[2] + sine * v + cosine * (sag - depth)];
+  return [
+    x,
+    dishCenter[1] - cosine * v + sine * (sag - depth),
+    dishCenter[2] + sine * v + cosine * (sag - depth),
+  ];
 }
 
 function reflectiveSkin(out, level) {
   const sides = [16, 24, 40, 56][level];
   const rows = [2, 4, 6, 9][level];
-  const theta = (i) => 2 * Math.PI * i / sides;
+  const theta = (i) => (2 * Math.PI * i) / sides;
   for (let i = 0; i < sides; i++) {
     const a = theta(i);
     const b = theta((i + 1) % sides);
     const center = dishPoint(0, a);
     const pane = (j) => palette.reflector[(i + j * 3) % (level === 0 ? 1 : 4)];
     tri(out, 'dish', center, dishPoint(1 / rows, b), dishPoint(1 / rows, a), pane(0));
-    tri(out, 'steel', dishPoint(0, a, 0.33), dishPoint(1 / rows, a, 0.33),
-      dishPoint(1 / rows, b, 0.33), palette.meshBack);
+    tri(
+      out,
+      'steel',
+      dishPoint(0, a, 0.33),
+      dishPoint(1 / rows, a, 0.33),
+      dishPoint(1 / rows, b, 0.33),
+      palette.meshBack,
+    );
     for (let j = 1; j < rows; j++) {
       const inner = j / rows;
       const outer = (j + 1) / rows;
-      quad4(out, 'dish', dishPoint(inner, a), dishPoint(inner, b), dishPoint(outer, b),
-        dishPoint(outer, a), pane(j));
-      quad4(out, 'steel', dishPoint(inner, a, 0.33), dishPoint(outer, a, 0.33),
-        dishPoint(outer, b, 0.33), dishPoint(inner, b, 0.33), palette.meshBack);
+      quad4(
+        out,
+        'dish',
+        dishPoint(inner, a),
+        dishPoint(inner, b),
+        dishPoint(outer, b),
+        dishPoint(outer, a),
+        pane(j),
+      );
+      quad4(
+        out,
+        'steel',
+        dishPoint(inner, a, 0.33),
+        dishPoint(outer, a, 0.33),
+        dishPoint(outer, b, 0.33),
+        dishPoint(inner, b, 0.33),
+        palette.meshBack,
+      );
     }
     if (level > 0) strut(out, dishPoint(1, a, 0.5), dishPoint(1, b, 0.5), 0.48, palette.web);
   }
@@ -179,8 +218,8 @@ function reflectorSupport(out, level) {
       strut(out, middle, dishPoint(0.83, a, 0.8), 0.43, palette.web);
       strut(out, middle, dishPoint(0.39, a, 0.82), 0.45, palette.web);
       if (level > 2) {
-        strut(out, dishPoint(0.82, a, 5.7), dishPoint(0.82, b, 5.7), 0.40, palette.web);
-        strut(out, near, dishPoint(0.40, b, 1), 0.38, palette.web);
+        strut(out, dishPoint(0.82, a, 5.7), dishPoint(0.82, b, 5.7), 0.4, palette.web);
+        strut(out, near, dishPoint(0.4, b, 1), 0.38, palette.web);
       }
     }
   }
@@ -198,9 +237,17 @@ function feedBoom(out, level) {
   const elbow = section(0, axleY + 11.1, 52.3, 9.5, 8.1);
   const mid = section(0, axleY + 49.8, 53.2, 6.35, 5.7);
   const tip = section(0, axleY + 91.1, 47.5, 3.8, 4.7);
-  const sections = level === 0 ? [base, elbow, tip] :
-    [base, elbow, section(0, axleY + 24, 56, 8.7, 7.7), mid,
-      section(0, axleY + 70.5, 50.3, 5.15, 5.15), tip];
+  const sections =
+    level === 0
+      ? [base, elbow, tip]
+      : [
+          base,
+          elbow,
+          section(0, axleY + 24, 56, 8.7, 7.7),
+          mid,
+          section(0, axleY + 70.5, 50.3, 5.15, 5.15),
+          tip,
+        ];
   braceStack(out, sections, 1.46, level);
   for (const side of [-1, 1]) {
     const a = side > 0 ? 1.13 : 2.012;
@@ -213,16 +260,21 @@ function feedBoom(out, level) {
   const y = axleY + 88.5;
   const z = 37.4;
   const n = level > 1 ? 18 : 8;
-  const rings = [radialRing(0, 1.2, 1.2, n), radialRing(0.94, subreflector, subreflector, n)]
-    .map((r) => r.map(([a, b, c]) => [a, y + c * 0.52 - b * 0.85, z - c * 0.85 - b * 0.52]));
+  const rings = [radialRing(0, 1.2, 1.2, n), radialRing(0.94, subreflector, subreflector, n)].map(
+    (r) => r.map(([a, b, c]) => [a, y + c * 0.52 - b * 0.85, z - c * 0.85 - b * 0.52]),
+  );
   loft(out, 'dish', rings, palette.reflector[1]);
   if (level > 1) {
     for (const side of [-1, 1]) {
-      strut(out, [side * 1.4, axleY + 12.5, 61], [side * 1.4, axleY + 92, 51.8],
-        0.26, palette.web);
+      strut(out, [side * 1.4, axleY + 12.5, 61], [side * 1.4, axleY + 92, 51.8], 0.26, palette.web);
       if (level > 2)
-        strut(out, [side * 10.4, trackY + 2.9, 17.7], [side * 10.4, axleY + 1.4, 3.6],
-          0.24, palette.axle);
+        strut(
+          out,
+          [side * 10.4, trackY + 2.9, 17.7],
+          [side * 10.4, axleY + 1.4, 3.6],
+          0.24,
+          palette.axle,
+        );
     }
   }
 }
@@ -257,7 +309,8 @@ export const model = {
   geographicStatus: 'active-geographic-preview',
   orientationPolicy: 'mapped-footprint',
   groundContactBasis: frame.terrainContact.basis,
-  brief: 'Open steel radio telescope with a 100-by-110-metre asymmetrical dish, azimuth track, elevation axle and outboard feed tower.',
+  brief:
+    'Open steel radio telescope with a 100-by-110-metre asymmetrical dish, azimuth track, elevation axle and outboard feed tower.',
   camera,
   lookAt,
   sunDirection: [-42, 76, -57],
@@ -293,5 +346,6 @@ export const model = {
     },
   },
   limitations: plan.limitations,
-  sourceLicense: 'Original 3D work under the repository license. Native map under ODbL and USGS bare-earth elevations in the public domain.',
+  sourceLicense:
+    'Original 3D work under the repository license. Native map under ODbL and USGS bare-earth elevations in the public domain.',
 };

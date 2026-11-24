@@ -6,6 +6,13 @@ import {
   radialRing,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import {
+  at,
+  cap,
+  face,
+  mix,
+  up,
+} from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import {
   abox,
   extrude,
   facade,
@@ -13,13 +20,6 @@ import {
   rgb,
   wallFace,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
-import {
-  at,
-  cap,
-  face,
-  mix,
-  up,
-} from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
 
 const read = (file) => JSON.parse(fs.readFileSync(new URL('../' + file, import.meta.url)));
 const plan = read('plan-controls.json');

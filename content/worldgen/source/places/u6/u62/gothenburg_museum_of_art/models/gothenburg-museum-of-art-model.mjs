@@ -356,8 +356,7 @@ export const model = {
   buildingCutout: {
     outline,
     minimumCoverage: 0.91,
-    basis:
-      'Historic gallery footprint fitted to the historic building line in the mapped complex.',
+    basis: 'Historic gallery footprint fitted to the historic building line in the mapped complex.',
   },
   embeddedCanonicalGraphs: ['brick_flemish', 'stone_ashlar', 'stone_granite', 'metal_painted'],
   recipeDependencies: ['place-recipe-kit.mjs', 'authored-structure-mesh.mjs'],

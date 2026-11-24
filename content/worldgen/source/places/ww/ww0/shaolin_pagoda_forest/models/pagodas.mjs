@@ -10,8 +10,8 @@ import {
   tri,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
 import {
-  edges,
   courtFace,
+  edges,
   positioned,
   rect,
 } from '../../shaolin_monastery/models/temple-architecture.mjs';

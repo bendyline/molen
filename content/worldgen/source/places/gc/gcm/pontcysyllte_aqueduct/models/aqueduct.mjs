@@ -1,6 +1,6 @@
 import {
-  loft,
   beam,
+  loft,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { transform } from '../../../../../../../../packages/worldgen/scripts/heritage-tower-detail-mesh.mjs';
 import {

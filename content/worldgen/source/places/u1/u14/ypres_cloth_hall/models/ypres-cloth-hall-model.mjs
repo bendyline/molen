@@ -3,7 +3,6 @@ import {
   loft,
   radialRing,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 import {
   abox,
   extrude,
@@ -17,6 +16,7 @@ import {
   tri,
   wallFace,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
+import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
 const read = (file) => JSON.parse(fs.readFileSync(new URL(file, import.meta.url)));
 const plan = read('../plan-controls.json');

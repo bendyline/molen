@@ -1,5 +1,4 @@
 import fs from 'node:fs';
-import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import {
   fbox,
@@ -10,6 +9,7 @@ import {
   tri,
   wallFace,
 } from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
+import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
 const read = (name) =>
   JSON.parse(fs.readFileSync(new URL('../' + name + '.json', import.meta.url)));

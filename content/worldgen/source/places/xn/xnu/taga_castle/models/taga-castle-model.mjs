@@ -1,11 +1,5 @@
 import { readFileSync } from 'node:fs';
 import {
-  abox,
-  extrude,
-  lathe,
-  rgb,
-} from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
-import {
   at,
   cap,
   closed,
@@ -16,6 +10,12 @@ import {
   planarMid,
   rect,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import {
+  abox,
+  extrude,
+  lathe,
+  rgb,
+} from '../../../../../../../../packages/worldgen/scripts/place-recipe-kit.mjs';
 
 const read = (name) => JSON.parse(readFileSync(new URL('../' + name + '.json', import.meta.url)));
 const plan = read('plan-controls');
