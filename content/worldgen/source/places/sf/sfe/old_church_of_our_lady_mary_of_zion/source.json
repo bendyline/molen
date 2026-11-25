@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.old_church_of_our_lady_mary_of_zion",
+  "kind": "static-structure",
+  "title": "Old Church of Our Lady Mary of Zion",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.old_church_of_our_lady_mary_of_zion",
+        "output": "assets/places/sf/sfe/old_church_of_our_lady_mary_of_zion/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2dfab7301720ddf522dc784db1e043f8d0752c047a62c430418dce63daec63ad"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-old-church-of-our-lady-mary-of-zion",
+        "path": "models/generate-old-church-of-our-lady-mary-of-zion.mjs"
+      },
+      {
+        "id": "old-church-of-our-lady-mary-of-zion-model",
+        "path": "models/old-church-of-our-lady-mary-of-zion-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/old-church-of-our-lady-mary-of-zion-footprint.json",
+      "native-map/aksum-old-cathedral-shape-controls.json",
+      "reference-rights/old-church-of-our-lady-mary-of-zion-architectural-facts.json",
+      "references/bent-n183.jpg",
+      "reference-rights/bent-archive-record.json",
+      "reference-rights/bent-n8.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-aksum-old-cathedral-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

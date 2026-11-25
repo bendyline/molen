@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fort_de_la_goulette",
+  "kind": "static-structure",
+  "title": "Fort de la Goulette",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fort_de_la_goulette",
+        "output": "assets/places/sn/snx/fort_de_la_goulette/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b4209cb34ecace3bd34aaf08cfddd52ed44374dcdad19bb14569e5ca76afb83a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-fort-de-la-goulette",
+        "path": "models/generate-fort-de-la-goulette.mjs"
+      },
+      {
+        "id": "fort-de-la-goulette-model",
+        "path": "models/fort-de-la-goulette-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/fort-de-la-goulette-footprint.json",
+      "native-map/fort-de-la-goulette-shape-controls.json",
+      "reference-rights/fort-de-la-goulette-architectural-facts.json",
+      "references/fort-de-la-goulette-neurdein-1908.jpg",
+      "reference-rights/fort-de-la-goulette-saladin-1908-archive.json",
+      "reference-rights/fort-de-la-goulette-saladin-1908-imprint.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-fort-de-la-goulette-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

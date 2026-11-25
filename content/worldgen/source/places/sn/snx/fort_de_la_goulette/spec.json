@@ -1,0 +1,582 @@
+{
+  "planId": "fort_de_la_goulette",
+  "id": "fort_de_la_goulette",
+  "assetId": "molen.worldgen.structure.fort_de_la_goulette",
+  "title": "Fort de la Goulette",
+  "wikidataId": "Q42599356",
+  "category": "historical-fortress",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 10.303662478570633,
+    "latitude": 36.81441968890717
+  },
+  "size": [
+    162.70659637451172,
+    17.02999973297119,
+    190.5441665649414
+  ],
+  "actualBounds": {
+    "min": [
+      -83.45932006835938,
+      -3.5,
+      -97.86620330810547
+    ],
+    "max": [
+      79.24727630615234,
+      13.529999732971191,
+      92.67796325683594
+    ]
+  },
+  "visualBrief": "The standing Karaka fort with continuous splayed limestone walls, irregular bastioned wings, arched openings and the curved open court.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://archive.org/details/tunisetkairouan00salauoft/page/n28/mode/1up"
+  ],
+  "stories": [
+    {
+      "id": "fort-de-la-goulette-wp",
+      "url": "https://qualla.com/fort-de-la-goulette/"
+    }
+  ],
+  "referenceInputHash": "sha256:13f59236e788fca1a0966528fbd6c786ac22ecd679f3e5fc0eea81f6aec190a5",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sn/snx/fort_de_la_goulette/models/fort-de-la-goulette-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "place-footprint-caps.mjs": "sha256:6ec46f2041964dfaa281afb5d61a9a2cec25bb48e63411076c644e51a26250c3"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sn/snx/fort_de_la_goulette/models/fort-de-la-goulette-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.75,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.98
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.94
+      },
+      "terrace": {
+        "slot": "roof",
+        "graph": "plaster_lime",
+        "roughness": 0.99
+      },
+      "court": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.98
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.95
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.31,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.98
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94
+          },
+          "terrace": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.99
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.98
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.95
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.98
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94
+          },
+          "terrace": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.99
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.98
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.95
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.034,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.98
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94
+          },
+          "terrace": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.99
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.98
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.95
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_limestone",
+    "stone_sandstone_raw",
+    "plaster_lime",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified Copernicus GLO-30 sampled at the mapped central west gate. The coastal stone wall foundations meet the mapped land surface.",
+    "anchor": [
+      10.303662478570633,
+      36.81441968890717
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        10.303153502148191,
+        36.81432690054928
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified Copernicus GLO-30 sampled at the mapped central west gate. The coastal stone wall foundations meet the mapped land surface."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          8.201,
+          -96.8047
+        ],
+        [
+          18.4498,
+          -91.8287
+        ],
+        [
+          16.9971,
+          -84.4705
+        ],
+        [
+          50.0251,
+          -62.8856
+        ],
+        [
+          51.7451,
+          -65.8912
+        ],
+        [
+          76.4047,
+          -53.3233
+        ],
+        [
+          78.1425,
+          -48.6924
+        ],
+        [
+          39.6693,
+          -14.9848
+        ],
+        [
+          43.1896,
+          -8.0719
+        ],
+        [
+          45.7562,
+          -1.0588
+        ],
+        [
+          46.3979,
+          6.7781
+        ],
+        [
+          45.8543,
+          14.3367
+        ],
+        [
+          45.0165,
+          20.5149
+        ],
+        [
+          41.3359,
+          28.0179
+        ],
+        [
+          35.6856,
+          34.9086
+        ],
+        [
+          27.6024,
+          40.4411
+        ],
+        [
+          18.7528,
+          44.1481
+        ],
+        [
+          8.397,
+          44.9496
+        ],
+        [
+          -0.2833,
+          44.1147
+        ],
+        [
+          -6.9138,
+          41.8438
+        ],
+        [
+          -13.7672,
+          38.3149
+        ],
+        [
+          -16.4586,
+          36.9346
+        ],
+        [
+          -39.2823,
+          89.6332
+        ],
+        [
+          -47.8557,
+          91.5257
+        ],
+        [
+          -82.4343,
+          53.0759
+        ],
+        [
+          -72.9876,
+          36.5116
+        ],
+        [
+          -67.9166,
+          39.9847
+        ],
+        [
+          -66.3481,
+          37.8251
+        ],
+        [
+          -45.3603,
+          10.3292
+        ],
+        [
+          -40.8152,
+          3.9061
+        ],
+        [
+          -37.9187,
+          6.511
+        ],
+        [
+          -3.0014,
+          -41.3008
+        ],
+        [
+          -16.4764,
+          -53.468
+        ],
+        [
+          -16.0397,
+          -58.2547
+        ],
+        [
+          6.5612,
+          -84.3369
+        ],
+        [
+          2.3636,
+          -88.2442
+        ]
+      ],
+      "minimumCoverage": 0.87,
+      "basis": "The named castle exterior is the full surveyed occupation perimeter around its courtyard."
+    },
+    "featureIds": [
+      "relation/1354798",
+      "node/1080019742",
+      "node/6418475822",
+      "node/2127281559"
+    ],
+    "source": "https://www.openstreetmap.org/relation/1354798",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:84915519a46459f7709184a230cac44b41d6a318e90f5abd609bb933b67aba20",
+    "notes": "The exact 1908 Neurdein image gives the canal-facing upper guard features, masonry belt and battered base. Other elevations are interpreted around the current map outline."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Wall heights, blind-side fenestration, current stone finish and individual terrace levels are approximated.",
+    "The model includes the exterior, open inner courtyard and recessed entrances. It omits adjacent landing-stage structures and interiors behind the masonry."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "fort-de-la-goulette-skyline",
+      "position": [
+        -165,
+        96,
+        170
+      ],
+      "lookAt": [
+        -5,
+        4.5,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "fort-de-la-goulette-district",
+      "position": [
+        -165,
+        96,
+        170
+      ],
+      "lookAt": [
+        -5,
+        4.5,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "fort-de-la-goulette-street",
+      "position": [
+        -165,
+        96,
+        170
+      ],
+      "lookAt": [
+        -5,
+        4.5,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "fort-de-la-goulette-closeup",
+      "position": [
+        -165,
+        96,
+        170
+      ],
+      "lookAt": [
+        -5,
+        4.5,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "canal-facing-bastion",
+      "position": [
+        -108,
+        15,
+        122
+      ],
+      "lookAt": [
+        -48,
+        5.7,
+        65
+      ]
+    },
+    {
+      "name": "west-gate",
+      "position": [
+        -64,
+        4.3,
+        -6
+      ],
+      "lookAt": [
+        -45,
+        3.1,
+        11
+      ]
+    },
+    {
+      "name": "curved-courtyard",
+      "position": [
+        17,
+        20,
+        21
+      ],
+      "lookAt": [
+        10,
+        4.4,
+        -9
+      ]
+    },
+    {
+      "name": "eastern-fortifications",
+      "position": [
+        125,
+        40,
+        46
+      ],
+      "lookAt": [
+        17,
+        6,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3954,
+    "vertices": 11862,
+    "materials": 5,
+    "bytes": 794168,
+    "sha256": "sha256:b4209cb34ecace3bd34aaf08cfddd52ed44374dcdad19bb14569e5ca76afb83a"
+  }
+}

@@ -4,12 +4,12 @@
   "policy": "A source or import is not completion. Ready requires verified references or a separately supported primary-factual reconstruction, exact source/runtime/LOD bytes, inspected portable/shared/context captures, fidelity appropriate to the declared method, and terrain/placement evidence. Structure catalog work is excluded. Imagery must be public domain, match published Qualla media and original attribution, and have current bytes. Conflicting or incomplete records are excluded.",
   "counts": {
     "target": 500,
-    "ready": 243,
-    "started": 243,
+    "ready": 260,
+    "started": 260,
     "pilotsReady": 0,
-    "technicallyValidated": 243,
-    "publicDomainImageryVerified": 243,
-    "publicDomainFidelityReviewed": 243,
+    "technicallyValidated": 260,
+    "publicDomainImageryVerified": 260,
+    "publicDomainFidelityReviewed": 260,
     "primaryFactsReconstructionsVerified": 0
   },
   "candidates": [
@@ -1317,7 +1317,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:b349e81190b805db9c1ac0c7dcc39f89462fc375a17b0def19bfbda2fe441e5c",
+      "inputHash": "sha256:7cbab50cd4136231d562acfdb65652e8ce1da9564e7179e5eb1983b25ddc791b",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -3876,7 +3876,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:8c17214b44a7dfea438b34c471d9d7592f416b98d8028ced82bcf53d520bb806",
+      "inputHash": "sha256:03b5fbf2fc9e21e43d70017840ce604334845362a014455849aaf8ed7c159f4a",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -4660,7 +4660,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:4bbb6b9b105a2b6690f801bed844687204635b2a5a9f93f3c71544bf6701c17f",
+      "inputHash": "sha256:f9fcaa4acc9cd6aaba4953a398d35f1b3818c3fabe4c714edc2575129cabf489",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -5758,7 +5758,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:3d29d1334d11c48eb4994581240b41c3d7410a57a1e0b75ab0a3f5980641e458",
+      "inputHash": "sha256:041681e2343013e895d426b82ef11f288ca2c8d42a4c9899c8021e97dbc7e335",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -7728,23 +7728,50 @@
       }
     },
     {
-      "candidateId": "agios_neophytos_monastery",
+      "candidateId": "saint_neophytos_enkleistra",
       "backlogTargetId": "QS-3ebeb8c31260",
-      "title": "Agios Neophytos Monastery",
-      "asset": null,
-      "sourcePath": null,
+      "title": "Saint Neophytos Enkleistra",
+      "asset": "molen.worldgen.structure.saint_neophytos_enkleistra",
+      "sourcePath": "content/worldgen/source/places/sw/swp/saint_neophytos_enkleistra",
       "order": 129,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "saint-neophytos-enkleistra",
+        "placementHash": "sha256:e7d26131ec3d08f242bca9158be98335f09faaddceb1ef3901f18f082c5edfe8",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:8394282440f35c28407e2b3e8d81c3d26a5337ece8219836e0f7e09409aefd97",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/devia-n36.jpg",
+              "sourceUrl": "https://archive.org/details/deviacyprianotes00hoga/page/n36/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -7903,7 +7930,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:20ab43615d87e1acf08d9fb149bb650590367ce1e7f02583227d198795566392",
+      "inputHash": "sha256:ddd803060ba89ea3fffb11cc2413015f5ea6d7bdcb9a3b63d8721314191ee596",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -8119,20 +8146,59 @@
       "candidateId": "bahla_fort",
       "backlogTargetId": "QS-05fd1eda0e6c",
       "title": "Bahla Fort",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.bahla_fort",
+      "sourcePath": "content/worldgen/source/places/tk/tk0/bahla_fort",
       "order": 137,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "bahla-fort",
+        "placementHash": "sha256:12547bdc6f5888473929fa8bb7b5f5716139ca1895cdbda6ae244f2970a7ec36",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:2983c406e67694ae7ff9898ad99c6ef16796cf85e9d4df5be40e8a53fafe8422",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/miles-v1-n149.jpg",
+              "sourceUrl": "https://archive.org/details/countriestribeso01mileuoft/page/n149/mode/1up",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/miles-v2-n75.jpg",
+              "sourceUrl": "https://archive.org/details/countriestribeso02mileuoft/page/n75/mode/1up",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/miles-v2-n207.jpg",
+              "sourceUrl": "https://archive.org/details/countriestribeso02mileuoft/page/n207/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -9093,7 +9159,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:8b4dee49757e74bdd03b1b00c9b1b63d8d05916dda36988bb8cb83a052155460",
+      "inputHash": "sha256:678606939a3c469cd110f378f8a3d021817efd06319bd516ec7c8497e35112a1",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -9903,7 +9969,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:ce1be35f200efa046ef82de2bcc4b05626272bdd75b82517df9a10642b2a7f58",
+      "inputHash": "sha256:31b9956af5585eaf244e4157ad25cc4ce0c4331dd1036f913cedf144c00933a8",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -10788,7 +10854,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:4cc74531bd3a391eb2b71fb5eb8e8e7badfb32b4bdedb498df14d786f4149262",
+      "inputHash": "sha256:abe2937854d7d158fc22eb88f39e93c125df18c397f2ad15e516c6ac31e88ad8",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -13592,43 +13658,97 @@
       }
     },
     {
-      "candidateId": "church_of_our_lady_mary_of_zion",
+      "candidateId": "old_church_of_our_lady_mary_of_zion",
       "backlogTargetId": "QS-01201e306591",
-      "title": "Church of Our Lady Mary of Zion",
-      "asset": null,
-      "sourcePath": null,
+      "title": "Old Church of Our Lady Mary of Zion",
+      "asset": "molen.worldgen.structure.old_church_of_our_lady_mary_of_zion",
+      "sourcePath": "content/worldgen/source/places/sf/sfe/old_church_of_our_lady_mary_of_zion",
       "order": 246,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "old-church-of-our-lady-mary-of-zion",
+        "placementHash": "sha256:02666982b0ea506fb50e1dda0ee3a2744f7d12c12bb5f1f488c771203ae2dbf7",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:6600541041e7c87b090cd9f7f9d0005cc56809eacfb80a3b76656e1820ebfa11",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/bent-n183.jpg",
+              "sourceUrl": "https://archive.org/details/sacredcityofethi00bent/page/n183/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
       "candidateId": "canton_hospital",
       "backlogTargetId": "QS-6f0635897a33",
       "title": "The Canton Hospital",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.canton_hospital",
+      "sourcePath": "content/worldgen/source/places/ws/ws0/canton_hospital",
       "order": 247,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "canton-hospital",
+        "placementHash": "sha256:879636e9acc9e1a36dfec386d9212118f2eea214bedabc31420b064648594339",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:5083acd8219116133e3488ede0402e94dc958aab4fdf9101413ddbab020a2946",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/evangelist-n0.jpg",
+              "sourceUrl": "https://archive.org/details/sim_evangelist-and-religious-review_1895-11-07_66_45/page/n0/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -14039,7 +14159,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:fa714ce5b311408e6c7c2b8ef1c4745679e32b091636f14319d868c9379172db",
+      "inputHash": "sha256:731f9b52cd37026fe71f38ad05441f72740a52d2edbe9c0a565b4ef2c7302187",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -15278,23 +15398,82 @@
       }
     },
     {
-      "candidateId": "huong_temple",
+      "candidateId": "thien_tru_pagoda",
       "backlogTargetId": "QS-dd6a7cabc194",
-      "title": "Hương Temple",
-      "asset": null,
-      "sourcePath": null,
+      "title": "Thiên Trù Pagoda",
+      "asset": "molen.worldgen.structure.thien_tru_pagoda",
+      "sourcePath": "content/worldgen/source/places/w7/w7e/thien_tru_pagoda",
       "order": 283,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "thien-tru-pagoda",
+        "placementHash": "sha256:da11ec45e4970ed4c110d50aac14542988094407095d4c8e74debe04e0e273e8",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:7f72fb2355ddc1170e9fd1c8fb8758d69a02cd103c15fdc5ca3c4b39f98007f6",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [
+          {
+            "path": "_m/w/7/e/j/huong-temple-wp/thien-tru.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chua_Huong_561.JPG",
+            "license": "Public domain",
+            "artist": "Hoàng Việt at vi.wikipedia",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "PD-user"
+            ],
+            "publishedIn": [
+              {
+                "storyId": "huong-temple-wp",
+                "articlePath": "_c/art/w/7/e/j/huong-temple-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/w/7/e/j/huong-temple-wp/metadata.json",
+            "sha256": "2d907d6893510aa38caa72f11f67d1be57af2fea515a0f1fda6884c9ed36f5d6"
+          }
+        ],
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "passed",
+            "references": [
+              {
+                "path": "_m/w/7/e/j/huong-temple-wp/thien-tru.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chua_Huong_561.JPG",
+                "license": "Public domain",
+                "artist": "Hoàng Việt at vi.wikipedia",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "PD-user"
+                ],
+                "publishedIn": [
+                  {
+                    "storyId": "huong-temple-wp",
+                    "articlePath": "_c/art/w/7/e/j/huong-temple-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/w/7/e/j/huong-temple-wp/metadata.json",
+                "sha256": "2d907d6893510aa38caa72f11f67d1be57af2fea515a0f1fda6884c9ed36f5d6"
+              }
+            ]
+          },
+          "additional": []
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -15838,20 +16017,47 @@
       "candidateId": "hycroft_manor",
       "backlogTargetId": "QS-bfb41141bb05",
       "title": "Hycroft Manor",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.hycroft_manor",
+      "sourcePath": "content/worldgen/source/places/c2/c2b/hycroft_manor",
       "order": 291,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "hycroft-manor",
+        "placementHash": "sha256:97cf1e5d982a9b2d92c7d2534903ea4d11385351d547bc0584ba380730ec109a",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:5c6a831f0b87776e0ccee9dee12494ae692f3926ffad01eb06de69f8786c81b5",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/vancouver-hycroft-bu-p688.jpg",
+              "sourceUrl": "https://searcharchives.vancouver.ca/challenge-inline?url=%2Ffront-of-hycroft-mansion-on-1489-macrae-avenue",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -16679,23 +16885,50 @@
       }
     },
     {
-      "candidateId": "fort_riley",
+      "candidateId": "first_territorial_capitol_of_kansas",
       "backlogTargetId": "QS-04735c56bfed",
-      "title": "Fort Riley",
-      "asset": null,
-      "sourcePath": null,
+      "title": "First Territorial Capitol of Kansas",
+      "asset": "molen.worldgen.structure.first_territorial_capitol_of_kansas",
+      "sourcePath": "content/worldgen/source/places/9y/9yg/first_territorial_capitol_of_kansas",
       "order": 308,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "first-territorial-capitol-of-kansas",
+        "placementHash": "sha256:f5fb4a36d65e95e7c8ea9f9016ab54df86afc6a9209d44cc49f57538a3f49035",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:e8d482b0a497cd0b257ec8ba552284f01aca1a31ceb4892cafb5f6318607bb96",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/kansas-souvenir-n71.jpg",
+              "sourceUrl": "https://archive.org/details/kansassouvenirbo00kans/page/n71/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -17027,20 +17260,53 @@
       "candidateId": "basilica_of_sainte_anne_de_beaupre",
       "backlogTargetId": "QS-ad6f628c0ba6",
       "title": "Basilica of Sainte-Anne-de-Beaupré",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.basilica_of_sainte_anne_de_beaupre",
+      "sourcePath": "content/worldgen/source/places/f2/f2m/basilica_of_sainte_anne_de_beaupre",
       "order": 318,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "basilica-of-sainte-anne-de-beaupre",
+        "placementHash": "sha256:59fe5fefd9568cc2135d8b2976c4b0a9cb731ecb9025d478c95ed9f6ca6c3b8e",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:c5ed91b493cc479f084c6dc2eaa46c73e36e70927f56e34b1993489d738d51d8",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/basilica-beaupre-wilfredor-facade-original.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:Basilique_Sainte-Anne-de-Beaupr%C3%A9_5.jpg",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/basilica-beaupre-share-bear-south-original.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:545_-_Beaupre_QC.JPG",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -17308,7 +17574,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:8184806b34a82e215147ed30ab58b04d11c6d0141b85ceeb299b8ce7540852af",
+      "inputHash": "sha256:8437d36ad98cf0ada64de4a72e15e683035b28bc80fc3c592281ca193a7719dd",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -17751,20 +18017,99 @@
       "candidateId": "phu_cam_cathedral",
       "backlogTargetId": "QS-76f2a9757e32",
       "title": "Phủ Cam Cathedral",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.phu_cam_cathedral",
+      "sourcePath": "content/worldgen/source/places/w6/w6u/phu_cam_cathedral",
       "order": 331,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "phu-cam-cathedral",
+        "placementHash": "sha256:6b92b5fd5014bdaaa69248bdc3f0cde657153fae18838ab431d81e0ebb32bb51",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:ef4379d9c9f9103a9185dfd20df48c09e0dd1b66d3e4e0cdd329735d09d12064",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [
+          {
+            "path": "_m/w/6/u/t/phu-cam-cathedral-wp/annam-hue-cathedrale-de-phu-ca.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Annam_-_Hu%C3%A9_-_Cath%C3%A9drale_de_Phu-Cam.jpg",
+            "license": "Public domain",
+            "artist": "Unknown author",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "PD-old missing SDC copyright status",
+              "PD Old",
+              "The exact Qualla image matches numbered Dieulefils postcard 3587 and its divided reverse. INHA dates the imprint and printing series to the period before the First World War."
+            ],
+            "primaryRights": {
+              "eligible": true,
+              "basis": "The exact Qualla image matches numbered Dieulefils postcard 3587 and its divided reverse. INHA dates the imprint and printing series to the period before the First World War.",
+              "path": "content/worldgen/source/places/w6/w6u/phu_cam_cathedral/reference-rights/phu-cam-cathedral-qualla-original-1.json",
+              "sha256": "af0a1e1b4e8ae3ca4ea8c0d45248fe77e0db88fb131b3cc232f767e49c7f2551",
+              "nativeSha1": "a0618c1460d5519724c8afb38cbb54c0dd55a6e0",
+              "revision": 104869748
+            },
+            "publishedIn": [
+              {
+                "storyId": "phu-cam-cathedral-wp",
+                "articlePath": "_c/art/w/6/u/t/phu-cam-cathedral-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/w/6/u/t/phu-cam-cathedral-wp/metadata.json",
+            "sha256": "a10540e4d15cae7635346890117475cb30d844e7f77b042fd21e3e6746bf22dc"
+          }
+        ],
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "passed",
+            "references": [
+              {
+                "path": "_m/w/6/u/t/phu-cam-cathedral-wp/annam-hue-cathedrale-de-phu-ca.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Annam_-_Hu%C3%A9_-_Cath%C3%A9drale_de_Phu-Cam.jpg",
+                "license": "Public domain",
+                "artist": "Unknown author",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "PD-old missing SDC copyright status",
+                  "PD Old",
+                  "The exact Qualla image matches numbered Dieulefils postcard 3587 and its divided reverse. INHA dates the imprint and printing series to the period before the First World War."
+                ],
+                "primaryRights": {
+                  "eligible": true,
+                  "basis": "The exact Qualla image matches numbered Dieulefils postcard 3587 and its divided reverse. INHA dates the imprint and printing series to the period before the First World War.",
+                  "path": "content/worldgen/source/places/w6/w6u/phu_cam_cathedral/reference-rights/phu-cam-cathedral-qualla-original-1.json",
+                  "sha256": "af0a1e1b4e8ae3ca4ea8c0d45248fe77e0db88fb131b3cc232f767e49c7f2551",
+                  "nativeSha1": "a0618c1460d5519724c8afb38cbb54c0dd55a6e0",
+                  "revision": 104869748
+                },
+                "publishedIn": [
+                  {
+                    "storyId": "phu-cam-cathedral-wp",
+                    "articlePath": "_c/art/w/6/u/t/phu-cam-cathedral-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/w/6/u/t/phu-cam-cathedral-wp/metadata.json",
+                "sha256": "a10540e4d15cae7635346890117475cb30d844e7f77b042fd21e3e6746bf22dc"
+              }
+            ]
+          },
+          "additional": []
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -18601,40 +18946,100 @@
       "candidateId": "duwisib_castle",
       "backlogTargetId": "QS-772795914ad1",
       "title": "Duwisib Castle",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.duwisib_castle",
+      "sourcePath": "content/worldgen/source/places/k7/k7e/duwisib_castle",
       "order": 345,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "duwisib-castle",
+        "placementHash": "sha256:2bea1ce33cf65df22e5a14341e12117350af7fc58f03a3d89d836e8796585e80",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:af74f57dc593ceb7b587bb55498d7b254c30fb153f34253ef985264fff36ce9a",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/card-11365670.jpg",
+              "sourceUrl": "https://sammlungen.ub.uni-frankfurt.de/kolonialesbildarchiv/content/titleinfo/11350422",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/card-11365674.jpg",
+              "sourceUrl": "https://sammlungen.ub.uni-frankfurt.de/kolonialesbildarchiv/content/titleinfo/11350424",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
       "candidateId": "n_seoul_tower",
       "backlogTargetId": "QS-3e9f36e31519",
       "title": "N Seoul Tower",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.n_seoul_tower",
+      "sourcePath": "content/worldgen/source/places/wy/wyd/n_seoul_tower",
       "order": 346,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "n-seoul-tower",
+        "placementHash": "sha256:150613c55db2d47a623a57edbc10d7c9dd82dbb10db71731fd7b73d88d732148",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:8286dab09e6bc63a316a049ba324f6f8ef77c6de295967501750588c76143435",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/n-seoul-tower-original.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:N_Seoul_Tower_-_20260929.jpg",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -19270,20 +19675,47 @@
       "candidateId": "fort_de_la_goulette",
       "backlogTargetId": "QS-64312f15d0c3",
       "title": "Fort de la Goulette",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.fort_de_la_goulette",
+      "sourcePath": "content/worldgen/source/places/sn/snx/fort_de_la_goulette",
       "order": 360,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "fort-de-la-goulette",
+        "placementHash": "sha256:ac50f64069f9a8c7f26fe4b62d4a97680cf7a9458b56e8a2718a143ee8557782",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:9cd7e8ef6472fde4d9e2c0eb54e5677df63006e5446329ce70c73ccc395d76cd",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/fort-de-la-goulette-neurdein-1908.jpg",
+              "sourceUrl": "https://archive.org/details/tunisetkairouan00salauoft/page/n28/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -19450,7 +19882,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:85f790faf21ee2572176cd132fecd1f97b3241338703b430fc68c33bef903157",
+      "inputHash": "sha256:3af250926ccc2e3f43cb4a3db39d5da0900ceea602bb0e12fce6e7377db6058b",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -20055,23 +20487,50 @@
       }
     },
     {
-      "candidateId": "loch_maree_hotel_botulism_poisoning",
+      "candidateId": "loch_maree_hotel",
       "backlogTargetId": "QS-b5a8e730110c",
-      "title": "Loch Maree Hotel Botulism Poisoning",
-      "asset": null,
-      "sourcePath": null,
+      "title": "Loch Maree Hotel",
+      "asset": "molen.worldgen.structure.loch_maree_hotel",
+      "sourcePath": "content/worldgen/source/places/gf/gfk/loch_maree_hotel",
       "order": 377,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "loch-maree-hotel",
+        "placementHash": "sha256:a7839d55d38ef343bbbab73fcd7f458fce24dd9d6dc119b7eeb61c2483b26586",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:6d2aea37e98e3dc7f67955286e96aa08761de26b5b8d6dabe04a8f6b319151f5",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/graphic-n335.jpg",
+              "sourceUrl": "https://archive.org/details/nationalgraphic1877unse/page/n335/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -20155,23 +20614,50 @@
       }
     },
     {
-      "candidateId": "guinness_brewery",
+      "candidateId": "guinness_brewery_st_james_gate",
       "backlogTargetId": "QS-e2afd5d68a63",
-      "title": "Guinness Brewery",
-      "asset": null,
-      "sourcePath": null,
+      "title": "Guinness Brewery, St. James’s Gate",
+      "asset": "molen.worldgen.structure.guinness_brewery_st_james_gate",
+      "sourcePath": "content/worldgen/source/places/gc/gc7/guinness_brewery_st_james_gate",
       "order": 382,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "guinness-brewery-st-james-gate",
+        "placementHash": "sha256:5577c261a21e2c311b6a6f1b27ff3c6175c0352a1d3521ce38f762f46aba4084",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:a4dd1100d0d775894d718174f369f5f00c48e7b037fe47c160926ed2121e3372",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/guinness-st-james-gate-dubheire-original.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:St._James%27s_Gate.JPG",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -20760,7 +21246,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:2ddd7501d6669a000aec03ec3c06adc3fcf236d379734d223f7ea9ca945eb8dc",
+      "inputHash": "sha256:104c859c2dc6e8e5582715d3720e0b460ba80145bac868674019ce67fb1370a5",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -20986,20 +21472,59 @@
       "candidateId": "gulbarga_fort",
       "backlogTargetId": "QS-99e10180b549",
       "title": "Gulbarga Fort",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.gulbarga_fort",
+      "sourcePath": "content/worldgen/source/places/te/ten/gulbarga_fort",
       "order": 403,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "gulbarga-fort",
+        "placementHash": "sha256:59398922300b456a534deb037500960e1e639146f3536d1498f338073e263e2b",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:72cc38c3b468f97e6561fab3774129e8aa2a452ccde0520ec9f4389eea15aab2",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/gulbarga-nizam-survey-plate-v.jpg",
+              "sourceUrl": "https://ignca.gov.in/Asi_data/22691.pdf",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/gulbarga-dayal-fort.jpg",
+              "sourceUrl": "https://searcharchives.bl.uk/catalog/041-003082700",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/gulbarga-dayal-mosque.jpg",
+              "sourceUrl": "https://searcharchives.bl.uk/catalog/041-003082702",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -21535,7 +22060,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:f7396a62e19732aec1cee8d790977c8e5f0c89f4cd06c9caecc5404ea9de50e7",
+      "inputHash": "sha256:8f8d6774344c35d517443c113add0d089ce57e452de60722b615194728957b22",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -21621,7 +22146,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:ebfff9a6b790f67170d303f6ec7d5364619b5718def4202015b21e1ffca66695",
+      "inputHash": "sha256:ac4a391314ab6683a3e3bf819b5e411e10098d6a1f5492aef2dbed1fb8dc3164",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -22878,7 +23403,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:1bc55bcc2357cd5623635ac5f6eb8dc0431ba3ef36c9d8ff1f99f57ecdf43048",
+      "inputHash": "sha256:b0136e31fc800490ee1b0235c241bc24b6778522fde223ce531078b18fac3cf6",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -23005,20 +23530,53 @@
       "candidateId": "finnish_labour_temple",
       "backlogTargetId": "QS-1ee523c102ae",
       "title": "Finnish Labour Temple",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.finnish_labour_temple",
+      "sourcePath": "content/worldgen/source/places/f0/f08/finnish_labour_temple",
       "order": 434,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "finnish-labour-temple",
+        "placementHash": "sha256:9559407cb485c7f2856f6079d34ba4909cf553eca8269c4933919a963a769e17",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:b05877881259bff6eb8ced2bc1f447ac43162ad3f5b822502424ff011759ee14",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/lakehead-finnish-labour-temple-2583.jpg",
+              "sourceUrl": "https://digitalcollections.lakeheadu.ca/items/show/2583",
+              "eligible": true,
+              "blockers": []
+            },
+            {
+              "path": "references/lakehead-finnish-labour-temple-11063.jpg",
+              "sourceUrl": "https://digitalcollections.lakeheadu.ca/items/show/11063",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -23914,7 +24472,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:ac635f5a176ce14a364141b626e7c6e0cdb4edddb77896be422cb20fcde4e727",
+      "inputHash": "sha256:4463a32999befe053911a6cd5e9354db311cdf763defe905db17443289111708",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -24958,7 +25516,7 @@
         "target": "medium-fi",
         "hashBoundReviewPassed": true
       },
-      "inputHash": "sha256:9abf73396f6a2b840ff236a4218b7be6266c80ab4be80ee303c34c16c0c981b8",
+      "inputHash": "sha256:358d9a1b6c298e9df7fb2183b7e00dfb8c95df3b2f645ccf8b1c09ea54cb73cd",
       "technicalReadiness": "ready",
       "currentRenderIdentityVerified": true,
       "imagery": {
@@ -26693,23 +27251,56 @@
       }
     },
     {
-      "candidateId": "inn_at_the_edge_of_empire",
+      "candidateId": "stadsherberg_batavia",
       "backlogTargetId": "QS-6a528a19d072",
-      "title": "The Inn at the Edge of Empire",
-      "asset": null,
-      "sourcePath": null,
+      "title": "Stadsherberg, Batavia",
+      "asset": "molen.worldgen.structure.stadsherberg_batavia",
+      "sourcePath": "content/worldgen/source/places/qq/qqg/stadsherberg_batavia",
       "order": 496,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "stadsherberg-batavia",
+        "placementHash": "sha256:4078cd5422367b80212bcdc918508e6f09a914a8b03a06782827462a26760628",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:6b5c1ead669c02ebaf2fdb2b1adf2154fbdae80c194d01ced29f1c328e0315bf",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/rijks-200366934.jpg",
+              "sourceUrl": "https://id.rijksmuseum.nl/200366934",
+              "blockers": [],
+              "eligible": true
+            },
+            {
+              "path": "references/rijks-200536943.jpg",
+              "sourceUrl": "https://id.rijksmuseum.nl/200536943",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {

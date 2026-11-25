@@ -1,0 +1,64 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.bahla_fort",
+  "kind": "static-structure",
+  "title": "Bahla Fort",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.bahla_fort",
+        "output": "assets/places/tk/tk0/bahla_fort/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e38246514d2ce0caf43e3abeec24af9e60f92d6f4efee004c407c3f895c46bde"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-bahla-fort",
+        "path": "models/generate-bahla-fort.mjs"
+      },
+      {
+        "id": "bahla-fort-model",
+        "path": "models/bahla-fort-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/bahla-fort-footprint.json",
+      "native-map/bahla-fort-shape-controls.json",
+      "reference-rights/bahla-fort-architectural-facts.json",
+      "references/miles-v1-n149.jpg",
+      "reference-rights/countriestribeso01mileuoft-record.json",
+      "reference-rights/miles-v1-n8.jpg",
+      "references/miles-v2-n75.jpg",
+      "reference-rights/countriestribeso02mileuoft-record.json",
+      "reference-rights/miles-v2-n6.jpg",
+      "references/miles-v2-n207.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-bahla-fort-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

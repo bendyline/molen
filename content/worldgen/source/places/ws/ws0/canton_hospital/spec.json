@@ -1,0 +1,479 @@
+{
+  "planId": "canton_hospital",
+  "id": "canton_hospital",
+  "assetId": "molen.worldgen.structure.canton_hospital",
+  "title": "The Canton Hospital",
+  "wikidataId": "Q10875265",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 113.25058,
+    "latitude": 23.11226
+  },
+  "size": [
+    35.619998931884766,
+    14.734999775886536,
+    15.263000011444092
+  ],
+  "actualBounds": {
+    "min": [
+      -17.809999465942383,
+      -1.659999966621399,
+      -7.4730000495910645
+    ],
+    "max": [
+      17.809999465942383,
+      13.074999809265137,
+      7.789999961853027
+    ]
+  },
+  "visualBrief": "The late nineteenth-century arcade and veranda of Canton Hospital, with the broad tiled roof shown in the November 1895 photograph.",
+  "nativeAxes": {
+    "x": "approximately east along the facade",
+    "y": "up",
+    "z": "approximately south toward the courtyard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1895-11-07",
+    "validFrom": "1890-01-01",
+    "validUntil": "1905-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://archive.org/details/sim_evangelist-and-religious-review_1895-11-07_66_45/page/n0/mode/1up"
+  ],
+  "stories": [
+    {
+      "id": "the-canton-hospital-wp",
+      "url": "https://qualla.com/the-canton-hospital/"
+    }
+  ],
+  "referenceInputHash": "sha256:ceaac16148ca75ef2555220b4d244e5a0e55a278f1807c5771f6a779187bbb20",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ws/ws0/canton_hospital/models/canton-hospital-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "place-footprint-caps.mjs": "sha256:6ec46f2041964dfaa281afb5d61a9a2cec25bb48e63411076c644e51a26250c3"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ws/ws0/canton_hospital/models/canton-hospital-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.48,
+    "surfaces": {
+      "brick": {
+        "slot": "foundation",
+        "graph": "brick_flemish",
+        "roughness": 0.95
+      },
+      "mortar": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.93
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.92
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.89
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#454d49",
+        "roughness": 0.66
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "mortar": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#454d49",
+            "roughness": 0.66
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.081,
+        "surfaces": {
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "mortar": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#454d49",
+            "roughness": 0.66
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.018,
+        "surfaces": {
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "mortar": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#454d49",
+            "roughness": 0.66
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "plaster_lime",
+    "stone_sandstone",
+    "tile_flat",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified Copernicus DSM sampling beside the estimated historic courtyard, preserved for placement review.",
+    "anchor": [
+      113.25058,
+      23.11226
+    ],
+    "heading": -0.13962634015954636,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        113.25056776621878,
+        23.112179938801486
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified Copernicus DSM sampling beside the estimated historic courtyard, preserved for placement review."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "minHeight": 0.2,
+      "outline": [
+        [
+          -17.43,
+          7.75
+        ],
+        [
+          17.43,
+          7.75
+        ],
+        [
+          17.43,
+          -7.08
+        ],
+        [
+          -17.43,
+          -7.08
+        ]
+      ],
+      "basis": "The reconstructed terrace covers the small area where the modern surface would obscure the historical arcade."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -17.15,
+          6.75
+        ],
+        [
+          17.15,
+          6.75
+        ],
+        [
+          17.15,
+          -6.75
+        ],
+        [
+          -17.15,
+          -6.75
+        ]
+      ],
+      "minimumCoverage": 0.87,
+      "basis": "The 1895 exterior is registered inside the documented Renji Road hospital premises."
+    },
+    "featureIds": [
+      "way/422620832"
+    ],
+    "source": "https://www.flickr.com/photos/britishlibrary/11135383854/",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ee4d01b2df4bff95bbf6363a38ed7f094597ecacc316a338f0f5d4074a81c706",
+    "notes": "The published 1895 photograph supports the exterior arcade, upper covered veranda, balustrade, tiled eaves and masonry details. Rear and side elevations continue the same building vocabulary where the image does not show them."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the single wing shown in the 1895 photograph. It covers an earlier phase than the twentieth-century campus and later design published with the story.",
+    "The photographed front scale uses people, arch spacing and floor height. Behind-tree bays, the back, width and pitch of the roof, window schedules, material colors and block position are approximations. The independent mapped boundary represents the successor campus.",
+    "Modern urban structures influence the source DSM. The archival evidence does not establish the courtyard’s historic height."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "canton-hospital-skyline",
+      "position": [
+        39,
+        22,
+        49
+      ],
+      "lookAt": [
+        0,
+        5.14,
+        1.5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "canton-hospital-district",
+      "position": [
+        39,
+        22,
+        49
+      ],
+      "lookAt": [
+        0,
+        5.14,
+        1.5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "canton-hospital-street",
+      "position": [
+        39,
+        22,
+        49
+      ],
+      "lookAt": [
+        0,
+        5.14,
+        1.5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "canton-hospital-closeup",
+      "position": [
+        39,
+        22,
+        49
+      ],
+      "lookAt": [
+        0,
+        5.14,
+        1.5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "archival-veranda-front",
+      "position": [
+        0,
+        9.8,
+        46
+      ],
+      "lookAt": [
+        0,
+        5.14,
+        1.5
+      ]
+    },
+    {
+      "name": "brick-arcade-and-veranda",
+      "position": [
+        11,
+        7.5,
+        23.5
+      ],
+      "lookAt": [
+        6,
+        4.5,
+        5.4
+      ]
+    },
+    {
+      "name": "roof-and-court-arcade",
+      "position": [
+        -20,
+        15.8,
+        29
+      ],
+      "lookAt": [
+        -7,
+        7,
+        2.5
+      ]
+    },
+    {
+      "name": "reconstructed-rear-wall",
+      "position": [
+        32,
+        17,
+        -38
+      ],
+      "lookAt": [
+        0,
+        5.1,
+        -2.3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12106,
+    "vertices": 36318,
+    "materials": 6,
+    "bytes": 1660468,
+    "sha256": "sha256:7caa3391cffe61bb20ea8ff6ffee7476c3c0fb3938d2e199f6b1a4dd8a39e8bd"
+  }
+}

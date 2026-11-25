@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.stadsherberg_batavia",
+  "kind": "static-structure",
+  "title": "Stadsherberg, Batavia",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.stadsherberg_batavia",
+        "output": "assets/places/qq/qqg/stadsherberg_batavia/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c931323b0d1fe90a1d82334e74e30aa35eceec8f3d03fc91ba35a89d366b124a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-stadsherberg-batavia",
+        "path": "models/generate-stadsherberg-batavia.mjs"
+      },
+      {
+        "id": "stadsherberg-batavia-model",
+        "path": "models/stadsherberg-batavia-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/stadsherberg-batavia-footprint.json",
+      "native-map/stadsherberg-batavia-shape-controls.json",
+      "reference-rights/stadsherberg-batavia-architectural-facts.json",
+      "references/rijks-200366934.jpg",
+      "reference-rights/rijks-200366934.json",
+      "references/rijks-200536943.jpg",
+      "reference-rights/rijks-200536943.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-stadsherberg-batavia-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

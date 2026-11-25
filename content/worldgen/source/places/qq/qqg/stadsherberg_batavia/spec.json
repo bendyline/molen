@@ -1,0 +1,467 @@
+{
+  "planId": "stadsherberg_batavia",
+  "id": "stadsherberg_batavia",
+  "assetId": "molen.worldgen.structure.stadsherberg_batavia",
+  "title": "Stadsherberg, Batavia",
+  "wikidataId": "Q48728178",
+  "category": "historic-inn",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 106.80973019793471,
+    "latitude": -6.1251560026049745
+  },
+  "size": [
+    22.75,
+    9.96999967098236,
+    17.960000038146973
+  ],
+  "actualBounds": {
+    "min": [
+      -11.350000381469727,
+      -1.149999976158142,
+      -8.550000190734863
+    ],
+    "max": [
+      11.399999618530273,
+      8.819999694824219,
+      9.40999984741211
+    ]
+  },
+  "visualBrief": "The 1860s Stadsherberg inn on the east quay of old Batavia, with eight columns, a balustraded veranda, a fabric awning and tiled hip roofs.",
+  "nativeAxes": {
+    "x": "south-southeast along the quay",
+    "y": "up",
+    "z": "west-southwest toward the harbor"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1867-01-01",
+    "validFrom": "1865-01-01",
+    "validUntil": "1869-12-31",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://id.rijksmuseum.nl/200366934",
+    "https://id.rijksmuseum.nl/200536943"
+  ],
+  "stories": [
+    {
+      "id": "stadsherberg-batavia-wp",
+      "url": "https://qualla.com/stadsherberg-batavia/"
+    }
+  ],
+  "referenceInputHash": "sha256:ccbd63d58e3cce5e8db58ecdc7dd165ef635b177020c537ca7928e93b5637b62",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/qq/qqg/stadsherberg_batavia/models/stadsherberg-batavia-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/qq/qqg/stadsherberg_batavia/models/stadsherberg-batavia-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.45,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "cut": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.9
+      },
+      "plinth": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.96
+      },
+      "tiles": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.91
+      },
+      "awning": {
+        "slot": "roof",
+        "localRef": "palette:#c5b9a1",
+        "roughness": 0.86
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#4c493b",
+        "roughness": 0.78
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.94
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "tiles": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "awning": {
+            "slot": "roof",
+            "localRef": "palette:#c5b9a1",
+            "roughness": 0.86
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#4c493b",
+            "roughness": 0.78
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.075,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "tiles": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "awning": {
+            "slot": "roof",
+            "localRef": "palette:#c5b9a1",
+            "roughness": 0.86
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#4c493b",
+            "roughness": 0.78
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.021,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "tiles": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "awning": {
+            "slot": "roof",
+            "localRef": "palette:#c5b9a1",
+            "roughness": 0.86
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#4c493b",
+            "roughness": 0.78
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "tile_ceramic",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.9,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified Copernicus GLO-30 at the reconstructed west entrance. The low masonry plinth meets the current elevation of the historic quay block.",
+    "anchor": [
+      106.80973019793471,
+      -6.1251560026049745
+    ],
+    "heading": -1.3926158694361173,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        106.80965195141303,
+        -6.125170013603591
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified Copernicus GLO-30 at the reconstructed west entrance. The low masonry plinth meets the current elevation of the historic quay block."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -11.35,
+          9.38
+        ],
+        [
+          11.4,
+          9.38
+        ],
+        [
+          11.4,
+          -8.55
+        ],
+        [
+          -11.35,
+          -8.55
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Photo-derived former inn envelope registered to the nineteenth-century east quay site."
+    },
+    "featureIds": [
+      "historical/stadsherberg-batavia-east-quay"
+    ],
+    "source": "https://www.nationaalarchief.nl/onderzoeken/archief/4.MIKO/invnr/1122.1",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c12339b224ba09de148b08af21ab8af95b740bacacb94f03ffd01a3247b502b1",
+    "notes": "Rijksmuseum period photographs show an eight-column waterfront veranda, balustraded cornice, a sign, tiled hipped roofs and a later shallow awning."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The cadastral map and photograph alignment locate the former inn to about 30 m. The building is demolished.",
+    "The model uses the late 1860s awning. Roof tile color, rear wing size, glazing and service elevations are interpreted from the black-and-white views.",
+    "Only the inn is represented. The separate customs and landing facilities are outside its footprint."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "stadsherberg-batavia-skyline",
+      "position": [
+        20,
+        13,
+        35
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "stadsherberg-batavia-district",
+      "position": [
+        20,
+        13,
+        35
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "stadsherberg-batavia-street",
+      "position": [
+        20,
+        13,
+        35
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "stadsherberg-batavia-closeup",
+      "position": [
+        20,
+        13,
+        35
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "canal-veranda-and-awning",
+      "position": [
+        0,
+        6.65,
+        26
+      ],
+      "lookAt": [
+        0,
+        4.09,
+        5.8
+      ]
+    },
+    {
+      "name": "quay-side-entrance-lettering",
+      "position": [
+        16.2,
+        7.12,
+        20
+      ],
+      "lookAt": [
+        1.1,
+        5.11,
+        7.96
+      ]
+    },
+    {
+      "name": "hipped-tile-roofs",
+      "position": [
+        25,
+        20,
+        -14.4
+      ],
+      "lookAt": [
+        0,
+        5,
+        1.2
+      ]
+    },
+    {
+      "name": "rear-service-elevation",
+      "position": [
+        -23,
+        9.7,
+        -28.1
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        -4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10471,
+    "vertices": 31413,
+    "materials": 7,
+    "bytes": 1393524,
+    "sha256": "sha256:c931323b0d1fe90a1d82334e74e30aa35eceec8f3d03fc91ba35a89d366b124a"
+  }
+}

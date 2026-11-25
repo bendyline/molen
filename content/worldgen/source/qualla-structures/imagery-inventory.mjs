@@ -1751,6 +1751,134 @@ function inspectFriedlaenderTemplePhoto(dir, reference) {
 }
 
 const archivedPrintIllustrations = {
+  'hogarth-1889-enkleistra-photograph': {
+    id: 'deviacyprianotes00hoga',
+    leaf: 'n36',
+    titleLeaf: 'n8',
+    credit: 'D. G. Hogarth',
+    imageHash: '4737885cea69ce2c1b67402d6a33f28361b0c23bcdf1df8bca9ccef7de567102',
+    coverHash: 'afcf233eb75416f38d1be47ed83a34459ad87f0231ce9fbf6615e48a39c32898',
+    catalogue: {
+      date: '1889',
+      creator: 'Hogarth, D. G. (David George), 1862-1927',
+      publisher: 'London, H. Frowde',
+      contributor: 'Getty Research Institute',
+    },
+  },
+  'evangelist-1895-canton-hospital-photograph': {
+    id: 'sim_evangelist-and-religious-review_1895-11-07_66_45',
+    leaf: 'n0',
+    credit: 'E. Warren Clark',
+    // The photograph, credit and dated masthead are all printed on the same cover.
+    imageHash: '12cd9914c54c2aab708dec01dcf0272ea5a1185aba665e90f0dee81cf1be55c5',
+    coverHash: '12cd9914c54c2aab708dec01dcf0272ea5a1185aba665e90f0dee81cf1be55c5',
+    catalogue: { date: '1895-11-07', volume: '66', issue: '45' },
+  },
+  'miles-1919-bahla-part-of-fort': {
+    id: 'countriestribeso01mileuoft',
+    leaf: 'n149',
+    titleLeaf: 'n8',
+    credit: 'Samuel Barrett Miles (book author)',
+    imageHash: 'f89c7a600bbce9a4b82994c41e15df0f262c99290e4f79d7d16b3bc7d48e4425',
+    coverHash: '980fab25bddaef081398897a379f8ccdf33d31051c4e25ad47bb22762fa98202',
+    catalogue: {
+      date: '1919',
+      creator: 'Miles, Samuel Barrett',
+      volume: '1',
+      publisher: 'London, Harrison',
+      contributor: 'Robarts - University of Toronto',
+      'possible-copyright-status': 'NOT_IN_COPYRIGHT',
+    },
+  },
+  'miles-1919-bahla-wind-tower-and-fort': {
+    id: 'countriestribeso02mileuoft',
+    leaf: 'n75',
+    titleLeaf: 'n6',
+    credit: 'Samuel Barrett Miles (book author)',
+    imageHash: '34b93a9aebe4441b03099a1af54e8b0e8809ed5f4b8cc14a857d00b427590b1f',
+    coverHash: 'cd9f725ce2b94c31bd03a5dce25135eab72a78645d50c6dbc6349cdd7bda195b',
+    catalogue: {
+      date: '1919',
+      creator: 'Miles, Samuel Barrett',
+      volume: '2',
+      publisher: 'London, Harrison',
+      contributor: 'Robarts - University of Toronto',
+      'possible-copyright-status': 'NOT_IN_COPYRIGHT',
+    },
+  },
+  'miles-1919-bahla-wind-tower': {
+    id: 'countriestribeso02mileuoft',
+    leaf: 'n207',
+    titleLeaf: 'n6',
+    credit: 'Samuel Barrett Miles (book author)',
+    imageHash: 'c113b7dd6e63d2c79f052acd9c5605b73201cf3674516fb873f0ffa92f7ac717',
+    coverHash: 'cd9f725ce2b94c31bd03a5dce25135eab72a78645d50c6dbc6349cdd7bda195b',
+    catalogue: {
+      date: '1919',
+      creator: 'Miles, Samuel Barrett',
+      volume: '2',
+      publisher: 'London, Harrison',
+      contributor: 'Robarts - University of Toronto',
+      'possible-copyright-status': 'NOT_IN_COPYRIGHT',
+    },
+  },
+  'graphic-1877-loch-maree-hotel': {
+    id: 'nationalgraphic1877unse',
+    leaf: 'n335',
+    titleLeaf: 'n332',
+    credit: 'The Graphic (publisher)',
+    imageHash: '8b2b3b18cd77d112998da664ef464ceb6dc2ba9115390914af58d637b6b6a9f9',
+    coverHash: 'bc9823b3617694df007f232e172f50fa1ffc5b45f6b4746a6a8284acb3389fe2',
+    catalogue: {
+      title: 'National graphic.',
+      volume: '1877:July- December',
+      publisher: 'London',
+      contributor: 'University of Illinois Urbana-Champaign',
+    },
+  },
+  'bent-1896-aksum-old-cathedral': {
+    id: 'sacredcityofethi00bent',
+    leaf: 'n183',
+    titleLeaf: 'n8',
+    credit: 'J. Theodore Bent (book author)',
+    imageHash: 'f8e9d9aa5a9113d0452ce5e1b4c81adcf9b59546132dd5d760d4f3e363da4cde',
+    coverHash: 'd21d870642915b1d1d4fd8265e6d9671c9a2f491d650828b02ad1fe1f937744f',
+    catalogue: {
+      date: '1896',
+      publisher: 'London ; New York [etc.] : Longmans, Green and co.',
+      contributor: 'Smithsonian Libraries',
+      'possible-copyright-status':
+        'Not in copyright. The Library knows of no copyright restrictions on this item.',
+    },
+  },
+  'kansas-souvenir-1896-pawnee-capitol': {
+    id: 'kansassouvenirbo00kans',
+    leaf: 'n71',
+    titleLeaf: 'n4',
+    credit: 'Kansas Immigration and Information Association (publisher)',
+    imageHash: '40e31649adf2b6e9b1a0bcfdc7e0baa57a907e332822941254e5e6baae47d48d',
+    coverHash: 'b671a9fb906f1c66ce8ed4e8305985e69db8401eb137caa757d3fd913246a765',
+    catalogue: {
+      date: '1896',
+      creator: 'Kansas immigration and information association. [from old catalog]',
+      contributor: 'The Library of Congress',
+      'possible-copyright-status': 'NOT_IN_COPYRIGHT',
+    },
+  },
+  'neurdein-1908-fort-de-la-goulette': {
+    id: 'tunisetkairouan00salauoft',
+    leaf: 'n28',
+    titleLeaf: 'n6',
+    credit: 'Neurdein',
+    imageHash: 'd4d83dd1b8311c63081cd903826ecf16b563dda98c39f2363272f4d145caa563',
+    coverHash: 'e677f935897af0f60458f317b62eac082839dae4cdd6ea48a5baddce2abbdd70',
+    catalogue: {
+      date: '1908',
+      title: 'Tunis et Kairouan',
+      publisher: 'Paris : H. Laurens',
+      contributor: 'Robarts - University of Toronto',
+    },
+  },
   'roe-1827-fort-dundas-view': {
     id: 'narrativeofsurve02king_0',
     leaf: 'n257',
@@ -2085,6 +2213,261 @@ function inspectArchivedPrintIllustration(dir, reference) {
     sourceUrl: reference.sourceUrl,
     eligible,
     blockers: eligible ? [] : ['supplemental-archived-print-illustration-unverified'],
+  };
+}
+
+const lakeheadFinnishLabourTemplePrints = {
+  'lakehead-finnish-labour-temple-2583': {
+    item: 2583,
+    accession: 'MG8_D11Ai1',
+    file: 'ab99a1183cb3aee9b542a04472c6e0be.jpg',
+    imageHash: 'a93659fd73ad08957c2405c7cf90a98888d9934cb006ff6ab2b507a4d301016b',
+  },
+  'lakehead-finnish-labour-temple-11063': {
+    item: 11063,
+    accession: 'MG8_D11Ai2',
+    file: '260174bedff4f28b53a7c15ed64278d8.jpg',
+    imageHash: '1f6c979023eb7a7dc834fadfd06b116d239a892e8db1484e77afc87426fcc3c6',
+  },
+};
+
+const duwisibPostcards = {
+  'frankfurt-lange-duwisib-1912-postcard': {
+    item: 11350422,
+    page: 11365670,
+    archiveId: 'PKA_A2_031',
+    dateEvidence: 'Schreibdatum 20.12.1912',
+    imageHash: '685bbbb44e579366db4f8018307dec48a8a9d3dbeeb3bd23e5db1345a8161742',
+  },
+  'frankfurt-lange-duwisib-24476-postcard': {
+    item: 11350424,
+    page: 11365674,
+    archiveId: 'PKA_A2_033',
+    dateEvidence: 'Karte Nr. 24476',
+    imageHash: 'ed517faed40c321bd00bf3ef03ec01fcab5f248a50abb3125f25b892269167a3',
+  },
+};
+
+/** Exact commercial postcards documented in circulation in 1912 and 1913. */
+function inspectDuwisibPostcard(dir, reference) {
+  const { item, page, archiveId, dateEvidence, imageHash } = duwisibPostcards[reference.origin];
+  const library = 'https://sammlungen.ub.uni-frankfurt.de';
+  const itemUrl = `${library}/kolonialesbildarchiv/content/titleinfo/${item}`;
+  const manifestUrl = `${library}/i3f/v20/${item}/manifest`;
+  const image = localBytes(dir, reference.path);
+  const itemRecord = localBytes(dir, reference.rightsEvidence?.path);
+  const manifestBytes = localBytes(dir, reference.catalogEvidence?.path);
+  const manifest = snapshotJson(manifestBytes);
+  const record = itemRecord?.toString('utf8') ?? '';
+  const datedCard = item === 11350422;
+  const auctionUrl =
+    'https://stampauctionnetwork.com/cCatalog3.cfm?CATDESCR=German+Colonies+History+of+the+Colonies&MAJGROUP=Germany+and+German+Colonies&SrchFirm=WA&SrchSale=142';
+  const auction = localBytes(dir, reference.reverseEvidence?.path);
+  const eligible =
+    !!image &&
+    digest(image) === imageHash &&
+    plainHash(reference.sha256) === imageHash &&
+    !!itemRecord &&
+    digest(itemRecord) === plainHash(reference.rightsEvidence?.sha256) &&
+    record.includes(archiveId) &&
+    record.includes('Sam Cohen Library Swakopmund') &&
+    record.includes('Foto Fr. Lange') &&
+    record.includes(dateEvidence) &&
+    reference.sourceUrl === itemUrl &&
+    reference.rightsEvidence?.sourceUrl === itemUrl &&
+    reference.downloadUrl === `${library}/kolonialesbildarchiv/download/webcache/2000/${page}` &&
+    !!manifestBytes &&
+    digest(manifestBytes) === plainHash(reference.catalogEvidence?.sha256) &&
+    reference.catalogEvidence?.sourceUrl === manifestUrl &&
+    manifest?.['@id'] === manifestUrl &&
+    manifest.sequences?.[0]?.canvases?.[0]?.['@id'] ===
+      `${library}/i3f/v20/${item}/canvas/${page}` &&
+    (datedCard ||
+      (!!auction &&
+        digest(auction) === plainHash(reference.reverseEvidence?.sha256) &&
+        digest(auction) === 'f16d076903ddd46df5182d37c41511c4ed3cc4c9e1f83335614c169666361738' &&
+        reference.reverseEvidence?.sourceUrl === auctionUrl)) &&
+    reference.artist === 'Friedrich Lange' &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected' &&
+    reference.originalReview?.rendition === 'dated-archive-postcard-scan' &&
+    reference.originalReview?.publicationNoLaterThan === (datedCard ? 1912 : 1913);
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-duwisib-dated-postcard-unverified'],
+  };
+}
+
+function inspectLakeheadFinnishLabourTemplePrint(dir, reference) {
+  const { item, accession, file, imageHash } = lakeheadFinnishLabourTemplePrints[reference.origin];
+  const archive = 'https://digitalcollections.lakeheadu.ca';
+  const catalog = `${archive}/items/show/${item}`;
+  const download = `${archive}/files/original/${file}`;
+  const photo = localBytes(dir, reference.path);
+  const rights = localBytes(dir, reference.rightsEvidence?.path);
+  const record = rights?.toString() ?? '';
+  const eligible =
+    !!photo &&
+    !!rights &&
+    digest(photo) === imageHash &&
+    plainHash(reference.sha256) === imageHash &&
+    digest(rights) === plainHash(reference.rightsEvidence?.sha256) &&
+    record.includes(download) &&
+    record.includes(`class="element-text">${accession}</div>`) &&
+    record.includes('built in 1910, 314 Bay Street, Thunder Bay') &&
+    record.includes('class="element-text">Public domain</div>') &&
+    reference.sourceUrl === catalog &&
+    reference.rightsEvidence?.sourceUrl === catalog &&
+    reference.downloadUrl === download &&
+    reference.artist ===
+      'Uncredited photographer, Thunder Bay Finnish Canadian Historical Society collection' &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected';
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-lakehead-photo-unverified'],
+  };
+}
+
+function inspectVancouverHycroftPrint(dir, reference) {
+  const archive =
+    'https://searcharchives.vancouver.ca/challenge-inline?url=%2Ffront-of-hycroft-mansion-on-1489-macrae-avenue';
+  const foundation = 'https://www.heritagesitefinder.ca';
+  const gallery = `${foundation}/location/1489-mcrae-st-vancouver-bc/`;
+  const rendition = '/img/asset/bG9jYXRpb25faW1hZ2VzL2h5Y3JvZnQtMTkyNy5qcGc/hycroft-1927.jpg?p=lg';
+  const photo = localBytes(dir, reference.path);
+  const record = localBytes(dir, reference.rightsEvidence?.path);
+  const galleryBytes = localBytes(dir, reference.catalogEvidence?.path);
+  const attribution = galleryBytes?.toString() ?? '';
+  const rights = snapshotJson(record);
+  const imageHash = '761f2263d95de627f0637d5d1a2162890ea5ac94c7a4393a137d953e2cd5fc78';
+  const eligible =
+    !!photo &&
+    !!record &&
+    !!galleryBytes &&
+    digest(photo) === imageHash &&
+    plainHash(reference.sha256) === imageHash &&
+    digest(record) === plainHash(reference.rightsEvidence?.sha256) &&
+    digest(galleryBytes) === plainHash(reference.catalogEvidence?.sha256) &&
+    rights?.catalog === archive &&
+    rights?.accession === 'AM54-S4-: Bu P688' &&
+    rights?.creation === '1927-05-05' &&
+    rights?.photographer === 'Leonard Juda Frank' &&
+    rights?.copyrightStatus === 'Public domain' &&
+    rights?.masterFilename === 'dc5b0731-9075-46dd-86ef-1240fbc95ab3-A25223.jpg' &&
+    attribution.includes(`src="${rendition}"`) &&
+    attribution.includes('City of Vancouver Archives Item : Bu P688') &&
+    reference.sourceUrl === archive &&
+    reference.rightsEvidence?.sourceUrl === archive &&
+    reference.catalogEvidence?.sourceUrl === gallery &&
+    reference.downloadUrl === foundation + rendition &&
+    reference.artist === rights?.photographer &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected';
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-vancouver-hycroft-photo-unverified'],
+  };
+}
+
+function inspectGulbargaSurveyPlate(dir, reference) {
+  const source = 'https://ignca.gov.in/Asi_data/22691.pdf';
+  const photo = localBytes(dir, reference.path);
+  const book = localBytes(dir, reference.rightsEvidence?.path);
+  const cover = localBytes(dir, reference.catalogEvidence?.path);
+  const imageHash = 'e7c9319b696b149895ab65a17ff3afb4bcbb28c4af34d18288fffb48d8cdccfb';
+  const bookHash = '8d5e4ef3f07f309244ad0a625010f23d7f01c1cb84136af330a17a1cde8662e5';
+  const coverHash = '042e005f90109cc2dc20556cc4a8d3d9d50d88ec490b451c571878b530f970ad';
+  const eligible =
+    !!photo &&
+    !!book &&
+    !!cover &&
+    digest(photo) === imageHash &&
+    plainHash(reference.sha256) === imageHash &&
+    digest(book) === bookHash &&
+    plainHash(reference.rightsEvidence?.sha256) === bookHash &&
+    digest(cover) === coverHash &&
+    plainHash(reference.catalogEvidence?.sha256) === coverHash &&
+    reference.sourceUrl === source &&
+    reference.downloadUrl === `${source}#page=67` &&
+    reference.rightsEvidence?.sourceUrl === source &&
+    reference.catalogEvidence?.sourceUrl === `${source}#page=1` &&
+    reference.artist === 'Survey of India, Calcutta (photogravure and printing)' &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected';
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-gulbarga-survey-unverified'],
+  };
+}
+
+const dayalGulbargaPrints = {
+  'dayal-gulbarga-fort-44': {
+    frame: 44,
+    archiveId: '041-003082700',
+    title: 'Gulbarga Fort',
+    commonsTitle: 'File:Gulbarga Fort..jpg',
+    imageHash: '031a46a256729f7ac1de897e6d0e50dbbdbb9ebd0dd17d933b565f3094db1be3',
+  },
+  'dayal-gulbarga-mosque-46': {
+    frame: 46,
+    archiveId: '041-003082702',
+    title: 'Great Mosque in Gulbarga Fort',
+    commonsTitle: 'File:Great Mosque in Gulbarga Fort.jpg',
+    imageHash: '88f92f0f261337142e12d92bd1034d44436635e8c202715d59209668b837c3f6',
+  },
+};
+
+function inspectDayalGulbargaPrint(dir, reference) {
+  const expected = dayalGulbargaPrints[reference.origin];
+  const source = `https://searcharchives.bl.uk/catalog/${expected.archiveId}`;
+  const commons = `https://commons.wikimedia.org/wiki/${expected.commonsTitle.replaceAll(' ', '_')}`;
+  const photo = localBytes(dir, reference.path);
+  const catalogue = localBytes(dir, reference.rightsEvidence?.path);
+  const record = localBytes(dir, reference.catalogEvidence?.path);
+  const page = snapshotJson(record)?.query?.pages?.[0];
+  const image = page?.imageinfo?.[0];
+  const archive = catalogue?.toString() ?? '';
+  const catalogueText = page?.revisions?.[0]?.slots?.main?.content ?? '';
+  const eligible =
+    !!photo &&
+    !!catalogue &&
+    !!record &&
+    digest(photo) === expected.imageHash &&
+    plainHash(reference.sha256) === expected.imageHash &&
+    digest(catalogue) === plainHash(reference.rightsEvidence?.sha256) &&
+    digest(record) === plainHash(reference.catalogEvidence?.sha256) &&
+    reference.sourceUrl === source &&
+    reference.rightsEvidence?.sourceUrl === source &&
+    reference.catalogEvidence?.sourceUrl === commons &&
+    reference.downloadUrl === image?.url?.split('?')[0] &&
+    archive.includes(`Photo 430/6(${expected.frame})`) &&
+    archive.includes(`${expected.title}. Photographer: Dayal, Deen`) &&
+    archive.includes('Hyderabad, Deccan, 1892') &&
+    page?.title === expected.commonsTitle &&
+    catalogueText.includes(`019pho0000430s6u000${expected.frame}000.html`) &&
+    image?.extmetadata?.LicenseShortName?.value === 'Public domain' &&
+    reference.artist === 'Lala Deen Dayal' &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected';
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-dayal-gulbarga-print-unverified'],
   };
 }
 
@@ -5613,6 +5996,11 @@ export function inspectImageryInventory({
           'grenada-home-hotel-frontispiece-1902',
           ...Object.keys(acapulcoArchivePlates),
           ...Object.keys(archivedPrintIllustrations),
+          ...Object.keys(duwisibPostcards),
+          ...Object.keys(lakeheadFinnishLabourTemplePrints),
+          'vancouver-archives-hycroft-bu-p688',
+          'gulbarga-survey-plate-v',
+          ...Object.keys(dayalGulbargaPrints),
           'eth-friedlaender-temple-photograph',
           'national-trust-qld-bulls-head-1880s',
           ...Object.keys(bourkeArchivePhotos),
@@ -5664,6 +6052,7 @@ export function inspectImageryInventory({
           'archive-jackson-shrine-1911',
           'berlin-esplanade-historical-archive',
           'commons-native-creator-cc0',
+          'commons-native-creator-public-domain',
           'usgs-national-map-pr-naip',
           'usgs-national-map-amos-naip',
           'usda-naip-california-2009',
@@ -5892,6 +6281,21 @@ export function inspectImageryInventory({
       .filter((r) => Object.hasOwn(archivedPrintIllustrations, r.origin))
       .map((r) => inspectArchivedPrintIllustration(dir, r)),
     ...additional
+      .filter((r) => Object.hasOwn(duwisibPostcards, r.origin))
+      .map((r) => inspectDuwisibPostcard(dir, r)),
+    ...additional
+      .filter((r) => Object.hasOwn(lakeheadFinnishLabourTemplePrints, r.origin))
+      .map((r) => inspectLakeheadFinnishLabourTemplePrint(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'vancouver-archives-hycroft-bu-p688')
+      .map((r) => inspectVancouverHycroftPrint(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'gulbarga-survey-plate-v')
+      .map((r) => inspectGulbargaSurveyPlate(dir, r)),
+    ...additional
+      .filter((r) => Object.hasOwn(dayalGulbargaPrints, r.origin))
+      .map((r) => inspectDayalGulbargaPrint(dir, r)),
+    ...additional
       .filter((r) => r.origin === 'eth-friedlaender-temple-photograph')
       .map((r) => inspectFriedlaenderTemplePhoto(dir, r)),
     ...additional
@@ -5992,7 +6396,9 @@ export function inspectImageryInventory({
       )
       .map((r) => inspectPublicArchiveReference(dir, r)),
     ...additional
-      .filter((r) => r.origin === 'commons-native-creator-cc0')
+      .filter((r) =>
+        ['commons-native-creator-cc0', 'commons-native-creator-public-domain'].includes(r.origin),
+      )
       .map((r) => inspectCommonsCreatorOriginal(dir, r)),
     ...additional
       .filter((r) => r.origin === 'berlin-esplanade-historical-archive')

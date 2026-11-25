@@ -1,0 +1,513 @@
+{
+  "planId": "hycroft_manor",
+  "id": "hycroft_manor",
+  "assetId": "molen.worldgen.structure.hycroft_manor",
+  "title": "Hycroft Manor",
+  "wikidataId": "Q124309209",
+  "category": "heritage-residence",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -123.13660743636365,
+    "latitude": 49.25732232272728
+  },
+  "size": [
+    45.64000129699707,
+    17.669999837875366,
+    30.505983352661133
+  ],
+  "actualBounds": {
+    "min": [
+      -23.1200008392334,
+      -3.049999952316284,
+      -16.831172943115234
+    ],
+    "max": [
+      22.520000457763672,
+      14.619999885559082,
+      13.674810409545898
+    ]
+  },
+  "visualBrief": "Hycroft Manor with a green tiled hip roof, three front dormers, Ionic columns, concrete balustrades, and an open north terrace colonnade.",
+  "nativeAxes": {
+    "x": "east-northeast along front elevation",
+    "y": "up",
+    "z": "south-southeast toward driveway"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://searcharchives.vancouver.ca/challenge-inline?url=%2Ffront-of-hycroft-mansion-on-1489-macrae-avenue"
+  ],
+  "stories": [
+    {
+      "id": "hycroft-manor-wp",
+      "url": "https://qualla.com/hycroft-manor/"
+    }
+  ],
+  "referenceInputHash": "sha256:6c39ba2da819e0ef75b6a0c0a467bd5e594da0a53034f24d4835b04dfb37a092",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/c2/c2b/hycroft_manor/models/hycroft-manor-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-footprint-caps.mjs": "sha256:6ec46f2041964dfaa281afb5d61a9a2cec25bb48e63411076c644e51a26250c3",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/c2/c2b/hycroft_manor/models/hycroft-manor-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.53,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.92
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#c4c0b3",
+        "roughness": 0.92
+      },
+      "window": {
+        "slot": "window",
+        "localRef": "palette:#455459",
+        "roughness": 0.43
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.9
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#c4c0b3",
+            "roughness": 0.92
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#455459",
+            "roughness": 0.43
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.085,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#c4c0b3",
+            "roughness": 0.92
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#455459",
+            "roughness": 0.43
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.027,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#c4c0b3",
+            "roughness": 0.92
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#455459",
+            "roughness": 0.43
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "tile_ceramic",
+    "stone_limestone",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Copernicus GLO-30 at the centerline immediately south of the porte-cochere on the existing driveway. Model foundations step down at the north terrace.",
+    "anchor": [
+      -123.13660743636365,
+      49.25732232272728
+    ],
+    "heading": 0.47426075643175414,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -123.1365335984581,
+        49.25719004382192
+      ],
+      "modelHeight": 0,
+      "basis": "Original Copernicus GLO-30 at the centerline immediately south of the porte-cochere on the existing driveway. Model foundations step down at the north terrace."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -9.0173,
+          -16.601
+        ],
+        [
+          -9.0457,
+          -8.4321
+        ],
+        [
+          -19.4949,
+          -8.4405
+        ],
+        [
+          -19.5159,
+          -4.4221
+        ],
+        [
+          -22.7826,
+          -4.4223
+        ],
+        [
+          -22.7637,
+          4.6093
+        ],
+        [
+          -19.9067,
+          4.6119
+        ],
+        [
+          -19.8835,
+          8.703
+        ],
+        [
+          -8.695,
+          8.703
+        ],
+        [
+          -8.4329,
+          13.4424
+        ],
+        [
+          4.5285,
+          13.1387
+        ],
+        [
+          4.9859,
+          8.1431
+        ],
+        [
+          15.43,
+          8.1614
+        ],
+        [
+          15.4474,
+          7.332
+        ],
+        [
+          22.1405,
+          7.3392
+        ],
+        [
+          22.1274,
+          2.1146
+        ],
+        [
+          18.0416,
+          2.1194
+        ],
+        [
+          18.038,
+          -5.8282
+        ],
+        [
+          14.5266,
+          -5.8289
+        ],
+        [
+          14.5644,
+          -8.9252
+        ],
+        [
+          4.8495,
+          -8.9321
+        ],
+        [
+          4.8582,
+          -16.5856
+        ]
+      ],
+      "minimumCoverage": 0.89,
+      "basis": "OpenStreetMap names the full building outline, including both covered porticos and the solarium projections."
+    },
+    "featureIds": [
+      "way/328239442"
+    ],
+    "source": "https://www.openstreetmap.org/way/328239442",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ad3e70dc61966fb93d632eaa0aa1c1e47bb6b5fbacfc438dc0dd8503e39d5df6",
+    "notes": "The 1927 Leonard Frank photograph and City of Vancouver register description give the principal elevation, Ionic columns, dormers, second floor boxed sills, hipped green-tile roof, deep cornice and projecting chimneys."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Main mansion exterior only. Furniture, coach house and estate landscape features are outside this placement.",
+    "Heights, glazing, roof junctions, north elevation window spacing and concealed details are approximate."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "hycroft-manor-skyline",
+      "position": [
+        -34,
+        20,
+        56
+      ],
+      "lookAt": [
+        0,
+        6.2,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "hycroft-manor-district",
+      "position": [
+        -34,
+        20,
+        56
+      ],
+      "lookAt": [
+        0,
+        6.2,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "hycroft-manor-street",
+      "position": [
+        -34,
+        20,
+        56
+      ],
+      "lookAt": [
+        0,
+        6.2,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "hycroft-manor-closeup",
+      "position": [
+        -34,
+        20,
+        56
+      ],
+      "lookAt": [
+        0,
+        6.2,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-porte-cochere",
+      "position": [
+        -3,
+        7.4,
+        50
+      ],
+      "lookAt": [
+        -2,
+        6.8,
+        9
+      ]
+    },
+    {
+      "name": "columns-and-solarium",
+      "position": [
+        -30.7,
+        5.7,
+        35
+      ],
+      "lookAt": [
+        -6,
+        5.7,
+        8.4
+      ]
+    },
+    {
+      "name": "green-hip-roof-and-dormers",
+      "position": [
+        26,
+        22,
+        40
+      ],
+      "lookAt": [
+        -1.6,
+        10.8,
+        1.65
+      ]
+    },
+    {
+      "name": "north-garden-colonnade",
+      "position": [
+        21,
+        8,
+        -40
+      ],
+      "lookAt": [
+        -2.2,
+        5.2,
+        -11
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 14259,
+    "vertices": 42777,
+    "materials": 6,
+    "bytes": 1846632,
+    "sha256": "sha256:7cac8696cc91698f8034e99c8f7dca0127da543c6327bf42c49bf5cd866bfaa6"
+  }
+}

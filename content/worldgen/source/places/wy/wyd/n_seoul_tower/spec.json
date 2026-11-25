@@ -1,0 +1,479 @@
+{
+  "planId": "n_seoul_tower",
+  "id": "n_seoul_tower",
+  "assetId": "molen.worldgen.structure.n_seoul_tower",
+  "title": "N Seoul Tower",
+  "wikidataId": "Q69134",
+  "category": "tower",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 126.98822196842104,
+    "latitude": 37.55119841052632
+  },
+  "size": [
+    72.04813003540039,
+    253.89999771118164,
+    75.98149108886719
+  ],
+  "actualBounds": {
+    "min": [
+      -36.2004508972168,
+      -17.200000762939453,
+      -44.897090911865234
+    ],
+    "max": [
+      35.847679138183594,
+      236.6999969482422,
+      31.084400177001953
+    ]
+  },
+  "visualBrief": "N Seoul Tower with its mapped low pavilion, white concrete stem, stepped green-gray glazed observation levels and red-and-white steel antenna.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:N_Seoul_Tower_-_20260929.jpg"
+  ],
+  "stories": [
+    {
+      "id": "n-seoul-tower-wp",
+      "url": "https://qualla.com/n-seoul-tower/"
+    }
+  ],
+  "referenceInputHash": "sha256:f57e230a1a2f83fdb203c6360c7caa9be068e542d987aeacdbbf94df7bd98a33",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wy/wyd/n_seoul_tower/models/n-seoul-tower-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-footprint-caps.mjs": "sha256:6ec46f2041964dfaa281afb5d61a9a2cec25bb48e63411076c644e51a26250c3",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/wy/wyd/n_seoul_tower/models/n-seoul-tower-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.66,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.93
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_panel",
+        "roughness": 0.95
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.14
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#53605b",
+        "roughness": 0.37,
+        "metallic": 0.11
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.235,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#53605b",
+            "roughness": 0.37,
+            "metallic": 0.11
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.095,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#53605b",
+            "roughness": 0.37,
+            "metallic": 0.11
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.032,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#53605b",
+            "roughness": 0.37,
+            "metallic": 0.11
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "concrete_panel",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified Copernicus GLO-30 at the tower shaft center on Namsan. The low pavilion follows the mapped outline with foundations down the hill.",
+    "anchor": [
+      126.98822196842104,
+      37.55119841052632
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        126.98822196842104,
+        37.55119841052632
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified Copernicus GLO-30 at the tower shaft center on Namsan. The low pavilion follows the mapped outline with foundations down the hill."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -22.82,
+          -19.8805
+        ],
+        [
+          -19.4222,
+          -6.6891
+        ],
+        [
+          -26.6414,
+          -4.5852
+        ],
+        [
+          -25.9354,
+          -2.0582
+        ],
+        [
+          -36.0759,
+          0.4687
+        ],
+        [
+          -26.9591,
+          30.9591
+        ],
+        [
+          31.3863,
+          14.8289
+        ],
+        [
+          30.6714,
+          10.3428
+        ],
+        [
+          35.7196,
+          9.1071
+        ],
+        [
+          32.1894,
+          -11.2087
+        ],
+        [
+          23.2404,
+          -9.0602
+        ],
+        [
+          21.1752,
+          -17.6096
+        ],
+        [
+          23.0374,
+          -18.1328
+        ],
+        [
+          19.5336,
+          -31.6247
+        ],
+        [
+          15.5092,
+          -30.7119
+        ],
+        [
+          11.6613,
+          -44.7715
+        ],
+        [
+          5.5805,
+          -43.1463
+        ],
+        [
+          -23.376,
+          -35.4318
+        ],
+        [
+          -27.1798,
+          -34.4188
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "Relation 16474080 provides the integral summit pavilion footprint below the broadcasting shaft."
+    },
+    "featureIds": [
+      "relation/16474080"
+    ],
+    "source": "https://www.openstreetmap.org/relation/16474080",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:570d85a5e2c4ee92f5e56a42746d66118ff1beb9ec39e42f8b659694528b2781",
+    "notes": "The photographer’s exact 29 September 2026 original shows the form and finish above the trees. The operator supplies 135.7 m body and 101 m antenna dimensions. OSM part heights are approximate controls for the public deck bands."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Glazing divisions, podium cladding, antenna bracing and equipment details are generalized.",
+    "The model depicts the integral tower and podium exterior. It omits the separate neighboring lattice tower, paths and plaza shelters."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "n-seoul-tower-skyline",
+      "position": [
+        160,
+        151,
+        313
+      ],
+      "lookAt": [
+        0,
+        113,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "n-seoul-tower-district",
+      "position": [
+        160,
+        151,
+        313
+      ],
+      "lookAt": [
+        0,
+        113,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "n-seoul-tower-street",
+      "position": [
+        160,
+        151,
+        313
+      ],
+      "lookAt": [
+        0,
+        113,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "n-seoul-tower-closeup",
+      "position": [
+        160,
+        151,
+        313
+      ],
+      "lookAt": [
+        0,
+        113,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "pavilion-and-stem",
+      "position": [
+        74,
+        23,
+        98
+      ],
+      "lookAt": [
+        0,
+        10,
+        -5
+      ]
+    },
+    {
+      "name": "observation-deck-and-crown",
+      "position": [
+        -75,
+        124,
+        87
+      ],
+      "lookAt": [
+        0,
+        106,
+        0
+      ]
+    },
+    {
+      "name": "red-and-white-mast",
+      "position": [
+        57,
+        216,
+        137
+      ],
+      "lookAt": [
+        0,
+        182,
+        0
+      ]
+    },
+    {
+      "name": "tower-over-namsan",
+      "position": [
+        -210,
+        61,
+        -294
+      ],
+      "lookAt": [
+        0,
+        115,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 17595,
+    "vertices": 52785,
+    "materials": 5,
+    "bytes": 2205028,
+    "sha256": "sha256:6074af0a2da5fbaff4a73d13e6d4022ca0a018f6c71c5e71ae97f579684112a4"
+  }
+}

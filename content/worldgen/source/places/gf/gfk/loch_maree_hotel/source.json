@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.loch_maree_hotel",
+  "kind": "static-structure",
+  "title": "Loch Maree Hotel",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.loch_maree_hotel",
+        "output": "assets/places/gf/gfk/loch_maree_hotel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:803860240e9972b0b35daef92cd1c8ca5265d8aa723fb30e36a1e7ae166b71ea"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-loch-maree-hotel",
+        "path": "models/generate-loch-maree-hotel.mjs"
+      },
+      {
+        "id": "loch-maree-hotel-model",
+        "path": "models/loch-maree-hotel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/loch-maree-hotel-footprint.json",
+      "native-map/loch-maree-hotel-shape-controls.json",
+      "reference-rights/loch-maree-hotel-architectural-facts.json",
+      "references/graphic-n335.jpg",
+      "reference-rights/graphic-archive-record.json",
+      "reference-rights/graphic-n332.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-loch-maree-hotel-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

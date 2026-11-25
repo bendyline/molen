@@ -21,7 +21,7 @@ function titleFromCommons(url) {
   return decodeURIComponent(address.pathname.slice(6)).replaceAll('_', ' ');
 }
 
-/** Verify the photographer's CC0 grant on the first revision of their native original. */
+/** Verify the photographer's release on the first revision of their native original. */
 export function inspectCommonsCreatorOriginal(dir, reference) {
   const result = { path: reference.path, sourceUrl: reference.sourceUrl };
   try {
@@ -30,7 +30,8 @@ export function inspectCommonsCreatorOriginal(dir, reference) {
     const raw = record.native;
     const page = Object.values(raw.query.pages)[0];
     const first = page.revisions[0];
-    const info = page.imageinfo[0];
+    const archived = reference.origin === 'commons-native-creator-public-domain';
+    const info = archived ? page.imageinfo.at(-1) : page.imageinfo[0];
     const meta = info.extmetadata;
     const archive = new URL(record.source);
     const image = localBytes(dir, reference.path);
@@ -43,6 +44,25 @@ export function inspectCommonsCreatorOriginal(dir, reference) {
     };
     const nickname = reference.artist;
     const nativeUrl = new URL(info.url);
+    const uploadedByCreator = archived
+      ? info.user === nickname || info.user === `${nickname}~commonswiki`
+      : info.user === nickname;
+    const creditedArtist = meta.Artist?.value?.replace(/<[^>]+>/g, '').trim();
+    const originalRelease = archived
+      ? field('source') === 'Own work - Public Domain' &&
+        field('author') === creditedArtist &&
+        creditedArtist?.split(' (')[0] === nickname &&
+        field('permission') === 'Own work, all rights released (Public domain)' &&
+        /^\{\{PD-self\}\}[ \t]*$/im.test(text) &&
+        meta.LicenseShortName?.value === 'Public domain' &&
+        reference.license === 'Public domain'
+      : field('source') === '{{own}}' &&
+        field('author') === `[[User:${nickname}|${nickname}]]` &&
+        creditedArtist === nickname &&
+        (/\{\{\s*self\s*\|\s*cc-zero\s*\}\}/i.test(text) ||
+          /^\{\{\s*cc-zero\s*\}\}[ \t]*$/im.test(text)) &&
+        meta.LicenseShortName?.value === 'CC0' &&
+        reference.license === 'CC0';
     const accepted =
       archive.origin === 'https://commons.wikimedia.org' &&
       archive.pathname === '/w/api.php' &&
@@ -52,23 +72,20 @@ export function inspectCommonsCreatorOriginal(dir, reference) {
       archive.searchParams.get('rvdir') === 'newer' &&
       first.parentid === 0 &&
       first.revid === reference.nativeRevision &&
-      page.imageinfo.length === 1 &&
+      (archived ? page.imageinfo.length > 1 : page.imageinfo.length === 1) &&
       !raw.continue?.iicontinue &&
-      first.user === nickname &&
-      info.user === nickname &&
+      !['iistart', 'iiend', 'iicontinue'].some((key) => archive.searchParams.has(key)) &&
+      uploadedByCreator &&
+      first.user === info.user &&
       Number.isFinite(Date.parse(first.timestamp)) &&
       Math.abs(Date.parse(info.timestamp) - Date.parse(first.timestamp)) <= 300000 &&
-      field('source') === '{{own}}' &&
-      field('author') === `[[User:${nickname}|${nickname}]]` &&
-      meta.Artist?.value?.replace(/<[^>]+>/g, '').trim() === nickname &&
-      /\{\{\s*self\s*\|\s*cc-zero\s*\}\}/i.test(text) &&
+      originalRelease &&
       !/\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(text) &&
-      meta.LicenseShortName?.value === 'CC0' &&
       meta.AttributionRequired?.value === 'false' &&
       meta.Restrictions?.value === '' &&
-      reference.license === 'CC0' &&
       nativeUrl.origin === 'https://upload.wikimedia.org' &&
       nativeUrl.pathname.startsWith('/wikipedia/commons/') &&
+      nativeUrl.pathname.startsWith('/wikipedia/commons/archive/') === archived &&
       !nativeUrl.pathname.includes('/thumb/') &&
       nativeUrl.origin + nativeUrl.pathname === reference.downloadUrl &&
       info.size === image.length &&
@@ -77,11 +94,12 @@ export function inspectCommonsCreatorOriginal(dir, reference) {
       digest(image) === reference.sha256?.replace(/^sha256:/, '') &&
       digest(rights) === reference.rightsEvidence.sha256?.replace(/^sha256:/, '') &&
       reference.originalReview?.status === 'inspected' &&
-      reference.originalReview?.rendition === 'native-original' &&
+      reference.originalReview?.rendition ===
+        (archived ? 'archived-native-original' : 'native-original') &&
       reference.visuallyReviewedForThisPolicy === true;
     if (accepted) return { ...result, eligible: true, blockers: [] };
   } catch {
     // Missing or altered evidence leaves the image ineligible.
   }
-  return { ...result, eligible: false, blockers: ['commons-creator-cc0-original-unverified'] };
+  return { ...result, eligible: false, blockers: ['commons-creator-original-unverified'] };
 }

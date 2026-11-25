@@ -1,6 +1,6 @@
 # Qualla compat · fourth structure batch
 
-**243 of 500 complete.** Latest model: [Fort Dundas](research/fort-dundas-completion-2026-11-24.json).
+**260 of 500 complete.** Latest model: [Saint Neophytos Enkleistra](research/saint-neophytos-enkleistra-completion-2026-11-25.json).
 
 The 500 structures span 111 countries and 8 regions. The selection checked 1,762 reservation rows, including every entry in [Important Landmarks](../../structure-catalog/IMPORTANT-LANDMARKS.json).
 
@@ -140,7 +140,7 @@ Seimei Shrine replaces Futarasan Shrine, a documented member of the other device
 | 126 | [Casino Post Office](https://qualla.com/casino-post-office/) | Australia | hotel-commercial | Qualla search queued | Queued |
 | 127 | [Provincial Palace](https://qualla.com/provincial-palace/) | Brazil | palace-castle-fort | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
 | 128 | [Lady Dufferin Hospital](https://qualla.com/lady-dufferin-hospital/) | Pakistan | civic-institutional | Qualla search queued | Queued |
-| 129 | [Agios Neophytos Monastery](https://qualla.com/agios-neophytos-monastery/) | Cyprus | religious | Qualla search queued | Queued |
+| 129 | [Saint Neophytos Enkleistra](https://qualla.com/agios-neophytos-monastery/) | Cyprus | religious | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
 | 130 | [Morgan Lewis Sugar Mill](https://qualla.com/morgan-lewis-sugar-mill/) | Barbados | industrial | Qualla search queued | Queued |
 | 131 | [Evergreen Maritime Museum](https://qualla.com/evergreen-maritime-museum/) | Taiwan | museum-library | 2 cleared Qualla originals | Complete and linked |
 | 132 | [Frans Hals Museum](https://qualla.com/frans-hals-museum/) | Netherlands | museum-library | 0 cleared Qualla originals and 4 CC0, CC0, CC0, CC0 supplements | Complete and linked |
@@ -148,7 +148,7 @@ Seimei Shrine replaces Futarasan Shrine, a documented member of the other device
 | 134 | [Fort Dundas](https://qualla.com/fort-dundas/) | Australia | palace-castle-fort | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
 | 135 | [Cerro Tololo Inter-American Observatory](https://qualla.com/cerro-tololo-inter-american-observatory/) | Chile | museum-library | Qualla search queued | Queued |
 | 136 | [Barabati fort](https://qualla.com/barabati-fort/) | India | palace-castle-fort | Qualla search queued | Queued |
-| 137 | [Bahla Fort](https://qualla.com/bahla-fort/) | Oman | palace-castle-fort | Qualla search queued | Queued |
+| 137 | [Bahla Fort](https://qualla.com/bahla-fort/) | Oman | palace-castle-fort | 0 cleared Qualla originals and 3 Public domain, Public domain, Public domain supplements | Complete and linked |
 | 138 | [Plaza Theatre (El Paso)](https://qualla.com/plaza-theatre-el-paso/) | Mexico | performance-sport | 0 cleared Qualla originals and 2 Public domain, Public domain supplements | Complete and linked |
 | 139 | [Shiroishi Castle](https://qualla.com/shiroishi-castle/) | Japan | palace-castle-fort | 1 cleared Qualla original | Complete and linked |
 | 140 | [Burns Cottage](https://qualla.com/burns-cottage/) | United Kingdom | residence | 1 cleared Qualla original | Complete and linked |
@@ -257,8 +257,8 @@ Seimei Shrine replaces Futarasan Shrine, a documented member of the other device
 | 243 | [Powell River Mill](https://qualla.com/powell-river-mill/) | Canada | industrial | Qualla search queued | Queued |
 | 244 | [Hotel Bauen](https://qualla.com/hotel-bauen/) | Argentina | hotel-commercial | Qualla search queued | Queued |
 | 245 | [Embassy of the United Kingdom, Tehran](https://qualla.com/embassy-of-the-united-kingdom-tehran/) | Iran | civic-institutional | Qualla search queued | Queued |
-| 246 | [Church of Our Lady Mary of Zion](https://qualla.com/church-of-our-lady-mary-of-zion/) | Ethiopia | religious | Qualla search queued | Queued |
-| 247 | [The Canton Hospital](https://qualla.com/the-canton-hospital/) | People's Republic of China | civic-institutional | Qualla candidates | Queued |
+| 246 | [Old Church of Our Lady Mary of Zion](https://qualla.com/church-of-our-lady-mary-of-zion/) | Ethiopia | religious | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
+| 247 | [The Canton Hospital](https://qualla.com/the-canton-hospital/) | People's Republic of China | civic-institutional | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
 | 248 | [Historic Mill of Sanssouci](https://qualla.com/historic-mill-of-sanssouci/) | Germany | industrial | 1 cleared Qualla original | Complete and linked |
 | 249 | [Fort Peck Indian Reservation](https://qualla.com/fort-peck-indian-reservation/) | United States of America | palace-castle-fort | Qualla candidates | Queued |
 | 250 | [Gold Museum of Peru and Arms of the World](https://qualla.com/gold-museum-of-peru-and-arms-of-the-world/) | Peru | museum-library | Qualla search queued | Queued |
@@ -294,7 +294,7 @@ Seimei Shrine replaces Futarasan Shrine, a documented member of the other device
 | 280 | [Cathedral of Coro](https://qualla.com/cathedral-of-coro/) | Venezuela | religious | Qualla search queued | Queued |
 | 281 | [Wedding Palace (Ashgabat)](https://qualla.com/wedding-palace-ashgabat/) | Turkmenistan | palace-castle-fort | Qualla search queued | Queued |
 | 282 | [Muso Kunda Museum of Women](https://qualla.com/muso-kunda-museum-of-women/) | Mali | museum-library | Qualla search queued | Queued |
-| 283 | [Hương Temple](https://qualla.com/huong-temple/) | Vietnam | religious | Qualla candidates | Queued |
+| 283 | [Thiên Trù Pagoda](https://qualla.com/huong-temple/) | Vietnam | religious | 1 cleared Qualla original | Complete and linked |
 | 284 | [King Chulalongkorn Memorial Building](https://qualla.com/king-chulalongkorn-memorial-building/) | Sweden | civic-institutional | 2 cleared Qualla originals | Complete and linked |
 | 285 | [Williams-Brice Stadium](https://qualla.com/williams-brice-stadium/) | United States of America | performance-sport | 2 cleared Qualla originals | Complete and linked |
 | 286 | [Museum of Congress and the Inquisition](https://qualla.com/museum-of-congress-and-the-inquisition/) | Peru | museum-library | Qualla search queued | Queued |
@@ -302,7 +302,7 @@ Seimei Shrine replaces Futarasan Shrine, a documented member of the other device
 | 288 | [Palace of the Governors, Togo](https://qualla.com/palace-of-the-governors-togo/) | Togo | palace-castle-fort | 1 cleared Qualla original and 1 Public domain supplement | Complete and linked |
 | 289 | [National Palace Museum](https://qualla.com/national-palace-museum/) | Taiwan | palace-castle-fort | 1 cleared Qualla original and 3 CC0, Public domain, CC0 supplements | Complete and linked |
 | 290 | [An Grianan Theatre](https://qualla.com/an-grianan-theatre/) | Ireland | performance-sport | 1 cleared Qualla original | Complete and linked |
-| 291 | [Hycroft Manor](https://qualla.com/hycroft-manor/) | Canada | residence | Qualla search queued | Queued |
+| 291 | [Hycroft Manor](https://qualla.com/hycroft-manor/) | Canada | residence | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
 | 292 | [Atucha Nuclear Power Plant](https://qualla.com/atucha-nuclear-power-plant/) | Argentina | industrial | Qualla search queued | Queued |
 | 293 | [Bibi Maryam Mosque](https://qualla.com/bibi-maryam-mosque/) | Bangladesh | religious | Qualla search queued | Queued |
 | 294 | [Ziverbey Villa](https://qualla.com/ziverbey-villa/) | Turkey | residence | Qualla search queued | Queued |
@@ -319,7 +319,7 @@ Seimei Shrine replaces Futarasan Shrine, a documented member of the other device
 | 305 | [National Museum of Sudan](https://qualla.com/national-museum-of-sudan/) | Sudan | museum-library | Qualla search queued | Queued |
 | 306 | [Kyaiktiyo Pagoda](https://qualla.com/kyaiktiyo-pagoda/) | Myanmar | religious | 2 cleared Qualla originals | Complete and linked |
 | 307 | [Sugar Factory Zeeland](https://qualla.com/sugar-factory-zeeland/) | Netherlands | industrial | 1 cleared Qualla original | Complete and linked |
-| 308 | [Fort Riley](https://qualla.com/fort-riley/) | United States of America | palace-castle-fort | Qualla candidates | Queued |
+| 308 | [First Territorial Capitol of Kansas](https://qualla.com/fort-riley/) | United States of America | palace-castle-fort | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
 | 309 | [Shrine of Khwaja Abu Nasr Parsa](https://qualla.com/shrine-of-khwaja-abu-nasr-parsa/) | Afghanistan | religious | Qualla search queued | Queued |
 | 310 | [Royal Palace of Fez](https://qualla.com/royal-palace-of-fez/) | Morocco | palace-castle-fort | Qualla search queued | Queued |
 | 311 | [Motegi Control Tower](https://qualla.com/mobility-resort-motegi/) | Japan | hotel-commercial | 1 cleared Qualla original | Complete and linked |
@@ -329,7 +329,7 @@ Seimei Shrine replaces Futarasan Shrine, a documented member of the other device
 | 315 | [Olduvai Gorge Museum](https://qualla.com/olduvai-gorge-museum/) | Tanzania | museum-library | Qualla search queued | Queued |
 | 316 | [Satriamandala Museum](https://qualla.com/satriamandala-museum/) | Indonesia | museum-library | Qualla candidates | Queued |
 | 317 | [Tsarevets (fortress)](https://qualla.com/tsarevets-fortress/) | Bulgaria | palace-castle-fort | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
-| 318 | [Basilica of Sainte-Anne-de-Beaupré](https://qualla.com/basilica-of-sainte-anne-de-beaupr/) | Canada | religious | Qualla search queued | Queued |
+| 318 | [Basilica of Sainte-Anne-de-Beaupré](https://qualla.com/basilica-of-sainte-anne-de-beaupr/) | Canada | religious | 0 cleared Qualla originals and 2 CC0, Public domain supplements | Complete and linked |
 | 319 | [Gohardasht Prison](https://qualla.com/gohardasht-prison/) | Iran | civic-institutional | Qualla search queued | Queued |
 | 320 | [Prophet's Mosque](https://qualla.com/prophet-s-mosque/) | Saudi Arabia | religious | Qualla search queued | Queued |
 | 321 | [Katsura Imperial Villa](https://qualla.com/katsura-imperial-villa/) | Japan | residence | 4 cleared Qualla originals and 2 Public domain, Public domain supplements | Complete and linked |
@@ -342,7 +342,7 @@ Seimei Shrine replaces Futarasan Shrine, a documented member of the other device
 | 328 | [Empire Stadium](https://qualla.com/empire-stadium-vancouver/) | Canada | performance-sport | Qualla search queued | Queued |
 | 329 | [Dhakeshwari Temple](https://qualla.com/dhakeshwari-temple/) | Bangladesh | religious | Qualla search queued | Queued |
 | 330 | [Mandela House](https://qualla.com/mandela-house/) | South Africa | residence | Qualla search queued | Queued |
-| 331 | [Phủ Cam Cathedral](https://qualla.com/phu-cam-cathedral/) | Vietnam | religious | Qualla candidates | Queued |
+| 331 | [Phủ Cam Cathedral](https://qualla.com/phu-cam-cathedral/) | Vietnam | religious | 1 cleared Qualla original | Complete and linked |
 | 332 | [Padise Abbey](https://qualla.com/padise-abbey/) | Estonia | religious | 3 cleared Qualla originals | Complete and linked |
 | 333 | [Irving House](https://qualla.com/irving-house/) | Canada | residence | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
 | 334 | [Saparmyrat Hajji Mosque](https://qualla.com/saparmyrat-hajji-mosque/) | Turkmenistan | religious | Qualla search queued | Queued |
@@ -356,8 +356,8 @@ Seimei Shrine replaces Futarasan Shrine, a documented member of the other device
 | 342 | [Krasnoye Sormovo Factory No. 112](https://qualla.com/krasnoye-sormovo-factory-no-112/) | Russia | industrial | Qualla candidates | Queued |
 | 343 | [Huntington Museum of Art](https://qualla.com/huntington-museum-of-art/) | United States of America | museum-library | 2 cleared Qualla originals | Complete and linked |
 | 344 | [Sassi Punnu Fort](https://qualla.com/sassi-punnu-fort/) | Pakistan | palace-castle-fort | Qualla search queued | Queued |
-| 345 | [Duwisib Castle](https://qualla.com/duwisib-castle/) | Namibia | palace-castle-fort | Qualla search queued | Queued |
-| 346 | [N Seoul Tower](https://qualla.com/n-seoul-tower/) | South Korea | tower | Qualla search queued | Queued |
+| 345 | [Duwisib Castle](https://qualla.com/duwisib-castle/) | Namibia | palace-castle-fort | 0 cleared Qualla originals and 2 Public domain, Public domain supplements | Complete and linked |
+| 346 | [N Seoul Tower](https://qualla.com/n-seoul-tower/) | South Korea | tower | 0 cleared Qualla originals and 1 CC0 supplement | Complete and linked |
 | 347 | [KGB Prison, Potsdam](https://qualla.com/kgb-prison-potsdam/) | Germany | civic-institutional | 2 cleared Qualla originals and 1 CC0 supplement | Complete and linked |
 | 348 | [Brandon Indian Residential School](https://qualla.com/brandon-indian-residential-school/) | Canada | civic-institutional | Qualla search queued | Queued |
 | 349 | [Jeshoreshwari Kali Temple](https://qualla.com/jeshoreshwari-kali-temple/) | Bangladesh | religious | Qualla search queued | Queued |
@@ -371,7 +371,7 @@ Seimei Shrine replaces Futarasan Shrine, a documented member of the other device
 | 357 | [Pori Theatre](https://qualla.com/pori-theatre/) | Finland | performance-sport | 1 cleared Qualla original | Complete and linked |
 | 358 | [Point Ellice House](https://qualla.com/point-ellice-house/) | Canada | residence | Qualla search queued | Queued |
 | 359 | [Falaknuma Palace](https://qualla.com/falaknuma-palace/) | India | palace-castle-fort | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
-| 360 | [Fort de la Goulette](https://qualla.com/fort-de-la-goulette/) | Tunisia | palace-castle-fort | Qualla search queued | Queued |
+| 360 | [Fort de la Goulette](https://qualla.com/fort-de-la-goulette/) | Tunisia | palace-castle-fort | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
 | 361 | [Sunda Kelapa Lighthouse](https://qualla.com/sunda-kelapa-lighthouse/) | Indonesia | lighthouse | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
 | 362 | [Monastery of the Holy Trinity, Vilnius](https://qualla.com/monastery-of-the-holy-trinity-vilnius/) | Lithuania | religious | 1 cleared Qualla original and 3 CC0, CC0, Public domain supplements | Complete and linked |
 | 363 | [California Memorial Stadium](https://qualla.com/california-memorial-stadium/) | United States of America | performance-sport | 3 cleared Qualla originals and 2 CC0, CC0 supplements | Complete and linked |
@@ -388,12 +388,12 @@ Seimei Shrine replaces Futarasan Shrine, a documented member of the other device
 | 374 | [White Palace (Marghazar)](https://qualla.com/white-palace-marghazar/) | Pakistan | palace-castle-fort | Qualla search queued | Queued |
 | 375 | [Fort Suse](https://qualla.com/fort-suse/) | Iraq | palace-castle-fort | Qualla search queued | Queued |
 | 376 | [Qincheng Prison](https://qualla.com/qincheng-prison/) | People's Republic of China | civic-institutional | Qualla candidates | Queued |
-| 377 | [Loch Maree Hotel Botulism Poisoning](https://qualla.com/loch-maree-hotel-botulism-poisoning/) | United Kingdom | hotel-commercial | Qualla candidates | Queued |
+| 377 | [Loch Maree Hotel](https://qualla.com/loch-maree-hotel-botulism-poisoning/) | United Kingdom | hotel-commercial | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
 | 378 | [Taum Sauk Hydroelectric Power Station](https://qualla.com/taum-sauk-hydroelectric-power-station/) | United States of America | industrial | Qualla candidates | Queued |
 | 379 | [Oxford Mission Church](https://qualla.com/oxford-mission-church/) | Bangladesh | religious | Qualla search queued | Queued |
 | 380 | [Museum of Libya](https://qualla.com/museum-of-libya/) | Libya | museum-library | Qualla search queued | Queued |
 | 381 | [Numazu Imperial Villa](https://qualla.com/numazu-imperial-villa/) | Japan | residence | Qualla candidates | Queued |
-| 382 | [Guinness Brewery](https://qualla.com/guinness-brewery/) | Ireland | industrial | Qualla candidates | Queued |
+| 382 | [Guinness Brewery, St. James’s Gate](https://qualla.com/guinness-brewery/) | Ireland | industrial | 0 cleared Qualla originals and 1 CC0 supplement | Complete and linked |
 | 383 | [Canadian Lacrosse Hall of Fame](https://qualla.com/canadian-lacrosse-hall-of-fame/) | Canada | civic-institutional | Qualla search queued | Queued |
 | 384 | [Malek National Museum and Library](https://qualla.com/malek-national-museum-and-library/) | Iran | museum-library | Qualla search queued | Queued |
 | 385 | [Rose Cottage Cave](https://qualla.com/rose-cottage-cave/) | South Africa | residence | Qualla search queued | Queued |
@@ -414,7 +414,7 @@ Seimei Shrine replaces Futarasan Shrine, a documented member of the other device
 | 400 | [Hacienda Rosalia](https://qualla.com/hacienda-rosalia/) | Philippines | residence | Qualla search queued | Queued |
 | 401 | [Ventspils Castle](https://qualla.com/ventspils-castle/) | Latvia | palace-castle-fort | 1 cleared Qualla original | Complete and linked |
 | 402 | [Craigdarroch Castle](https://qualla.com/craigdarroch-castle/) | Canada | palace-castle-fort | 0 cleared Qualla originals and 1 CC0 supplement | Complete and linked |
-| 403 | [Gulbarga Fort](https://qualla.com/gulbarga-fort/) | India | palace-castle-fort | Qualla search queued | Queued |
+| 403 | [Gulbarga Fort](https://qualla.com/gulbarga-fort/) | India | palace-castle-fort | 0 cleared Qualla originals and 3 Public domain, Public domain, Public domain supplements | Complete and linked |
 | 404 | [Uesugi Shrine](https://qualla.com/yonezawa-castle/) | Japan | palace-castle-fort | 2 cleared Qualla originals and 1 CC0 supplement | Complete and linked |
 | 405 | [Scrovegni Chapel](https://qualla.com/scrovegni-chapel/) | Italy | religious | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
 | 406 | [Ross Bay Villa](https://qualla.com/ross-bay-villa/) | Canada | residence | Qualla search queued | Queued |
@@ -445,7 +445,7 @@ Seimei Shrine replaces Futarasan Shrine, a documented member of the other device
 | 431 | [Wardenclyffe Tower](https://qualla.com/wardenclyffe-tower/) | United States of America | tower | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
 | 432 | [Indonesia Stock Exchange](https://qualla.com/indonesia-stock-exchange/) | Indonesia | hotel-commercial | Qualla search queued | Queued |
 | 433 | [AEG Turbine Factory](https://qualla.com/aeg-turbine-factory/) | Germany | industrial | 1 cleared Qualla original | Complete and linked |
-| 434 | [Finnish Labour Temple](https://qualla.com/finnish-labour-temple/) | Canada | religious | Qualla search queued | Queued |
+| 434 | [Finnish Labour Temple](https://qualla.com/finnish-labour-temple/) | Canada | religious | 0 cleared Qualla originals and 2 Public domain, Public domain supplements | Complete and linked |
 | 435 | [National Diet Building](https://qualla.com/national-diet-building/) | Japan | civic-institutional | 1 cleared Qualla original and 1 Public domain supplement | Complete and linked |
 | 436 | [Monastery of Sant Jeroni de Cotalba](https://qualla.com/monastery-of-sant-jeroni-de-cotalba/) | Spain | religious | 4 cleared Qualla originals and 3 Public domain, Public domain, Public domain supplements | Complete and linked |
 | 437 | [The Elephant House](https://qualla.com/the-elephant-house/) | Canada | residence | Qualla search queued | Queued |
@@ -507,7 +507,7 @@ Seimei Shrine replaces Futarasan Shrine, a documented member of the other device
 | 493 | [Odesa City Hall](https://qualla.com/odesa-city-hall/) | Ukraine | civic-institutional | 1 cleared Qualla original | Complete and linked |
 | 494 | [Fort des Épinettes](https://qualla.com/fort-des-pinettes/) | Canada | palace-castle-fort | Qualla search queued | Queued |
 | 495 | [National Museum of Aleppo](https://qualla.com/national-museum-of-aleppo/) | Syria | museum-library | Qualla search queued | Queued |
-| 496 | [The Inn at the Edge of Empire](https://qualla.com/stadsherberg-batavia/) | Indonesia | hotel-commercial | Qualla search queued | Queued |
+| 496 | [Stadsherberg, Batavia](https://qualla.com/stadsherberg-batavia/) | Indonesia | hotel-commercial | 0 cleared Qualla originals and 2 Public domain, Public domain supplements | Complete and linked |
 | 497 | [Royal Theater Carré](https://qualla.com/royal-theater-carre/) | Netherlands | performance-sport | 1 cleared Qualla original and 1 Public domain supplement | Complete and linked |
 | 498 | [Vaile Mansion](https://qualla.com/vaile-mansion/) | United States of America | residence | 3 cleared Qualla originals and 1 Public domain supplement | Complete and linked |
 | 499 | [Burns Philp Building, Normanton](https://qualla.com/burns-philp-building-normanton/) | Australia | civic-institutional | 0 cleared Qualla originals and 1 Public domain supplement | Complete and linked |

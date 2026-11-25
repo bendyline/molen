@@ -1,8 +1,8 @@
 # Qualla compat — local 500 — completion progress
 
-**243 / 500 completed.** 243 models started; 257 not started.
+**260 / 500 completed.** 260 models started; 240 not started.
 
-243 models retain their technical validation; 243 reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.
+260 models retain their technical validation; 260 reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.
 
 Finish each model using Qualla photographs, current renders and story synchronization in the same authoring pass. Every structure catalog candidate and collection member remains assigned to the other device.
 
@@ -138,7 +138,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 126 | [Casino Post Office](https://qualla.com/casino-post-office/) | Not started | source-model-missing |
 | 127 | [Provincial Palace](https://qualla.com/provincial-palace/) | Complete | All required evidence current |
 | 128 | [Lady Dufferin Hospital](https://qualla.com/lady-dufferin-hospital/) | Not started | source-model-missing |
-| 129 | [Agios Neophytos Monastery](https://qualla.com/agios-neophytos-monastery/) | Not started | source-model-missing |
+| 129 | [Saint Neophytos Enkleistra](https://qualla.com/agios-neophytos-monastery/) | Complete | All required evidence current |
 | 130 | [Morgan Lewis Sugar Mill](https://qualla.com/morgan-lewis-sugar-mill/) | Not started | source-model-missing |
 | 131 | [Evergreen Maritime Museum](https://qualla.com/evergreen-maritime-museum/) | Complete | All required evidence current |
 | 132 | [Frans Hals Museum](https://qualla.com/frans-hals-museum/) | Complete | All required evidence current |
@@ -146,7 +146,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 134 | [Fort Dundas](https://qualla.com/fort-dundas/) | Complete | All required evidence current |
 | 135 | [Cerro Tololo Inter-American Observatory](https://qualla.com/cerro-tololo-inter-american-observatory/) | Not started | source-model-missing |
 | 136 | [Barabati fort](https://qualla.com/barabati-fort/) | Not started | source-model-missing |
-| 137 | [Bahla Fort](https://qualla.com/bahla-fort/) | Not started | source-model-missing |
+| 137 | [Bahla Fort](https://qualla.com/bahla-fort/) | Complete | All required evidence current |
 | 138 | [Plaza Theatre (El Paso)](https://qualla.com/plaza-theatre-el-paso/) | Complete | All required evidence current |
 | 139 | [Shiroishi Castle](https://qualla.com/shiroishi-castle/) | Complete | All required evidence current |
 | 140 | [Burns Cottage](https://qualla.com/burns-cottage/) | Complete | All required evidence current |
@@ -255,8 +255,8 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 243 | [Powell River Mill](https://qualla.com/powell-river-mill/) | Not started | source-model-missing |
 | 244 | [Hotel Bauen](https://qualla.com/hotel-bauen/) | Not started | source-model-missing |
 | 245 | [Embassy of the United Kingdom, Tehran](https://qualla.com/embassy-of-the-united-kingdom-tehran/) | Not started | source-model-missing |
-| 246 | [Church of Our Lady Mary of Zion](https://qualla.com/church-of-our-lady-mary-of-zion/) | Not started | source-model-missing |
-| 247 | [The Canton Hospital](https://qualla.com/the-canton-hospital/) | Not started | source-model-missing |
+| 246 | [Old Church of Our Lady Mary of Zion](https://qualla.com/church-of-our-lady-mary-of-zion/) | Complete | All required evidence current |
+| 247 | [The Canton Hospital](https://qualla.com/the-canton-hospital/) | Complete | All required evidence current |
 | 248 | [Historic Mill of Sanssouci](https://qualla.com/historic-mill-of-sanssouci/) | Complete | All required evidence current |
 | 249 | [Fort Peck Indian Reservation](https://qualla.com/fort-peck-indian-reservation/) | Not started | source-model-missing |
 | 250 | [Gold Museum of Peru and Arms of the World](https://qualla.com/gold-museum-of-peru-and-arms-of-the-world/) | Not started | source-model-missing |
@@ -292,7 +292,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 280 | [Cathedral of Coro](https://qualla.com/cathedral-of-coro/) | Not started | source-model-missing |
 | 281 | [Wedding Palace (Ashgabat)](https://qualla.com/wedding-palace-ashgabat/) | Not started | source-model-missing |
 | 282 | [Muso Kunda Museum of Women](https://qualla.com/muso-kunda-museum-of-women/) | Not started | source-model-missing |
-| 283 | [Hương Temple](https://qualla.com/huong-temple/) | Not started | source-model-missing |
+| 283 | [Thiên Trù Pagoda](https://qualla.com/huong-temple/) | Complete | All required evidence current |
 | 284 | [King Chulalongkorn Memorial Building](https://qualla.com/king-chulalongkorn-memorial-building/) | Complete | All required evidence current |
 | 285 | [Williams-Brice Stadium](https://qualla.com/williams-brice-stadium/) | Complete | All required evidence current |
 | 286 | [Museum of Congress and the Inquisition](https://qualla.com/museum-of-congress-and-the-inquisition/) | Not started | source-model-missing |
@@ -300,7 +300,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 288 | [Palace of the Governors, Togo](https://qualla.com/palace-of-the-governors-togo/) | Complete | All required evidence current |
 | 289 | [National Palace Museum](https://qualla.com/national-palace-museum/) | Complete | All required evidence current |
 | 290 | [An Grianan Theatre](https://qualla.com/an-grianan-theatre/) | Complete | All required evidence current |
-| 291 | [Hycroft Manor](https://qualla.com/hycroft-manor/) | Not started | source-model-missing |
+| 291 | [Hycroft Manor](https://qualla.com/hycroft-manor/) | Complete | All required evidence current |
 | 292 | [Atucha Nuclear Power Plant](https://qualla.com/atucha-nuclear-power-plant/) | Not started | source-model-missing |
 | 293 | [Bibi Maryam Mosque](https://qualla.com/bibi-maryam-mosque/) | Not started | source-model-missing |
 | 294 | [Ziverbey Villa](https://qualla.com/ziverbey-villa/) | Not started | source-model-missing |
@@ -317,7 +317,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 305 | [National Museum of Sudan](https://qualla.com/national-museum-of-sudan/) | Not started | source-model-missing |
 | 306 | [Kyaiktiyo Pagoda](https://qualla.com/kyaiktiyo-pagoda/) | Complete | All required evidence current |
 | 307 | [Sugar Factory Zeeland](https://qualla.com/sugar-factory-zeeland/) | Complete | All required evidence current |
-| 308 | [Fort Riley](https://qualla.com/fort-riley/) | Not started | source-model-missing |
+| 308 | [First Territorial Capitol of Kansas](https://qualla.com/fort-riley/) | Complete | All required evidence current |
 | 309 | [Shrine of Khwaja Abu Nasr Parsa](https://qualla.com/shrine-of-khwaja-abu-nasr-parsa/) | Not started | source-model-missing |
 | 310 | [Royal Palace of Fez](https://qualla.com/royal-palace-of-fez/) | Not started | source-model-missing |
 | 311 | [Motegi Control Tower](https://qualla.com/mobility-resort-motegi/) | Complete | All required evidence current |
@@ -327,7 +327,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 315 | [Olduvai Gorge Museum](https://qualla.com/olduvai-gorge-museum/) | Not started | source-model-missing |
 | 316 | [Satriamandala Museum](https://qualla.com/satriamandala-museum/) | Not started | source-model-missing |
 | 317 | [Tsarevets (fortress)](https://qualla.com/tsarevets-fortress/) | Complete | All required evidence current |
-| 318 | [Basilica of Sainte-Anne-de-Beaupré](https://qualla.com/basilica-of-sainte-anne-de-beaupr/) | Not started | source-model-missing |
+| 318 | [Basilica of Sainte-Anne-de-Beaupré](https://qualla.com/basilica-of-sainte-anne-de-beaupr/) | Complete | All required evidence current |
 | 319 | [Gohardasht Prison](https://qualla.com/gohardasht-prison/) | Not started | source-model-missing |
 | 320 | [Prophet's Mosque](https://qualla.com/prophet-s-mosque/) | Not started | source-model-missing |
 | 321 | [Katsura Imperial Villa](https://qualla.com/katsura-imperial-villa/) | Complete | All required evidence current |
@@ -340,7 +340,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 328 | [Empire Stadium](https://qualla.com/empire-stadium-vancouver/) | Not started | source-model-missing |
 | 329 | [Dhakeshwari Temple](https://qualla.com/dhakeshwari-temple/) | Not started | source-model-missing |
 | 330 | [Mandela House](https://qualla.com/mandela-house/) | Not started | source-model-missing |
-| 331 | [Phủ Cam Cathedral](https://qualla.com/phu-cam-cathedral/) | Not started | source-model-missing |
+| 331 | [Phủ Cam Cathedral](https://qualla.com/phu-cam-cathedral/) | Complete | All required evidence current |
 | 332 | [Padise Abbey](https://qualla.com/padise-abbey/) | Complete | All required evidence current |
 | 333 | [Irving House](https://qualla.com/irving-house/) | Complete | All required evidence current |
 | 334 | [Saparmyrat Hajji Mosque](https://qualla.com/saparmyrat-hajji-mosque/) | Not started | source-model-missing |
@@ -354,8 +354,8 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 342 | [Krasnoye Sormovo Factory No. 112](https://qualla.com/krasnoye-sormovo-factory-no-112/) | Not started | source-model-missing |
 | 343 | [Huntington Museum of Art](https://qualla.com/huntington-museum-of-art/) | Complete | All required evidence current |
 | 344 | [Sassi Punnu Fort](https://qualla.com/sassi-punnu-fort/) | Not started | source-model-missing |
-| 345 | [Duwisib Castle](https://qualla.com/duwisib-castle/) | Not started | source-model-missing |
-| 346 | [N Seoul Tower](https://qualla.com/n-seoul-tower/) | Not started | source-model-missing |
+| 345 | [Duwisib Castle](https://qualla.com/duwisib-castle/) | Complete | All required evidence current |
+| 346 | [N Seoul Tower](https://qualla.com/n-seoul-tower/) | Complete | All required evidence current |
 | 347 | [KGB Prison, Potsdam](https://qualla.com/kgb-prison-potsdam/) | Complete | All required evidence current |
 | 348 | [Brandon Indian Residential School](https://qualla.com/brandon-indian-residential-school/) | Not started | source-model-missing |
 | 349 | [Jeshoreshwari Kali Temple](https://qualla.com/jeshoreshwari-kali-temple/) | Not started | source-model-missing |
@@ -369,7 +369,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 357 | [Pori Theatre](https://qualla.com/pori-theatre/) | Complete | All required evidence current |
 | 358 | [Point Ellice House](https://qualla.com/point-ellice-house/) | Not started | source-model-missing |
 | 359 | [Falaknuma Palace](https://qualla.com/falaknuma-palace/) | Complete | All required evidence current |
-| 360 | [Fort de la Goulette](https://qualla.com/fort-de-la-goulette/) | Not started | source-model-missing |
+| 360 | [Fort de la Goulette](https://qualla.com/fort-de-la-goulette/) | Complete | All required evidence current |
 | 361 | [Sunda Kelapa Lighthouse](https://qualla.com/sunda-kelapa-lighthouse/) | Complete | All required evidence current |
 | 362 | [Monastery of the Holy Trinity, Vilnius](https://qualla.com/monastery-of-the-holy-trinity-vilnius/) | Complete | All required evidence current |
 | 363 | [California Memorial Stadium](https://qualla.com/california-memorial-stadium/) | Complete | All required evidence current |
@@ -386,12 +386,12 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 374 | [White Palace (Marghazar)](https://qualla.com/white-palace-marghazar/) | Not started | source-model-missing |
 | 375 | [Fort Suse](https://qualla.com/fort-suse/) | Not started | source-model-missing |
 | 376 | [Qincheng Prison](https://qualla.com/qincheng-prison/) | Not started | source-model-missing |
-| 377 | [Loch Maree Hotel Botulism Poisoning](https://qualla.com/loch-maree-hotel-botulism-poisoning/) | Not started | source-model-missing |
+| 377 | [Loch Maree Hotel](https://qualla.com/loch-maree-hotel-botulism-poisoning/) | Complete | All required evidence current |
 | 378 | [Taum Sauk Hydroelectric Power Station](https://qualla.com/taum-sauk-hydroelectric-power-station/) | Not started | source-model-missing |
 | 379 | [Oxford Mission Church](https://qualla.com/oxford-mission-church/) | Not started | source-model-missing |
 | 380 | [Museum of Libya](https://qualla.com/museum-of-libya/) | Not started | source-model-missing |
 | 381 | [Numazu Imperial Villa](https://qualla.com/numazu-imperial-villa/) | Not started | source-model-missing |
-| 382 | [Guinness Brewery](https://qualla.com/guinness-brewery/) | Not started | source-model-missing |
+| 382 | [Guinness Brewery, St. James’s Gate](https://qualla.com/guinness-brewery/) | Complete | All required evidence current |
 | 383 | [Canadian Lacrosse Hall of Fame](https://qualla.com/canadian-lacrosse-hall-of-fame/) | Not started | source-model-missing |
 | 384 | [Malek National Museum and Library](https://qualla.com/malek-national-museum-and-library/) | Not started | source-model-missing |
 | 385 | [Rose Cottage Cave](https://qualla.com/rose-cottage-cave/) | Not started | source-model-missing |
@@ -412,7 +412,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 400 | [Hacienda Rosalia](https://qualla.com/hacienda-rosalia/) | Not started | source-model-missing |
 | 401 | [Ventspils Castle](https://qualla.com/ventspils-castle/) | Complete | All required evidence current |
 | 402 | [Craigdarroch Castle](https://qualla.com/craigdarroch-castle/) | Complete | All required evidence current |
-| 403 | [Gulbarga Fort](https://qualla.com/gulbarga-fort/) | Not started | source-model-missing |
+| 403 | [Gulbarga Fort](https://qualla.com/gulbarga-fort/) | Complete | All required evidence current |
 | 404 | [Uesugi Shrine](https://qualla.com/yonezawa-castle/) | Complete | All required evidence current |
 | 405 | [Scrovegni Chapel](https://qualla.com/scrovegni-chapel/) | Complete | All required evidence current |
 | 406 | [Ross Bay Villa](https://qualla.com/ross-bay-villa/) | Not started | source-model-missing |
@@ -443,7 +443,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 431 | [Wardenclyffe Tower](https://qualla.com/wardenclyffe-tower/) | Complete | All required evidence current |
 | 432 | [Indonesia Stock Exchange](https://qualla.com/indonesia-stock-exchange/) | Not started | source-model-missing |
 | 433 | [AEG Turbine Factory](https://qualla.com/aeg-turbine-factory/) | Complete | All required evidence current |
-| 434 | [Finnish Labour Temple](https://qualla.com/finnish-labour-temple/) | Not started | source-model-missing |
+| 434 | [Finnish Labour Temple](https://qualla.com/finnish-labour-temple/) | Complete | All required evidence current |
 | 435 | [National Diet Building](https://qualla.com/national-diet-building/) | Complete | All required evidence current |
 | 436 | [Monastery of Sant Jeroni de Cotalba](https://qualla.com/monastery-of-sant-jeroni-de-cotalba/) | Complete | All required evidence current |
 | 437 | [The Elephant House](https://qualla.com/the-elephant-house/) | Not started | source-model-missing |
@@ -505,7 +505,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 493 | [Odesa City Hall](https://qualla.com/odesa-city-hall/) | Complete | All required evidence current |
 | 494 | [Fort des Épinettes](https://qualla.com/fort-des-pinettes/) | Not started | source-model-missing |
 | 495 | [National Museum of Aleppo](https://qualla.com/national-museum-of-aleppo/) | Not started | source-model-missing |
-| 496 | [The Inn at the Edge of Empire](https://qualla.com/stadsherberg-batavia/) | Not started | source-model-missing |
+| 496 | [Stadsherberg, Batavia](https://qualla.com/stadsherberg-batavia/) | Complete | All required evidence current |
 | 497 | [Royal Theater Carré](https://qualla.com/royal-theater-carre/) | Complete | All required evidence current |
 | 498 | [Vaile Mansion](https://qualla.com/vaile-mansion/) | Complete | All required evidence current |
 | 499 | [Burns Philp Building, Normanton](https://qualla.com/burns-philp-building-normanton/) | Complete | All required evidence current |

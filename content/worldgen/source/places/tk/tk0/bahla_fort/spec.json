@@ -1,0 +1,436 @@
+{
+  "planId": "bahla_fort",
+  "id": "bahla_fort",
+  "assetId": "molen.worldgen.structure.bahla_fort",
+  "title": "Bahla Fort",
+  "wikidataId": "Q1408909",
+  "category": "historic-fortification",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 57.30071825,
+    "latitude": 22.96449225
+  },
+  "size": [
+    124.57329940795898,
+    32.09111928939819,
+    126.23669815063477
+  ],
+  "actualBounds": {
+    "min": [
+      -62.25,
+      -2.5999999046325684,
+      -63.279998779296875
+    ],
+    "max": [
+      62.323299407958984,
+      29.491119384765625,
+      62.95669937133789
+    ]
+  },
+  "visualBrief": "Bahla Fort as photographed in 1885, with terraced adobe enclosures, stone plinths, weathered parapets, a high wind tower and three main building groups.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1885-12-20",
+    "validFrom": "1885-12-01",
+    "validUntil": "1886-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://archive.org/details/countriestribeso01mileuoft/page/n149/mode/1up",
+    "https://archive.org/details/countriestribeso02mileuoft/page/n75/mode/1up",
+    "https://archive.org/details/countriestribeso02mileuoft/page/n207/mode/1up"
+  ],
+  "stories": [
+    {
+      "id": "bahla-fort-wp",
+      "url": "https://qualla.com/bahla-fort/"
+    }
+  ],
+  "referenceInputHash": "sha256:fb401a4d7a47bc9e341aeabaa43819bb931eb18ca9661f96634293839a90b5b7",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tk/tk0/bahla_fort/models/bahla-fort-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676",
+    "place-footprint-caps.mjs": "sha256:6ec46f2041964dfaa281afb5d61a9a2cec25bb48e63411076c644e51a26250c3"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tk/tk0/bahla_fort/models/bahla-fort-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.1,
+    "surfaces": {
+      "adobe": {
+        "slot": "wall",
+        "graph": "earth_adobe",
+        "roughness": 0.98
+      },
+      "rubble": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.99
+      },
+      "coping": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "terrace": {
+        "slot": "roof",
+        "graph": "earth_rammed",
+        "roughness": 0.98
+      },
+      "shadow": {
+        "slot": "window",
+        "localRef": "palette:#59483a",
+        "roughness": 1
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.94
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "adobe": {
+            "slot": "wall",
+            "graph": "earth_adobe",
+            "roughness": 0.98
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "terrace": {
+            "slot": "roof",
+            "graph": "earth_rammed",
+            "roughness": 0.98
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#59483a",
+            "roughness": 1
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "adobe": {
+            "slot": "wall",
+            "graph": "earth_adobe",
+            "roughness": 0.98
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "terrace": {
+            "slot": "roof",
+            "graph": "earth_rammed",
+            "roughness": 0.98
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#59483a",
+            "roughness": 1
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.046,
+        "surfaces": {
+          "adobe": {
+            "slot": "wall",
+            "graph": "earth_adobe",
+            "roughness": 0.98
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "terrace": {
+            "slot": "roof",
+            "graph": "earth_rammed",
+            "roughness": 0.98
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#59483a",
+            "roughness": 1
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "earth_adobe",
+    "stone_sandstone_raw",
+    "plaster_lime",
+    "earth_rammed",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified Copernicus GLO-30 at the southwestern rock-foot approach, outside the standing curtain. The native field fixes each curtain segment’s stone base.",
+    "anchor": [
+      57.30071825,
+      22.96449225
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        57.30026945872534,
+        22.964249705982752
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified Copernicus GLO-30 at the southwestern rock-foot approach, outside the standing curtain. The native field fixes each curtain segment’s stone base."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/135869121"
+    ],
+    "source": "https://www.openstreetmap.org/way/135869121",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b30c63b2e1327f1c2d62014929e82fa6ea65e3a7ad66d406c107d40424fcba72",
+    "notes": "Miles’s original plates constrain the rubble footing, large earthen curtain, rounded wind tower, tall arched gallery, flat roofs and irregular parapets. Official heritage records identify the three building groups."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_adobe",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.35,
+        0.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The 1885 exterior uses the standing enclosure as its geographic outline. The placement and height of inner terraces, courtyards and obscured elevations are approximate.",
+    "Only the main fort is represented. The Friday Mosque, separate settlement buildings and longer oasis wall are outside its scope."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "bahla-fort-skyline",
+      "position": [
+        -143,
+        81,
+        160
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "bahla-fort-district",
+      "position": [
+        -143,
+        81,
+        160
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "bahla-fort-street",
+      "position": [
+        -143,
+        81,
+        160
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "bahla-fort-closeup",
+      "position": [
+        -143,
+        81,
+        160
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-wind-tower-and-dry-stone-hill",
+      "position": [
+        -112,
+        14,
+        38
+      ],
+      "lookAt": [
+        -46,
+        14,
+        2
+      ]
+    },
+    {
+      "name": "north-gallery-and-weathered-parapet",
+      "position": [
+        -61,
+        12,
+        -106
+      ],
+      "lookAt": [
+        -11,
+        17,
+        -35
+      ]
+    },
+    {
+      "name": "south-approach-and-recessed-gate",
+      "position": [
+        -25,
+        15,
+        82
+      ],
+      "lookAt": [
+        -16,
+        8,
+        34
+      ]
+    },
+    {
+      "name": "three-terraced-enclosures",
+      "position": [
+        104,
+        98,
+        105
+      ],
+      "lookAt": [
+        1,
+        9,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10489,
+    "vertices": 31467,
+    "materials": 6,
+    "bytes": 1446948,
+    "sha256": "sha256:e38246514d2ce0caf43e3abeec24af9e60f92d6f4efee004c407c3f895c46bde"
+  }
+}

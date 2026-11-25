@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.thien_tru_pagoda",
+  "kind": "static-structure",
+  "title": "Thiên Trù Pagoda",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.thien_tru_pagoda",
+        "output": "assets/places/w7/w7e/thien_tru_pagoda/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d6e38c6af22b1ab7e0948621e23bc76a494da4166d8bccec5e4c62185686ad8a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-thien-tru-pagoda",
+        "path": "models/generate-thien-tru-pagoda.mjs"
+      },
+      {
+        "id": "thien-tru-pagoda-model",
+        "path": "models/thien-tru-pagoda-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/thien-tru-pagoda-footprint.json",
+      "native-map/thien-tru-pagoda-site-controls.json",
+      "reference-rights/thien-tru-pagoda-architectural-facts.json",
+      "reference-rights/thien-tru-pagoda-qualla-original-3.json",
+      "reference-rights/thien-tru-original-vietnamese-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-thien-tru-pagoda-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

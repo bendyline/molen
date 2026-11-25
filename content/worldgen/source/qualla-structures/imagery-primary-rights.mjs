@@ -300,6 +300,7 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       'commons-native-expired-publication',
       'commons-native-expired-asirgad-gazetteer-map',
       'commons-native-esplanade-1913-courtyard',
+      'commons-native-dieulefils-printed-card',
       'commons-native-expired-library-photo',
       'commons-native-lac-expired-photo',
       'commons-native-expired-periodical-photo',
@@ -391,6 +392,50 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
     basis =
       'The Qualla courtyard photograph matches the original anonymously published 18 October 1913 journal plate.';
     creatorAttribution = 'unrecorded-archival';
+  } else if (proof.kind === 'commons-native-dieulefils-printed-card') {
+    const edition = record.physicalEdition;
+    const cardHash = createHash('sha256').update(original).digest('hex');
+    const knownScan = (evidence, fileName, sha256) => {
+      const nativeFile = path.join(path.dirname(file), fileName);
+      return (
+        evidence?.path === `reference-rights/${fileName}` &&
+        evidence?.sha256 === `sha256:${sha256}` &&
+        fs.existsSync(nativeFile) &&
+        createHash('sha256').update(fs.readFileSync(nativeFile)).digest('hex') === sha256
+      );
+    };
+    if (
+      title !== 'File:Annam - Hué - Cathédrale de Phu-Cam.jpg' ||
+      page.revisions[0].revid !== 104869748 ||
+      cardHash !== 'a10540e4d15cae7635346890117475cb30d844e7f77b042fd21e3e6746bf22dc' ||
+      edition?.exactQuallaSha256 !== `sha256:${cardHash}` ||
+      info.size !== original.length ||
+      !wiki.includes('{{PD-Art}}') ||
+      !String(info.extmetadata?.Credit?.value).includes('1806383947') ||
+      edition?.number !== '3587' ||
+      edition?.printerSeries !== '1904–1914' ||
+      edition?.publisher?.sourceUrl !==
+        'https://agorha.inha.fr/ark:/54721/e6b347b4-fbab-4cef-a7d2-85adca138c6e?database=81' ||
+      !(edition?.matchingScanLuminanceCorrelation > 0.999) ||
+      !knownScan(
+        edition?.front,
+        'phu-cam-dieulefils-card-front.jpg',
+        '307978adae7be72e6f0851d72052e9e708331211c011b32cd9613f1e34799e20',
+      ) ||
+      !knownScan(
+        edition?.reverse,
+        'phu-cam-dieulefils-card-reverse.jpg',
+        'cad3a01bbe4fac4a1b803431399eb46069bfbcd61e9b7215d11325ba0c114afc',
+      ) ||
+      !knownScan(
+        edition?.publisher,
+        'phu-cam-dieulefils-inha.html',
+        '7951665c2295f76c665676922662fe0796c0bca284f0dfbf40836efbf49a28fc',
+      )
+    )
+      return failed;
+    basis =
+      'The exact Qualla image matches numbered Dieulefils postcard 3587 and its divided reverse. INHA dates the imprint and printing series to the period before the First World War.';
   } else if (proof.kind === 'commons-native-south-carolina-statehouse-photo') {
     const agency =
       title === 'File:20180522-z-vn137-1002-FINAL (42385727752).jpg' &&

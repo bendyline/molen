@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.canton_hospital",
+  "kind": "static-structure",
+  "title": "The Canton Hospital",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.canton_hospital",
+        "output": "assets/places/ws/ws0/canton_hospital/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7caa3391cffe61bb20ea8ff6ffee7476c3c0fb3938d2e199f6b1a4dd8a39e8bd"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-canton-hospital",
+        "path": "models/generate-canton-hospital.mjs"
+      },
+      {
+        "id": "canton-hospital-model",
+        "path": "models/canton-hospital-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/canton-hospital-footprint.json",
+      "native-map/canton-hospital-shape-controls.json",
+      "reference-rights/canton-hospital-architectural-facts.json",
+      "references/evangelist-n0.jpg",
+      "reference-rights/evangelist-record.json",
+      "reference-rights/evangelist-n0.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-canton-hospital-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

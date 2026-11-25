@@ -1,0 +1,66 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.gulbarga_fort",
+  "kind": "static-structure",
+  "title": "Gulbarga Fort",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.gulbarga_fort",
+        "output": "assets/places/te/ten/gulbarga_fort/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:312da8933268db7171e9ef22dce699a9f1bcc98a62367602e72b8fe8626b7a59"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-gulbarga-fort",
+        "path": "models/generate-gulbarga-fort.mjs"
+      },
+      {
+        "id": "gulbarga-fort-model",
+        "path": "models/gulbarga-fort-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/gulbarga-fort-footprint.json",
+      "native-map/gulbarga-fort-shape-controls.json",
+      "reference-rights/gulbarga-fort-architectural-facts.json",
+      "references/gulbarga-dayal-fort.jpg",
+      "reference-rights/gulbarga-dayal-fort-catalog.html",
+      "reference-rights/gulbarga-dayal-fort-commons.json",
+      "references/gulbarga-dayal-mosque.jpg",
+      "reference-rights/gulbarga-dayal-mosque-catalog.html",
+      "reference-rights/gulbarga-dayal-mosque-commons.json",
+      "references/gulbarga-nizam-survey-plate-v.jpg",
+      "reference-rights/gulbarga-nizam-survey-1919-20.pdf",
+      "reference-rights/gulbarga-nizam-survey-imprint.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-gulbarga-fort-native-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

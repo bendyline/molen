@@ -1,0 +1,423 @@
+{
+  "planId": "gulbarga_fort",
+  "id": "gulbarga_fort",
+  "assetId": "molen.worldgen.structure.gulbarga_fort",
+  "title": "Gulbarga Fort",
+  "wikidataId": "Q5617266",
+  "category": "historical-fortress",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 76.8311,
+    "latitude": 17.3405
+  },
+  "size": [
+    518.6974182128906,
+    34.652299880981445,
+    648.7334289550781
+  ],
+  "actualBounds": {
+    "min": [
+      -261.9318542480469,
+      -7.152299880981445,
+      -350.4450988769531
+    ],
+    "max": [
+      256.76556396484375,
+      27.5,
+      298.288330078125
+    ]
+  },
+  "visualBrief": "The surviving double ramparts of Gulbarga Fort, with the mapped east portal, Bala Qila and the covered domes and arcades of Jama Masjid.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://searcharchives.bl.uk/catalog/041-003082700",
+    "https://searcharchives.bl.uk/catalog/041-003082702",
+    "https://ignca.gov.in/Asi_data/22691.pdf"
+  ],
+  "stories": [
+    {
+      "id": "gulbarga-fort-wp",
+      "url": "https://qualla.com/gulbarga-fort/"
+    }
+  ],
+  "referenceInputHash": "sha256:f27560cd1a8dc731e3b89b47bffe0b8e6093134a212dc2b958f359688bf8262a",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/te/ten/gulbarga_fort/models/gulbarga-fort-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "place-footprint-caps.mjs": "sha256:6ec46f2041964dfaa281afb5d61a9a2cec25bb48e63411076c644e51a26250c3",
+    "place-recipe-kit.mjs": "sha256:78e169bfda5e0c25b9f30b934713071aac38e462ef956b4b73d37d52e347a676"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/te/ten/gulbarga_fort/models/gulbarga-fort-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 15.2,
+    "surfaces": {
+      "rampart": {
+        "slot": "wall",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.97
+      },
+      "masonry": {
+        "slot": "foundation",
+        "graph": "stone_basalt",
+        "roughness": 0.95
+      },
+      "plaster": {
+        "slot": "roof",
+        "graph": "plaster_lime",
+        "roughness": 0.97
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 4.9,
+        "surfaces": {
+          "rampart": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.97
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.95
+          },
+          "plaster": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.97
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.82,
+        "surfaces": {
+          "rampart": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.97
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.95
+          },
+          "plaster": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.97
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "rampart": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.97
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.95
+          },
+          "plaster": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.97
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_basalt_raw",
+    "stone_basalt",
+    "plaster_lime",
+    "stone_limestone_weathered"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.09,
+    "far": 3500,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged Copernicus GLO-30 at the mapped east gate. Local wall foundation elevations follow the original ground grid.",
+    "anchor": [
+      76.8311,
+      17.3405
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        76.83326166779398,
+        17.341968289615522
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged Copernicus GLO-30 at the mapped east gate. Local wall foundation elevations follow the original ground grid."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          85.0506,
+          -174.5044
+        ],
+        [
+          97.5999,
+          -173.4358
+        ],
+        [
+          126.8745,
+          -170.5637
+        ],
+        [
+          125.5569,
+          -141.0529
+        ],
+        [
+          92.935,
+          -145.1161
+        ],
+        [
+          92.935,
+          -148.7006
+        ],
+        [
+          79.7907,
+          -149.8917
+        ],
+        [
+          82.8935,
+          -174.9831
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The individually mapped Bala Qila occupies this footprint. The occupied fort precinct remains an open site around it."
+    },
+    "featureIds": [
+      "relation/9149272",
+      "way/313825197",
+      "way/329746100",
+      "way/1138437357"
+    ],
+    "source": "https://www.openstreetmap.org/relation/9149272",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2d54052c6128c60bf524ed472f22ea78f2c8c264447d89a2436a8d989efd5e21",
+    "notes": "The nineteenth-century Deen Dayal photographs and the Survey of India plate constrain the masonry batter, cylindrical bastions, stepped fort profile, roof domes and mosque arcades."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Wall crests, details of damaged western outworks, dome heights and material hues are estimates from the mapped fabric and historical views.",
+    "The model depicts the surviving exterior and the roofed mosque arcades. It omits later uses of the precinct, the unverified western outwork, and interiors beyond the arcades."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "gulbarga-fort-skyline",
+      "position": [
+        480,
+        455,
+        485
+      ],
+      "lookAt": [
+        -1,
+        2.9,
+        -35
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "gulbarga-fort-district",
+      "position": [
+        480,
+        455,
+        485
+      ],
+      "lookAt": [
+        -1,
+        2.9,
+        -35
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "gulbarga-fort-street",
+      "position": [
+        480,
+        455,
+        485
+      ],
+      "lookAt": [
+        -1,
+        2.9,
+        -35
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "gulbarga-fort-closeup",
+      "position": [
+        480,
+        455,
+        485
+      ],
+      "lookAt": [
+        -1,
+        2.9,
+        -35
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "western-double-fortifications",
+      "position": [
+        -350,
+        47,
+        -81
+      ],
+      "lookAt": [
+        -188,
+        7,
+        -40
+      ]
+    },
+    {
+      "name": "fort-and-jama-masjid",
+      "position": [
+        95,
+        73,
+        -135
+      ],
+      "lookAt": [
+        -40,
+        9,
+        -38
+      ]
+    },
+    {
+      "name": "jama-masjid-domes-and-north-arcade",
+      "position": [
+        -28,
+        33,
+        -136
+      ],
+      "lookAt": [
+        -42,
+        17,
+        -40
+      ]
+    },
+    {
+      "name": "east-gate-and-citadel",
+      "position": [
+        290,
+        28,
+        -145
+      ],
+      "lookAt": [
+        210,
+        7,
+        -160
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 30150,
+    "vertices": 90450,
+    "materials": 4,
+    "bytes": 3979680,
+    "sha256": "sha256:312da8933268db7171e9ef22dce699a9f1bcc98a62367602e72b8fe8626b7a59"
+  }
+}
