@@ -92,8 +92,9 @@ describe('earth aircraft', () => {
     expect(aircraft.board(id)).toBe(true);
     fly(1 / 30, { cyclic: 1 });
     expect(vehicles.world.get(id, AircraftInput)?.cyclicMode).toBe('direct');
-    // Full aft stick pitches the nose past the assisted cyclic's 0.65 rad limit.
-    fly(1.2, { pitch: 1 });
+    // Full aft stick is the whole swashplate: in just over half a second the nose is past the
+    // assisted cyclic's 0.65 rad limit (held for a second, the helicopter goes over backwards).
+    fly(0.6, { pitch: 1 });
     expect(vehicles.world.get(id, AircraftState)?.pitch).toBeGreaterThan(0.75);
     fly(1 / 30, { cyclic: 1 });
     expect(vehicles.world.get(id, AircraftInput)?.cyclicMode).toBe('assisted');
@@ -106,6 +107,12 @@ describe('earth aircraft', () => {
     expect(plane.aircraft.board(p51)).toBe(true);
     plane.fly(1 / 30, { cyclic: 1 });
     expect(plane.vehicles.world.get(p51, AircraftInput)?.cyclicMode).toBeUndefined();
+    // An airplane with control surfaces takes the same control as its own direct mode.
+    expect(plane.vehicles.world.get(p51, AircraftInput)?.controlMode).toBe('direct');
+    plane.fly(1, {});
+    expect(plane.vehicles.world.get(p51, AircraftState)?.elevatorTrim).toBeDefined();
+    plane.fly(1 / 30, { cyclic: 1 });
+    expect(plane.vehicles.world.get(p51, AircraftInput)?.controlMode).toBe('assisted');
     plane.aircraft.dispose();
     plane.vehicles.dispose();
     vehicles.dispose();

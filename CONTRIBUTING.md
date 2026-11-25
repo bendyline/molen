@@ -44,7 +44,7 @@ the browser tests.
 pnpm install
 pnpm assets:fetch  # download the GLB bundle for the current asset inputs, or build it from source
 pnpm all       # clean install, build, and every check CI runs, in order
-pnpm verify    # the fast subset: lint, typecheck, docs:check, test:unit, production audit
+pnpm verify    # the subset without a browser: lint, typecheck, docs:check, tests, production audit
 ```
 
 GLBs are build outputs: the generators, source manifests, specs, shared materials, sidecars and
@@ -52,7 +52,7 @@ review evidence are in Git. The GLB bundle is named after those inputs, not its 
 no lock file. `pnpm assets:build` builds it from source; `pnpm assets:fetch` downloads the release
 CI published for the same inputs. To change a model, edit its generator, run `pnpm assets:build`
 and `pnpm assets:check`, and commit the source and regenerated metadata without any GLB. CI builds
-and publishes the new bundle from `main`. See [repository GLBs](content/ASSET-PACKS.md).
+and publishes the new bundle once, on the pull request. See [repository GLBs](content/ASSET-PACKS.md).
 
 Generated files come from generators, not from hand edits: the schema reference
 (`pnpm docs:gen`), the documentation site (`pnpm docs:site:gen`), and the script
@@ -83,39 +83,52 @@ release rule in `.releaserc.cjs` when Molen is ready for 1.0.
 
 ### Releasing
 
-After CI is green on `main`, manually run the `Release` GitHub Actions workflow on `main`. It
-rebuilds, runs `pnpm verify` and `pnpm docs:site:check`, and builds the complete docs site. Then:
+After CI is green on `main`, manually run the `Release` GitHub Actions workflow on `main`. CI is
+its only gate: the workflow refuses a commit CI has not passed (`scripts/require-green-ci.mjs`) and
+repeats none of its checks. The packages hold compiled code and no content, so it reads no GLB and
+takes about ten minutes:
 
-1. multi-semantic-release stamps each releasing package's next version into its manifest (the
-   kernel's also into `ENGINE_VERSION` and the shipped docs), writes its changelog, and pushes its
-   tag. Nothing publishes yet.
-2. `scripts/publish-release.mjs` rebuilds and verifies packages and site with the new versions,
-   then packs and publishes every version npm does not have yet, dependencies first. npm CLI
-   exchanges the job's OIDC identity for short-lived credentials, and automatically publishes
-   provenance for public packages from a public repository.
-3. The workflow commits the new versions and changelogs to `main` once, uploads the built docs
-   site, and deploys it to GitHub Pages.
+1. It compiles the packages. multi-semantic-release then stamps each releasing package's next
+   version into its manifest (the kernel's also into `ENGINE_VERSION` and the shipped docs), writes
+   its changelog, and pushes its tag. Nothing publishes yet.
+2. It commits the new versions and changelogs to `main` once. If `main` moved meanwhile, the commit
+   is replayed onto its tip (`scripts/push-release-commit.mjs`); what gets published is still the
+   tagged source.
+3. `scripts/publish-release.mjs` compiles the packages with the new versions, then packs, checks
+   and publishes every version npm does not have yet, dependencies first. npm CLI exchanges the
+   job's OIDC identity for short-lived credentials, and automatically publishes provenance for
+   public packages from a public repository.
+4. It starts the `Site` workflow with that commit. `Site` restores the commit's GLBs, builds the
+   docs site and the content packs, publishes the packs to the rolling `packs` release, and deploys
+   the site to GitHub Pages.
 
-A run with no releasable commits still refreshes Pages without publishing npm packages. The
-workflow creates and pushes every release tag itself. Branch protection must allow the workflow's
-`GITHUB_TOKEN` to push its tags and metadata commit.
+The two fail independently: a site that does not build never holds back a package release, and
+`Site` can be rerun, or run by hand on `main` to refresh molen.dev without releasing packages. Both
+need `main`'s CI to be green, so packages, packs and site always come from source it checked. npm is
+updated first and the hosted packs follow. The `Release` workflow creates and pushes every release
+tag itself. Branch protection must allow its `GITHUB_TOKEN` to push its tags and metadata commit.
 
-If publishing stops partway through, rerun `Release` on `main`. The metadata commit is made even
-when publishing fails, so the rerun has nothing new to version and publishes the versions still
-missing from npm. The publishing step recognizes versions already on npm by tarball contents:
+If publishing stops partway through, rerun `Release` on `main`. The metadata commit is made before
+anything publishes, so the rerun has nothing new to version and publishes the versions still
+missing from npm; the commit's changes are only release metadata, so it keeps the CI result of the
+commit below it. The publishing step recognizes versions already on npm by tarball contents:
 every file byte for byte, except that `package.json` dependency keys may be reordered, because
 pnpm writes resolved `workspace:` entries in a racy order. Any other difference is an error that
 needs inspection.
 
 Versioning can stop partway too, when GitHub refuses a tag push. The workflow retries every
-`git push` in that step (`scripts/git-push-retry.sh`), and if a push still fails, the metadata
-commit records only the packages whose tags reached GitHub (`scripts/stage-release-metadata.mjs`).
-Nothing is published in that case, so rerun `Release` on `main`: it versions the remaining
-packages from their newest tags on GitHub and publishes everything still missing from npm. A
-package whose dependencies release in the rerun moves past the version it was tagged with in the
-stopped run; that version never reaches npm.
+`git push` in that step (`scripts/git-push-retry.sh`), and if a push still fails, or the run is
+cancelled, the metadata commit records only the packages whose tags reached GitHub
+(`scripts/stage-release-metadata.mjs`). Nothing is published in that case, so rerun `Release` on
+`main`: it versions the remaining packages from their newest tags on GitHub and publishes everything
+still missing from npm. A package whose dependencies release in the rerun moves past the version it
+was tagged with in the stopped run; that version never reaches npm.
 
-The workflow deploys the docs to GitHub Pages: in repository Settings → Pages, **GitHub Actions**
+If tags reach GitHub and the metadata commit never does (the runner was lost in the seconds between
+them), a rerun stops with "its newest release tag is …". Delete those tags from GitHub and from
+local clones, then rerun: nothing has published them.
+
+The `Site` workflow deploys the docs to GitHub Pages: in repository Settings → Pages, **GitHub Actions**
 must be the source, with `molen.dev` as the custom domain and its DNS configured with the domain
 provider. The site is built for the domain root. GitHub Pages handles the custom domain
 independently of the deployed files, so no `CNAME` file is needed.

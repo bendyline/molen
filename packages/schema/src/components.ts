@@ -1746,6 +1746,24 @@ const vehicleSpecSchema = z
         .boolean()
         .optional()
         .describe('Stability control brakes one wheel to catch a slide. Default true.'),
+      wheels: z
+        .strictObject({
+          inertia: num
+            .positive()
+            .optional()
+            .describe(
+              'Rotating inertia of one wheel and tire, kg m². Default from mass and radius.',
+            ),
+          travel: num
+            .positive()
+            .optional()
+            .describe('Suspension travel from ride height to the bump stop, m. Default 0.09.'),
+          antiLock: z.boolean().optional().describe('Anti-lock brakes. Default true.'),
+        })
+        .optional()
+        .describe(
+          'Four wheels on struts: each wheel carries its own load, meets its own road and turns at its own speed. Cars only.',
+        ),
       limitedSlip: num
         .min(0)
         .max(1)
@@ -1786,6 +1804,12 @@ const vehicleSpecSchema = z
             .describe(
               'A cycle whose runners stay flat on the snow in a turn (a pair of skis) instead of banking as one plank (a snowboard); the lean stays in vehicleState.bodyRoll for the rider pose. Default false.',
             ),
+          sidecut: num
+            .positive()
+            .optional()
+            .describe(
+              'Sidecut radius in meters: on edge the runner carves a turn of this radius times the cosine of the lean. Absent, it turns as it is steered.',
+            ),
         })
         .optional()
         .describe(
@@ -1794,6 +1818,12 @@ const vehicleSpecSchema = z
       cycle: z
         .strictObject({
           maxLean: num.positive().max(1.2).describe('Maximum balanced inward lean in radians.'),
+          camber: num
+            .nonnegative()
+            .optional()
+            .describe(
+              'Camber thrust: side force of a leaned tire per radian of lean and unit of load. Default 0.9.',
+            ),
           ...handlebarFields,
           stance: z
             .enum(['seated', 'standing', 'sideways'])
@@ -2056,6 +2086,17 @@ registerComponent(
       .describe(
         'Lock the rear wheels while true: they slide instead of rolling, for handbrake turns.',
       ),
+    brakePedal: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe('How hard the brake pedal is pressed while brake is true, 0..1. Default 1.'),
+    controlMode: z
+      .enum(['assisted', 'direct'])
+      .optional()
+      .describe(
+        'assisted (default): the steering is held to what the tires can use and countersteers a slide, and the car has its traction, stability and anti-lock controls. direct: steering is the wheel angle and none of those act.',
+      ),
   }),
   {
     description:
@@ -2131,6 +2172,41 @@ registerComponent(
       .optional()
       .describe('Suspension roll in radians on top of the terrain, right side down positive.'),
     bodyRollRate: num.optional().describe('Suspension roll rate in radians per second.'),
+    bodyHeave: num
+      .optional()
+      .describe('With wheels on struts: the body above its ride height in meters.'),
+    bodyHeaveRate: num.optional().describe('Rate of bodyHeave in meters per second.'),
+    wheelSpin: z
+      .tuple([num, num, num, num])
+      .optional()
+      .describe(
+        'With wheels on struts: wheel speeds in rad/s, front left, front right, rear left, rear right.',
+      ),
+    wheelLoad: z
+      .tuple([num, num, num, num])
+      .optional()
+      .describe('With wheels on struts: load on each wheel in newtons, in the same order.'),
+    freeBody: z
+      .object({
+        velocity: z
+          .tuple([num, num, num])
+          .describe(
+            'Velocity of the center of mass in world axes, m/s; the horizontal parts include the travel boost.',
+          ),
+        omega: z
+          .tuple([num, num, num])
+          .describe(
+            'Angular velocity about the body axes, rad/s: nose down, turning left, right side down.',
+          ),
+        still: num
+          .nonnegative()
+          .optional()
+          .describe('Seconds it has lain still off its wheels; after half a second it rests.'),
+      })
+      .optional()
+      .describe(
+        'Present while a car on four wheels is off the plane of its road: in the air, tipping over, tumbling, or lying on its side or roof. The transform is then its true pose, pitch and roll are its own attitude, and it moves as a free rigid body until it stands on its wheels again.',
+      ),
     skid: num
       .min(0)
       .max(1)
@@ -2528,6 +2604,53 @@ const airplanePhysicsSchema = z.strictObject(
       .describe(
         'Sustained positive g the pilot holds before vision dims. Default 4.5, or 6.5 when maxLoadFactor is 7.5 or more.',
       ),
+    surfaces: z
+      .object({
+        dihedral: num.describe('Effective wing dihedral in radians.'),
+        aileron: num
+          .nonnegative()
+          .describe('Lift coefficient full aileron adds to one outer wing panel.'),
+        bodyYaw: num
+          .nonnegative()
+          .optional()
+          .describe(
+            'Yaw moment coefficient per radian of sideslip with which the fuselage turns the nose away from a slip. Default 0.',
+          ),
+        sideForce: num
+          .nonnegative()
+          .optional()
+          .describe(
+            'Side force coefficient of the airframe per radian of sideslip, on wing area. Omitted, lateralDamping stands in.',
+          ),
+        liftArm: num
+          .nonnegative()
+          .optional()
+          .describe("How far ahead of the center of mass the wing's lift acts, m. Default 0."),
+        tailArm: num.positive().describe('Center of mass back to the tailplane, m.'),
+        tailArea: num.positive().describe('Tailplane area, m².'),
+        tailLiftSlope: num.positive().describe('Tailplane lift-curve slope per radian.'),
+        tailIncidence: num.describe('Tailplane setting in radians.'),
+        downwash: num.min(0).max(1).describe('Downwash at the tail per radian of wing lift angle.'),
+        elevator: num.positive().describe('Angle of attack full elevator adds to the tail, rad.'),
+        finArm: num.positive().describe('Center of mass back to the fin, m.'),
+        finHeight: num.describe('Height of the fin above the center of mass, m.'),
+        finArea: num.positive().describe('Fin area, m².'),
+        finLiftSlope: num.positive().describe('Fin lift-curve slope per radian.'),
+        rudder: num.positive().describe('Angle full rudder adds to the fin, rad.'),
+        slipstream: num
+          .min(0)
+          .max(1)
+          .optional()
+          .describe('Share of the tail in the propeller slipstream. Default 0.'),
+        flyByWire: z
+          .boolean()
+          .optional()
+          .describe('Flown only through flight computers: direct control is not offered.'),
+      })
+      .optional()
+      .describe(
+        'Tailplane, fin and control surfaces. With them the rotation in flight comes from forces on wing panels, tail and fin; without them from the response constants.',
+      ),
   }),
 );
 const helicopterPhysicsSchema = z.strictObject(
@@ -2608,6 +2731,121 @@ const helicopterPhysicsSchema = z.strictObject(
     maxTilt: num.positive(),
     yawRate: num.positive(),
     liftMultiplier: num.positive(),
+    rotor: z
+      .strictObject({
+        blades: z.int().min(2).max(9).describe('Number of main rotor blades.'),
+        chord: num.positive().describe('Main rotor blade chord in meters.'),
+        tipSpeed: num.positive().describe('Blade tip speed at full rotor speed, m/s.'),
+        rotation: z
+          .enum(['counterclockwise', 'clockwise'])
+          .optional()
+          .describe(
+            'Which way the main rotor turns seen from above. Default counterclockwise: the fuselage is twisted right and left pedal adds tail rotor thrust.',
+          ),
+        shaftTilt: num
+          .optional()
+          .describe('Forward tilt of the rotor shaft in radians. Default 0.05.'),
+        lock: num.positive().optional().describe('Lock number of the blades. Default 7.'),
+        hingeOffset: num
+          .min(0)
+          .max(0.3)
+          .optional()
+          .describe(
+            'Flap hinge offset as a share of the radius: 0 teetering, about 0.04 articulated, about 0.12 hingeless. Default 0.04.',
+          ),
+        collective: z
+          .tuple([num, num])
+          .describe(
+            'Blade pitch at three quarters of the radius with the collective fully down and fully up, radians.',
+          ),
+        cyclic: num
+          .positive()
+          .optional()
+          .describe('Greatest swashplate tilt each way, radians. Default 0.2.'),
+        groundEffect: num
+          .min(0)
+          .optional()
+          .describe(
+            "How much less air the rotor has to move standing on the ground than in free air, fading out by a rotor radius of height. Default: the helicopter's groundEffect.",
+          ),
+        inducedFactor: num
+          .min(1)
+          .optional()
+          .describe('Induced power over the ideal. Default 1.15.'),
+        profileDrag: num
+          .positive()
+          .optional()
+          .describe('Profile drag coefficient of the blades. Default 0.008.'),
+        maxLift: num
+          .positive()
+          .optional()
+          .describe(
+            'Mean blade lift coefficient at which the blades stall in a hover. Default 1.2.',
+          ),
+        dragArea: num
+          .nonnegative()
+          .describe('Equivalent flat-plate drag area of the fuselage, m².'),
+        download: num
+          .min(0)
+          .max(0.3)
+          .optional()
+          .describe(
+            "Share of the thrust lost to the rotor's wash on the fuselage in a hover. Default 0.04.",
+          ),
+        transmission: num
+          .min(0.5)
+          .max(1)
+          .optional()
+          .describe(
+            'Share of shaft power that reaches the rotors through the gearbox. Default 0.97.',
+          ),
+        tail: z
+          .strictObject({
+            radius: num.positive().describe('Tail rotor radius in meters.'),
+            blades: z.int().min(2).max(18).describe('Number of tail rotor blades.'),
+            chord: num.positive().describe('Tail rotor blade chord in meters.'),
+            tipSpeed: num.positive().describe('Tail rotor tip speed at full rotor speed, m/s.'),
+            arm: num
+              .positive()
+              .describe("Distance from the main rotor's shaft back to the tail rotor, m."),
+            height: num.describe("Height of the tail rotor's hub above the main rotor's, m."),
+            pitch: z
+              .tuple([num, num])
+              .optional()
+              .describe(
+                'Blade pitch at full right and full left pedal, radians. Default -0.14 and 0.42.',
+              ),
+          })
+          .optional()
+          .describe("The anti-torque rotor. Omitted, nothing holds the main rotor's torque."),
+        finArea: num.nonnegative().optional().describe('Area of the vertical fin, m².'),
+        stabilizerArea: num
+          .nonnegative()
+          .optional()
+          .describe('Area of the horizontal stabilizer, m².'),
+        inertia: z
+          .strictObject({
+            roll: num.positive().describe('Moment of inertia about the roll axis, kg m².'),
+            pitch: num.positive().describe('Moment of inertia about the pitch axis, kg m².'),
+            yaw: num.positive().describe('Moment of inertia about the yaw axis, kg m².'),
+          })
+          .optional()
+          .describe("Moments of inertia. Default from the rotor's size."),
+      })
+      .optional()
+      .describe(
+        'The rotors as built. With it the helicopter flies on them: thrust and power from the blades and the air they move, a disc that tilts with the cyclic and flaps back from the air it flies into, the torque on the fuselage, and a tail rotor that has to hold it.',
+      ),
+    liftLimit: num
+      .positive()
+      .optional()
+      .describe(
+        "The rotor's greatest thrust at sea-level density and full rotor speed, as a multiple of the weight of liftMass. Default liftMultiplier.",
+      ),
+    liftMass: num
+      .positive()
+      .optional()
+      .describe("Mass in kg whose weight liftLimit is a multiple of. Default the aircraft's mass."),
     groundEffect: num.nonnegative(),
     translationalLift: num.nonnegative(),
     translationalLiftSpeed: num.positive(),
@@ -2725,6 +2963,40 @@ const aircraftEngineSchema = z.strictObject(
       .describe(
         'Propeller polar moment of inertia in kg m², for gyroscopic precession. Default 0.',
       ),
+    propellerDiameter: num
+      .positive()
+      .optional()
+      .describe(
+        'Propeller diameter in meters. With it, thrust follows momentum theory: shaft power makes less thrust at low airspeed than the constant-efficiency model gives, down to a finite static thrust. Omitted keeps the constant-efficiency model.',
+      ),
+    lowSpeedThrust: z
+      .object({
+        atRest: num
+          .min(0.3)
+          .max(1)
+          .describe('Share of the thrust power the propeller delivers standing still.'),
+        fullSpeed: num
+          .positive()
+          .describe('True airspeed in m/s from which it delivers all of it.'),
+      })
+      .optional()
+      .describe(
+        'Loss of a real propeller when slow, beyond momentum theory: blades set or governed for cruise, and a fixed-pitch one holding the engine below rated speed. Needs propellerDiameter.',
+      ),
+    windmillDrag: num
+      .nonnegative()
+      .max(1)
+      .optional()
+      .describe(
+        'Drag of the idling propeller as a coefficient on its disc area, fading out by a quarter throttle. Default 0. Needs propellerDiameter.',
+      ),
+    bypassRatio: num
+      .nonnegative()
+      .max(15)
+      .optional()
+      .describe(
+        'Turbofan bypass ratio. With it, thrust falls with Mach number as a fan does, faster for a higher ratio, in place of ramRise.',
+      ),
     fuelConsumption: num
       .positive()
       .optional()
@@ -2769,6 +3041,55 @@ const aircraftSpecSchema = z
         ),
       airplane: airplanePhysicsSchema.optional(),
       helicopter: helicopterPhysicsSchema.optional(),
+      gear: z
+        .strictObject({
+          wheelbase: num
+            .positive()
+            .optional()
+            .describe(
+              'Distance from the main wheels to the nose or tail wheel in meters; for a helicopter the length of skid on the ground. Default 0.33 of the length (0.55 with a tailwheel, 0.22 on skids).',
+            ),
+          track: num
+            .positive()
+            .optional()
+            .describe(
+              'Distance between the main wheels, or the skids, in meters. Default from the span or rotor.',
+            ),
+          auxiliaryShare: num
+            .min(0.02)
+            .max(0.4)
+            .optional()
+            .describe(
+              'Share of the weight on the nose or tail wheel at rest. Default 0.1 (0.07 for a tailwheel).',
+            ),
+          frequency: num
+            .positive()
+            .optional()
+            .describe('Bounce frequency on the struts in Hz. Default 1.4 (2.2 on skids).'),
+          damping: num
+            .min(0)
+            .max(2)
+            .optional()
+            .describe('Damping ratio of the struts. Default 0.65 (0.55 on skids).'),
+          travel: num
+            .positive()
+            .optional()
+            .describe(
+              'Strut travel from rest to its stop in meters. Default 0.6 of the static deflection.',
+            ),
+          wheelRadius: num
+            .positive()
+            .optional()
+            .describe('Main wheel radius in meters. Default from the length.'),
+          grip: num
+            .positive()
+            .optional()
+            .describe('Peak tire friction on a dry runway. Default 0.8.'),
+        })
+        .optional()
+        .describe(
+          "Dimensions of the undercarriage, whose struts and tires carry the aircraft on the ground. Omitted, they follow from the airframe's size, with the nose or tail wheel carrying about a tenth of the weight.",
+        ),
       poweredLift: z
         .strictObject({
           transitTime: num
@@ -3259,7 +3580,26 @@ registerComponent(
       .enum(['assisted', 'direct'])
       .optional()
       .describe(
-        'Helicopter cyclic: assisted (default) commands a bounded, self-levelling tilt; direct commands pitch and roll rates with full authority (loops, rolls, straight down). Both are assisted on the ground.',
+        'Helicopter cyclic: assisted (default) commands a bounded, self-levelling tilt; direct is full authority (loops, rolls, straight down). On a rotor block direct is the swashplate itself, about a trim that starts where the assist had it and follows a held stick; without one it commands pitch and roll rates and is assisted on the ground.',
+      ),
+    pedalMode: z
+      .enum(['assisted', 'direct'])
+      .optional()
+      .describe(
+        "A helicopter's pedals where it flies on its rotors: assisted asks for a rate of turn and the tail rotor is worked to give it; direct is the tail rotor's pitch, about a trim that starts where the assist had the pedals and follows a held pedal. Default: as cyclicMode.",
+      ),
+    controlMode: z
+      .enum(['assisted', 'direct'])
+      .optional()
+      .describe(
+        'Airplane controls with surfaces: assisted (default) holds the flight path and coordinates the rudder; direct moves elevator, ailerons and rudder themselves. Ignored by fly-by-wire types.',
+      ),
+    pitchTrim: num
+      .min(-1)
+      .max(1)
+      .optional()
+      .describe(
+        'Elevator trim rate in direct control, -1 nose down to 1 nose up. Omitted, the trim follows a held stick slowly.',
       ),
   }),
   {
@@ -3360,6 +3700,47 @@ registerComponent(
     pitchTrim: num
       .optional()
       .describe('Airplane trimmed angle of attack in radians, flown with the stick centered.'),
+    elevatorTrim: num
+      .min(-1)
+      .max(1)
+      .optional()
+      .describe('Elevator trim in direct control, as a share of full travel.'),
+    surfaces: z
+      .object({
+        elevator: num.describe('Elevator position, -1..1; positive raises the nose.'),
+        aileron: num.describe('Aileron position, -1..1; positive rolls right.'),
+        rudder: num.describe('Rudder position, -1..1; positive turns the nose right.'),
+      })
+      .optional()
+      .describe('Elevator, aileron and rudder positions, -1..1, when flying on surfaces.'),
+    rotor: z
+      .object({
+        inflow: num.describe('Air the main rotor is pulling down through itself, m/s.'),
+        collective: num.describe('Main rotor blade pitch at three quarters radius, radians.'),
+        cyclic: z.tuple([num, num]).describe('Swashplate tilt forward and to the left, radians.'),
+        pedal: num.describe('Tail rotor blade pitch, radians.'),
+        trim: z
+          .tuple([num, num])
+          .optional()
+          .describe('Cyclic trim held in direct control, as shares of full travel.'),
+        pedalTrim: num
+          .optional()
+          .describe(
+            'Pedal trim held in direct control, as a share of full travel; positive is right pedal.',
+          ),
+        torque: num.describe('Torque on the mast as a share of the gearbox limit.'),
+      })
+      .optional()
+      .describe('A helicopter flying on its rotors: its inflow, blade pitches and mast torque.'),
+    wheels: z
+      .object({
+        spin: z.array(num).describe('Wheel speeds in radians per second, one per leg.'),
+        load: z.array(num).describe('Load on each leg in newtons.'),
+      })
+      .optional()
+      .describe(
+        "The undercarriage. An airplane's legs are its nose or tail wheel, left main and right main; a helicopter's the front left, front right, rear left and rear right ends of its skids.",
+      ),
     thrustVectorPosition: num
       .min(0)
       .max(1)

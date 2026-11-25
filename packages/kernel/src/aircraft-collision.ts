@@ -11,6 +11,7 @@ export type { AircraftCollisionProbe, AircraftContact } from '@bendyline/molen-s
 
 import type { TransformData } from './component';
 import { dmath as m } from './dmath';
+import { applyContactImpulse, type ContactBody, contactPoint, separate } from './dynamics/contact';
 import { quatFromAxisAngle, quatMul, quatNormalize, quatRotateVec3 } from './math3d';
 
 type Vec3 = [number, number, number];
@@ -20,6 +21,36 @@ export interface AircraftContactEnvironment {
   groundHeight(x: number, z: number, y?: number): number | undefined;
   /** Static obstacle contacts, in the same absolute coordinate frame as the simulation. */
   contacts?(probes: readonly AircraftCollisionProbe[], entity: string): readonly AircraftContact[];
+}
+
+const tailStrikes = new WeakMap<AircraftSpec, { angle: number; arm: number }>();
+/**
+ * Where the airframe's tail meets level ground as the airplane rotates nose-up about its landing
+ * contact, from its own collision geometry: the pitch `angle` in radians, and the `arm` in
+ * meters from the contact to the part that strikes. A long fuselage reaches it well before a
+ * short one.
+ */
+export function aircraftTailStrike(spec: AircraftSpec): { angle: number; arm: number } {
+  const known = tailStrikes.get(spec);
+  if (known) return known;
+  const strike = { angle: m.PI / 2, arm: m.max(1, spec.length / 2) };
+  for (const part of aircraftCollisionParts(spec)) {
+    if (part.disc || part.role === 'gear' || part.role === 'rotor' || part.role === 'tailRotor')
+      continue;
+    for (const [, y, z] of part.probes) {
+      // Wheels and skids rest on the ground already; only what hangs behind them can strike.
+      if (z >= 0 || y - part.radius < 0.05) continue;
+      const reach = m.hypot(y, z);
+      // y cos a + z sin a = radius, for the first angle a above zero.
+      const angle = m.acos(m.clamp(part.radius / reach, -1, 1)) + m.atan2(z, y);
+      if (angle < strike.angle) {
+        strike.angle = angle;
+        strike.arm = reach;
+      }
+    }
+  }
+  tailStrikes.set(spec, strike);
+  return strike;
 }
 
 export function aircraftCollisionParts(spec: AircraftSpec): readonly AircraftCollisionPart[] {
@@ -135,12 +166,16 @@ function inverse(q: Quat): Quat {
 function omega(state: AircraftStateData): Vec3 {
   return [-state.pitchRate, state.yawRate ?? 0, state.rollRate];
 }
-function inertia(spec: AircraftSpec): Vec3 {
-  return [
-    spec.airplane?.pitchInertia ?? spec.mass * (0.18 * spec.length) ** 2,
-    spec.airplane?.yawInertia ?? (spec.mass * (spec.span ** 2 + spec.length ** 2)) / 12,
-    spec.airplane?.rollInertia ?? spec.mass * (0.14 * spec.span) ** 2,
-  ];
+/**
+ * Principal inertia of an airframe about its left, up and forward axes (pitch, yaw, roll), kg m²:
+ * the authored figures, or estimates from the mass and dimensions.
+ */
+export function aircraftInertia(spec: AircraftSpec): Vec3 {
+  const pitch = spec.airplane?.pitchInertia ?? spec.mass * (0.18 * spec.length) ** 2;
+  const roll = spec.airplane?.rollInertia ?? spec.mass * (0.14 * spec.span) ** 2;
+  // An airplane's mass lies close to the plane of its wing and fuselage, and a flat body's
+  // inertia about the axis through it is the sum of the other two.
+  return [pitch, spec.airplane?.yawInertia ?? pitch + roll, roll];
 }
 function rotate(rot: Quat, rate: Vec3, h: number): Quat {
   const speed = m.hypot(...rate);
@@ -233,19 +268,20 @@ export function resolveAircraftContacts(
     (sum, part) => sum + (state.damage?.[part.id]?.detached ? part.massFraction : 0),
     0,
   );
-  const mass = spec.mass * m.max(0.2, 1 - lostMass);
-  const inert = scale(inertia(spec), m.max(0.2, 1 - lostMass));
+  const body: ContactBody = {
+    mass: spec.mass * m.max(0.2, 1 - lostMass),
+    inertia: scale(aircraftInertia(spec), m.max(0.2, 1 - lostMass)),
+    rot: t.rot,
+    velocity: state.velocity,
+    omega: omega(state),
+  };
   let correction: Vec3 = [0, 0, 0];
   const damaged = new Set<string>();
   for (const contact of contacts) {
     const part = parts.find((p) => p.id === contact.part);
     if (!part || state.damage?.[part.id]?.detached) continue;
-    const arm = quatRotateVec3(inv, sub(contact.point, com));
-    const normal = quatRotateVec3(inv, contact.normal);
-    const pointVelocity = add(state.velocity, quatRotateVec3(t.rot, cross(omega(state), arm)));
-    const incoming = m.max(0, -dot(pointVelocity, contact.normal));
-    const tangent = sub(pointVelocity, scale(contact.normal, dot(pointVelocity, contact.normal)));
-    const slide = m.hypot(...tangent);
+    const touch = contactPoint(body, com, contact.point, contact.normal);
+    const { incoming, slide } = touch;
     // A runway scrape also loads the joint in shear; airborne tangential speed alone does not.
     const rotor = probes.find((probe) => probe.part === part.id && probe.disc);
     // A rotating blade can strike a post while the hub is stationary. The swept-volume
@@ -326,42 +362,23 @@ export function resolveAircraftContacts(
         }
       }
     }
-    const angularImpulse = (direction: Vec3): Vec3 => {
-      const torque = cross(arm, direction);
-      return [torque[0] / inert[0], torque[1] / inert[1], torque[2] / inert[2]];
-    };
-    const effectiveInverseMass = (direction: Vec3): number =>
-      1 / mass + dot(cross(angularImpulse(direction), arm), direction);
     // Once a joint lets go, it can transfer only a bounded impulse back to the fuselage.
     const joint = detached
       ? m.min(1, (part.breakSpeed ?? incoming) / m.max(0.001, incoming)) * 0.25
       : 1;
-    const impulse = (incoming * 1.08 * joint) / effectiveInverseMass(normal);
-    let localImpulse = scale(normal, impulse);
-    if (slide > 0.0001 && impulse > 0) {
-      const direction = quatRotateVec3(inv, scale(tangent, -1 / slide));
-      localImpulse = add(
-        localImpulse,
-        scale(direction, m.min(impulse * 0.35, slide / effectiveInverseMass(direction))),
-      );
-    }
-    state.velocity = add(state.velocity, scale(quatRotateVec3(t.rot, localImpulse), 1 / mass));
-    let turn = add(omega(state), angularImpulse(localImpulse));
+    const impulse = applyContactImpulse(body, touch, { bounce: 1.08, friction: 0.35, joint });
+    state.velocity = body.velocity;
     if (!detached && aircraftWrecked(spec, state)) {
       // Point friction cannot resist rolling or spin about the contact normal. A scraping
       // wreck has a finite contact patch. Dissipate that rotation in proportion to the load
       // impulse, so sustained support damps it consistently across substeps/probe counts,
       // while a wreck in free fall keeps tumbling. 0.5 s/m gives about 5/s at rest under gravity.
-      turn = scale(turn, 1 / (1 + (0.5 * impulse) / mass));
+      body.omega = scale(body.omega, 1 / (1 + (0.5 * impulse) / body.mass));
     }
-    state.pitchRate = -turn[0];
-    state.yawRate = turn[1];
-    state.rollRate = turn[2];
-    if (!detached)
-      correction = add(
-        correction,
-        scale(contact.normal, m.max(0, contact.depth - dot(correction, contact.normal))),
-      );
+    state.pitchRate = -body.omega[0];
+    state.yawRate = body.omega[1];
+    state.rollRate = body.omega[2];
+    if (!detached) correction = separate(correction, contact.normal, contact.depth);
   }
   t.pos = add(t.pos, correction);
   return true;

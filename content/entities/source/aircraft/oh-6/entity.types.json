@@ -58,11 +58,11 @@
                 1,
                 0
               ],
-              "power": 235000,
+              "power": 188000,
               "idleRpm": 1,
               "spoolRate": 0.16,
               "rotorAngularSpeed": 50,
-              "ratedDensityRatio": 0.7,
+              "ratedDensityRatio": 0.797,
               "densityExponent": 1
             },
             "helicopter": {
@@ -79,22 +79,55 @@
               "maxTilt": 0.65,
               "yawRate": 0.85,
               "liftMultiplier": 2.05,
-              "groundEffect": 0.12,
+              "groundEffect": 0.275,
               "translationalLift": 0.1,
               "translationalLiftSpeed": 18,
               "verticalDrag": 210,
               "horizontalDrag": 18.39981576165803,
-              "quadraticDrag": 0.33115964532753356,
+              "quadraticDrag": 0.18562749984935975,
               "groundDeceleration": 9,
               "vortexRing": true,
               "retreatingBladeSpeed": 69.75860639999999,
               "rotorDiscs": 1,
               "powerLimitedRotor": true,
-              "rotorEfficiency": 0.75,
+              "rotorEfficiency": 0.705,
               "profilePowerFraction": 0.12,
               "fixedGear": true,
               "gearTransitTime": 0,
-              "rotorInertiaTime": 1.5
+              "rotorInertiaTime": 1.5,
+              "liftMass": 1150,
+              "liftLimit": 1.527,
+              "rotor": {
+                "blades": 4,
+                "chord": 0.171,
+                "tipSpeed": 198.1,
+                "shaftTilt": 0.0524,
+                "lock": 4.92,
+                "hingeOffset": 0.04,
+                "collective": [
+                  0.02,
+                  0.3139
+                ],
+                "inducedFactor": 1.015,
+                "groundEffect": 0.329,
+                "maxLift": 0.997,
+                "dragArea": 0.542,
+                "tail": {
+                  "radius": 0.648,
+                  "blades": 2,
+                  "chord": 0.12,
+                  "tipSpeed": 205.6,
+                  "arm": 4.623,
+                  "height": -0.729
+                },
+                "finArea": 0.467,
+                "stabilizerArea": 0.678,
+                "inertia": {
+                  "roll": 443,
+                  "pitch": 1212,
+                  "yaw": 973
+                }
+              }
             },
             "hardLandingSpeed": 4.5,
             "hardLandingRoll": 0.3,

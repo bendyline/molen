@@ -11,15 +11,20 @@ import { assetInputs } from '../asset-inputs.mjs';
 import {
   archivePath,
   bundleFiles,
+  bundleState,
+  carryArchives,
   checkAssets,
+  checkPublishedSidecars,
   fetchAssets,
   fileInfo,
+  githubCli,
   packAssets,
   pruneArchives,
   publishAssets,
   ReleaseMissingError,
   readStamp,
   SEED,
+  SIDECAR_PATCH,
   seedAssets,
   validateManifest,
   verifyArchive,
@@ -329,10 +334,23 @@ test('a new bundle replaces the old one and removes its stale outputs, but not l
   assert.equal(await readFile(join(root, kept), 'utf8'), 'version two');
 });
 
-/** Copy a build's install record where a later build's restored job records keep it. */
+/** Write job records where a build leaves them, so packing attaches them to the bundle. */
+async function recordJobs(root, records) {
+  for (const [id, record] of Object.entries(records))
+    await asset(
+      root,
+      `.artifacts/asset-build/jobs/${id}.json`,
+      Buffer.from(JSON.stringify(record)),
+    );
+}
+/** A seed.json restored from elsewhere, as an Actions cache leaves it. */
 async function saveSeed(source, destination) {
-  await mkdir(join(destination, '.artifacts/asset-build'), { recursive: true });
-  await cp(join(source, '.artifacts/asset-packs/installed.json'), join(destination, SEED));
+  const { key, release, inputs } = await readStamp(source);
+  await asset(
+    destination,
+    SEED,
+    Buffer.from(JSON.stringify({ format: 'molen/asset-install@1', key, release, inputs })),
+  );
 }
 /** GitHub's release list and download URLs for several published fixtures, by release name. */
 function gitHubServer(published, requested = []) {
@@ -340,83 +358,202 @@ function gitHubServer(published, requested = []) {
     requested.push(url);
     if (url.startsWith('https://api.github.com/')) {
       return Response.json(
-        published.map(({ release, published_at, draft = false }) => ({
-          tag_name: release,
-          draft,
-          published_at,
-          assets: [{ name: 'asset-manifest.json' }],
-        })),
+        await Promise.all(
+          published.map(async ({ release, source, published_at, draft = false }) => ({
+            tag_name: release,
+            draft,
+            published_at,
+            assets: (await readdir(join(source, '.artifacts/asset-packs', release))).map(
+              (name) => ({ name }),
+            ),
+          })),
+        ),
       );
     }
-    const release = url.split('/').at(-2);
+    const [release, file] = url.split('/').slice(-2);
     const entry = published.find((p) => p.release === release && !p.draft);
     if (!entry) return new Response('Not Found', { status: 404 });
+    if (file === 'asset-records.tar.gz')
+      return new Response(
+        await readFile(join(entry.source, '.artifacts/asset-packs', release, file)),
+      );
     return releaseServer(entry.source)(url);
   };
 }
+const on = (day) => `2026-11-${String(day).padStart(2, '0')}T00:00:00Z`;
 
-test('seeds a fresh checkout from the bundle its job records name, using cached archives', async () => {
-  const runtime = 'content/worldgen/assets/places/c2/c23/seattle/model.glb';
-  const earlier = await publishedFixture([[runtime, Buffer.from('seattle as built before')]]);
-  // The new checkout changed its recipe: its own bundle exists nowhere yet.
-  const fresh = await fixture({ source: '{"shape":"sphere"}' });
-  await cp(join(earlier.source, '.artifacts/asset-packs'), join(fresh, '.artifacts/asset-packs'), {
-    recursive: true,
-  });
-  await saveSeed(earlier.source, fresh);
+test('seeds from the bundle whose inputs differ least, with the job records that built it', async () => {
+  const path = 'assets/test/model.glb';
+  const bundle = async (shape, extra, record) => {
+    const source = await fixture({ source: JSON.stringify({ shape }) });
+    await asset(source, path, Buffer.from(shape));
+    for (const name of extra) await asset(source, `inputs/${name}.json`, Buffer.from(name));
+    await recordJobs(source, { made: { record } });
+    const installed = await installFixture(source);
+    await packAssets({ root: source, log: quiet });
+    return { ...installed, source };
+  };
+  // This checkout is the pull request that built `mine` with one more edit. Another pull request's
+  // bundle was published later, and main's earlier.
+  const main = await bundle('main', ['a'], 'main');
+  const mine = await bundle('mine', ['a', 'b', 'c'], 'mine');
+  const other = await bundle('other', ['x', 'y', 'z'], 'other');
+  const fresh = await fixture({ source: JSON.stringify({ shape: 'mine, edited' }) });
+  for (const name of ['a', 'b', 'c']) await asset(fresh, `inputs/${name}.json`, Buffer.from(name));
+  await recordJobs(fresh, { stale: { record: 'of some other build' } });
+  const messages = [];
   const release = await seedAssets({
     root: fresh,
-    fetchImpl: () => {
-      throw new Error('A fully cached seed must not touch the network');
-    },
-    log: quiet,
+    keepArchives: false,
+    fetchImpl: gitHubServer([
+      { ...main, published_at: on(1) },
+      { ...mine, published_at: on(2) },
+      { ...other, published_at: on(3) },
+    ]),
+    log: (line) => messages.push(line),
   });
-  assert.equal(release, earlier.installed.release);
-  assert.equal(await readFile(join(fresh, runtime), 'utf8'), 'seattle as built before');
+  assert.equal(release, mine.release);
+  assert.equal(await readFile(join(fresh, path), 'utf8'), 'mine');
+  const jobs = join(fresh, '.artifacts/asset-build/jobs');
+  assert.deepEqual(await readdir(jobs), ['made.json']);
+  assert.deepEqual(JSON.parse(await readFile(join(jobs, 'made.json'))), { record: 'mine' });
   const stamp = await readStamp(fresh);
   assert.equal(stamp.from, 'seed');
-  assert.equal(stamp.release, earlier.installed.release);
+  assert.deepEqual(stamp.inputs, mine.inputs);
+  assert.match(messages.at(-1), /Seeded with 1 GLBs of \S+ \(1 inputs differ; 1 restored\)/);
   // The seed is what a build starts from, never this checkout's bundle.
   await assert.rejects(checkAssets({ root: fresh, log: quiet }), /built from other inputs/);
+  // keepArchives: false leaves the disk to the GLBs; a records archive is not one of them.
+  const left = await readdir(join(fresh, '.artifacts/asset-packs'), { recursive: true });
+  assert.deepEqual(
+    left.filter((name) => name.endsWith('-part-001.tar.gz')),
+    [],
+  );
+  const directories = left.filter((name) => /^[a-f0-9]{64}$/.test(name));
+  assert.equal(
+    directories.length,
+    3,
+    'the records of the three candidates, and no emptied directory',
+  );
 });
 
-test('without a usable recorded seed, starts from the newest published bundle', async () => {
+test('among bundles without job records, starts from the newest published one', async () => {
   const path = 'assets/test/model.glb';
-  const older = await publishedFixture([[path, Buffer.from('older main')]]);
-  const newer = await publishedFixture([[path, Buffer.from('newer main')]], {
-    source: '{"shape":"torus"}',
-  });
-  const draft = await publishedFixture([[path, Buffer.from('unfinished draft')]], {
-    source: '{"shape":"cone"}',
-  });
-  const gone = await publishedFixture([[path, Buffer.from('evicted pull request')]], {
-    source: '{"shape":"prism"}',
-  });
+  const bundle = async (shape) => {
+    const { source, installed } = await publishedFixture([[path, Buffer.from(shape)]], {
+      source: JSON.stringify({ shape }),
+    });
+    return { ...installed, source };
+  };
+  const older = await bundle('older main');
+  const newer = await bundle('newer main');
+  const draft = await bundle('unfinished draft');
   const fresh = await fixture({ source: '{"shape":"sphere"}' });
-  await saveSeed(gone.source, fresh); // its archives are neither cached here nor published
   const requested = [];
   const release = await seedAssets({
     root: fresh,
     fetchImpl: gitHubServer(
       [
-        { ...older.installed, source: older.source, published_at: '2026-11-01T00:00:00Z' },
-        { ...newer.installed, source: newer.source, published_at: '2026-11-10T00:00:00Z' },
-        {
-          ...draft.installed,
-          source: draft.source,
-          published_at: '2026-11-11T00:00:00Z',
-          draft: true,
-        },
+        { ...older, published_at: on(1) },
+        { ...newer, published_at: on(10) },
+        { ...draft, published_at: on(11), draft: true },
       ],
       requested,
     ),
     log: quiet,
   });
-  assert.equal(release, newer.installed.release);
+  assert.equal(release, newer.release);
   assert.equal(await readFile(join(fresh, path), 'utf8'), 'newer main');
-  assert.ok(requested.some((url) => url.includes(`/${gone.installed.release}/`)));
-  assert.ok(!requested.some((url) => url.includes(`/${older.installed.release}/`)));
+  assert.ok(!requested.some((url) => url.includes(`/${older.release}/`)));
   assert.deepEqual((await readStamp(fresh)).inputs, []);
+});
+
+test('job records restored from a cache name the bundle they describe, when it is published', async () => {
+  const path = 'assets/test/model.glb';
+  const bundle = async (shape) => {
+    const { source, installed } = await publishedFixture([[path, Buffer.from(shape)]], {
+      source: JSON.stringify({ shape }),
+    });
+    return { ...installed, source };
+  };
+  const cached = await bundle('cached');
+  const newer = await bundle('newer');
+  const server = gitHubServer([
+    { ...cached, published_at: on(1) },
+    { ...newer, published_at: on(2) },
+  ]);
+  const fresh = await fixture({ source: '{"shape":"sphere"}' });
+  await recordJobs(fresh, { kept: {} });
+  await saveSeed(cached.source, fresh);
+  assert.equal(await seedAssets({ root: fresh, fetchImpl: server, log: quiet }), cached.release);
+  assert.deepEqual(await readdir(join(fresh, '.artifacts/asset-build/jobs')), ['kept.json']);
+  // Records of a bundle nobody published describe nothing a runner can download.
+  const lost = await bundle('never published');
+  const second = await fixture({ source: '{"shape":"sphere"}' });
+  await saveSeed(lost.source, second);
+  assert.equal(await seedAssets({ root: second, fetchImpl: server, log: quiet }), newer.release);
+});
+
+test('a bundle whose archives are gone is passed over; a failing network is not', async () => {
+  const path = 'assets/test/model.glb';
+  const bundle = async (shape) => {
+    const { source, installed } = await publishedFixture([[path, Buffer.from(shape)]], {
+      source: JSON.stringify({ shape }),
+    });
+    return { ...installed, source };
+  };
+  const older = await bundle('older');
+  const gone = await bundle('gone');
+  const serve = gitHubServer([
+    { ...older, published_at: on(1) },
+    { ...gone, published_at: on(2) },
+  ]);
+  const answering = (status) => async (url) =>
+    url.includes(`/${gone.release}/`) && url.endsWith('.tar.gz')
+      ? new Response('', { status })
+      : serve(url);
+  const fresh = await fixture({ source: '{"shape":"sphere"}' });
+  const options = { root: fresh, retry: { wait: async () => {} }, log: quiet };
+  await assert.rejects(seedAssets({ ...options, fetchImpl: answering(503) }), /failed 4 times/);
+  assert.equal(await seedAssets({ ...options, fetchImpl: answering(404) }), older.release);
+  assert.equal(await readFile(join(fresh, path), 'utf8'), 'older');
+});
+
+test('an unreadable candidate is passed over, and a records archive writes only records', async () => {
+  const path = 'assets/test/model.glb';
+  const source = await fixture({ source: '{"shape":"good"}' });
+  await asset(source, path, Buffer.from('good'));
+  await recordJobs(source, { made: {} });
+  const good = { ...(await installFixture(source)), source };
+  await packAssets({ root: source, log: quiet });
+  const broken = await fixture({ source: '{"shape":"broken"}' });
+  await asset(broken, path, Buffer.from('broken'));
+  const bad = { ...(await installFixture(broken)), source: broken };
+  await recordJobs(broken, { made: {} });
+  await packAssets({ root: broken, log: quiet });
+  const manifestPath = join(broken, '.artifacts/asset-packs', bad.release, 'asset-manifest.json');
+  const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
+  // Replace its records with an archive that also carries a file outside the records' places.
+  const stray = join(broken, '.artifacts');
+  await asset(broken, '.artifacts/evil.mjs', Buffer.from('process.exit(1)'));
+  await asset(broken, '.artifacts/asset-build/seed.json', Buffer.from('{"format":"other"}'));
+  const records = join(broken, '.artifacts/asset-packs', bad.release, 'asset-records.tar.gz');
+  await tar.c({ file: records, cwd: stray, gzip: true }, ['evil.mjs', 'asset-build/seed.json']);
+  manifest.records = { file: 'asset-records.tar.gz', ...(await fileInfo(records)) };
+  await writeFile(manifestPath, JSON.stringify(manifest));
+  const fresh = await fixture({ source: '{"shape":"sphere"}' });
+  const messages = [];
+  const release = await seedAssets({
+    root: fresh,
+    fetchImpl: gitHubServer([
+      { ...good, published_at: on(1) },
+      { ...bad, published_at: on(2) },
+    ]),
+    log: (line) => messages.push(line),
+  });
+  assert.equal(release, good.release);
+  assert.match(messages.join('\n'), /has no usable job records: No seed in/);
+  await assert.rejects(readFile(join(fresh, '.artifacts/evil.mjs')), /ENOENT/);
 });
 
 test('with nothing to start from, a seed leaves no install record and does not fail', async () => {
@@ -467,6 +604,229 @@ test('repacking reuses unchanged archives and recompresses only changed groups',
   await fetchAssets({ root: fresh, fetchImpl: releaseServer(source), log: quiet });
   assert.equal(await readFile(join(fresh, chicago), 'utf8'), 'chicago');
   assert.equal(await readFile(join(fresh, seattle), 'utf8'), 'seattle, rebuilt');
+});
+
+/** Let `root` pack against a bundle GitHub has, as a fetch, a seed or a publish leaves it. */
+async function knowsPublished(root, { source, release }) {
+  const published = join(root, '.artifacts/asset-packs/published');
+  await mkdir(published, { recursive: true });
+  await cp(
+    join(source, '.artifacts/asset-packs', release, 'asset-manifest.json'),
+    join(published, `${release}.json`),
+  );
+}
+
+test('a new bundle uploads what changed and lists the rest where it already is', async () => {
+  const place = (cell, name) => `content/worldgen/assets/places/${cell}/${cell}3/${name}/model.glb`;
+  // Seattle's region holds several large places, so changing one leaves most of its archive live.
+  const big = (n) => Buffer.alloc(64 * 1024, n);
+  const before = [
+    [place('c2', 'needle'), big(1)],
+    [place('c2', 'tower'), big(2)],
+    [place('c2', 'market'), big(3)],
+    [place('c2', 'library'), big(4)],
+    [place('dp', 'chicago'), big(5)],
+  ];
+  const budget = 1024 ** 2;
+  const first = await fixture();
+  for (const [path, bytes] of before) await asset(first, path, bytes);
+  const base = { ...(await installFixture(first)), source: first };
+  await packAssets({ root: first, budget, log: quiet });
+
+  const second = await fixture({ source: '{"shape":"sphere"}' });
+  for (const [path, bytes] of before) await asset(second, path, bytes);
+  await asset(second, place('c2', 'market'), big(30)); // changed
+  await asset(second, place('c2', 'stadium'), big(6)); // new
+  await rm(join(second, place('c2', 'library'))); // gone
+  await installFixture(second);
+  await knowsPublished(second, base);
+  const messages = [];
+  const manifest = await packAssets({
+    root: second,
+    // Archives under a sixteenth of the budget are folded into a growing group's new one.
+    budget: 64 * 1024 * 16,
+    log: (line) => messages.push(line),
+  });
+  const archives = manifest.archives.map(({ file, release, files }) => [
+    file,
+    release,
+    files.map((path) => path.split('/').at(-2)),
+  ]);
+  // Chicago is untouched. Two of Seattle's four files are dead, which is too many to carry.
+  assert.deepEqual(archives, [
+    ['worldgen-models-c2-part-001.tar.gz', undefined, ['market', 'needle', 'stadium', 'tower']],
+    ['worldgen-models-dp-part-001.tar.gz', base.release, ['chicago']],
+  ]);
+  assert.match(messages.at(-1), /1 new \(\d+ MiB\), 1 in 1 earlier releases/);
+
+  // With one of four dead, Seattle's archive stays and only the changed file is packed.
+  const third = await fixture({ source: '{"shape":"torus"}' });
+  for (const [path, bytes] of before) await asset(third, path, bytes);
+  await asset(third, place('c2', 'market'), big(31));
+  const last = await installFixture(third);
+  await knowsPublished(third, base);
+  const carried = await packAssets({ root: third, budget: 64 * 1024 * 16, log: quiet });
+  assert.deepEqual(
+    carried.archives.map(({ release, files }) => [
+      release,
+      files.map((path) => path.split('/').at(-2)),
+    ]),
+    [
+      [undefined, ['market']],
+      [base.release, ['library', 'needle', 'tower']],
+      [base.release, ['chicago']],
+    ],
+  );
+  assert.equal(validateManifest(carried, last), carried);
+
+  // A restore reads each archive from its own release and never writes the dead member.
+  const requested = [];
+  const fresh = await fixture({ source: '{"shape":"torus"}' });
+  await fetchAssets({
+    root: fresh,
+    fetchImpl: gitHubServer(
+      [
+        { ...base, published_at: on(1) },
+        { ...last, source: third, published_at: on(2) },
+      ],
+      requested,
+    ),
+    log: quiet,
+  });
+  assert.deepEqual(await readFile(join(fresh, place('c2', 'market'))), big(31));
+  assert.deepEqual(await readFile(join(fresh, place('c2', 'library'))), big(4));
+  assert.ok(requested.some((url) => url.includes(`/${base.release}/worldgen-models-c2-`)));
+  await checkAssets({ root: fresh, log: quiet });
+});
+
+test('carried archives chain: each names the release that first held it', () => {
+  const file = (path, n) => ({ path, size: 100, sha256: String(n).repeat(64) });
+  const archive = (name, files, extra = {}) => ({
+    file: `${name}-part-001.tar.gz`,
+    size: 10,
+    sha256: name[0].repeat(64),
+    files,
+    ...extra,
+  });
+  const a = 'content/worldgen/assets/places/c2/c23/a/model.glb';
+  const b = 'content/worldgen/assets/places/dp/dp3/b/model.glb';
+  const c = 'content/worldgen/assets/places/ez/ezr/c/model.glb';
+  const one = {
+    release: `assets-${'1'.repeat(16)}`,
+    files: [file(a, 1), file(b, 2)],
+    archives: [archive('a', [a]), archive('b', [b])],
+  };
+  const two = {
+    release: `assets-${'2'.repeat(16)}`,
+    files: [file(a, 1), file(b, 3), file(c, 4)],
+    archives: [
+      archive('a', [a], { release: one.release, bytes: 100 }),
+      archive('b', [b]),
+      archive('c', [c]),
+    ],
+  };
+  const options = { release: `assets-${'3'.repeat(16)}`, budget: 1600 };
+  const result = carryArchives([file(a, 1), file(b, 3), file(c, 5)], [two, one], options);
+  assert.deepEqual(
+    result.carried.map(({ release, files, bytes }) => [release, files, bytes]),
+    [
+      [one.release, [a], 100],
+      [two.release, [b], 100],
+    ],
+  );
+  assert.deepEqual(result.rest, [file(c, 5)]);
+  // Nothing is carried from this bundle's own release: it is not published yet.
+  assert.deepEqual(
+    carryArchives([file(a, 1)], [{ ...one, release: options.release }], options).rest,
+    [file(a, 1)],
+  );
+  // A small archive joins its region's new one; in a region with nothing new it stays put.
+  const small = { ...options, budget: 100 * 17 };
+  const d = 'content/worldgen/assets/places/c2/c24/d/model.glb';
+  assert.deepEqual(carryArchives([file(a, 1), file(b, 2)], [one], small).rest, []);
+  assert.deepEqual(carryArchives([file(a, 1), file(d, 9), file(b, 2)], [one], small).rest, [
+    file(a, 1),
+    file(d, 9),
+  ]);
+});
+
+test('a manifest may list archives of other releases only in the new format, and each once', async () => {
+  const published = await publishedFixture([['assets/test/a.glb', Buffer.from('a')]]);
+  const { installed, manifest } = published;
+  const carried = structuredClone(manifest);
+  carried.archives[0].release = `assets-${'0'.repeat(16)}`;
+  carried.archives[0].bytes = carried.files[0].size + 5;
+  assert.equal(validateManifest(carried, installed), carried);
+  for (const change of [
+    (m) => {
+      m.format = 'molen/asset-bundle@1';
+    },
+    (m) => {
+      m.archives[0].release = installed.release;
+    },
+    (m) => {
+      m.archives[0].release = '../packs';
+    },
+    (m) => {
+      m.archives[0].bytes = 0;
+    },
+    (m) => {
+      m.archives.push(m.archives[0]);
+    },
+  ]) {
+    const invalid = structuredClone(carried);
+    change(invalid);
+    assert.throws(() => validateManifest(invalid, installed), /Invalid archive|unexpected asset/);
+  }
+  const records = structuredClone(manifest);
+  records.records = { file: '../seed.json', size: 1, sha256: '0'.repeat(64) };
+  assert.throws(() => validateManifest(records, installed), /Invalid asset job records/);
+  // Manifests published before archives were shared stay readable.
+  const old = structuredClone(manifest);
+  old.format = 'molen/asset-bundle@1';
+  assert.equal(validateManifest(old, installed), old);
+});
+
+test('a checkout knows whether its bundle is published and whether its sidecars describe it', async () => {
+  const path = 'content/worldgen/assets/places/c2/c23/tower/model.glb';
+  const sidecar = 'content/worldgen/assets/places/c2/c23/tower/asset.json';
+  const bytes = Buffer.from('tower');
+  const hash = `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
+  const published = await publishedFixture([[path, bytes]]);
+  const fresh = await fixture();
+  const fetchImpl = releaseServer(published.source);
+  const state = await bundleState({ root: fresh, fetchImpl });
+  assert.equal(state.release, published.installed.release);
+  assert.equal(state.published, true);
+  const document = (value) =>
+    asset(
+      fresh,
+      sidecar,
+      Buffer.from(
+        JSON.stringify({ format: 'molen/asset@1', hash: value, files: { main: 'model.glb' } }),
+      ),
+    );
+  await document(hash);
+  await checkPublishedSidecars({ root: fresh, fetchImpl, log: quiet });
+  // A manifest already in hand is used as it is.
+  const offline = () => {
+    throw new Error('the manifest is already here');
+  };
+  const known = { root: fresh, manifest: state.manifest, fetchImpl: offline, log: quiet };
+  await checkPublishedSidecars(known);
+  await document(`sha256:${'0'.repeat(64)}`);
+  await assert.rejects(
+    checkPublishedSidecars({ root: fresh, fetchImpl, log: quiet }),
+    /committed sidecars do not describe[\s\S]*records other bytes than model\.glb/,
+  );
+  // No GLB was restored to find that out.
+  await assert.rejects(readFile(join(fresh, path)), /ENOENT/);
+  await asset(fresh, recipe, Buffer.from('{"shape":"sphere"}'));
+  assert.equal(
+    (await bundleState({ root: fresh, fetchImpl: async () => new Response('', { status: 404 }) }))
+      .published,
+    false,
+  );
 });
 
 test('rejects corrupt downloads without installing any GLB', async () => {
@@ -742,15 +1102,13 @@ test('check rejects a sidecar whose runtime LODs are not its variants', async ()
   const root = await fixture();
   await asset(root, 'assets/test/model.glb');
   await asset(root, 'assets/test/model.skyline.glb');
-  await installFixture(root);
+  const { files } = await installFixture(root);
+  const hash = `sha256:${files.find((f) => f.path.endsWith('/model.glb')).sha256}`;
   const sidecar = {
     format: 'molen/asset@1',
     files: { main: 'model.glb', variants: {} },
-    hash: 'sha256:master',
-    runtimeLods: {
-      masterHash: 'sha256:master',
-      levels: [{ name: 'skyline', file: 'model.skyline.glb' }],
-    },
+    hash,
+    runtimeLods: { masterHash: hash, levels: [{ name: 'skyline', file: 'model.skyline.glb' }] },
   };
   const write = () => writeFile(join(root, 'assets/test/asset.json'), JSON.stringify(sidecar));
   // What an import replay followed by an LOD reuse used to leave behind.
@@ -762,9 +1120,97 @@ test('check rejects a sidecar whose runtime LODs are not its variants', async ()
   sidecar.files.variants.skyline = 'model.skyline.glb';
   await write();
   await checkAssets({ root, log: quiet });
-  sidecar.hash = 'sha256:reimported';
+  sidecar.runtimeLods.masterHash = 'sha256:reimported';
   await write();
   await assert.rejects(checkAssets({ root, log: quiet }), /derived from another master/);
+});
+
+/** A checkout whose commit holds one sidecar, with a build that rewrites it beside its GLBs. */
+async function sidecarFixture() {
+  const root = await fixture();
+  const git = (...args) =>
+    execFileSync('git', ['-c', 'user.name=Test', '-c', 'user.email=test@localhost', ...args], {
+      cwd: root,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+  git('config', 'core.autocrlf', 'false');
+  const directory = 'content/worldgen/assets/places/c2/c23/test';
+  const sidecar = `${directory}/asset.json`;
+  const digest = (text) => `sha256:${createHash('sha256').update(text).digest('hex')}`;
+  const build = async (main, skyline = 'skyline') => {
+    await asset(root, `${directory}/model.glb`, Buffer.from(main));
+    await asset(root, `${directory}/model.skyline.glb`, Buffer.from(skyline));
+    await installFixture(root);
+    const document = {
+      format: 'molen/asset@1',
+      files: { main: 'model.glb', variants: { skyline: 'model.skyline.glb' } },
+      hash: digest(main),
+      runtimeLods: {
+        masterHash: digest(main),
+        levels: [{ name: 'skyline', file: 'model.skyline.glb', hash: digest(skyline) }],
+      },
+    };
+    await asset(root, sidecar, Buffer.from(`${JSON.stringify(document, null, 2)}\n`));
+  };
+  const commit = () => {
+    git('add', '--', sidecar);
+    git('commit', '-q', '--no-verify', '-m', 'sidecar');
+  };
+  await build('first');
+  commit();
+  return { root, git, sidecar, build, commit };
+}
+
+test('check rejects a sidecar that records other bytes than the bundle holds', async () => {
+  const { root, git, sidecar, build } = await sidecarFixture();
+  await checkAssets({ root, log: quiet });
+  // A restored bundle of rebuilt GLBs beside the committed sidecar.
+  await build('second');
+  git('checkout', '--', sidecar);
+  await assert.rejects(
+    checkAssets({ root, log: quiet }),
+    /test\/asset\.json: records other bytes than model\.glb\n.*asset-sidecars artifact/,
+  );
+  await build('second', 'simplified again');
+  git('checkout', '--', sidecar);
+  await assert.rejects(checkAssets({ root, log: quiet }), /than model\.glb, model\.skyline\.glb\n/);
+  // A level can change while its master does not.
+  await build('first', 'simplified again');
+  git('checkout', '--', sidecar);
+  await assert.rejects(
+    checkAssets({ root, log: quiet }),
+    /^Error: content\/\S+\/asset\.json: records other bytes than model\.skyline\.glb\n/,
+  );
+});
+
+test('check --committed rejects sidecars a build changed and keeps them as a patch', async () => {
+  const { root, git, sidecar, build, commit } = await sidecarFixture();
+  const committed = () => checkAssets({ root, committed: true, log: quiet });
+  await committed();
+  await build('second');
+  const rewritten = await readFile(join(root, sidecar), 'utf8');
+  // The build made the sidecar match its GLBs, so only the commit still disagrees.
+  await checkAssets({ root, log: quiet });
+  await assert.rejects(committed(), (error) => {
+    assert.match(error.message, /^The build changed these committed sidecars/);
+    assert.ok(error.message.includes(`\n${sidecar}\n`), error.message);
+    return true;
+  });
+  const command = spawnSync(
+    process.execPath,
+    [resolve('scripts/asset-packs.mjs'), 'check', '--committed', '--root', root],
+    { encoding: 'utf8' },
+  );
+  assert.equal(command.status, 1);
+  assert.match(command.stderr, /-n asset-sidecars && git apply sidecars\.patch/);
+  // The patch turns a clean checkout of the commit into the one the bundle needs.
+  git('checkout', '--', sidecar);
+  git('apply', SIDECAR_PATCH);
+  assert.equal(await readFile(join(root, sidecar), 'utf8'), rewritten);
+  commit();
+  await committed();
+  await assert.rejects(readFile(join(root, SIDECAR_PATCH)), { code: 'ENOENT' });
 });
 
 async function sourceBundleFixture(
@@ -885,26 +1331,22 @@ test('CI rejects staged bulk captures while allowing small summary previews', as
   );
 });
 
-test('asset restore never reads or downloads optional legacy review archives', async () => {
-  const published = await publishedFixture([['assets/test/model.glb', Buffer.from('model')]]);
-  const root = await fixture();
-  await writeFile(join(root, 'review-lock.json'), 'unavailable legacy review metadata');
-  const requests = [];
-  await fetchAssets({ root, fetchImpl: releaseServer(published.source, requests), log: quiet });
-  assert.equal(await readFile(join(root, 'assets/test/model.glb'), 'utf8'), 'model');
-  assert.ok(requests.length > 0);
-  assert.ok(requests.every((file) => file === 'asset-manifest.json' || file.endsWith('.tar.gz')));
-});
-
-function fakeGitHub(release, { existing } = {}) {
+function fakeGitHub(release, { existing, earlier = [] } = {}) {
   const uploaded = [];
   const commands = [];
   const runGh = (args) => {
     commands.push(args);
     if (args.includes('--jq') && args.at(-1).endsWith('/releases?per_page=100'))
-      return existing ? `${JSON.stringify(existing)}\n` : '';
+      return [...earlier.map(({ attachments, ...item }) => item), existing]
+        .filter(Boolean)
+        .map((item) => `${JSON.stringify(item)}\n`)
+        .join('');
     if (args.includes('POST')) return JSON.stringify({ id: 123, draft: true, tag_name: release });
-    if (args.some((a) => a.endsWith('/assets?per_page=100'))) return JSON.stringify([uploaded]);
+    const listed = args.at(-1).match(/\/releases\/(\d+)\/assets\?per_page=100$/)?.[1];
+    if (listed)
+      return JSON.stringify([
+        earlier.find((item) => String(item.id) === listed)?.attachments ?? uploaded,
+      ]);
     if (args.includes('DELETE')) {
       const id = Number(args.at(-1).split('/').at(-1));
       uploaded.splice(
@@ -986,6 +1428,160 @@ test('replaces a draft attachment from an interrupted run and rejects stray atta
     publishAssets({ root, target: 'a'.repeat(40), runGh: stray.runGh, log: quiet }),
     /unexpected attachments/,
   );
+});
+
+test('publishes only what no earlier release holds, after checking that they still do', async () => {
+  const place = (cell) => `content/worldgen/assets/places/${cell}/${cell}3/tower/model.glb`;
+  const first = await fixture();
+  await asset(first, place('c2'), Buffer.from('seattle'));
+  await asset(first, place('dp'), Buffer.from('chicago'));
+  const base = { ...(await installFixture(first)), source: first };
+  const { archives } = await packAssets({ root: first, log: quiet });
+  const second = await fixture({ source: '{"shape":"sphere"}' });
+  await asset(second, place('c2'), Buffer.from('seattle, rebuilt'));
+  await asset(second, place('dp'), Buffer.from('chicago'));
+  await recordJobs(second, { made: { record: 1 } });
+  const { release } = await installFixture(second);
+  await knowsPublished(second, base);
+  const attachments = archives.map(({ file, size, sha256 }) => ({
+    name: file,
+    size,
+    digest: `sha256:${sha256}`,
+  }));
+  const holding = (changes) => ({
+    id: 7,
+    draft: false,
+    tag_name: base.release,
+    attachments,
+    ...changes,
+  });
+  const attempt = (earlier) => {
+    const github = fakeGitHub(release, { earlier });
+    const options = { root: second, target: 'a'.repeat(40), runGh: github.runGh, log: quiet };
+    return { github, done: publishAssets({ ...options, builtFrom: 'b'.repeat(40) }) };
+  };
+  // Gone, still a draft, or holding other bytes: a restore would not find Chicago there.
+  for (const earlier of [
+    [],
+    [holding({ draft: true })],
+    [holding({ attachments: attachments.filter((a) => !a.name.includes('-dp-')) })],
+    [holding({ attachments: attachments.map((a) => ({ ...a, digest: 'sha256:0' })) })],
+  ]) {
+    const { github, done } = attempt(earlier);
+    await assert.rejects(done, /no longer holds worldgen-models-dp-part-001\.tar\.gz/);
+    assert.ok(!github.commands.some((args) => args.includes('POST')), 'nothing was created');
+  }
+  const { github, done } = attempt([holding()]);
+  assert.equal(await done, release);
+  assert.deepEqual(github.uploaded.map((a) => a.name).sort(), [
+    'ASSET-NOTICES.txt',
+    'asset-manifest.json',
+    'asset-records.tar.gz',
+    'worldgen-models-c2-part-001.tar.gz',
+  ]);
+  const request = JSON.parse(
+    await readFile(join(second, '.artifacts/asset-packs', release, 'release-request.json'), 'utf8'),
+  );
+  // The tag marks a commit of main; the notes name what was built.
+  assert.equal(request.target_commitish, 'a'.repeat(40));
+  assert.match(request.body, new RegExp(`built from source at ${'b'.repeat(40)}`));
+  // The next bundle packed here may list this one's archives.
+  const published = join(second, '.artifacts/asset-packs/published', `${release}.json`);
+  assert.equal(JSON.parse(await readFile(published, 'utf8')).release, release);
+});
+
+test('a bundle whose files are all published already packs and uploads no archive', async () => {
+  // A source record changed and no model did: the same GLBs under another name.
+  const path = 'content/worldgen/assets/places/c2/c23/tower/model.glb';
+  const first = await fixture();
+  await asset(first, path, Buffer.from('tower'));
+  const base = { ...(await installFixture(first)), source: first };
+  const { archives } = await packAssets({ root: first, log: quiet });
+  const second = await fixture({ source: '{"shape":"sphere"}' });
+  await asset(second, path, Buffer.from('tower'));
+  const { release } = await installFixture(second);
+  await knowsPublished(second, base);
+  const manifest = await packAssets({ root: second, log: quiet });
+  assert.deepEqual(
+    manifest.archives.map((a) => a.release),
+    [base.release],
+  );
+  const attachments = archives.map(({ file, size, sha256 }) => ({
+    name: file,
+    size,
+    digest: `sha256:${sha256}`,
+  }));
+  const github = fakeGitHub(release, {
+    earlier: [{ id: 7, draft: false, tag_name: base.release, attachments }],
+  });
+  const target = 'a'.repeat(40);
+  await publishAssets({ root: second, target, runGh: github.runGh, log: quiet });
+  assert.deepEqual(github.uploaded.map((a) => a.name).sort(), [
+    'ASSET-NOTICES.txt',
+    'asset-manifest.json',
+  ]);
+  const fresh = await fixture({ source: '{"shape":"sphere"}' });
+  await fetchAssets({
+    root: fresh,
+    fetchImpl: gitHubServer([
+      { ...base, published_at: on(1) },
+      { release, source: second, published_at: on(2) },
+    ]),
+    log: quiet,
+  });
+  assert.equal(await readFile(join(fresh, path), 'utf8'), 'tower');
+});
+
+test('GitHub losing sight of a draft, or being busy, costs a retry; other failures do not repeat', () => {
+  const failing = (stderr) => Object.assign(new Error('gh failed'), { stderr });
+  const attempt = (args, failures) => {
+    const calls = [];
+    const waits = [];
+    const gh = githubCli({
+      run: (given) => {
+        calls.push(given);
+        const stderr = failures[calls.length - 1];
+        if (stderr) throw failing(stderr);
+        return 'ok';
+      },
+      wait: (ms) => waits.push(ms),
+    });
+    let result;
+    try {
+      result = gh(args);
+    } catch (error) {
+      result = error.stderr;
+    }
+    return { result, calls, waits };
+  };
+  const upload = ['release', 'upload', 'assets-1', 'a.tar.gz', '--repo', 'o/r'];
+  const lost = attempt(upload, ['release not found\n', 'HTTP 502: Bad Gateway']);
+  assert.equal(lost.result, 'ok');
+  assert.deepEqual(lost.waits, [10_000, 20_000]);
+  // The first upload may have left a broken attachment behind.
+  assert.deepEqual(lost.calls, [upload, [...upload, '--clobber'], [...upload, '--clobber']]);
+  const edit = ['release', 'edit', 'assets-1', '--draft=false'];
+  assert.equal(attempt(edit, ['release not found']).calls.length, 2);
+  assert.equal(attempt(upload, Array(9).fill('release not found')).calls.length, 4);
+  // A missing release is an answer anywhere else, and nothing that creates is repeated.
+  assert.equal(attempt(['release', 'view', 'assets-1'], ['release not found']).calls.length, 1);
+  assert.equal(attempt(['api', '--method', 'POST', 'x'], ['HTTP 502']).calls.length, 1);
+  assert.equal(attempt(upload, ['HTTP 422: Validation Failed']).calls.length, 1);
+});
+
+test('a repacked bundle replaces the archives an interrupted publish left in its draft', async () => {
+  const root = await fixture();
+  await asset(root, 'assets/test/model.glb');
+  const { release } = await installFixture(root);
+  const github = fakeGitHub(release, { existing: { id: 123, draft: true, tag_name: release } });
+  // That packing split the group differently: part 002 is not in this one.
+  github.uploaded.push({ id: 5, name: 'assets-test-part-002.tar.gz', size: 1, digest: 'sha256:0' });
+  await publishAssets({ root, target: 'a'.repeat(40), runGh: github.runGh, log: quiet });
+  assert.deepEqual(github.uploaded.map((a) => a.name).sort(), [
+    'ASSET-NOTICES.txt',
+    'asset-manifest.json',
+    'assets-test-part-001.tar.gz',
+  ]);
 });
 
 test('leaves an already published bundle untouched', async () => {
@@ -1221,8 +1817,6 @@ test('does not accept an environment whose dependency installation left pins mis
 
 test('a build stamps the inputs it started from, drops stale outputs and keeps local work', async () => {
   const root = await fixture();
-  // Source builds are independent of old review archives, even if their lock is unavailable.
-  await writeFile(join(root, 'review-lock.json'), 'unavailable legacy review metadata');
   // No jobs load packages in this fixture; satisfy the build preflight without compiling.
   for (const path of [
     'packages/schema/dist/index.mjs',

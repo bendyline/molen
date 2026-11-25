@@ -1365,16 +1365,16 @@
               "pitchAuthority": 0.18,
               "pitchResponse": 2.5,
               "stallPitchRate": 0.18,
-              "rollAuthority": 0.55,
-              "rollResponse": 1.3,
+              "rollAuthority": 0.109,
+              "rollResponse": 1.198,
               "rudderAuthority": 1,
               "groundSteerSpeed": 8,
               "groundLevelRate": 2,
               "maxGroundPitch": 0.22,
               "camberAngle": 0.045,
-              "flapLift": 0.8,
+              "flapLift": 1.1,
               "postStallFlapEffect": 0.4,
-              "stallAngle": 0.28,
+              "stallAngle": 0.2909,
               "stallTransitionAngle": 0.12,
               "pitchFrequency": 3.5,
               "pitchDamping": 0.7,
@@ -1386,10 +1386,10 @@
               "dihedralEffect": 2.5,
               "propellerEffects": 0,
               "stallSpeed": 48,
-              "liftSlope": 4.8,
+              "liftSlope": 4.984,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.03683744636552138,
+              "profileDrag": 0.01907,
               "inducedDrag": 0.045372004802298256,
               "gearDrag": 0.018,
               "flapDrag": 0.075,
@@ -1404,12 +1404,31 @@
               "rollingDeceleration": 0.22,
               "groundTrackRate": 12,
               "groundEffect": true,
-              "criticalMach": 0.72,
+              "criticalMach": 0.744,
               "waveDrag": 0.22,
               "maxMach": 0.82,
               "maxEquivalentAirspeed": 175,
               "gearLimitSpeed": 130,
               "flapLimitSpeed": 115,
+              "surfaces": {
+                "dihedral": 0.1,
+                "aileron": 0.1659,
+                "liftArm": 1.855,
+                "tailArm": 32.477,
+                "tailArea": 165.668,
+                "tailLiftSlope": 3.3,
+                "tailIncidence": 0.0232,
+                "downwash": 0.3709,
+                "elevator": 0.35,
+                "finArm": 32.477,
+                "finHeight": 5.528,
+                "finArea": 120.478,
+                "finLiftSlope": 2.8,
+                "rudder": 0.35,
+                "bodyYaw": 0.1,
+                "sideForce": 0.85
+              },
+              "rollInertia": 34386496,
               "speedBrakeDrag": 0.08
             },
             "engines": [
@@ -1433,11 +1452,11 @@
                 "minPropellerSpeed": 160,
                 "propellerEfficiency": 0.85,
                 "propulsion": "jet",
-                "densityExponent": 0.85,
+                "densityExponent": 0.866,
                 "dryThrust": 229800,
                 "highAltitudeDensityRatio": 0.33755830118434194,
                 "highAltitudeExponent": 1.2,
-                "ramRise": 0.15
+                "bypassRatio": 5.7
               },
               {
                 "id": "engine-2",
@@ -1459,11 +1478,11 @@
                 "minPropellerSpeed": 160,
                 "propellerEfficiency": 0.85,
                 "propulsion": "jet",
-                "densityExponent": 0.85,
+                "densityExponent": 0.866,
                 "dryThrust": 229800,
                 "highAltitudeDensityRatio": 0.33755830118434194,
                 "highAltitudeExponent": 1.2,
-                "ramRise": 0.15
+                "bypassRatio": 5.7
               },
               {
                 "id": "engine-3",
@@ -1485,11 +1504,11 @@
                 "minPropellerSpeed": 160,
                 "propellerEfficiency": 0.85,
                 "propulsion": "jet",
-                "densityExponent": 0.85,
+                "densityExponent": 0.866,
                 "dryThrust": 229800,
                 "highAltitudeDensityRatio": 0.33755830118434194,
                 "highAltitudeExponent": 1.2,
-                "ramRise": 0.15
+                "bypassRatio": 5.7
               },
               {
                 "id": "engine-4",
@@ -1511,13 +1530,16 @@
                 "minPropellerSpeed": 160,
                 "propellerEfficiency": 0.85,
                 "propulsion": "jet",
-                "densityExponent": 0.85,
+                "densityExponent": 0.866,
                 "dryThrust": 229800,
                 "highAltitudeDensityRatio": 0.33755830118434194,
                 "highAltitudeExponent": 1.2,
-                "ramRise": 0.15
+                "bypassRatio": 5.7
               }
             ],
+            "fuel": {
+              "capacity": 55000
+            },
             "actuators": {
               "speedBrake": {
                 "seconds": 2
@@ -1694,10 +1716,7 @@
                   "engine-4"
                 ]
               }
-            ],
-            "fuel": {
-              "capacity": 55000
-            }
+            ]
           }
         },
         "aircraftInput": {

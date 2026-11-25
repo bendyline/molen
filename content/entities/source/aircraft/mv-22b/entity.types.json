@@ -10089,16 +10089,16 @@
               "pitchAuthority": 0.18,
               "pitchResponse": 2.5,
               "stallPitchRate": 0.18,
-              "rollAuthority": 1.05,
-              "rollResponse": 2,
+              "rollAuthority": 0.175,
+              "rollResponse": 0.425,
               "rudderAuthority": 1,
               "groundSteerSpeed": 8,
               "groundLevelRate": 2,
               "maxGroundPitch": 0.22,
               "camberAngle": 0.045,
-              "flapLift": 0.8,
+              "flapLift": 1.1,
               "postStallFlapEffect": 0.4,
-              "stallAngle": 0.28,
+              "stallAngle": 0.251,
               "stallTransitionAngle": 0.12,
               "pitchFrequency": 3.5,
               "pitchDamping": 0.7,
@@ -10110,10 +10110,10 @@
               "dihedralEffect": 2.5,
               "propellerEffects": 0,
               "stallSpeed": 26,
-              "liftSlope": 4.8,
+              "liftSlope": 5.776,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.2051615922248076,
+              "profileDrag": 0.20499751095868282,
               "inducedDrag": 0.0163541689584609,
               "gearDrag": 0.018,
               "flapDrag": 0.075,
@@ -10133,7 +10133,8 @@
               "maxMach": 0.72,
               "maxEquivalentAirspeed": 164.21066666666667,
               "gearLimitSpeed": 88.94744444444446,
-              "flapLimitSpeed": 82.10533333333333
+              "flapLimitSpeed": 82.10533333333333,
+              "rollInertia": 348786
             },
             "engines": [
               {
@@ -10193,6 +10194,9 @@
               "rollAuthority": 1.5,
               "yawAuthority": 0.8,
               "damping": 2.2
+            },
+            "fuel": {
+              "capacity": 3485
             },
             "actuators": {},
             "collisionParts": [
@@ -10324,10 +10328,7 @@
                   "engine-2"
                 ]
               }
-            ],
-            "fuel": {
-              "capacity": 3485
-            }
+            ]
           }
         },
         "aircraftInput": {

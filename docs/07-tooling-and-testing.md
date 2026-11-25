@@ -33,7 +33,7 @@ molen/
     cubes/                 (private) Phase 0 demo + regression test
     terrain-flyover/       (private) Phase 1 demo + regression test
   docs-src/                markdown sources + doc generator
-  .github/workflows/       ci.yml  release.yml  nightly.yml
+  .github/workflows/       ci.yml  assets.yml  release.yml  site.yml  nightly.yml
 ```
 
 Examples are **private workspace packages**: they participate in the task graph (typecheck,
@@ -92,7 +92,10 @@ wire-format versioning is independent (integer `v` envelopes, [03](03-data-forma
 commands locally*: setup → `lint typecheck` → `test:unit` (Vitest incl. schema round-trips) →
 `test:replay` (Node) → `test:golden` (pinned Playwright + SwiftShader container by
 **digest**, diff artifacts on failure) → docs-lint (§6.4).
+**`assets.yml`** — called by CI: build and publish the commit's GLB bundle unless it exists
+(content/ASSET-PACKS.md).
 **`release.yml`** — manual: version the packages that changed, then publish them (CONTRIBUTING.md).
+**`site.yml`** — started by a release, or by hand: build and deploy molen.dev and the content packs.
 **`nightly.yml`** — golden suite ×3 (flake canary) + full agent-loop smoke (CLI end-to-end
 on an example).
 

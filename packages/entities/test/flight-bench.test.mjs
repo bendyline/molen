@@ -1,7 +1,17 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { performanceLedger, referenceSpeed } from '../scripts/aircraft-performance.mjs';
-import { flyLevel, flyRotorLevel, levelSpeedRoots, trimPoint } from '../scripts/flight-bench.mjs';
+import {
+  performanceLedger,
+  referenceSpeed,
+  referenceThrottle,
+} from '../scripts/aircraft-performance.mjs';
+import {
+  flyLevel,
+  flyRotorLevel,
+  levelSpeedRoots,
+  rotorCruiseTilt,
+  trimPoint,
+} from '../scripts/flight-bench.mjs';
 
 const types = JSON.parse(
   readFileSync(
@@ -27,8 +37,9 @@ describe.each(performanceLedger.aircraft)('$slug production flight integration',
     const result = (s.airplane ? flyLevel : flyRotorLevel)(s, {
       speed: target * 0.85,
       altitude: p.reference.altitudeM,
-      power: p.reference.throttle,
+      power: referenceThrottle(p, s),
       seconds: 180,
+      ...(s.airplane ? {} : { tilt: rotorCruiseTilt(s, target, p.reference.altitudeM) }),
     });
     expect(result.state.airspeed / target).toBeGreaterThan(1 - p.reference.tolerance);
     expect(result.state.airspeed / target).toBeLessThan(1 + p.reference.tolerance);

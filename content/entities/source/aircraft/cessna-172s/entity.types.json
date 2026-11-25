@@ -6110,16 +6110,16 @@
               "pitchAuthority": 0.18,
               "pitchResponse": 2.5,
               "stallPitchRate": 0.18,
-              "rollAuthority": 1.05,
-              "rollResponse": 2,
+              "rollAuthority": 0.655,
+              "rollResponse": 10.553,
               "rudderAuthority": 1,
               "groundSteerSpeed": 8,
               "groundLevelRate": 2,
               "maxGroundPitch": 0.22,
               "camberAngle": 0.045,
-              "flapLift": 0.8,
+              "flapLift": 0.337,
               "postStallFlapEffect": 0.4,
-              "stallAngle": 0.28,
+              "stallAngle": 0.3191,
               "stallTransitionAngle": 0.12,
               "pitchFrequency": 3.5,
               "pitchDamping": 0.7,
@@ -6131,10 +6131,10 @@
               "dihedralEffect": 2.5,
               "propellerEffects": 0.08,
               "stallSpeed": 26,
-              "liftSlope": 4.8,
+              "liftSlope": 4.822,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.022229101732453432,
+              "profileDrag": 0.030992763725720775,
               "inducedDrag": 0.05198859294138387,
               "gearDrag": 0.004,
               "flapDrag": 0.075,
@@ -6154,7 +6154,27 @@
               "maxMach": 0.72,
               "maxEquivalentAirspeed": 76.54933333333334,
               "flapLimitSpeed": 45,
-              "fixedGear": true
+              "surfaces": {
+                "dihedral": 0.09,
+                "aileron": 0.2573,
+                "liftArm": 0.135,
+                "tailArm": 3.892,
+                "tailArea": 3.679,
+                "tailLiftSlope": 3.3,
+                "tailIncidence": 0.0212,
+                "downwash": 0.4111,
+                "elevator": 0.35,
+                "finArm": 3.892,
+                "finHeight": 0.662,
+                "finArea": 2.06,
+                "finLiftSlope": 2.8,
+                "rudder": 0.35,
+                "bodyYaw": 0.055,
+                "sideForce": 0.45,
+                "slipstream": 0.7
+              },
+              "fixedGear": true,
+              "rollInertia": 1234
             },
             "engines": [
               {
@@ -6178,10 +6198,19 @@
                 "propellerEfficiency": 0.85,
                 "mixtureControl": true,
                 "propulsion": "propeller",
-                "densityExponent": 1,
-                "ratedDensityRatio": 1
+                "densityExponent": 1.17,
+                "ratedDensityRatio": 1,
+                "propellerDiameter": 1.93,
+                "lowSpeedThrust": {
+                  "atRest": 0.45,
+                  "fullSpeed": 56.56
+                },
+                "windmillDrag": 0.131
               }
             ],
+            "fuel": {
+              "capacity": 133
+            },
             "actuators": {},
             "collisionParts": [
               {
@@ -6252,10 +6281,7 @@
                   "engine-1"
                 ]
               }
-            ],
-            "fuel": {
-              "capacity": 133
-            }
+            ]
           }
         },
         "aircraftInput": {

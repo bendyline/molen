@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import {
   AircraftState,
   aircraftFuelFlow,
+  aircraftGear,
   IDLE_AIRCRAFT_INPUT,
   initialAircraftState,
   installAircraft,
@@ -12,11 +13,12 @@ import {
 import type { TransformData } from '../src/component';
 import { vehicleRotation } from '../src/vehicles';
 import { World } from '../src/world';
-import { molenAircraft } from './helpers/entities';
+import { assistedHelicopter, molenAircraft } from './helpers/entities';
 
 const mustang = molenAircraft('molen.entities.aircraft.p51d').spec;
 const viper = molenAircraft('molen.entities.aircraft.f_16b').spec;
-const cayuse = molenAircraft('molen.entities.aircraft.oh6').spec;
+// The assisted helicopter model: the rotor element has its own tests.
+const cayuse = assistedHelicopter(molenAircraft('molen.entities.aircraft.oh6').spec);
 if (!mustang.airplane || !viper.airplane || !cayuse.helicopter) throw new Error('Missing physics');
 const flat = { groundHeight: () => 0 };
 const clean: AircraftInputData = {
@@ -78,56 +80,78 @@ describe('landing gear', () => {
       height,
     );
   const landing: AircraftInputData = { ...clean, power: 0, gear: true };
-  function touchdown(spec: AircraftSpec, sink: number, pitch?: number, height?: number) {
+  /** The left main wheel's share of the weight with the airplane standing. */
+  const standing = (spec: AircraftSpec): number => aircraftGear(spec).legs[1]?.staticLoad ?? 0;
+  function touchdown(
+    spec: AircraftSpec,
+    sink: number,
+    pitch?: number,
+    height?: number,
+    controls = landing,
+  ) {
     let landed = Infinity;
-    let hop = 0;
+    let heaviest = 0;
+    let lowest = 0;
+    let aloft = 0;
     let kick = 0;
     let before = 0;
     const end = fly(
       5,
-      () => landing,
+      () => controls,
       arrival(sink, pitch, height),
       spec,
       (flight, time) => {
-        // The wheels touch inside a step: the descent stops (or reverses) from one to the next.
-        if (landed === Infinity && (flight.state.grounded || flight.state.velocity[1] > -0.3)) {
-          landed = time;
-          kick = flight.state.pitchRate - before;
+        if (landed === Infinity) {
+          if (flight.state.grounded) landed = time;
+          else before = flight.state.pitchRate;
         }
-        before = flight.state.pitchRate;
-        if (time > landed) hop = Math.max(hop, flight.state.altitudeAGL);
+        if (time < landed) return;
+        heaviest = Math.max(heaviest, flight.state.wheels?.load[1] ?? 0);
+        lowest = Math.min(lowest, flight.transform.pos[1]);
+        if (!flight.state.grounded) aloft += 1 / 60;
+        // What the first tenth of a second on the wheels does to the nose.
+        if (time <= landed + 0.1) kick = flight.state.pitchRate - before;
       },
     );
-    return { end, hop, kick, landed };
+    return { end, landed, heaviest: heaviest / standing(spec), lowest, aloft, kick };
   }
 
-  it('skips back into the air after a firm touchdown and stays down after a gentle one', () => {
+  it('takes a firm touchdown on its struts and settles from a gentle one', () => {
     const firm = touchdown(nosewheel, 3);
     expect(firm.landed).toBeLessThan(1);
-    // Observed about 0.2 m: a visible skip, not a crash.
-    expect(firm.hop).toBeGreaterThan(0.08);
-    expect(firm.hop).toBeLessThan(2);
+    // The struts stroke: the airframe goes down on them and each main wheel carries three or
+    // four times what it does standing, for a moment.
+    expect(firm.heaviest).toBeGreaterThan(2.5);
+    expect(firm.heaviest).toBeLessThan(6);
+    expect(firm.lowest).toBeLessThan(-0.015);
+    expect(firm.lowest).toBeGreaterThan(-0.2);
     expect(firm.end.state.crashed).toBe(false);
     expect(firm.end.state.grounded).toBe(true);
-    // Set down from a hand's breadth at 0.4 m/s, the wheels stay on the runway.
+    // Set down from a hand's breadth at 0.4 m/s the wheels take the weight as the wing gives
+    // it up, and stay on the runway.
     const gentle = touchdown(nosewheel, 0.4, undefined, 0.02);
-    expect(gentle.hop).toBe(0);
-    // No rebound at all without spring in the gear.
-    expect(touchdown(airplaneWith(nosewheel, { gearRebound: 0 }), 3).hop).toBe(0);
+    expect(gentle.heaviest).toBeLessThan(0.75 * firm.heaviest);
+    expect(gentle.aloft).toBe(0);
+    expect(gentle.lowest).toBeGreaterThan(firm.lowest);
+    expect(gentle.end.state.crashed).toBe(false);
+    // Struts with little damping throw it back into the air.
+    const springy = touchdown({ ...nosewheel, gear: { damping: 0.08 } }, 3);
+    expect(springy.aloft).toBeGreaterThan(firm.aloft + 0.2);
     // Beyond the hard-landing speed it is damage, not a bounce.
     expect(touchdown(nosewheel, mustang.hardLandingSpeed + 1).end.state.crashed).toBe(true);
   });
 
   it('pitches a taildragger up off its main wheels, and a nosewheel airplane down onto its nose', () => {
-    const tail = touchdown(tailwheel, 2.5);
-    const nose = touchdown(nosewheel, 2.5);
-    expect(tail.kick).toBeGreaterThan(0.1);
-    expect(nose.kick).toBeLessThan(-0.03);
-    // The taildragger's nose rises into more lift: it bounces higher.
-    expect(tail.hop).toBeGreaterThan(nose.hop);
-    // Three-point, tail already down, there is nothing left to pitch.
-    const settled = touchdown(tailwheel, 2.5, mustang.airplane?.maxGroundPitch);
-    expect(settled.kick).toBeLessThan(tail.kick);
+    // With the controls left alone. Main wheels ahead of the center of mass push the nose up
+    // as they take the load: the kick that sends a wheel landing back into the air. Behind
+    // it, they push it down.
+    const hands: AircraftInputData = { ...landing, controlMode: 'direct' };
+    const tail = touchdown(tailwheel, 2.5, -0.03, undefined, hands);
+    const nose = touchdown(nosewheel, 2.5, undefined, undefined, hands);
+    expect(tail.kick).toBeGreaterThan(0.05);
+    expect(nose.kick).toBeLessThan(-0.2);
+    // Flared too far, a taildragger's tailwheel arrives first and throws the tail up.
+    expect(touchdown(tailwheel, 2.5, 0.1, undefined, hands).kick).toBeLessThan(-0.2);
   });
 
   it('brakes by the weight on the wheels, and tips forward on its struts while braking', () => {
@@ -142,18 +166,41 @@ describe('landing gear', () => {
     });
     const idle: AircraftInputData = { ...clean, power: 0, engine: false, gear: true };
     /** Speed the brakes alone take off in half a second. */
-    const braking = (speed: number): number =>
-      fly(0.5, () => idle, rolling(speed), nosewheel).state.velocity[2] -
-      fly(0.5, () => ({ ...idle, brake: true }), rolling(speed), nosewheel).state.velocity[2];
+    const braking = (speed: number, spec = nosewheel): number =>
+      fly(0.5, () => idle, rolling(speed), spec).state.velocity[2] -
+      fly(0.5, () => ({ ...idle, brake: true }), rolling(speed), spec).state.velocity[2];
     // At 80 m/s the wing carries about half the weight even at its ground attitude; at
     // 15 m/s the tires carry nearly all of it.
     expect(braking(15)).toBeGreaterThan(braking(80) * 1.3);
-    const dipped = (spec: AircraftSpec): number =>
-      fly(1.5, () => ({ ...idle, brake: true }), rolling(30), spec).state.pitch;
-    expect(dipped(nosewheel)).toBeLessThan(-0.005);
-    // A taildragger's tail comes up further.
-    expect(dipped(tailwheel)).toBeLessThan(dipped(nosewheel) - 0.01);
-    expect(fly(1.5, () => idle, rolling(30), nosewheel).state.pitch).toBeGreaterThan(-0.005);
+    const dipped = (spec: AircraftSpec, brake = true) => {
+      let steepest = 0;
+      const end = fly(
+        1.5,
+        () => ({ ...idle, brake }),
+        rolling(30),
+        spec,
+        (flight) => {
+          steepest = Math.min(steepest, flight.state.pitch);
+        },
+      );
+      return { pitch: end.state.pitch, small: end.state.wheels?.load[0] ?? 0, steepest };
+    };
+    // The nose goes down onto its strut, which carries several times its standing load.
+    const nose = dipped(nosewheel);
+    expect(nose.pitch).toBeLessThan(-0.02);
+    expect(nose.small).toBeGreaterThan(2 * (aircraftGear(nosewheel).legs[0]?.staticLoad ?? 0));
+    expect(dipped(nosewheel, false).pitch).toBeGreaterThan(-0.012);
+    // A taildragger stood on its brakes would go over on its nose. Its pilot brakes as hard
+    // as keeps the tail down: the tail lightens and lifts a degree or two, no more, and the
+    // airplane takes longer to stop.
+    const tail = dipped(tailwheel);
+    expect(tail.pitch).toBeLessThan(-0.005);
+    expect(tail.steepest).toBeGreaterThan(-0.06);
+    expect(tail.small).toBeLessThan(aircraftGear(tailwheel).legs[0]?.staticLoad ?? 0);
+    expect(braking(15, tailwheel)).toBeLessThan(0.7 * braking(15));
+    const stopped = fly(16, () => ({ ...idle, brake: true }), rolling(40), tailwheel);
+    expect(stopped.state.crashed).toBe(false);
+    expect(stopped.state.velocity).toEqual([0, 0, 0]);
   });
 });
 

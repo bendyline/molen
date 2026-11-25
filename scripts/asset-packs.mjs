@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 // Repository GLB bundles. Every GLB except the authored masters is a build output of checked-in
 // source (scripts/build-assets.mjs). A bundle is named by the hash of its inputs
-// (scripts/asset-inputs.mjs), so nothing pins output bytes: CI builds a bundle once when the
-// inputs change and publishes it as a GitHub release, `fetch` restores it, and falls back to
-// building from source when it is not published yet. These archives restore repository build
-// outputs; the molen/pack@1 pipeline still builds the runtime packs.
+// (scripts/asset-inputs.mjs), so nothing pins output bytes: the Assets workflow builds a bundle
+// once when the inputs change and publishes it as a GitHub release, `fetch` restores it, and falls
+// back to building from source when it is not published yet. A bundle lists its archives wherever
+// they are: an archive whose files are unchanged stays in the release that first held it, so
+// publishing a bundle uploads what changed. These archives restore repository build outputs; the
+// molen/pack@1 pipeline still builds the runtime packs.
 import { execFileSync } from 'node:child_process';
 import { createHash, randomUUID } from 'node:crypto';
 import { createReadStream, createWriteStream } from 'node:fs';
@@ -17,6 +19,7 @@ import {
   readFile,
   rename,
   rm,
+  rmdir,
   writeFile,
 } from 'node:fs/promises';
 import { availableParallelism } from 'node:os';
@@ -32,12 +35,18 @@ import { httpError, retryTransient } from './release-download.mjs';
 
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const MANIFEST = 'asset-manifest.json';
-const MANIFEST_FORMAT = 'molen/asset-bundle@1';
+// @2 may list archives that another bundle's release holds, and the build's job records.
+const MANIFEST_FORMAT = 'molen/asset-bundle@2';
+const MANIFEST_FORMATS = ['molen/asset-bundle@1', MANIFEST_FORMAT];
 const NOTICES = 'ASSET-NOTICES.txt';
+const RECORDS = 'asset-records.tar.gz';
 const OUTPUT = '.artifacts/asset-packs';
-// A copy of a finished build's installed.json, kept beside its job records so a later build on
-// another machine can start from that bundle (see seedAssets).
-export const SEED = '.artifacts/asset-build/seed.json';
+const BUILD = '.artifacts/asset-build';
+// The key and inputs of the build whose job records are beside it, so a later build on another
+// machine can start from that bundle (see seedAssets).
+export const SEED = `${BUILD}/seed.json`;
+// The sidecar changes `check --committed` found, for `git apply`. CI uploads it as an artifact.
+export const SIDECAR_PATCH = '.artifacts/asset-build/sidecars.patch';
 // Which bundle the GLBs on disk are, whether it was built or fetched, and every file it holds.
 const STAMP = 'installed.json';
 const STAMP_FORMAT = 'molen/asset-install@1';
@@ -58,6 +67,18 @@ const SHA = /^[a-f0-9]{64}$/;
 const MAX_FILE = 1024 ** 3;
 const MAX_ARCHIVE = 2 * 1024 ** 3 - 1;
 const ARCHIVE_NAME = /^[a-z0-9]+(?:-[a-z0-9]+)*-part-[0-9]{3,}\.tar\.gz$/;
+const RELEASE_NAME = /^assets-[a-f0-9]{16}$/;
+// What asset-records.tar.gz holds, relative to .artifacts: the job records, the landmark LOD
+// reports and seed.json. Nothing else is written from one.
+const RECORD_NAME =
+  /^(?:asset-build\/seed\.json|asset-build\/jobs\/[a-z0-9][\w.-]*\.json|landmark-lods\/[a-z0-9][\w.-]*\.json)$/i;
+// GitHub allows 1,000 attachments to a release.
+const MAX_ATTACHMENTS = 990;
+// An earlier archive is listed again while at least two thirds of it is still in use. Below that
+// a restore would download more dead bytes than repacking its live files costs once.
+const MIN_LIVE = 2 / 3;
+// How many earlier bundles a source build compares itself with to find the nearest.
+const SEED_CANDIDATES = 4;
 const json = (value) => `${JSON.stringify(value, null, 2)}\n`;
 const same = (a, b) => a?.size === b.size && a?.sha256 === b.sha256;
 
@@ -183,13 +204,13 @@ function validateFiles(files, label) {
 export function validateManifest(manifest, { repository, key }) {
   const release = `assets-${key.slice(0, 16)}`;
   if (
-    manifest?.format !== MANIFEST_FORMAT ||
+    !MANIFEST_FORMATS.includes(manifest?.format) ||
     manifest.repository !== repository ||
     manifest.key !== key ||
     manifest.release !== release ||
     !Array.isArray(manifest.archives) ||
     !manifest.archives.length ||
-    manifest.archives.length > 990
+    manifest.archives.filter((archive) => archive.release === undefined).length > MAX_ATTACHMENTS
   )
     throw new Error(`Bundle manifest does not describe ${release}.`);
   validateFiles(manifest.files, release);
@@ -199,13 +220,28 @@ export function validateManifest(manifest, { repository, key }) {
     !Number.isSafeInteger(manifest.notices.size)
   )
     throw new Error('Missing asset license notices.');
+  const { records } = manifest;
+  if (
+    records !== undefined &&
+    (records.file !== RECORDS ||
+      !SHA.test(records.sha256) ||
+      !Number.isSafeInteger(records.size) ||
+      records.size < 1 ||
+      records.size > MAX_FILE)
+  )
+    throw new Error('Invalid asset job records.');
   const sizes = new Map(manifest.files.map((f) => [f.path, f.size]));
   const covered = new Set();
   const names = new Set();
   for (const archive of manifest.archives) {
+    const name = `${archive.release ?? release}/${archive.file}`;
     if (
       !ARCHIVE_NAME.test(archive.file) ||
-      names.has(archive.file) ||
+      names.has(name) ||
+      (archive.release !== undefined &&
+        (manifest.format !== MANIFEST_FORMAT ||
+          !RELEASE_NAME.test(archive.release) ||
+          archive.release === release)) ||
       !SHA.test(archive.sha256) ||
       !Number.isSafeInteger(archive.size) ||
       archive.size < 1 ||
@@ -214,7 +250,7 @@ export function validateManifest(manifest, { repository, key }) {
       !archive.files.length
     )
       throw new Error(`Invalid archive: ${archive.file}`);
-    names.add(archive.file);
+    names.add(name);
     let expanded = 0;
     for (const path of archive.files) {
       if (!sizes.has(path) || covered.has(path))
@@ -222,7 +258,11 @@ export function validateManifest(manifest, { repository, key }) {
       covered.add(path);
       expanded += sizes.get(path);
     }
-    if (expanded > MAX_FILE) throw new Error(`Archive expands beyond 1 GiB: ${archive.file}`);
+    // `bytes` counts every member; an archive of an earlier bundle may hold files this one changed.
+    const bytes = archive.bytes ?? expanded;
+    if (!Number.isSafeInteger(bytes) || bytes < expanded)
+      throw new Error(`Invalid archive: ${archive.file}`);
+    if (bytes > MAX_FILE) throw new Error(`Archive expands beyond 1 GiB: ${archive.file}`);
   }
   if (covered.size !== sizes.size)
     throw new Error(`Bundle ${release} is missing ${sizes.size - covered.size} assets.`);
@@ -261,23 +301,28 @@ function explain(stamp, current) {
   return `\nChanged inputs:\n${shown}${changed.length > 20 ? `\n… ${changed.length - 20} more` : ''}`;
 }
 
+/** The archives a GLB belongs to: its content role and, for a place, its geohash2 region. */
+export function archiveGroup(path) {
+  const parts = path.split('/');
+  const place = path.match(/^content\/worldgen\/(assets|source)\/places\/([^/]+)\//);
+  const role = parts[2] === 'assets' ? 'models' : parts[2] === 'source' ? 'sources' : parts[2];
+  const label = place
+    ? `worldgen-${role}-${place[2]}`
+    : parts[0] === 'content'
+      ? `${parts[1]}-${parts[3] === 'reusable' ? 'reusable-' : ''}${role}`
+      : parts[0] === 'examples'
+        ? `${parts[1]}-${parts[2] === 'asset-src' ? 'sources' : parts[2] === 'public' ? 'models' : parts[2]}`
+        : parts.slice(0, Math.min(3, parts.length - 1)).join('-');
+  return label
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
 export function groups(files, budget) {
   const buckets = new Map();
   for (const file of files) {
-    const parts = file.path.split('/');
-    const place = file.path.match(/^content\/worldgen\/(assets|source)\/places\/([^/]+)\//);
-    const role = parts[2] === 'assets' ? 'models' : parts[2] === 'source' ? 'sources' : parts[2];
-    const label = place
-      ? `worldgen-${role}-${place[2]}`
-      : parts[0] === 'content'
-        ? `${parts[1]}-${parts[3] === 'reusable' ? 'reusable-' : ''}${role}`
-        : parts[0] === 'examples'
-          ? `${parts[1]}-${parts[2] === 'asset-src' ? 'sources' : parts[2] === 'public' ? 'models' : parts[2]}`
-          : parts.slice(0, Math.min(3, parts.length - 1)).join('-');
-    const key = label
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
+    const key = archiveGroup(file.path);
     if (!buckets.has(key)) buckets.set(key, []);
     buckets.get(key).push(file);
   }
@@ -347,39 +392,119 @@ export async function verifyArchive(path, archive, files) {
   if (errors.length) throw new Error(errors.join('\n'));
 }
 
+/** Run `work` over the items, a few at a time. After a failure the running ones finish first. */
 async function pool(items, concurrency, work) {
   const queue = [...items];
   const results = [];
+  let failed;
   await Promise.all(
     Array.from({ length: Math.max(1, Math.min(concurrency, queue.length)) }, async () => {
-      while (queue.length) results.push(await work(queue.shift()));
+      while (queue.length && !failed) {
+        try {
+          results.push(await work(queue.shift()));
+        } catch (error) {
+          failed ??= { error };
+        }
+      }
     }),
   );
+  if (failed) throw failed.error;
   return results;
 }
 
-/** Archives of bundles packed or downloaded here before, by file name, with their members' bytes. */
-async function earlierArchives(directory, repository) {
-  const paths = [];
-  for (const entry of await readdir(directory, { withFileTypes: true })) {
-    if (entry.isDirectory() && /^assets-[a-f0-9]{16}$/.test(entry.name))
-      paths.push(join(directory, entry.name, MANIFEST));
-  }
-  const published = join(directory, 'published');
-  if ((await maybeStat(published))?.isDirectory())
-    for (const name of await readdir(published))
-      if (name.endsWith('.json')) paths.push(join(published, name));
-  const byName = new Map();
+/** The valid bundle manifests among `paths`; a partial or foreign one offers nothing to reuse. */
+async function readManifests(paths, repository) {
+  const manifests = [];
   for (const path of paths) {
-    let manifest;
     try {
-      manifest = JSON.parse(await readFile(path, 'utf8'));
-      validateManifest(manifest, { repository, key: manifest?.key ?? '' });
+      const manifest = JSON.parse(await readFile(path, 'utf8'));
+      manifests.push(validateManifest(manifest, { repository, key: manifest?.key ?? '' }));
     } catch {
-      continue; // A partial or foreign manifest just offers nothing to reuse.
+      // Skipped.
     }
+  }
+  return manifests;
+}
+
+/** Manifests of releases that GitHub has published: downloaded from one, or by publishing it. */
+async function publishedManifests(directory, repository) {
+  const published = join(directory, 'published');
+  if (!(await maybeStat(published))?.isDirectory()) return [];
+  const names = (await readdir(published)).filter((name) => name.endsWith('.json')).sort();
+  return readManifests(
+    names.map((name) => join(published, name)),
+    repository,
+  );
+}
+
+/**
+ * How much of a bundle its predecessors already hold. Archives of published bundles that still
+ * hold mostly files of this one are listed again, in the release they are in; the remaining files
+ * need new archives. Adding a place then uploads that place, not the rest of its region.
+ */
+export function carryArchives(files, manifests, { release, budget }) {
+  const wanted = new Map(files.map((f) => [f.path, f]));
+  const known = new Map();
+  for (const manifest of manifests) {
+    const members = new Map(manifest.files.map((f) => [f.path, f]));
+    const total = (paths) => paths.reduce((sum, path) => sum + members.get(path).size, 0);
+    for (const archive of manifest.archives) {
+      const holder = archive.release ?? manifest.release;
+      if (holder === release) continue; // Never published, or there would be nothing to pack.
+      const id = `${holder}/${archive.file}`;
+      if (!known.has(id))
+        known.set(id, {
+          file: archive.file,
+          release: holder,
+          size: archive.size,
+          sha256: archive.sha256,
+          bytes: archive.bytes ?? total(archive.files),
+          live: new Set(),
+        });
+      const entry = known.get(id);
+      if (entry.sha256 !== archive.sha256) continue;
+      for (const path of archive.files)
+        if (wanted.has(path) && same(members.get(path), wanted.get(path))) entry.live.add(path);
+    }
+  }
+  const held = (paths) => [...paths].reduce((sum, path) => sum + wanted.get(path).size, 0);
+  const covered = new Set();
+  let carried = [];
+  const fullest = [...known.values()]
+    .map((entry) => ({ ...entry, held: held(entry.live) }))
+    .sort((a, b) => b.held - a.held || (a.release + a.file < b.release + b.file ? -1 : 1));
+  for (const { live, held: most, ...archive } of fullest) {
+    if (most < archive.bytes * MIN_LIVE) continue;
+    const paths = [...live].filter((path) => !covered.has(path)).sort();
+    if (!paths.length || held(paths) < archive.bytes * MIN_LIVE) continue;
+    for (const path of paths) covered.add(path);
+    carried.push({ ...archive, files: paths });
+  }
+  // A group that gets a new archive takes its small ones along, so a region that grows a little
+  // at a time does not end up in hundreds of them.
+  const growing = new Set(
+    files.filter((f) => !covered.has(f.path)).map((f) => archiveGroup(f.path)),
+  );
+  carried = carried.filter((archive) => {
+    if (held(archive.files) >= budget / 16 || !growing.has(archiveGroup(archive.files[0])))
+      return true;
+    for (const path of archive.files) covered.delete(path);
+    return false;
+  });
+  return { carried, rest: files.filter((f) => !covered.has(f.path)) };
+}
+
+/** Archives packed here for bundles that were never published, by name, with their members. */
+async function localArchives(directory, repository) {
+  const paths = [];
+  for (const entry of await readdir(directory, { withFileTypes: true }))
+    if (entry.isDirectory() && RELEASE_NAME.test(entry.name))
+      paths.push(join(directory, entry.name, MANIFEST));
+  const byName = new Map();
+  for (const manifest of await readManifests(paths, repository)) {
     const members = new Map(manifest.files.map((f) => [f.path, f]));
     for (const archive of manifest.archives) {
+      if (archive.release !== undefined) continue;
       if (!byName.has(archive.file)) byName.set(archive.file, []);
       byName.get(archive.file).push({ archive, members: archive.files.map((p) => members.get(p)) });
     }
@@ -388,9 +513,8 @@ async function earlierArchives(directory, repository) {
 }
 
 /**
- * An earlier archive holding exactly these files with these bytes, verified like a new one.
- * Unchanged groups then cost a read instead of a recompression: a seeded CI build repacks only
- * the places whose models changed.
+ * A local archive holding exactly these files with these bytes, verified like a new one. Packing
+ * again after an interrupted publish then costs a read instead of a recompression.
  */
 async function reusableArchive(directory, candidates = [], members, files) {
   for (const { archive, members: earlier } of candidates) {
@@ -412,7 +536,42 @@ async function reusableArchive(directory, candidates = [], members, files) {
   }
 }
 
-/** Archive the installed bundle, exactly as it is on disk, as a publishable release. */
+/**
+ * Archive the job records of the build that made this bundle, or nothing when none are here. A
+ * build anywhere can then start from the bundle's release alone: the GLBs and what built them.
+ */
+async function packRecords(root, releaseDir, { key, release, inputs }) {
+  const artifacts = join(root, '.artifacts');
+  const names = [];
+  for (const directory of ['asset-build/jobs', 'landmark-lods']) {
+    if (!(await maybeStat(join(artifacts, directory)))?.isDirectory()) continue;
+    for (const entry of await readdir(join(artifacts, directory), { withFileTypes: true })) {
+      const name = `${directory}/${entry.name}`;
+      if (entry.isFile() && RECORD_NAME.test(name)) names.push(name);
+    }
+  }
+  if (!names.some((name) => name.startsWith('asset-build/jobs/'))) return undefined;
+  await writeFile(join(root, SEED), json({ format: STAMP_FORMAT, key, release, inputs }));
+  const file = join(releaseDir, RECORDS);
+  await tar.c(
+    {
+      file,
+      cwd: artifacts,
+      gzip: { level: 9 },
+      portable: true,
+      noMtime: true,
+      follow: false,
+      noDirRecurse: true,
+    },
+    ['asset-build/seed.json', ...names.sort()],
+  );
+  return { file: RECORDS, ...(await fileInfo(file)) };
+}
+
+/**
+ * Archive the installed bundle, exactly as it is on disk, as a publishable release: new archives
+ * for the files no published bundle holds, and the list of those that one does.
+ */
 export async function packAssets({
   root = ROOT,
   outDir = join(root, OUTPUT),
@@ -426,10 +585,15 @@ export async function packAssets({
   if (stamp.prefix) throw new Error('Packing needs the whole bundle; fetch it without --prefix.');
   const files = new Map(stamp.files.map((f) => [f.path, f]));
   await mkdir(outDir, { recursive: true });
-  const earlier = await earlierArchives(outDir, repository);
-  const archives = await pool(groups(stamp.files, budget), concurrency, async (group) => {
+  const { carried, rest } = carryArchives(
+    stamp.files,
+    await publishedManifests(outDir, repository),
+    { release: stamp.release, budget },
+  );
+  const local = await localArchives(outDir, repository);
+  const packed = await pool(groups(rest, budget), concurrency, async (group) => {
     const file = `${group.key}.tar.gz`;
-    const reused = await reusableArchive(outDir, earlier.get(file), group.files, files);
+    const reused = await reusableArchive(outDir, local.get(file), group.files, files);
     if (reused) {
       log(`Reused ${file}: ${group.files.length} GLBs unchanged`);
       return reused;
@@ -468,7 +632,8 @@ export async function packAssets({
       await rm(temporary, { force: true });
     }
   });
-  archives.sort((a, b) => (a.file < b.file ? -1 : 1));
+  const order = (archive) => `${archive.file}/${archive.release ?? ''}`;
+  const archives = [...carried, ...packed].sort((a, b) => (order(a) < order(b) ? -1 : 1));
   const releaseDir = join(outDir, stamp.release);
   await mkdir(releaseDir, { recursive: true });
   const notices = [];
@@ -478,6 +643,7 @@ export async function packAssets({
   }
   if (!notices.length) throw new Error('No asset license notices found.');
   await writeFile(join(releaseDir, NOTICES), notices.join('\n\n'));
+  const records = await packRecords(root, releaseDir, stamp);
   const manifest = validateManifest(
     {
       format: MANIFEST_FORMAT,
@@ -486,34 +652,80 @@ export async function packAssets({
       key: stamp.key,
       files: stamp.files,
       notices: { file: NOTICES, ...(await fileInfo(join(releaseDir, NOTICES))) },
+      ...(records ? { records } : {}),
       archives,
     },
     { repository, key: stamp.key },
   );
   await writeFile(join(releaseDir, MANIFEST), json(manifest));
-  log(`${stamp.files.length} GLBs in ${archives.length} archives for release ${stamp.release}`);
+  const mib = (list) => (list.reduce((sum, a) => sum + a.size, 0) / 1024 ** 2).toFixed(0);
+  log(
+    `${stamp.files.length} GLBs in ${archives.length} archives for release ${stamp.release}: ${packed.length} new (${mib(packed)} MiB), ${carried.length} in ${new Set(carried.map((a) => a.release)).size} earlier releases (${mib(carried)} MiB)`,
+  );
   return manifest;
 }
 
-/** The installed GLBs are this checkout's bundle: its inputs' key, with every file intact. */
-/** Runtime LODs a sidecar records but does not name in files.variants, where packs look them up. */
-async function sidecarProblems(root, directory) {
+/**
+ * What a sidecar gets wrong about the GLBs beside it. `stale`: it records other bytes than the
+ * bundle holds, which every pack build rejects. `lods`: runtime LODs it records but does not name
+ * in files.variants, where packs look them up.
+ */
+async function sidecarProblems(root, directory, bundled) {
   const path = `${directory}/asset.json`;
   const sidecar = await readFile(join(root, path), 'utf8').then(JSON.parse, (error) => {
     if (error.code !== 'ENOENT') throw error;
   });
-  const lods = sidecar?.format === 'molen/asset@1' ? sidecar.runtimeLods : undefined;
-  if (!lods) return [];
-  const problems = [];
-  if (lods.masterHash !== sidecar.hash)
-    problems.push(`${path}: runtimeLods were derived from another master`);
-  for (const level of lods.levels ?? [])
+  const problems = { stale: [], lods: [] };
+  if (sidecar?.format !== 'molen/asset@1') return problems;
+  const stale = [];
+  const compare = (file, hash) => {
+    const glb = bundled.get(`${directory}/${file}`);
+    if (hash && glb && hash !== `sha256:${glb.sha256}`) stale.push(file);
+  };
+  compare(sidecar.files?.main, sidecar.hash);
+  const lods = sidecar.runtimeLods;
+  if (lods && lods.masterHash !== sidecar.hash)
+    problems.lods.push(`${path}: runtimeLods were derived from another master`);
+  for (const level of lods?.levels ?? []) {
+    compare(level.file, level.hash);
     if (sidecar.files?.variants?.[level.name] !== level.file)
-      problems.push(`${path}: files.variants.${level.name} must name ${level.file}`);
+      problems.lods.push(`${path}: files.variants.${level.name} must name ${level.file}`);
+  }
+  if (stale.length) problems.stale.push(`${path}: records other bytes than ${stale.join(', ')}`);
   return problems;
 }
 
-export async function checkAssets({ root = ROOT, prefix = '', log = console.log } = {}) {
+/** Committed sidecars whose content on disk differs from the commit, and those changes as a patch. */
+function changedSidecars(root) {
+  const diff = (...options) =>
+    execFileSync(
+      'git',
+      [
+        'diff',
+        '--no-ext-diff',
+        ...options,
+        'HEAD',
+        '--',
+        ...ASSET_ROOTS.map((name) => `:(glob)${name}/**/asset.json`),
+      ],
+      { cwd: root, maxBuffer: MAX_FILE, stdio: ['ignore', 'pipe', 'pipe'] },
+    );
+  const paths = diff('--name-only', '-z').toString().split('\0').filter(Boolean);
+  return { paths, patch: paths.length ? diff('--binary') : undefined };
+}
+
+/**
+ * The installed GLBs are this checkout's bundle: its inputs' key, with every file intact and every
+ * sidecar describing them. `committed` also requires those sidecars to be the committed ones. A
+ * source build rewrites the sidecar of each GLB it builds differently, so without it such a build
+ * is compared with its own edits, while a clean checkout that installs the bundle has the commit's.
+ */
+export async function checkAssets({
+  root = ROOT,
+  prefix = '',
+  committed = false,
+  log = console.log,
+} = {}) {
   const current = await assetInputs(root);
   const stamp = await readStamp(root);
   if (!stamp)
@@ -535,12 +747,37 @@ export async function checkAssets({ root = ROOT, prefix = '', log = console.log 
   }
   if (errors.length) throw new Error(errors.join('\n'));
   // Builds rewrite runtime sidecars beside these GLBs, so check what they say about them too.
-  for (const directory of new Set(files.map((f) => dirname(f.path))))
-    errors.push(...(await sidecarProblems(root, directory)));
-  if (errors.length)
-    throw new Error(
-      `${errors.join('\n')}\nRegenerate their LOD metadata: node packages/tooling/scripts/generate-landmark-lods.mjs`,
+  const bundled = new Map(stamp.files.map((f) => [f.path, f]));
+  const stale = [];
+  const lods = [];
+  for (const directory of new Set(files.map((f) => dirname(f.path)))) {
+    const problems = await sidecarProblems(root, directory, bundled);
+    stale.push(...problems.stale);
+    lods.push(...problems.lods);
+  }
+  if (stale.length)
+    errors.push(
+      ...stale,
+      'Commit each of these sidecars with the change that rebuilt its GLB. The CI run that built the bundle has them as its asset-sidecars artifact; locally, pnpm assets:build rewrites them.',
     );
+  if (lods.length)
+    errors.push(
+      ...lods,
+      'Regenerate their LOD metadata: node packages/tooling/scripts/generate-landmark-lods.mjs',
+    );
+  if (errors.length) throw new Error(errors.join('\n'));
+  if (committed) {
+    const file = join(root, SIDECAR_PATCH);
+    const { paths, patch } = changedSidecars(root);
+    if (paths.length) {
+      await mkdir(dirname(file), { recursive: true });
+      await writeFile(file, patch);
+      throw new Error(
+        `The build changed these committed sidecars, and a checkout that installs its bundle still has the old ones:\n${paths.join('\n')}\nReview the changes and commit them. They are in ${SIDECAR_PATCH}; from CI:\ngh run download ${process.env.GITHUB_RUN_ID ?? '<run id>'} -n asset-sidecars && git apply sidecars.patch`,
+      );
+    }
+    await rm(file, { force: true });
+  }
   const listed = new Set(stamp.files.map((f) => f.path));
   const masters = await readMasters(root);
   const local = (await inventory(root)).filter(
@@ -649,6 +886,7 @@ export async function fetchAssets({
   archiveDir = join(root, OUTPUT),
   offline = false,
   force = false,
+  keepArchives = true,
   prefix = '',
   fetchImpl = fetch,
   retry,
@@ -682,6 +920,7 @@ export async function fetchAssets({
     matchesLocalFile,
     offline,
     force,
+    keepArchives,
     prefix,
     fetchImpl,
     retry,
@@ -692,10 +931,53 @@ export async function fetchAssets({
   return files.length;
 }
 
+/** Move a file, replacing the destination in one step where the disk allows it. */
+async function moveFile(from, to) {
+  try {
+    await rename(from, to);
+  } catch (error) {
+    if (error.code !== 'EXDEV') throw error;
+    const temporary = `${to}.${randomUUID()}.part`;
+    try {
+      await copyFile(from, temporary);
+      await rename(temporary, to);
+    } finally {
+      await rm(temporary, { force: true });
+    }
+  }
+}
+
+/** An attachment of a bundle's release, or of the earlier release that holds it, on disk. */
+async function localAttachment(
+  attachment,
+  manifest,
+  { archiveDir, offline, fetchImpl, retry, log },
+) {
+  const found = await findArchive(archiveDir, attachment);
+  if (found) return found;
+  if (offline) throw new Error(`Offline archive missing or corrupt: ${attachment.file}`);
+  log(`Downloading ${attachment.file}`);
+  const path = archivePath(archiveDir, attachment);
+  await mkdir(dirname(path), { recursive: true });
+  // A bundle is hundreds of archives: one dropped connection must not cost the whole restore.
+  const url = releaseUrl(
+    { repository: manifest.repository, release: attachment.release ?? manifest.release },
+    attachment.file,
+  );
+  await retryTransient(() => download(url, path, attachment, fetchImpl), {
+    what: `Download of ${attachment.file}`,
+    log,
+    ...retry,
+  });
+  return path;
+}
+
 /**
  * Put `manifest`'s GLBs (those under `prefix`) on disk: keep files whose bytes already match,
  * restore the rest from cached or downloaded archives, and remove outputs of the `previous`
- * bundle that this one no longer has. Local work outside both bundles stays.
+ * bundle that this one no longer has. Local work outside both bundles stays. An archive's own hash
+ * is checked when it is found or downloaded and every file's before it is moved into place, so
+ * members this bundle does not list (dead files of a carried archive) are never written.
  */
 async function installBundle({
   root,
@@ -705,7 +987,9 @@ async function installBundle({
   matchesLocalFile,
   offline,
   force,
+  keepArchives = true,
   prefix = '',
+  concurrency = Math.min(4, availableParallelism()),
   fetchImpl,
   retry,
   log,
@@ -717,29 +1001,21 @@ async function installBundle({
   for (const file of files) if (force || !(await matchesLocalFile(file))) wanted.add(file.path);
   const staging = join(root, OUTPUT, 'staging');
   await mkdir(staging, { recursive: true });
+  const restore = manifest.archives
+    .map((archive) => [archive, archive.files.filter((path) => wanted.has(path))])
+    .filter(([, paths]) => paths.length);
   let restored = 0;
-  for (const archive of manifest.archives) {
-    const members = archive.files.filter((path) => wanted.has(path)).map((p) => byPath.get(p));
-    if (!members.length) continue;
-    let path = await findArchive(archiveDir, archive);
-    if (!path) {
-      if (offline) throw new Error(`Offline archive missing or corrupt: ${archive.file}`);
-      log(`Downloading ${archive.file}`);
-      path = archivePath(archiveDir, archive);
-      await mkdir(dirname(path), { recursive: true });
-      // A bundle is hundreds of archives: one dropped connection must not cost the whole restore.
-      const url = releaseUrl(manifest, archive.file);
-      const destination = path;
-      await retryTransient(() => download(url, destination, archive, fetchImpl), {
-        what: `Download of ${archive.file}`,
-        log,
-        ...retry,
-      });
-    }
-    await verifyArchive(path, archive, byPath);
+  await pool(restore, concurrency, async ([archive, paths]) => {
+    const path = await localAttachment(archive, manifest, {
+      archiveDir,
+      offline,
+      fetchImpl,
+      retry,
+      log,
+    });
     const stage = await mkdtemp(join(staging, 'restore-'));
     try {
-      const names = new Set(members.map((f) => f.path));
+      const names = new Set(paths);
       await tar.x({
         file: path,
         cwd: stage,
@@ -747,27 +1023,28 @@ async function installBundle({
         noMtime: true,
         filter: (name, entry) => names.has(name) && entry.type === 'File',
       });
-      for (const file of members) {
-        if (!same(await fileInfo(join(stage, file.path)), file))
-          throw new Error(`Extracted checksum mismatch: ${file.path}`);
+      const staged = paths.map((name) => ({ file: byPath.get(name), path: join(stage, name) }));
+      for (const { file, path: extracted } of staged) {
+        const info = (await maybeStat(extracted))?.isFile() ? await fileInfo(extracted) : undefined;
+        if (!same(info, file)) throw new Error(`Extracted checksum mismatch: ${file.path}`);
       }
-      for (const file of members) {
+      for (const { file, path: extracted } of staged) {
         const destination = await localPath(root, file.path);
         await mkdir(dirname(destination), { recursive: true });
-        const temporary = `${destination}.${randomUUID()}.part`;
-        try {
-          await copyFile(join(stage, file.path), temporary);
-          await rename(temporary, destination);
-        } finally {
-          await rm(temporary, { force: true });
-        }
+        await moveFile(extracted, destination);
       }
-      restored += members.length;
-      log(`Restored ${members.length} GLBs from ${archive.file}`);
+      restored += paths.length;
+      log(`Restored ${paths.length} GLBs from ${archive.file}`);
     } finally {
       await removeStage(stage, staging);
     }
-  }
+    // A CI runner's disk holds the GLBs or the archives comfortably, not both.
+    if (!keepArchives) {
+      await rm(path, { force: true });
+      // Downloads live alone at <sha256>/<file> (archivePath).
+      if (path === archivePath(archiveDir, archive)) await rmdir(dirname(path));
+    }
+  });
   // Outputs of the previous bundle that this one no longer has are stale; local work stays.
   if (!prefix && previous && !previous.prefix)
     for (const file of previous.files)
@@ -775,8 +1052,57 @@ async function installBundle({
   return { files, restored };
 }
 
-/** The newest published bundle (what main last built), or undefined when none can be listed. */
-async function latestPublished(repository, fetchImpl, { log, retry } = {}) {
+/**
+ * Sidecars in this checkout that do not describe the published bundle for its inputs, without
+ * restoring a GLB: the manifest has every hash. A commit that changed sidecars only, or kept ones
+ * a build rewrote, fails in seconds instead of in every job that pairs them with the bundle.
+ */
+export async function checkPublishedSidecars({
+  root = ROOT,
+  archiveDir = join(root, OUTPUT),
+  manifest,
+  fetchImpl = fetch,
+  retry,
+  log = console.log,
+} = {}) {
+  manifest ??= await releaseManifest(await assetInputs(root), archiveDir, false, fetchImpl, {
+    log,
+    retry,
+  });
+  const bundled = new Map(manifest.files.map((f) => [f.path, f]));
+  const errors = [];
+  for (const directory of new Set(manifest.files.map((f) => dirname(f.path)))) {
+    const { stale, lods } = await sidecarProblems(root, directory, bundled);
+    errors.push(...stale, ...lods);
+  }
+  if (errors.length)
+    throw new Error(
+      `These committed sidecars do not describe ${manifest.release}, the bundle of this checkout's inputs:\n${errors.join('\n')}\nCommit the sidecars of the build that made it: the run that built it has them as its asset-sidecars artifact; locally, pnpm assets:build rewrites them.`,
+    );
+  log(`The committed sidecars describe ${manifest.release}.`);
+  return manifest;
+}
+
+/** Whether GitHub has published the bundle for this checkout's inputs. */
+export async function bundleState({
+  root = ROOT,
+  archiveDir = join(root, OUTPUT),
+  fetchImpl = fetch,
+  retry,
+  log = console.error,
+} = {}) {
+  const current = await assetInputs(root);
+  try {
+    const manifest = await releaseManifest(current, archiveDir, false, fetchImpl, { log, retry });
+    return { release: current.release, published: true, manifest };
+  } catch (error) {
+    if (!(error instanceof ReleaseMissingError)) throw error;
+    return { release: current.release, published: false };
+  }
+}
+
+/** The published bundles, newest first, and whether each has its build's job records. */
+async function publishedBundles(repository, fetchImpl, { log, retry } = {}) {
   const headers = { Accept: 'application/vnd.github+json' };
   const token = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
   if (token) headers.Authorization = `Bearer ${token}`;
@@ -796,44 +1122,26 @@ async function latestPublished(repository, fetchImpl, { log, retry } = {}) {
     },
     { what: `Listing ${repository} releases`, log, ...retry },
   );
+  const has = (release, name) => release.assets?.some((asset) => asset.name === name) ?? false;
   return releases
     .filter(
-      (release) =>
-        !release.draft &&
-        /^assets-[a-f0-9]{16}$/.test(release.tag_name) &&
-        release.assets?.some((asset) => asset.name === MANIFEST),
+      (release) => !release.draft && RELEASE_NAME.test(release.tag_name) && has(release, MANIFEST),
     )
     .sort((a, b) =>
       a.published_at < b.published_at ? 1 : a.published_at > b.published_at ? -1 : 0,
     )
-    .at(0)?.tag_name;
+    .map((release) => ({ release: release.tag_name, recorded: has(release, RECORDS) }));
 }
 
-/**
- * A seed bundle's manifest: a packed one whose archives are all cached here (an Actions cache of
- * an unpublished build), else the published one. Undefined when it is neither.
- */
-async function seedManifest(release, { repository, key }, archiveDir, fetchImpl, options = {}) {
+/** A published bundle's manifest, or undefined when GitHub no longer has it. */
+async function seedManifest(release, repository, archiveDir, fetchImpl, options = {}) {
   const check = (manifest) => {
-    validateManifest(manifest, { repository, key: key ?? manifest?.key ?? '' });
+    validateManifest(manifest, { repository, key: manifest?.key ?? '' });
     if (manifest.release !== release) throw new Error(`Seed manifest is not ${release}.`);
     return manifest;
   };
-  const packed = join(archiveDir, release, MANIFEST);
-  if (await maybeStat(packed)) {
-    const manifest = check(JSON.parse(await readFile(packed, 'utf8')));
-    const cached = await Promise.all(
-      manifest.archives.map(
-        async (archive) =>
-          (await maybeStat(archivePath(archiveDir, archive)))?.size === archive.size,
-      ),
-    );
-    // Archives are not byte-reproducible: a packing only stands in for itself, never a release.
-    if (cached.every(Boolean)) return { manifest, offline: true };
-  }
   const published = join(archiveDir, 'published', `${release}.json`);
-  if (await maybeStat(published))
-    return { manifest: check(JSON.parse(await readFile(published, 'utf8'))), offline: false };
+  if (await maybeStat(published)) return check(JSON.parse(await readFile(published, 'utf8')));
   const text = await manifestText({ repository, release }, fetchImpl, {
     label: 'Seed',
     ...options,
@@ -842,90 +1150,152 @@ async function seedManifest(release, { repository, key }, archiveDir, fetchImpl,
   const manifest = check(JSON.parse(text));
   await mkdir(dirname(published), { recursive: true });
   await writeFile(published, text);
-  return { manifest, offline: false };
+  return manifest;
+}
+
+const isSeed = (seed) =>
+  seed?.format === STAMP_FORMAT && SHA.test(seed.key ?? '') && Array.isArray(seed.inputs);
+
+/** The seed.json of a records archive. */
+async function seedIn(path) {
+  const chunks = [];
+  await tar.t({
+    file: path,
+    strict: true,
+    onReadEntry(entry) {
+      if (entry.path === 'asset-build/seed.json') entry.on('data', (bytes) => chunks.push(bytes));
+    },
+  });
+  const seed = JSON.parse(Buffer.concat(chunks).toString('utf8') || 'null');
+  if (!isSeed(seed)) throw new Error(`No seed in ${path}.`);
+  return seed;
+}
+
+/** Replace this checkout's job records with a records archive's. */
+async function restoreRecords(root, path) {
+  const artifacts = join(root, '.artifacts');
+  await rm(join(root, BUILD, 'jobs'), { recursive: true, force: true });
+  await mkdir(artifacts, { recursive: true });
+  await tar.x({
+    file: path,
+    cwd: artifacts,
+    strict: true,
+    noMtime: true,
+    filter: (name, entry) => entry.type === 'File' && RECORD_NAME.test(name),
+  });
 }
 
 /**
- * Before a source build on a machine with no GLBs (a CI runner), install the bundle an earlier
- * build left: the one named by its saved job records (SEED), else the newest published bundle.
- * The build then reruns only jobs whose recorded inputs or outputs differ from it, instead of
- * all of them. Any bundle is a safe seed: records are checked against the bytes on disk, so a
- * GLB the seed got wrong only means its job runs. Returns the release installed, if any.
+ * Before a source build on a machine with no GLBs (a CI runner), install an earlier bundle and the
+ * job records that built it, so the build reruns only jobs whose recorded inputs or outputs
+ * differ instead of all of them. Of the newest published bundles, the one whose inputs differ
+ * least from this checkout's is the one that leaves least to build: a pull request's own last
+ * bundle, else main's. Any bundle is a safe seed: records are checked against the bytes on disk,
+ * so a GLB the seed got wrong only means its job runs. Returns the release installed, if any.
  */
 export async function seedAssets({
   root = ROOT,
   archiveDir = join(root, OUTPUT),
+  keepArchives = true,
   fetchImpl = fetch,
   retry,
   log = console.log,
 } = {}) {
-  const { repository } = JSON.parse(await readFile(join(root, 'asset-build.json'), 'utf8'));
-  let seed;
+  const current = await assetInputs(root);
+  const { repository } = current;
+  const options = { log, retry };
+  let releases = [];
   try {
-    seed = JSON.parse(await readFile(join(root, SEED), 'utf8'));
+    releases = await publishedBundles(repository, fetchImpl, options);
+  } catch (error) {
+    log(`Warning: ${error.message}`);
+  }
+  // Job records restored by other means (an Actions cache) describe one of these bundles too.
+  let cached;
+  try {
+    cached = JSON.parse(await readFile(join(root, SEED), 'utf8'));
   } catch (error) {
     if (error.code !== 'ENOENT' && !(error instanceof SyntaxError)) throw error;
   }
-  const recorded =
-    seed?.format === STAMP_FORMAT && SHA.test(seed.key ?? '')
-      ? `assets-${seed.key.slice(0, 16)}`
-      : undefined;
-  const install = async (release, key, why) => {
-    const found = await seedManifest(release, { repository, key }, archiveDir, fetchImpl, {
-      log,
-      retry,
-    });
-    if (!found) {
-      log(`Seed ${release} is neither cached nor published.`);
-      return;
+  const candidates = [];
+  for (const { release, recorded } of releases) {
+    const here = isSeed(cached) && release === `assets-${cached.key.slice(0, 16)}`;
+    if (candidates.length >= SEED_CANDIDATES && !here) continue;
+    const candidate = { release, inputs: here ? cached.inputs : undefined };
+    if (recorded) {
+      // A candidate that cannot be read is passed over, never a reason to fail the build.
+      try {
+        const manifest = await seedManifest(release, repository, archiveDir, fetchImpl, options);
+        candidate.records = await localAttachment(manifest.records, manifest, {
+          archiveDir,
+          fetchImpl,
+          ...options,
+        });
+        candidate.inputs = (await seedIn(candidate.records)).inputs;
+      } catch (error) {
+        log(`Warning: ${release} has no usable job records: ${error.message}`);
+        candidate.records = undefined;
+      }
     }
-    const { manifest, offline } = found;
-    const { files, restored } = await installBundle({
-      root,
-      archiveDir,
-      manifest,
-      previous: await readStamp(root),
-      matchesLocalFile: localMatcher(root),
-      offline,
-      force: false,
-      fetchImpl,
-      retry,
-      log,
-    });
+    candidate.distance = candidate.inputs
+      ? changedInputs(candidate.inputs, current.inputs).length
+      : Number.POSITIVE_INFINITY;
+    candidates.push(candidate);
+  }
+  // Stable: among equals, and among bundles with no records, the newest.
+  candidates.sort((a, b) => (a.distance === b.distance ? 0 : a.distance - b.distance));
+  for (const { release, records, inputs, distance } of candidates) {
+    let manifest;
+    try {
+      manifest = await seedManifest(release, repository, archiveDir, fetchImpl, options);
+    } catch (error) {
+      log(`Warning: ${release} cannot seed this build: ${error.message}`);
+    }
+    if (!manifest) continue;
+    let files;
+    let restored;
+    try {
+      ({ files, restored } = await installBundle({
+        root,
+        archiveDir,
+        manifest,
+        previous: await readStamp(root),
+        matchesLocalFile: localMatcher(root),
+        offline: false,
+        force: false,
+        keepArchives,
+        fetchImpl,
+        retry,
+        log,
+      }));
+    } catch (error) {
+      // An archive that is gone rules this bundle out. A network that keeps failing fails the job:
+      // building everything from nothing would cost hours instead of a rerun.
+      if (error.status !== 404) throw error;
+      log(`Warning: ${release} cannot seed this build: ${error.message}`);
+      continue;
+    }
+    if (records) await restoreRecords(root, records);
     await writeStamp(root, {
       key: manifest.key,
       release: manifest.release,
       from: 'seed',
       prefix: '',
-      inputs: release === recorded ? seed.inputs : [],
+      inputs: inputs ?? [],
       files,
     });
-    log(`Seeded with ${files.length} GLBs of ${release} (${why}; ${restored} restored).`);
+    log(
+      `Seeded with ${files.length} GLBs of ${release} (${inputs ? `${distance} inputs differ` : 'without job records, the newest published bundle'}; ${restored} restored).`,
+    );
     return release;
-  };
-  if (recorded) {
-    const installed = await install(recorded, seed.key, 'the bundle its job records describe');
-    if (installed) return installed;
-  }
-  let latest;
-  try {
-    latest = await latestPublished(repository, fetchImpl, { log, retry });
-  } catch (error) {
-    log(`Warning: ${error.message}`);
-  }
-  if (latest && latest !== recorded) {
-    const installed = await install(latest, undefined, 'the newest published bundle');
-    if (installed) return installed;
   }
   await clearStamp(root);
   log('No earlier bundle to start from: the build runs every job.');
 }
 
 /**
- * Delete the cached archives that the bundle for this checkout's inputs does not use. A CI source
- * build leaves its seed's archives beside its own, and saving both put the Actions cache over
- * GitHub's limit for a repository's caches (10 GB), so GitHub evicted it while jobs still needed
- * it. Nothing is removed unless that bundle's manifest is here to say what it uses.
+ * Delete the cached archives that the bundle for this checkout's inputs does not use. Nothing is
+ * removed unless that bundle's manifest is here to say what it uses.
  */
 export async function pruneArchives({
   root = ROOT,
@@ -969,13 +1339,49 @@ export async function pruneArchives({
 }
 
 /**
- * Publish the packed bundle for this checkout's inputs as the release it names. An already
- * published bundle is left alone: its archives were verified when they went up.
+ * The GitHub CLI, trying again when the network or a busy server failed a repeatable call. `gh release
+ * upload` and `edit` look the draft up by its tag every time, and GitHub can fail to list a draft it
+ * has just been accepting files into: run 45473223233 died on "release not found" after 200 uploads.
+ */
+export function githubCli({
+  run = (args) =>
+    execFileSync('gh', args, {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+      maxBuffer: 64 * 1024 ** 2,
+    }),
+  wait = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms),
+} = {}) {
+  const transient =
+    /HTTP (?:408|425|429|5\d\d)|connection reset|connection refused|timeout|timed out|TLS handshake|unexpected EOF|i\/o error|no such host/i;
+  return (args) => {
+    const creates = args.includes('POST');
+    const byTag = args[0] === 'release' && (args[1] === 'upload' || args[1] === 'edit');
+    for (let attempt = 1; ; attempt++) {
+      try {
+        // A second upload replaces what a broken first one left.
+        const again = attempt > 1 && args[1] === 'upload' ? ['--clobber'] : [];
+        return run([...args, ...again]);
+      } catch (error) {
+        const text = String(error.stderr);
+        const passing = transient.test(text) || (byTag && /release not found/i.test(text));
+        if (creates || attempt >= 4 || !passing) throw error;
+        wait(attempt * 10_000);
+      }
+    }
+  };
+}
+
+/**
+ * Publish the packed bundle for this checkout's inputs as the release it names: its manifest, its
+ * job records and the archives no earlier release holds. An already published bundle is left
+ * alone: its archives were verified when they went up, and later bundles may list them.
  */
 export async function publishAssets({
   root = ROOT,
   archiveDir = join(root, OUTPUT),
   target,
+  builtFrom = target,
   runGh,
   log = console.log,
 } = {}) {
@@ -983,16 +1389,10 @@ export async function publishAssets({
     throw new Error('Publishing requires --target <existing 40-character GitHub commit SHA>.');
   const current = await assetInputs(root);
   const { repository, release } = current;
-  const gh =
-    runGh ??
-    ((args) =>
-      execFileSync('gh', args, {
-        encoding: 'utf8',
-        stdio: ['ignore', 'pipe', 'pipe'],
-        maxBuffer: 8 * 1024 ** 2,
-      }));
+  const gh = runGh ?? githubCli();
   // List releases rather than treating arbitrary authentication/network failures as "not found".
-  let published = listReleases(gh, repository).find((r) => r.tag_name === release);
+  const releases = listReleases(gh, repository);
+  let published = releases.find((r) => r.tag_name === release);
   if (published && !published.draft) {
     log(`Already published https://github.com/${repository}/releases/tag/${release}`);
     return release;
@@ -1001,21 +1401,49 @@ export async function publishAssets({
   const manifestPath = join(releaseDir, MANIFEST);
   if (!(await maybeStat(manifestPath))) await packAssets({ root, outDir: archiveDir, log });
   const manifest = validateManifest(JSON.parse(await readFile(manifestPath, 'utf8')), current);
+  const own = manifest.archives.filter((archive) => archive.release === undefined);
+  const carried = manifest.archives.filter((archive) => archive.release !== undefined);
   const paths = new Map();
-  for (const archive of manifest.archives) {
+  for (const archive of own) {
     const path = await findArchive(archiveDir, archive);
     if (!path) throw new Error(`Archive missing or corrupt: ${archive.file}; run assets:pack.`);
     paths.set(archive.file, path);
   }
-  if (!same(await fileInfo(join(releaseDir, NOTICES)), manifest.notices))
-    throw new Error('Asset notices checksum mismatch.');
-  paths.set(NOTICES, join(releaseDir, NOTICES));
+  for (const attachment of [manifest.notices, manifest.records]) {
+    if (!attachment) continue;
+    const path = join(releaseDir, attachment.file);
+    if (!(await maybeStat(path)) || !same(await fileInfo(path), attachment))
+      throw new Error(`${attachment.file} checksum mismatch; run assets:pack.`);
+    paths.set(attachment.file, path);
+  }
   paths.set(MANIFEST, manifestPath);
   const uploads = [
-    ...manifest.archives,
+    ...own,
     manifest.notices,
+    ...(manifest.records ? [manifest.records] : []),
     { file: MANIFEST, ...(await fileInfo(manifestPath)) },
   ];
+  const listAssets = (id) =>
+    JSON.parse(
+      gh([
+        'api',
+        '--paginate',
+        '--slurp',
+        `repos/${repository}/releases/${id}/assets?per_page=100`,
+      ]),
+    ).flat();
+  const matches = (asset, file) =>
+    asset?.size === file.size && asset.digest === `sha256:${file.sha256}`;
+  // A bundle must not go out naming an archive that a restore will not find.
+  for (const holder of new Set(carried.map((archive) => archive.release))) {
+    const earlier = releases.find((r) => r.tag_name === holder && !r.draft);
+    const attachments = new Map((earlier ? listAssets(earlier.id) : []).map((a) => [a.name, a]));
+    for (const archive of carried.filter((a) => a.release === holder))
+      if (!matches(attachments.get(archive.file), archive))
+        throw new Error(
+          `${holder} no longer holds ${archive.file}; remove ${join(archiveDir, 'published', `${holder}.json`)} and run assets:pack.`,
+        );
+  }
   if (!published) {
     const request = join(releaseDir, 'release-request.json');
     await writeFile(
@@ -1024,7 +1452,7 @@ export async function publishAssets({
         tag_name: release,
         target_commitish: target,
         name: `Molen asset bundle ${current.key.slice(0, 12)}`,
-        body: `${manifest.files.length} GLBs built from source at ${target}.\n\nRestore them with \`pnpm assets:fetch\` in any checkout whose asset inputs hash to \`${release}\` (\`node scripts/asset-packs.mjs key\`), or rebuild them with \`pnpm assets:build\`. \`${MANIFEST}\` lists the archives; see ${NOTICES} for licenses.\n\nThese are repository build outputs. Applications use Molen's runtime content packs.\n`,
+        body: `${manifest.files.length} GLBs built from source at ${builtFrom}.\n\nRestore them with \`pnpm assets:fetch\` in any checkout whose asset inputs hash to \`${release}\` (\`node scripts/asset-packs.mjs key\`), or rebuild them with \`pnpm assets:build\`. \`${MANIFEST}\` lists the archives, ${own.length} here and ${carried.length} in earlier releases; see ${NOTICES} for licenses. Later bundles list archives of this release: do not delete it.\n\nThese are repository build outputs. Applications use Molen's runtime content packs.\n`,
         draft: true,
         make_latest: 'false',
       }),
@@ -1035,19 +1463,10 @@ export async function publishAssets({
     );
     if (!published?.draft) throw new Error('Could not create the draft asset release.');
   }
-  const listAssets = () =>
-    JSON.parse(
-      gh([
-        'api',
-        '--paginate',
-        '--slurp',
-        `repos/${repository}/releases/${published.id}/assets?per_page=100`,
-      ]),
-    ).flat();
-  const remote = listAssets();
+  const remote = listAssets(published.id);
   for (const upload of uploads) {
     const existing = remote.find((a) => a.name === upload.file);
-    if (existing?.size === upload.size && existing.digest === `sha256:${upload.sha256}`) {
+    if (matches(existing, upload)) {
       log(`Already uploaded ${upload.file}`);
       continue;
     }
@@ -1060,18 +1479,46 @@ export async function publishAssets({
     log(`Uploading ${upload.file}`);
     gh(['release', 'upload', release, paths.get(upload.file), '--repo', repository]);
   }
-  const uploaded = listAssets();
   const expected = new Set(uploads.map((u) => u.file));
+  let uploaded = listAssets(published.id);
+  // An interrupted packing with other archives may have uploaded some this one does not have.
+  for (const stray of uploaded.filter((a) => !expected.has(a.name))) {
+    if (!ARCHIVE_NAME.test(stray.name) && stray.name !== RECORDS) continue;
+    log(`Removing draft attachment ${stray.name}`);
+    gh(['api', '--method', 'DELETE', `repos/${repository}/releases/assets/${stray.id}`]);
+    uploaded = uploaded.filter((a) => a !== stray);
+  }
   const extra = uploaded.filter((a) => !expected.has(a.name)).map((a) => a.name);
   if (extra.length) throw new Error(`Draft ${release} has unexpected attachments: ${extra}`);
   for (const file of uploads) {
-    const asset = uploaded.find((a) => a.name === file.file);
-    if (asset?.size !== file.size || asset?.digest !== `sha256:${file.sha256}`)
+    if (
+      !matches(
+        uploaded.find((a) => a.name === file.file),
+        file,
+      )
+    )
       throw new Error(`Uploaded asset integrity check failed: ${file.file}`);
   }
   gh(['release', 'edit', release, '--repo', repository, '--draft=false', '--latest=false']);
+  // The next bundle packed here can list these archives.
+  await mkdir(join(archiveDir, 'published'), { recursive: true });
+  await copyFile(manifestPath, join(archiveDir, 'published', `${release}.json`));
   log(`Published https://github.com/${repository}/releases/tag/${release}`);
   return release;
+}
+
+/** What `pnpm assets:build --compile` does: compile, drop records of older engine code, build. */
+async function buildMissing(root, force) {
+  const { spawnCommand } = await import('./exec-command.mjs');
+  const compiled = spawnCommand('pnpm', ['-r', '--filter', './packages/**', 'exec', 'tsdown'], {
+    cwd: root,
+    stdio: 'inherit',
+  });
+  if (compiled.status !== 0) throw new Error('Package compilation failed.');
+  const { expireEngineJobs } = await import('./asset-engine.mjs');
+  await expireEngineJobs(root);
+  const { buildAssetsFromSource } = await import('./build-assets.mjs');
+  await buildAssetsFromSource({ root, force });
 }
 
 async function main() {
@@ -1084,15 +1531,20 @@ async function main() {
       offline: { type: 'boolean' },
       force: { type: 'boolean' },
       'no-build': { type: 'boolean' },
+      'no-cache': { type: 'boolean' },
+      check: { type: 'boolean' },
       explain: { type: 'boolean' },
+      committed: { type: 'boolean' },
+      published: { type: 'boolean' },
       target: { type: 'string' },
+      'built-from': { type: 'string' },
     },
   });
   const root = resolve(values.root ?? ROOT);
   const archiveDir = resolve(values['archive-dir'] ?? join(root, OUTPUT));
   if (positionals.length !== 1)
     throw new Error(
-      'Usage: node scripts/asset-packs.mjs key|pack|fetch|seed|prune|check|publish [options]',
+      'Usage: node scripts/asset-packs.mjs key|state|pack|fetch|seed|prune|check|publish [options]',
     );
   switch (positionals[0]) {
     case 'key': {
@@ -1108,6 +1560,15 @@ async function main() {
       }
       break;
     }
+    case 'state': {
+      // Two lines for $GITHUB_OUTPUT; everything else goes to stderr. Hashing the inputs takes a
+      // minute, so `--check` compares the sidecars with the bundle in the same run.
+      const { release, published, manifest } = await bundleState({ root, archiveDir });
+      console.log(`release=${release}\npublished=${published}`);
+      if (values.check && published)
+        await checkPublishedSidecars({ root, manifest, log: console.error });
+      break;
+    }
     case 'pack':
       await packAssets({ root, outDir: archiveDir });
       break;
@@ -1119,6 +1580,7 @@ async function main() {
           prefix: values.prefix,
           offline: values.offline,
           force: values.force,
+          keepArchives: !values['no-cache'],
         });
       } catch (error) {
         if (error instanceof ReleaseMissingError && (values['no-build'] || values.prefix)) {
@@ -1129,24 +1591,29 @@ async function main() {
         }
         if (!(error instanceof ReleaseMissingError)) throw error;
         console.log(`Warning: ${error.message}\nBuilding the bundle locally.`);
-        const { buildAssetsFromSource } = await import('./build-assets.mjs');
-        await buildAssetsFromSource({ root, compile: true, force: values.force });
+        await buildMissing(root, values.force);
       }
       break;
     case 'seed':
-      await seedAssets({ root, archiveDir });
+      await seedAssets({ root, archiveDir, keepArchives: !values['no-cache'] });
       break;
     case 'prune':
       await pruneArchives({ root, archiveDir });
       break;
     case 'check':
-      await checkAssets({ root, prefix: values.prefix });
+      if (values.published) await checkPublishedSidecars({ root, archiveDir });
+      else await checkAssets({ root, prefix: values.prefix, committed: values.committed });
       break;
     case 'publish':
-      await publishAssets({ root, archiveDir, target: values.target });
+      await publishAssets({
+        root,
+        archiveDir,
+        target: values.target,
+        builtFrom: values['built-from'],
+      });
       break;
     default:
-      throw new Error('Expected key, pack, fetch, seed, prune, check or publish.');
+      throw new Error('Expected key, state, pack, fetch, seed, prune, check or publish.');
   }
 }
 

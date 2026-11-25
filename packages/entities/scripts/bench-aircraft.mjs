@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
-import { performanceLedger, referenceSpeed } from './aircraft-performance.mjs';
-import { flyLevel, flyRotorLevel, levelSpeedRoots } from './flight-bench.mjs';
+import { performanceLedger, referenceSpeed, referenceThrottle } from './aircraft-performance.mjs';
+import { flyLevel, flyRotorLevel, levelSpeedRoots, rotorCruiseTilt } from './flight-bench.mjs';
 
 const types = JSON.parse(
   await readFile(
@@ -13,7 +13,12 @@ const selection = process.argv.find((a) => a.startsWith('--id='))?.slice(5);
 const flight = process.argv.includes('--flight');
 const rotorEnvelope = (spec, target) =>
   [0, 1500, 3000, 5000].map((altitude) => {
-    const at = flyRotorLevel(spec, { speed: target, altitude, seconds: 120 });
+    const at = flyRotorLevel(spec, {
+      speed: target,
+      altitude,
+      seconds: 120,
+      tilt: rotorCruiseTilt(spec, target, altitude),
+    });
     return {
       altitude,
       ktas: (at.state.airspeed * 3600) / 1852,
@@ -31,7 +36,7 @@ for (const p of performanceLedger.aircraft) {
   if (!spec) throw Error(`Missing runtime aircraft ${p.id}`);
   const target = referenceSpeed(p),
     ref = p.reference;
-  const config = { power: ref.throttle };
+  const config = { power: referenceThrottle(p, spec) };
   const envelope = spec.airplane
     ? [0, 3000, 6000, 11000, 15000].map((altitude) => {
         const roots = levelSpeedRoots(spec, altitude, config);
@@ -54,8 +59,9 @@ for (const p of performanceLedger.aircraft) {
     ? (spec.airplane ? flyLevel : flyRotorLevel)(spec, {
         speed: target * 0.85,
         altitude: ref.altitudeM,
-        power: ref.throttle,
+        power: config.power,
         seconds: 180,
+        ...(spec.airplane ? {} : { tilt: rotorCruiseTilt(spec, target, ref.altitudeM) }),
       })
     : undefined;
   const error = spec.airplane

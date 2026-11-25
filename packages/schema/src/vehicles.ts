@@ -94,6 +94,11 @@ export type CycleStance = 'seated' | 'standing' | 'sideways';
 /** Self-balancing two-wheel handling and metric rider contact points, in model space. */
 export interface CycleSpec extends HandlebarSpec {
   maxLean: number;
+  /**
+   * Camber thrust: the side force a leaned tire makes without slipping, per radian of lean and
+   * unit of load. It is what carries a motorcycle round a corner; default 0.9.
+   */
+  camber?: number;
   stance?: CycleStance;
   pedals?: {
     center: [number, number, number];
@@ -137,6 +142,12 @@ export interface RunnerSpec extends JsonObject {
    * `vehicleState.bodyRoll`, where the rider's pose reads it. Default false.
    */
   flat?: boolean;
+  /**
+   * Sidecut radius in meters: on edge, the runner carves a turn of this radius times the cosine
+   * of the lean, so more edge is a tighter turn. About 14 for a recreational ski, 8 for a
+   * snowboard. Absent, the runner turns as it is steered.
+   */
+  sidecut?: number;
 }
 
 /**
@@ -184,6 +195,22 @@ export interface VehiclePowertrainSpec extends JsonObject {
   inertia?: number;
 }
 
+/**
+ * Four wheels on struts. With it a car's wheels each carry their own load on their own spring,
+ * meet their own patch of road and turn at their own speed: weight moves between them as the
+ * body pitches and rolls, wheelspin and lock-up are what the wheels do, and anti-lock brakes,
+ * traction control and stability control watch them. The springs, dampers and anti-roll bars
+ * follow from `suspensionFrequency`, `suspensionDamping`, `rollStiffness`, `rollBalance` and
+ * `pitchStiffness`. Cars only: cycles, runners and rail vehicles ignore it.
+ */
+export interface VehicleWheelsSpec extends JsonObject {
+  /** Rotating inertia of one wheel and tire, kg m²; default from the mass and wheel radius. */
+  inertia?: number;
+  /** Suspension travel from ride height to the bump stop, m; default 0.09. */
+  travel?: number;
+  /** Anti-lock brakes; default true. */
+  antiLock?: boolean;
+}
 /** Data-driven tuning consumed by the generic wheeled-vehicle solver. */
 export interface VehicleSpec extends JsonObject {
   collisionParts?: VehicleCollisionPart[];
@@ -265,6 +292,8 @@ export interface VehicleSpec extends JsonObject {
   limitedSlip?: number;
   /** Share 0–1 of the grip loose surfaces take away that the tires win back (off-road tread); default 0. */
   looseSurfaceGrip?: number;
+  /** Four wheels on struts, each with its own load, grip and spin; see VehicleWheelsSpec. */
+  wheels?: VehicleWheelsSpec;
   /** Slides on snow instead of rolling on tires (skis, a board, a snowmobile). */
   runners?: RunnerSpec;
   /** Two contact patches on the centreline; balances upright at rest and leans into turns. */

@@ -41,8 +41,9 @@ For work on this repository, keep bulk captures in ignored `shots/`, `medium-fi/
 `.artifacts/`. Retain one or two small summary previews and concise hash/command/review reports
 alongside the authored source inputs. Source textures and heightmaps remain required inputs.
 Actually inspect current renders; do not make routine builds or tests depend on a screenshot
-archive. Normal model work does not publish captures or update `review-lock.json`. The detailed
-policy is in `content/ASSET-PACKS.md` under "Model review images"; `pnpm source:check` enforces
+archive. Captures are never archived or published; render them again when needed. Reference photos,
+PDFs and copied text are scratch too: keep each one's URL, date, license record and the facts taken
+from it, not the copy. The detailed policy is in `content/ASSET-PACKS.md` under "Model review images"; `pnpm source:check` enforces
 that bulk captures stay out of Git.
 
 Prefer the CLI/MCP operations over source inspection. If a durable generator would need imports

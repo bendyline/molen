@@ -17,15 +17,21 @@ import { quatRotateVec3 } from '../src/math3d';
 import { applyKeyframeTo, stateHash, takeKeyframe } from '../src/snapshot';
 import { Mounted, mountEntity, unmountEntity, vehicleRotation } from '../src/vehicles';
 import { World } from '../src/world';
-import { molenAircraft } from './helpers/entities';
+import { assistedHelicopter, molenAircraft } from './helpers/entities';
 
 const flat = { groundHeight: () => 0 };
 const running: AircraftInputData = { ...IDLE_AIRCRAFT_INPUT, engine: true, power: 1, brake: false };
 type TestAircraft = 'p51d' | 'oh6';
-const specFor = (kind: TestAircraft): AircraftSpec =>
+/** The type as shipped: a helicopter on its rotors. */
+const shipped = (kind: TestAircraft): AircraftSpec =>
   molenAircraft(`molen.entities.aircraft.${kind}`).spec;
+/**
+ * For the solver tests below, a helicopter on the assisted model (no rotor block), which is
+ * what they pin; the rotor element has its own tests.
+ */
+const specFor = (kind: TestAircraft): AircraftSpec => assistedHelicopter(shipped(kind));
 function setup(kind: TestAircraft) {
-  const spec = specFor(kind);
+  const spec = shipped(kind);
   const w = new World({ tickRate: 60, seed: 'flight' });
   installAircraft(w, flat);
   w.spawnRaw(
@@ -83,12 +89,12 @@ describe('aircraft flight and mounting', () => {
     const off = stepAircraft(boosted.transform, boosted.state, controls, spec, 1 / 1200, flat);
     expect(off.state.airspeed).toBeCloseTo(normal.state.airspeed, 0);
     expect(off.state.boosted).toBeUndefined();
-    // Sustained powered flight, including banking and releasing the controls.
+    // Sustained powered flight, including banking, rolling level and releasing the controls.
     for (let tick = 0; tick < 1800; tick++) {
       boosted = stepAircraft(
         boosted.transform,
         boosted.state,
-        { ...controls, roll: tick < 60 ? 0.1 : 0, pitch: 0 },
+        { ...controls, roll: tick < 30 ? 0.1 : tick < 60 ? -0.1 : 0, pitch: 0 },
         spec,
         1 / 60,
         { ...flat, boostMode: true },
@@ -396,7 +402,7 @@ describe('aircraft flight and mounting', () => {
     });
 
     it('rolls an inverted helicopter upright when assisted cyclic is selected', () => {
-      const inverted = fly(start(40), 2.7, { roll: 1, power: 0.6 });
+      const inverted = fly(start(40), 2.8, { roll: 1, power: 0.6 });
       expect(top(inverted)[1]).toBeLessThan(-0.9);
       let roll = inverted.state.roll;
       const recovered = fly(inverted, 3, { power: 0.6, cyclicMode: 'assisted' }, (f) => {
@@ -493,7 +499,8 @@ describe('aircraft flight and mounting', () => {
         velocity: [0, -0.8, 35] as [number, number, number],
       },
     };
-    for (let i = 0; i < 600; i++)
+    // A taildragger is braked only as hard as keeps its tail down: twenty seconds to stop.
+    for (let i = 0; i < 1200; i++)
       result = stepAircraft(
         result.transform,
         result.state,
@@ -505,7 +512,10 @@ describe('aircraft flight and mounting', () => {
     expect(result.state.grounded).toBe(true);
     expect(result.state.crashed).toBe(false);
     expect(result.state.velocity).toEqual([0, 0, 0]);
-    expect(result.transform.pos[1]).toBe(0);
+    // Standing on its struts where it stood before it flew.
+    expect(result.transform.pos[1]).toBeCloseTo(0, 2);
+    expect(result.state.pitch).toBeCloseTo(0, 2);
+    expect(result.state.roll).toBeCloseTo(0, 3);
   });
 });
 describe('landing gear and flap travel', () => {

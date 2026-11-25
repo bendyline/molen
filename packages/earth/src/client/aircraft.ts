@@ -200,7 +200,10 @@ export interface EarthPilotControls {
   gear?: number;
   flaps?: number;
   vector?: number;
-  /** Helicopter cyclic toggles between assisted and direct (full authority). */
+  /**
+   * Toggles between assisted and direct controls: a helicopter's cyclic (full authority), or an
+   * airplane's own control surfaces where it has them and is not fly-by-wire.
+   */
   cyclic?: number;
 }
 
@@ -678,12 +681,13 @@ export class EarthAircraft {
       pos: [t.pos[0], ground + 300, t.pos[2]],
       rot: vehicleRotation(state.yaw, 0, 0),
     });
-    const cyclicMode = this.controls.cyclicMode;
+    const { cyclicMode, controlMode } = this.controls;
     this.launch(id, aircraft.spec, state.yaw, {});
-    // The pilot's cyclic choice survives the reset.
+    // The pilot's choice of controls survives the reset.
     this.controls = {
       ...(this.world.get(id, AircraftInput) ?? IDLE_AIRCRAFT_INPUT),
       ...(cyclicMode === undefined ? {} : { cyclicMode }),
+      ...(controlMode === undefined ? {} : { controlMode }),
     };
     this.message = '';
     return true;
@@ -707,11 +711,13 @@ export class EarthAircraft {
     if ((controls.gear ?? 0) % 2 === 1 && state !== undefined && !state.grounded)
       next.gear = !next.gear;
     if ((controls.flaps ?? 0) % 2 === 1) next.flaps = !next.flaps;
-    if (
-      this.world.get(id, Aircraft)?.spec.model === 'helicopter' &&
-      (controls.cyclic ?? 0) % 2 === 1
-    )
-      next.cyclicMode = next.cyclicMode === 'direct' ? 'assisted' : 'direct';
+    if ((controls.cyclic ?? 0) % 2 === 1) {
+      const flown = this.world.get(id, Aircraft)?.spec;
+      if (flown?.model === 'helicopter')
+        next.cyclicMode = next.cyclicMode === 'direct' ? 'assisted' : 'direct';
+      else if (flown?.airplane?.surfaces && !flown.airplane.surfaces.flyByWire)
+        next.controlMode = next.controlMode === 'direct' ? 'assisted' : 'direct';
+    }
     if (this.world.get(id, Aircraft)?.spec.poweredLift && (controls.vector ?? 0) > 0)
       next.thrustVector =
         ((Math.round((next.thrustVector ?? 0) * 4) + (controls.vector ?? 0)) % 5) / 4;

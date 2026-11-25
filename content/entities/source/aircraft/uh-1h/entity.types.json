@@ -779,11 +779,11 @@
                 1,
                 0
               ],
-              "power": 1044000,
+              "power": 820300,
               "idleRpm": 1,
               "spoolRate": 0.16,
               "rotorAngularSpeed": 24,
-              "ratedDensityRatio": 0.7,
+              "ratedDensityRatio": 0.786,
               "densityExponent": 1
             },
             "helicopter": {
@@ -805,17 +805,53 @@
               "translationalLiftSpeed": 18,
               "verticalDrag": 576,
               "horizontalDrag": 51.19948733678756,
-              "quadraticDrag": 1.1788976380639462,
+              "quadraticDrag": 1.1788976380639467,
               "groundDeceleration": 9,
               "vortexRing": true,
               "retreatingBladeSpeed": 63.9453892,
               "rotorDiscs": 1,
               "powerLimitedRotor": true,
-              "rotorEfficiency": 0.75,
+              "rotorEfficiency": 0.573,
               "profilePowerFraction": 0.12,
               "fixedGear": true,
               "gearTransitTime": 0,
-              "rotorInertiaTime": 3.5
+              "rotorInertiaTime": 3.5,
+              "liftMass": 3200,
+              "liftLimit": 1.854,
+              "rotor": {
+                "blades": 2,
+                "chord": 0.533,
+                "tipSpeed": 248.2,
+                "shaftTilt": 0.0873,
+                "lock": 6.53,
+                "hingeOffset": 0,
+                "collective": [
+                  0.02,
+                  0.2047
+                ],
+                "inducedFactor": 1.247,
+                "groundEffect": 0.12,
+                "maxLift": 0.74,
+                "dragArea": 3.496,
+                "tail": {
+                  "radius": 1.2955,
+                  "blades": 2,
+                  "chord": 0.2134,
+                  "tipSpeed": 225.2,
+                  "arm": 8.786,
+                  "height": 0.028
+                },
+                "finArea": 1.11,
+                "stabilizerArea": 1.52,
+                "inertia": {
+                  "roll": 3497,
+                  "pitch": 12948,
+                  "yaw": 11058
+                }
+              }
+            },
+            "fuel": {
+              "capacity": 448
             },
             "actuators": {
               "eject": {
@@ -914,10 +950,7 @@
                 },
                 "engines": []
               }
-            ],
-            "fuel": {
-              "capacity": 448
-            }
+            ]
           }
         },
         "aircraftInput": {

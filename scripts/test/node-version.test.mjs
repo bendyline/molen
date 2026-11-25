@@ -22,15 +22,20 @@ test('CI regression jobs and release share the local runtime pin; packed install
     .slice(1);
   assert.ok(jobs.length > 0);
   for (const job of jobs) {
-    if (job.startsWith('  packed:')) {
+    if (!/uses: actions\/setup-node@/.test(job)) {
+      // It runs no repository code of its own: it calls a workflow, or notes a result.
+      assert.doesNotMatch(job, /pnpm|node scripts/, job.split('\n')[0]);
+    } else if (job.startsWith('  packed:')) {
       assert.match(job, /node-version: 22\s/);
     } else {
       assert.match(job, /node-version-file: \.node-version/);
       assert.doesNotMatch(job, /node-version:/);
     }
   }
-  for (const path of ['.github/workflows/release.yml', '.github/actions/fetch-assets/action.yml']) {
-    assert.match(read(path), /node-version-file: \.node-version/);
+  for (const path of ['release.yml', 'site.yml', 'assets.yml']) {
+    const workflow = read(`.github/workflows/${path}`);
+    assert.match(workflow, /node-version-file: \.node-version/);
+    assert.doesNotMatch(workflow, /node-version:/);
   }
   const assetNode = JSON.parse(read('asset-build.json')).node;
   assert.equal(read('.node-version').trim().split('.')[0], assetNode);

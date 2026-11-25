@@ -55,6 +55,16 @@ export function aircraftMixtureEfficiency(
     : 1 / (1 + 1.5 * (ratio - 1) ** 2);
 }
 
+/**
+ * The mixture lever position that gives best power in this air: full rich at the density the
+ * engine is rated for, leaner as the air thins. What a pilot leans to in a climb or cruise.
+ */
+export function bestPowerMixture(engine: AircraftEngineSpec, atmosphere: AtmosphereSample): number {
+  if (!engine.mixtureControl || engine.propulsion === 'jet') return 1;
+  const air = m.clamp(atmosphere.densityKgM3 / 1.225 / (engine.ratedDensityRatio ?? 1), 0.01, 1);
+  return m.pow(air, 0.75);
+}
+
 function selectedPropellerRpm(engine: AircraftEngineSpec, propeller = 1): number {
   const governor = engine.propulsion === 'jet' ? undefined : engine.propellerControl;
   return governor ? governor.minRpm + (1 - governor.minRpm) * m.clamp(propeller, 0, 1) : 1;
@@ -94,6 +104,43 @@ export function aircraftEngineShaftPower(
   );
 }
 
+/**
+ * Thrust in newtons that `power` watts of thrust power gives at an airspeed, by actuator-disc
+ * (momentum) theory: the disc speeds the air through it up, and the faster the air already
+ * arrives the less of the power is lost in the slipstream. At rest it is finite,
+ * power^(2/3) × (2 × density × area)^(1/3); at speed it approaches power / speed.
+ */
+export function propellerThrust(
+  power: number,
+  speed: number,
+  density: number,
+  diameter: number,
+): number {
+  if (power <= 0 || density <= 0 || diameter <= 0) return 0;
+  const flow = (density * m.PI * diameter * diameter) / 2;
+  const arriving = m.max(0, speed);
+  // Speed of the air through the disc, w: power = flow × w² × (w − arriving). Newton's method
+  // from above the root, where the cubic is convex, converges without overshoot.
+  let through = arriving + m.pow(power / flow, 1 / 3);
+  for (let i = 0; i < 6; i++) {
+    const residual = flow * through * through * (through - arriving) - power;
+    through -= residual / (flow * through * (3 * through - 2 * arriving));
+  }
+  return power / through;
+}
+
+/**
+ * Share of static thrust a turbofan keeps at a Mach number: the fan's large, slow jet loses
+ * thrust quickly as the airplane's own speed approaches it, faster for a higher bypass ratio
+ * (Torenbeek's takeoff-thrust lapse). Held at its lowest value beyond the fit's range.
+ */
+export function turbofanLapse(bypassRatio: number, mach: number): number {
+  const linear = (0.377 * (1 + bypassRatio)) / m.sqrt(1 + 0.82 * bypassRatio);
+  const curve = 0.23 + 0.19 * m.sqrt(bypassRatio);
+  const at = m.clamp(mach, 0, linear / (2 * curve));
+  return 1 - linear * at + curve * at * at;
+}
+
 /** Installed propulsion approximation; full spool. No velocity cap or aircraft-name switches. */
 export function aircraftEngineThrust(
   engine: AircraftEngineSpec,
@@ -114,23 +161,47 @@ export function aircraftEngineThrust(
     return (
       (dry * control.dry + reheat) *
       engineLapse(engine, atmosphere) *
-      (1 + (engine.ramRise ?? 0) * mach * mach)
+      (engine.bypassRatio === undefined
+        ? 1 + (engine.ramRise ?? 0) * mach * mach
+        : turbofanLapse(engine.bypassRatio, mach))
     );
   }
-  return (
-    m.min(
-      (engine.maxThrust ?? wing.maxThrust) *
-        (engine.propulsion ? m.sqrt(m.max(0, sigma)) : 1) *
-        selectedPropellerRpm(engine, propeller) ** 2,
-      (engine.power *
-        engineLapse(engine, atmosphere) *
-        (engine.propellerEfficiency ?? wing.propellerEfficiency) *
-        selectedPropellerRpm(engine, propeller)) /
-        m.max(engine.minPropellerSpeed ?? wing.minPropellerSpeed, speed),
-    ) *
-    m.clamp(throttle, 0, 1) *
-    aircraftMixtureEfficiency(engine, atmosphere, mixture)
+  const rpm = selectedPropellerRpm(engine, propeller);
+  const cap =
+    (engine.maxThrust ?? wing.maxThrust) *
+    (engine.propulsion ? m.sqrt(m.max(0, sigma)) : 1) *
+    rpm ** 2;
+  const thrustPower =
+    engine.power *
+    engineLapse(engine, atmosphere) *
+    (engine.propellerEfficiency ?? wing.propellerEfficiency) *
+    rpm;
+  const lever = m.clamp(throttle, 0, 1) * aircraftMixtureEfficiency(engine, atmosphere, mixture);
+  const diameter = engine.propellerDiameter;
+  if (diameter === undefined)
+    return (
+      m.min(cap, thrustPower / m.max(engine.minPropellerSpeed ?? wing.minPropellerSpeed, speed)) *
+      lever
+    );
+  // Blades set or governed for cruise work badly when slow, and a fixed-pitch propeller also
+  // holds the engine below its rated speed: less thrust power in the takeoff and climb.
+  const slow = engine.lowSpeedThrust;
+  const reached = slow
+    ? slow.atRest + (1 - slow.atRest) * m.clamp(m.max(0, speed) / slow.fullSpeed, 0, 1)
+    : 1;
+  const thrust = m.min(
+    cap,
+    propellerThrust(thrustPower * lever * reached, speed, atmosphere.densityKgM3, diameter),
   );
+  // With the throttle closed the airflow drives the propeller instead: a brake.
+  const windmill =
+    (engine.windmillDrag ?? 0) *
+    0.5 *
+    atmosphere.densityKgM3 *
+    m.max(0, speed) ** 2 *
+    ((m.PI * diameter * diameter) / 4) *
+    m.max(0, 1 - 4 * lever);
+  return thrust - windmill;
 }
 
 /**
@@ -155,6 +226,33 @@ export function aircraftFuelFlow(
     m.max((state.shaftPower ?? 0) * load, 0.06 * engine.power) *
     (engine.fuelConsumption ?? (engine.mixtureControl ? 7.5e-8 : 9.5e-8))
   );
+}
+
+/**
+ * Lift coefficient of the wing at an angle of attack measured from zero lift (radians), with
+ * how far its flow has separated (0 attached, 1 fully stalled). `flaps` is the flap position.
+ */
+export function wingLiftCoefficient(
+  airplane: AirplanePhysicsSpec,
+  alpha: number,
+  flaps: number,
+): { cl: number; separation: number } {
+  const excess = m.max(0, m.abs(alpha) - airplane.stallAngle);
+  const blend = m.clamp(excess / (airplane.stallTransitionAngle ?? 0.12), 0, 1);
+  const separation = blend * blend * (3 - 2 * blend);
+  const flapLift = flaps * airplane.flapLift;
+  const attached =
+    m.clamp(alpha, -airplane.stallAngle, airplane.stallAngle) * airplane.liftSlope + flapLift;
+  // Separated flow loses lift progressively and has no broadside lifting force.
+  const separated =
+    m.sign(alpha) *
+      m.max(
+        airplane.postStallLift,
+        airplane.stallAngle * airplane.liftSlope - excess * airplane.postStallDecay,
+      ) *
+      m.cos(alpha) +
+    flapLift * airplane.postStallFlapEffect * m.cos(alpha);
+  return { cl: attached + (separated - attached) * separation, separation };
 }
 
 /** Continuous transonic drag rise. It persists supersonically instead of vanishing past Mach 1. */
@@ -199,39 +297,4 @@ export function aircraftDeparture(
     : 0;
 }
 
-type Triple = [number, number, number];
-/** Implicit midpoint Euler top. Preserves torque-free energy instead of amplifying fast spins. */
-export function freeRotationRates(omega: Triple, inertia: Triple, dt: number): Triple {
-  const [ix, iy, iz] = inertia;
-  const a: Triple = [(iy - iz) / ix, (iz - ix) / iy, (ix - iy) / iz];
-  let next: Triple = [...omega];
-  const det = (u: Triple, v: Triple, w: Triple): number =>
-    u[0] * (v[1] * w[2] - v[2] * w[1]) -
-    u[1] * (v[0] * w[2] - v[2] * w[0]) +
-    u[2] * (v[0] * w[1] - v[1] * w[0]);
-  // Newton solves the three coupled midpoint equations, rather than using explicit gyroscopic acceleration.
-  for (let n = 0; n < 8; n++) {
-    const mid: Triple = [
-      (omega[0] + next[0]) / 2,
-      (omega[1] + next[1]) / 2,
-      (omega[2] + next[2]) / 2,
-    ];
-    const residual: Triple = [
-      next[0] - omega[0] - dt * a[0] * mid[1] * mid[2],
-      next[1] - omega[1] - dt * a[1] * mid[2] * mid[0],
-      next[2] - omega[2] - dt * a[2] * mid[0] * mid[1],
-    ];
-    const c0: Triple = [1, (-dt * a[1] * mid[2]) / 2, (-dt * a[2] * mid[1]) / 2];
-    const c1: Triple = [(-dt * a[0] * mid[2]) / 2, 1, (-dt * a[2] * mid[0]) / 2];
-    const c2: Triple = [(-dt * a[0] * mid[1]) / 2, (-dt * a[1] * mid[0]) / 2, 1];
-    const determinant = det(c0, c1, c2);
-    const change: Triple = [
-      det(residual, c1, c2) / determinant,
-      det(c0, residual, c2) / determinant,
-      det(c0, c1, residual) / determinant,
-    ];
-    next = [next[0] - change[0], next[1] - change[1], next[2] - change[2]];
-    if (m.max(m.abs(change[0]), m.max(m.abs(change[1]), m.abs(change[2]))) < 1e-12) break;
-  }
-  return next;
-}
+export { freeRotationRates } from './dynamics/rigid-body';

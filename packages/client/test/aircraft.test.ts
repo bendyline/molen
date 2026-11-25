@@ -312,6 +312,31 @@ it('keeps the chase view upright and defined through the vertical of a loop', ()
   expect(vertical.z).toBeLessThan(-0.9);
 });
 
+it('holds the chase view still while the airframe rolls about its center of mass', () => {
+  // The flight model turns an airborne airframe about its center of mass, so the transform's
+  // origin (the landing contact below it) circles that point through a roll.
+  const center = new THREE.Vector3(2000, 800, -500);
+  const pose = (roll: number) => {
+    const rot = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), roll);
+    const pos = center
+      .clone()
+      .sub(new THREE.Vector3().fromArray(SPEC.centerOfMass).applyQuaternion(rot));
+    return aircraftCameraPose(
+      { pos: pos.toArray(), rot: rot.toArray() as [number, number, number, number] },
+      SPEC,
+      { view: 'chase' },
+    );
+  };
+  const level = pose(0);
+  for (const roll of [Math.PI / 2, Math.PI, -Math.PI / 2, 2.2]) {
+    const rolled = pose(roll);
+    for (let i = 0; i < 3; i++) {
+      expect(rolled.lookAt[i]).toBeCloseTo(center.getComponent(i), 9);
+      expect(rolled.position[i]).toBeCloseTo(level.position[i] as number, 9);
+    }
+  }
+});
+
 it('poses thrust-vector geometry from actuator state instead of the requested lever', () => {
   const model = new THREE.Group(),
     nozzle = new THREE.Group();

@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 // Publish every Molen package version npm does not have yet, dependencies first. The Release
 // workflow runs this after multi-semantic-release has stamped and tagged the new versions (see
-// semantic-release-molen.mjs). If publishing stops partway, rerun the Release workflow: there is
-// nothing new to version, and this publishes the versions still missing from npm.
+// semantic-release-molen.mjs) and the metadata commit recorded them on main. If publishing stops
+// partway, rerun the Release workflow: there is nothing new to version, and this publishes the
+// versions still missing from npm.
+//
+// CI already checked this source (scripts/require-green-ci.mjs), and the tarballs hold only what
+// tsdown writes, so this compiles the stamped packages and reads no content: no GLBs, no content
+// packs, no site. packRelease checks every tarball before anything is published.
 import { execFileSync } from 'node:child_process';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -47,9 +52,11 @@ if (pending.length === 0) {
 } else {
   const names = pending.map(({ data }) => `${data.name}@${data.version}`);
   process.stdout.write(`Publishing ${names.join(', ')}.\n`);
-  // The versions were stamped after the workflow's first build: rebuild, verify, and rebuild the
-  // docs site that quotes the engine version.
-  execCommand('pnpm', ['verify'], { cwd: ROOT, stdio: 'inherit' });
-  execCommand('pnpm', ['docs:site:build'], { cwd: ROOT, stdio: 'inherit' });
+  // The versions were stamped after any earlier compile: ENGINE_VERSION, the shipped docs and the
+  // sample templates all quote them.
+  execCommand('pnpm', ['-r', '--filter', './packages/**', 'exec', 'tsdown'], {
+    cwd: ROOT,
+    stdio: 'inherit',
+  });
   publishRelease(packRelease(pending));
 }

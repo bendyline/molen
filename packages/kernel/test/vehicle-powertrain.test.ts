@@ -272,12 +272,13 @@ describe('tire loads, stability aids and the driver at the wheel', () => {
     expect(slide({ ...raw, rollBalance: 0.3 })).toBeGreaterThan(
       slide({ ...raw, rollBalance: 0.8 }) * 1.5,
     );
-    // With grip proportional to load, the split no longer matters.
+    // With grip proportional to load, the split all but stops mattering. What is left is
+    // geometry: the outside front tire carries more of the cornering force, and steered, its
+    // force drags that side back a little.
     const flatTires = { ...raw, tireLoadSensitivity: 0 };
-    expect(slide({ ...flatTires, rollBalance: 0.3 })).toBeCloseTo(
-      slide({ ...flatTires, rollBalance: 0.8 }),
-      1,
-    );
+    const tail = slide({ ...flatTires, rollBalance: 0.3 });
+    const nose = slide({ ...flatTires, rollBalance: 0.8 });
+    expect(Math.abs(tail - nose)).toBeLessThan(0.1 * nose);
   });
 
   it('countersteers by itself when the wheel is let go in a slide, and straightens out', () => {

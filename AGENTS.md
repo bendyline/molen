@@ -134,10 +134,11 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
   and builds the examples with golden suites. `pnpm assets:test` builds its schema prerequisite,
   including when asset restoration downloads or reuses cached GLBs without compiling packages.
 - **Agents run exactly what CI runs**: `pnpm verify` (lint, typecheck, source and docs checks,
-  test:unit, production audit), then `pnpm smoke:packed` (the release tarballs installed with npm
-  into a fresh project), `pnpm docs:site:check` and `pnpm test:golden`. `pnpm all` is all of it in order, and
-  `verify` is also the Release workflow's gate, so a green `pnpm all` means a release will not
-  fail on a check you could have run yourself. `pnpm docs:gen` regenerates `docs-src/schemas/*.md` (including
+  test:unit, test:lods, production audit), then `pnpm smoke:packed` (the release tarballs installed with npm
+  into a fresh project), `pnpm docs:site:check` and `pnpm test:golden`. `pnpm all` is all of it in order.
+  CI is the only gate of the Release and Site workflows, which refuse a commit it has not passed and
+  repeat none of its checks, so a green `pnpm all` means a release will not fail on a check you
+  could have run yourself. `pnpm docs:gen` regenerates `docs-src/schemas/*.md` (including
   components.md) from the registry; `pnpm docs:site:gen` regenerates the public site in
   [docs-site/](docs-site/README.md) — API reference from the built `.d.mts`, CLI/MCP reference
   from `OPS_CATALOG`, sample pages from `examples/`. Preview it with `pnpm docs:site:dev`. Pages
@@ -154,7 +155,7 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
   to the general CI guidance above.
 - **ESM-only, Node ≥ 22.13.** Subpath exports matter: `@bendyline/molen-kernel` also exposes
   `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`, `/platformer`,
-  `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/world`; `@bendyline/molen-client`
+  `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/trials`, `/world`; `@bendyline/molen-client`
   also exposes `/camera-track`, `/vite`, `/vehicles`, `/aircraft`, `/navigation`, `/markers`, `/audio`, `/snow`,
   `/console`;
   `@bendyline/molen-terrain` and `@bendyline/molen-ambient` expose only `/kernel` and `/client`
@@ -166,10 +167,11 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
 - **Render evidence stays local.** Inspect current renders during model authoring, but keep bulk
   turntables, detail shots and medium-fi images in ignored `shots/`, `medium-fi/` or `.artifacts/`.
   Git keeps source inputs, concise hash/command/review reports and one or two small summary
-  previews per model. Source textures and heightmaps remain required inputs. Builds and CI do
-  not fetch review archives; `pnpm source:check` rejects tracked bulk captures. Normal model
-  batches do not update `review-lock.json` or publish screenshots. See the model review image
-  policy in [content/ASSET-PACKS.md](content/ASSET-PACKS.md).
+  previews per model. Source textures and heightmaps remain required inputs. Captures are
+  never archived or published; `pnpm source:check` rejects tracked ones. Reference photos, PDFs and
+  other research copies are scratch the same way: Git keeps each one's URL, date, license record and
+  the facts taken from it, never the copy. See the review image and reference policies in
+  [content/ASSET-PACKS.md](content/ASSET-PACKS.md).
 - **GLBs are build outputs, not Git content.** Generators in Git (listed in `asset-build.json`)
   write every GLB. The asset bundle is named after its inputs (`asset-build.json`, the generator
   scripts and their imports, masters and declared source data), never its outputs; there is no

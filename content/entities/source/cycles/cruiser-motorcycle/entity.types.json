@@ -60,7 +60,7 @@
             "steeringRate": 2.5,
             "steeringFadeSpeed": 12,
             "rollingResistance": 0.12,
-            "aerodynamicResistance": 0.003,
+            "aerodynamicResistance": 0.00144,
             "terrainAlignRate": 2.5,
             "supportTolerance": 0.06,
             "maxStepHeight": 0.2,
@@ -154,7 +154,24 @@
                   ]
                 ]
               }
-            ]
+            ],
+            "powertrain": {
+              "power": 50000,
+              "peakPowerRpm": 5500,
+              "redline": 6200,
+              "curve": "diesel",
+              "gears": [
+                13.8,
+                11.01,
+                8.79,
+                7.01,
+                5.6
+              ],
+              "efficiency": 0.9,
+              "idle": 900,
+              "inertia": 0.06,
+              "shiftTime": 0.2
+            }
           },
           "visual": {
             "wheelNodes": [

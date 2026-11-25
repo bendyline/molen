@@ -15,7 +15,7 @@
 // Release assets are flat, so a pack the build serves unzipped (`<id>/<version>/molen-pack.json`,
 // see examples/world-explorer/scripts/build-entity-pack.mjs) is published as its zip, which the
 // build keeps beside the index, and the release's index.json names that zip.
-// The Release workflow runs this after building the docs site; `--dry-run` lists what would change.
+// The Site workflow runs this after building the docs site; `--dry-run` lists what would change.
 //
 // Usage: node scripts/publish-pack-release.mjs --target <commit sha> [--index <path>]
 //          [--repo owner/name] [--tag packs] [--dry-run]

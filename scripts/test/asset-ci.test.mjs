@@ -1,67 +1,18 @@
+// One workflow builds GLBs, once per bundle, and publishes them; every other job restores them from
+// that release. These are the parts of that arrangement a small workflow edit would undo.
 import assert from 'node:assert/strict';
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { test } from 'node:test';
 
-const read = (path) => readFileSync(new URL(`../../${path}`, import.meta.url), 'utf8');
+const url = (path) => new URL(`../../${path}`, import.meta.url);
+const read = (path) => readFileSync(url(path), 'utf8').replaceAll('\r\n', '\n');
+const uncommented = (text) => text.replace(/^\s*#.*\n/gm, '');
 const prepare = 'uses: ./.github/actions/prepare-asset-runner';
-
-test('shared asset restoration prepares disk before downloading or extracting the cache', () => {
-  const action = read('.github/actions/fetch-assets/action.yml');
-  const prepared = action.indexOf(prepare);
-  const restore = action.indexOf('uses: actions/cache/restore@');
-  assert.ok(prepared >= 0 && restore > prepared);
-  assert.ok(action.indexOf('pnpm assets:fetch') > restore);
-});
-
-test("a job that reads GLBs prepares disk, then installs this run's artifact offline", () => {
-  const action = read('.github/actions/restore-assets/action.yml');
-  const order = [
-    prepare,
-    'uses: actions/download-artifact@',
-    'pnpm assets:fetch --no-build --offline',
-  ].map((text) => action.indexOf(text));
-  assert.ok(order.every((index) => index >= 0));
-  assert.deepEqual(
-    order,
-    [...order].sort((a, b) => a - b),
-  );
-  // It takes what `assets` checked and nothing else: no cache, no release, no source build.
-  assert.doesNotMatch(action, /actions\/cache|assets:build|asset-packs\.mjs seed/);
-  assert.equal(action.match(/pnpm assets:fetch/g).length, 1);
-});
-
-test('direct downloads of the asset archives also prepare disk first', () => {
-  let restores = 0;
-  for (const file of readdirSync(new URL('../../.github/workflows/', import.meta.url))) {
-    if (!/\.ya?ml$/.test(file)) continue;
-    const workflow = read(`.github/workflows/${file}`).replaceAll('\r\n', '\n');
-    const jobs = workflow.split(/^jobs:\s*$/m)[1]?.split(/(?=^ {2}[\w-]+:\s*$)/m) ?? [];
-    for (const job of jobs) {
-      const steps = job.split(/(?=^ {6}- )/m);
-      let prepared = false;
-      for (const step of steps) {
-        if (step.includes(prepare)) prepared = true;
-        if (
-          /uses: actions\/(cache\/restore|download-artifact)@/.test(step) &&
-          step.includes('path: .artifacts/asset-packs/')
-        ) {
-          restores++;
-          assert.ok(
-            prepared,
-            `${file}: ${job.trim().split('\n')[0]} restores assets before cleanup`,
-          );
-        }
-      }
-    }
-  }
-  assert.ok(restores > 0, 'the publish-assets job downloads its archives directly');
-});
+const WORKFLOWS = readdirSync(url('.github/workflows/')).filter((name) => /\.ya?ml$/.test(name));
 
 /** A workflow's jobs by id, each as its YAML text without comments. */
 function workflowJobs(file) {
-  const workflow = read(`.github/workflows/${file}`)
-    .replaceAll('\r\n', '\n')
-    .replace(/^\s*#.*\n/gm, '');
+  const workflow = uncommented(read(`.github/workflows/${file}`));
   const blocks = workflow.split(/^jobs:\s*$/m)[1]?.split(/(?=^ {2}[\w-]+:\s*$)/m) ?? [];
   return new Map(
     blocks
@@ -69,6 +20,7 @@ function workflowJobs(file) {
       .map((block) => [block.match(/^ {2}([\w-]+):/)[1], block]),
   );
 }
+const stepsOf = (job) => job.split(/(?=^ {6}- )/m).slice(1);
 const needs = (job) => {
   const value = job.match(/^ {4}needs: (.+)$/m)?.[1] ?? '';
   return value
@@ -77,129 +29,205 @@ const needs = (job) => {
     .map((s) => s.trim())
     .filter(Boolean);
 };
+const ascending = (indexes, message) => {
+  assert.ok(
+    indexes.every((index) => index >= 0),
+    `${message}: ${indexes}`,
+  );
+  assert.deepEqual(
+    indexes,
+    [...indexes].sort((a, b) => a - b),
+    message,
+  );
+};
+
+test('a job that reads GLBs prepares disk, then installs the published bundle and nothing else', () => {
+  const action = uncommented(read('.github/actions/restore-assets/action.yml'));
+  ascending(
+    [prepare, 'pnpm assets:fetch --no-build --no-cache'].map((text) => action.indexOf(text)),
+    'prepare the disk before downloading',
+  );
+  // It never builds, and takes nothing from a cache or an artifact another run could have left.
+  assert.doesNotMatch(
+    action,
+    /actions\/cache|download-artifact|assets:build|asset-packs\.mjs seed/,
+  );
+  assert.equal(action.match(/pnpm assets:fetch/g).length, 1);
+  // Only "not published" (status 3) is worth waiting for; anything else fails at once.
+  assert.match(action, /if \[ "\$status" -ne 3 \]; then exit "\$status"; fi/);
+});
+
+test('only the Assets workflow builds GLBs', () => {
+  for (const file of WORKFLOWS) {
+    if (file === 'assets.yml') continue;
+    const workflow = uncommented(read(`.github/workflows/${file}`));
+    assert.doesNotMatch(
+      workflow,
+      /assets:build|assets:pack|assets:publish|asset-packs\.mjs (seed|state|pack|publish)/,
+      file,
+    );
+  }
+  assert.ok(!existsSync(url('.github/actions/fetch-assets')), 'no action builds as a fallback');
+  const restore = read('package.json').match(/"assets:fetch": "([^"]+)"/)[1];
+  assert.equal(restore, 'node scripts/asset-packs.mjs fetch');
+});
 
 test('the fast CI checks need no GLBs and wait for nothing', () => {
   const check = workflowJobs('ci.yml').get('check');
   assert.ok(check, 'ci.yml has a check job');
   assert.deepEqual(needs(check), []);
-  assert.doesNotMatch(check, /fetch-assets|actions\/cache\/restore|assets:fetch|assets:build/);
+  assert.doesNotMatch(check, /restore-assets|assets:fetch|assets:build/);
   // The full package builds run GLB-reading validators; the fast job compiles with tsdown alone.
   assert.doesNotMatch(check, /pnpm typecheck|pnpm build|-r build/);
   for (const command of ['exec tsdown', 'pnpm -r typecheck', 'pnpm lint', 'pnpm docs:check'])
     assert.ok(check.includes(command), `check runs ${command}`);
 });
 
-test('every CI job that restores GLBs waits for the job that builds them', () => {
+test('every CI job that restores GLBs waits for the workflow that publishes them', () => {
   const jobs = workflowJobs('ci.yml');
-  assert.match(jobs.get('assets') ?? '', /uses: \.\/\.github\/actions\/fetch-assets/);
+  const assets = jobs.get('assets');
+  assert.match(assets, /^ {4}uses: \.\/\.github\/workflows\/assets\.yml$/m);
+  // Permission to publish ends at this call; every other job has the workflow's read-only token.
+  assert.match(assets, /permissions:\n\s+contents: write/);
+  assert.match(
+    uncommented(read('.github/workflows/ci.yml')).split(/^jobs:/m)[0],
+    /^permissions:\n {2}contents: read$/m,
+  );
+  // It must keep building when a fast check fails, so the next push starts from its bundle.
+  assert.deepEqual(needs(assets), []);
   let readers = 0;
   for (const [id, job] of jobs) {
-    if (id === 'assets') continue;
-    // Only `assets` may download a release or build: four jobs doing that at once is what a
-    // lost cache used to cost.
-    assert.doesNotMatch(job, /fetch-assets/, `${id} must install the artifact, not rebuild`);
-    if (job.includes('restore-assets') || job.includes('path: .artifacts/asset-packs/')) {
-      readers++;
-      assert.ok(needs(job).includes('assets'), `${id} restores GLBs before assets has them`);
-    }
+    if (!job.includes('restore-assets')) continue;
+    readers++;
+    assert.ok(needs(job).includes('assets'), `${id} restores GLBs before assets published them`);
+    assert.doesNotMatch(job, /contents: write/, `${id} only reads`);
   }
-  assert.ok(readers >= 5, 'docs-site, unit, packed, golden and publish-assets read the bundle');
+  assert.ok(readers >= 6, 'content, docs-site, unit, lods, packed and golden read the bundle');
+  // The bundle and the source bundles are checked against this checkout somewhere in CI.
+  const content = stepsOf(jobs.get('content')).map((step) => step.trim());
+  ascending(
+    ['restore-assets', 'pnpm assets:check', 'molen-schema build', 'pnpm source:check'].map((text) =>
+      content.findIndex((step) => step.includes(text)),
+    ),
+    'content restores, then checks',
+  );
 });
 
-test("the bundle reaches the other jobs as this run's artifact, never through the cache", () => {
-  const jobs = workflowJobs('ci.yml');
-  const steps = jobs.get('assets').split(/(?=^ {6}- )/m);
-  const upload = steps.find((step) => step.includes('uses: actions/upload-artifact@'));
-  assert.ok(upload, 'assets uploads the bundle');
+test('a bundle is built once, whoever asks, and a published one is not built at all', () => {
+  const { key, build } = Object.fromEntries(workflowJobs('assets.yml'));
+  assert.match(key, /published: \$\{\{ steps\.state\.outputs\.published \}\}/);
+  assert.match(build, /if: needs\.key\.outputs\.published != 'true'/);
+  // The group is the bundle: a pull request, its merge and a rerun wait for one build. Cancelling
+  // the one that is running would throw its work away.
+  assert.match(
+    build,
+    /concurrency:\n\s+group: asset-bundle-\$\{\{ needs\.key\.outputs\.release \}\}\n\s+cancel-in-progress: false/,
+  );
+  // Whoever waited asks again, and every step that builds depends on that answer.
+  const steps = stepsOf(build);
+  const state = steps.findIndex((step) => step.includes('asset-packs.mjs state'));
+  assert.ok(state > 0);
+  for (const step of steps.slice(state + 1)) {
+    if (step.includes('asset-sidecars')) continue;
+    assert.match(
+      step,
+      /if: (>-\s+)?steps\.state\.outputs\.published != 'true'/,
+      `does not depend on the bundle's state:\n${step}`,
+    );
+  }
+  // A pipe's status is its last command's unless the shell is named.
+  for (const job of [key, build])
+    for (const step of stepsOf(job).filter((text) => text.includes('| tee')))
+      assert.match(step, /shell: bash/);
+  // Both look at a published bundle's sidecars: they can change without naming a new one.
+  for (const job of [key, build])
+    assert.match(
+      job,
+      /run: node scripts\/asset-packs\.mjs state --check \| tee -a "\$GITHUB_OUTPUT"/,
+    );
+  const limit = Number(build.match(/timeout-minutes: (\d+)/)[1]);
+  assert.ok(limit < 360, 'a hosted job ends at six hours; this one ends with its own message');
+});
+
+test('a source build seeds, builds, publishes, and only then checks the committed sidecars', () => {
+  const steps = stepsOf(workflowJobs('assets.yml').get('build'));
+  const at = (text) => steps.findIndex((step) => step.includes(text));
+  ascending(
+    [
+      prepare,
+      'node scripts/asset-packs.mjs seed --no-cache',
+      "pnpm -r --filter './packages/**' exec tsdown",
+      'pnpm assets:build',
+      'pnpm assets:pack',
+      'pnpm assets:publish',
+      // After publishing: the push that commits the sidecars finds the bundle instead of building
+      // it a second time.
+      'pnpm assets:check --committed',
+      'name: asset-sidecars',
+    ].map(at),
+    'the order of a source build',
+  );
+  // Without --committed a build is compared with the sidecars it just rewrote, and passes.
+  const check = steps[at('pnpm assets:check --committed')];
+  assert.doesNotMatch(check, /continue-on-error|\|\|/);
+  const patch = steps[at('name: asset-sidecars')];
   for (const line of [
-    'name: asset-bundle',
-    'path: .artifacts/asset-packs/',
-    // `.artifacts` is hidden, the archives are already compressed, and a full re-run uploads
-    // the same name again.
+    'if: failure()',
+    'uses: actions/upload-artifact@',
+    'path: .artifacts/asset-build/sidecars.patch',
     'include-hidden-files: true',
-    'compression-level: 0',
-    'if-no-files-found: error',
+    'if-no-files-found: ignore',
     'overwrite: true',
   ])
-    assert.ok(upload.includes(line), `the upload sets ${line}`);
-  assert.match(upload, /retention-days: [1-7]\n/, 'about 8 GB a run is not kept for 90 days');
-  // Upload what was restored and checked, after the checks that read it.
-  const index = (text) => steps.findIndex((step) => step.includes(text));
-  assert.ok(index('fetch-assets') < index('pnpm assets:check'));
-  assert.ok(index('pnpm assets:check') < steps.indexOf(upload));
-  const restore = read('.github/actions/restore-assets/action.yml').replaceAll('\r\n', '\n');
-  for (const text of [restore, jobs.get('publish-assets')]) {
-    assert.match(text, /uses: actions\/download-artifact@/);
-    assert.match(text, /name: asset-bundle\n\s+path: \.artifacts\/asset-packs\/\n/);
-  }
-  for (const [id, job] of jobs)
-    if (id !== 'assets')
-      assert.doesNotMatch(job, /key: molen-assets-/, `${id} reads the bundle from the cache`);
+    assert.ok(patch.includes(line), `the sidecar upload sets ${line}`);
+  // A fork's token cannot publish, so its build would be thrown away: say so before it starts.
+  const fork = steps[at('head.repo.full_name != github.repository')];
+  assert.ok(steps.indexOf(fork) < at('asset-packs.mjs seed'));
+  assert.match(fork, /exit 1/);
+  // The tag marks a commit of main, never the pull request's own (see the step).
+  assert.match(steps[at('pnpm assets:publish')], /commits\/main/);
+  assert.match(steps[at('pnpm assets:publish')], /--built-from "\$GITHUB_SHA"/);
 });
 
-test('the cache keeps one bundle, and none that would evict every other cache', () => {
-  const action = read('.github/actions/fetch-assets/action.yml').replaceAll('\r\n', '\n');
-  const steps = action.split(/(?=^ {4}- )/m);
-  const prune = steps.findIndex((step) => step.includes('node scripts/asset-packs.mjs prune'));
-  const saves = steps.flatMap((step, index) =>
-    step.includes('uses: actions/cache/save@') ? [index] : [],
-  );
-  assert.equal(saves.length, 2, 'the job records and the bundle');
-  assert.ok(prune >= 0 && saves.every((index) => index > prune), 'prune before saving');
-  // The prune runs whatever the bundle came from: `assets` uploads this directory afterwards.
-  assert.doesNotMatch(steps[prune], /^ {4}- if:/);
-  assert.match(steps[prune], /id: bundle\n/);
+test('generators run without a token that could write to the repository', () => {
+  const build = workflowJobs('assets.yml').get('build');
+  const steps = stepsOf(build);
   assert.match(
-    steps[prune],
-    /\[ "\$bytes" -le \d+ \]; then echo "cache=true" >> "\$GITHUB_OUTPUT"/,
+    steps.find((step) => step.includes('actions/checkout@')),
+    /persist-credentials: false/,
   );
-  const limit = Number(steps[prune].match(/-le (\d+) \]/)[1]);
-  assert.ok(limit < 10e9, 'GitHub keeps 10 GB of caches for a repository');
-  const bundle = steps[saves[1]];
-  assert.match(bundle, /path: \.artifacts\/asset-packs\/\n/);
-  assert.match(bundle, /steps\.bundle\.outputs\.cache == 'true'/);
-  // The small job records are saved whatever the bundle's size.
-  assert.doesNotMatch(steps[saves[0]], /steps\.bundle/);
+  const holders = steps.filter((step) => /GH_TOKEN|GITHUB_TOKEN/.test(step));
+  assert.equal(holders.length, 2, 'only seeding (a listing) and publishing hold the token');
+  for (const step of holders) assert.match(step, /asset-packs\.mjs seed|pnpm assets:publish/);
+  assert.doesNotMatch(build.split(/^ {4}steps:/m)[0], /\benv:/, 'no token for the whole job');
 });
 
-test('a push to main publishes any bundle without a release, not only one it just built', () => {
-  const jobs = workflowJobs('ci.yml');
-  // A bundle whose publish failed comes back from the Actions cache, so "built" would skip it.
-  assert.match(jobs.get('assets'), /gh release view "\$RELEASE"/);
-  assert.match(jobs.get('assets'), /assets-unpublished: \$\{\{ steps\.release\.outputs\.unpublish/);
-  assert.match(jobs.get('publish-assets'), /needs\.assets\.outputs\.assets-unpublished == 'true'/);
-  const action = read('.github/actions/fetch-assets/action.yml');
-  assert.match(action, /value: \$\{\{ steps\.key\.outputs\.release \}\}/);
+test('bundles live in releases: no workflow keeps one in the cache or hands one over', () => {
+  for (const file of [
+    ...WORKFLOWS.map((name) => `.github/workflows/${name}`),
+    '.github/actions/restore-assets/action.yml',
+  ]) {
+    const text = uncommented(read(file));
+    // One bundle is most of the 10 GB GitHub keeps for a repository's caches.
+    assert.doesNotMatch(text, /path: \.artifacts\/asset-packs/, file);
+    assert.doesNotMatch(text, /name: asset-bundle\b/, file);
+  }
+  // Job records go with the bundle too; nothing saves them in a cache any more.
+  for (const name of WORKFLOWS) {
+    const saves = uncommented(read(`.github/workflows/${name}`)).match(
+      /actions\/cache\/save@[\s\S]*?key: .+/g,
+    );
+    for (const save of saves ?? []) assert.doesNotMatch(save, /asset-(seed|build)/);
+  }
 });
 
-test('a source build starts from an earlier one and keeps its records for the next', () => {
-  const action = read('.github/actions/fetch-assets/action.yml').replaceAll('\r\n', '\n');
-  const paths = [...action.matchAll(/path: \|\n((?: {10}.+\n)+)/g)].map((m) => m[1]);
-  assert.equal(paths.length, 2, 'one restore and one save of the job records');
-  assert.equal(paths[0], paths[1], 'restore and save must name the same paths to match');
-  for (const path of ['.artifacts/asset-build/jobs/*.json', '.artifacts/asset-build/seed.json'])
-    assert.ok(paths[0].includes(path));
-  assert.match(action, /restore-keys: molen-asset-seed-\n/);
-  const order = [
-    'pnpm assets:fetch --no-build',
-    'key: molen-asset-seed-',
-    'node scripts/asset-packs.mjs seed',
-    'pnpm assets:build --compile',
-    'pnpm assets:pack',
-    'cp .artifacts/asset-packs/installed.json .artifacts/asset-build/seed.json',
-    // Without the prune the seed's archives ride along and the cache passes GitHub's 10 GB limit.
-    'node scripts/asset-packs.mjs prune',
-    'uses: actions/cache/save@',
-  ].map((text) => action.indexOf(text));
-  assert.ok(
-    order.every((index) => index >= 0),
-    'every seeding step is present',
-  );
-  assert.deepEqual(
-    order,
-    [...order].sort((a, b) => a - b),
-    'seed before building; record and prune after packing, before saving',
-  );
+test('a workflow that waits on GLBs, or could hang, has its own time limit', () => {
+  for (const file of WORKFLOWS) {
+    for (const [id, job] of workflowJobs(file)) {
+      if (/^ {4}uses: /m.test(job)) continue; // Its own jobs have limits.
+      assert.match(job, /timeout-minutes: \d+/, `${file}: ${id}`);
+    }
+  }
 });
 
 test('SDK cleanup is limited to disposable hosted Linux runners', () => {

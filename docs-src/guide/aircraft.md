@@ -37,19 +37,21 @@ streaming and floating-origin changes. Reloading starts a fresh session.
 | = / − | Increase/decrease throttle or helicopter collective; fighter afterburners engage above 85% throttle |
 | W / S | Nose down / nose up |
 | A / D | Bank left / right; helicopter cyclic |
-| Z / C | Left / right rudder or anti-torque pedals; ground steering in the Mustang |
+| Z / C | Left / right rudder or anti-torque pedals; steering on the wheels |
 | Space | Wheel brakes |
 | G | Retract/extend airplane gear while airborne |
 | F | Toggle airplane flaps |
 | J | Cycle powered-lift lever: forward, 22.5°, 45°, 67.5°, vertical; Osprey/Harrier only |
-| M | Helicopter cyclic: assisted (bounded tilt, levels itself) or direct (full authority) |
+| M | Assisted or direct controls. Helicopter: a cyclic that levels itself and feet that hold the heading, or the swashplate and tail rotor themselves. Airplane: the assist that holds the flight path, or the stick and pedals straight on the elevator, ailerons and rudder (not on fly-by-wire types) |
 | V | Cockpit / chase |
 | Mouse | Look around the cockpit |
 | R | Recover at the airfield after an impact |
 
 Mustang: start the engine, set flaps, hold the brake while raising throttle, then release the brake.
-The propeller swings the nose left as the tail gets light, and a crosswind turns it into the wind:
-hold a little right rudder (C), or rudder away from the wind, to keep the runway centerline.
+Held at full power on the brakes, the tail comes a few degrees off the ground.
+The propeller swings the nose left through the roll, and a crosswind turns the airplane into the
+wind and carries it sideways on its tires: hold a little right rudder (C), or rudder away from
+the wind, to keep the runway centerline.
 Rotate around 85–100 knots and release the pitch key once the nose is about 10 degrees up; the
 airplane keeps the attitude it lifted off at. At climb power the propeller's torque rolls it
 slowly left, so tap right bank (D) as needed. Retract gear and flaps after climbing. Reduce
@@ -74,9 +76,26 @@ Sustained negative g reddens the view. In a bank the wing's lift
 no longer holds the airplane up, so add back pressure to keep a turn level. Gusts and turbulence
 from the Weather setting bump, roll and yaw the airplane, more so near the ground on windy days.
 
+Press M in an airplane to fly it on its own control surfaces, without the assist (the status
+line shows "Direct controls"). The stick is then the elevator and ailerons and the pedals the
+rudder. The airplane holds a speed, not a flight path: let go and the nose seeks the speed it
+is trimmed for, rising and falling around it for a minute or so before it settles. Hold the
+stick and the trim slowly follows, so you can let go at a new speed. Rolling into a turn swings
+the nose the other way until you lead with rudder (Z or C toward the turn), a sideslip rocks
+the wings as it dies out, and a bank left alone slowly tightens or rights itself depending on
+the type. With an engine out on a twin, the live engine turns and rolls the airplane toward
+the dead one until you hold it with the opposite pedal. Fly-by-wire types (the F-16, F/A-18,
+F-22, F-35, Typhoon, Rafale, Gripen, the Airbuses, E175, C-17, A400M and G650) have no such
+mode: their pilots never fly the bare airframe. On the wheels direct control is the bare
+airplane too: nobody's feet damp a swing, nothing holds the tail down under the brakes, and the
+elevator does only what the stick says.
+
 OH-6: start the engine and allow roughly six simulation seconds to reach full rotor speed. Raise
-collective gradually toward 50%; exact hover power varies with altitude and ground effect. Small
-cyclic inputs tilt rotor thrust to travel. Lower collective gently to land. Switch off the engine
+collective gradually toward 50%; exact hover power varies with altitude and ground effect. It
+hovers as the real one does, nose a few degrees up and left skid low, leaning against its tail
+rotor. Small cyclic inputs tilt rotor thrust to travel. Pull more collective than the
+transmission can pass and the rotor slows a few percent; the assist eases the lever to keep it
+turning. Lower collective gently to land. Switch off the engine
 and wait for the rotor to stop before exiting. If the engine stops in flight (press I to try
 it), lower the collective at once: the air rising through the rotor keeps it turning, and the
 helicopter comes down steadily at about 2,000 feet a minute instead of falling. Keep some
@@ -85,16 +104,22 @@ soft touchdown. Hold the collective up instead and the rotor slows, the HUD warn
 RPM, and the lift goes with it. An aircraft cannot be exited or switched to free
 flight while airborne. After an impact, R resets its aircraft state and places it on the airfield.
 
-The helicopter's cyclic starts assisted: W/S and A/D ask for a tilt of up to about 30°, and the
-helicopter levels itself when you let go. Press M for direct cyclic. The stick then sets how
-fast the nose pitches and the fuselage rolls, there are no attitude limits, and releasing it holds
-whatever attitude you are in, level or not: in a hover you keep it level yourself. With 45 m/s
-and high collective, holding S loops the OH-6 in about six seconds for a hundred-odd meters of
-height; hold W to point it straight down. Keep the rotor loaded. Control comes from the rotor's
-thrust, so with the collective down, or pushing over into weightlessness, the stick does far less,
-and an inverted rotor drives the helicopter toward the ground. Press M again in any attitude to
-hand back to the assisted cyclic, which rolls the helicopter upright and levels it. On the ground
-both modes behave as assisted.
+The helicopter's controls start assisted: W/S and A/D ask for a tilt of up to about 30°, the
+helicopter levels itself when you let go, and the pedals ask for a turn while the tail rotor is
+worked for you against the main rotor's torque. Press M for direct controls: the stick is then
+the swashplate and the pedals the tail rotor's pitch, and the helicopter is the real, unstable
+thing. The controls stay where the assist had them when you take over, so nothing lurches, but
+nothing levels it either: a hover has to be flown, every change of collective swings the nose
+until a pedal answers it (more collective, left pedal), and the nose rises by itself as the
+helicopter gathers speed. A stick or pedal that is held slowly becomes where that control
+rests, which is how to trim on a keyboard. Keys are all-or-nothing and the swashplate is quick:
+full aft stick pitches the OH-6 at about 180° a second, so fly it in taps, or with a pointer or
+touch stick. There are no attitude limits. Keep the rotor loaded: control comes mostly from the
+rotor's thrust, so with the collective down, or pushing over into weightlessness, the stick does
+far less, and an inverted rotor drives the helicopter toward the ground. Press M again in any
+attitude to hand back to the assist, which rolls the helicopter upright and levels it. The
+tandem-rotor Chinook has no rotor model of its own yet and keeps the earlier direct cyclic (a
+rate command that holds its attitude).
 
 Bendy Small Airliner: the generic 39-meter twin uses the same airplane controls, with slower
 responses and a lower load-factor limit than the Mustang. Its two independently named engines
@@ -221,7 +246,9 @@ bypass walking physics. Only the occupied pilot seat can submit flight intent.
 The render half is `@bendyline/molen-client/aircraft`: `createAircraftVisual(loadedGlb, spec)` takes
 ownership of a loaded GLB and animates the nodes named by `spec.visual` from aircraft state, and
 `aircraftCameraPose(transform, spec, options)` returns the cockpit or chase pose from the same
-`VehicleCameraOptions` that `@bendyline/molen-client/vehicles` exports. The gear and flaps follow
+`VehicleCameraOptions` that `@bendyline/molen-client/vehicles` exports. The chase view aims at
+the center of mass, the point the airframe turns about in flight, so a roll or a loop turns the
+aircraft about the middle of the frame. The gear and flaps follow
 `aircraftState.gearPosition` and `flapPosition` as they travel. `spec.visual.animation` adds
 exterior moving parts as [model-signal bindings](vehicle-interiors.md#exterior-animation), with
 keyframed curves so one gear position can sequence doors and legs.
@@ -259,7 +286,8 @@ or jet thrust and gravity at the center of mass, from wind-relative airflow and 
 angle-of-attack (pitch) and weathercock (yaw) stability, roll, pitch and yaw damping, dihedral
 effect, roll from yaw rate, inertia coupling, asymmetric thrust, and, scaled by
 `propellerEffects`, propeller torque, P-factor and slipstream yaw, and gyroscopic precession.
-The airframe turns about its center of mass in flight and about its wheels on the ground.
+The airframe turns about its center of mass, in flight and standing on its
+[landing gear](#landing-gear).
 
 Stall depends on wing incidence, including camber, rather than a fixed true-airspeed cutoff.
 Separated flow progressively loses lift and control authority, adds drag, breaks the nose toward
@@ -271,8 +299,20 @@ power for propellers and dry/reheat thrust for jets, with a transient RPM spool 
 
 All 54 shipped aircraft have separate performance profiles. `engine.propulsion: 'propeller'`
 uses shaft power, propeller efficiency and an altitude lapse, with `ratedDensityRatio` representing
-supercharging or flat rating. `'jet'` uses `dryThrust` in newtons, density lapse and a Mach-dependent
-ram term. `afterburnerThrust` is total augmented thrust per engine. The last 15% of throttle
+supercharging or flat rating. With `engine.propellerDiameter`, thrust follows momentum theory:
+the propeller turns power into thrust by speeding up the air through its disc, so the same power
+pulls less in the climb than in cruise and gives a finite thrust at rest (without a diameter,
+thrust is `propellerEfficiency × power / speed`). `lowSpeedThrust` adds what real blades lose
+when slow, most of all a fixed-pitch propeller, which also holds the engine below its rated
+speed; `windmillDrag` makes an idling propeller a brake, which is why a power-off glide is
+steeper than the airframe alone would manage. An unsupercharged piston engine loses power a
+little faster than the air thins (`densityExponent` 1.17), and only gives its best with the
+mixture leaned as the airplane climbs: left full rich, it loses more than a quarter of its
+power by 18,000 ft. `'jet'` uses `dryThrust` in newtons and a density lapse. A turbofan with a
+`bypassRatio` loses thrust as the airplane speeds up, faster for a larger fan, so an airliner
+has about three fifths of its static thrust at cruise Mach number before the thin air takes its
+share; engines without one use the Mach-dependent ram term `ramRise`, as the fighters do.
+`afterburnerThrust` is total augmented thrust per engine. The last 15% of throttle
 commands reheat by default (`afterburnerDetent: 0.85`); it takes 0.6 seconds to light fully after
 the engine reaches operating RPM. Engine failure or cutoff extinguishes it. Ordinary turbofans
 and the Harrier have no afterburner. Omitting `propulsion` retains legacy constant-power behavior.
@@ -286,6 +326,52 @@ they do not impose a velocity cap or silently break the airframe. Surface limits
 approximations, not exact POH calibrated-airspeed limits. Flap input can be a boolean or a
 fraction from 0 to 1, allowing intermediate settings through commands.
 
+Each wing has its own lift curve. `liftSlope` follows from the wing's aspect ratio, so a long
+wing gains lift faster with angle of attack than a short one, and `stallAngle` and `flapLift`
+are set so the airplane stalls at its published speeds, clean and in the landing configuration,
+at the weight the handbook states. A fighter's short wing therefore stalls near 26–32°, a
+light airplane's near 17–21°.
+
+### Control surfaces and handling
+
+An airplane with `airplane.surfaces` turns, once it is off the wheels, by the forces on its
+surfaces instead of by response constants. The wing is four panels, two a side, each meeting
+the air at its own speed and angle: rolling, the down-going panels gain lift and the up-going
+ones lose it (roll damping), and their lift leans forward and back (adverse yaw); in a slip,
+`dihedral` raises the angle of the wing the slip comes from; near the stall, the panel that
+stalls first drops. The wing's lift acts `liftArm` ahead of the center of mass and the
+tailplane (`tailArea` at `tailArm`, in the wing's `downwash`) balances it, which is what makes
+the airplane seek a speed; the downwash reaches the tail a moment after it leaves the wing,
+which damps pitching. The fin (`finArea` at `finArm`, `finHeight` above the center of mass)
+weathervanes the nose and damps yaw, against the fuselage's pull the other way (`bodyYaw`).
+`sideForce` is the whole airframe's side force in a slip. A propeller ahead of the tail keeps
+the elevator and rudder working at low speed (`slipstream`). In straight flight the four panels
+add up to the same lift and drag as before, so performance does not change; tail and fin act as
+moments only.
+
+`aircraftInput.controlMode` picks who works the surfaces. `assisted` (the default) flies as
+airplanes here always have: the elevator is worked so the nose follows the path-holding
+response, a turn coordinator holds the rudder against sideslip and a yaw damper steadies it.
+Where the tail cannot give what the assist asks, the airplane does what its tail can. `direct`
+puts the stick, pedals and trim straight on the surfaces: `pitch` moves the elevator about
+`aircraftState.elevatorTrim`, which `pitchTrim` (-1..1) moves at a quarter of its travel per
+second; with no `pitchTrim` the trim follows a held stick at that rate. A type marked
+`surfaces.flyByWire` ignores `direct`. `aircraftState.surfaces` reports the elevator, aileron
+and rudder positions either way, for models and instruments. The surfaces work on the wheels
+as they do in the air. The F-14 and the powered-lift types keep the response constants
+throughout.
+
+Calibration sizes the surfaces from the wing and fuselage by class: tail and fin volumes, a
+static margin, effective dihedral, roll inertia and the fuselage's share of yaw and side force.
+It sets the tailplane to trim the type's cruise with the elevator neutral and the ailerons to
+the roll rate the roll stage fixed. The class figures come from published mass properties and
+mode data (NASA CR-2144 for the C-5A, B-747 and F-4C, Nelson's Navion), not from each type.
+The handling cards of [the trial scorecard](https://github.com/bendyline/molen/blob/main/content/entities/source/AIRCRAFT-TRIALS.md)
+fly the result in direct control: phugoid, short period, Dutch roll, roll time constant and
+spiral, held to MIL-F-8785C's Level 1 cruise limits for every type with surfaces that is not
+fly-by-wire, and to published figures where a type has them (a Cessna 182 analysis in NASA
+CR-1975 and the C-5A's measured modes).
+
 The F-14 profile has an empirical high-alpha departure model: directional stability fades,
 rudder/elevator authority is blanked, aileron response can reverse, and yaw autorotation can
 sustain a flat spin. A symmetric stall does not receive an arbitrary spin direction. The
@@ -295,72 +381,129 @@ printed pages 126–127, supports these mechanisms; it does not supply a validat
 coefficient set. This model does not reproduce the F-14A's TF30 compressor stalls, the later
 digital flight-control system, or automatic variable wing sweep aerodynamics.
 
-Helicopters keep an assisted collective and, unless [direct cyclic](#direct-cyclic) is selected,
-an assisted cyclic. An actuator-disc power budget limits
-lift by installed shaft power, induced power, rotor profile losses and parasitic drag power;
-increasing payload cannot create extra engine power. Their calibrated parasitic drag,
-density-dependent lift, ground effect and translational lift are supplemented by optional
-vortex-ring lift loss in powered, slow descent and retreating-blade lift loss above an authored
-equivalent speed. These are qualitative approximations, not blade-element models.
-Powered-lift conversion has the separate limitations described above.
+### Helicopters
 
-In forward flight the tail fin weathervanes the nose into the relative wind, so banking with the
-cyclic turns the nose along with the track rather than crabbing. The nose aligns at
-`helicopter.directionalStability × airspeed / length` rad/s per radian of sideslip (default 1;
-0 turns it off). In a full-cyclic turn without pedal the OH-6's nose trails its track by about
-4° at 25 m/s and about 1° at 50 m/s; right pedal coordinates the turn. The effect fades out
-below about a fifth of `translationalLiftSpeed`, where the tail sits in the rotor wake, so in a
-hover the pedals alone set the heading and a strong wind slowly turns the nose into it. Pedal
-authority does not change, so at cruise speed the pedals hold only a few degrees of sideslip
-against the fin: turn with the cyclic. Drag is the same in every direction, so a sideslip
-adds no side force.
+A helicopter with a `helicopter.rotor` block flies on its rotors: ten of the eleven shipped
+types do (all but the tandem CH-47F, which keeps the [earlier model](#helicopters-without-a-rotor-block)).
+It is a rigid body with these forces on it, each acting where it acts:
 
-### Direct cyclic
+- **The main rotor.** Thrust comes from the blades' pitch (the collective lever sweeps
+  `collective`, the pitch at three quarters of the radius), their number, `chord` and
+  `tipSpeed`, and the air coming through the disc. That air is a state of its own: the rotor's
+  induced flow follows its thrust with a lag, by momentum theory, with a measured curve where
+  momentum theory has no answer (a descent into its own wake). `inducedFactor` is the induced
+  power over the ideal. The blades stall at a mean lift coefficient `maxLift`, sooner in fast
+  flight, which is what sets the ceiling; power is induced, profile (`profileDrag`) and the
+  work of climbing.
+- **Flapping.** The disc does not stay square to the shaft. It tilts back from the air it flies
+  into and toward its advancing side, and it follows a pitching or rolling shaft late (by
+  16 / (`lock` × rotor speed) seconds: the rotor's own damping). The swashplate tilts it by up
+  to `cyclic` radians each way. The thrust acts at the hub along the tilted disc, so it turns
+  the helicopter by the hub's height above the center of mass; a `hingeOffset` adds a moment
+  that does not need thrust (0 for a teetering rotor, which has no control at zero g, about
+  0.04 articulated, 0.12 hingeless).
+- **Torque.** The engines turn the main rotor against the fuselage, which is twisted the other
+  way: to the right for a rotor turning counterclockwise seen from above (`rotation`, the
+  default), to the left for a clockwise one. The tail rotor (`tail`: radius, blades, chord, tip
+  speed, arm and height) is a small rotor of the same kind pushing sideways on the boom. It
+  takes its own share of the power, and its push is why a helicopter hovers leaning: left skid
+  low for a counterclockwise rotor. Lose it and the helicopter spins.
+- **The fuselage.** Drag on `dragArea`, more broadside and from below; the rotor's wash on it
+  in a hover (`download`); a fin and a stabilizer (`finArea`, `stabilizerArea`) that keep the
+  nose into the wind once it is moving.
+- **The governor and the rotor's speed.** The rotor holds `rotorInertiaTime` seconds of hover
+  power. The governor gives the rotors what they take, up to what the engines and the gearbox
+  (`transmission`, and the engine's rated power) can deliver. Ask for more and the rotor slows.
+- **The skids**, on the same struts as the airplanes' [landing gear](#landing-gear): the
+  helicopter gets light on them as the collective comes up, and can slide, tip and bounce.
+  Steel slides where a tire grips (friction 0.4), so a run-on landing skids to a stop:
+  about 50 m from 33 knots with the lever down.
 
-`aircraftInput.cyclicMode` selects the helicopter cyclic. `assisted` (the default) commands a
-tilt of `cyclicTilt × stick`, bounded by `maxTilt`, that springs back to level, and keeps the
-attitude as Euler angles. `direct` commands body pitch and roll rates and integrates the attitude
-as a quaternion, as the airplanes do, so loops, rolls and vertical dives are possible:
+`aircraftState.rotor` reports the induced flow, the collective, cyclic and tail rotor pitches,
+the trims held in direct control and the torque on the mast as a share of the gearbox limit.
 
-- Full stick gives `helicopter.cyclicRate` rad/s (default `cyclicResponse / 4`, 1 rad/s in the
-  OH-6) with the rotor carrying the weight, reached with the rotor's damping
-  (`cyclicDamping`). Released, the rates die out and the attitude holds. There is no
-  self-levelling, speed stability or pitch weathervaning, so it flies as a rate-command,
-  attitude-hold helicopter, not one that drifts by itself.
-- Control power scales with rotor thrust over weight, clamped to 0..1.5. The share set by
-  `helicopter.hubStiffness` (0..1, default 0.25) comes from the blade hinges and remains at
-  zero g; the rest fades as the rotor unloads. Mast bumping in a teetering rotor is not modelled.
-- The rotor's heave damping, vortex ring, autorotation and climb power act on the climb or
-  descent through the disc, and translational lift, retreating-blade stall and parasite drag act
-  on the flow across it. With the disc level these are the vertical and horizontal airspeed,
-  exactly as in the assisted model; with the disc vertical in a dive, the whole descent runs
-  across the disc. Rotor thrust cannot reverse, so an inverted rotor pushes toward the ground.
-- The tail-fin weathervane works in the fuselage's own frame, so a helicopter banked past 90°
-  sideslips nose-first toward the ground. Pedals command a yaw rate the tail rotor reaches in
-  about an eighth of a second.
+Calibration builds the block from the type's published rotor (blade count, chord, tip speed,
+tail rotor, the entries marked `rotor` in the trial ledger) and fits four figures to published
+performance: `inducedFactor` to the hover ceiling out of ground effect, the rotor's
+`groundEffect` to the ceiling in it, `dragArea` to the cruise speed and `maxLift` to the
+service ceiling. The OH-6 comes out at an induced factor of 1.02 and 0.54 m² of drag area
+(published: 0.46). Rates of climb and autorotation descents are not fitted; they are checks on
+[the scorecard](https://github.com/bendyline/molen/blob/main/content/entities/source/AIRCRAFT-TRIALS.md).
 
-On the skids both modes behave as assisted. Switching back to assisted in an unusual attitude
-does not snap: beyond `maxTilt` the limit lets the tilt shrink but not grow, and the cyclic's
-spring flies the helicopter back to level, rolling it upright from inverted in about a second
-and a half.
+#### Assisted and direct controls
+
+`aircraftInput.cyclicMode` and `pedalMode` pick who works the swashplate and the tail rotor.
+
+`assisted` (the default for both) is a pilot's hands and feet on the real controls, not a
+different helicopter:
+
+- The stick asks for a tilt of the disc, `cyclicTilt × stick` bounded by `maxTilt`, and the
+  swashplate is put where the rotor turns the helicopter toward it, with the stiffness and
+  damping of `cyclicResponse` and `cyclicDamping`. Stick centered, the thrust stands upright
+  but for the lean that answers the tail rotor, and the helicopter hangs under its rotor
+  nose-up by about the shaft's tilt.
+- Near the hover with the stick left alone, a little more tilt (up to 0.08 rad) is held
+  against any drift over the ground, as a pilot holds a hover by eye: the helicopter stays
+  over its spot in a wind and stops from a creep. It fades out between 4 and 10 m/s; under
+  way, a helicopter whose stick is let go keeps its speed and has to be slowed.
+- The pedals ask for a rate of turn (`yawRate` at full pedal) and the tail rotor is set to
+  give it, holding the main rotor's torque whatever the collective does.
+- When the rotor falls below 97% under power, the lever is eased down to keep it turning. With
+  the engines out the lever is the pilot's alone.
+
+The assist can only do what the controls can: with the swashplate at its stop, the tail rotor
+at full pitch or the rotor unloaded, the helicopter does what it does.
+
+`direct` hands over the controls themselves. The stick is the swashplate and the pedals are
+the tail rotor's pitch (`pedalMode` follows `cyclicMode` unless set, so a host can give direct
+cyclic with assisted feet). Each rests at a trim, `aircraftState.rotor.trim` and `pedalTrim`,
+that starts where the assist had that control and follows a stick or pedal that is held at a
+quarter of its travel a second. What the pilot then has to do is what a helicopter pilot does:
+
+- Hold the hover. Nothing levels the helicopter or keeps it over its spot; left alone it
+  wanders off and tips.
+- Put in a foot with every change of power: more collective, left pedal (for a rotor turning
+  counterclockwise), and right pedal with the engine out, when there is no torque to hold.
+- Push forward as it gathers speed, against the disc flapping back.
+- Watch the rotor's speed: nothing eases the lever.
+
+Full stick is the whole swashplate. In the OH-6 that is a pitch rate building to about 180° a
+second, which is the rotor's own rate response (cyclic travel × `lock` × rotor speed / 16), so
+a held key is a violent input. Switching back to assisted in any attitude flies the helicopter
+level again: from 60° nose-up in about two seconds, from inverted in about three.
+
+#### Helicopters without a rotor block
+
+A helicopter spec with no `rotor` block, the CH-47F among the shipped ones, flies on the
+earlier response model. Lift is the collective times `liftMultiplier`, limited by a
+momentum-theory power budget (`rotorEfficiency`, `groundEffect`, fitted to the two hover
+ceilings) and by `liftLimit` times the weight of `liftMass` at sea-level density (fitted to
+the service ceiling). The pedals command a yaw rate with no torque to hold, the fin
+weathervanes the nose at `directionalStability × airspeed / length` rad/s per radian of
+sideslip, and optional terms take lift away in a powered slow descent (`vortexRing`) and above
+`retreatingBladeSpeed`. Its assisted cyclic commands a tilt of `cyclicTilt × stick` bounded by
+`maxTilt` that springs back to level; its direct cyclic commands pitch and roll rates
+(`cyclicRate` at full stick, with `hubStiffness` of the control power kept at zero g), holds
+the attitude when released and behaves as assisted on the skids, which are a contact at the
+origin, not struts.
 
 ### Autorotation
 
-With its engine out in flight a helicopter's rotor freewheels, and its speed follows an energy
-balance instead of running down: the rotor holds `helicopter.rotorInertiaTime` seconds of hover
-power at full speed (default 2), spends it on the lift the collective asks for and on its own
-drag, and gets power back from the air it descends through. That rising air also meets the
-blades at a steeper angle, as more collective would (about a third of the lever at 10 m/s), so
-the collective goes down and the descent settles at a steady rate: the OH-6 comes down at about
-10 m/s at 50 knots with the collective nearly closed and the rotor at full speed. Pulling the
-collective near the ground spends rotor speed on a cushion, a second or two of it; a heavy
-rotor (the UH-1H's 3.5 s) forgives a late or early pull, a light one (the R44's 1.6 s, the
-OH-6's 1.5 s) does not. Held too high, the collective drags the rotor down and the lift with
-it. Rotor speed never exceeds its governed value. On the ground the rotor runs down as before,
-and a restart in flight spools it back up. This needs `powerLimitedRotor`, which every shipped
-helicopter has. It is a momentum-theory approximation for learning the shape of the manoeuvre,
-not a blade-element model: there is no blade stall at low rotor speed and no height-velocity
-curve.
+With its engines out in flight a helicopter's rotor freewheels, and its speed follows an
+energy balance: the rotor holds `helicopter.rotorInertiaTime` seconds of hover power at full
+speed (default 2), spends it on the thrust the collective asks for and on its own drag, and is
+turned by the air it descends through. On the rotor model that last part is not a rule: air
+coming up through the disc meets the blades at a steeper angle and drives them, and the
+collective goes down so they are not stalled by it. Lever left at the hover, the rotor is gone
+in a few seconds, assist or no assist. Lever down, the descent settles at a steady rate: the
+OH-6 comes down at about 1,500 ft/min at 60 knots with the rotor in its range (published:
+1,800), the R44 at about 1,450 at 55 (published: 1,350). Pulling the collective near the
+ground spends rotor speed on a cushion, a second or two of it; a heavy rotor (the UH-1H's
+3.5 s) forgives a late or early pull, a light one (the R44's 1.6 s, the OH-6's 1.5 s) does
+not. Held too high, the collective drags the rotor down and the lift with it. With no torque
+on the mast the tail rotor has nothing to hold: in direct control the hover's pedal position
+now turns the helicopter left. On the ground the rotor runs down, and a restart in flight
+spools it back up. There is no height-velocity curve in the HUD and no blade-by-blade stall.
 
 ### Headless fleet experiments
 
@@ -383,8 +526,30 @@ Reference conditions and provenance live in the
 Published cruise, maximum and operating speeds are different quantities. Where a source does
 not specify weight, altitude or throttle, the test condition is explicitly estimated. Some
 aircraft still have engineering-estimate anchors. Passing a fitted anchor establishes internal
-consistency, not independent real-world validation. All polar, lapse and high-alpha coefficients
-remain approximations. Stores, a center of gravity that moves as fuel burns, detailed engine
+consistency, not independent real-world validation.
+
+The trial scorecard is that validation. In the engine repository:
+
+```sh
+pnpm aircraft:trials
+pnpm aircraft:trials --ids=cessna_172s,oh6
+```
+
+Each aircraft flies a set of trial cards on the production solver (a stall, a power-off glide,
+a level acceleration for climb and top speed, a full-aileron roll, a takeoff, hover ceilings)
+and is scored against published figures in the
+[trial ledger](https://github.com/bendyline/molen/blob/main/content/entities/source/aircraft-trials.json),
+each with its source, the weight it applies to and how far it can be trusted. Calibration may
+use the figures marked `fit`, in stages so one error cannot hide in another: stall speeds fix
+the lift curve, a glide ratio the drag (or the idling propeller's), the speed anchor the thrust
+at altitude, a climb rate the propeller's thrust when slow. The figures marked `check` it may
+not use. The
+[scorecard](https://github.com/bendyline/molen/blob/main/content/entities/source/AIRCRAFT-TRIALS.md)
+lists every card with its error; it is a budget that later changes may not lower, not a claim
+that every card passes. The procedures are in `@bendyline/molen-kernel/trials` for use in your
+own tests.
+
+All polar, lapse and high-alpha coefficients remain approximations. Stores, a center of gravity that moves as fuel burns, detailed engine
 maps, icing, fatigue, load-induced structural failures and certified flight-control laws are not
 modeled.
 
@@ -422,26 +587,70 @@ at `maxLoadFactor` / `minLoadFactor` g at high speed. Ailerons command a roll ra
 turn rate, so turns need little rudder while dihedral (`dihedralEffect`) still levels the wings
 slowly hands-off. Rates are given at `controlAuthoritySpeed` and scale with dynamic pressure.
 
-On the ground a steerable tailwheel (`groundSteerSpeed`) and tire side grip (`groundTrackRate`)
-hold the rolling direction to the nose, sharing the load with the wing: as lift builds the
-tires let go, so crosswind weathervaning and propeller swing grow through the takeoff roll and
-drift persists after touchdown. The gear holds the wings level and the nose at its resting
-attitude until the elevator lifts it, up to `maxGroundPitch`.
+On the wheels an airplane is the same rigid body, standing on its landing gear (below), and
+its surfaces keep working. The takeoff is therefore flown, not scheduled: with back stick the
+tailplane lifts the nose wheel when it has the air to do it (well short of flying speed in a
+jet, sooner with a propeller blowing on the tail), the airplane rotates about its main wheels,
+and it flies off when the wing carries it, at 1.1 to 1.5 times the stall speed. The assist
+works the elevator as it does in the air and winds more on while the nose stays short of what
+the stick asks. It stops at `maxGroundPitch`, or sooner where the airframe's own tail would
+meet the runway (a 737's strikes at about 10°), holds the nose below that just after liftoff
+until the airplane has climbed clear, and keeps a braking taildragger off its nose. Its feet
+damp any swing the pedals did not ask for and keep the nose along the track, and its hands
+hold the wings level with the ailerons. That leaves the
+pilot the propeller's pull and the crosswind: about 3° of heading by liftoff in a Mustang in
+still air, about 9° and forty meters of runway width in a 12-knot crosswind. The pedals turn
+the steered wheel far at a taxi and little at speed (`groundSteerSpeed`), for a turn of at
+most 0.65 rad/s. In direct control none of this is done for you.
 
 ### Landing gear
 
-The gear works by the weight on it. Wheel brakes (`brakeDeceleration`) and rolling drag scale
-with the share of the weight the wheels carry, from a fifth with the wing flying to all of it
-at a walk, so braking right after touchdown does little until the airplane has slowed, and
-braking tips it forward on its struts: a nosewheel airplane dips its nose, a taildragger lifts
-its tail. Struts and tires give back part of a firm touchdown: `gearRebound` (default 0.45) of
-the sink speed beyond a gentle 0.6 m/s, so a greased landing stays down and a firm one skips,
-further the more of its weight the wing still carries. `airplane.tailwheel: true` puts the main
-wheels ahead of the center of mass: touching down on them with the tail still up pitches the
-nose up, into more lift and a bigger bounce, where a nosewheel airplane pitches down onto its
-nose gear and stays. The Mustang, Beaver, Porter, Beech 18 and DC-3 are taildraggers. A sink
-rate beyond `hardLandingSpeed` is still damage, not a bounce. There are no individual struts
-or tires: the airframe does not sink on its gear, and there is no ground loop.
+Every airplane stands on three legs, and a helicopter that flies on its rotors on the four
+ends of its skids. Each leg is a strut with a spring and a damper and, at its foot, the tire
+the road vehicles use: it pushes up by how far the ground has compressed it, grips sideways by
+how it slips, and is braked through its grip. Those forces turn the airframe about its center
+of mass by where they act, and what the gear does follows from that:
+
+- **Weight on the wheels.** Brakes (`brakeDeceleration`) and rolling drag act through the
+  tires, so they grow as the wing hands the weight back: braking right after touchdown does
+  little, and a wet or snowy runway lengthens the stop.
+- **Braking tips the airplane forward.** A nosewheel airplane dips onto its nose strut. A
+  taildragger lifts its tail, and stood on its brakes would go over; the assist brakes as hard
+  as keeps the tail down, so it takes longer to stop.
+- **Touchdown.** A firm arrival strokes the struts: the airframe sinks on them and a main wheel
+  carries three or four times its standing load for a moment. `gear.damping` sets how much
+  comes back. `airplane.tailwheel: true` puts the main wheels ahead of the center of mass, so
+  touching down on them with the tail up pitches the nose up, into more lift and back into the
+  air, where a nosewheel airplane pitches down onto its nose gear and stays. The Mustang,
+  Beaver, Porter, Beech 18 and DC-3 are taildraggers. Landed banked, an airplane comes level
+  on both wheels. A sink rate beyond `hardLandingSpeed` is still damage, not a bounce.
+- **Running straight.** With all three wheels down either kind runs straight. A taildragger
+  with its tail up is on two wheels ahead of its center of mass: a swing feeds itself into a
+  ground loop unless feet on the pedals stop it, and so does a nosewheel airplane held down
+  onto its nose wheel alone. The assist's feet catch both.
+- **Wind.** A crosswind turns the nose into it as far as the tires allow, lifts the upwind
+  wing, and blows the airplane further off its line on snow. Touching down still crabbed into
+  the wind, the tires pull the airplane straight at their own height, below its center of
+  mass: left alone a Cessna in a 15-knot crosswind goes over onto a wingtip, and aileron into
+  the wind (the assist's hands) keeps it on its wheels. A tail in the propeller's wash meets
+  its air from ahead whatever the wind is doing.
+- **Standing.** Tires hold by friction: a parked airplane stays put, holds against power on
+  its brakes until the engine out-pushes them, and rolls away down a slope without them.
+
+Where the spec's `gear` block gives no dimensions they follow from the airframe: a wheelbase
+of a third of the length (0.55 with a tailwheel), the main wheels just behind the center of
+mass (ahead of it with a tailwheel) so the small wheel carries a tenth of the weight (7%), a
+track of a fifth of the span, and struts that bounce at 1.4 Hz with 0.65 of critical damping.
+`gear.wheelbase`, `track`, `auxiliaryShare`, `frequency`, `damping`, `travel`, `wheelRadius`
+and `grip` override them. No shipped type authors its own yet, so a Mustang stands on a
+narrower track than the real one and an airliner on a wider one. `aircraftState.wheels` reports each wheel's spin and
+the load on it.
+
+The taildraggers' models are posed tail-down and their wings are rigged to that pose, so body
+pitch 0 is both the three-point attitude and zero incidence. The tailwheel has some soft give
+below where it rests so the airplane can be rotated to its liftoff angle, and in the air these
+five fly nose-high by their ground angle (13° for the Mustang). A datum for the wing apart
+from the model's pose would fix both; it has not been done.
 
 ### Buffet and the pilot under g
 
@@ -670,11 +879,10 @@ are not included; propeller torque, P-factor and precession come from `propeller
 one `engine` driving the shared rotor; multiple turbines feeding a common gearbox require a
 different shaft-power model and are not represented by independent propeller engines.
 
-Helicopter forces include rotor spool, collective lift, cyclic tilt, ground effect,
-translational lift, air drag and assisted yaw; the helicopter keeps the assisted model, in which
-cyclic commands a disc tilt bounded by `maxTilt`, and gusts across the disc tip it. State includes velocity, attitude/rates, rotor phase
-and controls for checkpoint/replay. Translational lift uses air-relative horizontal speed, so
-wind and forward motion give consistent results. Collision sampling is at least 120 Hz and at most one meter
+Helicopter forces are the main and tail rotors, the fuselage, the fin and stabilizer and the
+skids, as [above](#helicopters); gusts reach the rotor as the air it flies in. State includes velocity, attitude/rates, rotor phase,
+the rotor's induced flow and control positions for checkpoint/replay. Everything is
+air-relative, so wind and forward motion give consistent results. Collision sampling is at least 120 Hz and at most one meter
 of translation per substep. Unknown terrain pauses at the last known position and resumes when
 support is available.
 
@@ -686,8 +894,8 @@ available for hosts that need a different collision solver. Without either obsta
 collides with terrain. Do not add a second physics body that also writes the aircraft transform.
 
 This is a game flight model with recognizable polygonal aircraft, not a full aircraft systems
-simulation or a calibrated replica of any airplane's handling. Rotor blade-element aerodynamics,
-a quantitatively validated spin model, fuel tanks and their selection, a moving center of
+simulation or a calibrated replica of any airplane's handling. Blade-by-blade rotor
+aerodynamics (the rotor is solved as a whole disc), a quantitatively validated spin model, fuel tanks and their selection, a moving center of
 gravity, automatic engine damage, detailed avionics and weapons are outside this implementation. Primary cockpit controls operate the simulated
 systems as described below; switches for unsupported systems remain decorative. Collision uses coarse airframe probes and resident world
 geometry; it does not model deformation or distant unloaded obstacles.

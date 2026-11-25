@@ -90,14 +90,22 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   Tests must leave installed GLBs and sidecars untouched, including while a build reads them.
   The root `test:unit` post-hook checks the installed bundle again to catch persistent changes.
 - CI runs only plain `pnpm` scripts: `pnpm lint`, `pnpm typecheck`, `pnpm source:check`,
-  `pnpm test:unit`, `pnpm audit:prod`, `pnpm docs:check`, `pnpm smoke:packed`,
+  `pnpm test:unit`, `pnpm test:lods`, `pnpm audit:prod`, `pnpm docs:check`, `pnpm smoke:packed`,
   `pnpm docs:site:check`, `pnpm test:golden`. Local green must equal CI green.
   `pnpm all` runs the lot in the right order; `pnpm verify` is the fast subset of it (lint,
-  typecheck, source and docs checks, test:unit, production audit) that also gates the Release workflow, so a green `pnpm all`
-  means a release will not fail on a check you could have run yourself. `check-release-gate.mjs`
-  in `pnpm lint` enforces that: every script the Release workflow runs must be reachable from
-  `all`. Local source copies without `.github/workflows` explicitly skip that comparison; CI
-  and checkouts with a workflows directory still require `release.yml`.
+  typecheck, source and docs checks, test:unit, test:lods, production audit). The Release and Site
+  workflows repeat none of it: they refuse a commit CI has not passed
+  (`scripts/require-green-ci.mjs`), so a green `pnpm all` means a release will not fail on a check
+  you could have run yourself. `check-release-gate.mjs` in `pnpm lint` enforces that: CI runs every
+  check of `verify`, Release and Site require green CI before they tag, publish or deploy, and every
+  script the workflows run is reachable from `all`. Local source copies without
+  `.github/workflows` explicitly skip that comparison; CI and checkouts with a workflows directory
+  still require the workflows.
+- **Landmark LOD suites are their own task.** `packages/tooling/test/*-lods.test.mjs` regenerate
+  detail levels of real landmarks and are nearly all of tooling's test time, so `pnpm test:lods`
+  runs them and `pnpm test:unit` does not. CI runs them in shards, and skips them when they already
+  passed on the same content and geometry code (`scripts/lod-test-inputs.mjs`). Run one with
+  `pnpm --filter @bendyline/molen-tooling test:lods <name>`.
   The recursive test scripts pass `--no-bail` on purpose: without it one failing package stops the
   run and every package after it reports nothing, so a red CI has to be fixed one round-trip at a
   time. Both also pin `--workspace-concurrency=1`. The golden suites drive real browsers on a
@@ -158,7 +166,9 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
 - `@bendyline/molen-kernel` depends only on schema (+ `ses` for the script Compartment). No
   DOM/three.js/WASM. Subpaths: `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`,
   `/platformer`, `/determinism`, `/content`, `/vehicles`, `/boats`, `/aircraft`, `/world` (the ECS
-  World without the SES scripting runtime, for main-thread hosts).
+  World without the SES scripting runtime, for main-thread hosts) and `/trials` (scripted pilots
+  and drivers that fly and drive the production solvers through test procedures; the kernel's
+  tests, calibration and the trial scorecards share them).
   `buildWorld` is the one build order every host uses (data systems → commands → entities →
   physics hook → terrain hook → setup → scripts).
 - `@bendyline/molen-client` depends on schema + materials (+ three.js); never imports kernel

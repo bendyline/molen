@@ -3,25 +3,16 @@ import { execFileSync, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { once } from 'node:events';
 import { existsSync, writeFileSync } from 'node:fs';
-import {
-  cp,
-  mkdir,
-  mkdtemp,
-  readdir,
-  readFile,
-  rm,
-  stat,
-  utimes,
-  writeFile,
-} from 'node:fs/promises';
+import { mkdir, mkdtemp, readdir, readFile, rm, stat, utimes, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve, sep } from 'node:path';
 import { afterEach, test } from 'node:test';
 import { pathToFileURL } from 'node:url';
+import { expireEngineJobs } from '../asset-engine.mjs';
 import { createAssetFileCache } from '../asset-file-cache.mjs';
-import { assetInputs } from '../asset-inputs.mjs';
+import { assetInputs, engineSources } from '../asset-inputs.mjs';
 import { createJobCache } from '../asset-job-cache.mjs';
-import { packAssets, SEED, seedAssets } from '../asset-packs.mjs';
+import { archivePath, packAssets, seedAssets } from '../asset-packs.mjs';
 import { recoverInterruptedBuild } from '../asset-rollback.mjs';
 import { buildAssetsFromSource } from '../build-assets.mjs';
 import { traceVerifiedAssetOutputs } from '../verified-asset-outputs.mjs';
@@ -275,31 +266,115 @@ test('only a changed model is regenerated, and shared dynamic recipe changes inv
   assert.deepEqual(runIds(await build(root)), []);
 });
 
+/** A published bundle's release: its listing and its attachments, served as GitHub serves them. */
+function releaseServer(root, manifest) {
+  const packs = join(root, '.artifacts/asset-packs');
+  return async (url) => {
+    if (url.startsWith('https://api.github.com/'))
+      return Response.json([
+        {
+          tag_name: manifest.release,
+          draft: false,
+          published_at: '2026-11-24T00:00:00Z',
+          assets: (await readdir(join(packs, manifest.release))).map((name) => ({ name })),
+        },
+      ]);
+    const file = url.split('/').at(-1);
+    const archive = manifest.archives.find((item) => item.file === file);
+    return new Response(
+      await readFile(archive ? archivePath(packs, archive) : join(packs, manifest.release, file)),
+    );
+  };
+}
+
 test('a fresh checkout seeded with an earlier build reruns only what changed since', async () => {
-  // CI: one runner builds and keeps its bundle and job records; the next starts from them.
+  // One run builds and publishes its bundle with its job records; the next starts from them.
   const earlier = await fixture();
   await put(earlier, 'LICENSE', 'Fixture license\n');
   assert.deepEqual(runIds(await build(earlier)), ['one', 'two']);
-  await packAssets({ root: earlier, log: () => {} });
+  const manifest = await packAssets({ root: earlier, log: () => {} });
+  assert.equal(manifest.records.file, 'asset-records.tar.gz');
   const fresh = await fixture();
   await put(fresh, 'LICENSE', 'Fixture license\n');
   await put(fresh, 'inputs/one.json', '{"shape":"changed"}');
-  const jobs = join(earlier, '.artifacts/asset-build/jobs');
-  for (const name of await readdir(jobs))
-    if (name.endsWith('.json'))
-      await put(fresh, `.artifacts/asset-build/jobs/${name}`, await readFile(join(jobs, name)));
-  await put(fresh, SEED, await readFile(join(earlier, '.artifacts/asset-packs/installed.json')));
-  await cp(join(earlier, '.artifacts/asset-packs'), join(fresh, '.artifacts/asset-packs'), {
-    recursive: true,
-  });
-  const fail = () => {
-    throw new Error('The cached seed needs no download');
-  };
-  assert.ok(await seedAssets({ root: fresh, fetchImpl: fail, log: () => {} }));
+  const messages = [];
+  assert.equal(
+    await seedAssets({
+      root: fresh,
+      fetchImpl: releaseServer(earlier, manifest),
+      log: (line) => messages.push(line),
+    }),
+    manifest.release,
+  );
+  assert.match(messages.at(-1), /1 inputs differ; 2 restored/);
   assert.deepEqual(runIds(await build(fresh)), ['one']);
   assert.equal(await readFile(join(fresh, 'assets/two/model.glb'), 'utf8'), 'twogeometry');
   assert.equal(await readFile(join(fresh, 'assets/one/model.glb'), 'utf8'), 'changedgeometry');
   assert.equal((await readFile(join(fresh, '.artifacts/runs.txt'), 'utf8')).trim(), 'one');
+});
+
+test('a job that carves engine code reruns, under a new bundle name, when that code changes', async () => {
+  const root = await fixture();
+  const plan = JSON.parse(await readFile(join(root, 'asset-build.json'), 'utf8'));
+  const entry = 'packages/figures/src/kernel.ts';
+  plan.generators[0].engine = [entry];
+  await put(root, 'asset-build.json', JSON.stringify(plan));
+  await put(root, entry, "export { body } from './kernel/body';\n");
+  await put(
+    root,
+    'packages/figures/src/kernel/body.ts',
+    "import './shape';\nexport const body = 1;\n",
+  );
+  await put(root, 'packages/figures/src/kernel/shape.ts', 'export {};\n');
+  await put(root, 'packages/figures/src/client.ts', 'export {};\n');
+  const compiled = async (body) => {
+    await put(root, 'packages/figures/dist/kernel.mjs', 'export * from "./body-1a2b.mjs";\n');
+    await put(root, 'packages/figures/dist/body-1a2b.mjs', `export const body = ${body};\n`);
+  };
+  await compiled(1);
+  assert.deepEqual(engineSources(root, entry), [
+    entry,
+    'packages/figures/src/kernel/body.ts',
+    'packages/figures/src/kernel/shape.ts',
+  ]);
+  const { key, inputs } = await assetInputs(root);
+  assert.ok(inputs.some(([path]) => path === 'packages/figures/src/kernel/shape.ts'));
+  const quiet = { log: () => {} };
+  assert.deepEqual(await expireEngineJobs(root, quiet), []);
+  await build(root);
+  assert.deepEqual(await expireEngineJobs(root, quiet), []);
+  assert.deepEqual(runIds(await build(root)), []);
+
+  // Code the entry point does not reach changes nothing.
+  await put(root, 'packages/figures/src/client.ts', 'export const other = 1;\n');
+  await put(root, 'packages/figures/dist/client.mjs', 'export const other = 1;\n');
+  assert.equal((await assetInputs(root)).key, key);
+  assert.deepEqual(await expireEngineJobs(root, quiet), []);
+
+  // A source it does reach names a new bundle; the compiled change reruns that job and no other.
+  await put(root, 'packages/figures/src/kernel/shape.ts', 'export const taller = true;\n');
+  assert.notEqual((await assetInputs(root)).key, key);
+  assert.deepEqual(await expireEngineJobs(root, quiet), [], 'not compiled yet');
+  await compiled(2);
+  const messages = [];
+  assert.deepEqual(await expireEngineJobs(root, { log: (line) => messages.push(line) }), ['one']);
+  assert.match(messages[0], /one runs again: .*packages\/figures\/src\/kernel\.ts/);
+  // A build that stops before the job ran must not leave its old models looking current.
+  assert.deepEqual(await expireEngineJobs(root, quiet), []);
+  assert.deepEqual(runIds(await build(root)), ['one']);
+  assert.deepEqual(await expireEngineJobs(root, quiet), []);
+  assert.deepEqual(runIds(await build(root)), []);
+
+  // Records from a machine that never noted the engine code it ran do not vouch for it.
+  await rm(join(root, '.artifacts/asset-build/jobs/one.engine.json'));
+  assert.deepEqual(await expireEngineJobs(root, quiet), ['one']);
+  assert.deepEqual(runIds(await build(root)), ['one']);
+
+  await put(root, 'packages/figures/src/kernel/body.ts', "import './gone';\n");
+  await assert.rejects(assetInputs(root), /body\.ts imports \.\/gone, which does not exist/);
+  plan.generators[0].engine = ['packages/figures/dist/kernel.mjs'];
+  await put(root, 'asset-build.json', JSON.stringify(plan));
+  await assert.rejects(assetInputs(root), /Generator one: "engine" lists/);
 });
 
 test('missing or corrupted output rebuilds only its generator; force rebuilds all', async () => {

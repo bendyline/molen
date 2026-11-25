@@ -1,0 +1,542 @@
+{
+  "format": "molen/trial-ledger@1",
+  "checked": "2026-11-23",
+  "description": "Sourced road-test figures each road vehicle is driven against, beside the unsourced rows of vehicle-dynamics.json. All are role \"check\": calibration does not use them. A figure with massKg is driven at that mass (the tested vehicle and its driver). rollout: the source starts the clock after one foot of travel. evidence says how far the figure and its conditions can be trusted; \"seen\" is the figure as printed.",
+  "sources": {
+    "toyota-camry-2025-1": {
+      "url": "https://finance.yahoo.com/news/2026-toyota-camry-nightshade-test-153100465.html",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Car and Driver: 2026 Toyota Camry Nightshade Test: Mainstream Favorite (Yahoo syndication)"
+    },
+    "toyota-camry-2025-2": {
+      "url": "https://www.0-60specs.com/index.php/toyota/camry-0-60-times",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "0-60specs.com Toyota Camry 0-60 times (compilation)"
+    },
+    "toyota-camry-2025-3": {
+      "url": "https://finance.yahoo.com/news/2025-toyota-camry-carefully-evolves-110000777.html",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Car and Driver: Tested: 2025 Toyota Camry Carefully Evolves (Yahoo syndication)"
+    },
+    "porsche-911-2017-1": {
+      "url": "https://ca.finance.yahoo.com/news/2017-porsche-911-carrera-manual-200400213.html",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Car and Driver: 2017 Porsche 911 Carrera Manual (Yahoo syndication, full test panel)"
+    },
+    "ford-f-150-2025-1": {
+      "url": "https://ca.finance.yahoo.com/news/2018-ford-f-150-2-220000697.html",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Car and Driver: 2018 Ford F-150 2.7L EcoBoost V-6 4x2 SuperCrew (Yahoo syndication, full test panel)"
+    },
+    "ford-f-150-2025-2": {
+      "url": "https://www.officer.com/vehicles-fleet/vehicles-equipment/vehicles/press-release/21228541/ford-motor-co-law-enforcement-agency-testing-shows-2021-ford-f-150-police-responder-accelerates-faster-than-all-police-vehicles-tested",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Ford press release on Officer.com: 2021 Ford F-150 Police Responder"
+    },
+    "ford-f-150-2025-3": {
+      "url": "https://www.f150gen14.com/forum/threads/4312/",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "F150gen14 forum repost of Motor Trend: 2021 Ford F-150 2.7L 4x4 First Test"
+    },
+    "gmc-hummer-ev-suv-2024-1": {
+      "url": "https://finance.yahoo.com/news/2024-gmc-hummer-ev-suv-130000481.html",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Car and Driver: 2024 Hummer EV SUV Tested: Everything, Everywhere, All at Once (Yahoo syndication)"
+    },
+    "tesla-model-3-2025-1": {
+      "url": "https://finance.yahoo.com/news/tested-2024-tesla-model-3-165600760.html",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Car and Driver: Tested: 2024 Tesla Model 3 Long Range RWD Is Seriously Improved (Yahoo syndication)"
+    },
+    "mazda-mx-5-miata-2016-1": {
+      "url": "https://ca.finance.yahoo.com/news/2016-mazda-mx-5-miata-205000131.html",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Car and Driver: 2016 Mazda MX-5 Miata long-term test (Yahoo syndication, full test panel)"
+    },
+    "honda-civic-2025-1": {
+      "url": "https://www.0-60specs.com/index.php/honda/civic-0-60-times",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "0-60specs.com Honda Civic 0-60 times (compilation)"
+    },
+    "mercedes-benz-sprinter-2019-1": {
+      "url": "https://www.0-60specs.com/mercedes-benz/sprinter-0-60-times",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "0-60specs.com Mercedes-Benz Sprinter 0-60 times (compilation)"
+    },
+    "transit-bus-1": {
+      "url": "https://www.altoonabustest.psu.edu/bus-details.aspx?BN=2026-09-P",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Altoona report LTI-BT-R2026-09-P (Gillig X10 40' Low Floor)"
+    },
+    "transit-bus-2": {
+      "url": "https://www.altoonabustest.psu.edu/bus-details.aspx?BN=1211-P",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Altoona report PTI-BT-R1211-P (New Flyer XD40)"
+    },
+    "class-a-motorhome-1": {
+      "url": "https://rv.com/archive/thor-a-c-e-road-test/",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "MotorHome magazine (RV.com archive): Thor A.C.E. road test"
+    }
+  },
+  "vehicles": [
+    {
+      "id": "molen.entities.vehicle.toyota_camry_2025",
+      "cards": [
+        {
+          "card": "zero-to-60mph",
+          "value": 7,
+          "rollout": true,
+          "massKg": 1701,
+          "role": "check",
+          "evidence": "published",
+          "source": "toyota-camry-2025-1",
+          "seen": "reaching the mark in 7.0 seconds"
+        },
+        {
+          "card": "quarter-mile",
+          "value": 15.4,
+          "rollout": true,
+          "massKg": 1701,
+          "role": "check",
+          "evidence": "published-secondhand",
+          "source": "toyota-camry-2025-2",
+          "seen": "2026 HEV Nightshade FWD 7.00 s 15.40 s 94.0 mph Car and Driver"
+        },
+        {
+          "card": "quarter-mile-speed",
+          "value": 151.3,
+          "massKg": 1701,
+          "role": "check",
+          "evidence": "published-secondhand",
+          "source": "toyota-camry-2025-2",
+          "seen": "2026 HEV Nightshade FWD 7.00 s 15.40 s 94.0 mph Car and Driver"
+        },
+        {
+          "card": "braking-70-0mph",
+          "value": 52.12,
+          "massKg": 1701,
+          "role": "check",
+          "evidence": "published",
+          "source": "toyota-camry-2025-1",
+          "seen": "the car stops from 70 mph in 171 feet"
+        },
+        {
+          "card": "skidpad",
+          "value": 0.84,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "toyota-camry-2025-3",
+          "seen": "182-foot stop from 70 mph and 0.84 g of grip",
+          "note": "All-wheel-drive XSE."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.porsche_911_2017",
+      "cards": [
+        {
+          "card": "zero-to-60mph",
+          "value": 4,
+          "rollout": true,
+          "massKg": 1540,
+          "role": "check",
+          "evidence": "published",
+          "source": "porsche-911-2017-1",
+          "seen": "Zero to 60 mph: 4.0 sec",
+          "note": "Seven-speed manual."
+        },
+        {
+          "card": "quarter-mile",
+          "value": 12.4,
+          "rollout": true,
+          "massKg": 1540,
+          "role": "check",
+          "evidence": "published",
+          "source": "porsche-911-2017-1",
+          "seen": "Standing ¼-mile: 12.4 sec @ 117 mph"
+        },
+        {
+          "card": "quarter-mile-speed",
+          "value": 188.3,
+          "massKg": 1540,
+          "role": "check",
+          "evidence": "published",
+          "source": "porsche-911-2017-1",
+          "seen": "Standing ¼-mile: 12.4 sec @ 117 mph"
+        },
+        {
+          "card": "braking-70-0mph",
+          "value": 44.2,
+          "massKg": 1540,
+          "role": "check",
+          "evidence": "published",
+          "source": "porsche-911-2017-1",
+          "seen": "Braking, 70–0 mph: 145 ft"
+        },
+        {
+          "card": "skidpad",
+          "value": 1,
+          "role": "check",
+          "evidence": "published",
+          "source": "porsche-911-2017-1",
+          "seen": "Roadholding, 300-ft-dia skidpad: 1.00 g"
+        },
+        {
+          "card": "top-speed",
+          "value": 294.5,
+          "role": "check",
+          "evidence": "published",
+          "source": "porsche-911-2017-1",
+          "seen": "Top speed (mfr's est): 183 mph",
+          "note": "Manufacturer figure as printed by the magazine."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.ford_f_150_2025",
+      "cards": [
+        {
+          "card": "zero-to-60mph",
+          "value": 5.9,
+          "rollout": true,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "ford-f-150-2025-1",
+          "seen": "Zero to 60 mph: 5.9 sec",
+          "note": "2018 truck with the same 2.7 L engine and rear drive."
+        },
+        {
+          "card": "quarter-mile",
+          "value": 14.4,
+          "rollout": true,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "ford-f-150-2025-2",
+          "seen": "the quarter mile in just 14.4 seconds"
+        },
+        {
+          "card": "top-speed",
+          "value": 165.8,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "ford-f-150-2025-1",
+          "seen": "Top speed (governor limited): 103 mph",
+          "note": "Governor limited."
+        },
+        {
+          "card": "braking-70-0mph",
+          "value": 50.9,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "ford-f-150-2025-1",
+          "seen": "Braking, 70–0 mph: 167 ft"
+        },
+        {
+          "card": "skidpad",
+          "value": 0.79,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "ford-f-150-2025-3",
+          "seen": "0.79 average lateral g, up from 0.76 g for the 2018"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.gmc_hummer_ev_suv_2024",
+      "cards": [
+        {
+          "card": "zero-to-60mph",
+          "value": 3.4,
+          "rollout": true,
+          "massKg": 4003,
+          "role": "check",
+          "evidence": "published",
+          "source": "gmc-hummer-ev-suv-2024-1",
+          "seen": "allows for a 3.4-second rip to 60 mph",
+          "note": "Launch mode."
+        },
+        {
+          "card": "quarter-mile",
+          "value": 11.9,
+          "rollout": true,
+          "massKg": 4003,
+          "role": "check",
+          "evidence": "published",
+          "source": "gmc-hummer-ev-suv-2024-1",
+          "seen": "quarter-mile in 11.9 seconds at 112 mph"
+        },
+        {
+          "card": "quarter-mile-speed",
+          "value": 180.2,
+          "massKg": 4003,
+          "role": "check",
+          "evidence": "published",
+          "source": "gmc-hummer-ev-suv-2024-1",
+          "seen": "quarter-mile in 11.9 seconds at 112 mph"
+        },
+        {
+          "card": "braking-70-0mph",
+          "value": 60.66,
+          "massKg": 4003,
+          "role": "check",
+          "evidence": "published",
+          "source": "gmc-hummer-ev-suv-2024-1",
+          "seen": "taking 199 feet to haul itself down from 70 mph",
+          "note": "All-terrain tires."
+        },
+        {
+          "card": "skidpad",
+          "value": 0.76,
+          "role": "check",
+          "evidence": "published",
+          "source": "gmc-hummer-ev-suv-2024-1",
+          "seen": "we measured just 0.76 g on our skidpad"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.tesla_model_3_2025",
+      "cards": [
+        {
+          "card": "zero-to-60mph",
+          "value": 4.6,
+          "rollout": true,
+          "massKg": 1806,
+          "role": "check",
+          "evidence": "published",
+          "source": "tesla-model-3-2025-1",
+          "seen": "From rest to 60 mph now takes only 4.6 seconds"
+        },
+        {
+          "card": "quarter-mile",
+          "value": 13.2,
+          "rollout": true,
+          "massKg": 1806,
+          "role": "check",
+          "evidence": "published",
+          "source": "tesla-model-3-2025-1",
+          "seen": "from 13.8 seconds at 101 mph to 13.2 at 107"
+        },
+        {
+          "card": "quarter-mile-speed",
+          "value": 172.2,
+          "massKg": 1806,
+          "role": "check",
+          "evidence": "published",
+          "source": "tesla-model-3-2025-1",
+          "seen": "from 13.8 seconds at 101 mph to 13.2 at 107"
+        },
+        {
+          "card": "braking-70-0mph",
+          "value": 54.25,
+          "massKg": 1806,
+          "role": "check",
+          "evidence": "published",
+          "source": "tesla-model-3-2025-1",
+          "seen": "the 70-mph stopping distance is 178 feet"
+        },
+        {
+          "card": "skidpad",
+          "value": 0.84,
+          "role": "check",
+          "evidence": "published",
+          "source": "tesla-model-3-2025-1",
+          "seen": "Maximum cornering is only 0.84 g (somewhat limited by stability control)",
+          "note": "Limited by stability control in the test."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.mazda_mx_5_miata_2016",
+      "cards": [
+        {
+          "card": "zero-to-60mph",
+          "value": 5.8,
+          "rollout": true,
+          "massKg": 1129,
+          "role": "check",
+          "evidence": "published",
+          "source": "mazda-mx-5-miata-2016-1",
+          "seen": "Zero to 60 mph: 5.8 sec"
+        },
+        {
+          "card": "quarter-mile",
+          "value": 14.6,
+          "rollout": true,
+          "massKg": 1129,
+          "role": "check",
+          "evidence": "published",
+          "source": "mazda-mx-5-miata-2016-1",
+          "seen": "Standing ¼-mile: 14.6 sec @ 94 mph"
+        },
+        {
+          "card": "quarter-mile-speed",
+          "value": 151.3,
+          "massKg": 1129,
+          "role": "check",
+          "evidence": "published",
+          "source": "mazda-mx-5-miata-2016-1",
+          "seen": "Standing ¼-mile: 14.6 sec @ 94 mph"
+        },
+        {
+          "card": "top-speed",
+          "value": 207.6,
+          "role": "check",
+          "evidence": "published",
+          "source": "mazda-mx-5-miata-2016-1",
+          "seen": "Top speed (drag limited): 129 mph",
+          "note": "Drag limited."
+        },
+        {
+          "card": "braking-70-0mph",
+          "value": 48.16,
+          "massKg": 1129,
+          "role": "check",
+          "evidence": "published",
+          "source": "mazda-mx-5-miata-2016-1",
+          "seen": "Braking, 70–0 mph: 158 ft"
+        },
+        {
+          "card": "skidpad",
+          "value": 0.88,
+          "role": "check",
+          "evidence": "published",
+          "source": "mazda-mx-5-miata-2016-1",
+          "seen": "Roadholding, 300-ft-dia skidpad: 0.88 g"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.honda_civic_2025",
+      "cards": [
+        {
+          "card": "zero-to-60mph",
+          "value": 8.9,
+          "rollout": true,
+          "role": "check",
+          "evidence": "published-secondhand",
+          "source": "honda-civic-2025-1",
+          "seen": "2025 Sport Sedan 2.0L I-4 8.90 sec 16.90 sec 87.0 mph Car and Driver",
+          "note": "2.0 L Sport sedan."
+        },
+        {
+          "card": "quarter-mile",
+          "value": 16.9,
+          "rollout": true,
+          "role": "check",
+          "evidence": "published-secondhand",
+          "source": "honda-civic-2025-1",
+          "seen": "2025 Sport Sedan 2.0L I-4 8.90 sec 16.90 sec 87.0 mph Car and Driver"
+        },
+        {
+          "card": "quarter-mile-speed",
+          "value": 140,
+          "role": "check",
+          "evidence": "published-secondhand",
+          "source": "honda-civic-2025-1",
+          "seen": "2025 Sport Sedan 2.0L I-4 8.90 sec 16.90 sec 87.0 mph Car and Driver"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.mercedes_benz_sprinter_2019",
+      "cards": [
+        {
+          "card": "zero-to-60mph",
+          "value": 11.6,
+          "rollout": true,
+          "role": "check",
+          "evidence": "published-secondhand",
+          "source": "mercedes-benz-sprinter-2019-1",
+          "seen": "2019 Mercedes-Benz Sprinter 2500 Passenger Van (144WB HR) 3.0L Turbo Diesel V6 11.60 sec 18.30 sec 73.0 mph Motor Trend",
+          "note": "2500 passenger van, 3.0 L V6 diesel."
+        },
+        {
+          "card": "quarter-mile",
+          "value": 18.3,
+          "rollout": true,
+          "role": "check",
+          "evidence": "published-secondhand",
+          "source": "mercedes-benz-sprinter-2019-1",
+          "seen": "2019 Mercedes-Benz Sprinter 2500 Passenger Van (144WB HR) 3.0L Turbo Diesel V6 11.60 sec 18.30 sec 73.0 mph Motor Trend"
+        },
+        {
+          "card": "quarter-mile-speed",
+          "value": 117.5,
+          "role": "check",
+          "evidence": "published-secondhand",
+          "source": "mercedes-benz-sprinter-2019-1",
+          "seen": "2019 Mercedes-Benz Sprinter 2500 Passenger Van (144WB HR) 3.0L Turbo Diesel V6 11.60 sec 18.30 sec 73.0 mph Motor Trend"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.transit.bus",
+      "cards": [
+        {
+          "card": "zero-to-30mph",
+          "value": 13,
+          "massKg": 15313,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "transit-bus-1",
+          "seen": "average time to reach 30 mph was 13.0 seconds",
+          "note": "Gillig 40 ft diesel at seated load weight."
+        },
+        {
+          "card": "zero-to-50mph",
+          "value": 32.4,
+          "massKg": 15313,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "transit-bus-1",
+          "seen": "50 mph 32.3 32.4 32.5"
+        },
+        {
+          "card": "zero-to-60mph",
+          "value": 44.9,
+          "massKg": 15313,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "transit-bus-1",
+          "seen": "60 mph 45.2 44.7 44.8"
+        },
+        {
+          "card": "top-speed",
+          "value": 110.4,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "transit-bus-1",
+          "seen": "Maximum Speed (mph): 68.6 (maximum governed dynamometer speed reached)",
+          "note": "Governed."
+        },
+        {
+          "card": "braking-45-0mph",
+          "value": 41.78,
+          "massKg": 18135,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "transit-bus-2",
+          "seen": "45 (dry) 141.58 155.68 130.95 120.01 137.06",
+          "note": "New Flyer 40 ft diesel at gross vehicle weight."
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.bendy_class_a_compact",
+      "cards": [
+        {
+          "card": "zero-to-60mph",
+          "value": 19.1,
+          "massKg": 6550,
+          "role": "check",
+          "evidence": "published-other-variant",
+          "source": "class-a-motorhome-1",
+          "seen": "0-60 mph: 19.1 sec",
+          "note": "A 6.8 L V10 motorhome on the same chassis, 14,440 lb."
+        }
+      ]
+    }
+  ]
+}
