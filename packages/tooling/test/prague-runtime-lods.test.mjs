@@ -2,7 +2,6 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
-import { sourceHash } from './fixtures/source-hash.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
@@ -111,7 +110,6 @@ it('reproduces the preserved detailed Prague master and verifies independent pla
   expect(frame.extraElements[0].tags.wikidata).toBe('Q3506740');
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.status).toBe('preview-proposal');
-  expect(await sourceHash(`${source}/${grade.sourceRaster}`)).toBe(grade.sourceRasterHash);
   expect(grade.grid.heights).toHaveLength(4305);
   expect(grade.grid.heights.every((v) => Number.isFinite(v) && v > 180 && v < 270)).toBe(true);
   expect(grade.heightDatum).toContain('Bpv');

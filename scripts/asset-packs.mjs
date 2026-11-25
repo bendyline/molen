@@ -1338,24 +1338,35 @@ export async function pruneArchives({
   return { removed, bytes };
 }
 
-/** The GitHub CLI, trying again when the network or a busy server failed a repeatable call. */
-function githubCli() {
+/**
+ * The GitHub CLI, trying again when the network or a busy server failed a repeatable call. `gh release
+ * upload` and `edit` look the draft up by its tag every time, and GitHub can fail to list a draft it
+ * has just been accepting files into: run 45473223233 died on "release not found" after 200 uploads.
+ */
+export function githubCli({
+  run = (args) =>
+    execFileSync('gh', args, {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+      maxBuffer: 64 * 1024 ** 2,
+    }),
+  wait = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms),
+} = {}) {
   const transient =
     /HTTP (?:408|425|429|5\d\d)|connection reset|connection refused|timeout|timed out|TLS handshake|unexpected EOF|i\/o error|no such host/i;
   return (args) => {
     const creates = args.includes('POST');
+    const byTag = args[0] === 'release' && (args[1] === 'upload' || args[1] === 'edit');
     for (let attempt = 1; ; attempt++) {
       try {
         // A second upload replaces what a broken first one left.
         const again = attempt > 1 && args[1] === 'upload' ? ['--clobber'] : [];
-        return execFileSync('gh', [...args, ...again], {
-          encoding: 'utf8',
-          stdio: ['ignore', 'pipe', 'pipe'],
-          maxBuffer: 64 * 1024 ** 2,
-        });
+        return run([...args, ...again]);
       } catch (error) {
-        if (creates || attempt >= 4 || !transient.test(String(error.stderr))) throw error;
-        Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, attempt * 10_000);
+        const text = String(error.stderr);
+        const passing = transient.test(text) || (byTag && /release not found/i.test(text));
+        if (creates || attempt >= 4 || !passing) throw error;
+        wait(attempt * 10_000);
       }
     }
   };

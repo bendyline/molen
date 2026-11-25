@@ -33,6 +33,8 @@ test('every landmark LOD suite belongs to test:lods and none to test:unit', () =
   assert.match(root.verify, /pnpm test:unit && pnpm test:lods/);
   // They regenerate landmarks beside the installed ones, so the bundle is checked afterwards too.
   assert.equal(root['posttest:lods'], root['posttest:unit']);
+  // The full package builds, not tsdown alone: the suites read generated placement catalogs.
+  assert.equal(root['pretest:lods'], root['pretest:unit']);
 });
 
 test("CI's hash of their inputs covers everything the suites name", () => {

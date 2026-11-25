@@ -17,6 +17,7 @@ import {
   checkPublishedSidecars,
   fetchAssets,
   fileInfo,
+  githubCli,
   packAssets,
   pruneArchives,
   publishAssets,
@@ -1330,17 +1331,6 @@ test('CI rejects staged bulk captures while allowing small summary previews', as
   );
 });
 
-test('asset restore never reads or downloads optional legacy review archives', async () => {
-  const published = await publishedFixture([['assets/test/model.glb', Buffer.from('model')]]);
-  const root = await fixture();
-  await writeFile(join(root, 'review-lock.json'), 'unavailable legacy review metadata');
-  const requests = [];
-  await fetchAssets({ root, fetchImpl: releaseServer(published.source, requests), log: quiet });
-  assert.equal(await readFile(join(root, 'assets/test/model.glb'), 'utf8'), 'model');
-  assert.ok(requests.length > 0);
-  assert.ok(requests.every((file) => file === 'asset-manifest.json' || file.endsWith('.tar.gz')));
-});
-
 function fakeGitHub(release, { existing, earlier = [] } = {}) {
   const uploaded = [];
   const commands = [];
@@ -1498,6 +1488,85 @@ test('publishes only what no earlier release holds, after checking that they sti
   // The next bundle packed here may list this one's archives.
   const published = join(second, '.artifacts/asset-packs/published', `${release}.json`);
   assert.equal(JSON.parse(await readFile(published, 'utf8')).release, release);
+});
+
+test('a bundle whose files are all published already packs and uploads no archive', async () => {
+  // A source record changed and no model did: the same GLBs under another name.
+  const path = 'content/worldgen/assets/places/c2/c23/tower/model.glb';
+  const first = await fixture();
+  await asset(first, path, Buffer.from('tower'));
+  const base = { ...(await installFixture(first)), source: first };
+  const { archives } = await packAssets({ root: first, log: quiet });
+  const second = await fixture({ source: '{"shape":"sphere"}' });
+  await asset(second, path, Buffer.from('tower'));
+  const { release } = await installFixture(second);
+  await knowsPublished(second, base);
+  const manifest = await packAssets({ root: second, log: quiet });
+  assert.deepEqual(
+    manifest.archives.map((a) => a.release),
+    [base.release],
+  );
+  const attachments = archives.map(({ file, size, sha256 }) => ({
+    name: file,
+    size,
+    digest: `sha256:${sha256}`,
+  }));
+  const github = fakeGitHub(release, {
+    earlier: [{ id: 7, draft: false, tag_name: base.release, attachments }],
+  });
+  const target = 'a'.repeat(40);
+  await publishAssets({ root: second, target, runGh: github.runGh, log: quiet });
+  assert.deepEqual(github.uploaded.map((a) => a.name).sort(), [
+    'ASSET-NOTICES.txt',
+    'asset-manifest.json',
+  ]);
+  const fresh = await fixture({ source: '{"shape":"sphere"}' });
+  await fetchAssets({
+    root: fresh,
+    fetchImpl: gitHubServer([
+      { ...base, published_at: on(1) },
+      { release, source: second, published_at: on(2) },
+    ]),
+    log: quiet,
+  });
+  assert.equal(await readFile(join(fresh, path), 'utf8'), 'tower');
+});
+
+test('GitHub losing sight of a draft, or being busy, costs a retry; other failures do not repeat', () => {
+  const failing = (stderr) => Object.assign(new Error('gh failed'), { stderr });
+  const attempt = (args, failures) => {
+    const calls = [];
+    const waits = [];
+    const gh = githubCli({
+      run: (given) => {
+        calls.push(given);
+        const stderr = failures[calls.length - 1];
+        if (stderr) throw failing(stderr);
+        return 'ok';
+      },
+      wait: (ms) => waits.push(ms),
+    });
+    let result;
+    try {
+      result = gh(args);
+    } catch (error) {
+      result = error.stderr;
+    }
+    return { result, calls, waits };
+  };
+  const upload = ['release', 'upload', 'assets-1', 'a.tar.gz', '--repo', 'o/r'];
+  const lost = attempt(upload, ['release not found\n', 'HTTP 502: Bad Gateway']);
+  assert.equal(lost.result, 'ok');
+  assert.deepEqual(lost.waits, [10_000, 20_000]);
+  // The first upload may have left a broken attachment behind.
+  assert.deepEqual(lost.calls, [upload, [...upload, '--clobber'], [...upload, '--clobber']]);
+  const edit = ['release', 'edit', 'assets-1', '--draft=false'];
+  assert.equal(attempt(edit, ['release not found']).calls.length, 2);
+  assert.equal(attempt(upload, Array(9).fill('release not found')).calls.length, 4);
+  // A missing release is an answer anywhere else, and nothing that creates is repeated.
+  assert.equal(attempt(['release', 'view', 'assets-1'], ['release not found']).calls.length, 1);
+  assert.equal(attempt(['api', '--method', 'POST', 'x'], ['HTTP 502']).calls.length, 1);
+  assert.equal(attempt(upload, ['HTTP 422: Validation Failed']).calls.length, 1);
 });
 
 test('a repacked bundle replaces the archives an interrupted publish left in its draft', async () => {
@@ -1748,8 +1817,6 @@ test('does not accept an environment whose dependency installation left pins mis
 
 test('a build stamps the inputs it started from, drops stale outputs and keeps local work', async () => {
   const root = await fixture();
-  // Source builds are independent of old review archives, even if their lock is unavailable.
-  await writeFile(join(root, 'review-lock.json'), 'unavailable legacy review metadata');
   // No jobs load packages in this fixture; satisfy the build preflight without compiling.
   for (const path of [
     'packages/schema/dist/index.mjs',

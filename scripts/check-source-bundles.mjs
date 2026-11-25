@@ -5,7 +5,6 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import { validate } from '../packages/schema/dist/index.mjs';
 import { checkTrackedReferenceMaterial, isReferenceMaterial } from './reference-material.mjs';
-import { readReferenceLock } from './reference-packs.mjs';
 import { checkTrackedReviewCaptures, isReviewCapture } from './review-captures.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -56,7 +55,7 @@ const requiredPaths = (manifest) => {
  * A required file that Git ignores and does not track passes here on the machine that made it and
  * is missing from every checkout, CI's included. Force-added files are tracked, so they pass.
  * GLBs are exempt: they are build outputs that `pnpm assets:fetch` restores. So is reference
- * material: reference-lock.json pins it and `pnpm references:fetch` restores it.
+ * material, which is scratch a machine may or may not have.
  */
 function checkIgnoredSources(root, bundles) {
   const fromRoot = (path) => relative(root, path).split(sep).join('/');
@@ -140,9 +139,6 @@ async function projectRoot(root, directory) {
 export async function checkSourceBundles({ root = ROOT, log = console.log } = {}) {
   checkTrackedReviewCaptures({ root, log });
   checkTrackedReferenceMaterial({ root, log });
-  const pinnedReferences = new Set(
-    (await readReferenceLock(root))?.files.map((file) => file.path) ?? [],
-  );
   const sourceManifests = [];
   for (const base of ['assets', 'content', 'examples', 'packages'])
     await discover(resolve(root, base), sourceManifests);
@@ -168,18 +164,13 @@ export async function checkSourceBundles({ root = ROOT, log = console.log } = {}
     for (const owned of requiredPaths(manifest)) {
       const path = resolve(directory, owned);
       const fromRoot = relative(root, path).split(sep).join('/');
-      // Reference material is outside Git: a pin stands for it wherever it was not fetched.
-      if (isReferenceMaterial(fromRoot) && !pinnedReferences.has(fromRoot)) {
-        await access(path).catch(() => {
-          throw new Error(`${manifestPath}: ${fromRoot} is neither on disk nor pinned.`);
-        });
-        throw new Error(
-          `${manifestPath}: ${fromRoot} is not pinned in reference-lock.json; run pnpm references:pack.`,
-        );
-      }
+      // A manifest may name the references it was made from; no checkout has to hold them.
       if (!isReferenceMaterial(fromRoot)) await access(path);
     }
-    const omitted = (await ownedFiles(directory)).filter((path) => !listed.has(path));
+    const local = relative(root, directory).split(sep).join('/');
+    const omitted = (await ownedFiles(directory)).filter(
+      (path) => !listed.has(path) && !isReferenceMaterial(`${local}/${path}`),
+    );
     if (omitted.length > 0) {
       throw new Error(`${manifestPath}: source files missing from manifest: ${omitted.join(', ')}`);
     }

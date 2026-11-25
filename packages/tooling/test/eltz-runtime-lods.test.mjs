@@ -3,7 +3,6 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
-import { sourceHash } from './fixtures/source-hash.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
@@ -123,7 +122,6 @@ it('reproduces original master and verifies signed map and retained ground', asy
   expect(grade.grid.heights.every(Number.isFinite)).toBe(true);
   expect(grade.datumMeters).toBe(140.498);
   expect(grade.workingCourtFloor).toBe(1.6368);
-  for (const r of grade.sources) expect(await sourceHash(`${source}/${r.file}`)).toBe(r.hash);
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.groundCutout).toBeUndefined();
   expect(spec.geographicProposal.terrainReference.modelHeight).toBe(0);

@@ -2,7 +2,6 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
-import { sourceHash } from './fixtures/source-hash.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
@@ -107,8 +106,6 @@ it('reproduces the untouched Malbork master and binds the signed frame and retai
     grade.checks[0].modelHeight,
     8,
   );
-  expect(await sourceHash(`${source}/${grade.sourceRaster}`)).toBe(grade.sourceRasterHash);
-  expect(await sourceHash(`${source}/${grade.surfaceRaster}`)).toBe(grade.surfaceRasterHash);
   expect(grade.grid.heights).toHaveLength(6660);
   expect(grade.grid.heights.every((v) => Number.isFinite(v) && v > 4 && v < 21)).toBe(true);
 });

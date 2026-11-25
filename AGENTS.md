@@ -167,10 +167,11 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
 - **Render evidence stays local.** Inspect current renders during model authoring, but keep bulk
   turntables, detail shots and medium-fi images in ignored `shots/`, `medium-fi/` or `.artifacts/`.
   Git keeps source inputs, concise hash/command/review reports and one or two small summary
-  previews per model. Source textures and heightmaps remain required inputs. Builds and CI do
-  not fetch review archives; `pnpm source:check` rejects tracked bulk captures. Normal model
-  batches do not update `review-lock.json` or publish screenshots. See the model review image
-  policy in [content/ASSET-PACKS.md](content/ASSET-PACKS.md).
+  previews per model. Source textures and heightmaps remain required inputs. Captures are
+  never archived or published; `pnpm source:check` rejects tracked ones. Reference photos, PDFs and
+  other research copies are scratch the same way: Git keeps each one's URL, date, license record and
+  the facts taken from it, never the copy. See the review image and reference policies in
+  [content/ASSET-PACKS.md](content/ASSET-PACKS.md).
 - **GLBs are build outputs, not Git content.** Generators in Git (listed in `asset-build.json`)
   write every GLB. The asset bundle is named after its inputs (`asset-build.json`, the generator
   scripts and their imports, masters and declared source data), never its outputs; there is no

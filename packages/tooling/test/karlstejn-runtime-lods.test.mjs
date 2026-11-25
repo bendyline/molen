@@ -3,7 +3,6 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
-import { sourceHash } from './fixtures/source-hash.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
@@ -126,7 +125,6 @@ it('reproduces the original master and retains signed fresh map and numeric terr
     grade.grid.heights[5100] - grade.datumMeters,
   );
   expect(spec.geographicProposal.groundModelY).toBe(0);
-  expect(await sourceHash(`${source}/grade-source.tif`)).toBe(grade.sourceRasterHash);
   expect(grade.grid.heights).toHaveLength(10201);
   expect(grade.datumMeters).toBe(300);
   expect(spec.actualBounds.max[1]).toBeCloseTo(grade.workingFloors[443238530] + 62, 3);

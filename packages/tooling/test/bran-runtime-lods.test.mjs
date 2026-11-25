@@ -3,7 +3,6 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
-import { sourceHash } from './fixtures/source-hash.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
@@ -124,7 +123,6 @@ it('preserves the original master, signed mapped identity and retained public he
   expect(grade.grid.heights.every(Number.isFinite)).toBe(true);
   expect(grade.datumMeters).toBe(764.9841);
   expect(grade.workingCourtFloor).toBe(3.849);
-  for (const r of grade.sources) expect(await sourceHash(`${source}/${r.file}`)).toBe(r.hash);
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.terrainReference.modelHeight).toBe(0);
   expect(spec.actualBounds.max[1]).toBeCloseTo(40.249, 3);

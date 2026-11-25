@@ -96,42 +96,33 @@ tests should validate geometry, source/runtime hashes, materials and budgets; re
 should generate the views they exercise. A small explicit golden fixture is a deliberate test
 asset, not an archive of every model review.
 
-The previously published archive and `review-lock.json` remain an **optional historical
-recovery** facility. `pnpm reviews:fetch --prefix content/worldgen/source/places/gc/` retrieves
-only the relevant archived captures. Neither `assets:fetch` nor `assets:build` fetches reviews.
-Normal model work does not update this lock, pack captures or publish a review release. New
-captures remain local; any separate archive publication requires the owner's explicit request.
+Captures are not archived anywhere: render them again when a review needs them.
 
 ### Reference material
 
-Research references stay out of Git too: reference photos and scans, plans, scanned books and
-other PDFs, and raw terrain downloads. That is every file with an extension under a
-`references/`, `reference-images/`, `reference-originals/` or `terrain-sources/` directory, except
-text records (JSON, Markdown, text, scripts, CSV, HTML, XML and the like), plus any PDF or TIFF
-under `content/`. [`scripts/reference-material.mjs`](../scripts/reference-material.mjs) defines
-the rule and the first block of `.gitignore` mirrors it. No generator reads these files (the asset
-build's job records show it), so they are not asset inputs, and an edit to one never names a new
-bundle. The text records beside them stay in Git.
+References are scratch. Read what a model needs, write down what you used, and let the files go: no
+checkout has to hold them, no build, test or `pnpm source:check` needs them, and nothing pins, archives
+or publishes them. (The Qualla authoring checks still read local copies of some documents.) Git ignores reference photos and scans, plans, scanned books and other PDFs, and raw terrain downloads:
+every file with an extension under a `references/`, `reference-images/`, `reference-originals/` or
+`terrain-sources/` directory, except text records (JSON, Markdown, text, scripts, CSV, HTML, XML and
+the like), any PDF or TIFF under `content/`, and the verbatim text of a document
+(`reference-rights/original-*.txt`), which is a copy of it like its PDF. A name that starts with a year
+(`original-1918-title-page.txt`) is a transcribed title page or credit of an old printed work, which is
+rights evidence and stays. [`scripts/reference-material.mjs`](../scripts/reference-material.mjs) defines
+the rule, the first block of `.gitignore` mirrors it, and `pnpm source:check` fails when one is tracked.
 
-`reference-lock.json` pins every file's size and SHA-256 and the release archive that holds it.
-Archives are plain tars grouped by place geohash2 cell. Packing is incremental: an archive whose
-files are unchanged keeps pointing at the release that already holds it, so a new place adds one
-small archive instead of re-uploading everything.
+Keep the record of each reference in Git, because it is what a later review or edit needs:
 
-```sh
-pnpm references:fetch --prefix content/worldgen/source/places/c2/c23/space_needle/  # restore
-pnpm references:pack     # after adding or changing references: pin them, pack new archives
-pnpm references:check    # every pinned file is on disk with its bytes, nothing unpinned
-pnpm references:publish --target <commit SHA>   # owner: upload the archives this lock added
-```
+- its URL, the date it was read, and an [archive.org](https://web.archive.org/save) copy of the page
+  where one can be made, so it can be read again if the original goes away;
+- what was taken from it: the dimensions, dates and identities a model relies on;
+- what its license said at the time, as a small JSON record under `reference-rights/`. Pages and licenses
+  change, so this is the part that cannot be recreated;
+- the data derived from it that generators read, such as terrain grids and map controls.
 
-`pnpm source:check` accepts a manifest document that is reference material when the lock pins it,
-whether or not it is on disk, and fails for a local reference that is not pinned yet (run
-`references:pack`) or for reference material tracked in Git. Fetching keeps local edits unless
-`--force`. Packing refuses to drop a pinned file that is merely missing from disk; restore it, or
-pass `--prune` when it was removed on purpose. Publishing checks that every older release the
-lock points at is published and never replaces an attachment outside a draft. It is an
-outward-facing upload, so it is the owner's step, like `reviews:publish`.
+A hash beside a source says which bytes were read. It is a note, not a promise to keep them. Being
+usable for research does not make a file ours to redistribute: never attach one to a release or
+commit it.
 
 ### Restore model assets
 
@@ -611,10 +602,4 @@ git ls-files -- '*.glb' | grep -v '^content/entities/source/vehicles/' | xargs g
 
 Removing them from the index does not remove old blobs from history.
 
-Reference material committed before it moved to `reference-lock.json` leaves the index the same
-way, once it is pinned and its archives are published. `pnpm references:untrack` refuses until
-every tracked file is pinned with its current bytes, then writes the list and prints the command:
-
-```sh
-git rm --cached --quiet --pathspec-from-file=.artifacts/reference-packs/untrack.txt
-```
+Reference material and review captures that were once committed or archived stay in history too.

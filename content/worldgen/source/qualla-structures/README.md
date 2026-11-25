@@ -115,6 +115,10 @@ generic public-domain label or an NPS-hosted third-party photograph is insuffici
 Ford's Theatre, Lorraine Motel and Anne Frank House demonstrate these checks.
 No reference image is embedded in these models.
 
+The verbatim text of a document read for its facts (a report, paper or specification) goes in
+`reference-rights/original-*.txt`. Git ignores it like the PDF it came from: record the facts, URL and
+date in the place's JSON. See [reference material](../../../ASSET-PACKS.md#reference-material).
+
 Run `node content/worldgen/source/qualla-structures/audit-imagery.mjs` to refresh
 [the imagery audit and replacement queue](batches/PUBLIC-DOMAIN-IMAGERY.json).
 Existing technical validation and public-domain reference validation are counted

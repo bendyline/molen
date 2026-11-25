@@ -22,7 +22,6 @@ const PACKAGE_PARTS = ['package.json', 'scripts', 'src', 'tsdown.config.ts'];
 const PATHS = [
   '.node-version',
   'pnpm-lock.yaml',
-  'reference-lock.json',
   'tsconfig.base.json',
   'content/earth',
   'content/worldgen',
