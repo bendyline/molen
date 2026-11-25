@@ -1,3 +1,14 @@
+## @bendyline/molen-kernel [0.0.14](https://github.com/bendyline/molen/compare/@bendyline/molen-kernel@0.0.13...@bendyline/molen-kernel@0.0.14) (2026-11-25)
+
+### Bug Fixes
+
+* Physics fixes ([ffdebd4](https://github.com/bendyline/molen/commit/ffdebd48beaa4ebb59c0de4b71d4d1161693820a))
+
+
+### Dependencies
+
+* **@bendyline/molen-schema:** upgraded to 0.0.13
+
 ## @bendyline/molen-kernel [0.0.13](https://github.com/bendyline/molen/compare/@bendyline/molen-kernel@0.0.12...@bendyline/molen-kernel@0.0.13) (2026-11-20)
 
 ### Bug Fixes

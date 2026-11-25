@@ -1,3 +1,19 @@
+## @bendyline/molen-worldgen [0.0.20](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen@0.0.19...@bendyline/molen-worldgen@0.0.20) (2026-11-25)
+
+### Bug Fixes
+
+* Content fix ([c5d0798](https://github.com/bendyline/molen/commit/c5d0798d70df2ccb6405aa97a02eee00639b2c6e))
+* Content updates and adds ([482df15](https://github.com/bendyline/molen/commit/482df15d34efaf468033e38c841a54e99e695b0c))
+* More assets ([dd0c98e](https://github.com/bendyline/molen/commit/dd0c98ed5fbcf9f8ce48b41dddb7dc931d22d0c6))
+
+
+### Dependencies
+
+* **@bendyline/molen-kernel:** upgraded to 0.0.14
+* **@bendyline/molen-materials:** upgraded to 0.0.14
+* **@bendyline/molen-schema:** upgraded to 0.0.13
+* **@bendyline/molen-client:** upgraded to 0.0.20
+
 ## @bendyline/molen-worldgen [0.0.18](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen@0.0.17...@bendyline/molen-worldgen@0.0.18) (2026-11-20)
 
 ### Bug Fixes

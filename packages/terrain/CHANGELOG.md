@@ -1,3 +1,18 @@
+## @bendyline/molen-terrain [0.0.21](https://github.com/bendyline/molen/compare/@bendyline/molen-terrain@0.0.20...@bendyline/molen-terrain@0.0.21) (2026-11-25)
+
+### Bug Fixes
+
+* Physics fixes ([ffdebd4](https://github.com/bendyline/molen/commit/ffdebd48beaa4ebb59c0de4b71d4d1161693820a))
+
+
+### Dependencies
+
+* **@bendyline/molen-materials:** upgraded to 0.0.14
+* **@bendyline/molen-pack:** upgraded to 0.0.14
+* **@bendyline/molen-schema:** upgraded to 0.0.13
+* **@bendyline/molen-client:** upgraded to 0.0.20
+* **@bendyline/molen-kernel:** upgraded to 0.0.14
+
 ## @bendyline/molen-terrain [0.0.19](https://github.com/bendyline/molen/compare/@bendyline/molen-terrain@0.0.18...@bendyline/molen-terrain@0.0.19) (2026-11-20)
 
 ### Bug Fixes

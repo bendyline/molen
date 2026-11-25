@@ -1,3 +1,25 @@
+## @bendyline/molen-earth [0.0.22](https://github.com/bendyline/molen/compare/@bendyline/molen-earth@0.0.21...@bendyline/molen-earth@0.0.22) (2026-11-25)
+
+### Bug Fixes
+
+* Content updates and adds ([482df15](https://github.com/bendyline/molen/commit/482df15d34efaf468033e38c841a54e99e695b0c))
+* Physics fixes ([ffdebd4](https://github.com/bendyline/molen/commit/ffdebd48beaa4ebb59c0de4b71d4d1161693820a))
+
+
+### Dependencies
+
+* **@bendyline/molen-ambient:** upgraded to 0.0.22
+* **@bendyline/molen-figures:** upgraded to 0.0.20
+* **@bendyline/molen-kernel:** upgraded to 0.0.14
+* **@bendyline/molen-materials:** upgraded to 0.0.14
+* **@bendyline/molen-pack:** upgraded to 0.0.14
+* **@bendyline/molen-schema:** upgraded to 0.0.13
+* **@bendyline/molen-terrain:** upgraded to 0.0.21
+* **@bendyline/molen-worldgen:** upgraded to 0.0.20
+* **@bendyline/molen-worldgen-earth:** upgraded to 0.0.21
+* **@bendyline/molen-dioramas:** upgraded to 0.0.13
+* **@bendyline/molen-client:** upgraded to 0.0.20
+
 ## @bendyline/molen-earth [0.0.20](https://github.com/bendyline/molen/compare/@bendyline/molen-earth@0.0.19...@bendyline/molen-earth@0.0.20) (2026-11-20)
 
 ### Bug Fixes

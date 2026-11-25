@@ -1,3 +1,9 @@
+## @bendyline/molen-schema [0.0.13](https://github.com/bendyline/molen/compare/@bendyline/molen-schema@0.0.12...@bendyline/molen-schema@0.0.13) (2026-11-25)
+
+### Bug Fixes
+
+* Physics fixes ([ffdebd4](https://github.com/bendyline/molen/commit/ffdebd48beaa4ebb59c0de4b71d4d1161693820a))
+
 ## @bendyline/molen-schema [0.0.12](https://github.com/bendyline/molen/compare/@bendyline/molen-schema@0.0.11...@bendyline/molen-schema@0.0.12) (2026-11-16)
 
 ### Bug Fixes
