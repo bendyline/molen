@@ -55,6 +55,7 @@ export {
   type TerrainGroundMaterial,
   type TerrainGroundMaterialOptions,
   type TerrainPavementMaterialOptions,
+  terrainGroundTurfColor,
 } from './ground-material';
 export type { TerrainLandcoverRasterOptions } from './landcover-raster';
 export {
@@ -207,6 +208,7 @@ export {
   type TerrainWaterFeatureStyle,
   type TerrainWaterMaterial,
   type TerrainWaterMaterialOptions,
+  terrainLandcoverColor,
   terrainWaterSurfaceHeight,
 } from './semantic-client';
 export {

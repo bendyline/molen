@@ -155,7 +155,7 @@ Automatic matching of map features to dioramas is a future host policy, not sile
 
 The Boeing Field flight-school and cargo placements reserve their footprints in the airport layout.
 Their crews, carts and forklift stay in these small service areas. Aircraft are separate entities
-in the host's flight world: walking up to one and pressing E boards it, and flying it away leaves
+in the host's flight world: walking up to one and pressing R boards it, and flying it away leaves
 its stand empty. The ground scenes contain no decorative aircraft. Other useful airport scenes
 include passenger turnaround, hangar maintenance, fuel service and a fire/rescue station; author
 their service areas with the same clearance from taxiways and parked airframes.

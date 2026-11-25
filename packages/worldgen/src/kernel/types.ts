@@ -111,6 +111,59 @@ export interface NearPlacements {
   start: Uint32Array;
 }
 
+/** A sward: the low grass a host stands as tufts on one kind of ground (see `TurfCover`). */
+export interface TurfSward {
+  /** Opaque ground label a host colors the tufts by: the appearance of the ground they stand on. */
+  label: string;
+  /** Typical height of a tuft, meters. */
+  height: number;
+  /** Tufts per square meter where every one stands. */
+  density: number;
+}
+
+/**
+ * Where grass grows over a batch, for a host to stand tufts on around its camera only
+ * (`createTurf` in the client half). A lawn or a meadow holds a tuft or two a square meter, a
+ * few hundred thousand a batch, so the batch keeps no placements for them: it keeps this mask of
+ * the ground they grow on, clear of roads, buildings and water, and the host places the tufts
+ * within reach of the camera from it. Rows run along x from `originZ`; each is stored as runs of
+ * one sward.
+ */
+export interface TurfCover {
+  swards: TurfSward[];
+  /** Cell edge, local meters. */
+  cell: number;
+  /** Local corner of cell (0, 0), and the cells across and down from it. */
+  originX: number;
+  originZ: number;
+  columns: number;
+  rows: number;
+  /** Row `r`'s runs are `[rowStart[r], rowStart[r + 1])`: `rows + 1` offsets. */
+  rowStart: Uint32Array;
+  /** Each run's sward: 0 for none, else 1 + its index in `swards`. */
+  runSward: Uint8Array;
+  /** The column each run ends before; a row's last run ends at `columns`. */
+  runEnd: Uint16Array;
+}
+
+/** What a batch's turf cover is drawn from (see `ScatterRequest.turf`). */
+export interface TurfRequest {
+  swards: TurfSward[];
+  /**
+   * The ground's own polygons in the order it paints them, later over earlier, each with the
+   * sward it grows (an index into `swards`) or none. Apart from `ScatterRequest.polygons`: those
+   * are what scatter rules match, in their own order and with polygons the ground never draws.
+   */
+  ground: Array<{ ring: Vec2[]; holes?: Vec2[][]; sward?: number }>;
+  /**
+   * What no grass grows on, whatever the ground under it: paving, buildings, water. Each is
+   * cleared with its own `radius` round it (`kind` is not read). Apart from the request's
+   * `exclusions`, whose clearances are the scatter rules': a tree keeps meters from a road, and
+   * grass grows to the edge of its paving.
+   */
+  clear: ScatterExclusion[];
+}
+
 export interface BuildingAppearance {
   wall?: string;
   trim?: string;
@@ -291,6 +344,11 @@ export interface ScatterRequest {
   frame: ScatterFrame;
   /** Detail keep fraction in (0, 1]; smaller values yield nested subsets. */
   keep: number;
+  /**
+   * The grass the ground grows, for `WorldgenBatchOutput.turf`. Omitted, or with a batch whose
+   * `maxTurfCells` is zero, no turf cover is made.
+   */
+  turf?: TurfRequest;
 }
 
 export interface WorldgenBudgets {
@@ -337,6 +395,11 @@ export interface WorldgenBudgets {
    * hold; past it, a uniform subset by acceptance draw stays.
    */
   maxNearInstances?: number;
+  /**
+   * Cells the batch's turf cover (`WorldgenBatchOutput.turf`) may hold: its cells are a meter
+   * across, or wider where the batch is too large to fit. Omitted or zero, no cover is made.
+   */
+  maxTurfCells?: number;
   maxMaterialGroups: number;
 }
 
@@ -369,6 +432,8 @@ export interface WorldgenStats {
   placementsByModel: Record<string, number>;
   /** Plants in `WorldgenBatchOutput.near`, which `placementsByModel` does not count. */
   nearPlacements: number;
+  /** Square meters of `WorldgenBatchOutput.turf` that grow grass; 0 without a cover. */
+  turfArea: number;
   styles: Record<string, number>;
   footprintKinds: Record<string, number>;
   roofs: Record<string, number>;
@@ -395,6 +460,7 @@ export function emptyWorldgenStats(): WorldgenStats {
     instanceBytes: 0,
     placementsByModel: {},
     nearPlacements: 0,
+    turfArea: 0,
     styles: {},
     footprintKinds: {},
     roofs: {},

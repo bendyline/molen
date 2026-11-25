@@ -1331,6 +1331,116 @@ describe('worldgen human-feature tile orchestration', () => {
     models.dispose();
   });
 
+  it("queues a tile's prop sets for the frame together, not each after the last has had its turn", async () => {
+    const sets = 6;
+    const models = new ModelLibrary(async () =>
+      new THREE.Group().add(
+        new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial()),
+      ),
+    );
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      models,
+      roads: { renderTransportation: false },
+      generator: {
+        generate: async () => ({
+          ...output(),
+          placements: Array.from({ length: sets }, (_, index) => ({
+            setId: `set-${index}`,
+            modelRef: 'test:cube',
+            count: 1,
+            data: new Float32Array([10 + index, 0, 10, 0, 1, 1, 1, 1, 1, 1]),
+          })),
+        }),
+        dispose() {},
+      },
+    });
+    // A frame queue that holds prop jobs until told to run them: what stands queued then is what
+    // one frame could take. Queued one at a time, a town tile's thirty sets took thirty turns.
+    const held: Array<() => void> = [];
+    const admission = {
+      run<T>(task: () => T, options?: { label?: string }): Promise<T> {
+        return new Promise<T>((resolve, reject) => {
+          const go = (): void => {
+            try {
+              resolve(task());
+            } catch (error) {
+              reject(error);
+            }
+          };
+          if (options?.label === 'prop-assembly') held.push(go);
+          else go();
+        });
+      },
+    };
+    const ctx = { ...context(new AbortController().signal), admission };
+    const tile = renderers.humanFeatures.createTile(createEmptyTerrainSemanticTile(), ctx);
+    await vi.waitFor(() => expect(held).toHaveLength(sets));
+    for (const go of held) go();
+    const root = await tile;
+    if (!root) throw new Error('Missing prop tile');
+    // Each set drawn, in the order the tile lists them.
+    const names: string[] = [];
+    root.traverse((object) => {
+      const match = /:(set-\d+)$/.exec(object.name);
+      if (match?.[1] !== undefined && !names.includes(match[1])) names.push(match[1]);
+    });
+    expect(names).toEqual(Array.from({ length: sets }, (_, index) => `set-${index}`));
+    renderers.humanFeatures.disposeTile?.(root);
+    renderers.dispose();
+    models.dispose();
+  });
+
+  it("returns what a tile's prop sets built when the tile is given up while they wait", async () => {
+    const models = new ModelLibrary(async () =>
+      new THREE.Group().add(
+        new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial()),
+      ),
+    );
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      models,
+      roads: { renderTransportation: false },
+      generator: {
+        generate: async () => ({
+          ...output(),
+          placements: Array.from({ length: 3 }, (_, index) => ({
+            setId: `set-${index}`,
+            modelRef: 'test:cube',
+            count: 1,
+            data: new Float32Array([10 + index, 0, 10, 0, 1, 1, 1, 1, 1, 1]),
+          })),
+        }),
+        dispose() {},
+      },
+    });
+    const controller = new AbortController();
+    // As the frame queue does: a job whose tile is given up while it waits is refused.
+    const held: Array<{ go: () => void; refuse: () => void }> = [];
+    const admission = {
+      run<T>(task: () => T, options?: { label?: string }): Promise<T> {
+        return new Promise<T>((resolve, reject) => {
+          const go = (): void => resolve(task());
+          if (options?.label !== 'prop-assembly') return go();
+          held.push({ go, refuse: () => reject(new DOMException('cancelled', 'AbortError')) });
+        });
+      },
+    };
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const tile = renderers.humanFeatures.createTile(createEmptyTerrainSemanticTile(), {
+      ...context(controller.signal),
+      admission,
+    });
+    await vi.waitFor(() => expect(held).toHaveLength(3));
+    held[0]?.go();
+    controller.abort();
+    for (const job of held.slice(1)) job.refuse();
+    // Given up: nothing to show, nothing said about the sets that were refused, nothing left over.
+    await expect(tile).resolves.toBeUndefined();
+    expect(warn).not.toHaveBeenCalled();
+    warn.mockRestore();
+    renderers.dispose();
+    models.dispose();
+  });
+
   it('upgrades resident buildings in place without replacing roads, and cancels superseded work', async () => {
     const f = fixture();
     f.roads.resolve(f.group);

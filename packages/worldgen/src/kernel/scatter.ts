@@ -27,6 +27,7 @@ import {
   sampleRange,
   unit01,
 } from './seed';
+import { sampleTurfCover } from './turf';
 import {
   type HeightSampler,
   type NearPlacements,
@@ -34,6 +35,7 @@ import {
   type PlacementSet,
   type ScatterExclusion,
   type ScatterRequest,
+  type TurfCover,
   type WorldgenProgress,
 } from './types';
 
@@ -81,6 +83,8 @@ export interface ScatterBudget {
    * (default: every one). Past it the lowest acceptance draws stay.
    */
   maxNearInstances?: number;
+  /** Cells the request's turf cover may hold (`ScatterSample.turf`); omitted or zero, none. */
+  maxTurfCells?: number;
 }
 
 export interface ScatterSampleInput {
@@ -307,6 +311,12 @@ export interface ScatterSample {
    * (see `NearPlacements`). Absent when no `crowns` rule placed one.
    */
   near?: NearPlacements;
+  /**
+   * Where the request's ground grows grass (`ScatterRequest.turf`), for a host to stand tufts on
+   * round its camera (see `TurfCover`). Absent without a request for it, without room for it in
+   * the budget (`maxTurfCells`), or where none grows. No rule places it and no pool bounds it.
+   */
+  turf?: TurfCover;
 }
 
 /** Edge of a `NearPlacements` cell in local meters: a camera's reach spans a few dozen of them. */
@@ -317,7 +327,10 @@ export function* sampleScatterSteps(
   input: ScatterSampleInput,
 ): Generator<WorldgenProgress, ScatterSample, void> {
   const { request, doc, ground } = input;
-  if (request.polygons.length === 0) return { placements: [] };
+  // The ground's grass is no rule's and no pool's: a request whose pools are all closed has it too.
+  const turf = sampleTurfCover(request, input.budget.maxTurfCells ?? 0, input.crowns?.open);
+  const grown = turf !== undefined ? { turf } : {};
+  if (request.polygons.length === 0) return { placements: [], ...grown };
   const groundCoverInstances = input.budget.maxGroundCoverInstances ?? 0;
   const groundCoverModels = input.budget.maxGroundCoverModels ?? 0;
   const canopyOpen = input.budget.maxInstances > 0 && input.budget.maxPropModels > 0;
@@ -332,7 +345,7 @@ export function* sampleScatterSteps(
   const gardenModels = input.budget.maxGardenModels ?? 0;
   const gardenOpen = gardenInstances > 0 && gardenModels > 0;
   if (!canopyOpen && !groundOpen && !understoryOpen && !agricultureOpen && !gardenOpen)
-    return { placements: [] };
+    return { placements: [], ...grown };
   const bounds = request.emitBounds;
   const rasterCell = rasterCellFor(bounds);
   const labels = buildLabelRaster(request, rasterCell);
@@ -864,8 +877,8 @@ export function* sampleScatterSteps(
   }
   const crowned = near.result();
   return crowned.length > 0
-    ? { placements: sets, near: nearPlacements(crowned, bounds) }
-    : { placements: sets };
+    ? { placements: sets, near: nearPlacements(crowned, bounds), ...grown }
+    : { placements: sets, ...grown };
 }
 
 /** One candidate as `PLACEMENT_STRIDE` floats at `offset`. */

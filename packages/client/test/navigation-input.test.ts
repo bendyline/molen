@@ -188,7 +188,7 @@ describe('navigation input source', () => {
   it('discards queued actions on blur, suspension and profile changes', () => {
     const surface = new FakeSurface();
     const source = new NavigationInputSource({ element: surface, profile: 'walk' });
-    surface.emit('keydown', { code: 'KeyE' });
+    surface.emit('keydown', { code: 'KeyR' });
     source.setProfile('drive');
     expect(source.read(0).interact).toBe(0);
     surface.emit('keydown', { code: 'KeyV' });
@@ -236,9 +236,9 @@ describe('navigation input source', () => {
       gamepadLookSpeed: 100,
     });
     surface.emit('keydown', { code: 'KeyW' });
-    surface.emit('keydown', { code: 'KeyE' });
-    surface.emit('keyup', { code: 'KeyE' });
-    surface.emit('keydown', { code: 'KeyE' });
+    surface.emit('keydown', { code: 'KeyR' });
+    surface.emit('keyup', { code: 'KeyR' });
+    surface.emit('keydown', { code: 'KeyR' });
     surface.emit('pointerdown', pointer(1, 0, 0));
     surface.emit('pointermove', pointer(1, 10, 0));
     const frame = source.read(0.5);
@@ -251,7 +251,7 @@ describe('navigation input source', () => {
     expect(surface.count()).toBe(0);
   });
 
-  it('switches bindings per mode: E climbs in flight but interacts on foot', () => {
+  it('switches bindings per mode: E climbs in the free camera and sidesteps on foot, where R interacts', () => {
     const surface = new FakeSurface();
     const source = new NavigationInputSource({ element: surface, profile: 'fly' });
     surface.emit('keydown', { code: 'KeyE' });
@@ -259,9 +259,15 @@ describe('navigation input source', () => {
     surface.emit('keyup', { code: 'KeyE' });
     source.setProfile('walk');
     surface.emit('keydown', { code: 'KeyE' });
+    surface.emit('keydown', { code: 'KeyR' });
     const walking = source.read(0);
     expect(walking.move.up).toBe(0);
+    expect(walking.move.right).toBe(1);
     expect(walking.interact).toBe(1);
+    surface.emit('keyup', { code: 'KeyE' });
+    surface.emit('keyup', { code: 'KeyR' });
+    surface.emit('keydown', { code: 'KeyQ' });
+    expect(source.read(0).move.right).toBe(-1);
     expect(Object.keys(navigationInputProfiles())).toEqual([
       'orbit',
       'fly',
@@ -269,27 +275,52 @@ describe('navigation input source', () => {
       'drive',
       'pilot',
     ]);
+    source.dispose();
+  });
+
+  it('leans a rider with Q/E in a vehicle only, apart from the steering', () => {
+    const surface = new FakeSurface();
+    const source = new NavigationInputSource({ element: surface, profile: 'drive' });
+    expect(source.read(0).lean).toBeUndefined();
+    surface.emit('keydown', { code: 'KeyE' });
+    const riding = source.read(0);
+    expect(riding.lean).toBe(1);
+    expect(riding.move.right).toBe(0);
+    surface.emit('keyup', { code: 'KeyE' });
+    surface.emit('keydown', { code: 'KeyQ' });
+    expect(source.read(0).lean).toBe(-1);
+    surface.emit('keyup', { code: 'KeyQ' });
+    source.setProfile('walk');
+    surface.emit('keydown', { code: 'KeyQ' });
+    expect(source.read(0).lean).toBeUndefined();
+    source.dispose();
   });
 
   it('reads flight controls only in the pilot profile, with edge-triggered switches', () => {
     const surface = new FakeSurface();
     const source = new NavigationInputSource({ element: surface, profile: 'drive' });
-    surface.emit('keydown', { code: 'KeyR' });
+    surface.emit('keydown', { code: 'Backspace' });
     expect(source.read(0).recover).toBe(1);
     expect(source.read(0).recover).toBeUndefined();
+    surface.emit('keyup', { code: 'Backspace' });
+    // R leaves the vehicle; it repaired one before the exit key moved to it.
+    surface.emit('keydown', { code: 'KeyR' });
+    const leaving = source.read(0);
+    expect(leaving.interact).toBe(1);
+    expect(leaving.recover).toBeUndefined();
     surface.emit('keyup', { code: 'KeyR' });
     surface.emit('keydown', { code: 'KeyG' });
     expect(source.read(0).pilot).toBeUndefined();
     surface.emit('keyup', { code: 'KeyG' });
     source.setProfile('pilot');
-    for (const code of ['KeyS', 'KeyD', 'KeyZ', 'Equal']) surface.emit('keydown', { code });
+    for (const code of ['KeyS', 'KeyD', 'KeyQ', 'KeyC']) surface.emit('keydown', { code });
     surface.emit('keydown', { code: 'KeyG' });
     surface.emit('keyup', { code: 'KeyG' });
     surface.emit('keydown', { code: 'KeyI' });
     surface.emit('keydown', { code: 'KeyJ' });
     surface.emit('keydown', { code: 'KeyM' });
     const frame = source.read(0);
-    // S pulls the nose up (pitch = -forward), D banks right, Z is left rudder.
+    // S pulls the nose up (pitch = -forward), D banks right, Q is left rudder, C adds power.
     expect(frame.move.forward).toBe(-1);
     expect(frame.move.right).toBe(1);
     expect(frame.pilot).toEqual({
@@ -354,20 +385,35 @@ describe('navigation input source', () => {
     source.dispose();
   });
 
-  it('sets pilot power with = and - and leaves Ctrl chords to the browser', () => {
+  it('sets pilot power with Z/C or −/= and leaves Ctrl chords to the browser and the host', () => {
     const surface = new FakeSurface();
     const source = new NavigationInputSource({ element: surface, profile: 'pilot' });
-    surface.emit('keydown', { code: 'Equal' });
-    expect(source.read(0).pilot?.throttle).toBe(1);
-    surface.emit('keyup', { code: 'Equal' });
-    surface.emit('keydown', { code: 'Minus' });
-    expect(source.read(0).pilot?.throttle).toBe(-1);
-    surface.emit('keyup', { code: 'Minus' });
+    for (const [code, throttle] of [
+      ['KeyC', 1],
+      ['KeyZ', -1],
+      ['Equal', 1],
+      ['Minus', -1],
+    ] as const) {
+      surface.emit('keydown', { code });
+      expect(source.read(0).pilot?.throttle).toBe(throttle);
+      surface.emit('keyup', { code });
+    }
+    // Rudder is on Q/E, not on the power keys.
+    surface.emit('keydown', { code: 'KeyE' });
+    expect(source.read(0).pilot).toMatchObject({ yaw: 1, throttle: 0 });
+    surface.emit('keyup', { code: 'KeyE' });
     surface.emit('keydown', { code: 'ControlLeft', ctrlKey: true });
     expect(source.read(0).pilot?.throttle).toBe(0);
     // Ctrl+W closes the tab, so it must not also read as nose-down.
     surface.emit('keydown', { code: 'KeyW', ctrlKey: true });
     expect(source.read(0).move.forward).toBe(0);
+    // Ctrl+R is a host's to use (the World Explorer ejects on it): it is not the exit key.
+    surface.emit('keydown', { code: 'KeyR', ctrlKey: true });
+    expect(source.read(0).interact).toBe(0);
+    surface.emit('keyup', { code: 'KeyR' });
+    surface.emit('keyup', { code: 'ControlLeft' });
+    surface.emit('keydown', { code: 'KeyR' });
+    expect(source.read(0).interact).toBe(1);
     source.dispose();
   });
 });

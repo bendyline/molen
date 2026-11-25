@@ -191,6 +191,47 @@ Limits: hedge runs are placed like any other plant, at a random bearing, and do 
 line or a fence. Blossom on shrubs and beds does not follow the month. Planting follows mapped
 land use, so a yard mapped as nothing in particular gets verge grass, not a garden.
 
+### Tufts of grass
+
+Grass is not a scatter rule. A lawn or a meadow is two tufts a square meter, a few hundred
+thousand a tile, and a camera sees the few thousand within some tens of meters. So a tile holds
+no placements for them. Its finest level carries a turf cover (`WorldgenBatchOutput.turf`): a
+mask of where its ground grows grass and which sward, a meter a cell, stored as runs (about
+10 KB for an airfield, 70 KB for a dense suburb). The host stands tufts from it around the camera.
+
+The Earth binding decides what grows grass from what the ground is painted as:
+
+| Ground | Sward |
+| --- | --- |
+| `grass`, `park`, `garden`, `cemetery` | Mown turf, 15 cm |
+| `aerodrome` | Airfield grass, 26 cm |
+| `meadow`, `grassland` | Standing grass, 50 cm |
+| `orchard`, `wetland` | Rough grass and marsh tussocks |
+| `open_ground`, `residential`, `scrub`, `heath` | Grass only where the region paints them green |
+
+The last row is the palette's call: unmapped land is a verge in a temperate town and sand in a
+desert, so those classes grow grass when the habitat's `surface.colors` lead in green. Courts,
+greens, fairways, crops and woodland floor grow none. Grass stops at the edge of what is paved:
+a street's sidewalk, a runway, a house's wall, water, and ground the land cover paves over as
+built-up.
+
+`createTurf` (from `@bendyline/molen-worldgen/client`) makes a `THREE.LOD` that a renderer hands
+the view camera each frame. Every tuft within 28 m stands, they thin out to 68 m, and each
+shrinks over its last 8 m, so the sward frays into the ground's own texture. A tuft's place,
+size and tone come from its position alone, on a lattice anchored in the world, so the same
+tufts stand whenever a camera returns. Each takes the color of the ground under it, darker at
+the root and paler at the tip. Tufts draw at three levels: 22 narrow bent blades within 9 m, 14
+straight ones to 26 m, and 7 broad ones beyond. Short grass reaches less far than tall grass.
+They cast no shadows and take no part in walk collision.
+
+The Earth view does this for each finest tile at Balanced and High quality. The worldgen
+renderers' `turf` option sets the distances and a density multiplier, or `false` turns it off;
+Balanced draws about a third of High's triangles, and Economy draws none.
+
+Limits: tufts do not move with the wind. The mask is as fine as its cells, so grass can stop a
+meter short of a curb. A sward's color is its land class's, without the ground's dry and lush
+patches. A landmark model with no mapped footprint can have tufts standing through its floor.
+
 ### Shrubs on painted crowns
 
 Dry ground paints its own shrubs. A scatter document's `surface.detail` gives each land class a

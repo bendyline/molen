@@ -33,6 +33,8 @@ export const NAVIGATION_ACTIONS: {
   readonly power: 'nav-power';
   readonly yawLeft: 'nav-yaw-left';
   readonly yawRight: 'nav-yaw-right';
+  readonly leanLeft: 'nav-lean-left';
+  readonly leanRight: 'nav-lean-right';
   readonly engine: 'nav-engine';
   readonly gear: 'nav-gear';
   readonly flaps: 'nav-flaps';
@@ -60,6 +62,8 @@ export const NAVIGATION_ACTIONS: {
   power: 'nav-power',
   yawLeft: 'nav-yaw-left',
   yawRight: 'nav-yaw-right',
+  leanLeft: 'nav-lean-left',
+  leanRight: 'nav-lean-right',
   engine: 'nav-engine',
   gear: 'nav-gear',
   flaps: 'nav-flaps',
@@ -113,14 +117,17 @@ const STICKS: NonNullable<InputProfile['axes']> = [
 ];
 
 /**
- * Default key/gamepad bindings per navigation mode. Orbit and fly use Q/E for down/up; walk and
- * drive use E to interact (board or leave a vehicle), Space to jump or brake, Shift to sprint
- * or pull the handbrake, and V to switch the vehicle view. Pilot flies an aircraft: W/S (or ↑/↓) pitch the nose down/up, A/D (or ←/→)
- * bank, Z/C work the rudder or pedals, =/− (or numpad +/−, Page Up/Down) set throttle or
- * collective, and Ctrl stays free for browser shortcuts such as Ctrl+W. I toggles the engine, G
- * the gear, F the flaps, M a helicopter's cyclic between assisted and direct, R recovers after
- * an impact, Space brakes, V switches the view and E leaves. T toggles travel boost in walk, drive and pilot. Hosts may replace any profile through
- * `InputMap.defineProfile`.
+ * Default key/gamepad bindings per navigation mode. Orbit and fly use Q/E for down/up. Walk and
+ * drive use R to interact (board or leave a vehicle), Space to jump or brake, Shift to sprint
+ * or pull the handbrake, and V to switch the vehicle view; on foot Q/E step sideways as A/D do
+ * (and F interacts too), and in a vehicle Q/E lean the rider of a cycle and Backspace recovers
+ * a stopped vehicle. Pilot flies an aircraft: W/S (or ↑/↓) pitch the nose down/up, A/D (or ←/→)
+ * bank, Q/E work the rudder or pedals, Z/C (or −/=, numpad −/+, Page Down/Up) lower and raise
+ * throttle or collective, and Ctrl stays free for browser shortcuts such as Ctrl+W and for a
+ * host's own chords. I toggles the engine, G the gear, F the flaps, M a helicopter's cyclic
+ * between assisted and direct, Backspace recovers after an impact, Space brakes, V switches
+ * the view and R leaves. T toggles travel boost in walk, drive and pilot. Hosts may replace
+ * any profile through `InputMap.defineProfile`.
  */
 export function navigationInputProfiles(): Record<NavigationProfileName, InputProfile> {
   const aerial: InputProfile = {
@@ -136,7 +143,7 @@ export function navigationInputProfiles(): Record<NavigationProfileName, InputPr
     bindings: {
       ...MOVE_KEYS,
       Space: A.jump,
-      KeyE: A.interact,
+      KeyR: A.interact,
       KeyF: A.interact,
       KeyV: A.view,
       KeyT: A.boost,
@@ -160,16 +167,18 @@ export function navigationInputProfiles(): Record<NavigationProfileName, InputPr
       ArrowLeft: A.left,
       KeyD: A.right,
       ArrowRight: A.right,
-      KeyZ: A.yawLeft,
-      KeyC: A.yawRight,
+      KeyQ: A.yawLeft,
+      KeyE: A.yawRight,
+      KeyC: A.throttleUp,
       Equal: A.throttleUp,
       NumpadAdd: A.throttleUp,
       PageUp: A.throttleUp,
+      KeyZ: A.throttleDown,
       Minus: A.throttleDown,
       NumpadSubtract: A.throttleDown,
       PageDown: A.throttleDown,
       Space: A.jump,
-      KeyE: A.interact,
+      KeyR: A.interact,
       KeyV: A.view,
       KeyT: A.boost,
       KeyI: A.engine,
@@ -177,7 +186,7 @@ export function navigationInputProfiles(): Record<NavigationProfileName, InputPr
       KeyF: A.flaps,
       KeyJ: A.vector,
       KeyM: A.cyclic,
-      KeyR: A.recover,
+      Backspace: A.recover,
     },
     axes: STICKS,
     buttons: [
@@ -194,8 +203,17 @@ export function navigationInputProfiles(): Record<NavigationProfileName, InputPr
   return {
     orbit: aerial,
     fly: aerial,
-    walk: ground,
-    drive: { ...ground, bindings: { ...ground.bindings, ...ACTUATOR_BINDINGS, KeyR: A.recover } },
+    walk: { ...ground, bindings: { ...ground.bindings, KeyQ: A.left, KeyE: A.right } },
+    drive: {
+      ...ground,
+      bindings: {
+        ...ground.bindings,
+        ...ACTUATOR_BINDINGS,
+        KeyQ: A.leanLeft,
+        KeyE: A.leanRight,
+        Backspace: A.recover,
+      },
+    },
     pilot,
   };
 }
@@ -221,8 +239,13 @@ export interface PilotInput {
 
 /** Everything a navigation controller reads in one frame. */
 export interface NavigationInput {
-  /** Repair presses in the drive profile (R); the host requires a stopped vehicle. */
+  /** Repair presses in the drive profile (Backspace); the host requires a stopped vehicle. */
   recover?: number;
+  /**
+   * Held rider lean in the drive profile (Q/E), -1..1 (right positive), present while held.
+   * It is for ridden machines (a cycle, a board); hosts ignore it in a car.
+   */
+  lean?: number;
   /** Edge-triggered model mechanism toggles; unsupported mechanisms are ignored by hosts. */
   actuators?: Record<string, number>;
   /** Movement intent, each -1..1 (forward, right, up). */
@@ -384,6 +407,7 @@ export class NavigationInputSource {
     const gestures: NavigationGestures = this.pointer.consume();
     const stickX = v(A.lookRight) - v(A.lookLeft);
     const stickY = v(A.lookDown) - v(A.lookUp);
+    const lean = this.profile === 'drive' ? v(A.leanRight) - v(A.leanLeft) : 0;
     const input: NavigationInput = {
       move: {
         forward: v(A.forward) - v(A.back),
@@ -409,6 +433,7 @@ export class NavigationInputSource {
       ...(this.profile === 'drive' && this.pilotPresses.recover > 0
         ? { recover: this.pilotPresses.recover }
         : {}),
+      ...(lean !== 0 ? { lean } : {}),
       ...(this.profile === 'pilot'
         ? {
             pilot: {

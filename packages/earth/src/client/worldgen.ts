@@ -37,6 +37,7 @@ import {
   type StructureStreamingView,
   structureStreamingBudget,
   structureStreamingMobile,
+  type TurfOptions,
 } from '@bendyline/molen-worldgen/client';
 import {
   createRegionResolver,
@@ -183,6 +184,12 @@ export interface CreateEarthWorldgenOptions {
   buildingDecorator?: BuildingMaterialDecorator;
   /** Distance LOD for street props and landmarks (default true). */
   propLod?: boolean;
+  /**
+   * Tufts of grass stood around the camera on lawns, meadows, verges and airfields at Balanced
+   * and High quality (default on): how far they reach and how thick (`TurfOptions` of
+   * `@bendyline/molen-worldgen/client`), or `false` for none.
+   */
+  turf?: TurfOptions | false;
   /** Per-tile generation telemetry. */
   onTileStats?: (output: WorldgenTileOutput, elapsedMs: number) => void;
   /** Milliseconds each material bake took in a worker. */
@@ -461,6 +468,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
         : false,
     ...(options.viewerFocus === false ? { viewerFocus: false } : {}),
     propLod: options.propLod ?? true,
+    ...(options.turf !== undefined ? { turf: options.turf } : {}),
     ...(options.landcoverColors !== undefined ||
     options.groundMaterial !== undefined ||
     options.farLandcover !== undefined

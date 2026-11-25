@@ -335,8 +335,12 @@ Performance defaults to **Auto (device)**: one of six tiers, guessed once from w
 reports and kept for the session, controlling render resolution, terrain refinement/range,
 concurrency, cache sizes, vegetation/building LOD, and surface decorations. Auto gives a tier up
 when frames run under 30 a second for ten seconds, content outgrows the memory budget, or
-streaming cannot keep up, and brings it back toward the guess (never past it) once the view has
-been calm for about a minute; a tier that fails to hold again waits twice as long. Choosing Auto
+streaming cannot keep up (ground rebuilt soon after its eviction while the ground near the camera
+falls behind), and brings it back toward the guess (never past it) once the view has
+been calm for about a minute; a tier that fails to hold again waits twice as long. Slow frames
+lower how the view is drawn first (resolution, shadows, clouds, model hand-over), for two steps,
+and leave the streamed world as built; the panel then reads "Auto · Balanced · drawn at Low".
+Only memory, streaming strain, or frames still slow after those steps lower the world. Choosing Auto
 again makes the guess afresh. Manual presets
 switch live without moving the camera. Object detail follows projected screen size with hysteresis; buildings retain their roof
 and wall shapes while distant materials and facade details simplify. Spatial cells improve
@@ -380,17 +384,18 @@ open. Details use a separate renderer. Download model sheet explicitly generates
 previews; a failed preview leaves its named card and detail controls available.
 
 Press P on foot for a personal ride: a skateboard, an electric skateboard or a shared electric kick
-scooter, set down a step ahead and boarded. Each press brings the next one; E steps off. Standing
+scooter, set down a step ahead and boarded. Each press brings the next one; R steps off, and Q/E
+lean a ridden machine as A/D do. Standing
 on lying snow the bag holds skis, a snowboard and a snowmobile instead: point the skis downhill
-and they slide, A/D carve, S or Space stops on the edges. `?ride=skis` (or `snowboard`,
+and they slide, A/D or Q/E carve, S or Space stops on the edges. `?ride=skis` (or `snowboard`,
 `snowmobile`, `skateboard`…) with `navigation=walk` starts on one, so
 `?lat=46.822&lon=-121.728&yaw=1.57&navigation=walk&ride=skis&mode=human` opens on the Muir
 Snowfield of Mount Rainier, skis pointed down it. In regions
 whose fleet has them (South and Southeast Asia, Taiwan, China, parts of Africa and Europe),
-parked motorcycles, scooters, mopeds and auto-rickshaws can be boarded with E like parked cars.
+parked motorcycles, scooters, mopeds and auto-rickshaws can be boarded with R like parked cars.
 
 Press B near mapped water (or use `?boat=1`) to launch a speedboat. W/S thrust, A/D helm,
-Space opposing thrust, hold Shift to anchor below walking speed, V helm/chase, E dockside exit.
+Space opposing thrust, hold Shift to anchor below walking speed, V helm/chase, R dockside exit.
 `?boat=molen.entities.watercraft.tugboat` selects another boat type from the content pack.
 
 In an aircraft, V switches between the cockpit and chase cameras and F5 opens the flyby view: a
@@ -402,9 +407,18 @@ original faces, units and needle or digital display behavior. It hides in the co
 exit/ejection and with `?hud=0`. Aircraft without live speed or altitude instrument bindings
 leave that instrument out; the panel stays hidden when neither is defined.
 
-E leaves an aircraft once it is stopped and shut down. In flight, E ejects: the seat fires clear,
+In an aircraft W/S pitch, A/D bank, Q/E work the rudder or pedals and Z/C lower and raise the
+power (−/=, the numpad's −/+ and Page Down/Up do too).
+
+R leaves an aircraft once it is stopped and shut down. In flight, Ctrl+R ejects (R alone never
+fires the seat): the seat fires clear,
 the aircraft flies on hands-off until it lands or crashes, and a steerable canopy opens. Under it,
 A/D steer, W flies at full glide, S brakes, Space flares before touchdown and V switches between
 the chase view and the pilot's own; walking resumes where it lands, on the ground, a roof or water.
-After a crash, E climbs out beside the wreck once it has come to rest, or ejects while it is still
-moving; R recovers the aircraft instead.
+Ctrl+R does not reload the page while an aircraft is flown or the canopy is open; Ctrl+Shift+R
+still does.
+After a crash, R climbs out beside the wreck once it has come to rest, Ctrl+R ejects while it is
+still moving, and Backspace recovers the aircraft instead.
+
+On foot, Q/E step sideways as A/D do, and R opens the door ahead, boards the vehicle in reach or
+takes a lift up a storey (C does too; Z takes it down).

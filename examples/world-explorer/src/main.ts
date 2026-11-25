@@ -639,6 +639,8 @@ async function loadWorldgen(options: {
     ...(params.get('signs') === 'generic' ? { signNames: 'generic' as const } : {}),
     ...(options.buildingDecorator ? { buildingDecorator: options.buildingDecorator } : {}),
     propLod: params.get('propLod') !== '0',
+    // `?turf=0` leaves the grass as its painted ground, for a side-by-side look.
+    ...(params.get('turf') === '0' ? { turf: false as const } : {}),
     interiors: params.get('interiors') !== '0',
     // A walker's surroundings are regenerated nearest first some seconds after they arrive.
     // Frozen captures compare frames from a still camera, so they keep the first choice;
@@ -870,9 +872,16 @@ async function main(): Promise<void> {
   // `?tier=N` holds one adaptive tier, for measurements that compare like with like.
   const pinnedTier = params.has('tier') ? Number(params.get('tier')) : undefined;
   if (pinnedTier !== undefined) performanceLevel = pinnedTier;
+  // The level the world is built at (terrain budget, building and surface quality). Auto's slow
+  // frames lower `performanceLevel`, what the view is drawn at, and leave this where it was for
+  // their first steps (see ExplorerQualityController); a manual quality sets both.
+  let detailLevel = performanceLevel;
   // A pinned tier is the guess as well: Auto brings a lowered level back toward its guess, which
   // must not lift it off the pin.
-  const qualityController = createExplorerQualityController(pinnedTier ?? guessedLevel);
+  const qualityController = createExplorerQualityController(
+    pinnedTier ?? guessedLevel,
+    pinnedTier !== undefined,
+  );
   if (pinnedTier !== undefined) qualityController.setBounds(pinnedTier, pinnedTier);
   // ?memory=<MiB> sets the terrain and layer memory budget, past what the browser reports.
   const memoryBudget =
@@ -1601,13 +1610,16 @@ async function main(): Promise<void> {
   // shadows. Applied together mid-flight, their one-off costs (a canvas reallocation, a terrain
   // visibility pass, surface rebuilds, a shadow map) stacked into one long frame at every change;
   // the frame loop applies them a frame apart instead. Startup and the menu apply them at once.
+  // Terrain, buildings and surfaces follow `detailLevel`, the rest `performanceLevel`: after a
+  // step that lowered the drawing alone, the world's steps find nothing to change.
   const levelSteps: Array<() => void> = [];
   const applyPerformanceLevel = (staged = false): void => {
     const tier = earthPerformanceTier(performanceLevel);
-    if (automaticQuality) quality = tier.quality;
+    const world = earthPerformanceTier(detailLevel);
+    if (automaticQuality) quality = world.quality;
     const stepQuality = quality;
     const level = automaticQuality ? performanceLevel : earthQualityLevel(stepQuality);
-    const budget = automaticQuality ? tier.terrain : terrainPyramidBudgetForQuality(stepQuality);
+    const budget = automaticQuality ? world.terrain : terrainPyramidBudgetForQuality(stepQuality);
     const steps: Array<() => void> = [
       () => {
         objectPixelError = automaticQuality ? tier.objectPixelError : 2;
@@ -1617,6 +1629,7 @@ async function main(): Promise<void> {
         resizeRenderer();
         performanceStatus.dataset.mode = automaticQuality ? 'auto' : 'manual';
         performanceStatus.dataset.level = String(performanceLevel);
+        performanceStatus.dataset.detailLevel = String(detailLevel);
         performanceStatus.dataset.maxPixels = automaticQuality ? String(tier.maxPixels) : '';
       },
       () => {
@@ -1632,14 +1645,14 @@ async function main(): Promise<void> {
         worldgen?.setQuality(stepQuality);
         worldgen?.setCacheBudget(
           earthWorldgenCacheBytes(
-            automaticQuality ? tier.cacheBytes : 192 * 1024 * 1024,
+            automaticQuality ? world.cacheBytes : 192 * 1024 * 1024,
             memoryBudget,
           ),
         );
       },
       () => {
         void surfaceRenderer
-          .setPerformanceScale(automaticQuality ? tier.surfaceScale : 1, stepQuality)
+          .setPerformanceScale(automaticQuality ? world.surfaceScale : 1, stepQuality)
           .catch((error: unknown) => console.warn('Surface detail update failed:', error));
       },
       () => {
@@ -1671,10 +1684,12 @@ async function main(): Promise<void> {
     if (!automaticQuality) {
       quality = qualitySelect.value as TerrainQualityPreset;
       performanceLevel = earthQualityLevel(quality);
+      detailLevel = performanceLevel;
     } else {
       // Choosing Auto makes its guess afresh, whatever lowered it earlier in the session.
       if (pinnedTier === undefined) qualityController.restart();
-      performanceLevel = qualityController.getStats().level;
+      performanceLevel = qualityController.drawLevel;
+      detailLevel = qualityController.detailLevel;
     }
     applyPerformanceLevel();
     history.replaceState(null, '', next);
@@ -1767,7 +1782,7 @@ async function main(): Promise<void> {
     if (!stop) return undefined;
     const floor =
       (ride?.level ?? stop.level) === 0 ? 'Lobby' : `Floor ${ride?.level ?? stop.level}`;
-    return `Lift · ${floor} of ${stop.floors.length - 1} · E up · Q down`;
+    return `Lift · ${floor} of ${stop.floors.length - 1} · R/C up · Z down`;
   };
   /** Step a lift one storey up or down, from where it is headed; false off a lift. */
   const rideLift = (step: 1 | -1): boolean => {
@@ -1987,10 +2002,10 @@ async function main(): Promise<void> {
       audio?.layer.setSuspended(document.hidden || !document.hasFocus());
     })
     .catch((error: unknown) => console.warn('audio unavailable', error));
-  const walkHelp = `WASD walk · Shift run · Space jump · E open door / board vehicle · P personal ride · ${figure.enabled ? 'V view · ' : ''}click to look · Esc release mouse`;
-  const swimHelp = `WASD swim · Shift swim faster · Return to shore to walk · E board vehicle · ${figure.enabled ? 'V view · ' : ''}click to look · Esc release mouse`;
+  const walkHelp = `WASD walk · Q/E sidestep · Shift run · Space jump · R open door / board vehicle · P personal ride · ${figure.enabled ? 'V view · ' : ''}click to look · Esc release mouse`;
+  const swimHelp = `WASD swim · Shift swim faster · Return to shore to walk · R board vehicle · ${figure.enabled ? 'V view · ' : ''}click to look · Esc release mouse`;
   const boatHelp =
-    'W/S thrust / reverse · A/D helm · Space opposing thrust · hold Shift to anchor slowly · E dockside exit · V view';
+    'W/S thrust / reverse · A/D helm · Space opposing thrust · hold Shift to anchor slowly · R dockside exit · V view';
   const standAt = (feet: readonly [number, number, number]): void => {
     walker.feet.fromArray(feet);
     walker.velocity.set(0, 0, 0);
@@ -2005,7 +2020,8 @@ async function main(): Promise<void> {
   };
   /**
    * Leave the mounted vehicle by the kernel's rules, or bail out of an aircraft that cannot be
-   * left that way: a wreck at rest is climbed out of, and with `eject` (E in flight) the seat fires.
+   * left that way: a wreck at rest is climbed out of, and with `eject` (Ctrl+R in flight) the
+   * seat fires.
    */
   const exitVehicle = (eject = false): boolean => {
     const feet = vehicles.exit();
@@ -2056,6 +2072,8 @@ async function main(): Promise<void> {
   };
   const inputProfile = (): 'pilot' | 'drive' | 'fly' | 'walk' =>
     flight.mountedKind ? 'pilot' : vehicles.mountedId || parachute.active ? 'drive' : navigation;
+  /** The R of the Ctrl+R that left an aircraft is still held (see the key handler). */
+  let ejectKeyHeld = false;
   window.addEventListener('pagehide', (event) => {
     if (!event.persisted) {
       audio?.dispose();
@@ -2241,9 +2259,9 @@ async function main(): Promise<void> {
       vehicles.view = 'chase';
       help.textContent = snowRides.includes(kind)
         ? kind.endsWith('.snowmobile')
-          ? 'W throttle · S brake, then reverse · A/D steer · Space brake · L headlight · E step off · V change view'
-          : 'Point downhill to slide · A/D carve · S or Space stop on the edges · W push along the flat · E step off · V change view'
-        : 'W ride (push on a skateboard) · S brake · A/D steer and lean · E step off · V change view · drag to look';
+          ? 'W throttle · S brake, then reverse · A/D steer · Space brake · L headlight · R step off · V change view'
+          : 'Point downhill to slide · A/D or Q/E carve · S or Space stop on the edges · W push along the flat · R step off · V change view'
+        : 'W ride (push on a skateboard) · S brake · A/D or Q/E steer and lean · R step off · V change view · drag to look';
     } else help.textContent = vehicles.message || 'No room to set a ride down here';
     canvas.focus();
   };
@@ -2258,8 +2276,8 @@ async function main(): Promise<void> {
       : door.waiting
         ? 'Opening the door…'
         : door.open
-          ? 'E · Close the door'
-          : 'E · Open the door';
+          ? 'R · Close the door'
+          : 'R · Open the door';
   /** Open or shut the door ahead; false when there is none. */
   const operateDoor = (): boolean => {
     const door = doorAhead();
@@ -2269,14 +2287,15 @@ async function main(): Promise<void> {
   };
   const interact = (): void => {
     if (navigation !== 'walk' || parachute.active || (!vehicles.mountedId && !walker.ready)) return;
-    // Standing in a lift, E takes it up a storey rather than reaching for a vehicle.
+    // Standing in a lift, R takes it up a storey rather than reaching for a vehicle.
     if (!vehicles.mountedId && rideLift(1)) return;
     // A door in front of the walker comes before a car behind them; an aircraft's prompt wins.
     if (!vehicles.mountedId && !flight.nearest(camera.pos) && operateDoor()) return;
     if (vehicles.mountedId) {
       const car = vehicles.mountedId;
-      // Out through the door, which shuts once the walker moves off.
-      if (exitVehicle(true)) vehicles.openDoor(camera.pos, car);
+      // Out through the door, which shuts once the walker moves off. Never by the seat: an
+      // aircraft in flight is left with Ctrl+R (see the key handler below).
+      if (exitVehicle()) vehicles.openDoor(camera.pos, car);
     } else if (
       flight.enter(camera.pos) ||
       // A car takes two presses: the first opens the door beside the walker, the next gets in.
@@ -2294,7 +2313,7 @@ async function main(): Promise<void> {
           ? trainHelp
           : vehicles.mountedId && vehicles.isBoat(vehicles.mountedId)
             ? boatHelp
-            : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · 1–4 doors · 5 hood · 6 rear access · K wipers · L lights · E exit · V change view · drag to look';
+            : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · 1–4 doors · 5 hood · 6 rear access · K wipers · L lights · R exit · V change view · drag to look';
     }
   };
   // The "Replace building" controls act on the scene from here on: its stream, its vehicles and
@@ -2324,6 +2343,12 @@ async function main(): Promise<void> {
     },
     focus: () => canvas.focus(),
   });
+  window.addEventListener('keyup', (event) => {
+    if (event.code === 'KeyR') ejectKeyHeld = false;
+  });
+  window.addEventListener('blur', () => {
+    ejectKeyHeld = false;
+  });
   window.addEventListener('keydown', (event) => {
     if (event.defaultPrevented) return;
     // Not a reload in mid-flight, wherever focus is; Ctrl+F5 still reloads.
@@ -2336,6 +2361,22 @@ async function main(): Promise<void> {
       if (!event.repeat) flyby = !flyby;
       return;
     }
+    // Ctrl+R leaves an aircraft by whatever way is open, the seat in flight; R alone never fires
+    // it. So it is not a reload while an aircraft is flown, under the canopy afterwards, or
+    // while the R that did it is still down (a held key repeats). Ctrl+Shift+R still reloads.
+    if (
+      event.code === 'KeyR' &&
+      event.ctrlKey &&
+      !(event.altKey || event.metaKey || event.shiftKey) &&
+      (flight.mountedKind || parachute.active || ejectKeyHeld)
+    ) {
+      event.preventDefault();
+      if (!event.repeat && flight.mountedKind) {
+        ejectKeyHeld = true;
+        exitVehicle(true);
+      }
+      return;
+    }
     if (event.repeat || event.ctrlKey || event.altKey || event.metaKey) return;
     if (
       event.target instanceof HTMLElement &&
@@ -2345,10 +2386,17 @@ async function main(): Promise<void> {
       return;
     if (event.code === 'KeyB' && !flight.mountedKind && !vehicles.mountedId) spawnBoat();
     if (event.code === 'KeyP') takePersonalRide();
-    // Q takes a lift down a storey; walk binds no other action to it.
-    if (event.code === 'KeyQ' && navigation === 'walk' && walker.ready && !vehicles.mountedId)
-      rideLift(-1);
-    if (event.code === 'KeyR' && !flight.mountedKind && !vehicles.mountedId)
+    // Z takes a lift down a storey and C up one, as they lower and raise an aircraft's power (R,
+    // the interact key, goes up too); walk binds no other action to either.
+    if (
+      (event.code === 'KeyZ' || event.code === 'KeyC') &&
+      navigation === 'walk' &&
+      walker.ready &&
+      !vehicles.mountedId
+    )
+      rideLift(event.code === 'KeyC' ? 1 : -1);
+    // Only in the free camera: on foot R is the interact key.
+    if (event.code === 'KeyR' && navigation === 'fly' && !flight.mountedKind && !vehicles.mountedId)
       viewer.renderer.setWorldOrigin([camera.pos[0], 0, camera.pos[2]]);
     // N replaces the building ahead with the picked sample; U takes the last one back. No
     // navigation profile binds either key.
@@ -2404,6 +2452,8 @@ async function main(): Promise<void> {
   // Whether the level asks for more than the terrain cache holds (see createStreamStrainMeter).
   const streamStrain = createStreamStrainMeter();
   let streamStrained = false;
+  // The ground in view within 2 km, as the stream last counted it (see the Performance panel).
+  let nearGround: { tiles: number; complete: number; drawnLevel: number | undefined } | undefined;
   // Quality adapts once the first view has finished loading (or after 20 s). Until then frames
   // carry one-time work: the first ground refining under the camera, collision trees rebuilt
   // for each refinement, models and materials arriving. Measured as overload, it stepped a fast
@@ -2421,6 +2471,7 @@ async function main(): Promise<void> {
     probe.molenFlightProbe = () => ({
       position: [...camera.pos],
       tier: performanceLevel,
+      detailTier: detailLevel,
       tierReason: qualityController.getStats().reason,
       rendered: viewer.renderer.stats(),
       farShadow: viewer.renderer.farShadowInfo,
@@ -2506,6 +2557,7 @@ async function main(): Promise<void> {
       });
       if (change) {
         performanceLevel = change.level;
+        detailLevel = change.detailLevel;
         applyPerformanceLevel(true);
       }
     }
@@ -2521,7 +2573,8 @@ async function main(): Promise<void> {
     let frameInput = input.read(dt);
     frameInput.jump ||= jumpRequested;
     jumpRequested = false;
-    if (frameInput.interact > 0) {
+    // Not while the R of a Ctrl+R is still down: once Ctrl lifts, its repeats read as presses.
+    if (frameInput.interact > 0 && !ejectKeyHeld) {
       interact();
       input.setProfile(inputProfile());
       frameInput = input.read(0);
@@ -2607,8 +2660,8 @@ async function main(): Promise<void> {
         vehicles.view = 'cockpit';
         help.textContent =
           kind === 'lightrail'
-            ? 'W/S traction / reverse · Space brake · E exit when stopped · V view'
-            : 'W/S throttle / reverse · A/D steer · Space brake · E exit · V view';
+            ? 'W/S traction / reverse · Space brake · R exit when stopped · V view'
+            : 'W/S throttle / reverse · A/D steer · Space brake · R exit · V view';
         canvas.focus();
       }
       visitingTransit = undefined;
@@ -2684,12 +2737,16 @@ async function main(): Promise<void> {
     );
     const shadowTexel = ownShadow ? undefined : viewer.renderer.shadowTexelSize;
     vehicles.shadowTexel = shadowTexel;
-    vehicles.update(dt, {
-      throttle: frameInput.move.forward,
-      steering: frameInput.move.right,
-      brake: frameInput.jump || document.hidden || !document.hasFocus(),
-      handbrake: frameInput.sprint,
-    });
+    vehicles.update(
+      dt,
+      {
+        throttle: frameInput.move.forward,
+        steering: frameInput.move.right,
+        brake: frameInput.jump || document.hidden || !document.hasFocus(),
+        handbrake: frameInput.sprint,
+      },
+      frameInput.lean,
+    );
     const landing = parachute.update(dt, {
       forward: frameInput.move.forward,
       right: frameInput.move.right,
@@ -3187,6 +3244,9 @@ async function main(): Promise<void> {
         surfaceStats.loading > 0;
       if (isPyramidStats(stats)) {
         const cache = pyramidEarth?.stream.pressure();
+        // How the ground within 2 km stands: rebuilding is strain only while it falls behind.
+        const near = pyramidEarth?.stream.viewCoverage([2_000])[0];
+        nearGround = near;
         streamStrained = streamStrain({
           nowMs: now,
           builtTiles: stats.builtTiles,
@@ -3194,6 +3254,9 @@ async function main(): Promise<void> {
           residentBytes: cache?.residentBytes ?? 0,
           displayedBytes: cache?.displayedBytes ?? 0,
           maxResidentBytes: cache?.maxResidentBytes,
+          ...(near !== undefined && near.tiles > 0
+            ? { nearComplete: near.complete / near.tiles }
+            : {}),
         });
       }
       // Surface detail changes in place on tiles in view; the rest of the cache is counted. The
@@ -3219,18 +3282,18 @@ async function main(): Promise<void> {
         ? flight.status()
         : parachute.status() ||
           (nearAircraft
-            ? `E · Board ${flight.label(nearAircraft)} · I starts the engine`
+            ? `R · Board ${flight.label(nearAircraft)} · I starts the engine`
             : flight.message ||
               (vehicles.mountedId
                 ? ((vehicles.waiting ? undefined : explorerTrains.status()) ??
-                  `${vehicles.label(vehicles.mountedId)} · ${Math.abs(vehicles.speed * 3.6).toFixed(0)} km/h · ${drivelineStatus(vehicles)} · ${vehicles.view} · ${vehicles.waiting ? 'Waiting for terrain…' : vehicles.message || 'E exit · V view'}`)
+                  `${vehicles.label(vehicles.mountedId)} · ${Math.abs(vehicles.speed * 3.6).toFixed(0)} km/h · ${drivelineStatus(vehicles)} · ${vehicles.view} · ${vehicles.waiting ? 'Waiting for terrain…' : vehicles.message || 'R exit · V view'}`)
                 : vehicles.message ||
                   (nearDoor
                     ? doorPrompt(nearDoor)
                     : nearVehicle
                       ? vehicles.closedDoor(nearVehicle, camera.pos)
-                        ? `E · Open the ${vehicles.label(nearVehicle)} door`
-                        : `E · Enter ${vehicles.label(nearVehicle)}`
+                        ? `R · Open the ${vehicles.label(nearVehicle)} door`
+                        : `R · Enter ${vehicles.label(nearVehicle)}`
                       : navigation === 'walk'
                         ? !walker.ready
                           ? 'Finding open ground nearby… Switch to Fly to choose another spot.'
@@ -3416,7 +3479,7 @@ async function main(): Promise<void> {
       performanceStatus.textContent = [
         `${viewer.renderer.backend === 'webgpu' ? 'WebGPU' : 'WebGL2'}${viewer.renderer.fallbackReason ? ` · fallback: ${viewer.renderer.fallbackReason}` : ''}`,
         automaticQuality
-          ? `Auto · ${earthPerformanceTier(performanceLevel).name} · ${control.reason === undefined || control.reason === 'manual' ? 'device guess, held' : `lowered for ${control.reason}, back when calm`}`
+          ? `Auto · ${earthPerformanceTier(detailLevel).name}${performanceLevel < detailLevel ? ` · drawn at ${earthPerformanceTier(performanceLevel).name}` : ''} · ${control.reason === undefined || control.reason === 'manual' ? 'device guess, held' : `lowered for ${control.reason}, back when calm`}`
           : `Manual · ${quality}`,
         `${frameStats.fps.toFixed(0)} fps · slowest 1% ${frameStats.lowFps.toFixed(0)} fps · ${frameStats.longFrames} of last ${frameStats.frames} frames over 33ms`,
         `frame ${(frameTotal / frameCount).toFixed(1)}ms avg / ${frameMax.toFixed(0)}ms max · p90 ${control.p90FrameMs?.toFixed(1) ?? '–'}ms`,
@@ -3427,6 +3490,17 @@ async function main(): Promise<void> {
             ? ` · ${queueWait < 1000 ? `${queueWait.toFixed(0)}ms` : `${(queueWait / 1000).toFixed(1)}s`} in the frame queue`
             : ''
         }${buildingMs === undefined ? '' : ` · buildings ${(buildingMs / 1000).toFixed(1)}s a tile`}`,
+        // Whether coarse ground near the camera is late (not finished) or all the view asks for
+        // (finished, at a level short of the finest: the quality level, height or speed).
+        ...(nearGround !== undefined && nearGround.tiles > 0
+          ? [
+              `ground within 2km ${Math.round((nearGround.complete / nearGround.tiles) * 100)}% finished${
+                nearGround.drawnLevel === undefined
+                  ? ''
+                  : ` · level ${nearGround.drawnLevel.toFixed(1)} of ${loaded.descriptor.tileMatrix.maxLevel}`
+              }`,
+            ]
+          : []),
         ...(pressure
           ? [
               `resident buffers ${(pressure.residentBytes / 1_048_576).toFixed(1)}MiB${automaticQuality ? ` / ${((pressure.maxResidentBytes ?? 0) / 1_048_576).toFixed(0)}MiB` : ''} · shown ${(pressure.displayedBytes / 1_048_576).toFixed(0)}MiB`,

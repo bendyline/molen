@@ -474,6 +474,28 @@ hence the hold above, which also keeps the hover in a wind, where v1 was blown a
 any landing with forward speed nosed over, because the skids gripped like tires at 0.7;
 at 0.4 a run-on landing slides to a stop from 50 knots.
 
+**Forward speed (2026-11-24, later).** Held nose down under power, the AW139 pitched up by
+itself at about 130 knots, slowed, nosed over and did it again; the UH-60M and H125 did too,
+and the OH-6, 206B and R44 sat on the stop. Two causes, neither in a real helicopter. The
+swashplate had the same 11.5° forward as aft and sideways, for every type, which nothing
+published supports (UH-60A: 16.5° forward and 12.3° aft, Howlett, NASA CR-166309, figure 6.3.1;
+R44: 13.9° both ways, its type certificate data sheet); the kernel now gives 1.4 times `cyclic`
+forward. And the fuselage had no pitching moment of its own, so the stabilizer held the nose up
+against the stick alone; the UH-60A's measured moment (the same report, table 2.5.9), scaled by
+mass, takes about a third of that back on the UH-60M and half on the AW139. With both, all ten
+hold the nose down at full power, steady and with swashplate in hand, and the collective the
+AW139 needs at 160 knots comes out where calibration put it (flown 9.7°, `rotorTrim` 9.7°; 8.7°
+before). The trial cards had not seen it because they fly the cruise at cruise power, where 10°
+was just enough; with more power the rotor pulls more and needs more.
+`helicopter-rotor.test.ts` now flies all ten at full power. The flown cruise cards moved by 1.5
+knots or less, but for the UH-60M, which the stop had held to 147.5: 153.9 against a published
+151.
+
+Found on the way and not changed: past its limit a helicopter keeps diving (the AW139 to 230
+knots on full forward stick) with the stall only reported, where a real one's retreating blade
+stalls, pitches it up and rolls it; and above about 3,000 m at full torque and under 60 knots
+the AW139's tail rotor runs out of pitch and it spins.
+
 Not built: the tandem CH-47 on rotors, pitch-roll cross-coupling beyond flapping, the tail
 rotor and fin in the main rotor's wake, loss of tail rotor effectiveness, mast bumping, and
 separate engines on the twins. `aircraftInertia` in collisions still uses the airplane

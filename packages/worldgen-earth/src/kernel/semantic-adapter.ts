@@ -82,6 +82,7 @@ import {
   buildingClipBuffer,
   PROTOMAPS_TILE_BUFFER,
 } from './tile-edges';
+import { turfRequestFromTile } from './turf';
 import { worshipCrowns } from './worship';
 
 export interface TileGeometry {
@@ -821,6 +822,18 @@ export function semanticTileToBatch(
         scatter.exclusions.push({ polyline: segment, width: 0.2, radius: 0.6, kind: 'buildings' });
     }
     scatter.polygons.push(...residentialTreePolygons(tile, geom, options));
+    // Grass stands only round a camera, and a camera near enough to see a tuft is over one of
+    // the finest tiles.
+    if (geom.levelBelowMax === 0) {
+      const turf = turfRequestFromTile(
+        tile,
+        size,
+        { open_ground: scatterDoc.surface.default, ...scatterDoc.surface.colors },
+        scatter.exclusions,
+        options.environment?.hasEcology === true,
+      );
+      if (turf !== undefined) scatter.turf = turf;
+    }
   }
   return {
     buildings,

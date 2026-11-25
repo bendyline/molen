@@ -377,14 +377,14 @@ describe('Earth view actors', () => {
       seen.push(`${interaction.kind}:${interaction.id ?? ''}`);
       interaction.claim();
     });
-    view.input.map.press('KeyE');
-    view.input.map.release('KeyE');
+    view.input.map.press('KeyR');
+    view.input.map.release('KeyR');
     await pump(1);
     expect(seen).toEqual(['actor:talker']);
     off();
     // Unclaimed, nothing happens: the view does not board or leave anything.
-    view.input.map.press('KeyE');
-    view.input.map.release('KeyE');
+    view.input.map.press('KeyR');
+    view.input.map.release('KeyR');
     await pump(1);
     expect(view.mode).toBe('walk');
     // The reach changes at run time: a shorter one leaves the talker out of reach.

@@ -340,14 +340,14 @@ async function main(): Promise<void> {
     help.textContent = {
       orbit:
         'Drag to orbit · scroll to zoom · WASD or arrows to move · Q/E altitude · Tab to controls',
-      walk: 'WASD or arrows to walk · drag to look · Shift to run · Space to jump · E to interact · Esc releases mouse',
+      walk: 'WASD or arrows to walk · Q/E sidestep · drag to look · Shift to run · Space to jump · R to interact · Esc releases mouse',
       drive:
-        'W/S or ↑/↓ accelerate / brake · A/D or ←/→ steer · Space brake · E exit · V change view',
-      fly: 'W/S pitch · A/D bank · Z/C rudder · =/− power · I engine · G gear · F flaps · E exit · V view',
+        'W/S or ↑/↓ accelerate / brake · A/D or ←/→ steer · Q/E lean a cycle · Space brake · R exit · V change view',
+      fly: 'W/S pitch · A/D bank · Q/E rudder · Z/C power · I engine · G gear · F flaps · R exit · V view',
     }[mode];
     if (mode === 'drive' && view.vehicleStatus()?.kind === 'boat')
       help.textContent =
-        'W/S thrust / reverse · A/D helm · Space opposing thrust · hold Shift to anchor slowly · E dockside exit · V view';
+        'W/S thrust / reverse · A/D helm · Space opposing thrust · hold Shift to anchor slowly · R dockside exit · V view';
   };
   view.on('modechange', ({ mode }) => syncButtons(mode));
   // Buttons are host controls: they always switch (`force`), and Drive adds a car on the nearest
@@ -368,7 +368,7 @@ async function main(): Promise<void> {
   const enterBoat = (): void => {
     view.setMode('drive', { vehicle: 'molen.entities.watercraft.speedboat', force: true });
     help.textContent =
-      'W/S thrust / reverse · A/D helm · Space reverse thrust · hold Shift to anchor below walking speed · E dockside exit · V view';
+      'W/S thrust / reverse · A/D helm · Space reverse thrust · hold Shift to anchor below walking speed · R dockside exit · V view';
     canvas.focus();
   };
   document.getElementById('boat')?.addEventListener('click', enterBoat);

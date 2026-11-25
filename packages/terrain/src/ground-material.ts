@@ -2385,6 +2385,27 @@ export function setTerrainGroundCrownReach(
   else state.crownReach?.value.set(reach.full, Math.max(reach.full, reach.radius), reach.shrink, 1);
 }
 
+/**
+ * The color the ground material settles a land cover color to, changed in place and returned:
+ * green ground is muted and tinted toward watered turf (`MUTE`, `TURF`), other ground is left as
+ * it is. Its mottling, dry and lush patches and hue drift average out and are not in it. For
+ * what a host stands on that ground in its color (tufts of grass); `strength` as the material's.
+ */
+export function terrainGroundTurfColor(color: THREE.Color, strength = 1): THREE.Color {
+  const green = Math.min(1, Math.max(0, (color.g - Math.max(color.r, color.b)) * 10));
+  const share = Math.min(1, Math.max(0, green * strength));
+  if (share <= 0) return color;
+  const luma = color.r * 0.2126 + color.g * 0.7152 + color.b * 0.0722;
+  const muted = (channel: number, tint: number): number =>
+    channel + ((luma + (channel - luma) * (1 - MUTE)) * tint - channel) * share;
+  return color.setRGB(
+    muted(color.r, TURF[0]),
+    muted(color.g, TURF[1]),
+    muted(color.b, TURF[2]),
+    THREE.LinearSRGBColorSpace,
+  );
+}
+
 /** Whether a material carries the ground variation (and accepts setTerrainGroundOrigin). */
 export function isTerrainGroundMaterial(material: THREE.Material): boolean {
   return states.has(material);

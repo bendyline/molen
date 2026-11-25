@@ -1,8 +1,15 @@
 /** Shared, opaque vegetation meshes. Built once per library, never once per placement. */
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { createTuftGeometry } from './turf-geometry';
 
 type Point = [number, number, number];
+
+/**
+ * The model a host's turf is drawn with: its near level a tuft of narrow bent blades, its medium
+ * level the same tuft in fewer, straight ones, and its far level a handful of broad ones.
+ */
+export const TURF_TUFT_MODEL: string = 'builtin:turf.tuft';
 
 function colored(geometry: THREE.BufferGeometry, hex: string): THREE.BufferGeometry {
   // All parts use the same attribute layout so bark and foliage share one draw call.
@@ -188,6 +195,9 @@ export function createVegetationGeometry(
   coarse: boolean | 'distant' | 'horizon' = false,
 ): THREE.BufferGeometry | undefined {
   if (name.startsWith('groundcover.')) return coarse === false ? groundcover(name) : empty();
+  // A tuft of grass (see `./turf`), plainer at each level.
+  if (name === TURF_TUFT_MODEL.slice('builtin:'.length))
+    return createTuftGeometry(coarse === false ? 0 : coarse === true ? 1 : 2);
   if (coarse === 'distant' || coarse === 'horizon') {
     if (name.startsWith('tree.conifer')) {
       const pine = name.endsWith('pine');

@@ -25,12 +25,15 @@ import {
   type TerrainSemanticPolygon,
   type TerrainSemanticTile,
   type TerrainSemanticTileRenderer,
+  terrainGroundTurfColor,
+  terrainLandcoverColor,
   terrainSemanticTileContentHash,
 } from '@bendyline/molen-terrain/client';
 import {
   isAeroway,
   pointInPolygon,
   polygonBounds,
+  renderedGroundSampler,
   wgs84ToWorld,
   worldToWgs84,
 } from '@bendyline/molen-terrain/kernel';
@@ -44,6 +47,7 @@ import {
   createInstancedPlacements,
   createNearPlacements,
   createSignMeshObject,
+  createTurf,
   createVertexColorMaterialSet,
   disposeWorldgenObject,
   type InteriorDoorQuery,
@@ -60,6 +64,8 @@ import {
   type ScreenSpaceLodPolicy,
   type StructureModelSource,
   TEXTURED_SURFACE_MEAN,
+  TURF_TUFT_MODEL,
+  type TurfOptions,
   type WorldgenMaterialSet,
 } from '@bendyline/molen-worldgen/client';
 import type {
@@ -67,6 +73,7 @@ import type {
   NearPlacements,
   PlacementSet,
   ResolvedStylePack,
+  TurfCover,
   WorldgenBudgets,
 } from '@bendyline/molen-worldgen/kernel';
 import * as THREE from 'three';
@@ -120,6 +127,13 @@ import type { WorldgenGenerateRequest, WorldgenGenerator } from './worker-bridge
 const FOOTPRINT_SIZE_RATIO = 1.6;
 /** Share of the plant scatter a compact scene keeps (see `compact`). */
 const COMPACT_SCATTER_KEEP = 0.5;
+/**
+ * Balanced quality's turf: two thirds of High's reach and six tenths of its tufts, about a third
+ * of the triangles on an open lawn.
+ */
+const BALANCED_TURF: TurfOptions = { full: 18, radius: 44, plain: 18, density: 0.6 };
+/** Meters the draped land cover lies above the drawn ground where a host does not say. */
+const LANDCOVER_LIFT = 0.18;
 
 /**
  * Meters a viewer on the ground moves before the buildings round them are chosen again. A tile's
@@ -233,6 +247,13 @@ export interface WorldgenRendererOptions {
    * leaves the painted crowns to fade to bare ground as the camera reaches them.
    */
   nearPlants?: NearPlacementOptions | false;
+  /**
+   * How tufts of grass stand around the view camera on the ground that grows it (lawns, meadows,
+   * verges, airfields): every one within `full` meters, thinning out to `radius` (see
+   * `TurfOptions`). Balanced quality draws them over a shorter reach and thinner unless this says
+   * otherwise, and Economy not at all; `false` draws none. Needs `models`.
+   */
+  turf?: TurfOptions | false;
   /**
    * Real openings and bounded lazy interiors, including residential upstairs (opt in). They are
    * laid out by the style pack's interior catalog; a pack without one generates no interiors.
@@ -649,13 +670,23 @@ export function createWorldgenSemanticRenderers(
     vanishPixels?: number,
   ): Promise<THREE.Object3D[]> {
     if (models === undefined) return [];
-    const objects: THREE.Object3D[] = [];
+    const warn = (set: PlacementSet, error: unknown): void => {
+      if (context.signal.aborted || warnedModels.has(set.modelRef)) return;
+      warnedModels.add(set.modelRef);
+      console.warn(`[molen] worldgen model "${set.modelRef}": ${(error as Error).message}`);
+    };
+    // Every set's instances are queued as its models resolve, and awaited together. Awaited one by
+    // one, each set waited for a frame's turn before the next was even queued: a tile's dozen or
+    // more sets (30 and more in a town) took as many turns in a row, a second of the two a tile's
+    // layer takes in a quiet flight, and a minute or two when the queue ran seconds behind, while
+    // the buildings its workers had finished in two seconds waited beside them for the last.
+    const builds: Array<{ set: PlacementSet; built: Promise<THREE.Object3D> }> = [];
     for (const set of sets) {
       if (buildingBoxGeometry(set.modelRef) !== undefined || set.count === 0) continue;
       try {
         const coarse = context.address.level < context.pyramid.maxLevel;
         const prepared = await models.prepare(set.modelRef, coarse);
-        if (context.signal.aborted) return objects;
+        if (context.signal.aborted) break;
         const medium =
           options.propLod !== false ? await models.prepare(set.modelRef, true) : prepared;
         const distant =
@@ -663,7 +694,7 @@ export function createWorldgenSemanticRenderers(
         // The far model itself for everything but conifers, and then not a level of its own.
         const horizon =
           options.propLod !== false ? await models.prepare(set.modelRef, 'horizon') : prepared;
-        if (context.signal.aborted) return objects;
+        if (context.signal.aborted) break;
         // Instance matrices for every placement: admitted, as a tile's sources resolve together.
         const build = (): THREE.Object3D =>
           options.propLod !== false
@@ -696,25 +727,34 @@ export function createWorldgenSemanticRenderers(
                 prepared.material,
                 `${name}:${set.setId}`,
               );
-        objects.push(
-          context.admission
-            ? await context.admission.run(build, {
-                signal: context.signal,
-                label: 'prop-assembly',
-                bytes: set.data.byteLength,
-              })
-            : build(),
-        );
-        stats.props += set.count;
-        stats.geometryBytes += set.data.byteLength;
+        const built = context.admission
+          ? context.admission.run(build, {
+              signal: context.signal,
+              label: 'prop-assembly',
+              bytes: set.data.byteLength,
+            })
+          : new Promise<THREE.Object3D>((resolve) => resolve(build()));
+        // Settled below with the rest; a job cancelled before then is not an unhandled failure.
+        void built.catch(() => undefined);
+        builds.push({ set, built });
       } catch (error) {
-        if (context.signal.aborted) return objects;
-        if (!warnedModels.has(set.modelRef)) {
-          warnedModels.add(set.modelRef);
-          console.warn(`[molen] worldgen model "${set.modelRef}": ${(error as Error).message}`);
-        }
+        if (context.signal.aborted) break;
+        warn(set, error);
       }
     }
+    // Every job settles before this returns, so none can add to a tile already given up.
+    const results = await Promise.allSettled(builds.map((entry) => entry.built));
+    const objects: THREE.Object3D[] = [];
+    results.forEach((result, index) => {
+      const { set } = builds[index] as (typeof builds)[number];
+      if (result.status === 'rejected') {
+        warn(set, result.reason);
+        return;
+      }
+      objects.push(result.value);
+      stats.props += set.count;
+      stats.geometryBytes += set.data.byteLength;
+    });
     return objects;
   }
 
@@ -755,6 +795,104 @@ export function createWorldgenSemanticRenderers(
       : build();
     // Held, not drawn (a few hundred of them are): bytes only, not `props`.
     stats.geometryBytes += near.data.byteLength + near.model.byteLength + near.start.byteLength;
+    return object;
+  }
+
+  /**
+   * The tufts of a tile's turf cover, stood around the view camera (`createTurf`) on the ground
+   * as it is drawn and in its colors: `colors` and `areas` are the palette and the palette areas
+   * the tile's land cover was painted with.
+   */
+  async function turfTufts(
+    cover: TurfCover,
+    context: TerrainPyramidTileLayerContext,
+    name: string,
+    colors: Readonly<Record<string, string>> | undefined,
+    areas:
+      | ReadonlyArray<{
+          bounds: readonly [number, number, number, number];
+          colors: Readonly<Record<string, string>>;
+        }>
+      | undefined,
+  ): Promise<THREE.Object3D | undefined> {
+    if (models === undefined || options.turf === false) return undefined;
+    const reach: TurfOptions = options.turf ?? (quality === 'balanced' ? BALANCED_TURF : {});
+    let near: Awaited<ReturnType<ModelLibrary['prepare']>>;
+    let middle: typeof near;
+    let far: typeof near;
+    try {
+      near = await models.prepare(TURF_TUFT_MODEL, false);
+      middle = await models.prepare(TURF_TUFT_MODEL, true);
+      far = await models.prepare(TURF_TUFT_MODEL, 'distant');
+    } catch (error) {
+      if (!context.signal.aborted && !warnedModels.has(TURF_TUFT_MODEL)) {
+        warnedModels.add(TURF_TUFT_MODEL);
+        console.warn(`[molen] worldgen model "${TURF_TUFT_MODEL}": ${(error as Error).message}`);
+      }
+      return undefined;
+    }
+    if (context.signal.aborted) return undefined;
+    // The drawn ground's vertex heights are kept once sampled: not before a camera comes within
+    // reach of this tile's grass, which for most tiles of a flight is never.
+    let sampler: ((x: number, z: number) => number) | undefined;
+    const drawn = (x: number, z: number): number => {
+      sampler ??= renderedGroundSampler(
+        context.heightfield,
+        context.origin,
+        context.tileSize,
+        context.surfaceResolution,
+      );
+      return sampler(x, z);
+    };
+    const lift = options.landcover?.landcoverOffset ?? LANDCOVER_LIFT;
+    // One color a sward and palette area: the ground's own for that class, as its material
+    // settles it.
+    const tones = new Map<string, THREE.Color>();
+    const tone = (label: string, area: number): THREE.Color => {
+      const key = `${area}|${label}`;
+      let color = tones.get(key);
+      if (color === undefined) {
+        const palette = areas?.[area];
+        color = terrainGroundTurfColor(
+          terrainLandcoverColor(
+            label,
+            palette !== undefined ? { ...colors, ...palette.colors } : colors,
+          ),
+        );
+        tones.set(key, color);
+      }
+      return color;
+    };
+    const build = (): THREE.Object3D =>
+      createTurf(
+        cover,
+        {
+          near,
+          middle,
+          far,
+          ground: (x, z) => drawn(context.origin[0] + x, context.origin[1] + z) + lift,
+          top: () => context.heightfield.heightExtent().max + lift,
+          color: (label, x, z, out) => {
+            const worldX = context.origin[0] + x,
+              worldZ = context.origin[1] + z;
+            const area =
+              areas?.findIndex(
+                ({ bounds: b }) =>
+                  worldX >= b[0] && worldX < b[2] && worldZ >= b[1] && worldZ < b[3],
+              ) ?? -1;
+            return out.copy(tone(label, area));
+          },
+          anchor: context.origin,
+        },
+        reach,
+        `${name}:turf`,
+      );
+    // Three empty batches: built here and now, not queued for a frame's turn of its own, which
+    // would hold the tile's plants back by that turn for nothing.
+    const object = build();
+    // Held, not drawn: the mask's bytes. The tufts are worked out round the camera.
+    stats.geometryBytes +=
+      cover.rowStart.byteLength + cover.runSward.byteLength + cover.runEnd.byteLength;
     return object;
   }
 
@@ -1908,6 +2046,13 @@ export function createWorldgenSemanticRenderers(
               ? await nearPlants(near, context, group.name)
               : undefined;
           if (plants !== undefined) group.add(plants);
+          // So does the grass: tufts on the ground this tile's land cover paints as growing it.
+          const cover = generated.output.turf;
+          const tufts =
+            cover !== undefined && !context.signal.aborted
+              ? await turfTufts(cover, context, group.name, colors, paletteAreas)
+              : undefined;
+          if (tufts !== undefined) group.add(tufts);
           if (!context.signal.aborted) return group;
         }
         disposeTerrainSemanticObject(group);

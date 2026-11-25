@@ -31,10 +31,17 @@ export function createNavigationControls(
         for (const name of map.profileNames()) {
           if (Object.hasOwn(saved, name)) {
             try {
-              map.defineProfile(
-                name,
-                (saved as Record<string, InputProfile>)[name] as InputProfile,
-              );
+              const stored = (saved as Record<string, unknown>)[name];
+              if (stored === null || typeof stored !== 'object')
+                throw new Error('Not an input profile.');
+              // The editor maps controller axes and buttons, and a save holds the whole profile.
+              // Keys stay the profile's own, so a save made before a key moved does not undo it.
+              const { axes, buttons } = stored as InputProfile;
+              map.defineProfile(name, {
+                bindings: map.getProfile(name).bindings,
+                ...(axes !== undefined ? { axes } : {}),
+                ...(buttons !== undefined ? { buttons } : {}),
+              });
             } catch {
               storageMessage = 'Some saved mappings were invalid; defaults were restored.';
             }
@@ -193,6 +200,11 @@ export function createNavigationControls(
   });
   const updateProfile = (): void => {
     const pilot = profile.value === 'pilot';
+    const lean: [string, string, string] = [
+      'Lean on a cycle (positive = right)',
+      A.leanLeft,
+      A.leanRight,
+    ];
     pairs = [
       [pilot ? 'Pitch (positive = nose up)' : 'Forward / backward', A.forward, A.back],
       [pilot ? 'Roll (positive = right)' : 'Left / right', A.left, A.right],
@@ -201,6 +213,7 @@ export function createNavigationControls(
       ...(pilot
         ? [['Rudder (positive = right)', A.yawLeft, A.yawRight] as [string, string, string]]
         : [['Down / up', A.down, A.up] as [string, string, string]]),
+      ...(profile.value === 'drive' ? [lean] : []),
     ];
     axisAction.replaceChildren();
     pairs.forEach((pair, index) => {

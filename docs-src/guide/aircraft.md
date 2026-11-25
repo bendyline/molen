@@ -10,7 +10,7 @@ observation aircraft. All use clean configurations without external weapons.
 Compare national markings and camouflage in the [livery gallery](livery-gallery.md), then
 find every aircraft’s choices and reference evidence in the [livery catalog](livery-catalog.md#aircraft).
 
-Use the **P-51 Mustang**, **OH-6** or **Bendy Small Airliner** buttons to visit the practice airfield, then press **E** to
+Use the **P-51 Mustang**, **OH-6** or **Bendy Small Airliner** buttons to visit the practice airfield, then press **R** to
 board. The aircraft buttons also work from the example hub's world view. A direct link can use
 `?aircraft=p51d`, `?aircraft=oh6` or `?aircraft=airliner`. The **Aircraft catalog** selector visits
 the additional models; direct links also accept suffixes such as `?aircraft=uh_1h`,
@@ -32,12 +32,13 @@ streaming and floating-origin changes. Reloading starts a fresh session.
 
 | Control | Action |
 | --- | --- |
-| E | Board, or exit after landing, stopping and engine shutdown |
+| R | Board, or exit after landing, stopping and engine shutdown |
+| Ctrl+R | World Explorer: eject in flight, or from a wreck still moving (R alone never fires the seat) |
 | I | Start/stop engine; allow the propeller or rotor to spool |
-| = / − | Increase/decrease throttle or helicopter collective; fighter afterburners engage above 85% throttle |
+| Z / C | Decrease/increase throttle or helicopter collective (− / =, numpad − / + and Page Down / Up do too); fighter afterburners engage above 85% throttle |
 | W / S | Nose down / nose up |
 | A / D | Bank left / right; helicopter cyclic |
-| Z / C | Left / right rudder or anti-torque pedals; steering on the wheels |
+| Q / E | Left / right rudder or anti-torque pedals; steering on the wheels |
 | Space | Wheel brakes |
 | G | Retract/extend airplane gear while airborne |
 | F | Toggle airplane flaps |
@@ -45,12 +46,12 @@ streaming and floating-origin changes. Reloading starts a fresh session.
 | M | Assisted or direct controls. Helicopter: a cyclic that levels itself and feet that hold the heading, or the swashplate and tail rotor themselves. Airplane: the assist that holds the flight path, or the stick and pedals straight on the elevator, ailerons and rudder (not on fly-by-wire types) |
 | V | Cockpit / chase |
 | Mouse | Look around the cockpit |
-| R | Recover at the airfield after an impact |
+| Backspace | Recover at the airfield after an impact |
 
 Mustang: start the engine, set flaps, hold the brake while raising throttle, then release the brake.
 Held at full power on the brakes, the tail comes a few degrees off the ground.
 The propeller swings the nose left through the roll, and a crosswind turns the airplane into the
-wind and carries it sideways on its tires: hold a little right rudder (C), or rudder away from
+wind and carries it sideways on its tires: hold a little right rudder (E), or rudder away from
 the wind, to keep the runway centerline.
 Rotate around 85–100 knots and release the pitch key once the nose is about 10 degrees up; the
 airplane keeps the attitude it lifted off at. At climb power the propeller's torque rolls it
@@ -81,7 +82,7 @@ line shows "Direct controls"). The stick is then the elevator and ailerons and t
 rudder. The airplane holds a speed, not a flight path: let go and the nose seeks the speed it
 is trimmed for, rising and falling around it for a minute or so before it settles. Hold the
 stick and the trim slowly follows, so you can let go at a new speed. Rolling into a turn swings
-the nose the other way until you lead with rudder (Z or C toward the turn), a sideslip rocks
+the nose the other way until you lead with rudder (Q or E toward the turn), a sideslip rocks
 the wings as it dies out, and a bank left alone slowly tightens or rights itself depending on
 the type. With an engine out on a twin, the live engine turns and rolls the airplane toward
 the dead one until you hold it with the opposite pedal. Fly-by-wire types (the F-16, F/A-18,
@@ -102,7 +103,7 @@ helicopter comes down steadily at about 2,000 feet a minute instead of falling. 
 forward speed, and just above the ground raise the collective to spend the rotor's speed on a
 soft touchdown. Hold the collective up instead and the rotor slows, the HUD warns of low rotor
 RPM, and the lift goes with it. An aircraft cannot be exited or switched to free
-flight while airborne. After an impact, R resets its aircraft state and places it on the airfield.
+flight while airborne. After an impact, Backspace resets its aircraft state and places it on the airfield.
 
 The helicopter's controls start assisted: W/S and A/D ask for a tilt of up to about 30°, the
 helicopter levels itself when you let go, and the pedals ask for a turn while the tail rotor is
@@ -129,7 +130,7 @@ markings are decorative, while live flight readings come from the HUD. Board at 
 entry point. Its larger footprint needs substantially more runway and clearance.
 
 Osprey and Harrier: use J to select vertical thrust (the parked Osprey starts there), allow the nacelles/nozzles to
-reach 90°, start the engine and increase power smoothly. W/S, A/D and Z/C provide powered pitch,
+reach 90°, start the engine and increase power smoothly. W/S, A/D and Q/E provide powered pitch,
 roll and yaw control in a hover. Transition toward forward thrust gradually while gaining airspeed;
 the nacelles take 12 seconds for full travel and Harrier nozzles take 3. These are simplified
 powered-lift dynamics, with finite travel, vertical thrust, engine-dependent hover authority and
@@ -167,7 +168,7 @@ or repeated loaded scrapes consume joint integrity. Separation removes the secti
 probes, reduces lift/control authority and can disable its attached engines. An asymmetric wing
 loss produces a rolling moment. Detached geometry retains its own velocity and spin, then falls,
 bounces and slows against terrain and resident obstacles. Debris expires after 20 simulation
-seconds; the missing section stays missing. **R** repairs the aircraft and clears debris.
+seconds; the missing section stays missing. **Backspace** repairs the aircraft and clears debris.
 Losing both wings switches the fuselage to ballistic wreck motion, disabling thrust and flight
 controls. Ground and obstacle contact dissipates wreck spin as well as sliding motion, so the
 fuselage settles after impact; airborne wrecks continue to fall and tumble.
@@ -398,7 +399,9 @@ It is a rigid body with these forces on it, each acting where it acts:
 - **Flapping.** The disc does not stay square to the shaft. It tilts back from the air it flies
   into and toward its advancing side, and it follows a pitching or rolling shaft late (by
   16 / (`lock` × rotor speed) seconds: the rotor's own damping). The swashplate tilts it by up
-  to `cyclic` radians each way. The thrust acts at the hub along the tilted disc, so it turns
+  to `cyclic` radians aft and to each side, and 1.4 times that forward, because speed blows the
+  disc back (a Black Hawk has 16.5° forward and 12.3° aft; the default is 16° and 11.5°). The
+  thrust acts at the hub along the tilted disc, so it turns
   the helicopter by the hub's height above the center of mass; a `hingeOffset` adds a moment
   that does not need thrust (0 for a teetering rotor, which has no control at zero g, about
   0.04 articulated, 0.12 hingeless).
@@ -410,7 +413,9 @@ It is a rigid body with these forces on it, each acting where it acts:
   low for a counterclockwise rotor. Lose it and the helicopter spins.
 - **The fuselage.** Drag on `dragArea`, more broadside and from below; the rotor's wash on it
   in a hover (`download`); a fin and a stabilizer (`finArea`, `stabilizerArea`) that keep the
-  nose into the wind once it is moving.
+  nose into the wind once it is moving. The body itself turns the other way, further off the
+  air it meets, and takes back part of what the stabilizer does (about a third on a Black Hawk,
+  whose measured moment is scaled by mass for the rest).
 - **The governor and the rotor's speed.** The rotor holds `rotorInertiaTime` seconds of hover
   power. The governor gives the rotors what they take, up to what the engines and the gearbox
   (`transmission`, and the engine's rated power) can deliver. Ask for more and the rotor slows.
@@ -567,7 +572,7 @@ the afterburner is for moments: an F-16 that flies over half an hour at military
 empties its tanks in about eight minutes with the burner lit. Engines never burn less than an idle
 flow. All 54 shipped aircraft carry fuel, sized by class as a share of their mass (13–17% for
 propeller aircraft, 22% for airliners and transports, 28% for fighters and small jets, 14% for
-helicopters): estimates, not flight-manual capacities. Recovering (R) starts a fresh aircraft
+helicopters): estimates, not flight-manual capacities. Recovering (Backspace) starts a fresh aircraft
 with full tanks, and so does boarding one that is parked: the Earth view and the world explorer
 call `refuelAircraft(world, id)`, which fills the tanks of an aircraft standing on the ground
 with its engines stopped. Without a `fuel` block, fuel is unlimited and the mass constant, as before.
@@ -913,7 +918,7 @@ master switches, individual engine switches and throttles for airplanes with nam
 parking brakes, and applicable gear, flap and nozzle controls. Supplemental labeled modules fill
 gaps in the original models; their layout approximates the aircraft rather than reproducing every
 real switch. The Cessna 172's existing master rocker and flap selector are directly operable.
-Moving common power (including =/− or the modeled **PWR ALL** handle)
+Moving common power (including Z/C or the modeled **PWR ALL** handle)
 synchronizes all throttle levers while preserving individual engine cutoffs, mixtures and propeller settings. A throttle indicates
 commanded power; shaft RPM follows the simulation's spool response. Retractable airplane gear is
 locked on the ground. Helicopters retain the existing shared engine/gearbox model and collective.

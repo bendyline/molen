@@ -41,7 +41,7 @@ export interface EarthOverrideActor {
     | { kind: 'idle' }
     | { kind: 'wander'; radius?: number }
     | { kind: 'goTo'; to: MapOverridePoint; arriveWithin?: number };
-  /** Offered to the interact key (E) within reach (default false). */
+  /** Offered to the interact key (R) within reach (default false). */
   interactable?: boolean;
 }
 

@@ -13,6 +13,7 @@ import {
   createTerrainWaterMaterial,
   disposeTerrainSemanticObject,
   setTerrainWaterTime,
+  terrainLandcoverColor,
 } from '../src/semantic-client';
 import type { TerrainSemanticTile } from '../src/semantic-types';
 
@@ -705,5 +706,21 @@ describe('degenerate building rings', () => {
       vi.doUnmock('../src/semantic-types');
       vi.resetModules();
     }
+  });
+});
+
+describe('land cover colors for a host', () => {
+  it('names the color the ground paints an appearance with', () => {
+    // The built-in palette: a class's own color, and the generic ground green for one it lacks.
+    expect(terrainLandcoverColor('grass').getHexString()).toBe('79915e');
+    expect(terrainLandcoverColor('aerodrome').getHexString()).toBe('78836b');
+    // A host's palette replaces it, matched as the land cover matches: by name, then by the
+    // first palette class the name contains.
+    const palette = { grass: '#7b8b63', forest: '#406047' };
+    expect(terrainLandcoverColor('grass', palette).getHexString()).toBe('7b8b63');
+    expect(terrainLandcoverColor('mixed_forest', palette).getHexString()).toBe('406047');
+    expect(terrainLandcoverColor('aerodrome', palette).getHexString()).toBe('78836b');
+    // Railway land is ballast under any palette that does not name it.
+    expect(terrainLandcoverColor('railway', palette).getHexString()).not.toBe('78836b');
   });
 });

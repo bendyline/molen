@@ -82,7 +82,7 @@ describe('world aircraft', () => {
     expect(flight.enter(flight.visitPosition('p51d'))).toBe(true);
     expect(flight.state?.yaw).toBeCloseTo(Math.PI / 2);
     vehicles.world.patch('aircraft-p51d', AircraftState, { crashed: true });
-    flight.key('KeyR');
+    flight.key('Backspace');
     expect(flight.state?.yaw).toBeCloseTo(Math.PI / 2);
     expect(flight.state?.crashed).toBe(false);
     height = 19;
@@ -409,6 +409,9 @@ describe('world aircraft', () => {
     const { vehicles, flight } = await setup();
     flight.enter(flight.visitPosition('p51d'));
     expect(flight.bailOut()).toBeUndefined();
+    // Parked, the exit key's hint has nothing to say about the seat.
+    flight.exitHint();
+    expect(flight.message).not.toContain('Ctrl+R');
     flight.key('KeyI');
     const pos = vehicles.world.get('aircraft-p51d', Transform)?.pos;
     if (!pos) throw new Error('Aircraft transform disappeared');
@@ -423,9 +426,12 @@ describe('world aircraft', () => {
     });
     flight.input(1 / 60, controls(['KeyW', 'ShiftLeft']));
     expect(vehicles.exit()).toBeUndefined();
-    // Leaving for another mode never fires the seat.
+    // Leaving for another mode never fires the seat, and nor does the exit key (R): its hint
+    // names the chord that does.
     expect(flight.bailOut(false)).toBeUndefined();
     expect(flight.mountedKind).toBe('p51d');
+    flight.exitHint();
+    expect(flight.message).toContain('Ctrl+R ejects');
     const leaving = flight.bailOut();
     if (!leaving || !('ejection' in leaving)) throw new Error('Expected an ejection');
     expect(leaving.ejection.velocity).toEqual([0, 0, 90]);
@@ -457,7 +463,7 @@ describe('world aircraft', () => {
       velocity: [0, 0, 30],
     });
     expect(vehicles.exit()).toBeUndefined();
-    expect(flight.status()).toContain('R recover · E eject');
+    expect(flight.status()).toContain('Backspace recover · Ctrl+R eject');
     // Come to rest on a roof, far above the terrain: climbed out of, not ejected from.
     vehicles.world.patch('aircraft-p51d', AircraftState, {
       grounded: false,
@@ -465,7 +471,7 @@ describe('world aircraft', () => {
       velocity: [0, 0, 1],
     });
     expect(vehicles.exit()).toBeUndefined();
-    expect(flight.status()).toContain('R recover · E climb out');
+    expect(flight.status()).toContain('Backspace recover · R climb out');
     const leaving = flight.bailOut();
     if (!leaving || !('wreck' in leaving)) throw new Error('Expected to climb out');
     const pos = vehicles.world.get('aircraft-p51d', Transform)?.pos ?? [0, 0, 0];
@@ -476,7 +482,7 @@ describe('world aircraft', () => {
     flight.dispose();
     vehicles.dispose();
   });
-  it('sets power with = and - and ignores Ctrl', async () => {
+  it('sets power with Z/C or −/= and ignores Ctrl', async () => {
     const { vehicles, flight } = await setup();
     expect(flight.enter(flight.visitPosition('oh6'))).toBe(true);
     const listeners = new Map<string, Set<(event: Event) => void>>();
@@ -502,10 +508,13 @@ describe('world aircraft', () => {
       return flight.power;
     };
     const start = flight.power;
-    const raised = hold('Equal');
+    const raised = hold('KeyC');
     expect(raised).toBeGreaterThan(start);
     expect(hold('ControlLeft')).toBe(raised);
-    expect(hold('Minus')).toBeLessThan(raised);
+    const lowered = hold('KeyZ');
+    expect(lowered).toBeLessThan(raised);
+    expect(hold('Equal')).toBeGreaterThan(lowered);
+    expect(hold('Minus')).toBeCloseTo(lowered);
     source.dispose();
     flight.dispose();
     vehicles.dispose();
@@ -516,10 +525,10 @@ describe('world aircraft', () => {
     const pos = vehicles.world.get('aircraft-p51d', Transform)?.pos;
     if (!pos) throw new Error('Aircraft transform disappeared');
     vehicles.world.patch('aircraft-p51d', Transform, { pos: [pos[0], pos[1] + 50, pos[2]] });
-    flight.key('KeyR');
+    flight.key('Backspace');
     expect(vehicles.world.get('aircraft-p51d', Transform)?.pos[1]).toBe(pos[1] + 50);
     vehicles.world.patch('aircraft-p51d', AircraftState, { crashed: true });
-    flight.key('KeyR');
+    flight.key('Backspace');
     expect(vehicles.world.get('aircraft-p51d', Transform)?.pos).toEqual(pos);
     expect(flight.state?.crashed).toBe(false);
     flight.dispose();

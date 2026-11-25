@@ -95,7 +95,7 @@ function skipWhenHidden(object: THREE.Object3D): void {
   };
 }
 export const AIRCRAFT_HELP: string =
-  'I engine · =/− power · W/S pitch · A/D bank · Z/C pedals · Space brakes · G gear · F flaps · B speed brake · H hook · O canopy · J nozzle/nacelles · M assisted/direct controls (helicopter cyclic, airplane surfaces) · V view · F5 flyby · E exit (in flight, eject) · R recover after impact';
+  'I engine · Z/C power · W/S pitch · A/D bank · Q/E pedals · Space brakes · G gear · F flaps · B speed brake · H hook · O canopy · J nozzle/nacelles · M assisted/direct controls (helicopter cyclic, airplane surfaces) · V view · F5 flyby · R exit · Ctrl+R eject in flight · Backspace recover after impact';
 
 /** Whether `box` overlaps any parked or flying aircraft other than `except`: an obstacle for cars. */
 export function aircraftBlocks(world: World, box: OBB, except?: string): boolean {
@@ -669,7 +669,7 @@ export class WorldAircraft {
       else if (spec.airplane?.surfaces && !spec.airplane.surfaces.flyByWire)
         this.inputs.controlMode = this.inputs.controlMode === 'direct' ? 'assisted' : 'direct';
     }
-    if (code === 'KeyR' && this.state?.crashed) {
+    if (code === 'Backspace' && this.state?.crashed) {
       const kind = this.mountedKind;
       const yaw = this.spawnYaw(kind);
       const { cyclicMode, controlMode } = this.inputs;
@@ -719,7 +719,7 @@ export class WorldAircraft {
       ['flaps', 'KeyF'],
       ['vector', 'KeyJ'],
       ['cyclic', 'KeyM'],
-      ['recover', 'KeyR'],
+      ['recover', 'Backspace'],
     ] as const) {
       for (let i = 0; i < (pilot?.[action] ?? 0); i++) this.key(code);
     }
@@ -853,7 +853,7 @@ export class WorldAircraft {
       .map(([id]) => id.replaceAll('-', ' '));
     const bailOut = this.bailOutMode(s);
     const alert = s.crashed
-      ? `${missing.length ? `Lost ${missing.join(', ')}` : 'Airframe damaged'} — R recover · ${bailOut === 'eject' ? 'E eject' : 'E climb out'}`
+      ? `${missing.length ? `Lost ${missing.join(', ')}` : 'Airframe damaged'} — Backspace recover · ${bailOut === 'eject' ? 'Ctrl+R eject' : 'R climb out'}`
       : s.waitingForTerrain
         ? 'Waiting for terrain'
         : (s.departure ?? 0) > 0.8 && Math.abs(s.yawRate ?? 0) > 0.8
@@ -910,9 +910,12 @@ export class WorldAircraft {
         : `Fuel ${Math.round(((s.fuel ?? spec.fuel.capacity) / spec.fuel.capacity) * 100)}% · `;
     return `${spec.label} · ${(s.airspeed * 1.94384).toFixed(0)} KTAS · ${airData}${(s.altitudeAGL * 3.28084).toFixed(0)} ft AGL · ${(s.verticalSpeed * 196.85).toFixed(0)} ft/min · ${load}${airplane ? 'Throttle' : 'Collective'} ${(this.inputs.power * 100).toFixed(0)}% · RPM ${(s.rpm * 100).toFixed(0)}% · ${this.inputs.engine ? 'Engine on' : 'Engine off'} · ${fuel}${airplane ? `Gear ${gear} · Flaps ${flaps} · ` : ''}${spec.poweredLift ? `Vector ${Math.round((s.thrustVectorPosition ?? 0) * 90)}° · ` : ''}${spec.model === 'helicopter' ? `Cyclic ${this.inputs.cyclicMode === 'direct' ? 'direct' : 'assisted'} · ` : ''}${this.inputs.controlMode === 'direct' ? 'Direct controls · ' : ''}${alert}`;
   }
+  /** Why the exit key (R) did nothing, and in the air the way out that remains. */
   exitHint(): void {
-    this.message =
-      'Land, stop, press I to shut down, and wait for the rotor to stop before exiting';
+    const s = this.state;
+    this.message = `Land, stop, press I to shut down, and wait for the rotor to stop before exiting${
+      s && this.bailOutMode(s) === 'eject' ? ' · Ctrl+R ejects' : ''
+    }`;
   }
   /**
    * How the pilot leaves when the kernel's exit (stopped, shut down, open level ground at an

@@ -38,7 +38,7 @@ it('keeps centimeter-scale High shadows after boarding an aircraft in the explor
           timeout: 120_000,
         });
         await page.locator('canvas#view').focus();
-        await page.keyboard.press('e');
+        await page.keyboard.press('r');
         await page.locator('#navigation-status[data-aircraft=p51d]').waitFor({
           state: 'attached',
           timeout: 30_000,

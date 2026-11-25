@@ -163,6 +163,7 @@ export type {
   StylePackDoc,
   StylePackImport,
 } from './kernel/stylepack-types';
+export { readTurfRow, sampleTurfCover, turfCoverArea } from './kernel/turf';
 export type {
   BuildingAppearance,
   BuildingApproach,
@@ -184,6 +185,9 @@ export type {
   ScatterRequest,
   StorefrontRequest,
   StorefrontSign,
+  TurfCover,
+  TurfRequest,
+  TurfSward,
   Vec2,
   Vec3,
   WorldgenBudgets,

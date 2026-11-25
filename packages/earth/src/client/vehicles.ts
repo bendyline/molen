@@ -1421,7 +1421,12 @@ export class EarthVehicles {
     const righted = rightVehicle(this.world, id, this.environment);
     return repairVehicle(this.world, id) || righted;
   }
-  update(dt: number, input: VehicleInputData): void {
+  /**
+   * Drive the mounted vehicle and step the world this facade owns. `lean` (-1..1, right
+   * positive) is the rider's own on a cycle or a board: a ridden machine's steering asks for a
+   * lean, so it adds to the steering there. Every other vehicle ignores it.
+   */
+  update(dt: number, input: VehicleInputData, lean = 0): void {
     this.settleSpawned();
     const id = this.mountedId;
     if (id && this.data(id)) {
@@ -1440,7 +1445,11 @@ export class EarthVehicles {
           anchor: input.handbrake === true,
         });
       else {
-        const filtered = this.inputFilters.reduce((value, filter) => filter(id, value), input);
+        const ridden =
+          lean !== 0 && Number.isFinite(lean) && this.world.get(id, Vehicle)?.spec.cycle
+            ? { ...input, steering: Math.max(-1, Math.min(1, input.steering + lean)) }
+            : input;
+        const filtered = this.inputFilters.reduce((value, filter) => filter(id, value), ridden);
         driveVehicle(this.world, PLAYER, {
           ...filtered,
           actuators: { ...this.world.get(id, VehicleInput)?.actuators, ...filtered.actuators },

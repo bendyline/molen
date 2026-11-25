@@ -13,9 +13,9 @@ import {
 import type { TypeLibrary } from '@bendyline/molen-kernel/content';
 
 export const TRAIN_HELP =
-  'W power · S brake, then reverse from a stand · Space brake · A/D take the left/right route at the next switch · V view · drag to look · E exit when stopped';
+  'W power · S brake, then reverse from a stand · Space brake · A/D take the left/right route at the next switch · V view · drag to look · R exit when stopped';
 export const TRAIN_RIDE_HELP =
-  'Riding · the engineer stops at stations and turns back at the end of the line · V view · drag to look · E exit when the train stands';
+  'Riding · the engineer stops at stations and turns back at the end of the line · V view · drag to look · R exit when the train stands';
 
 /** What a request puts the viewer on, and where. */
 export type ExplorerTrainRequest = 'freight' | 'commuter' | 'ride' | 'light-rail';

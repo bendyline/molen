@@ -738,6 +738,19 @@ function landcoverColor(value: string, options: TerrainSemanticMeshOptions): THR
   return new THREE.Color('#78836b');
 }
 
+/**
+ * The color the land cover is painted with for an appearance (`landcoverAppearance`) under a
+ * palette (`TerrainSemanticMeshOptions.landcoverColors`; default the built-in one): the class's
+ * own, the first palette class its name contains, or the generic ground green. For what a host
+ * draws on that ground in its color (tufts of grass, say).
+ */
+export function terrainLandcoverColor(
+  appearance: string,
+  colors?: Readonly<Record<string, string>>,
+): THREE.Color {
+  return landcoverColor(appearance, colors !== undefined ? { landcoverColors: colors } : {});
+}
+
 function classMatches(value: string, candidates: readonly string[]): boolean {
   const normalized = normalizedClass(value);
   return candidates.some((candidate) => normalized.includes(normalizedClass(candidate)));

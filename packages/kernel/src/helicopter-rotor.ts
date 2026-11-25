@@ -46,6 +46,19 @@ import { type Quat, quatConjugate, quatNormalize, quatRotateVec3, type Vec3 } fr
 const G = 9.81;
 /** Swashplate tilt the assist has per radian per second² it wants, floor on the control power. */
 const MIN_CONTROL_POWER = 1e-6;
+/**
+ * How much further the swashplate goes forward than aft and to the sides. Speed blows the disc
+ * back, and forward travel is what holds it: 16.5° against 12.3° aft on the UH-60A (Howlett,
+ * NASA CR-166309, figure 6.3.1), 13.9° both ways on the R44 (its type certificate data sheet).
+ */
+const FORWARD_TRAVEL = 1.4;
+/**
+ * Pitching moment of a fuselage over the pressure of the air it meets, m³ per radian of its
+ * angle to that air and per kg of helicopter: a body turns itself further off the wind, against
+ * the stabilizer. From the UH-60A's, tail off (the same report, table 2.5.9: about 1,550 ft³ per
+ * radian at 7,439 kg), taken to go with the body's volume.
+ */
+const FUSELAGE_MOMENT = 0.0059;
 
 function cross(a: Vec3, b: Vec3): Vec3 {
   return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
@@ -452,6 +465,8 @@ export function stepRotorcraft(c: RotorcraftInput): RotorcraftStep {
   const airspeed = m.hypot(bodyAir[0], bodyAir[1], bodyAir[2]);
   const plate = 0.5 * density * rotor.dragArea * airspeed;
   push([0, 0, 0], [-3 * plate * bodyAir[0], -4 * plate * bodyAir[1], -plate * bodyAir[2]]);
+  // It turns itself further off the air it meets, most at 45 degrees to it.
+  moment[0] += 0.5 * density * FUSELAGE_MOMENT * spec.mass * bodyAir[1] * bodyAir[2];
   const wash =
     (rotor.download ?? 0.04) * (1 - m.smoothstep(edgewise / m.max(1, 2 * hoverInflow))) * thrust;
   push([0, 0, 0], [-shaft[0] * wash, -shaft[1] * wash, -shaft[2] * wash]);
@@ -585,13 +600,17 @@ export function stepRotorcraft(c: RotorcraftInput): RotorcraftStep {
   // Assisted, the stick asks for an attitude and the swashplate is put where the rotor turns
   // the helicopter toward it, as far as the swashplate goes and the rotor has thrust to do it.
   const travel = rotor.cyclic ?? 0.2;
+  const forward = FORWARD_TRAVEL * travel;
   let command: [number, number];
   let trim = s.rotor?.trim;
   const base = rotorOn(free);
   if (direct) {
     const stick: [number, number] = [m.clamp(input.pitch, -1, 1), m.clamp(input.roll, -1, 1)];
+    // Fore and aft the stick's middle is the middle of the travel, a little forward of level.
+    const middle = (forward - travel) / 2;
+    const half = (forward + travel) / 2;
     const held: [number, number] = trim ?? [
-      m.clamp(-lastCyclic[0] / travel, -1, 1),
+      m.clamp((middle - lastCyclic[0]) / half, -1, 1),
       m.clamp(-lastCyclic[1] / travel, -1, 1),
     ];
     trim = [
@@ -600,7 +619,7 @@ export function stepRotorcraft(c: RotorcraftInput): RotorcraftStep {
     ];
     // Stick back tilts the disc back; stick right tilts it right.
     command = [
-      -travel * m.clamp(trim[0] + stick[0], -1, 1),
+      middle - half * m.clamp(trim[0] + stick[0], -1, 1),
       -travel * m.clamp(trim[1] + stick[1], -1, 1),
     ];
   } else {
@@ -646,7 +665,7 @@ export function stepRotorcraft(c: RotorcraftInput): RotorcraftStep {
           (moment[0] + base.moment[0])) /
           (power + moments[0] * stiffen),
         -travel,
-        travel,
+        forward,
       ),
       m.clamp(
         (-moments[2] * (stiffen * shortRoll - helicopter.cyclicDamping * s.rollRate) +

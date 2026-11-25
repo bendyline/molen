@@ -354,7 +354,7 @@ export interface HelicopterRotorSpec extends JsonObject {
   hingeOffset?: number;
   /** Blade pitch at three quarters of the radius with the collective fully down and fully up, rad. */
   collective: [number, number];
-  /** Greatest tilt of the swashplate each way, rad; default 0.2. */
+  /** Greatest tilt of the swashplate aft and to each side, rad; default 0.2. Forward, 1.4 times it. */
   cyclic?: number;
   /** Induced power over the ideal; default 1.15. */
   inducedFactor?: number;

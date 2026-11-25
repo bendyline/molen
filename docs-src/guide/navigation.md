@@ -137,13 +137,22 @@ Default profiles come from `navigationInputProfiles()`:
 | Profile | Keys | Gamepad (standard mapping) |
 |---|---|---|
 | `orbit`, `fly` | WASD/arrows move, Q/E down/up, Shift sprint | left stick move, right stick look, bumpers up/down |
-| `walk`, `drive` | WASD/arrows move, Space jump/brake, E or F interact, V view, Shift sprint | left stick move, right stick look, A jump, X interact, Y view |
-| `pilot` | W/S or ↑/↓ nose down/up, A/D or ←/→ bank, Z/C rudder, =/− (or numpad +/−, Page Up/Down) power, I engine, G gear, F flaps, R recover, Space brake, V view, E exit | left stick pitch/bank, right stick look, triggers power, bumpers rudder, A brake, B engine, X exit, Y view |
+| `walk`, `drive` | WASD/arrows move, Space jump/brake, R or F interact, V view, Shift sprint. On foot Q/E step sideways as A/D do; in a vehicle Q/E lean a cycle's rider and Backspace recovers | left stick move, right stick look, A jump, X interact, Y view |
+| `pilot` | W/S or ↑/↓ nose down/up, A/D or ←/→ bank, Q/E rudder, Z/C (or −/=, numpad −/+, Page Down/Up) power, I engine, G gear, F flaps, Backspace recover, Space brake, V view, R exit | left stick pitch/bank, right stick look, triggers power, bumpers rudder, A brake, B engine, X exit, Y view |
 
 In the `pilot` profile each `NavigationInput` also carries `pilot`: the held `throttle` and `yaw`
 axes (-1..1) and edge-triggered `engine`, `gear`, `flaps` and `recover` presses. Pitch is
 `-move.forward` and bank is `move.right`, so the touch stick flies too; hold-to-throttle buttons
 can drive `NAVIGATION_ACTIONS.throttleUp`/`throttleDown` with `input.map.setVirtual(...)`.
+
+In the `drive` profile a held Q or E adds `lean` (-1..1, right positive) and Backspace adds
+`recover` presses. The lean is for ridden machines, where the steering asks for a lean:
+`EarthVehicles.update(dt, input, lean)` adds it to the steering of a cycle or a board and ignores
+it in a car, and the Earth view passes it through.
+
+A key pressed with Ctrl held is never read as its action, so chords stay the browser's and the
+host's: the World Explorer ejects from an aircraft on Ctrl+R, where R alone only leaves one that
+has stopped.
 
 Call `input.setProfile(mode)` when navigation changes. The walk profile also turns on pointer lock
 for mouse-look, with drag-look as the fallback when pointer lock is declined. Replace any profile

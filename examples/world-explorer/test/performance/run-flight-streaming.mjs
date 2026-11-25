@@ -76,7 +76,17 @@ await mkdir(output, { recursive: true });
 const browser = await chromium.launch({
   headless: true,
   channel: option('channel', 'chrome'),
-  args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'],
+  // A page without a window is a background process to the browser and the system. On battery its
+  // worker threads then ran 20 to 100 times slower with frames unaffected, which no visitor's
+  // foreground tab gets: ask for none of that, and run flights on mains power all the same.
+  args: [
+    '--enable-unsafe-webgpu',
+    '--ignore-gpu-blocklist',
+    '--disable-renderer-backgrounding',
+    '--disable-backgrounding-occluded-windows',
+    '--disable-background-timer-throttling',
+    '--disable-features=UseEcoQoSForBackgroundProcess,CalculateNativeWinOcclusion',
+  ],
 });
 const errors = [];
 try {
@@ -196,9 +206,12 @@ try {
     (final.graphics.counters[name] ?? 0) - (opening.graphics.counters[name] ?? 0);
   const worst = (values) => Math.max(...values);
   const tiers = [];
+  // `tier` is the level drawn at, `world` the level the world is built at (Auto lowers the first
+  // alone for slow frames, at first).
   for (const sample of samples) {
-    if (tiers.at(-1)?.tier !== sample.tier) {
-      tiers.push({ t: +sample.t.toFixed(1), tier: sample.tier, reason: sample.tierReason });
+    const world = sample.detailTier ?? sample.tier;
+    if (tiers.at(-1)?.tier !== sample.tier || tiers.at(-1)?.world !== world) {
+      tiers.push({ t: +sample.t.toFixed(1), tier: sample.tier, world, reason: sample.tierReason });
     }
   }
   const summary = {

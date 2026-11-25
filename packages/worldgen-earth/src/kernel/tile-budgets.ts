@@ -82,6 +82,19 @@ const SCATTER_MODELS: Record<WorldgenQualityPreset, readonly number[]> = {
  */
 const NEAR_INSTANCES = 250_000;
 
+/**
+ * Cells of a finest tile's turf cover (`WorldgenBatchOutput.turf`), the mask of where its ground
+ * grows grass: 768 a side, so a meter a cell on a tile up to 768 m across and 1.3 m on a
+ * kilometer one. Its rows are stored as runs (tens of kilobytes for a suburb). None at Economy,
+ * which draws no tufts, nor on coarser tiles: a camera near enough to see a tuft is over a
+ * finest one.
+ */
+const TURF_CELLS: Record<WorldgenQualityPreset, number> = {
+  economy: 0,
+  balanced: 768 * 768,
+  high: 768 * 768,
+};
+
 function byLevel(table: readonly number[], levelBelowMax: number): number {
   return table[Math.max(0, levelBelowMax)] ?? 0;
 }
@@ -126,6 +139,7 @@ export function worldgenTileBudgetForQuality(
       levelBelowMax,
     ),
     maxNearInstances: finest ? NEAR_INSTANCES : 0,
+    maxTurfCells: finest ? TURF_CELLS[quality] : 0,
   };
   switch (quality) {
     case 'economy':

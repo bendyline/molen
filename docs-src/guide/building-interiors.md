@@ -1,7 +1,7 @@
 # Inferred building interiors
 
 World explorer enables lazy interiors in the styled **Human** layer: choose **Walk**, walk up to
-a building's front door, press **E** to open it, and walk in. Near the entrance, the windows
+a building's front door, press **R** to open it, and walk in. Near the entrance, the windows
 become transparent and reveal the same interior you can enter.
 
 `?interiors=0` disables this capability. `?synthetic=1&stores=1` provides a repeatable block of recognizable
@@ -290,7 +290,7 @@ be built is `locked` and stays shut. Shutting is refused while `from` stands in 
 When an interior is released, its door shuts with it.
 
 The Earth renderers expose the same `doorAt` and `setDoor`. World Explorer and the Earth view
-use the interact key for them: **E** opens or shuts the door the walker faces, and the explorer's
+use the interact key for them: **R** opens or shuts the door the walker faces, and the explorer's
 status line says which it will do. In the Earth view a door is an interactable of kind `door` (see
 [Earth view](earth-view.md#interaction)).
 

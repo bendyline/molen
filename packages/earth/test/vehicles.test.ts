@@ -1,5 +1,7 @@
+import { readFileSync } from 'node:fs';
 import { AmbientAgent, agentRotation, installAmbient } from '@bendyline/molen-ambient/kernel';
 import { createParkedVehicleBatch, isParkedVehicleHidden } from '@bendyline/molen-client/vehicles';
+import { createTypeLibrary } from '@bendyline/molen-kernel/content';
 import { VehicleInput, VehicleState } from '@bendyline/molen-kernel/vehicles';
 import { Transform } from '@bendyline/molen-kernel/world';
 import type { VehicleData, VehiclePlacement } from '@bendyline/molen-schema';
@@ -737,6 +739,46 @@ it('keeps parked cars asleep where they were parked, on a deck the car collision
       expect(vehicles.world.get(p.id, VehicleState)).toBe(states[i]);
       expect(vehicles.world.get(p.id, Transform)?.pos).toEqual(p.position);
     });
+  } finally {
+    vehicles.dispose();
+  }
+});
+
+it('adds the rider lean to the steering of a cycle and leaves a car alone', () => {
+  const types = createTypeLibrary(
+    ['entities.types.json', 'vehicle.types.json', 'cycle.types.json'].map((name) =>
+      JSON.parse(
+        readFileSync(new URL(`../../../content/entities/types/${name}`, import.meta.url), 'utf8'),
+      ),
+    ),
+  );
+  const cycle = types
+    .idsWith('vehicle')
+    .find((id) => types.component<VehicleData>(id, 'vehicle').spec.cycle !== undefined);
+  if (cycle === undefined) throw new Error('No cycle type in the entities content');
+  const vehicles = new EarthVehicles({
+    root: new THREE.Group(),
+    sampleHeight: () => 0,
+    loadModel: async () => new THREE.Group(),
+    types,
+  });
+  try {
+    const steering = (id: string, steer: number, lean: number): number | undefined => {
+      vehicles.update(1 / 60, { throttle: 0, steering: steer, brake: true }, lean);
+      return vehicles.world.get(id, VehicleInput)?.steering;
+    };
+    const bike = vehicles.spawn(cycle, [0, 0, 0], 0) as string;
+    expect(vehicles.board(bike)).toBe(true);
+    // A ridden machine's steering asks for a lean, so the rider's own adds to it, within a full one.
+    expect(steering(bike, 0, 0)).toBe(0);
+    expect(steering(bike, 0, -1)).toBe(-1);
+    expect(steering(bike, 0.25, 0.5)).toBeCloseTo(0.75);
+    expect(steering(bike, 0.8, 0.5)).toBe(1);
+    expect(vehicles.exit()).toBeDefined();
+    const car = vehicles.spawn(SEDAN, [20, 0, 0], 0) as string;
+    expect(vehicles.board(car)).toBe(true);
+    expect(steering(car, 0.25, 0.5)).toBe(0.25);
+    expect(steering(car, 0, 1)).toBe(0);
   } finally {
     vehicles.dispose();
   }

@@ -418,6 +418,114 @@ describe('a helicopter on its rotors', () => {
     expect(Math.abs(end.state.sideslip ?? 0)).toBeLessThan(0.2);
   });
 
+  describe('with the stick held forward at full power', () => {
+    /** The swashplate's forward stop: 1.4 times its travel the other ways. */
+    const stop = 1.4 * 0.2;
+    const KNOT = 0.514444;
+    const push = (id: string, power: number, pitch: number, watch?: (flight: Flight) => void) => {
+      const spec = molenAircraft(`molen.entities.aircraft.${id}`).spec;
+      let highest = -Math.PI;
+      let reached = 0;
+      let most = 0;
+      let low = Math.PI;
+      let high = -Math.PI;
+      fly(
+        spec,
+        60,
+        (_state, time) => ({
+          ...running,
+          brake: false,
+          gear: false,
+          power,
+          pitch: time < 2 ? 0 : pitch,
+        }),
+        hovering(1500, 60 * KNOT),
+        (flight, time) => {
+          most = Math.max(most, flight.state.rotor?.cyclic[0] ?? 0);
+          // Ten seconds for the nose to go down and settle.
+          if (time < 10) return;
+          highest = Math.max(highest, flight.state.pitch);
+          reached = Math.max(reached, flight.state.airspeed);
+          if (time > 40) {
+            low = Math.min(low, flight.state.pitch);
+            high = Math.max(high, flight.state.pitch);
+          }
+          watch?.(flight);
+        },
+        { groundHeight: () => -10000 },
+        30,
+      );
+      return { highest, reached, most, swing: high - low };
+    };
+
+    // At what they are certified to never exceed, or near their fastest level flight.
+    it.each([
+      ['oh6', 130],
+      ['uh_1h', 110],
+      ['bell_206b', 122],
+      ['bell_407', 140],
+      ['bell_412ep', 140],
+      ['robinson_r44', 130],
+      ['airbus_h125', 150],
+      ['airbus_h145', 130],
+      ['uh_60m', 150],
+      ['aw139', 167],
+    ] as const)('%s keeps its nose down and reaches %i knots', (id, knots) => {
+      const flown = push(id, 1, -0.5);
+      expect(flown.highest).toBeLessThan(-0.05);
+      expect(flown.reached).toBeGreaterThan(knots * KNOT);
+      // Without porpoising, and with swashplate in hand.
+      expect(flown.swing).toBeLessThan(0.06);
+      expect(flown.most).toBeLessThan(0.95 * stop);
+    });
+
+    it.each([
+      [0.5, -0.5],
+      [0.7, -0.5],
+      [0.8, -1],
+      [1, -1],
+    ])('the AW139 answers it at any power (lever %d, stick %d)', (power, pitch) => {
+      // It ran out of swashplate at 105 knots with as much travel forward as aft, pitched up
+      // to 17 degrees, slowed, and did it again.
+      const flown = push('aw139', power, pitch);
+      expect(flown.highest).toBeLessThan(-0.05);
+      expect(flown.reached).toBeGreaterThan(160 * KNOT);
+      expect(flown.most).toBeLessThan(0.95 * stop);
+    });
+
+    it('the AW139 cruises at 160 knots with a tenth of its travel and more in hand', () => {
+      const spec = molenAircraft('molen.entities.aircraft.aw139').spec;
+      const speed = 160 * KNOT;
+      const density = sampleAtmosphere({}, 300).densityKgM3;
+      const start = lever(spec, { density, speed });
+      let hold = 0;
+      const end = fly(
+        spec,
+        40,
+        (state, _time, transform) => {
+          const behind = speed - state.velocity[2];
+          hold = Math.max(-1, Math.min(1, hold + (behind * 0.01) / 60));
+          return {
+            ...running,
+            gear: false,
+            power: Math.max(
+              0,
+              Math.min(
+                1,
+                start + (300 - transform.pos[1]) * 0.006 - (state.velocity[1] as number) * 0.06,
+              ),
+            ),
+            pitch: -(0.04 * behind + hold),
+          };
+        },
+        hovering(300, speed),
+      );
+      expect(end.state.airspeed / KNOT).toBeGreaterThan(157);
+      expect(Math.abs(end.state.verticalSpeed)).toBeLessThan(0.5);
+      expect(end.state.rotor?.cyclic[0]).toBeLessThan(stop - 0.1 * (stop + 0.2));
+    });
+  });
+
   it('noses up as it gathers speed with the stick left alone (direct controls)', () => {
     // Trimmed in the hover, then pushed along at 25 m/s with nobody on the stick.
     const still = fly(cayuse, 0.6, () => ({ ...running, cyclicMode: 'direct', power: 0.5 }));

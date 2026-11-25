@@ -21,9 +21,14 @@ of being mistaken for normal rendering. A second pause within a minute of render
 Frame times cannot show a level that streams more than it can hold: that work runs outside the
 frame. A host reports it as `strained` in each sample (the explorer does when half of the
 tiles built over ten seconds had been evicted within the minute before, the terrain stream's
-`thrashedTiles`, or when the view fills most of a full terrain cache). Ground built again
+`thrashedTiles`, while the ground within 2 km of the camera falls behind, or when the view fills
+most of a full terrain cache). Ground built again
 minutes after it was evicted (`rebuiltTiles` counts it too) is a flight coming back, not strain:
-over a session in one region it becomes nearly every tile built. Strain blocks upgrades at once and, sustained for `strainDelayMs` (10 s), lowers
+over a session in one region it becomes nearly every tile built. Nor is ground built again while
+the view keeps up: three full turns over downtown Seattle rebuilt two fifths of their tiles within
+a minute of eviction with all of the near ground at its selected detail (the stream's
+`viewCoverage`), and lowering the tier for that took detail off the screen to save worker time.
+Strain blocks upgrades at once and, sustained for `strainDelayMs` (10 s), lowers
 detail with the reason `'streaming'`. `upgradeWorkFraction` (default 0.9) is the share of the
 target that measured frame work must stay under before a step up.
 While content streams, slow frames lower detail only when the measured CPU/GPU frame work is itself
@@ -45,7 +50,26 @@ roll left a fast laptop at the lowest tiers for the rest of the flight.
 
 Three things still lower the tier, one step at a time: displayed content over the memory budget,
 streaming strain, and frames under 30 a second for ten seconds running. Slow frames while content
-loads count only when frame work itself is heavy, and long stalls never do. A lowered tier comes
+loads count only when frame work itself is heavy, and long stalls never do.
+
+A tier is two things, and slow frames lower only one of them at first. The tier the view is drawn
+at sets resolution, shadows, clouds, ambient life and how soon a model hands over to a coarser
+one: each changes in place, with nothing to rebuild. The tier the world is built at sets how far
+the ground refines, how many tiles are held, and building and surface quality: a change there
+gives up every tile in view for a coarser one that has to be built first. The first two steps
+slow frames take (as many as the guess has tiers under it, if fewer) lower the drawing alone. A
+P-51 over Seattle with other work on the machine lost two tiers to slow frames in forty seconds,
+and at Low the ground beneath it was the box shells of a tile four times too coarse, with no
+roads, until the tiers came back a minute later and it was all built again; with the world held,
+the same two steps left the ground within 1.5 km at full detail while the frame rate went from 25
+to 45 a second. Only when the drawing has those steps behind it and frames are still slow
+does the world follow, a step at a time, so a device that cannot draw its guess still ends at the
+bottom. Memory and streaming strain are the world's own size and lower both at once. The
+explorer's panel names both when they differ ("Auto · Balanced · drawn at Low"), and
+`#performance-status` carries `data-level` (drawn) and `data-detail-level` (world). `?tier=N`
+holds one tier for both.
+
+A lowered tier comes
 back one step at a time, never past the guess, once the view has been calm for most of a minute:
 frames at 45 a second or better, frame work within 20 ms, no streaming strain, and displayed
 content within three quarters of the memory budget. A hitch (a frame over 100 ms) costs a couple of

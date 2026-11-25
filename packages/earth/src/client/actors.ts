@@ -98,7 +98,7 @@ export interface EarthActorSpec {
   heading?: number;
   /** Default `idle`. */
   behaviour?: EarthActorBehaviour;
-  /** Offered to the interact key (E) within reach (default false). */
+  /** Offered to the interact key (R) within reach (default false). */
   interactable?: boolean;
 }
 

@@ -339,7 +339,10 @@ export class ModelLibrary {
       // Primitive texture coordinates would sample the leaf atlas; builtins draw solid.
       geometry.deleteAttribute('uv');
       geometry.computeBoundingBox();
-      setScatterCanopy(geometry, /^(tree|shrub|bush|hedge)/.test(ref.slice('builtin:'.length)));
+      setScatterCanopy(
+        geometry,
+        /^(tree|shrub|bush|hedge|turf)/.test(ref.slice('builtin:'.length)),
+      );
       return {
         ref,
         geometry,

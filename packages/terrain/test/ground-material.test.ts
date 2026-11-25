@@ -11,6 +11,7 @@ import {
   isTerrainGroundMaterial,
   setTerrainGroundOrigin,
   setTerrainGroundSnow,
+  terrainGroundTurfColor,
 } from '../src/ground-material';
 import { TERRAIN_PAINT_ON_PARKING } from '../src/linear-features';
 
@@ -241,6 +242,33 @@ describe('terrain ground variation', () => {
     expect(() => setTerrainGroundSnow(new THREE.MeshStandardMaterial(), { level: 0 })).toThrow(
       /terrain ground material/,
     );
+  });
+
+  it('gives a host the color it settles turf to, for what stands on that ground', () => {
+    // A lawn green: muted a little and tinted toward watered turf, as the shader does to it.
+    const lawn = new THREE.Color('#7b8b63');
+    const settled = terrainGroundTurfColor(lawn.clone());
+    expect(settled.g).toBeLessThan(lawn.g);
+    expect(settled.r).toBeLessThan(lawn.r);
+    expect(settled.g).toBeGreaterThan(Math.max(settled.r, settled.b));
+    for (const channel of ['r', 'g', 'b'] as const) {
+      expect(settled[channel] / lawn[channel]).toBeGreaterThan(0.75);
+      expect(settled[channel] / lawn[channel]).toBeLessThan(1);
+    }
+    // In place, and by the material's strength: none of it at zero.
+    const same = lawn.clone();
+    expect(terrainGroundTurfColor(same, 0)).toBe(same);
+    expect(same.equals(lawn)).toBe(true);
+    // Ground that is not green (paving, sand, a dry region's olive-tan) keeps its color.
+    for (const hex of ['#aaa79e', '#d0bb8c', '#887b63']) {
+      const color = new THREE.Color(hex);
+      expect(terrainGroundTurfColor(color.clone()).equals(color)).toBe(true);
+    }
+    // Barely green ground takes a share of the tint in proportion.
+    const teal = new THREE.Color('#344947');
+    const tinted = terrainGroundTurfColor(teal.clone());
+    expect(tinted.g / teal.g).toBeGreaterThan(0.97);
+    expect(tinted.g / teal.g).toBeLessThanOrEqual(1);
   });
 
   it('rejects out-of-range strength and foreign materials', () => {

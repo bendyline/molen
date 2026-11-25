@@ -7,7 +7,7 @@ and frame/interlayer failure is independent of fracture.
 Generic vehicles use the Bendy house brand, with stable asset/type IDs. The Bendy Bus and
 Bendy Light Rail are also mountable through the vehicle API. World Explorer has buttons for
 both at the practice area: W/S applies traction or reverse, Space brakes, V switches view,
-and E exits after stopping. The bus steers with A/D. Locomotives, rail cars and light rail
+and R exits after stopping. The bus steers with A/D. Locomotives, rail cars and light rail
 follow real track when the host supplies a track network; see
 [Trains and track-guided vehicles](#trains-and-track-guided-vehicles).
 See the [close-view vehicle standard](medium-fi.md#controllable-vehicles-close-view-fidelity)
@@ -29,9 +29,9 @@ approaching or entering one loads its independent GLB with its own interior and 
 into schema, kernel, or client. The P-51D Mustang and OH-6 share the same mount/seat foundation
 and add separate flight controls, physics, assets and cockpit cameras; see [Aircraft](aircraft.md).
 
-In **Walk mode**, approach a car and press **E** to enter its driver seat. **W/S** accelerate or
+In **Walk mode**, approach a car and press **R** to enter its driver seat. **W/S** accelerate or
 brake then reverse; **A/D** steer; **Space** brakes; **Shift** pulls the handbrake; **V** switches
-cockpit/chase views. Mouse look works while seated. Stop and press **E** to exit.
+cockpit/chase views. Mouse look works while seated. Stop and press **R** to exit.
 
 Every car drives like itself. Each has its own engine and gearbox, weight and weight
 distribution, tires, suspension and aerodynamics, fitted to what a real one of its kind does: a
@@ -215,7 +215,7 @@ friction and very little bounce. What follows is not scripted:
 It is a car on the road again once it is back on at least three wheels, upright, nearly
 still in roll and pitch, and on ground it could drive on. A car that has stopped off its
 wheels stays there: its driver can get out beside it, and `rightVehicle(world, id, env)` from
-`kernel/vehicles` sets a stopped car back on its wheels where it lies. Earth view and World Explorer do that on **R**, with
+`kernel/vehicles` sets a stopped car back on its wheels where it lies. Earth view and World Explorer do that on **Backspace**, with
 the repair. `vehicleState.freeBody` carries the body's velocity and angular velocity while
 it is free, and is absent on the road, so a keyframe taken in mid-air resumes there. A
 vehicle without `wheels` (the two-axle model, cycles, rail) is never released.
@@ -378,7 +378,7 @@ and nearby vehicles. Detailed contacts additionally detect parts extending beyon
 
 `vehicleState.damage` and `debris` survive keyframes. Debris expires after 20 simulation seconds;
 the part stays missing. Pass the state as the sixth argument to `VehicleVisual.update` to apply
-damage after animation; Earth view and World Explorer do this automatically. Press **R** once
+damage after animation; Earth view and World Explorer do this automatically. Press **Backspace** once
 stopped to repair parts in place, and to set a car that has come to rest off its wheels back
 on them. Hosts can call `EarthVehicles.recover()`, `EarthView.recover()` in drive mode, or
 `repairVehicle(world, id)` and `rightVehicle(world, id, env)` from `kernel/vehicles`. Glass has its own fracture
@@ -558,7 +558,7 @@ manifest in blocks of alike cars. A commuter train is a locomotive and bilevel c
 train is two cars. You can also pass your own `cars`. Riding as a passenger, an engineer drives for
 you. It keeps to line speed and slows for curves, stops with the middle of the train at each station
 or platform, and waits and runs back the other way at the end of the line. Walking up to a stopped
-train and pressing **E** takes the cab's driver's seat, or a free passenger seat in a coach;
+train and pressing **R** takes the cab's driver's seat, or a free passenger seat in a coach;
 `EarthVehicles.freeSeat` picks it. `trains.status()` describes the train the viewer is aboard for a
 HUD: speed, mass, line name, route at the next switch and next stop.
 
@@ -591,8 +591,9 @@ and `cargo_bicycle`; an `underbone_moped` (the step-through commuter of South an
 and an `electric_moped`; a shared electric `kick_scooter`; and a push `skateboard` and an
 `electric_skateboard`. Mount, drive and exit them with the same APIs as cars. In the Earth view
 example, select one beside **Drive**, then press **Drive**. **W** supplies motor or pedal power (on
-the skateboard, the rider pushes off), **S** and **Space** brake, **A/D** steer, **V** changes view,
-and **E** steps off once stopped. None has powered reverse. Two more ride on runners over lying
+the skateboard, the rider pushes off), **S** and **Space** brake, **A/D** steer (**Q/E** lean the
+rider, which on a ridden machine is the same request), **V** changes view,
+and **R** steps off once stopped. None has powered reverse. Two more ride on runners over lying
 snow, `skis` and a `snowboard`, beside the `molen.entities.vehicle.snowmobile`: gravity moves
 them down a slope, and [Snow cover](snow.md#the-three-rides) describes them. The Earth view API
 accepts the full type ID:

@@ -2761,7 +2761,9 @@ const helicopterPhysicsSchema = z.strictObject(
         cyclic: num
           .positive()
           .optional()
-          .describe('Greatest swashplate tilt each way, radians. Default 0.2.'),
+          .describe(
+            'Greatest swashplate tilt aft and to each side, radians; forward, 1.4 times it. Default 0.2.',
+          ),
         groundEffect: num
           .min(0)
           .optional()

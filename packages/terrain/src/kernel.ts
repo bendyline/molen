@@ -87,7 +87,7 @@ export {
 } from './ground-crowns';
 export { Heightfield, type HeightfieldCollider, type HeightfieldOptions } from './heightfield';
 export { gradeHighwayBridges } from './highway-grading';
-export { landcoverAppearance } from './landcover-appearance';
+export { landcoverAppearance, orderLandcover } from './landcover-appearance';
 export {
   joinTerrainLines,
   lineSegmentIndex,

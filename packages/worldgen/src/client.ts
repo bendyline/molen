@@ -100,5 +100,15 @@ export {
 } from './client/structure-streamer';
 export type { LoadedStylePack, LoadStylePackOptions } from './client/stylepack-loader';
 export { loadStylePack, withStylePackDocuments } from './client/stylepack-loader';
+export {
+  createTurf,
+  isTurfObject,
+  TurfObject,
+  type TurfOptions,
+  type TurfSource,
+  turfReach,
+} from './client/turf';
+export { createTuftGeometry } from './client/turf-geometry';
 export type { WorldgenMaterialSet } from './client/upload';
 export { buffersToObject3D, disposeWorldgenObject } from './client/upload';
+export { TURF_TUFT_MODEL } from './client/vegetation';

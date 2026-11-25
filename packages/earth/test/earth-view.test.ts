@@ -1145,22 +1145,22 @@ describe('mountEarthView game hooks', () => {
       seen.push(`${interaction.kind}:${interaction.id ?? ''}`);
       interaction.claim();
     });
-    view.input.map.press('KeyE');
-    view.input.map.release('KeyE');
+    view.input.map.press('KeyR');
+    view.input.map.release('KeyR');
     await pump(1);
     expect(seen).toEqual(['vehicle:car-2']);
     expect(view.mode).toBe('walk');
     off();
     // Unclaimed, the view boards the car; aboard, the key refers to the car and leaves it.
-    view.input.map.press('KeyE');
-    view.input.map.release('KeyE');
+    view.input.map.press('KeyR');
+    view.input.map.release('KeyR');
     await pump(1);
     expect(view.mode).toBe('drive');
     expect(view.vehicleStatus()?.kind).toBe('car');
     expect(view.interactable()).toEqual({ kind: 'vehicle', id: 'car-2', distance: 0 });
     await pump(5);
-    view.input.map.press('KeyE');
-    view.input.map.release('KeyE');
+    view.input.map.press('KeyR');
+    view.input.map.release('KeyR');
     await pump(1);
     expect(view.mode).toBe('walk');
     view.dispose();

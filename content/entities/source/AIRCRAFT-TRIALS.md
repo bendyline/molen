@@ -573,7 +573,7 @@ Fitted figures (calibration may use them): 161 of 164. Checks (it may not): 198 
 
 | Card | Measured | Published | Error | Role | Evidence | |
 |---|---:|---:|---:|---|---|---|
-| Cruise speed at the stated power (anchor) | 110 kt | 110 kt | -0% | fit | published-anchor-with-estimated-test-condition | pass |
+| Cruise speed at the stated power (anchor) | 109 kt | 110 kt | -1% | fit | published-anchor-with-estimated-test-condition | pass |
 | Hover ceiling in ground effect at 4,309 kg | 5,522 ft | 5,500 ft | 0% | fit | published | pass |
 | Hover ceiling in ground effect (3856kg) at 3,856 kg | 10,970 ft | 9,900 ft | 11% | check | published | pass |
 | Best rate of climb at 4,309 kg | 1,395 ft/min | 1,600 ft/min | -13% | check | published | fail |
@@ -632,7 +632,7 @@ Fitted figures (calibration may use them): 161 of 164. Checks (it may not): 198 
 
 | Card | Measured | Published | Error | Role | Evidence | |
 |---|---:|---:|---:|---|---|---|
-| Cruise speed at the stated power (anchor) | 130 kt | 130 kt | 0% | fit | published-anchor-with-estimated-test-condition | pass |
+| Cruise speed at the stated power (anchor) | 129 kt | 130 kt | -1% | fit | published-anchor-with-estimated-test-condition | pass |
 | Hover ceiling out of ground effect at 3,800 kg | 8,636 ft | 8,955 ft | -4% | fit | published | pass |
 | Hover ceiling in ground effect at 3,800 kg | 12,500 ft | 12,490 ft | 0% | fit | published | pass |
 | Best rate of climb | 3,130 ft/min | 1,594 ft/min | 96% | check | published-other-variant | fail |
@@ -641,7 +641,7 @@ Fitted figures (calibration may use them): 161 of 164. Checks (it may not): 198 
 
 | Card | Measured | Published | Error | Role | Evidence | |
 |---|---:|---:|---:|---|---|---|
-| Cruise speed at the stated power (anchor) | 148 kt | 151 kt | -2% | fit | published-anchor-with-estimated-test-condition | pass |
+| Cruise speed at the stated power (anchor) | 154 kt | 151 kt | 2% | fit | published-anchor-with-estimated-test-condition | pass |
 | Hover ceiling out of ground effect at 9,979 kg | 6,214 ft | 6,200 ft | 0% | fit | published-other-variant | pass |
 | Hover ceiling in ground effect at 9,979 kg | 10,280 ft | 10,270 ft | 0% | fit | published-other-variant | pass |
 | Best rate of climb at 9,979 kg | 2,515 ft/min | 2,020 ft/min | 25% | check | published-other-variant | fail |

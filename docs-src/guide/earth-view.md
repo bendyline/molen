@@ -157,11 +157,12 @@ lays out around it with the `--molen-console-height` CSS property it sets on the
   back past where the scene still draws; a farther `range` is clamped, and the limit follows
   adaptive quality.
 - **walk**: `setMode('walk')` drops a walker at the view center. It has capsule collision against
-  terrain, buildings and props, WASD or the touch stick to move, mouse-look with pointer lock, and
-  Space to jump. The camera is first person until the host gives the walker a body; then V
+  terrain, buildings and props, WASD or the touch stick to move (Q/E step sideways as A/D do),
+  mouse-look with pointer lock, and Space to jump. The camera is first person until the host gives the walker a body; then V
   switches to a camera behind it (see [Walking](#walking-place-pose-avatar-and-third-person)).
-- **drive**: while walking, press E (or `setMode('drive')`) next to a parked car to get in. W/S
-  drive, A/D steer, Space brakes, V switches between cockpit and chase views, and E gets out. A car
+- **drive**: while walking, press R (or `setMode('drive')`) next to a parked car to get in. W/S
+  drive, A/D steer (Q/E lean a cycle or a board the same way), Space brakes, V switches between
+  cockpit and chase views, and R gets out. A car
   at rest with no throttle holds itself, even on a slope. Cars come from the entities content
   pack. `message` events explain when entering or leaving is blocked, for example "Move closer to
   the door". From any mode, `setMode('drive', { vehicle: true })` puts the viewer in a car in the
@@ -172,7 +173,7 @@ lays out around it with the `--molen-console-height` CSS property it sets on the
   flying toward it, at a height matched to the orbit camera; `airborne: { altitude, speed }`
   chooses meters above the ground and m/s, and `airborne: false` parks it on the ground with the
   engine off. The `pilot` input profile flies it (see [navigation](navigation.md)); V switches
-  cockpit and chase views, R recovers after an impact (`view.recover()`), and E leaves once it
+  cockpit and chase views, Backspace recovers after an impact (`view.recover()`), and R leaves once it
   has landed, stopped and shut down. See [aircraft](aircraft.md) for the flight model.
 
 Drive and fly need the ground under their start, and drive a road lane, so `setMode` switches at
@@ -409,7 +410,7 @@ view.on('interact', (interaction) => {
 });
 ```
 
-The interact key (E, or F, or the right mouse button) emits `interact` first with what it found. On
+The interact key (R, or F, or the right mouse button) emits `interact` first with what it found. On
 foot that is the nearest of: a car or aircraft within reach of its door (aircraft can be boarded on
 foot too), a building's door within 1.8 m and in front of the walker (`open` says whether it is
 open), an interactable actor within `interaction.reach` (2.5 m) of the walker's eyes and in
@@ -1541,7 +1542,7 @@ of light aircraft, business aircraft and larger jets. Aircraft are fitted inside
 with clearance from buildings, taxiways, runways, other aircraft and reserved diorama areas.
 The fleet and parking positions are simulated, not live aircraft tracking or exact stand assignments.
 
-Walk to an aircraft's door and press **E** to board, **I** to start, and **=/−** to adjust
+Walk to an aircraft's door and press **R** to board, **I** to start, and **Z/C** to adjust
 power. The same aircraft taxis and flies away; its original stand remains empty for the session.
 Land, stop and shut down before exiting. Automatic parking keeps at most twelve unclaimed
 aircraft within 1.8 km; claimed aircraft remain owned vehicles across terrain re-anchors.

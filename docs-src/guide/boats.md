@@ -11,7 +11,7 @@ Earth view's **Boat** button launches a speedboat on nearby mapped water. In Wor
 press **B** near water (or open it with `?boat=1`). **W/S** apply forward/reverse thrust,
 **A/D** steer, **Space** applies opposing thrust, and holding **Shift** drops anchor once speed
 falls below walking pace. Release Shift to weigh anchor. **V** changes helm/chase view. Walk up
-to a stopped boat's boarding point and press **E** to board; E leaves only beside a reachable,
+to a stopped boat's boarding point and press **R** to board; R leaves only beside a reachable,
 clear shore or dock. A boat coasts when power is released; it has no road brakes. Reverse
 thrust takes time to stop it, and steering reverses when backing up.
 

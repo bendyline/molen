@@ -44,18 +44,60 @@ describe('world explorer Auto detail', () => {
     expect(run(controller, 8000, 50, slow)).toEqual([]);
     expect(run(controller, 5000, 1000 / 60, flight)).toEqual([]);
     expect(run(controller, 13_000, 50, slow)).toEqual([
-      { previousLevel: 3, level: 2, reason: 'frame-time' },
+      { previousLevel: 3, level: 2, reason: 'frame-time', previousDetailLevel: 3, detailLevel: 3 },
     ]);
     // The lower level gets time to load before it is judged, then is judged the same way.
     expect(run(controller, 15_000, 50, slow)).toEqual([]);
     expect(run(controller, 20_000, 50, slow)).toEqual([
-      { previousLevel: 2, level: 1, reason: 'frame-time' },
+      { previousLevel: 2, level: 1, reason: 'frame-time', previousDetailLevel: 3, detailLevel: 3 },
     ]);
-    // Still under the floor: each level is judged in turn, and none comes back.
+    // Still under the floor: each level is judged in turn, and none comes back. With two steps
+    // of drawing given up, the world follows a step at a time, down to the bottom.
     expect(run(controller, 300_000, 50, slow)).toEqual([
-      { previousLevel: 1, level: 0, reason: 'frame-time' },
+      { previousLevel: 1, level: 0, reason: 'frame-time', previousDetailLevel: 3, detailLevel: 2 },
+      { previousLevel: 0, level: 0, reason: 'frame-time', previousDetailLevel: 2, detailLevel: 1 },
+      { previousLevel: 0, level: 0, reason: 'frame-time', previousDetailLevel: 1, detailLevel: 0 },
     ]);
-    expect(controller.getStats()).toMatchObject({ level: 0, reason: 'frame-time' });
+    expect(controller.getStats()).toMatchObject({ level: 0, detailLevel: 0, reason: 'frame-time' });
+  });
+
+  it('leaves the world as built while slow frames lower how it is drawn', () => {
+    const controller = createExplorerQualityController();
+    // A P-51 over Seattle with other work on the machine: two levels lost to slow frames in
+    // forty seconds. At Low the ground beneath it was a tile four times too coarse.
+    run(controller, 13_000, 50, slow);
+    run(controller, 35_000, 50, slow);
+    expect(controller.getStats()).toMatchObject({ level: 1, detailLevel: 3 });
+    expect(controller.drawLevel).toBe(1);
+    expect(controller.detailLevel).toBe(3);
+    // Back when calm, the world untouched throughout.
+    expect(run(controller, 65_000, 1000 / 60, flight)).toEqual([
+      { previousLevel: 1, level: 2, reason: 'headroom', previousDetailLevel: 3, detailLevel: 3 },
+    ]);
+    expect(run(controller, 65_000, 1000 / 60, flight)).toEqual([
+      { previousLevel: 2, level: 3, reason: 'headroom', previousDetailLevel: 3, detailLevel: 3 },
+    ]);
+  });
+
+  it('gives the drawing as many steps as the guess has levels under it, two at most', () => {
+    // A phone's guess: one step of drawing, then the world.
+    const phone = createExplorerQualityController(1);
+    expect(run(phone, 13_000, 50, slow)).toEqual([
+      { previousLevel: 1, level: 0, reason: 'frame-time', previousDetailLevel: 1, detailLevel: 1 },
+    ]);
+    expect(run(phone, 40_000, 50, slow)).toEqual([
+      { previousLevel: 0, level: 0, reason: 'frame-time', previousDetailLevel: 1, detailLevel: 0 },
+    ]);
+    expect(run(phone, 120_000, 50, slow)).toEqual([]);
+    // Back the way it came.
+    expect(run(phone, 65_000, 1000 / 60, flight)).toEqual([
+      { previousLevel: 0, level: 0, reason: 'headroom', previousDetailLevel: 0, detailLevel: 1 },
+    ]);
+    // A level that is held (`?tier=`) is one level, drawn and built.
+    const held = createExplorerQualityController(2, true);
+    held.setBounds(2, 2);
+    expect(run(held, 60_000, 50, slow)).toEqual([]);
+    expect(held.getStats()).toMatchObject({ level: 2, detailLevel: 2 });
   });
 
   it('brings a lowered level back one step at a time once the view has been calm for a minute', () => {
@@ -68,13 +110,13 @@ describe('world explorer Auto detail', () => {
     // Smoothed measures take a few seconds to come down from the slow frames.
     expect(run(controller, 55_000, 1000 / 60, flight)).toEqual([]);
     expect(run(controller, 10_000, 1000 / 60, flight)).toEqual([
-      { previousLevel: 1, level: 2, reason: 'headroom' },
+      { previousLevel: 1, level: 2, reason: 'headroom', previousDetailLevel: 3, detailLevel: 3 },
     ]);
     expect(controller.getStats()).toMatchObject({ level: 2, reason: 'frame-time' });
     // The next minute counts from the step.
     expect(run(controller, 50_000, 1000 / 60, flight)).toEqual([]);
     expect(run(controller, 15_000, 1000 / 60, flight)).toEqual([
-      { previousLevel: 2, level: 3, reason: 'headroom' },
+      { previousLevel: 2, level: 3, reason: 'headroom', previousDetailLevel: 3, detailLevel: 3 },
     ]);
     expect(controller.getStats()).toMatchObject({ level: 3, reason: undefined });
     // Never past the guess.
@@ -140,12 +182,15 @@ describe('world explorer Auto detail', () => {
   it('lowers detail when the view outgrows the memory budget, until it has room again', () => {
     const controller = createExplorerQualityController();
     expect(run(controller, 45_000, 1000 / 60, { ...flight, memoryPressure: 0.9 })).toEqual([]);
+    // The world's own size: it is lowered with the drawing, at once.
+    const lowered = { previousLevel: 3, level: 2, previousDetailLevel: 3, detailLevel: 2 };
+    const restored = { previousLevel: 2, level: 3, previousDetailLevel: 2, detailLevel: 3 };
     expect(run(controller, 3000, 1000 / 60, { ...flight, memoryPressure: 1.1 })).toEqual([
-      { previousLevel: 3, level: 2, reason: 'memory-pressure' },
+      { ...lowered, reason: 'memory-pressure' },
     ]);
     expect(run(controller, 180_000, 1000 / 60, { ...flight, memoryPressure: 0.8 })).toEqual([]);
     expect(run(controller, 61_000, 1000 / 60, flight)).toEqual([
-      { previousLevel: 2, level: 3, reason: 'headroom' },
+      { ...restored, reason: 'headroom' },
     ]);
   });
 
@@ -153,7 +198,7 @@ describe('world explorer Auto detail', () => {
     const controller = createExplorerQualityController();
     expect(run(controller, 9000, 1000 / 60, { ...flight, strained: true })).toEqual([]);
     expect(run(controller, 3000, 1000 / 60, { ...flight, strained: true })).toEqual([
-      { previousLevel: 3, level: 2, reason: 'streaming' },
+      { previousLevel: 3, level: 2, reason: 'streaming', previousDetailLevel: 3, detailLevel: 2 },
     ]);
     // Strain on and off, never ten seconds running: no lower, and no calm to come back on.
     for (let i = 0; i < 22; i++) {
@@ -161,7 +206,7 @@ describe('world explorer Auto detail', () => {
       expect(run(controller, 3000, 1000 / 60, flight)).toEqual([]);
     }
     expect(run(controller, 61_000, 1000 / 60, flight)).toEqual([
-      { previousLevel: 2, level: 3, reason: 'headroom' },
+      { previousLevel: 2, level: 3, reason: 'headroom', previousDetailLevel: 2, detailLevel: 3 },
     ]);
   });
 
@@ -199,6 +244,37 @@ describe('stream strain meter', () => {
     expect(strained({ nowMs: 8000, builtTiles: 80, thrashedTiles: 45, ...base })).toBe(true);
     // Ten seconds later the burst has left the window.
     expect(strained({ nowMs: 19000, builtTiles: 90, thrashedTiles: 46, ...base })).toBe(false);
+  });
+
+  it('does not take rebuilding for strain while the ground near the camera keeps up', () => {
+    // Three full turns over downtown Seattle: 190 of 480 tiles built again within a minute of
+    // their eviction, with all of the near ground at its selected detail throughout.
+    const keepingUp = createStreamStrainMeter();
+    for (let i = 0; i <= 8; i++)
+      expect(
+        keepingUp({
+          nowMs: i * 1000,
+          builtTiles: i * 10,
+          thrashedTiles: i * 8,
+          ...base,
+          nearComplete: 0.98,
+        }),
+      ).toBe(false);
+    // The same rebuilding with the near ground a third unfinished is the level asking too much.
+    const behind = createStreamStrainMeter();
+    const results: boolean[] = [];
+    for (let i = 0; i <= 8; i++)
+      results.push(
+        behind({
+          nowMs: i * 1000,
+          builtTiles: i * 10,
+          thrashedTiles: i * 8,
+          ...base,
+          nearComplete: 0.65,
+        }),
+      );
+    expect(results.slice(0, 2)).toEqual([false, false]);
+    expect(results.at(-1)).toBe(true);
   });
 
   it('reports a view that crowds a full cache, but not a full warm cache', () => {

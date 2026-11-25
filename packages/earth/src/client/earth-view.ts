@@ -274,7 +274,7 @@ export interface EarthModeOptions {
   /**
    * Switch even when the vehicle rules would refuse (moving, airborne, engine running): the
    * viewer steps out at once and a vehicle added by `setMode` is removed. For host controls such
-   * as a mode menu; in-scene keys (E) keep the rules.
+   * as a mode menu; in-scene keys (R) keep the rules.
    */
   force?: boolean;
 }
@@ -405,7 +405,7 @@ export interface EarthTerrainSource {
   };
 }
 
-/** What the interact key (E) reaches on foot. */
+/** What the interact key (R) reaches on foot. */
 export interface EarthInteractionSettings {
   /** Meters from the walker's eyes to an actor or pedestrian it can act on (default 2.5). */
   reach?: number;
@@ -499,7 +499,7 @@ export interface EarthViewOptions {
    * {@link EarthView.setPilotMotion}.
    */
   pilotMotion?: boolean | PilotMotionOverrides;
-  /** What the interact key (E) reaches on foot; change it later with {@link EarthView.setInteraction}. */
+  /** What the interact key (R) reaches on foot; change it later with {@link EarthView.setInteraction}. */
   interaction?: EarthInteractionSettings;
   /** The first view. */
   camera: EarthCameraTarget;
@@ -712,7 +712,7 @@ export interface EarthOwnedVehicles {
   whenPlaced(id: string, options?: { signal?: AbortSignal }): Promise<void>;
 }
 
-/** What the interact key (E) would act on: see {@link EarthView.interactable}. */
+/** What the interact key (R) would act on: see {@link EarthView.interactable}. */
 export interface EarthInteractable {
   /**
    * `vehicle`: a parked car or aircraft within reach on foot, or the one the viewer is in.
@@ -738,7 +738,7 @@ export interface EarthInteraction extends EarthInteractable {
 export interface EarthViewEvents {
   /** Every rendered frame, before the camera is set, for host logic (markers, HUD, game rules). */
   frame: EarthFrame;
-  /** The interact key (E) was pressed; see {@link EarthInteraction.claim}. */
+  /** The interact key (R) was pressed; see {@link EarthInteraction.claim}. */
   interact: EarthInteraction;
   /** An actor was added or removed, arrived, boarded, alighted, got stuck or teleported. */
   actorchange: EarthActorChange;
@@ -883,7 +883,7 @@ export interface EarthView {
    * unset fields keep their value. It applies from the next frame.
    */
   setPilotMotion(settings: boolean | PilotMotionOverrides): void;
-  /** Recover an impacted aircraft, or repair a stopped road vehicle's parts (the R key). */
+  /** Recover an impacted aircraft, or repair a stopped road vehicle's parts (the Backspace key). */
   recover(): boolean;
   /** Animate to a view (orbit mode). Long hops re-anchor the metric frame on arrival. */
   flyTo(target: EarthCameraTarget, options?: { durationMs?: number }): void;
@@ -904,12 +904,12 @@ export interface EarthView {
   readonly actors: EarthActors;
   /** Runways and aerodromes from the streamed map around the viewer (see the Airfields guide). */
   readonly airfields: EarthAirfields;
-  /** What the interact key would act on right now (for a "Press E" prompt). */
+  /** What the interact key would act on right now (for a "Press R" prompt). */
   interactable(): EarthInteractable;
   /**
    * Change what the interact key reaches on foot, e.g. offer pedestrians only while a game that
    * talks to them is running (unclaimed, a pedestrian press does nothing, so a nearer pedestrian
-   * would otherwise keep E from boarding a car). Unset fields keep their current value.
+   * would otherwise keep R from boarding a car). Unset fields keep their current value.
    */
   setInteraction(settings: EarthInteractionSettings): void;
   setMarkers(markers: readonly EarthMarker[]): void;
@@ -3783,7 +3783,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     ): NavigationPose => {
       const vehicles = current.vehicles as EarthVehicles;
       if ((frameInput.recover ?? 0) > 0 && !vehicles.recover())
-        emit('message', { text: 'Stop the damaged vehicle before repairing (R)' });
+        emit('message', { text: 'Stop the damaged vehicle before repairing (Backspace)' });
       if (frameInput.view > 0) vehicles.view = vehicles.view === 'cockpit' ? 'chase' : 'cockpit';
       vehicles.lookYaw = Math.max(
         -1.45,
@@ -3801,13 +3801,17 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       vehicles.shadowTexel = renderer.setShadowSubject(vehicles.shadowSubject)
         ? undefined
         : renderer.shadowTexelSize;
-      vehicles.update(dt, {
-        throttle: frameInput.move.forward,
-        steering: frameInput.move.right,
-        brake: frameInput.jump || holding,
-        // Sprint (Shift) doubles as the handbrake while driving.
-        handbrake: frameInput.sprint,
-      });
+      vehicles.update(
+        dt,
+        {
+          throttle: frameInput.move.forward,
+          steering: frameInput.move.right,
+          brake: frameInput.jump || holding,
+          // Sprint (Shift) doubles as the handbrake while driving.
+          handbrake: frameInput.sprint,
+        },
+        frameInput.lean,
+      );
       current.stepWorld(dt);
       vehicles.render();
       // This frame's camera (see flyFrame): parked cockpits beside the road draw their small parts
@@ -3843,7 +3847,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         Math.min(0.8, aircraft.lookPitch - frameInput.look[1] * 0.003),
       );
       if ((pilot?.recover ?? 0) > 0 && !aircraft.recover())
-        emit('message', { text: 'Recover (R) works after an impact' });
+        emit('message', { text: 'Recover (Backspace) works after an impact' });
       aircraft.input(dt, {
         ...(frameInput.actuators ? { actuators: frameInput.actuators } : {}),
         pitch: -frameInput.move.forward,

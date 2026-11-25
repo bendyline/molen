@@ -23,6 +23,7 @@ import {
   signMeshTransferables,
 } from './sign-mesh';
 import { packIdentity, type ResolvedStylePack } from './stylepack';
+import { turfCoverArea } from './turf';
 import {
   type BuildingRecord,
   type BuildingRequest,
@@ -36,6 +37,7 @@ import {
   PLACEMENT_STRIDE,
   type PlacementSet,
   type ScatterRequest,
+  type TurfCover,
   type WorldgenBudgets,
   type WorldgenProgress,
   type WorldgenStats,
@@ -96,6 +98,12 @@ export interface WorldgenBatchOutput {
    * to draw around its camera (`createNearPlacements`); absent when none were placed.
    */
   near?: NearPlacements;
+  /**
+   * Where the batch's ground grows grass, for a host to stand tufts on around its camera
+   * (`createTurf`); absent without `ScatterRequest.turf` and a `maxTurfCells` budget, or where
+   * none grows.
+   */
+  turf?: TurfCover;
   /** Named storefront signs as one mesh; drawn with the glyph atlas's texture. */
   signs?: SignMeshBuffers;
   records: BuildingRecord[];
@@ -146,13 +154,14 @@ export const GABLE_ROOF_PLACEMENT_SET_ID: string = 'buildings:roof.gable';
 
 /**
  * Hash every typed array of an output (positions, normals, uvs, colors, indices, placements,
- * and named signs and near placements when there are any).
+ * and named signs, near placements and turf cover when there are any).
  */
 export function hashWorldgenOutput(
   buildings: MeshBuffers | undefined,
   placements: readonly PlacementSet[],
   signs?: SignMeshBuffers,
   near?: NearPlacements,
+  turf?: TurfCover,
 ): string {
   const parts: Uint8Array[] = [];
   if (buildings !== undefined) {
@@ -189,6 +198,17 @@ export function hashWorldgenOutput(
       ),
     );
     for (const array of [near.data, near.model, near.start, ...(near.reach ? [near.reach] : [])])
+      parts.push(new Uint8Array(array.buffer, array.byteOffset, array.byteLength));
+  }
+  if (turf !== undefined) {
+    parts.push(
+      new TextEncoder().encode(
+        `turf|${turf.cell}|${turf.originX}|${turf.originZ}|${turf.columns}|${turf.rows}|${turf.swards
+          .map((sward) => `${sward.label}:${sward.height}:${sward.density}`)
+          .join(',')}`,
+      ),
+    );
+    for (const array of [turf.rowStart, turf.runSward, turf.runEnd])
       parts.push(new Uint8Array(array.buffer, array.byteOffset, array.byteLength));
   }
   let total = 0;
@@ -726,6 +746,7 @@ export function* generateWorldgenBatchSteps(
     input.scatterEnvironment?.doc ??
     (scatterId !== undefined ? pack.scatters[scatterId] : undefined);
   let near: NearPlacements | undefined;
+  let turf: TurfCover | undefined;
   if (input.scatter !== undefined && scatterDoc !== undefined) {
     const scattered = yield* sampleScatterSteps({
       request: input.scatter,
@@ -759,11 +780,13 @@ export function* generateWorldgenBatchSteps(
         ...(budgets.maxNearInstances !== undefined
           ? { maxNearInstances: budgets.maxNearInstances }
           : {}),
+        ...(budgets.maxTurfCells !== undefined ? { maxTurfCells: budgets.maxTurfCells } : {}),
       },
       tier: baseTier,
     });
     placements.push(...scattered.placements);
     near = scattered.near;
+    turf = scattered.turf;
   }
   if (buildings !== undefined) {
     stats.vertices = buildings.vertexCount;
@@ -783,14 +806,23 @@ export function* generateWorldgenBatchSteps(
       (near.reach?.byteLength ?? 0);
     stats.nearPlacements = near.count;
   }
+  if (turf !== undefined) {
+    stats.instanceBytes +=
+      turf.rowStart.byteLength + turf.runSward.byteLength + turf.runEnd.byteLength;
+    stats.turfArea = turfCoverArea(turf);
+  }
   return {
     ...(buildings !== undefined ? { buildings } : {}),
     placements,
     ...(near !== undefined ? { near } : {}),
+    ...(turf !== undefined ? { turf } : {}),
     ...(signs !== undefined ? { signs } : {}),
     records,
     stats,
-    hash: input.hashOutput === false ? '' : hashWorldgenOutput(buildings, placements, signs, near),
+    hash:
+      input.hashOutput === false
+        ? ''
+        : hashWorldgenOutput(buildings, placements, signs, near, turf),
   };
 }
 
@@ -827,6 +859,9 @@ export function worldgenTransferables(output: WorldgenBatchOutput): ArrayBuffer[
       output.near.start,
       ...(output.near.reach ? [output.near.reach] : []),
     ])
+      if (array.buffer instanceof ArrayBuffer) buffers.push(array.buffer);
+  if (output.turf !== undefined)
+    for (const array of [output.turf.rowStart, output.turf.runSward, output.turf.runEnd])
       if (array.buffer instanceof ArrayBuffer) buffers.push(array.buffer);
   buffers.push(...signMeshTransferables(output.signs));
   return buffers;

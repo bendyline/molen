@@ -6102,7 +6102,7 @@ Required: `kind`, `spec`
                   "description": "Blade pitch at three quarters of the radius with the collective fully down and fully up, radians."
                 },
                 "cyclic": {
-                  "description": "Greatest swashplate tilt each way, radians. Default 0.2.",
+                  "description": "Greatest swashplate tilt aft and to each side, radians; forward, 1.4 times it. Default 0.2.",
                   "type": "number",
                   "exclusiveMinimum": 0
                 },

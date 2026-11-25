@@ -349,6 +349,56 @@ Measured and left, largest first:
   of fine tiles stays until memory presses. Harmless below the limit above, apart from the tiles
   it keeps in every pass.
 
+### Auto's steps under a piloted flight, 2026-11-24
+
+A P-51 over Seattle and Bellevue at Auto (253-285 kt, 60-300 m above the ground) drew box shells
+with no roads beneath the aircraft, and ground already detailed gave way to coarser tiles and was
+built again. A camera flown along the same lines, and through turns, descents and speed changes
+(a north-east-west sortie over Seattle and Bellevue, and three full turns over downtown), showed
+what it was.
+
+- It was not tile throughput. With the level unchanged, the ground in view within 1 km of the
+  camera was at its selected detail (the finest level) throughout, at 140-160 m/s, on a quiet
+  machine and with other work using 7 to 12 of its 20 cores; from 1 to 1.5 km it was too, but for
+  the seconds after a turn began (73% of it at worst). On straight legs most finest tiles were
+  built before the view selected them; in the turns one took 1.4 s from selected to shown (2.8 s
+  at the 90th percentile).
+- It was Auto. Frames under 30 a second for ten seconds lowered a level, and another did half a
+  minute later. At Low the view itself asks for level 13 of 15 near the aircraft (its 24 tiles
+  cannot reach further), which is box shells and no roads; the stream calls that finished, and a
+  minute of calm brings the levels back to be built again. The slow frames came from the
+  machine, not the place: the explorer wants about 15 threads while it streams.
+- The same two steps with the world held (see
+  [Adaptive rendering performance](../../../../docs-src/guide/adaptive-performance.md)): ground
+  within 1.5 km at the finest level throughout. The frame rate went from 25-28 to 41-50 a second
+  over the two steps, with the other work on the machine easing over the same minute (12 cores
+  to 8), so not all of that is the steps.
+- Turning over one place rebuilds it. Three full turns over downtown Seattle at Balanced built
+  480 tiles, 209 of them again and 190 within a minute of their eviction: a lap's ground is more
+  than the warm cache's half of the budget holds (about 1 GiB hidden, with 1.1-1.5 GiB resident
+  against a budget of 2.0). The building output cache answered half the building requests; land cover, road
+  surfaces and graded ground have no such cache and were made again. The near ground stayed
+  finished throughout, so this no longer counts as streaming strain; it is still two fifths of
+  the stream's work in a turn.
+- Zoom-14 tiles are generated in full and replaced on approach: 74 s of building generation
+  against 166 s for the zoom-15 tiles in the same 150 s of flight.
+- A tile's layer waited for its prop sets one frame's turn at a time. Each set of street props or
+  plants was queued for the frame only after the last had run (about 5,300 such jobs in 150 s of
+  flight, a quarter of all the frame queue's, each 0.3 ms of work after 130 ms of waiting), so a
+  layer whose workers had finished in two seconds spent as long again waiting in line, and a
+  minute or two when the queue ran seconds behind: buildings layers reached the 120 s deadline
+  with all their geometry made. Queued together (`instancedProps`), the same sortie under similar
+  load built a buildings layer in 1.7 s on average instead of 2.6 (3.8 s instead of 7.2 at the
+  95th percentile) and a land-cover layer in 1.3 s instead of 3.2 (3.1 s instead of 11.1), and
+  none reached the deadline. The worker pools were also a third quicker in the second flight, so
+  part of that is the machine.
+
+Measuring it took more care than the change. A browser without a window is a background process
+to the system: on battery every worker job ran 20 to 100 times slower (a tile's ground 22 s, its
+buildings 21 s) while frames held 45-65 a second, and the first view never finished. Run flights
+on mains power, look at what else the machine is doing first, and do not compare runs across
+either. `run-flight-streaming.mjs` now asks the browser not to treat its page as a background one.
+
 # Landmark performance evaluation
 
 **Decision, 2026-10-03:** keep the high-detail source masters, but develop separately
