@@ -1,6 +1,6 @@
 # Camera track (`molen/cameratrack@1`)
 
-Keyframed camera poses over ticks for scripted playback (machinima).
+Keyframed camera poses over ticks for scripted playback (machinima). A scene may carry the same track inline as `cameraTrack`.
 
 ## Example
 
@@ -33,7 +33,23 @@ Keyframed camera poses over ticks for scripted playback (machinima).
         0,
         0,
         0
-      ]
+      ],
+      "fov": 40
+    },
+    {
+      "tick": 121,
+      "position": [
+        0,
+        2,
+        6
+      ],
+      "lookAt": [
+        0,
+        1.5,
+        0
+      ],
+      "relativeTo": "player",
+      "cut": true
     }
   ]
 }
@@ -77,40 +93,37 @@ Keyframed camera poses over ticks for scripted playback (machinima).
             "description": "Tick at which this pose is reached (scene tickRate)."
           },
           "position": {
-            "type": "array",
-            "prefixItems": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "number"
-              },
-              {
-                "type": "number"
-              }
-            ],
-            "items": false,
             "minItems": 3,
             "maxItems": 3,
-            "description": "Camera position [x, y, z] in meters (Y-up)."
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Camera position [x, y, z] in meters (Y-up); an offset from relativeTo when that is set."
           },
           "lookAt": {
-            "type": "array",
-            "prefixItems": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "number"
-              },
-              {
-                "type": "number"
-              }
-            ],
-            "items": false,
             "minItems": 3,
             "maxItems": 3,
-            "description": "Point [x, y, z] in meters the camera looks at."
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Point [x, y, z] in meters the camera looks at; an offset from relativeTo when that is set."
+          },
+          "fov": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 179,
+            "description": "Vertical field of view in degrees (interpolated; default: the client camera)."
+          },
+          "cut": {
+            "type": "boolean",
+            "description": "Jump to this pose at its tick instead of interpolating from the previous one."
+          },
+          "relativeTo": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Entity id: position and lookAt are offsets from its position at playback time (a tracking shot)."
           }
         },
         "required": [

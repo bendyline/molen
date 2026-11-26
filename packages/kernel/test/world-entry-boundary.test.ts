@@ -30,7 +30,7 @@ function reachableSpecifiers(entry: string): Set<string> {
 }
 
 describe('SES-free kernel entries', () => {
-  for (const entry of ['world-entry.mjs', 'vehicles.mjs']) {
+  for (const entry of ['world-entry.mjs', 'vehicles.mjs', 'data.mjs']) {
     it(`${entry} never reaches the SES scripting runtime`, () => {
       const file = join(dist, entry);
       expect(existsSync(file), `build before testing: dist/${entry} is missing`).toBe(true);

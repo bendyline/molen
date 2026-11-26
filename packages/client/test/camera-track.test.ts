@@ -74,3 +74,57 @@ describe('evaluateCameraTrack', () => {
     expect(evaluateCameraTrack(t, 15).position).toEqual([10, 5, 0]);
   });
 });
+
+describe('camera-track cuts, tracking and field of view', () => {
+  it('jumps to a cut keyframe instead of interpolating into it', () => {
+    const t = track({
+      keyframes: [
+        { tick: 0, position: [0, 0, 0], lookAt: [0, 0, 0] },
+        { tick: 10, position: [10, 0, 0], lookAt: [5, 0, 0], cut: true },
+      ],
+    });
+    expect(evaluateCameraTrack(t, 9).position).toEqual([0, 0, 0]);
+    expect(evaluateCameraTrack(t, 10).position).toEqual([10, 0, 0]);
+  });
+
+  it('offsets relative keyframes from an entity at playback time', () => {
+    const t = track({
+      keyframes: [{ tick: 0, position: [0, 2, 6], lookAt: [0, 1, 0], relativeTo: 'ana' }],
+    });
+    const pose = evaluateCameraTrack(t, 0, {
+      resolve: (id) => (id === 'ana' ? [3, 0, -1] : undefined),
+    });
+    expect(pose.position).toEqual([3, 2, 5]);
+    expect(pose.lookAt).toEqual([3, 1, -1]);
+    // without a resolver the offsets stand as points
+    expect(evaluateCameraTrack(t, 0).position).toEqual([0, 2, 6]);
+  });
+
+  it('interpolates fov and carries it forward', () => {
+    const t = track({
+      keyframes: [
+        { tick: 0, position: [0, 0, 0], lookAt: [0, 0, 1], fov: 60 },
+        { tick: 10, position: [0, 0, 0], lookAt: [0, 0, 1], fov: 40 },
+        { tick: 20, position: [0, 0, 0], lookAt: [0, 0, 1] },
+      ],
+    });
+    expect(evaluateCameraTrack(t, 5).fov).toBe(50);
+    expect(evaluateCameraTrack(t, 15).fov).toBe(40);
+  });
+
+  it('validates an inline scene track and rejects an unknown relativeTo', () => {
+    const scene = (relativeTo: string) =>
+      validate('scene', {
+        format: 'molen/scene@3',
+        name: 'film',
+        entities: [{ id: 'ana', components: { transform: { pos: [0, 0, 0] } } }],
+        cameraTrack: {
+          keyframes: [{ tick: 0, position: [0, 2, 6], lookAt: [0, 1, 0], relativeTo }],
+        },
+      });
+    expect(scene('ana').ok).toBe(true);
+    const bad = scene('anna');
+    expect(bad.ok).toBe(false);
+    if (!bad.ok) expect(bad.formatted).toContain('did you mean "ana"?');
+  });
+});

@@ -2,11 +2,21 @@ import { z } from 'zod';
 import { actuatorInputsSchema, actuatorPositionsSchema, actuatorSpecsSchema } from './actuators';
 import { audioEnvironmentSchema, audioSourceSchema, audioZoneSchema } from './audio';
 import { boatInputSchema, boatSpecSchema, boatStateSchema, waterSettingsSchema } from './boats';
+import { ENVIRONMENT_PRESET_NAMES, type EnvironmentPresetName } from './environment-presets';
 import { glassSchema, glassStateSchema } from './glass';
 import type { ValidationIssue } from './issues';
 import type { JsonObject, JsonValue } from './json';
 import { liverySchema } from './livery';
 import { type ModelSignalSpec, modelSignalSpecSchema, modelSignalsSchema } from './model-signals';
+import {
+  controllerSchema,
+  cuesSchema,
+  moverSchema,
+  pathSchema,
+  rulesSchema,
+  triggerSchema,
+  varsSchema,
+} from './play';
 import { unsafePatterns } from './regex-safety';
 import { skySchema } from './sky';
 import { vehicleInteriorSchema } from './vehicle-interior';
@@ -301,6 +311,63 @@ export function componentIssues(
   });
 }
 
+/** Renderable kinds that need no `ref` (their geometry comes from another component). */
+const RENDERABLE_DEFAULT_REFS: Readonly<Record<string, string>> = { figure: 'procedural' };
+
+/**
+ * Checks on a renderable that its flat schema cannot express: a `ref` is required unless the
+ * kind names a default, and a `plane` sized like a floor gets a hint (a plane stands upright).
+ */
+function renderableIssues(
+  componentMap: Record<string, unknown>,
+  basePointer: string,
+  opts?: ComponentValidateOptions,
+): ValidationIssue[] {
+  const r = componentMap.renderable as
+    | { kind?: unknown; ref?: unknown; primitive?: { size?: unknown } }
+    | undefined;
+  if (r === undefined || r === null || typeof r !== 'object' || typeof r.kind !== 'string') {
+    return [];
+  }
+  if ((opts?.registry ?? components).get('renderable') === undefined) return [];
+  const out: ValidationIssue[] = [];
+  const pointer = `${basePointer}/renderable`;
+  if (r.ref === undefined && RENDERABLE_DEFAULT_REFS[r.kind] === undefined) {
+    out.push({
+      path: `${pointer}/ref`,
+      code: 'missing_ref',
+      message: `renderable kind "${r.kind}" needs a ref`,
+      expected: r.kind === 'primitive' ? 'box, sphere, plane or cylinder' : 'a project asset id',
+      hint: r.kind === 'primitive' ? 'e.g. "ref": "box"' : undefined,
+      docsRef: 'schemas/components.md',
+    });
+  }
+  const rot = (componentMap.transform as { rot?: unknown } | undefined)?.rot;
+  const size = r.primitive?.size;
+  if (
+    r.kind === 'primitive' &&
+    r.ref === 'plane' &&
+    rot === undefined &&
+    Array.isArray(size) &&
+    size.length === 3 &&
+    typeof size[1] === 'number' &&
+    typeof size[2] === 'number' &&
+    size[1] <= 0.5 &&
+    size[2] > 1
+  ) {
+    out.push({
+      path: `${pointer}/primitive/size`,
+      code: 'plane_upright',
+      message:
+        'this plane is sized like a floor, but a plane is drawn standing upright (x by z in the XY plane)',
+      hint: `for a floor use a thin box: "ref": "box", "primitive": { "size": [${size[0]}, 0.1, ${size[2]}] }`,
+      docsRef: 'schemas/components.md',
+      severity: 'notice',
+    });
+  }
+  return out;
+}
+
 /** Walk a component map and collect issues for each entry. */
 export function componentMapIssues(
   componentMap: Record<string, unknown> | undefined,
@@ -312,6 +379,7 @@ export function componentMapIssues(
   for (const [name, data] of Object.entries(componentMap)) {
     out.push(...componentIssues(name, data, `${basePointer}/${escapePointer(name)}`, opts));
   }
+  if (opts?.partial !== true) out.push(...renderableIssues(componentMap, basePointer, opts));
   if (opts?.partial !== true && componentMap.collider3d !== undefined) {
     const scale = (componentMap.transform as { scale?: unknown } | undefined)?.scale;
     if (
@@ -401,7 +469,10 @@ const renderableFields = {
   ref: z
     .string()
     .min(1)
-    .describe('Primitive name (box, sphere, plane, cylinder) or, for gltf, the project asset id.'),
+    .describe(
+      "Primitive name (box, sphere, plane, cylinder) or, for gltf, the project asset id. Optional for kinds that name a default (figure: 'procedural').",
+    )
+    .optional(),
   materialRef: z
     .string()
     .describe(
@@ -412,7 +483,7 @@ const renderableFields = {
     .strictObject({
       size: vec3
         .describe(
-          'Primitive extents [x, y, z] in meters: box = full extents; sphere = x is the diameter; cylinder = x diameter, y height; plane = x by z. Default [1, 1, 1].',
+          'Primitive extents [x, y, z] in meters: box = full extents; sphere = x is the diameter; cylinder = x diameter, y height; plane = x wide by z tall, drawn standing upright in the XY plane facing +z (rotate it, or use a thin box, for a floor). Default [1, 1, 1].',
         )
         .optional(),
     })
@@ -517,6 +588,12 @@ const lightSchema = z.strictObject({
 });
 
 const environmentSchema = z.strictObject({
+  preset: z
+    .enum(ENVIRONMENT_PRESET_NAMES as [EnvironmentPresetName, ...EnvironmentPresetName[]])
+    .describe(
+      'Time-of-day lighting: morning, noon, evening, night or overcast. Fills ambient, sun, background and exposure so the frame is readable; fields set here still win.',
+    )
+    .optional(),
   sky: skySchema
     .optional()
     .describe(
@@ -1181,6 +1258,13 @@ const tweenSchema = z.strictObject({
           .union([num, z.array(num)])
           .describe('End value (number or number array, same arity as from).'),
         ticks: z.int().positive().describe('Duration in ticks.'),
+        delay: z
+          .int()
+          .nonnegative()
+          .describe(
+            'Ticks to wait before starting (kernel counts it down); from is read when it starts.',
+          )
+          .optional(),
         elapsed: z
           .int()
           .nonnegative()
@@ -1262,6 +1346,93 @@ registerComponent('fsm', fsmSchema, {
     },
   ],
   docsRef: 'schemas/components.md',
+});
+
+registerComponent('rules', rulesSchema, {
+  description:
+    'Rules of play as data: when a trigger fires (event, touch, command, every, tick, becomes) and the conditions hold, run actions. A failing rule emits rule-error and is disabled; it never stops the world.',
+  owner: 'kernel/gameplay',
+  examples: [
+    {
+      rules: [
+        {
+          when: { touch: ['#player', 'tag:coin'] },
+          do: [
+            { destroy: '$b' },
+            { add: { target: '#game', component: 'vars', path: 'score', value: 1 } },
+          ],
+        },
+      ],
+    },
+  ],
+  docsRef: 'guide/play-data.md',
+});
+registerComponent('cues', cuesSchema, {
+  description:
+    'Timed actions: at a tick (optionally repeating every loop ticks), run actions such as path, figure, set or emit.',
+  owner: 'kernel/gameplay',
+  examples: [
+    {
+      cues: [
+        { tick: 30, do: [{ path: { target: '#ana', points: [[2, 0, 3]], speed: 1.3 } }] },
+        { tick: 200, do: [{ figure: { target: '#ana', mode: 'sit' } }] },
+      ],
+    },
+  ],
+  docsRef: 'guide/play-data.md',
+});
+registerComponent('path', pathSchema, {
+  description:
+    'Move along waypoints at a speed or over a number of ticks, from where the entity stands when the path starts.',
+  owner: 'kernel/gameplay',
+  examples: [
+    {
+      points: [
+        [4, 0, 0],
+        [4, 0, 4],
+      ],
+      speed: 2,
+      loop: 'pingpong',
+    },
+    { points: [[0, 0, 6]], ticks: 90, easing: 'smooth', delay: 30 },
+  ],
+  docsRef: 'guide/play-data.md',
+});
+registerComponent('mover', moverSchema, {
+  description:
+    'Steering in the XZ plane: chase or flee a target, or wander. Drives kinematicBody.vel when present (walls still stop it), otherwise the transform.',
+  owner: 'kernel/gameplay',
+  examples: [
+    { mode: 'chase', target: '#player', speed: 3 },
+    { mode: 'wander', speed: 2, turnTicks: 60 },
+  ],
+  docsRef: 'guide/play-data.md',
+});
+registerComponent('trigger', triggerSchema, {
+  description:
+    'A touch zone, separate from any collider: each tick, overlapping zones whose layers interact emit touch { a, b }.',
+  owner: 'kernel/gameplay',
+  examples: [
+    { shape: 'circle', radius: 0.5, layer: 2, mask: 1 },
+    { shape: 'box', halfExtents: [0.5, 1], plane: 'xy' },
+  ],
+  docsRef: 'guide/play-data.md',
+});
+registerComponent('controller', controllerSchema, {
+  description:
+    'Bind declared commands (move { dir: [x, y] }, jump { held }) to this entity: kinematicBody.vel, platformIntent, or moveIntent.',
+  owner: 'kernel/gameplay',
+  examples: [
+    { move: 'move', speed: 5 },
+    { move: 'move', jump: 'jump' },
+  ],
+  docsRef: 'guide/play-data.md',
+});
+registerComponent('vars', varsSchema, {
+  description: 'A flat record of named numbers, strings and booleans (score, lives, status).',
+  owner: 'kernel/gameplay',
+  examples: [{ score: 0, lives: 3, status: 'playing' }],
+  docsRef: 'guide/play-data.md',
 });
 
 registerComponent('health', healthSchema, {

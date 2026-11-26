@@ -75,6 +75,8 @@ export interface TweenEntry extends JsonObject {
   from?: number | number[];
   to: number | number[];
   ticks: number;
+  /** Ticks to wait before starting; counted down by the kernel. `from` is read at the start. */
+  delay?: number;
   /** Kernel-owned progress (snapshot-safe). */
   elapsed?: number;
   easing?: Easing;
@@ -376,6 +378,10 @@ export function installTweens(world: World): void {
           events.push({ type, payload });
         };
         for (const tween of data.tweens) {
+          if ((tween.delay ?? 0) > 0) {
+            kept.push({ ...tween, delay: (tween.delay ?? 0) - 1 });
+            continue;
+          }
           const store = w.get(id, componentHandle(tween.component));
           if (store === undefined) {
             emit('tween-error', { entity: id, component: tween.component, code: 'missing' });

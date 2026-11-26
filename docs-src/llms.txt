@@ -29,6 +29,8 @@ downloads them into a project and pins them in project.json.
 - [Livery gallery](guide/livery-gallery.md): rendered aircraft, RV and car comparisons, with an explicit audit of reference-inspired and original designs.
 - [Complete livery catalog](guide/livery-catalog.md): every vehicle type and livery id, evidence classification and source links, generated from the runtime catalog.
 - [Scripting](guide/scripting.md): game logic as scene-data scripts (the verb set, `molen.onCommand` for input) or a setup module; `molen types gen` + `molen scripts check` type-check them. Scripts run with the host process's authority — see "Script trust" below.
+- [Films and games as authoring documents](guide/authoring-documents.md): `molen/film@1` and `molen/game@1` from `@bendyline/molen-stage` — a model writes choices, the compiler stages, frames and lays out levels into a data-only scene; lints, the game contract, and the primers in [llms-mini.txt](llms-mini.txt).
+- [Rules and choreography as data](guide/play-data.md): `cues`, `rules`, `path`, `mover`, `trigger`, `controller`, `vars` and the scene `hud` block — timed motion and game rules with no scripts; `@bendyline/molen-kernel/data` builds such a scene without SES.
 - [Determinism](guide/determinism.md): the contract — what reproduces and at what level per subsystem, what breaks it, what `STATE_FORMAT` means for save files and recorded replays, and what is explicitly not promised.
 - [Browser mount](guide/browser-mount.md): `buildWorld` in a Worker + `await mountExperience` on the page; events and state for HUDs.
 - [Input profiles and joysticks](guide/input.md): keyboard/controller remapping, raw axes, walking/driving/flying profiles, analog commands, and optional React controls.

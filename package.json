@@ -44,7 +44,7 @@
     "all": "pnpm install && pnpm assets:fetch && pnpm build && pnpm verify && pnpm smoke:packed && pnpm docs:site:check && pnpm docs:site:build && pnpm exec playwright install chromium && pnpm test:golden",
     "stamp:docs": "node scripts/stamp-docs-version.mjs",
     "docs:gen": "node packages/tooling/scripts/generate-schema-docs.mjs",
-    "docs:check": "node packages/tooling/scripts/generate-schema-docs.mjs --check",
+    "docs:check": "node packages/tooling/scripts/generate-schema-docs.mjs --check && node packages/stage/scripts/build-primers.mjs --check",
     "docs:site:gen": "pnpm --filter @bendyline/molen-docs-site gen",
     "docs:site:check": "pnpm --filter @bendyline/molen-docs-site gen:check",
     "docs:site:dev": "pnpm --filter @bendyline/molen-docs-site dev",

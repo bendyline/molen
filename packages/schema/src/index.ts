@@ -62,6 +62,8 @@ export type {
 } from './boats';
 export { waterSettingsSchema } from './boats';
 export { BOOST_SPEED_MULTIPLIER, boostSpeedMultiplier } from './boost';
+export type { CameraTrackDoc, CameraTrackKeyframe, SceneCameraTrack } from './camera-track';
+export { cameraTrackSchema, sceneCameraTrackSchema } from './camera-track';
 export type { PayloadCheck } from './commands';
 export { commandPayloadValidator, compileCommandPayload } from './commands';
 export type {
@@ -87,6 +89,12 @@ export {
   registerRenderableKind,
   unregisterComponent,
 } from './components';
+export type { EnvironmentPresetName, EnvironmentPresetValues } from './environment-presets';
+export {
+  ENVIRONMENT_PRESET_NAMES,
+  ENVIRONMENT_PRESETS,
+  resolveEnvironmentPreset,
+} from './environment-presets';
 export type { SchemaKind, SchemaKindMap, ValidateOptions } from './formats';
 export { detectKind, validate, validateByKind } from './formats';
 export type {
@@ -129,6 +137,42 @@ export type {
   PackSourceConfig,
 } from './pack';
 export { PACK_MANIFEST_ENTRY, PACK_RESERVED_PREFIX } from './pack';
+export type {
+  ControllerData,
+  CueEntry,
+  CuesData,
+  HudCaption,
+  HudData,
+  HudItem,
+  HudMessage,
+  MoverData,
+  PathData,
+  PathStart,
+  PlayAction,
+  PlayCondition,
+  PlayTrigger,
+  PlayVec3,
+  RuleEntry,
+  RulesData,
+  TriggerData,
+  TweenStart,
+  VarsData,
+} from './play';
+export {
+  controllerSchema,
+  cuesSchema,
+  hudSchema,
+  moverSchema,
+  parseValueRef,
+  pathSchema,
+  playActionSchema,
+  playTriggerSchema,
+  rulesSchema,
+  SELECT_OPS,
+  selectConditionSchema,
+  triggerSchema,
+  varsSchema,
+} from './play';
 export type {
   CommandMessage,
   ControlAction,

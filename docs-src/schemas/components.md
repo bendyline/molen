@@ -51,7 +51,9 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `character` | kernel/character | Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). |
 | `collider` | kernel/kinematics | 2.5D kinematic collider (circle or XZ AABB) with layer/mask bitmasks. |
 | `collider3d` | physics-rapier | 3D collider (ball/cuboid/capsule/hull/trimesh/asset/heightfield) with layer/mask, sensor, and material params. Static without a rigidbody. |
+| `controller` | kernel/gameplay | Bind declared commands (move { dir: [x, y] }, jump { held }) to this entity: kinematicBody.vel, platformIntent, or moveIntent. |
 | `coupled` | kernel/vehicles | A rail car in a consist: rides the leader's track trail at a fixed distance behind it, sharing its speed. Powered cars add their traction to the leader's (multiple-unit control); every car adds its mass and brakes. |
+| `cues` | kernel/gameplay | Timed actions: at a tick (optionally repeating every loop ticks), run actions such as path, figure, set or emit. |
 | `environment` | client | Singleton scene environment: optional Earth/custom sky, ambient/sun lighting, background, fog, tone mapping, shadow quality tier. |
 | `figure` | figures | What a figure is: a preset plus descriptor overrides (height, build, proportions, features, palette) and how it faces its motion. Pair with renderable.kind "figure". |
 | `figureAttachment` | figures | Follow a named socket of the parent figure (with `parent`): the figures systems write localTransform from the evaluated pose each tick. |
@@ -73,17 +75,22 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `mountable` | kernel/vehicles | Mount points in local meters, ordered safe exit candidates, and interaction reach. Seat position is the rider camera anchor. |
 | `mounted` | kernel/vehicles | Rider-to-mount relationship. Occupied seats are exclusive; mounted characters bypass walking physics. |
 | `moveIntent` | kernel/character | Desired planar move direction + jump flag, consumed by the character controller. |
+| `mover` | kernel/gameplay | Steering in the XZ plane: chase or flee a target, or wander. Drives kinematicBody.vel when present (walls still stop it), otherwise the transform. |
 | `parent` | kernel/gameplay | Attach to a parent entity: transform becomes parent.transform × localTransform each tick. |
+| `path` | kernel/gameplay | Move along waypoints at a speed or over a number of ticks, from where the entity stands when the path starts. |
 | `platformBody` | kernel | Deterministic XY platform controller: gravity, swept wall/floor/ceiling collision, jump buffering and coyote time. |
 | `platformIntent` | kernel | Input to a platformBody. Scripts translate declared commands to this component. |
 | `platformSolid` | kernel | Static XY solid for physics.engine=platformer; Z is ignored. |
 | `renderable` | client | Client render contract: a primitive, a gltf asset (by project asset id) with optional sub-node, material override, shadows, and clip playback, or a capability-registered kind. |
 | `rigidbody` | physics-rapier | 3D rigid-body dynamics: dynamic, fixed, or kinematicPosition (characters). |
+| `rules` | kernel/gameplay | Rules of play as data: when a trigger fires (event, touch, command, every, tick, becomes) and the conditions hold, run actions. A failing rule emits rule-error and is disabled; it never stops the world. |
 | `setVelocity` | physics-rapier | One-shot velocity set; consumed the tick it is applied. |
 | `tag` | content | Named tag for selecting/grouping entities (e.g. tag.name === "enemy"). |
 | `timer` | kernel/gameplay | Snapshot-safe countdown timers that emit events (one-shot or repeating). Replaces callbacks. |
 | `transform` | kernel | World position + orientation. pos is required; rot defaults to identity. |
+| `trigger` | kernel/gameplay | A touch zone, separate from any collider: each tick, overlapping zones whose layers interact emit touch { a, b }. |
 | `tween` | kernel/gameplay | Data-driven value animation over ticks: component + select-style path, lerp with easing. |
+| `vars` | kernel/gameplay | A flat record of named numbers, strings and booleans (score, lives, status). |
 | `vehicle` | kernel/vehicles | External wheeled-vehicle instance: stable id, paint, complete physics tuning, and GLB bindings. |
 | `vehicleInput` | kernel/vehicles | Driver intent: signed throttle (negative brakes then reverses), signed steering (positive right), service brake and optional handbrake. |
 | `vehicleState` | kernel/vehicles | Snapshot-safe chassis state. Speeds in m/s, angles in radians; owned by installVehicles. |
@@ -1877,6 +1884,17 @@ Required: none
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "preset": {
+      "type": "string",
+      "enum": [
+        "morning",
+        "noon",
+        "evening",
+        "night",
+        "overcast"
+      ],
+      "description": "Time-of-day lighting: morning, noon, evening, night or overcast. Fills ambient, sun, background and exposure so the frame is readable; fields set here still win."
+    },
     "sky": {
       "description": "Clear sky with sun, moon, stars and automatic lighting. Earth mode uses an explicit UTC epoch and observer; custom mode accepts authored body directions. See guide/sky.md.",
       "oneOf": [
@@ -3248,7 +3266,7 @@ Required: `sources`, `bindings`
 
 Client render contract: a primitive, a gltf asset (by project asset id) with optional sub-node, material override, shadows, and clip playback, or a capability-registered kind.
 
-Required: `kind`, `ref`
+Required: `kind`
 
 ```json
 {
@@ -3279,7 +3297,7 @@ Required: `kind`, `ref`
     "ref": {
       "type": "string",
       "minLength": 1,
-      "description": "Primitive name (box, sphere, plane, cylinder) or, for gltf, the project asset id."
+      "description": "Primitive name (box, sphere, plane, cylinder) or, for gltf, the project asset id. Optional for kinds that name a default (figure: 'procedural')."
     },
     "materialRef": {
       "type": "string",
@@ -3295,7 +3313,7 @@ Required: `kind`, `ref`
           "items": {
             "type": "number"
           },
-          "description": "Primitive extents [x, y, z] in meters: box = full extents; sphere = x is the diameter; cylinder = x diameter, y height; plane = x by z. Default [1, 1, 1]."
+          "description": "Primitive extents [x, y, z] in meters: box = full extents; sphere = x is the diameter; cylinder = x diameter, y height; plane = x wide by z tall, drawn standing upright in the XY plane facing +z (rotate it, or use a thin box, for a floor). Default [1, 1, 1]."
         }
       },
       "additionalProperties": false,
@@ -3392,8 +3410,7 @@ Required: `kind`, `ref`
     }
   },
   "required": [
-    "kind",
-    "ref"
+    "kind"
   ],
   "additionalProperties": false
 }
@@ -9076,6 +9093,773 @@ Required: `dir`, `jump`
 
 ## Owner: kernel/gameplay
 
+### `controller`
+
+Bind declared commands (move { dir: [x, y] }, jump { held }) to this entity: kinematicBody.vel, platformIntent, or moveIntent.
+
+Required: none
+
+```json
+{
+  "move": "move",
+  "speed": 5
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "move": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Command whose payload { dir: [x, y] } steers this entity (default 'move')."
+    },
+    "jump": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Command whose payload { held: boolean } jumps (platformBody or moveIntent)."
+    },
+    "speed": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Speed in meters per second for kinematic bodies (default 5)."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Accept commands (default true)."
+    }
+  },
+  "additionalProperties": false
+}
+```
+
+</details>
+
+### `cues`
+
+Timed actions: at a tick (optionally repeating every loop ticks), run actions such as path, figure, set or emit.
+
+Required: `cues`
+
+```json
+{
+  "cues": [
+    {
+      "tick": 30,
+      "do": [
+        {
+          "path": {
+            "target": "#ana",
+            "points": [
+              [
+                2,
+                0,
+                3
+              ]
+            ],
+            "speed": 1.3
+          }
+        }
+      ]
+    },
+    {
+      "tick": 200,
+      "do": [
+        {
+          "figure": {
+            "target": "#ana",
+            "mode": "sit"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "cues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Optional cue id, named in rule-error."
+          },
+          "tick": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "Tick at which the actions run."
+          },
+          "do": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "set": {
+                      "type": "object",
+                      "properties": {
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector for the entities acted on (default '$self'): '#id', 'tag:x', '$a', ..."
+                        },
+                        "component": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Component to write."
+                        },
+                        "path": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Value path within the component, e.g. 'status' or 'pos[1]'; omit to replace it."
+                        },
+                        "value": {
+                          "description": "Value to write.",
+                          "$ref": "#/$defs/__schema0"
+                        }
+                      },
+                      "required": [
+                        "component",
+                        "value"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Write a value into a component (creating the component if needed)."
+                    }
+                  },
+                  "required": [
+                    "set"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "add": {
+                      "type": "object",
+                      "properties": {
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector for the entities acted on (default '$self'): '#id', 'tag:x', '$a', ..."
+                        },
+                        "component": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Component holding the number."
+                        },
+                        "path": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Value path of the number, e.g. 'score'."
+                        },
+                        "value": {
+                          "type": "number",
+                          "description": "Amount to add (negative to subtract); default 1, and the fallback for from."
+                        },
+                        "from": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector with a value path whose number is added instead, e.g. '$b.vars.points'."
+                        }
+                      },
+                      "required": [
+                        "component",
+                        "path"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Add to a number in a component (a missing number counts as 0)."
+                    }
+                  },
+                  "required": [
+                    "add"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "spawn": {
+                      "type": "object",
+                      "properties": {
+                        "prefab": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Scene prefab to instantiate."
+                        },
+                        "at": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 3,
+                          "maxItems": 3,
+                          "description": "Position [x, y, z] in meters."
+                        },
+                        "pick": {
+                          "minItems": 1,
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "prefixItems": [
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "number"
+                              }
+                            ],
+                            "items": false,
+                            "minItems": 3,
+                            "maxItems": 3
+                          },
+                          "description": "Candidate positions; one is chosen with the world RNG."
+                        },
+                        "awayFrom": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector: only pick positions at least minDistance from its first match."
+                        },
+                        "minDistance": {
+                          "type": "number",
+                          "minimum": 0,
+                          "description": "Meters from awayFrom (default 0); falls back to any candidate."
+                        }
+                      },
+                      "required": [
+                        "prefab"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Create an entity from a scene prefab."
+                    }
+                  },
+                  "required": [
+                    "spawn"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "destroy": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Selector for the entities to destroy."
+                    }
+                  },
+                  "required": [
+                    "destroy"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "emit": {
+                      "type": "object",
+                      "properties": {
+                        "event": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "World event type."
+                        },
+                        "payload": {
+                          "description": "Event payload (default {}).",
+                          "$ref": "#/$defs/__schema0"
+                        }
+                      },
+                      "required": [
+                        "event"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Emit a world event."
+                    }
+                  },
+                  "required": [
+                    "emit"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "tween": {
+                      "type": "object",
+                      "properties": {
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector for the entities acted on (default '$self'): '#id', 'tag:x', '$a', ..."
+                        },
+                        "id": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Optional tween id."
+                        },
+                        "component": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Component whose value is animated."
+                        },
+                        "path": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Value path within the component, e.g. 'pos[1]'."
+                        },
+                        "from": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "number"
+                              }
+                            }
+                          ],
+                          "description": "Start value; defaults to the value when the tween starts."
+                        },
+                        "to": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "number"
+                              }
+                            }
+                          ],
+                          "description": "End value."
+                        },
+                        "ticks": {
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 9007199254740991,
+                          "description": "Duration in ticks."
+                        },
+                        "delay": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991,
+                          "description": "Ticks to wait before starting."
+                        },
+                        "easing": {
+                          "type": "string",
+                          "enum": [
+                            "linear",
+                            "quadIn",
+                            "quadOut",
+                            "quadInOut",
+                            "cubicIn",
+                            "cubicOut",
+                            "cubicInOut"
+                          ],
+                          "description": "Easing curve (default linear)."
+                        },
+                        "loop": {
+                          "type": "string",
+                          "enum": [
+                            "none",
+                            "loop",
+                            "pingpong"
+                          ],
+                          "description": "After completing: none, loop, or pingpong."
+                        },
+                        "emitOnComplete": {
+                          "type": "string",
+                          "description": "World event emitted when the tween completes."
+                        }
+                      },
+                      "required": [
+                        "component",
+                        "path",
+                        "to",
+                        "ticks"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Start a tween on each target."
+                    }
+                  },
+                  "required": [
+                    "tween"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "object",
+                      "properties": {
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector for the entities acted on (default '$self'): '#id', 'tag:x', '$a', ..."
+                        },
+                        "id": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Optional path id, echoed in path-complete."
+                        },
+                        "points": {
+                          "minItems": 1,
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "prefixItems": [
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "number"
+                              }
+                            ],
+                            "items": false,
+                            "minItems": 3,
+                            "maxItems": 3
+                          },
+                          "description": "Waypoints [x, y, z] in meters. The path runs from where the entity stands when it starts, through each point in order."
+                        },
+                        "speed": {
+                          "type": "number",
+                          "exclusiveMinimum": 0,
+                          "description": "Constant travel speed in meters per second (default 1 when ticks is absent)."
+                        },
+                        "ticks": {
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 9007199254740991,
+                          "description": "Ticks to cover the whole path; takes precedence over speed."
+                        },
+                        "easing": {
+                          "type": "string",
+                          "enum": [
+                            "linear",
+                            "smooth"
+                          ],
+                          "description": "With ticks: linear, or smooth (ease in and out over the whole path)."
+                        },
+                        "delay": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991,
+                          "description": "Ticks to wait before starting (default 0)."
+                        },
+                        "loop": {
+                          "type": "string",
+                          "enum": [
+                            "none",
+                            "loop",
+                            "pingpong"
+                          ],
+                          "description": "After the last point: none (remove the path, default), loop (return to the start and repeat), or pingpong (run back and forth)."
+                        },
+                        "emitOnComplete": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "World event emitted (payload { entity }) each time the path completes."
+                        }
+                      },
+                      "required": [
+                        "points"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Start (or replace) each target's path."
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "figure": {
+                      "type": "object",
+                      "properties": {
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector for the entities acted on (default '$self'): '#id', 'tag:x', '$a', ..."
+                        },
+                        "mode": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "enum": [
+                                "idle",
+                                "walk",
+                                "run",
+                                "jump",
+                                "fall",
+                                "sit",
+                                "custom"
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Force a figure mode, or null to derive it from motion again."
+                        },
+                        "lookAt": {
+                          "anyOf": [
+                            {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 3,
+                                  "maxItems": 3
+                                }
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Look at an entity (selector, first match) or a point; null to stop looking."
+                        }
+                      },
+                      "additionalProperties": false,
+                      "description": "Set a figure's mode or look-at (figureIntent)."
+                    }
+                  },
+                  "required": [
+                    "figure"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "place": {
+                      "type": "object",
+                      "properties": {
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector for the entities acted on (default '$self'): '#id', 'tag:x', '$a', ..."
+                        },
+                        "at": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 3,
+                          "maxItems": 3,
+                          "description": "Position [x, y, z] in meters."
+                        }
+                      },
+                      "required": [
+                        "at"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Teleport each target and stop its body."
+                    }
+                  },
+                  "required": [
+                    "place"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "timer": {
+                      "type": "object",
+                      "properties": {
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector for the entities acted on (default '$self'): '#id', 'tag:x', '$a', ..."
+                        },
+                        "ticks": {
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 9007199254740991,
+                          "description": "Ticks until the event."
+                        },
+                        "event": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "World event emitted when the timer fires."
+                        },
+                        "payload": {
+                          "description": "Optional event payload.",
+                          "$ref": "#/$defs/__schema0"
+                        }
+                      },
+                      "required": [
+                        "ticks",
+                        "event"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Schedule a timer event on the first target."
+                    }
+                  },
+                  "required": [
+                    "timer"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "sound": {
+                      "type": "object",
+                      "properties": {
+                        "sound": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Sound-bank id."
+                        },
+                        "at": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector: play at its first match (positional)."
+                        },
+                        "gain": {
+                          "type": "number",
+                          "minimum": 0,
+                          "description": "Gain multiplier (default 1)."
+                        }
+                      },
+                      "required": [
+                        "sound"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Play a sound (emits audio.play)."
+                    }
+                  },
+                  "required": [
+                    "sound"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "description": "Actions run in order."
+          }
+        },
+        "required": [
+          "tick",
+          "do"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Timed actions, run in the update phase before tweens and paths."
+    },
+    "loop": {
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Repeat every this many ticks: cue ticks are taken modulo it."
+    }
+  },
+  "required": [
+    "cues"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema0"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema0"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
 ### `fsm`
 
 Minimal event-driven state machine: transitions fire on world events targeting the entity.
@@ -9220,6 +10004,90 @@ Required: `pos`
 
 </details>
 
+### `mover`
+
+Steering in the XZ plane: chase or flee a target, or wander. Drives kinematicBody.vel when present (walls still stop it), otherwise the transform.
+
+Required: `mode`, `speed`
+
+```json
+{
+  "mode": "chase",
+  "target": "#player",
+  "speed": 3
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "mode": {
+      "type": "string",
+      "enum": [
+        "chase",
+        "flee",
+        "wander"
+      ],
+      "description": "chase (toward target), flee (away from target), or wander (random headings)."
+    },
+    "target": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Selector for chase/flee (first match), e.g. #player."
+    },
+    "speed": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Speed in meters per second."
+    },
+    "turnTicks": {
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Wander: ticks between new headings (default 60)."
+    },
+    "range": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Chase/flee only while the target is within this many meters (default unlimited)."
+    },
+    "heading": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "Kernel-owned: current wander heading [x, z]."
+    },
+    "turnIn": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Kernel-owned: ticks until the next turn."
+    }
+  },
+  "required": [
+    "mode",
+    "speed"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
 ### `parent`
 
 Attach to a parent entity: transform becomes parent.transform × localTransform each tick.
@@ -9258,6 +10126,1081 @@ Required: `id`
     "id"
   ],
   "additionalProperties": false
+}
+```
+
+</details>
+
+### `path`
+
+Move along waypoints at a speed or over a number of ticks, from where the entity stands when the path starts.
+
+Required: `points`
+
+```json
+{
+  "points": [
+    [
+      4,
+      0,
+      0
+    ],
+    [
+      4,
+      0,
+      4
+    ]
+  ],
+  "speed": 2,
+  "loop": "pingpong"
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional path id, echoed in path-complete."
+    },
+    "points": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "number"
+          }
+        ],
+        "items": false,
+        "minItems": 3,
+        "maxItems": 3
+      },
+      "description": "Waypoints [x, y, z] in meters. The path runs from where the entity stands when it starts, through each point in order."
+    },
+    "speed": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Constant travel speed in meters per second (default 1 when ticks is absent)."
+    },
+    "ticks": {
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Ticks to cover the whole path; takes precedence over speed."
+    },
+    "easing": {
+      "type": "string",
+      "enum": [
+        "linear",
+        "smooth"
+      ],
+      "description": "With ticks: linear, or smooth (ease in and out over the whole path)."
+    },
+    "delay": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Ticks to wait before starting (default 0)."
+    },
+    "loop": {
+      "type": "string",
+      "enum": [
+        "none",
+        "loop",
+        "pingpong"
+      ],
+      "description": "After the last point: none (remove the path, default), loop (return to the start and repeat), or pingpong (run back and forth)."
+    },
+    "emitOnComplete": {
+      "type": "string",
+      "minLength": 1,
+      "description": "World event emitted (payload { entity }) each time the path completes."
+    },
+    "origin": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "items": false,
+      "minItems": 3,
+      "maxItems": 3,
+      "description": "Kernel-owned: where the path started."
+    },
+    "elapsed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Kernel-owned: ticks into the current pass."
+    },
+    "back": {
+      "type": "boolean",
+      "description": "Kernel-owned: a pingpong path is running back."
+    }
+  },
+  "required": [
+    "points"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
+### `rules`
+
+Rules of play as data: when a trigger fires (event, touch, command, every, tick, becomes) and the conditions hold, run actions. A failing rule emits rule-error and is disabled; it never stops the world.
+
+Required: `rules`
+
+```json
+{
+  "rules": [
+    {
+      "when": {
+        "touch": [
+          "#player",
+          "tag:coin"
+        ]
+      },
+      "do": [
+        {
+          "destroy": "$b"
+        },
+        {
+          "add": {
+            "target": "#game",
+            "component": "vars",
+            "path": "score",
+            "value": 1
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Optional rule id, named in rule-error."
+          },
+          "when": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "event": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "World event type."
+                  },
+                  "from": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Selector the event payload entity must match (binds $entity)."
+                  }
+                },
+                "required": [
+                  "event"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "touch": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "description": "Two selectors; fires while a trigger zone of a match of the first overlaps one of the second (either order). Binds $a and $b."
+                  }
+                },
+                "required": [
+                  "touch"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "command": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Declared command type (binds $payload)."
+                  }
+                },
+                "required": [
+                  "command"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "every": {
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991,
+                    "description": "Fire every this many ticks."
+                  },
+                  "offset": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991,
+                    "description": "Tick of the first firing (default every)."
+                  }
+                },
+                "required": [
+                  "every"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "tick": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991,
+                    "description": "Fire once, at this tick."
+                  }
+                },
+                "required": [
+                  "tick"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "becomes": {
+                    "type": "object",
+                    "properties": {
+                      "select": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "Entity selector plus optional value path: '#id', 'tag:name', 'has:component', e.g. '#player.health.hp'. In rules, '$self', '$a', '$b' and '$entity' name bound entities."
+                      },
+                      "op": {
+                        "type": "string",
+                        "enum": [
+                          "eq",
+                          "approx",
+                          "gt",
+                          "gte",
+                          "lt",
+                          "lte",
+                          "count",
+                          "count_lt",
+                          "count_lte",
+                          "count_gt",
+                          "count_gte",
+                          "exists",
+                          "all_eq",
+                          "all_approx",
+                          "all_gt",
+                          "all_gte",
+                          "all_lt",
+                          "all_lte",
+                          "any_eq",
+                          "any_approx",
+                          "any_gt",
+                          "any_gte",
+                          "any_lt",
+                          "any_lte"
+                        ],
+                        "description": "Comparison: eq/approx/gt/gte/lt/lte on the single match, count/exists on the match set (count_lt/count_lte/count_gt/count_gte compare the number of matches), all_*/any_* over every match."
+                      },
+                      "value": {
+                        "description": "Expected value (for count ops: the number of matches to compare with).",
+                        "$ref": "#/$defs/__schema0"
+                      },
+                      "tol": {
+                        "type": "number",
+                        "exclusiveMinimum": 0,
+                        "description": "Absolute tolerance for approx ops (default 1e-6)."
+                      }
+                    },
+                    "required": [
+                      "select",
+                      "op"
+                    ],
+                    "additionalProperties": false,
+                    "description": "Fire when this condition turns true."
+                  }
+                },
+                "required": [
+                  "becomes"
+                ],
+                "additionalProperties": false
+              }
+            ],
+            "description": "What fires the rule (exactly one trigger)."
+          },
+          "if": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "select": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Entity selector plus optional value path: '#id', 'tag:name', 'has:component', e.g. '#player.health.hp'. In rules, '$self', '$a', '$b' and '$entity' name bound entities."
+                },
+                "op": {
+                  "type": "string",
+                  "enum": [
+                    "eq",
+                    "approx",
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte",
+                    "count",
+                    "count_lt",
+                    "count_lte",
+                    "count_gt",
+                    "count_gte",
+                    "exists",
+                    "all_eq",
+                    "all_approx",
+                    "all_gt",
+                    "all_gte",
+                    "all_lt",
+                    "all_lte",
+                    "any_eq",
+                    "any_approx",
+                    "any_gt",
+                    "any_gte",
+                    "any_lt",
+                    "any_lte"
+                  ],
+                  "description": "Comparison: eq/approx/gt/gte/lt/lte on the single match, count/exists on the match set (count_lt/count_lte/count_gt/count_gte compare the number of matches), all_*/any_* over every match."
+                },
+                "value": {
+                  "description": "Expected value (for count ops: the number of matches to compare with).",
+                  "$ref": "#/$defs/__schema0"
+                },
+                "tol": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Absolute tolerance for approx ops (default 1e-6)."
+                }
+              },
+              "required": [
+                "select",
+                "op"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Conditions that must all hold when the trigger fires."
+          },
+          "do": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "set": {
+                      "type": "object",
+                      "properties": {
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector for the entities acted on (default '$self'): '#id', 'tag:x', '$a', ..."
+                        },
+                        "component": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Component to write."
+                        },
+                        "path": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Value path within the component, e.g. 'status' or 'pos[1]'; omit to replace it."
+                        },
+                        "value": {
+                          "description": "Value to write.",
+                          "$ref": "#/$defs/__schema0"
+                        }
+                      },
+                      "required": [
+                        "component",
+                        "value"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Write a value into a component (creating the component if needed)."
+                    }
+                  },
+                  "required": [
+                    "set"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "add": {
+                      "type": "object",
+                      "properties": {
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector for the entities acted on (default '$self'): '#id', 'tag:x', '$a', ..."
+                        },
+                        "component": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Component holding the number."
+                        },
+                        "path": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Value path of the number, e.g. 'score'."
+                        },
+                        "value": {
+                          "type": "number",
+                          "description": "Amount to add (negative to subtract); default 1, and the fallback for from."
+                        },
+                        "from": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector with a value path whose number is added instead, e.g. '$b.vars.points'."
+                        }
+                      },
+                      "required": [
+                        "component",
+                        "path"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Add to a number in a component (a missing number counts as 0)."
+                    }
+                  },
+                  "required": [
+                    "add"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "spawn": {
+                      "type": "object",
+                      "properties": {
+                        "prefab": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Scene prefab to instantiate."
+                        },
+                        "at": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 3,
+                          "maxItems": 3,
+                          "description": "Position [x, y, z] in meters."
+                        },
+                        "pick": {
+                          "minItems": 1,
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "prefixItems": [
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "number"
+                              }
+                            ],
+                            "items": false,
+                            "minItems": 3,
+                            "maxItems": 3
+                          },
+                          "description": "Candidate positions; one is chosen with the world RNG."
+                        },
+                        "awayFrom": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector: only pick positions at least minDistance from its first match."
+                        },
+                        "minDistance": {
+                          "type": "number",
+                          "minimum": 0,
+                          "description": "Meters from awayFrom (default 0); falls back to any candidate."
+                        }
+                      },
+                      "required": [
+                        "prefab"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Create an entity from a scene prefab."
+                    }
+                  },
+                  "required": [
+                    "spawn"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "destroy": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Selector for the entities to destroy."
+                    }
+                  },
+                  "required": [
+                    "destroy"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "emit": {
+                      "type": "object",
+                      "properties": {
+                        "event": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "World event type."
+                        },
+                        "payload": {
+                          "description": "Event payload (default {}).",
+                          "$ref": "#/$defs/__schema0"
+                        }
+                      },
+                      "required": [
+                        "event"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Emit a world event."
+                    }
+                  },
+                  "required": [
+                    "emit"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "tween": {
+                      "type": "object",
+                      "properties": {
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector for the entities acted on (default '$self'): '#id', 'tag:x', '$a', ..."
+                        },
+                        "id": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Optional tween id."
+                        },
+                        "component": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Component whose value is animated."
+                        },
+                        "path": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Value path within the component, e.g. 'pos[1]'."
+                        },
+                        "from": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "number"
+                              }
+                            }
+                          ],
+                          "description": "Start value; defaults to the value when the tween starts."
+                        },
+                        "to": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "number"
+                              }
+                            }
+                          ],
+                          "description": "End value."
+                        },
+                        "ticks": {
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 9007199254740991,
+                          "description": "Duration in ticks."
+                        },
+                        "delay": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991,
+                          "description": "Ticks to wait before starting."
+                        },
+                        "easing": {
+                          "type": "string",
+                          "enum": [
+                            "linear",
+                            "quadIn",
+                            "quadOut",
+                            "quadInOut",
+                            "cubicIn",
+                            "cubicOut",
+                            "cubicInOut"
+                          ],
+                          "description": "Easing curve (default linear)."
+                        },
+                        "loop": {
+                          "type": "string",
+                          "enum": [
+                            "none",
+                            "loop",
+                            "pingpong"
+                          ],
+                          "description": "After completing: none, loop, or pingpong."
+                        },
+                        "emitOnComplete": {
+                          "type": "string",
+                          "description": "World event emitted when the tween completes."
+                        }
+                      },
+                      "required": [
+                        "component",
+                        "path",
+                        "to",
+                        "ticks"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Start a tween on each target."
+                    }
+                  },
+                  "required": [
+                    "tween"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "object",
+                      "properties": {
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector for the entities acted on (default '$self'): '#id', 'tag:x', '$a', ..."
+                        },
+                        "id": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Optional path id, echoed in path-complete."
+                        },
+                        "points": {
+                          "minItems": 1,
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "prefixItems": [
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "number"
+                              }
+                            ],
+                            "items": false,
+                            "minItems": 3,
+                            "maxItems": 3
+                          },
+                          "description": "Waypoints [x, y, z] in meters. The path runs from where the entity stands when it starts, through each point in order."
+                        },
+                        "speed": {
+                          "type": "number",
+                          "exclusiveMinimum": 0,
+                          "description": "Constant travel speed in meters per second (default 1 when ticks is absent)."
+                        },
+                        "ticks": {
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 9007199254740991,
+                          "description": "Ticks to cover the whole path; takes precedence over speed."
+                        },
+                        "easing": {
+                          "type": "string",
+                          "enum": [
+                            "linear",
+                            "smooth"
+                          ],
+                          "description": "With ticks: linear, or smooth (ease in and out over the whole path)."
+                        },
+                        "delay": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991,
+                          "description": "Ticks to wait before starting (default 0)."
+                        },
+                        "loop": {
+                          "type": "string",
+                          "enum": [
+                            "none",
+                            "loop",
+                            "pingpong"
+                          ],
+                          "description": "After the last point: none (remove the path, default), loop (return to the start and repeat), or pingpong (run back and forth)."
+                        },
+                        "emitOnComplete": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "World event emitted (payload { entity }) each time the path completes."
+                        }
+                      },
+                      "required": [
+                        "points"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Start (or replace) each target's path."
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "figure": {
+                      "type": "object",
+                      "properties": {
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector for the entities acted on (default '$self'): '#id', 'tag:x', '$a', ..."
+                        },
+                        "mode": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "enum": [
+                                "idle",
+                                "walk",
+                                "run",
+                                "jump",
+                                "fall",
+                                "sit",
+                                "custom"
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Force a figure mode, or null to derive it from motion again."
+                        },
+                        "lookAt": {
+                          "anyOf": [
+                            {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 3,
+                                  "maxItems": 3
+                                }
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Look at an entity (selector, first match) or a point; null to stop looking."
+                        }
+                      },
+                      "additionalProperties": false,
+                      "description": "Set a figure's mode or look-at (figureIntent)."
+                    }
+                  },
+                  "required": [
+                    "figure"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "place": {
+                      "type": "object",
+                      "properties": {
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector for the entities acted on (default '$self'): '#id', 'tag:x', '$a', ..."
+                        },
+                        "at": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 3,
+                          "maxItems": 3,
+                          "description": "Position [x, y, z] in meters."
+                        }
+                      },
+                      "required": [
+                        "at"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Teleport each target and stop its body."
+                    }
+                  },
+                  "required": [
+                    "place"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "timer": {
+                      "type": "object",
+                      "properties": {
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector for the entities acted on (default '$self'): '#id', 'tag:x', '$a', ..."
+                        },
+                        "ticks": {
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 9007199254740991,
+                          "description": "Ticks until the event."
+                        },
+                        "event": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "World event emitted when the timer fires."
+                        },
+                        "payload": {
+                          "description": "Optional event payload.",
+                          "$ref": "#/$defs/__schema0"
+                        }
+                      },
+                      "required": [
+                        "ticks",
+                        "event"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Schedule a timer event on the first target."
+                    }
+                  },
+                  "required": [
+                    "timer"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "sound": {
+                      "type": "object",
+                      "properties": {
+                        "sound": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Sound-bank id."
+                        },
+                        "at": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Selector: play at its first match (positional)."
+                        },
+                        "gain": {
+                          "type": "number",
+                          "minimum": 0,
+                          "description": "Gain multiplier (default 1)."
+                        }
+                      },
+                      "required": [
+                        "sound"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Play a sound (emits audio.play)."
+                    }
+                  },
+                  "required": [
+                    "sound"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "description": "Actions run in order."
+          },
+          "once": {
+            "type": "boolean",
+            "description": "Fire at most once (default false)."
+          },
+          "fired": {
+            "type": "boolean",
+            "description": "Kernel-owned: a once rule has fired."
+          },
+          "was": {
+            "type": "boolean",
+            "description": "Kernel-owned: last value of a becomes condition."
+          },
+          "disabled": {
+            "type": "string",
+            "description": "Kernel-owned: error code that disabled this rule."
+          }
+        },
+        "required": [
+          "when",
+          "do"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Rules checked in order, in the late phase after every other system."
+    }
+  },
+  "required": [
+    "rules"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema0"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema0"
+          }
+        }
+      ]
+    }
+  }
 }
 ```
 
@@ -9373,6 +11316,86 @@ Required: `timers`
 
 </details>
 
+### `trigger`
+
+A touch zone, separate from any collider: each tick, overlapping zones whose layers interact emit touch { a, b }.
+
+Required: none
+
+```json
+{
+  "shape": "circle",
+  "radius": 0.5,
+  "layer": 2,
+  "mask": 1
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "shape": {
+      "type": "string",
+      "enum": [
+        "circle",
+        "box"
+      ],
+      "description": "Zone shape (default circle)."
+    },
+    "radius": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Circle radius in meters (default 0.5)."
+    },
+    "halfExtents": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "Box half-extents in meters along the plane axes ([x, z] or [x, y])."
+    },
+    "plane": {
+      "type": "string",
+      "enum": [
+        "xz",
+        "xy"
+      ],
+      "description": "Plane the zone lies in: xz (ground, default) or xy (side view, platformers)."
+    },
+    "layer": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Bitmask of layers this zone belongs to (default 1)."
+    },
+    "mask": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Bitmask of layers it touches (default 1); a pair touches when either side matches."
+    }
+  },
+  "additionalProperties": false
+}
+```
+
+</details>
+
 ### `tween`
 
 Data-driven value animation over ticks: component + select-style path, lerp with easing.
@@ -9455,6 +11478,12 @@ Required: `tweens`
             "maximum": 9007199254740991,
             "description": "Duration in ticks."
           },
+          "delay": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "Ticks to wait before starting (kernel counts it down); from is read when it starts."
+          },
           "elapsed": {
             "type": "integer",
             "minimum": 0,
@@ -9503,6 +11532,43 @@ Required: `tweens`
     "tweens"
   ],
   "additionalProperties": false
+}
+```
+
+</details>
+
+### `vars`
+
+A flat record of named numbers, strings and booleans (score, lives, status).
+
+Required: none
+
+```json
+{
+  "score": 0,
+  "lives": 3,
+  "status": "playing"
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "propertyNames": {
+    "type": "string",
+    "minLength": 1
+  },
+  "additionalProperties": {
+    "type": [
+      "number",
+      "string",
+      "boolean"
+    ]
+  }
 }
 ```
 

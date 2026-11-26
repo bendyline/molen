@@ -1,5 +1,7 @@
+import type { SceneCameraTrack } from './camera-track';
 import type { InputProfile } from './input';
 import type { JsonObject, JsonValue } from './json';
+import type { HudData } from './play';
 
 /** Runtime ids are "e" + sequence; authored ids are any other non-empty string. */
 export type EntityId = string;
@@ -182,6 +184,10 @@ export interface SceneManifest {
   terrain?: SceneTerrainRef;
   physics?: ScenePhysics;
   ambient?: SceneAmbient;
+  /** Inline camera track: the camera during playback and frame export. */
+  cameraTrack?: SceneCameraTrack;
+  /** On-screen readouts, messages and captions (client-drawn, never hashed). */
+  hud?: HudData;
 }
 
 // --- project + type registry (molen/project@1, molen/types@1) ---
@@ -318,6 +324,10 @@ export interface ReplayFixture {
 
 export type SelectOp =
   | 'eq'
+  | 'count_lt'
+  | 'count_lte'
+  | 'count_gt'
+  | 'count_gte'
   | 'approx'
   | 'gt'
   | 'gte'

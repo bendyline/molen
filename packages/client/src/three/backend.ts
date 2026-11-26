@@ -431,7 +431,7 @@ export class ThreeSceneBackend implements SceneBackend {
     this.gltf.set(id, binding);
     const token = binding.token;
     const attach = this.assets
-      .instance(renderable.ref, renderable.node)
+      .instance(renderable.ref ?? '', renderable.node)
       .then(async ({ scene: instance, clips }) => {
         const current = this.gltf.get(id);
         const disposeSkeletons = (): void =>

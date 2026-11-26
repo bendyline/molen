@@ -1,9 +1,11 @@
-import type { SkyData } from '@bendyline/molen-schema';
+import { resolveEnvironmentPreset, type SkyData } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import type { Renderer } from './renderer';
 
 /** Mirrors the schema `environment` component (loose; all fields optional). */
 export interface EnvironmentData {
+  /** Time-of-day preset (morning, noon, evening, night, overcast); explicit fields win. */
+  preset?: string;
   /** Earth or authored clear sky. Owns ambient/sun/moon lights when present. */
   sky?: SkyData;
   ambient?: { sky?: string; ground?: string; intensity?: number };
@@ -47,7 +49,8 @@ const SHADOW_MAP_SIZE: Record<'low' | 'medium' | 'high', number> = {
  * fog, tone mapping, exposure, and the shadow quality tier. Passing `defaultEnvironment`
  * restores the stock rig; omitted fields fall back to it.
  */
-export function applyEnvironment(renderer: Renderer, env: EnvironmentData): void {
+export function applyEnvironment(renderer: Renderer, authored: EnvironmentData): void {
+  const env = resolveEnvironmentPreset(authored);
   renderer.setSky(env.sky, env.shadows ?? 'off');
   const scene = renderer.scene;
   const existing = findEnvironmentRig(scene);

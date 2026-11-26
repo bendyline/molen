@@ -123,7 +123,12 @@ export function createFigureRuntime(world: World): FigureRuntime {
       const target = intent.lookAt;
       let point: Vec3 | undefined;
       if ('pos' in target) point = target.pos;
-      else point = world.get(target.entity, Transform)?.pos;
+      else {
+        // Look a figure in the eyes, not at its feet: an entity's origin is where it stands.
+        const at = world.get(target.entity, Transform)?.pos;
+        const eye = at !== undefined ? entryFor(target.entity)?.rig.eyeHeight : undefined;
+        point = at !== undefined && eye !== undefined ? [at[0], at[1] + eye, at[2]] : at;
+      }
       if (point !== undefined) lookTarget = worldToFigure(t, point);
     }
     const lookWeight =

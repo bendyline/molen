@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { assetId } from './asset-id';
 import type { AssetSidecar } from './assets';
 import type { SoundbankDoc } from './audio';
+import { type CameraTrackDoc, cameraTrackSchema, sceneCameraTrackSchema } from './camera-track';
 import { compileCommandPayload } from './commands';
 import {
   type ComponentValidateOptions,
@@ -19,6 +20,7 @@ import {
 } from './issues';
 import type { JsonValue } from './json';
 import type { PackIndex, PackManifest, PackSourceConfig } from './pack';
+import { hudSchema, parseValueRef, SELECT_OPS } from './play';
 import { unsafePatterns } from './regex-safety';
 import { getLegacySchema, getSchema, registerSchema, schemaKinds } from './registry';
 import { type ResolvedTypes, resolveEntityComponents, resolvePrefab } from './scene-resolve';
@@ -499,6 +501,16 @@ const sceneSchema = z.strictObject({
       'Ambient life: NPC cars, pedestrians, trains and aircraft that spawn around an observer on a transport network (needs @bendyline/molen-ambient).',
     )
     .optional(),
+  cameraTrack: sceneCameraTrackSchema
+    .describe(
+      'Inline camera track (molen/cameratrack@1 without its format): the camera during playback and frame export when no other track is given.',
+    )
+    .optional(),
+  hud: hudSchema
+    .describe(
+      'On-screen readouts, messages and captions bound to component values; drawn by the client, never hashed.',
+    )
+    .optional(),
 });
 
 const rngStateSchema = z.strictObject({
@@ -641,28 +653,7 @@ const replaySchema = z.union([
   }),
 ]);
 
-const selectOps = [
-  'eq',
-  'approx',
-  'gt',
-  'gte',
-  'lt',
-  'lte',
-  'count',
-  'exists',
-  'all_eq',
-  'all_approx',
-  'all_gt',
-  'all_gte',
-  'all_lt',
-  'all_lte',
-  'any_eq',
-  'any_approx',
-  'any_gt',
-  'any_gte',
-  'any_lt',
-  'any_lte',
-] as const;
+const selectOps = SELECT_OPS;
 
 const selectAssertionSchema = z.strictObject({
   select: z
@@ -674,10 +665,10 @@ const selectAssertionSchema = z.strictObject({
   op: z
     .enum(selectOps)
     .describe(
-      'Comparison: eq/approx/gt/gte/lt/lte on the single match, count/exists on the match set, all_*/any_* over every match.',
+      'Comparison: eq/approx/gt/gte/lt/lte on the single match, count/exists on the match set (count_lt/count_lte/count_gt/count_gte compare the number of matches), all_*/any_* over every match.',
     ),
   value: jsonValue
-    .describe('Expected value (for count: the expected number of matches).')
+    .describe('Expected value (for count ops: the number of matches to compare with).')
     .optional(),
   tol: z
     .number()
@@ -745,6 +736,65 @@ function escapePointer(seg: string): string {
 }
 
 /**
+ * HUD value references must be `#id.component.path` into an authored entity, and camera-track
+ * keyframes may only be relative to an authored entity.
+ */
+function playRefIssues(data: unknown): ValidationIssue[] {
+  const scene = data as {
+    entities?: { id?: string }[];
+    hud?: {
+      items?: { value: string }[];
+      messages?: { when: { select: string } }[];
+    };
+    cameraTrack?: { keyframes?: { relativeTo?: string }[] };
+  };
+  const issues: ValidationIssue[] = [];
+  const ids = (scene.entities ?? []).flatMap((e) => (e.id !== undefined ? [e.id] : []));
+  const known = new Set(ids);
+  const checkRef = (ref: string, path: string): void => {
+    const parsed = parseValueRef(ref);
+    if (parsed === null) {
+      issues.push({
+        path,
+        code: 'invalid_value_ref',
+        message: `"${ref}" is not a value reference`,
+        expected: '#id.component.path, e.g. #game.vars.score',
+        docsRef: 'schemas/scene.md',
+      });
+      return;
+    }
+    if (!known.has(parsed.entity)) {
+      const near = nearest(parsed.entity, ids);
+      issues.push({
+        path,
+        code: 'unknown_entity',
+        message: `"${ref}" names unknown entity "${parsed.entity}"`,
+        ...(near !== undefined ? { hint: `did you mean "#${near}"?` } : {}),
+        docsRef: 'schemas/scene.md',
+      });
+    }
+  };
+  (scene.hud?.items ?? []).forEach((item, i) => {
+    checkRef(item.value, `/hud/items/${i}/value`);
+  });
+  (scene.hud?.messages ?? []).forEach((m, i) => {
+    checkRef(m.when.select, `/hud/messages/${i}/when/select`);
+  });
+  (scene.cameraTrack?.keyframes ?? []).forEach((k, i) => {
+    if (k.relativeTo === undefined || known.has(k.relativeTo)) return;
+    const near = nearest(k.relativeTo, ids);
+    issues.push({
+      path: `/cameraTrack/keyframes/${i}/relativeTo`,
+      code: 'unknown_entity',
+      message: `camera keyframe is relative to unknown entity "${k.relativeTo}"`,
+      ...(near !== undefined ? { hint: `did you mean "${near}"?` } : {}),
+      docsRef: 'schemas/cameratrack.md',
+    });
+  });
+  return issues;
+}
+
+/**
  * Cross-field checks Zod can't express: script code|path exclusivity, duplicate entity ids,
  * prefab references and cycles, declared commands vs input emit rules, payload schemas.
  */
@@ -786,6 +836,7 @@ function validateScene(data: unknown): ValidationIssue[] {
       docsRef: 'schemas/scene.md',
     });
   }
+  issues.push(...playRefIssues(data));
   if (
     scene.camera?.mode === 'follow' &&
     scene.camera.offset?.every((v, i) => v === scene.camera?.lookOffset?.[i])
@@ -1412,6 +1463,25 @@ registerSchema('assert', assertSchema, {
   docsRef: 'schemas/assert.md',
 });
 
+registerSchema('cameratrack', cameraTrackSchema, {
+  id: 'molen/cameratrack@1',
+  title: 'Camera track',
+  description:
+    'Keyframed camera poses over ticks for scripted playback (machinima). A scene may carry the same track inline as `cameraTrack`.',
+  examples: [
+    {
+      format: 'molen/cameratrack@1',
+      easing: 'smooth',
+      keyframes: [
+        { tick: 0, position: [0, 20, 40], lookAt: [0, 0, 0] },
+        { tick: 120, position: [40, 20, 0], lookAt: [0, 0, 0], fov: 40 },
+        { tick: 121, position: [0, 2, 6], lookAt: [0, 1.5, 0], relativeTo: 'player', cut: true },
+      ],
+    },
+  ],
+  docsRef: 'schemas/cameratrack.md',
+});
+
 // --- validate() ---
 
 export interface SchemaKindMap {
@@ -1422,6 +1492,7 @@ export interface SchemaKindMap {
   delta: Delta;
   replay: ReplayFixture;
   assert: AssertionDoc;
+  cameratrack: CameraTrackDoc;
   project: ProjectManifest;
   types: TypesDoc;
   asset: AssetSidecar;

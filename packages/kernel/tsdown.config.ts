@@ -17,6 +17,7 @@ export default defineConfig({
     'src/aircraft.ts',
     'src/trials.ts',
     'src/world-entry.ts',
+    'src/data.ts',
   ],
   format: 'esm',
   dts: true,

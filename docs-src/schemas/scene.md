@@ -1216,6 +1216,246 @@ Root document an experience boots from; instantiates into ECS state at tick 0.
       },
       "additionalProperties": false,
       "description": "Ambient life: NPC cars, pedestrians, trains and aircraft that spawn around an observer on a transport network (needs @bendyline/molen-ambient)."
+    },
+    "cameraTrack": {
+      "type": "object",
+      "properties": {
+        "easing": {
+          "default": "smooth",
+          "type": "string",
+          "enum": [
+            "linear",
+            "smooth"
+          ],
+          "description": "Interpolation between keyframes: linear or smooth (smoothstep; default)."
+        },
+        "loop": {
+          "default": false,
+          "type": "boolean",
+          "description": "Wrap the tick back to the first keyframe after the last one (default false)."
+        },
+        "keyframes": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tick": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Tick at which this pose is reached (scene tickRate)."
+              },
+              "position": {
+                "minItems": 3,
+                "maxItems": 3,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "description": "Camera position [x, y, z] in meters (Y-up); an offset from relativeTo when that is set."
+              },
+              "lookAt": {
+                "minItems": 3,
+                "maxItems": 3,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "description": "Point [x, y, z] in meters the camera looks at; an offset from relativeTo when that is set."
+              },
+              "fov": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 179,
+                "description": "Vertical field of view in degrees (interpolated; default: the client camera)."
+              },
+              "cut": {
+                "type": "boolean",
+                "description": "Jump to this pose at its tick instead of interpolating from the previous one."
+              },
+              "relativeTo": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Entity id: position and lookAt are offsets from its position at playback time (a tracking shot)."
+              }
+            },
+            "required": [
+              "tick",
+              "position",
+              "lookAt"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Camera poses over ticks (at least one; sorted by tick when evaluated)."
+        }
+      },
+      "required": [
+        "keyframes"
+      ],
+      "additionalProperties": false,
+      "description": "Inline camera track (molen/cameratrack@1 without its format): the camera during playback and frame export when no other track is given."
+    },
+    "hud": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Readout label, e.g. Score."
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Value reference #id.component.path, e.g. #game.vars.score."
+              }
+            },
+            "required": [
+              "label",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Readouts shown in a corner."
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "when": {
+                "type": "object",
+                "properties": {
+                  "select": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Entity selector plus optional value path: '#id', 'tag:name', 'has:component', e.g. '#player.health.hp'. In rules, '$self', '$a', '$b' and '$entity' name bound entities."
+                  },
+                  "op": {
+                    "type": "string",
+                    "enum": [
+                      "eq",
+                      "approx",
+                      "gt",
+                      "gte",
+                      "lt",
+                      "lte",
+                      "count",
+                      "count_lt",
+                      "count_lte",
+                      "count_gt",
+                      "count_gte",
+                      "exists",
+                      "all_eq",
+                      "all_approx",
+                      "all_gt",
+                      "all_gte",
+                      "all_lt",
+                      "all_lte",
+                      "any_eq",
+                      "any_approx",
+                      "any_gt",
+                      "any_gte",
+                      "any_lt",
+                      "any_lte"
+                    ],
+                    "description": "Comparison: eq/approx/gt/gte/lt/lte on the single match, count/exists on the match set (count_lt/count_lte/count_gt/count_gte compare the number of matches), all_*/any_* over every match."
+                  },
+                  "value": {
+                    "description": "Expected value (for count ops: the number of matches to compare with).",
+                    "$ref": "#/$defs/__schema1"
+                  },
+                  "tol": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "description": "Absolute tolerance for approx ops (default 1e-6)."
+                  }
+                },
+                "required": [
+                  "select",
+                  "op"
+                ],
+                "additionalProperties": false,
+                "description": "Condition on one entity by id (#id.component.path), e.g. #game.vars.status eq won."
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Message shown while the condition holds."
+              },
+              "detail": {
+                "type": "string",
+                "description": "Smaller second line."
+              }
+            },
+            "required": [
+              "when",
+              "text"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Centered messages; the first whose condition holds is shown."
+        },
+        "captions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tick": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "description": "Tick the caption appears."
+              },
+              "ticks": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991,
+                "description": "Ticks it stays."
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Caption text."
+              }
+            },
+            "required": [
+              "tick",
+              "ticks",
+              "text"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Timed captions along the bottom (films)."
+        },
+        "title": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Title shown when play starts."
+            },
+            "ticks": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991,
+              "description": "Ticks it stays (default 90)."
+            }
+          },
+          "required": [
+            "text"
+          ],
+          "additionalProperties": false,
+          "description": "A title card at the start."
+        }
+      },
+      "additionalProperties": false,
+      "description": "On-screen readouts, messages and captions bound to component values; drawn by the client, never hashed."
     }
   },
   "required": [
@@ -1251,6 +1491,37 @@ Root document an experience boots from; instantiates into ECS state at tick 0.
           },
           "additionalProperties": {
             "$ref": "#/$defs/__schema0"
+          }
+        }
+      ]
+    },
+    "__schema1": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema1"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema1"
           }
         }
       ]

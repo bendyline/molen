@@ -17,7 +17,8 @@ import { type ModelSignals, readModelSignals } from './model-signals';
 /** The render contract component (docs-src/schemas/components.md, `renderable`). */
 export interface Renderable {
   kind: 'primitive' | 'gltf' | (string & {});
-  ref: string; // primitive name ("box"/"sphere"/...) or gltf asset id / URL-ish path
+  /** Primitive name ("box"/"sphere"/...) or gltf asset id; absent for kinds with a default. */
+  ref?: string;
   materialRef?: string; // e.g. "palette:#rrggbb"
   primitive?: { size?: Vec3 };
   /** gltf: named sub-node to instance (default: the whole scene). */

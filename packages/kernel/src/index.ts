@@ -93,6 +93,20 @@ export {
   transformPoint,
   yawOf,
 } from './math3d';
+export type { PlayOptions } from './play';
+export {
+  Controller,
+  Cues,
+  installPlay,
+  Mover,
+  PATH_COMPLETE,
+  Path,
+  RULE_ERROR,
+  Rules,
+  TOUCH,
+  Trigger,
+  Vars,
+} from './play';
 export type {
   KernelWorker,
   LoadedProject,

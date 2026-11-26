@@ -1,0 +1,58 @@
+{
+  "name": "@bendyline/molen-stage",
+  "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "description": "Molen authoring documents for language models: films and games compiled into data-only scenes",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendyline/molen.git",
+    "directory": "packages/stage"
+  },
+  "homepage": "https://github.com/bendyline/molen/tree/main/packages/stage",
+  "bugs": {
+    "url": "https://github.com/bendyline/molen/issues"
+  },
+  "keywords": [
+    "molen",
+    "3d",
+    "machinima",
+    "games",
+    "llm"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src",
+    "primers": "node scripts/build-primers.mjs",
+    "test:unit": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@bendyline/molen-schema": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@bendyline/molen-figures": "workspace:*",
+    "@bendyline/molen-kernel": "workspace:*",
+    "@biomejs/biome": "^2.5.0",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

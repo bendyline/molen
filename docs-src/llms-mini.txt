@@ -1,0 +1,164 @@
+# Molen for language models: three short primers
+
+Each section below is a complete prompt block, about 600 to 700 words, that teaches a model one
+document. A film or a game document is compiled by @bendyline/molen-stage into a data-only
+scene; a scene is Molen's own format, written by hand. The same text is exported by
+@bendyline/molen-stage as filmPrimer, gamePrimer and scenePrimer.
+
+### Writing a Molen film (molen/film@1)
+
+A film is one JSON document. You choose the look, the set, the cast, what they do and when, and the shots. Molen works out positions, walking, framing and light. Ground positions are `[x, z]` in meters: x is left to right, z is toward the camera. Times are in seconds.
+
+```json
+{ "format": "molen/film@1", "name": "Title", "look": "noon", "length": 8,
+  "set": { "ground": "grass", "props": [] },
+  "marks": { "spot": [0, 0] },
+  "cast": [], "beats": [], "shots": [] }
+```
+
+- `look`: morning, noon, evening, night or overcast. Every look is lit well enough to see.
+- `length` (optional): seconds. Add `"loop": true` to repeat the film forever.
+- `set.ground`: grass, plaza, sand, street, wood, snow, dirt or water.
+- `set.props`: things in the scene, each `{ "id": "unique-name", "shape": ..., "at": place, "on": "other-prop-id", "size": [w, h, d], "color": "#rrggbb" }`. Only `id` and `shape` are required.
+  Shapes: tree, bench, lamp (gives light), table, tower, hill, flag, fountain, house, stall, fence, car, rock, ball, box, sphere, cylinder. Each shape has a sensible size; give `size` only to change it.
+  `on` stands a prop on top of another one: a ball on a table, a tower on a hill, a flag on a tower.
+- `marks`: named spots, so beats and cast can say `"at": "door"` instead of numbers.
+- A place is a mark name, the id of a prop or cast member (next to it), or `[x, z]`.
+- `cast`: people and animals, each `{ "id": "name", "preset": ..., "at": place, "colors": { "top": "#rrggbb", "bottom": "#rrggbb" } }`.
+  Presets: human.adult, human.child, human.elder, dog, cat, horse, deer, cow, sheep.
+- `beats`: what happens, each `{ "at": seconds, "who": id, "do": ..., "target": place, "seconds": duration }`.
+  - `walk-to` / `run-to` a place. Walking to a person or a prop stops a step short and faces them.
+  - `move-to` / `roll-to`: a prop slides or rolls to a place.
+  - `sit` (on the ground, or `"target"` a bench), `stand`, `look-at` a target.
+  `seconds` is optional; without it Molen uses a natural speed.
+- `shots`: the camera, each `{ "at": seconds, "kind": ..., "on": id or [ids] }`. A new shot is a cut.
+  Kinds: wide, establishing, medium, close, push-in, pull-out, orbit, follow, over-the-shoulder (`on`: [from-whom, at-whom]).
+  Molen frames every shot on its subjects; you never place the camera.
+- `captions` (optional): words on screen, each `{ "at": seconds, "seconds": 3, "text": "..." }`.
+
+Example: a farmer leads a horse to the barn while a cat watches.
+
+```json
+{ "format": "molen/film@1", "name": "To the barn", "look": "morning",
+  "set": { "ground": "dirt", "props": [
+    { "id": "barn", "shape": "house", "at": [6, -6], "color": "#9c3b2a" },
+    { "id": "fence", "shape": "fence", "at": [-4, -3] },
+    { "id": "post", "shape": "box", "at": "fence", "size": [0.3, 1.2, 0.3] } ] },
+  "marks": { "gate": [-6, 3] },
+  "cast": [
+    { "id": "farmer", "preset": "human.elder", "colors": { "top": "#6b8e23" }, "at": "gate" },
+    { "id": "horse", "preset": "horse", "at": [-8, 4] },
+    { "id": "cat", "preset": "cat", "at": "post" } ],
+  "beats": [
+    { "at": 0, "who": "farmer", "do": "walk-to", "target": "barn" },
+    { "at": 0.5, "who": "horse", "do": "walk-to", "target": "farmer" },
+    { "at": 0, "who": "cat", "do": "look-at", "target": "horse" },
+    { "at": 9, "who": "farmer", "do": "look-at", "target": "horse" } ],
+  "shots": [
+    { "at": 0, "kind": "establishing", "on": ["farmer", "horse", "barn"] },
+    { "at": 4, "kind": "follow", "on": "horse" },
+    { "at": 9, "kind": "close", "on": "farmer" } ],
+  "captions": [ { "at": 0.5, "seconds": 3, "text": "Early, before the rain." } ] }
+```
+
+Reply with the JSON only, in ```json fences.
+
+### Writing a Molen game (molen/game@1)
+
+A game is one JSON document. You choose the pieces and how many of each, pick a layout, and say how to win and lose. Molen draws a level the player can finish and builds the 3D scene, the controls (arrow keys or WASD, Space to jump, R to play again), the camera, the score and lives display, and the rules for each kind of piece.
+
+```json
+{ "format": "molen/game@1", "name": "Title", "kind": "top-down", "layout": "garden",
+  "pieces": { "P": { "role": "player" }, "o": { "role": "pickup", "count": 3 } },
+  "win": { "collect": "all" }, "lose": { "lives": 3 } }
+```
+
+- `kind`: "top-down" (seen from above) or "platformer" (seen from the side; the player runs left to right, jumps and falls).
+- `layout`: the level Molen draws. Top-down: "garden" (open ground with a few hedges), "maze" (narrow corridors), "arena" (an open walled square). Platformer: "level" (ground with gaps to jump over).
+  To adjust it, give an object instead: `{ "archetype": "maze", "size": "large", "loops": "many", "corridors": "wide", "seed": "b" }`. Every field but `archetype` is optional:
+  - garden: `hedges` few, some or many
+  - maze: `loops` none, few or many; `corridors` narrow or wide
+  - arena: `pillars` none, few or many
+  - level: `gaps` few, some or many; `hills` flat, rolling or steep; `ledges` none, some or many
+  - any: `size` small, medium, large or `[columns, rows]`; `seed` any word, for a different level with the same choices.
+- `size` (optional): "small", "medium" (the default) or "large".
+- `look`: morning, noon, evening, night or overcast.
+- `pieces`: one character each. Each piece has a `role`:
+  - `player` (there is always exactly one),
+  - `pickup` (collected by touching it; `points` optional), `goal` (touching it can win),
+  - `key` (touching it opens every `door`), `door` (Molen puts it in front of the goal, and the key somewhere else),
+  - `hazard` (touching it costs a life; the player starts again where they began; in a level, falling into a gap does too),
+  - `wall` (only to choose the walls' color; the layout makes the walls).
+  `count`: how many Molen places (default 1). Optional: `figure` (human.adult, human.child, human.elder, dog, cat, horse, deer, cow, sheep) or `shape` (box, sphere, cylinder), `color` "#rrggbb", `speed` (meters per second).
+  Hazards can `move`: "still" (default), "patrol" (back and forth), "chase" (follows the player) or "wander".
+- `win`: any of `"collect": "all"` (every pickup), `"reach": "goal"`, `"survive": seconds`. With both collect and reach, the goal counts only after every pickup is taken.
+- `lose`: `{ "lives": n }`.
+- `spawn` (optional): `[ { "piece": "e", "every": seconds, "max": n } ]` keeps adding that piece at the edges.
+- `text` (optional): `{ "title": "...", "win": "...", "lose": "..." }`.
+- `map` (optional, instead of `layout`): draw the level yourself as rows of characters, "." for empty floor.
+
+Example: Lantern Run. Reach the lantern while two moths wander the dark garden.
+
+```json
+{ "format": "molen/game@1", "name": "Lantern Run", "kind": "top-down", "layout": "garden", "size": "small", "look": "night",
+  "pieces": {
+    "P": { "role": "player", "figure": "human.child", "speed": 5 },
+    "#": { "role": "wall", "color": "#4a4e69" },
+    "m": { "role": "hazard", "shape": "sphere", "color": "#c9ada7", "move": "wander", "speed": 2, "count": 2 },
+    "L": { "role": "goal", "color": "#ffd166" } },
+  "win": { "reach": "goal" }, "lose": { "lives": 2 },
+  "text": { "title": "Lantern Run", "win": "You found the light.", "lose": "The moths got you." } }
+```
+
+Reply with the JSON only, in ```json fences.
+
+### Writing a Molen scene (molen/scene@3)
+
+A Molen scene is one JSON document. Y is up, units are meters, and time is counted in ticks: with "tickRate": 30, 30 ticks are one second.
+
+```json
+{ "format": "molen/scene@3", "name": "short-name", "seed": "any-text", "tickRate": 30,
+  "entities": [], "camera": { "mode": "fixed", "position": [0, 4, 12] } }
+```
+
+Each entity is `{ "id": "unique-id", "components": { ... } }`. Use only these components:
+
+- `transform`: `{ "pos": [x, y, z] }`, the center of the object. Leave out rotation.
+- `renderable` for a shape: `{ "kind": "primitive", "ref": "box" | "sphere" | "cylinder", "materialRef": "palette:#rrggbb", "primitive": { "size": [x, y, z] } }`. Size is in meters: box = width, height, depth; sphere = diameter in x; cylinder = diameter in x, height in y. A shape is centered on pos, so a box 2 m tall standing on the ground has pos y = 1. A floor is a thin box: size [40, 0.1, 40] at pos y = -0.05.
+- `renderable` for a person or animal: `{ "kind": "figure" }` together with
+  `figure`: `{ "preset": "human.adult" | "human.child" | "human.elder" | "dog" | "cat" | "horse" | "deer" | "cow" | "sheep", "palette": { "top": "#rrggbb", "bottom": "#rrggbb" } }`.
+  A figure stands with its feet at pos (y = 0 on the ground). It walks or runs, and turns to face where it goes, on its own whenever it moves.
+- `figureIntent` (optional, with a figure): `{ "mode": "sit" }`, or `{ "lookAt": { "entity": "other-id" } }` (it looks at their face).
+- `path`, walking somewhere: `{ "points": [[x, y, z]], "speed": 1.3, "delay": 30 }`. It starts from where the entity stands, after `delay` ticks; `speed` is meters per second. Use `"ticks": 90` instead of `speed` to arrive in that time.
+- `cues`, things that happen later, on one entity with id "director": `{ "cues": [ { "tick": 150, "do": [ { "figure": { "target": "#ana", "mode": "sit" } } ] } ] }`. An action can also be `{ "path": { "target": "#ben", "points": [[2, 0, 1]], "speed": 1.3 } }` or `{ "figure": { "target": "#ben", "lookAt": "#ana" } }`.
+- `light`: `{ "type": "point", "color": "#ffdca8", "intensity": 2, "range": 12 }`.
+- `environment`, on one entity with id "env" and no other components: `{ "preset": "evening", "shadows": "medium" }`. Presets: morning, noon, evening, night, overcast; every one is lit well enough to see.
+
+Scene camera: `{ "mode": "fixed", "position": [x, y, z], "lookAt": [x, y, z] }`, or to follow an entity `{ "mode": "follow", "entity": "id", "offset": [0, 3, 8], "lookOffset": [0, 1, 0] }`.
+
+A camera move goes in the same document as `cameraTrack`:
+
+```json
+{ "cameraTrack": { "easing": "smooth", "keyframes": [
+  { "tick": 0, "position": [-6, 6, 16], "lookAt": [-4, 1, 3] },
+  { "tick": 150, "position": [2, 2.2, 8], "lookAt": [0, 1.4, 3], "cut": true } ] } }
+```
+
+`"cut": true` jumps to that keyframe instead of moving to it.
+
+Example scene: a person walks to a fountain where a friend waits, then sits down.
+
+```json
+{ "format": "molen/scene@3", "name": "plaza", "seed": "plaza-1", "tickRate": 30,
+  "entities": [
+    { "id": "env", "components": { "environment": { "preset": "noon", "shadows": "medium" } } },
+    { "id": "ground", "components": { "transform": { "pos": [0, -0.05, 0] }, "renderable": { "kind": "primitive", "ref": "box", "materialRef": "palette:#b9b1a3", "primitive": { "size": [40, 0.1, 40] } } } },
+    { "id": "fountain", "components": { "transform": { "pos": [0, 0.4, 0] }, "renderable": { "kind": "primitive", "ref": "cylinder", "materialRef": "palette:#8a8f99", "primitive": { "size": [3, 0.8, 3] } } } },
+    { "id": "ana", "components": { "transform": { "pos": [-8, 0, 3] }, "renderable": { "kind": "figure" }, "figure": { "preset": "human.adult", "palette": { "top": "#c0392b", "bottom": "#2f2f38" } }, "path": { "points": [[-1.2, 0, 3]], "speed": 1.3 } } },
+    { "id": "ben", "components": { "transform": { "pos": [1, 0, 3] }, "renderable": { "kind": "figure" }, "figure": { "preset": "human.adult", "palette": { "top": "#2e86de", "bottom": "#3d3d3d" } }, "figureIntent": { "lookAt": { "entity": "ana" } } } },
+    { "id": "director", "components": { "cues": { "cues": [ { "tick": 210, "do": [ { "figure": { "target": "#ana", "mode": "sit" } } ] } ] } } }
+  ],
+  "camera": { "mode": "fixed", "position": [0, 4, 14], "lookAt": [0, 1, 2] } }
+```
+
+Reply with the JSON only, in ```json fences.

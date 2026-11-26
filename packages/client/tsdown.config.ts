@@ -4,6 +4,7 @@ export default defineConfig({
   entry: [
     'src/index.ts',
     'src/camera-track.ts',
+    'src/hud.ts',
     'src/vite.ts',
     'src/vehicles.ts',
     'src/glass.ts',

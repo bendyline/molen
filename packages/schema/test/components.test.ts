@@ -208,7 +208,8 @@ describe('engine-owned components reject unknown keys', () => {
   });
 
   it('leaves no component on strip semantics (the accidental third mode)', () => {
-    const openByDesign = ['health', 'tag'];
+    // vars is a record of named values: its keys are the content's, like tag's extra fields.
+    const openByDesign = ['health', 'tag', 'vars'];
     const strip: string[] = [];
     for (const name of coreComponents) {
       const schema = z.toJSONSchema(getComponent(name)?.zod as z.ZodType, { io: 'input' }) as {

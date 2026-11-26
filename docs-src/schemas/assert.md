@@ -61,6 +61,10 @@ Declarative world-state and event assertions evaluated after a headless run.
                   "lt",
                   "lte",
                   "count",
+                  "count_lt",
+                  "count_lte",
+                  "count_gt",
+                  "count_gte",
                   "exists",
                   "all_eq",
                   "all_approx",
@@ -75,10 +79,10 @@ Declarative world-state and event assertions evaluated after a headless run.
                   "any_lt",
                   "any_lte"
                 ],
-                "description": "Comparison: eq/approx/gt/gte/lt/lte on the single match, count/exists on the match set, all_*/any_* over every match."
+                "description": "Comparison: eq/approx/gt/gte/lt/lte on the single match, count/exists on the match set (count_lt/count_lte/count_gt/count_gte compare the number of matches), all_*/any_* over every match."
               },
               "value": {
-                "description": "Expected value (for count: the expected number of matches).",
+                "description": "Expected value (for count ops: the number of matches to compare with).",
                 "$ref": "#/$defs/__schema0"
               },
               "tol": {

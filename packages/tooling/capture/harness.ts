@@ -94,8 +94,11 @@ window.__molenCapture = async (req: CaptureRequest): Promise<CaptureStats> => {
         }
       : {}),
   });
-  if (req.camera != null) viewer.setCamera(req.camera);
-  else if (req.ortho != null) viewer.renderer.setTopDownOrtho(req.ortho);
+  if (req.camera != null) {
+    viewer.setCamera(req.camera);
+    const fov = (req.camera as { fov?: number }).fov;
+    if (fov !== undefined) viewer.renderer.setFov(fov);
+  } else if (req.ortho != null) viewer.renderer.setTopDownOrtho(req.ortho);
 
   if (req.terrain != null) {
     const hf = heightfieldFromPng(req.terrain.descriptor, base64ToBytes(req.terrain.heightmapB64));

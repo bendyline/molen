@@ -49,6 +49,25 @@ function evalSelect(world: World, a: SelectAssertion): AssertionResult {
       `count ${matches.length} ${pass ? '==' : '!='} ${String(a.value)}`,
     );
   }
+  if (a.op.startsWith('count_')) {
+    const n = matches.length;
+    const v = a.value;
+    const pass =
+      typeof v === 'number' &&
+      (a.op === 'count_lt'
+        ? n < v
+        : a.op === 'count_lte'
+          ? n <= v
+          : a.op === 'count_gt'
+            ? n > v
+            : n >= v);
+    return result(
+      pass,
+      target,
+      a.op,
+      `count ${n} ${a.op.slice(6)} ${String(v)}: ${pass ? 'pass' : 'fail'}`,
+    );
+  }
   if (a.op === 'exists') {
     const pass = matches.length > 0;
     return result(pass, target, a.op, pass ? `matched ${matches.length}` : 'no matches');
@@ -63,7 +82,7 @@ function evalSelect(world: World, a: SelectAssertion): AssertionResult {
   const isAny = a.op.startsWith('any_');
   const baseOp = a.op.replace(/^(all_|any_)/, '');
 
-  const checks = values.map((v) => compare(baseOp, v, a.value, a.tol));
+  const checks = values.map((v) => compareValues(baseOp, v, a.value, a.tol));
   // any_ passes if at least one matches; all_ and bare ops require every match to pass.
   const pass = isAny ? checks.some(Boolean) : checks.every(Boolean);
 
@@ -76,7 +95,8 @@ function evalSelect(world: World, a: SelectAssertion): AssertionResult {
   );
 }
 
-function compare(
+/** Compare one value against an expected one with an assertion op (eq, approx, gt, gte, lt, lte). */
+export function compareValues(
   op: string,
   actual: JsonValue | undefined,
   expected: JsonValue | undefined,

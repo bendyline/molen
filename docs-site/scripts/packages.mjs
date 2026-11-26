@@ -36,6 +36,7 @@ const ORDER = [
   '@bendyline/molen-materials',
   '@bendyline/molen-pack',
   '@bendyline/molen-pathfinding',
+  '@bendyline/molen-stage',
   '@bendyline/molen-physics-rapier',
   '@bendyline/molen-entities',
 ];

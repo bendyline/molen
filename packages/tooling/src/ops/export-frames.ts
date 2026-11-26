@@ -1,7 +1,11 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { type CameraTrackDoc, evaluateCameraTrack } from '@bendyline/molen-client/camera-track';
+import {
+  type CameraTrackDoc,
+  evaluateCameraTrack,
+  type SceneCameraTrack,
+} from '@bendyline/molen-client/camera-track';
 import { type ResolvedTypes, takeKeyframe, type WorldSetup } from '@bendyline/molen-kernel';
 import type { SceneManifest, Vec3 } from '@bendyline/molen-schema';
 import { validate, validateByKind } from '@bendyline/molen-schema';
@@ -101,12 +105,14 @@ async function exportFramesImpl(input: ExportFramesInput): Promise<ExportFramesO
     }
   }
 
-  let track = input.track;
+  let track: CameraTrackDoc | SceneCameraTrack | undefined = input.track;
   if (track === undefined && input.trackPath !== undefined) {
     const tv = validateByKind('cameratrack', parseJson(await readFile(input.trackPath, 'utf8')));
     if (!tv.ok) return { ok: false, error: tv.formatted };
     track = tv.value as CameraTrackDoc;
   }
+  // A scene may carry its own track (a compiled film does): use it when none was given.
+  if (track === undefined) track = manifest.cameraTrack;
 
   let setup = input.setup;
   const setupModule = resolveSetupModule(input.setupModule, project);
@@ -158,12 +164,19 @@ async function exportFramesImpl(input: ExportFramesInput): Promise<ExportFramesO
     for (let tick = input.from; tick <= input.to; tick += step) {
       if (world.tick < tick) world.stepN(tick - world.tick);
       const keyframe = takeKeyframe(world);
-      const trackPose = track !== undefined ? evaluateCameraTrack(track, tick) : undefined;
+      const trackPose =
+        track !== undefined
+          ? evaluateCameraTrack(track, tick, {
+              resolve: (id) =>
+                (keyframe.entities[id]?.transform as { pos?: number[] } | undefined)?.pos,
+            })
+          : undefined;
       const camera =
         trackPose !== undefined
           ? {
               position: trackPose.position as Vec3,
-              lookAt: (trackPose as { lookAt?: Vec3 }).lookAt ?? null,
+              lookAt: trackPose.lookAt ?? null,
+              ...(trackPose.fov !== undefined ? { fov: trackPose.fov } : {}),
             }
           : sceneCapture.camera;
       const req: {
