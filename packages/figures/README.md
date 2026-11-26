@@ -14,10 +14,12 @@ npm i @bendyline/molen-figures
 
 Node >= 22.13, ESM only. There is deliberately **no `.` export**: import
 `@bendyline/molen-figures/kernel` or `@bendyline/molen-figures/client`, or one of the host-side
-subpaths `/look` and `/designer`. The client half needs the optional peers `three`
+subpaths `/look`, `/designer` and `/schema`. The client half needs the optional peers `three`
 (`>=0.184.0 <0.187.0`) and `@bendyline/molen-client`; the kernel half needs neither, and runs in a
 Worker and in Node. `/look` is plain data (no three.js, no zod, no kernel runtime); `/designer`
-needs `three` but no kernel runtime, so neither loads SES on a host page.
+needs `three` but no kernel runtime, so neither loads SES on a host page. `/schema` registers the
+figures vocabulary with `@bendyline/molen-schema` and nothing else, for a host that validates
+scenes without running them.
 
 ## Use
 
@@ -68,6 +70,7 @@ and `molen shot` work on it with no extra wiring.
 | `./client` | The `figure` renderable kind (`figureKind()`), the three-tier body geometry cache, `figureGeometry` / `figureBodyToSkinnedMesh`, `createFigureMaterial`, and `applyPose`. |
 | `./look` | Figure looks (`molen/figure-look@1`): a person and outfit as named catalogue options, `randomFigureLook`, `normalizeFigureLook`, `figureFromLook`, and the default people catalogue. |
 | `./designer` | A character designer's framework-free parts: `createFigureDesignerModel` (undo, transient drags), every string behind a key, `describeFigureLook`, and `mountFigurePreview` (a turntable plus option thumbnails through one WebGL context). `@bendyline/molen-figures-react` builds the shipped designer on it. |
+| `./schema` | The figures vocabulary alone: the four components, the `figure` renderable kind and `molen/figure@1`, registered with `@bendyline/molen-schema` on import, for validating scenes without the kernel runtime. |
 
 Rigs, meshes and poses are derived; only `figureState` and attachment transforms enter the state
 hash, and speed is quantized so a steadily walking figure sends no deltas.

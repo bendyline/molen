@@ -13,10 +13,10 @@ kernel, a three.js client, and a dev loop an agent can drive end to end.
 npm i @bendyline/molen-stage
 ```
 
-Node >= 22.13, ESM only, one `.` export. It depends on `@bendyline/molen-schema` and `zod` only:
-it compiles and checks documents and never runs a scene. Run the compiled scene with
-`buildDataWorld` from `@bendyline/molen-kernel/data`, which loads no script runtime, and add
-`@bendyline/molen-figures` for the people and animals.
+Node >= 22.13, ESM only, one `.` export. It depends on `@bendyline/molen-schema`, `zod`, and the
+figures vocabulary (`@bendyline/molen-figures/schema`): it compiles and checks documents and never
+runs a scene. Run the compiled scene with `buildDataWorld` from `@bendyline/molen-kernel/data`,
+which loads no script runtime, and install figures with `@bendyline/molen-figures/kernel`.
 
 ## Use
 
@@ -31,6 +31,7 @@ else console.log(result.scene.cameraTrack?.keyframes.length, result.info.lengthT
 
 | Export | What it does |
 | --- | --- |
+| `checkDocument(doc)` | check any of the three documents a model writes (film, game, or data-only scene) as a host that will play it: the scene it plays as, notices and a one-line summary, or the issues |
 | `compileFilm(doc)`, `compileGame(doc)` | validate a document and compile it to a scene, or return its issues and a formatted block |
 | `lintFilm(doc)`, `lintGame(doc)` | what a viewer or play test would notice: subjects out of frame or hidden, cast overlapping, a game that cannot be lost, an unreachable pickup |
 | `generateLayout(name, kind, spec, pieces)` | draw a level from an archetype (`garden`, `maze`, `arena`, `level`) and its knobs |

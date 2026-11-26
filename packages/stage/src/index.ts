@@ -2,6 +2,8 @@
 // (molen/film@1) and a game (molen/game@1), each compiled into an ordinary data-only
 // molen/scene@3 (no scripts), plus a lint for each and short primers that teach them.
 
+export type { CheckDocumentResult, DocumentKind } from './check';
+export { checkDocument, DOCUMENT_FORMATS, documentKind } from './check';
 export type { FigurePreset, FigurePresetInfo, Look } from './common';
 export { FIGURE_PRESETS, LOOKS, TICK_RATE } from './common';
 export type {

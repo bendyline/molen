@@ -32,6 +32,12 @@ if (!result.ok) {
 ```
 
 `compileFilm` works the same way and returns `info.lengthTicks` (30 ticks a second).
+
+A host that takes whatever a model wrote can use `checkDocument` instead: it reads the `format`,
+compiles a film or game, validates a `molen/scene@3` with the figures vocabulary and refuses one
+that carries scripts, and returns the scene, the lint notices and a one-line summary (`a film
+"The Meeting" 9.0 s long with 3 cast members and 1 prop`), or the issues and their formatted
+block.
 `lintFilm` and `lintGame` return what a viewer or a play test would notice, as notices: a
 subject out of frame or behind a prop, cast standing inside each other, a game nobody can lose.
 
