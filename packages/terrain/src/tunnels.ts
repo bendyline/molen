@@ -1,7 +1,31 @@
-/** Mapped underground corridors, portal cuts and height-aware navigation queries. */
+/**
+ * Mapped underground corridors, portal cuts and height-aware navigation queries.
+ *
+ * A way the map calls a tunnel becomes a bore: a floor, walls and a roof the clear height over
+ * it, with the ground opened only where it lies below the roof. Its floor starts at each portal
+ * where its road comes down (the floor of the cutting a road grading dug for the approach, see
+ * tunnel-portals.ts, or the ground there) and keeps the clear height and some cover under the
+ * ground between them, no steeper than its class climbs (`terrainTunnelBoreProfile`). Under a hill
+ * that is the straight grade between its portals; under level ground the bore goes down and back.
+ *
+ * Where it cannot get under (an approach cut short by a junction at the portal, no grading at
+ * all, a hillside that only closes over it some way in), the bore is an open cutting: retaining
+ * walls up to the ground and a parapet, and no roof. Where a road crosses such a stretch at grade,
+ * the roof is kept as a lid just under the road, at whatever clear height that leaves, so the road
+ * is not broken. Neither ever stands over the ground: that was the box on the road this replaces.
+ * A face closes the gap between a roof and the ground above it at each portal.
+ *
+ * Related: tunnel-portals.ts (portals, cuttings, the floor profile), road-grading.ts (cuts the
+ * approaches), underpasses.ts (tunnel ways that are only streets under bridges), ground-cutout.ts.
+ */
 import * as THREE from 'three';
 import { setTerrainGroundCutouts } from './ground-cutout';
-import { joinTerrainLines, sampleTerrainLine, terrainLinePath } from './line-path';
+import {
+  joinTerrainLines,
+  sampleTerrainLine,
+  type TerrainLinePath,
+  terrainLinePath,
+} from './line-path';
 import { TerrainSurfaceMeshBuilder } from './linear-features';
 import type { TerrainPyramidHeightSource, TerrainPyramidTileLayerContext } from './pyramid-stream';
 import { type TerrainPyramidTileAddress, terrainPyramidTileKey } from './pyramid-types';
@@ -16,7 +40,34 @@ import {
 } from './semantic-types';
 import { knownTerrainRootOffset, terrainRootOffset } from './tagged-objects';
 import { clipTerrainSurfacePolygon } from './terrain-drape';
-import { transportKind, transportSurfaceLift, transportWidth } from './transport-features';
+import {
+  isAeroway,
+  transportKind,
+  transportSurfaceLift,
+  transportWidth,
+} from './transport-features';
+import {
+  TERRAIN_TUNNEL_GRADE,
+  type TerrainTunnelBoreProfile,
+  type TerrainTunnelPortalSource,
+  terrainTunnelBoreProfile,
+  terrainTunnelClearance,
+  terrainTunnelFamily,
+} from './tunnel-portals';
+
+/** Meters of ground a roof needs over it to count as under cover rather than open to the sky. */
+const MIN_COVER = 0.3;
+/** Meters a retaining wall stands above the ground beside an open stretch: its parapet. */
+const PARAPET = 0.9;
+/** Meters below the ground a lid's top lies where a road crosses an open stretch at grade. */
+const LID_DEPTH = 0.4;
+/**
+ * Meters a lid keeps over the floor at the least. Nothing else holds it up: a lid that kept a
+ * clear height stood over the road it carries, the box this was written to take away.
+ */
+const LID_THICKNESS = 0.3;
+/** Meters an open stretch's walls stand over its floor at the least: a curb. */
+const CURB = 0.3;
 
 export interface TerrainTunnelClearance {
   floor: number;
@@ -181,14 +232,108 @@ export function sampleTerrainTunnel(
   return result;
 }
 
-/** Create open-ended bores. Full route endpoints and their ground heights must be available.
- * `groundAt` uses tile-local metres and may sample neighboring heightfields for complete routes.
- * The inference is a straight grade between portal ground heights, not surveyed engineering. */
+/** What `createTerrainTunnelObject` needs beyond the routes and the ground. */
+export interface TerrainTunnelObjectOptions {
+  /**
+   * The ground (tile-local meters in, world Y out) at which a bore's road reaches a portal, where
+   * a road grading cut the approach down to it (`TerrainTunnelPortalSource`); undefined there,
+   * the bore starts on the ground at the portal.
+   */
+  portalGround?: (x: number, z: number) => number | undefined;
+  /** The tile's other ways: one that crosses an open stretch of bore at grade keeps a lid over it. */
+  crossings?: readonly TerrainTransportationFeature[];
+}
+
+/** How a stretch of bore is closed over: by its roof under cover, by a lid, or not at all. */
+type Over = 'covered' | 'lid' | 'open';
+
+/**
+ * The stretches of a bore (meters along `path`) that ways cross at grade, each as long as the
+ * crossing way's width takes along the bore, and a meter and a half either side.
+ */
+function crossedStretches(
+  path: TerrainLinePath,
+  crossings: readonly TerrainTransportationFeature[] | undefined,
+  tileSize: number,
+): [number, number][] {
+  const found: [number, number][] = [];
+  if (!crossings?.length || path.points.length < 2) return found;
+  let minX = Number.POSITIVE_INFINITY,
+    minZ = Number.POSITIVE_INFINITY,
+    maxX = Number.NEGATIVE_INFINITY,
+    maxZ = Number.NEGATIVE_INFINITY;
+  for (const [x, z] of path.points) {
+    minX = Math.min(minX, x);
+    maxX = Math.max(maxX, x);
+    minZ = Math.min(minZ, z);
+    maxZ = Math.max(maxZ, z);
+  }
+  for (const feature of crossings) {
+    if (
+      feature.tunnel ||
+      feature.bridge ||
+      isAeroway(feature) ||
+      feature.class === 'ferry' ||
+      feature.subclass === 'ferry'
+    )
+      continue;
+    const width = transportWidth(feature);
+    for (const line of feature.lines) {
+      let lowX = Number.POSITIVE_INFINITY,
+        lowZ = Number.POSITIVE_INFINITY,
+        highX = Number.NEGATIVE_INFINITY,
+        highZ = Number.NEGATIVE_INFINITY;
+      for (const [u, v] of line) {
+        lowX = Math.min(lowX, u * tileSize);
+        highX = Math.max(highX, u * tileSize);
+        lowZ = Math.min(lowZ, v * tileSize);
+        highZ = Math.max(highZ, v * tileSize);
+      }
+      if (lowX > maxX || highX < minX || lowZ > maxZ || highZ < minZ) continue;
+      for (let j = 1; j < line.length; j++) {
+        const [cu, cv] = line[j - 1] as TerrainSemanticPoint,
+          [du, dv] = line[j] as TerrainSemanticPoint;
+        const cx = cu * tileSize,
+          cz = cv * tileSize,
+          qx = du * tileSize - cx,
+          qz = dv * tileSize - cz;
+        for (let i = 1; i < path.points.length; i++) {
+          const [ax, az] = path.points[i - 1] as TerrainSemanticPoint,
+            [bx, bz] = path.points[i] as TerrainSemanticPoint;
+          const rx = bx - ax,
+            rz = bz - az;
+          const denominator = rx * qz - rz * qx;
+          if (Math.abs(denominator) < 1e-12) continue;
+          const t = ((cx - ax) * qz - (cz - az) * qx) / denominator,
+            u = ((cx - ax) * rz - (cz - az) * rx) / denominator;
+          if (t < 0 || t > 1 || u <= 1e-9 || u >= 1 - 1e-9) continue;
+          const from = path.distances[i - 1] as number,
+            to = path.distances[i] as number;
+          const at = from + (to - from) * t;
+          if (at < 0.5 || at > path.length - 0.5) continue;
+          const sine = Math.abs(denominator) / (Math.hypot(rx, rz) * Math.hypot(qx, qz));
+          const half = width / 2 / Math.max(0.3, sine) + 1.5;
+          found.push([at - half, at + half]);
+        }
+      }
+    }
+  }
+  return found;
+}
+
+/**
+ * Create bores for complete routes (both portals, and the ground at them, known). `groundAt`
+ * takes tile-local meters and may sample neighboring heightfields: the bore reads the ground at
+ * its portals and all along it. With `options.portalGround` a bore begins at the floor of the
+ * cuttings its portals' approaches were cut down to. The inference is a buildable profile (see
+ * `terrainTunnelBoreProfile`), not surveyed engineering.
+ */
 export function createTerrainTunnelObject(
   tile: TerrainSemanticTile,
   context: TerrainPyramidTileLayerContext,
   groundAt: (x: number, z: number) => number | undefined = (x, z) =>
     context.heightfield.sampleHeight(context.origin[0] + x, context.origin[1] + z),
+  options: TerrainTunnelObjectOptions = {},
 ): THREE.Group {
   const group = new THREE.Group();
   group.name = 'terrain:tunnels';
@@ -198,61 +343,133 @@ export function createTerrainTunnelObject(
   const ceilings: number[] = [];
   const concrete = new THREE.Color('#8b8e88'),
     asphalt = new THREE.Color('#3d4448');
+  const size = context.tileSize;
   for (const feature of tile.transportation) {
     if (!feature.tunnel) continue;
     const kind = transportKind(feature);
     const width = transportWidth(feature, kind);
-    const height = feature.tunnelClearance ?? (kind === 'path' ? 3.5 : kind === 'rail' ? 6 : 6.5);
+    const height = terrainTunnelClearance(feature, kind);
+    const lift = transportSurfaceLift(kind);
+    const grade = TERRAIN_TUNNEL_GRADE[terrainTunnelFamily(kind)];
+    const authored = feature.tunnelFloorElevation;
     for (const line of feature.lines) {
-      const path = terrainLinePath(line, context.tileSize);
+      const path = terrainLinePath(line, size);
       if (!path.length) continue;
-      const a = path.points[0] as TerrainSemanticPoint,
-        b = path.points.at(-1) as TerrainSemanticPoint;
-      const startGround = groundAt(...a),
-        endGround = groundAt(...b);
-      if (
-        feature.tunnelFloorElevation === undefined &&
-        (startGround === undefined || endGround === undefined)
-      )
-        continue;
-      const startY =
-        feature.tunnelFloorElevation ?? (startGround as number) + transportSurfaceLift(kind);
-      const endY =
-        feature.tunnelFloorElevation ?? (endGround as number) + transportSurfaceLift(kind);
-      const floorAt = (d: number): number => startY + ((endY - startY) * d) / path.length;
+      const groundAlong = (d: number): number | undefined => {
+        const p = sampleTerrainLine(path, d);
+        return groundAt(p.x, p.z);
+      };
+      let profile: TerrainTunnelBoreProfile;
+      if (authored !== undefined)
+        profile = { floorAt: () => authored, groundAt: (d) => groundAlong(d) ?? Number.NaN };
+      else {
+        const a = path.points[0] as TerrainSemanticPoint,
+          b = path.points.at(-1) as TerrainSemanticPoint;
+        const startGround = options.portalGround?.(...a) ?? groundAt(...a),
+          endGround = options.portalGround?.(...b) ?? groundAt(...b);
+        if (startGround === undefined || endGround === undefined) continue;
+        profile = terrainTunnelBoreProfile(
+          path.length,
+          groundAlong,
+          startGround + lift,
+          endGround + lift,
+          { grade, clearance: height },
+        );
+      }
+      const lids = crossedStretches(path, options.crossings, size);
+      const covered = (d: number, y: number): boolean => {
+        const ground = profile.groundAt(d);
+        return Number.isNaN(ground) || y + height + MIN_COVER <= ground;
+      };
+      /** Height of what closes the stretch over the floor `y` at `d`: roof, lid or wall tops. */
+      const topAt = (over: Over, d: number, y: number): number => {
+        const ground = profile.groundAt(d);
+        if (over === 'covered' || Number.isNaN(ground)) return y + height;
+        // Neither stands over the ground: a lid lies under the road it carries, however low
+        // that leaves it, and an open stretch's walls end in a parapet.
+        if (over === 'lid')
+          return Math.max(y + LID_THICKNESS, Math.min(y + height, ground - LID_DEPTH));
+        return Math.max(ground + PARAPET, y + CURB);
+      };
+      /** A face across the bore at `d`, from `bottom` to `top`, looking forward or back along it. */
+      const face = (d: number, bottom: number, top: number, forward: boolean): void => {
+        if (!(top > bottom + 0.05)) return;
+        const l = sampleTerrainLine(path, d, -width / 2),
+          r = sampleTerrainLine(path, d, width / 2);
+        if (
+          Math.max(l.x, r.x) < 0 ||
+          Math.min(l.x, r.x) > size ||
+          Math.max(l.z, r.z) < 0 ||
+          Math.min(l.z, r.z) > size
+        )
+          return;
+        const quad: [number, number, number][] = [
+          [l.x, bottom, l.z],
+          [r.x, bottom, r.z],
+          [r.x, top, r.z],
+          [l.x, top, l.z],
+        ];
+        // Its front toward the open side: (r - l) x up is its normal as wound.
+        const looks = -(r.z - l.z) * l.dx + (r.x - l.x) * l.dz;
+        if (looks > 0 !== forward) quad.reverse();
+        builder.face(quad, concrete);
+      };
+      /** The face over a portal or the end of an open stretch, up to the ground and a parapet. */
+      const headwall = (d: number, top: number, forward: boolean): void => {
+        const ground = profile.groundAt(d);
+        if (!Number.isNaN(ground)) face(d, top, ground + PARAPET, forward);
+      };
+      let previous: { over: Over; top: number } | undefined;
       for (let i = 1; i < path.distances.length; i++) {
         const end = path.distances[i] as number;
         for (let d = path.distances[i - 1] as number; d < end; d += 6) {
           const next = Math.min(end, d + 6);
+          const y0 = profile.floorAt(d),
+            y1 = profile.floorAt(next);
+          const over: Over =
+            covered(d, y0) && covered(next, y1)
+              ? 'covered'
+              : lids.some(([from, to]) => from < next && to > d)
+                ? 'lid'
+                : 'open';
+          const c0 = topAt(over, d, y0),
+            c1 = topAt(over, next, y1);
+          // Where a closed stretch meets an open one, or the bore meets its portal, a face
+          // closes the ground above the roof.
+          if (previous === undefined) {
+            if (over !== 'open') headwall(d, c0, false);
+          } else if ((previous.over === 'open') !== (over === 'open'))
+            headwall(d, over === 'open' ? previous.top : c0, over === 'open');
+          previous = { over, top: c1 };
           const left0 = sampleTerrainLine(path, d, -width / 2),
             right0 = sampleTerrainLine(path, d, width / 2);
           const left1 = sampleTerrainLine(path, next, -width / 2),
             right1 = sampleTerrainLine(path, next, width / 2);
           if (
             Math.max(left0.x, right0.x, left1.x, right1.x) < 0 ||
-            Math.min(left0.x, right0.x, left1.x, right1.x) > context.tileSize ||
+            Math.min(left0.x, right0.x, left1.x, right1.x) > size ||
             Math.max(left0.z, right0.z, left1.z, right1.z) < 0 ||
-            Math.min(left0.z, right0.z, left1.z, right1.z) > context.tileSize
+            Math.min(left0.z, right0.z, left1.z, right1.z) > size
           )
             continue;
-          const y0 = floorAt(d),
-            y1 = floorAt(next);
           const l0: [number, number, number] = [left0.x, y0, left0.z],
             r0: [number, number, number] = [right0.x, y0, right0.z];
           const l1: [number, number, number] = [left1.x, y1, left1.z],
             r1: [number, number, number] = [right1.x, y1, right1.z];
-          const top = (p: [number, number, number]): [number, number, number] => [
+          const up = (p: [number, number, number], top: number): [number, number, number] => [
             p[0],
-            p[1] + height,
+            top,
             p[2],
           ];
           // Face normals point into the bore: collision raycasts cull back faces,
           // and capsule contacts must push walkers away from walls and onto the floor.
           builder.face([l0, r0, r1, l1], asphalt);
-          builder.face([l0, l1, top(l1), top(l0)], concrete);
-          builder.face([r0, top(r0), top(r1), r1], concrete);
-          builder.face([top(l0), top(l1), top(r1), top(r0)], concrete);
-          // The roof retains ground above it. Only portal/cut-and-cover terrain below it opens.
+          builder.face([l0, l1, up(l1, c1), up(l0, c0)], concrete);
+          builder.face([r0, up(r0, c0), up(r1, c1), r1], concrete);
+          if (over !== 'open')
+            builder.face([up(l0, c0), up(l1, c1), up(r1, c1), up(r0, c0)], concrete);
+          // A roof or lid retains the ground above it: only ground below it opens (a portal, a
+          // cut-and-cover stretch). An open stretch opens all of its ground.
           const outline = clipTerrainSurfacePolygon(
             [
               [l0[0], l0[2]],
@@ -260,11 +477,11 @@ export function createTerrainTunnelObject(
               [r1[0], r1[2]],
               [r0[0], r0[2]],
             ],
-            context.tileSize,
+            size,
           );
           if (outline.length >= 3) {
             openings.push(outline);
-            ceilings.push(Math.min(y0, y1) + height);
+            ceilings.push(over === 'open' ? Math.max(c0, c1) + 1 : Math.min(c0, c1));
           }
           const p0 = sampleTerrainLine(path, d),
             p1 = sampleTerrainLine(path, next);
@@ -273,11 +490,13 @@ export function createTerrainTunnelObject(
             b: [p1.x, p1.z],
             floor: y0,
             endFloor: y1,
-            ceiling: y0 + height,
+            ceiling:
+              y0 + (over === 'open' ? Math.max(c0 - y0, c1 - y1) : Math.min(c0 - y0, c1 - y1)),
             width,
           });
         }
       }
+      if (previous && previous.over !== 'open') headwall(path.length, previous.top, true);
     }
   }
   // Bore openings go in owners of up to 64 (the cutout limit), each with its own ceilings, and
@@ -321,6 +540,15 @@ function isBoredTunnel(
   );
 }
 
+/** What `withTerrainTunnels` reads beyond the road tiles and the ground. */
+export interface TerrainTunnelOptions {
+  /**
+   * Where the approaches to portals were cut down (a road grading, see road-grading.ts): each
+   * bore begins at the floor of its portals' cuttings. Without it a bore begins on the ground.
+   */
+  portals?: TerrainTunnelPortalSource;
+}
+
 /** Join clipped vector fragments before inferring a grade, so tile edges cannot become portals.
  * Only completed, unbranched routes are inferred. Bounded searches omit unresolved long routes. */
 export function withTerrainTunnels(
@@ -328,6 +556,7 @@ export function withTerrainTunnels(
   source: TerrainSemanticTileSource,
   heights: TerrainPyramidHeightSource,
   minLevel: number,
+  options: TerrainTunnelOptions = {},
 ): TerrainSemanticTileRenderer {
   const owned = new WeakMap<THREE.Object3D, THREE.Object3D>();
   return {
@@ -340,35 +569,75 @@ export function withTerrainTunnels(
         const passages = inner && surfacePassageIds.get(inner);
         if (!tile.transportation.some((f) => isBoredTunnel(f, passages))) return inner;
         const routes = await completeRoutes(tile, context, source, passages);
-        const fields = new Map([[terrainPyramidTileKey(context.address), context.heightfield]]);
+        const { level } = context.address;
+        // The ground all along each route, from the source at every tile it passes, this one's
+        // too: its own field may be graded already, and a neighbor building the same bore must
+        // read what this one reads, or the two would meet at different floors.
+        const fields = new Map<string, TerrainPyramidTileLayerContext['heightfield']>();
         const addresses = new Map<string, TerrainPyramidTileAddress>();
+        const visit = (u: number, v: number): void => {
+          const address = {
+            level,
+            x: context.address.x + Math.floor(u),
+            z: context.address.z + Math.floor(v),
+          };
+          addresses.set(terrainPyramidTileKey(address), address);
+        };
+        const ends: TerrainSemanticPoint[] = [];
         for (const f of routes.transportation)
-          for (const line of f.lines)
-            for (const p of [line[0], line.at(-1)] as TerrainSemanticPoint[]) {
-              const address = {
-                level: context.address.level,
-                x: context.address.x + Math.floor(p[0]),
-                z: context.address.z + Math.floor(p[1]),
-              };
-              addresses.set(terrainPyramidTileKey(address), address);
-            }
+          for (const line of f.lines) {
+            if (f.tunnelFloorElevation === undefined)
+              ends.push(line[0] as TerrainSemanticPoint, line.at(-1) as TerrainSemanticPoint);
+            line.forEach(([u, v], i) => {
+              visit(u, v);
+              if (i === 0) return;
+              const [pu, pv] = line[i - 1] as TerrainSemanticPoint;
+              const steps = Math.ceil(Math.hypot(u - pu, v - pv) * 8);
+              for (let k = 1; k < steps; k++)
+                visit(pu + ((u - pu) * k) / steps, pv + ((v - pv) * k) / steps);
+            });
+          }
         await Promise.all(
           [...addresses].map(async ([key, address]) => {
-            if (fields.has(key)) return;
             const field = await heights.load(address, context.signal);
             if (field) fields.set(key, field);
           }),
         );
         context.signal.throwIfAborted();
-        const tunnels = createTerrainTunnelObject(routes, context, (x, z) => {
+        const own = terrainPyramidTileKey(context.address);
+        if (!fields.has(own)) fields.set(own, context.heightfield);
+        // Where a road grading cut the approaches, the cutting's floor at each portal.
+        const portals: [x: number, z: number, ground: number][] = [];
+        const portalSource = options.portals;
+        if (portalSource && ends.length) {
+          await Promise.all(
+            ends.map(async ([u, v]) => {
+              const ground = await portalSource
+                .tunnelPortalGround(
+                  level,
+                  context.origin[0] + u * context.tileSize,
+                  context.origin[1] + v * context.tileSize,
+                )
+                .catch(() => undefined);
+              if (ground !== undefined)
+                portals.push([u * context.tileSize, v * context.tileSize, ground]);
+            }),
+          );
+          context.signal.throwIfAborted();
+        }
+        const groundAt = (x: number, z: number): number | undefined => {
           const address = {
-            level: context.address.level,
+            level,
             x: context.address.x + Math.floor(x / context.tileSize),
             z: context.address.z + Math.floor(z / context.tileSize),
           };
           return fields
             .get(terrainPyramidTileKey(address))
             ?.sampleHeight(context.origin[0] + x, context.origin[1] + z);
+        };
+        const tunnels = createTerrainTunnelObject(routes, context, groundAt, {
+          portalGround: (x, z) => portals.find(([px, pz]) => Math.hypot(px - x, pz - z) < 0.5)?.[2],
+          crossings: tile.transportation,
         });
         const group = new THREE.Group();
         if (inner) {

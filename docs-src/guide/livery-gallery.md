@@ -1,12 +1,12 @@
 # Livery gallery
 
-Compare every vehicle’s photo-based liveries side by side, then follow the photograph links to inspect the real-world colors and markings. Read each comparison from left to right; its labels give the selection ids.
+Compare every vehicle’s photo-based liveries side by side, then follow the photograph links to inspect the real-world colors and markings. Read each comparison from left to right, four choices to a row; its labels give the selection ids.
 
 [Aircraft](#aircraft) · [Cars, trucks and RVs](#cars-trucks-and-rvs) · [Cycles](#cycles) · [Transit](#transit) · [Watercraft](#watercraft)
 
 ## Evidence and scope
 
-All 406 choices across 202 vehicle types have linked real-world photographs. Every vehicle has two choices; the F-16B has three. Colors and visible layout were compared with the photographs and the rendered models. These are **photo-based adaptations** (`inspired` provenance), not exact historical or factory replicas.
+All 560 choices across 202 vehicle types have linked real-world photographs. Every aircraft has 4 to 7 choices, each a real operator's scheme; every other vehicle has 2. Military liveries carry real national insignia, codes, serials and unit art redrawn as original vector art; civil liveries follow the operator's colors and layout without its name or logo, with fictional registrations. Colors and visible layout were compared with the photographs and the rendered models. These are **photo-based adaptations** (`inspired` provenance), not exact historical or factory replicas.
 
 Paint values are visual estimates, not measured paint codes. Camouflage uses approximate masks; complex emblems and small stencils may be omitted. Generic Bendy bodies adapt finishes from the photographed real vehicles. Each entry explains its scope. Source photos are linked for inspection and attribution; they are not shipped as textures.
 
@@ -32,817 +32,1279 @@ Copy a type and livery id from an entry and set `livery.selected`:
 
 Type: `molen.entities.aircraft.a220_300`.
 
-[![Airbus A220-300 livery comparison: airBaltic white and lime, SWISS white and red](https://molen.dev/guide-media/liveries/a220_300.png)](https://molen.dev/guide-media/liveries/a220_300.png)
+[![Airbus A220-300 livery comparison: White with lime sweep and tail, White over navy belly, navy tail, White with navy belly and streamer tail, White with black belly band and tail, Sky blue over silver](https://molen.dev/guide-media/liveries/a220_300.png)](https://molen.dev/guide-media/liveries/a220_300.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `airbaltic-white-and-lime` | airBaltic white and lime | [Photo](https://commons.wikimedia.org/wiki/File:Frankfurt_Airport_airBaltic_Airbus_A220-300_YL-ABL_(DSC09548).jpg) |
-| `swiss-white-and-red` | SWISS white and red | [Photo](https://commons.wikimedia.org/wiki/File:Airbus_A220-300_BD-500-1A11_(cn_55044,_HB-JCR)_2024-02-16_Andre_Gerwing_Collection_ID_018487.jpg) |
+| `white-lime-sweep` | White with lime sweep and tail | [Photo](https://commons.wikimedia.org/wiki/File:Frankfurt_Airport_airBaltic_Airbus_A220-300_YL-ABL_(DSC09548).jpg) |
+| `white-navy-belly-navy-tail` | White over navy belly, navy tail | [Photo](https://commons.wikimedia.org/wiki/File:Delta_Air_Lines_Airbus_A220-300_N307DU_departing_Boston_November_2025_1.jpg) |
+| `navy-belly-streamer-tail` | White with navy belly and streamer tail | [Photo](https://commons.wikimedia.org/wiki/File:JetBlue_Airbus_A220-300_N3112J_MD1.jpg) |
+| `white-black-belly-black-tail` | White with black belly band and tail | [Photo](https://commons.wikimedia.org/wiki/File:Air_Canada_A220-300_C-GUAC_%40YYZ.jpg) |
+| `sky-blue-over-silver` | Sky blue over silver | [Photo 1](https://commons.wikimedia.org/wiki/File:Korean_Air_A220-300_(HL8312)_at_Narita_International_Airport.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Korean_Air_Airbus_A220-300_HL8314_(48946393983).jpg) |
 
-**airBaltic white and lime.** Paint study of airBaltic white and lime. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**White with lime sweep and tail.** airBaltic scheme from the referenced photograph: white fuselage with the lime sweep over the lower rear fuselage up into the fin, white tail cone, lime fin, engines and winglets; registration with the Latvian and EU flags below the aft windows. Titles are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
 
-**SWISS white and red.** Paint study of SWISS white and red. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**White over navy belly, navy tail.** Delta Air Lines 2007 scheme from the referenced photograph: white over the navy belly from the radome to the rear door, navy fin carried forward over the tail cone, navy engines and winglets, US flag and registration above the aft windows, ship number on the fin tip. The red tail widget is Delta's logo and is omitted, leaving the fin navy; titles are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**White with navy belly and streamer tail.** JetBlue scheme from the referenced photograph: white over a narrow navy belly band, navy engines and winglets, the fin in diagonal navy, blue and light-blue streamer bands (redrawn as straight-sided, gently bowed bands with the stepped leading-edge column), registration and US flag above the aft windows. The fin wordmark and titles are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**White with black belly band and tail.** Air Canada scheme (2017) from the referenced photograph: white over a black belly band, black fin, engines and winglets, Canadian flag and registration above the aft windows, fleet number on the fin tip. The maple-leaf roundel is the operator's logo and is omitted, leaving the fin plain black; titles are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**Sky blue over silver.** Korean Air scheme from the referenced photographs: sky blue upper fuselage, fin and tailplanes over a silver belly behind a fine white line, white engines, registration on the fin and a small national flag at its tip. The taegeuk emblem on the fin and engines is the operator's logo and is omitted; titles are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
 
 ### Airbus A320neo
 
 Type: `molen.entities.aircraft.airbus_a320neo`.
 
-[![Airbus A320neo livery comparison: Frontier white and green, IndiGo white and blue](https://molen.dev/guide-media/liveries/airbus_a320neo.png)](https://molen.dev/guide-media/liveries/airbus_a320neo.png)
+[![Airbus A320neo livery comparison: White with orange swoosh and tail, All-over yellow, White, magenta and purple, White with deep blue tail, Red with white band stripes, German Air Force VIP transport](https://molen.dev/guide-media/liveries/airbus_a320neo.png)](https://molen.dev/guide-media/liveries/airbus_a320neo.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `frontier-white-and-green` | Frontier white and green | [Photo](https://commons.wikimedia.org/wiki/File:Frontier_Airbus_A320neo_N362FR_BWI_MD1.jpg) |
-| `indigo-white-and-blue` | IndiGo white and blue | [Photo](https://commons.wikimedia.org/wiki/File:IndiGo_VT-IJB_A320neo_Mumbai_Apr22_R16_05934.jpg) |
+| `white-orange-tail` | White with orange swoosh and tail | [Photo](https://commons.wikimedia.org/wiki/File:EasyJet_A320neo_at_MAN.jpg) |
+| `all-over-yellow` | All-over yellow | [Photo](https://commons.wikimedia.org/wiki/File:Spirit_Airbus_A320neo_N974NK_BWI_MD2.jpg) |
+| `white-magenta-purple` | White, magenta and purple | [Photo](https://commons.wikimedia.org/wiki/File:9H-WBY_A320neo%2C_Wizz_Air%2C_Luton_05-27-26.jpg) |
+| `white-deep-blue-tail` | White with deep blue tail | [Photo](https://commons.wikimedia.org/wiki/File:D-AINP_Lufthansa_A320neo_FRA_(48736398922).jpg) |
+| `red-white-band-stripes` | Red with white band stripes | [Photo](https://commons.wikimedia.org/wiki/File:D-ANCX_A320neo%2C_Condor%2C_Palma_de_Mallorca_09-04-26.jpg) |
+| `luftwaffe-flugbereitschaft` | German Air Force VIP transport | [Photo](https://commons.wikimedia.org/wiki/File:Airbus_A321-231_(cn_1214%2C_15%2B04)_2024-02-16_Andre_Gerwing_Collection_ID_017797.jpg) |
 
-**Frontier white and green.** Paint study of Frontier white and green. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**White with orange swoosh and tail.** easyJet scheme (2015) from the referenced photograph: white fuselage with the orange swoosh from the cockpit down to the belly behind the wing, orange rear fuselage and fin, orange engines and sharklets, white registration aft of the rear door. That aircraft also wears a promotional "NEO" decal, which is not reproduced; titles are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
 
-**IndiGo white and blue.** Paint study of IndiGo white and blue. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**All-over yellow.** Spirit Airlines scheme from the referenced photograph: all-over bright yellow fuselage, fin, engines, pylons and sharklets, grey tailplanes; registration, small US flag and fleet number aft of the rear door. The black titles are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**White, magenta and purple.** Wizz Air scheme (2015) from the referenced photograph: white forward fuselage, magenta from a slanted line over the wing, deep purple-blue over the lower rear fuselage and tail cone, purple fin with a magenta upper leading edge, magenta engines and sharklets; white registration with the national flag on the tail cone (Hungarian here; the photographed aircraft is Maltese-registered). Titles and the type lettering are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**White with deep blue tail.** Lufthansa scheme (2018) from the referenced photograph: white fuselage and engines, deep blue fin with a white leading-edge line and the blue carried over the tail cone, registration and German flag below the aft windows. The crane emblem, titles and aircraft name are omitted, leaving the fin plain blue; sharklet colour is assumed white. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**Red with white band stripes.** Condor "Passion" scheme (2022) from the referenced photograph: red and white bands round the fuselage with a red nose and tail cone, white fin with red bands parallel to the leading edge and a small German flag, white engines and sharklets, registration on a white band. The band count follows the photograph; titles, the bird emblem and "est. 1956" are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**German Air Force VIP transport.** German Air Force special air mission (Flugbereitschaft) scheme from the referenced photograph of A321 15+04, applied to the A320neo model: white overall with the black-red-gold cheatline from the nose to the tail cone, BUNDESREPUBLIK DEUTSCHLAND titles, serial 15+04 with the national cross, German flag and LUFTWAFFE on the fin, national crosses on the upper wing surfaces (the right wing's is not visible in the photograph). The titles' serif face is approximated with a sans and the federal coat of arms by the nose is omitted.
 
 ### Airbus A400M Atlas
 
 Type: `molen.entities.aircraft.a400m`.
 
-[![Airbus A400M Atlas livery comparison: Airbus demonstrator gray, Luftwaffe 54-21 gray](https://molen.dev/guide-media/liveries/a400m.png)](https://molen.dev/guide-media/liveries/a400m.png)
+[![Airbus A400M Atlas livery comparison: Luftwaffe LTG 62, 54+28, RAF Atlas C1 ZM404, Spanish Air Force Ala 31, T.23-01, Turkish Air Force 13-0009, French Air and Space Force, ET 4/61 Béarn](https://molen.dev/guide-media/liveries/a400m.png)](https://molen.dev/guide-media/liveries/a400m.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `airbus-demonstrator-gray` | Airbus demonstrator gray | [Photo](https://commons.wikimedia.org/wiki/File:Airbus_A400M_EC-404_ILA_2012_16.jpg) |
-| `luftwaffe-54-21-gray` | Luftwaffe 54-21 gray | [Photo](https://commons.wikimedia.org/wiki/File:Luftwaffe_Airbus_A400M_54-21_Royal_International_Air_Tattoo_2025_03.jpg) |
+| `luftwaffe-ltg-62` | Luftwaffe LTG 62, 54+28 | [Photo 1](https://commons.wikimedia.org/wiki/File:A400M_Luftwaffe_54%2B28_at_RIAT_2019.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:German_Air_Force_Airbus_A400M_-_54%2B18.jpg) |
+| `raf-atlas-c1-zm404` | RAF Atlas C1 ZM404 | [Photo](https://commons.wikimedia.org/wiki/File:Airbus_A400M_Atlas_C1_-_Royal_Air_Force_-_ZM404_404_(48990266088).jpg) |
+| `spanish-ala-31-t23-01` | Spanish Air Force Ala 31, T.23-01 | [Photo](https://commons.wikimedia.org/wiki/File:Fuerza_A%C3%A9rea_Espa%C3%B1ola_(Spanish_Air_Force)_Airbus_A400M-180_(T.23-01).jpg) |
+| `turkish-air-force-221-filo` | Turkish Air Force 13-0009 | [Photo](https://commons.wikimedia.org/wiki/File:13-0009_A400M_TURKISH_AIR_FORCE_(53330076748).jpg) |
+| `french-et-4-61-bearn` | French Air and Space Force, ET 4/61 Béarn | [Photo](https://commons.wikimedia.org/wiki/File:A400M_Arm%C3%A9e_de_l'Air_et_de_l'Espace_-_Escadron_de_Transport_164,_le_B%C3%A9arn.jpg) |
 
-**Airbus demonstrator gray.** Paint study of Airbus demonstrator gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Luftwaffe LTG 62, 54+28.** Luftwaffe A400M 54+28 of Lufttransportgeschwader 62 (Wunstorf) from the referenced photographs: gray overall, LUFTWAFFE title above the crew door, Balkenkreuz and 54+28 on the rear fuselage, German flag on the fin, yellow propeller line. The red rescue markings and the wing emblem by the nose are omitted. Approximate colors.
 
-**Luftwaffe 54-21 gray.** Paint study of Luftwaffe 54-21 gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**RAF Atlas C1 ZM404.** Royal Air Force Atlas C1 ZM404 (Brize Norton) from the referenced photograph: gray overall, ROYAL AIR FORCE title, 404 on the nose, the Union flag by the crew door, red and blue roundel with ZM404 on the rear fuselage, red and blue fin flash, yellow propeller line. Union flag simplified (centred red saltire). Approximate colors.
+
+**Spanish Air Force Ala 31, T.23-01.** Spanish Air Force A400M T.23-01 of Ala 31 (Zaragoza) from the referenced photograph: gray overall, EJÉRCITO DEL AIRE title, code 31-21 either side of the red and yellow roundel on the rear fuselage, T.23-01 on the fin, yellow propeller line. Approximate colors.
+
+**Turkish Air Force 13-0009.** Turkish Air Force A400M 13-0009 (221 Filo, Kayseri) from the referenced photograph: gray overall, TÜRK HAVA KUVVETLERİ title, Turkish flag, 13-0009 and TURKISH AIR FORCE on the fin, roundel on the rear fuselage, yellow propeller line. The squadron badge under the fin lettering is omitted. Approximate colors.
+
+**French Air and Space Force, ET 4/61 Béarn.** French Air and Space Force A400M F-RBAO of Escadron de Transport 4/61 Béarn from the referenced photograph: darker gray, 4/61 BÉARN in yellow and red along the fin's leading edge, tricolor fin flash, roundel with F-RBAO on the rear fuselage, yellow propeller line. The red fuselage art of that photograph is omitted. Approximate colors.
 
 ### Airbus H125
 
 Type: `molen.entities.aircraft.airbus_h125`.
 
-[![Airbus H125 livery comparison: French rescue blue, Philippine police white](https://molen.dev/guide-media/liveries/airbus_h125.png)](https://molen.dev/guide-media/liveries/airbus_h125.png)
+[![Airbus H125 livery comparison: Swiss mountain rescue red, Gendarmerie nationale, South African Police Service, Alaska glacier tours red and silver, Alpine charter anthracite](https://molen.dev/guide-media/liveries/airbus_h125.png)](https://molen.dev/guide-media/liveries/airbus_h125.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `french-rescue-blue` | French rescue blue | [Photo](https://commons.wikimedia.org/wiki/File:Helicopter_rescue_sancy_takeoff.jpg) |
-| `philippine-police-white` | Philippine police white | [Photo](https://commons.wikimedia.org/wiki/File:2023-05-12_PNP_H125_006.jpg) |
+| `swiss-red-star-swoosh` | Swiss mountain rescue red | [Photo](https://commons.wikimedia.org/wiki/File:H125_Astar_Air_Zermatt_HB-ZPB_(41350562515).jpg) |
+| `gendarmerie-nationale` | Gendarmerie nationale | [Photo 1](https://commons.wikimedia.org/wiki/File:AS350b_Ecureuil_F-MJCV-IMG_5138.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Helicopter_rescue_sancy_takeoff.jpg) |
+| `south-african-police` | South African Police Service | [Photo](https://commons.wikimedia.org/wiki/File:South_African_Police_AS350_B3_ZS-RPL_(6918351305).jpg) |
+| `alaska-glacier-tours` | Alaska glacier tours red and silver | [Photo](https://commons.wikimedia.org/wiki/File:Helicopter,_Mendenhall_Glacier,_Alaska.jpg) |
+| `swiss-charter-anthracite` | Alpine charter anthracite | [Photo](https://commons.wikimedia.org/wiki/File:%C3%89vacuation_m%C3%A9dicale_-_Airbus_Helicopters_H125_-_Val_d%27Is%C3%A8re.jpg) |
 
-**French rescue blue.** Paint study of French rescue blue. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Swiss mountain rescue red.** Swiss mountain rescue and utility H125 from the referenced photograph of HB-ZPB: deep red overall with a broad white swoosh leaning forward across the rear cabin and cowling, red stars inside it and white stars trailing onto the boom (an original scatter, not the operator's star placement), a white lower fin, the registration in white on the boom and the Swiss cross on the fin. The registration is fictional (HB-ZKV); the operator's name and all sponsor logos are omitted. Colors are approximate.
 
-**Philippine police white.** Paint study of Philippine police white. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Gendarmerie nationale.** French Gendarmerie nationale Écureuil from the referenced photograph: dark navy blue overall with a white cheatline under the upper windows that rises behind the rear door and runs forward along the cowling, a thin white line along the boom, a white fin with a navy stripe, the GENDARMERIE title on the rear door, the French roundel behind it and the last three letters of the registration on the cowling. The code is fictional (JBQ; the photographed aircraft is F-MJCV); the unit badge and stencils are omitted. Colors and line widths are approximate.
+
+**South African Police Service.** South African Police Service AS350 B3 from the referenced photograph: white cabin, blue cowling, boom, fin and belly with the blue sweeping up from the belly into the boom behind the rear doors, the South African flag on the cowling and the registration in white on the boom. The registration is fictional (ZS-RQM; the photographed aircraft is ZS-RPL) and the service star badge on the doors is omitted. Colors are approximate.
+
+**Alaska glacier tours red and silver.** Juneau glacier-tour AS350 from the referenced photograph on the Mendenhall Glacier: red lower cabin, boom, fin and skids, white upper cabin and cowling front, and a metallic silver nose cap, with the registration in white on the boom. The registration is fictional (N6127T; the photographed aircraft is N6094E) and the operator title on the cowling is omitted. Colors and the split lines are approximate.
+
+**Alpine charter anthracite.** Swiss alpine charter and medevac H125 from the referenced Val d'Isère photograph of HB-ZSL: anthracite grey overall with a red flash rising from the front door to the cowling (and a thinner one behind it), a thin red line along the boom, the registration in white italic capitals on the boom and the Swiss cross on the fin. The registration is fictional (HB-ZRN); the operator's fin emblem and the cowling target logo are omitted. Colors are approximate.
 
 ### Airbus H145 D3
 
 Type: `molen.entities.aircraft.airbus_h145`.
 
-[![Airbus H145 D3 livery comparison: DRF red and white, Rescue yellow](https://molen.dev/guide-media/liveries/airbus_h145.png)](https://molen.dev/guide-media/liveries/airbus_h145.png)
+[![Airbus H145 D3 livery comparison: German state police blue and silver, German air rescue red and white, German air rescue yellow, Luftwaffe H145M LUH SAR 77+04, US Army UH-72B Lakota](https://molen.dev/guide-media/liveries/airbus_h145.png)](https://molen.dev/guide-media/liveries/airbus_h145.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `drf-red-and-white` | DRF red and white | [Photo](https://commons.wikimedia.org/wiki/File:H145_Christoph_27_als_D-HXFI.jpg) |
-| `rescue-yellow` | Rescue yellow | [Photo](https://commons.wikimedia.org/wiki/File:Airbus_Helicopters_H145_I-LEAF,_Santa_Corona_Hospital.jpg) |
+| `polizei-blue-silver` | German state police blue and silver | [Photo](https://commons.wikimedia.org/wiki/File:Airbus_H145_BK_117_D-2_(cn_20144,_D-HNWW)_2018-09-03_Andre_Gerwing_Collection_ID_010823.jpg) |
+| `german-air-rescue-red` | German air rescue red and white | [Photo](https://commons.wikimedia.org/wiki/File:H145_Christoph_27_als_D-HXFI.jpg) |
+| `german-air-rescue-yellow` | German air rescue yellow | [Photo](https://commons.wikimedia.org/wiki/File:Airbus_H145_BK_117_D-3_(cn_21042,_D-HYAS)_2023-07-01_Andre_Gerwing_Collection_ID_010834.jpg) |
+| `luftwaffe-h145m-sar` | Luftwaffe H145M LUH SAR 77+04 | [Photo](https://commons.wikimedia.org/wiki/File:Airbus_H145M_LUH_(cn_20315,_77%2B04)_2024-06-09_Andre_Gerwing_Collection_ID_020103.jpg) |
+| `us-army-uh-72b` | US Army UH-72B Lakota | [Photo](https://commons.wikimedia.org/wiki/File:Arrival_of_first_UH-72_Bravo_Lakota_Helicopter_to_South_Carolina_Army_National_Guard_(52677095500)_(cropped).jpg) |
 
-**DRF red and white.** Red upper cabin and tail, white lower cabin panels and a white fin cap studied from D-HXFI. The panel shape is adapted to the model; DRF lettering, registration and small medical symbols are omitted. Colors are approximate.
+**German state police blue and silver.** German state police H145 from the referenced photograph of D-HNWW: metallic silver upper body and boom, police blue lower cabin up to the window sills sweeping down behind the aft door, a line of small white and blue checks along the top of the blue, POLIZEI in white on the doors, blue cowling crowns, boom-top line, Fenestron shroud and endplates, and a white band at the top of the shroud with the registration and the German flag. The registration is fictional (D-HPMS) and the state emblem and manufacturer titles are omitted. Colors are approximate.
 
-**Rescue yellow.** Paint study of Rescue yellow. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**German air rescue red and white.** German air rescue H145 D3 from the referenced photograph of D-HXFI: red upper body, cowlings, boom and Fenestron, white lower cabin behind a diagonal from the sliding door's foot and white rear cabin, white shroud cap and ventral fin, NOTARZT (emergency doctor) in white on the boom and the registration with the German flag on the cowling. The registration is fictional (D-HDTQ); the operator's name and logos are omitted. Colors and the split line are approximate.
+
+**German air rescue yellow.** German automobile-club air rescue H145 D3 from the referenced photograph of D-HYAS: signal yellow overall with a blue Fenestron cap, NOTARZT (emergency doctor) in black on the boom and the registration in black with the German flag on the cowling. The registration is fictional (D-HYMK); the operator's large name on the rear cabin, its logos and the emergency-number emblem on the fin are omitted. Colors are approximate.
+
+**Luftwaffe H145M LUH SAR 77+04.** German Air Force H145M LUH SAR 77+04 from the referenced photograph: bronze-olive green with dayglo orange-red on the roof, cowlings and crew-door area and on the lip under the Fenestron, SAR in blue on the sliding door, the serial 77+04 with the Balkenkreuz on the boom and the German flag on the fin. The H145M is shown on the civil D3 airframe (no weapons or sensor fit); colors are approximate.
+
+**US Army UH-72B Lakota.** US Army National Guard UH-72B Lakota 72478 from the referenced photograph (the UH-72B is the military H145 D3): olive drab overall with matt finish, the serial in black on the Fenestron cap and U.S. ARMY in black on the boom. Unit patches and stencils are omitted; colors are approximate.
 
 ### Antonov An-124-100 Ruslan
 
 Type: `molen.entities.aircraft.an_124`.
 
-[![Antonov An-124-100 Ruslan livery comparison: Polet white and blue, Antonov white blue and yellow](https://molen.dev/guide-media/liveries/an_124.png)](https://molen.dev/guide-media/liveries/an_124.png)
+[![Antonov An-124-100 Ruslan livery comparison: Russian Air Force RF-82011, Heavy-lift cargo, blue band and swept tail stripe, Heavy-lift cargo, blue belly and tail, Soviet era, white and gray with blue cheatline, Ukrainian design bureau, cyan tail](https://molen.dev/guide-media/liveries/an_124.png)](https://molen.dev/guide-media/liveries/an_124.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `polet-white-and-blue` | Polet white and blue | [Photo](https://commons.wikimedia.org/wiki/File:Polet_Airlines_An-124_RA-82075_in_flight_28-Jul-2011.jpg) |
-| `antonov-white-blue-and-yellow` | Antonov white blue and yellow | [Photo](https://commons.wikimedia.org/wiki/File:FRENTE_DO_ANTONOV_AN-124_POUSADO_NO_SBNT.jpg) |
+| `russian-air-force-rf-82011` | Russian Air Force RF-82011 | [Photo](https://commons.wikimedia.org/wiki/File:Russian_Air_Force,_RF-82011,_Antonov_An-124_(42713037752).jpg) |
+| `cargo-white-blue-swept-tail` | Heavy-lift cargo, blue band and swept tail stripe | [Photo](https://commons.wikimedia.org/wiki/File:Volga-Dnepr_Airlines_Antonov_An-124-100_RA-82077.jpg) |
+| `cargo-blue-belly` | Heavy-lift cargo, blue belly and tail | [Photo](https://commons.wikimedia.org/wiki/File:Polet_Airlines_An-124_RA-82075_in_flight_28-Jul-2011.jpg) |
+| `soviet-era-1988` | Soviet era, white and gray with blue cheatline | [Photo](https://commons.wikimedia.org/wiki/File:Antonov_An-124-100_Ruslan_CCCP-82007_Aeroflot,_Farnborough_UK,_September_1988._(5589235899).jpg) |
+| `design-bureau-cyan-tail` | Ukrainian design bureau, cyan tail | [Photo](https://commons.wikimedia.org/wiki/File:Antonov_An-124-100_Ruslan,_Antonov_Airlines_JP295359.jpg) |
 
-**Polet white and blue.** Paint study of Polet white and blue. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Russian Air Force RF-82011.** Russian Air Force An-124-100 RF-82011 from the referenced photograph: white upper fuselage, light gray belly, dark blue cheatline with a thin line under it rising with the tail, red star in its white and blue border on the fin, ВВС РОССИИ on the fin root, RF-82011 aft and АН-124-100 on the nose, red wing and stabilizer tips. The aircraft name in red script is omitted. Approximate colors.
 
-**Antonov white blue and yellow.** Paint study of Antonov white blue and yellow. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Heavy-lift cargo, blue band and swept tail stripe.** Civil heavy-lift cargo scheme in the real colors and layout of Volga-Dnepr's An-124s (referenced photograph), without operator names or logos: white, a wide dark blue cheatline between pinstripes, blue nacelle bands, and the wide and narrow stripes that sweep from the rear fuselage up the fin, Russian flag on the fin tip, АН-124-100 on the nose. Registration RA-82099 is fictional. Approximate colors.
+
+**Heavy-lift cargo, blue belly and tail.** Civil heavy-lift cargo scheme in the real colors and layout of Polet's An-124s (referenced photograph), without operator names or logos: white upper fuselage over a dark blue belly with three white slanted stripes ahead of the wing, blue nacelles, blue fin and rudder with two white stripes, Russian flag by the cockpit, АН-124-100 on the nose. Registration RA-82098 is fictional. Approximate colors and stripe geometry.
+
+**Soviet era, white and gray with blue cheatline.** Soviet-era An-124 scheme of the late 1980s (referenced Farnborough 1988 photograph) without the airline title: white upper fuselage, gray belly and nacelles, a blue cheatline rising with the tail and the red state flag on the fin (original simplified drawing). Registration CCCP-82097 is fictional. Approximate colors.
+
+**Ukrainian design bureau, cyan tail.** Antonov Design Bureau An-124-100 scheme of the 2000s (referenced photograph) without its titles: white with a thin dark blue cheatline and light gray belly, cyan fin and rudder, Ukrainian flag by the cockpit, АН-124-100 on the nose. Registration UR-82096 is fictional. Approximate colors.
 
 ### ATR 72-600
 
 Type: `molen.entities.aircraft.atr_72_600`.
 
-[![ATR 72-600 livery comparison: Air Astra white and yellow, Aer Lingus green and white](https://molen.dev/guide-media/liveries/atr_72_600.png)](https://molen.dev/guide-media/liveries/atr_72_600.png)
+[![ATR 72-600 livery comparison: Turkish Navy ATR 72-600 TMPA, Italian Air Force P-72A, 41° Stormo, White freighter, purple tail, White with green and lime sweep, White over navy, blue pinline](https://molen.dev/guide-media/liveries/atr_72_600.png)](https://molen.dev/guide-media/liveries/atr_72_600.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `air-astra-white-and-yellow` | Air Astra white and yellow | [Photo](https://commons.wikimedia.org/wiki/File:S2-STA_-_Air_Astra_-_ATR_72-600_(72-212A)_-_1311_-_VGHS.jpg) |
-| `aer-lingus-green-and-white` | Aer Lingus green and white | [Photo](https://commons.wikimedia.org/wiki/File:Aer_Lingus_Regional,_ATR_72-600_(EI-FAS)_@_MAN,_Feb_2016.jpg) |
+| `turkish-navy-tmpa` | Turkish Navy ATR 72-600 TMPA | [Photo 1](https://commons.wikimedia.org/wiki/File:ATR_C-72-600TMPA_TurkishNavy_Teknofest2021_(1).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:ATR_C-72-600TMPA_TurkishNavy_Teknofest2021_(2).jpg) |
+| `italian-air-force-p72a` | Italian Air Force P-72A, 41° Stormo | [Photo](https://commons.wikimedia.org/wiki/File:EGLF_-_ATR_72_MPA_-_Aeronautica_Militare_-_41-02_(44058760001).jpg) |
+| `white-purple-tail-freighter` | White freighter, purple tail | [Photo](https://commons.wikimedia.org/wiki/File:Hannover_Airport_ASL_Airlines_Ireland_FedEx_Feeder_ATR_72-600F_EI-HAF_(DSC08928).jpg) |
+| `white-green-lime-sweep` | White with green and lime sweep | [Photo](https://commons.wikimedia.org/wiki/File:Binter_Canarias_ATR_72-600_(EC-MXQ)_@_TFS,_Jan_2019.jpg) |
+| `white-over-navy-pinline` | White over navy, blue pinline | [Photo](https://commons.wikimedia.org/wiki/File:Azul_ATR_72%E2%80%93600_MGF_11_2016_3561.jpg) |
 
-**Air Astra white and yellow.** S2-STA: white upper fuselage, yellow lower body and fin. The lower color boundary is adapted to the model; the curved transition, airline titles and tail emblem are omitted. Colors are approximate.
+**Turkish Navy ATR 72-600 TMPA.** Turkish Naval Forces maritime patrol ATR 72-600 (TMPA) as photographed at Teknofest 2021: blue-grey overall, black TÜRK DENİZ KUVVETLERİ titles over the main gear, the naval anchor emblem and side number 752 on the nose, red-white-red roundels under the wings, yellow propeller tips and the red propeller danger line (original vector drawings). Upper wing roundels are assumed; the mission radome, sensor turret, observation bubbles and the red nose panel outline are not modelled. Colours are approximate.
 
-**Aer Lingus green and white.** Paint study of Aer Lingus green and white. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Italian Air Force P-72A, 41° Stormo.** Aeronautica Militare P-72A maritime patrol aircraft 41-02 of the 41st Wing as photographed at Farnborough: dark grey overall with the 41-02 code in light grey on the nose, low-visibility AERONAUTICA MILITARE titles aft of the wing and yellow propeller tips (original vector lettering). National insignia are not visible in the reference and are left off; the wing badge, mission sensors and stencils are omitted. Colours are approximate.
+
+**White freighter, purple tail.** FedEx Feeder scheme as photographed on ATR 72-600F EI-HAF: white fuselage, wings and nacelles; purple fin, rudder, tailplane and rear body behind a curve from the belly aft of the wing up to the fin leading edge, white registration on the purple. The FedEx and Feeder titles, the Irish flag and the freighter cargo door outline are left off; registration EI-HQK is fictional. The curve is approximated by straight cuts.
+
+**White with green and lime sweep.** Binter Canarias scheme as photographed on EC-MXQ: white with a dark green band under the windows, a blue pinline and a lime lower body sweeping up the tail cone and across the fin, a lime stripe at the fin top, a dark green keel line forward, dark green sponsons and a lime crescent on the nose. Titles, the web address, the aircraft name and the flags are left off; registration EC-NZQ is fictional. Curves are redrawn and approximate.
+
+**White over navy, blue pinline.** Azul scheme as photographed at Maringá: white over a navy lower body behind a bright blue pinline that sweeps down under the nose, navy fin, dorsal, tailplane, nacelles and sponsons, white registration on the navy aft. The Azul titles, the dotted tail emblem, nacelle titles and aircraft name are left off; registration PR-ATQ is fictional. The break height is estimated from an oblique photograph.
 
 ### Beechcraft Baron G58
 
 Type: `molen.entities.aircraft.baron_g58`.
 
-[![Beechcraft Baron G58 livery comparison: Indonesian Navy gray, N538BB white and dark blue](https://molen.dev/guide-media/liveries/baron_g58.png)](https://molen.dev/guide-media/liveries/baron_g58.png)
+[![Beechcraft Baron G58 livery comparison: White with navy and black sweep (N458BG), Factory white, black and red (N583GB), White, black and bronze (VH-BZQ), Indonesian Navy gray, as delivered](https://molen.dev/guide-media/liveries/baron_g58.png)](https://molen.dev/guide-media/liveries/baron_g58.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `indonesian-navy-gray` | Indonesian Navy gray | [Photo](https://commons.wikimedia.org/wiki/File:Newly_Arrived_Beechcraft_Baron_G58_of_Indonesian_Navy.jpg) |
-| `n538bb-white-and-dark-blue` | N538BB white and dark blue | [Photo](https://commons.wikimedia.org/wiki/File:Beechcraft_G58_Baron_(N538BB,_cn_TH-2538)_(7-29-2023).jpg) |
+| `white-navy-sweep` | White with navy and black sweep (N458BG) | [Photo](https://commons.wikimedia.org/wiki/File:Beechcraft_G58_Baron_(N67WM,_cn_TH-2485)_(1-12-2023).jpg) |
+| `factory-white-black-red` | Factory white, black and red (N583GB) | [Photo](https://commons.wikimedia.org/wiki/File:Beechcraft_G58_Baron_(N538BB,_cn_TH-2538)_(7-29-2023).jpg) |
+| `white-black-bronze` | White, black and bronze (VH-BZQ) | [Photo](https://commons.wikimedia.org/wiki/File:Paced_Investments_(VH-TWZ)_Beechcraft_G58_Baron_at_Wagga_Wagga_Airport.jpg) |
+| `indonesian-navy-delivery` | Indonesian Navy gray, as delivered | [Photo](https://commons.wikimedia.org/wiki/File:Newly_Arrived_Beechcraft_Baron_G58_of_Indonesian_Navy.jpg) |
 
-**Indonesian Navy gray.** Paint study of Indonesian Navy gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**White with navy and black sweep (N458BG).** Private G58 in the white scheme of the referenced N67WM: navy and black cheatlines under the cabin sweeping up the fin and rudder as three diagonal bands, a navy flash over each nacelle. Fictional registration N458BG on the rear fuselage and under the left wing; no names or logos. Stripe widths and angles approximate.
 
-**N538BB white and dark blue.** Paint study of N538BB white and dark blue. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Factory white, black and red (N583GB).** G58 in the factory scheme of the referenced N538BB: white with a black upper fin and rudder over a red sweep, black nacelle tops edged in red, and red pinstripes along the cabin and tail cone. Fictional registration N583GB; manufacturer script and logos omitted. Colors and sweep angles approximate.
+
+**White, black and bronze (VH-BZQ).** Australian G58 in the scheme of the referenced VH-TWZ: white with a black upper fin and rudder, bronze and black pinstripes along the fuselage and a black nacelle flash. Fictional Australian registration VH-BZQ; owner monogram and names omitted. Colors approximate.
+
+**Indonesian Navy gray, as delivered.** One of the Indonesian Navy (TNI-AL) G58 trainers on its delivery day: overall medium gray with a black fin leading edge and unpainted spinners; national and service markings were not yet applied, as in the photograph. Gray shade approximate.
 
 ### Beechcraft Bonanza G36
 
 Type: `molen.entities.aircraft.bonanza_g36`.
 
-[![Beechcraft Bonanza G36 livery comparison: N152BZ white and burgundy, PP-SLM white and navy](https://molen.dev/guide-media/liveries/bonanza_g36.png)](https://molen.dev/guide-media/liveries/bonanza_g36.png)
+[![Beechcraft Bonanza G36 livery comparison: 75th-anniversary edition, 2022, Factory white and navy, 2015, Factory navy belly, 2007, A36 factory cream and charcoal, 1987, Stars and stripes owner scheme, Indonesian Navy G36 trainer](https://molen.dev/guide-media/liveries/bonanza_g36.png)](https://molen.dev/guide-media/liveries/bonanza_g36.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `n152bz-white-and-burgundy` | N152BZ white and burgundy | [Photo](https://commons.wikimedia.org/wiki/File:Beechcraft_G36_Bonanza_(N152BZ,_cn_E-4152)_(7-29-2023).jpg) |
-| `pp-slm-white-and-navy` | PP-SLM white and navy | [Photo](https://commons.wikimedia.org/wiki/File:Hawker_Beechcraft_G36_Bonanza_AN2299698.jpg) |
+| `g36-75th-anniversary` | 75th-anniversary edition, 2022 | [Photo](https://commons.wikimedia.org/wiki/File:Beechcraft_G36_Bonanza_(N152BZ,_cn_E-4152)_(7-29-2023).jpg) |
+| `g36-factory-2015` | Factory white and navy, 2015 | [Photo](https://commons.wikimedia.org/wiki/File:N850KS_2015_Beechcraft_G36_Bonanza_s_n_E-4065_(48806945087).jpg) |
+| `g36-factory-2007-navy` | Factory navy belly, 2007 | [Photo](https://commons.wikimedia.org/wiki/File:N6980B_2007_Beechcraft_G36_Bonanza_s_n_E-3780_(53607431363).jpg) |
+| `a36-factory-1987` | A36 factory cream and charcoal, 1987 | [Photo](https://commons.wikimedia.org/wiki/File:N3050K_1987_Beech_A36_Bonanza_36_C-N_E-2364_(7757064500).jpg) |
+| `stars-and-stripes-custom` | Stars and stripes owner scheme | [Photo](https://commons.wikimedia.org/wiki/File:N49EL_Beech_G36_Bonanza_s_n_E-4158_(54387449351).jpg) |
+| `indonesian-navy` | Indonesian Navy G36 trainer | [Photo](https://commons.wikimedia.org/wiki/File:Beechcraft_Bonanza_G36_Indonesian_Navy.jpg) |
 
-**N152BZ white and burgundy.** Paint study of N152BZ white and burgundy. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**75th-anniversary edition, 2022.** The 2022 Bonanza 75th-anniversary paint from the referenced photograph: metallic burgundy cowling and upper fuselage over white, the split sweeping up to the fin root with navy and gray pinstripes, a burgundy and white checker flag behind the cowling and burgundy and navy bands at the fin tip. The Beechcraft and Bonanza logos and the large fin B are omitted; registration N175BZ is fictional. Shapes and colors are approximations.
 
-**PP-SLM white and navy.** Paint study of PP-SLM white and navy. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Factory white and navy, 2015.** Beechcraft’s mid-2010s G36 factory paint from the referenced photograph: white with a navy upper cowling running back as a blade under the windshield, navy and gray pinstripes from the cowling to the stabilizer, a navy blade along the lower tail cone, a navy fin cap and a large navy registration (N836GB, fictional). Logos omitted; approximate shapes.
+
+**Factory navy belly, 2007.** The 2007 Hawker Beechcraft G36 scheme from the referenced photograph: white over a navy lower fuselage and cowling, gray and navy pinstripes along the split, the navy hooking up toward the fin root, navy bands at the fin tip and a navy registration (N6236B, fictional). Logos omitted; approximate colors.
+
+**A36 factory cream and charcoal, 1987.** Beech’s late-1980s A36 Bonanza paint from the referenced photograph, applied to the G36 model: cream with a charcoal cheatline and wine pinstripe from the spinner to the tail, a charcoal lower tail cone and fin cap, and a very large italic charcoal registration (N3617K, fictional). Approximate colors.
+
+**Stars and stripes owner scheme.** A private owner’s flag scheme after the referenced photograph: a navy nose with white stars back to the windshield posts, red and cream stripes slanting down and aft over the cabin and tail cone, level stripes across the fin and a red registration with a cream edge and navy shadow (N47SB, fictional). Star count, stripe spacing and the wing treatment are approximations; the stripes are side projections and do not wrap over the fuselage top.
+
+**Indonesian Navy G36 trainer.** Indonesian Navy (TNI Angkatan Laut) G36 T-2502 from the referenced photograph: light gray overall, TNI ANGKATAN LAUT under the rear windows, the serial T-2502 on the fin and the red-and-white national flag at the fin tip (original vector art). The naval aviation badge on the cowling is omitted; approximate colors.
 
 ### Beechcraft King Air 350i
 
 Type: `molen.entities.aircraft.king_air_350i`.
 
-[![Beechcraft King Air 350i livery comparison: N5C white and blue, M-SPEK white and green](https://molen.dev/guide-media/liveries/king_air_350i.png)](https://molen.dev/guide-media/liveries/king_air_350i.png)
+[![Beechcraft King Air 350i livery comparison: Silver and red (N835GK), Factory 350i white and champagne (N731KB), White with navy cheatlines (N426RA), RAAF 32 Squadron King Air 350 A32-351, US Navy UC-12F 163556](https://molen.dev/guide-media/liveries/king_air_350i.png)](https://molen.dev/guide-media/liveries/king_air_350i.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `n5c-white-and-blue` | N5C white and blue | [Photo](https://commons.wikimedia.org/wiki/File:N1SC_-_1990_King_Air_350.jpg) |
-| `m-spek-white-and-green` | M-SPEK white and green | [Photo](https://commons.wikimedia.org/wiki/File:M-SPEK_Beechcraft_King_Air_350_Specsavers_Ltd_(17728610260).jpg) |
+| `silver-and-red` | Silver and red (N835GK) | [Photo](https://commons.wikimedia.org/wiki/File:N350FC_1998_Raytheon_Aircraft_Company_B300-350_C-N_FL-214_(6445379427).jpg) |
+| `factory-350i-champagne` | Factory 350i white and champagne (N731KB) | [Photo](https://commons.wikimedia.org/wiki/File:N8141T_Beechcraft_B300_King_Air_350i_(6485875281).jpg) |
+| `white-and-navy` | White with navy cheatlines (N426RA) | [Photo](https://commons.wikimedia.org/wiki/File:N1SC_-_1990_King_Air_350.jpg) |
+| `raaf-32-squadron` | RAAF 32 Squadron King Air 350 A32-351 | [Photo](https://commons.wikimedia.org/wiki/File:RAAF_Beechcraft_B300_King_Air_350_(A32-351)_at_YSWG.jpg) |
+| `us-navy-uc-12f` | US Navy UC-12F 163556 | [Photo](https://commons.wikimedia.org/wiki/File:UC-12F_static_display._(7995813990).jpg) |
 
-**N5C white and blue.** Paint study of N5C white and blue. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Silver and red (N835GK).** Corporate King Air 350 in the scheme of the referenced N350FC: metallic silver upper fuselage and wings over a red lower fuselage and nacelle bellies, split by a black pinstripe, with a red fin cap and tailplane leading edge. Fictional registration N835GK in black on the red; manufacturer script omitted. Colors approximate.
 
-**M-SPEK white and green.** Paint study of M-SPEK white and green. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Factory 350i white and champagne (N731KB).** King Air 350i in the factory scheme of the referenced demonstrator N8141T: white fuselage with black and champagne cheatlines sweeping back under the windows, a champagne fin and rudder crossed by a thin red pinstripe, champagne nacelle tops. Fictional registration N731KB; the large monogram and the model wordmark on the fin are omitted. Colors approximate.
+
+**White with navy cheatlines (N426RA).** King Air 350 in the 1990s white scheme of the referenced N1SC: white overall with twin navy cheatlines from the nose to the tail cone, navy nacelle tops and a navy fin stripe. Fictional registration N426RA; owner names omitted. Colors approximate.
+
+**RAAF 32 Squadron King Air 350 A32-351.** King Air 350 A32-351 of the Royal Australian Air Force: white with navy pinstripes and a gold sweep along the fuselage and up the fin root, ROYAL AUSTRALIAN AIR FORCE above the cabin windows, the serial on the rear fuselage, the kangaroo roundel on the fin and wings. Colors approximate.
+
+**US Navy UC-12F 163556.** UC-12F 163556 of the US Navy, Japan: gloss white with a navy cheatline over a tan stripe from the nose to the tail cone, navy nacelle stripes, the type and bureau number small on the rear fuselage. National insignia were not visible on this example and are omitted; colors approximate.
 
 ### Beechcraft Model 18
 
 Type: `molen.entities.aircraft.beech_18`.
 
-[![Beechcraft Model 18 livery comparison: Army olive and yellow, Polished metal and red](https://molen.dev/guide-media/liveries/beech_18.png)](https://molen.dev/guide-media/liveries/beech_18.png)
+[![Beechcraft Model 18 livery comparison: US Navy SNB-1 Kansan C-55, Royal Canadian Navy Expeditor 2312, USAAF C-45F olive drab, Executive D18S white and yellow (N7618B)](https://molen.dev/guide-media/liveries/beech_18.png)](https://molen.dev/guide-media/liveries/beech_18.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `army-olive-and-yellow` | Army olive and yellow | [Photo](https://commons.wikimedia.org/wiki/File:Beech_C-45G_Expeditor,_Beechcraft_18,_US_Army_22429,_cn_CA-75.JPG) |
-| `polished-metal-and-red` | Polished metal and red | [Photo](https://commons.wikimedia.org/wiki/File:Beechcraft_18_N2913B_2.jpg) |
+| `us-navy-snb-1` | US Navy SNB-1 Kansan C-55 | [Photo](https://commons.wikimedia.org/wiki/File:N145SC_(Bu51025)_Beech_SNB-1_Kansan_(US_Navy)_PAE_02AUG13_(9424635997).jpg) |
+| `royal-canadian-navy-expeditor` | Royal Canadian Navy Expeditor 2312 | [Photo](https://commons.wikimedia.org/wiki/File:CF-SEB_RCAF_2312_Beech_3NM_Expeditor_Shearwater_Aviation_Museum_NS_18.6.25_(54626170478).jpg) |
+| `usaaf-c-45f-olive-drab` | USAAF C-45F olive drab | [Photo](https://commons.wikimedia.org/wiki/File:Barksdale_Global_Power_Museum_September_2015_18_(Beechcraft_C-45F_Expeditor).jpg) |
+| `executive-white-and-yellow` | Executive D18S white and yellow (N7618B) | [Photo](https://commons.wikimedia.org/wiki/File:Beechcraft_D18S_Twin_Beech_-_DPLA_-_90ef321242ce1c6d7ab221d9774b3412_(page_18).jpg) |
 
-**Army olive and yellow.** Paint study of Army olive and yellow. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**US Navy SNB-1 Kansan C-55.** SNB-1 Kansan Bu 51025 in 1942-43 Navy trainer markings as preserved: aluminum lacquer overall, the star-in-disc insignia on the rear fuselage, upper left and lower right wing, U.S. NAVY aft and the C-55 station code ahead of it, SNB-1 and 51025 high on the fins. Colors approximate.
 
-**Polished metal and red.** Paint study of Polished metal and red. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Royal Canadian Navy Expeditor 2312.** Expeditor 3NM 2312 of the Royal Canadian Navy, Shearwater, as preserved: natural metal, ROYAL CANADIAN NAVY above the cabin windows, the maple-leaf roundel on the rear fuselage and wings, a blue-white-red fin flash with the serial above it on both fins. Colors approximate; small stencils omitted.
+
+**USAAF C-45F olive drab.** C-45F Expeditor in the USAAF olive drab over neutral gray of the referenced museum aircraft, the demarcation low on the fuselage and nacelles, with 1943 star-and-bar insignia on the rear fuselage, upper left and lower right wing. Serial and unit markings not visible in the photograph are omitted; colors approximate.
+
+**Executive D18S white and yellow (N7618B).** D18S executive transport in the colors of the referenced Smithsonian aircraft: white upper fuselage, fins and tailplane over pale yellow wings, nacelles and cowlings, with a teal cheatline along the cabin. Fictional registration N7618B on the rear fuselage; operator names and badges omitted. Colors approximate.
 
 ### Bell 206B JetRanger
 
 Type: `molen.entities.aircraft.bell_206b`.
 
-[![Bell 206B JetRanger livery comparison: LAPD white and blue, Swedish police white and dark green](https://molen.dev/guide-media/liveries/bell_206b.png)](https://molen.dev/guide-media/liveries/bell_206b.png)
+[![Bell 206B JetRanger livery comparison: US Navy TH-57C Sea Ranger, US city police navy and silver, Swedish police POLIS, Polish police aviation red and black, Canadian Forces CH-139 trainer](https://molen.dev/guide-media/liveries/bell_206b.png)](https://molen.dev/guide-media/liveries/bell_206b.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `lapd-white-and-blue` | LAPD white and blue | [Photo](https://commons.wikimedia.org/wiki/File:LAPD_Bell_206_Jetranger.jpg) |
-| `swedish-police-white-and-dark-green` | Swedish police white and dark green | [Photo](https://commons.wikimedia.org/wiki/File:Bell_206B,_Stockholm_(P1090624).jpg) |
+| `us-navy-th-57c` | US Navy TH-57C Sea Ranger | [Photo 1](https://commons.wikimedia.org/wiki/File:Naeapaxr_TH-57C.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:TH57C_boat_ops.jpg) |
+| `city-police-navy-silver` | US city police navy and silver | [Photo](https://commons.wikimedia.org/wiki/File:LAPD_Bell_206_Jetranger.jpg) |
+| `swedish-police-polis` | Swedish police POLIS | [Photo](https://commons.wikimedia.org/wiki/File:Bell_206B,_Stockholm_(P1090624).jpg) |
+| `polish-police-red-black` | Polish police aviation red and black | [Photo](https://commons.wikimedia.org/wiki/File:Bell_206B-3_Jet_Ranger_%27SN-17XP%27_Policja.jpg) |
+| `canadian-forces-ch-139` | Canadian Forces CH-139 trainer | [Photo](https://commons.wikimedia.org/wiki/File:Bell_CH-139_Jet_Ranger_139303_3CFFTS_Portage_1982.png) |
 
-**LAPD white and blue.** Paint study of LAPD white and blue. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**US Navy TH-57C Sea Ranger.** US Navy TH-57C Sea Ranger 162016 from the referenced photographs (the TH-57 is the Navy's 206B-3 trainer): white with international orange cabin sides edged in black, an orange upper boom and fin leading edge, a black nose cone, the national insignia behind the rear door, NAVY on the boom and the type and Bureau Number on the fin. The squadron badge and stencils are omitted; colors are approximate.
 
-**Swedish police white and dark green.** Paint study of Swedish police white and dark green. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**US city police navy and silver.** US city police JetRanger from the referenced Los Angeles photograph: metallic silver upper fuselage over a navy lower body that sweeps up behind the cabin into an all-navy boom and fin, two white pinstripes along the top of the navy, white stripes across the fin, the registration in white on the boom and the US flag on the fin. The registration is fictional (N417CK; the photographed aircraft is N211LA); the department initials and badge are omitted. Colors are approximate.
+
+**Swedish police POLIS.** Swedish police JetRanger from the referenced photograph of the preserved SE-HPB: white with a black door panel ending in a raked edge behind the rear door, POLIS in large white capitals across the doors, a maroon engine deck and roof, and the registration in black on the boom. The registration is fictional (SE-HPK); the police coat of arms and museum markings are omitted. Colors are approximate.
+
+**Polish police aviation red and black.** Polish police aviation JetRanger from the referenced photograph of SN-17XP: bright red with a black sweep from the nose, low along the cabin and up into the lower half of the boom and the ventral fin, gold pinstripes on both edges, red skids and the registration in white on the boom. The registration is fictional (SN-31XP); small model titles and stencils are omitted. Colors are approximate.
+
+**Canadian Forces CH-139 trainer.** Canadian Forces CH-139 JetRanger 139303 of 3 Canadian Forces Flying Training School from the referenced 1982 photograph: trainer yellow with a dark belly, nose cone and engine deck, a dark tail boom broken by a yellow band, the roundel with the bilingual CANADIAN FORCES titles and the code 303 on the rear cabin, and the Canadian flag on the fin. Colors are approximate.
 
 ### Bell 407GX
 
 Type: `molen.entities.aircraft.bell_407`.
 
-[![Bell 407GX livery comparison: N23986 red and silver, N462P yellow and black](https://molen.dev/guide-media/liveries/bell_407.png)](https://molen.dev/guide-media/liveries/bell_407.png)
+[![Bell 407GX livery comparison: Iraqi Army Aviation YI-140, US state police black and gold, Polish police silver and blue, Air medical yellow and black, Corporate red and silver](https://molen.dev/guide-media/liveries/bell_407.png)](https://molen.dev/guide-media/liveries/bell_407.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `n23986-red-and-silver` | N23986 red and silver | [Photo](https://commons.wikimedia.org/wiki/File:Bell_407_-N23986.jpg) |
-| `n462p-yellow-and-black` | N462P yellow and black | [Photo](https://commons.wikimedia.org/wiki/File:Bell_407_(N462P).jpg) |
+| `iraqi-army-aviation` | Iraqi Army Aviation YI-140 | [Photo 1](https://commons.wikimedia.org/wiki/File:Iraqi_Bell_407_YI-140.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Two_Iraqi_Bell_407s.jpg) |
+| `state-police-black-gold` | US state police black and gold | [Photo](https://commons.wikimedia.org/wiki/File:Bell_407_N876ST_Pennsylvania_State_Police_FDK_MD1.jpg) |
+| `polish-police-silver-blue` | Polish police silver and blue | [Photo](https://commons.wikimedia.org/wiki/File:Bell-407-warsaw-poland-police-sn-80xp-right.jpg) |
+| `air-medical-yellow` | Air medical yellow and black | [Photo](https://commons.wikimedia.org/wiki/File:Bell_407_(N462P).jpg) |
+| `corporate-red-silver` | Corporate red and silver | [Photo](https://commons.wikimedia.org/wiki/File:Bell_407_-N23986.jpg) |
 
-**N23986 red and silver.** Paint study of N23986 red and silver. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Iraqi Army Aviation YI-140.** Iraqi Army Aviation Bell 407 YI-140 from the referenced US Air Force photographs: two-tone desert camouflage (sand with earth-brown blotches; the pattern is generated, not the aircraft's own), IRAQI ARMY AVIATION in black on the boom, the Iraqi flag on the rear cabin and fin and the serial on the fin. The flag's green inscription is represented by a simplified blocky mark rather than lettering; unit badges and stencils are omitted. Colors are approximate.
 
-**N462P yellow and black.** Paint study of N462P yellow and black. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**US state police black and gold.** US state police Bell 407 from the referenced Pennsylvania photograph: gloss black upper body, boom and fin, a white lower body under a tan band with a black pinstripe that rises to the boom, STATE POLICE in tan above the doors, TROOPERS in black on the lower doors, the registration in tan on the boom and the fleet number in white on the stabilizer endplates. The registration is fictional (N452PS; the photographed aircraft is N876ST) and the state name, badge and seal are omitted. Colors are approximate.
+
+**Polish police silver and blue.** Polish police Bell 407GXi from the referenced photographs of SN-80XP: light silver overall with a blue band at window-top level that drops onto the middle of the boom, POLICJA in blue on the front door, the fleet code on the rear cabin, the registration in white on the blue boom band and the Polish flag on the doghouse. The registration and code are fictional (SN-86XP, A-107); the police star badge is omitted. Colors are approximate.
+
+**Air medical yellow and black.** US air-medical Bell 407 from the referenced photograph of N462P: signal yellow cabin and doghouse with a broad black swoosh from the lower front door up into the boom and a thinner one from the roof edge, a black boom, fin and stabilizer, black skids, the registration in large black capitals on the lower door and the Star of Life (an original drawing of the generic emergency-medical symbol) on the fin. The registration is fictional (N438P); the operator's name and logo are omitted. Colors and the swoosh curves are approximate.
+
+**Corporate red and silver.** Privately operated Bell 407 from the referenced photograph of N23986: bright red upper body, doghouse, boom and fin over a metallic silver lower body and nose, split by a gold beltline pinstripe, with the registration in white on the boom. The registration is fictional (N24107); colors are approximate.
 
 ### Bell 412EP
 
 Type: `molen.entities.aircraft.bell_412ep`.
 
-[![Bell 412EP livery comparison: Chilean police white and green, Energy Department white and blue](https://molen.dev/guide-media/liveries/bell_412ep.png)](https://molen.dev/guide-media/liveries/bell_412ep.png)
+[![Bell 412EP livery comparison: RCAF CH-146 Griffon, 417 Combat Support Squadron, RCAF CH-146 Griffon, tactical camouflage, Royal Norwegian Air Force 412SP, Japanese prefectural police, Australian rescue operator, red and white](https://molen.dev/guide-media/liveries/bell_412ep.png)](https://molen.dev/guide-media/liveries/bell_412ep.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `chilean-police-white-and-green` | Chilean police white and green | [Photo](https://commons.wikimedia.org/wiki/File:CC-dhh_(Bell_412).jpg) |
-| `energy-department-white-and-blue` | Energy Department white and blue | [Photo](https://commons.wikimedia.org/wiki/File:US_Dept_of_Energy_Bell_412_N412DE_-_Aviation_Nation_2019.jpg) |
+| `rcaf-ch146-sar` | RCAF CH-146 Griffon, 417 Combat Support Squadron | [Photo](https://commons.wikimedia.org/wiki/File:417_Sqdn_CH-146_Griffon_(2982559499).jpg) |
+| `rcaf-ch146-camouflage` | RCAF CH-146 Griffon, tactical camouflage | [Photo 1](https://commons.wikimedia.org/wiki/File:Bell_CH-146_Griffin%2C_403_Sqn.JPG) · [Photo 2](https://commons.wikimedia.org/wiki/File:CH-146_Griffon_Helicopter.jpg) |
+| `rnoaf-412sp` | Royal Norwegian Air Force 412SP | [Photo 1](https://commons.wikimedia.org/wiki/File:Bell_412SP_%E2%80%98148%E2%80%99_(49518597807).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Bell_412SP_%E2%80%98162%E2%80%99_-_2009.jpg) |
+| `japan-police` | Japanese prefectural police | [Photo](https://commons.wikimedia.org/wiki/File:Fukuoka_Police-Bell_412EP-JA01FP-Fukuoka_airport-20081212-152838.JPG) |
+| `australia-rescue` | Australian rescue operator, red and white | [Photo](https://commons.wikimedia.org/wiki/File:CHC_Helicopter_Australia_(VH-EPH)_Bell_412EP_at_Wagga_Wagga_Airport.jpg) |
 
-**Chilean police white and green.** Paint study of Chilean police white and green. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**RCAF CH-146 Griffon, 417 Combat Support Squadron.** CH-146 Griffon 146417 in the RCAF search-and-rescue scheme of 417 Combat Support Squadron, Cold Lake: SAR yellow with a red engine deck and a red band sweeping down across the cabin door, black anti-glare panel, RCAF roundel on the boom, Canadian flag and serial on the fin, 417 on the nose and RESCUE / SAUVETAGE on the cabin door, all redrawn. The Government of Canada wordmark is omitted. Approximate colors and band geometry.
 
-**Energy Department white and blue.** Paint study of Energy Department white and blue. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**RCAF CH-146 Griffon, tactical camouflage.** CH-146 Griffon 146474 (403 Squadron) in the two-tone CF green tactical camouflage, matched against the 430 Squadron photograph: a generated two-green pattern (not the exact pattern), low-visibility roundel on the boom, 474 on the crew door and the serial on the fin. The Government of Canada wordmark is omitted. Approximate colors.
+
+**Royal Norwegian Air Force 412SP.** Royal Norwegian Air Force Bell 412SP '148' (339 / 720 Squadron era): dark olive grey overall, the Norwegian roundel on the boom root and light grey 148 on the nose and fin, redrawn. The squadron badge is omitted; the 412EP model stands in for the 412SP. Approximate colors.
+
+**Japanese prefectural police.** Japanese prefectural police colors and layout from the referenced Fukuoka photograph: light metallic blue over silver with a navy cheatline and white pinstripe rising along the boom, an orange band behind the crew door, a yellow boom band, the Japanese flag on the engine cowling and the registration on a white fin band. Police titles, nickname and badge are omitted; the registration JA21RP is fictional.
+
+**Australian rescue operator, red and white.** Australian rescue Bell 412EP colors and layout from the referenced VH-EPH photograph: white with a red cockpit section ahead of the cabin door, red-framed cabin windows, a red boom edged in black pinstripes to a white fin, fleet number on the cowling and the registration in white on the boom. Operator names and logos are omitted; fleet number 106 and registration VH-ZRH are fictional.
 
 ### Bell Boeing MV-22B Osprey
 
 Type: `molen.entities.aircraft.mv_22b`.
 
-[![Bell Boeing MV-22B Osprey livery comparison: HMX-1 olive green, Marines 08 gray](https://molen.dev/guide-media/liveries/mv_22b.png)](https://molen.dev/guide-media/liveries/mv_22b.png)
+[![Bell Boeing MV-22B Osprey livery comparison: VMM-162 Golden Eagles YS-02, HMX-1 Nighthawks, green, USAF CV-22B 11-0058, 352nd SOW, JGSDF V-22 91716](https://molen.dev/guide-media/liveries/mv_22b.png)](https://molen.dev/guide-media/liveries/mv_22b.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `hmx-1-olive-green` | HMX-1 olive green | [Photo](https://commons.wikimedia.org/wiki/File:Bell-Boeing_MV-22B_168339_HMX-1_FDK_MD4.jpg) |
-| `marines-08-gray` | Marines 08 gray | [Photo](https://commons.wikimedia.org/wiki/File:Bell-Boeing_901_MV-22B-BF_Osprey_(USN_BuNo_164940,_cn_D0008)_(6-26-2024).jpg) |
+| `vmm-162-golden-eagles` | VMM-162 Golden Eagles YS-02 | [Photo 1](https://commons.wikimedia.org/wiki/File:US_Navy_100124-N-7456N-034_An_MV-22_Osprey_assigned_to_the_Golden_Eagles_of_Marine_Medium_Tiltrotor_Squadron_(VMM)_162,_is_on_the_tarmac_at_Naval_Station_Guantanamo_Bay.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:VMM-162_Osprey_on_the_tarmac_in_Iraq_on_April_1-2008.JPG) |
+| `hmx-1-green` | HMX-1 Nighthawks, green | [Photo](https://commons.wikimedia.org/wiki/File:Bell-Boeing_MV-22B_168339_HMX-1_FDK_MD4.jpg) |
+| `usaf-cv-22b-7-sos` | USAF CV-22B 11-0058, 352nd SOW | [Photo 1](https://commons.wikimedia.org/wiki/File:USAF_CV-22B_Osprey_11-0058_RIAT_2023_04.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:USAF_CV-22B_10-0050_ILA-2018.jpg) |
+| `jgsdf-v-22-91716` | JGSDF V-22 91716 | [Photo](https://commons.wikimedia.org/wiki/File:Japanese_V-22_Ospreys_arrive_at_MCAS_Futenma_for_Resolute_Dragon_26_(9785388).jpg) |
 
-**HMX-1 olive green.** Paint study of HMX-1 olive green. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**VMM-162 Golden Eagles YS-02.** Marine Medium Tiltrotor Squadron 162 MV-22B from the referenced photographs: light gray overall with low-visibility markings, the squadron eagle (original drawing), BuNo 6688, the staggered YS tail code and modex 02 on the outer fin faces, 02 on the fuselage, MARINES and VMM-162 on the tail boom, low-visibility national insignia. Approximate colors.
 
-**Marines 08 gray.** Paint study of Marines 08 gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**HMX-1 Nighthawks, green.** Marine Helicopter Squadron One MV-22B 168339 from the referenced photograph: gloss dark green overall with the white double pinstripe along the fuselage, UNITED STATES MARINE CORPS on the aft fuselage (set in a sans face; the original is a serif) and the US flag on the fins. Approximate colors.
+
+**USAF CV-22B 11-0058, 352nd SOW.** Air Force Special Operations Command CV-22B 11-0058 (352nd Special Operations Wing, Mildenhall) from the referenced photographs, on the MV-22B airframe: FS 36118 gunship gray, USAF and 0058 on the outer fin faces and low-visibility national insignia in light gray, red bands at the top of the nacelles. The CV-22 nose radome and refuelling probe are not modelled; unit emblems are omitted. Approximate colors.
+
+**JGSDF V-22 91716.** Japan Ground Self-Defense Force V-22 91716 from the referenced photograph: light gray, hinomaru with its white border on the aft fuselage, 91716 on the forward fuselage and the fins. The 陸上自衛隊 title is omitted (no Japanese lettering face). Approximate colors.
 
 ### Bell UH-1H Huey
 
 Type: `molen.entities.aircraft.uh_1h`.
 
-[![Bell UH-1H Huey livery comparison: Sheriff black, Salvadoran olive](https://molen.dev/guide-media/liveries/uh_1h.png)](https://molen.dev/guide-media/liveries/uh_1h.png)
+[![Bell UH-1H Huey livery comparison: US Army, Vietnam era, US Army Dustoff medevac, Vietnam era, RAAF No. 9 Squadron, 1971, JGSDF three-tone camouflage, Fire service Super Huey (CAL FIRE colors)](https://molen.dev/guide-media/liveries/uh_1h.png)](https://molen.dev/guide-media/liveries/uh_1h.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `sheriff-black` | Sheriff black | [Photo](https://commons.wikimedia.org/wiki/File:OCSD_Duke_6_Bell_UH_1H_N186SD_by_Don_Ramey_Logan.jpg) |
-| `salvadoran-olive` | Salvadoran olive | [Photo](https://commons.wikimedia.org/wiki/File:Salvadoran_Air_Force_UH-1H_in_2015.png) |
+| `us-army-vietnam` | US Army, Vietnam era | [Photo 1](https://commons.wikimedia.org/wiki/File:Bell_UH-1H_Huey_6343_(64-13643)_(9988333016).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:U.S._Army_UH-1H_Hueys_insert_ARVN_troops_at_Kh%C3%A2m_%C4%90%E1%BB%A9c%2C_Vietnam%2C_12_July_1970_(79431435).jpg) |
+| `us-army-dustoff` | US Army Dustoff medevac, Vietnam era | [Photo 1](https://commons.wikimedia.org/wiki/File:Bell_UH-1_Iroquois_%22Huey%22_Medevac_(medical_evacuation).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:7RAR_soldier_stands_guard_for_a_U.S._dustoff_UH-1.jpg) |
+| `raaf-9-squadron` | RAAF No. 9 Squadron, 1971 | [Photo 1](https://commons.wikimedia.org/wiki/File:Bell_UH-1H_A2-484_RAAF_LAV_18.04.71_edited-2.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:No._9_Squadron_RAAF_crewmen_prepare_to_board_their_UH-1_at_Vung_Tau_Air_Base.jpg) |
+| `jgsdf-camouflage` | JGSDF three-tone camouflage | [Photo 1](https://commons.wikimedia.org/wiki/File:JGSDF_UH-1H(41659)_right_side_view_at_Camp_Uji_November_23%2C_2018.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:JGSDF_UH-1H(41659)_left_rear_view_at_Camp_Uji_November_23%2C_2018.jpg) |
+| `cal-fire-super-huey` | Fire service Super Huey (CAL FIRE colors) | [Photo](https://commons.wikimedia.org/wiki/File:CAL_FIRE_Super_Huey-N488DF.jpg) |
 
-**Sheriff black.** Paint study of Sheriff black. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**US Army, Vietnam era.** Vietnam-era US Army UH-1H after the 64-13643 restoration: FS 34087 olive drab overall, black UNITED STATES ARMY on the boom, the last five digits of the serial on the fin and the company triangle (yellow edged white) ahead of the elevator, redrawn as vector art. The restoration’s unit nose badge and black nose are omitted. Approximate colors and letter sizes.
 
-**Salvadoran olive.** Paint study of Salvadoran olive. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**US Army Dustoff medevac, Vietnam era.** Vietnam-era US Army air ambulance (Dustoff): olive drab with red crosses on white squares on the nose, both aft cabin flanks and the belly, black UNITED STATES ARMY on the boom and a fin serial (15209, illustrative). Approximate colors and cross sizes.
+
+**RAAF No. 9 Squadron, 1971.** RAAF UH-1H A2-484 as photographed at Laverton in 1971: olive drab, the RAAF roundel (blue ring, white disc, red kangaroo) and white RAAF title on the boom, white 484 on the aft cabin and 84 on the nose, and a red-white-blue fin flash. Roundel, kangaroo and lettering redrawn; sizes and the fin flash position are approximations.
+
+**JGSDF three-tone camouflage.** Japan Ground Self-Defense Force UH-1H 41659 (Camp Uji): tan, olive green and dark green camouflage (a generated pattern in those colors, not the exact pattern), hinomaru on the boom, 41659 on the crew door and JG-1659 on the fin. The kanji unit title is omitted. Approximate colors.
+
+**Fire service Super Huey (CAL FIRE colors).** CAL FIRE UH-1H Super Huey colors and layout from the referenced photograph: white overall, red nose cap, three black-edged red bands rising aft across the cabin and cowling, a black boom spine over a red pinstripe and a red band and star on the fin. The agency name, seals and lettering are omitted; the fleet number 309 and registration N4093F are fictional.
 
 ### Bendy Small Airliner
 
 Type: `molen.entities.aircraft.airliner`.
 
-[![Bendy Small Airliner livery comparison: United white and blue, Southwest blue](https://molen.dev/guide-media/liveries/airliner.png)](https://molen.dev/guide-media/liveries/airliner.png)
+[![Bendy Small Airliner livery comparison: Bendy house colours, Polished metal, blue hockey-stick stripe, All-over orange, 1965, White with blue and red tail stripes](https://molen.dev/guide-media/liveries/airliner.png)](https://molen.dev/guide-media/liveries/airliner.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `united-white-and-blue` | United white and blue | [Photo](https://commons.wikimedia.org/wiki/File:United_Boeing_737-800_N78509_BWI_MD1.jpg) |
-| `southwest-blue` | Southwest blue | [Photo](https://commons.wikimedia.org/wiki/File:Southwest_Boeing_737-800_N8676A_BWI_MD1.jpg) |
+| `bendy-house` | Bendy house colours | [Photo](https://commons.wikimedia.org/wiki/File:Boeing_727-235%2C_Pan_Am_JP6008059.jpg) |
+| `metal-blue-hockey-stick` | Polished metal, blue hockey-stick stripe | [Photo](https://commons.wikimedia.org/wiki/File:McDonnell_Douglas_DC-9-31%2C_Eastern_Air_Lines_JP5952972.jpg) |
+| `all-over-orange-1965` | All-over orange, 1965 | [Photo](https://commons.wikimedia.org/wiki/File:Braniff_International_Airways_BAC_111-203AE_One-Eleven_N1552.jpg) |
+| `white-blue-red-tail-stripes` | White with blue and red tail stripes | [Photo](https://commons.wikimedia.org/wiki/File:F-GFKM_Air_France_(4236790891).jpg) |
 
-**United white and blue.** Paint study of United white and blue. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Bendy house colours.** Bendy's own house scheme for its invented airliner (not an operator's), in a classic white-and-blue cheatline style: white, the blue cheatline sweeping down round the nose, blue fin, grey belly and the BENDY title on the forward fuselage (moved from the model's geometry into the livery so other schemes carry no title). The referenced photograph shows the white-and-blue cheatline style it follows; nothing of that operator's markings is used. The registration is fictional.
 
-**Southwest blue.** Blue fuselage and engines, gray wings and a red/blue/yellow tail adapted from the pictured Southwest 737 to the generic airliner. Tail sweep is simplified; airline lettering and logos are omitted. Colors are approximate.
+**Polished metal, blue hockey-stick stripe.** Eastern Air Lines "hockey stick" scheme (1970s) from the referenced photograph: polished-metal fuselage, light blue window band over a navy band, navy nose cap with the fleet number, the two bands turning up the fin's leading edge, US flag above the forward windows. The bands' bend over the tail cone is simplified; the falcon emblem and titles are omitted. Adapted to this invented twinjet. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**All-over orange, 1965.** Braniff International "Flying Colors" scheme (1965, Alexander Girard) from the referenced photograph: the fuselage in one bold solid colour (orange), white fin, tailplanes and engines, US flag high on the fin. The BI emblem and titles are omitted. Adapted to this invented twinjet. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**White with blue and red tail stripes.** Air France scheme (2009) from the referenced photograph: white fuselage over a light grey belly, white engines, the fin's navy, navy and red stripes across its aft part. Titles and the logo dash are omitted. Adapted to this invented twinjet. No operator titles, logos or emblems; the registration is fictional, in the national format.
 
 ### Boeing 737-800
 
 Type: `molen.entities.aircraft.boeing_737_800`.
 
-[![Boeing 737-800 livery comparison: United white and blue, Southwest blue red and yellow](https://molen.dev/guide-media/liveries/boeing_737_800.png)](https://molen.dev/guide-media/liveries/boeing_737_800.png)
+[![Boeing 737-800 livery comparison: Bold blue with red and yellow tail sweep, White over navy belly, gold cheatline, Sky blue upper body, white fin, Silver with flag-stripe tail, White over navy belly, navy tail, US Navy P-8A Poseidon grey](https://molen.dev/guide-media/liveries/boeing_737_800.png)](https://molen.dev/guide-media/liveries/boeing_737_800.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `united-white-and-blue` | United white and blue | [Photo](https://commons.wikimedia.org/wiki/File:United_Boeing_737-800_N78509_BWI_MD1.jpg) |
-| `southwest-blue-red-and-yellow` | Southwest blue red and yellow | [Photo](https://commons.wikimedia.org/wiki/File:Southwest_Boeing_737-800_N8676A_BWI_MD1.jpg) |
+| `bold-blue-heart-sweep` | Bold blue with red and yellow tail sweep | [Photo](https://commons.wikimedia.org/wiki/File:Southwest_Boeing_737-800_N8523W_BWI_MD1.jpg) |
+| `white-navy-belly-gold-line` | White over navy belly, gold cheatline | [Photo](https://commons.wikimedia.org/wiki/File:Ryanair_-_Boeing_737-800_-_EI-EKV_-_Orio_al_Serio_International_Airport-7872.jpg) |
+| `sky-blue-upper-white-fin` | Sky blue upper body, white fin | [Photo](https://commons.wikimedia.org/wiki/File:KLM_Boeing_737-800_PH-BXI_at_Schiphol_03-03-2022.jpg) |
+| `silver-flag-stripe-tail` | Silver with flag-stripe tail | [Photo](https://commons.wikimedia.org/wiki/File:American_Boeing_737-800_N923NN_DCA_VA1.jpg) |
+| `white-navy-belly-navy-tail` | White over navy belly, navy tail | [Photo](https://commons.wikimedia.org/wiki/File:Delta_Air_Lines_Boeing_737-800_N377DA_departing_Boston_June_2025.jpg) |
+| `us-navy-p8a` | US Navy P-8A Poseidon grey | [Photo](https://commons.wikimedia.org/wiki/File:P-8A_Poseidon_VX-20_Squadron.jpg) |
 
-**United white and blue.** Paint study of United white and blue. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Bold blue with red and yellow tail sweep.** Southwest Airlines "Heart" scheme (2014) from the referenced photograph: Bold Blue fuselage, engines and pylons; the sunrise-yellow and warm-red sweep over the rear fuselage and up the fin with fine white lines between the colours and a blue tail cone; blue, red and yellow winglets; US flag and registration on the yellow. The belly heart and titles are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
 
-**Southwest blue red and yellow.** Paint study of Southwest blue red and yellow. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**White over navy belly, gold cheatline.** Ryanair scheme from the referenced photograph: white over the dark blue belly behind a gold cheatline that runs from the radome to the tail cone and carries round the engine cowls; dark blue fin and winglets; Irish flag and registration above the aft windows. The harp emblem, titles and winglet lettering are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**Sky blue upper body, white fin.** KLM scheme from the referenced photograph: KLM blue over the top of the fuselage and nose, the fine dark blue line sweeping down to the radome, light grey belly, white fin, grey engines, blue winglets; EU and Dutch flags with a white registration above the aft windows. The crown logo, titles and the bird name are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**Silver with flag-stripe tail.** American Airlines 2013 scheme from the referenced photograph: silver mica fuselage, engines and winglets; the stylised flag on the fin, blue and white stripes forward and red and white aft over a red root band, with a red band over the tail cone; registration, fleet number and US flag below the aft windows. The Flight Symbol and titles are omitted; the stripes' metallic shading is flat. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**White over navy belly, navy tail.** Delta Air Lines 2007 scheme from the referenced photograph: white over the navy belly from the radome to the rear door, navy fin carried forward over the tail cone, navy engines and winglets; US flag and registration above the aft windows, ship number on the fin tip. The red tail widget is Delta's logo and is omitted, leaving the fin navy; titles are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**US Navy P-8A Poseidon grey.** US Navy P-8A Poseidon (a 737-800 derivative) from the referenced US Navy photograph of VX-20's aircraft 951: light grey overall with most cabin windows faired over, NAVY title and full-colour national insignia aft of the wing, modex 951 on the fin and nose. Applied to the airliner model: the P-8A's raked wingtips, sensor fairings and antennas are not modelled, and the grey is an approximation.
 
 ### Boeing C-17A Globemaster III
 
 Type: `molen.entities.aircraft.c_17a`.
 
-[![Boeing C-17A Globemaster III livery comparison: USAF green tail band, 452nd AMW tail band](https://molen.dev/guide-media/liveries/c_17a.png)](https://molen.dev/guide-media/liveries/c_17a.png)
+[![Boeing C-17A Globemaster III livery comparison: USAF 62nd AW McChord, 03-3291, RAF 99 Squadron ZZ175, RAAF 36 Squadron A41-206, RCAF 429 Squadron CC-177 177703](https://molen.dev/guide-media/liveries/c_17a.png)](https://molen.dev/guide-media/liveries/c_17a.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `usaf-green-tail-band` | USAF green tail band | [Photo](https://commons.wikimedia.org/wiki/File:Boeing_C-17A-14-DL_Globemaster_III_(USAF_sn_02-1106,_msn_50114,_ln_F-113)_(2-16-2023).png) |
-| `452nd-amw-tail-band` | 452nd AMW tail band | [Photo](https://commons.wikimedia.org/wiki/File:452d_Air_Mobility_Wing_(452_AMW)_Boeing_C-17A_Lot_XVII_Globemaster_III_05-5141_(12829132683).jpg) |
+| `mcchord-62-aw` | USAF 62nd AW McChord, 03-3291 | [Photo](https://commons.wikimedia.org/wiki/File:C-17_Mt_Rainier.jpg) |
+| `raf-99-sqn-zz175` | RAF 99 Squadron ZZ175 | [Photo](https://commons.wikimedia.org/wiki/File:Royal_Air_Force_C-17_Globemaster_III,_ZZ175_(16709935995).jpg) |
+| `raaf-36-sqn-a41-206` | RAAF 36 Squadron A41-206 | [Photo](https://commons.wikimedia.org/wiki/File:A41-206_Boeing_C-17A_Globemaster_III_RAAF_(9637304265).jpg) |
+| `rcaf-429-sqn-177703` | RCAF 429 Squadron CC-177 177703 | [Photo](https://commons.wikimedia.org/wiki/File:Royal_Canadian_Air_Force,_177703,_Boeing_CC-177_Globemaster_III_(52958690048).jpg) |
 
-**USAF green tail band.** USAF green tail band paint study with the photographed fin-band color. Banner lettering and nose/tail serial blocks are omitted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**USAF 62nd AW McChord, 03-3291.** US Air Force C-17A 03-3291 of the 62nd Airlift Wing and the associate 446th (McChord) from the referenced photograph: FS 36173 gray, U.S. AIR FORCE title, 3291 with both wing designations on the nose, US flag, AMC, the green McCHORD tail band with Mount Rainier's silhouette rising from it, tail number 33291 and full-color national insignia aft. Approximate colors; the wing's small unit emblems by the nose are omitted.
 
-**452nd AMW tail band.** 452nd AMW tail band paint study with the photographed fin-band color. Banner lettering and nose/tail serial blocks are omitted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**RAF 99 Squadron ZZ175.** Royal Air Force C-17A ZZ175 of No. 99 Squadron (Brize Norton) from the referenced photograph: gray, ROYAL AIR FORCE title, the Union flag on the nose, red and blue roundel and ZZ175 aft, red and blue fin flash. Union flag simplified (centred red saltire); roundel and flash placement approximate.
+
+**RAAF 36 Squadron A41-206.** Royal Australian Air Force C-17A A41-206 of No. 36 Squadron (Amberley) from the referenced photograph: gray, full-color kangaroo roundel on the rear fuselage behind the paratroop door, ROYAL AUSTRALIAN AIR FORCE title, A41-206 on the fin with a fin roundel. Fin layout follows RAAF transport practice; approximate.
+
+**RCAF 429 Squadron CC-177 177703.** Royal Canadian Air Force CC-177 177703 of 429 Transport Squadron (Trenton) from the referenced photograph: gray, the Canada wordmark with its small flag, Canadian flag, the squadron bison and 177703 on the fin, RCAF roundel ARC on the rear fuselage. The wordmark is set in a sans face; the bison is an original silhouette. Approximate.
 
 ### Boeing CH-47F Chinook
 
 Type: `molen.entities.aircraft.ch_47f`.
 
-[![Boeing CH-47F Chinook livery comparison: US Army olive, RAF blue gray](https://molen.dev/guide-media/liveries/ch_47f.png)](https://molen.dev/guide-media/liveries/ch_47f.png)
+[![Boeing CH-47F Chinook livery comparison: US Army, RAF Chinook HC6, Australian Army, 5th Aviation Regiment, Royal Netherlands Air Force, 298 Squadron, RCAF CH-147F, 450 Squadron, JGSDF CH-47JA, 1st Helicopter Brigade](https://molen.dev/guide-media/liveries/ch_47f.png)](https://molen.dev/guide-media/liveries/ch_47f.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `us-army-olive` | US Army olive | [Photo](https://commons.wikimedia.org/wiki/File:U.S._Army_Boeing_CH-47F_Chinook_11-08097_FDK_MD1.jpg) |
-| `raf-blue-gray` | RAF blue gray | [Photo](https://commons.wikimedia.org/wiki/File:CH-47_Chinook_-_RIAT_2015_(20820630144).jpg) |
+| `us-army` | US Army | [Photo](https://commons.wikimedia.org/wiki/File:Boeing-Vertol_CH-47F_Chinook_'06-08021'_(13201175683).jpg) |
+| `raf-hc6` | RAF Chinook HC6 | [Photo 1](https://commons.wikimedia.org/wiki/File:ZK558_Boeing_Chinook_HC.6_RAF_Corris_Corner_2018_01.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:RAF_Chinook_Helicopters_MOD_45157572.jpg) |
+| `australian-army` | Australian Army, 5th Aviation Regiment | [Photo 1](https://commons.wikimedia.org/wiki/File:A15-302_during_Talisman_Sabre_2021.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Australian_Army_CH-47F_Chinook_being_loaded_on_a_USAF_C-5_Galaxy_at_Dover_Air_Force_Base.jpg) |
+| `rnlaf-298-squadron` | Royal Netherlands Air Force, 298 Squadron | [Photo](https://commons.wikimedia.org/wiki/File:Boeing-Vertol_CH-47F_Chinook_%E2%80%98D-890%E2%80%99_(35756133671).jpg) |
+| `rcaf-ch147f` | RCAF CH-147F, 450 Squadron | [Photo](https://commons.wikimedia.org/wiki/File:2017%2C_147304%2C_Canada%2C_CH-147F_Chinook%2C_Fairford_-_4210_(53949049947).jpg) |
+| `jgsdf-ch47ja` | JGSDF CH-47JA, 1st Helicopter Brigade | [Photo 1](https://commons.wikimedia.org/wiki/File:JGSDF_CH-47JA_20120108-02.JPG) · [Photo 2](https://commons.wikimedia.org/wiki/File:CH-47JA_20090822_Yokota_AFB-01.JPG) |
 
-**US Army olive.** Paint study of US Army olive. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**US Army.** US Army CH-47F 06-08021: FS 34031 aircraft green overall, black UNITED STATES ARMY on both sponsons and the serial on the aft pylon, as photographed; no national insignia, per current Army practice. Approximate colors and letter sizes.
 
-**RAF blue gray.** Paint study of RAF blue gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**RAF Chinook HC6.** RAF Chinook HC6 ZK558 (2018): dark green-grey overall, low-visibility pale blue and pink roundels on the forward cabin, the matching fin flash on the aft pylon and the serial ZK558, redrawn. The HC6 is the RAF CH-47F; approximate colors and marking sizes.
+
+**Australian Army, 5th Aviation Regiment.** Australian Army CH-47F A15-302 (Talisman Sabre 2021): aircraft green, black ARMY on the sponsons, A15-302 and the white squadron letter V on the aft pylon and the low-visibility kangaroo roundel on the aft cabin, all redrawn. Approximate colors and sizes.
+
+**Royal Netherlands Air Force, 298 Squadron.** RNLAF CH-47F D-890 of 298 Squadron (RIAT 2016): medium grey overall, low-visibility grey roundels on the sponsons and the serial on the aft pylon. The squadron badge is omitted. Approximate colors.
+
+**RCAF CH-147F, 450 Squadron.** RCAF CH-147F 147304 (Fairford 2017): three-tone CF green camouflage (a generated pattern in those colors, not the exact pattern), the Canadian flag and serial on the aft pylon, low-visibility roundels on the sponsons and 304 on the nose. The Government of Canada wordmark is omitted. Approximate colors.
+
+**JGSDF CH-47JA, 1st Helicopter Brigade.** JGSDF CH-47JA (Narashino 2012): brown, green and dark green camouflage (a generated pattern in those colors, not the exact pattern), large hinomaru on the sponsons, 52950 on the nose and the HGP III unit code beside the cockpit, redrawn. The kanji service title is omitted; the CH-47F model stands in for the CH-47JA. Approximate colors.
 
 ### Cessna 172S Skyhawk
 
 Type: `molen.entities.aircraft.cessna_172s`.
 
-[![Cessna 172S Skyhawk livery comparison: F-HATZ white and red, N163ME white and navy](https://molen.dev/guide-media/liveries/cessna_172s.png)](https://molen.dev/guide-media/liveries/cessna_172s.png)
+[![Cessna 172S Skyhawk livery comparison: Skyhawk SP factory scheme, 1998, Flight school white and navy, 2020s, USAF Academy T-41D Mescalero, 2000s, Republic of Korea Air Force T-41B, 1970s, Iraqi Air Force 172S, 2000s](https://molen.dev/guide-media/liveries/cessna_172s.png)](https://molen.dev/guide-media/liveries/cessna_172s.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `f-hatz-white-and-red` | F-HATZ white and red | [Photo](https://commons.wikimedia.org/wiki/File:Cessna_172S_Skyhawk_SP,_Private_JP6817606.jpg) |
-| `n163me-white-and-navy` | N163ME white and navy | [Photo](https://commons.wikimedia.org/wiki/File:Cessna_172S_N163ME_AOPA_FDK_MD1.jpg) |
+| `skyhawk-sp-1998` | Skyhawk SP factory scheme, 1998 | [Photo](https://commons.wikimedia.org/wiki/File:Cessna_172S_Skyhawk_SP_(N745SP,_cn_172S8677)_(4-13-2024).jpg) |
+| `flight-school-2020` | Flight school white and navy, 2020s | [Photo](https://commons.wikimedia.org/wiki/File:Cessna_172S_Skyhawk_SP_(N24221,_cn_172S13131)_(4-9-2024).jpg) |
+| `usaf-academy-t-41d` | USAF Academy T-41D Mescalero, 2000s | [Photo 1](https://commons.wikimedia.org/wiki/File:USAFA_Flying_Team_T-41D.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Cessna_T-41_Mescalero.jpg) |
+| `rokaf-t-41b` | Republic of Korea Air Force T-41B, 1970s | [Photo](https://commons.wikimedia.org/wiki/File:15054-T-054_Cessna_T-41B_Mescalero_(7597148054).jpg) |
+| `iraqi-air-force` | Iraqi Air Force 172S, 2000s | [Photo](https://commons.wikimedia.org/wiki/File:Cessna_172S_Skyhawk_of_the_Iraqi_Air_Force.jpg) |
 
-**F-HATZ white and red.** Paint study of F-HATZ white and red. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Skyhawk SP factory scheme, 1998.** Cessna’s late-1990s Skyhawk SP paint from the referenced photograph: white overall with a navy and royal blue double swoosh breaking over the forward fuselage, the royal stripe and a gold stripe running aft to the registration, and a royal and gold swoosh across the fin. The Skyhawk SP fin logo and wheel-fairing swooshes are omitted; registration N417SP is fictional. Swoosh curves and colors are approximations.
 
-**N163ME white and navy.** Paint study of N163ME white and navy. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Flight school white and navy, 2020s.** A 2020s flight-academy scheme after the referenced photograph: white with a navy fin that wraps down into the lower tail cone, red and navy blades crossing along the forward fuselage, a red and white striped band across the fin and a large navy registration. The school’s name and logo are omitted; registration N2172A is fictional. Blade shapes are approximations.
+
+**USAF Academy T-41D Mescalero, 2000s.** US Air Force Academy T-41D scheme from the referenced USAF photographs, applied to the 172S model: academy blue lower fuselage, fin and wing upper surfaces over white, red pinstripes along the split and the fin root, the white slab-serif AF and a row of checks on the fin, the national insignia on the rear fuselage and U.S.A.F. ACADEMY on the cowling (all original vector art). The door crest and small serial are omitted; colors and sizes are approximations.
+
+**Republic of Korea Air Force T-41B, 1970s.** ROKAF T-41B 15054 from the referenced museum photograph, applied to the 172S model: natural metal overall with red fin, wing and stabilizer tips, a black anti-glare panel, the taegeuk national insignia with its side bars, T-054 on the forward fuselage and 15054 on the fin (original vector art). The Hangul air force title is omitted; colors are approximations.
+
+**Iraqi Air Force 172S, 2000s.** Iraqi Air Force Cessna 172S trainer from the referenced USAF photograph: light gray overall, IRAQI AIR FORCE on the rear fuselage, serial YI-137 ahead of the fin and the national flag at the top of the fin (original vector art; the flag’s green takbir is drawn as simplified strokes). Colors and sizes are approximations.
 
 ### Cessna 182T Skylane
 
 Type: `molen.entities.aircraft.cessna_182t`.
 
-[![Cessna 182T Skylane livery comparison: N254CE white and burgundy, N782RM white and navy](https://molen.dev/guide-media/liveries/cessna_182t.png)](https://molen.dev/guide-media/liveries/cessna_182t.png)
+[![Cessna 182T Skylane livery comparison: Skylane factory black and orange, 2009, Skylane factory black and olive, Slovakia, Civil Air Patrol, 2010s, Skylane factory navy, Australia 2013](https://molen.dev/guide-media/liveries/cessna_182t.png)](https://molen.dev/guide-media/liveries/cessna_182t.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `n254ce-white-and-burgundy` | N254CE white and burgundy | [Photo](https://commons.wikimedia.org/wiki/File:Cessna_182T_Skylane_(N254CE,_cn_18283254)_(4-9-2024).jpg) |
-| `n782rm-white-and-navy` | N782RM white and navy | [Photo](https://commons.wikimedia.org/wiki/File:Cessna_182T_Skylane_(N782RM,_cn_18281730)_(4-13-2024).jpg) |
+| `skylane-2009-black-orange` | Skylane factory black and orange, 2009 | [Photo](https://commons.wikimedia.org/wiki/File:Cessna_182T_Skylane_(N2152K,_cn_18281908)_(4-13-2024).jpg) |
+| `skylane-2009-black-olive` | Skylane factory black and olive, Slovakia | [Photo](https://commons.wikimedia.org/wiki/File:Cessna_182T_Skylane_OM-AKC_(9818038013).jpg) |
+| `civil-air-patrol` | Civil Air Patrol, 2010s | [Photo 1](https://commons.wikimedia.org/wiki/File:Civil_Air_Patrol_Cessna_182T_at_DuPage_Airport_01.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Cessna_182T_Skylane_(N956CP,_cn_18282409)_(8-23-2024).jpg) |
+| `skylane-2013-navy` | Skylane factory navy, Australia 2013 | [Photo](https://commons.wikimedia.org/wiki/File:VH-ULW_Cessna_182T_Skylane_(11357623763).jpg) |
 
-**N254CE white and burgundy.** Paint study of N254CE white and burgundy. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Skylane factory black and orange, 2009.** Cessna’s late-2000s 182T factory paint from the referenced photograph: white with a black upper cowling and windshield blade, a long orange stripe and black blades sweeping down across the cabin, a black and orange swoosh on the fin and black wingtips. The Skylane fin logo is omitted; registration N1823S is fictional. Blade shapes are approximations.
 
-**N782RM white and navy.** Paint study of N782RM white and navy. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Skylane factory black and olive, Slovakia.** The same late-2000s factory layout in its black and olive color option, after the referenced Slovak-registered aircraft, with the registration on the rear fuselage and in large letters under the left wing (European practice). The registration OM-BKL is fictional; the camera turret and operator badge are omitted. Approximate colors.
+
+**Civil Air Patrol, 2010s.** Civil Air Patrol corporate scheme from the referenced photographs: navy lower fuselage below a white and red pinstripe, navy climbing to the fin root, a red fin and rudder over a white pinstripe and a large white registration on the navy. Under the civil-operator rule the CIVIL AIR PATROL fin titles and the emblem are omitted; registration N488CP is fictional. Approximate colors.
+
+**Skylane factory navy, Australia 2013.** Cessna’s 2013 182T factory scheme from the referenced Avalon photograph: white over a navy lower fuselage that tapers to a point aft, a white spear and a long graphite blade above it, navy and graphite stripes at the fin root and navy wingtips, with an Australian registration (VH-SKQ, fictional). The Skylane fin logo is omitted; shapes and colors are approximations.
 
 ### Cessna 208B Grand Caravan EX
 
 Type: `molen.entities.aircraft.cessna_208b`.
 
-[![Cessna 208B Grand Caravan EX livery comparison: Bering Air cream and green, Skydive white and dark blue](https://molen.dev/guide-media/liveries/cessna_208b.png)](https://molen.dev/guide-media/liveries/cessna_208b.png)
+[![Cessna 208B Grand Caravan EX livery comparison: Grand Caravan EX factory scheme, 2023, Iraqi Air Force C-208B, 2009, Iraqi Air Force AC-208 Combat Caravan, Honduran Air Force Grand Caravan EX](https://molen.dev/guide-media/liveries/cessna_208b.png)](https://molen.dev/guide-media/liveries/cessna_208b.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `bering-air-cream-and-green` | Bering Air cream and green | [Photo](https://commons.wikimedia.org/wiki/File:Bering_Air_Cessna_208B_Grand_Caravan_(N215BA).jpg) |
-| `skydive-white-and-dark-blue` | Skydive white and dark blue | [Photo](https://commons.wikimedia.org/wiki/File:Skydive_Australia_(VH-DNK)_Cessna_208_Caravan_at_Sunshine_Coast_Airport.jpg) |
+| `textron-ex-2023` | Grand Caravan EX factory scheme, 2023 | [Photo](https://commons.wikimedia.org/wiki/File:Cessna_208B_Grand_Caravan_EX_(N727EX,_cn_208B5727)_(7-29-2023).jpg) |
+| `iraqi-air-force-c-208b` | Iraqi Air Force C-208B, 2009 | [Photo](https://commons.wikimedia.org/wiki/File:Iraqi_Air_Force_C-208.jpg) |
+| `iraqi-ac-208` | Iraqi Air Force AC-208 Combat Caravan | [Photo](https://commons.wikimedia.org/wiki/File:Iraqi_Cessna_AC-208.jpg) |
+| `honduran-air-force` | Honduran Air Force Grand Caravan EX | [Photo](https://commons.wikimedia.org/wiki/File:Honduras_Air_Force_(FAH-021)_Cessna_208B_Grand_Caravan_EX_at_Toncont%C3%ADn_International_Airport.jpg) |
 
-**Bering Air cream and green.** Paint study of Bering Air cream and green. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Grand Caravan EX factory scheme, 2023.** Textron Aviation’s Grand Caravan EX demonstrator scheme from the referenced photograph: white over a near-black brown lower fuselage and cargo pod, fine brown and silver pinstripes along the split, a black fin and rudder with white pinstripes at the root and a large black registration. The Grand Caravan EX fin logo is omitted; registration N563EX is fictional. Approximate colors.
 
-**Skydive white and dark blue.** Paint study of Skydive white and dark blue. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Iraqi Air Force C-208B, 2009.** Iraqi Air Force C-208B trainer from the referenced USAF photograph: light blue-gray overall with black de-ice boots on the wing, stabilizer and fin leading edges, IRAQI AIR FORCE on the rear cabin, serial YI-116 ahead of the fin and the national flag near the fin tip (original vector art; the flag’s green takbir is simplified). Approximate colors and sizes.
+
+**Iraqi Air Force AC-208 Combat Caravan.** Iraqi Air Force AC-208 from the referenced USAF photograph: dark gunship gray overall with black de-ice boots, a low-contrast IRAQI AIR FORCE title under the cabin windows, serial YI-112 in light gray on the fin and the national flag near the fin tip (original vector art; the flag’s takbir is simplified). The sensor turret and weapon rails are not modeled. Approximate colors.
+
+**Honduran Air Force Grand Caravan EX.** Fuerza Aérea Hondureña Grand Caravan EX FAH 021 from the referenced photograph: medium gray overall with FUERZA AEREA HONDUREÑA along the cabin, the blue and white roundel with its star on the rear fuselage, the national flag and FAH 021 on the fin (original vector art). Approximate colors and sizes.
 
 ### Cessna Citation CJ4
 
 Type: `molen.entities.aircraft.citation_cj4`.
 
-[![Cessna Citation CJ4 livery comparison: N812NE white and black, N322SB white and burgundy](https://molen.dev/guide-media/liveries/citation_cj4.png)](https://molen.dev/guide-media/liveries/citation_cj4.png)
+[![Cessna Citation CJ4 livery comparison: White, champagne and black, White with red and navy pinstripes, Factory swooshes, red and black, Factory swooshes, green](https://molen.dev/guide-media/liveries/citation_cj4.png)](https://molen.dev/guide-media/liveries/citation_cj4.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `n812ne-white-and-black` | N812NE white and black | [Photo](https://commons.wikimedia.org/wiki/File:N812NE_Citation_CJ4,_Scottsdale_05-05-26_(55252338595).jpg) |
-| `n322sb-white-and-burgundy` | N322SB white and burgundy | [Photo](https://commons.wikimedia.org/wiki/File:N322SB_Cessna_Citation_CJ4_Switchback_Argentina_Llc_(25297720089).jpg) |
+| `champagne-black-tail` | White, champagne and black | [Photo](https://commons.wikimedia.org/wiki/File:N812NE_Citation_CJ4,_Scottsdale_05-05-26_(55252338595).jpg) |
+| `red-navy-pinstripes` | White with red and navy pinstripes | [Photo](https://commons.wikimedia.org/wiki/File:Cessna_Citation_CJ4_525C_N194ME_FDK_MD1.jpg) |
+| `factory-red-black` | Factory swooshes, red and black | [Photo](https://commons.wikimedia.org/wiki/File:N22UB_Cessna_Citation_CJ4_(24468199463).jpg) |
+| `factory-green` | Factory swooshes, green | [Photo](https://commons.wikimedia.org/wiki/File:M-FLYI_Cessna_Citation_CJ4_(23595286172).jpg) |
 
-**N812NE white and black.** Paint study of N812NE white and black. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**White, champagne and black.** Factory scheme as photographed on N812NE: white upper body over a metallic champagne lower body behind a black pinline; the rear body, fin, tip fairing and tailplane gloss black, with the registration in white on the fin. The manufacturer's titles on the engines are left off; registration N418TX is fictional. Line positions and colours are approximate.
 
-**N322SB white and burgundy.** Paint study of N322SB white and burgundy. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**White with red and navy pinstripes.** Private scheme as photographed on N194ME: white overall with a red and a navy pinstripe from the nose to the tail cone, the red climbing the rudder root; a red band under a navy cap and navy tip fairing on the fin; navy registration on the fin. Registration N412MK is fictional. Stripe heights are approximate.
+
+**Factory swooshes, red and black.** Factory swoosh scheme as photographed on N22UB: white with a long red line from under the cockpit to the engine, tapered black spears under the cockpit and the cabin, a grey line above, black lines up the fin root and a red wedge over the rudder root; registration on the engine nacelles. Registration N27QW is fictional. Line shapes are redrawn and approximate.
+
+**Factory swooshes, green.** The same factory swoosh design in greens, as photographed on Isle of Man registered M-FLYI: white with green and dark green lines along the body and up the fin root, registration on the engine nacelles. The operator's tail logo and titles are left off; registration M-ARQZ is fictional. Line shapes are approximate.
 
 ### Cirrus SR22T G6
 
 Type: `molen.entities.aircraft.cirrus_sr22t`.
 
-[![Cirrus SR22T G6 livery comparison: N671MV red and white, N410AS blue and white](https://molen.dev/guide-media/liveries/cirrus_sr22t.png)](https://molen.dev/guide-media/liveries/cirrus_sr22t.png)
+[![Cirrus SR22T G6 livery comparison: Private owner, crimson over silver, Private owner, G7 blue and white, Carbon edition, gunmetal, US Air Force Academy T-53A Kadet II, Spanish owner, orange and silver](https://molen.dev/guide-media/liveries/cirrus_sr22t.png)](https://molen.dev/guide-media/liveries/cirrus_sr22t.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `n671mv-red-and-white` | N671MV red and white | [Photo](https://commons.wikimedia.org/wiki/File:Cirrus_SR22T_N671MV_FDK_MD1.jpg) |
-| `n410as-blue-and-white` | N410AS blue and white | [Photo](https://commons.wikimedia.org/wiki/File:Cirrus_SR22T_G7_GTS_(N410AS,_cn_9822)_(4-9-2024).jpg) |
+| `factory-crimson-silver` | Private owner, crimson over silver | [Photo](https://commons.wikimedia.org/wiki/File:Cirrus_SR22T_N671MV_FDK_MD1.jpg) |
+| `factory-g7-blue-white` | Private owner, G7 blue and white | [Photo](https://commons.wikimedia.org/wiki/File:Cirrus_SR22T_G7_GTS_(N410AS,_cn_9822)_(4-9-2024).jpg) |
+| `carbon-edition` | Carbon edition, gunmetal | [Photo](https://commons.wikimedia.org/wiki/File:Cirrus_SR22T_G6_GTS_Carbon_(N993MS,_cn_9207)_(4-13-2024).jpg) |
+| `usaf-academy-t53a` | US Air Force Academy T-53A Kadet II | [Photo](https://commons.wikimedia.org/wiki/File:Cirrus_T-53A_Kadet_ll_10-0101_AF_306th_Flying_Training_Group_(52489922079).jpg) |
+| `spain-orange-silver` | Spanish owner, orange and silver | [Photo](https://commons.wikimedia.org/wiki/File:EC-ONS_Cirrus_SR22T_SCQ_01.jpg) |
 
-**N671MV red and white.** Paint study of N671MV red and white. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Private owner, crimson over silver.** Cirrus G6 factory layout in crimson from the referenced photograph of N671MV: crimson over the nose, cabin top, dorsal and the whole fin and rudder, silver lower fuselage and wings, a black pinstripe on the paint line, crimson wheel fairings and a large black registration on the aft fuselage. The registration N728CR is fictional; the owner's fin emblem and the manufacturer titles are omitted. The paint line is straight segments.
 
-**N410AS blue and white.** Paint study of N410AS blue and white. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Private owner, G7 blue and white.** Cirrus G7 factory layout in blue from the referenced photograph of N410AS: blue over the nose, cabin top and dorsal down to the belt, white lower fuselage, wings and fin, a black swoosh from the spinner into the paint line and a black-edged blue arrow on the lower rear fuselage, blue wheel fairings and a navy registration. The registration N4417G is fictional; the fin's dark stripes are simplified and the swoosh curves are redrawn freehand from the photograph.
+
+**Carbon edition, gunmetal.** Cirrus G6 Carbon edition from the referenced photograph of N993MS: gunmetal metallic overall with charcoal swooshes from the cowl along the fuselage side and a black registration on the rear fuselage. The registration N93KC is fictional; the edition title on the fin and the carbon-weave texture are omitted.
+
+**US Air Force Academy T-53A Kadet II.** T-53A Kadet II 10-0101 of the 306th Flying Training Group (US Air Force Academy) from the referenced photograph, applied to the SR22T model (the T-53A is an SR20): white overall, a dark blue band along the fuselage with a red pinstripe above it and U.S. AIR FORCE in white on the band, the national insignia on the rear fuselage, AF, 306 FTG and the tail number on the fin under a blue-checked fin cap, all redrawn as original vector art. The pilot names under the windows are omitted; sizes are estimates.
+
+**Spanish owner, orange and silver.** Paint layout of the referenced photograph of EC-ONS: orange over the nose and cabin, running aft as a band along the lower rear fuselage under a silver upper rear fuselage and fin, black stripes on its edges, orange wheel fairings, the Spanish flag on the fin and a black registration on the orange band. The registration EC-MZR is fictional; curves are straight-line approximations.
 
 ### Dassault Rafale C
 
 Type: `molen.entities.aircraft.rafale_c`.
 
-[![Dassault Rafale C livery comparison: French 30-GT gray, French 113-GU red tail](https://molen.dev/guide-media/liveries/rafale_c.png)](https://molen.dev/guide-media/liveries/rafale_c.png)
+[![Dassault Rafale C livery comparison: EC 2/30 Normandie-Niemen (30-GT), EC 1/7 Provence, Tiger Meet 2014 (113-GU), Rafale Solo Display, 2025, Qatar Emiri Air Force (QA219), Hellenic Air Force, 332 Mira (412)](https://molen.dev/guide-media/liveries/rafale_c.png)](https://molen.dev/guide-media/liveries/rafale_c.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `french-30-gt-gray` | French 30-GT gray | [Photo](https://commons.wikimedia.org/wiki/File:Dassault_Rafale_C_%E2%80%98141_30-GT%E2%80%99_(49358510998).jpg) |
-| `french-113-gu-red-tail` | French 113-GU red tail | [Photo](https://commons.wikimedia.org/wiki/File:%27113-GU%27_French_Air_Force_Dassault_Rafale_C_with_afterburners_at_Air14,_Payerne,_Switzerland_(Ank_Kumar)_02.jpg) |
+| `ec-2-30-normandie-niemen` | EC 2/30 Normandie-Niemen (30-GT) | [Photo](https://commons.wikimedia.org/wiki/File:Dassault_Rafale_C_%E2%80%98141_30-GT%E2%80%99_(49358510998).jpg) |
+| `tiger-meet-2014-113-gu` | EC 1/7 Provence, Tiger Meet 2014 (113-GU) | [Photo](https://commons.wikimedia.org/wiki/File:Dassault_Rafale_C_%27142_-_113-GU%27_(14608203075).jpg) |
+| `solo-display-2025` | Rafale Solo Display, 2025 | [Photo](https://commons.wikimedia.org/wiki/File:Rafale_Solo_Display_2025_Bricy_(Denoised).jpg) |
+| `qatar-qa219` | Qatar Emiri Air Force (QA219) | [Photo](https://commons.wikimedia.org/wiki/File:QA219_Rafale_EQ_Qatar_Emiri_Air_Force_Andravida_17.4.24_(53696949762).jpg) |
+| `hellenic-332-mira-412` | Hellenic Air Force, 332 Mira (412) | [Photo](https://commons.wikimedia.org/wiki/File:Dassault_Rafale_EG_%E2%80%98412%E2%80%99_(54017141290).jpg) |
 
-**French 30-GT gray.** Paint study of French 30-GT gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**EC 2/30 Normandie-Niemen (30-GT).** Rafale C 141 of Escadron de Chasse 2/30 Normandie-Niemen from the referenced photograph: overall Rafale gray, French roundels on the fuselage shoulders and above and below both wings, 30-GT on the nose, the squadron badge on the fin (simplified two-leopard shield in low-visibility grays), ARMÉE DE L’AIR on the lower fin and 141 at the fin top. Stencils are omitted.
 
-**French 113-GU red tail.** French 113-GU display paint study: gray airframe and red fin. Anniversary artwork and spine artwork are omitted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**EC 1/7 Provence, Tiger Meet 2014 (113-GU).** Rafale C 142 in the NATO Tiger Meet 2014 scheme from the referenced photograph: red fin with sweeping black tiger stripes and a white zigzag, black tiger stripes on the rear fuselage over an orange band, 113-GU in orange on the nose and French roundels. The photographic tiger face on the fin, the event titles and the painted drop tanks are not reproduced; stripes are original vector art.
+
+**Rafale Solo Display, 2025.** The 2025 Rafale Solo Display scheme from the referenced photograph: white upper surfaces, a dark navy underside with a red band along the lower rear fuselage (slats and elevons stay white), and blue, white and red bands parallel to the fin leading edge with ARMÉE DE L’AIR & DE L’ESPACE in white. Band widths and the underside pattern are approximations.
+
+**Qatar Emiri Air Force (QA219).** Rafale EQ QA219 from the referenced 2024 photograph: the QEAF two-gray camouflage (a blotch pattern, not the exact patch outlines), the Qatari roundel (maroon, gold and white) on the fuselage and wings, the flag of Qatar near the fin top (hoist forward on both sides), the black Al-Adiyat horse emblem on the fin (original simplified drawing) and QA219 on the nose.
+
+**Hellenic Air Force, 332 Mira (412).** Rafale EG 412 of 332 Mira from the referenced photograph: overall gray, Greek roundels (blue, white, blue) on the fuselage and wings, the flag of Greece on the fin with the serial 412 beneath it.
 
 ### De Havilland Canada Dash 8-400
 
 Type: `molen.entities.aircraft.dash_8_q400`.
 
-[![De Havilland Canada Dash 8-400 livery comparison: Austrian white and red, Porter white and navy](https://molen.dev/guide-media/liveries/dash_8_q400.png)](https://molen.dev/guide-media/liveries/dash_8_q400.png)
+[![De Havilland Canada Dash 8-400 livery comparison: Sécurité Civile Q400MR tanker, 2013, Purple with orange and red bands, White with teal and blue tail, White with navy tail](https://molen.dev/guide-media/liveries/dash_8_q400.png)](https://molen.dev/guide-media/liveries/dash_8_q400.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `austrian-white-and-red` | Austrian white and red | [Photo](https://commons.wikimedia.org/wiki/File:Austrian_Airlines_Bombardier_Dash_8_Q400_(flight_683)_boarding_at_Vienna_Airport,_Austria_(DSC_0003).jpg) |
-| `porter-white-and-navy` | Porter white and navy | [Photo](https://commons.wikimedia.org/wiki/File:Bombardier_Dash_8_Q400_-_Toronto_City_Centre_-_CYTZ.jpg) |
+| `securite-civile-2013` | Sécurité Civile Q400MR tanker, 2013 | [Photo](https://commons.wikimedia.org/wiki/File:F-ZBMD(74)_Dash_8Q-402MR_Securite_Civile_TLS_25SEP13_(9946654405).jpg) |
+| `purple-orange-red-bands` | Purple with orange and red bands | [Photo](https://commons.wikimedia.org/wiki/File:G-JECM_-_Bombardier_Dash_8_Q400_-_Flybe_(28328880961).jpg) |
+| `white-teal-blue-tail` | White with teal and blue tail | [Photo](https://commons.wikimedia.org/wiki/File:C-FWEP_Westjet_Encore_Dash_8-Q400.jpg) |
+| `white-navy-tail` | White with navy tail | [Photo](https://commons.wikimedia.org/wiki/File:Porter_Airlines_Bombardier_Q400_C-GKQB_departing_Boston_June_2025.jpg) |
 
-**Austrian white and red.** Paint study of Austrian white and red. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Sécurité Civile Q400MR tanker, 2013.** French Sécurité Civile Q400MR water/retardant bomber as photographed in 2013: white overall with red, black and red cheatlines under the windows that open into a red chin and a red tail cone, red fin cap over a black stripe, tanker number on the fin, SECURITE CIVILE titles, the French roundel aft and the civil defence sign behind the flight deck (original vector drawings). Registration F-ZBQV and tanker number 79 are fictional; the belly tank, the FIREGUARD and danger stencils are omitted. Line heights and colours are approximate.
 
-**Porter white and navy.** Paint study of Porter white and navy. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Purple with orange and red bands.** Flybe's 2018 scheme as photographed on G-JECM: purple fuselage, wing root fairing and nacelles, an orange and a red band slanting back across the tail cone, white tail cone, fin and tailplane. The flybe wordmark and dots on the fin, the fuselage titles and the slogan are left off. Registration G-JEQZ is fictional. Band positions and colours are approximate.
+
+**White with teal and blue tail.** WestJet Encore scheme as photographed on C-FWEP: white overall; the fin teal above a white band, below it a white diagonal dividing a blue forward panel from a teal aft panel, white fleet number near the tip. The fuselage and nacelle titles and the flag are left off; registration C-GWQZ and fleet number 447 are fictional. Fin proportions are approximate.
+
+**White with navy tail.** Porter Airlines' current scheme as photographed on C-GKQB: white fuselage, nacelles and wing root, navy fin, rudder, fin tip and tailplane, navy registration and fleet number on the tail cone. The repeated wordmark pattern on the fin and the fuselage titles are left off; registration C-GKQZ and fleet number 829 are fictional.
 
 ### De Havilland Canada DHC-2 Beaver
 
 Type: `molen.entities.aircraft.dhc_2`.
 
-[![De Havilland Canada DHC-2 Beaver livery comparison: Kenmore white and yellow, Ketchikan white and red](https://molen.dev/guide-media/liveries/dhc_2.png)](https://molen.dev/guide-media/liveries/dhc_2.png)
+[![De Havilland Canada DHC-2 Beaver livery comparison: Seattle floatplane operator, white and gold, US Army L-20A, 1950s, Army Air Corps Beaver AL.1 XP820, RNZAF Antarctic Flight NZ6001, 1957](https://molen.dev/guide-media/liveries/dhc_2.png)](https://molen.dev/guide-media/liveries/dhc_2.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `kenmore-white-and-yellow` | Kenmore white and yellow | [Photo](https://commons.wikimedia.org/wiki/File:De_Havilland_Canada_DHC-2_Beaver_N72355_Kenmore_2_crop.jpg) |
-| `ketchikan-white-and-red` | Ketchikan white and red | [Photo](https://commons.wikimedia.org/wiki/File:De_Havilland_Canada_DHC-2_Beaver,_Ketchikan,_Alaska,_Estados_Unidos,_2017-08-16,_DD_65.jpg) |
+| `seattle-floatplane-gold` | Seattle floatplane operator, white and gold | [Photo](https://commons.wikimedia.org/wiki/File:Kenmore_Air_DHC-2_Beaver_floatplane_N900KA_on_Lake_Union_-_03.jpg) |
+| `us-army-l20a-1950s` | US Army L-20A, 1950s | [Photo 1](https://commons.wikimedia.org/wiki/File:DeHavillandCanada_L-20A_51-16856_(6791095726).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:DeHavilland_U-6A,_Beaver_in_US_Army_livery.jpg) |
+| `army-air-corps-al1-xp820` | Army Air Corps Beaver AL.1 XP820 | [Photo](https://commons.wikimedia.org/wiki/File:De_Havilland_Canada_Beaver_AL.1_%E2%80%98XP820%E2%80%99_(G-CICP)_(51754015170).jpg) |
+| `rnzaf-antarctic-nz6001` | RNZAF Antarctic Flight NZ6001, 1957 | [Photo](https://commons.wikimedia.org/wiki/File:RNZAFTransantarcticDHCBeaver.jpg) |
 
-**Kenmore white and yellow.** Paint study of Kenmore white and yellow. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Seattle floatplane operator, white and gold.** Colors and stripe layout of a Seattle floatplane operator's Beavers from the referenced photograph: white airframe, gold band under the windows with a black pinstripe, sweeping aft into a gold fin and rudder behind a black diagonal, gold cowl ring, navy registration on the aft fuselage. The operator's name and logo are omitted and the registration N417KB is fictional. Shown on the wheeled model; band edges are straight-line approximations of the painted curves.
 
-**Ketchikan white and red.** Paint study of Ketchikan white and red. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**US Army L-20A, 1950s.** US Army L-20A 51-16856 from the referenced photograph: olive drab overall (FS 34087), U.S. ARMY over the serial 116856 across the fin and rudder, the national insignia on the aft fuselage and upper left / lower right wing, U.S. ARMY under the left wing, all redrawn as original vector art. The photograph is black and white: the light lettering is shown white and the olive drab follows the referenced U-6A museum aircraft; marking sizes are estimates.
+
+**Army Air Corps Beaver AL.1 XP820.** British Army Air Corps Beaver AL.1 XP820 as flown by the Army Historic Aircraft Flight, from the referenced photograph: disruptive dark green and black camouflage laid out on the fuselage and fin after the photograph (dark cabin, a dark band across the rear fuselage and fin), with a generated pattern in the same colors on the wings and tail surfaces, black cowling and gear legs, the serial XP820, ARMY and the type D roundel on the aft fuselage, roundels above and below the wings, all redrawn as original vector art. Approximate colors and sizes.
+
+**RNZAF Antarctic Flight NZ6001, 1957.** RNZAF Beaver NZ6001 of the Commonwealth Trans-Antarctic Expedition from the referenced museum photograph: high-visibility orange overall, black cowling and a black cheatline at the window sills, RNZAF type D roundels on the aft fuselage and wings and the serial NZ6001, redrawn as original vector art. The expedition title on the cowling and the small aircraft name are omitted; the cheatline's aft end and marking sizes are estimates.
 
 ### De Havilland Canada DHC-6 Twin Otter 400
 
 Type: `molen.entities.aircraft.dhc_6`.
 
-[![De Havilland Canada DHC-6 Twin Otter 400 livery comparison: British Antarctic Survey orange, Kenn Borek white and red](https://molen.dev/guide-media/liveries/dhc_6.png)](https://molen.dev/guide-media/liveries/dhc_6.png)
+[![De Havilland Canada DHC-6 Twin Otter 400 livery comparison: USAF Academy UV-18B, 1980, Far East regional airline, navy and white (RA-67293), South Pacific red and white (A3-KLQ), RCAF CC-138 Twin Otter 13803, Arctic 2018](https://molen.dev/guide-media/liveries/dhc_6.png)](https://molen.dev/guide-media/liveries/dhc_6.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `british-antarctic-survey-orange` | British Antarctic Survey orange | [Photo](https://commons.wikimedia.org/wiki/File:British_Antarctic_Survey_DHC-6_VP-FAO.jpg) |
-| `kenn-borek-white-and-red` | Kenn Borek white and red | [Photo](https://commons.wikimedia.org/wiki/File:Kenn_Borek_Air_C-GKBR_DHC-6-300_Twin_Otter_Coventry_(32741726532).jpg) |
+| `usaf-academy-uv-18b` | USAF Academy UV-18B, 1980 | [Photo](https://commons.wikimedia.org/wiki/File:UV-18B_USAF_academy_parachute_training_1980.JPEG) |
+| `navy-tail-arcs` | Far East regional airline, navy and white (RA-67293) | [Photo](https://commons.wikimedia.org/wiki/File:Viking_Air_DHC-6_Twin_Otter_Series_400_of_Avropa_(30127684035).jpg) |
+| `pacific-red-and-white` | South Pacific red and white (A3-KLQ) | [Photo](https://commons.wikimedia.org/wiki/File:Lulutai_Airlines_(A3-KLT)_Viking_Air_DHC-6_Twin_Otter_Series_400,_ex_Reignwood_Air_(B-10GE),_taxiing_at_Wagga_Wagga_Airport.jpg) |
+| `rcaf-cc-138-arctic` | RCAF CC-138 Twin Otter 13803, Arctic 2018 | [Photo](https://commons.wikimedia.org/wiki/File:Royal_Canadian_Air_Force_CC-138_Twin_Otter_in_the_arctic_on_5_March_2018_(180305-N-SV928-130).JPG) |
 
-**British Antarctic Survey orange.** Paint study of British Antarctic Survey orange. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**USAF Academy UV-18B, 1980.** UV-18B 77-0465 of the US Air Force Academy parachute team, 1980: white upper fuselage, fin and wings over a pale blue lower fuselage split by a dark blue pinstripe, U.S. AIR FORCE in dark blue on the forward fuselage, national insignia on the rear fuselage, upper left and lower right wing, the serial and a small badge (redrawn as a plain shield) on the fin. Colors approximate.
 
-**Kenn Borek white and red.** Paint study of Kenn Borek white and red. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Far East regional airline, navy and white (RA-67293).** Series 400 in the colors of the referenced Aurora RA-67284: white with a navy lower fuselage, navy fin, nacelles and tail arcs sweeping up the rear fuselage and fin, orange fin cap, and the Russian flag on the fin. Fictional registration RA-67293; airline title and emblem omitted. Arc count and spacing approximate.
+
+**South Pacific red and white (A3-KLQ).** Series 400 in the colors of the referenced Lulutai Airlines A3-KLT: white upper fuselage over a red belly with twin red pinstripes, a red fin and rudder, a tapa-cloth style band ahead of the fin (simplified original pattern) and the Tongan flag behind the cockpit. Fictional Tongan registration A3-KLQ; airline title and bird emblem omitted. Colors approximate.
+
+**RCAF CC-138 Twin Otter 13803, Arctic 2018.** CC-138 13803 of 440 Transport Squadron, Royal Canadian Air Force, on Arctic sea ice in 2018: overall search-and-rescue yellow with a gray cheatline and red pinstripe along the windows, RCAF and ARC titles either side of the maple-leaf roundel on the rear fuselage, the red rear panel, the Canadian flag and serial on the fin, 803 on the nose and a black radome. Colors approximate; skis are not modelled.
 
 ### Diamond DA42-VI
 
 Type: `molen.entities.aircraft.diamond_da42`.
 
-[![Diamond DA42-VI livery comparison: D-GOMH white and graphite, White and teal stripe](https://molen.dev/guide-media/liveries/diamond_da42.png)](https://molen.dev/guide-media/liveries/diamond_da42.png)
+[![Diamond DA42-VI livery comparison: Private owner, Diamond factory stripes (Sweden), Swiss Air Force R-711, Airline flight school, white and navy, University flight school, blue swooshes, MPP sensor demonstrator, white and red](https://molen.dev/guide-media/liveries/diamond_da42.png)](https://molen.dev/guide-media/liveries/diamond_da42.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `d-gomh-white-and-graphite` | D-GOMH white and graphite | [Photo](https://commons.wikimedia.org/wiki/File:Diamond_DA42_(D-GOMH),_M%C3%BClheim_an_der_Ruhr_ESS_(DE)_--_2022_--_0017.jpg) |
-| `white-and-teal-stripe` | White and teal stripe | [Photo](https://commons.wikimedia.org/wiki/File:Diamond_DA42.jpg) |
+| `factory-stripes-sweden` | Private owner, Diamond factory stripes (Sweden) | [Photo](https://commons.wikimedia.org/wiki/File:SE-MLR_Diamond_DA42_VBY_01.jpg) |
+| `swiss-air-force-r-711` | Swiss Air Force R-711 | [Photo](https://commons.wikimedia.org/wiki/File:R-711_Swiss_Air_Force.jpg) |
+| `airline-school-navy` | Airline flight school, white and navy | [Photo](https://commons.wikimedia.org/wiki/File:Diamond_DA42_NG_(c-n_42N379,_D-GFRA)_2025-06-28_Andre_Gerwing_Collection_ID_024221.jpg) |
+| `university-trainer-blue` | University flight school, blue swooshes | [Photo](https://commons.wikimedia.org/wiki/File:Diamond_DA42-VI_Twin_Star_(N309ER,_cn_42.N211)_(1-12-2023).jpg) |
+| `mpp-sensor-demonstrator` | MPP sensor demonstrator, white and red | [Photo](https://commons.wikimedia.org/wiki/File:Diamond_DA42MPP-NG_Twin_Star%E2%80%98OE-FMV%E2%80%99_(16913916756).jpg) |
 
-**D-GOMH white and graphite.** Paint study of D-GOMH white and graphite. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Private owner, Diamond factory stripes (Sweden).** Diamond DA42-VI factory scheme from the referenced photograph of SE-MLR: white with navy, blue and teal stripes from the nose along the cabin and boom sweeping up the fin, the same three on the nacelles, the Swedish flag on the fin, the registration on the boom and large under the left wing (Swedish practice). The registration SE-MKV is fictional; type titles are omitted and the stripe curves are redrawn freehand.
 
-**White and teal stripe.** Paint study of White and teal stripe. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Swiss Air Force R-711.** Swiss Air Force DA42 R-711 from the referenced photograph: white with a red flame under the cockpit and red swooshes on the nacelles, red fin and rudder with the Swiss marking, red winglets carrying the Swiss marking, and the serial R-711 on the tail boom, redrawn as original vector art. The photograph is distant: the white swirl inside the red fin is simplified away, and the swoosh shapes and serial position are estimates.
+
+**Airline flight school, white and navy.** Colors of an airline's flight school trainers from the referenced photograph of D-GFRA: white overall with a navy fin, rudder and tail cone behind a line from the boom to the fin tip, the German flag at the top of the fin and a grey registration on the boom. The airline's emblem and titles are omitted; the registration D-GLTQ is fictional.
+
+**University flight school, blue swooshes.** Colors of a US university's DA42 trainers from the referenced photograph of N309ER: white with navy and light blue swooshes along the cabin and on the nacelles and a navy italic registration on the boom. The university's titles and the gold fin emblem are omitted; the registration N727DT is fictional and the swooshes are redrawn freehand.
+
+**MPP sensor demonstrator, white and red.** Paint of the referenced photograph of the DA42 MPP demonstrator OE-FMV: white with raked red dashes along the nose and nacelles, a red chevron under the cabin, red and white rudder bars, red winglets and main gear doors and a red registration on the boom. The sensor company titles are omitted, the registration OE-FXK is fictional and the sensor turret is not modelled.
 
 ### Douglas DC-3
 
 Type: `molen.entities.aircraft.dc_3`.
 
-[![Douglas DC-3 livery comparison: G-ANAF red and black, Icelandair white and blue](https://molen.dev/guide-media/liveries/dc_3.png)](https://molen.dev/guide-media/liveries/dc_3.png)
+[![Douglas DC-3 livery comparison: USAAF C-47A 442nd TCG, D-Day 1944, RAF Dakota III, 233 Squadron, Normandy 1944, Scandinavian airline 1950s, natural metal (OY-DMZ), US local service airline 1950s (N58217)](https://molen.dev/guide-media/liveries/dc_3.png)](https://molen.dev/guide-media/liveries/dc_3.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `g-anaf-red-and-black` | G-ANAF red and black | [Photo](https://commons.wikimedia.org/wiki/File:Douglas_DC-3_(G-ANAF)_at_Airbase_Coventry.jpg) |
-| `icelandair-white-and-blue` | Icelandair white and blue | [Photo](https://commons.wikimedia.org/wiki/File:2017-08-27_Icelandair_Douglas_DC-3_(TF-NPK)_at_Reykjavik,_Iceland.jpg) |
+| `usaaf-c-47a-d-day` | USAAF C-47A 442nd TCG, D-Day 1944 | [Photo](https://commons.wikimedia.org/wiki/File:442d_Troop_Carrier_Group_Douglas_C-47A-15-DK_Skytrain_42-92879.jpg) |
+| `raf-dakota-233-squadron` | RAF Dakota III, 233 Squadron, Normandy 1944 | [Photo](https://commons.wikimedia.org/wiki/File:Dakota_C.III_233_Sqn_RAF_returning_from_Normandy_1944.JPG) |
+| `scandinavian-1950s` | Scandinavian airline 1950s, natural metal (OY-DMZ) | [Photo](https://commons.wikimedia.org/wiki/File:SAS_DC-3_Sven_Viking_OY-DDA,_on_the_ground,_at_the_airport.jpg) |
+| `local-service-1950s` | US local service airline 1950s (N58217) | [Photo](https://commons.wikimedia.org/wiki/File:A_Piedmont_Airlines_plane_and_seen_at_an_airport,_1950s_PhC_180_19_001.jpg) |
 
-**G-ANAF red and black.** Paint study of G-ANAF red and black. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**USAAF C-47A 442nd TCG, D-Day 1944.** C-47A 42-92879 of the 442nd Troop Carrier Group, June 1944: olive drab over neutral gray, five 24-inch invasion stripes round the rear fuselage and the outer wings, the 1943 star-and-bar on the stripes and on the upper left and lower right wing, the white call letter T behind the cockpit and on the fin, and the serial 292879 in yellow. The DC-3 model keeps its airliner door and windows; colors and stripe stations approximate.
 
-**Icelandair white and blue.** Paint study of Icelandair white and blue. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**RAF Dakota III, 233 Squadron, Normandy 1944.** Dakota III of No. 233 Squadron RAF returning from Normandy in 1944: olive drab over neutral gray as delivered, invasion stripes round the rear fuselage and outer wings, the type C roundel over the fuselage stripes, type B roundels on the upper wings, the fin flash, and the UK code with the plain name KWICHERBICHEN behind the cockpit. Serial omitted (not legible in the photograph); colors approximate.
+
+**Scandinavian airline 1950s, natural metal (OY-DMZ).** DC-3 in the 1950s colors of the referenced SAS OY-DDA: natural metal with a white cabin roof, a dark blue window cheatline from nose to tail, and a white fin with a slanted dark blue band. Fictional Danish registration OY-DMZ on the fin; airline titles, flags and emblem omitted. Colors approximate.
+
+**US local service airline 1950s (N58217).** DC-3 in the 1950s colors of the referenced Piedmont Airlines aircraft: white cabin roof and fin, natural metal lower fuselage and wings, a dark blue window cheatline with a thin pinstripe below it, and two dark blue pinstripes across the fin. Fictional registration N58217 on the fin; airline titles and the emblem omitted. Colors approximate (the photograph is black and white).
 
 ### Embraer E175
 
 Type: `molen.entities.aircraft.embraer_e175`.
 
-[![Embraer E175 livery comparison: United Express white and blue, Delta Connection white and navy](https://molen.dev/guide-media/liveries/embraer_e175.png)](https://molen.dev/guide-media/liveries/embraer_e175.png)
+[![Embraer E175 livery comparison: White, grey belly, blue tail, White over navy belly, navy tail, Silver with flag-stripe tail, Sky blue upper body, white fin, Navy tail with aurora lines](https://molen.dev/guide-media/liveries/embraer_e175.png)](https://molen.dev/guide-media/liveries/embraer_e175.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `united-express-white-and-blue` | United Express white and blue | [Photo](https://commons.wikimedia.org/wiki/File:N756YX_EMBRAER_175_United_express_in_Quebec_International_Airport.jpg) |
-| `delta-connection-white-and-navy` | Delta Connection white and navy | [Photo](https://commons.wikimedia.org/wiki/File:Delta_Connection_Embraer_175_N229JQ_departing_Boston_June_2025.jpg) |
+| `white-grey-belly-blue-tail` | White, grey belly, blue tail | [Photo 1](https://commons.wikimedia.org/wiki/File:United_Boeing_737-800_N37267_BWI_MD1.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:08-JUL-2022_-_UA5546_LGA-ORD_(E175_-_N89349)_(01).jpg) |
+| `white-navy-belly-navy-tail` | White over navy belly, navy tail | [Photo](https://commons.wikimedia.org/wiki/File:DeltaConnection(Compass)E175N605CZ_YYJDecember2018.jpg) |
+| `silver-flag-stripe-tail` | Silver with flag-stripe tail | [Photo](https://commons.wikimedia.org/wiki/File:American_Eagle_(Compass_Airlines)_Embraer_E175_N215NN_at_SFO_April_2017.jpg) |
+| `sky-blue-upper-white-fin` | Sky blue upper body, white fin | [Photo](https://commons.wikimedia.org/wiki/File:PH-EXH_KLM_Cityhopper_E175_FRA_(37996624366).jpg) |
+| `navy-tail-aurora-lines` | Navy tail with aurora lines | [Photo 1](https://commons.wikimedia.org/wiki/File:N638QX_%40_LAX%2C_2023-11-05.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Alaska_Airlines_E175_departing_Fairbanks_(Quintin_Soloviev).jpg) |
 
-**United Express white and blue.** Paint study of United Express white and blue. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**White, grey belly, blue tail.** United's 2019 scheme as now applied to United Express jets, from the referenced United photograph (the scheme) and United Express E175 (the type's marking positions; that aircraft still wears the 2010 scheme): white over a light grey belly behind a fine navy line that sweeps down to the radome, blue fin, engines and winglets, registration and US flag above the aft windows. The globe emblem is United's logo and is omitted, leaving the fin plain blue; titles are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
 
-**Delta Connection white and navy.** Paint study of Delta Connection white and navy. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**White over navy belly, navy tail.** Delta Connection scheme from the referenced photograph: white over the navy belly from the radome to the rear door, navy fin carried forward over the tail cone, navy engines and winglets, US flag and registration above the aft windows. The red tail widget is Delta's logo and is omitted, leaving the fin navy; titles are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**Silver with flag-stripe tail.** American Eagle scheme (American Airlines 2013) from the referenced photograph: silver fuselage, engines and winglets, the stylised flag on the fin (blue and white forward, red and white aft, red root band) with a red band over the tail cone, registration and US flag below the aft windows. The Flight Symbol and titles are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**Sky blue upper body, white fin.** KLM Cityhopper scheme from the referenced photograph: KLM blue over the top of the fuselage and nose, the fine dark blue line sweeping down to the radome, light grey belly, white fin, grey engines, blue winglets, EU and Dutch flags with a white registration above the aft windows. The crown logo and titles are omitted. No operator titles, logos or emblems; the registration is fictional, in the national format.
+
+**Navy tail with aurora lines.** Alaska Airlines scheme (2016) on Horizon's E175s, from the referenced photographs: white fuselage, the green, light-blue and teal aurora lines sweeping up the rear fuselage into the fin, navy lower rear fuselage and fin, aurora bands on the fin tip and winglets, registration and US flag above the aft windows. The face on the fin is the operator's emblem and is omitted; titles are omitted. The fin's curved aurora lines are straightened. No operator titles, logos or emblems; the registration is fictional, in the national format.
 
 ### Eurofighter Typhoon
 
 Type: `molen.entities.aircraft.typhoon`.
 
-[![Eurofighter Typhoon livery comparison: RAF service gray, RAF 29 Squadron red tail](https://molen.dev/guide-media/liveries/typhoon.png)](https://molen.dev/guide-media/liveries/typhoon.png)
+[![Eurofighter Typhoon livery comparison: RAF No. 41 Squadron (EB-G), RAF No. 3(F) Squadron centenary, 2012 (QO-C), Luftwaffe (30+46), Luftwaffe TaktLwG 74 "Ghost Tiger", 2018, Aeronautica Militare, 4° Stormo (4-7), Austrian Air Force (7L-WD)](https://molen.dev/guide-media/liveries/typhoon.png)](https://molen.dev/guide-media/liveries/typhoon.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `raf-service-gray` | RAF service gray | [Photo](https://commons.wikimedia.org/wiki/File:RAF_Eurofighter_Typhoon.jpg) |
-| `raf-29-squadron-red-tail` | RAF 29 Squadron red tail | [Photo](https://commons.wikimedia.org/wiki/File:Eurofighter_Typhoon_FGR4_of_Royal_Air_Force_(ZJ914),_Radom_Air_Show,_20230826_1647_9880.jpg) |
+| `raf-41-squadron-eb-g` | RAF No. 41 Squadron (EB-G) | [Photo](https://commons.wikimedia.org/wiki/File:Eurofighter_Typhoon_FGR4_%27ZJ914_-_EB-G%27_(19806048123).jpg) |
+| `raf-3-squadron-centenary-qo-c` | RAF No. 3(F) Squadron centenary, 2012 (QO-C) | [Photo](https://commons.wikimedia.org/wiki/File:Royal_Air_Force_(RAF)_Typhoon_FGR4_ZJ936_'QO-C'_of_No._3_Squadron_RAF,_with_a_commemorative_100th_anniversary_custom_paint_scheme_on_its_tail_fin,_on_static_display_at_RAF_Waddington_during_the_2012_Waddington_Int._Airshow_(8581632937).jpg) |
+| `luftwaffe-30-46` | Luftwaffe (30+46) | [Photo](https://commons.wikimedia.org/wiki/File:Eurofighter_Typhoon_Germany_30%2B46_Neubrandenburg_(9965132925).jpg) |
+| `luftwaffe-ghost-tiger-2018` | Luftwaffe TaktLwG 74 "Ghost Tiger", 2018 | [Photo](https://commons.wikimedia.org/wiki/File:Eurofighter_%22Ghost_Tiger%22_2018_Taktisches_Luftwaffengeschwader_74.jpg) |
+| `aeronautica-militare-4-stormo` | Aeronautica Militare, 4° Stormo (4-7) | [Photo](https://commons.wikimedia.org/wiki/File:Eurofighter_Typhoon_Aeronautica_Militare_2009_04.jpg) |
+| `austria-7l-wd` | Austrian Air Force (7L-WD) | [Photo](https://commons.wikimedia.org/wiki/File:AUSTRIAN_AIR_FORCE_EUROFIGHTER_EF.2000_7L-WD,7L-WI_(52247472319).jpg) |
 
-**RAF service gray.** Paint study of RAF service gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**RAF No. 41 Squadron (EB-G).** Typhoon FGR4 ZJ914 of No. 41 Squadron from the referenced photograph: overall medium gray, the low-visibility roundel between white bars with a red stripe on the forward fuselage, the double-armed red cross under a gold crown on the fin (simplified), EB-G in white at the fin top, the low-visibility fin flash and ZJ914 on the rear fuselage, low-visibility roundels above the wings. Stencils are omitted.
 
-**RAF 29 Squadron red tail.** RAF ZJ914 display paint study: gray airframe and red fin. Anniversary artwork and spine artwork are omitted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**RAF No. 3(F) Squadron centenary, 2012 (QO-C).** Typhoon FGR4 ZJ936 in the 3(F) Squadron 100th anniversary scheme from the referenced photograph: green fin with the red and yellow band, the squadron badge (blue disc and white ring under a crown with a simplified cockatrice), 100 in yellow and QO-C, green and yellow bars around the low-visibility roundel and ZJ936 on the rear fuselage. The green and yellow spine stripe, the motto and LARKHILL 1912 lettering are omitted.
+
+**Luftwaffe (30+46).** Eurofighter 30+46 from the referenced photograph: Luftwaffe blue-gray, 30 + Bundeswehr cross + 46 in black on the fuselage side (the thin white edging of the digits is omitted), the German flag at the fin top and the wing badge on the fin (simplified to a quartered blue and white shield), Bundeswehr crosses above and below the wings.
+
+**Luftwaffe TaktLwG 74 "Ghost Tiger", 2018.** The Taktisches Luftwaffengeschwader 74 NATO Tiger Meet 2018 "Ghost Tiger" scheme from the referenced photograph: dark gray center and rear fuselage with neon green tiger stripes (the wings are left gray; they are not visible in the reference), a green fin with dark stripes and GHOST TIGER NTM 2018 in white, 31 + 00 in white with a low-visibility cross, the nose in standard gray. The painted tiger face is not reproduced; stripes are original vector art.
+
+**Aeronautica Militare, 4° Stormo (4-7).** Eurofighter 4-7 of the 4° Stormo from the referenced 2009 photograph: overall gray, the Italian roundel on the fuselage side ahead of the code 4-7 in gray, roundels above and below the wings. The 4° Stormo fin badge and the fin lettering are omitted.
+
+**Austrian Air Force (7L-WD).** Eurofighter 7L-WD from the referenced 2022 photograph: overall gray, 7L + roundel + WD in black on the fuselage side, Austrian roundels (red disc with the white triangle) above and below the wings. Stencils and the CALL 121.5 tank lettering are omitted.
 
 ### General Dynamics F-16B Fighting Falcon
 
 Type: `molen.entities.aircraft.f_16b`.
 
-[![General Dynamics F-16B Fighting Falcon livery comparison: Danish ET-612, USAF MC gray, NSAWC 07 blue camouflage](https://molen.dev/guide-media/liveries/f16.png)](https://molen.dev/guide-media/liveries/f16.png)
+[![General Dynamics F-16B Fighting Falcon livery comparison: USAF 80th FS Juvats WP 89-172, Kunsan, USAF 480th FS SP 91-481, Spangdahlem 2010, USAF 31st FW AV 89-178, Aviano, USAF 56th TFW MC 79-418, MacDill 1980s, Royal Danish Air Force ET-612, 2014, Israeli Air Force F-16B Netz 989, US Navy NSAWC adversary 07, Fallon](https://molen.dev/guide-media/liveries/f16.png)](https://molen.dev/guide-media/liveries/f16.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `danish-et-612` | Danish ET-612 | [Photo 1](https://commons.wikimedia.org/wiki/File:F-16B_Denmark_(ET_612)_Tour_de_Sky_2014-08-10_02.JPG) · [Photo 2](https://commons.wikimedia.org/wiki/File:F-16B_Denmark_(ET_612)_Tour_de_Sky_2014-08-09_01.JPG) |
-| `usaf-mc-gray` | USAF MC gray | [Photo](https://commons.wikimedia.org/wiki/File:General_Dynamics_F-16B-10_(SN_79-0418)_060905-F-1234S-041.jpg) |
-| `nsawc-07-blue-camouflage` | NSAWC 07 blue camouflage | [Photo](https://commons.wikimedia.org/wiki/File:920461_07_F-16B_NSAWC_(3143354959).jpg) |
+| `usaf-wp-80fs` | USAF 80th FS Juvats WP 89-172, Kunsan | [Photo](https://commons.wikimedia.org/wiki/File:80th_Fighter_Squadron_F-16D_in_training_exercise.jpg) |
+| `usaf-sp-480fs` | USAF 480th FS SP 91-481, Spangdahlem 2010 | [Photo](https://commons.wikimedia.org/wiki/File:F-16D_480th_FS_taking_off_Bulgaria_2010.jpg) |
+| `usaf-av-31fw` | USAF 31st FW AV 89-178, Aviano | [Photo](https://commons.wikimedia.org/wiki/File:General_Dynamics_F-16DM_%E2%80%9889-178_-_AV%E2%80%99_(28264486733).jpg) |
+| `usaf-mc-gray` | USAF 56th TFW MC 79-418, MacDill 1980s | [Photo](https://commons.wikimedia.org/wiki/File:General_Dynamics_F-16B-10_(SN_79-0418)_060905-F-1234S-041.jpg) |
+| `danish-et-612` | Royal Danish Air Force ET-612, 2014 | [Photo 1](https://commons.wikimedia.org/wiki/File:F-16B_Denmark_(ET_612)_Tour_de_Sky_2014-08-10_02.JPG) · [Photo 2](https://commons.wikimedia.org/wiki/File:F-16B_Denmark_(ET_612)_Tour_de_Sky_2014-08-09_01.JPG) |
+| `iaf-netz-989` | Israeli Air Force F-16B Netz 989 | [Photo 1](https://commons.wikimedia.org/wiki/File:Israeli_Air_Force_General_Dynamics_F-16B_Netz_(401)_Lofting-1.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:IAF_F-16B_Netz_017_CIAF_2004-2.jpg) |
+| `nsawc-07-blue-camouflage` | US Navy NSAWC adversary 07, Fallon | [Photo](https://commons.wikimedia.org/wiki/File:920461_07_F-16B_NSAWC_(3143354959).jpg) |
 
-**Danish ET-612.** Danish F-16B ET-612, Oulu 2014. Both side photographs establish the small roundels aft of the canopy, the pale ET-612 serial immediately aft, and the small fin flags. Flag forks point aft on both sides. No permanent F-16B model-name label remains. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**USAF 80th FS Juvats WP 89-172, Kunsan.** 8th Fighter Wing "Wolf Pack" F-16D 89-0172 of the 80th Fighter Squadron at Kunsan, applied to the two-seat F-16B model: FS 36270 medium gray with FS 36118 gunship gray along the spine, yellow fin cap, black WP tail code over the AF 89 172 serial block, the wolf head redrawn as original art, low-visibility national insignia on the aft fuselage, upper left and lower right wings. The wing shield above the wolf is omitted. Colors are approximations of the FS shades; stencils, crew names and small unit badges are omitted.
 
-**USAF MC gray.** Gray F-16B 79-0418 with MC fin code and yellow fin-top band. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**USAF 480th FS SP 91-481, Spangdahlem 2010.** 52nd Fighter Wing F-16D 91-0481 of the 480th Fighter Squadron from Spangdahlem, photographed taking off in Bulgaria in 2010, applied to the two-seat F-16B model: FS 36270/36118 grays, a blue fin-tip band, dark SP tail code over the AF 91 481 serial block and low-visibility insignia. The white script in the band is omitted. Colors are approximations of the FS shades; stencils, crew names and small unit badges are omitted.
 
-**NSAWC 07 blue camouflage.** NSAWC F-16B 920461/07: white radome, blue/teal/light-gray camouflage and 07 fin code. Camouflage boundaries are a procedural approximation. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**USAF 31st FW AV 89-178, Aviano.** 31st Fighter Wing F-16D 89-0178 from Aviano, applied to the two-seat F-16B model: FS 36270/36118 grays, the squadron band below the fin tip in purple edged with black, black AV tail code over the AF 89 178 serial block and low-visibility insignia. The lettering inside the band and the wing badge on the fin are omitted. Colors are approximations of the FS shades; stencils, crew names and small unit badges are omitted.
+
+**USAF 56th TFW MC 79-418, MacDill 1980s.** F-16B-10 79-0418 of the 56th Tactical Fighter Wing at MacDill in the early gray scheme: FS 36270 medium gray fuselage and upper surfaces, FS 36375 light compass gray under the wings, tailplanes and gear doors, and a light radome (the gunship gray spine is not shown); yellow fin-tip band over a black pinstripe, black MC tail code over the AF 79 418 serial block, low-visibility insignia. The Tactical Air Command badge on the fin is omitted. Colors are approximations; stencils are omitted.
+
+**Royal Danish Air Force ET-612, 2014.** Danish F-16B ET-612 at Tour de Sky, Oulu 2014. Both side photographs establish the small red and white roundels behind the canopy, the pale ET 612 serial immediately aft of them and the swallow-tailed state flags on the fin, hoist forward on both sides; FS 36270 medium gray overall. The small US serial under the flag, stencils and wing markings (not visible in the photographs) are omitted. Colors are approximations.
+
+**Israeli Air Force F-16B Netz 989.** Israeli Air Force F-16B Netz 989 in the desert scheme: tan, brown and pale green upper surfaces (a procedural blotch pattern standing in for the painted one), light blue-gray undersides, dark gray radome, black 989 on the fin and intake, the squadron phoenix redrawn as original art spanning fin and rudder, Star of David roundels on the upper right and lower left wings (which wings carry them is approximated). Colors are approximations; stencils and the fin-top badge are omitted.
+
+**US Navy NSAWC adversary 07, Fallon.** Naval Strike and Air Warfare Center adversary F-16B 920461 "07" at Fallon: three-blue angular camouflage (a procedural splinter pattern standing in for the painted one) over light blue-gray undersides, white radome, black 07 on the intakes, a small 07 on the fin cap, a dark lightning bolt on the fin, NSAWC on the ventral fins and low-visibility insignia. The badge on the bolt is omitted. Colors are approximations.
 
 ### Grumman F-14D Super Tomcat
 
 Type: `molen.entities.aircraft.f_14d`.
 
-[![Grumman F-14D Super Tomcat livery comparison: VF-31 Tomcatters, VF-213 Blacklions](https://molen.dev/guide-media/liveries/f_14d.png)](https://molen.dev/guide-media/liveries/f_14d.png)
+[![Grumman F-14D Super Tomcat livery comparison: VF-103 Jolly Rogers, 2002, VF-84 Jolly Rogers, 1986, VF-2 Bounty Hunters CAG, 2002, VF-213 Black Lions, 2003](https://molen.dev/guide-media/liveries/f_14d.png)](https://molen.dev/guide-media/liveries/f_14d.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `vf-31-tomcatters` | VF-31 Tomcatters | [Photo](https://commons.wikimedia.org/wiki/File:Grumman_F-14D-R_Super_Tomcat_159619_Lrear_FLAirMuse_9Feb07_(15139774478).jpg) |
-| `vf-213-blacklions` | VF-213 Blacklions | [Photo](https://commons.wikimedia.org/wiki/File:US_Navy_050912-N-5088T-001_An_F-14D_Tomcat,_assigned_to_the_Blacklions_of_Fighter_Squadron_Two_One_Three_(VF-213)_joins-up_on_the_port_side_of_an_S-3B_Viking.jpg) |
+| `vf-103-jolly-rogers` | VF-103 Jolly Rogers, 2002 | [Photo](https://commons.wikimedia.org/wiki/File:US_Navy_021029-N-1955P-116_A_U.S._Navy_F-14B_Tomcat_assigned_to_the_%22Jolly_Rogers%22_of_Fighter_Squadron_One_Zero_Three_(VF-103)_flies_over_the_Croat_coastline_near_Pula.jpg) |
+| `vf-84-jolly-rogers` | VF-84 Jolly Rogers, 1986 | [Photo](https://commons.wikimedia.org/wiki/File:F-14A_Tomcat_of_VF-84_in_flight_in_1986.jpg) |
+| `vf-2-bounty-hunters` | VF-2 Bounty Hunters CAG, 2002 | [Photo](https://commons.wikimedia.org/wiki/File:F-14D_VF-2_Bounty_Hunters_in_flight_2002.JPG) |
+| `vf-213-black-lions` | VF-213 Black Lions, 2003 | [Photo](https://commons.wikimedia.org/wiki/File:US_Navy_030226-N-4965F-507_An_F-14D_%22Tomcat%22_assigned_to_the_%22Black_Lions%22_of_Fighter_Squadron_Two_One_Three_(VF-213).jpg) |
 
-**VF-31 Tomcatters.** VF-31 Tomcatters paint study with the photographed AJ fin code. Squadron mascots, complete serial blocks and exact camouflage boundaries are omitted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**VF-103 Jolly Rogers, 2002.** VF-103 F-14B scheme from the referenced US Navy photograph, applied to the F-14D model: FS 36375 light ghost gray airframe, gloss black fins and rudders with a yellow cap, the white skull and crossbones redrawn as original vector art and centred on fin and rudder, white 03 under the cap, the black sash with yellow edges across the forward fuselage carrying the full-color national insignia, NAVY titles and modex 103. The ship name on the fin, the VF-103 ventral titles and the striped tanks are omitted. Colors and marking sizes are approximations.
 
-**VF-213 Blacklions.** VF-213 Blacklions paint study with the photographed AJ fin code. Squadron mascots, complete serial blocks and exact camouflage boundaries are omitted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**VF-84 Jolly Rogers, 1986.** VF-84 F-14A tactical paint scheme from the referenced 1986 US Navy photograph, applied to the F-14D model: FS 36320/36375 ghost grays, the skull and crossbones in dark low-visibility gray (original vector art) with the AJ tail code above it, modex 205, low-visibility national insignia and NAVY titles. The VF-84 lettering and the ship name are omitted. Approximate colors and sizes.
+
+**VF-2 Bounty Hunters CAG, 2002.** VF-2 F-14D commander's aircraft from the referenced 2002 US Navy photograph: ghost gray airframe, orange fin cap, and the band of blue, white and red that fans across fins and rudders from the leading-edge root to the trailing edge, with white stars in the blue and red, the black italic NE tail code and the squadron skull (original vector art) at its forward end; maroon 00 under the cap, the blue-white-red sash with the full-color national insignia under the front cockpit, modex 100 and NAVY titles. The orange ventral fins and the striped tanks are omitted. Approximate colors; band edges measured from the photograph.
+
+**VF-213 Black Lions, 2003.** VF-213 F-14D tactical scheme from the referenced 2003 US Navy photograph: FS 36375 light ghost gray overall, AJ tail code in a darker gray, modex 111, low-visibility national insignia and NAVY titles. The squadron's lion emblem is omitted. Approximate colors.
 
 ### Gulfstream G650ER
 
 Type: `molen.entities.aircraft.gulfstream_g650er`.
 
-[![Gulfstream G650ER livery comparison: N651BA white and silver, N835HC white and navy](https://molen.dev/guide-media/liveries/gulfstream_g650er.png)](https://molen.dev/guide-media/liveries/gulfstream_g650er.png)
+[![Gulfstream G650ER livery comparison: Zambia Air Force AF001, U.S. Air Force C-37B scheme, White with black accents, White with navy and red pinstripes](https://molen.dev/guide-media/liveries/gulfstream_g650er.png)](https://molen.dev/guide-media/liveries/gulfstream_g650er.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `n651ba-white-and-silver` | N651BA white and silver | [Photo](https://commons.wikimedia.org/wiki/File:BANK_OF_AMERICA_GULFSTREAM_G650ER_N651BA_(52900243583).jpg) |
-| `n835hc-white-and-navy` | N835HC white and navy | [Photo](https://commons.wikimedia.org/wiki/File:N835HC_G650ER_(54756779670).jpg) |
+| `zambia-air-force` | Zambia Air Force AF001 | [Photo](https://commons.wikimedia.org/wiki/File:Gulfstream_Aerospace_G-VI_(G650)-_AF001_-_Zambia_Air_Force.jpg) |
+| `usaf-c-37b` | U.S. Air Force C-37B scheme | [Photo](https://commons.wikimedia.org/wiki/File:U.S._Air_Force,_09-0525,_Gulfstream_Aerospace_C-37B_(27878765353).jpg) |
+| `white-black-accents` | White with black accents | [Photo](https://commons.wikimedia.org/wiki/File:Gulfstream_G650ER_N780RW_BWI_MD1.jpg) |
+| `navy-red-pinstripes` | White with navy and red pinstripes | [Photo](https://commons.wikimedia.org/wiki/File:Gulfstream_G650ER_-_N1895T_-_Serial_6346_-_VGHS.jpg) |
 
-**N651BA white and silver.** Paint study of N651BA white and silver. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Zambia Air Force AF001.** Zambia Air Force VIP G650 AF001 as photographed, applied to the G650ER model: silver overall, a dark navy sweep under the nose that thins into a pinline along the windows and runs on under the engines, dark rear fin and rudder, ZAMBIA AIR FORCE titles, the flag of Zambia behind the flight deck and as a fin flash, AF001 on the engines and fin (original vector drawings; the flag eagle is simplified). The small fuselage roundel is not resolvable in the reference and is omitted. Colours are approximate.
 
-**N835HC white and navy.** Paint study of N835HC white and navy. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**U.S. Air Force C-37B scheme.** The 89th Airlift Wing VIP scheme as photographed on C-37B 09-0525, applied to the G650ER model (the C-37B is the G550): white over medium blue behind a dark blue pinline under the windows, the break running down to the nose tip and up the tail cone, UNITED STATES OF AMERICA titles, the flag and serial 90525 on the fin and the national insignia on the engines (original vector drawings; the titles are set in a sans serif rather than the serif face). Colours and line heights are approximate.
+
+**White with black accents.** Private scheme as photographed on N780RW: white with a navy pinline along the windows curving down to the nose tip, a black crescent at the wing root, gloss black engines, pylons, lower tail cone, fin cap, fin-top fairing and tailplane, a black crescent along the fin's root and white registration on the engines. Registration N651QT is fictional; curve shapes are approximate and the black surround of the flight deck windows is left off.
+
+**White with navy and red pinstripes.** Private scheme as photographed on N1895T: white with a navy stripe, a red stripe and a navy pinline under the windows from the nose to the tail cone, and navy and red bands across the fin; navy registration on the engines. Registration N2286M is fictional; stripe heights are approximate.
 
 ### Leonardo AW139
 
 Type: `molen.entities.aircraft.aw139`.
 
-[![Leonardo AW139 livery comparison: Ornge orange, Maryland State Trooper black and gold](https://molen.dev/guide-media/liveries/aw139.png)](https://molen.dev/guide-media/liveries/aw139.png)
+[![Leonardo AW139 livery comparison: USAF MH-139A Grey Wolf, Italian Coast Guard, Guardia di Finanza GF-402, Ontario air ambulance orange, US state police black and gold](https://molen.dev/guide-media/liveries/aw139.png)](https://molen.dev/guide-media/liveries/aw139.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `ornge-orange` | Ornge orange | [Photo](https://commons.wikimedia.org/wiki/File:Ornge_C-GYNP.jpg) |
-| `maryland-state-trooper-black-and-gold` | Maryland State Trooper black and gold | [Photo](https://commons.wikimedia.org/wiki/File:MSP_Trooper_1_AW139_N384MD_MD1.jpg) |
+| `usaf-mh-139a` | USAF MH-139A Grey Wolf | [Photo 1](https://commons.wikimedia.org/wiki/File:MH-139,_Eglin_Air_Force_Base,_Florida,_2019_(cropped).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:MH-139A_Grey_Wolf.jpg) |
+| `guardia-costiera` | Italian Coast Guard | [Photo](https://commons.wikimedia.org/wiki/File:Guardia_Costiera_AW139.jpg) |
+| `guardia-di-finanza` | Guardia di Finanza GF-402 | [Photo](https://commons.wikimedia.org/wiki/File:AgustaWestland_AW139_(c-n_31301,_s-n_MM81750,_GF-402)_2017-09-23_Andre_Gerwing_Collection_ID_000349.jpg) |
+| `ontario-air-ambulance` | Ontario air ambulance orange | [Photo](https://commons.wikimedia.org/wiki/File:Ornge_C-GYNP.jpg) |
+| `state-police-black-gold` | US state police black and gold | [Photo](https://commons.wikimedia.org/wiki/File:MSP_Trooper_1_AW139_N384MD_MD1.jpg) |
 
-**Ornge orange.** Paint study of Ornge orange. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**USAF MH-139A Grey Wolf.** US Air Force MH-139A Grey Wolf (the military AW139) from the referenced photographs: dark gunship grey overall in a matt finish with the low-visibility national insignia outlined in black on the rear fuselage and the serial and U.S. AIR FORCE in dark grey on the fin. The serial shown (AF 21-001) is illustrative; the MH-139A mission fit (sensor turret, hoist) is not modelled. Colors are approximate.
 
-**Maryland State Trooper black and gold.** Paint study of Maryland State Trooper black and gold. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Italian Coast Guard.** Italian Coast Guard (Guardia Costiera) AW139 11-01 from the referenced photograph: white overall with a red belly and sponsons, a broad red band round the rear cabin and over the cowling, red upper fin, black anti-glare panel on the nose, GUARDIA COSTIERA in red under the cabin windows, the anchor badge on the red band (an original simplified drawing) and the code 11-01 with the Italian roundel on the boom. The Navy coat of arms on the cowling is omitted. Colors are approximate.
+
+**Guardia di Finanza GF-402.** Italian Guardia di Finanza AW139 GF-402 (MM81750) from the referenced photograph: light grey overall with a green and yellow double cheatline running from the nose under the doors, up the boom and the fin's leading edge, GUARDIA DI FINANZA in black on the boom, the code on the forward door and the serial on the fin. The corps' coat of arms on the fin is omitted. Colors are approximate.
+
+**Ontario air ambulance orange.** Ontario air ambulance AW139 from the referenced photograph of C-GYNP: bright orange overall with a white cheatline sweeping from the nose under the doors and up the tail boom, and the registration in white on the boom. The registration is fictional (C-GXLB); the operator's name, wings logo and base titles are omitted. Colors are approximate.
+
+**US state police black and gold.** US state police AW139 from the referenced photograph of a Maryland State Police aircraft: gloss black with an olive-gold roof and cowling, a gold cheatline along the lower fuselage, STATE TROOPER in gold on the boom, the Maryland state flag as a leaning banner on the rear fuselage (an original drawing of the flag), the US flag on the cowling and the registration in gold on the cowling. The registration is fictional (N618TP; the photographed aircraft is N384MD); the agency name, badge and seal are omitted. Colors are approximate.
 
 ### Lockheed Martin C-130J Super Hercules
 
 Type: `molen.entities.aircraft.c_130j`.
 
-[![Lockheed Martin C-130J Super Hercules livery comparison: Luftwaffe gray, US Air Force gray](https://molen.dev/guide-media/liveries/c_130j.png)](https://molen.dev/guide-media/liveries/c_130j.png)
+[![Lockheed Martin C-130J Super Hercules livery comparison: Kentucky ANG 123rd AW, 2024, 53rd WRS Hurricane Hunters WC-130J, US Coast Guard HC-130J 2015, RAF Hercules C5 ZH889, 47 Sqn, RAAF 37 Squadron A97-448](https://molen.dev/guide-media/liveries/c_130j.png)](https://molen.dev/guide-media/liveries/c_130j.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `luftwaffe-gray` | Luftwaffe gray | [Photo](https://commons.wikimedia.org/wiki/File:Hannover_Airport_Luftwaffe_German_Air_Force_Lockheed_Martin_C-130J-30_Hercules_55%2B02_(DSC01156).jpg) |
-| `us-air-force-gray` | US Air Force gray | [Photo](https://commons.wikimedia.org/wiki/File:20180512_C-130J_Super_Hercules_Dyess_AFB_Air_Show_2018_22.jpg) |
+| `kentucky-ang-123aw` | Kentucky ANG 123rd AW, 2024 | [Photo](https://commons.wikimedia.org/wiki/File:Lockheed_C-130J,_ILA_2024,_Schoenefeld_(ILA43898).jpg) |
+| `wc-130j-hurricane-hunters` | 53rd WRS Hurricane Hunters WC-130J | [Photo 1](https://commons.wikimedia.org/wiki/File:98-5307_WC-130J_HURRICANE_HUNTERS_(28865254758).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:WC-130J_Hercules_of_the_53rd_Weather_Reconnaissance_Squadron.jpg) |
+| `uscg-hc-130j` | US Coast Guard HC-130J 2015 | [Photo 1](https://commons.wikimedia.org/wiki/File:Coast_Guard_HC-130J.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:HC-130J_sits_on_the_tarmac_at_Air_Station_Barbers_Point.jpg) |
+| `raf-47-sqn-hercules-c5` | RAF Hercules C5 ZH889, 47 Sqn | [Photo 1](https://commons.wikimedia.org/wiki/File:EGVN_-_Lockheed_C-130J_Hercules_C5_-_Royal_Air_Force_-_ZH889_(33295282688).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:EGVN_-_Lockheed_C-130J_Hercules_C5_-_Royal_Air_Force_-_ZH887_(46246445655).jpg) |
+| `raaf-37-sqn` | RAAF 37 Squadron A97-448 | [Photo](https://commons.wikimedia.org/wiki/File:Royal_Australian_Air_Force_(A97-448)_Lockheed_Martin_C-130J_Hercules_at_Wagga_Wagga_Airport.jpg) |
 
-**Luftwaffe gray.** Paint study of Luftwaffe gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Kentucky ANG 123rd AW, 2024.** Kentucky Air National Guard C-130J-30 19-5945 from the referenced ILA 2024 photograph, laid out on the short C-130J: FS 36173 neutral gray, U.S. AIR FORCE title, US flag, ANG, the blue KENTUCKY tail band with its star and tail number 95945 on the fin, full-color national insignia aft, nose number and unit code, USAF and the national insignia on the wings. The ANG shield under the tail number and the KENTUCKY AIR GUARD sponson title are omitted. Approximate colors.
 
-**US Air Force gray.** Paint study of US Air Force gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**53rd WRS Hurricane Hunters WC-130J.** Air Force Reserve WC-130J 98-5307 of the 53rd Weather Reconnaissance Squadron (403rd Wing, Keesler) from the referenced photographs: gray overall, U.S. AIR FORCE title, US flag, AFRC, the black Hurricane Hunters tail band with the red storm symbol and tail number 85307, dark low-visibility national insignia, nose number and 403 WG. The WC-130J's pylon fuel tanks are not modelled. Approximate colors; the band's script lettering is set in an italic sans.
+
+**US Coast Guard HC-130J 2015.** US Coast Guard HC-130J 2015 (Air Station Elizabeth City) from the referenced photographs: Coast Guard white with the red-orange and blue racing stripe and service emblem (redrawn), black radome is the model default, number 2015 on the nose, U.S. COAST GUARD title, red-orange fin panel and base band around the full-color national insignia, diagonal stabilizer bands and red-orange outer wings, USCG and the insignia under the wings. Approximate stripe geometry and colors.
+
+**RAF Hercules C5 ZH889, 47 Sqn.** Royal Air Force Hercules C5 ZH889 (Brize Norton) from the referenced photographs: overall dark tactical green-gray, low-visibility red and blue roundels aft and fin flash, small ROYAL AIR FORCE title, 889 on the nose and the ZH889 serial on the tail cone. Approximate colors; the white and red propeller tip rings are not painted (blades are a separate material).
+
+**RAAF 37 Squadron A97-448.** Royal Australian Air Force C-130J-30 A97-448 (No. 37 Squadron, Richmond) from the referenced photograph, laid out on the short C-130J: light gray, ROYAL AUSTRALIAN AIR FORCE title and A97-448 in darker gray, low-visibility kangaroo roundels aft and on the fin, 448 on the nose, dark fin-root fairing. Yellow primer patches are omitted. Approximate colors.
 
 ### Lockheed Martin C-5M Super Galaxy
 
 Type: `molen.entities.aircraft.c_5m`.
 
-[![Lockheed Martin C-5M Super Galaxy livery comparison: First-flight gray and gold, 60th and 349th AMW gray](https://molen.dev/guide-media/liveries/c_5m.png)](https://molen.dev/guide-media/liveries/c_5m.png)
+[![Lockheed Martin C-5M Super Galaxy livery comparison: USAF 436th AW Dover, C-5M 86-0017, AFRC 439th AW Westover, 87-0031, AFRC 433rd AW Lackland, 69-0016, European One camouflage, 1980s](https://molen.dev/guide-media/liveries/c_5m.png)](https://molen.dev/guide-media/liveries/c_5m.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `first-flight-gray-and-gold` | First-flight gray and gold | [Photo](https://commons.wikimedia.org/wiki/File:C-5M_first_flight.jpg) |
-| `60th-and-349th-amw-gray` | 60th and 349th AMW gray | [Photo](https://commons.wikimedia.org/wiki/File:SBIRS_GEO-5_takes_flight_with_C-5M_Super_Galaxy_to_Cape_Canaveral_(6571060).jpeg) |
+| `dover-436-aw-super-galaxy` | USAF 436th AW Dover, C-5M 86-0017 | [Photo](https://commons.wikimedia.org/wiki/File:C-5_Galaxy_taking_off_from_Travis_AFB.jpg) |
+| `westover-439-aw` | AFRC 439th AW Westover, 87-0031 | [Photo 1](https://commons.wikimedia.org/wiki/File:Lockheed_C-5_Galaxy_USAF_(87-0031)_Westover_AFB_(6784226411).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:C-5_Galaxy_at_Westover_Air_Reserve_Base.jpg) |
+| `lackland-433-aw` | AFRC 433rd AW Lackland, 69-0016 | [Photo](https://commons.wikimedia.org/wiki/File:433d_AW_C-5_Kelly_Annex_TX.jpg) |
+| `european-one-1980s` | European One camouflage, 1980s | [Photo 1](https://commons.wikimedia.org/wiki/File:C-5_Galaxy.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:C-5M_Super_Galaxy_-_20-21_juin_1987_-_Chi%C3%A8vres_AB2.JPG) |
 
-**First-flight gray and gold.** First-flight gray and gold paint study with the photographed fin-band color. Banner lettering and nose/tail serial blocks are omitted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**USAF 436th AW Dover, C-5M 86-0017.** Air Mobility Command C-5M 86-0017 of the 436th Airlift Wing (Dover) from the referenced photograph: gray, U.S. AIR FORCE title, US flag, AMC, the sky-blue Dover tail band with the base name in a yellow lozenge and an eagle head at its front (original drawing), tail number 60017 and Super Galaxy script, full-color national insignia aft. Approximate colors and band art.
 
-**60th and 349th AMW gray.** Paint study of 60th and 349th AMW gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**AFRC 439th AW Westover, 87-0031.** Air Force Reserve C-5B 87-0031 of the 439th Airlift Wing (Westover) from the referenced photographs, applied to the C-5M model: gray, U.S. AIR FORCE title, US flag, AFRC, the red WESTOVER tail band with its forward-pointing white arrow, tail number 70031 and national insignia aft. Approximate colors.
+
+**AFRC 433rd AW Lackland, 69-0016.** Air Force Reserve C-5A 69-0016 of the 433rd Airlift Wing (Lackland, Kelly Field Annex) from the referenced photograph, applied to the C-5M model: gray, U.S. AIR FORCE title, US flag, AFRC, the Lone Star tail band (blue field with a white star ahead of white and red bars), tail number 90016 and national insignia aft. Approximate colors.
+
+**European One camouflage, 1980s.** Military Airlift Command C-5A in the 1980s European One camouflage from the referenced photographs, applied to the C-5M model: dark green, medium green and gray patches overall (deterministic pattern, not the aircraft-specific layout), small black U.S. AIR FORCE title and black national insignia. Serials and command markings are not legible in the photographs and are omitted.
 
 ### Lockheed Martin F-22A Raptor
 
 Type: `molen.entities.aircraft.f_22a`.
 
-[![Lockheed Martin F-22A Raptor livery comparison: 27th FS Langley gray, 302nd FS Alaska gray](https://molen.dev/guide-media/liveries/f_22a.png)](https://molen.dev/guide-media/liveries/f_22a.png)
+[![Lockheed Martin F-22A Raptor livery comparison: 95th FS flagship, Tyndall (TY), 19th FS, Hickam (HH), 3rd Wing, Elmendorf (AK), 1st Fighter Wing, Langley (FF), 422nd TES, 53rd Wing, Nellis (OT)](https://molen.dev/guide-media/liveries/f_22a.png)](https://molen.dev/guide-media/liveries/f_22a.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `27th-fs-langley-gray` | 27th FS Langley gray | [Photo](https://commons.wikimedia.org/wiki/File:F-22_Raptor_edit1.jpg) |
-| `302nd-fs-alaska-gray` | 302nd FS Alaska gray | [Photo](https://commons.wikimedia.org/wiki/File:F-22A_302d_FS.png) |
+| `ty-95fs-tyndall` | 95th FS flagship, Tyndall (TY) | [Photo 1](https://commons.wikimedia.org/wiki/File:Lockheed_Martin_F-22A_Raptor_%E2%80%9895FS_TY%E2%80%99_-05-4095-_(30873278036).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Lockheed_Martin_F-22A_Raptor_%E2%80%9908-152_-_FF%E2%80%99_(29102586122).jpg) |
+| `hh-19fs-hickam` | 19th FS, Hickam (HH) | [Photo 1](https://commons.wikimedia.org/wiki/File:19th_Fighter_Squadron_-_Lockheed_Martin_F-22A_LRIP_Lot_3_Block_20_Raptor_03-4045.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:F-22_Raptor_edit1.jpg) |
+| `ak-3rd-wing-elmendorf` | 3rd Wing, Elmendorf (AK) | [Photo 1](https://commons.wikimedia.org/wiki/File:06-4108-AK_Lockheed_Martin_F-22A-30-LM_Raptor_USAF_(6943757704).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:F-22_Raptor_edit1.jpg) |
+| `ff-1st-fighter-wing` | 1st Fighter Wing, Langley (FF) | [Photo 1](https://commons.wikimedia.org/wiki/File:Lockheed_Martin_F-22A_Raptor_%E2%80%9908-152_-_FF%E2%80%99_(28587915994).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Lockheed_Martin_F-22A_Raptor_%E2%80%9908-152_-_FF%E2%80%99_(29102586122).jpg) |
+| `ot-422-tes-nellis` | 422nd TES, 53rd Wing, Nellis (OT) | [Photo 1](https://commons.wikimedia.org/wiki/File:Lockheed_Martin_F-22_Raptor_%E2%80%9904-066_-_OT%E2%80%99_(27498673043).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:F-22_Raptor_edit1.jpg) |
 
-**27th FS Langley gray.** 27th FS Langley gray paint study with the photographed FF fin code. Squadron mascots, complete serial blocks and exact camouflage boundaries are omitted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**95th FS flagship, Tyndall (TY).** F-22A 05-4095, the 95th Fighter Squadron's flagship at Tyndall, from the referenced photograph: Have Glass light gray with the darker wing box, stabilator centres and fin patch, irregular darker patches on the fuselage (a blotch pattern, not the exact patch outlines), low-visibility national insignia upper left and lower right wing. The fin carries TY over 95 FS in low-visibility light gray with the 325th Fighter Wing badge above (simplified to a shield with a lightning bolt, not the heraldry).
 
-**302nd FS Alaska gray.** 302nd FS Alaska gray paint study with the photographed AK fin code. Squadron mascots, complete serial blocks and exact camouflage boundaries are omitted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**19th FS, Hickam (HH).** F-22A 03-4045 of the 19th Fighter Squadron (15th Wing, flown with the Hawaii ANG 199th Fighter Squadron) from the referenced photograph: Have Glass light gray with the darker wing box, stabilator centres and fin patch, irregular darker patches on the fuselage (a blotch pattern, not the exact patch outlines), low-visibility national insignia upper left and lower right wing. The fin carries HH and AF 03 045 in low-visibility light gray with the wing badge above (simplified to a shield with a star).
+
+**3rd Wing, Elmendorf (AK).** F-22A 06-4108 of the 3rd Wing, Joint Base Elmendorf-Richardson, from the referenced photograph: Have Glass light gray with the darker wing box, stabilator centres and fin patch, irregular darker patches on the fuselage (a blotch pattern, not the exact patch outlines), low-visibility national insignia upper left and lower right wing. The fin carries AK and AF 06 108 in low-visibility light gray with the wing badge above (simplified to a shield with a mountain peak).
+
+**1st Fighter Wing, Langley (FF).** F-22A 08-4152 of the 1st Fighter Wing, Joint Base Langley-Eustis, from the referenced photographs: Have Glass light gray with the darker wing box, stabilator centres and fin patch, irregular darker patches on the fuselage (a blotch pattern, not the exact patch outlines), low-visibility national insignia upper left and lower right wing. The fin carries FF and AF 08 152 in low-visibility light gray with the wing badge above (simplified to a shield with a chevron).
+
+**422nd TES, 53rd Wing, Nellis (OT).** F-22A 04-4066 of the 422nd Test and Evaluation Squadron, 53rd Wing, Nellis, from the referenced photograph: Have Glass light gray with the darker wing box, stabilator centres and fin patch, irregular darker patches on the fuselage (a blotch pattern, not the exact patch outlines), low-visibility national insignia upper left and lower right wing. The fin carries OT and AF 04 066 in low-visibility light gray with the 53rd Wing badge above (simplified to a shield with bars).
 
 ### Lockheed Martin F-35A Lightning II
 
 Type: `molen.entities.aircraft.f_35a`.
 
-[![Lockheed Martin F-35A Lightning II livery comparison: Nellis WA gray, Alaska AK gray](https://molen.dev/guide-media/liveries/f_35a.png)](https://molen.dev/guide-media/liveries/f_35a.png)
+[![Lockheed Martin F-35A Lightning II livery comparison: Royal Australian Air Force, A35-032, Royal Netherlands Air Force, F-001 (OT), USAF 56th Fighter Wing, Luke (LF), Royal Norwegian Air Force, 5288, JASDF 302 Squadron, Misawa (710), Israeli Air Force, 140 Squadron (905)](https://molen.dev/guide-media/liveries/f_35a.png)](https://molen.dev/guide-media/liveries/f_35a.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `nellis-wa-gray` | Nellis WA gray | [Photo](https://commons.wikimedia.org/wiki/File:USAF_F-35A_Lightning_II_Landing_3.jpg) |
-| `alaska-ak-gray` | Alaska AK gray | [Photo](https://commons.wikimedia.org/wiki/File:Lockheed_Martin_F-35_Lightning_II_(52709921114).jpg) |
+| `raaf-a35-032` | Royal Australian Air Force, A35-032 | [Photo](https://commons.wikimedia.org/wiki/File:Royal_Australian_Air_Force_(A35-032)_Lockheed_Martin_F-35A_Lightning_II_on_display_at_the_2025_Australian_International_Airshow.jpg) |
+| `rnlaf-f-001-ot` | Royal Netherlands Air Force, F-001 (OT) | [Photo](https://commons.wikimedia.org/wiki/File:Royal_Netherlands_Air_Force_Lockheed_Martin_F-35A_Lightning_II_(F-001_-_OT)_(31080065885).jpg) |
+| `usaf-56fw-luke-lf` | USAF 56th Fighter Wing, Luke (LF) | [Photo 1](https://commons.wikimedia.org/wiki/File:Raptor_%26_Lightning_(F-22A_09-191_-_FF_%26_F-35A_12-5052_-_LF)_(28201197585)_(2).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:F-35A_Lightning_II_at_Hill_Air_Force_Base,_Utah.jpg) |
+| `rnoaf-5288` | Royal Norwegian Air Force, 5288 | [Photo 1](https://commons.wikimedia.org/wiki/File:Norwegian_Lockheed-Martin_F-35A_Lightning_II_at_Ramstein_Air_Base,_Germany,_6_June_2024_(240606-F-TC518-2308).JPG) · [Photo 2](https://commons.wikimedia.org/wiki/File:Lockheed_Martin_F-35A_Lightning_II_Royal_Norwegian_Air_Force_5208_5D4_2380_(53921025875).jpg) |
+| `jasdf-302-squadron-710` | JASDF 302 Squadron, Misawa (710) | [Photo](https://commons.wikimedia.org/wiki/File:Japan_air_self_defense_force_Lockheed_Martin_F-35A_302SQ_RJSM.jpg) |
+| `iaf-140-squadron-905` | Israeli Air Force, 140 Squadron (905) | [Photo](https://commons.wikimedia.org/wiki/File:F-35I-Adir-0296.jpg) |
 
-**Nellis WA gray.** Nellis WA gray paint study with the photographed WA fin code. Squadron mascots, complete serial blocks and exact camouflage boundaries are omitted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Royal Australian Air Force, A35-032.** RAAF F-35A A35-032 from the referenced 2025 photograph: radar-absorbent dark gray with the lighter edge treatment on leading edges, control-surface edges and rudders; the low-visibility kangaroo roundel on the forward fuselage and both wings, A35-032 on the aft fuselage, and on the fins the number 32, the light gray double chevron ending in the squadron badge (simplified to a disc and shield) and the low-visibility flag at the tip. Stencils and the formation-light strip are omitted.
 
-**Alaska AK gray.** Alaska AK gray paint study with the photographed AK fin code. Squadron mascots, complete serial blocks and exact camouflage boundaries are omitted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Royal Netherlands Air Force, F-001 (OT).** RNLAF F-35A F-001 during operational test with the OT code, from the referenced photograph: radar-absorbent dark gray with the lighter edge treatment on leading edges, control-surface edges and rudders; the low-visibility Dutch roundel (three-tone disc with a dark centre, as photographed) on the forward fuselage and wings, OT over F-001 in light gray on the fins with the RNLAF badge above (simplified crown and shield).
+
+**USAF 56th Fighter Wing, Luke (LF).** F-35A 12-5052 of the 56th Fighter Wing, Luke, from the referenced photograph: radar-absorbent dark gray with the lighter edge treatment on leading edges, control-surface edges and rudders; on the fins LF in low-visibility light gray with the wing badge high and forward (simplified shield and star) and AF 12 5052 low and aft; the squadron badge disc on the intake trunk (simplified); low-visibility national insignia upper left and lower right wing (none on the fuselage).
+
+**Royal Norwegian Air Force, 5288.** RNoAF F-35A 5288 from the referenced photographs: radar-absorbent dark gray with the lighter edge treatment on leading edges, control-surface edges and rudders; the Norwegian F-35 low-visibility roundel (light gray ring with the split arrowhead, pointing aft on both sides as photographed) on the forward fuselage and wings, and on the fins the arrowhead emblem (simplified to three converging stripes) above the serial 5288.
+
+**JASDF 302 Squadron, Misawa (710).** JASDF F-35A 710 of 302 Squadron from the referenced photograph: radar-absorbent dark gray with the lighter edge treatment on leading edges, control-surface edges and rudders; the low-visibility hinomaru (gray disc) on the forward fuselage and wings, the squadron's white-tailed eagle on the fins in light gray (original angular drawing, flying forward on both sides) and 710 on the nose.
+
+**Israeli Air Force, 140 Squadron (905).** F-35I Adir 905 of 140 Squadron from the referenced photograph, applied to the F-35A model: radar-absorbent dark gray with the lighter edge treatment on leading edges, control-surface edges and rudders; the full-color Israeli marking (blue Star of David on a white disc) on the forward fuselage and wings, 905 in white under the windscreen and on the fins, and the squadron's golden-eagle head as white line art on the fins (original drawing). The F-35I's small differences in shape are not modelled.
 
 ### McDonnell Douglas AV-8B Harrier II Plus
 
 Type: `molen.entities.aircraft.av_8b`.
 
-[![McDonnell Douglas AV-8B Harrier II Plus livery comparison: VMA-513 green camouflage, Carrier gray](https://molen.dev/guide-media/liveries/av_8b.png)](https://molen.dev/guide-media/liveries/av_8b.png)
+[![McDonnell Douglas AV-8B Harrier II Plus livery comparison: USMC VMA-542 Tigers WH-02, 2007, USMC VMA-214 Black Sheep WE-04, USMC VMA-513 wraparound camouflage, 1980s, Spanish Navy 9a Escuadrilla 01-916, Italian Navy GRUPAER 1-03](https://molen.dev/guide-media/liveries/av_8b.png)](https://molen.dev/guide-media/liveries/av_8b.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `vma-513-green-camouflage` | VMA-513 green camouflage | [Photo](https://commons.wikimedia.org/wiki/File:AV-8B_Harrier_formation_VMA-513.JPG) |
-| `carrier-gray` | Carrier gray | [Photo](https://commons.wikimedia.org/wiki/File:US_Navy_030430-N-9802B-001_Aviation_Boatswain%27s_Mate_1st_Class_Thomas_Williford_gives_the_go_ahead_for_an_AV-8B_Harrier_jet_to_execute_a_vertical_takeoff.jpg) |
+| `vma-542-wh-02` | USMC VMA-542 Tigers WH-02, 2007 | [Photo](https://commons.wikimedia.org/wiki/File:AV-8B_VMA-542_HMS_Illustrious_2007.jpg) |
+| `vma-214-we-04` | USMC VMA-214 Black Sheep WE-04 | [Photo 1](https://commons.wikimedia.org/wiki/File:Marine_Attack_Squadron_214_(VMA-214)_AV-8B_Harrier_ll_(V-STOL)_BuNo165573_WE-04_Black_Sheep_(15465096665).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:US_Navy_051111-N-1467K-004_An_AV-8B_Harrier,_assigned_to_the_Black_Sheep_of_Marine_Attack_Squadron_Two_One_Four_(VMA-214),_prepares_to_launch.jpg) |
+| `vma-513-camouflage` | USMC VMA-513 wraparound camouflage, 1980s | [Photo](https://commons.wikimedia.org/wiki/File:AV-8B_Harrier_formation_VMA-513.JPG) |
+| `armada-01-916` | Spanish Navy 9a Escuadrilla 01-916 | [Photo 1](https://commons.wikimedia.org/wiki/File:McDonnell_Douglas_EAV-8B%2B_Harrier_II_(VA.1B-26_01-916)._Detalle_de_la_cola_(35062900096).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Cuatro_McDonnell_Douglas_EAV-8B%2B_Harrier_II_(VA.1B-26_01-916)_de_la_9%C2%AA_Escuadrilla_en_la_cubierta_de_vuelo_del_L-61_(34292830733).jpg) |
+| `marina-1-03` | Italian Navy GRUPAER 1-03 | [Photo](https://commons.wikimedia.org/wiki/File:Marina_Militare_AV-8B_Harrier_II%2B.jpg) |
 
-**VMA-513 green camouflage.** Paint study of VMA-513 green camouflage. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**USMC VMA-542 Tigers WH-02, 2007.** VMA-542 AV-8B+ WH-02 from the referenced 2007 photograph: light ghost gray overall, the yellow-and-black sawtooth along the fin leading edge, black WH code, BuNo 164554 and MARINES on the fin, 02 on the nose and fin tip, MARINES on the upper right wing, VMA-542 on the boom and full-color national insignia on the nozzle fairings and wings (original vector art). The tiger-head badge and stencils are omitted; colors approximate.
 
-**Carrier gray.** Paint study of Carrier gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**USMC VMA-214 Black Sheep WE-04.** VMA-214 AV-8B+ WE-04 from the referenced photographs: dark tactical gray overall with light gray low-visibility markings: the stacked WE code among small stars, BuNo 165573 and MARINES on the fin, 04 on the nose and fin tip, VMA-214 BLACKSHEEP on the boom and outline national insignia on the nozzle fairings and wings (original vector art). The squadron badge and stencils are omitted; colors approximate.
+
+**USMC VMA-513 wraparound camouflage, 1980s.** Early VMA-513 AV-8B from the referenced formation photograph: wraparound dark green and dark gray camouflage on all surfaces (procedural patches standing in for the painted pattern), black low-visibility national insignia on the nozzle fairings and wings, the WF squadron code and MARINES on the fin and a nose number. The code and number are the squadron's period markings and are not legible in the photograph; colors approximate, stencils omitted.
+
+**Spanish Navy 9a Escuadrilla 01-916.** Spanish Navy EAV-8B+ VA.1B-26 / 01-916 of the 9a Escuadrilla from the referenced photographs: medium gray overall, red-yellow-red roundels on the nozzle fairings and both wing surfaces, light gray ARMADA on the fin and nose, 01-916 under it, 16 on the fin and the black VA.1B-26 serial on the boom (original vector art). The naval aviation badge on the fin and stencils are omitted; colors approximate.
+
+**Italian Navy GRUPAER 1-03.** Marina Militare AV-8B+ M.M.7199 / 1-03 from the referenced photograph: gray overall with a dark rudder and radome, white MARINA on the fin, 1-03 and M.M.7199 on the boom behind a small roundel, 03 on the nose, the anchor badge on the nozzle fairings and roundels on both wing surfaces (original vector art). Squadron nicknames on stores and the stencils are omitted; colors approximate.
 
 ### McDonnell Douglas F-15C Eagle
 
 Type: `molen.entities.aircraft.f_15c`.
 
-[![McDonnell Douglas F-15C Eagle livery comparison: Langley FF gray, 65th AGRS blue camouflage](https://molen.dev/guide-media/liveries/f_15c.png)](https://molen.dev/guide-media/liveries/f_15c.png)
+[![McDonnell Douglas F-15C Eagle livery comparison: 67th FS Fighting Cocks, Kadena, 2008, 493rd FS heritage, Lakenheath, 2019, 65th Aggressor Squadron, Nellis, 2012, Israeli Air Force 106 Sqn Baz 818, 2019, JASDF F-15J 72-8880](https://molen.dev/guide-media/liveries/f_15c.png)](https://molen.dev/guide-media/liveries/f_15c.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `langley-ff-gray` | Langley FF gray | [Photo](https://commons.wikimedia.org/wiki/File:USAF_F-15C_fires_AIM-7_Sparrow_2.jpg) |
-| `65th-agrs-blue-camouflage` | 65th AGRS blue camouflage | [Photo](https://commons.wikimedia.org/wiki/File:F-15C_65th_Aggressor_Squadron_(8189062831).jpg) |
+| `zz-67fs-kadena` | 67th FS Fighting Cocks, Kadena, 2008 | [Photo 1](https://commons.wikimedia.org/wiki/File:F-15C_67th_Fighter_Squadron_2008.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:83-0039-ZZ_McDonnell_Douglas_F-15C_Eagle_USAF_(9536493920).jpg) |
+| `ln-493fs-heritage` | 493rd FS heritage, Lakenheath, 2019 | [Photo 1](https://commons.wikimedia.org/wiki/File:493rd_Fighter_Squadron_Heritage_F-15C_Eagle_(5253577).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:493rd_Grim_Reapers_Heritage_F-15C_(5260166).jpg) |
+| `wa-65agrs-aggressor` | 65th Aggressor Squadron, Nellis, 2012 | [Photo](https://commons.wikimedia.org/wiki/File:F-15C_65th_Aggressor_Squadron_(8189062831).jpg) |
+| `iaf-baz-818` | Israeli Air Force 106 Sqn Baz 818, 2019 | [Photo](https://commons.wikimedia.org/wiki/File:McDonnell_Douglas_F-15C-28-MC_Eagle_(Baz)_%E2%80%98818%E2%80%99_(48644505872).jpg) |
+| `jasdf-f15j-880` | JASDF F-15J 72-8880 | [Photo](https://commons.wikimedia.org/wiki/File:McDonnell_Douglas_(Mitsubishi)_F-15J_Eagle,_Japan_-_Air_Force_AN2322615.jpg) |
 
-**Langley FF gray.** Langley FF gray paint study with the photographed FF fin code. Squadron mascots, complete serial blocks and exact camouflage boundaries are omitted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**67th FS Fighting Cocks, Kadena, 2008.** F-15C 85-0115 of the 18th Wing’s 67th Fighter Squadron from the referenced 2008 USAF photograph: Mod Eagle camouflage of FS 36251 with FS 36176 patches (procedural on the airframe, the photographed patch drawn on the fins), the light ZZ code and AF 85 115 serial on the fin patch, the squadron’s red fin-tip band, and low-visibility national insignia on the intakes and wings. The wing badge, crew names and small stencils are omitted; camouflage boundaries and colors are approximations.
 
-**65th AGRS blue camouflage.** 65th AGRS blue camouflage paint study with the photographed WA fin code. Squadron mascots, complete serial blocks and exact camouflage boundaries are omitted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**493rd FS heritage, Lakenheath, 2019.** 48th Fighter Wing heritage F-15C of the 493rd Fighter Squadron from the referenced USAF photographs: dark gray overall, the red-and-white checkerboard nose band behind the radome, black-and-white D-Day invasion stripes across both wings and the belly, blue fin leading edges, caps and rudders, the black LN code and AF 86 156 serial, and the wing’s green Statue of Liberty redrawn as an original silhouette. The serial is representative, the wing and squadron badges are omitted, and the check size and stripe widths are approximations.
+
+**65th Aggressor Squadron, Nellis, 2012.** 65th Aggressor Squadron F-15C from the referenced Nellis photograph: light gray forward fuselage and a blue-gray splinter camouflage aft (procedural, approximating the photographed shard pattern), yellow-and-black checked fin tips, the white WA tail code outlined in dark blue, aggressor number 94 on the intakes, 494 on the nose and low-visibility national insignia. The squadron and command badges and crew names are omitted.
+
+**Israeli Air Force 106 Sqn Baz 818, 2019.** Israeli Air Force F-15C Baz 818 of 106 (Spearhead) Squadron, Tel Nof, from the referenced 2019 photograph (Cobra Warrior, RAF Waddington): light gray overall with a darker radome, the blue Star of David roundel on the intake sides and wings, 818 in blue on the nose and large in black on the fins, the squadron’s eagle badge redrawn as an original diving-eagle silhouette and the red star on the fin. The red inner-fin flash, kill markings and stencils are omitted; wing roundel positions and colors are approximations.
+
+**JASDF F-15J 72-8880.** Japan Air Self-Defense Force F-15J 72-8880 (the licence-built F-15C) from the referenced photograph: light gray overall with a gray radome, the hinomaru on the intake sides and above and below both wings, the black 880 nose number (its thin white edge omitted) and the 72-8880 fin serial. This jet wore a special squadron fin and tank design that is omitted (standard markings only), as are the small stencils and the yellow rescue arrows. Colors are approximations.
 
 ### McDonnell Douglas F/A-18C Hornet
 
 Type: `molen.entities.aircraft.fa_18c`.
 
-[![McDonnell Douglas F/A-18C Hornet livery comparison: US Navy yellow tail, Finnish HN-442 gray](https://molen.dev/guide-media/liveries/fa_18c.png)](https://molen.dev/guide-media/liveries/fa_18c.png)
+[![McDonnell Douglas F/A-18C Hornet livery comparison: VFA-192 Golden Dragons CAG, Blue Angels No. 1, 2014, VMFA-232 Red Devils, 2024, Finnish Air Force HN-442, 2025, Swiss Air Force J-5004](https://molen.dev/guide-media/liveries/fa_18c.png)](https://molen.dev/guide-media/liveries/fa_18c.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `us-navy-yellow-tail` | US Navy yellow tail | [Photo](https://commons.wikimedia.org/wiki/File:An_F-A-18C_Hornet_launches_from_the_flight_deck_of_the_conventionally_powered_aircraft_carrier.jpg) |
-| `finnish-hn-442-gray` | Finnish HN-442 gray | [Photo](https://commons.wikimedia.org/wiki/File:Finnish_Air_Force_McDonnell_Douglas_FA-18C_Hornet_HN-442_Royal_International_Air_Tattoo_2025_03.jpg) |
+| `vfa-192-golden-dragons` | VFA-192 Golden Dragons CAG | [Photo](https://commons.wikimedia.org/wiki/File:An_F-A-18C_Hornet_launches_from_the_flight_deck_of_the_conventionally_powered_aircraft_carrier.jpg) |
+| `blue-angels-1` | Blue Angels No. 1, 2014 | [Photo](https://commons.wikimedia.org/wiki/File:McDonnell_Douglas_FA-18C_Hornet_BuNo_163498_Blue_Angels_1_LSide_Dawn_SNF_04April2014_(14584524464).jpg) |
+| `vmfa-232-red-devils` | VMFA-232 Red Devils, 2024 | [Photo](https://commons.wikimedia.org/wiki/File:VMFA-232_FA-18C_taxis_at_Tinian_during_Cope_North_24.jpg) |
+| `finnish-hn-442` | Finnish Air Force HN-442, 2025 | [Photo](https://commons.wikimedia.org/wiki/File:Finnish_Air_Force_McDonnell_Douglas_FA-18C_Hornet_HN-442_Royal_International_Air_Tattoo_2025_03.jpg) |
+| `swiss-j-5004` | Swiss Air Force J-5004 | [Photo](https://commons.wikimedia.org/wiki/File:McDonnell_Douglas_F-A-18C_Hornet_%E2%80%98J-5004_-_004%E2%80%99_(31704782592).jpg) |
 
-**US Navy yellow tail.** US Navy 300 paint study: gray airframe and yellow fins. Dragon artwork and nose number are omitted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**VFA-192 Golden Dragons CAG.** VFA-192 commander's (CAG) F/A-18C 300 from the referenced US Navy photograph: tactical ghost grays, dark blue fins carrying the squadron's gold dragon head at the tip and a gold sweep at the root (original drawings, not the squadron's artwork), the white NF code of Carrier Air Wing 5, modex 300 and low-visibility national insignia. The yellow inner fin faces, crew names and stencils are omitted; the dragon is a simplified interpretation.
 
-**Finnish HN-442 gray.** Paint study of Finnish HN-442 gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Blue Angels No. 1, 2014.** US Navy Flight Demonstration Squadron F/A-18C BuNo 163498, No. 1, from the referenced 2014 photograph: Blue Angels blue (FS 15050) overall with FS 13538 yellow on the fin leading edges and tips and along the LEX edges, the yellow 1 on the fins, U.S. NAVY on the nacelles, the Blue Angels title under the cockpit set in plain italic type, and the serial on the tail. The team crest, the script logotype and crew names are omitted; trim widths are approximations.
+
+**VMFA-232 Red Devils, 2024.** US Marine Corps VMFA-232 F/A-18C from the referenced 2024 photograph: tactical ghost grays, red fin tips and leading edges with the white modex 23 on the tips, the WT tail code and 23 on the nose in insignia gray, MARINES on the nacelles and low-visibility national insignia. The squadron’s devil emblem and stencils are omitted; the MARINES title placement follows standard Marine Hornet practice rather than this photograph.
+
+**Finnish Air Force HN-442, 2025.** Finnish Air Force F/A-18C HN-442 from the referenced 2025 photograph: two-tone gray, the small blue-and-white roundel and black HN-442 on the forward fuselage below the LEX, 42 at the fin tips, and roundels above and below both wings. The unit badge on the fin and stencils are omitted; wing roundel size is an approximation.
+
+**Swiss Air Force J-5004.** Swiss Air Force F/A-18C J-5004 from the referenced photograph: light gray overall, the red-and-white Swiss marking on the outer fins and above and below both wings, the black J-5004 serial low on the fins and 004 on the nose. Stencils are omitted; the wing marking size is an approximation.
 
 ### Mikoyan MiG-29A
 
 Type: `molen.entities.aircraft.mig_29a`.
 
-[![Mikoyan MiG-29A livery comparison: Polish 105 blue gray, Polish 89 gray green camouflage](https://molen.dev/guide-media/liveries/mig_29a.png)](https://molen.dev/guide-media/liveries/mig_29a.png)
+[![Mikoyan MiG-29A livery comparison: Polish Air Force 105, 1.ELT, 2016, Polish Air Force 89, 1.ELT, 2011, Luftwaffe JG 73 29+08, 2003, Soviet Air Force blue 10, Farnborough 1988, Ukrainian Air Force 05, digital camouflage, 2018](https://molen.dev/guide-media/liveries/mig_29a.png)](https://molen.dev/guide-media/liveries/mig_29a.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `polish-105-blue-gray` | Polish 105 blue gray | [Photo](https://commons.wikimedia.org/wiki/File:105_Polish_Air_Force_MiG-29A_Fulcrum_ILA_Berlin_2016_01.jpg) |
-| `polish-89-gray-green-camouflage` | Polish 89 gray green camouflage | [Photo](https://commons.wikimedia.org/wiki/File:89_Mig-29A_Fulcrum_1.elt_Poland,_Minsk-Mazowiecki_2011_IMG_7358_(50435607716).jpg) |
+| `polish-105-1-elt` | Polish Air Force 105, 1.ELT, 2016 | [Photo](https://commons.wikimedia.org/wiki/File:105_Polish_Air_Force_MiG-29A_Fulcrum_ILA_Berlin_2016_01.jpg) |
+| `polish-89-camouflage` | Polish Air Force 89, 1.ELT, 2011 | [Photo](https://commons.wikimedia.org/wiki/File:89_Mig-29A_Fulcrum_1.elt_Poland,_Minsk-Mazowiecki_2011_IMG_7358_(50435607716).jpg) |
+| `luftwaffe-jg73-29-08` | Luftwaffe JG 73 29+08, 2003 | [Photo 1](https://commons.wikimedia.org/wiki/File:Two_German_Fuftwaffe_Mikoyan-Gurevitch_MiG-29G_in_flight_over_the_Gulf_of_Mexico_with_a_USAF_McDonnell_Douglas_F-15C_Eagle,_10_June_2003_(6645969).jpeg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Mikoyan-Gurevich_MiG-29G_(c-n_29605_25800,_29%2B14)_1994-05-31_Andre_Gerwing_Collection_ID_030799.jpg) |
+| `soviet-blue-10-1988` | Soviet Air Force blue 10, Farnborough 1988 | [Photo 1](https://commons.wikimedia.org/wiki/File:Mikoyan-Gurevich_MiG-29_%22blue_10%22_Russian_Air_Force,_Farnborough_UK,_September_1988._(5589824688).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Mikoyan-Gurevich_MiG-29_%22blue_10%22_Russian_Air_Force,_Farnborough_UK,_September_1988._(5589226135).jpg) · [Photo 3](https://commons.wikimedia.org/wiki/File:MiG-29_fuselage.jpg) |
+| `ukraine-05-digital` | Ukrainian Air Force 05, digital camouflage, 2018 | [Photo 1](https://commons.wikimedia.org/wiki/File:181009-Z-VM449-513_(cropped).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:CLEAR_SKY_2018_(4805844).jpg) |
 
-**Polish 105 blue gray.** Paint study of Polish 105 blue gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Polish Air Force 105, 1.ELT, 2016.** Polish Air Force MiG-29A 105 from the referenced ILA 2016 photograph: dark blue-gray upper surfaces and fins, light gray undersides climbing to the canopy sill on the nose, light gray radome, red bort number 105 on the intakes and the red-and-white checkerboard on the outer fins and both wing surfaces (original vector art). The portrait on the inner fin and all stencils are omitted; colors and the color boundary are approximations.
 
-**Polish 89 gray green camouflage.** Paint study of Polish 89 gray green camouflage. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Polish Air Force 89, 1.ELT, 2011.** Polish Air Force MiG-29A 89 of 1.ELT from the referenced 2011 photograph: three-gray disruptive camouflage on the upper surfaces and fins (procedural patches standing in for the painted pattern), light gray undersides, gray radome, red 89 on the intakes and checkerboards on the outer fins and wings (original vector art). Stencils omitted; colors approximate.
+
+**Luftwaffe JG 73 29+08, 2003.** Luftwaffe MiG-29G 29+08 of Jagdgeschwader 73 from the referenced 2003 photograph: two-tone light gray upper camouflage (procedural patches), medium gray undersides and intakes, dark radome, the serial 29+08 with its Balkenkreuz on the intakes, small German flags high on the outer fins and crosses on both wing surfaces (original vector art). The JG 73 badge on the fins and the stencils are omitted; colors approximate.
+
+**Soviet Air Force blue 10, Farnborough 1988.** The Soviet MiG-29 "blue 10" shown at Farnborough in 1988, from the referenced photographs: light gray and blue-gray upper camouflage (procedural patches), light undersides, dark radome, red stars with white and red borders on the outer fins and both wing surfaces, and the small blue 10 high on the fins (original vector art). Stencils omitted; colors and patch layout approximate.
+
+**Ukrainian Air Force 05, digital camouflage, 2018.** Ukrainian Air Force MiG-29 05 from the referenced Clear Sky 2018 photographs, applied to the MiG-29A model: three-tone gray digital (pixel) camouflage on the upper surfaces and fins, medium gray undersides, white outlined 05 on the intakes and fin tops, and the blue shield with the gold trident on the outer fins (original vector drawing, simplified). Wing markings are not shown in the photographs and are omitted, as are stencils; the pixel pattern is procedural and colors are approximate.
 
 ### North American Rockwell OV-10A Bronco
 
 Type: `molen.entities.aircraft.ov_10`.
 
-[![North American Rockwell OV-10A Bronco livery comparison: USMC VMO-4 gray, USAF 21st TASS dark green, USAF two-tone green](https://molen.dev/guide-media/liveries/ov_10.png)](https://molen.dev/guide-media/liveries/ov_10.png)
+[![North American Rockwell OV-10A Bronco livery comparison: USAF Southeast Asia camouflage, Venezuelan Air Force desert camouflage, USAF 601st TASW European One, 1982, USMC VMO-4 tactical gray, 1990, Luftwaffe OV-10B target tug 99+18, Colombian Air Force shark mouth, FAC 2223](https://molen.dev/guide-media/liveries/ov_10.png)](https://molen.dev/guide-media/liveries/ov_10.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `usmc-vmo-4-gray` | USMC VMO-4 gray | [Photo](https://commons.wikimedia.org/wiki/File:OV-10As_VMO-4_1990.JPEG) |
-| `usaf-21st-tass-green` | USAF 21st TASS dark green | [Photo](https://commons.wikimedia.org/wiki/File:OV-10A_21st_TASS_firing_rockets_1989.JPEG) |
-| `usaf-1985-two-tone-green` | USAF two-tone green | [Photo](https://commons.wikimedia.org/wiki/File:OV-10_Bronco_firing_White_phosphorus.jpg) |
+| `usaf-sea-camouflage` | USAF Southeast Asia camouflage | [Photo 1](https://commons.wikimedia.org/wiki/File:OV-10A_USAF_over_Mekong_delta.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:OV-10A_RThaiAF_1987.JPEG) |
+| `venezuelan-desert-camouflage` | Venezuelan Air Force desert camouflage | [Photo](https://commons.wikimedia.org/wiki/File:2641_Rockwell_OV-10E_Bronco_Venezuela_Airforce_(7453147600).jpg) |
+| `usaf-601st-tasw-european-one` | USAF 601st TASW European One, 1982 | [Photo](https://commons.wikimedia.org/wiki/File:OV-10As_601st_TASW_over_Germany_1982.JPEG) |
+| `usmc-vmo-4-gray` | USMC VMO-4 tactical gray, 1990 | [Photo](https://commons.wikimedia.org/wiki/File:OV-10As_VMO-4_1990.JPEG) |
+| `luftwaffe-target-tug` | Luftwaffe OV-10B target tug 99+18 | [Photo](https://commons.wikimedia.org/wiki/File:North_American_Rockwell_OV-10B_Bronco_Luftwaffe_99%2B18,_pic1.JPG) |
+| `colombian-shark-gray` | Colombian Air Force shark mouth, FAC 2223 | [Photo](https://commons.wikimedia.org/wiki/File:FAC2223_North_American_OV-10A_Bronco_Colombian_Air_Force_(7501643166).jpg) |
 
-**USMC VMO-4 gray.** Paint study of USMC VMO-4 gray. The linked photograph identifies the real aircraft used for the colors; a multi-color camouflage is reduced to its dominant color and model panel boundaries are adapted. Colors are visual approximations. National insignia, unit markings, serials, lettering and stencils are omitted; this is a photo-based adaptation, not a certified replica.
+**USAF Southeast Asia camouflage.** USAF OV-10A in the T.O. 1-1-4 Southeast Asia scheme: FS 30219 tan, FS 34102 medium green and FS 34079 dark green over FS 36622 light gray, the pattern generated as organic patches rather than the factory pattern drawing. Pattern and underside split follow the SEA-camouflaged Thai OV-10C photograph; USAF and the serial on the fins and the national insignia on the pod and wings (upper left, lower right) follow the USAF Mekong photograph of 67-14650, which shows that aircraft in its earlier gray. Red PROPELLER stripes, ejection-seat triangles and NO STEP stencils. Colors and the patch pattern are approximations.
 
-**USAF 21st TASS dark green.** Paint study of USAF 21st TASS dark green. The linked photograph identifies the real aircraft used for the colors; a multi-color camouflage is reduced to its dominant color and model panel boundaries are adapted. Colors are visual approximations. National insignia, unit markings, serials, lettering and stencils are omitted; this is a photo-based adaptation, not a certified replica.
+**Venezuelan Air Force desert camouflage.** OV-10E 2641 of the Venezuelan Air Force as preserved: sand-pink and gray-green wraparound camouflage (generated patches), the serial on the fins, the unit pennant redrawn as a plain original triangle, Venezuelan flag on the booms and roundels on the wings. Faded colors are approximated; small stencils are omitted.
 
-**USAF two-tone green.** Paint study of USAF two-tone green. The linked photograph identifies the real aircraft used for the colors; a multi-color camouflage is reduced to its dominant color and model panel boundaries are adapted. Colors are visual approximations. National insignia, unit markings, serials, lettering and stencils are omitted; this is a photo-based adaptation, not a certified replica.
+**USAF 601st TASW European One, 1982.** OV-10A of the 601st Tactical Air Support Wing over Germany in 1982: wraparound European One camouflage (FS 34092 and FS 34102 greens, FS 36081 gunship gray) as generated patches, black USAF and serial on the fins, subdued black national insignia, PROPELLER and ejection-seat stencils. Pattern and colors are approximations.
+
+**USMC VMO-4 tactical gray, 1990.** USMC OV-10A of VMO-4 in 1990: overall tactical gray (about FS 36320), MARINES on the booms, the MU tail code and serial on the fins in darker gray, low-visibility national insignia, PROPELLER and ejection-seat stencils. Serial chosen from the squadron range; colors approximate.
+
+**Luftwaffe OV-10B target tug 99+18.** OV-10B 99+18 in Luftwaffe target-towing colors as restored: olive drab with Day-Glo orange nose panel and nacelle fronts, Balkenkreuz on the booms and wings, 99+18 on the booms, 18 on the nose, German flag on the fins. Colors and panel shapes are approximations.
+
+**Colombian Air Force shark mouth, FAC 2223.** OV-10A FAC 2223 of the Colombian Air Force as preserved: overall dark gray with a shark mouth and eyes on the nose (original drawing), FAC 2223 and the national flag on the fins, the yellow BRONCO fin band, the Air Force roundel on the booms and wings, 2223 under the nose, PROPELLER stripes and ejection-seat triangles. The squadron badge is omitted; colors approximate.
 
 ### OH-6
 
 Type: `molen.entities.aircraft.oh6`.
 
-[![OH-6 livery comparison: Army olive drab, Army natural metal](https://molen.dev/guide-media/liveries/oh6.png)](https://molen.dev/guide-media/liveries/oh6.png)
+[![OH-6 livery comparison: US Army, 1966, US Army air cavalry scout, Vietnam era, JGSDF two-tone camouflage, Royal Danish Army Hughes 500M, Civil OH-6A, blue and white, Civil Hughes 500, lime green](https://molen.dev/guide-media/liveries/oh6.png)](https://molen.dev/guide-media/liveries/oh6.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `army-olive-drab` | Army olive drab | [Photo](https://commons.wikimedia.org/wiki/File:Hughes_YOH-6A_Cayuse_US_Army_in_flight.jpg) |
-| `army-natural-metal` | Army natural metal | [Photo](https://commons.wikimedia.org/wiki/File:OH-6_Right_side.jpg) |
+| `us-army-1966` | US Army, 1966 | [Photo 1](https://commons.wikimedia.org/wiki/File:US_Army_OH-6A_Cayuse.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:67-16506_Hughes_OH-6A_Cayuse_(369A)_(cn_0891)_US_Army._(10880999226).jpg) |
+| `us-army-air-cavalry` | US Army air cavalry scout, Vietnam era | [Photo 1](https://commons.wikimedia.org/wiki/File:2019_Royal_International_Air_Tattoo_EGVA_-_Hughes_OH-6A_Cayuse_-_G-OHGA_69-16011_(48372649516).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:US_Army_OH-6A_Cayuse.jpg) |
+| `jgsdf-camouflage` | JGSDF two-tone camouflage | [Photo](https://commons.wikimedia.org/wiki/File:JGSDF_Kawasaki_Hughes_OH-6D_(JG-1312_31312)_(5412266743).jpg) |
+| `danish-army-500m` | Royal Danish Army Hughes 500M | [Photo](https://commons.wikimedia.org/wiki/File:Danish_OH-6.JPEG) |
+| `civil-blue-white` | Civil OH-6A, blue and white | [Photo](https://commons.wikimedia.org/wiki/File:67-16066_Hughes_369_OH-6A_Cayuse_U.S._Army_(7516183628).jpg) |
+| `civil-lime-500` | Civil Hughes 500, lime green | [Photo](https://commons.wikimedia.org/wiki/File:Hughes_500_N369FC_FDK_MD1.jpg) |
 
-**Army olive drab.** Paint study of Army olive drab. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**US Army, 1966.** US Army OH-6A 12931 as photographed in flight around 1966: FS 34087 olive drab, black UNITED STATES ARMY along the boom and the serial on the transmission fairing, redrawn. Approximate colors and letter sizes.
 
-**Army natural metal.** Paint study of Army natural metal. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**US Army air cavalry scout, Vietnam era.** Vietnam-era air cavalry scout ("Loach") as restored on OH-6A 69-16011: olive drab, an orange fin top with black bands and orange stabilizer and strut, a red-white-blue band round the boom, the yellow troop disc and 011 on the transmission fairing, yellow skid toes and black UNITED STATES ARMY on the boom, all redrawn. The nose badge and the minigun are omitted; approximate colors and band positions.
+
+**JGSDF two-tone camouflage.** Japan Ground Self-Defense Force OH-6 after OH-6D 31312: dark green and olive brown camouflage (a generated pattern in those colors, not the exact pattern), hinomaru on the boom and the serial on the transmission fairing. The kanji service title and unit badge are omitted; the OH-6D’s T-tail is not modelled (the OH-6A airframe stands in, as for the JGSDF OH-6J). Approximate colors.
+
+**Royal Danish Army Hughes 500M.** Royal Danish Army Hughes 500M H-203: very dark green overall, the Danish roundel on the aft cabin, the low-visibility code H-203 on the boom, a small Danish flag and the yellow warning band near the tail. The OH-6A airframe stands in for the closely related 500M; approximate colors.
+
+**Civil OH-6A, blue and white.** Civil-operated OH-6A colors and layout from the referenced 2012 photograph: white over a blue belly that sweeps up round the windshield frame, blue transmission fairing and boom spine, blue fin and white lower struts. The door emblem and the aircraft’s Army serial are omitted; registration N4367C is fictional.
+
+**Civil Hughes 500, lime green.** Civil Hughes 500 colors and layout from the referenced photograph: lime green with a navy swoosh from the nose’s lower edge up across the aft cabin and along the boom, navy fin and the registration in large navy italics on the transmission fairing. Operator logos are omitted and N5172F is fictional; the OH-6A airframe stands in for the civil 369.
 
 ### P-51D Mustang
 
 Type: `molen.entities.aircraft.p51d`.
 
-[![P-51D Mustang livery comparison: Red nose paint study / silver, Blue nose / silver](https://molen.dev/guide-media/liveries/p51d.png)](https://molen.dev/guide-media/liveries/p51d.png)
+[![P-51D Mustang livery comparison: 332nd FG Red Tails, 100th FS 7 Bunnie, 1945, 357th FG C5-T Hurry Home Honey, 1944, 4th FG 334th FS QP-F Sweet Revenge, RAAF 77 Squadron A68-809, 1950, Swedish Air Force J 26, F 16 A](https://molen.dev/guide-media/liveries/p51d.png)](https://molen.dev/guide-media/liveries/p51d.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `red-checker-nose-silver` | Red nose paint study / silver | [Photo](https://commons.wikimedia.org/wiki/File:North_American_P-51D_Mustang_44-13521_G-MRLL_Duxford_Flying_Finale_2024_01.jpg) |
-| `blue-nose-silver` | Blue nose / silver | [Photo](https://commons.wikimedia.org/wiki/File:North_American_P-51D_Mustang_G-BIXL_Duxford_2023_01.jpg) |
+| `332nd-fg-bunnie` | 332nd FG Red Tails, 100th FS 7 Bunnie, 1945 | [Photo 1](https://commons.wikimedia.org/wiki/File:Tuskegee_P-51.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Full-size_Mock-up_P-51D_Mustang_%E2%80%987_-_569%E2%80%99%E2%80%9CBunnie%E2%80%9D_(50901572238).jpg) |
+| `357th-fg-hurry-home-honey` | 357th FG C5-T Hurry Home Honey, 1944 | [Photo 1](https://commons.wikimedia.org/wiki/File:Hurry_Home_Honey_P-51_inflight.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Two_P-51_Mustangs_of_the_357th_Fighter_Group.jpg) |
+| `4th-fg-334th-fs-qp-f` | 4th FG 334th FS QP-F Sweet Revenge | [Photo](https://commons.wikimedia.org/wiki/File:North_American_P-51D-20-NA_Mustang_%E2%80%98QP-F_-_422051%E2%80%99_%E2%80%9CSweet_Revenge%E2%80%9D_(NL68JR)_(31947465468).jpg) |
+| `raaf-77-squadron-a68-809` | RAAF 77 Squadron A68-809, 1950 | [Photo](https://commons.wikimedia.org/wiki/File:No._77_Squadron_Mustang_A68-809.jpg) |
+| `swedish-air-force-j26` | Swedish Air Force J 26, F 16 A | [Photo](https://commons.wikimedia.org/wiki/File:North_American_Aviation_J_26_(c-n_122-31718,_s-n_26020,_16-A)_2013-08-31_Andre_Gerwing_Collection_ID_012811.jpg) |
 
-**Red nose paint study / silver.** Natural-metal airframe with the photographed red nose and spinner. Nose checkerboard, registration and nose art are omitted; the base model retains simplified US stars and bars. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**332nd FG Red Tails, 100th FS 7 Bunnie, 1945.** P-51D 44-15569 of the 100th Fighter Squadron, 332nd Fighter Group (Tuskegee Airmen), Italy 1945: natural metal with the group's red tail surfaces and spinner, the red nose ring drawn back to a point along the cowling, yellow wing bands, black 7 and 569, the plain name BUNNIE, 1943 star-and-bar insignia on the fuselage, upper left and lower right wing. Colors and the arrowhead outline are approximations.
 
-**Blue nose / silver.** Natural-metal airframe with the photographed blue nose and spinner. Nose checkerboard, registration and nose art are omitted; the base model retains simplified US stars and bars. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**357th FG C5-T Hurry Home Honey, 1944.** P-51D 44-14868 'Hurry Home Honey', C5-T of the 362nd Fighter Squadron, 357th Fighter Group, late 1944: natural metal, the group's red and yellow nose checks and spinner, invasion stripes kept on the lower fuselage and under the wings, C5 and T codes, 414868 on the fin, the plain name on the cowling and 1943 insignia. Check rows and stripe stations follow the group's standard; colors approximate.
+
+**4th FG 334th FS QP-F Sweet Revenge.** P-51D 44-22051 'Sweet Revenge', QP-F of the 334th Fighter Squadron, 4th Fighter Group, as restored: polished natural metal, red spinner and red and white nose checks, the 334th's red rudder, QP and F codes in black outlined red, 422051 on the fin, invasion stripes kept under the fuselage and wings, the plain name on the cowling and 1943 insignia. Kill marks and the pin-up figure are omitted; colors approximate.
+
+**RAAF 77 Squadron A68-809, 1950.** P-51D A68-809 of No. 77 Squadron RAAF, Japan 1950: natural metal with the red, white and blue roundel on the fuselage and wings, the fin flash and the serial A68-809 on the rear fuselage, olive anti-glare panel and dark spinner. Colors approximate.
+
+**Swedish Air Force J 26, F 16 A.** J 26 (P-51D) 26020 of Upplands flygflottilj F 16 as preserved at the Swedish Air Force Museum: natural metal with the three-crown roundels on the fuselage and wings, the yellow wing number 16 on the fuselage and the large blue individual letter A on the fin, yellow spinner. Colors approximate.
 
 ### Pilatus PC-12 NGX
 
 Type: `molen.entities.aircraft.pilatus_pc12`.
 
-[![Pilatus PC-12 NGX livery comparison: G-DYLN white and navy, B-FXN white and black](https://molen.dev/guide-media/liveries/pilatus_pc12.png)](https://molen.dev/guide-media/liveries/pilatus_pc12.png)
+[![Pilatus PC-12 NGX livery comparison: Pilatus NGX factory scheme, US Air Force U-28A Draco, Finnish Air Force PI-02, Flying doctor air ambulance, red, white and blue, Swiss operator, silver and graphite](https://molen.dev/guide-media/liveries/pilatus_pc12.png)](https://molen.dev/guide-media/liveries/pilatus_pc12.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `g-dyln-white-and-navy` | G-DYLN white and navy | [Photo](https://commons.wikimedia.org/wiki/File:EBACE_2019,_Le_Grand-Saconnex_(EB190163).jpg) |
-| `b-fxn-white-and-black` | B-FXN white and black | [Photo](https://commons.wikimedia.org/wiki/File:Pilatus_PC-12NG,_EBACE_2018,_Le_Grand-Saconnex_(BL7C0409).jpg) |
+| `factory-ngx-white-red` | Pilatus NGX factory scheme | [Photo](https://commons.wikimedia.org/wiki/File:Pilatus_PC-12-47E_NGX_(N49GX,_cn_2149)_(10-20-2022).jpg) |
+| `usaf-u-28a-draco` | US Air Force U-28A Draco | [Photo 1](https://commons.wikimedia.org/wiki/File:U-28_Draco.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:A_U-28A_Draco_at_Hurlburt_Field,_Florida,_September_2,_2022.jpg) |
+| `finnish-air-force-pi-02` | Finnish Air Force PI-02 | [Photo](https://commons.wikimedia.org/wiki/File:Pilatus_PC-12_PI-02_Turku_Airshow_2015_01.JPG) |
+| `flying-doctor-red-white-blue` | Flying doctor air ambulance, red, white and blue | [Photo](https://commons.wikimedia.org/wiki/File:Royal_Flying_Doctor_Service_of_Australia_(VH-OWR)_Pilatus_PC-12_NG_at_Esperance_Airport.jpg) |
+| `swiss-silver-graphite` | Swiss operator, silver and graphite | [Photo](https://commons.wikimedia.org/wiki/File:Pilatus_PC-12_NGX_%E2%80%98HB-FWO%E2%80%99_(52644871206).jpg) |
 
-**G-DYLN white and navy.** Paint study of G-DYLN white and navy. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Pilatus NGX factory scheme.** Pilatus NGX demonstrator layout from the referenced photograph of N49GX: pearl white overall with paired red and grey swooshes, one sweeping up from the chin along the cabin and one rising over the rear fuselage toward the fin, and a small grey registration. The manufacturer titles are omitted, the registration N68GX is fictional and the swoosh curves are redrawn freehand.
 
-**B-FXN white and black.** Paint study of B-FXN white and black. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**US Air Force U-28A Draco.** US Air Force Special Operations U-28A Draco from the referenced photographs: medium grey overall with the small US flag over the serial 60581 in light grey on the fin, redrawn as original vector art. Sensor turrets, antennas and the low-visibility stencils are not modelled; the grey is an approximation.
+
+**Finnish Air Force PI-02.** Finnish Air Force PC-12/47E PI-02 from the referenced photograph: light grey overall, FINNISH AIR FORCE above the rear cabin windows, the Finnish roundel and the code PI-02 on the rear fuselage, redrawn as original vector art. Applied to the NGX model; the yellow rescue corners around an exit window are omitted; approximate colors and sizes.
+
+**Flying doctor air ambulance, red, white and blue.** Colors and layout of the Royal Flying Doctor Service from the referenced photograph of VH-OWR: white upper fuselage, red lower fuselage and cowl, a blue stripe sweeping up the tail cone into a blue fin, tailplane and rudder, and a black registration on the rear fuselage. The service's name, RFDS fin letters and emblems are omitted; the registration VH-FXQ is fictional and the paint lines are straight-segment approximations.
+
+**Swiss operator, silver and graphite.** Corporate scheme of the referenced photograph of HB-FWO: silver metallic upper fuselage and wings, graphite lower fuselage under a red pinstripe that sweeps up the tail cone and along a diagonal across the fin, graphite rear fin, rudder and tailplane with the Swiss flag at the fin tip, and the registration on the rear fuselage. The registration HB-FQX is fictional; the red rescue marks are omitted.
 
 ### Pilatus PC-6/B2-H4 Turbo Porter
 
 Type: `molen.entities.aircraft.pc_6`.
 
-[![Pilatus PC-6/B2-H4 Turbo Porter livery comparison: Night Flight blue, Swiss olive](https://molen.dev/guide-media/liveries/pc_6.png)](https://molen.dev/guide-media/liveries/pc_6.png)
+[![Pilatus PC-6/B2-H4 Turbo Porter livery comparison: Swiss Air Force V-618, Austrian Air Force 3G-EH, AU-23A Peacemaker, Southeast Asia camouflage, Belgian skydiving club, pink, German skydiving operator, white and navy](https://molen.dev/guide-media/liveries/pc_6.png)](https://molen.dev/guide-media/liveries/pc_6.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `night-flight-blue` | Night Flight blue | [Photo](https://commons.wikimedia.org/wiki/File:Pilatus_Porter_PC-6_B2-H4_%22Night_Flight%22_.jpg) |
-| `swiss-olive` | Swiss olive | [Photo](https://commons.wikimedia.org/wiki/File:PC-6_in_Alpnach.JPG) |
+| `swiss-air-force-v-618` | Swiss Air Force V-618 | [Photo](https://commons.wikimedia.org/wiki/File:Swiss_Air_Force_Pilatus_PC-6_V-618_parked_at_IBT'11.jpg) |
+| `austrian-air-force-3g-eh` | Austrian Air Force 3G-EH | [Photo](https://commons.wikimedia.org/wiki/File:Pilatus_PC-6_Turbo-Porter_3G-EH_aircraft_02.jpg) |
+| `au-23a-peacemaker-sea` | AU-23A Peacemaker, Southeast Asia camouflage | [Photo 1](https://commons.wikimedia.org/wiki/File:Fairchild_AU-23A_Peacemaker_in_flight.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Fairchild_AU-23A_Peacemaker.jpg) |
+| `skydiving-pink` | Belgian skydiving club, pink | [Photo](https://commons.wikimedia.org/wiki/File:Pilatus_PC-6,_OO-PCV.JPG) |
+| `skydiving-white-navy` | German skydiving operator, white and navy | [Photo](https://commons.wikimedia.org/wiki/File:Pilatus_PC-6_Turbo_Porter.jpg) |
 
-**Night Flight blue.** Paint study of Night Flight blue. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Swiss Air Force V-618.** Swiss Air Force PC-6/B2-H2M-1 V-618 from the referenced photograph: two-tone olive green camouflage overall (a generated pattern in the two greens), the serial V-618 in light grey on the rear fuselage and the Swiss marking in a white border above and below the wings, redrawn as original vector art. The unit badges on the nose are omitted; colors and sizes are approximations.
 
-**Swiss olive.** Paint study of Swiss olive. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Austrian Air Force 3G-EH.** Austrian Bundesheer PC-6/B2-H4 3G-EH from the referenced photograph: olive drab overall, the code 3G (national marking) EH in black on the rear fuselage and the national marking (white triangle on a red disc) above and below the wings, redrawn as original vector art. The EUFOR mission titles carried on that deployment are omitted; approximate colors and sizes.
+
+**AU-23A Peacemaker, Southeast Asia camouflage.** Fairchild-built AU-23A Peacemaker in Royal Thai Air Force service from the referenced color photograph: Southeast Asia camouflage of tan, light green and dark green overall (a generated three-color pattern), tan spinner, the sharkmouth on the lower cowling and the tail number 42082 in white on the fin, redrawn as original vector art. The small national roundel and the Thai lettering by the cockpit are too small in the photograph to redraw reliably and are omitted; the US evaluation photograph is a second reference for the camouflage.
+
+**Belgian skydiving club, pink.** Colors of the referenced photograph of a Belgian parachute club Porter (OO-PCV): pink overall with a thin white line along the lower fuselage and a white registration on the rear fuselage. The registration OO-PJX is fictional; the aircraft name, the club artwork on the fin and the manufacturer titles are omitted.
+
+**German skydiving operator, white and navy.** Colors and stripe layout of the referenced photograph of a German drop-zone Turbo Porter (D-FSC.): white overall, a navy band with an amber pinstripe along the cowling and lower fuselage, a navy diagonal across the fin and rudder edged in amber, the German flag at the top of the rudder, navy spinner and a navy registration. The registration D-FJMP is fictional; manufacturer titles are omitted and the band edges are straight-line approximations.
 
 ### Piper PA-28-180 Cherokee
 
 Type: `molen.entities.aircraft.pa_28_180`.
 
-[![Piper PA-28-180 Cherokee livery comparison: HB-OHC red and silver, EC-CMM white and orange](https://molen.dev/guide-media/liveries/pa_28_180.png)](https://molen.dev/guide-media/liveries/pa_28_180.png)
+[![Piper PA-28-180 Cherokee livery comparison: Cherokee B factory blue, 1964 (UK), Cherokee D factory navy and red, 1968 (UK), Cherokee F factory maroon, 1971 (UK), Cherokee 180 blue tail sweep, 1968 (US)](https://molen.dev/guide-media/liveries/pa_28_180.png)](https://molen.dev/guide-media/liveries/pa_28_180.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `hb-ohc-red-and-silver` | HB-OHC red and silver | [Photo](https://commons.wikimedia.org/wiki/File:Piper_PA-28-180(mod)_Cherokee_C_AN1119554.jpg) |
-| `ec-cmm-white-and-orange` | EC-CMM white and orange | [Photo](https://commons.wikimedia.org/wiki/File:Piper_PA-28-180_Cherokee_Archer_AN0813960.jpg) |
+| `cherokee-b-1964-blue` | Cherokee B factory blue, 1964 (UK) | [Photo](https://commons.wikimedia.org/wiki/File:G-ASHX_Piper_PA-28-180_Cherokee_B_(9693386490).jpg) |
+| `cherokee-d-1968-navy-red` | Cherokee D factory navy and red, 1968 (UK) | [Photo](https://commons.wikimedia.org/wiki/File:G-HOCK_Piper_PA-28-180_Cherokee_D_(9693445922).jpg) |
+| `cherokee-f-1971-maroon` | Cherokee F factory maroon, 1971 (UK) | [Photo](https://commons.wikimedia.org/wiki/File:G-AZDX_Piper_PA-28-180_Cherokee_F_(9683616211).jpg) |
+| `cherokee-1968-blue-sweep` | Cherokee 180 blue tail sweep, 1968 (US) | [Photo](https://commons.wikimedia.org/wiki/File:N6350J_1968_PIPER_PA-28-180_Cherokee_(30272810356).jpg) |
 
-**HB-OHC red and silver.** Light wings and lower fuselage with the photographed red upper cabin band and rudder. The cabin color boundary is adapted to the model; registration, national symbols and pinstripes are omitted. Colors are approximate.
+**Cherokee B factory blue, 1964 (UK).** Piper’s 1964 Cherokee B paint from the referenced British aircraft: white over a blue lower fuselage and cowling, two blue pinstripes along the split, the top of the fin blue over two fin pinstripes, and a large white UK registration on the blue (G-ATRB, fictional). Approximate colors.
 
-**EC-CMM white and orange.** Light wings and lower fuselage with the photographed orange upper cabin band and rudder. The cabin color boundary is adapted to the model; registration, national symbols and pinstripes are omitted. Colors are approximate.
+**Cherokee D factory navy and red, 1968 (UK).** Piper’s 1968 Cherokee D paint from the referenced British aircraft: white with a navy cheatline and pinstripe under the windows, a long red stripe tapering in from the cowling, a red and navy flash rising across the fin and a silver-gray UK registration (G-AVKH, fictional). Wheel-fairing stripes and the owner’s badge are omitted; approximate colors.
+
+**Cherokee F factory maroon, 1971 (UK).** Piper’s early-1970s Cherokee F paint from the referenced British aircraft: maroon lower fuselage, cowling and spinner, a maroon cheatline and black pinstripe above the split, maroon and black bands near the top of the fin, maroon stabilator tips and wheel-fairing bottoms, and a black UK registration (G-AZKR, fictional). Approximate colors.
+
+**Cherokee 180 blue tail sweep, 1968 (US).** A 1968 Cherokee 180 scheme from the referenced US photograph: cream with blue and black cheatlines from the spinner, a black-edged blue sweep over the rear fuselage, blue fin leading edge and cap, and a small white US registration on the blue (N7246J, fictional). Wheel-fairing stripes are omitted; approximate colors.
 
 ### Robinson R44 Raven II
 
 Type: `molen.entities.aircraft.robinson_r44`.
 
-[![Robinson R44 Raven II livery comparison: Alaska red and cream, Black R44](https://molen.dev/guide-media/liveries/robinson_r44.png)](https://molen.dev/guide-media/liveries/robinson_r44.png)
+[![Robinson R44 Raven II livery comparison: Philippine Army trainer 202, Peruvian Army EP-913, South African Police Service, Black and gold private R44, Alaska tour red](https://molen.dev/guide-media/liveries/robinson_r44.png)](https://molen.dev/guide-media/liveries/robinson_r44.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `alaska-red-and-cream` | Alaska red and cream | [Photo](https://commons.wikimedia.org/wiki/File:Helic%C3%B3ptero_Robinson_R44,_Portage,_Alaska,_Estados_Unidos,_2017-08-22,_DD_43.jpg) |
-| `black-r44` | Black R44 | [Photo](https://commons.wikimedia.org/wiki/File:Black_Robinson_R44.jpg) |
+| `philippine-army-202` | Philippine Army trainer 202 | [Photo](https://commons.wikimedia.org/wiki/File:2022-06-17_PA_R44_001.jpg) |
+| `peruvian-army-ep-913` | Peruvian Army EP-913 | [Photo](https://commons.wikimedia.org/wiki/File:R44_Raven_I,_Ej%C3%A9rcito_del_Per%C3%BA.jpg) |
+| `south-african-police` | South African Police Service | [Photo](https://commons.wikimedia.org/wiki/File:South_African_Police_Robinson_R44_II_ZS-RIC_(31234626902).jpg) |
+| `black-r44` | Black and gold private R44 | [Photo](https://commons.wikimedia.org/wiki/File:Black_Robinson_R44.jpg) |
+| `alaska-red-and-cream` | Alaska tour red | [Photo](https://commons.wikimedia.org/wiki/File:Helic%C3%B3ptero_Robinson_R44,_Portage,_Alaska,_Estados_Unidos,_2017-08-22,_DD_43.jpg) |
 
-**Alaska red and cream.** Paint study of Alaska red and cream. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Philippine Army trainer 202.** Philippine Army R44 training helicopter 202 from the referenced 2022 photograph: metallic silver-grey overall with a grey belt-line stripe, large black 202 on the mast pylon, ARMY on the tail boom behind an aviation wings badge (an original simplified drawing of the unit badge), the Philippine flag and serial 13982 on the fin. The round unit seal on the fin and small stencils are omitted. Colors are approximate.
 
-**Black R44.** Paint study of Black R44. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Peruvian Army EP-913.** Peruvian Army (Ejército del Perú) R44 Raven I EP-913 from the referenced photograph, applied to the Raven II model: very dark green overall with a white belt-line pinstripe, the serial EP-913 in large white letters on the boom and the Peruvian flag on the fin. The R44 Raven I title, DANGER stencils and crew placards are omitted. Colors are approximate.
+
+**South African Police Service.** South African Police Service R44 II from the referenced photograph: white overall with a blue belt-line pinstripe, POLICE in navy on the rear cabin, the registration in blue italic capitals on the boom and the South African flag on the fin. The registration is fictional (ZS-RJP; the photographed aircraft is ZS-RIC) and the service star badge on the pylon is omitted. Colors are approximate.
+
+**Black and gold private R44.** Privately owned R44 from the referenced photograph: gloss black overall with two thin gold pinstripes sweeping up the rear cabin toward the boom and the registration in orange-red on the boom. The registration is fictional (N447BK) and the stripe curve is simplified to two straight sloping lines. Colors are approximate.
+
+**Alaska tour red.** Alaska flightseeing R44 from the referenced Portage photograph: bright red overall with a cream belt-line pinstripe and a thin white one above it, black skids and the registration in large white italic capitals on the boom. The registration is fictional (N7428A; the photographed aircraft is N99605); the operator name on the pylon and the web address on the cabin are omitted. Colors are approximate.
 
 ### Saab JAS 39C Gripen
 
 Type: `molen.entities.aircraft.gripen_c`.
 
-[![Saab JAS 39C Gripen livery comparison: Swedish 215 gray, Royal Thai gray camouflage](https://molen.dev/guide-media/liveries/gripen_c.png)](https://molen.dev/guide-media/liveries/gripen_c.png)
+[![Saab JAS 39C Gripen livery comparison: Swedish Air Force, F 7 Skaraborg (228), Czech Air Force, 211th Tactical Squadron (9241), Hungarian Air Force, 59th Tactical Fighter Wing (31), South African Air Force, 2 Squadron (3920), Royal Thai Air Force, 701 Squadron (70106)](https://molen.dev/guide-media/liveries/gripen_c.png)](https://molen.dev/guide-media/liveries/gripen_c.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `swedish-215-gray` | Swedish 215 gray | [Photo](https://commons.wikimedia.org/wiki/File:Jas_39_Gripen_C.jpg) |
-| `royal-thai-gray-camouflage` | Royal Thai gray camouflage | [Photo](https://commons.wikimedia.org/wiki/File:RATF_GRIPEN_C.JPG) |
+| `sweden-f7-228` | Swedish Air Force, F 7 Skaraborg (228) | [Photo](https://commons.wikimedia.org/wiki/File:JAS_39C_39228.jpg) |
+| `czech-211-tactical-squadron` | Czech Air Force, 211th Tactical Squadron (9241) | [Photo](https://commons.wikimedia.org/wiki/File:Saab.jas39c.gripen.taxi.arp.jpg) |
+| `hungary-59th-wing-31` | Hungarian Air Force, 59th Tactical Fighter Wing (31) | [Photo](https://commons.wikimedia.org/wiki/File:HUNGARIAN_AIR_FORCE_SAAB_JAS-39C_GRIPEN_31_(52247155611).jpg) |
+| `saaf-2-squadron-3920` | South African Air Force, 2 Squadron (3920) | [Photo](https://commons.wikimedia.org/wiki/File:Saab_JAS-39C_Gripen_'3920_-_20'_(16667130587).jpg) |
+| `royal-thai-701-squadron-70106` | Royal Thai Air Force, 701 Squadron (70106) | [Photo 1](https://commons.wikimedia.org/wiki/File:Saab_JAS_39_Gripen_70106_(Royal_Thai_Air_Force)_in_Australia.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:RATF_GRIPEN_C.JPG) · [Photo 3](https://commons.wikimedia.org/wiki/File:Roundel_of_Thailand.svg) |
 
-**Swedish 215 gray.** Paint study of Swedish 215 gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Swedish Air Force, F 7 Skaraborg (228).** JAS 39C 39228 from the referenced photograph: Saab medium gray with a lighter belly, the tactical number 228 in dark gray on the fin, the low-visibility Swedish roundel (dark ring and three crowns, original drawing) on the forward fuselage and above and below both wings. The F 7 wing badge on the nose and the small stencils are omitted.
 
-**Royal Thai gray camouflage.** Paint study of Royal Thai gray camouflage. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**Czech Air Force, 211th Tactical Squadron (9241).** JAS 39C 9241 of the 21st Tactical Air Force Base, Caslav, from the referenced photograph: Saab two-gray scheme, the low-visibility Czech roundel on the fin (outline, solid blue sector, hatched red sector, blue sector leading on both sides) with CZECH AIR FORCE beneath, JAS 39C on the lower fin, the serial 9241 on the nose and the same roundel on the wings. Stencils are omitted.
+
+**Hungarian Air Force, 59th Tactical Fighter Wing (31).** JAS 39C 31 of the 59th Tactical Fighter Wing, Kecskemet, from the referenced photograph: Saab two-gray scheme, the large dark gray 31 on the forward fuselage, and on the fin the low-visibility national triangle (white outline round gray bands, apex forward), the wing falcon badge (simplified) and HUNAF 59th TFW. The small nose badge, stencils and wing markings are omitted (not visible in the reference).
+
+**South African Air Force, 2 Squadron (3920).** JAS 39C 3920 of 2 Squadron, AFB Makhado, from the referenced photograph: Saab two-gray scheme, the full-color South African flag at the top of the fin (hoist forward on both sides), the squadron badge disc (simplified bird and scroll) and the number 20 on the fin, and the low-visibility Castle roundel with its eagle (simplified) on the nose. Stencils and wing markings are omitted.
+
+**Royal Thai Air Force, 701 Squadron (70106).** JAS 39C 70106 of 701 Squadron, Wing 7 Surat Thani, from the referenced photographs: the Saab two-gray scheme (the photographed underside is a uniform light gray without wing roundels), the flag of Thailand at the top of the fin, the white leaping shark of 701 Squadron (original silhouette, leaping forward on both sides) and 70106 in dark gray on the fin, and the RTAF roundel (red, white, navy, white, red) on the rear fuselage below the fin. Stencils are omitted.
 
 ### Sikorsky UH-60M Black Hawk
 
 Type: `molen.entities.aircraft.uh_60m`.
 
-[![Sikorsky UH-60M Black Hawk livery comparison: US Army gray olive, Swedish dark charcoal](https://molen.dev/guide-media/liveries/uh_60m.png)](https://molen.dev/guide-media/liveries/uh_60m.png)
+[![Sikorsky UH-60M Black Hawk livery comparison: US Army, US Army HH-60M MEDEVAC, Swedish Armed Forces Hkp 16, Lithuanian Air Force, Mexican Navy](https://molen.dev/guide-media/liveries/uh_60m.png)](https://molen.dev/guide-media/liveries/uh_60m.png)
 
 | Livery id | Appearance | Photographs |
 | --- | --- | --- |
-| `us-army-gray-olive` | US Army gray olive | [Photo](https://commons.wikimedia.org/wiki/File:Sikorsky_UH-60M_Blackhawk_14-20704_HGR_MD1.jpg) |
-| `swedish-dark-charcoal` | Swedish dark charcoal | [Photo](https://commons.wikimedia.org/wiki/File:Sikorsky_UH-60_Black_Hawk_HKP16-8484_-_Flickr_-_Ragnhild_%26_Neil_Crawford.jpg) |
+| `us-army` | US Army | [Photo 1](https://commons.wikimedia.org/wiki/File:RS24-_1st_Battalion_-_150th_Aviation_Regiment_prepares_UH-60M_Black_Hawk_for_operations_(8447133).jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:A_U.S._Army_UH-60M_Black_Hawk_helicopter_assigned_to_Charlie_Company%2C_2nd_Battalion%2C_10th_Combat_Aviation_Brigade%2C_Task_Force_Knighthawk_flies_a_personnel_movement_mission_Dec._23%2C_2013%2C_over_Kabul_131223-A-MH207-006.jpg) |
+| `us-army-hh60m-medevac` | US Army HH-60M MEDEVAC | [Photo 1](https://commons.wikimedia.org/wiki/File:A_U.S._Army_HH-60M_Blackhawk_medical_evacuation_(medevac)_helicopter_of_Army_Task_Force_Lift_%22Dust_Off%22%2C_Charlie_Company_1-171%2C_Aviation_Regiment%2C_departs_for_mission%2C_Forward_Operating_Base_Edinburgh%2C_Helmand_111209-M-CL319-178.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:Sikorsky_HH-60_MEDEVAC_Black_Hawk_Helicopter_MOD_45162031.jpg) · [Photo 3](https://commons.wikimedia.org/wiki/File:Oregon_Army_National_Guard_HH-60M_Blackhawk_helicopter_(9576423831).jpg) |
+| `swedish-hkp16` | Swedish Armed Forces Hkp 16 | [Photo 1](https://commons.wikimedia.org/wiki/File:Swedish_Black_Hawk_at_Turku_Airshow_2023.jpg) · [Photo 2](https://commons.wikimedia.org/wiki/File:06_UH-60M_Black_Hawk_Swedish_AF_Flygdagarna_2026_01.jpg) |
+| `lithuanian-air-force` | Lithuanian Air Force | [Photo](https://commons.wikimedia.org/wiki/File:Lithuanian_Air_Force_UH-60M_Black_Hawk_helicopter_in_flight.jpg) |
+| `mexican-navy` | Mexican Navy | [Photo](https://commons.wikimedia.org/wiki/File:Sikorsky_UH-60M_Black_Hawk%2C_Mexico_-_Navy_JP7602302.jpg) |
 
-**US Army gray olive.** Paint study of US Army gray olive. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**US Army.** US Army UH-60M: FS 34031 aircraft green overall, black UNITED STATES ARMY on the tail cone and the serial on the pylon, as photographed; no national insignia, per current Army practice. The serial 09-20208 is illustrative of the M-model series. Approximate colors and letter sizes.
 
-**Swedish dark charcoal.** Paint study of Swedish dark charcoal. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+**US Army HH-60M MEDEVAC.** US Army HH-60M MEDEVAC (Dust Off): aircraft green with red crosses on white on the nose, both nose sides, the cabin doors and the belly, black UNITED STATES ARMY on the tail cone and a pylon serial (11-20339, illustrative). The UH-60M model stands in for the HH-60M (no rescue hoist or FLIR turret); approximate cross sizes.
+
+**Swedish Armed Forces Hkp 16.** Swedish Armed Forces Hkp 16 (UH-60M) as photographed at Turku 2023 and Flygdagarna 2026: dark green overall with the low-visibility three-crowns roundel and SWEDISH ARMED FORCES title on the tail cone and the code 06 on the pylon, all in a darker grey-green, redrawn. Approximate colors and sizes.
+
+**Lithuanian Air Force.** Lithuanian Air Force UH-60M 62: medium blue-grey overall, LITHUANIAN AIR FORCE on the tail cone, the national flag and the code 62 on the engine nacelles and the white Cross of Vytis on the pylon, all redrawn. Approximate colors and sizes.
+
+**Mexican Navy.** Mexican Navy UH-60M AMHA-302 (Toluca 2013): light grey overall, MARINA in bold black on the sliding doors, the naval aviation triangle on the engine nacelles, a large outlined 302 and the registration, redrawn. The navy crest beneath the triangle is omitted, and the outlined number sits on the aft cabin rather than across the door windows. Approximate colors.
 
 ## Cars, trucks and RVs
 

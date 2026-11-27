@@ -23,6 +23,11 @@ export interface RotorBlades {
   inducedFactor: number;
   /** Mean blade lift coefficient at which the blades stall in a hover. */
   maxLift: number;
+  /**
+   * Share of the thrust a duct round the rotor carries; default 0. Half, for a fan whose duct
+   * lets the wake run straight out instead of closing in: the blades carry the other half.
+   */
+  duct?: number;
 }
 
 export interface RotorFlow {
@@ -52,6 +57,8 @@ export interface RotorLoads {
   /** Mean lift coefficient of the blades, and 0–1 how far they are into the stall. */
   bladeLift: number;
   stall: number;
+  /** Blade loading the pitch asks for (thrust coefficient over solidity), stalled or not. */
+  asked: number;
   /** Edgewise speed over tip speed. */
   advance: number;
   /** Flow through the disc over tip speed (down through it positive). */
@@ -98,6 +105,7 @@ export function rotorLoads(blades: RotorBlades, flow: RotorFlow): RotorLoads {
       inflowTarget: 0,
       bladeLift: 0,
       stall: 0,
+      asked: 0,
       advance: 0,
       inflowRatio: 0,
     };
@@ -116,10 +124,11 @@ export function rotorLoads(blades: RotorBlades, flow: RotorFlow): RotorLoads {
   const carried =
     ratio <= 0.8 ? ratio : 0.8 + 0.2 * (1 - m.exp(-(ratio - 0.8) / 0.2)) - 0.1 * stall * stall;
   const coefficient = m.sign(linear) * limit * carried;
-  const thrust = coefficient * scale;
+  const bladeThrust = coefficient * scale;
+  const thrust = bladeThrust / (1 - (blades.duct ?? 0));
   const bladeLift = (6 * m.abs(coefficient)) / blades.solidity;
   // Induced velocity this thrust settles to.
-  const hover = m.sqrt(m.abs(thrust) / (2 * flow.density * area));
+  const hover = hoverInducedVelocity(blades, flow.density, thrust);
   const way = m.sign(thrust) || 1;
   const inflowTarget =
     hover > 1e-6
@@ -132,7 +141,7 @@ export function rotorLoads(blades: RotorBlades, flow: RotorFlow): RotorLoads {
     ((blades.solidity * profile) / 8) * (1 + 4.6 * advance * advance) * scale * tip;
   // Power: thrust against the flow through the disc (the rotor's own, at a loss, and its
   // climb or descent), plus the blades' drag.
-  const power = thrust * (flow.axial + blades.inducedFactor * flow.inflow) + profilePower;
+  const power = bladeThrust * (flow.axial + blades.inducedFactor * flow.inflow) + profilePower;
   return {
     thrust,
     power,
@@ -140,8 +149,77 @@ export function rotorLoads(blades: RotorBlades, flow: RotorFlow): RotorLoads {
     inflowTarget,
     bladeLift,
     stall,
+    asked: m.abs(linear) / blades.solidity,
     advance,
     inflowRatio,
+  };
+}
+
+/**
+ * Induced velocity of a rotor holding `thrust` in a hover, m/s: momentum theory. A duct that
+ * carries part of the thrust keeps the wake from closing in, and more air goes through.
+ */
+export function hoverInducedVelocity(blades: RotorBlades, density: number, thrust: number): number {
+  const area = m.PI * blades.radius * blades.radius;
+  return m.sqrt(m.abs(thrust) / (2 * density * area * (1 - (blades.duct ?? 0))));
+}
+
+/** The blade loading (thrust coefficient over solidity) a rotor's blades carry. */
+export interface BladeLimit {
+  /** In a hover, and what it falls by per unit of advance ratio. */
+  hover: number;
+  slope: number;
+}
+
+/**
+ * What the blades carry at an advance ratio. The retreating side meets less and less air as the
+ * rotor goes faster, and a rotor's greatest lift falls in a straight line with it: from 0.156 in
+ * a hover to 0.10 at an advance ratio of 0.4 for a CH-47B's rotor in a wind tunnel (McHugh, NASA
+ * CR 145217, as plotted in Yeo, NTRS 20030068988, figure 1), a slope of 0.8 of the hover value.
+ */
+export function bladeLimit(limit: BladeLimit, advance: number): number {
+  return m.max(0.25 * limit.hover, limit.hover - limit.slope * m.abs(advance));
+}
+
+/** What stalling on the retreating side does to a rotor. */
+export interface RetreatingStall {
+  /** Blade loading asked for over what the blades carry. */
+  ratio: number;
+  /** Tilt it adds to the disc back, and toward the retreating side, rad. */
+  back: number;
+  aside: number;
+  /** Share of the thrust that is left. */
+  lift: number;
+  /** Profile drag coefficient it adds. */
+  drag: number;
+  /** How hard it shakes the airframe, 0..1. */
+  shake: number;
+}
+
+/**
+ * A rotor asked for more than its retreating blades carry. The lift they lose is felt a quarter
+ * turn later: the disc tilts back and the nose rises, and it tilts toward the retreating side.
+ * The thrust stops growing, the power does not, and the airframe shakes from a little before.
+ * Sized on a blade-element rotor with stalling sections at advance ratios of 0.25 to 0.45: 0.9°
+ * back at the limit and 3 to 4° a third past it, about a third of that to the side.
+ */
+export function retreatingStall(
+  loads: Pick<RotorLoads, 'asked' | 'bladeLift' | 'advance'>,
+  carried: number,
+): RetreatingStall {
+  const ratio = loads.asked / m.max(carried, 1e-6);
+  // Without forward speed both sides of the disc stall together: that is the thrust limit.
+  const fast = m.clamp((m.abs(loads.advance) - 0.1) / 0.15, 0, 1);
+  const past = fast * m.clamp(ratio - 0.9, 0, 0.5);
+  const back = 0.14 * past;
+  const held = ratio <= 0.85 ? ratio : 0.85 + 0.1 * (1 - m.exp(-(ratio - 0.85) / 0.1));
+  return {
+    ratio,
+    back,
+    aside: 0.36 * back,
+    lift: 1 - fast * (1 - m.min(1, (6 * held * carried) / m.max(loads.bladeLift, 1e-6))),
+    drag: 0.05 * past,
+    shake: fast * m.smoothstep((ratio - 0.9) / 0.3),
   };
 }
 
@@ -156,7 +234,7 @@ export function rotorPitchFor(
   const area = m.PI * blades.radius * blades.radius;
   const advance = flow.edgewise / tip;
   const inflowRatio = (flow.axial + flow.inflow) / tip;
-  const coefficient = thrust / (flow.density * area * tip * tip);
+  const coefficient = (thrust * (1 - (blades.duct ?? 0))) / (flow.density * area * tip * tip);
   const slope = (blades.solidity * blades.liftSlope) / 2;
   return (3 * (coefficient / slope + inflowRatio / 2)) / (1 + 1.5 * advance * advance);
 }

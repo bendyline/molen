@@ -1,5 +1,6 @@
-/** Bounded real street/vehicle lights plus batched traffic lenses for Earth hosts. */
+/** Street lamp and car beam light through the renderer's lamp field, plus batched car lenses. */
 import type { AmbientAgentData } from '@bendyline/molen-ambient/kernel';
+import type { LampField, LampFieldBeam } from '@bendyline/molen-client';
 import { Vehicle, VehicleInput, VehicleState } from '@bendyline/molen-kernel/vehicles';
 import { componentHandle, Transform, type World } from '@bendyline/molen-kernel/world';
 import type { TerrainStreetLight, TerrainSurfaceRenderer } from '@bendyline/molen-terrain/client';
@@ -13,32 +14,50 @@ const MAX_BEAM_CARS = 4;
  * so headlights the driver turns on at dusk or by day still visibly light the road ahead.
  */
 const SWITCHED_BEAM_FLOOR = 0.35;
-/** Street lamps farther than this from the camera and from where it looks are left dark, m. */
-const STREET_LIGHT_REACH = 600;
-/** A lamp lit at the last choice counts as this much nearer at the next. */
-const STREET_LIGHT_HOLD = 0.85;
+/** A street lamp's light, candela at full night (a point light's intensity before the field). */
+const STREET_LAMP_CANDELA = 180;
+/** A headlight beam's, candela on its axis. */
+const BEAM_CANDELA = 35;
+/** Lamps the field holds, nearest first (LAMP_FIELD_MAX_LAMPS). */
+const MAX_LAMPS = 1024;
 /**
- * The lamps to light are chosen again after this long, ms (scenery streams in and out), or as
- * soon as the camera or the point it looks at has moved STREET_LIGHT_MOVE meters: four times a
- * second for a view held still, and no later than 8 m on for one that travels or turns. Chosen
- * every frame, the walk over a city's lamps took 50 ms of each second of a night flight over
- * Osaka (12,900 lamps on show, a key string made for each).
+ * Lamps are handed over this far past where the field fades them out, m, so a lamp that joins
+ * between two choices (the camera moves STREET_LIGHT_MOVE at most) joins dark.
+ */
+const STREET_LIGHT_MARGIN = 16;
+/**
+ * From the air the lit lamps reach farther: the field's fade distance plus the camera's height
+ * above the ground, up to this many times the fade distance. From 300 m, a field reaching 300 m
+ * lit the streets below and left a ring of unlit pavement pools around them.
+ */
+const STREET_LIGHT_AIR_REACH = 3;
+/**
+ * The lamps are chosen again after this long, ms (scenery streams in and out), or as soon as the
+ * camera or the point it looks at has moved STREET_LIGHT_MOVE meters: four times a second for a
+ * view held still, and no later than 8 m on for one that travels or turns. Chosen every frame,
+ * the walk over a city's lamps took 50 ms of each second of a night flight over Osaka (12,900
+ * lamps on show, a key string made for each).
  */
 const STREET_LIGHT_MS = 250;
 const STREET_LIGHT_MOVE = 8;
 
-interface LampSlot {
-  key: string;
-  distance: number;
-  /** In the root's frame. */
-  position: THREE.Vector3;
-}
+/** What the night lighting needs of the renderer's lamp field (`Renderer.lampField`). */
+export type EarthLampField = Pick<
+  LampField,
+  'setLamps' | 'setView' | 'setBeams' | 'clear' | 'fadeTo' | 'focusWeight'
+>;
 
 export interface EarthNightLightingOptions {
   /** Parent in absolute simulation coordinates, normally the terrain stream object. */
   root: THREE.Object3D;
   world: World;
   surface: Pick<TerrainSurfaceRenderer, 'visitStreetLights'>;
+  /**
+   * The renderer's lamp field (`Renderer.lampField`), through which street lamps and car beams
+   * light every lit surface near the camera. Without it they show only their own glow, pavement
+   * pools and lenses.
+   */
+  lampField?: EarthLampField;
   /** Resolved body heights for ambient proxies and full models of the same type. */
   vehicleHeights?: Readonly<Record<string, number>>;
   sampleHeight: (x: number, z: number) => number | undefined;
@@ -68,14 +87,13 @@ interface Car {
 }
 
 /**
- * Sixteen street lights and four pairs of car beams bound lighting cost as tiles stream.
- * Unused slots have zero intensity; none casts an extra shadow map. Daylight hides the whole rig,
- * since zero-intensity lights still cost every lit fragment; the first dusk compiles its variant.
+ * Every street lamp near the camera, and four pairs of car beams, light the world through the
+ * renderer's lamp field: no three light, so they cost a few lookups in each lit fragment rather
+ * than a full light each, and nightfall compiles nothing. The field fades lamps out with
+ * distance, so none switches on as the camera nears it.
  */
 export class EarthNightLighting {
   readonly object: THREE.Group = new THREE.Group();
-  private readonly streets: THREE.PointLight[] = [];
-  private readonly beams: THREE.SpotLight[] = [];
   private readonly geometry = new THREE.BoxGeometry(1, 1, 1);
   private readonly frontMaterial = new THREE.MeshBasicMaterial({ color: '#fff1ce' });
   private readonly rearMaterial = new THREE.MeshBasicMaterial({ color: '#ed2415' });
@@ -87,12 +105,14 @@ export class EarthNightLighting {
   private readonly scale = new THREE.Vector3();
   private readonly matrix = new THREE.Matrix4();
   private readonly toRoot = new THREE.Matrix4();
+  private readonly aim = new THREE.Vector3();
   private disposed = false;
   private readonly tailTint = new THREE.Color();
   private readonly sourceMatrix = new THREE.Matrix4();
-  private streetKeys: string[] = [];
-  /** Street lights lit by the last choice, the first of `streets`. */
+  /** Lamps handed to the field by the last choice. */
   private streetCount = 0;
+  /** Whether the field was left dark (by day, with no switched beams). */
+  private fieldDark = true;
   private streetsChosenAt = Number.NEGATIVE_INFINITY;
   /** Camera x, z and focus x, z of the last choice. */
   private streetsChosenFrom: [number, number, number, number] = [
@@ -101,7 +121,13 @@ export class EarthNightLighting {
     Number.POSITIVE_INFINITY,
     0,
   ];
-  private readonly lampSlots: LampSlot[] = [];
+  /** The point (root frame) the chosen lamps are measured from: the camera when chosen. */
+  private readonly anchor: [number, number, number] = [0, 0, 0];
+  /** Candidates of a choice, root frame: x, y, z each, and their distance. */
+  private candidates: number[] = [];
+  private candidateDistances: number[] = [];
+  private order: number[] = [];
+  private readonly lampData = new Float32Array(MAX_LAMPS * 4);
   /** Where each tile's lamps are, in the tile's own frame: worked out once per tile. */
   private readonly lampBounds = new WeakMap<
     readonly TerrainStreetLight[],
@@ -112,19 +138,6 @@ export class EarthNightLighting {
     this.object.name = 'earth:night-lighting';
     this.object.userData.walkIgnore = true;
     options.root.add(this.object);
-    for (let i = 0; i < 16; i++) {
-      const light = new THREE.PointLight('#ffe1a1', 0, 42, 2);
-      light.name = 'earth:street-light';
-      this.streets.push(light);
-      this.object.add(light);
-      this.lampSlots.push({ key: '', distance: 0, position: new THREE.Vector3() });
-    }
-    for (let i = 0; i < MAX_BEAM_CARS * 2; i++) {
-      const light = new THREE.SpotLight('#fff1dc', 0, 55, Math.PI / 3, 1, 2);
-      light.name = 'earth:headlight-beam';
-      this.beams.push(light);
-      this.object.add(light, light.target);
-    }
     for (const [mesh, name] of [
       [this.front, 'headlights'],
       [this.rear, 'tail-lights'],
@@ -138,17 +151,20 @@ export class EarthNightLighting {
     }
   }
 
+  /** Street lamps lighting the world: handed to the lamp field by the last choice. */
+  get streetLamps(): number {
+    return this.streetCount;
+  }
+
   update(frame: EarthNightLightingFrame): void {
     if (this.disposed) return;
     if (!Number.isFinite(frame.factor)) throw new Error('Night factor must be finite');
     const night = Math.max(0, Math.min(1, frame.factor));
-    for (const light of this.streets) light.intensity = 0;
-    for (const light of this.beams) light.intensity = 0;
+    const field = this.options.lampField;
     this.front.count = this.rear.count = 0;
     // By day the street lamps stay dark, and the next dusk chooses its lamps afresh.
     if (night === 0) {
       this.streetCount = 0;
-      this.streetKeys = [];
       this.streetsChosenAt = Number.NEGATIVE_INFINITY;
     }
     // A driven vehicle with a headlight switch lights its beams whenever the switch is on, by
@@ -156,7 +172,12 @@ export class EarthNightLighting {
     const switched =
       frame.drivenVehicleId !== undefined ? this.headlightSwitch(frame.drivenVehicleId) : undefined;
     this.object.visible = night > 0 || switched === true;
-    if (!this.object.visible) return;
+    if (!this.object.visible) {
+      if (!this.fieldDark) field?.clear();
+      this.fieldDark = true;
+      return;
+    }
+    this.fieldDark = false;
     const { camera, direction } = frame;
     // Instance matrices are float32. Keep lenses near a local anchor so Earth coordinates
     // millions of metres from zero do not round a headlight into its bumper or the next lane.
@@ -170,25 +191,41 @@ export class EarthNightLighting {
       direction[1] < -0.05 ? Math.min(500, Math.max(0, camera[1] - ground) / -direction[1]) : 60;
     const focusX = camera[0] + direction[0] * reach;
     const focusZ = camera[2] + direction[2] * reach;
+    const focusWeight = field?.focusWeight ?? 1.2;
     const distance = (x: number, z: number): number =>
-      Math.min(Math.hypot(x - camera[0], z - camera[2]), Math.hypot(x - focusX, z - focusZ) * 1.2);
+      Math.min(
+        Math.hypot(x - camera[0], z - camera[2]),
+        Math.hypot(x - focusX, z - focusZ) * focusWeight,
+      );
     // By day (a driven vehicle's headlights on) the walk over the lamps is skipped.
-    if (night > 0) {
-      const now = performance.now();
-      if (
-        now - this.streetsChosenAt >= STREET_LIGHT_MS ||
-        Math.hypot(camera[0] - this.streetsChosenFrom[0], camera[2] - this.streetsChosenFrom[1]) >
-          STREET_LIGHT_MOVE ||
-        Math.hypot(focusX - this.streetsChosenFrom[2], focusZ - this.streetsChosenFrom[3]) >
-          STREET_LIGHT_MOVE
-      ) {
-        this.streetsChosenAt = now;
-        this.streetsChosenFrom = [camera[0], camera[2], focusX, focusZ];
-        this.chooseStreetLights(distance);
+    if (field !== undefined) {
+      if (night > 0) {
+        const now = performance.now();
+        if (
+          now - this.streetsChosenAt >= STREET_LIGHT_MS ||
+          Math.hypot(camera[0] - this.streetsChosenFrom[0], camera[2] - this.streetsChosenFrom[1]) >
+            STREET_LIGHT_MOVE ||
+          Math.hypot(focusX - this.streetsChosenFrom[2], focusZ - this.streetsChosenFrom[3]) >
+            STREET_LIGHT_MOVE
+        ) {
+          this.streetsChosenAt = now;
+          this.streetsChosenFrom = [camera[0], camera[2], focusX, focusZ];
+          this.chooseStreetLights(field, camera, camera[1] - ground, distance);
+        }
+      } else if (this.streetCount === 0) {
+        // No lamps to keep the anchor for: the beams are measured from the camera.
+        this.anchor[0] = camera[0];
+        this.anchor[1] = camera[1];
+        this.anchor[2] = camera[2];
       }
+      field.setView({
+        frame: this.options.root,
+        anchor: this.anchor,
+        eye: camera,
+        focus: [focusX, ground, focusZ],
+        intensity: STREET_LAMP_CANDELA * night,
+      });
     }
-    for (let i = 0; i < this.streetCount; i++)
-      (this.streets[i] as THREE.PointLight).intensity = 180 * night;
 
     const cars: Car[] = [];
     const { world } = this.options;
@@ -232,8 +269,8 @@ export class EarthNightLighting {
     this.frontMaterial.color.set('#fff1ce').multiplyScalar(night);
     this.rearMaterial.color.set('#ed2415').multiplyScalar(night);
     let fronts = 0,
-      rears = 0,
-      beams = 0;
+      rears = 0;
+    const beams: LampFieldBeam[] = [];
     const place = (car: Car, x: number, y: number, z: number): void => {
       this.point
         .set(x, y, z)
@@ -264,7 +301,8 @@ export class EarthNightLighting {
         [-car.width * 0.31, height, car.length / 2 + 0.055],
         [car.width * 0.31, height, car.length / 2 + 0.055],
       ];
-      const strength = 35 * (car.switched === true ? Math.max(night, SWITCHED_BEAM_FLOOR) : night);
+      const strength =
+        BEAM_CANDELA * (car.switched === true ? Math.max(night, SWITCHED_BEAM_FLOOR) : night);
       for (const [x, y, z] of lamps.slice(0, 2)) {
         place(car, x, y, z);
         // The switched vehicle's own model shows its lit lenses.
@@ -276,17 +314,23 @@ export class EarthNightLighting {
             this.matrix.compose(this.point, this.rotation, this.scale),
           );
         }
-        const beam = this.beams[beams];
-        if (beam && car.distance < 400 && i < MAX_BEAM_CARS) {
+        if (car.distance < 400 && i < MAX_BEAM_CARS) {
           // The lens and beam share an origin, including chassis pitch and floating origins.
           // A broad, feathered low beam lights the near road without a detached white hotspot.
-          beam.position.copy(this.point).add(this.lensOrigin);
-          beam.target.position.set(0, -6, 18).applyQuaternion(this.rotation).add(beam.position);
-          beam.intensity = strength;
-          beams++;
+          this.aim.set(0, -6, 18).applyQuaternion(this.rotation).normalize();
+          beams.push({
+            position: [
+              this.point.x + this.lensOrigin.x,
+              this.point.y + this.lensOrigin.y,
+              this.point.z + this.lensOrigin.z,
+            ],
+            direction: [this.aim.x, this.aim.y, this.aim.z],
+            intensity: strength,
+          });
         }
       }
     }
+    field?.setBeams(beams);
     for (const [mesh, count] of [
       [this.front, fronts],
       [this.rear, rears],
@@ -312,18 +356,25 @@ export class EarthNightLighting {
   }
 
   /**
-   * Put the street lights on the lamps nearest the camera and where it looks. A city view holds
-   * over ten thousand lamps: tiles none of whose lamps can be near are passed over whole, and a
-   * lamp's key is made only once it is near enough to be chosen.
+   * Hand the field the lamps near the camera and where it looks, nearest first. A city view holds
+   * over ten thousand lamps: tiles none of whose lamps can be near are passed over whole.
    */
-  private chooseStreetLights(distance: (x: number, z: number) => number): void {
+  private chooseStreetLights(
+    field: EarthLampField,
+    camera: readonly [number, number, number],
+    /** The camera's height above the ground, m. */
+    above: number,
+    distance: (x: number, z: number) => number,
+  ): void {
     const root = this.options.root;
     root.updateWorldMatrix(true, false);
     this.toRoot.copy(root.matrixWorld).invert();
-    const previous = new Set(this.streetKeys);
-    const slots = this.lampSlots;
-    const limit = this.streets.length;
-    let count = 0;
+    let fadeTo = Math.min(field.fadeTo * STREET_LIGHT_AIR_REACH, field.fadeTo + Math.max(0, above));
+    const limit = fadeTo + STREET_LIGHT_MARGIN;
+    const candidates = this.candidates;
+    const distances = this.candidateDistances;
+    candidates.length = 0;
+    distances.length = 0;
     let lastSource: THREE.Object3D | undefined;
     const enter = (source: THREE.Object3D): void => {
       if (source === lastSource) return;
@@ -336,28 +387,9 @@ export class EarthNightLighting {
         enter(source);
         this.point.set(lamp.x, lamp.y - 0.2, lamp.z).applyMatrix4(this.sourceMatrix);
         const d = distance(this.point.x, this.point.z);
-        if (d >= STREET_LIGHT_REACH) return;
-        // The farthest lamp kept so far, once every light has one.
-        const worst = count === limit ? (slots[limit - 1] as LampSlot).distance : Infinity;
-        if (d * STREET_LIGHT_HOLD >= worst) return;
-        // A lamp lit last time counts as nearer, so two lamps at about the same distance do not
-        // trade a light back and forth.
-        const key = `${source.uuid}:${lamp.x},${lamp.z}`;
-        const effective = previous.has(key) ? d * STREET_LIGHT_HOLD : d;
-        if (effective >= worst) return;
-        let slot: LampSlot;
-        if (count < limit) slot = slots[count++] as LampSlot;
-        else slot = slots[limit - 1] as LampSlot;
-        // Kept in order of distance; lamps equally far stay in the order visited.
-        let index = count - 1;
-        while (index > 0 && (slots[index - 1] as LampSlot).distance > effective) {
-          slots[index] = slots[index - 1] as LampSlot;
-          index--;
-        }
-        slots[index] = slot;
-        slot.key = key;
-        slot.distance = effective;
-        slot.position.copy(this.point);
+        if (d >= limit) return;
+        candidates.push(this.point.x, this.point.y, this.point.z);
+        distances.push(d);
       },
       (lights, source) => {
         let bounds = this.lampBounds.get(lights);
@@ -383,18 +415,37 @@ export class EarthNightLighting {
         enter(source);
         this.point.copy(bounds.center).applyMatrix4(this.sourceMatrix);
         // No lamp is farther than the radius from the middle; `distance` weighs the view's focus
-        // by 1.2, so the radius counts for as much.
+        // by up to 1.2, so the radius counts for as much.
         const reach = bounds.radius * this.sourceMatrix.getMaxScaleOnAxis() * 1.2;
-        return distance(this.point.x, this.point.z) - reach < STREET_LIGHT_REACH;
+        return distance(this.point.x, this.point.z) - reach < limit;
       },
     );
-    this.streetCount = count;
-    this.streetKeys = [];
-    for (let i = 0; i < count; i++) {
-      const slot = slots[i] as LampSlot;
-      this.streetKeys.push(slot.key);
-      (this.streets[i] as THREE.PointLight).position.copy(slot.position);
+    const total = distances.length;
+    const order = this.order;
+    order.length = total;
+    for (let i = 0; i < total; i++) order[i] = i;
+    // Nearest first only when there are more than the field holds; lamps equally far stay in the
+    // order visited.
+    if (total > MAX_LAMPS) {
+      order.sort((a, b) => (distances[a] as number) - (distances[b] as number) || a - b);
+      // The farthest kept fade out by where the field stops, rather than end there.
+      fadeTo = Math.min(fadeTo, distances[order[MAX_LAMPS] as number] as number);
     }
+    const count = Math.min(total, MAX_LAMPS);
+    // Measured from the camera, so each offset is small enough for float32.
+    this.anchor[0] = camera[0];
+    this.anchor[1] = camera[1];
+    this.anchor[2] = camera[2];
+    const data = this.lampData;
+    for (let i = 0; i < count; i++) {
+      const at = (order[i] as number) * 3;
+      data[i * 4] = (candidates[at] as number) - camera[0];
+      data[i * 4 + 1] = (candidates[at + 1] as number) - camera[1];
+      data[i * 4 + 2] = (candidates[at + 2] as number) - camera[2];
+      data[i * 4 + 3] = 1;
+    }
+    field.setLamps(data, count, fadeTo);
+    this.streetCount = count;
   }
 
   private readonly position = new THREE.Vector3();
@@ -406,11 +457,11 @@ export class EarthNightLighting {
     if (this.disposed) return;
     this.disposed = true;
     this.object.removeFromParent();
+    this.options.lampField?.clear();
     this.front.dispose();
     this.rear.dispose();
     this.geometry.dispose();
     this.frontMaterial.dispose();
     this.rearMaterial.dispose();
-    for (const light of [...this.streets, ...this.beams]) light.dispose();
   }
 }

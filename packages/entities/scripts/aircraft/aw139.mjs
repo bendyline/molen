@@ -229,14 +229,13 @@ export function buildAW139(s) {
       [2.2, 0.018],
       [0.52, 0.017],
     ])
-      d.rod(q(0.75, y, 0.022), q(-1.72, y, 0.022), r, metal);
+      d.rod(q(0.75, y, 0.03), q(-1.72, y, 0.03), r, metal);
     for (const z of [1.55, 0.73, -1.1])
       for (let i = 0; i < 14; i++)
         d.add(new T.SphereGeometry(0.0033, 5, 3), metal, q(z, 0.62 + i * 0.1, 0.001));
     for (const z of [1.75, 1.22, -0.9])
       d.rod(q(z, 0.99, 0.012), q(z + 0.15, 0.99, 0.012), 0.013, metal);
-    // Turned with the boom's taper so the whole name stays clear of the skin.
-    d.text('AW139', q(-4.6, 1.68, 0.02), 0.11, side * (Math.PI / 2 + 0.12), accent);
+    // Titles and registrations are livery lettering (liveries/aircraft/aw139.mjs).
     // Stub sponsons enclose the main-gear wells and carry the boarding step.
     const sg = group(root, `AW139-sponson-${side}`, [side * 1.3, 0.67, -1.1]),
       sd = detailKit(sg, 'sponson');
@@ -255,9 +254,10 @@ export function buildAW139(s) {
           ...Array.from({ length: 11 }, (_, k) => {
             const a = ((k - 5) * Math.PI) / 10,
               s = Math.sin(a);
+            // 2.5 cm deeper underneath than above: room for the stowed main wheel.
             return [
               side * w * Math.pow(Math.cos(a), 2 / 2.6),
-              0.015 + 0.175 * Math.sign(s) * Math.pow(Math.abs(s), 2 / 2.6),
+              0.015 + (s < 0 ? 0.2 : 0.175) * Math.sign(s) * Math.pow(Math.abs(s), 2 / 2.6),
             ];
           }),
           [-side * 0.36, 0.12],
@@ -265,12 +265,13 @@ export function buildAW139(s) {
       })),
       paint,
     );
-    sd.box([0.23, 0.015, 0.56], [side * 0.12, -0.166, -0.07], trim);
+    sd.box([0.23, 0.015, 0.56], [side * 0.12, -0.19, -0.07], trim);
     sd.finish();
     d.rod([side * 1.18, 0.35, 0.4], [side * 1.44, 0.35, 0.4], 0.02, metal);
     d.rod([side * 1.44, 0.35, 0.4], [side * 1.44, 0.35, -0.9], 0.024, metal);
     d.rod([side * 1.44, 0.35, -0.9], [side * 1.18, 0.35, -0.9], 0.02, metal);
-    d.box([0.055, 0.055, 0.07], q(1.37, 2.05, 0.02), side < 0 ? d.green : d.red);
+    // Lifted clear of the skin: at 0.02 their inner faces showed inside the cabin roof.
+    d.box([0.055, 0.055, 0.07], q(1.37, 2.05, 0.045), side < 0 ? d.green : d.red);
   }
   // Frame joints around the skin.
   for (const z of [1.55, 0.73, -1.1, -1.9, -2.85, -4.6, -6.3])
@@ -284,35 +285,50 @@ export function buildAW139(s) {
   // Broad integrated transmission fairing (JCG front photo): flanks leaning in slightly under a
   // rounded crown, its foot following the curved roof so no gap opens at the shoulders.
   const cowl = (z, w, b, t) => {
-    // The foot flares out into the roof before the flank rises (JCG front photo); the underside
-    // follows the roof, so no slab hangs inside the cabin.
-    const under = (x) => Math.min(b, shell.at(z, roof(z, x))[1] - 0.03),
-      foot = under(w * 1.12),
+    // The foot flares out into the roof before the flank rises (JCG front photo).
+    const foot = Math.min(b, shell.at(z, roof(z, w * 1.12))[1] - 0.03),
       y = t - (t - foot) * 0.62;
     return {
       z,
+      w,
+      foot,
+      arc: Array.from({ length: 13 }, (_, k) => {
+        const a = ((k - 6) * Math.PI) / 12,
+          s = Math.sin(a),
+          h = y + (t - y) * Math.pow(Math.cos(a), 2 / 2.6);
+        return [
+          w *
+            (1 - (0.08 * (h - foot)) / (t - foot)) *
+            Math.sign(s) *
+            Math.pow(Math.abs(s), 2 / 2.6),
+          h,
+        ];
+      }),
+    };
+  };
+  // The flank shape keeps its old feet (3 cm under the roof), but the flare tips now sit
+  // on the skin and the underside rides 15 mm over it, re-fitted every 0.2 m between
+  // the stations (each in-between arc on the old straight loft). The old straight underside
+  // dipped under the curved roof and hung in bands below the cabin ceiling.
+  const section = ({ z, w, foot, arc }) => {
+    const roofY = (x) => shell.at(z, roof(z, x))[1],
+      base = roofY(w * 1.12) + 0.001;
+    return {
+      z,
       points: [
-        [-w * 1.12, foot],
+        [-w * 1.12, base],
         [-w, foot + 0.07],
-        ...Array.from({ length: 13 }, (_, k) => {
-          const a = ((k - 6) * Math.PI) / 12,
-            s = Math.sin(a),
-            h = y + (t - y) * Math.pow(Math.cos(a), 2 / 2.6);
-          return [
-            w *
-              (1 - (0.08 * (h - foot)) / (t - foot)) *
-              Math.sign(s) *
-              Math.pow(Math.abs(s), 2 / 2.6),
-            h,
-          ];
-        }),
+        ...arc,
         [w, foot + 0.07],
-        [w * 1.12, foot],
-        ...[0.6, 0, -0.6].map((k) => [k * w, under(k * w) + 0.05]),
+        [w * 1.12, base],
+        ...[1, 0.85, 0.7, 0.55, 0.4, 0.2, 0, -0.2, -0.4, -0.55, -0.7, -0.85, -1].map((k) => [
+          k * w,
+          roofY(k * w) + 0.015,
+        ]),
       ],
     };
   };
-  const cowls = [
+  const stations = [
     cowl(2.0, 0.46, 2.12, 2.28),
     cowl(0.65, 0.71, 2.25, 2.89),
     cowl(0.26, 0.66, 2.25, 3.13),
@@ -321,6 +337,21 @@ export function buildAW139(s) {
     cowl(-2.78, 0.62, 2.18, 2.57),
     cowl(-3.2, 0.44, 2.13, 2.28),
   ];
+  const cowls = stations.flatMap((a, i) => {
+    const b = stations[i + 1];
+    if (!b) return [section(a)];
+    const n = Math.ceil((a.z - b.z) / 0.2);
+    return Array.from({ length: n }, (_, k) => {
+      const u = k / n,
+        mix = (p, q) => p + (q - p) * u;
+      return section({
+        z: mix(a.z, b.z),
+        w: mix(a.w, b.w),
+        foot: mix(a.foot, b.foot),
+        arc: a.arc.map((p, j) => p.map((c, m) => mix(c, b.arc[j][m]))),
+      });
+    });
+  });
   loft(d, cowls, paint);
   /** Half width of the fairing at station z and height y (its +X flank). */
   const cowlX = (z, y) => {
@@ -363,18 +394,23 @@ export function buildAW139(s) {
         );
     }
     // Photos: the outlets sit on the cowling flanks and splay aft-outboard (not rear "eyes").
-    const eg = group(root, `AW139-exhaust-${side}`, [side * 0.6, 2.53, -2.5]),
+    const eg = group(root, `AW139-exhaust-${side}`, [side * 0.53, 2.56, -2.5]),
       ed = detailKit(eg, 'exhaust');
     eg.rotation.order = 'YXZ';
     eg.rotation.y = -side * 0.5;
     eg.rotation.x = 0.1;
+    // A tall oval outlet faired into the flank (photos), not a round can standing off it.
     ed.add(
-      new T.CylinderGeometry(0.19, 0.2, 0.5, 20, 1, true).rotateX(Math.PI / 2),
+      new T.CylinderGeometry(0.19, 0.2, 0.5, 20, 1, true).rotateX(Math.PI / 2).scale(0.62, 1.12, 1),
       metal,
       [0, 0, 0],
     );
-    ed.add(new T.CircleGeometry(0.17, 20).rotateY(Math.PI), trim, [0, 0, -0.255]);
-    ed.ring(0.19, 0.02, [0, 0, -0.255], metal);
+    ed.add(
+      new T.CircleGeometry(0.17, 20).rotateY(Math.PI).scale(0.62, 1.12, 1),
+      trim,
+      [0, 0, -0.255],
+    );
+    ed.ring(0.19, 0.02, [0, 0, -0.255], metal).scale.set(0.62, 1.12, 1);
     ed.finish();
   }
   // Swept vertical fin, stabilizer and starboard four-blade tail rotor.
@@ -468,25 +504,60 @@ export function buildAW139(s) {
     dd.finish();
   }
   rd.finish();
-  const gearNodes = [];
-  for (const [name, x, z, dual] of [
-    ['nose', 0, 3.08, true],
-    ['left', 1.52, -1.26, false],
-    ['right', -1.52, -1.26, false],
-  ]) {
-    const g = group(root, `AW139-gear-${name}`, [x, 0.55, z]),
-      gd = detailKit(g, 'gear');
-    gd.rod([0, 0.06, 0], [0, -0.3, 0], 0.04, metal);
-    gd.rod([0, 0.03, 0.22], [0, -0.23, 0], 0.026, paint);
-    for (const off of dual ? [-0.115, 0.115] : [0])
-      wheel(gd, [off, -0.29, 0], 0.26, dual ? 0.16 : 0.21, rubber, metal, paint);
-    gd.box([dual ? 0.32 : 0.26, 0.03, 0.39], [0, 0.06, -0.03], paint);
+  // Own retraction rig (the generic one folded the wheels out under the sponsons and the
+  // nose, in plain view with the gear up). The twin nose wheels fold forward into a well
+  // under the cockpit floor (closed over by a housing between the pedals); each main leg
+  // swings inboard about the sponson's outer lower edge and lays its wheel flat inside the
+  // sponson. Ground contact and wheel stations are unchanged.
+  const gearNodes = [],
+    gearBindings = [],
+    fold = (node, axis, angle) =>
+      gearBindings.push({
+        node,
+        source: 'gear',
+        property: 'rotation',
+        axis,
+        keys: [
+          [0, angle],
+          [0.15, angle],
+          [0.85, 0],
+          [1, 0],
+        ],
+        ease: 'smooth',
+      });
+  {
+    const g = group(root, 'AW139-gear-nose', [0, 0.595, 3.095]),
+      gd = detailKit(g, 'gear'),
+      axle = [0, -0.405, -0.015];
+    gd.rod([0, -0.02, 0], [0, axle[1] + 0.03, axle[2]], 0.036, metal);
+    gd.rod([0, -0.05, 0.2], [0, -0.24, -0.008], 0.022, paint);
+    gd.rod([-0.16, axle[1], axle[2]], [0.16, axle[1], axle[2]], 0.022, metal);
+    for (const off of [-0.1, 0.1])
+      wheel(gd, [off, axle[1], axle[2]], 0.19, 0.12, rubber, metal, paint);
     gd.finish();
     gearNodes.push(g.name);
+    fold(g.name, 'x', -Math.PI / 2);
+  }
+  for (const [name, side] of [
+    ['left', 1],
+    ['right', -1],
+  ]) {
+    const g = group(root, `AW139-gear-${name}`, [side * 1.64, 0.56, -1.26]),
+      gd = detailKit(g, 'gear'),
+      hub = [-side * 0.12, -0.325, 0];
+    gd.rod([-side * 0.01, -0.04, 0], [-side * 0.03, hub[1], 0], 0.03, metal);
+    gd.rod([-side * 0.03, hub[1], 0], hub, 0.024, metal);
+    gd.rod([0, -0.06, 0.24], [-side * 0.012, -0.2, 0], 0.02, paint);
+    wheel(gd, hub, 0.235, 0.17, rubber, metal, paint);
+    gd.finish();
+    gearNodes.push(g.name);
+    fold(g.name, 'z', (-side * Math.PI) / 2);
   }
   for (const side of [-1, 1]) {
-    d.rod(onRoof(3.12, side * 0.42, 0.02), onRoof(2.64, side * 0.78, 0.02), 0.012, trim);
-    d.rod(onRoof(2.64, side * 0.78, 0.02), onRoof(2.55, side * 0.96, 0.02), 0.008, trim);
+    // Wiper blade and arm: slim, as on the aircraft (2.4 cm thick they read as a frame bar
+    // across the windscreen from the seats).
+    d.rod(onRoof(3.12, side * 0.42, 0.014), onRoof(2.64, side * 0.78, 0.014), 0.006, trim);
+    d.rod(onRoof(2.64, side * 0.78, 0.014), onRoof(2.55, side * 0.96, 0.014), 0.005, trim);
     // Nose lamps sit flush on the radome, facing along its skin normal.
     const lamp = shell.headOn(side * 0.46, 0.71, 0.004),
       facing = new T.Quaternion().setFromUnitVectors(
@@ -516,7 +587,7 @@ export function buildAW139(s) {
       gearNodes,
       flaps: [],
       ailerons: [],
-      animation: { bindings: [] },
+      animation: { bindings: gearBindings },
       interior,
     },
   };
@@ -676,15 +747,29 @@ function cockpit(root, m, shell) {
   pd.rod([0.27, -0.17, -0.065], [0.27, -0.1, -0.14], 0.011, m.metal);
   pd.box([0.025, 0.1, 0.025], [0.27, -0.1, -0.15], pd.red);
   pd.finish();
-  // Cabin deck trimmed to the rolled-under belly corners of the shell.
+  // Cabin deck trimmed to the rolled-under belly corners of the shell. It runs on under the
+  // pedals to the nose bay: ending at 2.75 it left the nose gear in view from the seats.
   fittedFloor(
     d,
-    [-2.3, -1.8, -1, 0, 1, 1.5, 2.22, 2.6, 3].map((q) => ({
+    [-2.3, -1.8, -1, 0, 1, 1.5, 2.22, 2.6, 3, 3.4, 3.8].map((q) => ({
       z: q,
       points: Array.from({ length: 48 }, (_, j) => shell.at(q, -0.5 + j / 48).slice(0, 2)),
     })),
     m.trim,
-    { y: 0.6025, front: 2.75, back: -2.11, width: 2.02, thickness: 0.045 },
+    { y: 0.6025, front: 3.74, back: -2.11, width: 2.02, thickness: 0.045 },
+  );
+  // Nose-wheel well housing between the pedal sets: the twin wheels fold forward into it.
+  beveledBox(d, [0.44, 0.22, 0.66], [0, 0.71, 3.42], face, 0.03);
+  // Bulkhead behind the last seat row: the cabin used to open straight down the tail boom to
+  // the fin.
+  sheet(
+    d,
+    Array.from({ length: 40 }, (_, j) => {
+      const [x, y] = shell.at(-1.52, -0.5 + j / 40);
+      return [x * 0.985, 1.3 + (y - 1.3) * 0.985, -1.52];
+    }),
+    face,
+    [0, 0, 1],
   );
   const addSeat = (x, y, z) => {
     const sd = detailKit(cabin, 'AW139-seat');

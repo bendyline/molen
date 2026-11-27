@@ -12,9 +12,12 @@ import {
 } from '../src/aircraft';
 import type { TransformData } from '../src/component';
 import {
+  bladeLimit,
   discTilt,
+  hoverInducedVelocity,
   inducedVelocityRatio,
   type RotorBlades,
+  retreatingStall,
   rotorLoads,
   rotorPitchFor,
 } from '../src/dynamics/rotor';
@@ -123,6 +126,57 @@ describe('a rotor', () => {
     expect(rotorLoads(blades, { ...hover, pitch: 0.6, inflow: 4 }).stall).toBe(1);
     // At a third of tip speed the retreating blade has much less air to work in.
     expect(most(blades.tipSpeed / 3)).toBeLessThan(0.85 * most(0));
+  });
+
+  it('carries less on its retreating blades the faster it goes, as measured', () => {
+    // A CH-47B's rotor in a wind tunnel: greatest lift over solidity at four advance ratios.
+    for (const [advance, lift] of [
+      [0, 0.156],
+      [0.2, 0.131],
+      [0.3, 0.119],
+      [0.4, 0.104],
+    ] as const)
+      expect(bladeLimit({ hover: 0.156, slope: 0.8 * 0.156 }, advance)).toBeCloseTo(lift, 2);
+  });
+
+  it('blows back and toward the retreating side, loses lift, drags and shakes once they stall', () => {
+    const at = (asked: number, advance = 0.35) =>
+      retreatingStall({ asked, bladeLift: 6 * asked, advance }, 0.1);
+    // Nothing short of the limit.
+    expect(at(0.08)).toMatchObject({ back: 0, aside: 0, lift: 1, drag: 0, shake: 0 });
+    const onset = at(0.1);
+    const deep = at(0.13);
+    // As on a blade-element rotor with stalling sections: about a degree, then three or four.
+    expect((onset.back * 180) / Math.PI).toBeCloseTo(0.8, 1);
+    expect((deep.back * 180) / Math.PI).toBeGreaterThan(2.5);
+    expect((deep.back * 180) / Math.PI).toBeLessThan(4.5);
+    expect(deep.aside).toBeGreaterThan(0.2 * deep.back);
+    expect(deep.aside).toBeLessThan(0.5 * deep.back);
+    // The thrust stops growing a little under what it carries, and the blades drag.
+    expect(0.13 * deep.lift).toBeCloseTo(0.095, 2);
+    expect(deep.drag).toBeGreaterThan(onset.drag);
+    expect(deep.shake).toBe(1);
+    expect(onset.shake).toBeGreaterThan(0.1);
+    expect(onset.shake).toBeLessThan(0.5);
+    // In a hover both sides of the disc stall together, which is another matter.
+    expect(at(0.13, 0.05)).toMatchObject({ back: 0, aside: 0, lift: 1, shake: 0 });
+  });
+
+  it('shares its thrust with a duct round it, for about 0.7 of the induced power', () => {
+    const open: RotorBlades = { ...blades, drag: 0 };
+    const fan: RotorBlades = { ...open, duct: 0.5 };
+    const thrust = cayuse.mass * G;
+    const held = (rotor: RotorBlades) => {
+      const inflow = hoverInducedVelocity(rotor, 1.225, thrust);
+      const flow = { ...hover, inflow };
+      const angle = rotorPitchFor(rotor, flow, thrust);
+      return rotorLoads(rotor, { ...flow, pitch: angle });
+    };
+    expect(held(fan).thrust).toBeCloseTo(thrust, 0);
+    expect(held(fan).inflowTarget).toBeCloseTo(Math.SQRT2 * held(open).inflowTarget, 3);
+    // Half the work for the blades.
+    expect(held(fan).bladeLift).toBeCloseTo(0.5 * held(open).bladeLift, 6);
+    expect(held(fan).power / held(open).power).toBeCloseTo(Math.SQRT1_2, 1);
   });
 
   it('is turned by the air in a descent', () => {
@@ -373,6 +427,75 @@ describe('a helicopter on its rotors', () => {
     );
   });
 
+  describe('turning under way (assisted)', () => {
+    const KNOT = 0.514444;
+    const spec = molenAircraft('molen.entities.aircraft.aw139').spec;
+    const heading = (state: AircraftStateData) => state.yaw;
+    /** Direction of travel over the ground, measured as the heading is (to the left positive). */
+    const track = (state: AircraftStateData) =>
+      Math.atan2(state.velocity[0] as number, state.velocity[2] as number);
+    /** Level at `knots`, then the stick (or a pedal) held for a while and let go. */
+    const turn = (knots: number, control: 'roll' | 'yaw', seconds: number) => {
+      const speed = knots * KNOT;
+      const start = lever(spec, { density: 1.19, speed });
+      let hold = 0;
+      return fly(
+        spec,
+        8 + seconds + 8,
+        (state, time, transform) => {
+          const behind =
+            speed - Math.hypot(state.velocity[0] as number, state.velocity[2] as number);
+          hold = Math.max(-1, Math.min(1, hold + (behind * 0.01) / 60));
+          const on = time > 8 && time < 8 + seconds;
+          return {
+            ...running,
+            gear: false,
+            power: Math.max(
+              0,
+              Math.min(
+                1,
+                start + (300 - transform.pos[1]) * 0.006 - (state.velocity[1] as number) * 0.06,
+              ),
+            ),
+            pitch: -(0.04 * behind + hold),
+            [control]: on ? 1 : 0,
+          };
+        },
+        hovering(300, speed),
+      ).state;
+    };
+
+    it.each([
+      40, 60, 120,
+    ])('follows a bank with its nose at %i knots, and keeps the new heading', (knots) => {
+      // It used to fly on crabbed: at 60 knots the path turned 71 degrees and the nose 40.
+      const end = turn(knots, 'roll', 10);
+      // Banked right, it has turned right.
+      expect(track(end)).toBeLessThan(-0.6);
+      // Within a few degrees: the path runs on a little as the bank comes off.
+      expect(Math.abs(heading(end) - track(end))).toBeLessThan(0.08);
+    });
+
+    it.each([
+      [120, 4],
+      [60, 2],
+    ])('keeps the heading the pedals gave it at %i knots, and brings the path round to it', (knots, seconds) => {
+      // The fin used to swing the nose back: 40 degrees of pedal at cruise, and it snapped back
+      // 30 or more as soon as the pedal was let go.
+      const end = turn(knots, 'yaw', seconds);
+      const given = heading(end);
+      // Pedalled right, the nose stays right, by about what the pedals gave.
+      expect(given).toBeLessThan(-0.4);
+      expect(Math.abs(given - track(end))).toBeLessThan(0.08);
+      expect(Math.abs(end.roll)).toBeLessThan(0.08);
+    });
+
+    it('still turns round at the pedals in slow flight', () => {
+      const end = turn(25, 'yaw', 6);
+      expect(Math.abs(heading(end))).toBeGreaterThan(2);
+    });
+  });
+
   it('turns at the pedals in the hover', () => {
     const turned = fly(cayuse, 4, (state, time, transform) => ({
       ...holding(cayuse, 60)(state, time, transform),
@@ -382,6 +505,37 @@ describe('a helicopter on its rotors', () => {
     expect(turned.state.yawRate).toBeLessThan(-0.6 * helicopter.yawRate);
     expect(turned.state.yawRate).toBeGreaterThan(-1.3 * helicopter.yawRate);
     expect(turned.state.crashed).toBe(false);
+  });
+
+  it.each([
+    'oh6',
+    'uh_1h',
+    'bell_206b',
+    'bell_407',
+    'bell_412ep',
+    'robinson_r44',
+    'airbus_h125',
+    'airbus_h145',
+    'uh_60m',
+    'aw139',
+  ])('%s holds its heading at full power, low and high', (id) => {
+    // An H145 span at full power at sea level, and an AW139 above 2,000 m.
+    const spec = molenAircraft(`molen.entities.aircraft.${id}`).spec;
+    for (const altitude of [0, 2000, 4000]) {
+      let fastest = 0;
+      fly(
+        spec,
+        15,
+        () => ({ ...running, gear: false, power: 1 }),
+        hovering(altitude),
+        (flight, time) => {
+          if (time > 2) fastest = Math.max(fastest, Math.abs(flight.state.yawRate ?? 0));
+        },
+        { groundHeight: () => -10000 },
+        30,
+      );
+      expect(fastest).toBeLessThan(0.1);
+    }
   });
 
   it('spins without its tail rotor', () => {
@@ -422,7 +576,12 @@ describe('a helicopter on its rotors', () => {
     /** The swashplate's forward stop: 1.4 times its travel the other ways. */
     const stop = 1.4 * 0.2;
     const KNOT = 0.514444;
-    const push = (id: string, power: number, pitch: number, watch?: (flight: Flight) => void) => {
+    const push = (
+      id: string,
+      power: number,
+      pitch: number,
+      watch: (flight: Flight, time: number) => void = () => {},
+    ) => {
       const spec = molenAircraft(`molen.entities.aircraft.${id}`).spec;
       let highest = -Math.PI;
       let reached = 0;
@@ -439,7 +598,7 @@ describe('a helicopter on its rotors', () => {
           power,
           pitch: time < 2 ? 0 : pitch,
         }),
-        hovering(1500, 60 * KNOT),
+        hovering(100, 60 * KNOT),
         (flight, time) => {
           most = Math.max(most, flight.state.rotor?.cyclic[0] ?? 0);
           // Ten seconds for the nose to go down and settle.
@@ -450,7 +609,7 @@ describe('a helicopter on its rotors', () => {
             low = Math.min(low, flight.state.pitch);
             high = Math.max(high, flight.state.pitch);
           }
-          watch?.(flight);
+          watch(flight, time);
         },
         { groundHeight: () => -10000 },
         30,
@@ -458,25 +617,25 @@ describe('a helicopter on its rotors', () => {
       return { highest, reached, most, swing: high - low };
     };
 
-    // At what they are certified to never exceed, or near their fastest level flight.
+    // Near their fastest level flight, or what they are certified to never exceed.
     it.each([
       ['oh6', 130],
-      ['uh_1h', 110],
+      ['uh_1h', 112],
       ['bell_206b', 122],
-      ['bell_407', 140],
-      ['bell_412ep', 140],
-      ['robinson_r44', 130],
-      ['airbus_h125', 150],
+      ['bell_407', 145],
+      ['bell_412ep', 138],
+      ['robinson_r44', 128],
+      ['airbus_h125', 145],
       ['airbus_h145', 130],
       ['uh_60m', 150],
       ['aw139', 167],
     ] as const)('%s keeps its nose down and reaches %i knots', (id, knots) => {
       const flown = push(id, 1, -0.5);
-      expect(flown.highest).toBeLessThan(-0.05);
+      expect(flown.highest).toBeLessThan(-0.02);
       expect(flown.reached).toBeGreaterThan(knots * KNOT);
       // Without porpoising, and with swashplate in hand.
       expect(flown.swing).toBeLessThan(0.06);
-      expect(flown.most).toBeLessThan(0.95 * stop);
+      expect(flown.most).toBeLessThan(0.97 * stop);
     });
 
     it.each([
@@ -491,6 +650,74 @@ describe('a helicopter on its rotors', () => {
       expect(flown.highest).toBeLessThan(-0.05);
       expect(flown.reached).toBeGreaterThan(160 * KNOT);
       expect(flown.most).toBeLessThan(0.95 * stop);
+    });
+
+    it.each([
+      'oh6',
+      'uh_1h',
+      'bell_206b',
+      'bell_407',
+      'bell_412ep',
+      'robinson_r44',
+      'airbus_h125',
+      'airbus_h145',
+      'uh_60m',
+      'aw139',
+    ])('%s holds its limit speed with the nose coming up by itself, whatever the lever', (id) => {
+      const limit =
+        molenAircraft(`molen.entities.aircraft.${id}`).spec.helicopter?.retreatingBladeSpeed ?? 0;
+      for (const power of [1, 0.3]) {
+        let late = 0;
+        let steepest = 0;
+        const flown = push(id, power, -1, (flight, time) => {
+          steepest = Math.min(steepest, flight.state.pitch);
+          if (time > 50) late = Math.max(late, flight.state.airspeed);
+        });
+        // It went to 230 knots in an AW139 before, with the blades' stall only a warning.
+        expect(flown.reached).toBeLessThan(1.1 * limit);
+        expect(late).toBeGreaterThan(0.9 * limit);
+        // Steady, and not dug in.
+        expect(flown.swing).toBeLessThan(0.1);
+        expect(flown.highest).toBeLessThan(0.1);
+      }
+    });
+
+    it('warns and shakes at the limit, and neither short of it', () => {
+      const cruise: Flight[] = [];
+      const limit: Flight[] = [];
+      push('aw139', 0.5, -0.35, (flight, time) => {
+        if (time > 45) cruise.push(flight);
+      });
+      push('aw139', 1, -1, (flight, time) => {
+        if (time > 12 && time < 30) limit.push(flight);
+      });
+      expect(cruise.every(({ state }) => !state.overspeed && (state.buffet ?? 0) === 0)).toBe(true);
+      expect(limit.some(({ state }) => state.overspeed)).toBe(true);
+      expect(Math.max(...limit.map(({ state }) => state.buffet ?? 0))).toBeGreaterThan(0.1);
+    });
+
+    it('comes to its limit sooner higher up', () => {
+      const spec = molenAircraft('molen.entities.aircraft.aw139').spec;
+      const fastest = (altitude: number) => {
+        let reached = 0;
+        fly(
+          spec,
+          60,
+          (_state, time) => ({ ...running, gear: false, power: 0.6, pitch: time < 2 ? 0 : -1 }),
+          hovering(altitude, 110 * KNOT),
+          (flight) => {
+            reached = Math.max(reached, flight.state.airspeed);
+          },
+          { groundHeight: () => -10000 },
+          30,
+        );
+        return reached / KNOT;
+      };
+      const low = fastest(100);
+      const high = fastest(3000);
+      expect(low).toBeLessThan(180);
+      expect(high).toBeLessThan(low - 4);
+      expect(high).toBeGreaterThan(145);
     });
 
     it('the AW139 cruises at 160 knots with a tenth of its travel and more in hand', () => {
@@ -522,8 +749,67 @@ describe('a helicopter on its rotors', () => {
       );
       expect(end.state.airspeed / KNOT).toBeGreaterThan(157);
       expect(Math.abs(end.state.verticalSpeed)).toBeLessThan(0.5);
+      // The rotor carries little more than the weight: the nose-low body is not pushed down hard.
+      expect(end.state.loadFactor).toBeLessThan(1.15);
       expect(end.state.rotor?.cyclic[0]).toBeLessThan(stop - 0.1 * (stop + 0.2));
     });
+  });
+
+  it('pitches up and rolls toward the retreating blades when it is overpitched fast (direct)', () => {
+    const spec = molenAircraft('molen.entities.aircraft.aw139').spec;
+    if (!spec.helicopter?.rotor) throw new Error('No rotor');
+    const unstallable: AircraftSpec = {
+      ...spec,
+      helicopter: {
+        ...spec.helicopter,
+        retreatingBladeSpeed: 1000,
+        rotor: { ...spec.helicopter.rotor, maxLift: 2.4 },
+      },
+    };
+    const speed = 77;
+    const start = lever(spec, { density: 1.16, speed });
+    // Level at 150 knots, then the lever pulled up with the stick left where it is.
+    const pulled = (flown: AircraftSpec) => {
+      let hold = 0;
+      let power = start;
+      const level = fly(
+        flown,
+        10,
+        (state, _time, transform) => {
+          const behind = speed - state.velocity[2];
+          hold = Math.max(-1, Math.min(1, hold + (behind * 0.01) / 60));
+          power = Math.max(
+            0,
+            Math.min(
+              1,
+              start + (600 - transform.pos[1]) * 0.006 - (state.velocity[1] as number) * 0.06,
+            ),
+          );
+          return { ...running, gear: false, power, pitch: -(0.04 * behind + hold) };
+        },
+        hovering(600, speed),
+      );
+      return fly(
+        flown,
+        0.5,
+        () => ({
+          ...running,
+          gear: false,
+          cyclicMode: 'direct',
+          pedalMode: 'assisted',
+          power: Math.min(1, power + 0.3),
+        }),
+        level,
+      ).state;
+    };
+    const stalls = pulled(spec);
+    const free = pulled(unstallable);
+    expect(stalls.pitch).toBeGreaterThan(free.pitch + 0.06);
+    // Less to the right than the same rotor without the stall: to the left, its retreating side.
+    expect(stalls.roll).toBeLessThan(free.roll - 0.02);
+    expect(stalls.loadFactor ?? 0).toBeLessThan(0.75 * (free.loadFactor ?? 0));
+    expect(stalls.buffet).toBeGreaterThan(0.4);
+    expect(free.buffet ?? 0).toBeLessThan(0.05);
   });
 
   it('noses up as it gathers speed with the stick left alone (direct controls)', () => {

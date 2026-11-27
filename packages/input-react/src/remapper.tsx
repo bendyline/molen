@@ -122,6 +122,7 @@ export function InputRemapper({
       | { code: string }
       | { axis: number; device: InputDevice }
       | { button: number; device: InputDevice },
+    mapping?: string,
   ): void => {
     if (!selected) return;
     if ('code' in source)
@@ -129,7 +130,8 @@ export function InputRemapper({
     else {
       const overlaps = (device?: InputDevice): boolean =>
         (device?.id === undefined || device.id === source.device.id) &&
-        (device?.index === undefined || device.index === source.device.index);
+        (device?.index === undefined || device.index === source.device.index) &&
+        (device?.mapping === undefined || mapping === undefined || device.mapping === mapping);
       if ('axis' in source)
         change({
           ...value,
@@ -169,14 +171,14 @@ export function InputRemapper({
           (before.buttons[index]?.value ?? 0) < 0.5,
       );
       if (button >= 0) {
-        bind({ button, device });
+        bind({ button, device }, pad.mapping);
         return;
       }
       const axis = pad.axes.findIndex(
         (reading, index) => Math.abs(reading - (before.axes[index] ?? reading)) > 0.35,
       );
       if (axis >= 0) {
-        bind({ axis, device });
+        bind({ axis, device }, pad.mapping);
         return;
       }
     }
@@ -222,7 +224,12 @@ export function InputRemapper({
         <option value="">Any controller</option>
         {options.map((option) => (
           <option key={deviceKey(option)} value={deviceKey(option)}>
-            {option.id ?? 'Any ID'}
+            {option.id ??
+              (option.mapping === undefined
+                ? 'Any ID'
+                : option.mapping === 'standard'
+                  ? 'Standard gamepads'
+                  : 'Non-standard controllers')}
             {option.index === undefined ? '' : ` (#${option.index})`}
           </option>
         ))}

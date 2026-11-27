@@ -99,7 +99,8 @@ the view.
 
 A page with a toolbar of its own can offer those buttons there instead. Pass
 `cornerButtons: false` (in `console` for an Earth view), then draw `view.console.buttons` (each has
-a `label`, an SVG `icon` for a 24 x 24 view box and an `action`) and call `tap(action)` when one is
+a `label`, an SVG `icon` for a 24 x 24 view box and an `action`, and some a `hint` for a tooltip;
+`buttonTip(button)` gathers them) and call `tap(action)` when one is
 pressed, which presses and releases the action as the corner button would. The list follows the
 subject, so read it again when the mode changes. A landscape phone's "more controls" button stays
 in the corner.
@@ -127,6 +128,19 @@ for (const button of view.console?.buttons ?? []) {
 
 Each control captures its own pointer, so the stick and the throttle work at the same time. The
 zones refocus the canvas when touched, so keys keep working on a device with both.
+
+## Tooltips
+
+A mouse or pen resting on a control shows its name, how to work it, and the keys that do the same
+("Throttle: drag up for more power", Z C), after a short pause, or at once when moving on from one
+control to the next. The keys are read from the input map's active profile each time, so they
+follow the mode and any remapping; pass an `input` without `getProfile` to leave them out. The
+dials show their names too, when the host passed `focusTarget`: a dial lets touches through to the
+world, so the console finds the one under a mouse over that element. A thumb has no hover, so a
+phone never shows them.
+
+Each deck item's `tip` (`label`, `hint`, `actions`) says what its tooltip shows; a button's comes
+from the button. `itemTip(item)` reads either.
 
 ## Layout
 

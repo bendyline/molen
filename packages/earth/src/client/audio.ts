@@ -1,19 +1,25 @@
-// The Earth soundscape: ambience from weather, time of day and how the viewer moves, footsteps on
-// foot, city traffic near streets, and door and starter sounds when the player boards a car. The
-// engines themselves are data on the molen.entities vehicle and aircraft types. Shared by
-// `mountEarthView` and hosts that compose their own view (the world explorer). It reads sound
-// banks from content packs (`provides.soundbank`); without one it stays silent.
+// The Earth soundscape: ambience from place, season, time of day and weather; footsteps on foot;
+// streets as beds plus events (horns, sirens, dogs); every vehicle and aircraft voiced by its sound
+// profile (engines, exhaust, tires, wind, cabin), with the cabin, building or tunnel around the ears
+// shaping everything outside it. Shared by `mountEarthView` and hosts that compose their own view
+// (the world explorer). It reads sound banks, sound profiles, the soundscape catalog and birdsong
+// from content packs (`provides.soundbank`, `sound-profiles`, `soundscape`, `birdsong`); without a
+// bank it stays silent.
 
 import {
   type AudioLayer,
   type AudioLayerOptions,
+  type AudioListenerSpace,
   type AudioListenerState,
   type AudioPackSetLike,
   type AudioRendererLike,
+  type AudioReverb,
   attachAutoplayUnlock,
   createAudioLayer,
   listenerFromCamera,
   loadPackSoundbanks,
+  loadPackSoundProfiles,
+  mergeSoundProfiles,
 } from '@bendyline/molen-client/audio';
 import { Aircraft } from '@bendyline/molen-kernel/aircraft';
 import { Vehicle } from '@bendyline/molen-kernel/vehicles';
@@ -31,6 +37,9 @@ import {
 } from './audio-soundscape';
 import type { EarthAudioTerrainSample } from './audio-terrain';
 import { type BirdsongLocation, birdsongLevel, loadBirdsongProfiles } from './birdsong';
+import { climateTemperatureC, warmth } from './climate';
+import { loadSoundscapeCatalog, selectSoundscape } from './soundscape-catalog';
+import { StreetLife, trafficByHour } from './street-life';
 import { VehicleAudio } from './vehicle-audio';
 
 /** Sources in trees and grass (birds, crickets): full on the ground, gone by 60 m up. */
@@ -87,9 +96,11 @@ export const EARTH_AUDIO_ENVIRONMENT: AudioEnvironmentData = {
       fadeS: 3,
     },
     {
-      // Rushing air while flying fast, on top of the weather's wind.
-      sound: 'ambience.wind',
-      when: { 'listener.mode': ['fly', 'pilot', 'orbit'] },
+      // Rushing air while the free camera or a parachute moves fast, on top of the weather's wind:
+      // generated airflow, not a recording of wind in trees (which carries its park's birds and
+      // traffic up with you). An aircraft's own profile voices the air over its airframe.
+      sound: 'aircraft.wind',
+      when: { 'listener.mode': ['fly', 'pilot', 'orbit'], 'listener.vehicle': { exists: false } },
       gainFrom: {
         signal: 'listener.speed',
         curve: [
@@ -212,7 +223,29 @@ export const EARTH_AUDIO_ENVIRONMENT: AudioEnvironmentData = {
     'vehicle-impact': { sound: 'impact.metal.heavy' },
     'vehicle-bump': { sound: 'impact.metal.light', gain: 0.7 },
   },
+  // Loud nearby engines lower the beds; the nearest eight vehicles in range are voiced.
+  masking: 0.6,
+  maxEmitters: 8,
 };
+
+/** Layers heard inside a cabin, past its muffling; added when the bank has their sounds. */
+const CABIN_LAYERS: NonNullable<AudioEnvironmentData['ambience']> = [
+  {
+    sound: 'ambience.rain.roof',
+    inside: true,
+    when: { 'weather.precipitation.kind': 'rain', 'listener.space': 'cabin' },
+    gainFrom: {
+      signal: 'weather.precipitation.intensity',
+      curve: [
+        [0, 0],
+        [0.2, 0.35],
+        [1, 0.85],
+      ],
+    },
+    gain: 0.55,
+    fadeS: 0.6,
+  },
+];
 
 export interface EarthAudioOptions {
   /** Replace the default rules (EARTH_AUDIO_ENVIRONMENT). */
@@ -227,6 +260,10 @@ export interface EarthAudioOptions {
   music?: boolean;
   /** Resume audio on the first gesture on this target (default the window). */
   unlockTarget?: EventTarget;
+  /** Voice budget (default 40, or 24 on a touch-only device). */
+  maxVoices?: number;
+  /** Vehicles voiced at once besides the listener's own (default 8, or 3 on a touch-only device). */
+  maxEmitters?: number;
   onWarning?: (message: string) => void;
 }
 
@@ -262,6 +299,17 @@ export interface EarthAudioFrame {
   /** Enclosed cabin: defaults to drive/pilot. Set false for open boats or outside cameras. */
   inVehicle?: boolean;
   indoors?: boolean;
+  /**
+   * The entity the listener drives or flies, in any view: its sound profile's cabin and interior
+   * layers apply in the cockpit, and outside it is held near a chase camera.
+   */
+  vehicle?: string;
+  /** The space around the ears; default cabin when `inVehicle`, building when `indoors`, else open. */
+  space?: AudioListenerSpace;
+  /** Reverberant surroundings outside that space: a tunnel bore, a street between towers. */
+  reverb?: AudioReverb;
+  /** The driver is holding the horn. */
+  horn?: boolean;
 }
 
 export interface EarthAudio {
@@ -275,6 +323,8 @@ export interface EarthAudio {
 
 /** How often the street distance is re-measured (it walks every car in the loaded tiles). */
 const STREET_CHECK_MS = 250;
+/** Below this held time a horn tap still sounds as a short beep. */
+const HORN_MIN_MS = 180;
 /** Closer than this to a street, footsteps sound on pavement. */
 const PAVEMENT_M = 25;
 const AmbientAgent = componentHandle('ambientAgent');
@@ -300,6 +350,17 @@ function streetDistance(world: World | undefined, at: readonly number[]): number
   return best;
 }
 
+/** 0..1: how many people are within earshot (ambient pedestrians within 30 m), for crowd beds. */
+function crowdLevel(world: World | undefined, at: readonly number[]): number {
+  if (!world) return 0;
+  let n = 0;
+  for (const [, agent, t] of world.query(AmbientAgent, Transform)) {
+    if (agent.kind !== 'pedestrian') continue;
+    if (Math.hypot(t.pos[0] - (at[0] ?? 0), t.pos[2] - (at[2] ?? 0)) < 30) n++;
+  }
+  return Math.min(1, n / 10);
+}
+
 /**
  * Start Earth audio from the sound banks in `packs`, or resolve undefined when none is present.
  * The renderer supplies the default listener (its camera) and sky/weather signals.
@@ -312,23 +373,25 @@ export async function createEarthAudio(
   const warn = options.onWarning ?? ((m: string) => console.warn(`audio: ${m}`));
   const banks = await loadPackSoundbanks(packs, warn);
   if (banks.length === 0) return undefined;
+  const sounds = new Set(banks.flatMap(({ doc }) => Object.keys(doc.sounds)));
   const curatedBirds = !options.environment && packs.provided('birdsong').length > 0;
-  const birdProfiles = options.environment
-    ? []
-    : await loadBirdsongProfiles(
-        packs,
-        new Set(banks.flatMap(({ doc }) => Object.keys(doc.sounds))),
-        warn,
-      );
-  // Curated coverage wins over broad bird palettes, including uncovered places.
-  const clips = earthSoundscapeClips(banks).filter(
-    (clip) => !curatedBirds || clip.category !== 'birds',
+  const birdProfiles = options.environment ? [] : await loadBirdsongProfiles(packs, sounds, warn);
+  const catalog = options.environment
+    ? undefined
+    : await loadSoundscapeCatalog(packs, sounds, warn);
+  const profileDocs = await loadPackSoundProfiles(packs, warn);
+  // A catalog decides every bed by place; without one, curated birdsong replaces the broad bird
+  // palettes everywhere, including places it does not cover.
+  const clips = earthSoundscapeClips(banks, catalog).filter(
+    (clip) => catalog !== undefined || !curatedBirds || clip.category !== 'birds',
   );
+  const categories = [...new Set(clips.map((c) => c.category))];
   const birdLayer = EARTH_AUDIO_ENVIRONMENT.ambience?.find((a) => a.sound === 'ambience.birds');
   const environment = {
     ...EARTH_AUDIO_ENVIRONMENT,
     ambience: [
       ...(EARTH_AUDIO_ENVIRONMENT.ambience ?? []),
+      ...CABIN_LAYERS.filter((layer) => sounds.has(layer.sound)),
       ...birdProfiles.map((p, i) => ({
         ...birdLayer,
         sound: p.sound,
@@ -352,7 +415,16 @@ export async function createEarthAudio(
       })),
     ],
   };
-  const soundscape = options.environment ?? earthSoundscapeEnvironment(environment, clips);
+  // A touch-only device (a phone, most tablets) gets fewer voices and fewer voiced vehicles.
+  const touchOnly =
+    typeof matchMedia === 'function' &&
+    matchMedia('(pointer: coarse)').matches &&
+    !matchMedia('(any-pointer: fine)').matches;
+  const soundscape = options.environment ?? {
+    ...earthSoundscapeEnvironment(environment, clips),
+    maxVoices: options.maxVoices ?? (touchOnly ? 24 : 40),
+    maxEmitters: options.maxEmitters ?? (touchOnly ? 3 : 8),
+  };
   // Without music its playlist is left out, so no track is fetched or decoded (one decodes to
   // about 50 MB of samples); a silenced bus alone still loaded and played it.
   const { music: _playlist, ...withoutMusic } = soundscape;
@@ -361,16 +433,16 @@ export async function createEarthAudio(
     provider: packs.assetProvider(),
     environment: options.music === false ? withoutMusic : soundscape,
     renderer,
+    ...(profileDocs.length > 0 ? { profiles: mergeSoundProfiles(profileDocs) } : {}),
     ...(options.volume !== undefined ? { volume: options.volume } : {}),
     ...(options.muted !== undefined ? { muted: options.muted } : {}),
     onWarning: warn,
   });
   if (options.music === false) layer.setBusGain('music', 0);
   const detachUnlock = attachAutoplayUnlock(layer, options.unlockTarget);
-  const vehicleAudio = new VehicleAudio(
-    layer,
-    new Set(banks.flatMap(({ doc }) => Object.keys(doc.sounds))),
-  );
+  const vehicleAudio = new VehicleAudio(layer, sounds, (id) => layer.director.profileFor(id));
+  const street = new StreetLife(layer, sounds);
+  let horn: { handle: string; startedAt: number; released: boolean } | undefined;
 
   let world: World | undefined;
   let detach: (() => void)[] = [];
@@ -378,6 +450,7 @@ export async function createEarthAudio(
     for (const d of detach) d();
     detach = [];
     vehicleAudio.clear();
+    street.clear();
     world = next;
     if (!next) return;
     detach.push(layer.attachWorld(next));
@@ -397,7 +470,8 @@ export async function createEarthAudio(
     );
   };
 
-  let street = Number.POSITIVE_INFINITY;
+  let streetDist = Number.POSITIVE_INFINITY;
+  let crowd = 0;
   let streetCheckedAt = Number.NEGATIVE_INFINITY;
   let startedAt: number | undefined;
   return {
@@ -410,9 +484,10 @@ export async function createEarthAudio(
       startedAt ??= frame.nowMs;
       if (frame.nowMs - streetCheckedAt > STREET_CHECK_MS) {
         streetCheckedAt = frame.nowMs;
-        street = streetDistance(world, position);
+        streetDist = streetDistance(world, position);
+        crowd = crowdLevel(world, position);
       }
-      const distance = frame.terrain?.streetDistance ?? street;
+      const distance = frame.terrain?.streetDistance ?? streetDist;
       const urban = distance < PAVEMENT_M;
       const weather = frame.weather ?? renderer.weather?.data;
       const snow = weather?.precipitation?.kind === 'snow';
@@ -430,11 +505,23 @@ export async function createEarthAudio(
       const daylight = renderer.sky?.frame?.daylight ?? 1;
       const hour = frame.solarHour ?? 12;
       const dawn = hour >= 4 && hour <= 9 ? 1 : 0.65;
-      const warm = Math.max(
-        0,
-        Math.min(1, ((weather?.atmosphere?.temperatureK ?? 288.15) - 278.15) / 12),
-      );
+      const known = Number.isFinite(frame.heightAboveGround);
+      // A weather preset's temperature is the same everywhere it is applied, so insects and frogs
+      // follow the climate of the place, season and hour instead; snow means it is freezing.
+      const groundY = known ? position[1] - (frame.heightAboveGround as number) : 0;
+      const climate = frame.location
+        ? climateTemperatureC({
+            latitude: frame.location.latitude,
+            longitude: frame.location.longitude,
+            ...(frame.location.utcMs !== undefined ? { utcMs: frame.location.utcMs } : {}),
+            ...(frame.solarHour !== undefined ? { solarHour: frame.solarHour } : {}),
+            elevationM: groundY,
+          })
+        : (weather?.atmosphere?.temperatureK ?? 288.15) - 273.15;
+      const temperatureC = snow ? Math.min(climate, -1) : climate;
       const cabin = frame.inVehicle ?? ['drive', 'pilot'].includes(frame.mode);
+      const space: AudioListenerSpace =
+        frame.space ?? (cabin ? 'cabin' : frame.indoors ? 'building' : 'open');
       const region = earthAudioRegion(frame.location?.latitude, frame.location?.longitude);
       const birdLocation =
         frame.location?.utcMs !== undefined && frame.location.sunAltitudeDeg !== undefined
@@ -447,10 +534,19 @@ export async function createEarthAudio(
       const barren = ['sand', 'beach', 'rock', 'bare_rock', 'snow', 'ice', 'glacier'].includes(
         frame.terrain?.habitat ?? '',
       );
+      const wet =
+        Math.min(
+          frame.terrain?.lakeDistance ?? Infinity,
+          frame.terrain?.riverDistance ?? Infinity,
+        ) < 250 || ['wetland', 'marsh', 'swamp', 'bog'].includes(frame.terrain?.habitat ?? '');
+      const night = Math.max(0, 1 - daylight / 0.3);
       const listener: Partial<AudioListenerState> = {
         mode: frame.mode,
         surface,
         indoors: frame.indoors ?? false,
+        space,
+        ...(frame.vehicle !== undefined ? { vehicle: frame.vehicle } : {}),
+        ...(frame.reverb !== undefined ? { reverb: frame.reverb } : {}),
         ...(frame.position ? { position: frame.position, up: [0, 1, 0] } : {}),
         ...(frame.forward ? { forward: frame.forward } : {}),
         ...(frame.grounded !== undefined ? { grounded: frame.grounded } : {}),
@@ -458,41 +554,122 @@ export async function createEarthAudio(
           ? { heightAboveGround: Math.max(0, frame.heightAboveGround) }
           : {}),
       };
+      const seconds = (frame.nowMs - startedAt) / 1000;
+      const birdsong = birdProfiles.map(
+        (p) =>
+          birdsongLevel(p, birdLocation, frame.regionalAmbience?.habitat) *
+          Math.max(0, Math.min(1, frame.regionalAmbience?.birds ?? 0)),
+      );
+      let selection: Record<string, string>;
+      const levels: Record<string, number> = {};
+      if (catalog && frame.location) {
+        const picked = selectSoundscape(
+          catalog,
+          {
+            latitude: frame.location.latitude,
+            longitude: frame.location.longitude,
+            ...(frame.location.utcMs !== undefined ? { utcMs: frame.location.utcMs } : {}),
+            ...(frame.location.sunAltitudeDeg !== undefined
+              ? { sunAltitudeDeg: frame.location.sunAltitudeDeg }
+              : {}),
+            ...(frame.solarHour !== undefined ? { solarHour: frame.solarHour } : {}),
+            temperatureC,
+            ...(frame.terrain?.habitat !== undefined ||
+            frame.regionalAmbience?.habitat !== undefined
+              ? { habitat: frame.regionalAmbience?.habitat ?? frame.terrain?.habitat }
+              : {}),
+            urban,
+          },
+          seconds,
+        );
+        selection = Object.fromEntries(
+          Object.entries(picked.chosen).map(([category, id]) => [`soundscape.${category}`, id]),
+        );
+        for (const category of categories) levels[category] = picked.levels[category] ?? 0;
+        // A curated recording of the birds that live here wins over the regional bed.
+        if (Math.max(0, ...birdsong) > 0.15) levels.birds = 0;
+      } else {
+        selection = catalog ? {} : earthSoundscapeSelection(clips, region, seconds);
+        for (const category of categories) levels[category] = catalog ? 0 : 1;
+      }
+      street.update({
+        nowMs: frame.nowMs,
+        position,
+        ...(frame.location
+          ? { latitude: frame.location.latitude, longitude: frame.location.longitude }
+          : {}),
+        hour,
+        streetDistance: distance,
+        ...(known ? { heightAboveGround: frame.heightAboveGround as number } : {}),
+        storm: weather?.clouds?.type === 'cumulonimbus' && rain > 0.3,
+        rain,
+        ...(world ? { world } : {}),
+      });
+      // Hold to sound the horn; a tap still gives a short beep.
+      if (frame.horn && frame.vehicle !== undefined && !horn) {
+        const sound = layer.director.profileFor(frame.vehicle)?.horn ?? 'vehicle.horn';
+        if (sounds.has(sound))
+          horn = {
+            handle: layer.play(sound, { entity: frame.vehicle, loop: true, outside: false }),
+            startedAt: frame.nowMs,
+            released: false,
+          };
+      }
+      if (horn && (!frame.horn || frame.vehicle === undefined)) horn.released = true;
+      if (horn?.released && frame.nowMs - horn.startedAt >= HORN_MIN_MS) {
+        layer.stop(horn.handle, 0.06);
+        horn = undefined;
+      }
       layer.update(frame.nowMs, listener, {
         ...(weather ? { weather } : {}),
         host: {
           urban,
           // Streamed tiles may not cover the camera (especially when looking down from high
-          // above). An absent height otherwise resolves to zero in the generic audio layer.
-          groundAmbience: Number.isFinite(frame.heightAboveGround) && !cabin,
-          terrainKnown: Number.isFinite(frame.heightAboveGround),
+          // above). An absent height otherwise resolves to zero in the generic audio layer. A
+          // cabin no longer silences them: its enclosure muffles everything outside.
+          groundAmbience: known,
+          terrainKnown: known,
           streetDistance: distance,
           intersectionDistance: frame.terrain?.intersectionDistance ?? Number.MAX_VALUE,
           coastDistance: frame.terrain?.coastDistance ?? Number.MAX_VALUE,
           riverDistance: frame.terrain?.riverDistance ?? Number.MAX_VALUE,
-          outdoorGain: cabin ? 0.18 : frame.indoors ? 0.28 : 1,
+          lakeDistance: frame.terrain?.lakeDistance ?? Number.MAX_VALUE,
+          highwayDistance: frame.terrain?.highwayDistance ?? Number.MAX_VALUE,
+          // Kept for custom rules written against it; the enclosure now does this work.
+          outdoorGain: 1,
+          temperatureC,
           birdActivity:
             Math.max(0, Math.min(1, (daylight - 0.15) / 0.4)) *
             dawn *
             (1 - rain) *
             (urban ? 0.5 : 1) *
             (barren ? 0.1 : 1),
-          nightActivity: Math.max(0, 1 - daylight / 0.3) * warm * (1 - rain) * (barren ? 0 : 1),
-          insectActivity: daylight * warm * (1 - rain) * 0.75 * (barren ? 0 : 1),
+          nightActivity: night * warmth(temperatureC, 7, 16) * (1 - rain) * (barren ? 0 : 1),
+          insectActivity:
+            daylight * warmth(temperatureC, 13, 22) * (1 - rain) * 0.75 * (barren ? 0 : 1),
+          // Frogs call on mild nights near water, and light rain does not stop them.
+          frogActivity:
+            night *
+            warmth(temperatureC, 4, 11) *
+            (1 - 0.4 * rain) *
+            (wet ? 1 : 0.3) *
+            (barren ? 0 : 1),
           rainActivity: rain,
-          trafficActivity: 0.4 + 0.6 * daylight,
-          ...earthSoundscapeSelection(clips, region, (frame.nowMs - startedAt) / 1000),
+          trafficActivity: trafficByHour(hour),
+          railHorn: street.railHorn,
+          crowd,
+          ...selection,
+          ...Object.fromEntries(
+            Object.entries(levels).map(([category, level]) => [
+              `soundscapeLevel.${category}`,
+              level,
+            ]),
+          ),
           regionalBirds: Math.max(0, Math.min(1, frame.regionalAmbience?.birds ?? 1)),
           regionalInsects: Math.max(0, Math.min(1, frame.regionalAmbience?.insects ?? 1)),
           // Once a curated catalog is present, uncovered places/seasons stay quiet.
           genericBirds: !curatedBirds,
-          ...Object.fromEntries(
-            birdProfiles.map((p, i) => [
-              `birdsong${i}`,
-              birdsongLevel(p, birdLocation, frame.regionalAmbience?.habitat) *
-                Math.max(0, Math.min(1, frame.regionalAmbience?.birds ?? 0)),
-            ]),
-          ),
+          ...Object.fromEntries(birdsong.map((level, i) => [`birdsong${i}`, level])),
         },
       });
     },

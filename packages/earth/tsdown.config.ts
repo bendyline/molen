@@ -20,7 +20,10 @@ export default defineConfig({
   // fleets, liveries and models remain in the content packs.
   outputOptions: {
     codeSplitting: {
-      groups: [{ name: 'vehicles', test: /[/\\]client[/\\](vehicles|aircraft|trains)\.ts$/ }],
+      groups: [
+        { name: 'vehicles', test: /[/\\]client[/\\](vehicles|aircraft|trains)\.ts$/ },
+        { name: 'harbors', test: /[/\\]client[/\\]harbor[a-z-]*\.ts$/ },
+      ],
     },
   },
 });

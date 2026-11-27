@@ -21,6 +21,7 @@ import {
   type TerrainPyramidHeightSource,
   type TerrainPyramidTileLayer,
   terrainPyramidBudgetForQuality,
+  terrainPyramidStreamRoot,
 } from '../src/pyramid-stream';
 import {
   type TerrainPyramidDescriptor,
@@ -29,7 +30,7 @@ import {
   terrainPyramidTileOrigin,
   terrainPyramidTileSize,
 } from '../src/pyramid-types';
-import { taggedTerrainObjects, tagTerrainObject } from '../src/tagged-objects';
+import { taggedTerrainObjects, tagTerrainObject, terrainRootOffset } from '../src/tagged-objects';
 
 function descriptor(overrides: Partial<TerrainPyramidDescriptor> = {}): TerrainPyramidDescriptor {
   return {
@@ -234,6 +235,51 @@ describe('screen-space terrain pyramid', () => {
       stream.object.updateMatrixWorld(true);
       const ray = new THREE.Raycaster(new THREE.Vector3(2, 100, 2), new THREE.Vector3(0, -1, 0));
       expect(ray.intersectObject(stream.object, true)[0]?.point.y).toBeCloseTo(10, 5);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('finds the stream a layer object is drawn under, a translation from it', async () => {
+    const d = descriptor({ maxLevel: 0, origin: [40, -24] });
+    const address = { level: 0, x: 0, z: 0 };
+    const field = flatTile(d, address);
+    const content = new THREE.Object3D();
+    content.name = 'layer-content';
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async () => field },
+      {
+        initialView: VIEW,
+        viewDistance: 100,
+        maxScreenSpaceError: 10000,
+        maxSelectedTiles: 4,
+        maxResidentTiles: 8,
+        maxConcurrentLoads: 4,
+        layers: [
+          {
+            id: 'land',
+            category: 'classification',
+            createTile: () => {
+              const group = new THREE.Group();
+              group.add(content);
+              return group;
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await stream.whenIdle();
+      expect(stream.object.getObjectByName('layer-content')).toBe(content);
+      expect(terrainPyramidStreamRoot(content)).toBe(stream.object);
+      expect(terrainPyramidStreamRoot(stream.object)).toBe(stream.object);
+      expect(terrainRootOffset(content, stream.object)?.toArray()).toEqual([40, 0, -24]);
+      // Under a scene the stream is moved in, still the stream; detached, none.
+      const scene = new THREE.Scene();
+      scene.add(stream.object);
+      expect(terrainPyramidStreamRoot(content)).toBe(stream.object);
+      expect(terrainPyramidStreamRoot(new THREE.Object3D())).toBeUndefined();
     } finally {
       stream.dispose();
     }

@@ -272,7 +272,7 @@ export function buildBell407(s) {
     ];
     outline(d, hatch, 0.005, trim);
     d.rod([side * 0.725, 0.92, -1.0], [side * 0.725, 0.92, -1.1], 0.013, metal);
-    d.text('407 GX', [side * 0.756, 0.88, -0.15], 0.065, (side * Math.PI) / 2, gold);
+    // Titles and registrations are livery lettering (liveries/aircraft/bell-407.mjs).
   }
   // The doghouse crown is a rounded hump (407GX front photos), not a chamfered box.
   const engine = (z, w, b, t) => {
@@ -342,6 +342,17 @@ export function buildBell407(s) {
     boomStations.map((s) => boom(...s)),
     red,
   );
+  // Close the aft fuselage round the boom root. Its last frame is open (no loft cap) and the
+  // boom's own cap covers only the boom section, so from astern the cabin showed through the
+  // corners between the two.
+  const boomRoot = boom(...boomStations[0]).points;
+  sheet(
+    d,
+    sections.at(-1).points.map(([x, y]) => [x, y, -2.9]),
+    red,
+    [0, 0, -1],
+    [boomRoot.map(([x, y]) => [x * 0.98, 1.615 + (y - 1.615) * 0.98, -2.9])],
+  );
   for (const z of [-3.1, -4, -5, -6]) {
     const i = boomStations.findIndex((s) => s[0] < z),
       a = boomStations[i - 1],
@@ -388,12 +399,13 @@ export function buildBell407(s) {
       red,
       0.045,
     );
+    // Endplates rake back from the stabilizer, short above it and long below (GX side photos).
     const ep = [
-      [side * 1.11, 2.21, -4.66],
-      [side * 1.11, 2.21, -4.93],
+      [side * 1.11, 2.12, -4.64],
+      [side * 1.11, 2.12, -4.92],
       [side * 1.11, 1.8, -4.77],
-      [side * 1.11, 1.37, -5.15],
-      [side * 1.11, 1.37, -4.83],
+      [side * 1.11, 1.27, -5.03],
+      [side * 1.11, 1.27, -4.72],
       [side * 1.11, 1.78, -4.44],
     ];
     sheet(d, ep, red, [side, 0, 0]);
@@ -623,7 +635,8 @@ function add407Cockpit(root, m) {
     const b = beveledBox(sd, [0.43, 0.59, 0.085], [0, 0.29, -0.23], seat);
     b.rotation.x = -0.12;
     for (const side of [-1, 1]) {
-      sd.rod([side * 0.18, -0.23, -0.16], [side * 0.18, -0.045, -0.16], 0.018, m.metal);
+      // Legs inboard enough to stand on the aft deck; at 0.18 the rear outer ones met the skin.
+      sd.rod([side * 0.12, -0.23, -0.16], [side * 0.12, -0.045, -0.16], 0.018, m.metal);
       sheet(
         sd,
         [
@@ -693,6 +706,29 @@ function add407Cockpit(root, m) {
     }
   }
   for (const x of [-0.43, 0, 0.43]) addSeat(x, 0.9, -1.18);
+  // Aft cabin bulkhead behind the rear seats, on the fuselage section at that station: without
+  // it the cabin looked straight back through the baggage bay into the tail boom.
+  {
+    const [w, b, t] = [0.6375, 0.5375, 1.7675],
+      upper = t - Math.min(0.12, (t - b) * 0.22),
+      lower = b + Math.min(0.16, (t - b) * 0.22);
+    sheet(
+      d,
+      [
+        [0, t],
+        [w * 0.78, t - 0.015],
+        [w, upper],
+        [w, lower],
+        [w * 0.73, b],
+        [-w * 0.73, b],
+        [-w, lower],
+        [-w, upper],
+        [-w * 0.78, t - 0.015],
+      ].map(([x, y]) => [x * 0.985, 1.1 + (y - 1.1) * 0.985, -1.6]),
+      seat,
+      [0, 0, 1],
+    );
+  }
   d.box([0.21, 0.035, 0.55], [0, 1.73, 1.0], m.trim);
   for (let i = 0; i < 8; i++)
     d.rod([0, 1.7, 0.77 + i * 0.055], [0, 1.67, 0.78 + i * 0.055], 0.004, m.metal);

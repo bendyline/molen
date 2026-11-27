@@ -16,6 +16,8 @@ export interface EntityMotion {
   pos: [number, number, number];
   speed: number;
   distance: number;
+  /** Smoothed world velocity (m/s), for Doppler and `self.approach`. */
+  vel?: [number, number, number];
 }
 
 export interface SignalContext {
@@ -28,13 +30,22 @@ export interface SignalContext {
   /** Entities someone is mounted in (a `mounted` component names them): `self.occupied`. */
   occupied: ReadonlySet<EntityId>;
   seconds: number;
+  /** Smoothed listener velocity (m/s). */
+  listenerVelocity?: [number, number, number];
 }
 
+/**
+ * Follow a dotted path into component data. A number indexes an array, or picks the nth entry of
+ * a record keyed by ids that has no such key: `aircraftState.engines.0` is the first engine
+ * whether it is called main, left or engine-1, so one profile serves a whole fleet.
+ */
 function walk(value: JsonValue | undefined, path: readonly string[]): JsonValue | undefined {
   let cur = value;
   for (const key of path) {
     if (cur === null || typeof cur !== 'object') return undefined;
-    cur = Array.isArray(cur) ? cur[Number(key)] : (cur as JsonObject)[key];
+    if (Array.isArray(cur)) cur = cur[Number(key)];
+    else if (Object.hasOwn(cur, key) || !/^\d+$/.test(key)) cur = (cur as JsonObject)[key];
+    else cur = Object.values(cur)[Number(key)];
   }
   return cur;
 }
@@ -75,6 +86,10 @@ export function resolveSignal(path: string, ctx: SignalContext): SignalValue {
           return l.heightAboveGround ?? 0;
         case 'indoors':
           return l.indoors ?? false;
+        case 'space':
+          return l.space ?? (l.indoors ? 'building' : 'open');
+        case 'vehicle':
+          return l.vehicle;
         default:
           return undefined;
       }
@@ -105,8 +120,17 @@ export function resolveSignal(path: string, ctx: SignalContext): SignalValue {
       return ctx.signals.host?.[rest];
     case 'self': {
       if (rest === 'occupied') return ctx.entity !== undefined && ctx.occupied.has(ctx.entity);
+      if (rest === 'listener') return ctx.entity !== undefined && l.vehicle === ctx.entity;
       const m = ctx.entity !== undefined ? ctx.motion.get(ctx.entity) : undefined;
       if (!m) return undefined;
+      if (rest === 'listenerDistance')
+        return Math.hypot(
+          l.position[0] - m.pos[0],
+          l.position[1] - m.pos[1],
+          l.position[2] - m.pos[2],
+        );
+      if (rest === 'listenerAngle') return listenerAngle(ctx, m.pos);
+      if (rest === 'approach') return approach(m, l.position, ctx.listenerVelocity);
       if (rest === 'speed') return m.speed;
       if (rest === 'distance') return m.distance;
       if (rest === 'x') return m.pos[0];
@@ -120,6 +144,41 @@ export function resolveSignal(path: string, ctx: SignalContext): SignalValue {
       return data === undefined ? undefined : scalar(walk(data, rest.split('.')));
     }
   }
+}
+
+/** Degrees between the entity's nose (+Z of its transform rotation) and the listener. */
+function listenerAngle(ctx: SignalContext, pos: readonly number[]): number {
+  const d = ctx.listener.position.map((v, i) => v - (pos[i] ?? 0));
+  const len = Math.hypot(d[0] ?? 0, d[1] ?? 0, d[2] ?? 0);
+  if (len < 1e-6) return 90;
+  const rot = ctx.entity !== undefined ? ctx.source?.get(ctx.entity, 'transform')?.rot : undefined;
+  const q =
+    Array.isArray(rot) && rot.length === 4 && rot.every((n) => typeof n === 'number')
+      ? (rot as number[])
+      : [0, 0, 0, 1];
+  const [x, y, z, w] = q as [number, number, number, number];
+  // The rotated +Z axis.
+  const fx = 2 * (x * z + w * y);
+  const fy = 2 * (y * z - w * x);
+  const fz = 1 - 2 * (x * x + y * y);
+  const cos = ((d[0] ?? 0) * fx + (d[1] ?? 0) * fy + (d[2] ?? 0) * fz) / len;
+  return (Math.acos(Math.max(-1, Math.min(1, cos))) * 180) / Math.PI;
+}
+
+/** Closing speed between an entity and the listener (m/s, positive while they approach). */
+export function approach(
+  m: EntityMotion,
+  listener: readonly number[],
+  listenerVelocity: readonly number[] | undefined,
+): number {
+  const d = [0, 1, 2].map((i) => (listener[i] ?? 0) - (m.pos[i] ?? 0));
+  const len = Math.hypot(d[0] ?? 0, d[1] ?? 0, d[2] ?? 0);
+  if (len < 1e-3) return 0;
+  const vs = m.vel ?? [0, 0, 0];
+  const vl = listenerVelocity ?? [0, 0, 0];
+  let closing = 0;
+  for (let i = 0; i < 3; i++) closing += (((vs[i] ?? 0) - (vl[i] ?? 0)) * (d[i] ?? 0)) / len;
+  return closing;
 }
 
 function weatherFromSource(source: AudioEntitySource | undefined) {

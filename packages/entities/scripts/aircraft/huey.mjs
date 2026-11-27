@@ -50,6 +50,16 @@ export function buildHuey(s) {
       roughness: 0.16,
       side: T.DoubleSide,
     }),
+    // The chin windows are tinted and reflective from outside; clear glass over the dark
+    // footwell read as an open mouth under the nose.
+    chinGlass = mat('huey-chin-glazing', '#3c5250', {
+      transparent: true,
+      opacity: 0.7,
+      depthWrite: false,
+      roughness: 0.1,
+      metalness: 0.2,
+      side: T.DoubleSide,
+    }),
     roofGlass = mat('huey-green-skylights', '#355b3c', {
       transparent: true,
       opacity: 0.56,
@@ -74,11 +84,14 @@ export function buildHuey(s) {
   };
   // Main cabin: flat door sides between rounded roof and belly corners (JGSDF front and
   // Evergreen rear photos), no generic elliptical pod. The aft rings close round into the boom.
+  // Seven points to each rounded corner (15 degree steps): with four, the roof and belly
+  // corners showed as flat bands and polygonal edges in flight (owner report 11-26).
+  const CORNER = 7;
   const cabinRing = (w, bottom, top, side = 1.06, rx = w * 0.2, rt = 0.25) => {
     const corner = (cx, cy, ax, ay, from) =>
-      [0, 1, 2, 3].map((k) => {
-        const c = Math.cos(from - (k * Math.PI) / 6),
-          s = Math.sin(from - (k * Math.PI) / 6);
+      Array.from({ length: CORNER }, (_, k) => {
+        const c = Math.cos(from - (k * Math.PI) / (2 * (CORNER - 1))),
+          s = Math.sin(from - (k * Math.PI) / (2 * (CORNER - 1)));
         return [
           cx + ax * Math.sign(c) * Math.pow(Math.abs(c), 0.8),
           cy + ay * Math.sign(s) * Math.pow(Math.abs(s), 0.8),
@@ -92,15 +105,30 @@ export function buildHuey(s) {
   };
   const sections = [
     { z: 1.45, points: cabinRing(1.05, 0.66, 2.68) },
-    { z: -1.65, points: cabinRing(1.05, 0.67, 2.68) },
+    { z: -0.85, points: cabinRing(1.05, 0.67, 2.68) },
     // Behind the doors the aft fuselage swells round into the belly and roof as it tapers to
-    // the boom (Evergreen rear photo), rather than continuing the flat door sides.
-    { z: -2.0, points: cabinRing(0.99, 0.69, 2.56, 1.25, 0.34, 0.4) },
-    { z: -2.35, points: cabinRing(0.88, 0.76, 2.35, 1.5, 0.48, 0.58) },
+    // the boom (Evergreen rear photo), rather than continuing the flat door sides. The belly
+    // starts rising at the sliding door's aft edge and sweeps up evenly to the boom (TM fig 2-2),
+    // rather than staying down to the last 0.35 m and turning up as a bulb.
+    { z: -1.65, points: cabinRing(1.05, 0.74, 2.68) },
+    { z: -2.0, points: cabinRing(0.99, 0.82, 2.56, 1.25, 0.34, 0.4) },
+    { z: -2.35, points: cabinRing(0.88, 0.99, 2.35, 1.5, 0.48, 0.58) },
     { z: -2.7, points: cabinRing(0.57, 1.2, 2.14, 1.55, 0.3, 0.4) },
   ];
-  // The flat sides (ring points 4-5 and 13-14) are the window walls below.
-  loft(d, sections, paint, { caps: false, skip: (i, j) => i === 0 && (j === 4 || j === 13) });
+  // The flat sides (between each upper corner's last point and the lower corner's first) are
+  // the window walls below.
+  loft(d, sections, paint, {
+    caps: false,
+    skip: (i, j) => i <= 1 && (j === CORNER || j === 3 * CORNER + 1),
+  });
+  // Cargo compartment aft wall behind the troop seat; the tapering aft fuselage behind it is a
+  // closed bay, not a tunnel to the boom root seen from the crew seats.
+  sheet(
+    d,
+    cabinRing(1.05, 0.67, 2.68).map(([x, y]) => [x * 0.995, 1.67 + (y - 1.67) * 0.995, -0.9]),
+    paint,
+    [0, 0, 1],
+  );
   // Aft bulkhead around the boom root (the boom is smaller than the aft fuselage end).
   sheet(
     d,
@@ -117,41 +145,57 @@ export function buildHuey(s) {
       [x, 2.43, -1.65],
       [x, 1.06, -1.65],
     ];
-    // Sliding-door windows with rounded corners (JGSDF 41659 side photos).
-    const windows = [0.62, -0.67].map((z) =>
-      roundedRegion(z - 0.43, z + 0.43, 1.58, 2.23, 0.08, 0.08, 3).map(([u, y]) => [x, y, u]),
+    // Sliding-door windows with rounded corners (JGSDF 41659 side photos). TM fig 2-2 puts the
+    // hinged panel right behind the crew door and the sliding door from 1.1 m ahead of the mast
+    // to 0.8 m behind it, its two windows straddling the mast, with a long plain flank behind.
+    const windows = [0.57, -0.29].map((z) =>
+      roundedRegion(z - 0.34, z + 0.34, 1.58, 2.23, 0.08, 0.08, 3).map(([u, y]) => [x, y, u]),
     );
     sheet(d, wall, paint, [side, 0, 0], windows);
     for (const window of windows) {
       glazing(d, window, glass, seam, 0.017, [side, 0, 0]);
       fasteners(window);
     }
-    // Sliding door boundary, top track and handles.
+    // Hinged panel and sliding door boundaries, top track and handles.
+    const onDoor = (y, z) => [x + 0.006 * side, y, z];
     outline(
       d,
-      [
-        [x + 0.006 * side, 0.92, 1.15],
-        [x + 0.006 * side, 2.49, 1.15],
-        [x + 0.006 * side, 2.49, -1.45],
-        [x + 0.006 * side, 0.92, -1.45],
-      ],
+      [onDoor(2.49, 1.44), onDoor(2.49, -0.84), onDoor(0.92, -0.84), onDoor(0.92, 1.44)],
       0.007,
       seam,
+      false,
     );
+    outline(d, [onDoor(2.49, 1.1), onDoor(0.92, 1.1)], 0.007, seam, false);
+    // The two access panels on the flank behind the door (fig 2-2).
+    for (const [y0, y1] of [
+      [1.42, 1.8],
+      [1.1, 1.36],
+    ])
+      outline(
+        d,
+        [onDoor(y0, -0.98), onDoor(y1, -0.98), onDoor(y1, -1.6), onDoor(y0, -1.6)],
+        0.005,
+        seam,
+      );
     d.rod([x, 2.55, 1.25], [x, 2.55, -1.85], 0.018, paint);
-    d.rod([x + 0.025 * side, 1.4, 1.02], [x + 0.025 * side, 1.4, 0.84], 0.015, metal);
-    d.rod([x + 0.025 * side, 1.4, -1.3], [x + 0.025 * side, 1.4, -1.12], 0.015, metal);
+    d.rod([x + 0.025 * side, 1.4, 0.98], [x + 0.025 * side, 1.4, 0.8], 0.015, metal);
+    d.rod([x + 0.025 * side, 1.4, -0.71], [x + 0.025 * side, 1.4, -0.53], 0.015, metal);
   }
   // Rounded nose bulb and broad curved chin windows, fitted to the TM side/front views and the
   // JGSDF 41659/41702 and Korean Navy photos: tip about 1.1 m above the ground, windscreen base
   // about 1.6 m on the centre line, chin windows from the keel strip round to the side panels.
   // Rows: height, half-width, forward extent; the skin runs smoothly through them.
+  // Below the tip the bulb stays full: in the JGSDF 41659 side photograph and TM fig 2-2 the
+  // chin face is still within about 6 cm of the tip 0.4 m lower, then rounds into a broad, nearly
+  // flat underside that continues the belly. The old rows fell steadily back from the tip (0.33 m
+  // behind it at that depth), leaving a long sloping chin under the upper nose: a duck bill
+  // (owner report 11-26).
   const noseRows = [
-    [0.7, 0.62, 2.92],
-    [0.86, 0.81, 3.14],
-    [1.0, 0.92, 3.36],
-    [1.16, 0.98, 3.49],
-    [1.3, 1.03, 3.555],
+    [0.7, 0.74, 3.06],
+    [0.86, 0.9, 3.33],
+    [1.0, 0.97, 3.47],
+    [1.16, 1.01, 3.535],
+    [1.3, 1.04, 3.566],
     [1.4, 1.05, 3.57251],
     [1.55, 1.02, 3.53],
     [1.7, 0.98, 3.43],
@@ -178,7 +222,7 @@ export function buildHuey(s) {
     rowSteps,
     angleSteps,
     paint,
-    chin.map((poly) => ({ poly, material: glass })),
+    chin.map((poly) => ({ poly, material: chinGlass })),
     [0, 1.25, 2.6],
   );
   // Footwell lining 3.5 cm inside the nose, facing the cabin and open behind the chin windows:
@@ -204,9 +248,10 @@ export function buildHuey(s) {
       poly.map(([t, a]) => {
         const p = noseSkin(t, a),
           n = skinNormal(t, a);
-        return p.map((c, k) => c + n[k] * 0.006);
+        return p.map((c, k) => c + n[k] * 0.004);
       }),
-      0.016,
+      // A slim riveted frame, as on the aircraft; the old 16 mm tube read as a lip.
+      0.009,
       paint,
     );
   // Behind the bulb the lower cabin keeps the main ring's flat side and rounded belly corner.
@@ -220,29 +265,50 @@ export function buildHuey(s) {
     [0, 0.66],
     ...rowSteps.map((t) => [-noseAt(t)[1], noseSkin(t, Math.PI / 2)[1]]),
   ];
+  // The side reaches the door plane at the door's front edge (z 2.52). Behind it the flat door
+  // sheet is the skin above the belly corner: a second, coplanar layer there flickered against
+  // the door and stood 1 mm behind the door window's lower half as an opaque olive panel.
+  const cockpitRing = noseContour.map(([x, y]) => [Math.sign(x) * cabinHalf(y), y]),
+    // The flat side starts at 1.06 m; the door sheet takes over from the first ring point there.
+    sill = Math.min(...cockpitRing.filter(([x, y]) => x > 0 && y >= 1.06).map(([, y]) => y));
   loft(
     d,
     [
       { z: 2.88, points: noseContour },
-      { z: 2.3, points: noseContour.map(([x, y]) => [Math.sign(x) * cabinHalf(y), y]) },
-      { z: 1.45, points: noseContour.map(([x, y]) => [Math.sign(x) * cabinHalf(y), y]) },
+      { z: 2.52, points: cockpitRing },
+      { z: 1.45, points: cockpitRing },
     ],
     paint,
-    { caps: false, skip: (_i, j) => j === 0 || j === noseContour.length - 1 },
+    {
+      caps: false,
+      skip: (i, j) =>
+        j === 0 ||
+        j === noseContour.length - 1 ||
+        (i === 1 && Math.min(cockpitRing[j][1], cockpitRing[j + 1][1]) >= sill),
+    },
   );
   sheet(d, [...angleSteps.map((a) => noseSkin(0, a)), [0, 0.66, 2.88]], paint, [0, -1, 0]);
-  const top = noseRows.at(-1);
+  const top = noseRows.at(-1),
+    // Windscreen header from the centre post (u 0) to the corner pane (u 1).
+    screenHeader = (side, u) => [
+      side * (0.035 + 0.785 * u),
+      2.63 - 0.06 * u * u,
+      2.54 - 0.27 * u * u,
+    ];
   for (const side of [-1, 1]) {
     // Windscreen and corner pane, individually located rather than cut from an oval shell.
-    const lower = [],
+    // The lower edge takes the nose skin's own angle steps, so pane and skin share one edge; a
+    // coarser chord stood up to 3 cm clear of the curved skin and opened a slot at the corner.
+    const inner = Math.asin(0.035 / top[1]),
+      angles = [inner, ...angleSteps.filter((a) => a > inner)],
+      lower = [],
       upper = [];
-    for (let i = 0; i <= 6; i++) {
-      const u = i / 6,
-        x = 0.035 + (top[1] - 0.035) * u;
-      lower.push(nosePoint(top, side * Math.asin(x / top[1])));
-      upper.push([side * (0.035 + 0.785 * u), 2.63 - 0.06 * u * u, 2.54 - 0.27 * u * u]);
+    for (const a of angles) {
+      const u = (top[1] * Math.sin(a) - 0.035) / (top[1] - 0.035);
+      lower.push(nosePoint(top, side * a));
+      upper.push(screenHeader(side, u));
     }
-    for (let i = 0; i < 6; i++)
+    for (let i = 0; i < angles.length - 1; i++)
       quad(d, lower[i], lower[i + 1], upper[i + 1], upper[i], glass, [side * 0.25, 0.35, 1]);
     const front = [...lower, ...upper.toReversed()];
     outline(d, front, 0.032, paint);
@@ -254,24 +320,33 @@ export function buildHuey(s) {
       [side * 0.82, 2.57, 2.27],
     ];
     glazing(d, corner, glass, paint, 0.025, [side, 0.2, 0.3]);
-    // Closes the wedge between the nose skin and the corner pane's rising lower edge.
+    // Closes the wedge between the nose side's top edge and the corner pane's rising lower edge.
     sheet(
       d,
       [
-        [side * 0.91, 1.45, 2.88],
+        [side * noseContour[1][0], noseContour[1][1], 2.88],
         [side * 1.05, 1.55, 2.52],
-        [side * 1.05, 1.44, 2.52],
+        [side * cockpitRing[1][0], cockpitRing[1][1], 2.52],
       ],
       paint,
       [side, 0.2, 0.3],
     );
-    const door = [
-      [side * cabinHalf(0.76), 0.76, 2.52],
-      [side * 1.05, 1.55, 2.52],
-      [side * 1.02, 2.43, 2.05],
-      [side * 1.05, 2.43, 1.45],
-      [side * cabinHalf(0.76), 0.76, 1.45],
-    ];
+    // The door sheet is the flat side above the sill; the belly corner below it is the loft, and
+    // the seam runs on round it to the 0.76 m door bottom.
+    const belly = (z) => [0.76, 0.86, 0.96].map((y) => [side * (cabinHalf(y) + 0.004), y, z]),
+      door = [
+        [side * 1.05, sill, 2.52],
+        [side * 1.05, 1.55, 2.52],
+        [side * 1.02, 2.43, 2.05],
+        [side * 1.05, 2.43, 1.45],
+        [side * 1.05, sill, 1.45],
+      ],
+      doorEdge = [
+        ...belly(2.52),
+        ...door.slice(0, 4),
+        [side * 1.05, sill, 1.45],
+        ...belly(1.45).toReversed(),
+      ];
     // Flat door uses a slightly inset window; the lower skin stays opaque.
     const win = [
       [side * 1.051, 1.25, 2.4],
@@ -282,15 +357,18 @@ export function buildHuey(s) {
     ];
     sheet(d, door, paint, [side, 0, 0], [win]);
     glazing(d, win, glass, seam, 0.014, [side, 0, 0]);
-    outline(d, door, 0.012, seam);
+    outline(d, doorEdge, 0.012, seam);
     d.rod([side * 1.08, 1.08, 1.72], [side * 1.08, 1.08, 1.92], 0.016, metal);
-    // Roof quarter and tinted overhead window.
+    // Roof quarter and tinted overhead window. Its front edge is the windscreen's curved header,
+    // not the chord between its ends, which left a crescent slot open onto the rotor overhead.
+    // Each quarter runs to the centre line: the 7 cm strip between them was open from the
+    // header back to the overhead console, and showed the rotor above the centre post.
     const roof = [
-      [side * 0.035, 2.63, 2.54],
-      [side * 0.82, 2.57, 2.27],
+      [0, 2.63, 2.54],
+      ...upper,
       [side * 1.02, 2.43, 2.05],
       [side * 0.84, 2.655, 1.45],
-      [side * 0.035, 2.68, 1.45],
+      [0, 2.68, 1.45],
     ];
     const sky = [
       [side * 0.18, 2.645, 2.36],
@@ -305,16 +383,33 @@ export function buildHuey(s) {
       [
         [side * 1.02, 2.43, 2.05],
         ...sections[0].points
-          .slice(1, 5)
+          .slice(1, CORNER + 1)
           .toReversed()
           .map(([x, y]) => [side * x, y, 1.45]),
       ],
       paint,
       [side, 0.5, 0],
     );
-    // Overhead wiper spindles and blades, resting at the top of the glazing.
-    d.rod([side * 0.7, 2.5, 2.31], [side * 0.48, 2.37, 2.52], 0.012, seam);
-    d.rod([side * 0.25, 2.37, 2.6], [side * 0.71, 2.34, 2.43], 0.013, rubber);
+    // Wiper parked along the header on the outside of the pane (front photos): a pivot on the
+    // frame, a slim arm and a blade lying level just under the header. The blade used to float
+    // 11 cm inside the glass, at twice a blade's thickness, across the pilot's view.
+    const pane = (u, f) => {
+        const lo = nosePoint(top, side * Math.asin((0.035 + (top[1] - 0.035) * u) / top[1])),
+          hi = screenHeader(side, u);
+        return lo.map((c, k) => c + (hi[k] - c) * f);
+      },
+      onGlass = (u, f, lift) => {
+        const e = 0.01,
+          p = pane(u, f),
+          du = new T.Vector3(...pane(u + e, f)).sub(new T.Vector3(...pane(u - e, f))),
+          df = new T.Vector3(...pane(u, f + e)).sub(new T.Vector3(...pane(u, f - e))),
+          n = du.cross(df).normalize();
+        if (n.z < 0) n.negate();
+        return p.map((c, k) => c + n.getComponent(k) * lift);
+      };
+    d.rod(onGlass(0.62, 0.972, 0.004), onGlass(0.62, 0.972, 0.03), 0.014, seam);
+    d.rod(onGlass(0.62, 0.968, 0.022), onGlass(0.2, 0.912, 0.014), 0.005, seam);
+    d.rod(onGlass(0.1, 0.9, 0.012), onGlass(0.6, 0.9, 0.012), 0.0065, rubber);
   }
   d.rod([0, top[0] - 0.01, top[2]], [0, 2.63, 2.54], 0.033, paint);
   // Engine/transmission cowling above the cabin, with a raised forward fairing and aft exhaust.
@@ -322,8 +417,10 @@ export function buildHuey(s) {
   // Upright sides under a rounded crown (rear and rear 3/4 photos), not a chamfered box.
   const cowl = (z, w0, low, high, w = w0 / HUEY_CABIN_WIDEN) => {
     const shoulder = Math.min(low + 0.15, (low + high) / 2),
-      crown = Array.from({ length: 5 }, (_, k) => {
-        const a = (k * Math.PI) / 8;
+      // Nine crown points: the five-point crown fell under the loft's smoothing threshold and
+      // rendered as flat chamfers.
+      crown = Array.from({ length: 9 }, (_, k) => {
+        const a = (k * Math.PI) / 16;
         return [
           w * Math.pow(Math.sin(a), 2 / 2.5),
           shoulder + (high - shoulder) * Math.pow(Math.cos(a), 2 / 2.5),
@@ -554,14 +651,19 @@ function addHueyCockpit(root) {
     sky = mat('huey-attitude-sky', '#7896a1'),
     earth = mat('huey-attitude-earth', '#69573f');
   const bindings = [];
-  d.box([1.7, 0.055, 4.05], [0, 0.83, 0.35], floor);
-  // Rear bench and internal door panels visible through the side windows.
+  // The cargo floor ends at the aft cabin wall (z -0.9); behind it lies the closed aft fuselage.
+  d.box([1.7, 0.055, 3.28], [0, 0.83, 0.735], floor);
+  // Side benches, the canvas troop seat across the aft wall and internal door panels, visible
+  // through the side windows.
   for (const side of [-1, 1]) {
-    d.box([0.42, 0.1, 1.75], [side * 0.73, 1.03, -0.45], seat);
-    d.box([0.09, 0.45, 1.75], [side * 0.91, 1.3, -0.45], seat);
-    for (const z of [0.25, -0.65])
+    d.box([0.42, 0.1, 0.865], [side * 0.73, 1.03, -0.0075], seat);
+    d.box([0.09, 0.45, 0.865], [side * 0.91, 1.3, -0.0075], seat);
+    for (const z of [0.25, -0.3])
       d.rod([side * 0.73, 0.81, z], [side * 0.73, 0.98, z], 0.023, d.metal);
   }
+  d.box([1.9, 0.1, 0.42], [0, 1.03, -0.65], seat);
+  d.box([1.9, 0.5, 0.06], [0, 1.33, -0.86], seat);
+  for (const x of [-0.7, 0, 0.7]) d.rod([x, 0.81, -0.62], [x, 0.98, -0.62], 0.023, d.metal);
   // Figure 2-4, PDF page 77 rasterized to 1700 px high. The figure carries no dimensions, so its
   // scale comes from the instruments it shows: the 53 px flight dials are 3.125 in (79.4 mm), which
   // also makes the 34 px engine dials 2 in and the face 1.05 m wide. The 1.76 m width used before

@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:c7e59f1603d198613fdd404330f991a3b89afbf39ffef35f4b44bad3ec480948",
-  "sourceHash": "sha256:642934207b25be74edb81d4e188da0931ce1644c4c9ec93b9a380b07edfd4def",
+  "hash": "sha256:2f69758547a9e7bd450cb416ed89d0a2d985453bef2649e81c5e0f0ce4fa6892",
+  "sourceHash": "sha256:9a2af8260585131b4c58ac6008fb4462ab77953ed25cc8f4f09dd54031580963",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,31 +31,31 @@
     }
   },
   "stats": {
-    "triangles": 16793,
-    "vertices": 21238,
+    "triangles": 18315,
+    "vertices": 22181,
     "meshes": 68,
     "primitives": 68,
     "materials": 34,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 950488
+    "sizeBytes": 978300
   },
   "nodes": [
     {
       "name": "H125-airframe-H125-white",
-      "triangles": 1986
+      "triangles": 1982
     },
     {
       "name": "H125-airframe-H125-blue",
-      "triangles": 1292
+      "triangles": 412
     },
     {
       "name": "H125-airframe-H125-glass",
-      "triangles": 344
+      "triangles": 348
     },
     {
       "name": "H125-airframe-H125-trim",
-      "triangles": 1240
+      "triangles": 1244
     },
     {
       "name": "H125-airframe-H125-metal",
@@ -107,15 +107,27 @@
     },
     {
       "name": "H125-cockpit-H125-panel",
-      "triangles": 837
+      "triangles": 902
     },
     {
       "name": "H125-cockpit-H125-trim",
-      "triangles": 708
+      "triangles": 753
     },
     {
       "name": "H125-cockpit-detail-trim",
-      "triangles": 752
+      "triangles": 1392
+    },
+    {
+      "name": "H125-cockpit-detail-alloy",
+      "triangles": 576
+    },
+    {
+      "name": "H125-cockpit-detail-red",
+      "triangles": 144
+    },
+    {
+      "name": "H125-cockpit-instrument-display",
+      "triangles": 72
     },
     {
       "name": "H125-cockpit-avionics-black",
@@ -154,16 +166,8 @@
       "triangles": 24
     },
     {
-      "name": "H125-cockpit-detail-alloy",
-      "triangles": 320
-    },
-    {
       "name": "H125-cockpit-detail-amber",
       "triangles": 324
-    },
-    {
-      "name": "H125-cockpit-instrument-display",
-      "triangles": 24
     },
     {
       "name": "H125-cockpit-H125-standby-sky",
@@ -190,10 +194,6 @@
       "triangles": 36
     },
     {
-      "name": "H125-cockpit-detail-red",
-      "triangles": 48
-    },
-    {
       "name": "H125-cockpit-H125-metal",
       "triangles": 560
     },
@@ -207,7 +207,7 @@
     },
     {
       "name": "H125-cockpit-detail-lettering",
-      "triangles": 1920
+      "triangles": 3168
     },
     {
       "name": "H125-cockpit-detail-lettering-display-print",
@@ -456,6 +456,25 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "detail-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "instrument-display",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "avionics-black",
       "slots": [
         "baseColor"
@@ -504,26 +523,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy-brushed",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "detail-amber",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "instrument-display",
       "slots": [
         "baseColor"
       ],
@@ -701,28 +701,28 @@
       {
         "node": "H125-airframe-H125-blue",
         "points": [
-          -0.9016,
+          -0.8914,
           0.7603,
           -7.28,
-          -0.9016,
-          0.7603,
-          2.5478,
-          -0.9016,
-          2.7747,
-          -7.28,
-          -0.9016,
-          2.7747,
-          2.5478,
-          0.9016,
-          0.7603,
-          -7.28,
-          0.9016,
+          -0.8914,
           0.7603,
           2.5478,
-          0.9016,
+          -0.8914,
           2.7747,
           -7.28,
-          0.9016,
+          -0.8914,
+          2.7747,
+          2.5478,
+          0.8914,
+          0.7603,
+          -7.28,
+          0.8914,
+          0.7603,
+          2.5478,
+          0.8914,
+          2.7747,
+          -7.28,
+          0.8914,
           2.7747,
           2.5478
         ]
@@ -1138,25 +1138,25 @@
         "points": [
           -0.905,
           0.66,
-          -0.6977,
+          -1.0104,
           -0.905,
           0.66,
           3.255,
           -0.905,
           2.29,
-          -0.6977,
+          -1.0104,
           -0.905,
           2.29,
           3.255,
           0.905,
           0.66,
-          -0.6977,
+          -1.0104,
           0.905,
           0.66,
           3.255,
           0.905,
           2.29,
-          -0.6977,
+          -1.0104,
           0.905,
           2.29,
           3.255
@@ -1194,16 +1194,16 @@
       {
         "node": "H125-cockpit-detail-trim",
         "points": [
-          -0.3281,
+          -0.6585,
           1.2515,
           2.013,
-          -0.3281,
+          -0.6585,
           1.2515,
           2.0685,
-          -0.3281,
+          -0.6585,
           1.5808,
           2.013,
-          -0.3281,
+          -0.6585,
           1.5808,
           2.0685,
           0.2124,
@@ -1218,6 +1218,93 @@
           0.2124,
           1.5808,
           2.0685
+        ]
+      },
+      {
+        "node": "H125-cockpit-detail-alloy",
+        "points": [
+          -0.6585,
+          1.2919,
+          2.0135,
+          -0.6585,
+          1.2919,
+          2.0508,
+          -0.6585,
+          1.5826,
+          2.0135,
+          -0.6585,
+          1.5826,
+          2.0508,
+          0.2124,
+          1.2919,
+          2.0135,
+          0.2124,
+          1.2919,
+          2.0508,
+          0.2124,
+          1.5826,
+          2.0135,
+          0.2124,
+          1.5826,
+          2.0508
+        ]
+      },
+      {
+        "node": "H125-cockpit-detail-red",
+        "points": [
+          -0.6198,
+          1.3116,
+          1.0722,
+          -0.6198,
+          1.3116,
+          2.0495,
+          -0.6198,
+          2.0891,
+          1.0722,
+          -0.6198,
+          2.0891,
+          2.0495,
+          -0.0496,
+          1.3116,
+          1.0722,
+          -0.0496,
+          1.3116,
+          2.0495,
+          -0.0496,
+          2.0891,
+          1.0722,
+          -0.0496,
+          2.0891,
+          2.0495
+        ]
+      },
+      {
+        "node": "H125-cockpit-instrument-display",
+        "points": [
+          -0.6315,
+          1.3119,
+          2.0445,
+          -0.6315,
+          1.3119,
+          2.0485,
+          -0.6315,
+          1.515,
+          2.0445,
+          -0.6315,
+          1.515,
+          2.0485,
+          0.1875,
+          1.3119,
+          2.0445,
+          0.1875,
+          1.3119,
+          2.0485,
+          0.1875,
+          1.515,
+          2.0445,
+          0.1875,
+          1.515,
+          2.0485
         ]
       },
       {
@@ -1482,35 +1569,6 @@
         ]
       },
       {
-        "node": "H125-cockpit-detail-alloy",
-        "points": [
-          -0.3305,
-          1.3044,
-          2.0135,
-          -0.3305,
-          1.3044,
-          2.0508,
-          -0.3305,
-          1.5826,
-          2.0135,
-          -0.3305,
-          1.5826,
-          2.0508,
-          0.2124,
-          1.3044,
-          2.0135,
-          0.2124,
-          1.3044,
-          2.0508,
-          0.2124,
-          1.5826,
-          2.0135,
-          0.2124,
-          1.5826,
-          2.0508
-        ]
-      },
-      {
         "node": "H125-cockpit-detail-amber",
         "points": [
           -0.2191,
@@ -1537,35 +1595,6 @@
           0.0774,
           1.5392,
           2.044
-        ]
-      },
-      {
-        "node": "H125-cockpit-instrument-display",
-        "points": [
-          -0.1352,
-          1.4526,
-          2.0445,
-          -0.1352,
-          1.4526,
-          2.0485,
-          -0.1352,
-          1.515,
-          2.0445,
-          -0.1352,
-          1.515,
-          2.0485,
-          0.1875,
-          1.4526,
-          2.0445,
-          0.1875,
-          1.4526,
-          2.0485,
-          0.1875,
-          1.515,
-          2.0445,
-          0.1875,
-          1.515,
-          2.0485
         ]
       },
       {
@@ -1743,35 +1772,6 @@
         ]
       },
       {
-        "node": "H125-cockpit-detail-red",
-        "points": [
-          -0.0704,
-          1.4857,
-          1.0722,
-          -0.0704,
-          1.4857,
-          2.0495,
-          -0.0704,
-          2.0891,
-          1.0722,
-          -0.0704,
-          2.0891,
-          2.0495,
-          -0.0496,
-          1.4857,
-          1.0722,
-          -0.0496,
-          1.4857,
-          2.0495,
-          -0.0496,
-          2.0891,
-          1.0722,
-          -0.0496,
-          2.0891,
-          2.0495
-        ]
-      },
-      {
         "node": "H125-cockpit-H125-metal",
         "points": [
           -0.7747,
@@ -1861,30 +1861,30 @@
       {
         "node": "H125-cockpit-detail-lettering",
         "points": [
-          -0.3197,
+          -0.6537,
           1.2804,
           2.01,
-          -0.3197,
+          -0.6537,
           1.2804,
-          2.0498,
-          -0.3197,
+          2.0499,
+          -0.6537,
           1.5796,
           2.01,
-          -0.3197,
+          -0.6537,
           1.5796,
-          2.0498,
+          2.0499,
           0.208,
           1.2804,
           2.01,
           0.208,
           1.2804,
-          2.0498,
+          2.0499,
           0.208,
           1.5796,
           2.01,
           0.208,
           1.5796,
-          2.0498
+          2.0499
         ]
       },
       {

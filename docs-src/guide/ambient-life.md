@@ -501,6 +501,37 @@ proxies without content and up to four full vessel models within 1.2 km when a m
 is available; `detailedBoats` controls that separate render budget. Earth quality tiers cap
 boats at 0/2/4/6/8/12; `ambient: { boats: false }` disables them, and stats report `boats`.
 
+### Moored boats and boats under way (Earth)
+
+The Earth view and World Explorer also draw boats the kernel does not route. `EarthHarbors`
+reads the fine feature tiles for water polygons, `pier` land-use outlines and pier paths, and
+marina, yacht-club and boating POIs, and moors boats at every dock edge that faces open water:
+side-tied along fingers and side-tie docks, bow- or stern-in in rows of slips along a long marina
+walk, and squared into the gaps between mapped fingers. A marina or yacht club within 450 m fills
+about 85% of the berths, a boat rental or slipway within 160 m about 55%, a private dock about a
+third, and a wide commercial pier about a fifth, with tugs and fishing boats there. No hull may
+overlap a dock, a building standing in the water (a floating home) or another boat. A dock
+outline with three or more fingers, or a pier path three or more others branch from, fills like a
+marina's even where no marina point reaches it. Berths are hashed from world positions, so they
+are the same on every visit and across tile edges. Docks mapped as outlines on the water, which
+the land cover would draw on the ground beneath the water surface, get a deck: 0.45 m above the
+water for a floating dock, 1.8 m for a pier wider than 10 m.
+
+The same tiles give each tile a clearance field (meters of open water around each cell). Boats
+under way (speedboats planing, sailboats heeled under sail, fishing boats and the odd tug) appear
+220 to 1,500 m from the camera on open water, steer by looking ahead through the field, turn
+toward the nearest open bearing when the way closes, and leave beyond 2.1 km. They leave a foam
+wake. Moored and cruising boats both block a boat the player drives.
+
+Every boat is an instance of the shared vehicle-proxy material: the nearest moored boats and the
+boats under way within 700 m as their content model's hull and deck (interior and lettering left
+off, a moored sailboat's sail furled, the livery's paint as an instance colour), the rest as a
+proxy of about a hundred triangles. Quality tiers cap moored boats drawn at
+0/300/600/900/1400/2000, of them as models 0/24/48/96/144/200, and boats under way at
+0/3/5/8/12/16 (`mooredBoats`, `mooredBoatModels` and `cruisingBoats` in the tier's `ambient`).
+`ambient: { boats: false }` turns them off with the ferries; World Explorer accepts `?boats=0`.
+`stats().harbors` reports berths, boats drawn and boats under way.
+
 Content hosts populate `types.boat` with `AmbientVehicleType` entries whose `waterway` is
 `"ferry"` or `"channel"`, and supply full models through the existing renderer vehicle adapter
 (with empty wheel lists). The Earth content adapter derives these from `ambientRole` automatically.

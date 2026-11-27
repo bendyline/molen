@@ -526,16 +526,9 @@ export function buildKingAir(s) {
     outline(d, hatch, 0.003, metal);
     for (let n = 0; n < 6; n++)
       d.rod(pt(3.65 + n * 0.05, 1.56), pt(3.65 + n * 0.05, 1.85), 0.006, dark);
-    const mark = group(root, `KingAir-mark-${side}`, [
-        side * (Math.max(...[1.6, 1.75, 1.9, 2.05, 2.2].map((z) => cockpitX(z, 2.03))) + 0.012),
-        2.03,
-        1.9,
-      ]),
-      md = detailKit(mark, mark.name);
-    mark.rotation.y = (side * Math.PI) / 2;
-    md.text('KING AIR 350i', [0, 0, 0], 0.045, 0, dark);
-    md.finish();
-    d.rod([side * 0.13, 2.25, 3.18], [side * 0.56, 2.33, 2.98], 0.009, dark);
+    // Registrations and titles are livery markings (scripts/liveries/aircraft/king-air-350i.mjs).
+    // Wiper at wiper scale (1.2 cm); at 1.8 cm it read as a frame bar across the screen.
+    d.rod([side * 0.13, 2.25, 3.18], [side * 0.56, 2.33, 2.98], 0.006, dark);
   }
   // Planform: unswept quarter chord, 6-degree dihedral and short upturned winglets.
   const wy = (x) => 1.03 + Math.max(0, x - 0.8) * Math.tan(Math.PI / 30),
@@ -761,11 +754,13 @@ export function buildKingAir(s) {
     const ns = [
       [3.42, 0.23, -0.22, 0.18],
       [3.12, 0.32, -0.4, 0.27],
-      [2.6, 0.36, -0.43, 0.31],
-      [0.75, 0.37, -0.55, 0.24],
-      [-0.4, 0.36, -0.52, 0.15],
-      [-1.22, 0.29, -0.33, 0.03],
-      [-1.52, 0.1, -0.1, -0.02],
+      // The lower nacelle hangs well below the wing over the forward-folding main gear well
+      // (350 side photos); it used to stop level with the wing's underside.
+      [2.6, 0.36, -0.5, 0.31],
+      [0.75, 0.37, -0.7, 0.24],
+      [-0.4, 0.36, -0.66, 0.15],
+      [-1.22, 0.29, -0.42, 0.03],
+      [-1.52, 0.1, -0.14, -0.02],
     ].map(([zz, w, b, t]) => {
       // Rounded superellipse cowl sections (350 front photos), smooth shaded.
       const c = (t + b) / 2,
@@ -867,11 +862,13 @@ export function buildKingAir(s) {
     enginePoints.push({ id: eg.name, position: [x, y, z] });
     rotors.push({ node: prop.name, axis: 'z', multiplier: 1, engine: eg.name });
   }
-  // Dual mains fold forward; the single nose leg folds aft (factory specification p.8).
-  for (const [i, x, z, top, r] of [
-    [0, 0, 4.62, 1.04, 0.275],
-    [1, 2.6162, 0, 1.12, 0.285],
-    [2, -2.6162, 0, 1.12, 0.285],
+  // Dual mains fold forward; the single nose leg folds aft (factory specification p.8). Each
+  // trunnion sits up inside the nacelle or nose, so retracted legs also rise `lift`: the stowed
+  // wheels then sit inside the deep lower nacelle and the nose, not hanging below them.
+  for (const [i, x, z, top, r, lift] of [
+    [0, 0, 4.62, 1.04, 0.275, 0.31],
+    [1, 2.6162, 0, 1.12, 0.285, 0.22],
+    [2, -2.6162, 0, 1.12, 0.285, 0.22],
   ]) {
     const g = group(root, `KingAir-gear-${i}`, [x, top, z]),
       dd = detailKit(g, g.name),
@@ -882,7 +879,7 @@ export function buildKingAir(s) {
     for (const xx of i ? [-0.115, 0.115] : [0]) {
       wheel(dd, [xx, -h, 0], r, 0.16, rubber, metal);
     }
-    if (i) for (const side of [-1, 1]) dd.box([0.017, 0.42, 0.48], [side * 0.26, -0.15, 0], paint);
+    if (i) for (const side of [-1, 1]) dd.box([0.017, 0.42, 0.48], [side * 0.24, -0.15, 0], paint);
     else dd.box([0.19, 0.45, 0.018], [0, -0.17, -0.1], paint);
     dd.finish();
     bindings.push({
@@ -892,6 +889,17 @@ export function buildKingAir(s) {
       axis: 'x',
       offset: ((i ? -1 : 1) * Math.PI) / 2,
       scale: ((i ? 1 : -1) * Math.PI) / 2,
+    });
+    bindings.push({
+      node: g.name,
+      source: 'gear',
+      property: 'position',
+      axis: 'y',
+      keys: [
+        [0, lift],
+        [0.5, 0],
+        [1, 0],
+      ],
     });
   }
   d.finish();
@@ -1344,11 +1352,12 @@ function kingAirCockpit(root, m) {
   pd.finish();
   // Overhead electrical panel follows its own inclined frame; dead meters are explicitly marked.
   // It lies against the ceiling behind the windshield header, not hanging into the view.
-  const overhead = group(cabin, 'KingAir-overhead', [0, 2.645, 2.2]);
+  // Narrower and lower than the crown at its outboard corners, which poked through the roof.
+  const overhead = group(cabin, 'KingAir-overhead', [0, 2.6, 2.2]);
   overhead.rotation.x = -1.35;
   const od = detailKit(overhead, overhead.name),
     op = panelTools(od);
-  beveledBox(od, [0.72, 0.21, 0.025], [0, 0, 0], face, 0.02);
+  beveledBox(od, [0.64, 0.21, 0.025], [0, 0, 0], face, 0.02);
   for (const x of [-0.27, -0.16, -0.04, 0.15]) {
     op.gauge(x, -0.055, -0.02, 0.034, black, false);
     od.text('INOP', [x, -0.055, -0.033], 0.006, Math.PI, ink);
@@ -1375,7 +1384,8 @@ function kingAirCockpit(root, m) {
     dd.finish();
   }
   d.box([1.2446, 0.035, 5.6], [0, 1.2, 0.0], m.dark);
-  d.box([1.02, 0.035, 1.6], [0, 1.2, -3.6], m.dark);
+  // Aft cabin floor inside the tapering tail cone (its corners poked out of the belly).
+  d.box([0.94, 0.035, 1.45], [0, 1.2, -3.525], m.dark);
   // Two crew plus eight passengers in two club groups, with a clear center aisle.
   for (const [row, zz, facing] of [
     [0, 1.78, 0],
@@ -1441,9 +1451,10 @@ function kingAirCockpit(root, m) {
     for (const side of [-1, 1])
       d.box([0.06, 0.08, front - back - 0.1], [side * 0.46, strip, (front + back) / 2], headliner);
   }
-  beveledBox(d, [0.48, 1.16, 0.31], [-0.3, 1.8, -3.69], wood, 0.035);
-  beveledBox(d, [0.49, 0.12, 0.49], [-0.35, 1.47, -4.1], leather, 0.025);
-  beveledBox(d, [0.12, 0.62, 0.49], [-0.5, 1.79, -4.1], leather, 0.025);
+  // Aft cabinet and side-facing seat kept inside the narrowing tail cone and lower roof.
+  beveledBox(d, [0.46, 1.06, 0.31], [-0.29, 1.75, -3.69], wood, 0.035);
+  beveledBox(d, [0.46, 0.12, 0.49], [-0.33, 1.47, -4.1], leather, 0.025);
+  beveledBox(d, [0.12, 0.58, 0.49], [-0.47, 1.75, -4.1], leather, 0.025);
   for (const side of [-1, 1])
     beveledBox(d, [0.29, 0.85, 0.35], [side * 0.49, 1.64, 1.0], wood, 0.025);
   d.finish();

@@ -56,6 +56,11 @@ export interface RoadEarthworkLine {
    * one tile are graded into that tile and each of its neighbors.
    */
   heights: Float32Array;
+  /**
+   * Meters each station is cut below its profile, where the way runs down a cutting to a tunnel
+   * portal (see tunnel-portals.ts); absent where none of it is.
+   */
+  depths?: Float32Array;
 }
 
 /**
@@ -71,7 +76,7 @@ export interface RoadEarthworksRequest {
   surfaceResolution: number;
   maxSpacing: number;
   /** The ways that reach the tile (`roadEarthworkLineReaches`), its own and its neighbors'. */
-  lines: readonly Pick<RoadEarthworkLine, 'points' | 'halfWidth' | 'bounds'>[];
+  lines: readonly Pick<RoadEarthworkLine, 'points' | 'halfWidth' | 'bounds' | 'depths'>[];
   /** The tile's mapped water, tile-normalized: left as it is, except under a road. */
   water: readonly TerrainSemanticPolygon[];
   /** The elevation level the reference ground is read at, and how far past the tile, meters. */
@@ -123,7 +128,7 @@ export function roadProfileHeight(
 }
 
 /** Whether a way is one the ground is graded for: roads and railways on the ground. */
-function graded(feature: TerrainTransportationFeature): boolean {
+export function isRoadEarthworkGraded(feature: TerrainTransportationFeature): boolean {
   if (feature.bridge || feature.tunnel || isAeroway(feature)) return false;
   if (feature.class === 'ferry' || feature.subclass === 'ferry') return false;
   // Footpaths take the ground as they find it: steps and trails climb where streets cannot.
@@ -151,7 +156,7 @@ export function roadEarthworkLines(
 ): RoadEarthworkLine[] {
   const lines: RoadEarthworkLine[] = [];
   for (const feature of features) {
-    if (!graded(feature)) continue;
+    if (!isRoadEarthworkGraded(feature)) continue;
     const halfWidth = gradedHalfWidth(feature);
     for (const line of feature.lines)
       for (const piece of clipRoadLine(line, clip)) {
@@ -425,6 +430,7 @@ export async function gradeRoadEarthworksRequest(
       bounds: line.bounds,
       // Profiles are a function of the reference ground alone: read again here, the same.
       heights: new Float32Array(line.points.length >> 1).fill(Number.NaN),
+      ...(line.depths ? { depths: line.depths } : {}),
     });
   return pass.finish();
 }
@@ -452,15 +458,18 @@ export function beginRoadEarthworks(
   // Each road's claim on each vertex it reaches, weighed against the others once all are in:
   // vertex, the road's profile there, meters beyond its edge and from its centerline, its share.
   const claims: number[] = [];
+  // Vertices a cutting to a tunnel portal holds, and its floor there (see `finish`).
+  const cuts: number[] = [];
   // One road's nearest point to each vertex, gathered before the road is weighed in.
   const stamp = new Int32Array(count).fill(-1);
   const distance = new Float32Array(count),
-    profile = new Float32Array(count);
+    profile = new Float32Array(count),
+    sunk = new Float32Array(count);
   let id = -1;
   const add = (line: RoadEarthworkLine): void => {
     id++;
     const reach = line.halfWidth + margin + blend;
-    const { points, bounds, heights } = line;
+    const { points, bounds, heights, depths } = line;
     if (
       bounds[2] < originX - reach ||
       bounds[0] > originX + sizeX + reach ||
@@ -512,8 +521,11 @@ export function beginRoadEarthworks(
         lowZ = Math.max(0, Math.ceil((Math.min(az, bz) - reach - originZ) / spacingZ)),
         highZ = Math.min(side - 1, Math.floor((Math.max(az, bz) + reach - originZ) / spacingZ));
       if (lowX > highX || lowZ > highZ) continue;
-      const from = heightAt(i),
-        to = heightAt(i + 1);
+      // Down its cutting where it runs to a tunnel portal.
+      const sinkFrom = depths?.[i] ?? 0,
+        sinkTo = depths?.[i + 1] ?? 0;
+      const from = heightAt(i) - sinkFrom,
+        to = heightAt(i + 1) - sinkTo;
       const sx = bx - ax,
         sz = bz - az;
       const span2 = sx * sx + sz * sz || 1;
@@ -521,7 +533,17 @@ export function beginRoadEarthworks(
         const vz = originZ + row * spacingZ;
         for (let column = lowX; column <= highX; column++) {
           const vx = originX + column * spacingX;
-          const along = Math.max(0, Math.min(1, ((vx - ax) * sx + (vz - az) * sz) / span2));
+          const past = ((vx - ax) * sx + (vz - az) * sz) / span2;
+          // A cutting stops at its portal: the ground past a sunk end is the hill over the
+          // bore, not a pit around the end of the road (and a tile's edge mid-cutting is met
+          // by the piece beyond it).
+          if (
+            depths &&
+            ((i === 0 && past < 0 && sinkFrom > 0.05) ||
+              (i + 2 === stations && past > 1 && sinkTo > 0.05))
+          )
+            continue;
+          const along = Math.max(0, Math.min(1, past));
           const away = Math.hypot(vx - ax - sx * along, vz - az - sz * along);
           if (away >= reach) continue;
           const vertex = row * side + column;
@@ -531,9 +553,12 @@ export function beginRoadEarthworks(
           } else if (away >= (distance[vertex] as number)) continue;
           distance[vertex] = away;
           profile[vertex] = from + (to - from) * along;
+          sunk[vertex] = sinkFrom + (sinkTo - sinkFrom) * along;
         }
       }
     }
+    // A cutting holds its own footprint, and at least the cell its centerline runs through.
+    const holds = Math.max(line.halfWidth, spacing * 0.75);
     for (const vertex of own) {
       const away = distance[vertex] as number;
       const beyond = Math.max(0, away - line.halfWidth);
@@ -541,6 +566,8 @@ export function beginRoadEarthworks(
       const share = 1 - fade * fade * (3 - 2 * fade);
       if (share <= 0) continue;
       claims.push(vertex, profile[vertex] as number, beyond, away, share);
+      if (depths && (sunk[vertex] as number) > 0.05 && away <= holds)
+        cuts.push(vertex, profile[vertex] as number);
     }
   };
   const finish = (): Heightfield => {
@@ -581,15 +608,41 @@ export function beginRoadEarthworks(
       weights[vertex] = (weights[vertex] as number) + weight;
       influence[vertex] = Math.max(influence[vertex] as number, share);
     }
+    // A cutting down to a tunnel portal is not a profile to weigh against the roads beside it:
+    // the bore begins at its floor. Within its footprint it is the ground (the lowest, where two
+    // cut the same vertex), and a road beside it keeps the ground beyond its edge. Weighed, a
+    // carriageway at grade 9 m from one going down to the Eastern Distributor's portal held the
+    // cutting at half its depth, and the bore stood 3.5 m below the road at its mouth.
+    let cutHeight: Float32Array | undefined;
+    const cutVertices: number[] = [];
+    if (cuts.length > 0) {
+      cutHeight = new Float32Array(count).fill(Number.NaN);
+      for (let c = 0; c < cuts.length; c += 2) {
+        const vertex = cuts[c] as number,
+          height = cuts[c + 1] as number;
+        const known = cutHeight[vertex] as number;
+        if (Number.isNaN(known)) cutVertices.push(vertex);
+        cutHeight[vertex] = Number.isNaN(known) ? height : Math.min(known, height);
+      }
+    }
     // How far each rendered vertex moves.
     const change = new Float32Array(count);
     let any = false;
     for (const vertex of touched) {
+      if (cutHeight && !Number.isNaN(cutHeight[vertex] as number)) continue;
       const vx = originX + (vertex % side) * spacingX,
         vz = originZ + Math.floor(vertex / side) * spacingZ;
       if ((nearest[vertex] as number) > 1 && options.water?.(vx, vz)) continue;
       const target = (weighted[vertex] as number) / (weights[vertex] as number);
       const delta = (influence[vertex] as number) * (target - heightfield.sampleHeight(vx, vz));
+      if (Math.abs(delta) < 0.01) continue;
+      change[vertex] = Math.max(-maxChange, Math.min(maxChange, delta));
+      any = true;
+    }
+    for (const vertex of cutVertices) {
+      const vx = originX + (vertex % side) * spacingX,
+        vz = originZ + Math.floor(vertex / side) * spacingZ;
+      const delta = (cutHeight?.[vertex] as number) - heightfield.sampleHeight(vx, vz);
       if (Math.abs(delta) < 0.01) continue;
       change[vertex] = Math.max(-maxChange, Math.min(maxChange, delta));
       any = true;

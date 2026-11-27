@@ -165,7 +165,8 @@ export const q400 = {
     bladeChord: 1.15,
   },
   gear: {
-    nose: { u: 2.36, r: 0.3, w: 0.18, spread: 0.36, top: 1.3, strut: 0.075 },
+    // The nose leg's pivot sits high enough that the stowed wheels clear the keel.
+    nose: { u: 2.36, r: 0.3, w: 0.18, spread: 0.36, top: 1.6, strut: 0.075, retract: 1.6 },
     // The legs hang from the nacelles, raked from a pivot ahead of the axle, and retract aft into
     // the nacelle bay: the stowed wheels sit on the nacelle axis. Twin 34 x 10.75-16 tyres.
     main: {

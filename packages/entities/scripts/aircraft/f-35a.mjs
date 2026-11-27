@@ -66,6 +66,22 @@ function finSlab(kit, stations, material, blunt = false) {
   sheet(kit, sections[0], material, [0, -1, 0]);
   sheet(kit, sections.at(-1), material, [0, 1, 0]);
 }
+/** Quads between consecutive closed 3D rings of equal length (rings may be non-planar). */
+function skin(kit, rings, material) {
+  const count = rings[0].length,
+    index = [];
+  for (let i = 0; i < rings.length - 1; i++)
+    for (let j = 0; j < count; j++) {
+      const a = i * count + j,
+        b = i * count + ((j + 1) % count);
+      index.push(a, a + count, b, b, a + count, b + count);
+    }
+  const geometry = new T.BufferGeometry();
+  geometry.setAttribute('position', new T.Float32BufferAttribute(rings.flat(2), 3));
+  geometry.setIndex(index);
+  geometry.computeVertexNormals();
+  kit.add(geometry, material);
+}
 export function buildF35A(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -73,7 +89,7 @@ export function buildF35A(s) {
     edge = mat('F35-edge', '#9ba0a3', { side: T.DoubleSide }),
     dark = mat('F35-seal', '#282e32'),
     metal = mat('F35-alloy', '#9ca4a6', { metalness: 0.7 }),
-    nozzle = mat('F35-nozzle', '#5f605b', { side: T.DoubleSide, metalness: 0.45 }),
+    nozzle = mat('F35-nozzle', '#6e6f6a', { side: T.DoubleSide, metalness: 0.5, roughness: 0.46 }),
     lining = mat('F35-duct', '#171e23', { side: T.DoubleSide }),
     // Gold ITO-coated canopy: reads as a smoked bronze bubble in every photograph.
     glass = mat('F35-canopy', '#86764a', {
@@ -83,7 +99,8 @@ export function buildF35A(s) {
       side: T.DoubleSide,
       roughness: 0.15,
     }),
-    sensor = mat('F35-sensor', '#34515b', { metalness: 0.55, roughness: 0.15 });
+    sensor = mat('F35-sensor', '#34515b', { metalness: 0.55, roughness: 0.15 }),
+    formation = mat('F35-formation', '#c3cbae', { emissive: '#56703a', emissiveIntensity: 0.25 });
   const d = detailKit(root, 'F35-airframe'),
     bindings = [];
   const mountHinge = (node, axis, direction) => {
@@ -224,16 +241,46 @@ export function buildF35A(s) {
   // The spine itself is a rounded dorsal hump about 1 m across (JPO plan view, Komatsu
   // photographs), not a flat deck, and the aft ring rounds into the F135 shroud.
   const shoulderDrop = 0.36;
+  // Aft of the wing the real body is a narrow engine tube about 1.5 m across that runs nearly
+  // parallel to the nozzle (JPO plan view). A thin shelf at fin-root height carries the fins
+  // and the stabilator booms, and under it the belly narrows to a shallow keel that rises into
+  // the nozzle (Komatsu rear and low-rear photographs). These rings used to keep a 2.6 m wide
+  // round belly to within 0.65 m of the nozzle, which read as a fat bomb shape from behind.
+  // Half sections, spine to keel: [x, y] for the spine, two crown points, the shoulder, the
+  // shelf edge, the shelf underside, the lower side and the keel.
+  const aft = {
+    [-3.2]: [
+      [0, 2.66],
+      [0.3, 2.64],
+      [0.6, 2.54],
+      [0.98, 2.3],
+      [1.56, 2.05],
+      [1.2, 1.86],
+      [0.86, 1.04],
+      [0, 0.93],
+    ],
+    [-3.75]: [
+      [0, 2.57],
+      [0.3, 2.55],
+      [0.56, 2.46],
+      [0.84, 2.27],
+      [1.44, 2.06],
+      [0.97, 1.9],
+      [0.64, 1.24],
+      [0, 1.06],
+    ],
+  };
   const body = [
     [3.7, 1.65, 0.95, 2.87],
     [1.3, 1.85, 0.89, 2.84],
     [-0.7, 1.87, 0.84, 2.79],
     [-2.6, 1.67, 0.78, 2.72],
-    [-3.7, 1.28, 1.0, 2.6],
-    [-4.35, 0.74, 1.1, 2.5],
+    [-3.2],
+    [-3.75],
+    [-4.35, 0.665],
   ].map(([z, w, b, t], i, all) => {
     const c = Math.min(0.5, w * 0.5),
-      half = [
+      half = aft[z] ?? [
         [0, t],
         [c * 0.5, t - 0.025],
         [c, t - 0.1],
@@ -243,10 +290,11 @@ export function buildF35A(s) {
         [w * 0.61, b + 0.06],
         [0, b],
       ];
-    // Last ring: a round collar (0.74 x 0.7 m about the nozzle axis) at the same stations.
+    // Last ring: a round collar about the nozzle axis, just outside the shroud, whose
+    // saw-toothed trailing edge overlaps the nozzle.
     const collar = (j) => {
       const a = (j * Math.PI) / 7;
-      return [Math.sin(a) * w, 1.8 + Math.cos(a) * (t - 1.8)];
+      return [Math.sin(a) * w, 1.8 + Math.cos(a) * w];
     };
     const side = i === all.length - 1 ? half.map((_, j) => collar(j)) : half;
     return {
@@ -262,11 +310,19 @@ export function buildF35A(s) {
   });
   loft(d, body, paint, { caps: false });
   const deck = 2.72;
+  // Close the collar round the nozzle, leaving the duct open to the liner.
   sheet(
     d,
     body.at(-1).points.map((p) => [...p, -4.35]),
     lining,
     [0, 0, -1],
+    [
+      Array.from({ length: 30 }, (_, j) => [
+        Math.cos((j * Math.PI) / 15) * 0.57,
+        1.8 + Math.sin((j * Math.PI) / 15) * 0.57,
+        -4.35,
+      ]),
+    ],
   );
   for (const side of [-1, 1]) {
     // Open raked inlet with an inner diverterless compression bump, no splitter plate.
@@ -449,15 +505,17 @@ export function buildF35A(s) {
       axis: 'x',
       scale: 1,
     });
-    // Tail boom fairing beside the nozzle carries the stabilator pivot (Komatsu rear photos);
-    // it grows out of the body side and runs aft past the nozzle exit.
+    // Tail boom beside the nozzle carries the stabilator pivot (Komatsu rear photos). It grows
+    // out from under the fin-root shelf, stands clear of the shroud, and runs aft past the
+    // nozzle exit; its outer edge stays under the fin root back to the fin's trailing edge.
     loft(
       d,
       [
-        [-3.1, 1.08, 0.3, 2.03, 1.68],
-        [-3.9, 0.98, 0.27, 2.01, 1.7],
-        [-4.8, 0.97, 0.22, 1.995, 1.74],
-        [-5.45, 0.97, 0.15, 1.975, 1.8],
+        [-3.1, 1.1, 0.36, 2.06, 1.74],
+        [-3.9, 1.08, 0.37, 2.045, 1.73],
+        [-4.45, 1.05, 0.35, 2.03, 1.74],
+        [-4.95, 1.0, 0.25, 2.0, 1.77],
+        [-5.45, 0.97, 0.14, 1.975, 1.81],
         [-5.75, 0.96, 0.04, 1.94, 1.88],
       ].map(([z, cx, hw, top, bottom]) => ({
         z,
@@ -527,6 +585,9 @@ export function buildF35A(s) {
       edge,
       false,
     );
+    // Electroluminescent formation-light strip on the fin's outer face, parallel to the leading
+    // edge (JPO side view, Komatsu photographs). Fin-local +x is outboard on the left fin.
+    fd.rod([side * 0.0375, 0.6, -0.8], [side * 0.033, 1.4, -1.48], 0.009, formation);
     const rg = group(fg, `F35-rudder-${side}`, [0, 0.12, -1.84]),
       rd = detailKit(rg, rg.name);
     finSlab(
@@ -557,58 +618,87 @@ export function buildF35A(s) {
         : mat('F35-green', '#53bc85', { emissive: '#158d4d', emissiveIntensity: 0.4 }),
     );
   }
-  // Single circular F135 exhaust with faceted petal seams and dark duct; no vectoring.
-  // The body's aft edge meets the shroud in a sawtooth (photographs from behind).
-  outline(
-    d,
-    Array.from({ length: 48 }, (_, j) => {
-      const a = (j * Math.PI) / 24,
-        r = j % 2 ? 0.672 : 0.686;
-      return [Math.cos(a) * r, 1.8 + Math.sin(a) * r, j % 2 ? -4.5 : -4.36];
-    }),
-    0.008,
-    dark,
-  );
-  const nr = [
-    [-4.32, 0.68],
-    [-4.65, 0.665],
-    [-5.02, 0.44],
-  ].map(([z, r]) => ({
-    z,
-    points: Array.from({ length: 32 }, (_, j) => [
-      Math.cos((j * Math.PI) / 16) * r,
-      1.8 + Math.sin((j * Math.PI) / 16) * r,
-    ]),
-  }));
-  loft(d, nr, nozzle, { caps: false });
-  loft(
-    d,
-    nr.map((r) => ({
-      z: r.z,
-      points: r.points.map(([x, y]) => [x * 0.94, 1.8 + (y - 1.8) * 0.94]),
-    })),
-    lining,
-    { caps: false },
-  );
+  // F135 axisymmetric nozzle, no vectoring: 15 flat outer flaps hinged at a band 0.3 m aft of
+  // the body, 1.25 m across at the base and 0.92 m at the exit (JPO plan view; it was 1.36 m),
+  // a saw-toothed exit lip and dark flap seams (Komatsu nozzle close-ups). Inside: the liner,
+  // the exhaust cone and the afterburner flame holder behind the turbine disc that the
+  // articulation pass adds at z -4.33.
+  const flaps = 15,
+    axisY = 1.8,
+    // Flap corners (even) and flap middles (odd) on a flat-sided ring of corner radius r.
+    flapRing = (r, z, lip = 0) =>
+      Array.from({ length: flaps * 2 }, (_, i) => {
+        const a = Math.PI / 2 + ((i - 1) * Math.PI) / flaps,
+          rr = i % 2 ? r * Math.cos(Math.PI / (flaps * 2)) : r;
+        return [Math.cos(a) * rr, axisY + Math.sin(a) * rr, z + (i % 2 ? -lip : lip)];
+      }),
+    shroud = [flapRing(0.625, -4.3), flapRing(0.6, -4.62), flapRing(0.462, -5.0, 0.035)],
+    liner = shroud.map((ring) =>
+      ring.map(([x, y, z]) => [x * 0.93, axisY + (y - axisY) * 0.93, z]),
+    );
+  skin(d, shroud, nozzle);
+  skin(d, liner, lining);
+  skin(d, [shroud.at(-1), liner.at(-1)], nozzle);
   sheet(
     d,
-    nr[0].points.map((p) => [...p, -4.31]),
+    liner[0].map(([x, y]) => [x, y, -4.31]),
     lining,
     [0, 0, -1],
   );
-  for (let j = 0; j < 16; j++) {
-    const a = (j * Math.PI) / 8;
+  // Flap seams and the hinge band.
+  for (let i = 0; i < flaps * 2; i += 2)
     outline(
       d,
-      [
-        [Math.cos(a) * 0.683, 1.8 + Math.sin(a) * 0.683, -4.32],
-        [Math.cos(a) * 0.668, 1.8 + Math.sin(a) * 0.668, -4.65],
-        [Math.cos(a) * 0.443, 1.8 + Math.sin(a) * 0.443, -5.02],
-      ],
-      0.007,
+      shroud.map((ring) => {
+        const [x, y, z] = ring[i];
+        return [x * 1.008, axisY + (y - axisY) * 1.008, z];
+      }),
+      0.006,
       dark,
       false,
     );
+  outline(
+    d,
+    shroud[1].map(([x, y, z]) => [x * 1.008, axisY + (y - axisY) * 1.008, z]),
+    0.006,
+    dark,
+  );
+  // Exhaust cone, afterburner spray bars and flame-holder ring.
+  d.add(new T.ConeGeometry(0.17, 0.26, 16, 1, true).rotateX(-Math.PI / 2), lining, [
+    0,
+    axisY,
+    -4.44,
+  ]);
+  for (let j = 0; j < 8; j++) {
+    const a = (j * Math.PI) / 4;
+    d.rod(
+      [Math.cos(a) * 0.14, axisY + Math.sin(a) * 0.14, -4.42],
+      [Math.cos(a) * 0.53, axisY + Math.sin(a) * 0.53, -4.42],
+      0.014,
+      dark,
+    );
+  }
+  outline(
+    d,
+    Array.from({ length: 32 }, (_, j) => [
+      Math.cos((j * Math.PI) / 16) * 0.34,
+      axisY + Math.sin((j * Math.PI) / 16) * 0.34,
+      -4.47,
+    ]),
+    0.022,
+    dark,
+  );
+  // The body's trailing edge overlaps the shroud base in 24 large saw teeth.
+  for (let j = 0; j < 24; j++) {
+    const a0 = (j * Math.PI) / 12,
+      a1 = ((j + 1) * Math.PI) / 12,
+      am = (a0 + a1) / 2,
+      at = (a, r, z) => [Math.cos(a) * r, axisY + Math.sin(a) * r, z];
+    sheet(d, [at(a0, 0.662, -4.35), at(a1, 0.662, -4.35), at(am, 0.617, -4.5)], paint, [
+      Math.cos(am),
+      Math.sin(am),
+      -0.6,
+    ]);
   }
   // Faceted EOTS enclosure under the forward nose: optical housing only.
   loft(
@@ -738,6 +828,154 @@ export function buildF35A(s) {
       edge,
     );
   }
+  // Underside counterpart of topPoint: keel, bay and lower-side points of each body ring,
+  // 8 mm below the skin.
+  const bottomPoint = (x, z) => {
+    let i = body.findIndex((r, j) => j < body.length - 1 && z <= r.z && z >= body[j + 1].z);
+    i = Math.max(0, i);
+    const a = body[i],
+      b = body[i + 1],
+      t = Math.max(0, Math.min(1, (a.z - z) / (a.z - b.z))),
+      y = (r) => {
+        const pts = [r.points[7], r.points[6], r.points[5]],
+          k = Math.abs(x) <= pts[1][0] ? 0 : 1;
+        return (
+          pts[k][1] +
+          ((pts[k + 1][1] - pts[k][1]) * (Math.abs(x) - pts[k][0])) / (pts[k + 1][0] - pts[k][0])
+        );
+      };
+    return [x, y(a) + (y(b) - y(a)) * t - 0.008, z];
+  };
+  const lift = ([x, y, z], dy) => [x, y + dy, z];
+  // Two internal weapons bays, each closed by an inner and an outer door whose ends are
+  // saw-toothed (JPO side view; Komatsu photographs with the doors open).
+  for (const side of [-1, 1]) {
+    const saw = (z, from, to, depth) =>
+      Array.from({ length: 7 }, (_, k) => [from + ((to - from) * k) / 6, z + (k % 2 ? depth : 0)]);
+    outline(
+      d,
+      [...saw(3.35, 0.12, 0.86, 0.15), ...saw(-0.45, 0.86, 0.12, -0.15)].map(([x, z]) =>
+        bottomPoint(side * x, z),
+      ),
+      0.004,
+      edge,
+    );
+    outline(
+      d,
+      [
+        [0.49, 3.35],
+        [0.49, -0.45],
+      ].map(([x, z]) => bottomPoint(side * x, z)),
+      0.0035,
+      edge,
+      false,
+    );
+  }
+  // F-35A internal GAU-22/A: a long low fairing on the left shoulder from just behind the
+  // intake to the wing root, the port door at its front and gun-gas louvres on its rear (JPO
+  // plan and side views; tanker-boom photograph from above).
+  const gunRise = (x, z) => {
+      const s = Math.max(0, Math.min(1, (3.62 - z) / 0.35, (z - 1.22) / 0.3)),
+        u = (x - 1.4) / 0.13;
+      return 0.065 * s * Math.max(0, 1 - u * u) - 0.004;
+    },
+    onGun = (x, z, above = 0) => lift(topPoint(x, z), gunRise(x, z) + above);
+  const gun = [3.62, 3.45, 3.1, 2.4, 1.7, 1.38, 1.22].map((z) =>
+    Array.from({ length: 7 }, (_, k) => onGun(1.4 + ((k - 3) / 3) * 0.13, z)),
+  );
+  for (let i = 0; i < gun.length - 1; i++)
+    for (let k = 0; k < 6; k++)
+      quad(d, gun[i][k], gun[i + 1][k], gun[i + 1][k + 1], gun[i][k + 1], paint, [0, 1, 0]);
+  outline(
+    d,
+    [
+      [1.33, 3.52],
+      [1.47, 3.52],
+      [1.5, 3.36],
+      [1.4, 3.26],
+      [1.3, 3.36],
+    ].map(([x, z]) => onGun(x, z, 0.004)),
+    0.004,
+    edge,
+  );
+  for (let k = 0; k < 7; k++) {
+    const z = 2.1 - k * 0.1;
+    outline(
+      d,
+      [1.31, 1.35, 1.4, 1.45, 1.49].map((x) => onGun(x, z, 0.003)),
+      0.009,
+      dark,
+      false,
+    );
+  }
+  // Two louvred grille panels on the right shoulder (JPO plan view).
+  for (const [front, back] of [
+    [3.56, 3.2],
+    [2.78, 2.3],
+  ]) {
+    outline(
+      d,
+      [
+        [-1.42, front],
+        [-1.6, front],
+        [-1.6, back],
+        [-1.42, back],
+      ].map(([x, z]) => lift(topPoint(x, z), 0.002)),
+      0.004,
+      edge,
+    );
+    for (let z = front - 0.04; z > back + 0.02; z -= 0.055)
+      d.rod(lift(topPoint(-1.445, z), 0.001), lift(topPoint(-1.575, z), 0.001), 0.009, dark);
+  }
+  // AN/AAQ-37 distributed-aperture windows: above the nose and behind the canopy, under the
+  // nose and the aft body, and one each side of the nose.
+  const das = (points, normal) => sheet(d, points, sensor, normal);
+  das(
+    [
+      [-0.06, 2.236, 7.7],
+      [0.06, 2.236, 7.7],
+      [0.07, 2.27, 7.56],
+      [-0.07, 2.27, 7.56],
+    ],
+    [0, 1, 0.3],
+  );
+  das(
+    [
+      [-0.06, 2.83, 4.1],
+      [0.06, 2.83, 4.1],
+      [0.06, 2.85, 3.92],
+      [-0.06, 2.85, 3.92],
+    ],
+    [0, 1, 0],
+  );
+  das(
+    [
+      [-0.06, 1.126, 6.58],
+      [0.06, 1.126, 6.58],
+      [0.06, 1.122, 6.42],
+      [-0.06, 1.122, 6.42],
+    ],
+    [0, -1, 0],
+  );
+  das(
+    [
+      [-0.07, 0.79, -1.9],
+      [0.07, 0.79, -1.9],
+      [0.07, 0.787, -2.08],
+      [-0.07, 0.787, -2.08],
+    ],
+    [0, -1, 0],
+  );
+  for (const side of [-1, 1])
+    das(
+      [
+        [side * 0.6, 1.69, 6.92],
+        [side * 0.6, 1.62, 6.99],
+        [side * 0.6, 1.55, 6.92],
+        [side * 0.6, 1.62, 6.85],
+      ],
+      [side, 0, 0],
+    );
   d.finish();
   const interior = f35Cockpit(root, { metal });
   Object.assign(interior.derived, {
@@ -947,10 +1185,12 @@ function f35Cockpit(root, m) {
   d.box([0.86, 0.05, 1.9], [0, 1.695, 5.85], panel);
   d.box([0.74, 0.58, 0.035], [0, 2.01, 6.8], panel);
   for (const side of [-1, 1]) {
+    // The wall's aft top corner stays inside the skin under the canopy rail (x 0.47 there);
+    // at 0.48 it and its sill tube broke out beside the canopy.
     quad(
       d,
       [side * 0.48, 1.72, 5.05],
-      [side * 0.48, 2.55, 5.05],
+      [side * 0.43, 2.55, 5.05],
       [side * 0.37, 2.3, 6.8],
       [side * 0.37, 1.72, 6.8],
       panel,
@@ -959,10 +1199,10 @@ function f35Cockpit(root, m) {
     outline(
       d,
       [
-        [side * 0.48, 2.55, 5.05],
+        [side * 0.43, 2.55, 5.05],
         [side * 0.37, 2.3, 6.8],
       ],
-      0.022,
+      0.016,
       black,
       false,
     );

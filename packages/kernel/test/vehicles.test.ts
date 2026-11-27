@@ -202,6 +202,40 @@ describe('mountable vehicle foundation', () => {
     expect(w.has('player', Mounted)).toBe(false);
     expect(w.get('player', Transform)?.pos[0]).toBeGreaterThan(1.4);
   });
+  it('climbs out where there is room when both doors are blocked, never where the host forbids', () => {
+    const w = setup();
+    expect(mountEntity(w, 'player', 'car')).toBe(true);
+    const car = w.get('car', Transform) as TransformData;
+    // Walls close along both sides: the doors open into them, the ends are clear.
+    const walls = {
+      ...flat,
+      canExit: (pos: [number, number, number]) => Math.abs(pos[0] - car.pos[0]) < 1.1,
+    };
+    expect(unmountEntity(w, 'player', walls)).toBe(true);
+    const out = w.get('player', Transform)?.pos ?? [9, 9, 9];
+    expect(Math.abs(out[0] - car.pos[0])).toBeLessThan(1.1);
+    // Off an end of the car, not under it.
+    expect(Math.abs(out[2] - car.pos[2])).toBeGreaterThan(SEDAN.length / 2);
+    expect(out[1]).toBeCloseTo(0.02, 6);
+    // Standing on its wheels it can be driven out instead: nowhere clear keeps the driver in.
+    w.set('player', Mounted, { vehicle: 'car', seat: 'driver' });
+    expect(unmountEntity(w, 'player', { ...flat, canExit: () => false })).toBe(false);
+  });
+  it('lets a host leave a road vehicle it has judged a wreck, whatever speed it reports', () => {
+    const w = setup();
+    expect(mountEntity(w, 'player', 'car')).toBe(true);
+    // Caught in something: it reports speed while going nowhere.
+    w.patch('car', VehicleState, { speed: 6 });
+    expect(unmountEntity(w, 'player', flat)).toBe(false);
+    expect(unmountEntity(w, 'player', flat, { wreck: true })).toBe(true);
+    expect(w.has('player', Mounted)).toBe(false);
+    // And with nowhere the host calls clear, beside it all the same.
+    w.set('player', Mounted, { vehicle: 'car', seat: 'driver' });
+    expect(unmountEntity(w, 'player', { ...flat, canExit: () => false }, { wreck: true })).toBe(
+      true,
+    );
+    expect(w.get('player', Transform)?.pos[1]).toBeCloseTo(0.02, 6);
+  });
   it('steers in the appropriate direction in both forward and reverse and never turns in place', () => {
     const w = setup();
     mountEntity(w, 'player', 'car');

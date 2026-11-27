@@ -176,13 +176,19 @@ with a uniform induced flow that follows momentum theory with a lag (and a measu
 a descent into its own wake), a blade stall limit that falls with advance ratio, induced and
 profile power, quasi-static flapping (the disc tilts back and toward its advancing side, and
 follows a turning shaft late), hub moments from the hinge offset, the mast's torque on the
-fuselage, a tail rotor of the same kind, a fin and stabilizer, fuselage drag and download,
-skids on struts, and a governed rotor speed that droops when more is asked than the gearbox
-passes. Not modeled: individual blades and lead-lag, the wake's distortion in forward flight
-(the induced flow is uniform over the disc), the tail rotor and fin in the main rotor's wake,
-pitch-roll cross-coupling beyond flapping, and separate engines and gearboxes on twins.
+fuselage, a tail rotor of the same kind (a fan's duct carries half of its thrust), a fin and
+stabilizer, fuselage drag, lift and pitching moment, skids on struts, and a governed rotor speed
+that droops when more is asked than the gearbox passes. Past a type's limit speed
+(`retreatingBladeSpeed`: its published never-exceed speed, `neverExceedKt` in the ledger, or 1.13
+times the cruise anchor) its retreating blades stall: the nose rises, it rolls toward them and it
+shakes, sooner with more load, thinner air or a slower rotor. The assist holds that speed. Not
+modeled: compressibility of the advancing tip, individual blades and lead-lag, the wake's
+distortion in forward flight (the induced flow is uniform over the disc), the tail rotor and fin
+in the main rotor's wake, pitch-roll cross-coupling beyond flapping, and separate engines and
+gearboxes on twins.
 Fuselage drag split, download, fin and stabilizer areas and, for most types, inertias and
-Lock numbers are class estimates.
+Lock numbers are class estimates. A tail rotor whose chord is not published is sized to hold full
+torque in the thinnest air the engines still make full power in, at a blade loading of 0.13.
 
 The CH-47 keeps the response model: governed rotor RPM independent of collective, an
 actuator-disc shaft-power limit, profile, parasitic and climb-power costs, ground and

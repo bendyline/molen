@@ -15,10 +15,13 @@ play without opening a browser.
 | `audioSource` | any entity | An emitter: loops follow the entity, pitch and gain follow signals, one-shots fire on triggers |
 | `audioZone` | any entity | Area ambience that fades in as the listener approaches a sphere or box |
 | `molen.audio.*` | scene scripts | `play`, `stop` and `music`, emitted as `audio.*` events |
+| `molen/sound-profiles@1` | a content pack (the `sound-profiles` role) | Voices for whole families of entities: named layers per profile, the cabin's acoustics, horn and starter |
 | `@bendyline/molen-client/audio` | the page | `createAudioLayer` loads banks and plays what the rules ask for |
 
-The `molen.sounds` content pack carries 170 CC0 sounds (ambience, vehicles, footsteps, impacts,
-foley, UI, stings and six music tracks). Fetch it into a project with:
+The `molen.sounds` content pack carries about 280 CC0 sounds (ambience, vehicles, aircraft, trains,
+boats, street events, footsteps, impacts, foley, UI, stings and six music tracks), the sound
+profiles that voice every `molen.entities` vehicle, and the Earth soundscape catalog. Fetch it into
+a project with:
 
 ```sh
 npx molen pack fetch https://molen.dev/packs/index.json molen.sounds --out-dir public/packs
@@ -70,12 +73,95 @@ pitch and loudness follow the car's state:
 }
 ```
 
-Put the `audioSource` on an entity type and every instance gets it. The `molen.entities` vehicles
-and aircraft carry their engines this way: cars run `vehicle.engine.car` or
-`vehicle.engine.diesel` only while someone drives them (`"when": { "self.occupied": true }`), with
-pitch from `vehicleState.speed` and gain from `vehicleInput.throttle`. The P-51 (a Merlin) and the
-OH-6 take pitch and gain from `aircraftState.rpm`, so they are silent until the engine starts and
-spool up and down with it. A loop whose gain is zero holds no voice.
+Put the `audioSource` on an entity type and every instance gets it. The `molen.entities` cars
+carry a simple engine this way, running `vehicle.engine.car` or `vehicle.engine.diesel` only while
+someone drives them (`"when": { "self.occupied": true }`), with pitch from `vehicleState.rpm`; the
+P-51 and the OH-6 take theirs from `aircraftState.rpm`. A host that loads the pack's sound
+profiles (the Earth view does) replaces these with the full voices described below. A loop whose
+gain is zero holds no voice.
+
+## Sound profiles
+
+One `audioSource` is one loop. A car is many sounds at once: an engine at idle and under load,
+tires on the surface, wind on the body, a skid, and inside the cabin road noise and the engine
+through the firewall. A sound profile names them as layers, each an `audioSource` evaluated on the
+entity, and a match rule gives every entity of a family its profile:
+
+```json
+{
+  "format": "molen/sound-profiles@1",
+  "id": "my.sounds",
+  "components": ["vehicle"],
+  "match": [{ "profile": "car", "when": { "vehicle.spec.bodyStyle": ["sedan", "hatchback"] } }],
+  "profiles": {
+    "car": {
+      "cabin": { "isolationDb": 24, "cutoffHz": 900 },
+      "horn": "vehicle.horn.car",
+      "start": "vehicle.engine.start",
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "vehicle.engine.car",
+          "when": { "self.occupied": true },
+          "pitchFrom": { "signal": "vehicleState.rpm", "curve": [[800, 0.8], [6500, 1.8]] }
+        },
+        {
+          "name": "road",
+          "sound": "vehicle.cabin.road",
+          "perspective": "interior",
+          "gainFrom": { "signal": "self.speed", "curve": [[2, 0], [35, 1]] }
+        }
+      ]
+    }
+  }
+}
+```
+
+- `match` rules are tried in order; the first whose `when` holds on the entity wins, decided once
+  while the entity exists. Conditions read the entity's components (`renderable.ref`,
+  `ambientAgent.type`, `aircraft.spec.engines.0.propulsion`). A matched entity's own
+  `audioSource` is replaced by its profile.
+- `perspective`: `exterior` layers (the default) are heard from outside, and through the cabin's
+  muffling when the listener rides inside; `interior` layers play only for a listener in this
+  entity's cabin; `any` layers are never muffled (a motorcycle's engine, a bicycle's tires).
+- `extends` inherits another profile; a layer with the same `name` replaces the inherited one.
+- `cabin` says what the cabin does to everything outside it: attenuation in dB and a low-pass
+  cutoff. `horn`, `start` and `stop` are sounds the host plays (Earth: H, boarding, rpm leaving
+  zero). `maxDistance` (default 400 m) is how far away the entity is voiced at all.
+- The nearest `audioEnvironment.maxEmitters` entities (default 8) are voiced, besides the one the
+  listener rides, so a street of parked cars or a busy airport costs a bounded number of voices.
+
+Load them with `mergeSoundProfiles(await loadPackSoundProfiles(packs))` and pass the result as
+`createAudioLayer({ profiles })`. The pack's document is written by
+`content/sounds/tools/profiles.mjs`, which puts each `molen.entities` type in a family by its spec.
+
+## Where the ears are
+
+The host says what surrounds the listener, and everything outside it changes:
+
+```ts
+audio.update(now, {
+  space: 'cabin', // open | cabin | building | tunnel
+  vehicle: 'car-7', // its profile's cabin applies, its interior layers play
+  reverb: 'tunnel', // reverberant surroundings: tunnel, street
+});
+```
+
+- Every voice is routed inside or outside the listener's enclosure. Ambience, zones and other
+  entities are outside; the ridden vehicle's interior layers, music, the interface and footsteps
+  are inside. A cabin or building lowers and low-passes everything outside through one filter,
+  so a car door closing sounds like one. An ambience layer with `"inside": true` (rain on the
+  roof) is heard past it. `listener.enclosure` overrides what the space implies.
+- Tunnels, rooms and street canyons add a generated reverberation (no recording is needed).
+- Positional sources are Doppler-shifted by their closing speed (`audioEnvironment.doppler`, 0
+  to 1, default 1) and lose treble with distance, as air absorbs it.
+- Loud nearby sources lower the ambience beds (`audioEnvironment.masking`, default 0.6): an idling
+  engine covers the birds.
+- Outside its cabin (a chase camera), the vehicle the listener rides is held within 6 m, so the
+  camera's distance does not make it go quiet.
+
+`setVolume` takes perceived loudness: half way is half as loud (-10 dB), not half the amplitude.
+`loudnessToGain` gives the gain, for mix sliders driving `setBusGain`.
 
 Fire one-shots from a script when something happens that no component describes:
 
@@ -104,6 +190,7 @@ Every rule is a small piece of data the director re-evaluates each frame.
 | `triggerFrom` | `{ signal, every?, onChange?, sound? }`: a one-shot each time the signal advances by `every` (footsteps by distance) or changes |
 | `startTick` | Play once at that tick; changing it plays again |
 | `fadeS` | Fade time for ambience layers (default 1.5 s) |
+| `inside` | An ambience layer heard inside the listener's space, past a cabin's or building's muffling |
 
 Sounds that come from the ground, such as birds in the trees or traffic on the roads, should get
 quieter as the listener rises. List one curve for height and another for distance to the source:
@@ -129,6 +216,8 @@ makes a sound flicker.
 | `<component>.<field>` | A field of a component on the source's entity, e.g. `vehicleState.speed`, `aircraftState.rpm`, `transform.pos.1`. In `audioEnvironment` rules it reads the `listenerEntity` |
 | `self.speed`, `self.distance`, `self.x/y/z` | The source entity's measured speed (m/s), distance travelled (m) and position |
 | `self.occupied` | true while someone rides the source entity (an entity's `mounted` component names it), in any seat but a `passenger` one: a passenger alone does not start an engine |
+| `self.listener`, `self.listenerDistance`, `self.listenerAngle`, `self.approach` | Whether the listener rides the entity; meters to the listener; degrees from the entity's nose to the listener (0 ahead, 180 behind: jet exhaust is loudest behind); closing speed in m/s |
+| `listener.space`, `listener.vehicle` | What the host reports: open, cabin, building or tunnel; the entity the listener rides |
 | `listener.speed`, `listener.distance`, `listener.x/y/z`, `listener.altitude` | The listener's speed, odometer and position |
 | `listener.heightAboveGround` | What the host reports as the listener's height above the terrain (m); 0 when it reports nothing |
 | `listener.mode`, `listener.grounded`, `listener.surface`, `listener.indoors` | What the host reports: walk, drive, fly, pilot or orbit; on the ground; the surface underfoot; inside a building |
@@ -203,14 +292,30 @@ Every game sample does exactly this in its `src/audio.ts`. Hosts without a Worke
 `setBusGain('music', 0)` drive a settings menu.
 
 `mountEarthView` plays the Earth soundscape on its own when its content includes the
-`molen.sounds` pack: 88 recorded ambience beds and 12 walking surfaces, plus engines on the cars
-and aircraft you board. Birds favor the morning; warm nights bring crickets/frogs and warm days
-bring cicadas. Broad geographic palettes select local recordings. Wind and rain follow weather,
-surf follows mapped ocean shores, rivers follow flowing water, and traffic follows streets.
-Ground ambience requires a known terrain height and fades with altitude; enclosed cockpits attenuate the outdoors to 18%. Open
-boats and exterior cameras retain outside ambience. Only one bed per category plays, with
-staggered rotation and five-second crossfades. See [Earth view](earth-view.md) for host inputs.
-Pass `audio: false` to turn it off, and use `view.audio` for volume.
+`molen.sounds` pack. See [Earth view](earth-view.md) for host inputs. Pass `audio: false` to turn
+it off, and use `view.audio` for volume and the bus mix.
+
+- **Every bed has a place, a season and a temperature.** The pack's soundscape catalog
+  (`molen/earth-soundscape@1`, `provides.soundscape`) gives each recording bounds near where it
+  was made, its months on the local calendar, the temperatures it needs, and its habitats or
+  settlement. Insects and frogs follow a climate estimate for the place, season and hour, not a
+  weather preset's fixed temperature. The most specific bed that belongs plays; a place no bed
+  covers is quiet in that category. So Seattle has Pacific chorus frogs in spring and no cicadas,
+  and Tokyo's streets are not Bengaluru's. Packs without a catalog fall back to broad regions.
+- **Streets are beds plus events.** Road beds carry no horns (except South Asia, Hanoi and Cairo,
+  where horns are the street). Horns, sirens, motorcycles, buses, dogs, crows, level-crossing
+  bells and thunder are scheduled events whose rates follow a traffic-culture table by country,
+  the local hour and how near a street the listener is, chosen by hash so a replay hears the
+  same street. Motorways, crowds, harbors and lakes have beds of their own.
+- **Every vehicle has a voice.** The pack's profiles voice all `molen.entities` vehicles,
+  aircraft, trains and boats, parked, driven or in traffic: about 40 families (a fighter's whine,
+  roar and reheat; an airliner's thrust and cabin; turboprop, radial and flat pistons; four kinds
+  of helicopter; V8, diesel, electric and hybrid cars; motorcycles and scooters; locomotives,
+  trams and ships). Hold H (gamepad B) to sound the horn.
+- **The cabin muffles the world** through the enclosure above, using the vehicle's own cabin
+  figures; open boats, motorcycles and exterior cameras stay outside. Tunnels reverberate.
+- Ground ambience requires a known terrain height and fades with altitude. One bed per category
+  plays, with staggered rotation and five-second crossfades. Phones get fewer voices.
 
 Vehicle details use the same simulation snapshots as the visuals:
 
@@ -295,4 +400,7 @@ Good places to find sounds:
 
 CC-BY sounds and music (Kevin MacLeod's, for example) are fine in your own bank if you show the
 credit they require. Avoid the BBC Sound Effects archive (non-commercial licence) and libraries
-that forbid redistribution.
+that forbid redistribution: Pixabay's licence, for one, bars distributing a sound on its own,
+which a sound pack does. `content/sounds/tools/survey.mjs` in the engine repository searches
+Freesound (CC0 only) and BigSoundBank and records a chosen recording's page, author, licence and
+hash.

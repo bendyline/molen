@@ -53,8 +53,12 @@ category together and asks for no presentation.
   masculine-form body is drawn no dress or skirt, and a kept dress draws no facial hair. Kept
   parts that hold one of each are steered by neither.
 - With nothing to go by, the seed rolls a steer: `masculine` or `feminine` nine times in ten, in
-  equal measure, and `unspecified` otherwise. Facial hair on a feminine-form body is then about
-  one random look in fifty, against one in five when every look is drawn `unspecified`.
+  equal measure, and `unspecified` otherwise.
+
+Under `unspecified` the clothes are drawn alike, but the person still agrees with itself: facial
+hair follows the body shape drawn (or kept), so a feminine-form body draws no facial hair and a
+kept beard draws no feminine-form body. No random look puts facial hair on a feminine-form body;
+a person may still choose one in the designer.
 
 `figureLookPool` cycles the three steers, so a third of a crowd is drawn `unspecified`.
 

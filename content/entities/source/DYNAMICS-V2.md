@@ -40,7 +40,9 @@ All seven phases were worked through on 2026-11-23. Phases 0 to 3 did what the p
 solvers it described. On 2026-11-24 the owner asked for the four largest of those gaps, and
 the [follow-up](#follow-up-2026-11-24) built them: a free body for cars, landing gear on the
 wheel element, a rotor element with tail rotor torque, and a contact impulse shared by
-aircraft and vehicles. [What is left](#what-is-left) gathers what remains. Nothing here has
+aircraft and vehicles. On 2026-11-26 each wheel was put on
+[its own road](#each-wheel-on-its-own-road-and-gear-on-its-struts-2026-11-26) and the travel of
+struts drawn, on cars and on landing gear. [What is left](#what-is-left) gathers what remains. Nothing here has
 been flown, driven or ridden by a person yet: it is held by headless trials and tests, and the
 feel in the hosts is the owner's to judge.
 
@@ -478,9 +480,9 @@ at 0.4 a run-on landing slides to a stop from 50 knots.
 itself at about 130 knots, slowed, nosed over and did it again; the UH-60M and H125 did too,
 and the OH-6, 206B and R44 sat on the stop. Two causes, neither in a real helicopter. The
 swashplate had the same 11.5° forward as aft and sideways, for every type, which nothing
-published supports (UH-60A: 16.5° forward and 12.3° aft, Howlett, NASA CR-166309, figure 6.3.1;
-R44: 13.9° both ways, its type certificate data sheet); the kernel now gives 1.4 times `cyclic`
-forward. And the fuselage had no pitching moment of its own, so the stabilizer held the nose up
+published supports (AW139: 16° forward and 10° aft, and R44: 13.9° both ways, their type
+certificate data sheets; UH-60A: 16.5° and 12.3°, Howlett, NASA CR-166309, figure 6.3.1); the
+kernel now gives 1.4 times `cyclic` forward. And the fuselage had no pitching moment of its own, so the stabilizer held the nose up
 against the stick alone; the UH-60A's measured moment (the same report, table 2.5.9), scaled by
 mass, takes about a third of that back on the UH-60M and half on the AW139. With both, all ten
 hold the nose down at full power, steady and with swashplate in hand, and the collective the
@@ -491,15 +493,177 @@ was just enough; with more power the rotor pulls more and needs more.
 knots or less, but for the UH-60M, which the stop had held to 147.5: 153.9 against a published
 151.
 
-Found on the way and not changed: past its limit a helicopter keeps diving (the AW139 to 230
-knots on full forward stick) with the stall only reported, where a real one's retreating blade
-stalls, pitches it up and rolls it; and above about 3,000 m at full torque and under 60 knots
-the AW139's tail rotor runs out of pitch and it spins.
+**Past the limit speed (2026-11-25).** With the nose able to go down, the AW139 dived to 230
+knots with the blades' stall only reported. Now:
+
+- *The limit.* What the retreating blades carry falls in a straight line with advance ratio, as
+  McHugh measured (NASA CR 145217, in Yeo, NTRS 20030068988, figure 1), from the type's own
+  `maxLift` in the hover to 1.2 times its weight at 1.11 times its never-exceed speed. The AW139's
+  line passes 0.095 at an advance ratio of 0.45, where the measured rotor's is 0.092 to 0.098.
+- *What it does.* Sized on a blade-element rotor with stalling sections (40 by 72 elements,
+  static stall, uniform inflow, trimmed at four advance ratios): the disc tilts back 0.14 rad per
+  unit of loading over 0.9 of the limit, 0.36 of that toward the retreating side; thrust stops at
+  0.95 of the limit; profile drag rises; `buffet` shakes the view. In direct control, pulling up
+  the lever at 150 knots has the AW139 25° nose up in a second, against 11° for the same rotor
+  when it cannot stall.
+- *The assist* does what a pilot does: holds the type's limit speed, and keeps the lever to what
+  the blades carry. Full forward stick takes the AW139 to 174 knots, where the nose comes up by
+  itself and stays, at any lever. The bare helicopter has no such hand, and unloaded in a dive it
+  still goes fast; the stall waits for the pull-out, as it should.
+- *The fuselage's download* was four times its drag area per radian, 3.4 times a UH-60's measured
+  figure, so a nose-low helicopter flew at 1.2 g. It is now the UH-60A's lift and drag from the
+  report above, by mass.
+- *Limit speeds* are published for six types (`neverExceedKt`, with sources) and 1.13 times the
+  cruise for the rest. The UH-60M's published 193 knots was not used: no source could be found
+  for it, and it keeps 171.
+
+**Turning (2026-11-25).** The assist's feet held the body's yaw rate at zero, so under way they
+fought the nose following a turn: banked at 60 knots for ten seconds, the AW139's path turned 71°
+and its nose 40°, and it flew on crabbed 60° to its path after levelling. They now keep the ball
+in the middle under way (the turn rate the bank makes, plus the sideslip over half a second),
+fading in from 15 m/s of air ahead to 25, with a held pedal left to have its way; in the hover
+and slow flight they hold the heading as before.
+
+Then the owner asked for the pedals' "snap back" to go: 40° of pedal at cruise, and the fin swung
+the nose back 30° or more on letting go. So when the stick is not banking, the feet now hold the
+heading against the fin as well, and the hands bank (up to 0.45 rad, the sideslip over three
+seconds) to bring the path round to the nose: 33° of pedal at 120 knots is kept, the path joins
+it in about five seconds. They leave the slip alone while the stick is pushed or pulled: in a
+flare at 17° nose up a roll turns the heading, and chasing that rolled the H145 27°. This is the
+assisted pedal turn at speed the owner declined on 2026-11-19, asked for now in other words.
+
+**Tail rotors at full power.** Above 2,000 m the AW139 and the 407 ran out of tail rotor, and the
+H145 spun at full power at sea level. The 407's tail rotor turns at 2,500 rpm (the class figure
+was slower), the H145's fan shares its thrust with its duct and its blades turn further, and the
+AW139's blades, whose chord is not published, are sized to hold full torque where the engines
+start to fade, at the loading published tail rotors have there. Ten types hold their heading at
+full power from sea level to 5,000 m.
+
+Open: the limit speed is one number, with no weight in it; advancing-tip compressibility is not
+modelled; and `steady()` in the trials does not ask whether the pedals suffice (`rotorTrim`
+reports it).
 
 Not built: the tandem CH-47 on rotors, pitch-roll cross-coupling beyond flapping, the tail
 rotor and fin in the main rotor's wake, loss of tail rotor effectiveness, mast bumping, and
 separate engines on the twins. `aircraftInertia` in collisions still uses the airplane
 formulas for a helicopter.
+
+### Each wheel on its own road, and gear on its struts (2026-11-26)
+
+The owner asked for independent suspension: wheels that compress over bumpy roads as real ones
+do, and the same in landing gear for the aircraft whose models can show it. The struts were
+already there, from Phase 4 and the follow-up. Two things were missing.
+
+**On the road, no strut ever met the road.** The planar solver put the car at the mean of the
+road under its four wheels, every substep, and turned it toward the plane through them at
+`terrainAlignRate`. The body went where the road went, at once, and the only thing that ever
+moved a strut was the body's own acceleration and a synthetic ripple on rough surfaces. A bump
+under one wheel lifted the whole car a quarter of its height in a hundred-and-twentieth of a
+second.
+
+Now each strut stands on the road under its own wheel. The plane the car is solved in still
+lies through the road under all four, but the body no longer rides on it: when the plane
+moves, the body's heave and lean are restated against its new place, so the body is where it
+was and each strut is closed or opened by what the road under its own wheel did. What the
+body does then is what its springs and dampers make it do. Three things that needed care:
+
+- *The dampers work against the road's rate too.* Without it a car climbing a 10% grade at
+  20 m/s rode 5 cm low, its dampers holding it back from a road rising at 2 m/s. The road's
+  rate under each wheel is carried from one substep (and one tick) to the next.
+- *A tire.* A wheel follows the road on its tire, at about 12 Hz, and exactly where the road
+  rises steadily. Without it a square 12 cm step put four times the car's weight on one
+  wheel for a substep, and washboard at 70 km/h pumped the car 5 cm up on its springs, since
+  a damper can push a body up harder than a wheel can pull it down.
+- *The end of the travel.* A strut closes to one and a half times `wheels.travel` and no
+  further: from there the road carries that corner directly. A strut that was closed solid
+  opens again against six times its damping. The kernel's own test, a 17° ramp met at
+  134 km/h, is why. With honest springs alone the front struts went 46 cm through a 9 cm
+  travel and the car tumbled; stopped solid but left to rebound, it was thrown nose-up and
+  came down on its tail. It now leaves that ramp at the ramp's slope, its nose dropping a
+  little in the air, and lands on its wheels.
+
+What the body feels, a sedan over three kinds of rough road (the body's vertical acceleration
+and how far the wheels work, `.artifacts/suspension/ride.mjs`):
+
+| Road, at 54 km/h | Body, before | Body, now | Wheel travel, now |
+|---|---:|---:|---:|
+| Washboard, 2.5 cm every 0.9 m | 5.7 g RMS, 15.9 g peak | 0.37 g, 0.52 g | 2.8 cm |
+| Setts, a few cm, different under each wheel | 1.45 g, 5.9 g | 0.21 g, 0.42 g | 6.1 cm |
+| A 3 cm seam across the road every 12 m | 3.3 g, 23 g | 0.14 g, 0.65 g | 6.6 cm |
+
+Before, those accelerations went straight to the cockpit view. And single events, at 29 km/h:
+
+| | Struts | Body |
+|---|---|---|
+| 6 cm hump, 1.2 m long, under the left wheels | left close 4.6 and 5.8 cm, right 1.2 and 1.7 | rises 1.4 cm, leans 1.1° |
+| Speed bump, 8 cm by 2 m | front 4.4 cm, then rear 6.2 | rises 4.3 cm, pitches 2° |
+| Pothole, 8 cm deep, under the right wheels | right open 7.2 and 7.8 cm | 2.1 cm, 1.5° |
+| Off a 12 cm curb | all four hang, then close 11.8 cm | lands on its springs |
+
+On a level road nothing changed, to the bit: 369 drives (every road vehicle on struts, a
+launch, a slalom, a handbrake turn and a stop, on pavement, on gravel and at altitude) compare
+equal with the committed kernel in every field it wrote (`flat-ab.mjs`), so the fitted
+figures stand, the calibration checks pass untouched and the road scorecard is as it was.
+The ground is asked as often as before, four times a substep; a tick costs 12.9 µs against
+11.8.
+
+New state, cars: `wheelTravel` (how far the road holds each wheel up its strut, at its full
+reach below rest where it hangs), `wheelRoad` and `wheelRoadRate` (the road under each wheel
+against the plane, and its rate: absent on a level road), `wheelSpent` (a strut opening again
+from solid). The free body reports `wheelTravel` too.
+
+**Nothing drew the travel.** The car visual held every wheel on the plane; an aircraft's gear
+was rigid, so a closed strut put its tire into the runway and a hanging one hung short.
+
+- *Cars.* Each wheel node is moved up or down its strut by its own travel
+  (`wheelTravelSignals`), a wheel between the corners by that of the struts beside it. In the
+  air the wheels hang at the end of their struts.
+- *Aircraft.* `aircraftState.wheels.travel` is each leg's strut: zero standing, the full reach
+  below rest in flight (13 cm at 1.4 Hz), to the stop at touchdown. Braking a Cessna from
+  15 m/s closes its nose leg 12 cm; rotating, the nose leg runs out while the mains still carry
+  the airplane. The visual finds the gear legs in the model (the outermost nodes named as gear
+  or wheels that stand on the ground) and slides each along the airframe's up axis. The
+  flight model's legs are class rules and are rarely where the model's wheels are (an A220's
+  nose wheel stands 4.5 m ahead of the flight model's), so each leg moves by what the plane
+  through the reported travel gives at its own tire. That plane's geometry is now the schema's
+  (`aircraftGearLayout`), read by the kernel and the client alike; the kernel's legs came out
+  bit for bit as before for all 54 aircraft.
+
+Checked in the World Explorer itself, headless (`explorer-probe.mjs`). A sedan driven at
+29 km/h over 5 cm humps laid alternately under its left and right wheels works each strut
+through about 8 cm, its body moves 4 mm, and every drawn tire stays within 4 mm of the road
+the kernel stood it on, where rigid wheels would have been up to 4.6 cm off it. A 737 braked
+from 31 knots closes its nose leg 11.5 cm; the model's nose leg, four meters further forward,
+slides 15 cm and its tire stays within 3 mm of where it stood, where it had gone 15 cm into
+the runway. An F-16's does the same over 12 cm.
+
+Thirty-nine of the 54 models have legs to move. The rest have their gear in the shell's own
+mesh (Cessna 172, 182 and 208B, SR22, PA-28, UH-60M, CH-47F) or stand on skids (H125, H145,
+206B, 407, 412, R44, UH-1H, OH-6).
+
+Departures and limits:
+
+- **The whole leg slides**, strut and wheel together, its top going into the well or the
+  wing. The models' gear is split by material, not into a cylinder and a piston, so there is
+  no oleo to telescope.
+- **Strut travel is the class rule's.** Every airplane's legs hang 13 cm below rest and close
+  7.6 cm above it to their stops. An airliner's real stroke is two or three times that. Per-type gear figures are still
+  item 3 of what is left, and would give the drawing more to show.
+- **A taildragger's tail squat is not strut travel.** The soft give below the tailwheel that
+  stands in for the missing wing datum reads as up to a meter of travel; the drawing stops at
+  twice the strut's.
+- **Ambient traffic is not on struts.** Its cars and aircraft are simple agents with no strut
+  state, and are drawn as before.
+- **Skids and shell-mounted gear do not move.**
+- **A hard step still hits hard.** A square 12 cm curb at 29 km/h puts nearly twice the
+  car's weight on one wheel and can hop the car. The Earth view's ground query already rounds
+  edges by a tire's radius; a host that reports raw steps gets them.
+- **Not measured against anything.** No ride or wheel-travel figures were sourced; the
+  suspension's frequency and damping are the per-type values the handling was fitted with.
+
+Probes: `.artifacts/suspension/` (`car-bumps.mjs`, `ride.mjs`, `ramp.mjs`, `hillside.mjs`,
+`travel-survey.mjs`, `gear-travel.mjs`, `gear-legs.mjs`, `flat-ab.mjs`, `gear-ab.mjs`;
+`bundle.mjs` builds the kernel from source for them without touching `dist`).
 
 ## Where v1 stood
 

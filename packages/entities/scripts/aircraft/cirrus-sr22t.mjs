@@ -10,6 +10,7 @@ import {
   cleanGeometry,
   detailKit,
   ellipsoid,
+  fittedFloor,
   group,
   loft,
   mat,
@@ -526,7 +527,7 @@ export function buildCirrus(s) {
     );
   }
   d.finish();
-  const interior = cockpit(root, { paint, accent, metal, dark, halfWidth });
+  const interior = cockpit(root, { paint, accent, metal, dark, halfWidth, rings });
   cleanGeometry(root);
   return {
     root,
@@ -895,7 +896,8 @@ function cockpit(root, m) {
     d.box([0.24, 0.01, 0.23], [side * 0.3, 2, 0.54], m.dark);
     d.rod([side * 0.4, 2, 0.56], [side * 0.405, 2.018, 0.56], 0.006, m.metal);
   }
-  d.box([1.2, 0.035, 2.28], [0, 0.72, 0.06], m.dark);
+  // Cabin floor trimmed to the rounded belly; a flat box cut through the skin fore and aft.
+  fittedFloor(d, m.rings, m.dark, { y: 0.7375, front: 1.2, back: -1.08, width: 1.2 });
   // Five-seat cabin: two deeply bolstered front seats and a rear 60/40 bench with center belt.
   for (const [n, x, zz, w] of [
     [0, 0.31, 0.28, 0.48],
@@ -917,7 +919,14 @@ function cockpit(root, m) {
     if (n !== 3) sd.rod([-w * 0.35, 0.61, -0.13], [w * 0.29, 0.1, -0.09], 0.014, m.dark);
     sd.finish();
   }
-  d.box([0.98, 0.03, 0.55], [0, 0.83, -1.45], m.accent);
+  // Baggage floor follows the tapering tail cone instead of standing out of it.
+  fittedFloor(d, m.rings, m.accent, {
+    y: 0.845,
+    front: -1.175,
+    back: -1.725,
+    width: 0.98,
+    thickness: 0.03,
+  });
   sheet(
     d,
     [0.84, 1.64].flatMap((y, n) => {

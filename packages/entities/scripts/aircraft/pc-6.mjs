@@ -89,6 +89,27 @@ function fairedLeg(d, a, b, thick, chord, taper, material) {
   return mesh;
 }
 /** Front and back z of a side-view outline [[z, y], ...] at height y (0 width outside it). */
+/** The lofted skin's ring at station z (linear between the authored rings). */
+function ringAt(rings, z) {
+  let i = rings.findIndex((r, n) => n < rings.length - 1 && z <= r.z && z >= rings[n + 1].z);
+  if (i < 0) i = z > rings[0].z ? 0 : rings.length - 2;
+  const a = rings[i].points,
+    b = rings[i + 1].points,
+    u = Math.min(1, Math.max(0, (z - rings[i].z) / (rings[i + 1].z - rings[i].z)));
+  return a.map((q, j) => [q[0] + (b[j][0] - q[0]) * u, q[1] + (b[j][1] - q[1]) * u]);
+}
+/** Skin half width at station z and height y; cabin trim is kept inside it. */
+function skinHalfWidth(rings, z, y) {
+  const q = ringAt(rings, z);
+  let x = 0;
+  for (let j = 0; j < q.length; j++) {
+    const [ax, ay] = q[j],
+      [bx, by] = q[(j + 1) % q.length];
+    if ((ay - y) * (by - y) <= 0 && ay !== by)
+      x = Math.max(x, Math.abs(ax + ((bx - ax) * (y - ay)) / (by - ay)));
+  }
+  return x;
+}
 function chordAt(outline, y) {
   const zs = [];
   for (let n = 0; n < outline.length; n++) {
@@ -406,11 +427,7 @@ export function buildPorter(s) {
       d.rod([side * 0.85, 0.33, z], [side * 0.85, 0.33, z - 0.4], 0.02, metal);
       d.rod([side * 0.85, 0.33, z - 0.4], [side * 0.63, 0.62, z - 0.4], 0.022, metal);
     }
-    const label = group(body, `Porter-label-${side}`, [side * 0.47, 1.33, -1.45]);
-    label.rotation.y = (side * Math.PI) / 2;
-    const ld = detailKit(label, label.name);
-    ld.text('PC 6', [0, 0, 0], 0.16, 0, dark);
-    ld.finish();
+    // Registrations, serials and titles are livery markings (scripts/liveries/aircraft/pc-6.mjs).
   }
   // PT6 cowling intake and exhaust outlets, three-blade Hartzell silhouette.
   const ep = fromSide(450, 458),
@@ -655,13 +672,16 @@ export function buildPorter(s) {
   for (const side of [-1, 1]) {
     const center = fromSide(730, 635, side * 1.5),
       gd = detailKit(group(body, `Porter-main-gear-${side}`), 'Porter-gear');
+    // Struts end on fittings outside the skin: the oleo's top used to stand inside the cockpit
+    // beside the panel, and the lower ends broke through the cabin floor edges.
     for (const a of [
-      [side * 0.59, 0.65, 2.5],
-      [side * 0.59, 0.65, 1.15],
+      [side * 0.64, 0.6, 2.5],
+      [side * 0.64, 0.6, 1.15],
     ])
       gd.rod(a, center, 0.043, metal);
-    gd.rod([side * 0.59, 1.4, 2.5], center, 0.06, metal);
-    const q = new T.Vector3(...center).lerp(new T.Vector3(side * 0.59, 1.4, 2.5), 0.28);
+    gd.rod([side * 0.7, 1.4, 2.5], center, 0.06, metal);
+    gd.box([0.05, 0.14, 0.16], [side * 0.66, 1.4, 2.5], metal);
+    const q = new T.Vector3(...center).lerp(new T.Vector3(side * 0.7, 1.4, 2.5), 0.28);
     gd.rod(center, q.toArray(), 0.045, dark);
     wheel(gd, center, 0.335, 0.24, rubber, metal);
     for (const sign of [-1, 1])
@@ -753,12 +773,19 @@ function porterCockpit(root, m, sections) {
     [0, 0, 1],
   );
   outline(d, edge.slice(1, 8), 0.027, m.dark, false);
+  // Coaming from the panel top forward under the cowl skin (its corners and front edge stood
+  // out of the cowl top).
+  const fit = ([xx, yy, zz]) => [
+    Math.sign(xx) * Math.min(Math.abs(xx), skinHalfWidth(sections, zz, yy) - 0.03),
+    yy,
+    zz,
+  ];
   quad(
     d,
-    [-0.59, 1.65, z],
-    [0.61, 1.65, z],
-    [0.58, 1.7, 2.85],
-    [-0.57, 1.7, 2.85],
+    fit([-0.59, 1.65, z]),
+    fit([0.61, 1.65, z]),
+    fit([0.58, 1.635, 2.85]),
+    fit([-0.57, 1.635, 2.85]),
     m.dark,
     [0, 1, 0],
   );
@@ -909,7 +936,7 @@ function porterCockpit(root, m, sections) {
   const q = group(cabin, 'Porter-quadrant', [0, 0.86, 2.3]),
     qd = detailKit(q, q.name);
   beveledBox(qd, [0.24, 0.16, 0.34], [0, 0, 0], m.metal);
-  qd.rod([0, -0.28, 0.12], [0, -0.07, 0.12], 0.04, m.metal);
+  qd.rod([0, -0.2, 0.12], [0, -0.07, 0.12], 0.04, m.metal);
   for (const [i, xx, h, color, source] of [
     [0, 0.08, 0.38, black, 'power'],
     [1, 0, 0.27, blue, null],
@@ -965,7 +992,33 @@ function porterCockpit(root, m, sections) {
         scale: -sign * 0.04,
       });
     }
-    d.box([0.025, 0.27, 1.15], [side * 0.6, 0.78, 2.02], liner);
+    // Sidewall liner follows the skin where the lower sides turn under (it cut through them).
+    const inside = (zz) =>
+      Math.min(
+        0.6,
+        skinHalfWidth(sections, zz, 0.68) - 0.02,
+        skinHalfWidth(sections, zz, 0.915) - 0.02,
+      );
+    for (let zz = 2.595; zz > 1.5; zz -= 0.23) {
+      const za = zz,
+        zb = Math.max(1.445, zz - 0.23),
+        xa = side * inside(za),
+        xb = side * inside(zb);
+      quad(d, [xa, 0.68, za], [xb, 0.68, zb], [xb, 0.915, zb], [xa, 0.915, za], liner, [
+        -side,
+        0,
+        0,
+      ]);
+      quad(
+        d,
+        [xa, 0.915, za],
+        [xb, 0.915, zb],
+        [xb + side * 0.012, 0.915, zb],
+        [xa + side * 0.012, 0.915, za],
+        liner,
+        [0, 1, 0],
+      );
+    }
     d.rod([side * 0.58, 1.12, 2.6], [side * 0.58, 1.12, 2.1], 0.02, m.dark);
   }
   fittedFloor(d, sections, m.dark, { y: 0.66, front: 2.9, back: -0.66, width: 1.18 });
@@ -983,8 +1036,14 @@ function porterCockpit(root, m, sections) {
     const lift = z > 1 ? 0.2 : 0;
     beveledBox(d, [0.44, 0.1, 0.42], [x, 0.85 + lift, z], blue, 0.035);
     beveledBox(d, [0.44, 0.57, 0.12], [x, 1.17 + lift, z - 0.19], blue, 0.035);
+    // Legs stand on the floor, or on the risen belly under the last row.
     for (const side of [-1, 1])
-      d.rod([x + side * 0.18, 0.61, z], [x + side * 0.18, 0.82 + lift, z], 0.015, m.metal);
+      d.rod(
+        [x + side * 0.18, z < -0.5 ? 0.72 : 0.66, z],
+        [x + side * 0.18, 0.82 + lift, z],
+        0.015,
+        m.metal,
+      );
     d.rod([x - 0.17, 0.92 + lift, z - 0.13], [x + 0.17, 0.92 + lift, z + 0.12], 0.012, liner);
     d.box([0.045, 0.015, 0.03], [x + 0.04, 0.93 + lift, z + 0.04], m.metal);
   }

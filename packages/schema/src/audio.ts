@@ -375,6 +375,7 @@ export type AudioAmbienceLayer = {
   gainFrom?: AudioSignalDrive;
   pitchFrom?: AudioSignalDrive;
   fadeS?: number;
+  inside?: boolean;
 };
 
 export type AudioMusicSpec = {
@@ -409,6 +410,9 @@ export type AudioEnvironmentData = {
   footsteps?: AudioFootsteps;
   listenerEntity?: string;
   maxVoices?: number;
+  maxEmitters?: number;
+  doppler?: number;
+  masking?: number;
 };
 
 const ambienceLayerSchema: z.ZodType<AudioAmbienceLayer> = z.strictObject({
@@ -422,6 +426,12 @@ const ambienceLayerSchema: z.ZodType<AudioAmbienceLayer> = z.strictObject({
     .optional()
     .describe('Drive pitch from a signal, or from several whose curves multiply.'),
   fadeS: seconds.optional().describe('Fade in/out time in seconds; default 1.5.'),
+  inside: z
+    .boolean()
+    .optional()
+    .describe(
+      "true: heard inside the listener's space (rain on the roof of the cabin), so a cabin or building does not muffle it. Default false: the layer is outside and is muffled by the listener's enclosure.",
+    ),
 });
 
 const eventRuleSchema: z.ZodType<AudioEventRule> = z.strictObject({
@@ -480,7 +490,238 @@ export const audioEnvironmentSchema: z.ZodType<AudioEnvironmentData> = z.strictO
       "Entity treated as the listener's body; <component>.<field> signals in ambience/music/footsteps resolve on it.",
     ),
   maxVoices: finite.int().min(1).max(256).optional().describe('Voice budget; default 32.'),
+  maxEmitters: finite
+    .int()
+    .min(0)
+    .max(64)
+    .optional()
+    .describe(
+      'How many entities voiced by sound profiles may sound at once besides the one the listener rides; the nearest win. Default 8.',
+    ),
+  doppler: finite
+    .min(0)
+    .max(1)
+    .optional()
+    .describe('Doppler shift on moving positional sources, 0 (off) to 1 (physical, the default).'),
+  masking: finite
+    .min(0)
+    .max(1)
+    .optional()
+    .describe(
+      'How far loud nearby sources (an engine, a passing train) lower the ambience beds, 0 (never) to 1. Default 0.6.',
+    ),
 });
+
+// --- sound profiles ---
+
+/** Which listener a profile layer plays for: in the cabin of its entity, outside it, or both. */
+export type SoundProfilePerspective = 'interior' | 'exterior' | 'any';
+
+export type SoundProfileLayer = AudioSourceData & {
+  name: string;
+  perspective?: SoundProfilePerspective;
+};
+
+export type SoundProfileCabin = {
+  /** How much the cabin lowers sound from outside, in dB. */
+  isolationDb: number;
+  /** Low-pass cutoff the cabin applies to sound from outside, Hz. */
+  cutoffHz: number;
+};
+
+export type SoundProfile = {
+  description?: string;
+  extends?: string;
+  layers?: SoundProfileLayer[];
+  cabin?: SoundProfileCabin;
+  horn?: string;
+  start?: string;
+  stop?: string;
+  maxDistance?: number;
+};
+
+export type SoundProfileMatch = { profile: string; when: AudioWhen };
+
+export type SoundProfilesDoc = {
+  format: 'molen/sound-profiles@1';
+  id: string;
+  title?: string;
+  components: string[];
+  match: SoundProfileMatch[];
+  profiles: Record<string, SoundProfile>;
+};
+
+const profileId = z
+  .string()
+  .regex(SOUND_ID_PATTERN)
+  .describe('Profile id: lowercase dotted segments, e.g. "aircraft.jet.fighter".');
+
+const profileLayerSchema: z.ZodType<SoundProfileLayer> = (
+  audioSourceSchema as unknown as z.ZodObject<z.ZodRawShape>
+)
+  .extend({
+    name: z
+      .string()
+      .regex(/^[a-z][a-z0-9-]*$/)
+      .describe('Layer name; a profile that extends another replaces the layer of the same name.'),
+    perspective: z
+      .enum(['interior', 'exterior', 'any'])
+      .optional()
+      .describe(
+        "interior: only for a listener riding in this entity's cabin. exterior (the default): heard from outside, and muffled by the cabin when the listener rides inside. any: both, never muffled.",
+      ),
+  })
+  .strict() as unknown as z.ZodType<SoundProfileLayer>;
+
+const soundProfileSchema: z.ZodType<SoundProfile> = z.strictObject({
+  description: z.string().optional().describe('What it is the voice of.'),
+  extends: profileId
+    .optional()
+    .describe(
+      'Inherit the layers, cabin, horn and range of another profile; same-name layers are replaced.',
+    ),
+  layers: z
+    .array(profileLayerSchema)
+    .optional()
+    .describe('Sounds the entity makes, each evaluated like an audioSource on that entity.'),
+  cabin: z
+    .strictObject({
+      isolationDb: finite.min(0).max(60).describe('Attenuation of sound from outside, dB.'),
+      cutoffHz: finite.min(100).max(20000).describe('Low-pass cutoff on sound from outside, Hz.'),
+    })
+    .optional()
+    .describe('How the cabin sounds from inside: what it does to everything outside it.'),
+  horn: soundId.optional().describe('Sound the host plays while the driver holds the horn.'),
+  start: soundId
+    .optional()
+    .describe('One-shot the host plays when the engine starts (a driver boards, rpm leaves zero).'),
+  stop: soundId.optional().describe('One-shot the host plays when the engine stops.'),
+  maxDistance: finite
+    .positive()
+    .optional()
+    .describe('Meters beyond which the entity is not voiced at all; default 400.'),
+});
+
+export const soundProfilesSchema: z.ZodType<SoundProfilesDoc> = z.strictObject({
+  format: z
+    .literal('molen/sound-profiles@1')
+    .describe("Format envelope; always 'molen/sound-profiles@1'."),
+  id: z.string().min(1).describe('Document id, usually the content pack id.'),
+  title: z.string().optional().describe('Human title.'),
+  components: z
+    .array(z.string().min(1))
+    .min(1)
+    .describe(
+      'Components whose entities are matched to a profile, e.g. ["vehicle", "aircraft", "ambientAgent"].',
+    ),
+  match: z
+    .array(
+      z.strictObject({
+        profile: profileId,
+        when: audioWhenSchema.describe(
+          'Conditions on the entity, e.g. { "renderable.ref": ["molen.entities.aircraft.f_15c"] } or { "aircraft.spec.engines.0.propulsion": "jet" }.',
+        ),
+      }),
+    )
+    .describe(
+      'Rules tried in order; the first whose conditions hold gives the entity its profile.',
+    ),
+  profiles: z.record(profileId, soundProfileSchema).describe('Profile id → profile.'),
+}) as unknown as z.ZodType<SoundProfilesDoc>;
+
+/** Layers of a profile with everything it extends folded in (same-name layers replaced). */
+export function resolveSoundProfile(
+  doc: Pick<SoundProfilesDoc, 'profiles'>,
+  id: string,
+): (SoundProfile & { layers: SoundProfileLayer[] }) | undefined {
+  const chain: SoundProfile[] = [];
+  const seen = new Set<string>();
+  for (let at: string | undefined = id; at !== undefined; at = doc.profiles[at]?.extends) {
+    if (seen.has(at) || !doc.profiles[at]) return undefined;
+    seen.add(at);
+    chain.unshift(doc.profiles[at] as SoundProfile);
+  }
+  const layers = new Map<string, SoundProfileLayer>();
+  const out: SoundProfile = {};
+  for (const p of chain) {
+    for (const layer of p.layers ?? []) layers.set(layer.name, layer);
+    if (p.cabin) out.cabin = p.cabin;
+    if (p.horn) out.horn = p.horn;
+    if (p.start) out.start = p.start;
+    if (p.stop) out.stop = p.stop;
+    if (p.maxDistance !== undefined) out.maxDistance = p.maxDistance;
+    if (p.description) out.description = p.description;
+  }
+  return { ...out, layers: [...layers.values()] };
+}
+
+/** Cross-references Zod cannot check: profile ids, extends cycles, duplicate layer names. */
+export function validateSoundProfiles(data: unknown): ValidationIssue[] {
+  const doc = data as SoundProfilesDoc;
+  const issues: ValidationIssue[] = [];
+  for (const [i, rule] of doc.match.entries())
+    if (!doc.profiles[rule.profile])
+      issues.push({
+        path: `/match/${i}/profile`,
+        code: 'unknown_profile',
+        message: `no profile "${rule.profile}"`,
+      });
+  for (const [id, profile] of Object.entries(doc.profiles)) {
+    if (profile.extends !== undefined && !resolveSoundProfile(doc, id))
+      issues.push({
+        path: `/profiles/${id}/extends`,
+        code: 'profile_extends',
+        message: `"${id}" extends an unknown profile or a cycle`,
+      });
+    const names = (profile.layers ?? []).map((l) => l.name);
+    if (new Set(names).size !== names.length)
+      issues.push({
+        path: `/profiles/${id}/layers`,
+        code: 'duplicate_layer',
+        message: 'layer names repeat',
+      });
+  }
+  return issues;
+}
+
+export const SOUND_PROFILES_EXAMPLE: SoundProfilesDoc = {
+  format: 'molen/sound-profiles@1',
+  id: 'my.sounds',
+  components: ['vehicle'],
+  match: [{ profile: 'car', when: { 'vehicle.spec.bodyStyle': ['sedan', 'hatchback'] } }],
+  profiles: {
+    car: {
+      description: 'A small petrol car.',
+      cabin: { isolationDb: 24, cutoffHz: 900 },
+      horn: 'vehicle.horn',
+      layers: [
+        {
+          name: 'engine',
+          sound: 'vehicle.engine.car',
+          when: { 'self.occupied': true },
+          pitchFrom: {
+            signal: 'vehicleState.rpm',
+            curve: [
+              [800, 0.8],
+              [6500, 1.9],
+            ],
+          },
+        },
+        {
+          name: 'tires',
+          sound: 'vehicle.tire.asphalt',
+          gainFrom: {
+            signal: 'self.speed',
+            curve: [
+              [1, 0],
+              [30, 1],
+            ],
+          },
+        },
+      ],
+    },
+  },
+};
 
 // --- signals ---
 
@@ -498,6 +739,9 @@ export const AUDIO_SIGNALS: Readonly<Record<string, string>> = {
   'listener.grounded': 'true when the listener stands or rolls on the ground.',
   'listener.surface': 'Host-reported surface under the listener: grass, concrete, wood…',
   'listener.indoors': 'Host-reported: true when the listener is inside a building.',
+  'listener.space':
+    'Host-reported space around the listener: open, cabin (inside a vehicle), building or tunnel.',
+  'listener.vehicle': 'Host-reported entity the listener rides in, when any.',
   'weather.precipitation.kind': 'none | rain | snow.',
   'weather.precipitation.intensity': '0–1 precipitation intensity.',
   'weather.windSpeed': 'Wind speed (m/s), |atmosphere.windVelocity|.',
@@ -514,6 +758,12 @@ export const AUDIO_SIGNALS: Readonly<Record<string, string>> = {
   'self.distance': 'Odometer: meters the source entity has moved.',
   'self.occupied':
     'true while someone rides the source entity (a `mounted` component names it) in a seat that is not a `passenger` seat: engines that run only with a driver.',
+  'self.listener': 'true when the listener rides the source entity (listener.vehicle names it).',
+  'self.listenerDistance': 'Meters from the source entity to the listener.',
+  'self.listenerAngle':
+    "Degrees between the source entity's nose (+Z of its rotation) and the direction to the listener: 0 ahead, 90 abeam, 180 behind. Jet exhaust is loudest behind, fan whine ahead.",
+  'self.approach':
+    'Meters per second the source entity and the listener close on each other (negative while they separate).',
   'time.seconds': 'Seconds since the audio layer started.',
 };
 
@@ -638,6 +888,16 @@ export const SOUNDBANK_EXAMPLE: SoundbankDoc = {
     },
   },
 };
+
+registerSchema('sound-profiles', soundProfilesSchema, {
+  id: 'molen/sound-profiles@1',
+  title: 'Sound profiles',
+  description:
+    'Voices for whole families of entities: each profile is a set of named layers (engine, exhaust, tires, wind, cabin), each evaluated like an audioSource on the entity, plus how its cabin sounds from inside and its horn. Match rules give every entity carrying one of `components` the first profile whose conditions hold. Content packs expose them under the sound-profiles role.',
+  examples: [SOUND_PROFILES_EXAMPLE as unknown as JsonValue],
+  docsRef: 'guide/audio.md',
+  validate: validateSoundProfiles,
+});
 
 registerSchema('soundbank', soundbankSchema, {
   id: 'molen/soundbank@1',

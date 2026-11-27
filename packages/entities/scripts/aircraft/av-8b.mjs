@@ -74,6 +74,90 @@ function hinge(root, name, stations, material, bindings, source, scale, sloped =
   }
   bindings.push({ node: name, source, property: 'rotation', axis: 'x', scale });
 }
+/** A superellipse section, [across, up] pairs: `n` 2 is an ellipse, about 3.4 a rounded
+ * rectangle. Point 0 faces +across. */
+function superellipse(halfAcross, halfUp, n, count = 24) {
+  return Array.from({ length: count }, (_, j) => {
+    const t = (j / count) * Math.PI * 2,
+      c = Math.cos(t),
+      s = Math.sin(t);
+    return [
+      halfAcross * Math.sign(c) * Math.abs(c) ** (2 / n),
+      halfUp * Math.sign(s) * Math.abs(s) ** (2 / n),
+    ];
+  });
+}
+/** Quads between consecutive 3D rings of equal length, each ring closed on itself. */
+function ringSkin(d, rings, material) {
+  const count = rings[0].length,
+    index = [];
+  for (let i = 0; i < rings.length - 1; i++)
+    for (let j = 0; j < count; j++) {
+      const a = i * count + j,
+        b = i * count + ((j + 1) % count);
+      index.push(a, a + count, b, b, a + count, b + count);
+    }
+  const geometry = new T.BufferGeometry();
+  geometry.setAttribute('position', new T.Float32BufferAttribute(rings.flat(2), 3));
+  geometry.setIndex(index);
+  geometry.computeVertexNormals();
+  d.add(geometry, material);
+}
+/**
+ * One Pegasus vectoring nozzle inside its rotating group: the origin is on the bearing axis at
+ * the fuselage wall and local -Z is the outlet at rest. A short round collar leaves the skin, a
+ * 90 degree elbow eases from the round bearing to a rounded-rectangle outlet, and a straight lip
+ * ends in the exit, which shows a dark duct and the turning vanes across it (close-up
+ * photographs of the AV-8B and Harrier GR.9 nozzles). `half` is [across, up] at the outlet.
+ */
+function vectoringNozzle(g, side, { radius, half, bend, lip, vanes }, skin, duct, vane) {
+  const nd = detailKit(g, g.name),
+    collar = 0.05,
+    ring = (centre, across, k, shrink = 1) => {
+      const e = k * k * (3 - 2 * k);
+      return superellipse(
+        (radius + (half[0] - radius) * e) * shrink,
+        (radius + (half[1] - radius) * e) * shrink,
+        2 + 1.4 * e,
+      ).map(([u, v]) => [
+        side * (centre[0] + across[0] * u),
+        centre[1] + v,
+        centre[2] + across[2] * u,
+      ]);
+    },
+    // The elbow's centreline: k 0 at the bearing, 1 where the outlet turns aft.
+    at = (k, shrink) => {
+      const a = (k * Math.PI) / 2;
+      return ring(
+        [collar + bend * Math.sin(a), 0, -bend * (1 - Math.cos(a))],
+        [Math.sin(a), 0, Math.cos(a)],
+        k,
+        shrink,
+      );
+    },
+    outlet = (l, shrink) => ring([collar + bend, 0, -bend - l], [1, 0, 0], 1, shrink),
+    rings = [
+      ring([-0.16, 0, 0], [0, 0, 1], 0),
+      ...Array.from({ length: 9 }, (_, i) => at(i / 8)),
+      outlet(lip / 2),
+      outlet(lip),
+    ];
+  ringSkin(nd, rings, skin);
+  // Bearing flange where the elbow leaves the skin, and the rolled outlet lip.
+  outline(nd, ring([collar - 0.01, 0, 0], [0, 0, 1], 0, 1.05), 0.012, skin);
+  ringSkin(nd, [outlet(lip), outlet(lip, 0.86)], skin);
+  // The duct inside the lip, closed a short way up the elbow.
+  const inner = [outlet(lip, 0.86), outlet(0, 0.86), at(0.75, 0.86), at(0.5, 0.86)];
+  ringSkin(nd, inner, duct);
+  sheet(nd, inner.at(-1), duct, [side * Math.SQRT1_2, 0, Math.SQRT1_2]);
+  for (const v of vanes)
+    nd.box(
+      [half[0] * 1.72, 0.014, 0.17],
+      [side * (collar + bend), v * half[1], -bend - lip + 0.1],
+      vane,
+    );
+  nd.finish();
+}
 export function buildAV8B(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -81,7 +165,15 @@ export function buildAV8B(s) {
     upper = mat('AV8-upper', '#727f89', { side: T.DoubleSide }),
     dark = mat('AV8-seals', '#283137', { side: T.DoubleSide }),
     metal = mat('AV8-alloy', '#a5afb3', { metalness: 0.75 }),
-    heat = mat('AV8-heat-shield', '#686d6c', { metalness: 0.6, side: T.DoubleSide }),
+    // Bare hot-section metal: the rear nozzles and the heat shields behind them stay unpainted
+    // under every finish (Harrier GR.9 and AV-8B close-ups); the front nozzles are painted.
+    heat = mat('AV8-heat-shield', '#8a8780', {
+      metalness: 0.3,
+      roughness: 0.62,
+      side: T.DoubleSide,
+    }),
+    hot = mat('AV8-hot-nozzle', '#8f897d', { metalness: 0.5, roughness: 0.45, side: T.DoubleSide }),
+    duct = mat('AV8-nozzle-duct', '#3b3e3f', { side: T.DoubleSide }),
     rubber = mat('AV8-tires', '#171b1e'),
     glass = mat('AV8-glass', '#91a9b2', {
       transparent: true,
@@ -158,22 +250,6 @@ export function buildAV8B(s) {
       return [Math.sin(a) * w, sy((b + t) / 2) + (Math.cos(a) * (b - t)) / ppm / 2];
     }),
   }));
-  // Half-width of the lofted skin at height y and station z, for markings laid on the skin.
-  const skinX = (z, y) => {
-    const i = rings.findIndex((r, k) => k < rings.length - 1 && z <= r.z && z >= rings[k + 1].z),
-      at = (r) => {
-        let x = 0;
-        for (let j = 0; j < 12; j++) {
-          const [x0, y0] = r.points[j],
-            [x1, y1] = r.points[j + 1];
-          if (y0 !== y1 && (y - y0) * (y - y1) <= 0)
-            x = Math.max(x, x0 + ((x1 - x0) * (y - y0)) / (y1 - y0));
-        }
-        return x;
-      },
-      f = (rings[i].z - z) / (rings[i].z - rings[i + 1].z);
-    return at(rings[i]) + (at(rings[i + 1]) - at(rings[i])) * f;
-  };
   loft(d, rings, paint, { skip: (i, j) => i < 2 || (i >= 2 && i < 6 && (j < 5 || j >= 19)) });
   // Pointed, slightly drooped tangent-ogive radome (Harrier II Plus photographs 05, 09, 12):
   // the section follows the ogive of the radome's own length and base radius, and its axis
@@ -247,11 +323,28 @@ export function buildAV8B(s) {
         t = Math.max(0, Math.min(1, (a[0] - z) / (a[0] - b[0])));
       return [side * (a[1] + (b[1] - a[1]) * t), a[2] + (b[2] - a[2]) * t, z];
     };
-    for (let i = 0; i < 4; i++) {
-      const a = rings[i + 2],
-        b = rings[i + 3],
-        j = side === 1 ? 5 : 19;
-      quad(d, [...a.points[j], a.z], [...b.points[j], b.z], railAt(b.z), railAt(a.z), paint, [
+    // Split at the canopy rows as well as the body rings: the rail kinks at z 3.8 and 3.1, and
+    // straight quads between ring stations left slits under the glass edge (seen from aft).
+    const ringAt = (z, j) => {
+      const k = Math.min(5, Math.max(2, rings.findIndex((r) => r.z < z) - 1)),
+        a = rings[k],
+        b = rings[k + 1],
+        f = (a.z - z) / (a.z - b.z);
+      return [
+        a.points[j][0] + (b.points[j][0] - a.points[j][0]) * f,
+        a.points[j][1] + (b.points[j][1] - a.points[j][1]) * f,
+        z,
+      ];
+    };
+    const zs = [
+      ...new Set([
+        ...rings.slice(2, 7).map((r) => r.z),
+        ...canopy.map(([z]) => z).filter((z) => z < rings[2].z && z > rings[6].z),
+      ]),
+    ].sort((p, q) => q - p);
+    for (let i = 0; i < zs.length - 1; i++) {
+      const j = side === 1 ? 5 : 19;
+      quad(d, ringAt(zs[i], j), ringAt(zs[i + 1], j), railAt(zs[i + 1]), railAt(zs[i]), paint, [
         side,
         1,
         0,
@@ -269,6 +362,24 @@ export function buildAV8B(s) {
         ]);
       }
   }
+  // The shoulders meet 4 cm apart behind the glass (z 2.52-2.6): close that slit, and glaze the
+  // canopy's small aft arch, so neither shows the cockpit from above.
+  const tail = canopy.at(-1);
+  quad(
+    d,
+    [tail[1], tail[2], tail[0]],
+    [tail[1], tail[2], rings[6].z],
+    [-tail[1], tail[2], rings[6].z],
+    [-tail[1], tail[2], tail[0]],
+    paint,
+    [0, 1, 0],
+  );
+  sheet(
+    d,
+    cr.at(-1).points.map((p) => [...p, cr.at(-1).z]),
+    glass,
+    [0, 0, -1],
+  );
   // FLIR fairing above the long radar nose; no sensor or targeting behavior.
   const sensor = [
     [0.12, 2.66, 5.73],
@@ -304,6 +415,10 @@ export function buildAV8B(s) {
       { z: 3.48, points: shape.map(([x, y]) => [x * 1.025, y]) },
       { z: 2.7, points: shape.map(([x, y]) => [x * 1.0, 1.92 + (y - 1.93) * 0.95]) },
       { z: 0.9, points: shape.map(([x, y]) => [x * 0.76, 1.85 + (y - 1.93) * 0.7]) },
+      // Aft of the front nozzles the cowl fairs into the body side by the rear nozzles (it
+      // used to stop open at z 0.9 under a large fixed pod).
+      { z: 0.25, points: shape.map(([x, y]) => [x * 0.65, 1.82 + (y - 1.93) * 0.6]) },
+      { z: -0.45, points: shape.map(([x, y]) => [x * 0.54, 1.8 + (y - 1.93) * 0.5]) },
     ];
     loft(d, outer, paint, { caps: false });
     // Thick rolled lip around the mouth.
@@ -358,36 +473,73 @@ export function buildAV8B(s) {
       rubber,
       [0, 0, 1],
     );
+    // Auxiliary inlet doors round the outboard face of the cowl, on its lofted skin at z 3.22
+    // (x scaled 1.017 and y 0.983 there) and square to its normal. The old ring sat 1-2 cm
+    // inside the skin and ran onto the flat inboard wall, so it showed as dark corner slivers.
     for (let j = 0; j < 8; j++) {
-      const a = -0.25 + j * 0.42,
-        x = side * (0.7 + Math.cos(a) * 0.47),
-        y = 1.93 + Math.sin(a) * 0.68;
+      const a = -1.0 + j * 0.35,
+        x = side * (0.712 + Math.cos(a) * 0.488),
+        y = 1.9267 + Math.sin(a) * 0.6883,
+        normal = Math.atan2(Math.sin(a) / 0.6883, Math.cos(a) / 0.488);
       const g = group(root, `AV8-inlet-door-${side}-${j}`, [x, y, 3.22 - scarf(x) * 0.52]),
         dd = detailKit(g, g.name);
-      g.rotation.z = side * (a - Math.PI / 2);
-      dd.box([0.15, 0.012, 0.22], [0, 0, 0], dark);
-      dd.box([0.13, 0.014, 0.16], [0, 0.009, -0.035], paint);
+      g.rotation.z = side * (normal - Math.PI / 2);
+      dd.box([0.15, 0.006, 0.22], [0, 0.002, 0], dark);
+      dd.box([0.13, 0.008, 0.16], [0, 0.006, -0.035], paint);
       dd.finish();
     }
-    // Fixed fairings behind each rotating elbow; rear panels use heat-resistant metal.
-    for (const [i, z, r] of [
-      [0, 1.13, 0.23],
-      [1, -1.94, 0.28],
+    // The four Pegasus nozzles sit on the engine, front (fan air, painted) and rear (hot, bare
+    // metal) bearings about 1.9 m apart, as on the engine (museum Pegasus 11 and 103
+    // photographs). Each outlet is a compact rounded rectangle tucked against the body:
+    // front 0.50 m tall by 0.36 m across, its outer face about 0.2 m outboard of the intake
+    // cowl; rear 0.42 by 0.30 m under the flap (side, head-on and close-up photographs).
+    // Earlier they were long round pipes 0.5 m out from the skin with black exits, and the
+    // rear pair stood 3.1 m behind the front pair.
+    const fairing = [
+      // z, across and up scale of the pod section (its inboard edge stays inside the cowl)
+      [2.66, 0.18, 0.3],
+      [2.5, 0.58, 0.64],
+      [2.32, 0.88, 0.92],
+      [2.16, 1, 1],
+      [1.52, 1, 1],
+      [1.44, 0.95, 0.95],
+      [1.39, 0.78, 0.84],
+      [1.365, 0.45, 0.55],
+      [1.358, 0.08, 0.12],
+    ];
+    // Fixed pod ahead of each front nozzle (it carries the national insignia), ending just
+    // ahead of the bearing so the elbow swings clear of it.
+    ringSkin(
+      d,
+      fairing.map(([z, fa, fu]) =>
+        superellipse(0.27, 0.22, 2.5).map(([u, v]) => [
+          side * (0.74 + fa * (0.27 + u)),
+          1.72 + fu * v,
+          z,
+        ]),
+      ),
+      paint,
+    );
+    for (const [i, x, y, z, shape, skin] of [
+      [
+        0,
+        0.87,
+        1.68,
+        1.13,
+        { radius: 0.25, half: [0.18, 0.25], bend: 0.27, lip: 0.2, vanes: [-0.34, 0.34] },
+        paint,
+      ],
+      [
+        1,
+        0.6,
+        1.62,
+        -0.77,
+        { radius: 0.21, half: [0.15, 0.21], bend: 0.22, lip: 0.14, vanes: [0] },
+        hot,
+      ],
     ]) {
-      ellipsoid(d, [side * 0.64, 1.68, z], [0.3, 0.43, 0.56], i ? heat : paint, 16);
-      const g = group(root, `AV8-nozzle-${side}-${i}`, [side * 0.68, 1.68, z]),
-        nd = detailKit(g, g.name);
-      const curve = new T.QuadraticBezierCurve3(
-        new T.Vector3(0, 0, 0),
-        new T.Vector3(side * 0.5, 0, 0),
-        new T.Vector3(side * 0.5, 0, -0.56),
-      );
-      nd.add(new T.TubeGeometry(curve, 10, r, 12, false), i ? heat : paint);
-      nd.add(new T.CircleGeometry(r * 0.88, 16).rotateY(Math.PI), rubber, [side * 0.5, 0, -0.565]);
-      nd.ring(r, 0.014, [side * 0.5, 0, -0.565], metal);
-      for (const yy of [-0.12, 0, 0.12])
-        nd.box([r * 1.55, 0.014, 0.07], [side * 0.5, yy, -0.57], heat);
-      nd.finish();
+      const g = group(root, `AV8-nozzle-${side}-${i}`, [side * x, y, z]);
+      vectoringNozzle(g, side, shape, skin, duct, i ? hot : metal);
       bindings.push({
         node: g.name,
         source: 'thrustVector',
@@ -396,6 +548,31 @@ export function buildAV8B(s) {
         scale: -Math.PI / 2,
       });
     }
+    // Bare heat shield on the body side and belly behind each rear nozzle, along the jet: the
+    // lofted skin's own columns (j 6-10, side to lower quarter), 6 mm proud of it.
+    const bodyAt = (z, j) => {
+      const k = Math.min(rings.length - 2, Math.max(0, rings.findIndex((r) => r.z < z) - 1)),
+        a = rings[k],
+        b = rings[k + 1],
+        f = (a.z - z) / (a.z - b.z),
+        lerp = (n, q) => a.points[q][n] + (b.points[q][n] - a.points[q][n]) * f,
+        q = side === 1 ? j : 24 - j,
+        x = lerp(0, q),
+        y = lerp(1, q),
+        cy = (lerp(1, 0) + lerp(1, 12)) / 2,
+        len = Math.hypot(x, y - cy);
+      return [x + (x / len) * 0.006, y + ((y - cy) / len) * 0.006, z];
+    };
+    const shield = [-1.0, -1.32, -1.68, -2.0, -2.25].map((z) =>
+      [6, 7, 8, 9, 10].map((j) => bodyAt(z, j)),
+    );
+    for (let i = 0; i < shield.length - 1; i++)
+      for (let j = 0; j < 4; j++)
+        quad(d, shield[i][j], shield[i + 1][j], shield[i + 1][j + 1], shield[i][j + 1], heat, [
+          side,
+          -0.5,
+          0,
+        ]);
     // Broad anhedral wing with a rounded tip and distinct inboard flap/outboard aileron.
     const ws = [
       [0.45, 2.78, 1.62, -1.92, 0.14],
@@ -467,12 +644,7 @@ export function buildAV8B(s) {
     ];
     sheet(d, strake, paint, [side, 0, 0]);
     outline(d, strake, 0.012, paint);
-    // Lettering lies on the tapering tube: yawed to the local skin and just proud of it.
-    // Kept below the stabilator root, which rides down with the drooping tail.
-    const ly = 1.52,
-      lx = Math.max(skinX(-4.6, ly), skinX(-4.6, ly + 0.11)) + 0.012,
-      taper = (skinX(-4.2, ly + 0.05) - skinX(-5.0, ly + 0.05)) / 0.8;
-    d.text('MARINES', [side * lx, ly, -4.6], 0.14, side * (Math.PI / 2 + Math.atan(taper)), dark);
+    // Operator titles (MARINES, ARMADA, MARINA) are livery markings, not geometry.
     d.text('RESCUE', [side * 0.43, 2.3, 4.4], 0.065, (side * Math.PI) / 2, dark);
     for (const z of [4.3, 4.9]) d.box([0.009, 0.03, 0.29], [side * 0.4, 1.91, z], dark);
     d.add(
@@ -1071,6 +1243,22 @@ function av8Cockpit(root, m) {
     d.rod(at(535 + side * 106, 4, 0.1), at(535 + side * 98, -258, -0.1), 0.007, black);
   }
   d.box([0.8, 0.03, 2.2], [0, 1.95, 3.65], black);
+  // Aft cockpit bulkhead under the shoulder quads: without it the fan face behind the plenum
+  // (turbine disc at z 2.28) showed under the head box, and the lower aft corners let the
+  // look-left/right views see out past the tub walls.
+  sheet(
+    d,
+    [
+      [-0.4, 1.94, 2.62],
+      [0.4, 1.94, 2.62],
+      [0.4, 2.51, 2.62],
+      [0.03, 2.93, 2.62],
+      [-0.03, 2.93, 2.62],
+      [-0.4, 2.51, 2.62],
+    ],
+    black,
+    [0, 0, 1],
+  );
   for (const side of [-1, 1]) {
     sheet(
       d,

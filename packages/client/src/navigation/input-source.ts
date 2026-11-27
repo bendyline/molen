@@ -41,6 +41,7 @@ export const NAVIGATION_ACTIONS: {
   readonly vector: 'nav-vector';
   readonly cyclic: 'nav-cyclic';
   readonly recover: 'nav-recover';
+  readonly horn: 'nav-horn';
 } = {
   forward: 'nav-forward',
   back: 'nav-back',
@@ -70,6 +71,7 @@ export const NAVIGATION_ACTIONS: {
   vector: 'nav-vector',
   cyclic: 'nav-cyclic',
   recover: 'nav-recover',
+  horn: 'nav-horn',
 };
 
 /** The navigation modes with a default input profile. */
@@ -104,16 +106,20 @@ const MOVE_KEYS: Record<string, string> = {
   ShiftLeft: A.sprint,
   ShiftRight: A.sprint,
 };
-// Standard-mapping gamepad: left stick moves, right stick looks.
+// Left stick moves, right stick looks. Axes 0 and 1 are the main stick on any controller, a
+// flight stick included. Axes 2 and 3 are the right stick only on a standard-layout gamepad:
+// elsewhere they are a twist, a throttle slider or a trigger, which can rest at a stop and would
+// turn the view without a hand on the controller.
+const STANDARD_LAYOUT = { mapping: 'standard' } as const;
 const STICKS: NonNullable<InputProfile['axes']> = [
   { axis: 0, action: A.left, mode: 'negative' },
   { axis: 0, action: A.right, mode: 'positive' },
   { axis: 1, action: A.forward, mode: 'negative' },
   { axis: 1, action: A.back, mode: 'positive' },
-  { axis: 2, action: A.lookLeft, mode: 'negative' },
-  { axis: 2, action: A.lookRight, mode: 'positive' },
-  { axis: 3, action: A.lookUp, mode: 'negative' },
-  { axis: 3, action: A.lookDown, mode: 'positive' },
+  { axis: 2, action: A.lookLeft, mode: 'negative', device: STANDARD_LAYOUT },
+  { axis: 2, action: A.lookRight, mode: 'positive', device: STANDARD_LAYOUT },
+  { axis: 3, action: A.lookUp, mode: 'negative', device: STANDARD_LAYOUT },
+  { axis: 3, action: A.lookDown, mode: 'positive', device: STANDARD_LAYOUT },
 ];
 
 /**
@@ -121,7 +127,7 @@ const STICKS: NonNullable<InputProfile['axes']> = [
  * drive use R to interact (board or leave a vehicle), Space to jump or brake, Shift to sprint
  * or pull the handbrake, and V to switch the vehicle view; on foot Q/E step sideways as A/D do
  * (and F interacts too), and in a vehicle Q/E lean the rider of a cycle and Backspace recovers
- * a stopped vehicle. Pilot flies an aircraft: W/S (or ↑/↓) pitch the nose down/up, A/D (or ←/→)
+ * a stopped vehicle; H (or a gamepad's B) sounds the horn while held. Pilot flies an aircraft: W/S (or ↑/↓) pitch the nose down/up, A/D (or ←/→)
  * bank, Q/E work the rudder or pedals, Z/C (or −/=, numpad −/+, Page Down/Up) lower and raise
  * throttle or collective, and Ctrl stays free for browser shortcuts such as Ctrl+W and for a
  * host's own chords. I toggles the engine, G the gear, F the flaps, M a helicopter's cyclic
@@ -212,7 +218,10 @@ export function navigationInputProfiles(): Record<NavigationProfileName, InputPr
         KeyQ: A.leanLeft,
         KeyE: A.leanRight,
         Backspace: A.recover,
+        // No road vehicle has a tail hook; H is the horn, as in most driving games.
+        KeyH: A.horn,
       },
+      buttons: [...(ground.buttons ?? []), { button: 1, action: A.horn }],
     },
     pilot,
   };
@@ -248,6 +257,8 @@ export interface NavigationInput {
   lean?: number;
   /** Edge-triggered model mechanism toggles; unsupported mechanisms are ignored by hosts. */
   actuators?: Record<string, number>;
+  /** true while the horn is held in the drive profile (H, gamepad B). Sound only. */
+  horn?: boolean;
   /** Movement intent, each -1..1 (forward, right, up). */
   move: { forward: number; right: number; up: number };
   /** Look delta in CSS-pixel equivalents (pointer drag plus scaled gamepad stick). */
@@ -434,6 +445,7 @@ export class NavigationInputSource {
         ? { recover: this.pilotPresses.recover }
         : {}),
       ...(lean !== 0 ? { lean } : {}),
+      ...(this.profile === 'drive' && v(A.horn) !== 0 ? { horn: true } : {}),
       ...(this.profile === 'pilot'
         ? {
             pilot: {

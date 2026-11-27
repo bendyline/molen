@@ -55,29 +55,79 @@ const AMBIENT = [
 
 /**
  * How long an adaptive level must hold once the view has settled (the Earth view holds its level
- * while a view first arrives) before adaptation turns sticky, ms. The quick defaults
- * calibrate a device within seconds; afterwards every change swaps resolution, shadows and
- * building detail across the whole view (Low and Medium differ in worldgen quality, so a step
- * regenerates every resident town tile), and the defaults flipped a jet between them every
- * 10-15 s, a hitch and a rebuild each time.
+ * while a view first arrives) before the level is kept for good, ms. The quick defaults calibrate
+ * a device within seconds, at the beginning; from then on Auto does not move. Every change swaps
+ * resolution, shadows and building detail across the whole view (Low and Medium differ in
+ * worldgen quality, so a step regenerates every resident town tile), and what a frame costs
+ * follows the place and what else the machine is doing more than the level. Left adapting, a view
+ * went down a level after 2.5 s under 50 frames a second and came back after 20 s of headroom, for
+ * as long as it ran: over a city the ground under an aircraft gave way to the box shells of a
+ * coarser level and was built again, time after time.
  */
 export const EARTH_QUALITY_CALIBRATION_MS = 12_000;
 /**
  * Controller timing while calibrating: the controller's quick recovery and cooldown, but down
- * only after 2.5 s of overload, as after calibration. Lifting off reveals a whole view at once,
- * and the second of streaming that follows lowered every takeoff a level, then rose again in
- * flight, a rebuild each way. Each step already waits out the cooldown, so a slow device settles
- * as fast.
+ * only after 2.5 s of overload. Lifting off reveals a whole view at once, and the second of
+ * streaming that follows lowered every takeoff a level, then rose again in flight, a rebuild each
+ * way. Each step already waits out the cooldown, so a slow device settles as fast.
  */
 export const EARTH_CALIBRATION_QUALITY = {
   decreaseDelayMs: 2_500,
 } as const;
-/** Controller timing after calibration: down after sustained overload, up after long headroom. */
-export const EARTH_STICKY_QUALITY = {
-  decreaseDelayMs: 2_500,
-  increaseDelayMs: 20_000,
-  cooldownMs: 6_000,
-} as const;
+
+/** Displayed content over the memory budget for this long gives a level up, ms. */
+const MEMORY_OVER_MS = 10_000;
+/** Memory pressure past which it takes `MEMORY_URGENT_MS` instead. */
+const MEMORY_URGENT_PRESSURE = 1.25;
+const MEMORY_URGENT_MS = 2_000;
+/**
+ * After a step, how long before the budget is judged again, ms: the lower level's replacements
+ * have to load before what is on show shrinks (what they replace stays until they arrive).
+ */
+const MEMORY_REST_MS = 30_000;
+
+/**
+ * The one thing that lowers the level an Auto view builds its world at once it is under way: what
+ * is on show holding more than the device's memory budget (`earthMemoryBudget`, or a host's), which
+ * left alone ends with the tab killed. `sample` takes each frame's length and the stream's
+ * displayed bytes over that budget, and answers true when a level should be given up: after ten
+ * seconds over the budget without a break, or two seconds a quarter past it. Shorter spells are
+ * handovers, when a tile and what replaces it are both on show. The host keeps the lower level
+ * for the rest of the session: nothing brings it back, since a level that came back would
+ * outgrow the budget again over the same place, and each round is the whole view rebuilt.
+ */
+export function createEarthMemoryGuard(): {
+  sample(frameMs: number, memoryPressure: number): boolean;
+  reset(): void;
+} {
+  let overMs = 0;
+  let urgentMs = 0;
+  let restMs = 0;
+  return {
+    sample(frameMs, memoryPressure) {
+      if (!(frameMs > 0) || !Number.isFinite(frameMs) || !Number.isFinite(memoryPressure))
+        return false;
+      // A pause (a hidden tab, a stall) is not a second of anything.
+      const elapsed = Math.min(frameMs, 250);
+      if (restMs > 0) {
+        restMs -= elapsed;
+        return false;
+      }
+      overMs = memoryPressure > 1 ? overMs + elapsed : 0;
+      urgentMs = memoryPressure > MEMORY_URGENT_PRESSURE ? urgentMs + elapsed : 0;
+      if (overMs < MEMORY_OVER_MS && urgentMs < MEMORY_URGENT_MS) return false;
+      overMs = 0;
+      urgentMs = 0;
+      restMs = MEMORY_REST_MS;
+      return true;
+    },
+    reset() {
+      overMs = 0;
+      urgentMs = 0;
+      restMs = 0;
+    },
+  };
+}
 
 /**
  * Main-thread admission budget for an Earth view (`createViewer`'s `admission`, later
@@ -214,6 +264,11 @@ export function earthPerformanceTier(level: number): EarthPerformanceTier {
       activityRadius: ambient[7],
       posesPerFrame: ambient[8],
       animals: ambient[9],
+      // Moored boats are instances (a proxy is about a hundred triangles, a model a few
+      // thousand); boats under way are few, and the ferries keep their own count above.
+      mooredBoats: [0, 300, 600, 900, 1400, 2000][index] ?? 900,
+      mooredBoatModels: [0, 24, 48, 96, 144, 200][index] ?? 96,
+      cruisingBoats: [0, 3, 5, 8, 12, 16][index] ?? 8,
     },
     shadows: index >= 3 ? 'high' : index === 2 ? 'medium' : 'off',
     clouds: index >= 5 ? 'ultra' : index === 4 ? 'high' : index >= 2 ? 'medium' : 'low',

@@ -9,6 +9,7 @@ import {
   cleanGeometry,
   detailKit,
   ellipsoid,
+  fittedFloor,
   group,
   loft,
   mat,
@@ -90,6 +91,27 @@ function spinner(d, at, r, l, material) {
   );
 }
 /** Front and back z of a side-view outline [[z, y], ...] at height y (0 width outside it). */
+/** The lofted skin's ring at station z (linear between the authored rings). */
+function ringAt(rings, z) {
+  let i = rings.findIndex((r, n) => n < rings.length - 1 && z <= r.z && z >= rings[n + 1].z);
+  if (i < 0) i = z > rings[0].z ? 0 : rings.length - 2;
+  const a = rings[i].points,
+    b = rings[i + 1].points,
+    u = Math.min(1, Math.max(0, (z - rings[i].z) / (rings[i + 1].z - rings[i].z)));
+  return a.map((q, j) => [q[0] + (b[j][0] - q[0]) * u, q[1] + (b[j][1] - q[1]) * u]);
+}
+/** Skin half width at station z and height y; cabin trim is kept inside it. */
+function skinHalfWidth(rings, z, y) {
+  const q = ringAt(rings, z);
+  let x = 0;
+  for (let j = 0; j < q.length; j++) {
+    const [ax, ay] = q[j],
+      [bx, by] = q[(j + 1) % q.length];
+    if ((ay - y) * (by - y) <= 0 && ay !== by)
+      x = Math.max(x, Math.abs(ax + ((bx - ax) * (y - ay)) / (by - ay)));
+  }
+  return x;
+}
 function chordAt(outline, y) {
   const zs = [];
   for (let n = 0; n < outline.length; n++) {
@@ -284,7 +306,9 @@ export function buildPC12(s) {
           ((1 - t) * q + t * p(3, upper)[i]) * (1 - v) +
           ((1 - t) * p(2, lower)[i] + t * p(3, lower)[i]) * v,
       );
-    const opening = [at(0.35, 0.1), at(0.95, 0.08), at(0.95, 0.92)];
+    // Forward part of the one large crew side window (EI-NGX photo): it runs aft to the header
+    // ring, where the rest of the pane continues in the window band (a broad post split them).
+    const opening = [at(0.35, 0.1), at(0.99, 0.05), at(0.99, 0.84)];
     sheet(d, [p(2, upper), p(3, upper), p(3, lower), p(2, lower)], paint, [side, 0, 0], [opening]);
     sheet(d, opening, glass, [side, 0, 0]);
     outline(d, opening, 0.012, dark);
@@ -398,12 +422,13 @@ export function buildPC12(s) {
       side === 1 ? [0.77, 0.175, -0.59, -1.58] : [1.44, 0.77, 0.175, -0.59, -1.58]
     ).map((z) => rounded(z, 2.27, 0.3, 0.39, 0.105));
     windows.unshift([
-      [2.38, 2.56],
+      [2.39, 2.56],
       [2.28, 2.6],
       [2.04, 2.58],
-      [1.98, 2.26],
-      [2.16, 2.18],
-      [2.38, 2.23],
+      [1.97, 2.48],
+      [1.97, 2.2],
+      [2.05, 2.12],
+      [2.39, 2.07],
     ]);
     const apertures = windows.map((w) => w.map(([z, y]) => [z, toV(z, y)]));
     windowBand(side, apertures);
@@ -466,7 +491,7 @@ export function buildPC12(s) {
     // Twin exhaust outlets behind the spinner, with open dark mouths.
     d.rod([side * 0.36, 1.74, 4.92], [side * 0.56, 1.73, 4.69], 0.09, metal);
     d.add(new T.CircleGeometry(0.073, 16).rotateY(side * 0.8), dark, [side * 0.565, 1.73, 4.68]);
-    d.text('PC-12 NGX', [side * 0.847, 1.88, -2.15], 0.075, (side * Math.PI) / 2, blue);
+    // Registrations and titles are livery markings (scripts/liveries/aircraft/pilatus-pc12.mjs).
   }
   for (const i of [1, 2, 4, 8, 9, 10, 11])
     outline(
@@ -486,10 +511,11 @@ export function buildPC12(s) {
   outline(d, mouth, 0.016, metal);
   // Low wing: forward edge nearly unswept, tapered trailing edge, upturned swept tips.
   for (const side of [-1, 1]) {
+    // Root about 17 % thick (it was 12 %), deep enough to house the stowed main wheels.
     const full = [
-      [0.7, 1.11, 0.91, -1.29, 0.17],
-      [2.265, 1.25, 0.83, -1.1, 0.14],
-      [5.75, 1.55, 0.65, -0.72, 0.1],
+      [0.7, 1.11, 0.91, -1.29, 0.23],
+      [2.265, 1.25, 0.83, -1.1, 0.19],
+      [5.75, 1.55, 0.65, -0.72, 0.105],
       [7.55, 1.71, 0.57, -0.55, 0.07],
       [7.7, 1.728, 0.555, -0.54, 0.055],
     ];
@@ -717,21 +743,39 @@ export function buildPC12(s) {
     dd.finish();
   }
   pd.finish();
-  // Single wheels, main legs fold inward; nose leg folds aft (POH 7-4-1).
+  // Single wheels, main legs fold inward; nose leg folds aft (POH 7-4-1). Stowed, every tyre lies
+  // inside the skin: the main pivots sit on the thickened root's mid-plane, and the nose wheel
+  // turns flat on its leg as it folds so it fits under the cockpit floor (it hung below the belly).
   for (const [i, x, z, top, r] of [
-    [0, 0, 3.48, 1.08, 0.27],
-    [1, 2.265, 0, 1.25, 0.31],
-    [2, -2.265, 0, 1.25, 0.31],
+    [0, 0, 3.48, 1.14, 0.27],
+    [1, 2.265, 0, 1.19, 0.31],
+    [2, -2.265, 0, 1.19, 0.31],
   ]) {
     const g = group(root, `PC12-gear-${i}`, [x, top, z]),
       dd = detailKit(g, g.name),
       h = top - r;
     dd.rod([0, 0, 0], [0, -h + 0.18, 0.1], 0.043, metal);
     dd.rod([0, -h + 0.18, 0.1], [0, -h, 0], 0.035, metal);
-    dd.rod([0, -0.1, 0.2], [0, -h + 0.13, -0.12], 0.018, dark);
-    wheel(dd, [0, -h, 0], r, 0.19, rubber, paint, metal);
-    if (i) dd.box([0.018, 0.53, 0.22], [Math.sign(x) * 0.07, -0.22, 0.015], paint);
-    else dd.box([0.16, 0.36, 0.018], [0, -0.24, 0.13], paint);
+    dd.rod([0, -0.1, i ? 0.2 : 0.05], [0, -h + 0.13, -0.12], 0.018, dark);
+    if (i) {
+      wheel(dd, [0, -h, 0], r, 0.18, rubber, paint, metal);
+      dd.box([0.018, 0.53, 0.22], [Math.sign(x) * 0.07, -0.22, 0.015], paint);
+    } else {
+      const turn = group(g, 'PC12-gear-0-wheel', [0, -h, 0]),
+        wd = detailKit(turn, turn.name);
+      // Alloy hub: this turning node has no livery slot, so it carries no painted material.
+      wheel(wd, [0, 0, 0], r, 0.19, rubber, metal, metal);
+      wd.finish();
+      bindings.push({
+        node: turn.name,
+        source: 'gear',
+        property: 'rotation',
+        axis: 'y',
+        offset: Math.PI / 2,
+        scale: -Math.PI / 2,
+      });
+      dd.box([0.16, 0.36, 0.018], [0, -0.24, 0.13], paint);
+    }
     dd.finish();
     bindings.push({
       node: g.name,
@@ -743,7 +787,7 @@ export function buildPC12(s) {
     });
   }
   d.finish();
-  const interior = pc12Cockpit(root, { paint, blue, metal, dark });
+  const interior = pc12Cockpit(root, { paint, blue, metal, dark, rings });
   cleanGeometry(root);
   return {
     root,
@@ -1230,7 +1274,14 @@ function pc12Cockpit(root, m) {
       });
     }
   }
-  d.box([1.3, 0.03, 6.7], [0, 1.25, -0.3], m.dark);
+  // Cabin floor trimmed to the skin (the flat slab stood out of the tapering aft cabin).
+  fittedFloor(d, m.rings, m.dark, {
+    y: 1.265,
+    front: 3.05,
+    back: -3.65,
+    width: 1.3,
+    thickness: 0.03,
+  });
   d.box([1.3, 0.78, 0.025], [0, 1.64, 3.1], face);
   for (const side of [-1, 1]) {
     beveledBox(d, [0.45, 0.68, 0.03], [side * 0.37, 1.61, 3.075], black, 0.025);
@@ -1250,7 +1301,7 @@ function pc12Cockpit(root, m) {
         );
     }
   }
-  const oh = group(cabin, 'PC12-overhead', [0, 2.75, 2.25]);
+  const oh = group(cabin, 'PC12-overhead', [0, 2.72, 2.25]);
   oh.rotation.x = -1.1;
   const od = detailKit(oh, oh.name);
   beveledBox(od, [0.26, 0.3, 0.02], [0, 0, 0], face, 0.01);
@@ -1318,7 +1369,33 @@ function pc12Cockpit(root, m) {
       dd.finish();
     }
   for (const side of [-1, 1]) {
-    d.box([0.04, 0.43, 4.8], [side * 0.72, 1.57, -1.15], liner);
+    // Sidewall liner follows the skin as the cabin narrows aft (it cut through the last frame).
+    const inside = (zz) =>
+      Math.min(
+        0.7,
+        skinHalfWidth(m.rings, zz, 1.355) - 0.025,
+        skinHalfWidth(m.rings, zz, 1.785) - 0.025,
+      );
+    for (let zz = 1.25; zz > -3.5; zz -= 0.4) {
+      const za = zz,
+        zb = Math.max(-3.55, zz - 0.4),
+        xa = side * inside(za),
+        xb = side * inside(zb);
+      quad(d, [xa, 1.355, za], [xb, 1.355, zb], [xb, 1.785, zb], [xa, 1.785, za], liner, [
+        -side,
+        0,
+        0,
+      ]);
+      quad(
+        d,
+        [xa, 1.785, za],
+        [xb, 1.785, zb],
+        [xb + side * 0.015, 1.785, zb],
+        [xa + side * 0.015, 1.785, za],
+        liner,
+        [0, 1, 0],
+      );
+    }
     d.box([0.09, 0.025, 4.8], [side * 0.685, 1.8, -1.15], wood);
     for (const zz of [-0.5, -2.4]) {
       beveledBox(d, [0.018, 0.36, 0.7], [side * 0.68, 1.57, zz], wood, 0.006);
@@ -1343,7 +1420,7 @@ function pc12Cockpit(root, m) {
     liner,
     [0, -1, 0],
   );
-  d.box([0.4, 1.2, 0.4], [-0.39, 1.87, -3.45], wood);
+  d.box([0.38, 1.15, 0.4], [-0.37, 1.85, -3.45], wood);
   sheet(
     d,
     [
@@ -1355,7 +1432,11 @@ function pc12Cockpit(root, m) {
       [0.5, 2.53, -3.72],
       [0.61, 2.2, -3.72],
       [0.61, 1.27, -3.72],
-    ],
+    ].map(([x, y, zz]) => [
+      Math.sign(x) * Math.min(Math.abs(x), skinHalfWidth(m.rings, zz, y) - 0.02),
+      y,
+      zz,
+    ]),
     liner,
     [0, 0, 1],
   );

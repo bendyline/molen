@@ -43,7 +43,7 @@ import {
   type RoofSurfaces,
   type WingRoofKind,
 } from './roofs';
-import { aspectSeed, type PackIdentity } from './seed';
+import { aspectSeed, type PackIdentity, sampleRange, unit01 } from './seed';
 import type { SignPlacement } from './sign-mesh';
 import { buildStorefronts } from './storefronts';
 import type {
@@ -131,6 +131,90 @@ const MIN_PARTY_LENGTH = 3;
 const DECK_DEPTH = 0.3;
 /** Far more than any lift bank serves; a rough footprint can resolve to absurd heights. */
 const MAX_STOREYS = 120;
+/**
+ * Meters a floating building's float reaches below the water it rides on: enough to stay under a
+ * water surface the terrain samples a little differently from the level the request gives.
+ */
+const FLOAT_DRAFT = 0.8;
+/** A float's deck above the water (the style's foundation height), kept within these meters. */
+const FLOAT_FREEBOARD = { min: 0.2, max: 1.2 };
+/** How far a float reaches past the walls it carries, a walkway round the house, meters. */
+const FLOAT_APRON = { min: 0.45, max: 1.15 };
+
+/** Level ground at `height`: what a floating building and everything it carries stand on. */
+function deckGround(height: number): HeightSampler {
+  return {
+    sampleHeight: () => height,
+    slopeAt: () => 0,
+    normalAt: () => [0, 1, 0],
+  };
+}
+
+/**
+ * A floating building's float: a rectangular slab round its footprint's frame, `apron` wider on
+ * every side, from below the water up to the deck the building stands on. Floats are barges and
+ * log rafts, rectangular whatever the house on them, and a rectangle never folds on itself where
+ * an offset outline would at a notch.
+ */
+function buildFloat(
+  analysis: FootprintAnalysis,
+  waterline: number,
+  deck: number,
+  apron: number,
+  surface: { slot: MaterialSlot; ref: string; color: RGB },
+  out: MeshBufferBuilder,
+): void {
+  const [u0, v0, u1, v1] = ringBounds(analysis.localOutline);
+  const corners = (
+    [
+      [u0 - apron, v0 - apron],
+      [u1 + apron, v0 - apron],
+      [u1 + apron, v1 + apron],
+      [u0 - apron, v1 + apron],
+    ] as Vec2[]
+  ).map((point) => toWorld(analysis.frame, point));
+  const centre = toWorld(analysis.frame, [(u0 + u1) / 2, (v0 + v1) / 2]);
+  const bottom = waterline - FLOAT_DRAFT;
+  for (let index = 0; index < corners.length; index++) {
+    const a = corners[index] as Vec2;
+    const b = corners[(index + 1) % corners.length] as Vec2;
+    const length = Math.hypot(b[0] - a[0], b[1] - a[1]);
+    if (length < 1e-6) continue;
+    let nx = (b[1] - a[1]) / length;
+    let nz = -(b[0] - a[0]) / length;
+    // Outward, away from the middle of the float, whichever way the frame turns.
+    if (nx * ((a[0] + b[0]) / 2 - centre[0]) + nz * ((a[1] + b[1]) / 2 - centre[1]) < 0) {
+      nx = -nx;
+      nz = -nz;
+    }
+    out.addQuad(
+      surface.slot,
+      surface.ref,
+      [
+        [a[0], bottom, a[1]],
+        [b[0], bottom, b[1]],
+        [b[0], deck, b[1]],
+        [a[0], deck, a[1]],
+      ],
+      [nx, 0, nz],
+      [
+        [0, bottom - deck],
+        [length, bottom - deck],
+        [length, 0],
+        [0, 0],
+      ],
+      surface.color,
+    );
+  }
+  out.addConvexPolygon(
+    surface.slot,
+    surface.ref,
+    corners.map((point): [number, number, number] => [point[0], deck, point[1]]),
+    [0, 1, 0],
+    (point) => [point[0], point[2]],
+    surface.color,
+  );
+}
 
 /**
  * Map edges of the request outline (seams, party walls) onto the cleaned, possibly snapped build
@@ -265,7 +349,17 @@ export function generateBuilding(
   const holes = analysis.rectilinear
     ? analysis.localHoles.map((hole) => hole.map((point) => toWorld(analysis.frame, point)))
     : analysis.holes;
-  const fit = groundFit(input.request.groundOutline ?? outline, input.ground);
+  // A floating building's ground is its float's deck, wherever the map's ground under it lies (a
+  // lake bed, or a bank its outline reaches over): it and all it carries stand level on that.
+  const waterline = input.request.waterline;
+  const ground =
+    waterline === undefined
+      ? input.ground
+      : deckGround(
+          waterline +
+            Math.min(FLOAT_FREEBOARD.max, Math.max(FLOAT_FREEBOARD.min, recipe.foundationHeight)),
+        );
+  const fit = groundFit(input.request.groundOutline ?? outline, ground);
   const base =
     recipe.groundFit === 'platform-max' || input.interiors !== undefined
       ? fit.maxGround
@@ -274,9 +368,9 @@ export function generateBuilding(
         : fit.base;
   const wallBase = base + recipe.minHeight;
   if (input.request.access && recipe.minHeight === 0)
-    buildBuildingAccess(input.request.access, input.ground, out);
+    buildBuildingAccess(input.request.access, ground, out);
   if (input.request.yard?.driveway && recipe.minHeight === 0)
-    buildBuildingAccess(input.request.yard.driveway, input.ground, out);
+    buildBuildingAccess(input.request.yard.driveway, ground, out);
   let eave = wallBase + recipe.totalHeight;
   const foundationDepth = Math.max(0.05, recipe.foundationHeight);
   const bounds = ringBounds(outline);
@@ -306,7 +400,8 @@ export function generateBuilding(
       wallBase,
       recipe.totalHeight,
       standInTint(look.wall),
-      input.ground,
+      // A floating stand-in reaches down into its water, where its float would be.
+      waterline === undefined ? ground : deckGround(waterline),
       recipe.minHeight === 0 ? foundationDepth : undefined,
     );
     // A pitched building keeps a roof even as a stand-in: from above, roofs are what a
@@ -325,7 +420,7 @@ export function generateBuilding(
       input.request.yard.fence,
       input.request.identity,
       recipe.parts.wall.color,
-      input.ground,
+      ground,
       input.simplified === true ? Math.max(1, input.tier) : input.tier,
       out,
     );
@@ -335,8 +430,7 @@ export function generateBuilding(
     // Ground contact is structural: cheap tiers extend the existing walls without spending
     // extra vertices or material groups. Keep the platform, roof, and facade heights fixed.
     let minGround = fit.minGround;
-    for (const hole of holes)
-      minGround = Math.min(minGround, groundFit(hole, input.ground).minGround);
+    for (const hole of holes) minGround = Math.min(minGround, groundFit(hole, ground).minGround);
     if (minGround < base) wallBottom = minGround - foundationDepth;
   }
   const partSlots: ReadonlyArray<[MaterialSlot, keyof BuildingRecipe['parts']]> = [
@@ -417,7 +511,7 @@ export function generateBuilding(
           (recipe.totalHeight -
             (input.request.height !== undefined ? (recipe.roof.parapet?.height ?? 0) : 0)) /
             recipe.floors,
-          input.ground,
+          ground,
           seams,
         )
       : undefined;
@@ -491,9 +585,7 @@ export function generateBuilding(
         const near = toWorld(analysis.frame, nearMid);
         const far = toWorld(analysis.frame, farMid);
         shedDirection =
-          input.ground.sampleHeight(far[0], far[1]) >= input.ground.sampleHeight(near[0], near[1])
-            ? 1
-            : -1;
+          ground.sampleHeight(far[0], far[1]) >= ground.sampleHeight(near[0], near[1]) ? 1 : -1;
       }
       buildWingRoof(
         kind,
@@ -684,7 +776,7 @@ export function generateBuilding(
       ceiling: wallBase + Math.min(3, eave - wallBase) - 0.12,
     });
   const parkingSite = garage
-    ? createParkingSite(input.request, garage, wallBase, interiorStoreys, input.ground, seams)
+    ? createParkingSite(input.request, garage, wallBase, interiorStoreys, ground, seams)
     : undefined;
   const site =
     input.interiors !== undefined
@@ -704,7 +796,7 @@ export function generateBuilding(
           holes,
           wallBase,
           interiorStoreys[0]?.ceiling ?? wallBase,
-          input.ground,
+          ground,
           closed,
           interiorStoreys,
         ))
@@ -721,6 +813,23 @@ export function generateBuilding(
     wallBottom,
     site?.openings,
   );
+  if (waterline !== undefined && recipe.minHeight === 0)
+    buildFloat(
+      analysis,
+      waterline,
+      base,
+      Math.min(
+        sampleRange(FLOAT_APRON, unit01(aspectSeed(recipe.seed, 'float'), 0)),
+        // A narrow house keeps a narrow float: a walkway, not a raft twice its width.
+        Math.max(0.3, 0.15 * Math.min(analysis.width, analysis.depth)),
+      ),
+      {
+        slot: 'foundation',
+        ref: recipe.parts.foundation.ref,
+        color: recipe.parts.foundation.color,
+      },
+      out,
+    );
   // Reserve inexpensive open frames so distant interiors cannot exhaust the whole batch's
   // architecture budget before nearby buildings receive their materials and ornamentation.
   buildOpeningFrames(
@@ -836,7 +945,7 @@ export function generateBuilding(
         ridges,
         frameYaw: -dmath.atan2(analysis.frame.s, analysis.frame.c),
         salt: aspectSeed(recipe.seed, 'props'),
-        ground: (x, z) => input.ground.sampleHeight(x, z),
+        ground: (x, z) => ground.sampleHeight(x, z),
         clear: entranceClearance(
           outline,
           site?.openings,
@@ -864,7 +973,7 @@ export function generateBuilding(
     for (const ring of [outline, ...holes]) {
       buildFoundationSkirt(
         ring,
-        input.ground,
+        ground,
         base,
         foundationDepth,
         SKIRT_SPACING,

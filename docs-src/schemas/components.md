@@ -1058,6 +1058,10 @@ Required: none
             "description": "Fade in/out time in seconds; default 1.5.",
             "type": "number",
             "minimum": 0
+          },
+          "inside": {
+            "description": "true: heard inside the listener's space (rain on the roof of the cabin), so a cabin or building does not muffle it. Default false: the layer is outside and is muffled by the listener's enclosure.",
+            "type": "boolean"
           }
         },
         "required": [
@@ -1306,6 +1310,24 @@ Required: none
       "type": "integer",
       "minimum": 1,
       "maximum": 256
+    },
+    "maxEmitters": {
+      "description": "How many entities voiced by sound profiles may sound at once besides the one the listener rides; the nearest win. Default 8.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 64
+    },
+    "doppler": {
+      "description": "Doppler shift on moving positional sources, 0 (off) to 1 (physical, the default).",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "masking": {
+      "description": "How far loud nearby sources (an engine, a passing train) lower the ambience beds, 0 (never) to 1. Default 0.6.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
     }
   },
   "additionalProperties": false
@@ -2741,6 +2763,103 @@ Required: `selected`, `slots`, `variants`
         "additionalProperties": false
       }
     },
+    "graphics": {
+      "description": "Artwork shared by several variants, referenced by id from their markings.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "description": "Optional descriptive label; rendered lettering belongs in the polygon artwork.",
+            "type": "string",
+            "maxLength": 256
+          },
+          "shapes": {
+            "minItems": 1,
+            "maxItems": 4096,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$",
+                  "description": "Flat polygon color as an sRGB hex triplet."
+                },
+                "points": {
+                  "minItems": 3,
+                  "maxItems": 2048,
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      },
+                      {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 2,
+                    "maxItems": 2
+                  },
+                  "description": "Polygon vertices in normalized 0–1 coordinates with positive Y upward."
+                },
+                "holes": {
+                  "description": "Rings cut out of the polygon (even-odd), such as lettering counters.",
+                  "maxItems": 64,
+                  "type": "array",
+                  "items": {
+                    "minItems": 3,
+                    "maxItems": 2048,
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    }
+                  }
+                }
+              },
+              "required": [
+                "color",
+                "points"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Original flat artwork polygons, painted in order."
+          }
+        },
+        "required": [
+          "shapes"
+        ],
+        "additionalProperties": false,
+        "description": "Resolution-independent artwork rasterized for the surface projector."
+      }
+    },
     "variants": {
       "minItems": 1,
       "maxItems": 64,
@@ -2862,6 +2981,15 @@ Required: `selected`, `slots`, `variants`
                       "minimum": 0,
                       "maximum": 4294967295,
                       "description": "Unsigned deterministic pattern seed."
+                    },
+                    "style": {
+                      "description": "Organic patches (default), angular splinters or square pixels.",
+                      "type": "string",
+                      "enum": [
+                        "blotch",
+                        "splinter",
+                        "digital"
+                      ]
                     }
                   },
                   "required": [
@@ -2870,6 +2998,76 @@ Required: `selected`, `slots`, `variants`
                     "seed"
                   ],
                   "additionalProperties": false
+                },
+                "zones": {
+                  "description": "Colors painted over parts of the region in order: two-tone splits, cheatlines, bands.",
+                  "maxItems": 12,
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$",
+                        "description": "Zone paint color as an sRGB hex triplet."
+                      },
+                      "roughness": {
+                        "description": "Optional zone roughness.",
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      },
+                      "metalness": {
+                        "description": "Optional zone metalness.",
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      },
+                      "planes": {
+                        "minItems": 1,
+                        "maxItems": 8,
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "normal": {
+                              "type": "array",
+                              "prefixItems": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "number"
+                                }
+                              ],
+                              "items": false,
+                              "minItems": 3,
+                              "maxItems": 3,
+                              "description": "Plane normal in the region bounds normalized to 0–1 on each axis."
+                            },
+                            "offset": {
+                              "type": "number",
+                              "description": "The zone holds where normal·p is at least this value."
+                            }
+                          },
+                          "required": [
+                            "normal",
+                            "offset"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "description": "Half-spaces that all hold inside the zone."
+                      }
+                    },
+                    "required": [
+                      "color",
+                      "planes"
+                    ],
+                    "additionalProperties": false
+                  }
                 }
               },
               "required": [
@@ -2881,7 +3079,7 @@ Required: `selected`, `slots`, `variants`
           },
           "markings": {
             "description": "Surface markings to project for this variant.",
-            "maxItems": 32,
+            "maxItems": 64,
             "type": "array",
             "items": {
               "type": "object",
@@ -2893,64 +3091,106 @@ Required: `selected`, `slots`, `variants`
                   "description": "Reusable model marking anchor."
                 },
                 "graphic": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "description": "Optional descriptive label; rendered lettering belongs in the polygon artwork.",
-                      "type": "string",
-                      "maxLength": 256
-                    },
-                    "shapes": {
-                      "minItems": 1,
-                      "maxItems": 4096,
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "color": {
-                            "type": "string",
-                            "pattern": "^#[0-9a-fA-F]{6}$",
-                            "description": "Flat polygon color as an sRGB hex triplet."
-                          },
-                          "points": {
-                            "minItems": 3,
-                            "maxItems": 512,
-                            "type": "array",
-                            "items": {
-                              "type": "array",
-                              "prefixItems": [
-                                {
-                                  "type": "number",
-                                  "minimum": 0,
-                                  "maximum": 1
-                                },
-                                {
-                                  "type": "number",
-                                  "minimum": 0,
-                                  "maximum": 1
-                                }
-                              ],
-                              "items": false,
-                              "minItems": 2,
-                              "maxItems": 2
-                            },
-                            "description": "Polygon vertices in normalized 0–1 coordinates with positive Y upward."
-                          }
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "label": {
+                          "description": "Optional descriptive label; rendered lettering belongs in the polygon artwork.",
+                          "type": "string",
+                          "maxLength": 256
                         },
-                        "required": [
-                          "color",
-                          "points"
-                        ],
-                        "additionalProperties": false
+                        "shapes": {
+                          "minItems": 1,
+                          "maxItems": 4096,
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "color": {
+                                "type": "string",
+                                "pattern": "^#[0-9a-fA-F]{6}$",
+                                "description": "Flat polygon color as an sRGB hex triplet."
+                              },
+                              "points": {
+                                "minItems": 3,
+                                "maxItems": 2048,
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number",
+                                      "minimum": 0,
+                                      "maximum": 1
+                                    },
+                                    {
+                                      "type": "number",
+                                      "minimum": 0,
+                                      "maximum": 1
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                "description": "Polygon vertices in normalized 0–1 coordinates with positive Y upward."
+                              },
+                              "holes": {
+                                "description": "Rings cut out of the polygon (even-odd), such as lettering counters.",
+                                "maxItems": 64,
+                                "type": "array",
+                                "items": {
+                                  "minItems": 3,
+                                  "maxItems": 2048,
+                                  "type": "array",
+                                  "items": {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number",
+                                        "minimum": 0,
+                                        "maximum": 1
+                                      },
+                                      {
+                                        "type": "number",
+                                        "minimum": 0,
+                                        "maximum": 1
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  }
+                                }
+                              }
+                            },
+                            "required": [
+                              "color",
+                              "points"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "description": "Original flat artwork polygons, painted in order."
+                        }
                       },
-                      "description": "Original flat artwork polygons, painted in order."
+                      "required": [
+                        "shapes"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Resolution-independent artwork rasterized for the surface projector."
+                    },
+                    {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
                     }
-                  },
-                  "required": [
-                    "shapes"
                   ],
-                  "additionalProperties": false,
-                  "description": "Resolution-independent artwork rasterized for the surface projector."
+                  "description": "Inline artwork, or the id of an entry in the shared graphics."
+                },
+                "flip": {
+                  "description": "Mirror the artwork left to right, for art that faces forward on both sides.",
+                  "type": "boolean"
                 }
               },
               "required": [
@@ -5994,7 +6234,7 @@ Required: `kind`, `spec`
               "type": "boolean"
             },
             "retreatingBladeSpeed": {
-              "description": "Sea-level TAS for estimated retreating-blade onset, m/s; decreases with density and rotor RPM.",
+              "description": "Sea-level TAS the type is not to exceed, m/s: on a rotor block the retreating blades stall past it and the assist holds it; on the response model drag rises from it.",
               "type": "number",
               "exclusiveMinimum": 0
             },
@@ -6195,7 +6435,7 @@ Required: `kind`, `spec`
                       "description": "Height of the tail rotor's hub above the main rotor's, m."
                     },
                     "pitch": {
-                      "description": "Blade pitch at full right and full left pedal, radians. Default -0.14 and 0.42.",
+                      "description": "Blade pitch at full right and full left pedal, radians. Default -0.14 and 0.42; a fan (eight blades or more) -0.35 and 0.75.",
                       "type": "array",
                       "prefixItems": [
                         {
@@ -6735,6 +6975,59 @@ Required: `kind`, `spec`
                 "additionalProperties": false
               },
               "description": "External rotors setting."
+            },
+            "exhausts": {
+              "description": "Jet nozzle exits the client draws the afterburner flame and tailpipe glow at.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "engine": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+                    "description": "The jet engine this nozzle belongs to."
+                  },
+                  "position": {
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "description": "Center of the nozzle exit, model coordinates (m)."
+                  },
+                  "radius": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "description": "Exit radius fully open (full reheat), or of a fixed nozzle (m)."
+                  },
+                  "closedRadius": {
+                    "description": "Exit radius of a variable nozzle closed to its minimum (military power); the exit follows the engine's nozzle signal between the two.",
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "direction": {
+                    "description": "Direction the exhaust leaves in; default the reverse of the engine's thrust axis.",
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    }
+                  },
+                  "aspect": {
+                    "description": "Width over height of a rectangular (2-D) nozzle exit; default 1.",
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  }
+                },
+                "required": [
+                  "engine",
+                  "position",
+                  "radius"
+                ],
+                "additionalProperties": false
+              }
             },
             "gearNodes": {
               "type": "array",
@@ -7907,6 +8200,13 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
             "type": "number"
           },
           "description": "Load on each leg in newtons."
+        },
+        "travel": {
+          "description": "How far the ground holds each leg's strut closed from where it rests, in meters: positive compressed, negative extended, and at the strut's full reach below rest where the wheel hangs clear.",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
         }
       },
       "required": [
@@ -7934,7 +8234,7 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
       "minimum": 0
     },
     "buffet": {
-      "description": "Airplane pre-stall and stalled-wing buffet, 0..1: a cue to shake the view, starting a few degrees before the stall.",
+      "description": "Pre-stall and stalled-wing buffet, 0..1: a cue to shake the view, starting a few degrees before the stall. On a helicopter with a rotor block, its retreating blades.",
       "type": "number",
       "minimum": 0,
       "maximum": 1
@@ -14093,6 +14393,90 @@ Required: `speed`, `steer`, `yaw`, `pitch`, `roll`, `vy`, `grounded`, `waitingFo
         },
         {
           "type": "number"
+        }
+      ],
+      "items": false,
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "wheelTravel": {
+      "description": "With wheels on struts: how far the road holds each wheel up its strut from the static ride height, in meters and the same order. Positive is compressed; a wheel that hangs clear of the road is at the strut's full reach below it.",
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "items": false,
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "wheelRoad": {
+      "description": "With wheels on struts, on the road: how far the road under each wheel stands above the plane bodyHeave, bodyPitch and bodyRoll are measured from, in meters and the same order. Absent on a level road.",
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "items": false,
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "wheelRoadRate": {
+      "description": "With wheels on struts, on the road: how fast the road under each wheel is rising as its tire follows it, in meters per second and the same order. Absent on a level road.",
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "items": false,
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "wheelSpent": {
+      "description": "With wheels on struts: true for each wheel whose strut the road closed solid and which has not yet opened to its ride height again; it opens slowly. Present only while there is one.",
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "boolean"
         }
       ],
       "items": false,

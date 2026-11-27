@@ -74,7 +74,14 @@ import {
   stepCarBody,
 } from './vehicle-body';
 import { type PowertrainState, stepPowertrain } from './vehicle-powertrain';
-import { initialWheelsState, stepWheels, type WheelsState, wheelsGeometry } from './vehicle-wheels';
+import {
+  initialWheelsState,
+  restOnStops,
+  stepWheels,
+  strutReach,
+  type WheelsState,
+  wheelsGeometry,
+} from './vehicle-wheels';
 
 export {
   engineTorqueCurve,
@@ -141,6 +148,31 @@ export interface VehicleStateData extends VehicleDamageState {
   wheelSpin?: [number, number, number, number];
   /** With wheels on struts: the load on each wheel in newtons, in the same order. */
   wheelLoad?: [number, number, number, number];
+  /**
+   * With wheels on struts: how far the road holds each wheel up its strut from the static ride
+   * height, in meters and the same order. Positive is compressed; a wheel that hangs clear of the
+   * road is at the strut's full reach below it.
+   */
+  wheelTravel?: [number, number, number, number];
+  /**
+   * With wheels on struts, on the road: how far the road under each wheel stands above the plane
+   * `bodyHeave`, `bodyPitch` and `bodyRoll` are measured from, in meters and the same order. That
+   * plane lies through the road under all four wheels, so this is the road's twist, and for a
+   * moment what a bump or a change of slope has not yet tipped the plane by. Absent where it
+   * would be all zeros: on a level road.
+   */
+  wheelRoad?: [number, number, number, number];
+  /**
+   * With wheels on struts, on the road: how fast the road under each wheel is rising as its
+   * tire follows it, in meters per second and the same order: what the dampers work against.
+   * Like `wheelRoad`, absent where it would be all zeros: on a level road.
+   */
+  wheelRoadRate?: [number, number, number, number];
+  /**
+   * With wheels on struts: true for each wheel whose strut the road closed solid and which has
+   * not yet opened to its ride height again. Present only while there is one.
+   */
+  wheelSpent?: [boolean, boolean, boolean, boolean];
   /**
    * Present while a car on four wheels is off the plane of its road: in the air, tipping over,
    * tumbling, or lying on its side or roof. Its transform is then its true pose and it moves as
@@ -258,6 +290,10 @@ export function rightVehicle(world: World, id: string, env: VehicleEnvironment):
   delete righted.freeBody;
   delete righted.wheelSpin;
   delete righted.wheelLoad;
+  delete righted.wheelTravel;
+  delete righted.wheelRoad;
+  delete righted.wheelRoadRate;
+  delete righted.wheelSpent;
   delete righted.bodyHeave;
   delete righted.bodyHeaveRate;
   world.set(id, VehicleState, righted);
@@ -501,6 +537,14 @@ function contactNormal(
  * off the road is no longer a car in the road's plane: it is balancing on the other pair.
  */
 const TIP_ANGLE = 0.08;
+/**
+ * How closely a wheel on its tire follows the road, rad/s: about 12 Hz, where a wheel hops on
+ * its tire. A tire is a spring too, and rolls onto an edge over its own contact patch: the hub
+ * meets a square step over a few hundredths of a second, not in an instant, and does not follow
+ * ripples that come faster than this at all. Without it a strut's damper would take every edge
+ * of the road at the speed the car crosses it.
+ */
+const TIRE_FOLLOW = 75;
 
 /** Transform origin of a free car body: the point under its middle at ride height. */
 function bodyOrigin(body: CarBody, spec: VehicleSpec): [number, number, number] {
@@ -709,7 +753,39 @@ export function stepVehicle(
     wheels.pitchRate = bodyPitchRate;
     wheels.roll = bodyRoll;
     wheels.rollRate = bodyRollRate;
+    if (state.wheelSpent && !state.freeBody) wheels.spent = [...state.wheelSpent];
   }
+  // Each wheel meets its own road. `roadUnder` is the road under each wheel, as its tire
+  // follows it, above the plane the body's heave and lean are measured from (the plane through
+  // the road under all four, eased as `pitch` and `roll` are), and `roadRising` how fast it is
+  // rising there. A state that has been stepped on its struts and carries neither stood on a
+  // level road.
+  const reach = geometry ? strutReach(spec) : 0;
+  const stood = wheels !== undefined && state.wheelTravel !== undefined && !state.freeBody;
+  let roadUnder: [number, number, number, number] | undefined = stood
+    ? state.wheelRoad
+      ? [...state.wheelRoad]
+      : [0, 0, 0, 0]
+    : undefined;
+  let roadRising: [number, number, number, number] | undefined = stood
+    ? state.wheelRoadRate
+      ? [...state.wheelRoadRate]
+      : [0, 0, 0, 0]
+    : undefined;
+  // What of that the dampers feel: all of it but the slope swinging round a turning car, which
+  // carries the body round with it at no rate of the body's own.
+  let roadFelt: [number, number, number, number] | undefined;
+  if (roadRising) {
+    roadFelt = [0, 0, 0, 0];
+    for (let i = 0; i < 4; i++)
+      roadFelt[i] =
+        (roadRising[i] ?? 0) -
+        (state.roll * (i < 2 ? 0.5 : -0.5) * spec.wheelbase +
+          state.pitch * (i % 2 === 0 ? 0.5 : -0.5) * spec.wheelTrack) *
+          (state.yawRate ?? 0);
+  }
+  // Where a free body's struts were left by its last substep.
+  let hung: [number, number, number, number] | undefined;
   // Off the plane of its road the car is a free rigid body; on it, the transform carries the
   // body's heave on the struts and the solver follows the road beneath.
   const outline = geometry ? carBodyOutline(spec, geometry) : undefined;
@@ -731,9 +807,13 @@ export function stepVehicle(
       load: wheels.load,
     };
   } else if (wheels) pos[1] -= wheels.heave;
-  /** The car as it is in the road's plane, let go as a free body with origin at `at`. */
-  const release = (at: [number, number, number], vertical: number): CarBody | undefined => {
+  /**
+   * The car as it is in the road's plane, let go as a free body with origin at `at`. Its rise
+   * and fall over the road are already the heave's own rate.
+   */
+  const release = (at: [number, number, number]): CarBody | undefined => {
     if (!wheels) return undefined;
+    delete wheels.spent;
     const rot = vehicleRotation(next.yaw, next.pitch + bodyPitch, next.roll + bodyRoll * banks);
     const offset = quatRotateVec3(rot, spec.centerOfMass);
     const sy = m.sin(next.yaw);
@@ -741,12 +821,18 @@ export function stepVehicle(
     return {
       center: [at[0] + offset[0], at[1] + wheels.heave + offset[1], at[2] + offset[2]],
       rot,
-      velocity: [sy * u + cy * v, vertical + wheels.heaveRate, cy * u - sy * v],
+      velocity: [sy * u + cy * v, wheels.heaveRate, cy * u - sy * v],
       omega: [bodyPitchRate, r, bodyRollRate],
       spin: wheels.spin,
       load: wheels.load,
     };
   };
+  // A car handed over in the air and not yet its own body (dropped by a host, say) is one from
+  // here, falling as fast as it was said to be.
+  if (wheels && !body && !state.grounded) {
+    body = release(pos);
+    if (body) body.velocity[1] += state.vy;
+  }
   // The road under each wheel against the road under the middle of the car: split grip.
   const patch: [number, number, number, number] = [1, 1, 1, 1];
   if (geometry && env.surface && surface) {
@@ -1148,11 +1234,14 @@ export function stepVehicle(
       if (env.canOccupy) {
         const ahead = quatRotateVec3(body.rot, [0, 0, 1]);
         if (!env.canOccupy(bodyOrigin(body, spec), m.atan2(ahead[0], ahead[2]), spec, id)) {
-          // A host that can only say "blocked": stay at the last free pose and come off it.
+          // A host that can only say "blocked": stay at the last free pose and come off it. The
+          // body did not move, so it keeps no vertical speed either: kept, gravity (or a contact
+          // pushing out of what blocked it) grew it every step while the body hung where it was,
+          // and a wreck caught in a tree reported tens of m/s it never moved at.
           impact = m.max(impact, m.hypot(body.velocity[0], body.velocity[2]));
           body.center = before.center;
           body.rot = before.rot;
-          body.velocity = [-0.2 * body.velocity[0], body.velocity[1], -0.2 * body.velocity[2]];
+          body.velocity = [-0.2 * body.velocity[0], 0, -0.2 * body.velocity[2]];
           body.omega = [0.5 * body.omega[0], 0.5 * body.omega[1], 0.5 * body.omega[2]];
         }
       }
@@ -1207,6 +1296,7 @@ export function stepVehicle(
       pos = bodyOrigin(body, spec);
       wheels.spin = body.spin;
       wheels.load = body.load;
+      hung = out.travel;
       next.grounded = out.wheelsDown > 0;
       skid = out.skid;
       assist = m.max(assist, out.assist);
@@ -1272,11 +1362,26 @@ export function stepVehicle(
             bodyRoll = bank;
             bodyRollRate = body.omega[2];
             wheels.heave = heave;
-            wheels.heaveRate = body.velocity[1] - climb;
+            // The heave's rate is the body's own rise and fall, the road's slope included.
+            wheels.heaveRate = body.velocity[1];
             wheels.pitch = lean;
             wheels.pitchRate = bodyPitchRate;
             wheels.roll = bank;
             wheels.rollRate = bodyRollRate;
+            // The four heights were read right wheel first; what the plane through them
+            // leaves over is the twist in the road.
+            const sampled: [number, number, number, number] = [fr, fl, rr, rl];
+            roadUnder = [0, 0, 0, 0];
+            for (let i = 0; i < 4; i++) {
+              const over =
+                (sampled[i] ?? 0) -
+                (support -
+                  (i < 2 ? 0.5 : -0.5) * spec.wheelbase * m.tan(pitch) +
+                  (i % 2 === 0 ? 0.5 : -0.5) * span * m.tan(roll));
+              roadUnder[i] = m.abs(over) < 1e-9 ? 0 : over;
+            }
+            roadRising = undefined;
+            roadFelt = undefined;
             pos = [pos[0], support, pos[2]];
             body = undefined;
             still = 0;
@@ -1289,16 +1394,23 @@ export function stepVehicle(
     let propel = 0;
     if (wheels && geometry) {
       const bump = next.grounded ? roughness * m.min(1, speedNow / 8) : 0;
-      let offsets: [number, number, number, number] | undefined;
+      // What each strut meets: the road under its own wheel, and on a rough surface the
+      // ripples too small to be in the ground the host reports.
+      let offsets: [number, number, number, number] | undefined = roadUnder;
       if (bump > 0) {
         offsets = [0, 0, 0, 0];
         for (let i = 0; i < 4; i++) {
           const x = geometry.x[i] ?? 0;
           const z = geometry.z[i] ?? 0;
           const ripple = (pos[0] + sx * z + cz * x) * 1.9 + (pos[2] + cz * z - sx * x) * 2.3;
-          offsets[i] = 0.02 * bump * (m.sin(ripple * 0.22) + m.sin(ripple * 0.47 + 1.7));
+          offsets[i] =
+            0.02 * bump * (m.sin(ripple * 0.22) + m.sin(ripple * 0.47 + 1.7)) +
+            (roadUnder?.[i] ?? 0);
         }
       }
+      const rising = roadFelt;
+      // A substep that does not move the car (held by an obstacle) leaves the road where it was.
+      roadFelt = undefined;
       const out = stepWheels(wheels, {
         spec,
         geometry,
@@ -1324,6 +1436,7 @@ export function stepVehicle(
         stability: stabilityControl,
         lift: mass * (spec.aerodynamicLift ?? 0) * airForward * airForward,
         ...(offsets ? { bump: offsets } : {}),
+        ...(rising ? { roadRate: rising } : {}),
         grounded: next.grounded,
         h,
       });
@@ -1662,7 +1775,7 @@ export function stepVehicle(
         support - pos[1] <= spec.maxStepHeight &&
         -u * m.sin(pitch) + v * m.sin(roll) < 0
       ) {
-        body = release(pos, next.vy);
+        body = release(pos);
         continue;
       }
       u = 0;
@@ -1670,15 +1783,19 @@ export function stepVehicle(
       r = 0;
       break;
     }
-    next.vy -= 9.81 * h;
-    candidate[1] += next.vy * h;
     const wasGrounded = next.grounded;
-    // A car on four wheels is carried by the road only where the road is under it: over a
-    // crest that falls away faster than gravity follows, it flies. Its wheels reach the road
-    // for the first few centimeters.
-    const landing = wheels ? candidate[1] <= support : false;
-    next.grounded = candidate[1] <= support + spec.supportTolerance;
-    if (wheels ? landing : next.grounded) {
+    if (wheels) {
+      // A car on four wheels is carried by its struts, each on the road under its own wheel:
+      // the plane it is solved in lies on that road, and whether the car is on it is for the
+      // wheels to say, below.
+      candidate[1] = support;
+      next.vy = 0 + (-u * m.tan(next.pitch) + v * m.tan(next.roll));
+    } else {
+      next.vy -= 9.81 * h;
+      candidate[1] += next.vy * h;
+      next.grounded = candidate[1] <= support + spec.supportTolerance;
+    }
+    if (!wheels && next.grounded) {
       if (!wasGrounded && next.vy < -2 && spec.collisionParts) {
         const landingPose: TransformData = {
           pos: candidate,
@@ -1715,18 +1832,20 @@ export function stepVehicle(
           angularVelocity: [0, r, 0],
           centerOfMass: spec.centerOfMass,
         });
-      // The wheels are down; the body goes on sinking onto its springs.
-      if (!wasGrounded && wheels) wheels.heaveRate += m.max(next.vy, -6);
       candidate[1] = support;
-      // On the road the car rises and falls with it, which is what it leaves a crest with.
-      next.vy = wheels ? 0 + (-u * m.tan(next.pitch) + v * m.tan(next.roll)) : 0;
+      next.vy = 0;
     }
     if (spec.collisionParts) {
       stepPartDebris(next, spec.collisionParts, env, id, h);
       if (env.contacts) {
+        // A body on struts is where its springs have it, not yet where the road has gone.
         const partPose: TransformData = {
           pos: candidate,
-          rot: vehicleRotation(yaw, pitch + bodyPitch, roll + bodyRoll * banks),
+          rot: vehicleRotation(
+            yaw,
+            (wheels ? next.pitch : pitch) + bodyPitch,
+            (wheels ? next.roll : roll) + bodyRoll * banks,
+          ),
         };
         const motion = {
           velocity: [fs * u + fc * v, next.vy, fc * u - fs * v] as [number, number, number],
@@ -1866,9 +1985,72 @@ export function stepVehicle(
         });
       continue;
     }
+    const pitchPlane = approach(next.pitch, pitch, h * spec.terrainAlignRate);
+    const rollPlane = approach(next.roll, roll, h * spec.terrainAlignRate);
+    if (wheels && geometry) {
+      // The plane the car is solved in has moved with the road: up or down to the mean of the
+      // four wheels' road, and toward its slope. The body has not. It is where its struts
+      // hold it, so its heave and lean are restated against the plane's new place and each
+      // strut then meets the road its own wheel is on. Turning on a slope carries the slope
+      // round the car, and the body with it.
+      const turned = yaw - next.yaw;
+      const sampled: [number, number, number, number] = [fr, fl, rr, rl];
+      const rising: [number, number, number, number] = [0, 0, 0, 0];
+      const felt: [number, number, number, number] = [0, 0, 0, 0];
+      const over: [number, number, number, number] = [0, 0, 0, 0];
+      // Each wheel follows the road on its tire: where it was and how fast it was rising say
+      // where it should be now, and it closes most of what the road under it differs by. A
+      // road that rises steadily it follows exactly; an edge it rolls onto.
+      const lag = m.exp(-TIRE_FOLLOW * h);
+      for (let i = 0; i < 4; i++) {
+        const ahead = (i < 2 ? 0.5 : -0.5) * spec.wheelbase;
+        const aside = (i % 2 === 0 ? 0.5 : -0.5) * span;
+        let under = sampled[i] ?? 0;
+        if (roadUnder && roadRising) {
+          const expected =
+            pos[1] -
+            ahead * m.tan(next.pitch) +
+            aside * m.tan(next.roll) +
+            (roadUnder[i] ?? 0) +
+            (roadRising[i] ?? 0) * h;
+          const missed = under - expected;
+          under = expected + (1 - lag * lag) * missed;
+          rising[i] = (roadRising[i] ?? 0) + ((1 - lag) * (1 - lag) * missed) / h;
+        }
+        // What the dampers feel of that: all of it but the slope swinging round a turning
+        // car, which carries the body round with it below at no rate of the body's own.
+        felt[i] = (rising[i] ?? 0) - ((next.roll * ahead + next.pitch * aside) * turned) / h;
+        const left = under - (support - ahead * m.tan(pitchPlane) + aside * m.tan(rollPlane));
+        over[i] = m.abs(left) < 1e-9 ? 0 : left;
+      }
+      wheels.heave -= support - pos[1];
+      wheels.pitch -= pitchPlane - next.pitch + next.roll * turned;
+      wheels.roll -= rollPlane - next.roll - next.pitch * turned;
+      roadRising = rising;
+      roadFelt = felt;
+      roadUnder = over;
+      // Where the road has closed a strut solid it carries that corner itself.
+      if (restOnStops(wheels, geometry, mass, roadUnder, roadFelt)) {
+        bodyPitchRate = wheels.pitchRate;
+        bodyRollRate = wheels.rollRate;
+      }
+      bodyPitch = wheels.pitch;
+      bodyRoll = wheels.roll;
+      // With every wheel hanging clear of the road, the car is in the air.
+      next.grounded = false;
+      for (let i = 0; i < 4; i++)
+        if (
+          (roadUnder[i] ?? 0) -
+            wheels.heave +
+            wheels.pitch * (geometry.z[i] ?? 0) -
+            wheels.roll * (geometry.x[i] ?? 0) >
+          -reach
+        )
+          next.grounded = true;
+    }
     next.yaw = yaw;
-    next.pitch = approach(next.pitch, pitch, h * spec.terrainAlignRate);
-    next.roll = approach(next.roll, roll, h * spec.terrainAlignRate);
+    next.pitch = pitchPlane;
+    next.roll = rollPlane;
     // On four wheels the drawn wheels turn as the real ones do on average: a locked wheel
     // stops and a spinning one blurs.
     next.wheelAngle =
@@ -1897,13 +2079,18 @@ export function stepVehicle(
     pos = candidate;
     if (wheels) {
       // In the air, or over onto one pair of wheels: no longer a car in the plane of its road.
+      // A car the road has just thrown up by one axle (a strut closed solid at the foot of a
+      // ramp) is on that pair for a moment too, and is not tipping: the road still has it.
+      const thrown = wheels.spent !== undefined;
       const rolled =
+        !thrown &&
         m.abs(wheels.roll) > TIP_ANGLE &&
         (wheels.roll > 0 ? wheels.load[0] + wheels.load[2] : wheels.load[1] + wheels.load[3]) <= 0;
       const pitched =
+        !thrown &&
         m.abs(wheels.pitch) > TIP_ANGLE &&
         (wheels.pitch > 0 ? wheels.load[2] + wheels.load[3] : wheels.load[0] + wheels.load[1]) <= 0;
-      if (!next.grounded || rolled || pitched) body = release(pos, next.vy);
+      if (!next.grounded || rolled || pitched) body = release(pos);
     }
   }
   let pose: TransformData;
@@ -1958,6 +2145,28 @@ export function stepVehicle(
     next.bodyHeaveRate = wheels.heaveRate;
     next.wheelSpin = wheels.spin;
     next.wheelLoad = wheels.load;
+    if (body) {
+      if (hung) next.wheelTravel = hung;
+    } else if (geometry) {
+      const held: [number, number, number, number] = [0, 0, 0, 0];
+      for (let i = 0; i < 4; i++)
+        held[i] = m.max(
+          -reach,
+          (roadUnder?.[i] ?? 0) -
+            wheels.heave +
+            wheels.pitch * (geometry.z[i] ?? 0) -
+            wheels.roll * (geometry.x[i] ?? 0),
+        );
+      next.wheelTravel = held;
+    }
+    // A free body's struts are its own: nothing of the road's plane is left to it. A level
+    // road is left unsaid.
+    if (!body && roadUnder?.some((over) => over !== 0)) next.wheelRoad = roadUnder;
+    else delete next.wheelRoad;
+    if (!body && roadRising?.some((rate) => rate !== 0)) next.wheelRoadRate = roadRising;
+    else delete next.wheelRoadRate;
+    if (!body && wheels.spent) next.wheelSpent = wheels.spent;
+    else delete next.wheelSpent;
   }
   next.skid = skid;
   if (engine) {
@@ -2022,67 +2231,147 @@ export function mountEntity(
   world.emit('vehicle-mounted', { actor, vehicle, seat: seatId });
   return true;
 }
+/** {@link unmountEntity}'s options. */
+export interface UnmountOptions {
+  /**
+   * The host has judged the vehicle a wreck it must let its occupant out of: one it has watched
+   * hold still while its state still reports speed (a body caught in something it cannot leave),
+   * or one whose occupant has asked again to get out where no door could open. The speed check is
+   * skipped, and a road vehicle is then left like one lying off its wheels: beside it, and on
+   * the nearest open ground when nowhere around it is clear. Aircraft and boats keep their rules.
+   */
+  wreck?: boolean;
+}
+
+/** How far beyond a road vehicle's footprint the climb-out search looks, nearest first (m). */
+const CLIMB_OUT_RINGS = [0.45, 1, 1.8, 2.8, 4.2] as const;
+/**
+ * The bearings it tries on each ring, in degrees from the vehicle's nose: beside the doors first,
+ * then the corners, then the ends.
+ */
+const CLIMB_OUT_BEARINGS = [90, -90, 60, -60, 120, -120, 30, -30, 150, -150, 0, 180] as const;
+
 /**
  * Step `actor` out of whatever it is mounted in, at the first of the vehicle's `exits` with
  * ground beside it that `env.canExit` accepts; the vehicle must be stopped (and an aircraft shut
  * down). Any seat may leave: a passenger leaving does not touch the controls, while the driver
- * leaving idles them (and shuts an aircraft's engine). Returns false when no exit works.
+ * leaving idles them (and shuts an aircraft's engine). A road vehicle whose doors are all blocked
+ * is climbed out of instead, on the nearest open ground around it, and a wreck (lying off its
+ * wheels, or `options.wreck`) can always be left: with nowhere around it clear, on the nearest
+ * ground beside it. Returns false when there is no way out.
  */
-export function unmountEntity(world: World, actor: string, env: VehicleEnvironment): boolean {
+export function unmountEntity(
+  world: World,
+  actor: string,
+  env: VehicleEnvironment,
+  options: UnmountOptions = {},
+): boolean {
   const mounted = world.get(actor, Mounted);
   if (!mounted) return false;
   if (!mountStopped(world, mounted.vehicle)) return false;
   const t = world.get(mounted.vehicle, Transform),
     mount = world.get(mounted.vehicle, Mountable);
-  if (!t || !mount || groundSpeed(world.get(mounted.vehicle, VehicleState)) > 0.7) return false;
-  const driver = mount.seats.find((s) => s.id === mounted.seat)?.role !== 'passenger';
+  const state = world.get(mounted.vehicle, VehicleState);
+  const spec = world.get(mounted.vehicle, Vehicle)?.spec;
+  const boat = world.has(mounted.vehicle, { name: 'boat' });
+  // Cars, trucks and cycles: not a boat, a rail car or an aircraft, whose exits are their rules.
+  const road =
+    spec !== undefined &&
+    !boat &&
+    spec.rail === undefined &&
+    !world.has(mounted.vehicle, { name: 'aircraft' });
+  const wreck = road && options.wreck === true;
+  if (!t || !mount || (!wreck && groundSpeed(state) > 0.7)) return false;
   // A car lying on its side or roof is left beside where it lies, not through its floor.
-  const overturned = world.get(mounted.vehicle, VehicleState)?.freeBody !== undefined;
+  const overturned = state?.freeBody !== undefined || wreck;
   const beside: TransformData = overturned ? { ...t, rot: vehicleRotation(yawOf(t.rot)) } : t;
   for (const offset of mount.exits) {
     const pos = vehicleLocalPoint(beside, offset);
     const ground = env.groundHeight(pos[0], pos[2], t.pos[1]);
-    if (
-      ground === undefined ||
-      (!overturned &&
-        m.abs(ground - (world.has(mounted.vehicle, { name: 'boat' }) ? pos[1] : t.pos[1])) > 0.6)
-    )
+    if (ground === undefined || (!overturned && m.abs(ground - (boat ? pos[1] : t.pos[1])) > 0.6))
       continue;
     pos[1] = ground + 0.02;
     if (env.canExit && !env.canExit(pos, actor, mounted.vehicle)) continue;
-    stopWalking(world, actor);
-    world.remove(actor, Mounted);
-    world.patch(actor, Transform, {
-      pos,
-      ...(overturned ||
-      world.get(mounted.vehicle, Vehicle)?.spec.cycle !== undefined ||
-      world.has(mounted.vehicle, { name: 'boat' })
-        ? { rot: vehicleRotation(yawOf(t.rot)) }
-        : {}),
-    });
-    if (driver) {
-      if (world.has(mounted.vehicle, { name: 'boat' }))
-        world.set(
-          mounted.vehicle,
-          { name: 'boatInput' },
-          { throttle: 0, steering: 0, anchor: true },
-        );
-      else
-        world.set(mounted.vehicle, VehicleInput, {
-          ...IDLE_VEHICLE_INPUT,
-          ...mechanismInput(world.get(mounted.vehicle, VehicleInput)),
-        });
-      if (world.has(mounted.vehicle, { name: 'aircraftInput' }))
-        world.patch(
-          mounted.vehicle,
-          { name: 'aircraftInput' },
-          { power: 0, engine: false, brake: true, pitch: 0, roll: 0, yaw: 0 },
-        );
-    }
-    world.emit('vehicle-unmounted', { actor, vehicle: mounted.vehicle });
-    return true;
+    return leaveMount(world, actor, mounted, mount, t, pos, overturned);
   }
+  if (!road || spec === undefined) return false;
+  // Every door blocked (a wall, a tree's crown, another car): climb out where there is room.
+  const ring = (distance: number, bearing: number): [number, number, number] => {
+    const sin = m.sin((bearing * m.PI) / 180);
+    const cos = m.cos((bearing * m.PI) / 180);
+    // On the footprint grown by `distance`: clear of the body at every bearing.
+    const reach = m.min(
+      m.abs(sin) > 1e-6 ? (spec.width / 2 + distance) / m.abs(sin) : Infinity,
+      m.abs(cos) > 1e-6 ? (spec.length / 2 + distance) / m.abs(cos) : Infinity,
+    );
+    return vehicleLocalPoint(beside, [sin * reach, 0, cos * reach]);
+  };
+  // A wreck's place may lie well above its ground (nose up against a trunk, or caught in a tree),
+  // but never so far that the ground found is under a bridge it lies on.
+  const level = (ground: number): boolean =>
+    overturned
+      ? ground <= t.pos[1] + 1.5 && ground >= t.pos[1] - spec.length - 2
+      : m.abs(ground - t.pos[1]) <= 0.6;
+  for (const distance of CLIMB_OUT_RINGS)
+    for (const bearing of CLIMB_OUT_BEARINGS) {
+      const pos = ring(distance, bearing);
+      const ground = env.groundHeight(pos[0], pos[2], t.pos[1]);
+      if (ground === undefined || !level(ground)) continue;
+      pos[1] = ground + 0.02;
+      if (env.canExit && !env.canExit(pos, actor, mounted.vehicle)) continue;
+      return leaveMount(world, actor, mounted, mount, t, pos, overturned);
+    }
+  if (!overturned) return false;
+  // A wreck with nowhere around it clear is still left: on the ground (not a deck or a crown
+  // that may be over it) nearest its side.
+  for (const distance of CLIMB_OUT_RINGS)
+    for (const bearing of CLIMB_OUT_BEARINGS) {
+      const pos = ring(distance, bearing);
+      const ground = env.groundHeight(pos[0], pos[2]);
+      if (ground === undefined || !level(ground)) continue;
+      pos[1] = ground + 0.02;
+      return leaveMount(world, actor, mounted, mount, t, pos, overturned);
+    }
   return false;
+}
+/** Take `actor` off its mount and stand it at `pos`, idling what it drove. */
+function leaveMount(
+  world: World,
+  actor: string,
+  mounted: MountedData,
+  mount: MountableData,
+  t: TransformData,
+  pos: [number, number, number],
+  overturned: boolean,
+): boolean {
+  const driver = mount.seats.find((s) => s.id === mounted.seat)?.role !== 'passenger';
+  stopWalking(world, actor);
+  world.remove(actor, Mounted);
+  world.patch(actor, Transform, {
+    pos,
+    ...(overturned ||
+    world.get(mounted.vehicle, Vehicle)?.spec.cycle !== undefined ||
+    world.has(mounted.vehicle, { name: 'boat' })
+      ? { rot: vehicleRotation(yawOf(t.rot)) }
+      : {}),
+  });
+  if (driver) {
+    if (world.has(mounted.vehicle, { name: 'boat' }))
+      world.set(mounted.vehicle, { name: 'boatInput' }, { throttle: 0, steering: 0, anchor: true });
+    else
+      world.set(mounted.vehicle, VehicleInput, {
+        ...IDLE_VEHICLE_INPUT,
+        ...mechanismInput(world.get(mounted.vehicle, VehicleInput)),
+      });
+    if (world.has(mounted.vehicle, { name: 'aircraftInput' }))
+      world.patch(
+        mounted.vehicle,
+        { name: 'aircraftInput' },
+        { power: 0, engine: false, brake: true, pitch: 0, roll: 0, yaw: 0 },
+      );
+  }
+  world.emit('vehicle-unmounted', { actor, vehicle: mounted.vehicle });
+  return true;
 }
 export function driveVehicle(world: World, actor: string, input: VehicleInputData): boolean {
   const mounted = world.get(actor, Mounted);

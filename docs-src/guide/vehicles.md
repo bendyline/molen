@@ -130,8 +130,9 @@ sounds or effects.
 
 A car whose spec has `wheels` (every calibrated road vehicle does) stands on four of them, each
 on its own strut. Each wheel carries its own load, meets its own patch of road (the host's
-`surface` is sampled under each, so two wheels on ice and two on asphalt is exactly that) and
-turns at its own speed: `vehicleState.wheelSpin` in rad/s and `wheelLoad` in newtons, front
+`surface` is sampled under each, so two wheels on ice and two on asphalt is exactly that, and
+so is its `groundHeight`: see [Uneven road](#uneven-road)) and turns at its own speed:
+`vehicleState.wheelSpin` in rad/s, `wheelLoad` in newtons and `wheelTravel` in meters, front
 left, front right, rear left, rear right.
 
 - **Wheelspin and lock-up are what the wheels do.** Engine torque reaches the driven wheels
@@ -184,6 +185,47 @@ makes every car neutral at any weight distribution.
 travel: the wheels move against the lean and stay on the road. At walking pace the car simply
 rolls where its wheels point, so it never turns in place and parks exactly.
 
+### Uneven road
+
+Each strut stands on the road under its own wheel. A car on four wheels is solved in a plane
+laid through the road under all four (`pitch`, `roll` and the transform's height follow that
+plane), and its body rides on its springs above it. Where the road under one wheel stands
+above the plane, or below it, that wheel's strut closes or opens by as much, and the body is
+moved only by what its springs and dampers pass on:
+
+- A bump under one wheel closes that wheel's strut and barely lifts the car. A sedan crossing a
+  6 cm hump with its left wheels at 30 km/h closes each left strut about 4 cm in turn, rises
+  about a centimeter and leans a degree.
+- A speed bump is taken by the front axle and, a wheelbase later, the rear.
+- A wheel over a pothole drops into it on its strut. Over a hole deeper than the strut is long
+  it hangs at the end of it, carrying nothing, while the other three hold the car up.
+- Standing with one wheel on a curb, the car is twisted onto it: that strut and the one
+  diagonally opposite close, and the other two open.
+- A crest unloads the springs and a dip loads them, as the road falls away or comes up faster
+  than the body follows. On a steady grade the car rides at its ordinary height.
+
+`vehicleState.wheelTravel` is how far the road holds each wheel up its strut from the ride
+height, in meters: positive closed, negative open, and never further open than the spring's
+own static deflection, where the wheel hangs clear. It is there in the air too (all four hang)
+and through a landing. `wheelRoad` and `wheelRoadRate` are the road under each wheel against
+the plane and how fast it is rising there; both are absent on a level road.
+
+A strut closes to one and a half times `wheels.travel` and no further. From there the road
+carries that corner of the car directly, as it would a car with no springs, so the foot of a
+ramp met far too fast still lifts the car up the ramp. A strut that was closed solid has spent
+its travel: it opens again slowly, against several times its usual damping, instead of
+throwing the car off the road it has just been carried up (`wheelSpent`, present only while
+one is opening).
+
+The host's `groundHeight` is asked under each wheel, every step. Answer with what a tire
+would rest on: a tire spans a crack between two road meshes and rolls over the lip of a
+painted line, and a host that reports them as steps will have them felt as steps.
+
+Draw the travel with the car visual: among its signals, `wheelTravelSignals(state.wheelTravel)`
+from `@bendyline/molen-client/vehicles` moves each wheel node up or down its strut by its own
+travel, and a wheel that stands between the corners (a third axle) by the travel of the struts
+beside it. Without those signals the wheels are placed from the body's lean alone.
+
 ### Off its wheels
 
 A car with `wheels` is in the plane of its road only while the road holds it there. It
@@ -217,7 +259,9 @@ still in roll and pitch, and on ground it could drive on. A car that has stopped
 wheels stays there: its driver can get out beside it, and `rightVehicle(world, id, env)` from
 `kernel/vehicles` sets a stopped car back on its wheels where it lies. Earth view and World Explorer do that on **Backspace**, with
 the repair. `vehicleState.freeBody` carries the body's velocity and angular velocity while
-it is free, and is absent on the road, so a keyframe taken in mid-air resumes there. A
+it is free, and is absent on the road, so a keyframe taken in mid-air resumes there. A free
+body the host's `canOccupy` blocks stays at its last free pose and keeps no vertical speed, so a
+wreck caught in a tree reports the stillness it has. A
 vehicle without `wheels` (the two-axle model, cycles, rail) is never released.
 
 Not modeled: one vehicle pushing or tipping another (other vehicles are static obstacles to
@@ -463,7 +507,13 @@ Passengers use the same mount contract. A `mountable` lists seats with a role: `
 drive, `passenger` seats ride. `mountEntity(world, actor, vehicle, 'passenger')` seats someone
 beside the driver (stopped vehicle, within `reach` of the seat), the `mounted-seats` system carries
 them along, and `unmountEntity` lets any seat out by the exits once the vehicle has stopped. A
-passenger climbing in or out leaves the driver's controls alone; the driver leaving idles them.
+road vehicle (not a boat, rail car or aircraft) whose exits are all blocked is climbed out of on
+the nearest open ground around its footprint that `canExit` accepts; standing on its wheels with
+nowhere clear, it keeps its occupant, who can drive out. A wreck (lying off its wheels, or
+`unmountEntity(world, actor, env, { wreck: true })` from a host that has watched it hold still
+while its state reports speed) is left whatever: beside it on the ground when nowhere around it
+is clear, and with `wreck` whatever speed it reports.
+A passenger climbing in or out leaves the driver's controls alone; the driver leaving idles them.
 `driveVehicle` accepts input only from a driver seat, and `self.occupied` engine sounds count only
 non-passenger seats. The entities pack's cars and the OH-6 have a `passenger` seat and the P-51D a
 rear one. In the Earth view, actors board and leave them (`{ kind: 'board', vehicle }` and
@@ -726,6 +776,41 @@ High). Coarser than 0.027 m, the vehicle casts no sun shadow; at 0.025 m or fine
 again. It still receives shadows from terrain, buildings, trees, other vehicles and clouds.
 `EarthVehicles` does this for the mounted vehicle from its `shadowTexel` field, which the Earth
 view and the world explorer set each frame (to `undefined` while the vehicle has its own map).
+
+### Screens and a moving map
+
+A road dashboard's centre screen is a box of `display-glass` with a still map printed on it.
+`findVehicleCenterDisplay(model, { eye: spec.driverEye })` finds its face in a loaded model: the
+largest display face square to the vehicle's long axis, on its centre line, on the seats' side and
+at least 15 by 8 cm, so a car with only a radio or only a driver's cluster has none.
+`findCockpitMapDisplay(model, { eye: spec.pilotEye, bindings: spec.visual.interior?.bindings })`
+finds an aircraft's map display: a glass NAV page's own map area (`avionics-terrain`) where it has
+one, otherwise the largest screen within the pilot's reach that the cockpit's live parts leave
+clear. A part a binding moves in front of a screen (a horizon card, a tape, an engine needle) is
+cut out of it, and at least half the screen must be left (a quarter of a panoramic display, which
+is used in portals), so a primary flight display is never covered and a G1000 MFD keeps its map
+pane beside its live engine strip. Parts that only follow heading, or are shown only while their
+system is available (a binding on a source ending `.available`), do not count. A black sheet counts as a screen only in a glass cockpit (one with a node named for a
+display, such as `PFD` or `DDI`, or an airframe's own display material), so a cockpit of round
+gauges has none.
+
+Both return the face's middle, normal, up direction and size in the model's frame, the node its
+mesh hangs from, and how far the printed symbology stands in front of the glass (`relief`).
+`createVehicleScreen(model, display)` lays a slab that deep on the face, beside the screen's own
+mesh so it moves and hides with the cabin: paint its `context` (a canvas of the face's aspect, 512
+pixels on its long side) and call `refresh()`; `dispose()` takes it off again. It is unlit, casts
+no shadow and is no obstacle to walkers.
+
+`EarthMovingMap` (in `@bendyline/molen-earth/client`) paints a moving map there: observe the
+human-features layer with `map.observer` and pass the map to `new EarthVehicles({ map, ... })` and
+`new EarthAircraft({ map, ... })`. While a road vehicle is boarded, its screen shows the streamed
+roads and water around it, turned so the way it is going is up, the street it is on along the
+bottom and north in a corner, zooming out with speed (about 260 m across standing, up to 1.1 km).
+A flown aircraft's display shows the same without the street, at 800 m across on the ground and
+half a minute of flight across at speed, up to 25 km; side streets drop out past 4.5 km across.
+They paint from the seat (the cockpit view) only, at most 30 times a second. `EarthMapScreen`
+keeps one map on whichever model a host of its own is in. `mountEarthView` does all this unless
+`movingMap: false`; World Explorer takes `?gps=0`.
 
 Surface objects expose `userData.vehicles: VehiclePlacement[]`; each record has an `id`, external
 type `kind`, `color`, resolved `spec`, absolute metric `position`, and `yaw`, with optional

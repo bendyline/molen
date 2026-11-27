@@ -1,4 +1,4 @@
-import type { AircraftSpec } from '@bendyline/molen-schema';
+import { type AircraftSpec, aircraftGearLayout } from '@bendyline/molen-schema';
 import { aircraftTailStrike } from './aircraft-collision';
 import { dmath as m } from './dmath';
 import {
@@ -60,10 +60,15 @@ export interface GearGeometry {
   stiffness: number;
 }
 
-/** Wheel speeds in rad/s and the load on each leg in N, in the order of the geometry's legs. */
+/**
+ * Wheel speeds in rad/s, the load on each leg in N, and how far the ground holds each strut
+ * closed from where it rests, m (at its full reach below rest where the wheel hangs clear), in
+ * the order of the geometry's legs.
+ */
 export interface GearState {
   spin: number[];
   load: number[];
+  travel: number[];
 }
 
 const G = 9.81;
@@ -82,17 +87,20 @@ export function aircraftGear(spec: AircraftSpec): GearGeometry {
   const known = geometries.get(spec);
   if (known) return known;
   const gear = spec.gear ?? {};
+  // Where the legs stand and how far their struts move is the schema's to say: a renderer
+  // draws the same legs.
+  const layout = aircraftGearLayout(spec);
   const helicopter = spec.model === 'helicopter';
   const weight = spec.mass * G;
-  const omega = m.TAU * (gear.frequency ?? (helicopter ? 2.2 : 1.4));
-  const ratio = gear.damping ?? (helicopter ? 0.55 : 0.65);
+  const omega = m.TAU * layout.frequency;
+  const ratio = layout.damping;
   const radius = gear.wheelRadius ?? m.clamp(0.012 * spec.length + 0.1, 0.15, 0.65);
   const leg = (x: number, z: number, load: number, extra: Partial<GearLeg>): GearLeg => ({
     arm: [x, -spec.centerOfMass[1], z],
     staticLoad: load,
     spring: (load / G) * omega * omega,
     damper: 2 * ratio * (load / G) * omega,
-    travel: gear.travel ?? (0.6 * G) / (omega * omega),
+    travel: layout.travel,
     radius,
     // A wheel and tire are about a hundredth of what they carry, most of it near the rim.
     inertia: 0.008 * (load / G) * radius * radius,
@@ -103,39 +111,41 @@ export function aircraftGear(spec: AircraftSpec): GearGeometry {
   });
   let geometry: GearGeometry;
   if (helicopter) {
-    const rotor = spec.helicopter?.rotorRadius ?? spec.span / 2;
-    const track = gear.track ?? 0.44 * rotor;
-    const base = gear.wheelbase ?? 0.22 * spec.length;
-    const legs: GearLeg[] = [];
-    for (const z of [base / 2, -base / 2])
-      for (const x of [track / 2, -track / 2])
-        legs.push(leg(x, z, weight / 4, { skid: true, radius: 0.05 }));
+    const legs = layout.legs.map((at) => leg(at.x, at.z, weight / 4, { skid: true, radius: 0.05 }));
     // Steel on a hard surface slides at about 0.4: a run-on landing skids to a stop on its
     // skids, where a tire's grip would trip it onto its nose.
-    geometry = { legs, tail: undefined, wheelbase: base, friction: 0.4, stiffness: 10 };
+    geometry = {
+      legs,
+      tail: undefined,
+      wheelbase: layout.wheelbase,
+      friction: 0.4,
+      stiffness: 10,
+    };
   } else {
-    const tail = spec.airplane?.tailwheel === true;
-    const wheelbase = gear.wheelbase ?? (tail ? 0.55 : 0.33) * spec.length;
+    const tail = layout.tailwheel;
+    const wheelbase = layout.wheelbase;
     // The steepest attitude on the wheels: the authored limit, or sooner where the airframe's
     // own tail would meet the runway.
     const steepest = m.max(
       0,
       m.min(spec.airplane?.maxGroundPitch ?? 0, aircraftTailStrike(spec).angle - 0.015),
     );
-    const track = gear.track ?? 0.2 * spec.span;
-    const share = gear.auxiliaryShare ?? (tail ? 0.07 : 0.1);
-    const mainZ = (tail ? share : -share) * wheelbase;
-    const smallZ = (tail ? share - 1 : 1 - share) * wheelbase;
+    const share = layout.auxiliaryShare;
+    const [small, left, right] = layout.legs as [
+      (typeof layout.legs)[number],
+      (typeof layout.legs)[number],
+      (typeof layout.legs)[number],
+    ];
     const main = (weight * (1 - share)) / 2;
     geometry = {
       legs: [
-        leg(0, smallZ, weight * share, {
+        leg(small.x, small.z, weight * share, {
           steer: tail ? -1 : 1,
           radius: 0.6 * radius,
           ...(tail ? { squat: wheelbase * m.tan(steepest) } : {}),
         }),
-        leg(track / 2, mainZ, main, { brake: 0.5 }),
-        leg(-track / 2, mainZ, main, { brake: 0.5 }),
+        leg(left.x, left.z, main, { brake: 0.5 }),
+        leg(right.x, right.z, main, { brake: 0.5 }),
       ],
       tail: tail ? 0 : undefined,
       wheelbase,
@@ -152,7 +162,13 @@ export function initialGearState(geometry: GearGeometry): GearState {
   return {
     spin: geometry.legs.map(() => 0),
     load: geometry.legs.map((leg) => leg.staticLoad),
+    travel: geometry.legs.map(() => 0),
   };
+}
+
+/** Each strut at its full reach below where it rests: the gear of an aircraft clear of the ground. */
+export function hangingGear(geometry: GearGeometry): number[] {
+  return geometry.legs.map((leg) => -leg.staticLoad / leg.spring);
 }
 
 export interface GearInput {
@@ -269,8 +285,10 @@ export function stepGear(state: GearState, input: GearInput): GearStep {
   const previous = state.load;
   const load = legs.map(() => 0);
   const spin = [...state.spin];
+  const travel = hangingGear(geometry);
   if (upright <= GEAR_UPRIGHT) {
     state.load = load;
+    state.travel = travel;
     return none;
   }
   const force: Vec3 = [0, 0, 0];
@@ -308,6 +326,8 @@ export function stepGear(state: GearState, input: GearInput): GearStep {
     presses.push(pressed);
     if (pressed <= -leg.staticLoad / leg.spring) continue;
     const rate = -dot(velocities[i] as Vec3, normal) / upright;
+    // Where the substep leaves the strut: what it was pressed to, carried on at its own rate.
+    travel[i] = m.max(travel[i] ?? 0, pressed + rate * h);
     const carried =
       leg.squat !== undefined && pressed > 0
         ? // Pressed down, a tailwheel gives: a quarter more than its resting load at the end of its
@@ -450,5 +470,6 @@ export function stepGear(state: GearState, input: GearInput): GearStep {
   }
   state.spin = spin;
   state.load = load;
+  state.travel = travel;
   return { ok: true, force, moment, loaded, weight, sink, skid };
 }

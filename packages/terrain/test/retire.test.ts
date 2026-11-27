@@ -167,9 +167,10 @@ describe('retiring disposed terrain content from the lists a view walks', () => 
       bore = createTerrainTunnelObject(road, context);
     layer.add(bore);
     root.add(layer);
-    expect(sampleTerrainTunnel(root, 100, 13, 100)).toBeDefined();
+    // Under level ground the bore goes down at its grade: at its middle its floor is 3.12 m.
+    expect(sampleTerrainTunnel(root, 100, 5, 100)).toBeDefined();
     // Still attached and visible: only leaving the list stops it answering.
     retireTerrainObjects(layer);
-    expect(sampleTerrainTunnel(root, 100, 13, 100)).toBeUndefined();
+    expect(sampleTerrainTunnel(root, 100, 5, 100)).toBeUndefined();
   });
 });

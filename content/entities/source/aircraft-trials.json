@@ -584,7 +584,7 @@
     "rotor-bell-407": {
       "url": "https://www.easa.europa.eu/en/downloads/7909/en",
       "rights": "Facts only; no text, tables or images reproduced",
-      "supports": "EASA type certificate data sheet and Bell 407 product specification: main and tail rotor blade counts, chords, speeds and positions, and where given the hub's hinge offset, shaft tilt, Lock number, fin and stabilizer areas, flat-plate area and moments of inertia. Also https://web.archive.org/web/20260308164443/https://www.bellflight.com/-/media/site-specific/bell-flight/documents/products/407-gxi/bell-407gxi-product-specifications.pdf and https://aerospaceweb.org/question/helicopters/q0212b.shtml."
+      "supports": "EASA type certificate data sheet and Bell 407 product specification: main and tail rotor blade counts, chords, speeds and positions, and where given the hub's hinge offset, shaft tilt, Lock number, fin and stabilizer areas, flat-plate area and moments of inertia. Also https://web.archive.org/web/20260308164443/https://www.bellflight.com/-/media/site-specific/bell-flight/documents/products/407-gxi/bell-407gxi-product-specifications.pdf, https://aerospaceweb.org/question/helicopters/q0212b.shtml and https://vertipedia.vtol.org/aircraft/getAircraft?aircraftid=102 (tail rotor 2,500 rpm, chord 0.160 m)."
     },
     "rotor-bell-412ep": {
       "url": "https://www.easa.europa.eu/en/downloads/20671/en",
@@ -615,6 +615,36 @@
       "url": "https://www.easa.europa.eu/en/downloads/7949/en",
       "rights": "Facts only; no text, tables or images reproduced",
       "supports": "EASA type certificate data sheet R.006: main and tail rotor blade counts, chords, speeds and positions, and where given the hub's hinge offset, shaft tilt, Lock number, fin and stabilizer areas, flat-plate area and moments of inertia. Also https://www.scribd.com/document/796863208/Chapter-63 and https://vertipedia.vtol.org/aircraft/getAircraft/aircraftID/94."
+    },
+    "vne-oh6": {
+      "url": "https://en.wikipedia.org/wiki/Hughes_OH-6_Cayuse",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "Wikipedia: Hughes OH-6 Cayuse, Specifications (OH-6A): never-exceed speed 130 kt at sea level."
+    },
+    "vne-robinson-r44": {
+      "url": "https://www.caa.co.uk/Documents/Download/3941/0971aecc-3c7d-48aa-b0b1-b4df9c61e887/3739",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "UK CAA type certificate data sheet UK.TC.R.00141 (R44): power-on VNE 130 KIAS below 998 kg; cyclic pitch 13.5 to 14.25 degrees forward and aft, 7.5 to 8.5 left and 6 to 7 right."
+    },
+    "vne-uh-1h": {
+      "url": "https://www.thisdayinaviation.com/tag/bell-uh-1h-iroquois/",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "This Day in Aviation: UH-1H VNE 124 kt."
+    },
+    "vne-airbus-h125": {
+      "url": "https://www.easa.europa.eu/en/downloads/7945/en",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "EASA type certificate data sheet R.008 (AS 350 B3): power-on VNE 155 KIAS at sea level, falling 3 kt per 1,000 ft."
+    },
+    "vne-airbus-h145": {
+      "url": "https://www.easa.europa.eu/en/downloads/7941/en",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "EASA type certificate data sheet R.010 (BK117 D-2): VNE 150 KIAS at sea level."
+    },
+    "vne-aw139": {
+      "url": "https://www.easa.europa.eu/en/downloads/7949/en",
+      "rights": "Facts only; no text, tables or images reproduced",
+      "supports": "EASA type certificate data sheet R.006 issue 27 (AW139): VNE 167 KIAS; longitudinal cyclic 16 degrees forward and 10 back, lateral 9 each way, tail rotor pitch -10 to +24 degrees."
     }
   },
   "aircraft": [
@@ -2409,7 +2439,9 @@
             "yaw": 979
           }
         },
-        "rotorSource": "rotor-oh6"
+        "rotorSource": "rotor-oh6",
+        "neverExceedKt": 130,
+        "neverExceedSource": "vne-oh6"
       },
       "cards": [
         {
@@ -2477,7 +2509,9 @@
             "armM": 5.89
           }
         },
-        "rotorSource": "rotor-robinson-r44"
+        "rotorSource": "rotor-robinson-r44",
+        "neverExceedKt": 130,
+        "neverExceedSource": "vne-robinson-r44"
       },
       "cards": [
         {
@@ -2600,6 +2634,7 @@
             "blades": 2,
             "diameterM": 1.65,
             "chordM": 0.16,
+            "rpm": 2500,
             "armM": 6.46
           }
         },
@@ -2739,7 +2774,9 @@
             "yaw": 12541
           }
         },
-        "rotorSource": "rotor-uh-1h"
+        "rotorSource": "rotor-uh-1h",
+        "neverExceedKt": 124,
+        "neverExceedSource": "vne-uh-1h"
       },
       "cards": [
         {
@@ -2913,7 +2950,9 @@
             "diameterM": 2.7
           }
         },
-        "rotorSource": "rotor-aw139"
+        "rotorSource": "rotor-aw139",
+        "neverExceedKt": 167,
+        "neverExceedSource": "vne-aw139"
       },
       "cards": [
         {
@@ -2963,7 +3002,9 @@
             "diameterM": 1.86
           }
         },
-        "rotorSource": "rotor-airbus-h125"
+        "rotorSource": "rotor-airbus-h125",
+        "neverExceedKt": 155,
+        "neverExceedSource": "vne-airbus-h125"
       },
       "cards": [
         {
@@ -3013,7 +3054,9 @@
             "diameterM": 1.15
           }
         },
-        "rotorSource": "rotor-airbus-h145"
+        "rotorSource": "rotor-airbus-h145",
+        "neverExceedKt": 150,
+        "neverExceedSource": "vne-airbus-h145"
       },
       "cards": [
         {

@@ -8,6 +8,7 @@ import {
   cleanGeometry,
   detailKit,
   ellipsoid,
+  fittedFloor,
   group,
   loft,
   mat,
@@ -61,6 +62,56 @@ function foil(d, ribs, material) {
     }
   sheet(d, rings[0], material, [0, -1, 0]);
   sheet(d, rings.at(-1), material, [0, 1, 0]);
+}
+
+/** The lofted skin's ring at station z (linear between the authored rings). */
+function ringAt(rings, z) {
+  let i = rings.findIndex((r, n) => n < rings.length - 1 && z <= r.z && z >= rings[n + 1].z);
+  if (i < 0) i = z > rings[0].z ? 0 : rings.length - 2;
+  const a = rings[i].points,
+    b = rings[i + 1].points,
+    u = Math.min(1, Math.max(0, (z - rings[i].z) / (rings[i + 1].z - rings[i].z)));
+  return a.map((q, j) => [q[0] + (b[j][0] - q[0]) * u, q[1] + (b[j][1] - q[1]) * u]);
+}
+/** Skin half width at station z and height y; cabin trim is kept inside it. */
+function skinHalfWidth(rings, z, y) {
+  const q = ringAt(rings, z);
+  let x = 0;
+  for (let j = 0; j < q.length; j++) {
+    const [ax, ay] = q[j],
+      [bx, by] = q[(j + 1) % q.length];
+    if ((ay - y) * (by - y) <= 0 && ay !== by)
+      x = Math.max(x, Math.abs(ax + ((bx - ax) * (y - ay)) / (by - ay)));
+  }
+  return x;
+}
+/** Skin roof height at station z and lateral offset x. */
+function skinRoof(rings, z, x) {
+  const q = ringAt(rings, z);
+  let y = -Infinity;
+  for (let j = 0; j < q.length; j++) {
+    const [ax, ay] = q[j],
+      [bx, by] = q[(j + 1) % q.length];
+    if ((ax - x) * (bx - x) <= 0 && ax !== bx)
+      y = Math.max(y, ay + ((by - ay) * (x - ax)) / (bx - ax));
+  }
+  return y;
+}
+/** Clamp an instrument's fixed mask (a square larger than its aperture) below a panel top:
+ * otherwise the black square stands above the glareshield in the pilot's view. */
+function trimMask(frame, top) {
+  frame.traverse((mesh) => {
+    if (!mesh.isMesh) return;
+    let offset = 0;
+    for (let node = mesh; node !== frame; node = node.parent) {
+      if (/-bank$/.test(node.name)) return;
+      offset += node.position.y;
+    }
+    const position = mesh.geometry.getAttribute('position'),
+      limit = top - frame.position.y - offset;
+    for (let i = 0; i < position.count; i++) if (position.getY(i) > limit) position.setY(i, limit);
+    position.needsUpdate = true;
+  });
 }
 
 export const caravanFrame = () => ({
@@ -171,7 +222,7 @@ export function buildCaravan(s) {
   };
   loft(d, rings, paint, {
     skip: (i, j) =>
-      i < 3 || (i === 3 && [0, 1, 8, 9].includes(j)) || (i >= 4 && i <= 11 && [2, 7].includes(j)),
+      i < 3 || (i === 3 && [0, 1, 8, 9].includes(j)) || (i >= 3 && i <= 11 && [2, 7].includes(j)),
   });
   loft(d, rings.slice(0, 4), paint, { caps: false, smooth: true });
   for (const j of [0, 1, 8, 9])
@@ -185,8 +236,9 @@ export function buildCaravan(s) {
   d.rod(p(3, 0), p(4, 0), 0.017, paint);
   for (const side of [-1, 1]) {
     const j = side > 0 ? 2 : 7;
-    // Pilot door plus seven passenger window bays. The roof shoulder is separate from glazing.
-    for (let i = 4; i <= 11; i++) {
+    // Windscreen side pane, pilot door plus seven passenger window bays. The roof shoulder is
+    // separate from glazing.
+    for (let i = 3; i <= 11; i++) {
       const a = p(i, j),
         b = p(i + 1, j),
         c = p(i + 1, j + 1),
@@ -197,30 +249,51 @@ export function buildCaravan(s) {
           (_, n) => (a[n] * (1 - u) + b[n] * u) * (1 - t) + (e[n] * (1 - u) + c[n] * u) * t,
         );
       };
+      // Bay fractions (u aft along the bay, v down from the roof shoulder) of a side-view point.
+      const uv = ([z, y]) => {
+        const u = (rings[i].z - z) / (rings[i].z - rings[i + 1].z),
+          top = p(i, 2)[1] * (1 - u) + p(i + 1, 2)[1] * u,
+          bottom = p(i, 3)[1] * (1 - u) + p(i + 1, 3)[1] * u;
+        return [u, (top - y) / (top - bottom)];
+      };
       const pts =
-        i === 4
-          ? [
-              [0.06, 0.31],
-              [0.25, 0.08],
-              [0.9, 0.1],
-              [0.9, 0.4],
-              [0.12, 0.43],
-            ]
-          : // Rounded rectangles (corner arcs in bay fractions), not chamfered octagons.
+        i === 3
+          ? // The windscreen wraps down the side to the cowl line ahead of the crew door
+            // (N727EX and PS-CNC photos); this panel was solid skin.
             [
-              [0.81, 0.38, 0],
-              [0.2, 0.38, 1],
-              [0.2, 0.25, 2],
-              [0.81, 0.25, 3],
-            ].flatMap(([u, v, k]) =>
-              [0, 1, 2, 3].map((n) => {
-                const angle = ((k + n / 3) * Math.PI) / 2;
-                return [u + 0.07 * Math.cos(angle), v + 0.07 * Math.sin(angle)];
-              }),
-            );
+              [2.8, 2.07],
+              [2.62, 2.12],
+              [1.73, 2.53],
+              [1.7, 2.49],
+              [1.95, 1.99],
+              [2.7, 2.04],
+            ].map(uv)
+          : i === 4
+            ? // Crew door window: large, its front edge raked parallel to the door frame.
+              [
+                [0.36, 0.07],
+                [0.9, 0.07],
+                [0.94, 0.11],
+                [0.94, 0.44],
+                [0.9, 0.48],
+                [0.05, 0.48],
+                [0.02, 0.44],
+              ]
+            : // Rounded rectangles (corner arcs in bay fractions), not chamfered octagons.
+              [
+                [0.81, 0.38, 0],
+                [0.2, 0.38, 1],
+                [0.2, 0.25, 2],
+                [0.81, 0.25, 3],
+              ].flatMap(([u, v, k]) =>
+                [0, 1, 2, 3].map((n) => {
+                  const angle = ((k + n / 3) * Math.PI) / 2;
+                  return [u + 0.07 * Math.cos(angle), v + 0.07 * Math.sin(angle)];
+                }),
+              );
       const h = pts.map(([u, v]) => q(u, v));
       sheet(d, [a, b, c, e], paint, [side, 0, 0], [h]);
-      sheet(d, h, i === 4 ? glass : tinted, [side, 0, 0]);
+      sheet(d, h, i <= 4 ? glass : tinted, [side, 0, 0]);
       outline(d, h, 0.005, dark);
     }
     for (let i = 0; i < stations.length - 1; i++) {
@@ -608,7 +681,7 @@ export function buildCaravan(s) {
       ]);
   }
   d.finish();
-  const interior = cockpit(root, { paint, metal, dark });
+  const interior = cockpit(root, { paint, metal, dark, rings });
   cleanGeometry(root);
   return {
     root,
@@ -680,31 +753,47 @@ function cockpit(root, m) {
       z,
     ]),
   );
+  // Panel, brow and coaming corners stay inside the windscreen and cowl skin.
+  const fit = ([x, y, zz], margin = 0.014) => {
+    const limit = skinHalfWidth(m.rings, zz, y) - margin;
+    return [Math.abs(x) > limit ? Math.sign(x) * limit : x, y, zz];
+  };
   sheet(
     d,
-    edge.map((p) => at(...p)),
+    edge.map((p) => fit(at(...p))),
     face,
     [0, 0, -1],
     holes,
   );
   sheet(
     d,
-    edge.map((p) => at(...p, 0.07)),
+    edge.map((p) => fit(at(...p, 0.07))),
     m.dark,
     [0, 0, 1],
   );
-  const brow = edge.slice(1, -1).map((p) => at(...p, -0.018));
+  const brow = edge.slice(1, -1).map((p) => fit(at(...p, -0.018), 0.035));
   outline(d, brow, 0.018, m.dark, false);
   for (let i = 0; i < brow.length - 1; i++) {
     const a = brow[i],
       b = brow[i + 1],
-      forward = (x) => [
-        x,
-        2.24 -
-          (Math.abs(x) < 0.51 ? (0.035 * Math.abs(x)) / 0.51 : 0.035 + (Math.abs(x) - 0.51) * 0.75),
-        2.84,
-      ];
+      forward = (x) =>
+        fit([
+          x,
+          2.24 -
+            (Math.abs(x) < 0.51
+              ? (0.035 * Math.abs(x)) / 0.51
+              : 0.035 + (Math.abs(x) - 0.51) * 0.75),
+          2.84,
+        ]);
     quad(d, a, b, forward(b[0]), forward(a[0]), m.dark, [0, 1, 0]);
+    // Padded glareshield hood overhanging the displays toward the crew (cockpit photos: a deep
+    // black hood, not a bare rail along the panel top).
+    if (a[1] > 2.2 && b[1] > 2.2) {
+      const lip = (q) => [q[0], q[1] - 0.012, q[2] - 0.13],
+        drop = (q) => [q[0], q[1] - 0.04, q[2] - 0.125];
+      quad(d, a, b, lip(b), lip(a), m.dark, [0, 1, 0]);
+      quad(d, lip(a), lip(b), drop(b), drop(a), m.dark, [0, 0, -1]);
+    }
   }
   for (const [u, v] of screens) {
     const x = px(u),
@@ -751,7 +840,7 @@ function cockpit(root, m) {
   const pfd = group(cabin, 'Caravan-PFD', at(480, 213)),
     pd = detailKit(pfd, 'Caravan-PFD-face'),
     pi = instrumentGeometry(pfd, 'Caravan-PFD');
-  pi.horizon('horizon', [0, 0.022, 0.014], 0.13, 0.085);
+  trimMask(pi.horizon('horizon', [0, 0.022, 0.014], 0.13, 0.085), py(44) - py(213) - 0.012);
   sheet(
     pd,
     rect(0, 0, sw, sh, 0.008),
@@ -1038,7 +1127,22 @@ function cockpit(root, m) {
       { node: g.name, source: 'pitchInput', property: 'position', axis: 'z', scale: -0.05 },
     );
   }
-  d.box([1.6, 0.04, 6.35], [0, 1.3, -0.5], m.dark);
+  // Firewall kick panel behind the pedals: the footwell showed the bare inside of the cowl skin.
+  const firewall = [1.32, 1.45, 1.6, 1.75, 1.93].map((y) => [
+    skinHalfWidth(m.rings, 2.66, y) - 0.015,
+    y,
+  ]);
+  sheet(
+    d,
+    [
+      ...firewall.map(([x, y]) => [x, y, 2.66]),
+      ...firewall.toReversed().map(([x, y]) => [-x, y, 2.66]),
+    ],
+    face,
+    [0, 0, -1],
+  );
+  // Cabin floor trimmed to the skin: the flat 1.6 m slab stood out of the cowl and tail cone.
+  fittedFloor(d, m.rings, m.dark, { y: 1.32, front: 2.675, back: -3.675, width: 1.6 });
   for (const zz of [1.5, 0.3, -0.65, -1.6, -2.55, -3.5])
     for (const x of [-0.44, 0.44]) {
       // Pilot seats ride high on their rails: eye 0.8 m above the cushion, thighs under the yoke.
@@ -1060,12 +1164,38 @@ function cockpit(root, m) {
       d.box([0.055, 0.015, 0.045], [x + 0.04, 1.67 + lift, zz + 0.09], m.metal);
     }
   for (const sign of [-1, 1]) {
-    d.box([0.025, 0.25, 5.25], [sign * 0.82, 1.55, -1.12], liner);
-    d.rod([sign * 0.78, 1.8, 1.85], [sign * 0.78, 1.8, 1.25], 0.024, m.dark);
+    // Sidewall liner follows the skin as the cabin narrows aft (a straight panel cut through
+    // the tail cone from outside).
+    const wall = [];
+    for (let zz = 1.505; zz > -3.75; zz -= 0.25) wall.push(Math.max(zz, -3.745));
+    const inside = (zz) =>
+      Math.min(
+        0.82,
+        skinHalfWidth(m.rings, zz, 1.425) - 0.025,
+        skinHalfWidth(m.rings, zz, 1.675) - 0.025,
+      );
+    for (let i = 0; i < wall.length - 1; i++) {
+      const a = wall[i],
+        b = wall[i + 1],
+        xa = sign * inside(a),
+        xb = sign * inside(b);
+      quad(d, [xa, 1.425, a], [xb, 1.425, b], [xb, 1.675, b], [xa, 1.675, a], liner, [-sign, 0, 0]);
+      quad(
+        d,
+        [xa, 1.675, a],
+        [xb, 1.675, b],
+        [xb + sign * 0.012, 1.675, b],
+        [xa + sign * 0.012, 1.675, a],
+        liner,
+        [0, 1, 0],
+      );
+    }
+    d.rod([sign * 0.74, 1.8, 1.85], [sign * 0.74, 1.8, 1.25], 0.024, m.dark);
     for (const off of [-0.1, 0.1])
       d.box([0.15, 0.065, 0.06], [sign * 0.4 + off, 1.44, 2.58], m.metal);
     for (let z = -3.3; z < 1.4; z += 0.95) {
-      const ceiling = 2.67 + Math.max(0, z) * 0.1;
+      // Passenger vents and lights hang under the headliner, never through the roof.
+      const ceiling = Math.min(2.67 + Math.max(0, z) * 0.1, skinRoof(m.rings, z, 0.63) - 0.035);
       d.box([0.14, 0.025, 0.23], [sign * 0.56, ceiling, z], liner);
       d.add(new T.CylinderGeometry(0.032, 0.032, 0.018, 12), m.dark, [
         sign * 0.56,
@@ -1087,7 +1217,7 @@ function cockpit(root, m) {
         -0.06,
       ]);
   ed.finish();
-  const overhead = group(cabin, 'Caravan-overhead', [0, 2.68, 1.6]);
+  const overhead = group(cabin, 'Caravan-overhead', [0, 2.675, 1.52]);
   const od = detailKit(overhead, overhead.name);
   beveledBox(od, [0.47, 0.055, 0.35], [0, 0, 0], liner);
   for (const side of [-1, 1]) {
@@ -1096,7 +1226,7 @@ function cockpit(root, m) {
     od.box([0.05, 0.025, 0.065], [side * 0.1, -0.045, -0.09], black);
     od.rod([side * 0.1, -0.045, -0.09], [side * 0.1, -0.068, -0.04], 0.009, m.metal);
     // Sun visors stowed flat on the ceiling behind the header; deployed they fill the seat view.
-    const visor = group(cabin, `Caravan-visor-${side}`, [side * 0.43, 2.69, 1.63]);
+    const visor = group(cabin, `Caravan-visor-${side}`, [side * 0.4, 2.662, 1.58]);
     visor.rotation.x = Math.PI / 2;
     const vd = detailKit(visor, visor.name);
     vd.box([0.36, 0.13, 0.012], [0, 0, 0], m.dark);

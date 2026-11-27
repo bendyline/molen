@@ -20,8 +20,10 @@ for (const path of project.types) {
     if (!c?.aircraft && !c?.vehicle && !c?.boat) continue;
     vehicles.add(id);
     const data = liverySchema.parse(catalog.models[id]);
-    if (data.variants.length < 2 || data.variants.length > 4)
-      throw new Error(`${id}: expected 2–4 curated liveries`);
+    // Aircraft carry three to eight operator schemes; other vehicles two to four.
+    const [fewest, most] = c.aircraft ? [3, 8] : [2, 4];
+    if (data.variants.length < fewest || data.variants.length > most)
+      throw new Error(`${id}: expected ${fewest}–${most} curated liveries`);
     const distinct = new Set();
     for (const variant of data.variants) {
       if (variant.provenance.kind === 'original' || !variant.provenance.references.length)

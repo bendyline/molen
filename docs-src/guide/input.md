@@ -93,7 +93,11 @@ const off = input.onPress('flaps.fullUp', () => sendCommand('flaps', { position:
 ```
 
 These indices are examples, not universal controller layouts. Use discovery/learning to bind
-actual hardware. `getProfile(name)` returns a detached JSON-compatible profile (`getProfile()` reads the active one);
+actual hardware. A binding's `device` narrows it to one controller: `id` (the browser's
+`Gamepad.id`), `index`, or `mapping`. `mapping: 'standard'` matches only pads the browser lays
+out as the standard gamepad, where axes 2 and 3 are the right stick. `mapping: ''` matches only
+other devices. Bind standard-layout assumptions this way, so a flight stick's throttle on the same
+axis index is left alone. `getProfile(name)` returns a detached JSON-compatible profile (`getProfile()` reads the active one);
 `defineProfile(name, profile)` validates and replaces it atomically. Pass `undefined` for the root
 profile. `profileNames()` lists named profiles; `activeProfile` is the selection.
 `onProfilesChanged` lets custom UI observe selection or definition changes.

@@ -81,8 +81,15 @@ for (const [type, data] of Object.entries(catalog)) {
   }
   if (!capture || (selected && !selected.includes(type) && !selected.includes(key)))
     throw new Error(`${key}: stale preview; run preview-liveries.mjs --capture --ids=${key}`);
+  // Four variants per row (aircraft carry up to eight); a sheet of four or fewer is one row,
+  // as before.
+  const perRow = 4;
+  const columns = Math.min(data.variants.length, perRow);
+  const rows = Math.ceil(data.variants.length / perRow);
   const composites = [];
   for (const [i, variant] of data.variants.entries()) {
+    const left = (i % perRow) * 500,
+      top = Math.floor(i / perRow) * 365;
     // Pass the full component data: merging a partial definition can retain obsolete slots.
     const scene = {
       format: 'molen/scene@3',
@@ -130,14 +137,14 @@ for (const [type, data] of Object.entries(catalog)) {
         .resize(500, 310, { fit: 'contain', background: '#b2cde4' })
         .png()
         .toBuffer(),
-      left: i * 500,
-      top: 0,
+      left,
+      top,
     });
     const label = `<svg width="500" height="55"><rect width="500" height="55" fill="#f3efe6"/><text x="10" y="22" font-family="Arial" font-size="16">${escapeXml(variant.label)}</text><text x="10" y="43" font-family="Arial" font-size="12">${escapeXml(key)} · ${escapeXml(variant.id)}</text></svg>`;
-    composites.push({ input: Buffer.from(label), left: i * 500, top: 310 });
+    composites.push({ input: Buffer.from(label), left, top: top + 310 });
   }
   const png = await sharp({
-    create: { width: 500 * data.variants.length, height: 365, channels: 3, background: '#f3efe6' },
+    create: { width: 500 * columns, height: 365 * rows, channels: 3, background: '#f3efe6' },
   })
     .composite(composites)
     .png({ compressionLevel: 9 })

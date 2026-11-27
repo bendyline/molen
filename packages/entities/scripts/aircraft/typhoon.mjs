@@ -29,6 +29,38 @@ export const typhoonFrame = () => ({
   panelZ: 5.55,
   floor: 1.72,
 });
+/** Ray-casts onto the triangles `build(kit)` emits (the same quads the airframe uses) and lifts
+ * the hit along the face normal toward the caster, for laying panel lines on the actual skin. */
+function surfaceCaster(build, lift = 0.005) {
+  const holder = new T.Group(),
+    surface = new T.MeshBasicMaterial({ side: T.DoubleSide });
+  build({ add: (geometry) => holder.add(new T.Mesh(geometry, surface)) });
+  holder.updateMatrixWorld(true);
+  const ray = new T.Raycaster();
+  return (origin, direction) => {
+    const dir = new T.Vector3(...direction).normalize();
+    ray.set(new T.Vector3(...origin), dir);
+    const hit = ray.intersectObject(holder, true)[0];
+    if (!hit) throw Error(`Typhoon marking misses the skin at ${origin}`);
+    const normal = hit.face.normal.clone();
+    if (normal.dot(dir) > 0) normal.negate();
+    return hit.point.addScaledVector(normal, lift).toArray();
+  };
+}
+/** Points every `step` metres along a polyline of 2-D corners, each mapped by `at`. A straight
+ * tube between two corners would cut through the convex creases between loft facets. */
+function sampledPath(corners, at, step, closed = true) {
+  const points = [];
+  for (let i = 0; i < (closed ? corners.length : corners.length - 1); i++) {
+    const [ua, va] = corners[i],
+      [ub, vb] = corners[(i + 1) % corners.length],
+      steps = Math.max(1, Math.ceil(Math.hypot(ub - ua, vb - va) / step));
+    for (let k = 0; k < steps; k++)
+      points.push(at(ua + ((ub - ua) * k) / steps, va + ((vb - va) * k) / steps));
+  }
+  if (!closed) points.push(at(...corners.at(-1)));
+  return points;
+}
 export function buildTyphoon(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -194,22 +226,11 @@ export function buildTyphoon(s) {
       .map(([x, y]) => [-x, y]),
   ];
   loft(d, aft, paint, { caps: false });
-  const sideSkin = (side, y, z) => {
-    const i = Math.max(
-      0,
-      aft.findIndex((a, i) => i < aft.length - 1 && z <= a.z && z >= aft[i + 1].z),
-    );
-    const a = aft[i],
-      b = aft[i + 1],
-      t = (a.z - z) / (a.z - b.z);
-    const pts = a.points.slice(0, 6).map((p, j) => p.map((v, k) => v + (b.points[j][k] - v) * t));
-    let j = pts.findIndex((p, j) => j < pts.length - 1 && y <= p[1] && y >= pts[j + 1][1]);
-    if (j < 0) j = pts.length - 2;
-    const p = pts[j],
-      q = pts[j + 1],
-      x = p[0] + ((q[0] - p[0]) * (y - p[1])) / (q[1] - p[1]);
-    return [side * (x + 0.005), y, z];
-  };
+  // Markings are laid on the loft's actual triangles (hit from outboard, lifted along the face
+  // normal). Corners interpolated between rings sat under the warped quads' diagonals, so each
+  // panel rectangle showed only broken fragments.
+  const onSkin = surfaceCaster((kit) => loft(kit, aft, null, { caps: false, smooth: false }));
+  const sideSkin = (side, y, z) => onSkin([side * 3, y, z], [-side, 0, 0]);
   // Fill the forebody/engine-shoulder join; the section change must not leave open slivers.
   // A fan from the forebody ring to the shoulder ring rounds the step instead of one flat facet.
   const shoulderFore = [fore[7].points[6], fore[7].points[5], fore[7].points[4], [0.43, 2.82]],
@@ -375,11 +396,11 @@ export function buildTyphoon(s) {
       return stations[0].map((v, i) => (i === 0 ? x : v + (stations[1][i] - v) * t));
     };
     const refl = (q) => q.map(([x, ...rest]) => [side * x, ...rest]);
-    wing(
-      d,
-      refl(stations.map(([x, y, a, b, h]) => [x, y, a - (a - b) * 0.1, b + (a - b) * 0.19, h])),
-      paint,
+    const fixedWing = refl(
+      stations.map(([x, y, a, b, h]) => [x, y, a - (a - b) * 0.1, b + (a - b) * 0.19, h]),
     );
+    wing(d, fixedWing, paint);
+    const onWing = surfaceCaster((kit) => wing(kit, fixedWing, null), 0.004);
     for (const [name, x0, x1, leading, src] of [
       ['slat', 1.1, 5.36, true, 'flapPosition'],
       ['inboard-elevon', 1.1, 3.2, false, side === 1 ? 'elevonLeft' : 'elevonRight'],
@@ -433,31 +454,45 @@ export function buildTyphoon(s) {
       paint,
     );
     pd.finish();
-    // Selected inspection panels and control hinges, following the measured wing sweep.
+    // Selected inspection panels and control hinges, following the measured wing sweep. Points
+    // lie on the fixed wing's upper surface, not on a flat plane that floated over the slat and
+    // sank into the aft wing.
+    const wingPath = (corners, closed) =>
+      sampledPath(corners, (x, z) => onWing([side * x, 3, z], [0, -1, 0]), 0.2, closed);
+    // Slat hinge: just behind the fixed wing's leading edge.
+    const hingeZ = (x) => {
+      const [, , le, te] = interp(x);
+      return le - (le - te) * 0.115;
+    };
     outline(
       d,
-      [
-        [side * 1.2, 1.57, 2.42],
-        [side * 5.25, 1.505, -2.66],
-      ],
+      wingPath(
+        [
+          [1.2, hingeZ(1.2)],
+          [5.25, hingeZ(5.25)],
+        ],
+        false,
+      ),
       0.004,
       seal,
       false,
     );
-    for (const x of [2.1, 3.2, 4.3]) {
-      const q = interp(x);
+    // Access panels behind the slat (they used to run 4 m aft across the elevon hinge).
+    for (const x of [2.1, 3.2, 4.3])
       outline(
         d,
-        [
-          [side * x, 1.54, q[2] - 0.36],
-          [side * (x + 0.28), 1.54, q[2] - 0.72],
-          [side * (x + 0.28), 1.54, q[3] + 0.65],
-          [side * x, 1.54, q[3] + 0.65],
-        ],
+        wingPath(
+          [
+            [x, hingeZ(x) - 0.15],
+            [x + 0.28, hingeZ(x + 0.28) - 0.15],
+            [x + 0.28, hingeZ(x + 0.28) - 0.75],
+            [x, hingeZ(x) - 0.75],
+          ],
+          true,
+        ),
         0.003,
         seal,
       );
-    }
     // EJ200 round petal exhausts, separate nozzles and dark, recessed throat.
     // Four-view plan: nozzle pair spans about +/-0.85 m at the exit, which lies near z -5.75.
     const eg = group(root, `Typhoon-exhaust-${side}`, [side * nozzleX, 1.82, -5.14]),
@@ -597,12 +632,16 @@ export function buildTyphoon(s) {
     for (const z of [1.5, 0.6, -0.3, -1.2, -2.1])
       outline(
         d,
-        [
-          [2.43, z],
-          [2.43, z - 0.34],
-          [2.12, z - 0.34],
-          [2.12, z],
-        ].map(([y, z]) => sideSkin(side, y, z)),
+        sampledPath(
+          [
+            [2.43, z],
+            [2.43, z - 0.34],
+            [2.12, z - 0.34],
+            [2.12, z],
+          ],
+          (y, z) => sideSkin(side, y, z),
+          0.07,
+        ),
         0.003,
         seal,
       );
@@ -610,20 +649,7 @@ export function buildTyphoon(s) {
       for (const y of [2.14, 2.27, 2.41])
         d.add(new T.SphereGeometry(0.0025, 5, 3), metal, sideSkin(side, y, z - 0.025));
   }
-  const roundelBlue = mat('Typhoon-roundel-blue', '#637e91'),
-    roundelRed = mat('Typhoon-roundel-red', '#8a6669');
-  for (const side of [-1, 1]) {
-    d.add(new T.CircleGeometry(0.22, 24).rotateX(-Math.PI / 2), roundelBlue, [
-      side * 3.6,
-      1.54,
-      -1.65,
-    ]);
-    d.add(new T.CircleGeometry(0.093, 24).rotateX(-Math.PI / 2), roundelRed, [
-      side * 3.6,
-      1.541,
-      -1.65,
-    ]);
-  }
+  // National markings are livery decals (liveries/aircraft/typhoon.mjs): operators differ.
   // PIRATE optical fairing to port of the forward canopy. Static sensor, not simulated tracking.
   loft(
     d,

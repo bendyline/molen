@@ -8,6 +8,7 @@
 
 import type { SceneAdmission } from '@bendyline/molen-client';
 import { createAgricultureTileEnricher } from './agriculture-client';
+import { withoutTerrainBridgeOutlines } from './bridge-outlines';
 import { createBuiltUpTileEnricher } from './built-up-client';
 import { createProtomapsTerrainMvtDecoder } from './mvt-semantic-decoder';
 import {
@@ -305,8 +306,24 @@ export async function createTerrainPackageSemanticLayers(
     pkg.builtUp && geospatialXyz
       ? createBuiltUpTileEnricher(pkg.builtUp, options.baseUrl)
       : (source: TerrainPackageSemanticSource) => source;
+  // A bridge's mapped outline arrives as paved land (Protomaps files `man_made=bridge` as a
+  // pedestrian area) and was paved on the ground under the deck. Dropped from the joined tiles
+  // both visual layers read, so land colors, paved areas and scatter all go without it.
+  const tilePyramid = terrainPyramidDescriptorFromPackage(pkg);
   const enrich = (source: TerrainPackageSemanticSource): TerrainPackageSemanticSource =>
-    enrichBuiltUp(enrichAgriculture(source));
+    enrichBuiltUp(
+      enrichAgriculture({
+        load: async (address, signal) => {
+          const tile = await source.load(address, signal);
+          return tile === undefined
+            ? undefined
+            : withoutTerrainBridgeOutlines(
+                tile,
+                terrainPyramidTileSize(tilePyramid, address.level),
+              );
+        },
+      }),
+    );
   if (semantics.landcover !== undefined) {
     const style = landcoverLayer ?? {};
     const landSource = landcoverSource as TerrainPackageSemanticSource;
@@ -410,14 +427,6 @@ export async function createTerrainPackageSemanticLayers(
         renderLandcover: false,
         renderWater: false,
       });
-    const bored = tunnels
-      ? withTerrainTunnels(
-          inner,
-          featuresSource as TerrainPackageSemanticSource,
-          tunnels.heights,
-          tunnels.minLevel ?? semantics.features.maxLevel,
-        )
-      : inner;
     // Roads are detailed on the finest two levels the layer reaches; the ground is graded for
     // them there, wherever the layer itself starts.
     const detailLevel = defaultMinimumLevel(
@@ -434,6 +443,16 @@ export async function createTerrainPackageSemanticLayers(
         ...(roadGrading.earthworks !== undefined ? { earthworks: roadGrading.earthworks } : {}),
         ...(roadGrading.maxSpacing !== undefined ? { maxSpacing: roadGrading.maxSpacing } : {}),
       });
+    // Bores begin at the floors of the cuttings the grading dug down to their portals.
+    const bored = tunnels
+      ? withTerrainTunnels(
+          inner,
+          featuresSource as TerrainPackageSemanticSource,
+          tunnels.heights,
+          tunnels.minLevel ?? semantics.features.maxLevel,
+          grading ? { portals: grading } : {},
+        )
+      : inner;
     layers.push(
       createTerrainSemanticPyramidLayer({
         id: style.id ?? 'human-features',

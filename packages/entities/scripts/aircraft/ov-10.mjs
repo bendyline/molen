@@ -247,6 +247,22 @@ export function buildOV10(s) {
       frame,
       false,
     );
+  // Windshield base frame: the canopy's base arc bulges outboard of the nose's last ring, which
+  // left a crescent opening at each corner of the coaming (sky showed past the panel's top
+  // corners from the front seat). Close it with the frame.
+  {
+    const base = canopyStations[0],
+      ring = rings[4].points;
+    sheet(
+      d,
+      [
+        ...base.arc.map(([x, y]) => [x, y, base.z]),
+        ...[12, 13, 14, 15, 0, 1, 2, 3, 4].map((j) => [ring[j][0], ring[j][1], base.z]),
+      ],
+      frame,
+      [0, 0, 1],
+    );
+  }
   // Door frames of the two side-opening panels, on both sides.
   for (const k of [2, 12])
     for (const [a, b] of [
@@ -383,11 +399,13 @@ export function buildOV10(s) {
   const boom = [
     [3.0, 0.27, 2.0, 2.56],
     [3.25, 0.33, 1.9, 2.66],
+    // Deep enough over the main-gear bay (u 4.95-7.0) to stow the 0.74 m wheel and its trailing
+    // link; the thinner booms left the tyre shoulders and the link poking out with the gear up.
     [3.9, 0.35, 1.84, 2.7],
-    [5.2, 0.35, 1.84, 2.7],
-    [6.2, 0.33, 1.88, 2.7],
-    [7.0, 0.29, 1.92, 2.68],
-    [7.6, 0.24, 2.08, 2.64],
+    [5.2, 0.36, 1.82, 2.72],
+    [6.2, 0.36, 1.82, 2.74],
+    [7.0, 0.33, 1.86, 2.72],
+    [7.6, 0.25, 2.06, 2.65],
     [8.8, 0.2, 2.2, 2.6],
     [10.4, 0.17, 2.25, 2.6],
     [11.6, 0.15, 2.28, 2.6],
@@ -410,18 +428,43 @@ export function buildOV10(s) {
       boomRings.map((r) => ({ z: r.z, points: r.points.map(([px, py]) => [px + x, py]) })),
       paint,
     );
-    // Main gear bay: a dark slot under the boom, open while the gear is down.
+    // Main gear bay: a dark slot under the boom, open while the gear is down. A pair of doors
+    // hinged on the slot's edges closes it once the gear is up (it stayed an open black slot in
+    // flight).
     sheet(
       d,
       [
-        [x + 0.15, 1.858, zs(4.95)],
-        [x - 0.15, 1.858, zs(4.95)],
-        [x - 0.15, 1.9, zs(7.0)],
-        [x + 0.15, 1.9, zs(7.0)],
+        [x + 0.15, 1.843, zs(4.95)],
+        [x - 0.15, 1.843, zs(4.95)],
+        [x - 0.15, 1.878, zs(7.0)],
+        [x + 0.15, 1.878, zs(7.0)],
       ],
       dark,
       [0, -1, 0],
     );
+    for (const edge of [-1, 1]) {
+      const door = group(root, `Bronco-bay-door-${i + 1}-${edge > 0 ? 'outer' : 'inner'}`, [
+          x + side * edge * 0.15,
+          1.837,
+          zs(4.95),
+        ]),
+        dd = detailKit(door, door.name),
+        w = -side * edge * 0.149;
+      quad(dd, [0, 0, 0], [w, 0, 0], [w, 0.035, -2.05], [0, 0.035, -2.05], paint, [0, -1, 0]);
+      dd.finish();
+      const open = side * edge * 1.45;
+      bindings.push({
+        node: door.name,
+        source: 'gear',
+        property: 'rotation',
+        axis: 'z',
+        keys: [
+          [0, 0],
+          [0.2, open],
+          [1, open],
+        ],
+      });
+    }
     // Exhaust on the outboard side of the nacelle, above the wing's lower surface line.
     const ex = group(root, `Bronco-exhaust-${i}`, [x + side * 0.32, 2.42, zs(4.55)]);
     ex.rotation.y = side * 0.35;
@@ -578,13 +621,14 @@ export function buildOV10(s) {
   // fold aft into the booms. `gear` is 1 when down.
   for (const [index, x, pivot, wheelAt, r, retract] of [
     [0, 0, [1.3, zs(1.75)], [0.28, zs(1.88)], 0.28, -1.72],
-    [1, BOOM, [2.29, zs(4.65)], [0.37, zs(5.35)], 0.37, 1.22],
-    [2, -BOOM, [2.29, zs(4.65)], [0.37, zs(5.35)], 0.37, 1.22],
+    [1, BOOM, [2.29, zs(4.65)], [0.37, zs(5.35)], 0.37, 1.2],
+    [2, -BOOM, [2.29, zs(4.65)], [0.37, zs(5.35)], 0.37, 1.2],
   ]) {
     const g = group(root, `Bronco-gear-${index}`, [x, pivot[0], pivot[1]]),
       gd = detailKit(g, g.name),
       axle = [0, wheelAt[0] - pivot[0], wheelAt[1] - pivot[1]],
-      knee = [0, axle[1] + r * (index ? 0.55 : 0.75), axle[2] + (index ? 0.5 : 0.24)];
+      // Main trailing links are short enough to fold up inside the boom with the wheel.
+      knee = [0, axle[1] + r * (index ? 0.45 : 0.75), axle[2] + (index ? 0.42 : 0.24)];
     gd.rod([0, 0.05, 0], [0, knee[1] + 0.25, knee[2]], index ? 0.075 : 0.05, metal);
     gd.rod([0, knee[1] + 0.3, knee[2]], knee, index ? 0.055 : 0.04, oleo);
     for (const side of [-1, 1]) {
@@ -618,6 +662,17 @@ export function buildOV10(s) {
       offset: retract,
       scale: -retract,
     });
+    if (index)
+      bindings.push({
+        node: g.name,
+        source: 'gear',
+        property: 'position',
+        axis: 'y',
+        keys: [
+          [0, 0.04],
+          [1, 0],
+        ],
+      });
   }
 
   // ---- Small fittings: nose pitot, antennas, step, lights.
@@ -894,7 +949,19 @@ function broncoCockpit(root, m, sections) {
   // Floors: the rear cockpit sits 0.2 m higher than the front.
   fittedFloor(d, sections, m.dark, { y: 1.12, front: 3.3, back: 1.72, width: 1.04 });
   fittedFloor(d, sections, m.dark, { y: 1.32, front: 1.72, back: 0.45, width: 1.04 });
-  d.box([0.98, 0.2, 0.03], [0, 1.22, 1.72], m.dark);
+  // Riser between the two floor levels, tapered to the pod's rounded belly (a full-width box's
+  // lower corners stood out of the skin below the sponson roots).
+  sheet(
+    d,
+    [
+      [-0.34, 1.12, 1.72],
+      [0.34, 1.12, 1.72],
+      [0.47, 1.32, 1.72],
+      [-0.47, 1.32, 1.72],
+    ],
+    m.dark,
+    [0, 0, -1],
+  );
   // Aft bulkhead between the rear seat and the cargo bay.
   sheet(
     d,

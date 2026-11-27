@@ -599,23 +599,29 @@ export function buildATR72Cockpit(root, m, sections) {
       [0, 1, 0],
     );
   }
-  // Solid door bulkhead behind the seats, drawn at the plan's 3.4 m from the nose.
+  // Solid door bulkhead behind the seats, drawn at the plan's 3.4 m from the nose, its edge held
+  // just inside the faceted skin so it does not show through it.
   sheet(
     cd,
     Array.from({ length: 25 }, (_, i) => {
       const yy = 1.53 + (i * (3.57 - 1.53)) / 24;
-      return [wall(10.16, yy), yy, 10.16];
+      return [wall(10.16, yy) - 0.025, yy, 10.16];
     }).concat(
       Array.from({ length: 25 }, (_, i) => {
         const yy = 3.57 - (i * (3.57 - 1.53)) / 24;
-        return [-wall(10.16, yy), yy, 10.16];
+        return [0.025 - wall(10.16, yy), yy, 10.16];
       }),
     ),
     liner,
     [0, 0, 1],
   );
   outline(cd, rect(0, 2.55, 0.74, 1.54, 10.14), 0.008, m.dark);
-  // Cabin follows the 72-seat, 29-inch-pitch manufacturer plan and 2.57 m cross section.
+  // Cabin follows the manufacturer's 29-inch-pitch plan and 2.57 m cross section: 17 rows (68
+  // seats) between the forward baggage bulkhead and the aft entry door. An 18th row, and the bins
+  // over it, stood in the door and out through the tapering tail cone.
+  const ROWS = 17,
+    ROW0 = 7,
+    LAST = ROW0 - (ROWS - 1) * 0.7366;
   fittedFloor(cd, sections, m.dark, { y: 1.57, front: 10.15, back: -8.25, width: 2.24 });
   cd.box([0.05, 1.5, 0.055], [1.04, 2.31, 8.75], liner);
   cd.box([0.05, 1.5, 0.055], [-1.04, 2.31, 8.75], liner);
@@ -632,10 +638,10 @@ export function buildATR72Cockpit(root, m, sections) {
       liner,
       [0, 0, 1],
     );
-    cd.box([0.3, 0.3, 13.2], [side * 0.8, 2.98, -0.3], liner);
-    for (let row = 0; row < 18; row++) {
-      const zz = 5.65 - row * 0.7366;
-      cd.rod([side * 0.71, 3.04, zz], [side * 1.12, 3.04, zz], 0.002, m.dark);
+    cd.box([0.3, 0.3, ROW0 - LAST + 1.2], [side * 0.8, 2.98, (ROW0 + LAST) / 2], liner);
+    for (let row = 0; row < ROWS; row++) {
+      const zz = ROW0 - row * 0.7366;
+      cd.rod([side * 0.71, 3.04, zz], [side * 1.06, 3.04, zz], 0.002, m.dark);
     }
   }
   const seats = [
@@ -643,8 +649,8 @@ export function buildATR72Cockpit(root, m, sections) {
     [eye[0], eye[2] - 0.12, true],
     [-eye[0], eye[2] - 0.12, true],
   ];
-  for (let row = 0; row < 18; row++)
-    for (const x of [-0.94, -0.44, 0.44, 0.94]) seats.push([x, 5.65 - row * 0.7366, false]);
+  for (let row = 0; row < ROWS; row++)
+    for (const x of [-0.94, -0.44, 0.44, 0.94]) seats.push([x, ROW0 - row * 0.7366, false]);
   for (const [x, zz, pilot] of seats) {
     const w = pilot ? 0.47 : 0.44,
       lift = pilot ? floor - 1.53 : 0;

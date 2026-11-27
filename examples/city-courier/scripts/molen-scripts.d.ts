@@ -314,6 +314,14 @@ type MolenAircraftData = {
         multiplier: number;
         engine?: string;
       }[];
+      exhausts?: {
+        engine: string;
+        position: [number, number, number];
+        radius: number;
+        closedRadius?: number;
+        direction?: [number, number, number];
+        aspect?: number;
+      }[];
       gearNodes: string[];
       flaps: {
         node: string;
@@ -465,6 +473,7 @@ type MolenAircraftStateData = {
   wheels?: {
     spin: number[];
     load: number[];
+    travel?: number[];
   };
   thrustVectorPosition?: number;
   sideslip?: number;
@@ -610,6 +619,7 @@ type MolenAudioEnvironmentData = {
       smoothS?: number;
     }[];
     fadeS?: number;
+    inside?: boolean;
   }[];
   music?: {
     playlist: string[];
@@ -644,6 +654,9 @@ type MolenAudioEnvironmentData = {
   };
   listenerEntity?: string;
   maxVoices?: number;
+  maxEmitters?: number;
+  doppler?: number;
+  masking?: number;
 };
 /** Sound emitter on an entity: a sound-bank id, loop/autoplay, gain and pitch driven by signals (vehicleState.speed, listener.distance…), and one-shot triggers. Positional when the entity has a transform. Render-side only; see guide/audio.md. */
 type MolenAudioSourceData = {
@@ -877,6 +890,13 @@ type MolenCollider3dData = {
   friction?: number;
   density?: number;
 };
+/** Bind declared commands (move { dir: [x, y] }, jump { held }) to this entity: kinematicBody.vel, platformIntent, or moveIntent. */
+type MolenControllerData = {
+  move?: string;
+  jump?: string;
+  speed?: number;
+  enabled?: boolean;
+};
 /** A rail car in a consist: rides the leader's track trail at a fixed distance behind it, sharing its speed. Powered cars add their traction to the leader's (multiple-unit control); every car adds its mass and brakes. */
 type MolenCoupledData = {
   leader: string;
@@ -892,8 +912,98 @@ type MolenCourierGameData = {
   speed: number;
   message: string;
 };
+/** Timed actions: at a tick (optionally repeating every loop ticks), run actions such as path, figure, set or emit. */
+type MolenCuesData = {
+  cues: {
+    id?: string;
+    tick: number;
+    do: ({
+      set: {
+        target?: string;
+        component: string;
+        path?: string;
+        value: unknown;
+      };
+    } | {
+      add: {
+        target?: string;
+        component: string;
+        path: string;
+        value?: number;
+        from?: string;
+      };
+    } | {
+      spawn: {
+        prefab: string;
+        at?: [number, number, number];
+        pick?: [number, number, number][];
+        awayFrom?: string;
+        minDistance?: number;
+      };
+    } | {
+      destroy: string;
+    } | {
+      emit: {
+        event: string;
+        payload?: unknown;
+      };
+    } | {
+      tween: {
+        target?: string;
+        id?: string;
+        component: string;
+        path: string;
+        from?: number | number[];
+        to: number | number[];
+        ticks: number;
+        delay?: number;
+        easing?: 'linear' | 'quadIn' | 'quadOut' | 'quadInOut' | 'cubicIn' | 'cubicOut' | 'cubicInOut';
+        loop?: 'none' | 'loop' | 'pingpong';
+        emitOnComplete?: string;
+      };
+    } | {
+      path: {
+        target?: string;
+        id?: string;
+        points: [number, number, number][];
+        speed?: number;
+        ticks?: number;
+        easing?: 'linear' | 'smooth';
+        delay?: number;
+        loop?: 'none' | 'loop' | 'pingpong';
+        emitOnComplete?: string;
+      };
+    } | {
+      figure: {
+        target?: string;
+        mode?: 'idle' | 'walk' | 'run' | 'jump' | 'fall' | 'sit' | 'custom' | null;
+        lookAt?: string | [number, number, number] | null;
+      };
+    } | {
+      place: {
+        target?: string;
+        at: [number, number, number];
+      };
+    } | {
+      timer: {
+        target?: string;
+        ticks: number;
+        event: string;
+        payload?: unknown;
+      };
+    } | {
+      sound: {
+        sound: string;
+        at?: string;
+        gain?: number;
+      };
+    })[];
+  }[];
+  loop?: number;
+};
 /** Singleton scene environment: optional Earth/custom sky, ambient/sun lighting, background, fog, tone mapping, shadow quality tier. */
 type MolenEnvironmentData = {
+  preset?: 'morning' | 'noon' | 'evening' | 'night' | 'overcast';
   sky?: {
     palette?: {
       dayZenith?: string;
@@ -1245,6 +1355,14 @@ type MolenLiveryData = {
       size: [number, number, number];
       rotation: [number, number, number];
     }>;
+  graphics?: Record<string, {
+      label?: string;
+      shapes: {
+        color: string;
+        points: [number, number][];
+        holes?: [number, number][][];
+      }[];
+    }>;
   variants: {
     id: string;
     label: string;
@@ -1264,7 +1382,17 @@ type MolenLiveryData = {
           colors: string[];
           scale: number;
           seed: number;
+          style?: 'blotch' | 'splinter' | 'digital';
         };
+        zones?: {
+          color: string;
+          roughness?: number;
+          metalness?: number;
+          planes: {
+            normal: [number, number, number];
+            offset: number;
+          }[];
+        }[];
       }>;
     markings?: {
       anchor: string;
@@ -1273,8 +1401,10 @@ type MolenLiveryData = {
         shapes: {
           color: string;
           points: [number, number][];
+          holes?: [number, number][][];
         }[];
-      };
+      } | string;
+      flip?: boolean;
     }[];
   }[];
 };
@@ -1332,10 +1462,34 @@ type MolenMoveIntentData = {
   dir: [number, number];
   jump: boolean;
 };
+/** Steering in the XZ plane: chase or flee a target, or wander. Drives kinematicBody.vel when present (walls still stop it), otherwise the transform. */
+type MolenMoverData = {
+  mode: 'chase' | 'flee' | 'wander';
+  target?: string;
+  speed: number;
+  turnTicks?: number;
+  range?: number;
+  heading?: [number, number];
+  turnIn?: number;
+};
 /** Attach to a parent entity: transform becomes parent.transform × localTransform each tick. */
 type MolenParentData = {
   id: string;
   onParentDestroyed?: 'destroy' | 'detach';
+};
+/** Move along waypoints at a speed or over a number of ticks, from where the entity stands when the path starts. */
+type MolenPathData = {
+  id?: string;
+  points: [number, number, number][];
+  speed?: number;
+  ticks?: number;
+  easing?: 'linear' | 'smooth';
+  delay?: number;
+  loop?: 'none' | 'loop' | 'pingpong';
+  emitOnComplete?: string;
+  origin?: [number, number, number];
+  elapsed?: number;
+  back?: boolean;
 };
 /** Deterministic XY platform controller: gravity, swept wall/floor/ceiling collision, jump buffering and coyote time. */
 type MolenPlatformBodyData = {
@@ -1365,7 +1519,7 @@ type MolenPlatformSolidData = {
 /** Client render contract: a primitive, a gltf asset (by project asset id) with optional sub-node, material override, shadows, and clip playback, or a capability-registered kind. */
 type MolenRenderableData = {
   kind: 'primitive' | 'gltf' | 'ambient-vehicle' | 'figure';
-  ref: string;
+  ref?: string;
   materialRef?: string;
   primitive?: {
     size?: [number, number, number];
@@ -1395,6 +1549,123 @@ type MolenRigidbodyData = {
   ccd?: boolean;
   lockRot?: boolean;
 };
+/** Rules of play as data: when a trigger fires (event, touch, command, every, tick, becomes) and the conditions hold, run actions. A failing rule emits rule-error and is disabled; it never stops the world. */
+type MolenRulesData = {
+  rules: {
+    id?: string;
+    when: {
+      event: string;
+      from?: string;
+    } | {
+      touch: [string, string];
+    } | {
+      command: string;
+    } | {
+      every: number;
+      offset?: number;
+    } | {
+      tick: number;
+    } | {
+      becomes: {
+        select: string;
+        op: 'eq' | 'approx' | 'gt' | 'gte' | 'lt' | 'lte' | 'count' | 'count_lt' | 'count_lte' | 'count_gt' | 'count_gte' | 'exists' | 'all_eq' | 'all_approx' | 'all_gt' | 'all_gte' | 'all_lt' | 'all_lte' | 'any_eq' | 'any_approx' | 'any_gt' | 'any_gte' | 'any_lt' | 'any_lte';
+        value?: unknown;
+        tol?: number;
+      };
+    };
+    if?: {
+      select: string;
+      op: 'eq' | 'approx' | 'gt' | 'gte' | 'lt' | 'lte' | 'count' | 'count_lt' | 'count_lte' | 'count_gt' | 'count_gte' | 'exists' | 'all_eq' | 'all_approx' | 'all_gt' | 'all_gte' | 'all_lt' | 'all_lte' | 'any_eq' | 'any_approx' | 'any_gt' | 'any_gte' | 'any_lt' | 'any_lte';
+      value?: unknown;
+      tol?: number;
+    }[];
+    do: ({
+      set: {
+        target?: string;
+        component: string;
+        path?: string;
+        value: unknown;
+      };
+    } | {
+      add: {
+        target?: string;
+        component: string;
+        path: string;
+        value?: number;
+        from?: string;
+      };
+    } | {
+      spawn: {
+        prefab: string;
+        at?: [number, number, number];
+        pick?: [number, number, number][];
+        awayFrom?: string;
+        minDistance?: number;
+      };
+    } | {
+      destroy: string;
+    } | {
+      emit: {
+        event: string;
+        payload?: unknown;
+      };
+    } | {
+      tween: {
+        target?: string;
+        id?: string;
+        component: string;
+        path: string;
+        from?: number | number[];
+        to: number | number[];
+        ticks: number;
+        delay?: number;
+        easing?: 'linear' | 'quadIn' | 'quadOut' | 'quadInOut' | 'cubicIn' | 'cubicOut' | 'cubicInOut';
+        loop?: 'none' | 'loop' | 'pingpong';
+        emitOnComplete?: string;
+      };
+    } | {
+      path: {
+        target?: string;
+        id?: string;
+        points: [number, number, number][];
+        speed?: number;
+        ticks?: number;
+        easing?: 'linear' | 'smooth';
+        delay?: number;
+        loop?: 'none' | 'loop' | 'pingpong';
+        emitOnComplete?: string;
+      };
+    } | {
+      figure: {
+        target?: string;
+        mode?: 'idle' | 'walk' | 'run' | 'jump' | 'fall' | 'sit' | 'custom' | null;
+        lookAt?: string | [number, number, number] | null;
+      };
+    } | {
+      place: {
+        target?: string;
+        at: [number, number, number];
+      };
+    } | {
+      timer: {
+        target?: string;
+        ticks: number;
+        event: string;
+        payload?: unknown;
+      };
+    } | {
+      sound: {
+        sound: string;
+        at?: string;
+        gain?: number;
+      };
+    })[];
+    once?: boolean;
+    fired?: boolean;
+    was?: boolean;
+    disabled?: string;
+  }[];
+};
 /** One-shot velocity set; consumed the tick it is applied. */
 type MolenSetVelocityData = {
   linear?: [number, number, number];
@@ -1422,6 +1693,15 @@ type MolenTransformData = {
   scale?: [number, number, number];
   teleport?: boolean;
 };
+/** A touch zone, separate from any collider: each tick, overlapping zones whose layers interact emit touch { a, b }. */
+type MolenTriggerData = {
+  shape?: 'circle' | 'box';
+  radius?: number;
+  halfExtents?: [number, number];
+  plane?: 'xz' | 'xy';
+  layer?: number;
+  mask?: number;
+};
 /** Data-driven value animation over ticks: component + select-style path, lerp with easing. */
 type MolenTweenData = {
   tweens: {
@@ -1431,12 +1711,15 @@ type MolenTweenData = {
     from?: number | number[];
     to: number | number[];
     ticks: number;
+    delay?: number;
     elapsed?: number;
     easing?: 'linear' | 'quadIn' | 'quadOut' | 'quadInOut' | 'cubicIn' | 'cubicOut' | 'cubicInOut';
     loop?: 'none' | 'loop' | 'pingpong';
     emitOnComplete?: string;
   }[];
 };
+/** A flat record of named numbers, strings and booleans (score, lives, status). */
+type MolenVarsData = Record<string, number | string | boolean>;
 /** External wheeled-vehicle instance: stable id, paint, complete physics tuning, and GLB bindings. */
 type MolenVehicleData = {
   kind: string;
@@ -1670,6 +1953,10 @@ type MolenVehicleStateData = {
   bodyHeaveRate?: number;
   wheelSpin?: [number, number, number, number];
   wheelLoad?: [number, number, number, number];
+  wheelTravel?: [number, number, number, number];
+  wheelRoad?: [number, number, number, number];
+  wheelRoadRate?: [number, number, number, number];
+  wheelSpent?: [boolean, boolean, boolean, boolean];
   freeBody?: {
     velocity: [number, number, number];
     omega: [number, number, number];
@@ -1818,10 +2105,14 @@ interface MolenComponentData {
   'collider': MolenColliderData;
   /** 3D collider (ball/cuboid/capsule/hull/trimesh/asset/heightfield) with layer/mask, sensor, and material params. Static without a rigidbody. */
   'collider3d': MolenCollider3dData;
+  /** Bind declared commands (move { dir: [x, y] }, jump { held }) to this entity: kinematicBody.vel, platformIntent, or moveIntent. */
+  'controller': MolenControllerData;
   /** A rail car in a consist: rides the leader's track trail at a fixed distance behind it, sharing its speed. Powered cars add their traction to the leader's (multiple-unit control); every car adds its mass and brakes. */
   'coupled': MolenCoupledData;
   /** Courier run state, mirrored to the HUD. */
   'courierGame': MolenCourierGameData;
+  /** Timed actions: at a tick (optionally repeating every loop ticks), run actions such as path, figure, set or emit. */
+  'cues': MolenCuesData;
   /** Singleton scene environment: optional Earth/custom sky, ambient/sun lighting, background, fog, tone mapping, shadow quality tier. */
   'environment': MolenEnvironmentData;
   /** What a figure is: a preset plus descriptor overrides (height, build, proportions, features, palette) and how it faces its motion. Pair with renderable.kind "figure". */
@@ -1864,8 +2155,12 @@ interface MolenComponentData {
   'mounted': MolenMountedData;
   /** Desired planar move direction + jump flag, consumed by the character controller. */
   'moveIntent': MolenMoveIntentData;
+  /** Steering in the XZ plane: chase or flee a target, or wander. Drives kinematicBody.vel when present (walls still stop it), otherwise the transform. */
+  'mover': MolenMoverData;
   /** Attach to a parent entity: transform becomes parent.transform × localTransform each tick. */
   'parent': MolenParentData;
+  /** Move along waypoints at a speed or over a number of ticks, from where the entity stands when the path starts. */
+  'path': MolenPathData;
   /** Deterministic XY platform controller: gravity, swept wall/floor/ceiling collision, jump buffering and coyote time. */
   'platformBody': MolenPlatformBodyData;
   /** Input to a platformBody. Scripts translate declared commands to this component. */
@@ -1876,6 +2171,8 @@ interface MolenComponentData {
   'renderable': MolenRenderableData;
   /** 3D rigid-body dynamics: dynamic, fixed, or kinematicPosition (characters). */
   'rigidbody': MolenRigidbodyData;
+  /** Rules of play as data: when a trigger fires (event, touch, command, every, tick, becomes) and the conditions hold, run actions. A failing rule emits rule-error and is disabled; it never stops the world. */
+  'rules': MolenRulesData;
   /** One-shot velocity set; consumed the tick it is applied. */
   'setVelocity': MolenSetVelocityData;
   /** Named tag for selecting/grouping entities (e.g. tag.name === "enemy"). */
@@ -1884,8 +2181,12 @@ interface MolenComponentData {
   'timer': MolenTimerData;
   /** World position + orientation. pos is required; rot defaults to identity. */
   'transform': MolenTransformData;
+  /** A touch zone, separate from any collider: each tick, overlapping zones whose layers interact emit touch { a, b }. */
+  'trigger': MolenTriggerData;
   /** Data-driven value animation over ticks: component + select-style path, lerp with easing. */
   'tween': MolenTweenData;
+  /** A flat record of named numbers, strings and booleans (score, lives, status). */
+  'vars': MolenVarsData;
   /** External wheeled-vehicle instance: stable id, paint, complete physics tuning, and GLB bindings. */
   'vehicle': MolenVehicleData;
   /** Driver intent: signed throttle (negative brakes then reverses), signed steering (positive right), service brake and optional handbrake. */

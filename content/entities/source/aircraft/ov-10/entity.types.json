@@ -136,6 +136,86 @@
                     "scale": -0.3
                   },
                   {
+                    "node": "Bronco-bay-door-1-inner",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.2,
+                        -1.45
+                      ],
+                      [
+                        1,
+                        -1.45
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "Bronco-bay-door-1-outer",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.2,
+                        1.45
+                      ],
+                      [
+                        1,
+                        1.45
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "Bronco-bay-door-2-inner",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.2,
+                        1.45
+                      ],
+                      [
+                        1,
+                        1.45
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "Bronco-bay-door-2-outer",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.2,
+                        -1.45
+                      ],
+                      [
+                        1,
+                        -1.45
+                      ]
+                    ]
+                  },
+                  {
                     "node": "Bronco-rudder-right",
                     "source": "yawInput",
                     "property": "rotation",
@@ -169,16 +249,48 @@
                     "source": "gear",
                     "property": "rotation",
                     "axis": "x",
-                    "offset": 1.22,
-                    "scale": -1.22
+                    "offset": 1.2,
+                    "scale": -1.2
+                  },
+                  {
+                    "node": "Bronco-gear-1",
+                    "source": "gear",
+                    "property": "position",
+                    "axis": "y",
+                    "keys": [
+                      [
+                        0,
+                        0.04
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
                   },
                   {
                     "node": "Bronco-gear-2",
                     "source": "gear",
                     "property": "rotation",
                     "axis": "x",
-                    "offset": 1.22,
-                    "scale": -1.22
+                    "offset": 1.2,
+                    "scale": -1.2
+                  },
+                  {
+                    "node": "Bronco-gear-2",
+                    "source": "gear",
+                    "property": "position",
+                    "axis": "y",
+                    "keys": [
+                      [
+                        0,
+                        0.04
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
                   }
                 ],
                 "sources": {
@@ -194,6 +306,12 @@
                       "roll"
                     ]
                   },
+                  "gear": {
+                    "component": "aircraftState",
+                    "path": [
+                      "gearPosition"
+                    ]
+                  },
                   "yawInput": {
                     "component": "aircraftInput",
                     "path": [
@@ -204,12 +322,6 @@
                     "component": "aircraftInput",
                     "path": [
                       "pitch"
-                    ]
-                  },
-                  "gear": {
-                    "component": "aircraftState",
-                    "path": [
-                      "gearPosition"
                     ]
                   }
                 }
@@ -3239,6 +3351,86 @@
               "scale": -0.3
             },
             {
+              "node": "Bronco-bay-door-1-inner",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.2,
+                  -1.45
+                ],
+                [
+                  1,
+                  -1.45
+                ]
+              ]
+            },
+            {
+              "node": "Bronco-bay-door-1-outer",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.2,
+                  1.45
+                ],
+                [
+                  1,
+                  1.45
+                ]
+              ]
+            },
+            {
+              "node": "Bronco-bay-door-2-inner",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.2,
+                  1.45
+                ],
+                [
+                  1,
+                  1.45
+                ]
+              ]
+            },
+            {
+              "node": "Bronco-bay-door-2-outer",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.2,
+                  -1.45
+                ],
+                [
+                  1,
+                  -1.45
+                ]
+              ]
+            },
+            {
               "node": "Bronco-rudder-right",
               "source": "yawInput",
               "property": "rotation",
@@ -3272,16 +3464,48 @@
               "source": "gear",
               "property": "rotation",
               "axis": "x",
-              "offset": 1.22,
-              "scale": -1.22
+              "offset": 1.2,
+              "scale": -1.2
+            },
+            {
+              "node": "Bronco-gear-1",
+              "source": "gear",
+              "property": "position",
+              "axis": "y",
+              "keys": [
+                [
+                  0,
+                  0.04
+                ],
+                [
+                  1,
+                  0
+                ]
+              ]
             },
             {
               "node": "Bronco-gear-2",
               "source": "gear",
               "property": "rotation",
               "axis": "x",
-              "offset": 1.22,
-              "scale": -1.22
+              "offset": 1.2,
+              "scale": -1.2
+            },
+            {
+              "node": "Bronco-gear-2",
+              "source": "gear",
+              "property": "position",
+              "axis": "y",
+              "keys": [
+                [
+                  0,
+                  0.04
+                ],
+                [
+                  1,
+                  0
+                ]
+              ]
             }
           ]
         }

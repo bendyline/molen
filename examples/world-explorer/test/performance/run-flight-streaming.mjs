@@ -206,12 +206,11 @@ try {
     (final.graphics.counters[name] ?? 0) - (opening.graphics.counters[name] ?? 0);
   const worst = (values) => Math.max(...values);
   const tiers = [];
-  // `tier` is the level drawn at, `world` the level the world is built at (Auto lowers the first
-  // alone for slow frames, at first).
+  // Auto keeps its level once a view is under way, so more than one entry here is memory taking a
+  // level (or a bug).
   for (const sample of samples) {
-    const world = sample.detailTier ?? sample.tier;
-    if (tiers.at(-1)?.tier !== sample.tier || tiers.at(-1)?.world !== world) {
-      tiers.push({ t: +sample.t.toFixed(1), tier: sample.tier, world, reason: sample.tierReason });
+    if (tiers.at(-1)?.tier !== sample.tier) {
+      tiers.push({ t: +sample.t.toFixed(1), tier: sample.tier, reason: sample.tierReason });
     }
   }
   const summary = {

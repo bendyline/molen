@@ -10,6 +10,7 @@ import {
   aircraftGear,
   type GearState,
   type GearStep,
+  hangingGear,
   initialGearState,
   stepGear,
 } from './aircraft-gear';
@@ -22,10 +23,14 @@ import {
   turnBody,
 } from './dynamics/rigid-body';
 import {
+  type BladeLimit,
+  bladeLimit,
   discTilt,
+  hoverInducedVelocity,
   inducedVelocityRatio,
   inflowTime,
   type RotorBlades,
+  retreatingStall,
   rotorLoads,
   rotorPitchFor,
 } from './dynamics/rotor';
@@ -48,8 +53,9 @@ const G = 9.81;
 const MIN_CONTROL_POWER = 1e-6;
 /**
  * How much further the swashplate goes forward than aft and to the sides. Speed blows the disc
- * back, and forward travel is what holds it: 16.5° against 12.3° aft on the UH-60A (Howlett,
- * NASA CR-166309, figure 6.3.1), 13.9° both ways on the R44 (its type certificate data sheet).
+ * back, and forward travel is what holds it: 16° against 10° aft on the AW139 and 13.9° both ways
+ * on the R44 (their type certificate data sheets), 16.5° against 12.3° on the UH-60A (Howlett,
+ * NASA CR-166309, figure 6.3.1).
  */
 const FORWARD_TRAVEL = 1.4;
 /**
@@ -59,6 +65,26 @@ const FORWARD_TRAVEL = 1.4;
  * radian at 7,439 kg), taken to go with the body's volume.
  */
 const FUSELAGE_MOMENT = 0.0059;
+/**
+ * Force across the fuselage over the pressure of the air it meets, m² per kg of helicopter: per
+ * unit of the air's angle to it, and flat on. From the UH-60A's lift and drag (the same report,
+ * tables 2.5.3 and 2.5.6: 92 ft² per radian and 150 ft² from below).
+ */
+const FUSELAGE_LIFT = 0.00114;
+const FUSELAGE_PLATE = 0.00187;
+/** Where the blades stall: over the type's limit speed, and the load they carry there, in g. */
+const STALL_PAST_LIMIT = 1.11;
+const STALL_LOAD = 1.2;
+/**
+ * The assist's hands hold the type's limit speed, give or take: they go a little past it, and
+ * the forward tilt they will hold is the speed left over this long. Too fast, they tilt it back
+ * by as much as the last to lose the speed.
+ */
+const HELD_PAST_LIMIT = 1.05;
+const LIMIT_TIME = 2.5;
+const LIMIT_TILT = 0.15;
+/** Blade loading over the stall's that the assist's hand on the lever lets through. */
+const STALL_MARGIN = 1;
 
 function cross(a: Vec3, b: Vec3): Vec3 {
   return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
@@ -83,6 +109,9 @@ export function mainRotorBlades(
   };
 }
 
+/** A fan in a duct (a Fenestron): eight blades or more. */
+const ducted = (tail: HelicopterTailRotorSpec): boolean => tail.blades >= 8;
+
 /** A tail rotor's blades: short, fast and working in the main rotor's wake. */
 export function tailRotorBlades(tail: HelicopterTailRotorSpec): RotorBlades {
   return {
@@ -91,16 +120,47 @@ export function tailRotorBlades(tail: HelicopterTailRotorSpec): RotorBlades {
     tipSpeed: tail.tipSpeed,
     liftSlope: 5.7,
     drag: 0.011,
-    // A fan in a duct (eight blades or more) moves its air without the wake closing in behind
-    // it, and the duct's lip carries part of the thrust: about 0.7 of an open rotor's induced
-    // power.
-    inducedFactor: tail.blades >= 8 ? 0.9 : 1.25,
+    inducedFactor: 1.25,
     maxLift: 1.1,
+    // A duct keeps the wake from closing in behind the fan, and its lip carries half of the
+    // thrust: the blades have half the work, and take about 0.7 of an open rotor's induced power.
+    ...(ducted(tail) ? { duct: 0.5 } : {}),
   };
 }
 
-/** Tail rotor blade pitch at full right and full left pedal, rad. */
-const tailPitch = (tail: HelicopterTailRotorSpec): [number, number] => tail.pitch ?? [-0.14, 0.42];
+/** Blade loading of a rotor that holds `mass` in a hover at sea level and full speed. */
+function hoverLoading(blades: RotorBlades, mass: number): number {
+  const scale = 1.225 * m.PI * blades.radius ** 2 * blades.tipSpeed ** 2;
+  return (mass * G) / (scale * blades.solidity);
+}
+
+/**
+ * The type's own limit: what its blades carry in a hover, falling in a straight line to its
+ * weight and the maneuver margin at 1.11 times its limit speed, which is as fast as a type is
+ * shown safe (14 CFR 27/29.1505), at sea level and at its own mass. Higher, heavier or with the
+ * rotor slowed it comes sooner, as the blades are loaded more.
+ */
+function typeBladeLimit(
+  spec: AircraftSpec,
+  helicopter: HelicopterPhysicsSpec,
+  blades: RotorBlades,
+): BladeLimit {
+  const hover = blades.maxLift / 6;
+  const speed = helicopter.retreatingBladeSpeed;
+  // As measured, where the type has no speed of its own.
+  const measured = 0.8 * hover;
+  if (!speed) return { hover, slope: measured };
+  const load = STALL_LOAD * hoverLoading(blades, spec.mass);
+  const advance = (STALL_PAST_LIMIT * speed) / blades.tipSpeed;
+  return { hover, slope: m.max(0.25 * hover, (hover - load) / advance) };
+}
+
+/**
+ * Tail rotor blade pitch at full right and full left pedal, rad. The blades of a fan meet more
+ * air coming through the duct, and turn further for it.
+ */
+const tailPitch = (tail: HelicopterTailRotorSpec): [number, number] =>
+  tail.pitch ?? (ducted(tail) ? [-0.35, 0.75] : [-0.14, 0.42]);
 
 /** +1 for a main rotor turning counterclockwise seen from above, -1 clockwise. */
 const turning = (rotor: HelicopterRotorSpec): number => (rotor.rotation === 'clockwise' ? -1 : 1);
@@ -193,6 +253,13 @@ function tailRotorAt(
   return { loads, inflow };
 }
 
+/** Force down on a fuselage that moves `up` through the air as it goes `ahead`, N. */
+function fuselageAcross(spec: AircraftSpec, density: number, ahead: number, up: number): number {
+  return (
+    0.5 * density * spec.mass * (FUSELAGE_LIFT * m.abs(ahead) + FUSELAGE_PLATE * m.abs(up)) * up
+  );
+}
+
 export interface RotorTrim {
   /** Shaft power the engines must deliver, W. */
   power: number;
@@ -229,9 +296,9 @@ export function rotorTrim(
   const weight = (flight.mass ?? spec.mass) * G;
   const area = m.PI * blades.radius ** 2;
   const air = m.hypot(speed, climb);
-  // The fuselage's drag: three and four times the flat plate broadside and from below.
+  // The fuselage's drag, and the air it meets from above as it climbs.
   const dragAhead = 0.5 * density * rotor.dragArea * air * speed;
-  const dragUp = 0.5 * density * 4 * rotor.dragArea * air * climb;
+  const dragUp = fuselageAcross(spec, density, speed, climb);
   let thrust = m.hypot(weight + dragUp, dragAhead);
   const tilt = m.atan2(dragAhead, weight + dragUp);
   const axial = climb * m.cos(tilt) + speed * m.sin(tilt);
@@ -259,7 +326,7 @@ export function rotorTrim(
     const tail = tailRotorBlades(rotor.tail);
     let wash = 0.05 * tail.tipSpeed;
     for (let i = 0; i < 8; i++) {
-      const hover = m.sqrt(m.abs(push) / (2 * density * m.PI * tail.radius ** 2));
+      const hover = hoverInducedVelocity(tail, density, push);
       wash = 0.5 * (wash + hover * inducedVelocityRatio(0, speed / m.max(hover, 1e-6)));
     }
     const tailFlow = { density, speed: 1, axial: 0, edgewise: speed, inflow: wash };
@@ -321,6 +388,18 @@ export interface RotorcraftInput {
  * speed.
  */
 const HOVER_HOLD = 0.03;
+/**
+ * Under way the assist keeps the nose on the air it flies through, as a pilot keeps the ball in
+ * the middle. Banked from the stick, the feet follow the turn and take a sideslip out over
+ * COORDINATE_TIME. Otherwise the feet hold the heading and the hands bank the path round to the
+ * nose, taking the sideslip out over SLIP_TIME and banking no more than SLIP_BANK: a heading the
+ * pedals gave is kept. Hovering or in slow flight (from 15 m/s of air, all of it by 25) the feet
+ * hold the heading, and a pedal that is held has its way.
+ */
+const COORDINATE_TIME = 0.5;
+const COORDINATE_FROM = 15;
+const SLIP_TIME = 3;
+const SLIP_BANK = 0.45;
 const HOVER_HOLD_TILT = 0.08;
 
 export interface RotorcraftStep {
@@ -386,12 +465,29 @@ export function stepRotorcraft(c: RotorcraftInput): RotorcraftStep {
     direct || !(c.available > 0)
       ? lever
       : m.max(0, lever - 16 * m.max(0, 0.97 - speed) * Number(speed > 0.5));
-  const pitch = rotor.collective[0] + eased * (rotor.collective[1] - rotor.collective[0]);
+  const lifted = rotor.collective[0] + eased * (rotor.collective[1] - rotor.collective[0]);
   const height = m.max(0, c.transform.pos[1] - c.ground);
   const cushion = groundCushion(helicopter, height);
   const hoverInflow = m.sqrt(weight / (2 * density * m.PI * blades.radius ** 2));
   const inflow = s.rotor?.inflow ?? (speed > 0.5 ? hoverInflow / cushion : 0);
-  const main = rotorLoads(blades, { density, speed, pitch, axial, edgewise, inflow });
+  // What its retreating blades can carry at this speed. The assist's hand comes down out of the
+  // stall, as far as that is the lever's doing; the pilot of the bare helicopter has to.
+  const carries = typeBladeLimit(spec, helicopter, blades);
+  const advance = tip > 1 ? edgewise / tip : 0;
+  const carried = bladeLimit(carries, advance);
+  const flow = { density, speed, axial, edgewise, inflow };
+  const most =
+    direct || !(c.available > 0) || advance < 0.1
+      ? Infinity
+      : rotorPitchFor(
+          blades,
+          flow,
+          STALL_MARGIN * carried * blades.solidity * density * m.PI * blades.radius ** 2 * tip ** 2,
+        );
+  const pitch = m.min(lifted, m.max(rotor.collective[0], most));
+  const main = rotorLoads(blades, { ...flow, pitch });
+  const stalled = retreatingStall(main, carried);
+  s.buffet = stalled.shake * m.clamp(speed * speed, 0, 1) * Number(height > 0.5);
   // Descending into its own wake a rotor loses lift it cannot get back with the lever.
   const descent = -axial / m.max(1, hoverInflow);
   const ring =
@@ -402,8 +498,12 @@ export function stepRotorcraft(c: RotorcraftInput): RotorcraftStep {
         m.clamp(eased * speed, 0, 1)
       : 0;
   s.vortexRing = ring;
-  const thrust = main.thrust * (1 - 0.55 * ring) * c.rotorAuthority;
-  s.overspeed = main.stall > 0.5 && edgewise > 0.2 * tip;
+  const thrust = main.thrust * stalled.lift * (1 - 0.55 * ring) * c.rotorAuthority;
+  // The type's limit speed falls with height, at about the 3 knots indicated per 1,000 ft of
+  // the AS350's data sheet.
+  const limitSpeed =
+    (helicopter.retreatingBladeSpeed ?? Infinity) * m.pow(m.min(1, density / 1.225), 0.2);
+  s.overspeed = edgewise > limitSpeed || (stalled.ratio > 1.05 && advance > 0.2);
 
   // Where the disc points. The swashplate tilts it; it flaps back from the air it flies into
   // and toward its advancing side, and it follows a turning shaft late.
@@ -413,9 +513,11 @@ export function stepRotorcraft(c: RotorcraftInput): RotorcraftStep {
   const windAhead = edgewise > 1e-6 ? dot(across, ahead) / edgewise : 0;
   const windLeft = edgewise > 1e-6 ? across[0] / edgewise : 0;
   // Forward and leftward tilt of the disc from the shaft with the swashplate level.
+  const blownBack = flap.back + stalled.back;
+  const blownAside = flap.aside - stalled.aside;
   const free: [number, number] = [
-    -flap.back * windAhead + sense * flap.aside * windLeft - flap.lag * omega[0],
-    -flap.back * windLeft - sense * flap.aside * windAhead + flap.lag * omega[2],
+    -blownBack * windAhead + sense * blownAside * windLeft - flap.lag * omega[0],
+    -blownBack * windLeft - sense * blownAside * windAhead + flap.lag * omega[2],
   ];
   // A hinge away from the shaft (or a blade root that bends) lets the tilted disc turn the hub
   // directly, thrust or no thrust.
@@ -460,11 +562,13 @@ export function stepRotorcraft(c: RotorcraftInput): RotorcraftStep {
     moment[1] += turn[1];
     moment[2] += turn[2];
   };
-  // The fuselage: its drag, more of it broadside and from below, and the rotor's wash on it.
+  // The fuselage: its drag, more of it broadside, what the air meeting it from above or below
+  // does, and the rotor's wash on it.
   const bodyAir = airAt([0, 0, 0]);
   const airspeed = m.hypot(bodyAir[0], bodyAir[1], bodyAir[2]);
   const plate = 0.5 * density * rotor.dragArea * airspeed;
-  push([0, 0, 0], [-3 * plate * bodyAir[0], -4 * plate * bodyAir[1], -plate * bodyAir[2]]);
+  const download = fuselageAcross(spec, density, bodyAir[2], bodyAir[1]);
+  push([0, 0, 0], [-3 * plate * bodyAir[0], -download, -plate * bodyAir[2]]);
   // It turns itself further off the air it meets, most at 45 degrees to it.
   moment[0] += 0.5 * density * FUSELAGE_MOMENT * spec.mass * bodyAir[1] * bodyAir[2];
   const wash =
@@ -512,11 +616,51 @@ export function stepRotorcraft(c: RotorcraftInput): RotorcraftStep {
   const tailSpec = rotor.tail;
   const tailBlades = tailSpec ? tailRotorBlades(tailSpec) : undefined;
   const tailAxis: Vec3 = [-sense, 0, 0];
+  // Under way, the turn the assist's feet follow: the one the bank makes, and what takes the
+  // sideslip out. Over the ground, as a pilot judges a hover, they keep the heading.
+  const banked = m.atan2(toWorld([1, 0, 0])[1], toWorld([0, 1, 0])[1]);
+  const flying = m.hypot(bodyAir[0], bodyAir[2]);
+  // Sideslip, as far as a quarter turn: flying backwards is the hover's business.
+  const slip = bodyAir[2] > 0 ? m.atan2(bodyAir[0], bodyAir[2]) : 0;
+  const underWay =
+    m.smoothstep((flying - COORDINATE_FROM) / 10) *
+    m.smoothstep((m.hypot(velocity[0], velocity[2]) - 4) / 6) *
+    m.smoothstep(bodyAir[2] / 5);
+  const pedalled = m.abs(m.clamp(input.yaw, -1, 1));
+  // Whose the sideslip is: the feet's while the stick banks (or no hands are on the stick),
+  // the hands' otherwise, unless they are busy pushing or pulling.
+  const feetTake = direct ? 1 : m.abs(m.clamp(input.roll, -1, 1));
+  const handsFree = 1 - m.abs(m.clamp(input.pitch, -1, 1));
+  const followed = m.clamp(
+    underWay *
+      (1 - pedalled) *
+      feetTake *
+      ((-G * m.sin(banked)) / m.max(flying, COORDINATE_FROM) + slip / COORDINATE_TIME),
+    -1,
+    1,
+  );
+  // Holding the heading, the feet hold it against the fin too.
+  const heldAgainstFin = underWay * (1 - pedalled) * (1 - feetTake);
+  // The bank that brings the path round to the nose: positive is right wing down.
+  const slipBank = direct
+    ? 0
+    : underWay *
+      (1 - feetTake) *
+      handsFree *
+      m.clamp(m.atan((flying * slip) / (G * SLIP_TIME)), -SLIP_BANK, SLIP_BANK);
 
   // Shaft power and the tail rotor go together: the governor gives the rotors what they take,
   // the mast twists the fuselage by what it gives, and the tail rotor has to hold that. Three
   // rounds settle it.
-  const mainPower = main.power * c.rotorAuthority;
+  // Stalled blades drag more, and the lift they have lost costs nothing.
+  const stallPower =
+    ((blades.solidity * stalled.drag) / 8) *
+    (1 + 4.6 * main.advance * main.advance) *
+    density *
+    disc *
+    tip ** 3;
+  const lost = main.thrust * (1 - stalled.lift) * (axial + blades.inducedFactor * inflow);
+  const mainPower = (main.power - lost + stallPower) * c.rotorAuthority;
   const governor = 2 * energy * speed * 4 * (1 - speed);
   const supply = (tailTakes: number): { demand: number; delivered: number } => {
     const demand = (mainPower + tailTakes) / transmission;
@@ -565,12 +709,13 @@ export function stepRotorcraft(c: RotorcraftInput): RotorcraftStep {
         const feet = (1 - sense * m.clamp((pedalTrim ?? 0) + m.clamp(input.yaw, -1, 1), -1, 1)) / 2;
         pedal = right + feet * (left - right);
       } else {
-        // The pedals ask for a rate of turn. The tail rotor is set to what gives it, holding
-        // the main rotor's torque on the way; the fin is left to weathervane the nose.
-        const want = 10 * (-m.clamp(input.yaw, -1, 1) * helicopter.yawRate - omega[1]);
+        // The pedals ask for a rate of turn, on top of the turn the feet follow under way. The
+        // tail rotor is set to what gives it, holding the main rotor's torque on the way; the fin
+        // is left to weathervane the nose.
+        const want = 10 * (-m.clamp(input.yaw, -1, 1) * helicopter.yawRate + followed - omega[1]);
         // What goes up the mast: the tail rotor's share leaves the gearbox by its own shaft.
         const torque = angular > 1 ? (drive.delivered * transmission - tailPower) / angular : 0;
-        const other = moment[1] + discYaw - sense * torque - finYaw;
+        const other = moment[1] + discYaw - sense * torque - finYaw * (1 - heldAgainstFin);
         pedal = m.clamp(
           rotorPitchFor(
             tailBlades,
@@ -651,9 +796,17 @@ export function stepRotorcraft(c: RotorcraftInput): RotorcraftStep {
       m.clamp(holding * along, -HOVER_HOLD_TILT, HOVER_HOLD_TILT) * (1 - m.abs(stickPitch));
     const holdRoll =
       m.clamp(holding * aside, -HOVER_HOLD_TILT, HOVER_HOLD_TILT) * (1 - m.abs(stickRoll));
+    // The hands do not push it past its limit speed, where the blades are close to stalling:
+    // the nose comes up to hold it there, whatever the stick asks.
+    const spare = (HELD_PAST_LIMIT * limitSpeed - edgewise * windAhead) / (G * LIMIT_TIME);
+    const ask = m.max(
+      stickPitch * helicopter.cyclicTilt + holdPitch,
+      -LIMIT_TILT - m.max(-2 * LIMIT_TILT, spare),
+    );
     // How far the disc is from where the stick wants it, with the swashplate level.
-    const shortPitch = stickPitch * helicopter.cyclicTilt + holdPitch - (nose - rest - free[0]);
-    const shortRoll = stickRoll * helicopter.cyclicTilt + holdRoll - hang - (bank - free[1]);
+    const shortPitch = ask - (nose - rest - free[0]);
+    const shortRoll =
+      stickRoll * helicopter.cyclicTilt + holdRoll + slipBank - hang - (bank - free[1]);
     // What a radian of swashplate does: the thrust swung about the center of mass, and the hub.
     const power = m.max(MIN_CONTROL_POWER, thrust * dot(hub, shaft) + stiffness);
     // The response the assisted helicopter has always had (a stiffness toward that tilt and a
@@ -690,7 +843,11 @@ export function stepRotorcraft(c: RotorcraftInput): RotorcraftStep {
   const reach = c.transform.pos[1] - c.ground;
   if ((s.gearPosition ?? 1) >= 1 && reach < 1.5 + m.abs(velocity[1]) * h * c.travel) {
     const standing: GearState = s.wheels
-      ? { spin: [...s.wheels.spin], load: [...s.wheels.load] }
+      ? {
+          spin: [...s.wheels.spin],
+          load: [...s.wheels.load],
+          travel: s.wheels.travel ? [...s.wheels.travel] : legs.legs.map(() => 0),
+        }
       : initialGearState(legs);
     const carried = standing.load.reduce((total, load) => total + load, 0);
     const grip = legs.friction * c.grip * carried;
@@ -727,7 +884,8 @@ export function stepRotorcraft(c: RotorcraftInput): RotorcraftStep {
     moment[0] += gear.moment[0];
     moment[1] += gear.moment[1];
     moment[2] += gear.moment[2];
-  } else if (s.wheels) s.wheels = { spin: s.wheels.spin, load: s.wheels.load.map(() => 0) };
+  } else if (s.wheels)
+    s.wheels = { spin: s.wheels.spin, load: s.wheels.load.map(() => 0), travel: hangingGear(legs) };
 
   // The rigid body.
   const turn = angularAcceleration(omega, moment, moments, h);
@@ -768,7 +926,8 @@ export function stepRotorcraft(c: RotorcraftInput): RotorcraftStep {
   // The air the rotor pulls follows its thrust late: the column above the disc has mass.
   const settle = m.min(1, h / inflowTime(blades, m.max(speed, 0.1), inflow));
   s.rotor = {
-    inflow: speed > 0.05 ? inflow + (main.inflowTarget / cushion - inflow) * settle : 0,
+    inflow:
+      speed > 0.05 ? inflow + ((main.inflowTarget * stalled.lift) / cushion - inflow) * settle : 0,
     collective: pitch,
     cyclic: command,
     pedal,

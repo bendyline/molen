@@ -514,6 +514,10 @@ A serialized generation request: labeled building outlines, optional labeled pol
             "minimum": 0,
             "description": "Lowest floor above the base, meters."
           },
+          "waterline": {
+            "type": "number",
+            "description": "The building floats: height of the water surface it rides on. It stands on a float, not on the ground under its outline."
+          },
           "clipped": {
             "type": "boolean",
             "description": "The outline is a cut piece: flat roof and seam walls."

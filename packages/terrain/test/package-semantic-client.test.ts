@@ -403,6 +403,71 @@ describe('terrain package semantic layer wiring', () => {
     ]);
   });
 
+  it('leaves a bridge outline out of the land both visual layers read, sidecars joined', async () => {
+    const pkg = descriptor();
+    if (pkg.landcover) pkg.landcover.source = { kind: 'pmtiles', path: 'land.pmtiles' };
+    const tiles: TerrainTileArchive = {
+      ...archive,
+      async getZxy() {
+        return { data: new Uint8Array([1]).buffer };
+      },
+    };
+    const seen: Record<string, string[]> = {};
+    const record = (name: string) => ({
+      createTile(tile: ReturnType<typeof createEmptyTerrainSemanticTile>) {
+        seen[name] = tile.landcover.map((feature) => feature.class);
+        return undefined;
+      },
+    });
+    const opened = await createTerrainPackageSemanticLayers(pkg, {
+      landcoverArchive: tiles,
+      featuresArchive: { ...tiles },
+      decoder: {
+        decode: (_data, context) => {
+          const tile = createEmptyTerrainSemanticTile();
+          // Level 8 tiles are 4 m across: a bridge across the middle, its outline along it (the
+          // basemap's pedestrian area) and a parking lot on the same ring beneath it, from
+          // separate sidecars.
+          const strip = {
+            outer: [
+              [0.05, 0.45],
+              [0.95, 0.45],
+              [0.95, 0.55],
+              [0.05, 0.55],
+            ] as [number, number][],
+          };
+          if (context.content === 'landcover')
+            tile.landcover.push(
+              { class: 'pedestrian', polygons: [strip] },
+              { class: 'parking', polygons: [strip] },
+            );
+          else
+            tile.transportation.push({
+              class: 'minor_road',
+              bridge: true,
+              lines: [
+                [
+                  [0, 0.5],
+                  [1, 0.5],
+                ],
+              ],
+            });
+          return tile;
+        },
+      },
+      landcoverLayer: { renderer: record('classification') },
+      featuresLayer: { renderer: record('human-feature') },
+    });
+    for (const category of ['classification', 'human-feature'])
+      await opened.layers
+        .find((layer) => layer.category === category)
+        ?.createTile({
+          address: { level: 8, x: 0, z: 0 },
+          signal: new AbortController().signal,
+        } as TerrainPyramidTileLayerContext);
+    expect(seen).toEqual({ classification: ['parking'], 'human-feature': ['parking'] });
+  });
+
   it('extends distant coverage through the available map levels and preserves explicit bounds', async () => {
     const opened = await createTerrainPackageSemanticLayers(descriptor(), {
       decoder: { decode: () => createEmptyTerrainSemanticTile() },

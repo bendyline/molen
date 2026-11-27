@@ -23,10 +23,25 @@ The fifty-one additions and their reference credits are listed in
 [source/AIRCRAFT-EXPANSION.md](source/AIRCRAFT-EXPANSION.md) and
 `source/aircraft-references.json`. These are original polygonal interpretations; dimensions,
 cockpit installations and flight tuning are approximate, not manufacturer CAD or flight-test
-reconstructions. The Bendy Small Airliner remains a generic design. The additions carry descriptive
-type lettering and original safety stencils, without manufacturer logos, military unit insignia,
+reconstructions. The Bendy Small Airliner remains a generic design. The model geometry carries
+only operator-neutral lettering and original safety stencils, without manufacturer logos,
 external weapons or gun pods. Reference photographs keep their individual PD/CC licenses;
 no reference image pixels are distributed in the GLBs.
+
+## Aircraft liveries
+
+Every aircraft type's `livery` component offers three to eight schemes, each modeled on a real
+operator's paint and linked to the photographs it was studied from. Military and government
+liveries show real national insignia, service titles, tail codes, serials and unit tail art,
+redrawn as original vector artwork (no traced or copied image pixels, no trademarked characters
+or mascots, and no claim to be an official replica). Civil liveries (airlines, charter, police,
+air ambulance, corporate) reproduce only the operator's colors, cheatlines and tail pattern. They
+carry no operator name, logo, emblem or wordmark, and use fictional registrations in the national
+format. No livery carries a manufacturer's logo. Lettering is outlined from Overpass, Overpass
+Mono and Jost (SIL OFL 1.1; the license texts are in the Molen repository's
+`content/entities/fonts/` and `content/earth/fonts/`). A paint scheme can be an operator's trade dress: these
+schemes identify a period or operator for simulation only, and a host can replace a type's
+`livery` component with its own.
 
 ## Real road vehicle and motorhome identities
 

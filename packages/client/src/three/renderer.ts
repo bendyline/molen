@@ -25,6 +25,7 @@ import {
   type GpuFrameTimer,
   type GpuFrameTimerOptions,
 } from './gpu-frame-timer';
+import { injectLampField, LampField } from './lamp-field';
 import {
   boxOutsideView,
   RENDER_BOUNDS,
@@ -67,6 +68,8 @@ interface CloudBackend {
   installShadows(uniforms: CloudShadowUniforms): void;
   /** Lying snow on marked materials (WebGPU: webgpu-snow-cover.ts). */
   installSnowCover(uniforms: SnowCoverUniforms): void;
+  /** Street lamps and beams on every lit material (WebGPU: webgpu-lamp-field.ts). */
+  installLampField?(field: LampField, scene: THREE.Scene): void;
 }
 
 interface InitializedRenderer {
@@ -451,6 +454,11 @@ export class Renderer {
   );
   /** The weather's lying snow, read by every material marked with `enableSnowCover`. */
   private readonly snowCover: SnowCoverUniforms = createSnowCoverUniforms();
+  /**
+   * Street lamps and car beams every lit shader reads (three/lamp-field.ts): a host's night
+   * lighting writes them; dark until it does.
+   */
+  readonly lampField: LampField = new LampField();
   private readonly cloudBackend: CloudBackend | undefined;
   private releaseCloudShadows: (() => void) | undefined;
   private cloudQualityLevel: CloudQuality = 'medium';
@@ -938,6 +946,7 @@ export class Renderer {
             : new (await import('./webgpu-scene-optimizer')).WebGpuSceneOptimizer(three);
         const clouds = await import('./webgpu-clouds');
         const snow = await import('./webgpu-snow-cover');
+        const lamps = await import('./webgpu-lamp-field');
         return new Renderer(opts, {
           three,
           backend: 'webgpu',
@@ -946,6 +955,7 @@ export class Renderer {
             material: clouds.createWebGpuCloudMaterial,
             installShadows: (uniforms) => clouds.installWebGpuCloudShadows(three, uniforms),
             installSnowCover: (uniforms) => snow.installWebGpuSnowCover(three, uniforms),
+            installLampField: (field, scene) => lamps.installWebGpuLampField(three, field, scene),
           },
           ...(optimizer ? { optimizer } : {}),
           ...(opts.reflections === true
@@ -1035,6 +1045,7 @@ export class Renderer {
           injectSubjectShadow(shader, subject.uniforms);
           injectFarShadow(shader, far.uniforms);
           injectSnowCover(shader, this.snowCover, material);
+          injectLampField(shader, this.lampField.uniforms);
         },
       );
     }
@@ -1055,6 +1066,8 @@ export class Renderer {
     // The scene never moves. Left to recompose each frame, it would mark itself dirty and force
     // every descendant's world matrix to recompute, static world included.
     this.scene.matrixAutoUpdate = false;
+    // WebGPU: the lamp field's stand-in light (WebGL reads it through the lit-shader hook above).
+    this.cloudBackend?.installLampField?.(this.lampField, this.scene);
     this.reflections =
       opts.reflections === true
         ? new SkyReflections(
@@ -1350,9 +1363,10 @@ export class Renderer {
     const variants: Array<{ map: Map<string, Promise<unknown>>; key: string }> = [];
     for (const material of materials) {
       for (const value of Object.values(material)) {
-        if (!(value instanceof THREE.Texture)) continue;
+        // Three's own flags, not `instanceof`: see `attributes` below.
+        if ((value as THREE.Texture | null)?.isTexture !== true) continue;
         const existing = this.preparedResources.get(value);
-        if (existing?.version === value.version) {
+        if (existing !== undefined && existing.version === value.version) {
           need(existing.promise);
           continue;
         }
@@ -1384,7 +1398,11 @@ export class Renderer {
     }
     const instanced = mesh as THREE.InstancedMesh;
     // An interleaved buffer once, however many attributes read it: an instance batch's matrix
-    // and its four columns are one buffer.
+    // and its four columns are one buffer. Recognised by three's flag, as three itself does: a
+    // dev page can hold two copies of three (another Vite server rewrote the dependency cache
+    // under its server), and a loader's attributes then fail this module's `instanceof`. An
+    // interleaved attribute has no `version` of its own, so a quantized model, every attribute
+    // interleaved, failed to prepare ("reading 'promise'"): a chosen aircraft never appeared.
     const attributes = [
       ...new Set(
         [
@@ -1398,13 +1416,17 @@ export class Renderer {
                 ...(instanced.instanceColor ? [instanced.instanceColor] : []),
               ]
             : []),
-        ].map((a) => (a instanceof THREE.InterleavedBufferAttribute ? a.data : a)),
+        ].map((a) =>
+          (a as THREE.InterleavedBufferAttribute).isInterleavedBufferAttribute === true
+            ? (a as THREE.InterleavedBufferAttribute).data
+            : (a as THREE.BufferAttribute),
+        ),
       ),
     ];
     const fresh = attributes.filter((attribute) => {
       if (lane.glAttributes.has(attribute)) return false;
       const existing = this.preparedResources.get(attribute);
-      if (existing?.version === attribute.version) {
+      if (existing !== undefined && existing.version === attribute.version) {
         need(existing.promise);
         return false;
       }
@@ -1869,6 +1891,8 @@ export class Renderer {
       );
     }
     if (this.backend === 'webgpu') this.three.info.reset();
+    // After the host has posed the camera (and any floating-origin shift that brought).
+    this.lampField.prepare();
     const sky = this.activeSky;
     const weather = this.activeWeather;
     const cloudAttenuation = weather?.cloudAttenuation ?? 0;
@@ -2358,6 +2382,7 @@ export class Renderer {
     this.subjectShadow?.dispose();
     this.renderGroups.clear();
     this.cloudTextures.dispose();
+    this.lampField.dispose();
     this.reflections?.dispose();
     this.hideReflectedAmbient(undefined);
     findEnvironmentRig(this.scene)?.traverse((object) => {
@@ -2524,9 +2549,10 @@ function releaseOnDispose(mesh: THREE.Mesh, interest: WarmupInterest): void {
  * Logarithmic depth costs speed. Fragments write their own depth, so the GPU cannot reject
  * hidden ones before shading them, and tile-based GPUs lose hidden-surface removal. That made no
  * measurable difference in a busy Alicante view on a discrete GPU. Polygon offset no longer
- * applies, but the overlays that use it (livery decals, sign glow, night windows) draw on their
- * surfaces' own triangles, so they compute the same depth and pass three's less-or-equal test
- * without it.
+ * applies. Sign glow and night windows draw on their surfaces' own triangles, so they compute the
+ * same depth and pass three's less-or-equal test without it. Livery markings are cut from the
+ * skin's triangles into new ones, which match its depth only to rounding, so they stand 2 mm off
+ * the skin instead (`MARKING_LIFT` in livery.ts).
  *
  * The replacement reuses the context: a world viewer must not consume a second GL context.
  * `resetState` both repairs three's state cache after the probe and returns clip control to

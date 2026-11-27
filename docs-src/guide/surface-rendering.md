@@ -298,6 +298,14 @@ await surfaces.setOptions({
   layout checks keep bays out of mapped aisles, holes, buildings and water. Cars are drawn from
   `details.parkedVehicles`, a list of `{ id, spec }` a host builds from loaded vehicle types (the
   world explorer uses the `molen.entities` pack's, in type order); without it no cars are parked.
+- A bridge's mapped outline is not paved land. OpenStreetMap outlines many bridges
+  (`man_made=bridge`), and the Protomaps basemap files that outline as a `pedestrian` land-use
+  area, so it was once paved at ground level under the deck: a pale strip across the road or
+  river beneath. A package's visual layers drop a pedestrian polygon when at least half of it
+  (`TERRAIN_BRIDGE_OUTLINE_SHARE`) lies within a bridge way's carriageway half width plus
+  `TERRAIN_BRIDGE_OUTLINE_MARGIN` world units (`withoutTerrainBridgeOutlines`), for land colors,
+  paved areas and scatter alike. Plazas a footbridge merely lands in score far lower; other land
+  under a deck (a parking lot under a viaduct) is never dropped.
 - Some basemaps omit parking polygons. Service-aisle pairs can infer pavement inside mapped
   commercial/retail sites, near large buildings outside mapped residential areas, or with explicit
   `parking_aisle` metadata. These pairs can be angled and 9–60 world units apart, with at least
@@ -481,6 +489,10 @@ the terrain, everything draped on it and everything that drives on it agree:
 - Bridges and tunnels are not graded for (the ground under a deck is the river's or the lower
   road's), nor are footpaths, which take the ground as they find it. Mapped water keeps its
   bed beside a road. No point moves more than 12 m.
+- **Cuttings.** A way that runs into a tunnel goes down a cutting to its portal (see
+  [Tunnels](#tunnels)): below its profile by as much as the bore needs at the portal, and less
+  by its class's grade every meter back from it. A footpath into a tunnel is graded along its
+  cutting too.
 
 Grading runs for the two finest feature levels, where the rendered grid is no coarser than
 28 m between vertices; coarser tiles are seen from too far to tell. Adjacent tiles agree on
@@ -511,6 +523,10 @@ Every inferred bridge gets a height profile, and so does every road that has to 
 - A deck falls away from a crossing no faster than its class allows: 5% for a freeway, 7% for
   its ramps, 6 to 8% for streets, 10% for service roads and footpaths, 3% for heavy rail and
   as stairs do for steps. Breaks in grade are rounded over about 20 m.
+- Where a deck's ends stand farther apart in height than half its class's grade covers (a
+  viaduct down a hillside), it may fall as steeply as the line between its ends plus half its
+  class's grade. Held to its class alone, such a viaduct reached its foot stories up, and the
+  streets and parking aisles there climbed to meet it.
 - A road climbing to a structure fits beneath every deck that passes over it, its own
   bridge's or another's: it stands no higher there than leaves the deck its clearance, and
   comes down to that as steeply as 25% if it must. A deck is never raised to clear a road that
@@ -613,12 +629,47 @@ Aircraft ground support also uses the bore floor at the aircraft's altitude; its
 collision still determines whether an aircraft fits.
 
 The Seattle PMTiles fixture contains `is_tunnel` centerlines for the Mount Baker Ridge road and
-bicycle/pedestrian tunnels. It supplies neither surveyed floor elevations nor clearances.
-The default infers a straight grade between terrain heights at the complete route's endpoints,
-with 6.5 m road, 6 m rail and 3.5 m path clearance and the existing transport width defaults.
-These are approximate interiors, not surveyed tunnel geometry. Semantic providers can supply
+bicycle/pedestrian tunnels. It supplies neither surveyed floor elevations nor clearances, and
+neither does any basemap (Protomaps drops OSM's `layer`), so a bore's depth is inferred, with
+6.5 m road, 6 m rail and 3.5 m path clearance and the existing transport width defaults. These
+are buildable interiors, not surveyed tunnel geometry. Semantic providers can supply
 `tunnelFloorElevation` (absolute world Y) and `tunnelClearance`; the MVT decoder accepts
 `tunnel_floor_elevation` and `tunnel_clearance`/`tunnel_height`, or configurable property names.
+
+A map draws only the covered stretch as a tunnel; the road before it runs down a cutting that no
+elevation model holds. Graded from the ground at one portal to the ground at the other, a bore
+under a level city stood on the surface as a 6.5 m concrete box, and a street dipping under a
+motorway at grade was a box across the motorway. The inference, in
+`@bendyline/molen-terrain/kernel` (`findTerrainTunnelPortals`, `terrainTunnelCutting`,
+`terrainTunnelBoreProfile`), is now the engineer's:
+
+- **Cuttings.** Where a road grading runs (see [Road grading](#road-grading)), the way into
+  each portal is cut down to it: by the bore's clear height, 1.5 m of cover
+  (`TERRAIN_TUNNEL_COVER`) and its pavement where the ground is level, by less or nothing where
+  a hillside closes over the bore within 15 m of the portal (`TERRAIN_TUNNEL_PORTAL_ZONE`), and
+  no deeper than the approach can climb back from at its grade (8% for a road, 4% for a
+  railway, 1 in 12 for a path: `TERRAIN_TUNNEL_GRADE`) before it must be on the ground. A
+  junction, a way crossing it at grade, a bridge it goes on over, or the edge of what the tile
+  and its neighbors show hold it there; another tunnel does not. Each portal's answer reads only
+  what lies near it, so tiles that share a portal cut it alike.
+- **Bores.** A bore's floor starts at its portals' cuttings (`tunnelPortalGround` of the road
+  grading) or, without one, on the ground. Between them it keeps its clear height and the cover
+  under the ground, climbing and falling no faster than its grade: under a hill that is the
+  straight grade between its portals, as before; under level ground it goes down and back up.
+- **Open stretches.** Where a bore still cannot get under (an approach cut short by a junction
+  at its mouth, a hillside that closes over it only some way in, no grading at all), it is an
+  open cutting: retaining walls to the ground and a 0.9 m parapet, no roof, the ground opened
+  over it. Where a way crosses such a stretch at grade, the roof stays as a lid 0.4 m under the
+  way's ground, at whatever clear height that leaves: neither ever stands over the ground, which
+  is where the boxes were. A face closes the ground above a roof at each portal and wherever an
+  open stretch meets a covered one. Cuttings come from the road grading, which runs only where
+  the rendered grid is 28 m or finer; where a package's finest tiles render a coarser one (roads
+  that end at zoom 13, at a quality that caps the grid), its short underpasses are open stretches
+  and lids.
+- **Cuttings hold their ground.** Within a cutting's own carriageway (and at least the grid cell
+  its centerline runs through) its floor is the ground, whatever the roads beside it want, and it
+  stops at its portal rather than rounding off over the bore. Weighed against them, a
+  carriageway at grade 9 m away held the Eastern Distributor's cutting at half its depth.
 
 Fragments are clipped out of their tile buffers and joined across neighboring tiles before
 grading, so tile boundaries do not create portals or conflicting floor heights. Searches are
@@ -642,11 +693,14 @@ lines the tile does not see whole and lines that continue as a tunnel.
 
 Custom package hosts opt in with `createTerrainPackageSemanticLayers` (or its profiled variant),
 passing `tunnels: { heights: elevationSource }` alongside their feature renderer. Share the
-elevation source returned by `openTerrainPackagePyramid` with the terrain stream.
-`withTerrainTunnels` wraps a custom semantic renderer, and `sampleTerrainTunnel(root, x, y, z)`
-returns a visible bore's floor and ceiling in the root's coordinate frame. Observers above the
-ceiling continue using the surface height. Static hosts can use `createTerrainTunnelObject`
-with complete route lines and a ground sampler that covers both portals.
+elevation source returned by `openTerrainPackagePyramid` with the terrain stream. With
+`roadGrading` too, and its `transformHeightfield` on the stream, approaches are cut and bores
+begin at their cuttings. `withTerrainTunnels` wraps a custom semantic renderer (its `portals`
+option takes the road grading), and `sampleTerrainTunnel(root, x, y, z)` returns a visible
+bore's floor and ceiling (an open stretch's wall tops) in the root's coordinate frame.
+Observers above the ceiling continue using the surface height. Static hosts can use
+`createTerrainTunnelObject` with complete route lines and a ground sampler that covers the
+whole route; its `portalGround` option starts a bore at the floor of its cuttings.
 
 ## Railways
 

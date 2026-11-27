@@ -2,7 +2,12 @@ import { readFileSync } from 'node:fs';
 import { AmbientAgent, agentRotation, installAmbient } from '@bendyline/molen-ambient/kernel';
 import { createParkedVehicleBatch, isParkedVehicleHidden } from '@bendyline/molen-client/vehicles';
 import { createTypeLibrary } from '@bendyline/molen-kernel/content';
-import { VehicleInput, VehicleState } from '@bendyline/molen-kernel/vehicles';
+import {
+  VehicleInput,
+  VehicleState,
+  type VehicleStateData,
+  vehicleRotation,
+} from '@bendyline/molen-kernel/vehicles';
 import { Transform } from '@bendyline/molen-kernel/world';
 import type { VehicleData, VehiclePlacement } from '@bendyline/molen-schema';
 import { tagTerrainObject } from '@bendyline/molen-terrain/client';
@@ -782,4 +787,128 @@ it('adds the rider lean to the steering of a cycle and leaves a car alone', () =
   } finally {
     vehicles.dispose();
   }
+});
+
+describe('getting out of a crashed car', () => {
+  /** Flat ground, and a tree at x 0, z 60: a trunk and a cone crown from `crownBase` up. */
+  function grove(crownBase = 3): THREE.Group {
+    const root = new THREE.Group();
+    const material = new THREE.MeshBasicMaterial();
+    root.add(new THREE.Mesh(new THREE.PlaneGeometry(400, 400).rotateX(-Math.PI / 2), material));
+    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.35, 6, 8), material);
+    trunk.position.set(0, 3, 60);
+    const crown = new THREE.Mesh(new THREE.ConeGeometry(3, 7, 8), material);
+    crown.position.set(0, crownBase + 3.5, 60);
+    root.add(trunk, crown);
+    root.updateMatrixWorld(true);
+    return root;
+  }
+  /** A driven sedan, put where a crash left it: off its wheels at `pos`, pitched and rolled. */
+  function wreck(
+    root: THREE.Group,
+    pos: [number, number, number],
+    pitch: number,
+    roll = 0,
+  ): { vehicles: EarthVehicles; id: string } {
+    const vehicles = new EarthVehicles({
+      root,
+      sampleHeight: () => 0,
+      loadModel: async () => new THREE.Group(),
+      types: ENTITY_TYPES,
+    });
+    const id = vehicles.spawn(SEDAN, [0, 0, 0], 0) as string;
+    expect(vehicles.board(id)).toBe(true);
+    vehicles.world.patch(id, Transform, { pos, rot: vehicleRotation(0, pitch, roll) });
+    vehicles.world.set(id, VehicleState, {
+      ...(vehicles.world.get(id, VehicleState) as VehicleStateData),
+      pitch,
+      roll,
+      freeBody: { velocity: [0, 0, 0], omega: [0, 0, 0] },
+    });
+    return { vehicles, id };
+  }
+  const braking = (vehicles: EarthVehicles, frames: number): void => {
+    for (let i = 0; i < frames; i++)
+      vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: true });
+  };
+
+  it.each([
+    // Caught in the crown, four meters up: it hangs there, and once said it was speeding up.
+    ['caught in the crown', 2, [0, 4, 60], -0.3, 0.2],
+    // Nose up against the trunk under a crown low enough to cover both doors.
+    ['nose up under a low crown', 1.5, [0, 2, 58.7], -1.1, 0],
+  ] as const)('lets the driver out of a sedan %s, onto the ground beside it', (_, base, pos, pitch, roll) => {
+    const { vehicles, id } = wreck(grove(base), [...pos], pitch, roll);
+    try {
+      braking(vehicles, 120);
+      const lying = vehicles.world.get(id, Transform)?.pos ?? [0, 0, 0];
+      const feet = vehicles.exit();
+      expect(vehicles.message).toBe('');
+      expect(feet).toBeDefined();
+      expect(vehicles.mountedId).toBeUndefined();
+      const [x, y, z] = feet as [number, number, number];
+      expect(y).toBeCloseTo(0.02, 6);
+      expect(Math.hypot(x - lying[0], z - lying[2])).toBeGreaterThan(1);
+      // Not inside the trunk.
+      expect(Math.hypot(x, z - 60)).toBeGreaterThan(0.7);
+    } finally {
+      vehicles.dispose();
+    }
+  });
+
+  it('lets the driver out of a car that reports speed it is not moving at', () => {
+    const { vehicles, id } = wreck(grove(), [0, 1.5, 55], 0, Math.PI);
+    try {
+      const jam = (): void => {
+        braking(vehicles, 1);
+        vehicles.world.patch(id, VehicleState, { speed: 5 });
+      };
+      jam();
+      // Not yet seen to hold still: it might be moving.
+      expect(vehicles.exit()).toBeUndefined();
+      expect(vehicles.message).toBe('Wait for it to come to rest');
+      for (let i = 0; i < 60; i++) jam();
+      expect(vehicles.exit()).toBeDefined();
+      expect(vehicles.mountedId).toBeUndefined();
+    } finally {
+      vehicles.dispose();
+    }
+  });
+
+  it('climbs out of a stopped car boxed in on its wheels when asked again', () => {
+    // A low roof over everything within 15 m: no door, and no ground around, has room to stand.
+    const root = grove();
+    const roof = new THREE.Mesh(new THREE.BoxGeometry(30, 0.4, 30), new THREE.MeshBasicMaterial());
+    roof.position.set(0, 1.8, 0);
+    root.add(roof);
+    root.updateMatrixWorld(true);
+    const vehicles = new EarthVehicles({
+      root,
+      sampleHeight: () => 0,
+      loadModel: async () => new THREE.Group(),
+      types: ENTITY_TYPES,
+    });
+    try {
+      const id = vehicles.spawn(SEDAN, [0, 0, 0], 0) as string;
+      expect(vehicles.board(id)).toBe(true);
+      // Just stopped: drive out of it.
+      expect(vehicles.exit()).toBeUndefined();
+      expect(vehicles.message).toBe('Exit blocked — move to an open space');
+      braking(vehicles, 60);
+      // Asked again while it stands still: out, onto the ground beside it.
+      const feet = vehicles.exit();
+      expect(feet).toBeDefined();
+      expect(feet?.[1]).toBeCloseTo(0.02, 6);
+      expect(Math.abs(feet?.[0] ?? 0)).toBeGreaterThan(0.91);
+
+      // Stopped a while before the first try, it says the next one climbs out.
+      expect(vehicles.board(id)).toBe(true);
+      braking(vehicles, 60);
+      expect(vehicles.exit()).toBeUndefined();
+      expect(vehicles.message).toBe('Doors blocked — try again to climb out');
+      expect(vehicles.exit()).toBeDefined();
+    } finally {
+      vehicles.dispose();
+    }
+  });
 });

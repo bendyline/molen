@@ -30,6 +30,39 @@ export const gripenFrame = () => ({
   floor: 1.15,
 });
 
+/** Ray-casts onto the triangles `build(kit)` emits (the same quads the airframe uses) and lifts
+ * the hit along the face normal toward the caster, for laying panel lines on the actual skin. */
+function surfaceCaster(build, lift = 0.005) {
+  const holder = new T.Group(),
+    surface = new T.MeshBasicMaterial({ side: T.DoubleSide });
+  build({ add: (geometry) => holder.add(new T.Mesh(geometry, surface)) });
+  holder.updateMatrixWorld(true);
+  const ray = new T.Raycaster();
+  return (origin, direction) => {
+    const dir = new T.Vector3(...direction).normalize();
+    ray.set(new T.Vector3(...origin), dir);
+    const hit = ray.intersectObject(holder, true)[0];
+    if (!hit) throw Error(`Gripen marking misses the skin at ${origin}`);
+    const normal = hit.face.normal.clone();
+    if (normal.dot(dir) > 0) normal.negate();
+    return hit.point.addScaledVector(normal, lift).toArray();
+  };
+}
+/** Points every `step` along a polyline of 2-D corners, each mapped by `at`. A straight tube
+ * between two corners would cut through the creases between loft facets or float over the
+ * wing's camber. */
+function sampledPath(corners, at, step, closed = true) {
+  const points = [];
+  for (let i = 0; i < (closed ? corners.length : corners.length - 1); i++) {
+    const [ua, va] = corners[i],
+      [ub, vb] = corners[(i + 1) % corners.length],
+      steps = Math.max(1, Math.ceil(Math.hypot(ub - ua, vb - va) / step));
+    for (let k = 0; k < steps; k++)
+      points.push(at(ua + ((ub - ua) * k) / steps, va + ((vb - va) * k) / steps));
+  }
+  if (!closed) points.push(at(...corners.at(-1)));
+  return points;
+}
 export function buildGripenC(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -107,7 +140,11 @@ export function buildGripenC(s) {
       b + Math.sin((i * Math.PI) / 20) * (t - b),
     ]),
   }));
-  loft(d, cr, glass, { caps: false, skip: (_, j) => j === 20 });
+  // Glazing ends at z 2.05, about 0.8 m behind the eye (side photographs and the 3-view put the
+  // rear of the transparency 4.9-5.0 m aft of the radome tip); a painted fairing carries the
+  // canopy line down into the spine. Glass all the way to z 1.05 made the canopy a metre long.
+  loft(d, cr.slice(0, 5), glass, { caps: false, skip: (_, j) => j === 20 });
+  loft(d, cr.slice(4), paint, { caps: false, skip: (_, j) => j === 20 });
   for (const k of [0, 20])
     outline(
       d,
@@ -116,7 +153,14 @@ export function buildGripenC(s) {
       paint,
       false,
     );
-  for (const i of [0, 1, 5])
+  outline(
+    d,
+    cr[4].points.map(([x, y]) => [x * 1.01, y + 0.004, cr[4].z]),
+    0.02,
+    seam,
+    false,
+  );
+  for (const i of [0, 1])
     outline(
       d,
       cr[i].points.map((p) => [...p, cr[i].z]),
@@ -135,10 +179,29 @@ export function buildGripenC(s) {
       u = (a[0] - z) / (a[0] - b[0]);
     return a.map((v, k) => v + (b[k] - v) * u);
   };
+  const canopyAt = (z) => {
+    const i = Math.max(
+      0,
+      canopy.findIndex((a, k) => k < canopy.length - 1 && z <= a[0] && z >= canopy[k + 1][0]),
+    );
+    const a = canopy[i],
+      b = canopy[i + 1],
+      u = (a[0] - z) / (a[0] - b[0]);
+    return a.map((v, k) => v + (b[k] - v) * u);
+  };
+  // Bridge on every fuselage and canopy station: the forebody loft kinks at z 3.7, between two
+  // canopy stations, and a bridge drawn only on the canopy stations left a sliver of sky there.
+  const sill = [
+    ...new Set(
+      [...canopy.map((r) => r[0]), ...foreData.map((r) => r[0])].filter(
+        (z) => z <= canopy[0][0] && z >= canopy.at(-1)[0],
+      ),
+    ),
+  ].sort((a, b) => b - a);
   for (const side of [-1, 1])
-    for (let i = 0; i < canopy.length - 1; i++) {
-      const a = canopy[i],
-        b = canopy[i + 1],
+    for (let i = 0; i < sill.length - 1; i++) {
+      const a = canopyAt(sill[i]),
+        b = canopyAt(sill[i + 1]),
         fa = foreAt(a[0]),
         fb = foreAt(b[0]);
       const p = (r) => [
@@ -151,6 +214,11 @@ export function buildGripenC(s) {
         1,
         0,
       ]);
+    }
+  for (const side of [-1, 1])
+    for (let i = 0; i < canopy.length - 1; i++) {
+      const a = canopy[i],
+        b = canopy[i + 1];
       for (let j = 0; j < 6; j++) {
         const u = j / 6;
         d.add(new T.SphereGeometry(0.0028, 5, 3), metal, [
@@ -191,21 +259,10 @@ export function buildGripenC(s) {
     ],
   }));
   loft(d, aft, paint, { caps: false });
-  const atSide = (side, y, z) => {
-    let i = aft.findIndex((r, k) => k < aft.length - 1 && z <= r.z && z >= aft[k + 1].z);
-    i = Math.max(0, i);
-    const a = aft[i],
-      b = aft[i + 1],
-      u = (a.z - z) / (a.z - b.z),
-      ps = a.points.map((p, j) => p.map((v, k) => v + (b.points[j][k] - v) * u));
-    for (let j = 0; j < 7; j++) {
-      const p = ps[j],
-        q = ps[j + 1];
-      if (y <= p[1] && y >= q[1])
-        return [side * (p[0] + ((q[0] - p[0]) * (p[1] - y)) / (p[1] - q[1]) + 0.003), y, z];
-    }
-    return [side * 0.5, y, z];
-  };
+  // Panel markings lie on the loft's actual triangles (hit from outboard, lifted along the face
+  // normal): corners interpolated between rings sank under the warped quads' diagonals.
+  const onSkin = surfaceCaster((kit) => loft(kit, aft, null, { caps: false, smooth: false }));
+  const atSide = (side, y, z) => onSkin([side * 3, y, z], [-side, 0, 0]);
   for (const side of [-1, 1]) {
     // D-shaped mouth: flat inboard splitter side, rounded outboard side (front elevation).
     const mouth = Array.from({ length: 11 }, (_, k) => {
@@ -217,7 +274,13 @@ export function buildGripenC(s) {
         1.55 + 0.39 * Math.sign(s) * Math.pow(Math.abs(s), 0.72),
       ];
     }).map(([x, y]) => [side * x, y, 3.05 + (y - 1.55) * 0.1]);
-    const inside = mouth.map(([x, y, z]) => [x * 0.98, 1.55 + (y - 1.55) * 0.91, z - 0.8]);
+    // The duct necks in toward its own centre: kept at 98 % of the mouth it ran only 2-4 cm inside
+    // the outer cowl, and a fixed-point depth buffer showed it through the cowl at range.
+    const inside = mouth.map(([x, y, z]) => [
+      side * (0.78 + (Math.abs(x) - 0.78) * 0.8),
+      1.55 + (y - 1.55) * 0.85,
+      z - 0.8,
+    ]);
     // A painted lip band inside the mouth, so the opening reads as a lipped D, not a dark slot.
     const lip = mouth.map((p, i) => p.map((v, k) => v + (inside[i][k] - v) * 0.16));
     const back = mouth.map(([x, y]) => [x * 1.06, 1.58 + (y - 1.55) * 1.2, 1.05]);
@@ -259,11 +322,13 @@ export function buildGripenC(s) {
       mix = (u) => a.map((v, i) => v + (b[i] - v) * u),
       mid = mix(0.53),
       cut = (p, f) => p[2] + (p[3] - p[2]) * f;
-    wing(
-      d,
-      [a, b].map((p) => [side * p[0], p[1], cut(p, 0.1), cut(p, 0.79), p[4]]),
-      paint,
-    );
+    const fixedWing = [a, b].map((p) => [side * p[0], p[1], cut(p, 0.1), cut(p, 0.79), p[4]]);
+    wing(d, fixedWing, paint);
+    const onWing = surfaceCaster((kit) => wing(kit, fixedWing, null), 0.004),
+      wingAt = (u, f) => {
+        const p = mix(u);
+        return onWing([side * p[0], 4, cut(p, f)], [0, -1, 0]);
+      };
     for (const [j, ss] of [
       [0, [a, mid]],
       [1, [mid, b]],
@@ -345,40 +410,60 @@ export function buildGripenC(s) {
     });
     // Wingtip fairing only: missiles and drawing's weapons pylons are excluded.
     beveledBox(d, [0.04, 0.07, 1.37], [side * 4.18, 1.7, -3.81], paint, 0.01);
+    // Hinge and rib lines lie on the fixed wing's surface; drawn at the crest height they floated
+    // up to 8 cm over the leading and trailing edges.
     for (const f of [0.105, 0.785])
       outline(
         d,
-        [a, b].map((p) => [side * p[0], p[1] + p[4] + 0.002, cut(p, f)]),
+        sampledPath(
+          [
+            [0.01, f],
+            [0.99, f],
+          ],
+          wingAt,
+          0.1,
+          false,
+        ),
         0.003,
         seam,
         false,
       );
-    for (const u of [0.23, 0.53, 0.78]) {
-      const p = mix(u);
+    for (const u of [0.23, 0.53, 0.78])
       outline(
         d,
-        [
-          [side * p[0], p[1] + p[4] + 0.002, cut(p, 0.16)],
-          [side * p[0], p[1] + p[4] + 0.002, cut(p, 0.73)],
-        ],
+        // Corners on the section's 25 % and 75 % creases of the fixed chord (0.1 to 0.79).
+        sampledPath(
+          [
+            [u, 0.16],
+            [u, 0.2725],
+            [u, 0.6175],
+            [u, 0.73],
+          ],
+          wingAt,
+          1,
+          false,
+        ),
         0.0025,
         seam,
         false,
       );
-    }
     for (const [za, zb, ya, yb] of [
       [0.1, -1.3, 2.14, 1.93],
       [-1.6, -2.7, 2.23, 2.02],
-      [-3.2, -4.7, 2.06, 1.83],
+      [-3.2, -4.7, 2.06, 1.88],
     ]) {
       outline(
         d,
-        [
-          [ya, za],
-          [ya, zb],
-          [yb, zb],
-          [yb, za],
-        ].map(([y, z]) => atSide(side, y, z)),
+        sampledPath(
+          [
+            [ya, za],
+            [ya, zb],
+            [yb, zb],
+            [yb, za],
+          ],
+          (y, z) => atSide(side, y, z),
+          0.08,
+        ),
         0.003,
         seam,
       );
@@ -515,6 +600,20 @@ export function buildGripenC(s) {
   });
   loft(d, [throat(-6.7, 0.385), throat(-6.22, 0.38)], dark, { caps: false });
   d.add(new T.CircleGeometry(0.38, 28).rotateY(Math.PI), dark, [0, 1.8, -6.21]);
+  // Close the tail. From dead astern the gaps between the flaps and petal tips, between the flat
+  // petals and the round shroud, and at the fuselage's lower corners (which reach outside the
+  // shroud circle) looked straight up the hollow fuselage into the cockpit. A dark ring behind
+  // the end plate fills the nozzle gaps; a painted aft face on the last fuselage section closes
+  // the rest.
+  const tailRing = (r, z) =>
+    Array.from({ length: 28 }, (_, i) => nozzleAt((i * Math.PI) / 14, r, z));
+  sheet(d, tailRing(0.5, -6.2), dark, [0, 0, -1], [tailRing(0.37, -6.2)]);
+  sheet(
+    d,
+    aft.at(-1).points.map((p) => [...p, aft.at(-1).z]),
+    paint,
+    [0, 0, -1],
+  );
   for (let i = 0; i < 14; i++)
     outline(
       d,
@@ -523,33 +622,7 @@ export function buildGripenC(s) {
       seam,
       false,
     );
-  // Low-visibility Swedish roundel geometry, not a photographic decal.
-  for (const side of [-1, 1]) {
-    const g = group(root, `Gripen-roundel-${side}`, [side * 0.495, 1.72, 4.65]);
-    g.rotation.y = (side * Math.PI) / 2;
-    const gd = detailKit(g, g.name);
-    gd.ring(0.13, 0.006, [0, 0, 0], seam);
-    for (const [x, y] of [
-      [-0.042, 0.035],
-      [0.042, 0.035],
-      [0, -0.042],
-    ])
-      sheet(
-        gd,
-        [
-          [x - 0.025, y - 0.012, 0],
-          [x - 0.025, y + 0.02, 0],
-          [x - 0.012, y + 0.008, 0],
-          [x, y + 0.026, 0],
-          [x + 0.012, y + 0.008, 0],
-          [x + 0.025, y + 0.02, 0],
-          [x + 0.025, y - 0.012, 0],
-        ],
-        seam,
-        [0, 0, 1],
-      );
-    gd.finish();
-  }
+  // National markings are livery decals (liveries/aircraft/gripen-c.mjs): operators differ.
   for (const [name, x, z, r, w, top] of [
     ['left', 1.02, -1.55, 0.34, 0.22, 1.2],
     ['right', -1.02, -1.55, 0.34, 0.22, 1.2],
@@ -582,7 +655,9 @@ export function buildGripenC(s) {
         );
       }
     }
-    if (name === 'nose') gd.box([0.32, 0.38, 0.035], [0, -0.05, 0.15], paint);
+    // Nose bay door hangs along the leg below the belly; a transverse plate stood 0.1 m up
+    // through the cockpit floor in front of the pedals.
+    if (name === 'nose') gd.box([0.025, 0.34, 0.5], [0.17, -0.2, -0.05], paint);
     else gd.box([0.025, 0.42, 0.54], [x > 0 ? 0.15 : -0.15, -0.15, -0.16], paint);
     gd.finish();
     bindings.push(
@@ -714,8 +789,9 @@ function gripenCockpit(root, m) {
       d,
       [...a, z],
       [...b, z],
-      [b[0] * 0.75, b[1] - 0.08, z + 0.3],
-      [a[0] * 0.75, a[1] - 0.08, z + 0.3],
+      // Narrow enough at its forward end to stay inside the windscreen's base and sill.
+      [b[0] * 0.7, b[1] - 0.08, z + 0.3],
+      [a[0] * 0.7, a[1] - 0.08, z + 0.3],
       button,
       [0, 1, 0],
     );
@@ -846,7 +922,20 @@ function gripenCockpit(root, m) {
   // Tub, side consoles and the short centre stick from the installed cockpit arrangement.
   // The tub stays inside the lower forebody and below the canopy-sill bridges: a full-width
   // floor and upright walls used to show through the belly and the sill as dark strips.
+  // The floor runs wall to wall and up to the front bulkhead: a narrow floor ending at z 3.8
+  // left open strips through which the pilot saw down into the nose-gear bay.
   d.box([0.36, 0.035, 1.9], [0, 1.17, 2.85], panel);
+  sheet(
+    d,
+    [
+      [-0.205, 1.19, 1.95],
+      [0.205, 1.19, 1.95],
+      [0.265, 1.19, 4.16],
+      [-0.265, 1.19, 4.16],
+    ],
+    panel,
+    [0, 1, 0],
+  );
   sheet(
     d,
     [

@@ -50,6 +50,16 @@ export {
   type VehicleProxyDimensions,
   vehicleProxyGeometry,
 } from './vehicle-proxy';
+export {
+  type CockpitMapDisplayOptions,
+  createVehicleScreen,
+  findCockpitMapDisplay,
+  findVehicleCenterDisplay,
+  type VehicleCenterDisplayOptions,
+  type VehicleDisplay,
+  type VehicleScreen,
+  type VehicleScreenOptions,
+} from './vehicle-screen';
 
 /** The stand-in for a parked vehicle: a rail car's silhouette on track, a car's on the street. */
 function parkedProxyGeometry(spec: VehiclePlacement['spec']): THREE.BufferGeometry {
@@ -111,6 +121,37 @@ interface Wheel {
   center: THREE.Vector3;
   /** Rotation from the model's frame into the wheel's parent frame. */
   toParent: THREE.Quaternion;
+  /**
+   * How much of each strut's travel this wheel takes: front left, front right, rear left, rear
+   * right. A wheel at a corner rides on that corner's strut; one between corners (the middle
+   * axle of a truck, the single front wheel of a three-wheeler) shares its neighbors'.
+   */
+  struts: [number, number, number, number];
+}
+
+/** The signals a host passes each wheel's strut travel in: `vehicleState.wheelTravel`, in order. */
+export const WHEEL_TRAVEL_SIGNALS: readonly [string, string, string, string] = [
+  'wheelTravel.0',
+  'wheelTravel.1',
+  'wheelTravel.2',
+  'wheelTravel.3',
+];
+
+const NO_TRAVEL: VehicleInteriorSignals = {};
+
+/**
+ * `vehicleState.wheelTravel` as the signals `createVehicleVisual` draws each wheel's strut travel
+ * from; nothing for a vehicle whose state has none (a cycle, a boat, a car on two axles).
+ */
+export function wheelTravelSignals(travel: unknown): VehicleInteriorSignals {
+  if (!Array.isArray(travel) || travel.length !== 4) return NO_TRAVEL;
+  const signals: Record<string, number> = {};
+  for (const [i, name] of WHEEL_TRAVEL_SIGNALS.entries()) {
+    const value: unknown = travel[i];
+    if (typeof value !== 'number') return NO_TRAVEL;
+    signals[name] = value;
+  }
+  return signals;
 }
 
 const bodyLean = new THREE.Quaternion();
@@ -126,12 +167,22 @@ const travel = new THREE.Vector3();
  * signals, the wheels take up the motion as suspension travel instead: each moves along the
  * body's up axis to keep its centre at its resting height, so the outside wheels stay on the
  * road in a turn rather than sinking into it.
+ *
+ * A car on struts also reports how far the road holds each wheel up its own strut
+ * (`vehicleState.wheelTravel`). Given those as the `WHEEL_TRAVEL_SIGNALS`, each wheel is drawn
+ * at its own travel instead: up into its arch over a bump or under a diving nose, down into a
+ * pothole, and hanging at the end of its strut in the air.
  */
 export function createVehicleVisual(
   model: THREE.Object3D,
   vehicle: Pick<VehicleData, 'visual'> & {
     color?: string;
-    spec?: { length: number; cycle?: unknown; collisionParts?: VehicleCollisionPart[] };
+    spec?: {
+      length: number;
+      cycle?: unknown;
+      collisionParts?: VehicleCollisionPart[];
+      wheelRadius?: number;
+    };
   },
   livery?: LiveryData,
   glassData?: GlassData,
@@ -199,9 +250,26 @@ export function createVehicleVisual(
         rest: node.position.clone(),
         center: node.getWorldPosition(new THREE.Vector3()).applyMatrix4(toModel),
         toParent: new THREE.Quaternion().setFromRotationMatrix(parent).invert(),
+        struts: [0.25, 0.25, 0.25, 0.25],
       });
     }
   }
+  // Which strut each wheel rides on, by where it stands among the others: +X is left, +Z forward.
+  const stand = new THREE.Box3();
+  for (const wheel of wheels) stand.expandByPoint(wheel.center);
+  for (const wheel of wheels) {
+    const left =
+      stand.max.x - stand.min.x > 0.1
+        ? (wheel.center.x - stand.min.x) / (stand.max.x - stand.min.x)
+        : 0.5;
+    const front =
+      stand.max.z - stand.min.z > 0.1
+        ? (wheel.center.z - stand.min.z) / (stand.max.z - stand.min.z)
+        : 0.5;
+    wheel.struts = [left * front, (1 - left) * front, left * (1 - front), (1 - left) * (1 - front)];
+  }
+  // No strut moves a wheel further than this: a host's bad reading must not throw one off the car.
+  const reach = 0.75 * (vehicle.spec?.wheelRadius ?? 0.4);
   if (vehicle.visual.steeringWheelNode !== undefined)
     steeringWheel = nodes.get(vehicle.visual.steeringWheelNode)?.[0];
 
@@ -236,11 +304,28 @@ export function createVehicleVisual(
         Number.isFinite(pitch) &&
         (roll !== 0 || pitch !== 0 || heave !== 0);
       if (lean) bodyLean.setFromEuler(leanEuler.set(pitch, 0, roll));
+      // Each wheel's own strut travel, where the host has it.
+      const travels = WHEEL_TRAVEL_SIGNALS.map((name) => signals?.[name]);
+      const sprung =
+        vehicle.spec?.cycle === undefined &&
+        travels.every((value) => value !== undefined && Number.isFinite(value));
       for (const wheel of wheels) {
         wheel.node.rotation.y = wheel.baseY + (wheel.front ? -steer : 0);
         const spinner = wheel.node.children[0] ?? wheel.node;
         spinner.rotation.x = angle;
         wheel.node.position.copy(wheel.rest);
+        if (sprung) {
+          // Up its strut by what the road holds it at: the body has leaned, risen and sunk
+          // around a wheel that is still on the road.
+          let held = 0;
+          for (let i = 0; i < 4; i++) held += (wheel.struts[i] ?? 0) * (travels[i] ?? 0);
+          wheel.node.position.add(
+            travel
+              .set(0, Math.max(-reach, Math.min(reach, held)), 0)
+              .applyQuaternion(wheel.toParent),
+          );
+          continue;
+        }
         // A cycle leans its entire fork and wheel about the tire contact line. Car suspension
         // compensation would detach its wheels from the fork.
         if (!lean || vehicle.spec?.cycle !== undefined) continue;

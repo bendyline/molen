@@ -462,4 +462,57 @@ describe('a car lying off its wheels', () => {
     world.patch('car', VehicleState, { freeBody: { velocity: [0, -3, 4], omega: [0, 0, 2] } });
     expect(rightVehicle(world, 'car', { groundHeight: flat })).toBe(false);
   });
+
+  it('is climbed out of where its doors are blocked, and left beside it with nowhere clear', () => {
+    const world = overturned();
+    for (let tick = 0; tick < 180; tick++) world.step();
+    const pose = world.get('car', Transform) as TransformData;
+    const away = (pos: readonly number[]): number =>
+      Math.hypot((pos[0] ?? 0) - pose.pos[0], (pos[2] ?? 0) - pose.pos[2]);
+    // A hedge 2.4 m round it: both doors and the near ground are in it.
+    const hedge: VehicleEnvironment = { groundHeight: flat, canExit: (pos) => away(pos) > 2.4 };
+    expect(unmountEntity(world, 'driver', hedge)).toBe(true);
+    const out = world.get('driver', Transform);
+    expect(away(out?.pos ?? [])).toBeGreaterThan(2.4);
+    expect(away(out?.pos ?? [])).toBeLessThan(4);
+    expect(out?.pos[1]).toBeCloseTo(0.02, 6);
+
+    // Nowhere the host calls clear: a wreck is still left, on the ground beside it.
+    world.set('driver', Mounted, { vehicle: 'car', seat: 'driver' });
+    expect(unmountEntity(world, 'driver', { groundHeight: flat, canExit: () => false })).toBe(true);
+    const beside = world.get('driver', Transform);
+    expect(away(beside?.pos ?? [])).toBeGreaterThan(sedan.spec.width / 2);
+    expect(away(beside?.pos ?? [])).toBeLessThan(2);
+    expect(beside?.pos[1]).toBeCloseTo(0.02, 6);
+  });
+
+  it('hangs where the host blocks it without gathering speed it is not moving at', () => {
+    // Caught nose up in a tree three meters over the road, where every pose it could fall to is
+    // taken: the body stays put, and so must what it reports.
+    const world = new World({ tickRate: 60 });
+    installVehicles(world, { groundHeight: flat, canOccupy: () => false });
+    world.spawnRaw(
+      {
+        transform: { pos: [0, 3, 0], rot: vehicleRotation(0, -1.1, 0) },
+        vehicle: sedan,
+        vehicleState: {
+          ...initialVehicleState(0),
+          grounded: false,
+          freeBody: { velocity: [0, 0, 0], omega: [0, 0, 0] },
+        },
+        mountable: vehicleMounts(sedan.spec),
+      },
+      'car',
+    );
+    world.spawnRaw({ transform: { pos: [0, 0, 0], rot: [0, 0, 0, 1] } }, 'driver');
+    world.set('driver', Mounted, { vehicle: 'car', seat: 'driver' });
+    for (let tick = 0; tick < 120; tick++) world.step();
+    const hung = world.get('car', VehicleState);
+    expect(world.get('car', Transform)?.pos[1]).toBeCloseTo(3, 6);
+    expect(Math.hypot(...(hung?.freeBody?.velocity ?? [9, 9, 9]))).toBeLessThan(0.2);
+    expect(Math.hypot(hung?.speed ?? 9, hung?.lateralSpeed ?? 9)).toBeLessThan(0.2);
+    // So its driver can get out, onto the road under it.
+    expect(unmountEntity(world, 'driver', { groundHeight: flat })).toBe(true);
+    expect(world.get('driver', Transform)?.pos[1]).toBeCloseTo(0.02, 6);
+  });
 });

@@ -57,6 +57,18 @@ describe('aircraft engine authoring', () => {
     expect(valid({ ...jet, engine: { ...jet.engine, afterburnerThrust: 50000 } })).toBe(false);
     expect(valid({ ...jet, engine: { ...jet.engine, propulsion: 'propeller' } })).toBe(false);
     expect(valid({ ...jet, engine: { ...jet.engine, afterburnerDetent: 1 } })).toBe(false);
+    // Nozzle exits for the afterburner flame name a jet engine; a variable one closes, not opens.
+    const exit = { engine: 'main', position: [0, 1, -5], radius: 0.5 };
+    const withExits = (exhausts: unknown[], spec: typeof jet = jet) => ({
+      ...spec,
+      visual: { ...spec.visual, exhausts },
+    });
+    expect(valid(withExits([exit]))).toBe(true);
+    expect(valid(withExits([{ ...exit, closedRadius: 0.4, aspect: 2 }]))).toBe(true);
+    expect(valid(withExits([{ ...exit, closedRadius: 0.6 }]))).toBe(false);
+    expect(valid(withExits([{ ...exit, engine: 'left' }]))).toBe(false);
+    expect(valid(withExits([{ ...exit, radius: 0 }]))).toBe(false);
+    expect(valid(withExits([exit], sample.spec as typeof jet))).toBe(false);
     const departure = {
       onsetAngle: 0.4,
       fullAngle: 1,

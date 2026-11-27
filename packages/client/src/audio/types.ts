@@ -8,6 +8,22 @@ import type {
 
 export type AudioVec3 = [number, number, number];
 
+export type AudioListenerSpace = 'open' | 'cabin' | 'building' | 'tunnel';
+
+/** Reverberation presets the backend can add; generated, so no recording is needed. */
+export type AudioReverb = 'room' | 'tunnel' | 'street';
+
+/** What the listener's surroundings do to sound from outside them. */
+export interface AudioEnclosure {
+  /** Attenuation of outside sound, dB (0 in the open). */
+  isolationDb: number;
+  /** Low-pass cutoff on outside sound, Hz (20000 in the open). */
+  cutoffHz: number;
+  reverb?: AudioReverb;
+  /** Reverberation level 0..1. */
+  wet?: number;
+}
+
 /** Where the ears are, in world space (render origin already added back). */
 export interface AudioListenerState {
   position: AudioVec3;
@@ -27,6 +43,18 @@ export interface AudioListenerState {
   surface?: string;
   /** true when the listener is inside a building. */
   indoors?: boolean;
+  /**
+   * The space around the ears: open air, a vehicle's cabin, a building or a tunnel. It decides how
+   * much everything outside is muffled and which reverberation plays. Default open (or building
+   * when `indoors`).
+   */
+  space?: AudioListenerSpace;
+  /** The entity the listener rides in: its sound profile's interior layers and cabin apply. */
+  vehicle?: EntityId;
+  /** Override the enclosure the space implies (how a cabin or building muffles the outside). */
+  enclosure?: AudioEnclosure;
+  /** Reverberant surroundings outside the space: a tunnel, a street between tall buildings. */
+  reverb?: AudioReverb;
   /**
    * Height above the ground under the listener (m); the `listener.heightAboveGround` signal. Hosts
    * with terrain report it so ground-level ambience (birds, traffic) fades as the listener rises.
@@ -103,6 +131,10 @@ export type VoiceCommand =
       spatial?: VoiceSpatial;
       fadeInS?: number;
       tone?: VoiceTone;
+      /** Outside the listener's enclosure: muffled by a cabin or building around the ears. */
+      outside?: boolean;
+      /** Low-pass for air absorption over distance, Hz; absent means none. */
+      lowpassHz?: number;
     }
   | {
       op: 'set';
@@ -112,10 +144,12 @@ export type VoiceCommand =
       position?: AudioVec3;
       rampS?: number;
       tone?: VoiceTone;
+      lowpassHz?: number;
     }
   | { op: 'stop'; voice: string; fadeS?: number }
   | { op: 'listener'; position: AudioVec3; forward: AudioVec3; up: AudioVec3 }
-  | { op: 'bus'; bus: string; gain: number };
+  | { op: 'bus'; bus: string; gain: number }
+  | { op: 'enclosure'; enclosure: AudioEnclosure; rampS?: number };
 
 export interface AudioBackendStats {
   voices: number;

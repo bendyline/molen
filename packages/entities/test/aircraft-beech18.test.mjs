@@ -83,7 +83,9 @@ it('Beech18 live instruments and independently hinged controls follow simulation
   expect(node('aileron-1').rotation.x).toBeCloseTo((37.5 * Math.PI) / 180, 7);
   expect(node('aileron--1').rotation.x).toBeCloseTo((-20 * Math.PI) / 180, 7);
   visual.update({ ...sample, gearPosition: 0 }, 50);
-  expect(node('main-gear-1').rotation.x).toBeCloseTo(-1.32, 7);
+  // The mains fold aft into the nacelles, tyres partly exposed (Smithsonian D18S photos); the
+  // old forward fold ended under the engine cowl.
+  expect(node('main-gear-1').rotation.x).toBeCloseTo(1.6, 7);
   const earth = await load(),
     ev = createAircraftVisual(earth, spec);
   ev.update({ ...state, flapPosition: 1 }, { ...input, roll: 0 }, 0, {

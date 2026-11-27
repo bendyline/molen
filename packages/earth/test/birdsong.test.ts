@@ -124,7 +124,7 @@ describe('curated Earth birdsong', () => {
     }
   });
 
-  it('selects actual voices, suppresses the generic chorus, and preserves altitude/car muting', async () => {
+  it('selects actual voices, suppresses the generic chorus, and preserves altitude muting and cabin muffling', async () => {
     const bank = {
       format: 'molen/soundbank@1',
       id: 'molen.sounds',
@@ -178,7 +178,9 @@ describe('curated Earth birdsong', () => {
     expect(sounds(at(51.5, -0.1, 5))).not.toContain('world.birds.europe.test');
     // The broad European palette cannot fill a gap in the curated playback areas.
     expect(sounds(at(65, 25, 5))).toEqual([]);
-    expect(sounds(toronto, 'drive')).toEqual([]);
+    // A cabin muffles the birds through its enclosure rather than silencing them.
+    expect(sounds(toronto, 'drive')).toContain('ambience.birds.american_robin');
+    expect(audio.layer.director.currentEnclosure.isolationDb).toBeGreaterThanOrEqual(20);
     expect(sounds(toronto, 'fly', 100)).toEqual([]);
     expect(sounds(at(-75, 0, 5))).toEqual([]);
     expect(sounds(toronto)).toContain('ambience.birds.american_robin');

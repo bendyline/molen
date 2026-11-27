@@ -46,6 +46,8 @@ import {
   EarthAudioTerrain,
   type EarthDioramaOptions,
   type EarthFleet,
+  EarthHarbors,
+  EarthMovingMap,
   EarthNightLighting,
   type EarthRoadSigns,
   EarthVehicles,
@@ -134,10 +136,12 @@ import { createExplorerDioramas, DIORAMA_SITES, selectedDiorama } from './dioram
 import { createExplorerFigure } from './explorer-figure.js';
 import { createFlightInstrumentPanel } from './flight-instrument-panel.js';
 import { drawFrameGraph, FrameMeter, frameRateHealth } from './frame-meter.js';
+import { createGroundFlyby } from './ground-flyby.js';
+import { createLiveryPicker, type LiverySubject } from './livery-picker.js';
 import { formatCameraLocation } from './location-readout.js';
 import { createExplorerOverrides } from './override-controls.js';
 import { createPilotVision } from './pilot-vision.js';
-import { createExplorerQualityController, createStreamStrainMeter } from './quality-policy.js';
+import { createExplorerQualityController } from './quality-policy.js';
 import {
   createRegionControls,
   DEFAULT_WORLD_REGION,
@@ -151,7 +155,7 @@ import { syntheticFeatureTile, syntheticLandcoverTile } from './synthetic-footpr
 import { ExplorerTrains, isTrainRequest, TRAIN_HELP, TRAIN_RIDE_HELP } from './trains.js';
 import { collisionObstruction, WalkCamera } from './walk-camera.js';
 import { createWeatherControls } from './weather-controls.js';
-import { AIRCRAFT_HELP, aircraftBlocks, WorldAircraft } from './world-aircraft.js';
+import { AIRCRAFT_HELP, aircraftBlocks, Livery, WorldAircraft } from './world-aircraft.js';
 import { PARACHUTE_HELP, WorldParachute } from './world-parachute.js';
 
 const DEMO_LEVEL = 13;
@@ -872,17 +876,11 @@ async function main(): Promise<void> {
   // `?tier=N` holds one adaptive tier, for measurements that compare like with like.
   const pinnedTier = params.has('tier') ? Number(params.get('tier')) : undefined;
   if (pinnedTier !== undefined) performanceLevel = pinnedTier;
-  // The level the world is built at (terrain budget, building and surface quality). Auto's slow
-  // frames lower `performanceLevel`, what the view is drawn at, and leave this where it was for
-  // their first steps (see ExplorerQualityController); a manual quality sets both.
-  let detailLevel = performanceLevel;
-  // A pinned tier is the guess as well: Auto brings a lowered level back toward its guess, which
-  // must not lift it off the pin.
+  // A pinned tier is the level outright: not even the memory budget moves it.
   const qualityController = createExplorerQualityController(
     pinnedTier ?? guessedLevel,
     pinnedTier !== undefined,
   );
-  if (pinnedTier !== undefined) qualityController.setBounds(pinnedTier, pinnedTier);
   // ?memory=<MiB> sets the terrain and layer memory budget, past what the browser reports.
   const memoryBudget =
     Number(params.get('memory')) > 0
@@ -1135,6 +1133,8 @@ async function main(): Promise<void> {
   const audioTerrain = new EarthAudioTerrain();
   let audioTerrainSample: ReturnType<EarthAudioTerrain['sample']> | undefined;
   let audioTerrainAt = -Infinity;
+  /** The camera is inside a tunnel bore: its walls ring. */
+  let audioInTunnel = false;
   const wildlifeWanted =
     ambientWanted &&
     params.get('wildlife') !== '0' &&
@@ -1143,15 +1143,26 @@ async function main(): Promise<void> {
   const wildlifeFeatures = wildlifeWanted ? new SemanticTileBuffer() : undefined;
   let wildlife: EarthWildlife | undefined;
   let ambient: EarthAmbient | undefined;
+  // Boats moored at the mapped docks and marinas, and boats under way on open water: ?boats=0
+  // leaves the water to the ferries.
+  const harborTiles =
+    ambientWanted && params.get('boats') !== '0' ? new SemanticTileBuffer() : undefined;
+  let harbors: EarthHarbors | undefined;
   // The railway network trains run on, read from the same feature tiles.
   // Ambient life also keeps switchers working nearby yards; ?yard=0 leaves the yards still.
   const explorerTrains = new ExplorerTrains({ yard: ambientWanted && params.get('yard') !== '0' });
+  // A driven car's centre screen shows the roads around it; ?gps=0 keeps the printed map.
+  const movingMap = params.get('gps') !== '0' ? new EarthMovingMap() : undefined;
   const observeRoads = (
     renderer: WorldgenSemanticRenderers['humanFeatures'],
   ): WorldgenSemanticRenderers['humanFeatures'] => {
-    const railed = observeSemanticTiles(renderer, explorerTrains.rail);
-    const observed =
+    const mapped =
+      movingMap !== undefined ? observeSemanticTiles(renderer, movingMap.observer) : renderer;
+    const railed = observeSemanticTiles(mapped, explorerTrains.rail);
+    const watched =
       wildlifeFeatures !== undefined ? observeSemanticTiles(railed, wildlifeFeatures) : railed;
+    const observed =
+      harborTiles !== undefined ? observeSemanticTiles(watched, harborTiles) : watched;
     // Map overrides edit the tile inside the airport overlay (which would clear a host's
     // buildings off airport ground) and outside the observers, so traffic, rails and sound read
     // the edited map.
@@ -1610,16 +1621,13 @@ async function main(): Promise<void> {
   // shadows. Applied together mid-flight, their one-off costs (a canvas reallocation, a terrain
   // visibility pass, surface rebuilds, a shadow map) stacked into one long frame at every change;
   // the frame loop applies them a frame apart instead. Startup and the menu apply them at once.
-  // Terrain, buildings and surfaces follow `detailLevel`, the rest `performanceLevel`: after a
-  // step that lowered the drawing alone, the world's steps find nothing to change.
   const levelSteps: Array<() => void> = [];
   const applyPerformanceLevel = (staged = false): void => {
     const tier = earthPerformanceTier(performanceLevel);
-    const world = earthPerformanceTier(detailLevel);
-    if (automaticQuality) quality = world.quality;
+    if (automaticQuality) quality = tier.quality;
     const stepQuality = quality;
     const level = automaticQuality ? performanceLevel : earthQualityLevel(stepQuality);
-    const budget = automaticQuality ? world.terrain : terrainPyramidBudgetForQuality(stepQuality);
+    const budget = automaticQuality ? tier.terrain : terrainPyramidBudgetForQuality(stepQuality);
     const steps: Array<() => void> = [
       () => {
         objectPixelError = automaticQuality ? tier.objectPixelError : 2;
@@ -1629,7 +1637,6 @@ async function main(): Promise<void> {
         resizeRenderer();
         performanceStatus.dataset.mode = automaticQuality ? 'auto' : 'manual';
         performanceStatus.dataset.level = String(performanceLevel);
-        performanceStatus.dataset.detailLevel = String(detailLevel);
         performanceStatus.dataset.maxPixels = automaticQuality ? String(tier.maxPixels) : '';
       },
       () => {
@@ -1645,19 +1652,20 @@ async function main(): Promise<void> {
         worldgen?.setQuality(stepQuality);
         worldgen?.setCacheBudget(
           earthWorldgenCacheBytes(
-            automaticQuality ? world.cacheBytes : 192 * 1024 * 1024,
+            automaticQuality ? tier.cacheBytes : 192 * 1024 * 1024,
             memoryBudget,
           ),
         );
       },
       () => {
         void surfaceRenderer
-          .setPerformanceScale(automaticQuality ? world.surfaceScale : 1, stepQuality)
+          .setPerformanceScale(automaticQuality ? tier.surfaceScale : 1, stepQuality)
           .catch((error: unknown) => console.warn('Surface detail update failed:', error));
       },
       () => {
         ambient?.setBudget(earthPerformanceTier(level).ambient);
         wildlife?.setBudget(earthPerformanceTier(level).ambient);
+        harbors?.setBudget(earthPerformanceTier(level).ambient);
       },
       () => {
         shadowQuality = shadowsWanted ? earthPerformanceTier(level).shadows : 'off';
@@ -1684,12 +1692,10 @@ async function main(): Promise<void> {
     if (!automaticQuality) {
       quality = qualitySelect.value as TerrainQualityPreset;
       performanceLevel = earthQualityLevel(quality);
-      detailLevel = performanceLevel;
     } else {
       // Choosing Auto makes its guess afresh, whatever lowered it earlier in the session.
       if (pinnedTier === undefined) qualityController.restart();
-      performanceLevel = qualityController.drawLevel;
-      detailLevel = qualityController.detailLevel;
+      performanceLevel = qualityController.getStats().level;
     }
     applyPerformanceLevel();
     history.replaceState(null, '', next);
@@ -1823,8 +1829,11 @@ async function main(): Promise<void> {
         }
       : {}),
     obstacles: (box, except) =>
-      aircraftBlocks(vehicles.world, box, except) || (ambient?.blocks(box, except) ?? false),
+      aircraftBlocks(vehicles.world, box, except) ||
+      (ambient?.blocks(box, except) ?? false) ||
+      (harbors?.blocks(box) ?? false),
     track: explorerTrains.rail.network,
+    ...(movingMap !== undefined ? { map: movingMap } : {}),
     // Cars grip, drag and shake by the mapped road or land cover under them.
     surfaceAt: (x, z) => audioTerrain.sample(x, z).surface,
   });
@@ -1874,6 +1883,8 @@ async function main(): Promise<void> {
     startingAirport ? () => stream.isAreaReady(...startingAirport.position, 100) : undefined,
   );
   const flight = aircraft;
+  // The flown aircraft's map display shows the same roads as a car's screen.
+  flight.showMap(movingMap);
   // E in flight: the seat fires and the pilot rides a canopy down, then walks from where it lands.
   const parachute = new WorldParachute(
     stream.object,
@@ -1898,7 +1909,7 @@ async function main(): Promise<void> {
     suspendInput: () => input.map.suspend(),
     focusTarget: canvas,
   });
-  // On foot V switches between the walker's own eyes and the camera behind them;
+  // On foot V steps through the walker's own eyes, the camera behind them and the flyby view;
   // `?walkView=first` starts in the first.
   let walkView: 'first' | 'third' =
     figure.enabled && params.get('walkView') !== 'first' ? 'third' : 'first';
@@ -1908,6 +1919,7 @@ async function main(): Promise<void> {
     root: stream.object,
     world: vehicles.world,
     surface: surfaceRenderer,
+    lampField: viewer.renderer.lampField,
     vehicleHeights: roadContent.heights,
     sampleHeight,
   });
@@ -1938,9 +1950,25 @@ async function main(): Promise<void> {
           },
         })
       : undefined;
-  // F5 while piloting: a camera beside the flight path watches the aircraft go by. It overlays
-  // the cockpit or chase view, which V or F5 returns to.
+  // The flyby view: a camera beside the path ahead watches the aircraft, vehicle or walker go by.
+  // V reaches it after the chase or third-person view. While piloting, F5 also toggles it over the
+  // cockpit or chase view, which F5 returns to.
   let flyby = false;
+  /** What the flyby view watches: the mounted entity, or `walker`. Another subject ends it. */
+  let flybyOf: string | undefined;
+  const flybySubject = (): string | undefined =>
+    vehicles.mountedId ??
+    (navigation === 'walk' && !parachute.active && figure.enabled ? 'walker' : undefined);
+  const startFlyby = (): void => {
+    flybyOf = flybySubject();
+    flyby = flybyOf !== undefined;
+  };
+  const groundFlyby = createGroundFlyby({
+    root: stream.object,
+    world: vehicles.world,
+    groundHeight: sampleHeight,
+    walkObstruction,
+  });
   const flightInstruments = createFlightInstrumentPanel(params.get('hud') !== '0');
   // Tunnel vision and blackout under sustained g, redout under negative g.
   const pilotVision = createPilotVision(params.get('hud') !== '0');
@@ -1991,6 +2019,39 @@ async function main(): Promise<void> {
     );
     wildlifeCover.attach(wildlife.landcover);
     wildlifeFeatures.attach(wildlife.features);
+  }
+  if (harborTiles !== undefined) {
+    const boats = ambientContentFromTypes(content.types, async (id, signal) => {
+      try {
+        return await loadEntityModel(id, signal);
+      } catch {
+        return undefined;
+      }
+    });
+    harbors = new EarthHarbors({
+      parent: stream.object,
+      boats: boats.types.boat ?? [],
+      // Hull paints: the body colors of each boat's livery variants.
+      paints: (type) => {
+        const livery = content.types.components(type).livery as
+          | { variants?: { paints?: { body?: { color?: string } } }[] }
+          | undefined;
+        return (livery?.variants ?? [])
+          .map((variant) => variant.paints?.body?.color)
+          .filter((color): color is string => typeof color === 'string');
+      },
+      loadModel: (type, signal) => boats.loadModel(type, signal),
+      prepare: (object) => viewer.renderer.prepareObject(object),
+      seaLevel: loaded.descriptor.surface?.seaLevel ?? 0,
+      ...(waterMesh.waterFeatureStyle !== undefined
+        ? { waterFeatureStyle: waterMesh.waterFeatureStyle }
+        : {}),
+    });
+    harbors.setBudget(
+      earthPerformanceTier(automaticQuality ? performanceLevel : earthQualityLevel(quality))
+        .ambient,
+    );
+    harborTiles.attach(harbors);
   }
   let visitingAircraft: AircraftKind | undefined;
   let visitingTransit: 'bus' | 'lightrail' | undefined;
@@ -2081,6 +2142,8 @@ async function main(): Promise<void> {
       wildlifeCover?.detach();
       wildlifeFeatures?.detach();
       wildlife?.dispose();
+      harborTiles?.detach();
+      harbors?.dispose();
       audioTerrain.clear();
       controllerControls.dispose();
       input.dispose();
@@ -2173,6 +2236,45 @@ async function main(): Promise<void> {
   for (const button of document.querySelectorAll<HTMLButtonElement>('[data-aircraft]')) {
     button.addEventListener('click', () => visitAircraft(button.dataset.aircraft as AircraftKind));
   }
+  // Livery, under the vehicle picker: the aircraft being flown, else the car or boat being driven,
+  // else the aircraft chosen to visit. The HUD refreshes it with the status line.
+  const liveryRow = document.querySelector<HTMLElement>('#livery-row');
+  const liveryVehicle = document.querySelector<HTMLElement>('#livery-vehicle');
+  const liverySelect = document.querySelector<HTMLSelectElement>('#livery-picker');
+  const liveryPicker =
+    liveryRow && liveryVehicle && liverySelect
+      ? createLiveryPicker(
+          { row: liveryRow, name: liveryVehicle, select: liverySelect },
+          (): LiverySubject | undefined => {
+            // The Mounted vehicle of an aircraft is `aircraft-<kind>`: check aircraft first.
+            const kind =
+              flight.mountedKind ??
+              (vehicles.mountedId === undefined ? flight.selectedKind : undefined);
+            if (kind !== undefined) {
+              const livery = flight.livery(kind);
+              return livery === undefined
+                ? undefined
+                : {
+                    key: `aircraft:${kind}`,
+                    name: flight.label(kind),
+                    livery,
+                    apply: (selected) => flight.setLivery(kind, selected),
+                  };
+            }
+            const id = vehicles.mountedId;
+            const livery = id === undefined ? undefined : vehicles.world.get(id, Livery);
+            return id === undefined || livery === undefined
+              ? undefined
+              : {
+                  key: `vehicle:${id}`,
+                  name: vehicles.label(id),
+                  livery,
+                  apply: (selected) => vehicles.setLivery(id, selected),
+                };
+          },
+          () => canvas.focus(),
+        )
+      : undefined;
   // The pilot's body under g. `pilotMotion=0` starts with it off; any other number scales it
   // (`pilotMotion=3` exaggerates it for a look at what moves). The checkbox switches it live, and
   // `molenPilotMotion` in the console is the model itself: its `tuning` takes effect at once, and
@@ -2358,7 +2460,9 @@ async function main(): Promise<void> {
       !(event.ctrlKey || event.altKey || event.metaKey || event.shiftKey)
     ) {
       event.preventDefault();
-      if (!event.repeat) flyby = !flyby;
+      if (event.repeat) return;
+      if (flyby) flyby = false;
+      else startFlyby();
       return;
     }
     // Ctrl+R leaves an aircraft by whatever way is open, the seat in flight; R alone never fires
@@ -2410,6 +2514,7 @@ async function main(): Promise<void> {
     ) {
       ambient.setEnabled(!ambient.isEnabled);
       wildlife?.setEnabled(ambient.isEnabled);
+      harbors?.setEnabled(ambient.isEnabled);
     }
   });
   document.getElementById('hud')?.addEventListener('focusin', () => input.map.reset());
@@ -2449,9 +2554,6 @@ async function main(): Promise<void> {
   let surfaceGeometryRevision = -1;
   let memoryRefreshTime = Number.NEGATIVE_INFINITY;
   let streamingBusy = true;
-  // Whether the level asks for more than the terrain cache holds (see createStreamStrainMeter).
-  const streamStrain = createStreamStrainMeter();
-  let streamStrained = false;
   // The ground in view within 2 km, as the stream last counted it (see the Performance panel).
   let nearGround: { tiles: number; complete: number; drawnLevel: number | undefined } | undefined;
   // Quality adapts once the first view has finished loading (or after 20 s). Until then frames
@@ -2471,7 +2573,6 @@ async function main(): Promise<void> {
     probe.molenFlightProbe = () => ({
       position: [...camera.pos],
       tier: performanceLevel,
-      detailTier: detailLevel,
       tierReason: qualityController.getStats().reason,
       rendered: viewer.renderer.stats(),
       farShadow: viewer.renderer.farShadowInfo,
@@ -2549,15 +2650,13 @@ async function main(): Promise<void> {
         loading: streamingBusy,
         cpuFrameMs: previousCpuMs,
         ...(completedGpuMs === undefined ? {} : { gpuFrameMs: completedGpuMs }),
-        // Warm, hidden cache entries can be reclaimed; they must not prevent quality recovery.
-        // Measured against the fixed device budget, as EarthView does: each level's own byte
-        // cap is smaller, so a dense city's buildings cascaded every step down to Low.
+        // What is on show, not the warm cache (which can be reclaimed), against the fixed device
+        // budget, as EarthView does: each level's own byte cap is smaller, so a dense city's
+        // buildings cascaded every step down to Low. The one thing Auto still answers to.
         memoryPressure: (pressure?.displayedBytes ?? 0) / memoryBudget,
-        strained: streamStrained,
       });
       if (change) {
         performanceLevel = change.level;
-        detailLevel = change.detailLevel;
         applyPerformanceLevel(true);
       }
     }
@@ -2579,13 +2678,26 @@ async function main(): Promise<void> {
       input.setProfile(inputProfile());
       frameInput = input.read(0);
     }
-    flyby &&= flight.mountedKind !== undefined;
+    // Boarding, leaving or a parachute ends the flyby view: it watched what was there before.
+    if (flyby && flybyOf !== flybySubject()) flyby = false;
+    if (!flyby) groundFlyby.reset();
     if (frameInput.view % 2 === 1) {
       if (vehicles.mountedId || parachute.active) {
-        if (flyby) flyby = false;
+        // V steps cockpit → chase → flyby and round again; under a canopy, cockpit and chase. The
+        // flyby view overlays chase, so F5 from there returns to chase.
+        if (flyby) {
+          flyby = false;
+          vehicles.view = 'cockpit';
+        } else if (vehicles.view === 'chase' && vehicles.mountedId) startFlyby();
         else vehicles.view = vehicles.view === 'cockpit' ? 'chase' : 'cockpit';
-      } else if (navigation === 'walk' && figure.enabled)
-        walkView = walkView === 'first' ? 'third' : 'first';
+      } else if (navigation === 'walk' && figure.enabled) {
+        // On foot: the walker's own eyes → behind them → flyby.
+        if (flyby) {
+          flyby = false;
+          walkView = 'first';
+        } else if (walkView === 'third') startFlyby();
+        else walkView = 'third';
+      }
     }
     if (vehicles.mountedId || parachute.active) {
       // Under a canopy the view turns all the way round, and down to the landing.
@@ -2783,8 +2895,12 @@ async function main(): Promise<void> {
       graphics.record('ambient-render', performance.now() - ambientStarted);
     }
     wildlife?.update(params.has('freeze') ? 0 : dt, camera.pos);
+    harbors?.update(params.has('freeze') ? 0 : dt, camera.pos);
     const vehicleCamera =
       flightCamera ??
+      (flyby && vehicles.mountedId && !flight.mountedKind
+        ? groundFlyby.vehicle(vehicles.mountedId, vehicles.speed)
+        : undefined) ??
       vehicles.cameraPose() ??
       parachute.cameraPose(vehicles.view, vehicles.lookYaw, vehicles.lookPitch);
     if (vehicleCamera) {
@@ -2874,8 +2990,23 @@ async function main(): Promise<void> {
     // `camera.pos` stays the walker's eye, which prompts, doors, streaming budgets and readouts work
     // from; in the third-person view the camera itself stands behind it.
     const onFoot = navigation === 'walk' && !vehicleCamera && walker.ready;
+    // The flyby view watches the walker from beside the way ahead; the mouse still turns them.
+    const watching =
+      onFoot && flyby
+        ? groundFlyby.walker(
+            [walker.feet.x, walker.feet.y, walker.feet.z],
+            [walker.velocity.x, 0, walker.velocity.z],
+            cameraForward(camera.yaw, 0),
+          )
+        : undefined;
+    if (watching) {
+      const [x, y, z] = watching.position;
+      const [tx, ty, tz] = watching.lookAt;
+      const length = Math.hypot(tx - x, ty - y, tz - z) || 1;
+      viewDirection = [(tx - x) / length, (ty - y) / length, (tz - z) / length];
+    }
     const behind =
-      onFoot && walkView === 'third'
+      onFoot && walkView === 'third' && !watching
         ? walkCamera.update(
             dt,
             camera.pos,
@@ -2885,13 +3016,13 @@ async function main(): Promise<void> {
             walker.swimming ? camera.pos[1] - 0.2 : undefined,
           )
         : undefined;
-    const viewPosition = behind?.position ?? camera.pos;
+    const viewPosition = watching?.position ?? behind?.position ?? camera.pos;
     figure.update(
       dt,
       {
         seated: vehicles.mountedId !== undefined,
         visible: onFoot
-          ? (behind?.distance ?? 0) > 0
+          ? watching !== undefined || (behind?.distance ?? 0) > 0
           : vehicles.mountedId !== undefined && (flyby || vehicles.view === 'chase'),
         ...(onFoot
           ? {
@@ -3150,8 +3281,13 @@ async function main(): Promise<void> {
     const audioSky = viewer.renderer.sky?.frame.earth;
     if (audio && now - audioTerrainAt >= 250) {
       audioTerrainSample = audioTerrain.sample(camera.pos[0], camera.pos[2]);
+      audioInTunnel =
+        sampleTerrainTunnel(stream.object, camera.pos[0], camera.pos[1], camera.pos[2]) !==
+        undefined;
       audioTerrainAt = now;
     }
+    // The entity the listener rides: its sound profile's cabin and interior layers apply.
+    const audioVehicle = flight.mountedKind ? `aircraft-${flight.mountedKind}` : vehicles.mountedId;
     audio?.update({
       location: {
         latitude: skyLocation[1],
@@ -3184,6 +3320,9 @@ async function main(): Promise<void> {
         vehicles.view === 'cockpit' &&
         !flyby &&
         (!!flight.mountedKind || (!!vehicles.mountedId && !vehicles.isBoat(vehicles.mountedId))),
+      ...(audioVehicle !== undefined ? { vehicle: audioVehicle } : {}),
+      ...(frameInput.horn ? { horn: true } : {}),
+      ...(audioInTunnel ? { reverb: 'tunnel' as const } : {}),
       ...(navigation === 'walk' && !vehicleCamera ? { grounded: walker.grounded } : {}),
       ...(viewer.renderer.weather ? { weather: viewer.renderer.weather.data } : {}),
     });
@@ -3196,11 +3335,14 @@ async function main(): Promise<void> {
     }
     viewer.renderFrame();
     if (touchConsole) {
-      // After the frame: the console's dials copy the cockpit's world matrices.
+      // After the frame: the console's dials copy the cockpit's world matrices. Dials show in an
+      // outside view (chase or flyby): an aircraft's airspeed and altitude, a driven vehicle's
+      // (car, cycle, boat, train) speedometer.
+      const outside = flyby || vehicles.view === 'chase';
       const subject: ConsoleSubject | undefined = flight.mountedKind
-        ? flight.consoleSubject(flyby || vehicles.view === 'chase')
+        ? flight.consoleSubject(outside)
         : vehicles.mountedId
-          ? vehicles.consoleSubject()
+          ? vehicles.consoleSubject({ gauges: outside })
           : parachute.active
             ? undefined
             : { kind: navigation === 'walk' ? 'walk' : 'free' };
@@ -3229,6 +3371,7 @@ async function main(): Promise<void> {
 
     if (now - statusTime > 250) {
       statusTime = now;
+      liveryPicker?.refresh();
       // The tracked byte estimate: the measured totals walk every resident tile's objects, a
       // stall four times a second over a warm cache.
       const stats: TerrainStreamStats | TerrainPyramidStreamStats =
@@ -3242,23 +3385,8 @@ async function main(): Promise<void> {
         stats.loadingLayers > 0 ||
         (isPyramidStats(stats) && stats.retryingLayers > 0) ||
         surfaceStats.loading > 0;
-      if (isPyramidStats(stats)) {
-        const cache = pyramidEarth?.stream.pressure();
-        // How the ground within 2 km stands: rebuilding is strain only while it falls behind.
-        const near = pyramidEarth?.stream.viewCoverage([2_000])[0];
-        nearGround = near;
-        streamStrained = streamStrain({
-          nowMs: now,
-          builtTiles: stats.builtTiles,
-          thrashedTiles: stats.thrashedTiles,
-          residentBytes: cache?.residentBytes ?? 0,
-          displayedBytes: cache?.displayedBytes ?? 0,
-          maxResidentBytes: cache?.maxResidentBytes,
-          ...(near !== undefined && near.tiles > 0
-            ? { nearComplete: near.complete / near.tiles }
-            : {}),
-        });
-      }
+      // How the ground within 2 km stands, for the panel.
+      if (isPyramidStats(stats)) nearGround = pyramidEarth?.stream.viewCoverage([2_000])[0];
       // Surface detail changes in place on tiles in view; the rest of the cache is counted. The
       // recount walks every displayed mesh (4-6 ms in a city), so a pan's constant surface changes
       // recount every two seconds rather than at every status update.
@@ -3286,7 +3414,7 @@ async function main(): Promise<void> {
             : flight.message ||
               (vehicles.mountedId
                 ? ((vehicles.waiting ? undefined : explorerTrains.status()) ??
-                  `${vehicles.label(vehicles.mountedId)} · ${Math.abs(vehicles.speed * 3.6).toFixed(0)} km/h · ${drivelineStatus(vehicles)} · ${vehicles.view} · ${vehicles.waiting ? 'Waiting for terrain…' : vehicles.message || 'R exit · V view'}`)
+                  `${vehicles.label(vehicles.mountedId)} · ${Math.abs(vehicles.speed * 3.6).toFixed(0)} km/h · ${drivelineStatus(vehicles)} · ${flyby ? 'flyby' : vehicles.view} ·${vehicles.waiting ? 'Waiting for terrain…' : vehicles.message || 'R exit · V view'}`)
                 : vehicles.message ||
                   (nearDoor
                     ? doorPrompt(nearDoor)
@@ -3342,7 +3470,7 @@ async function main(): Promise<void> {
               ? 'rotation'
               : 'grounded';
       navigationStatus.dataset.view = flyby ? 'flyby' : vehicles.view;
-      navigationStatus.dataset.walkView = walkView;
+      navigationStatus.dataset.walkView = flyby && flybyOf === 'walker' ? 'flyby' : walkView;
       navigationStatus.dataset.figure = String(figure.shown);
       navigationStatus.dataset.entities = String(vehicles.world.query({ name: 'vehicle' }).count());
       const ambientStats = ambient?.stats();
@@ -3354,6 +3482,11 @@ async function main(): Promise<void> {
       navigationStatus.dataset.wildlifeAnimals = String(wildlifeStats?.animals ?? 0);
       navigationStatus.dataset.wildlifeCandidates = String(wildlifeStats?.candidates ?? 0);
       navigationStatus.dataset.wildlifeTriangles = String(wildlifeStats?.triangles ?? 0);
+      const harborStats = harbors?.stats();
+      navigationStatus.dataset.harborMoorings = String(harborStats?.moorings ?? 0);
+      navigationStatus.dataset.harborMoored = String(harborStats?.moored ?? 0);
+      navigationStatus.dataset.harborModels = String(harborStats?.models ?? 0);
+      navigationStatus.dataset.harborCruising = String(harborStats?.cruising ?? 0);
       navigationStatus.dataset.state = flight.mountedKind
         ? 'piloting'
         : vehicles.mountedId
@@ -3427,6 +3560,11 @@ async function main(): Promise<void> {
           : [
               `wildlife ${wildlifeStats.animals} visible · ${wildlifeStats.candidates} active · ${wildlifeStats.triangles} triangles`,
             ]),
+        ...(harborStats === undefined
+          ? []
+          : [
+              `boats ${harborStats.moored} moored (${harborStats.models} models) of ${harborStats.moorings} berths · ${harborStats.cruising} under way`,
+            ]),
         ...(landmarkStats
           ? [
               `landmarks ${landmarkStats.assets} assets · ${landmarkStats.loading} loading · ${(landmarkStats.gpuBytes / 1_000_000).toFixed(1)} MB geometry · ${((landmarkStats.sharedTextureBytes ?? 0) / 1_000_000).toFixed(1)} MB shared textures`,
@@ -3479,7 +3617,7 @@ async function main(): Promise<void> {
       performanceStatus.textContent = [
         `${viewer.renderer.backend === 'webgpu' ? 'WebGPU' : 'WebGL2'}${viewer.renderer.fallbackReason ? ` · fallback: ${viewer.renderer.fallbackReason}` : ''}`,
         automaticQuality
-          ? `Auto · ${earthPerformanceTier(detailLevel).name}${performanceLevel < detailLevel ? ` · drawn at ${earthPerformanceTier(performanceLevel).name}` : ''} · ${control.reason === undefined || control.reason === 'manual' ? 'device guess, held' : `lowered for ${control.reason}, back when calm`}`
+          ? `Auto · ${earthPerformanceTier(performanceLevel).name} · ${control.reason === 'memory-pressure' ? 'lowered for memory, kept (choose Auto again to restore)' : 'device guess, kept'}`
           : `Manual · ${quality}`,
         `${frameStats.fps.toFixed(0)} fps · slowest 1% ${frameStats.lowFps.toFixed(0)} fps · ${frameStats.longFrames} of last ${frameStats.frames} frames over 33ms`,
         `frame ${(frameTotal / frameCount).toFixed(1)}ms avg / ${frameMax.toFixed(0)}ms max · p90 ${control.p90FrameMs?.toFixed(1) ?? '–'}ms`,

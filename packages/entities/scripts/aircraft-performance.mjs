@@ -293,8 +293,24 @@ function configureSurfaces(id, spec, w, kind, engines, fit, cruise) {
 /** Height of the skids above the ground in a published in-ground-effect hover, m. */
 export const SKID_HEIGHT = 0.75;
 
+/** Blade loading (thrust coefficient over solidity) an unpublished tail rotor is sized to. */
+const TAIL_LOADING = 0.13;
+
 /** Flap hinge offset by the kind of hub, as a share of the radius, where none is published. */
 const HUB_HINGE = { teetering: 0, articulated: 0.04, bearingless: 0.06, hingeless: 0.12 };
+
+/**
+ * Blade area of a tail rotor over its disc where the blades' chord is not published: a class
+ * figure, and at least what holds the main rotor's torque at full power in the thinnest air the
+ * engines still make it in, with the blades loaded as far as published tail rotors are there
+ * (0.09 to 0.15 of thrust coefficient over solidity; a duct carries half).
+ */
+function tailSolidity(spec, fan, radius, tipSpeed, { torque, arm }) {
+  const density = 1.225 * (spec.engine.ratedDensityRatio ?? 1);
+  const coefficient =
+    ((fan ? 0.5 : 1) * torque) / arm / (density * Math.PI * radius ** 2 * tipSpeed ** 2);
+  return Math.max(fan ? 0.5 : 0.16, coefficient / TAIL_LOADING);
+}
 
 /**
  * A helicopter's rotors as built, from the geometry the trial ledger records for the type
@@ -314,6 +330,8 @@ function configureRotor(spec, fit, data, speed, ref) {
   // Ten blades in a duct is a fan, not a tail rotor: most of its disc is blade.
   const fan = published.tail.blades >= 8;
   const turns = (rpm, at) => (rpm * Math.PI * at) / 30;
+  const tailSpeed = published.tail.rpm ? turns(published.tail.rpm, tailRadius) : fan ? 180 : 200;
+  const tailArm = published.tail.armM ?? radius + tailRadius + 0.15;
   const rotor = {
     blades: published.blades,
     chord: round(published.chordM ?? (0.075 * Math.PI * radius) / published.blades, 3),
@@ -332,14 +350,17 @@ function configureRotor(spec, fit, data, speed, ref) {
       blades: published.tail.blades,
       chord: round(
         published.tail.chordM ??
-          ((fan ? 0.5 : 0.16) * Math.PI * tailRadius) / published.tail.blades,
+          (tailSolidity(spec, fan, tailRadius, tailSpeed, {
+            torque: (spec.engine.power * radius) / turns(published.rpm, radius),
+            arm: tailArm,
+          }) *
+            Math.PI *
+            tailRadius) /
+            published.tail.blades,
         4,
       ),
-      tipSpeed: round(
-        published.tail.rpm ? turns(published.tail.rpm, tailRadius) : fan ? 180 : 200,
-        1,
-      ),
-      arm: round(published.tail.armM ?? radius + tailRadius + 0.15, 3),
+      tipSpeed: round(tailSpeed, 1),
+      arm: round(tailArm, 3),
       height: round(published.tail.heightM ?? -0.4, 3),
     },
     ...(published.finAreaM2 ? { finArea: published.finAreaM2 } : {}),
@@ -468,7 +489,10 @@ export function tuneAircraftPerformance(id, spec) {
     // previous calibration left in the document.
     delete h.rotor;
     h.vortexRing = true;
-    h.retreatingBladeSpeed = p.retreatingBladeSpeed;
+    // Its published never-exceed speed, or 1.13 times the cruise anchor.
+    h.retreatingBladeSpeed = data.neverExceedKt
+      ? round(data.neverExceedKt * KNOT, 3)
+      : p.retreatingBladeSpeed;
     h.rotorDiscs = p.rotorDiscs;
     h.powerLimitedRotor = true;
     // Class estimates, replaced below where the type's hover ceilings are published. Set here

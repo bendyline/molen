@@ -969,6 +969,60 @@ describe('grade separation', () => {
     );
   });
 
+  it('brings a viaduct down a hillside to the street at its foot instead of lifting the street', () => {
+    // A hill falling 21% from x = 60 to x = 260, level below and above; the viaduct spans it from
+    // the hilltop to x = 340, 15% between its ends, twice what a street's deck may climb. (NE 45th
+    // St falls 11% along its viaduct to University Village, over 25th Ave NE near its foot.)
+    const ground = (x: number): number => 60 - 0.21 * Math.max(0, Math.min(200, x - 60));
+    const result = gradeTransportSeparations(
+      [
+        way([
+          [0, 0.5],
+          [0.15, 0.5],
+        ]),
+        way(
+          [
+            [0.15, 0.5],
+            [0.85, 0.5],
+          ],
+          { bridge: true },
+        ),
+        way([
+          [0.85, 0.5],
+          [1, 0.5],
+        ]),
+        // A street the viaduct passes over near its foot...
+        way([
+          [0.7, 0],
+          [0.7, 1],
+        ]),
+        // ...and a parking aisle off the street it lands on.
+        way(
+          [
+            [0.925, 0.5],
+            [0.925, 1],
+          ],
+          { class: 'minor_road', subclass: 'service' },
+        ),
+      ],
+      SIZE,
+      ground,
+    );
+    const [, deck, foot, under, aisle] = result as [Feature, Feature, Feature, Feature, Feature];
+    // The deck lands on the street where the street lies: neither the street nor the aisle off it
+    // climbs. Held to its class's grade, it reached its foot 22 m up and both climbed to meet it.
+    expect(profile(deck).at(-1)?.elevation).toBeLessThan(ground(340) + 0.32 + 0.5);
+    for (const road of [foot, aisle])
+      for (const sample of profile(road))
+        expect(sample.elevation).toBeLessThan(ground(sample.point[0] * SIZE) + 0.32 + 0.5);
+    // It still clears the street beneath it, and stands on the ground nowhere along the way.
+    expect(heightAt(deck, 280, 200, ground) - heightAt(under, 280, 200, ground)).toBeGreaterThan(
+      TERRAIN_GRADE_SEPARATION.road - 0.05,
+    );
+    for (const sample of profile(deck))
+      expect(sample.elevation).toBeGreaterThanOrEqual(ground(sample.point[0] * SIZE) + 0.3);
+  });
+
   it('passes the direction of travel to callers that level roads along it', () => {
     const directions: [number, number][] = [];
     gradeTransportSeparations(

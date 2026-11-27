@@ -411,6 +411,17 @@ export function buildBell206(s) {
     ],
     paint,
   );
+  // Close the aft fuselage round the boom root. Its last frame is open (no loft cap) and the
+  // boom's own cap covers only the boom section, so from astern the cabin showed through the
+  // corners between the two.
+  const boomRoot = boom(-2.35, 0.22, 1.32, 0.26).points;
+  sheet(
+    d,
+    sections.at(-1).points.map(([x, y]) => [x, y, -2.35]),
+    paint,
+    [0, 0, -1],
+    [boomRoot.map(([x, y]) => [x * 0.98, 1.32 + (y - 1.32) * 0.98, -2.35])],
+  );
   for (const z of [-3, -4, -5]) {
     const u = (-z - 2.35) / 3.5,
       q = boom(z, 0.22 - 0.14 * u, 1.32 + 0.16 * u, 0.26 - 0.15 * u);
@@ -517,12 +528,11 @@ export function buildBell206(s) {
     td.box([0.027, 0.08, 0.1], [0.02, side * 0.75, 0], d.ivory);
   }
   td.finish();
-  // Maintenance rivet rows, small readable access labels and anticollision beacon.
+  // Maintenance rivet rows and anticollision beacon. Titles and registrations are livery
+  // lettering (liveries/aircraft/bell-206b.mjs).
   for (const side of [-1, 1])
     for (let i = 0; i < 22; i++)
       d.add(new T.SphereGeometry(0.0035, 5, 3), metal, [side * 0.662, 0.52, 1.46 - i * 0.1]);
-  d.text('206B', [0.664, 0.74, -0.3], 0.075, Math.PI / 2, blue);
-  d.text('206B', [-0.664, 0.74, -0.3], 0.075, -Math.PI / 2, blue);
   d.box([0.045, 0.045, 0.055], [0, 2.55, -6.2], d.red);
   d.finish();
   const interior = bell206Cockpit(root, { paint, blue, trim, metal, seat });
@@ -788,11 +798,35 @@ function bell206Cockpit(root, m) {
   // Three-place rear bench and roof switch strip, separate from the engine cowling.
   d.box([1.22, 0.11, 0.44], [0, 0.65, -0.4], m.seat);
   d.box([1.22, 0.55, 0.08], [0, 0.96, -0.63], m.seat);
+  // Aft cabin bulkhead behind the bench, on the fuselage section at that station: without it
+  // the cabin looked straight back through the baggage bay to the tail boom root.
+  {
+    const [w, b, t] = [0.6471, 0.3214, 1.6385],
+      upper = t - Math.min(0.12, (t - b) * 0.22),
+      lower = b + Math.min(0.13, (t - b) * 0.22);
+    sheet(
+      d,
+      [
+        [0, t],
+        [w * 0.83, t - 0.015],
+        [w, upper],
+        [w, lower],
+        [w * 0.68, b],
+        [-w * 0.68, b],
+        [-w, lower],
+        [-w, upper],
+        [-w * 0.83, t - 0.015],
+      ].map(([x, y]) => [x * 0.985, 1.0 + (y - 1.0) * 0.985, -0.68]),
+      m.seat,
+      [0, 0, 1],
+    );
+  }
   for (const x of [-0.4, 0, 0.4])
     d.rod([x - 0.12, 1.2, -0.67], [x + 0.12, 0.72, -0.16], 0.018, m.trim);
-  d.box([0.19, 0.035, 0.46], [0, 1.68, 0.58], m.trim);
+  // Just under the roof: at 1.68 its top edge showed through the skin.
+  d.box([0.19, 0.035, 0.46], [0, 1.665, 0.58], m.trim);
   for (let i = 0; i < 8; i++)
-    d.rod([0, 1.65, 0.39 + i * 0.047], [0, 1.62, 0.4 + i * 0.047], 0.004, m.metal);
+    d.rod([0, 1.635, 0.39 + i * 0.047], [0, 1.605, 0.4 + i * 0.047], 0.004, m.metal);
   d.finish();
   return { nodes: ['cockpit'], bindings };
 }

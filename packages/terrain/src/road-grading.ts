@@ -12,6 +12,11 @@
  * The heavy part of each is done off the main thread where the height source can: the ground by
  * `gradeEarthworks`, a tile's bridges by `gradeSeparations` (see road-separation.ts). What stays
  * here is gathering the roads, cutting them to their tiles, and the blend along tile edges.
+ *
+ * The earthworks also cut the approaches to tunnel portals down to them (tunnel-portals.ts):
+ * the portals around a tile are found in its neighborhood's roads, each approach graded below its
+ * profile along the way, and the depth reached at each portal is what `tunnelPortalGround` tells
+ * the bores, so a bore starts where its road comes down.
  */
 import type { Heightfield } from './heightfield';
 import type { TerrainPyramidHeightSource, TerrainPyramidTileLayerContext } from './pyramid-stream';
@@ -56,6 +61,18 @@ import type {
   TerrainWaterFeature,
 } from './semantic-types';
 import { PATH_SURFACE_LIFT, ROAD_SURFACE_LIFT, transportKind } from './transport-features';
+import {
+  findTerrainTunnelPortals,
+  isInferredTerrainTunnel,
+  TERRAIN_TUNNEL_CUTTING_REACH,
+  TERRAIN_TUNNEL_INWARD_REACH,
+  type TerrainTunnelCutting,
+  type TerrainTunnelPortalSource,
+  terrainTunnelCutting,
+  terrainTunnelCuttingDepths,
+  terrainTunnelCuttingLines,
+  terrainTunnelWays,
+} from './tunnel-portals';
 
 export interface TerrainRoadGradingOptions {
   /** Road tiles; neighbors are read from it too (it should share the layer's decoded tiles). */
@@ -73,10 +90,12 @@ export interface TerrainRoadGradingOptions {
   maxSpacing?: number;
 }
 
-export interface TerrainRoadGrading {
+export interface TerrainRoadGrading extends TerrainTunnelPortalSource {
   /**
    * Level the ground under and beside a tile's roads: the stream's `transformHeightfield`.
-   * Compose it before any transform that must win (an airport's leveling).
+   * Compose it before any transform that must win (an airport's leveling). Approaches to tunnel
+   * portals are cut down to them; `tunnelPortalGround` answers, for a level this has graded, the
+   * ground a portal's road reaches it at.
    */
   transformHeightfield(
     context: TerrainPyramidTileLayerContext,
@@ -196,6 +215,11 @@ const SEPARATION_SPACING = ROAD_SEPARATION_SPACING;
 const NEVER = new AbortController().signal;
 /** Main-thread time (ms) one tile's grading takes before letting a frame through. */
 const SLICE_MS = 2;
+/**
+ * Meters beyond a tile within which a tunnel portal's cutting can still reach its ground: as far
+ * as an approach is cut, and as far as the tile's grading reaches past its edge (see `reach`).
+ */
+const PORTAL_REACH = TERRAIN_TUNNEL_CUTTING_REACH + 150;
 
 function remember<T>(cache: Map<string, T>, key: string, value: T, limit: number): T {
   cache.delete(key);
@@ -295,6 +319,84 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
     );
   const referenceLevel = (pyramid: TerrainPyramidDescriptor, level: number): number =>
     Math.max(pyramid.minLevel, Math.min(level, pyramid.maxLevel - 2));
+  /** The levels whose ground this has graded, and so whose portals' approaches it has cut. */
+  const cutLevels = new Set<number>();
+  /** The pyramid the stream grades, as the first tile handed over told it. */
+  let gradedPyramid: TerrainPyramidDescriptor | undefined;
+  const cuttings = new Map<string, Promise<TerrainTunnelCutting[] | undefined>>();
+  /**
+   * The cuttings of the tunnel portals that can reach a tile's ground: those within
+   * `PORTAL_REACH` of it, found in the roads of the tile and the eight around it. Every answer
+   * reads only what lies near its portal (see tunnel-portals.ts), so tiles that share a portal
+   * cut it alike. Undefined when the ground could not be read: asked again by the next caller.
+   */
+  const cuttingsOf = (
+    address: TerrainPyramidTileAddress,
+    pyramid: TerrainPyramidDescriptor,
+    source: TerrainPyramidHeightSource,
+  ): Promise<TerrainTunnelCutting[] | undefined> => {
+    const key = terrainPyramidTileKey(address);
+    const known = cuttings.get(key);
+    if (known) return remember(cuttings, key, known, 64);
+    const work = (async (): Promise<TerrainTunnelCutting[] | undefined> => {
+      const around = await neighborhood(address);
+      if (!around.some(({ roads: tile }) => tile.transportation.some(isInferredTerrainTunnel)))
+        return [];
+      const tileSize = terrainPyramidTileSize(pyramid, address.level);
+      const origin = terrainPyramidTileOrigin(pyramid, address);
+      const ways = terrainTunnelWays(
+        around.map(({ dx, dz, roads: tile }) => ({
+          dx,
+          dz,
+          transportation: tile.transportation,
+        })),
+        origin,
+        tileSize,
+      );
+      const seeds = findTerrainTunnelPortals(ways, [
+        origin[0] - PORTAL_REACH,
+        origin[1] - PORTAL_REACH,
+        origin[0] + tileSize + PORTAL_REACH,
+        origin[1] + tileSize + PORTAL_REACH,
+      ]);
+      if (seeds.length === 0) return [];
+      // The ground along each approach's profile and over each bore's first stretch.
+      const margin = PORTAL_REACH + TERRAIN_TUNNEL_INWARD_REACH + ROAD_PROFILE_WINDOW + 10;
+      const ground = await reference(
+        pyramid,
+        source,
+        [
+          origin[0] - margin,
+          origin[1] - margin,
+          origin[0] + tileSize + margin,
+          origin[1] + tileSize + margin,
+        ],
+        referenceLevel(pyramid, address.level),
+      );
+      if (!ground) return undefined;
+      return seeds.map((seed) => terrainTunnelCutting(seed, ground));
+    })().catch(() => undefined);
+    void work.then((value) => {
+      if (value === undefined && cuttings.get(key) === work) cuttings.delete(key);
+    });
+    return remember(cuttings, key, work, 64);
+  };
+  /**
+   * A tile's ways with the approaches to portals cut down, and graded lines for the approaches
+   * the ground is not otherwise graded for (paths). Lines are copied, never changed: the same
+   * line is graded into each tile around its own.
+   */
+  const withCuttings = (
+    lines: readonly RoadEarthworkLine[],
+    cut: readonly TerrainTunnelCutting[],
+  ): RoadEarthworkLine[] => {
+    const result = lines.map((line) => {
+      const depths = terrainTunnelCuttingDepths(line.points, line.bounds, cut);
+      return depths ? { ...line, depths } : line;
+    });
+    for (const line of terrainTunnelCuttingLines(cut)) result.push(line);
+    return result;
+  };
   /**
    * Grade one tile's bridges with the roads around it (see `Solve`). Undefined when a tile or
    * the ground it needs could not be read: asked again by the next caller.
@@ -811,6 +913,27 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
   };
 
   return {
+    async tunnelPortalGround(level, x, z) {
+      const pyramid = gradedPyramid;
+      const source = streamSource ?? heights;
+      if (disposed || !pyramid || !source || !cutLevels.has(level)) return undefined;
+      const size = terrainPyramidTileSize(pyramid, level);
+      const address = {
+        level,
+        x: Math.floor((x - pyramid.origin[0]) / size),
+        z: Math.floor((z - pyramid.origin[1]) / size),
+      };
+      let nearest: TerrainTunnelCutting | undefined;
+      let best = 1.5;
+      for (const cutting of (await cuttingsOf(address, pyramid, source)) ?? []) {
+        const distance = Math.hypot(cutting.x - x, cutting.z - z);
+        if (distance < best) {
+          best = distance;
+          nearest = cutting;
+        }
+      }
+      return nearest?.ground;
+    },
     async transformHeightfield(context, source) {
       heights ??= source;
       streamSource ??= source;
@@ -821,9 +944,12 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
       const spacing = tileSize / Math.max(1, side - 1);
       const maxSpacing = options.maxSpacing ?? 28;
       if (spacing > maxSpacing) return heightfield;
+      // This level's ground is graded, and its portals' approaches cut: the bores ask.
+      cutLevels.add(address.level);
+      gradedPyramid ??= pyramid;
       const around = await neighborhood(address);
       if (signal.aborted || around.length === 0) return heightfield;
-      const lines: RoadEarthworkLine[] = [];
+      let lines: RoadEarthworkLine[] = [];
       for (const { dx, dz, roads: tile } of around) {
         // Built once for a tile, then graded into it and each tile around it.
         tile.lines ??= roadEarthworkLines(
@@ -833,6 +959,10 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
         );
         for (const line of tile.lines) lines.push(line);
       }
+      // Approaches to tunnel portals go down their cuttings.
+      const cut = (await cuttingsOf(address, pyramid, source))?.filter((c) => c.depth > 0) ?? [];
+      if (signal.aborted) return heightfield;
+      if (cut.length > 0) lines = withCuttings(lines, cut);
       if (lines.length === 0) return heightfield;
       // As far as a bench and its blend reach past the tile, and a profile's window past that.
       const reach = 16 + spacing * 2.7 + ROAD_PROFILE_WINDOW + 12;
@@ -958,6 +1088,7 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
       roads.clear();
       solves.clear();
       fields.clear();
+      cuttings.clear();
     },
   };
 }

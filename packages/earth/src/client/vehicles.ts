@@ -8,6 +8,7 @@ import { WalkCollision } from '@bendyline/molen-client/navigation';
 import {
   createSpeedometerView,
   createVehicleVisual,
+  findVehicleCenterDisplay,
   type SpeedometerUnit,
   type SpeedometerView,
   setParkedVehicleHidden,
@@ -15,6 +16,7 @@ import {
   type VehicleVisual,
   vehicleCameraPose,
   vehicleObstacleContacts,
+  wheelTravelSignals,
 } from '@bendyline/molen-client/vehicles';
 import { Aircraft } from '@bendyline/molen-kernel/aircraft';
 import {
@@ -73,6 +75,7 @@ import * as THREE from 'three';
 import { Capsule } from 'three/addons/math/Capsule.js';
 import { OBB } from 'three/addons/math/OBB.js';
 import { Livery, selectLivery, tintLivery } from './liveries';
+import { EarthMapScreen, type EarthMovingMap } from './moving-map';
 import { EARTH_WATER_CONDITIONS, EarthWater, shownUnder } from './water';
 
 const PLAYER = 'world-player';
@@ -102,6 +105,18 @@ const Renderable = componentHandle('renderable');
  * door and take it over. Moving traffic is never boardable.
  */
 const TRAFFIC_BOARDING_SPEED = 0.5;
+/**
+ * The driven vehicle has stopped when it has moved no more than this far (m) over this long (s)
+ * of driving frames, whatever speed its state reports: a wreck caught in a tree or a wall can
+ * report speed it is not moving at, and getting out reads where it has actually been.
+ */
+const HELD_STILL_METERS = 0.25;
+const HELD_STILL_SECONDS = 0.75;
+/**
+ * Asked again this soon (s) after its doors and the ground around it were found blocked, a
+ * stopped road vehicle is climbed out of anyway (`unmountEntity`'s `wreck`).
+ */
+const CLIMB_OUT_SECONDS = 6;
 /** A typical car wheel's radius (m), for how far a tire spanning an edge sinks below it. */
 const TIRE_RADIUS = 0.33;
 /**
@@ -184,6 +199,13 @@ export interface EarthVehiclesOptions {
    * follow it. Without one a rail vehicle drives straight with locked steering.
    */
   track?: TrackGuide;
+  /**
+   * The streamed roads, for a moving map on the mounted road vehicle's centre screen (wire
+   * `map.observer` into the human-features layer). It takes the place of the still map printed
+   * on the screen while the vehicle is boarded, and is painted in the cockpit view only. Cars
+   * with a radio or no centre screen show none. Without one the printed map stays.
+   */
+  map?: EarthMovingMap;
 }
 
 /**
@@ -236,9 +258,23 @@ export class EarthVehicles {
   private speedometer:
     | { visual: VehicleVisual; unit: SpeedometerUnit; views: SpeedometerView[] }
     | undefined;
+  /** The moving map on the mounted vehicle's centre screen, with a map to draw from. */
+  private readonly mapScreen: EarthMapScreen | undefined;
   /** A short explanation when entering or leaving a vehicle did not work. */
   message: string = '';
   private accumulator = 0;
+  /** Seconds of `update` frames, the clock {@link motion} and {@link blockedAt} keep. */
+  private clock = 0;
+  /**
+   * Where the mounted vehicle has been over the last {@link HELD_STILL_SECONDS} (and the sample
+   * just before), recorded each `update`, and for which vehicle.
+   */
+  private motion: { vehicle: string | undefined; samples: { at: number; pos: number[] }[] } = {
+    vehicle: undefined,
+    samples: [],
+  };
+  /** When getting out last found no way out of a stopped vehicle (the {@link clock}). */
+  private blockedAt = -Infinity;
   private active = new Map<string, VehicleVisual>();
   private loading = new Map<string, AbortController>();
   private retained = new Set<string>();
@@ -304,6 +340,7 @@ export class EarthVehicles {
     this.loadModel = options.loadModel;
     this.types = options.types;
     this.obstacles = options.obstacles;
+    this.mapScreen = options.map === undefined ? undefined : new EarthMapScreen(options.map);
     const root = this.root;
     this.object.name = 'earth:vehicles';
     root.add(this.object);
@@ -1200,6 +1237,7 @@ export class EarthVehicles {
     const id = this.mountedId;
     if (id === undefined) return undefined;
     const pos = this.world.get(id, Transform)?.pos;
+    this.forgetMotion();
     this.world.remove(PLAYER, Mounted);
     this.world.emit('vehicle-unmounted', { actor: PLAYER, vehicle: id });
     if (this.spawned.has(id) && !this.owned.has(id)) this.remove(id);
@@ -1363,22 +1401,77 @@ export class EarthVehicles {
       },
     };
   }
+  /**
+   * Leave the mounted vehicle by the kernel's rules (`unmountEntity`): stopped, by a door with
+   * open ground beside it, else on the nearest open ground around a road vehicle. A road vehicle
+   * that has held still (see {@link HELD_STILL_SECONDS}) is let go of as a wreck when its state
+   * reports speed it is not moving at, or when asked again within {@link CLIMB_OUT_SECONDS} of
+   * finding no way out, so a crashed car can always be left. Returns where the viewer stands, or
+   * undefined with {@link message} saying why not.
+   */
   exit(): [number, number, number] | undefined {
     this.message = '';
     const id = this.mountedId;
     const transform = id ? this.world.get(id, Transform) : undefined;
     if (transform)
       this.collision.update(this.root, transform.pos[0], transform.pos[2], transform.pos[1]);
-    if (!unmountEntity(this.world, PLAYER, this.exitEnvironment(PLAYER))) {
-      this.message =
-        Math.abs(this.speed) > 0.7
-          ? this.ridingAsPassenger()
-            ? 'Wait for the train to stop'
-            : 'Brake to a stop before exiting'
-          : 'Exit blocked — move to an open space';
+    const state = id !== undefined ? this.world.get(id, VehicleState) : undefined;
+    const road =
+      id !== undefined && !this.isBoat(id) && this.world.get(id, Vehicle)?.spec.rail === undefined;
+    const still = road && this.heldStill();
+    const reported = Math.hypot(state?.speed ?? 0, state?.lateralSpeed ?? 0);
+    const wreck = still && (reported > 0.7 || this.clock - this.blockedAt <= CLIMB_OUT_SECONDS);
+    if (!unmountEntity(this.world, PLAYER, this.exitEnvironment(PLAYER), { wreck })) {
+      if (Math.abs(this.speed) > 0.7 && !still) {
+        this.message = this.ridingAsPassenger()
+          ? 'Wait for the train to stop'
+          : state?.freeBody !== undefined
+            ? 'Wait for it to come to rest'
+            : 'Brake to a stop before exiting';
+        return undefined;
+      }
+      this.blockedAt = this.clock;
+      this.message = still
+        ? 'Doors blocked — try again to climb out'
+        : 'Exit blocked — move to an open space';
       return undefined;
     }
+    this.forgetMotion();
     return this.world.get(PLAYER, Transform)?.pos;
+  }
+  /** Out of the vehicle: the next one boarded (even this one again) starts a fresh track. */
+  private forgetMotion(): void {
+    this.motion = { vehicle: undefined, samples: [] };
+    this.blockedAt = -Infinity;
+  }
+  /** Whether the mounted vehicle has moved less than {@link HELD_STILL_METERS} for a while. */
+  private heldStill(): boolean {
+    const { vehicle, samples } = this.motion;
+    const last = samples[samples.length - 1];
+    const first = samples[0];
+    if (vehicle === undefined || vehicle !== this.mountedId || !last || !first) return false;
+    if (last.at - first.at < HELD_STILL_SECONDS) return false;
+    return samples.every(
+      (sample) =>
+        Math.hypot(
+          (sample.pos[0] ?? 0) - (last.pos[0] ?? 0),
+          (sample.pos[1] ?? 0) - (last.pos[1] ?? 0),
+          (sample.pos[2] ?? 0) - (last.pos[2] ?? 0),
+        ) <= HELD_STILL_METERS,
+    );
+  }
+  /** Note where the mounted vehicle is now, keeping just over {@link HELD_STILL_SECONDS} of it. */
+  private recordMotion(dt: number): void {
+    this.clock += Math.max(0, Number.isFinite(dt) ? dt : 0);
+    const id = this.mountedId;
+    if (id !== this.motion.vehicle) this.motion = { vehicle: id, samples: [] };
+    const pos = id !== undefined ? this.world.get(id, Transform)?.pos : undefined;
+    if (pos === undefined) return;
+    const samples = this.motion.samples;
+    samples.push({ at: this.clock, pos: [pos[0], pos[1], pos[2]] });
+    // Keep the last sample at or before the window's start, so the window is always spanned.
+    while (samples.length > 2 && (samples[1]?.at ?? 0) <= this.clock - HELD_STILL_SECONDS)
+      samples.shift();
   }
   /**
    * Step any mounted entity (a passenger, or a host's own character) out of its car or aircraft by
@@ -1457,6 +1550,7 @@ export class EarthVehicles {
       }
     }
     if (this.ownsWorld) this.step(dt);
+    this.recordMotion(dt);
     this.render();
   }
   /** Advance the world by `dt` seconds in fixed ticks (the shared world's owner calls this). */
@@ -1587,7 +1681,8 @@ export class EarthVehicles {
       );
       if (heights.some((height) => height === undefined)) continue;
       const [fl, fr, rl, rr] = heights as [number, number, number, number];
-      const support = (fl + fr + rl + rr) / 4;
+      // A car on struts stands where its springs hold it over the ground, not on it.
+      const support = (fl + fr + rl + rr) / 4 + (state.bodyHeave ?? 0);
       const pitch = Math.atan2((rl + rr - fl - fr) / 2, spec.wheelbase);
       const roll = spec.cycle ? 0 : Math.atan2((fr + rr - fl - rl) / 2, spec.wheelTrack);
       if (
@@ -1631,6 +1726,7 @@ export class EarthVehicles {
           bodyRoll: typeof state.bodyRoll === 'number' ? state.bodyRoll : 0,
           bodyPitch: typeof state.bodyPitch === 'number' ? state.bodyPitch : 0,
           bodyHeave: typeof state.bodyHeave === 'number' ? state.bodyHeave : 0,
+          ...wheelTravelSignals(state.wheelTravel),
           pedalAngle: typeof state.pedalAngle === 'number' ? state.pedalAngle : 0,
           ...readModelSignals(this.data(id)?.visual.interior?.sources, (name) =>
             this.world.get(id, { name }),
@@ -1646,6 +1742,31 @@ export class EarthVehicles {
       const spec = this.world.get(id, Vehicle)?.spec;
       if (spec?.rail) this.swivelTrucks(id, visual, spec.rail.truckCenters, state.yaw);
     }
+    this.paintMap();
+  }
+  /**
+   * Keep the moving map on the mounted road vehicle's centre screen (taken off on leaving), and
+   * paint it from the seat.
+   */
+  private paintMap(): void {
+    if (this.mapScreen === undefined) return;
+    const id = this.mountedId;
+    const visual = id === undefined ? undefined : this.active.get(id);
+    const transform = id === undefined ? undefined : this.world.get(id, Transform);
+    const state = id === undefined ? undefined : this.world.get(id, VehicleState);
+    const spec = id === undefined ? undefined : this.world.get(id, Vehicle)?.spec;
+    this.mapScreen.update(
+      visual?.object,
+      (model) =>
+        // Road vehicles only: a train's desk and a boat's chart plotter are not a car's screen.
+        spec !== undefined && spec.rail === undefined && spec.cycle === undefined
+          ? findVehicleCenterDisplay(model, { eye: spec.driverEye })
+          : undefined,
+      transform !== undefined && state !== undefined
+        ? { x: transform.pos[0], z: transform.pos[2], yaw: state.yaw, speed: state.speed }
+        : undefined,
+      this.view === 'cockpit',
+    );
   }
   /**
    * Turn a rail car's `truck-front` and `truck-rear` nodes to the track under them: on a curve
@@ -1761,6 +1882,8 @@ export class EarthVehicles {
   dispose(): void {
     this.disposed = true;
     for (const controller of this.loading.values()) controller.abort();
+    // The screen first: it is a child of a model disposed next.
+    this.mapScreen?.dispose();
     for (const v of this.active.values()) v.dispose();
     this.active.clear();
     for (const view of this.speedometer?.views ?? []) view.dispose();

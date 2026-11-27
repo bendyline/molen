@@ -224,6 +224,16 @@ the root and paler at the tip. Tufts draw at three levels: 22 narrow bent blades
 straight ones to 26 m, and 7 broad ones beyond. Short grass reaches less far than tall grass.
 They cast no shadows and take no part in walk collision.
 
+The mask grows grass over a tunnel, as the hill over a bore grows it, and scatter plants it
+there too. Where a bore lies under less ground than its roof's depth (its portals' mouths, an
+open cutting), the terrain cuts the drawn ground away down to it, and nothing planted stands
+there. The host's `GroundOpenings` (from `@bendyline/molen-worldgen/client`) names the squares
+near a mapped tunnel; the tufts, the plants on painted crowns and the instanced scatter (through
+a `GroundOpeningGuard`, which draws a hidden instance at no size) ask for each root in them
+whether it lies within one of the bores round the terrain stream (`sampleTerrainTunnel`). The
+roads layer can draw a bore after the plants are up, so they ask again whenever the tile's other
+layers are shown, hidden or replaced (`GroundOpenings.version`).
+
 The Earth view does this for each finest tile at Balanced and High quality. The worldgen
 renderers' `turf` option sets the distances and a density multiplier, or `false` turns it off;
 Balanced draws about a third of High's triangles, and Economy draws none.

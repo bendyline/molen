@@ -254,6 +254,12 @@
                     "offset": -1.5707963267948966
                   },
                   {
+                    "node": "F14-gear-nose",
+                    "source": "gearExposed",
+                    "property": "visible",
+                    "scale": 1
+                  },
+                  {
                     "node": "F14-gear-left",
                     "source": "gear",
                     "property": "rotation",
@@ -262,12 +268,24 @@
                     "offset": -1.35
                   },
                   {
+                    "node": "F14-gear-left",
+                    "source": "gearExposed",
+                    "property": "visible",
+                    "scale": 1
+                  },
+                  {
                     "node": "F14-gear-right",
                     "source": "gear",
                     "property": "rotation",
                     "axis": "z",
                     "scale": -1.35,
                     "offset": 1.35
+                  },
+                  {
+                    "node": "F14-gear-right",
+                    "source": "gearExposed",
+                    "property": "visible",
+                    "scale": 1
                   },
                   {
                     "node": "canopy-opening",
@@ -429,6 +447,13 @@
                     "args": [
                       "pitchDeflection",
                       "rollDeflection"
+                    ]
+                  },
+                  "gearExposed": {
+                    "op": "greater",
+                    "args": [
+                      "gear",
+                      0.02
                     ]
                   }
                 },
@@ -646,6 +671,13 @@
                     "args": [
                       "gear",
                       0.999
+                    ]
+                  },
+                  "gearExposed": {
+                    "op": "greater",
+                    "args": [
+                      "gear",
+                      0.02
                     ]
                   },
                   "F14.pilot-standby-bank.availableValue": {
@@ -7905,7 +7937,27 @@
                     "missing": "hide"
                   }
                 ]
-              }
+              },
+              "exhausts": [
+                {
+                  "engine": "engine-1",
+                  "position": [
+                    1.4,
+                    1.69,
+                    -6.54
+                  ],
+                  "radius": 0.36
+                },
+                {
+                  "engine": "engine-2",
+                  "position": [
+                    -1.4,
+                    1.69,
+                    -6.54
+                  ],
+                  "radius": 0.36
+                }
+              ]
             },
             "airplane": {
               "wingPosition": [
@@ -8093,9 +8145,9 @@
                 "breakSpeed": 9,
                 "role": "engine",
                 "center": [
-                  1.68,
-                  1.83,
-                  -6.01
+                  1.4,
+                  1.69,
+                  -6.12
                 ],
                 "probes": [],
                 "radius": 0.3,
@@ -8104,16 +8156,16 @@
                 ],
                 "disc": {
                   "center": [
-                    1.68,
-                    1.83,
-                    -6.01
+                    1.4,
+                    1.69,
+                    -6.12
                   ],
                   "normal": [
                     0,
                     0,
                     1
                   ],
-                  "radius": 0.43,
+                  "radius": 0.33,
                   "halfThickness": 0.06,
                   "rotor": "engine-1-turbine"
                 },
@@ -8127,9 +8179,9 @@
                 "breakSpeed": 9,
                 "role": "engine",
                 "center": [
-                  -1.68,
-                  1.83,
-                  -6.01
+                  -1.4,
+                  1.69,
+                  -6.12
                 ],
                 "probes": [],
                 "radius": 0.3,
@@ -8138,16 +8190,16 @@
                 ],
                 "disc": {
                   "center": [
-                    -1.68,
-                    1.83,
-                    -6.01
+                    -1.4,
+                    1.69,
+                    -6.12
                   ],
                   "normal": [
                     0,
                     0,
                     1
                   ],
-                  "radius": 0.43,
+                  "radius": 0.33,
                   "halfThickness": 0.06,
                   "rotor": "engine-2-turbine"
                 },
@@ -8415,6 +8467,13 @@
               "args": [
                 "gear",
                 0.999
+              ]
+            },
+            "gearExposed": {
+              "op": "greater",
+              "args": [
+                "gear",
+                0.02
               ]
             },
             "F14.pilot-standby-bank.availableValue": {
@@ -15834,6 +15893,12 @@
               "offset": -1.5707963267948966
             },
             {
+              "node": "F14-gear-nose",
+              "source": "gearExposed",
+              "property": "visible",
+              "scale": 1
+            },
+            {
               "node": "F14-gear-left",
               "source": "gear",
               "property": "rotation",
@@ -15842,12 +15907,24 @@
               "offset": -1.35
             },
             {
+              "node": "F14-gear-left",
+              "source": "gearExposed",
+              "property": "visible",
+              "scale": 1
+            },
+            {
               "node": "F14-gear-right",
               "source": "gear",
               "property": "rotation",
               "axis": "z",
               "scale": -1.35,
               "offset": 1.35
+            },
+            {
+              "node": "F14-gear-right",
+              "source": "gearExposed",
+              "property": "visible",
+              "scale": 1
             },
             {
               "node": "canopy-opening",

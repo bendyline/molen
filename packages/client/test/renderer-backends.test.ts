@@ -355,6 +355,44 @@ describe('renderer backend selection', () => {
     renderer.dispose();
   });
 
+  it('prepares a model whose attributes and textures come from another copy of three', async () => {
+    // A dev page can hold two copies of three, when another Vite server rewrote the dependency
+    // cache under its server: a loader's objects then fail the renderer's `instanceof`. A
+    // quantized model's attributes are all interleaved, with no `version` of their own, and its
+    // preparation threw "Cannot read properties of undefined (reading 'promise')".
+    const foreign = <T extends object>(object: T): T => {
+      const prototype = Object.getPrototypeOf(object) as object;
+      const copy = Object.create(
+        Object.getPrototypeOf(prototype),
+        Object.getOwnPropertyDescriptors(prototype),
+      ) as object;
+      return Object.setPrototypeOf(object, copy) as T;
+    };
+    const renderer = await Renderer.create({ backend: 'webgl', admission: { schedule: () => {} } });
+    const buffer = new THREE.InterleavedBuffer(new Float32Array(3 * 4), 4);
+    const position = foreign(new THREE.InterleavedBufferAttribute(buffer, 3, 0));
+    const texture = foreign(new THREE.Texture());
+    expect(position).not.toBeInstanceOf(THREE.InterleavedBufferAttribute);
+    expect(texture).not.toBeInstanceOf(THREE.Texture);
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', position);
+    const material = new THREE.MeshStandardMaterial({ map: texture });
+    const ready = renderer.prepareObject(new THREE.Mesh(geometry, material));
+    while (renderer.admission.pending) renderer.admission.flush();
+    await expect(ready).resolves.toBeUndefined();
+    expect(webgl.initTexture).toHaveBeenCalledWith(texture);
+    // The buffer was uploaded with the first model: a second waits on that, not a new upload.
+    const uploads = webgl.render.mock.calls.length;
+    const again = renderer.prepareObject(new THREE.Mesh(geometry, material));
+    while (renderer.admission.pending) renderer.admission.flush();
+    await expect(again).resolves.toBeUndefined();
+    expect(webgl.render.mock.calls.length).toBe(uploads);
+    expect(webgl.initTexture).toHaveBeenCalledTimes(1);
+    geometry.dispose();
+    material.dispose();
+    renderer.dispose();
+  });
+
   it.each([
     false,
     true,

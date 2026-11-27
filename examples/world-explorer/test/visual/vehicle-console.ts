@@ -2,8 +2,8 @@
  * The vehicle console (`@bendyline/molen-client/console`) over a vehicle in a chase view, for
  * look reviews and browser checks. `vehicle=<category>/<slug>` picks one from the entity catalog
  * (`aircraft/p51d`, `vehicle/toyota_corolla_2025`, `cycle/standard_motorcycle`,
- * `watercraft/speedboat`) or `walk`; `bg=sky|snow|dusk` the backdrop; `gauges=0` hides an
- * aircraft's dials; `ground=1` parks it; `handed=left` mirrors the console. A small stand-in for
+ * `watercraft/speedboat`) or `walk`; `bg=sky|snow|dusk` the backdrop; `gauges=0` hides the
+ * dials (an aircraft's airspeed and altitude, a vehicle's speedometer); `ground=1` parks it; `handed=left` mirrors the console. A small stand-in for
  * the simulation moves the vehicle from the console's input. `window.consoleQA` reads and
  * measures it.
  */
@@ -237,7 +237,8 @@ if (category === 'aircraft') {
   const { scene: model } = await new GLTFLoader().loadAsync(await modelUrl(category, slug));
   const visual = createVehicleVisual(model, data as VehicleData);
   renderer.worldRoot.add(model);
-  subject = { kind: 'vehicle', visual, data, boat: water, type: id };
+  const gauges = params.get('gauges') !== '0';
+  subject = { kind: 'vehicle', visual, data, boat: water, type: id, gauges };
   navigation.setProfile('drive');
   const car = { steer: 0, throttle: 0, brake: false, handbrake: false, speed: 0, wheel: 0 };
   step = (dt, time) => {

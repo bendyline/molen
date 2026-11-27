@@ -412,11 +412,7 @@ export function buildATR72(s) {
         [side, 0, 0],
       );
     }
-    const label = group(root, `ATR72-label-${side}`, [side * 1.434, 1.88, -3.5]);
-    label.rotation.y = (side * Math.PI) / 2;
-    const ld = detailKit(label, label.name);
-    ld.text('ATR 72 600', [0, 0, 0], 0.14, 0, accent);
-    ld.finish();
+    // No type lettering is modelled on the skin: titles and markings belong to the liveries.
     // Windscreen wiper on each main pane and the probe under each side of the window band.
     d.rod(onSkin(222, 566, side, 0.03), onSkin(248, 537, side, 0.03), 0.008, dark);
     const probe = onSkin(214, 602, side, 0);

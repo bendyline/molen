@@ -20,6 +20,9 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+
+/** Cabin aft wall station, behind the side-facing seats at z -1.48. */
+const AFT_WALL = -1.72;
 export const bell412Frame = () => ({
   heli: true,
   fighter: false,
@@ -146,21 +149,7 @@ export function buildBell412(s) {
     d.rod([x + side * 0.025, 1.06, 0.98], [x + side * 0.025, 1.06, 0.82], 0.013, dark);
     for (const z of [1.62, 1.07])
       for (const y of [0.83, 1.84]) d.box([0.034, 0.075, 0.035], [x + side * 0.018, y, z], metal);
-    d.text('412 EP', [x + side * 0.008, 1.12, -0.52], 0.075, (side * Math.PI) / 2, seam);
-    const stripe = [
-      [x * 1.003, 0.86, 1.68],
-      [x * 1.003, 1.01, 1.68],
-      [x * 1.003, 1.01, -1.5],
-      [x * 1.003, 0.86, -1.5],
-    ];
-    sheet(d, stripe, red, [side, 0, 0]);
-    const aft = [
-      [side * 1.2, 0.86, -1.5],
-      [side * 1.2, 1.01, -1.5],
-      [side * 0.584, 1.48, -2.65],
-      [side * 0.584, 1.33, -2.65],
-    ];
-    sheet(d, aft, red, [side, 0, 0]);
+    // Cheatlines, fin colors and titles are painted by the liveries, not built as geometry.
     // Panel seams on the tapering flank, kept to its flat part between the rounded corners.
     for (const z of [-1.75, -2.12]) {
       const u = (-1.5 - z) / 1.15;
@@ -292,20 +281,22 @@ export function buildBell412(s) {
         bow = 0.05 * Math.sin(Math.PI * u) * Math.sin(Math.PI * f);
       return a.map((c, k) => c + (b[k] - c) * f + [side * u * 0.45, 0.55, 0.75][k] * bow);
     };
-    const lo = [],
-      hi = [];
-    for (let i = 0; i <= 5; i++) {
-      lo.push(screen(i / 5, 0));
-      hi.push(screen(i / 5, 1));
-    }
-    for (let i = 0; i < 5; i++)
+    // Columns sit on the nose skin's own angle steps, so the pane's foot and the skin's top edge
+    // are one polyline; five even columns left a chord up to 4 cm inside the curved nose.
+    const inner = Math.asin(0.035 / top[1]),
+      columns = [inner, ...angleSteps.filter((a) => a > inner)].map(
+        (a) => (top[1] * Math.sin(a) - 0.035) / (top[1] - 0.035),
+      ),
+      lo = columns.map((u) => screen(u, 0)),
+      hi = columns.map((u) => screen(u, 1));
+    for (let i = 0; i < columns.length - 1; i++)
       for (let k = 0; k < 3; k++)
         quad(
           d,
-          screen(i / 5, k / 3),
-          screen((i + 1) / 5, k / 3),
-          screen((i + 1) / 5, (k + 1) / 3),
-          screen(i / 5, (k + 1) / 3),
+          screen(columns[i], k / 3),
+          screen(columns[i + 1], k / 3),
+          screen(columns[i + 1], (k + 1) / 3),
+          screen(columns[i], (k + 1) / 3),
           glass,
           [side * 0.2, 0.4, 1],
         );
@@ -339,10 +330,11 @@ export function buildBell412(s) {
     outline(d, doorEdge, 0.006, seam);
     rivets(doorEdge);
     d.rod([side * 1.22, 1.04, 1.94], [side * 1.22, 1.04, 2.09], 0.015, dark);
-    // The roof quarter meets the cabin's rounded roof corner at z 1.68.
+    // The roof quarter meets the cabin's rounded roof corner at z 1.68. Its front edge is the
+    // windscreen's curved header itself: the chord between the header's ends left a crescent
+    // slot up to 6 cm deep that showed the rotor from the seat.
     const roof = [
-        [side * 0.035, 2.25, 2.56],
-        [side * 0.995, 2.205, 2.3],
+        ...hi,
         [side * 1.18, 2.11, 2.25],
         ...sections[0].points
           .slice(1, 5)
@@ -363,7 +355,7 @@ export function buildBell412(s) {
     outline(
       d,
       [onScreen(0.92, 0.04), onScreen(0.74, 0.3), onScreen(0.32, 0.22)],
-      0.013,
+      0.009,
       dark,
       false,
     );
@@ -565,17 +557,17 @@ export function buildBell412(s) {
     [-0.07, 1.73, -8.61],
     [-0.07, 1.6, -8.4],
   ];
-  sheet(d, fin, red, [-1, 0, 0]);
+  sheet(d, fin, paint, [-1, 0, 0]);
   sheet(
     d,
     fin.map((a) => [-a[0], a[1], a[2]]),
-    red,
+    paint,
     [1, 0, 0],
   );
   for (let i = 0; i < fin.length; i++) {
     const a = fin[i],
       b = fin[(i + 1) % fin.length];
-    quad(d, a, b, [-b[0], b[1], b[2]], [-a[0], a[1], a[2]], red, [0, 1, 0]);
+    quad(d, a, b, [-b[0], b[1], b[2]], [-a[0], a[1], a[2]], paint, [0, 1, 0]);
   }
   d.rod([0, 1.68, -8.4], [0, 1.48, -8.88], 0.024, metal);
   for (const side of [-1, 1]) {
@@ -695,8 +687,17 @@ function cockpit412(root, m, sections) {
     k = 0.0794 / 104;
   let d = detailKit(cabin, '412-cockpit-floor');
   // Clear of the belly and of the skin's lower chamfer, level with the door sills.
-  fittedFloor(d, sections, floor, { y: 0.7, front: 2.65, back: -1.5, width: 2.2 });
-  d.box([1.0, 1.3, 0.65], [0, 1.22, -1.92], m.paint);
+  fittedFloor(d, sections, floor, { y: 0.7, front: 2.65, back: AFT_WALL, width: 2.2 });
+  // Aft cabin wall just behind the side-facing seats: the skin's own section there, drawn a
+  // little inside it. A 1.3 m block stood here before; the belly rising to the boom cut through
+  // it, so its bottom showed below the aft fuselage, and the cabin ran on as a tunnel round it.
+  const [a, b] = [sections.at(-2), sections.at(-1)],
+    f = (a.z - AFT_WALL) / (a.z - b.z),
+    wall = a.points.map(([x, y], i) => {
+      const [bx, by] = b.points[i];
+      return [(x + (bx - x) * f) * 0.99, 1.5 + (y + (by - y) * f - 1.5) * 0.99, AFT_WALL];
+    });
+  sheet(d, wall, m.paint, [0, 0, 1]);
   d.finish();
   d = detailKit(panelRoot, '412-panel');
   // The hood top sits 0.32 m below the eye, low in the windscreen as in the side photographs.

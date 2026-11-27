@@ -40,8 +40,11 @@ export const cj4 = {
   bellyColor: '#cfd1cf',
   body,
   cockpit: {
+    // N194ME (side, FDK): a two-piece windshield and one side window, split by a raked pillar,
+    // the side window ending about 0.7 m ahead of the door with plain skin between. An extra
+    // aft pane to the door, and a top edge hard under the crown, had read as a glass canopy.
     uStart: 1.8,
-    uEnd: 3.4,
+    uEnd: 3.1,
     centerPost: 2.53,
     low: [
       [1.7, 1.2],
@@ -51,13 +54,17 @@ export const cj4 = {
       [3.4, 1.12],
       [3.8, 1.12],
     ],
-    // D-CEFE: the window top stands about 0.17 m under the crown, not a bubble over the head.
+    // The header crosses the crown at about u 2.5; aft of it the side window top runs a hand
+    // under the roof, which rises on over the cabin.
     top: [
-      [1.7, 1.58],
-      [3.8, 1.58],
+      [1.7, 1.6],
+      [2.5, 1.57],
+      [2.9, 1.55],
+      [3.1, 1.55],
+      [3.8, 1.55],
     ],
     arcs: [[1.8, 1.19]],
-    posts: [[2.95, 2.95]],
+    posts: [[2.28, 2.58]],
   },
   // No published eye position. The pilot's head shows in the side pane in D-CEFE, about u 3.
   eye: { u: 3, x: 0.3, h: 1.42, floor: 0.42, bulkhead: 5.2 },
@@ -68,13 +75,15 @@ export const cj4 = {
     h: 0.37,
     corner: 0.6,
     pitch: 0.5,
+    // N194ME and OE-GTI: five evenly spaced windows aft of the door each side, plus one on the
+    // right opposite the door. The left side has none ahead of the five.
     runs: [
-      { from: 4.42, count: 1 },
-      { from: 5.33, count: 5 },
+      { from: 4.03, count: 1, side: -1 },
+      { from: 4.95, count: 5, pitch: 0.51 },
     ],
   },
   doors: [
-    { u0: 3.42, u1: 4.05, y0: 0.32, y1: 1.5, corner: 0.14, side: 1 },
+    { u0: 3.77, u1: 4.43, y0: 0.32, y1: 1.5, corner: 0.14, side: 1 },
     { u0: 7.93, u1: 8.4, y0: 0.74, y1: 1.46, corner: 0.1 },
   ],
   seams: [0.9],
@@ -179,8 +188,19 @@ export const cj4 = {
   },
   gear: {
     // Wheelbase 6.45 m and tread 3.76 m from a dealer listing; single wheels per the photograph.
-    nose: { u: 1.5, r: 0.2, w: 0.13, top: 0.8, strut: 0.05 },
-    main: { u: 7.95, x: 1.88, pivotX: 2.15, r: 0.29, w: 0.17, top: 0.95, strut: 0.065 },
+    // Stowed, the nose leg lies inside the nose and the mains in the wing root, their tyres just
+    // proud of the lower skin as on the real airplane, whose main wheels show in flight.
+    nose: { u: 1.5, r: 0.2, w: 0.13, top: 0.9, strut: 0.05, retract: 1.7 },
+    main: {
+      u: 7.95,
+      x: 1.88,
+      pivotX: 1.85,
+      r: 0.29,
+      w: 0.17,
+      top: 0.9,
+      retract: 1.5,
+      strut: 0.065,
+    },
   },
 };
 export const cj4Frame = () => transportFrame(cj4);

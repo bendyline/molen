@@ -16,6 +16,7 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+import { petalNozzle } from './petal-nozzle.mjs';
 export const fa18Frame = () => ({
   heli: false,
   fighter: true,
@@ -217,7 +218,9 @@ export function buildFA18C(s) {
       roughness: 0.15,
     });
   const d = detailKit(root, 'FA18-airframe'),
-    bindings = [];
+    bindings = [],
+    nozzleBindings = [],
+    nozzles = [];
   // Radome and cabin shell taper independently from the aft paired engines.
   const rings = stations.map(ring3d),
     index = (z) => stations.findIndex((q) => q.z === z),
@@ -381,10 +384,28 @@ export function buildFA18C(s) {
         y + Math.cos((j * Math.PI) / 12) * r,
       ]),
     });
-    loft(nd, [ring(0.455, -4.85, 2.115), ring(0.47, -5.05, 2.11), ring(0.4, -5.72, 2.04)], nozzle, {
-      caps: false,
+    // Fixed collar, then twelve petals on the drooping axis that close toward military power and
+    // open at idle and in reheat (petal-nozzle.mjs), each with its actuator rod.
+    loft(nd, [ring(0.455, -4.85, 2.115), ring(0.47, -5.05, 2.11)], nozzle, { caps: false });
+    const petals = petalNozzle(ng, {
+      name: `FA18-nozzle-${side > 0 ? 1 : 2}`,
+      engine: side > 0 ? 'engine-1' : 'engine-2',
+      hinge: [0, 2.11, -5.05],
+      exit: [0, 2.04, -5.72],
+      hingeRadius: 0.454,
+      openRadius: 0.43,
+      closedRadius: 0.33,
+      petals: 12,
+      phase: Math.PI / 12,
+      material: nozzle,
+      overlap: 1.03,
+      rods: [{ from: 0.08, to: 0.98, lift: 0.001, radius: 0.004 }],
     });
-    loft(nd, [ring(0.385, -5.72, 2.04), ring(0.36, -5.03, 2.11)], lining, {
+    // Exterior only: the renderer computes the nozzle signal, which model.signals cannot read.
+    nozzleBindings.push(...petals.bindings);
+    nozzles.push(petals);
+    // Sooted liner narrowing to just inside the closed exit, and its end plate.
+    loft(nd, [ring(0.31, -5.68, 2.045), ring(0.36, -5.03, 2.11)], lining, {
       caps: false,
     });
     sheet(
@@ -393,15 +414,6 @@ export function buildFA18C(s) {
       lining,
       [0, 0, -1],
     );
-    for (let j = 0; j < 24; j += 2) {
-      const a = (j * Math.PI) / 12;
-      nd.rod(
-        [Math.sin(a) * 0.466, 2.11 + Math.cos(a) * 0.466, -5.1],
-        [Math.sin(a) * 0.405, 2.04 + Math.cos(a) * 0.405, -5.72],
-        0.003,
-        dark,
-      );
-    }
     nd.finish();
     // Fixed trapezoid wing: separate leading flaps, inboard trailing flap and outer aileron.
     const stations = [
@@ -676,18 +688,8 @@ export function buildFA18C(s) {
   hd.rod([0, 0, 0], [0, -0.32, -2.1], 0.029, metal);
   hd.rod([0, -0.32, -2.1], [0, -0.28, -2.3], 0.045, metal);
   hd.finish();
-  // Speed-brake outline, spine antennae, access seams and selected maintenance marks.
-  outline(
-    d,
-    [
-      [-0.3, lookup(spine, -2.4) + 0.012, -2.4],
-      [0.3, lookup(spine, -2.4) + 0.012, -2.4],
-      [0.1, lookup(spine, -4.2) + 0.012, -4.2],
-      [-0.1, lookup(spine, -4.2) + 0.012, -4.2],
-    ],
-    0.004,
-    dark,
-  );
+  // Spine antennae, access seams and selected maintenance marks. The speed brake is its own
+  // panel laid on the spine (aircraft-articulation.mjs); its lip draws the seam.
   for (const z of [3.2, 1.4])
     sheet(
       d,
@@ -735,10 +737,13 @@ export function buildFA18C(s) {
     ],
     visual: {
       rotors: [],
+      exhausts: nozzles
+        .map((petals) => petals.exhaust(root))
+        .sort((a, b) => (a.engine < b.engine ? -1 : 1)),
       gearNodes: [],
       flaps: [],
       ailerons: [],
-      animation: { bindings },
+      animation: { bindings: [...bindings, ...nozzleBindings] },
       interior,
     },
     modelSignals: {

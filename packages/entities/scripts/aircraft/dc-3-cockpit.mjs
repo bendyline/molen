@@ -422,60 +422,93 @@ export function dc3Cockpit(root, m) {
       m.dark,
       [0, 1, 0],
     );
+  // Skin half width at a station and height (cockpit frame); the cabin floor and furniture
+  // stay inside it where the belly sweeps up behind the wing.
+  const wall = (zz, yy) => (m.skin ? m.skin(zz, yy) : 9);
   const floors = [
     [6.1, 1, 2.19],
     [-0.8, 1, 2.19],
     [-2.1, 0.92, 2.34],
     [-3.8, 0.68, 2.72],
   ];
-  for (let i = 0; i < floors.length - 1; i++) {
-    const a = floors[i],
-      b = floors[i + 1];
-    sheet(
-      d,
-      [
-        [-a[1], a[2], a[0]],
-        [a[1], a[2], a[0]],
-        [b[1], b[2], b[0]],
-        [-b[1], b[2], b[0]],
-      ],
-      m.dark,
-      [0, 1, 0],
-    );
+  const floorY = (zz) => {
+    const i = Math.max(0, Math.min(floors.length - 2, floors.findIndex((f) => f[0] < zz) - 1)),
+      a = floors[i],
+      b = floors[i + 1],
+      f = Math.max(0, Math.min(1, (a[0] - zz) / (a[0] - b[0])));
+    return [a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f];
+  };
+  // Floor strips sampled along the cabin, each trimmed to the skin at its height: the 2 m wide
+  // panels poked out of the belly from the wing trailing edge aft.
+  for (let zz = 6.1; zz > -3.8 + 1e-6; zz -= 0.25) {
+    const z1 = Math.max(-3.8, zz - 0.25),
+      edge = (z0) => {
+        const [half, yy] = floorY(z0);
+        return [Math.min(half, wall(z0, yy) - 0.02, wall(z0, yy + 0.02) - 0.02), yy];
+      },
+      [ha, ya] = edge(zz),
+      [hb, yb] = edge(z1);
+    if (ha > 0.05 && hb > 0.05)
+      sheet(
+        d,
+        [
+          [-ha, ya, zz],
+          [ha, ya, zz],
+          [hb, yb, z1],
+          [-hb, yb, z1],
+        ],
+        m.dark,
+        [0, 1, 0],
+      );
   }
   for (let row = 0; row < 7; row++)
-    for (const xx of [0.78, 0.23, -0.78]) {
-      const zz = 4.7 - row * 0.99;
+    for (const seatX of [0.78, 0.23, -0.78]) {
+      const zz = 4.7 - row * 0.99,
+        foot = floorY(zz)[1],
+        // Window-side seats come in where the cabin narrows aft (cushion corners showed outside).
+        xx = Math.sign(seatX) * Math.min(Math.abs(seatX), wall(zz, 2.49) - 0.255);
       beveledBox(d, [0.47, 0.13, 0.55], [xx, 2.55, zz], cloth, 0.04);
       beveledBox(d, [0.47, 0.78, 0.15], [xx, 2.94, zz - 0.24], cloth, 0.045);
       for (const dx of [-0.235, 0.235]) {
         d.box([0.045, 0.055, 0.42], [xx + dx, 2.84, zz], m.dark);
-        d.rod([xx + dx, 2.2, zz], [xx + dx, 2.48, zz], 0.018, m.metal);
+        // Outboard legs splay in to the seat track where the floor narrows.
+        const top = xx + dx,
+          base = Math.sign(top) * Math.min(Math.abs(top), wall(zz, foot + 0.02) - 0.06);
+        d.rod([base, foot + 0.01, zz], [top, 2.48, zz], 0.018, m.metal);
       }
       d.box([0.29, 0.18, 0.02], [xx, 3.2, zz - 0.325], liner);
       d.rod([xx - 0.2, 2.63, zz - 0.13], [xx + 0.2, 2.63, zz + 0.14], 0.012, m.dark);
     }
   for (const side of [-1, 1]) {
-    d.box([0.24, 0.025, 6.95], [side * 0.97, 4.03, 1.71], liner);
+    // Hat racks clear of the skin where the crown narrows aft.
+    d.box([0.24, 0.025, 6.95], [side * 0.93, 4.03, 1.71], liner);
     for (let j = 0; j < 7; j++) {
       d.box([0.12, 0.02, 0.07], [side * 0.99, 3.99, 4.7 - j * 0.99], m.metal);
     }
   }
-  sheet(
-    d,
-    [
-      [-1.04, 2.19, 5.55],
-      [-0.34, 2.19, 5.55],
-      [-0.34, 4.12, 5.55],
-      [0.34, 4.12, 5.55],
-      [0.34, 2.19, 5.55],
-      [1.04, 2.19, 5.55],
-      [1.04, 4.38, 5.55],
-      [-1.04, 4.38, 5.55],
-    ],
-    liner,
-    [0, 0, -1],
-  );
+  // Forward cabin bulkhead with its doorway, its outline following the skin (the square
+  // corners poked through the fuselage).
+  {
+    const heights = [2.19, 2.5, 2.9, 3.3, 3.7, 4.05, 4.38],
+      rim = heights.map((yy) => Math.min(1.04, wall(5.55, yy) - 0.015));
+    sheet(
+      d,
+      [
+        [-rim[0], 2.19, 5.55],
+        [-0.34, 2.19, 5.55],
+        [-0.34, 4.12, 5.55],
+        [0.34, 4.12, 5.55],
+        [0.34, 2.19, 5.55],
+        ...heights.map((yy, n) => [rim[n], yy, 5.55]),
+        ...heights
+          .map((yy, n) => [-rim[n], yy, 5.55])
+          .reverse()
+          .slice(0, -1),
+      ],
+      liner,
+      [0, 0, -1],
+    );
+  }
   sheet(
     d,
     [

@@ -88,6 +88,28 @@
                   "engine": "engine-2"
                 }
               ],
+              "exhausts": [
+                {
+                  "engine": "engine-1",
+                  "position": [
+                    0.7,
+                    2.18,
+                    -6.35
+                  ],
+                  "radius": 0.57,
+                  "closedRadius": 0.42
+                },
+                {
+                  "engine": "engine-2",
+                  "position": [
+                    -0.7,
+                    2.18,
+                    -6.35
+                  ],
+                  "radius": 0.57,
+                  "closedRadius": 0.42
+                }
+              ],
               "gearNodes": [],
               "flaps": [],
               "ailerons": [],
@@ -172,6 +194,12 @@
                     "offset": -1.5707963267948966
                   },
                   {
+                    "node": "F15-gear-nose",
+                    "source": "gearExposed",
+                    "property": "visible",
+                    "scale": 1
+                  },
+                  {
                     "node": "F15-gear-left",
                     "source": "gear",
                     "property": "rotation",
@@ -180,12 +208,536 @@
                     "offset": -1.5707963267948966
                   },
                   {
+                    "node": "F15-gear-left",
+                    "source": "gearExposed",
+                    "property": "visible",
+                    "scale": 1
+                  },
+                  {
                     "node": "F15-gear-right",
                     "source": "gear",
                     "property": "rotation",
                     "axis": "x",
                     "scale": 1.5707963267948966,
                     "offset": -1.5707963267948966
+                  },
+                  {
+                    "node": "F15-gear-right",
+                    "source": "gearExposed",
+                    "property": "visible",
+                    "scale": 1
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-00",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-01",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-02",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-03",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-04",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-05",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-06",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-07",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-08",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-09",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-10",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-11",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-12",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-13",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-14",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-2-petal-15",
+                    "source": "engines.engine-2.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-00",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-01",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-02",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-03",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-04",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-05",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-06",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-07",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-08",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-09",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-10",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-11",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-12",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-13",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-14",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-nozzle-1-petal-15",
+                    "source": "engines.engine-1.nozzle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -0.1848
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
                   },
                   {
                     "node": "canopy-opening",
@@ -276,6 +828,13 @@
                     "args": [
                       "pitchDeflection",
                       "rollDeflection"
+                    ]
+                  },
+                  "gearExposed": {
+                    "op": "greater",
+                    "args": [
+                      "gear",
+                      0.02
                     ]
                   }
                 },
@@ -479,6 +1038,13 @@
                     "args": [
                       "gear",
                       0.999
+                    ]
+                  },
+                  "gearExposed": {
+                    "op": "greater",
+                    "args": [
+                      "gear",
+                      0.02
                     ]
                   },
                   "F15.ADI-bank.availableValue": {
@@ -3307,7 +3873,7 @@
                 "center": [
                   0.7,
                   2.18,
-                  -6.26
+                  -5.64
                 ],
                 "probes": [],
                 "radius": 0.3,
@@ -3318,7 +3884,7 @@
                   "center": [
                     0.7,
                     2.18,
-                    -6.26
+                    -5.64
                   ],
                   "normal": [
                     0,
@@ -3341,7 +3907,7 @@
                 "center": [
                   -0.7,
                   2.18,
-                  -6.26
+                  -5.64
                 ],
                 "probes": [],
                 "radius": 0.3,
@@ -3352,7 +3918,7 @@
                   "center": [
                     -0.7,
                     2.18,
-                    -6.26
+                    -5.64
                   ],
                   "normal": [
                     0,
@@ -3609,6 +4175,13 @@
               "args": [
                 "gear",
                 0.999
+              ]
+            },
+            "gearExposed": {
+              "op": "greater",
+              "args": [
+                "gear",
+                0.02
               ]
             },
             "F15.ADI-bank.availableValue": {
@@ -6319,6 +6892,12 @@
               "offset": -1.5707963267948966
             },
             {
+              "node": "F15-gear-nose",
+              "source": "gearExposed",
+              "property": "visible",
+              "scale": 1
+            },
+            {
               "node": "F15-gear-left",
               "source": "gear",
               "property": "rotation",
@@ -6327,12 +6906,24 @@
               "offset": -1.5707963267948966
             },
             {
+              "node": "F15-gear-left",
+              "source": "gearExposed",
+              "property": "visible",
+              "scale": 1
+            },
+            {
               "node": "F15-gear-right",
               "source": "gear",
               "property": "rotation",
               "axis": "x",
               "scale": 1.5707963267948966,
               "offset": -1.5707963267948966
+            },
+            {
+              "node": "F15-gear-right",
+              "source": "gearExposed",
+              "property": "visible",
+              "scale": 1
             },
             {
               "node": "canopy-opening",

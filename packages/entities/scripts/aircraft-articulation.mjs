@@ -15,15 +15,32 @@ const dorsalBrakes = {
   // 0.88 m at z 1.42. The retraced spine falls 0.3 m along it and 0.1 to 0.2 m out to its edges,
   // so the closed panel is laid on the skin rather than drawn as a flat plate.
   'f-15c': [0, 3.22, 3.62, 0.72, 2.2, { aftWidth: 0.88, conform: true }],
-  'fa-18c': [0, 2.62, -2.4, 0.8, 2.2],
-  typhoon: [0, 2.35, 1.3, 0.75, 1.3],
-  'av-8b': [0, 0.9, -2.0, 0.65, 0.95],
+  // Between the fins, hinged on the spine crown at z -2.4 (y 2.757 there) and ending level with
+  // the fin trailing edges: a near-rectangular panel (Blue Angels photos with it raised). Laid
+  // on the sloping spine; a flat plate there was buried at the hinge and stood proud aft, which
+  // read as a brake left half open.
+  'fa-18c': [0, 2.757, -2.4, 0.72, 1.4, { aftWidth: 0.62, conform: true }],
+  // The spine panel right behind the canopy ("DANGER AIRBRAKE" stencil), 0.46 m wide at its
+  // hinge widening to 0.7 m, laid on the crown (y 2.955); the old plate lay 0.45 m under the
+  // spine and broke out through its middle when raised.
+  typhoon: [0, 2.96, 2.58, 0.46, 1.38, { aftWidth: 0.7, conform: true }],
+  // Ventral, laid under the curved belly (half buried as a flat plate).
+  'av-8b': [0, 0.9, -2.0, 0.5, 0.95, { conform: true, below: true }],
 };
 const splitBrakes = {
-  'f-14d': [0, 2.05, -5.0, 1.25, 1.6],
+  // Upper panel flush on the builder's level beavertail deck (y 2.15); the lower leaves hinge
+  // inside the paddle and show only when open.
+  'f-14d': [0, 2.13, -4.8, 0.9, 1.25],
   'mig-29a': [0, 1.8, -5.6, 0.7, 1.0],
-  'f-16b': [0.65, 1.8, -5.0, 0.4, 0.75],
-  'gripen-c': [0.65, 1.8, -3.4, 0.45, 0.8],
+  // Petals continuing the builder's closed housings aft to the nozzle exit.
+  'f-16b': [0.77, 1.86, -4.95, 0.46, 0.75],
+};
+// [hinge x on the skin, centre y, hinge z, height, length]: one panel a side on the rear
+// fuselage, hinged at its front edge about a vertical axis and swinging outward.
+const sideBrakes = {
+  // Ahead of the nozzle (photos on landing); the old split clamshells lay inside the 0.87 m
+  // fuselage and rose through its top skin when opened.
+  'gripen-c': [0.7, 1.855, -4.5, 0.35, 1.1],
 };
 const hooks = { 'f-14d': [0, 1.9, -4.8, 1.7], 'fa-18c': [0, 1.32, -3.9, 1.7] };
 
@@ -36,8 +53,20 @@ function authoredMaterial(root, pattern, fallback) {
 }
 /** A thin closed shell laid over the authored skin under a trapezoid hinged at the panel origin:
  * `width` at the hinge, `aftWidth` at `length` aft. Heights come from rays straight down onto
- * meshes in `material`, so the closed panel follows the skin in both directions. */
-function conformPanel(root, panel, name, material, width, aftWidth, length) {
+ * meshes in `material`, so the closed panel follows the skin in both directions. With
+ * `side` (+1 left, -1 right) the trapezoid stands on the fuselage side instead: `width` is its
+ * height and the rays run inward along x. `below` lays it under the belly from rays upward. */
+function conformPanel(
+  root,
+  panel,
+  name,
+  material,
+  width,
+  aftWidth,
+  length,
+  side = 0,
+  below = false,
+) {
   root.updateMatrixWorld(true);
   const meshes = [];
   root.traverse((node) => {
@@ -53,14 +82,30 @@ function conformPanel(root, panel, name, material, width, aftWidth, length) {
     const t = j / nv,
       half = (width + (aftWidth - width) * t) / 2;
     for (let i = 0; i <= nu; i++) {
-      const x = origin.x + half * ((2 * i) / nu - 1),
+      const u = half * ((2 * i) / nu - 1),
         z = origin.z - length * t;
-      ray.set(new T.Vector3(x, origin.y + 5, z), down);
+      if (side) {
+        // Rows run down the left side and up the right, so the shell faces outward.
+        const y = origin.y - side * u;
+        ray.set(new T.Vector3(origin.x + side * 5, y, z), new T.Vector3(-side, 0, 0));
+        const hit = ray.intersectObjects(meshes, false)[0];
+        skin.push([hit ? hit.point.x : origin.x, y, z]);
+        continue;
+      }
+      // Under the belly the rows run the other way, so the shell faces down.
+      const x = origin.x + (below ? -u : u);
+      ray.set(
+        new T.Vector3(x, origin.y + (below ? -5 : 5), z),
+        below ? down.clone().negate() : down,
+      );
       const hit = ray.intersectObjects(meshes, false)[0];
       skin.push([x, hit ? hit.point.y : origin.y, z]);
     }
   }
-  const local = ([x, y, z], lift) => [x - origin.x, y + lift - origin.y, z - origin.z];
+  const local = ([x, y, z], lift) =>
+    side
+      ? [x + side * lift - origin.x, y - origin.y, z - origin.z]
+      : [x - origin.x, y + (below ? -lift : lift) - origin.y, z - origin.z];
   const top = skin.map((p) => local(p, 0.014)),
     bottom = skin.map((p) => local(p, 0.006)),
     at = (i, j) => j * (nu + 1) + i,
@@ -332,9 +377,21 @@ export function completeAircraftArticulation(root, spec, profile = {}, modelSign
         bind(
           canopy,
           'canopy',
-          slug === 'p-51' ? 'position' : 'rotation',
-          slug === 'p-51' ? 'z' : 'x',
-          slug === 'p-51' ? -1.15 : slug === 'f-35a' ? 0.85 : -0.85,
+          // The Mustang's and Harrier's canopies slide aft; the F-16's hood hinges 5 m behind
+          // its nose and opens about 30 degrees; the Gripen's swings over to port.
+          ['p-51', 'av-8b'].includes(slug) ? 'position' : 'rotation',
+          ['p-51', 'av-8b', 'gripen-c'].includes(slug) ? 'z' : 'x',
+          slug === 'p-51'
+            ? -1.15
+            : slug === 'av-8b'
+              ? -0.9
+              : slug === 'f-35a'
+                ? 0.85
+                : slug === 'gripen-c'
+                  ? -1.9
+                  : slug === 'f-16b'
+                    ? -0.55
+                    : -0.85,
         ),
       );
       if (slug === 'f-35a') shatterCanopy(canopy, additions);
@@ -451,6 +508,8 @@ export function completeAircraftArticulation(root, spec, profile = {}, modelSign
                 width,
                 shape.aftWidth ?? width,
                 length,
+                0,
+                shape.below,
               )
             : box(
                 panel,
@@ -470,6 +529,25 @@ export function completeAircraftArticulation(root, spec, profile = {}, modelSign
           );
         }
       }
+  } else if (sideBrakes[slug]) {
+    actuators.speedBrake = { seconds: 1.6 };
+    const [x, y, z, height, length] = sideBrakes[slug];
+    for (const side of [-1, 1]) {
+      const panel = pivot(root, `speed-brake-${side}-1-0`, [side * x, y, z]);
+      const skin = conformPanel(
+        root,
+        panel,
+        `${panel.name}-skin`,
+        paint,
+        height,
+        height,
+        length,
+        side,
+      );
+      inheritLivery(root, skin);
+      // The trailing edge swings outboard: +x is left, so the left panel turns negative about y.
+      additions.push(bind(panel, 'speedBrake', 'rotation', 'y', -side * 0.9));
+    }
   } else if (['f-22a', 'f-35a', 'rafale-c'].includes(slug)) {
     actuators.speedBrake = { seconds: 1.6 };
     // These airframes brake through coordinated controls, without a dorsal brake panel.
@@ -478,11 +556,20 @@ export function completeAircraftArticulation(root, spec, profile = {}, modelSign
     );
     animation.derived ??= {};
     animation.derived.brakePosition = { op: 'coalesce', args: ['speedBrake', 0] };
+    root.updateMatrixWorld(true);
     for (const [i, b] of candidates.entries()) {
+      // Paired rudders splay apart (sign by side; both had one sign on the F-35, a yaw); a single
+      // centreline rudder stays out of the brake mix (the Rafale's yawed when braking).
+      let deflection = i % 2 ? -0.35 : 0.35;
+      if (/rudder/i.test(b.node)) {
+        const x = root.getObjectByName(b.node)?.getWorldPosition(new T.Vector3()).x ?? 0;
+        if (Math.abs(x) < 0.05) continue;
+        deflection = -Math.sign(x) * 0.35;
+      }
       const mix = `brakeMix${i}`;
       animation.derived[`${mix}Deflection`] = {
         op: 'multiply',
-        args: ['brakePosition', i % 2 ? -0.35 : 0.35],
+        args: ['brakePosition', deflection],
       };
       animation.derived[`${mix}Sum`] = { op: 'add', args: [b.source, `${mix}Deflection`] };
       animation.derived[mix] = { op: 'clamp', args: [`${mix}Sum`, -1, 1] };
@@ -502,6 +589,7 @@ export function completeAircraftArticulation(root, spec, profile = {}, modelSign
     }
   }
   addJetTurbines(root, spec, slug);
+  addJetExhausts(spec, slug);
   if (actuators.speedBrake && spec.airplane) spec.airplane.speedBrakeDrag = 0.08;
   animation.sources = { ...animation.sources, ...actuatorSources(actuators, 'aircraftState') };
   bindings.push(...additions);
@@ -604,8 +692,14 @@ function extractAircraftCanopy(root, target, spec, slug) {
   });
   const stations = [...rows.values()].sort((a, b) => a.z - b.z);
   if (stations.length < 2) return 0;
+  // Where the opening canopy meets the fixed windscreen bow (photos of each type open). The F-22's
+  // one-piece bubble lifts whole; elsewhere a cut 0.4 m ahead of the eye split the glass.
+  const canopyFront = { 'f-22a': Infinity, typhoon: 5.47, 'rafale-c': 4.67, 'gripen-c': 3.82 };
   const z0 = stations[0].z,
-    z1 = slug === 'f-35a' ? stations.at(-1).z : Math.min(stations.at(-1).z, eye[2] + 0.4);
+    z1 =
+      slug === 'f-35a'
+        ? stations.at(-1).z
+        : Math.min(stations.at(-1).z, canopyFront[slug] ?? eye[2] + 0.4);
   const at = (z) => {
     let i = stations.findIndex((r) => r.z >= z);
     i = Math.max(1, i < 0 ? stations.length - 1 : i);
@@ -615,7 +709,16 @@ function extractAircraftCanopy(root, target, spec, slug) {
     return { y: a.y + (b.y - a.y) * t, x: a.x + (b.x - a.x) * t };
   };
   const hinge = slug === 'f-35a' ? z1 : z0;
-  target.position.set(0, at(hinge).y, hinge);
+  if (slug === 'gripen-c') {
+    // The Gripen's canopy swings over to port on hinges along the left sill.
+    const front = at(z1),
+      back = at(z0);
+    target.position.set(front.x + 0.01, front.y, z1);
+    target.quaternion.setFromUnitVectors(
+      new T.Vector3(0, 0, 1),
+      new T.Vector3(back.x - front.x, back.y - front.y, z0 - z1).negate().normalize(),
+    );
+  } else target.position.set(0, at(hinge).y, hinge);
   // The sill envelope excludes the fixed fuselage roof and intake shoulders.
   return extractPanel(
     root,
@@ -731,13 +834,16 @@ function wingSpoiler(root, spec, side) {
 // Positions are the recessed end plates already authored in each original model.
 // Blades remain behind the nozzle lip. Engine spool drives the same rotor phase as props.
 const turbineDiscs = {
+  // The F-14 builder spaces its engines 2.8 m apart (was 3.36): blades centred at the old
+  // spacing stuck out of both nozzles as a black sunburst.
   'f-14d': [
-    [1.68, 1.83, -6.01, 0.43],
-    [-1.68, 1.83, -6.01, 0.43],
+    [1.4, 1.69, -6.12, 0.33],
+    [-1.4, 1.69, -6.12, 0.33],
   ],
+  // On the end plate inside the liner, which narrows aft to clear the closing petals.
   'f-15c': [
-    [0.7, 2.18, -6.26, 0.43],
-    [-0.7, 2.18, -6.26, 0.43],
+    [0.7, 2.18, -5.64, 0.43],
+    [-0.7, 2.18, -5.64, 0.43],
   ],
   'f-16b': [[0, 1.86, -5.04, 0.33]],
   'f-22a': [
@@ -745,9 +851,10 @@ const turbineDiscs = {
     [-0.64, 2, -4.22, 0.31],
   ],
   'f-35a': [[0, 1.8, -4.33, 0.54]],
+  // Centered on the nozzles and their end plates (the blades stood 6 cm outboard of them).
   'fa-18c': [
-    [0.58, 1.99, -5.05, 0.34],
-    [-0.58, 1.99, -5.05, 0.34],
+    [0.52, 2.11, -5.06, 0.34],
+    [-0.52, 2.11, -5.06, 0.34],
   ],
   'gripen-c': [[0, 1.8, -6.23, 0.34]],
   'mig-29a': [
@@ -764,6 +871,54 @@ const turbineDiscs = {
   ],
   'av-8b': [[0, 1.93, 2.28, 0.94]],
 };
+// Fixed nozzle exits for the afterburner flame (spec.visual.exhausts): [x, y, z, radius, aspect],
+// measured from each model's nozzle geometry (inside of the exit lip). The F-15C, F-16B and
+// F/A-18C build variable petal nozzles that declare their own (petal-nozzle.mjs).
+const jetExhausts = {
+  'f-14d': [
+    [1.4, 1.69, -6.54, 0.36],
+    [-1.4, 1.69, -6.54, 0.36],
+  ],
+  // F119 two-dimensional nozzles: the flaps' slot, 1.1 m wide by about 0.4 m at the chevron tips.
+  'f-22a': [
+    [0.64, 2, -4.95, 0.37, 2.75],
+    [-0.64, 2, -4.95, 0.37, 2.75],
+  ],
+  'f-35a': [[0, 1.8, -5.02, 0.42]],
+  'gripen-c': [[0, 1.8, -7.0, 0.41]],
+  'mig-29a': [
+    [0.86, 1.62, -6.69, 0.44],
+    [-0.86, 1.62, -6.69, 0.44],
+  ],
+  'rafale-c': [
+    [0.61, 1.92, -5.94, 0.4],
+    [-0.61, 1.92, -5.94, 0.4],
+  ],
+  typhoon: [
+    [0.52, 1.82, -5.76, 0.35],
+    [-0.52, 1.82, -5.76, 0.35],
+  ],
+};
+/** Each exit goes to the jet engine nearest it across the airframe. */
+function addJetExhausts(spec, slug) {
+  const exits = jetExhausts[slug];
+  if (!exits || spec.visual.exhausts) return;
+  const engines = (spec.engines ?? []).filter((engine) => engine.propulsion === 'jet');
+  spec.visual.exhausts = exits.map(([x, y, z, radius, aspect]) => {
+    const engine = engines.reduce((best, candidate) =>
+      Math.hypot(candidate.position[0] - x, candidate.position[1] - y) <
+      Math.hypot(best.position[0] - x, best.position[1] - y)
+        ? candidate
+        : best,
+    );
+    return {
+      engine: engine.id,
+      position: [x, y, z],
+      radius,
+      ...(aspect ? { aspect } : {}),
+    };
+  });
+}
 function addJetTurbines(root, spec, slug) {
   const discs = turbineDiscs[slug];
   if (!discs) return;

@@ -79,6 +79,12 @@ const JUNCTION_REACH = 8;
 const LIFT_EPSILON = 0.02;
 /** Lift (m) at which a climbing road's cross-section has left the ground's crossfall behind. */
 const FLAT_LIFT = 0.6;
+/**
+ * Share of its class's grade by which a deck may fall steeper than the line between the ends of
+ * its span, where that line is steep: what brings it back to the line after a crossing or the
+ * ground has lifted it. A span less steep than the rest of its class's grade keeps that grade.
+ */
+const STEEP_SPAN_MARGIN = 0.5;
 
 export interface GradeSeparationOptions {
   /**
@@ -264,9 +270,11 @@ class Heap {
  * - Decks whose paving overlaps (carriageways mapped closer than they are wide, a ramp where
  *   it merges) are one surface, level with each other; decks a little apart are level as far
  *   as a few meters' difference goes.
- * - A deck falls away from that height no faster than its class allows, and where it reaches
- *   its end still raised, the roads joined to it there carry the rest of the descent, each at
- *   its own grade. Such a road fits beneath every deck that passes over it: it never lifts one.
+ * - A deck falls away from that height no faster than its class allows, or, between ends that
+ *   stand farther apart than that grade covers, as steeply as the line between them and a margin
+ *   more. Where it reaches its end still raised, the roads joined to it there carry the rest of
+ *   the descent, each at its own grade. Such a road fits beneath every deck that passes over
+ *   it: it never lifts one.
  * - Decks that no heights can satisfy (each must clear the other, or is tied to it, before it
  *   has the length to fall a story) are given another arrangement: a crossing turned over,
  *   two decks no longer held level, or at the last a crossing on the level.
@@ -616,6 +624,11 @@ export function* gradeTransportSeparationSteps(
   const seat = new Float64Array(nodeCount);
   /** The ground at a node itself, not leveled along its way. */
   const spot = (node: number): number => groundAt(xs[node] as number, zs[node] as number, 0, 0);
+  /**
+   * Grade (m/m) at which a deck falls from each station to the next, where that is steeper than
+   * its class allows (see `STEEP_SPAN_MARGIN`); zero elsewhere.
+   */
+  const steeper = new Float64Array(nodeCount);
   const component = new Int32Array(nodeCount).fill(-1);
   let components = 0;
   for (const seed of ways) {
@@ -753,6 +766,16 @@ export function* gradeTransportSeparationSteps(
           from +
             ((to - from) * ((along[node] as number) - (along[span.from] as number))) / span.length,
         );
+      // Where its ends lie so far apart that its class's grade would hardly bring it back to the
+      // line between them (a viaduct down a hillside), the deck is as steep as that line, and
+      // steeper by a margin to come back to it after whatever lifted it. Held to its class, it
+      // could not come down: it reached its lower end stories up, and the streets there climbed
+      // to meet it.
+      const grade = wayAt(span.from).grade;
+      const rate = Math.abs(to - from) / span.length + grade * STEEP_SPAN_MARGIN;
+      if (rate > grade)
+        for (let node = span.from; node < span.to; node++)
+          steeper[node] = Math.max(steeper[node] as number, rate);
     }
     for (const node of members) {
       const way = wayAt(node);
@@ -1294,6 +1317,18 @@ export function* gradeTransportSeparationSteps(
     crossing.queued = true;
     waiting.push(crossing);
   };
+  /** Grade at which a deck falls from `node` to `other`, the next station along its way. */
+  const fallBetween = (node: number, other: number): number =>
+    Math.max(wayAt(node).grade, steeper[Math.min(node, other)] as number);
+  /** Steepest grade at which a deck falls to either side of `node`. */
+  const fallAt = (node: number): number => {
+    const way = wayAt(node);
+    return Math.max(
+      way.grade,
+      steeper[node] as number,
+      node > way.first ? (steeper[node - 1] as number) : 0,
+    );
+  };
   /** Deck heights before decks side by side are leveled with each other. */
   let alone: Float64Array | undefined;
   // What last raised each node: the node it took its height from, how (0 along its way or
@@ -1360,11 +1395,11 @@ export function* gradeTransportSeparationSteps(
     for (let head = 0; head < queue.length; head++) {
       const node = queue[head] as number;
       queued[node] = 0;
-      const way = wayAt(node);
       const value = heightOf(node);
+      const fall = fallAt(node);
       neighbors(node, (other, length) => {
         if (!wayAt(other).bridge) return;
-        raise(other, length === 0 ? value : value - way.grade * length, node, 0);
+        raise(other, length === 0 ? value : value - fallBetween(node, other) * length, node, 0);
       });
       // One surface with the deck abreast of it. The two stations are seldom square across
       // from each other: a deck gives the other what it would give its own station that far
@@ -1375,7 +1410,7 @@ export function* gradeTransportSeparationSteps(
           const other = level[i] as number;
           if (parted.size > 0 && parted.has(pairKey(wayOf[node] as number, wayOf[other] as number)))
             continue;
-          raise(other, value - way.grade * (level[i + 1] as number), node, 1);
+          raise(other, value - fall * (level[i + 1] as number), node, 1);
         }
       // Level with the deck beside it, but only so far above where it stood alone: twins
       // differ by decimeters, while a ramp's switchback legs run side by side a story apart.
@@ -1386,7 +1421,7 @@ export function* gradeTransportSeparationSteps(
           raise(
             other,
             Math.min(
-              value - way.grade * (near[i + 1] as number),
+              value - fall * (near[i + 1] as number),
               (alone[other] as number) + BESIDE_ALLOWANCE,
             ),
             node,
@@ -1558,7 +1593,7 @@ export function* gradeTransportSeparationSteps(
       const upper = ways[crossing.upper] as Way;
       let raised = false;
       held(upper, crossing.at, crossing.hold + rounding, (node, beyond) => {
-        if (raise(node, need - upper.grade * beyond, by, 3, crossing.meeting)) raised = true;
+        if (raise(node, need - fallAt(node) * beyond, by, 3, crossing.meeting)) raised = true;
       });
       if (raised && rearranging) {
         const cycle = chasing(crossing, by);
@@ -1970,7 +2005,7 @@ export function* gradeTransportSeparationSteps(
     const need = below + crossing.separation;
     const upper = ways[crossing.upper] as Way;
     held(upper, crossing.at, crossing.hold, (node, beyond) => {
-      raise(node, need - upper.grade * beyond, by, 3, crossing.meeting);
+      raise(node, need - fallAt(node) * beyond, by, 3, crossing.meeting);
     });
   }
   clear(false);
@@ -1984,7 +2019,7 @@ export function* gradeTransportSeparationSteps(
       for (let i = 0; i < level.length; i += 2) {
         const other = level[i] as number;
         if (parted.has(pairKey(wayOf[node] as number, wayOf[other] as number))) continue;
-        const least = heightOf(node) - wayAt(node).grade * (level[i + 1] as number);
+        const least = heightOf(node) - fallAt(node) * (level[i + 1] as number);
         if (heightOf(other) < least - 1e-6) height[other] = least;
       }
     }

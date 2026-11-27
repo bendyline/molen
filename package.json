@@ -54,7 +54,7 @@
     "release:publish": "node scripts/publish-release.mjs",
     "release:bootstrap": "node scripts/bootstrap-release.mjs",
     "smoke:packed": "node scripts/smoke-packed.mjs",
-    "predev": "node scripts/check-dev-content.mjs && pnpm --filter \"./packages/**\" -r exec tsdown",
+    "predev": "pnpm --filter \"./packages/**\" -r exec tsdown && node scripts/check-dev-content.mjs",
     "dev": "pnpm --filter @bendyline/molen-examples-home dev",
     "dev:content": "pnpm --filter \"./packages/**\" -r build && node examples/world-explorer/scripts/build-content-packs.mjs",
     "dev:prepare": "pnpm assets:fetch && pnpm dev:content",

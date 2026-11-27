@@ -4,6 +4,7 @@ import {
   AircraftState,
   aircraftFuelFlow,
   aircraftGear,
+  aircraftTotalFuelFlow,
   IDLE_AIRCRAFT_INPUT,
   initialAircraftState,
   installAircraft,
@@ -306,6 +307,29 @@ describe('fuel and weight', () => {
       aircraftFuelFlow(engine, { ...state, afterburner: 1 }) / aircraftFuelFlow(engine, state);
     expect(ratio).toBeGreaterThan(2);
     expect(ratio).toBeLessThan(3.5);
+  });
+
+  it('reports the burn the step applies, for a host to show', () => {
+    const tanked = fueled(viper, 3000);
+    for (const power of [0.6, 0.85, 1]) {
+      const settled = fly(
+        3,
+        () => ({ ...clean, power }),
+        airborne({ velocity: [0, 0, 220] }, 3000),
+        tanked,
+      );
+      const next = stepAircraft(
+        settled.transform,
+        settled.state,
+        { ...clean, power },
+        tanked,
+        1 / 60,
+        flat,
+      );
+      const burned = ((settled.state.fuel ?? 0) - (next.state.fuel ?? 0)) * 60;
+      expect(aircraftTotalFuelFlow(tanked, next.state, power)).toBeCloseTo(burned, 2);
+    }
+    expect(aircraftTotalFuelFlow(tanked, initialAircraftState(), 1)).toBe(0);
   });
 
   it('flies lighter on empty tanks, and the engine stops when they run dry', () => {

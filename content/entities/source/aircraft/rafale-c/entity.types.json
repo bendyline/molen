@@ -151,7 +151,7 @@
                   },
                   {
                     "node": "Rafale-rudder",
-                    "source": "brakeMix4",
+                    "source": "yawInput",
                     "property": "rotation",
                     "axis": "y",
                     "scale": 0.32
@@ -380,28 +380,6 @@
                     "op": "clamp",
                     "args": [
                       "brakeMix3Sum",
-                      -1,
-                      1
-                    ]
-                  },
-                  "brakeMix4Deflection": {
-                    "op": "multiply",
-                    "args": [
-                      "brakePosition",
-                      0.35
-                    ]
-                  },
-                  "brakeMix4Sum": {
-                    "op": "add",
-                    "args": [
-                      "yawInput",
-                      "brakeMix4Deflection"
-                    ]
-                  },
-                  "brakeMix4": {
-                    "op": "clamp",
-                    "args": [
-                      "brakeMix4Sum",
                       -1,
                       1
                     ]
@@ -6060,7 +6038,27 @@
                     "missing": "hide"
                   }
                 ]
-              }
+              },
+              "exhausts": [
+                {
+                  "engine": "engine-1",
+                  "position": [
+                    0.61,
+                    1.92,
+                    -5.94
+                  ],
+                  "radius": 0.4
+                },
+                {
+                  "engine": "engine-2",
+                  "position": [
+                    -0.61,
+                    1.92,
+                    -5.94
+                  ],
+                  "radius": 0.4
+                }
+              ]
             },
             "airplane": {
               "wingPosition": [
@@ -7222,28 +7220,6 @@
               "op": "clamp",
               "args": [
                 "brakeMix3Sum",
-                -1,
-                1
-              ]
-            },
-            "brakeMix4Deflection": {
-              "op": "multiply",
-              "args": [
-                "brakePosition",
-                0.35
-              ]
-            },
-            "brakeMix4Sum": {
-              "op": "add",
-              "args": [
-                "yawInput",
-                "brakeMix4Deflection"
-              ]
-            },
-            "brakeMix4": {
-              "op": "clamp",
-              "args": [
-                "brakeMix4Sum",
                 -1,
                 1
               ]
@@ -12186,7 +12162,7 @@
             },
             {
               "node": "Rafale-rudder",
-              "source": "brakeMix4",
+              "source": "yawInput",
               "property": "rotation",
               "axis": "y",
               "scale": 0.32

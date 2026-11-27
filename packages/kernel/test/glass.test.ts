@@ -207,8 +207,11 @@ describe('glass fracture and retention', () => {
       1 / 30,
       flat,
     );
+    // It comes down as its own body: the struts take the first of the fall and the floor the
+    // rest, which is the blow the glass feels.
     expect(landing.impacts).toHaveLength(1);
-    expect(landing.impacts[0]?.deltaVelocity[1]).toBeGreaterThan(15);
+    expect(landing.impacts[0]?.deltaVelocity[1]).toBeGreaterThan(10);
+    expect(landing.impacts[0]?.deltaVelocity[1]).toBeLessThan(15.5);
   });
 
   it('supports arbitrary stable pane ids without inheriting Object properties', () => {

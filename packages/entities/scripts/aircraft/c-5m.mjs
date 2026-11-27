@@ -62,6 +62,29 @@ function hinge(root, name, stations, material, bindings, source, scale) {
   bindings.push({ node: name, source, property: 'rotation', axis: 'x', scale });
   return g;
 }
+/** A loft target whose faces point inward: intake lips and ducts are seen from inside, where an
+ * outward-facing, single-sided lip was culled and showed the cowl's inner skin instead. */
+const inward = (d) => ({
+  add: (geometry, material, at) => {
+    const normal = geometry.getAttribute('normal');
+    if (normal)
+      for (let i = 0; i < normal.count; i++)
+        normal.setXYZ(i, -normal.getX(i), -normal.getY(i), -normal.getZ(i));
+    if (geometry.index) {
+      const a = geometry.index.array;
+      for (let i = 0; i < a.length; i += 3) [a[i + 1], a[i + 2]] = [a[i + 2], a[i + 1]];
+    } else
+      for (const attribute of Object.values(geometry.attributes))
+        for (let i = 0; i < attribute.count; i += 3)
+          for (let c = 0; c < attribute.itemSize; c++) {
+            const t = attribute.array[(i + 1) * attribute.itemSize + c];
+            attribute.array[(i + 1) * attribute.itemSize + c] =
+              attribute.array[(i + 2) * attribute.itemSize + c];
+            attribute.array[(i + 2) * attribute.itemSize + c] = t;
+          }
+    return d.add(geometry, material, at);
+  },
+});
 export function buildC5M(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -233,8 +256,10 @@ export function buildC5M(s) {
     return at;
   };
   for (const side of [-1, 1]) {
-    const front = glaze(3, 0, side, [[0.06, 0.94, 0.1, 0.9]]);
-    glaze(3, 1, side, [[0.06, 0.52, 0.3, 0.92]]);
+    // The front and quarter panes end at a header about 50 degrees above the pilot's eye (side
+    // photograph: the pane's top corner just ahead of and above his head), not over his head.
+    const front = glaze(3, 0, side, [[0.06, 0.94, 0.1, 0.76]]);
+    glaze(3, 1, side, [[0.06, 0.52, 0.3, 0.78]]);
     glaze(4, 1, side, [
       [0.1, 0.5, 0.05, 0.45],
       [0.1, 0.5, 0.53, 0.92],
@@ -440,9 +465,14 @@ export function buildC5M(s) {
       paint,
       { caps: false },
     );
-    loft(d, [ring(front, 1.34), ring(front - 0.15, 1.21), ring(front - 0.85, 1.18)], metal, {
-      caps: false,
-    });
+    loft(
+      inward(d),
+      [ring(front, 1.34), ring(front - 0.15, 1.21), ring(front - 0.85, 1.18)],
+      metal,
+      {
+        caps: false,
+      },
+    );
     loft(d, [ring(front - 0.85, 1.18), ring(front - 1.1, 1.14)], dark, { caps: false });
     d.add(new T.CircleGeometry(1.18, 32), dark, [x, cy, front - 1.11]);
     const fan = group(root, `C5-engine-fan-${i + 1}`, [x, cy, front - 0.95]),

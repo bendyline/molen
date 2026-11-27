@@ -2,6 +2,7 @@ import { terrainPyramidBudgetForQuality } from '@bendyline/molen-terrain/client'
 import { describe, expect, it } from 'vitest';
 import {
   createEarthAdmissionGovernor,
+  createEarthMemoryGuard,
   EARTH_BACKLOG_MS,
   earthAdmission,
   earthArrivalAdmission,
@@ -309,5 +310,60 @@ describe('earth terrain cache budget', () => {
   it('keeps a quarter of the device budget of generated buildings, or the tier amount', () => {
     expect(earthWorldgenCacheBytes(48 * MIB, 768 * MIB)).toBe(192 * MIB);
     expect(earthWorldgenCacheBytes(128 * MIB, 192 * MIB)).toBe(128 * MIB);
+  });
+});
+
+describe('earth memory guard', () => {
+  /** Frames at 60 a second for `ms`, each at `pressure`: how many times the guard asked for a step. */
+  const run = (
+    guard: ReturnType<typeof createEarthMemoryGuard>,
+    ms: number,
+    pressure: number,
+    frameMs = 1000 / 60,
+  ): number => {
+    let steps = 0;
+    for (let elapsed = 0; elapsed < ms; elapsed += frameMs)
+      if (guard.sample(frameMs, pressure)) steps++;
+    return steps;
+  };
+
+  it('asks for a level only after ten seconds over the budget without a break', () => {
+    const guard = createEarthMemoryGuard();
+    // At the budget is not over it: a dense city at the level a host sized its budget for.
+    expect(run(guard, 300_000, 1)).toBe(0);
+    // A handover has a tile and what replaces it on show together, for a few seconds.
+    for (let i = 0; i < 20; i++) {
+      expect(run(guard, 6000, 1.15)).toBe(0);
+      expect(run(guard, 1000, 0.9)).toBe(0);
+    }
+    expect(run(guard, 9500, 1.15)).toBe(0);
+    expect(run(guard, 1000, 1.15)).toBe(1);
+  });
+
+  it('asks after two seconds a quarter past the budget', () => {
+    const guard = createEarthMemoryGuard();
+    expect(run(guard, 1500, 1.3)).toBe(0);
+    expect(run(guard, 1000, 1.3)).toBe(1);
+  });
+
+  it('lets a step take effect before judging the budget again, one level at a time', () => {
+    const guard = createEarthMemoryGuard();
+    expect(run(guard, 3000, 2)).toBe(1);
+    // What the lower level replaces stays on show until its tiles arrive.
+    expect(run(guard, 29_000, 2)).toBe(0);
+    expect(run(guard, 4000, 2)).toBe(1);
+    guard.reset();
+    expect(run(guard, 1500, 2)).toBe(0);
+    expect(run(guard, 1000, 2)).toBe(1);
+  });
+
+  it('takes a pause for a frame, and ignores what is not a measurement', () => {
+    const guard = createEarthMemoryGuard();
+    // A tab hidden for a minute comes back with one long frame.
+    expect(guard.sample(60_000, 1.5)).toBe(false);
+    expect(run(guard, 20_000, 1.5, 5000)).toBe(0);
+    expect(guard.sample(0, 9)).toBe(false);
+    expect(guard.sample(Number.NaN, 9)).toBe(false);
+    expect(guard.sample(16, Number.NaN)).toBe(false);
   });
 });

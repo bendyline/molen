@@ -1043,7 +1043,7 @@ function f22Cockpit(root, m, fore) {
       const [, bodyWidth, , top] = sectionAt(fore, z);
       return [
         [side * (width - 0.025), base - 0.012, z],
-        [side * (bodyWidth * 0.7 - 0.025), top - 0.07, z],
+        [side * (bodyWidth * 0.7 - 0.025), top - 0.1, z],
         [side * Math.min(0.52, width + 0.15), 2.37, z],
         [side * 0.51, 1.88, z],
       ];
@@ -1061,16 +1061,20 @@ function f22Cockpit(root, m, fore) {
         tub,
         wall[i][0],
         wall[i + 1][0],
-        [side * wb, yb + 0.006, zb],
-        [side * wa, ya + 0.006, za],
+        // The strip ends just inside the glazing's base edge, under the painted rail; reaching
+        // the base itself it showed from outside as a dark dashed line along the sill.
+        [side * (wb - 0.008), yb + 0.002, zb],
+        [side * (wa - 0.008), ya + 0.002, za],
         black,
         [0, 1, 0],
       );
     }
+    // Thin inner sill rail: a 25 mm tube here broke out through the painted canopy-base bridge
+    // and read from outside as a dark dashed line under the glazing.
     outline(
       tub,
-      wall.map((points) => points[0]),
-      0.025,
+      wall.map(([[x, y, z]]) => [x - side * 0.006, y - 0.006, z]),
+      0.01,
       black,
       false,
     );

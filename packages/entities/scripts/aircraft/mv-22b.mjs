@@ -661,7 +661,8 @@ export function buildMV22(s) {
   ]) {
     const g = group(root, `MV22-gear-${name}`),
       dd = detailKit(g, g.name);
-    dd.rod([x, 1.4, z + 0.15], [x, r, z], 0.06, metal);
+    // The leg tops out under the cockpit floor.
+    dd.rod([x, name === 'nose' ? 1.15 : 1.4, z + 0.15], [x, r, z], 0.06, metal);
     dd.rod([x, 0.65, z], [x, 0.9, z - 0.4], 0.03, dark);
     for (const dx of [-0.2, 0.2]) wheel(dd, x + dx, r, z, r, 0.23);
     dd.finish();
@@ -725,7 +726,7 @@ export function buildMV22(s) {
       seam,
       false,
     );
-    d.text('MV-22B', [side * 1.285, 2.5, 1.9], 0.16, (side * Math.PI) / 2, dark);
+    // Type and serial lettering is operator paint and lives in the liveries.
     d.text('RESCUE', [side * 1.285, 1.85, 3.6], 0.075, (side * Math.PI) / 2, d.amber);
   }
   for (const i of [5, 6, 7, 8, 9]) {
@@ -871,36 +872,38 @@ function cockpit(root, m) {
     [505, 805],
     [505, 730],
   ].map(([u, v]) => at(u, v));
-  const displayUs = [180, 400, 1035, 1255],
-    holes = [180, 1255].map((u) => rect(px(u), py(602), 0.17, 0.14, z));
+  // Four 0.27 m multifunction displays, primary flight displays outboard (cockpit photograph). The
+  // outer pair sits inboard enough that the attitude card's square mask stays behind the panel
+  // and the radio heads above it, inside the side glazing.
+  const displayXs = [0.68, 0.4, -0.4, -0.68],
+    holes = [0.68, -0.68].map((x) => rect(x, py(602), 0.15, 0.12, z));
   holes.push(rect(px(783), py(615), 0.085, 0.085, z));
   sheet(d, contour, face, [0, 0, -1], holes);
   outline(d, contour, 0.011, m.dark);
-  for (const [i, u] of displayUs.entries()) {
-    const x = px(u),
-      y = py(630),
-      outer = rect(x, y, 0.31, 0.335, z - 0.004),
-      hole = i === 0 || i === 3 ? [rect(x, py(602), 0.17, 0.14, z - 0.004)] : [];
+  for (const [i, x] of displayXs.entries()) {
+    const y = py(630),
+      outer = rect(x, y, 0.27, 0.335, z - 0.004),
+      hole = i === 0 || i === 3 ? [rect(x, py(602), 0.15, 0.12, z - 0.004)] : [];
     sheet(d, outer, black, [0, 0, -1], hole);
     outline(d, outer, 0.009, face);
     for (const side of [-1, 1])
       for (let j = 0; j < 6; j++) {
-        d.box([0.015, 0.018, 0.012], [x + side * 0.17, y - 0.118 + j * 0.048, z - 0.014], face);
-        d.box([0.006, 0.002, 0.001], [x + side * 0.17, y - 0.118 + j * 0.048, z - 0.021], ink);
+        d.box([0.015, 0.018, 0.012], [x + side * 0.15, y - 0.118 + j * 0.048, z - 0.014], face);
+        d.box([0.006, 0.002, 0.001], [x + side * 0.15, y - 0.118 + j * 0.048, z - 0.021], ink);
       }
     for (let j = 0; j < 5; j++)
-      d.box([0.025, 0.013, 0.009], [x - 0.12 + j * 0.06, y + 0.184, z - 0.012], face);
-    pt.knob(x - 0.145, y - 0.174, z - 0.018, 0.013);
-    pt.knob(x + 0.145, y - 0.174, z - 0.018, 0.013);
+      d.box([0.025, 0.013, 0.009], [x - 0.1 + j * 0.05, y + 0.184, z - 0.012], face);
+    pt.knob(x - 0.125, y - 0.174, z - 0.018, 0.013);
+    pt.knob(x + 0.125, y - 0.174, z - 0.018, 0.013);
     if (i === 0 || i === 3) {
-      ins.horizon(`pfd-${i}`, at(u, 602, 0.018), 0.17, 0.14, { blankBackdrop: true });
-      ins.readout(`tas-${i}`, [x + 0.087, y - 0.045, z - 0.012], 'knots', 3, 0.019);
-      ins.readout(`alt-${i}`, [x - 0.065, y - 0.045, z - 0.012], 'feet', 5, 0.018, ink, true);
-      ins.readout(`heading-${i}`, [x + 0.075, y - 0.106, z - 0.012], 'headingDegrees', 3, 0.019);
+      ins.horizon(`pfd-${i}`, [x, py(602), z + 0.018], 0.15, 0.12, { blankBackdrop: true });
+      ins.readout(`tas-${i}`, [x + 0.075, y - 0.045, z - 0.012], 'knots', 3, 0.019);
+      ins.readout(`alt-${i}`, [x - 0.06, y - 0.045, z - 0.012], 'feet', 5, 0.018, ink, true);
+      ins.readout(`heading-${i}`, [x + 0.065, y - 0.106, z - 0.012], 'headingDegrees', 3, 0.019);
       ins.dial(
         `vsi-${i}`,
-        [x - 0.072, y - 0.105, z - 0.012],
-        0.033,
+        [x - 0.065, y - 0.105, z - 0.012],
+        0.03,
         'verticalFpm',
         [
           [-4000, -2.4],
@@ -912,9 +915,9 @@ function cockpit(root, m) {
         { tickLabels: { '-4000': '-4', 4000: '4' } },
       );
       for (const [text, xx, yy] of [
-        ['TAS', x + 0.087, y - 0.024],
-        ['GEO FT', x - 0.065, y - 0.024],
-        ['TRUE', x + 0.075, y - 0.086],
+        ['TAS', x + 0.075, y - 0.024],
+        ['GEO FT', x - 0.06, y - 0.024],
+        ['TRUE', x + 0.065, y - 0.086],
       ])
         d.text(text, [xx, yy, z - 0.013], 0.009, Math.PI, ink);
     } else {
@@ -924,11 +927,11 @@ function cockpit(root, m) {
           path: ['engines', `engine-${j}`, 'rpm'],
         };
         derived[`enginePercent${j}`] = { op: 'multiply', args: [`engine${j}`, 100] };
-        const xx = x + (j === 1 ? 0.072 : -0.072);
+        const xx = x + (j === 1 ? 0.064 : -0.064);
         ins.dial(
           `rpm-${i}-${j}`,
           [xx, y + 0.07, z - 0.012],
-          0.05,
+          0.046,
           `enginePercent${j}`,
           [
             [0, -2.4],
@@ -985,11 +988,12 @@ function cockpit(root, m) {
   d.text('AFCS', [0, 2.274, 6.65], 0.015, Math.PI, ink);
   d.box([0.15, 0.033, 0.06], [0, 2.32, 6.7], d.red);
   d.text('APU', [0, 2.32, 6.665], 0.015, Math.PI, ink);
-  // Radio boxes and the glareshield bar stop inside the side glazing (x 0.92 m at the sill).
+  // Radio heads sit on the panel's top edge, under the side glazing (x 0.89 m there); they also
+  // hide the top of each attitude card's mask.
   for (const side of [-1, 1]) {
-    beveledBox(d, [0.42, 0.09, 0.12], [side * 0.67, 2.23, 6.72], face, 0.01);
-    d.box([0.26, 0.027, 0.01], [side * 0.67, 2.23, 6.654], black);
-    pt.knob(side * 0.84, 2.23, 6.64, 0.02);
+    beveledBox(d, [0.4, 0.075, 0.08], [side * 0.68, 2.295, 6.68], face, 0.01);
+    d.box([0.24, 0.026, 0.01], [side * 0.66, 2.295, 6.636], black);
+    pt.knob(side * 0.83, 2.295, 6.63, 0.017);
   }
   d.box([1.7, 0.055, 0.22], [0, 2.155, 6.78], m.dark);
   // Lower central display and two independent keypads on a sloping pedestal.
@@ -1078,7 +1082,7 @@ function cockpit(root, m) {
     }
   od.finish();
   // Overhead liner below the cabin roof crown (it stood above the roof at its edges).
-  d.box([1.3, 0.04, 1.85], [0, 2.9, 4.65], liner);
+  d.box([1.12, 0.04, 1.85], [0, 2.86, 4.65], liner);
   for (const side of [-1, 1]) {
     const x = side * 0.62,
       // The crew stand on a raised deck. The seat slides under the eye, its cushion 0.8 m below it.
@@ -1163,6 +1167,22 @@ function cockpit(root, m) {
   // The crew stand on a raised deck over the cabin floor, with a riser at its aft edge.
   d.box([2, 0.05, 1.9], [0, 1.355, 5.72], m.dark);
   d.box([2, 0.33, 0.05], [0, 1.215, 4.77], m.dark);
+  // Footwell under the panel: the deck runs on to a toe board, closed by a forward bulkhead, so
+  // the view past the panel's lower edge no longer drops into the nose bay and its gear leg.
+  d.box([1.9, 0.05, 0.5], [0, 1.355, 6.91], m.dark);
+  sheet(
+    d,
+    [
+      [-0.98, 1.33],
+      [0.98, 1.33],
+      [1.02, 1.6],
+      [0.88, 1.93],
+      [-0.88, 1.93],
+      [-1.02, 1.6],
+    ].map(([x, y]) => [x, y, 7.15]),
+    m.dark,
+    [0, 0, -1],
+  );
   // Cockpit bulkhead following the cabin section (its square corners stood out of the roof).
   sheet(
     d,

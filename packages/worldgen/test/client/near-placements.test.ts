@@ -191,6 +191,57 @@ describe('near placements', () => {
     object.dispose();
   });
 
+  it('stands no plant on ground the host opens, asking again when its openings change', () => {
+    // A cutting over x 100..140, z 100..160: opened once `bored`, below 12 m (plants stand at 10).
+    let bored = false,
+      version = 1,
+      asked = 0;
+    const inside = (x: number, z: number): boolean => x >= 100 && x < 140 && z >= 100 && z < 160;
+    const object = createNearPlacements(placements(lattice()), levels, {
+      ...options,
+      open: {
+        near: (x0, z0, x1, z1) => x0 < 140 && x1 > 100 && z0 < 160 && z1 > 100,
+        at: (x, y, z) => {
+          asked++;
+          return bored && inside(x, z) && y < 12;
+        },
+        version: () => version,
+      },
+    });
+    object.updateMatrixWorld(true);
+    const camera = perspective(128, 11, 128);
+    object.update(camera);
+    const whole = drawn(object);
+    expect(whole.filter(({ position: p }) => inside(p.x, p.z)).length).toBeGreaterThan(100);
+    // Only the plants of cells that may open were asked about.
+    const first = asked;
+    expect(first).toBeGreaterThan(0);
+    expect(first).toBeLessThan(lattice().length / 4);
+    // The bore arrives but the host's version has not moved: nothing is asked or changes.
+    bored = true;
+    object.update(camera);
+    expect(asked).toBe(first);
+    expect(drawn(object)).toHaveLength(whole.length);
+    // It moves: the cutting's plants go at once, though the camera stands still; the rest stay.
+    version++;
+    object.update(camera);
+    const after = drawn(object);
+    expect(after.some(({ position: p }) => inside(p.x, p.z))).toBe(false);
+    const key = ({ position: p }: Drawn) => `${p.x},${p.z}`;
+    expect(after.map(key).sort()).toEqual(
+      whole
+        .filter(({ position: p }) => !inside(p.x, p.z))
+        .map(key)
+        .sort(),
+    );
+    // And come back when the opening closes.
+    bored = false;
+    version++;
+    object.update(camera);
+    expect(drawn(object).map(key).sort()).toEqual(whole.map(key).sort());
+    object.dispose();
+  });
+
   it("thins each plant at its crown's reach, the one a ground painting the crowns reads", () => {
     // Plants west of x = 128 carry reach byte 0 (they stop at `full`), the rest 255 (they stand
     // out to the radius): exactly where a ground handed that reach paints their crowns again.

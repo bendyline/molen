@@ -15,6 +15,7 @@ import { describe, expect, it } from 'vitest';
 const WEBGPU_LEAVES = [
   'webgpu-clouds.ts',
   'webgpu-driver.ts',
+  'webgpu-lamp-field.ts',
   'webgpu-scene-optimizer.ts',
   'webgpu-sky-reflections.ts',
   'webgpu-snow-cover.ts',

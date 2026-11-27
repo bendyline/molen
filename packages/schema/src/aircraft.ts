@@ -322,7 +322,7 @@ export interface HelicopterTailRotorSpec extends JsonObject {
   arm: number;
   /** Height of the tail rotor's hub above the main rotor's, m (negative below). */
   height: number;
-  /** Blade pitch at full right and full left pedal, rad; default -0.14 and 0.42. */
+  /** Blade pitch at full right and full left pedal, rad; default -0.14 and 0.42, a fan -0.35 and 0.75. */
   pitch?: [number, number];
 }
 
@@ -396,7 +396,11 @@ export interface HelicopterPhysicsSpec extends JsonObject {
   profilePowerFraction?: number;
   /** Optional rotor aerodynamic penalties; assisted rotor model, not blade-element dynamics. */
   vortexRing?: boolean;
-  /** Sea-level TAS for retreating-blade stall onset, m/s; decreases with density and rotor RPM. */
+  /**
+   * Sea-level TAS the type is not to exceed, m/s. On its rotor block the retreating blades stall
+   * past it, sooner with a heavier load, thinner air or a slower rotor, and the assist holds it;
+   * on the response model drag rises from it.
+   */
   retreatingBladeSpeed?: number;
   /** Effective lifting disc count (e.g. 2 for tandem rotors), default 1. */
   rotorDiscs?: number;
@@ -497,8 +501,32 @@ export interface AircraftRotorBinding extends AircraftVisualBinding {
   engine?: string;
 }
 
+/**
+ * Where a jet engine's exhaust leaves the model: the client draws its afterburner flame, shock
+ * diamonds and tailpipe glow from here. Model coordinates (+Z forward, +X left), meters.
+ */
+export interface AircraftExhaustSpec extends JsonObject {
+  /** The jet engine this nozzle belongs to. */
+  engine: string;
+  /** Center of the nozzle exit. */
+  position: [number, number, number];
+  /** Exit radius with the nozzle fully open (full reheat), or of a fixed nozzle. */
+  radius: number;
+  /**
+   * Exit radius with a variable nozzle closed to its minimum (military power). Omitted for a fixed
+   * nozzle. Between the two the exit follows the engine's `nozzle` signal (0 closed, 1 open).
+   */
+  closedRadius?: number;
+  /** Direction the exhaust leaves in; default the reverse of the engine's thrust axis. */
+  direction?: [number, number, number];
+  /** Width over height of a two-dimensional (rectangular) nozzle exit; default 1 (round). */
+  aspect?: number;
+}
+
 export interface AircraftVisualSpec extends JsonObject {
   rotors: AircraftRotorBinding[];
+  /** Jet nozzle exits for the afterburner flame and tailpipe glow; omit for none. */
+  exhausts?: AircraftExhaustSpec[];
   /** Legacy unrigged gear hides when fully up; position/rotation-bound nodes keep their pose. */
   gearNodes: string[];
   /** Turn by `multiplier` radians at full flap travel, in proportion to the flap position. */
@@ -737,11 +765,14 @@ export interface AircraftStateData extends JsonObject {
   /** Elevator, aileron and rudder positions, -1..1, of an airplane flying on its surfaces. */
   surfaces?: { elevator: number; aileron: number; rudder: number };
   /**
-   * The undercarriage: wheel speeds in rad/s and the load on each leg in newtons. An airplane's
-   * legs are its nose or tail wheel, left main and right main; a helicopter's the front left,
-   * front right, rear left and rear right ends of its skids.
+   * The undercarriage: wheel speeds in rad/s, the load on each leg in newtons, and how far the
+   * ground holds each leg's strut closed from where it rests, in meters (`travel`: positive
+   * compressed, and at the strut's full reach below rest where the wheel hangs clear). An
+   * airplane's legs are its nose or tail wheel, left main and right main; a helicopter's the
+   * front left, front right, rear left and rear right ends of its skids. `aircraftGearLayout`
+   * says where each stands.
    */
-  wheels?: { spin: number[]; load: number[] };
+  wheels?: { spin: number[]; load: number[]; travel?: number[] };
   /** Sideslip angle in radians, positive with the relative wind from the left. */
   sideslip?: number;
   /** Aerodynamic and thrust load along the airframe's up axis, in g. */
@@ -750,7 +781,8 @@ export interface AircraftStateData extends JsonObject {
   fuel?: number;
   /**
    * Pre-stall and stalled-wing buffet, 0..1: a cue for hosts to shake the view and sound a
-   * warning. It starts a few degrees before the stall. Airplanes only.
+   * warning. It starts a few degrees before the stall. On a helicopter that flies on its rotors,
+   * how near its retreating blades are to the stall, and past it.
    */
   buffet?: number;
   /**

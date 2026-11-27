@@ -1,0 +1,5830 @@
+{
+  "format": "molen/sound-profiles@1",
+  "id": "molen.sounds",
+  "title": "Voices for molen.entities vehicles, aircraft, boats and trains",
+  "components": ["vehicle", "aircraft", "ambientAgent", "boat"],
+  "match": [
+    {
+      "profile": "aircraft.heli.light",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.aircraft.airbus_h125",
+          "molen.entities.aircraft.bell_206b",
+          "molen.entities.aircraft.bell_407",
+          "molen.entities.aircraft.oh6"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.heli.light",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.aircraft.airbus_h125",
+          "molen.entities.aircraft.bell_206b",
+          "molen.entities.aircraft.bell_407",
+          "molen.entities.aircraft.oh6"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.heli.medium",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.aircraft.airbus_h145",
+          "molen.entities.aircraft.aw139",
+          "molen.entities.aircraft.bell_412ep"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.heli.medium",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.aircraft.airbus_h145",
+          "molen.entities.aircraft.aw139",
+          "molen.entities.aircraft.bell_412ep"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.heli.piston",
+      "when": {
+        "renderable.ref": ["molen.entities.aircraft.robinson_r44"]
+      }
+    },
+    {
+      "profile": "aircraft.heli.piston",
+      "when": {
+        "ambientAgent.type": ["molen.entities.aircraft.robinson_r44"]
+      }
+    },
+    {
+      "profile": "aircraft.heli.tandem",
+      "when": {
+        "renderable.ref": ["molen.entities.aircraft.ch_47f"]
+      }
+    },
+    {
+      "profile": "aircraft.heli.tandem",
+      "when": {
+        "ambientAgent.type": ["molen.entities.aircraft.ch_47f"]
+      }
+    },
+    {
+      "profile": "aircraft.heli.twoblade",
+      "when": {
+        "renderable.ref": ["molen.entities.aircraft.uh_1h"]
+      }
+    },
+    {
+      "profile": "aircraft.heli.twoblade",
+      "when": {
+        "ambientAgent.type": ["molen.entities.aircraft.uh_1h"]
+      }
+    },
+    {
+      "profile": "aircraft.heli.utility",
+      "when": {
+        "renderable.ref": ["molen.entities.aircraft.uh_60m"]
+      }
+    },
+    {
+      "profile": "aircraft.heli.utility",
+      "when": {
+        "ambientAgent.type": ["molen.entities.aircraft.uh_60m"]
+      }
+    },
+    {
+      "profile": "aircraft.jet.airliner",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.aircraft.a220_300",
+          "molen.entities.aircraft.airbus_a320neo",
+          "molen.entities.aircraft.airliner",
+          "molen.entities.aircraft.boeing_737_800"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.jet.airliner",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.aircraft.a220_300",
+          "molen.entities.aircraft.airbus_a320neo",
+          "molen.entities.aircraft.airliner",
+          "molen.entities.aircraft.boeing_737_800"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.jet.business",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.aircraft.citation_cj4",
+          "molen.entities.aircraft.embraer_e175",
+          "molen.entities.aircraft.gulfstream_g650er"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.jet.business",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.aircraft.citation_cj4",
+          "molen.entities.aircraft.embraer_e175",
+          "molen.entities.aircraft.gulfstream_g650er"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.jet.fighter",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.aircraft.f_14d",
+          "molen.entities.aircraft.f_15c",
+          "molen.entities.aircraft.f_16b",
+          "molen.entities.aircraft.f_22a",
+          "molen.entities.aircraft.f_35a",
+          "molen.entities.aircraft.fa_18c",
+          "molen.entities.aircraft.gripen_c",
+          "molen.entities.aircraft.mig_29a",
+          "molen.entities.aircraft.rafale_c",
+          "molen.entities.aircraft.typhoon"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.jet.fighter",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.aircraft.f_14d",
+          "molen.entities.aircraft.f_15c",
+          "molen.entities.aircraft.f_16b",
+          "molen.entities.aircraft.f_22a",
+          "molen.entities.aircraft.f_35a",
+          "molen.entities.aircraft.fa_18c",
+          "molen.entities.aircraft.gripen_c",
+          "molen.entities.aircraft.mig_29a",
+          "molen.entities.aircraft.rafale_c",
+          "molen.entities.aircraft.typhoon"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.jet.harrier",
+      "when": {
+        "renderable.ref": ["molen.entities.aircraft.av_8b"]
+      }
+    },
+    {
+      "profile": "aircraft.jet.harrier",
+      "when": {
+        "ambientAgent.type": ["molen.entities.aircraft.av_8b"]
+      }
+    },
+    {
+      "profile": "aircraft.jet.heavy",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.aircraft.an_124",
+          "molen.entities.aircraft.c_17a",
+          "molen.entities.aircraft.c_5m"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.jet.heavy",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.aircraft.an_124",
+          "molen.entities.aircraft.c_17a",
+          "molen.entities.aircraft.c_5m"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.prop.flat",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.aircraft.bonanza_g36",
+          "molen.entities.aircraft.cessna_172s",
+          "molen.entities.aircraft.cessna_182t",
+          "molen.entities.aircraft.cirrus_sr22t",
+          "molen.entities.aircraft.pa_28_180"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.prop.flat",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.aircraft.bonanza_g36",
+          "molen.entities.aircraft.cessna_172s",
+          "molen.entities.aircraft.cessna_182t",
+          "molen.entities.aircraft.cirrus_sr22t",
+          "molen.entities.aircraft.pa_28_180"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.prop.flat-twin",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.aircraft.baron_g58",
+          "molen.entities.aircraft.diamond_da42"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.prop.flat-twin",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.aircraft.baron_g58",
+          "molen.entities.aircraft.diamond_da42"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.prop.merlin",
+      "when": {
+        "renderable.ref": ["molen.entities.aircraft.p51d"]
+      }
+    },
+    {
+      "profile": "aircraft.prop.merlin",
+      "when": {
+        "ambientAgent.type": ["molen.entities.aircraft.p51d"]
+      }
+    },
+    {
+      "profile": "aircraft.prop.radial",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.aircraft.beech_18",
+          "molen.entities.aircraft.dc_3",
+          "molen.entities.aircraft.dhc_2"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.prop.radial",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.aircraft.beech_18",
+          "molen.entities.aircraft.dc_3",
+          "molen.entities.aircraft.dhc_2"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.prop.turboprop",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.aircraft.cessna_208b",
+          "molen.entities.aircraft.dhc_6",
+          "molen.entities.aircraft.king_air_350i",
+          "molen.entities.aircraft.ov_10",
+          "molen.entities.aircraft.pc_6",
+          "molen.entities.aircraft.pilatus_pc12"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.prop.turboprop",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.aircraft.cessna_208b",
+          "molen.entities.aircraft.dhc_6",
+          "molen.entities.aircraft.king_air_350i",
+          "molen.entities.aircraft.ov_10",
+          "molen.entities.aircraft.pc_6",
+          "molen.entities.aircraft.pilatus_pc12"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.prop.turboprop-large",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.aircraft.a400m",
+          "molen.entities.aircraft.atr_72_600",
+          "molen.entities.aircraft.c_130j",
+          "molen.entities.aircraft.dash_8_q400"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.prop.turboprop-large",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.aircraft.a400m",
+          "molen.entities.aircraft.atr_72_600",
+          "molen.entities.aircraft.c_130j",
+          "molen.entities.aircraft.dash_8_q400"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.tiltrotor",
+      "when": {
+        "renderable.ref": ["molen.entities.aircraft.mv_22b"]
+      }
+    },
+    {
+      "profile": "aircraft.tiltrotor",
+      "when": {
+        "ambientAgent.type": ["molen.entities.aircraft.mv_22b"]
+      }
+    },
+    {
+      "profile": "boat.inboard",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.watercraft.fishing_boat",
+          "molen.entities.watercraft.tugboat"
+        ]
+      }
+    },
+    {
+      "profile": "boat.inboard",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.watercraft.fishing_boat",
+          "molen.entities.watercraft.tugboat"
+        ]
+      }
+    },
+    {
+      "profile": "boat.outboard",
+      "when": {
+        "renderable.ref": ["molen.entities.watercraft.speedboat"]
+      }
+    },
+    {
+      "profile": "boat.outboard",
+      "when": {
+        "ambientAgent.type": ["molen.entities.watercraft.speedboat"]
+      }
+    },
+    {
+      "profile": "boat.sail",
+      "when": {
+        "renderable.ref": ["molen.entities.watercraft.sailboat"]
+      }
+    },
+    {
+      "profile": "boat.sail",
+      "when": {
+        "ambientAgent.type": ["molen.entities.watercraft.sailboat"]
+      }
+    },
+    {
+      "profile": "boat.ship",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.watercraft.bulk_carrier",
+          "molen.entities.watercraft.car_ferry",
+          "molen.entities.watercraft.container_ship",
+          "molen.entities.watercraft.passenger_ferry"
+        ]
+      }
+    },
+    {
+      "profile": "boat.ship",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.watercraft.bulk_carrier",
+          "molen.entities.watercraft.car_ferry",
+          "molen.entities.watercraft.container_ship",
+          "molen.entities.watercraft.passenger_ferry"
+        ]
+      }
+    },
+    {
+      "profile": "cycle.bicycle",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.cycle.cargo_bicycle",
+          "molen.entities.cycle.city_bicycle",
+          "molen.entities.cycle.road_bicycle"
+        ]
+      }
+    },
+    {
+      "profile": "cycle.bicycle",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.cycle.cargo_bicycle",
+          "molen.entities.cycle.city_bicycle",
+          "molen.entities.cycle.road_bicycle"
+        ]
+      }
+    },
+    {
+      "profile": "cycle.cruiser",
+      "when": {
+        "renderable.ref": ["molen.entities.cycle.cruiser_motorcycle"]
+      }
+    },
+    {
+      "profile": "cycle.cruiser",
+      "when": {
+        "ambientAgent.type": ["molen.entities.cycle.cruiser_motorcycle"]
+      }
+    },
+    {
+      "profile": "cycle.electric",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.cycle.electric_moped",
+          "molen.entities.cycle.electric_skateboard",
+          "molen.entities.cycle.kick_scooter"
+        ]
+      }
+    },
+    {
+      "profile": "cycle.electric",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.cycle.electric_moped",
+          "molen.entities.cycle.electric_skateboard",
+          "molen.entities.cycle.kick_scooter"
+        ]
+      }
+    },
+    {
+      "profile": "cycle.motorcycle",
+      "when": {
+        "renderable.ref": ["molen.entities.cycle.standard_motorcycle"]
+      }
+    },
+    {
+      "profile": "cycle.motorcycle",
+      "when": {
+        "ambientAgent.type": ["molen.entities.cycle.standard_motorcycle"]
+      }
+    },
+    {
+      "profile": "cycle.scooter",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.cycle.motor_scooter",
+          "molen.entities.cycle.underbone_moped"
+        ]
+      }
+    },
+    {
+      "profile": "cycle.scooter",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.cycle.motor_scooter",
+          "molen.entities.cycle.underbone_moped"
+        ]
+      }
+    },
+    {
+      "profile": "cycle.skateboard",
+      "when": {
+        "renderable.ref": ["molen.entities.cycle.skateboard"]
+      }
+    },
+    {
+      "profile": "cycle.skateboard",
+      "when": {
+        "ambientAgent.type": ["molen.entities.cycle.skateboard"]
+      }
+    },
+    {
+      "profile": "cycle.snow",
+      "when": {
+        "renderable.ref": ["molen.entities.cycle.skis", "molen.entities.cycle.snowboard"]
+      }
+    },
+    {
+      "profile": "cycle.snow",
+      "when": {
+        "ambientAgent.type": ["molen.entities.cycle.skis", "molen.entities.cycle.snowboard"]
+      }
+    },
+    {
+      "profile": "rail.car",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.rail.autorack_enclosed",
+          "molen.entities.rail.bombardier_bilevel_cab_car",
+          "molen.entities.rail.bombardier_bilevel_coach",
+          "molen.entities.rail.boxcar_50ft",
+          "molen.entities.rail.centerbeam_flatcar",
+          "molen.entities.rail.covered_hopper",
+          "molen.entities.rail.gondola_52ft",
+          "molen.entities.rail.tank_car_dot117",
+          "molen.entities.rail.well_car_double_stack"
+        ]
+      }
+    },
+    {
+      "profile": "rail.car",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.rail.autorack_enclosed",
+          "molen.entities.rail.bombardier_bilevel_cab_car",
+          "molen.entities.rail.bombardier_bilevel_coach",
+          "molen.entities.rail.boxcar_50ft",
+          "molen.entities.rail.centerbeam_flatcar",
+          "molen.entities.rail.covered_hopper",
+          "molen.entities.rail.gondola_52ft",
+          "molen.entities.rail.tank_car_dot117",
+          "molen.entities.rail.well_car_double_stack"
+        ]
+      }
+    },
+    {
+      "profile": "rail.locomotive",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.rail.emd_gp38_2",
+          "molen.entities.rail.ge_es44ac",
+          "molen.entities.rail.mpi_mp36ph_3c"
+        ]
+      }
+    },
+    {
+      "profile": "rail.locomotive",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.rail.emd_gp38_2",
+          "molen.entities.rail.ge_es44ac",
+          "molen.entities.rail.mpi_mp36ph_3c"
+        ]
+      }
+    },
+    {
+      "profile": "rail.tram",
+      "when": {
+        "renderable.ref": ["molen.entities.transit.lightrail"]
+      }
+    },
+    {
+      "profile": "rail.tram",
+      "when": {
+        "ambientAgent.type": ["molen.entities.transit.lightrail"]
+      }
+    },
+    {
+      "profile": "road.bus",
+      "when": {
+        "renderable.ref": ["molen.entities.transit.bus"]
+      }
+    },
+    {
+      "profile": "road.bus",
+      "when": {
+        "ambientAgent.type": ["molen.entities.transit.bus"]
+      }
+    },
+    {
+      "profile": "road.diesel",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.vehicle.hyundai_staria_2024",
+          "molen.entities.vehicle.isuzu_d_max_2024",
+          "molen.entities.vehicle.mercedes_benz_sprinter_2019",
+          "molen.entities.vehicle.pickup",
+          "molen.entities.vehicle.toyota_hiace_2024",
+          "molen.entities.vehicle.toyota_hilux_2024",
+          "molen.entities.vehicle.van"
+        ]
+      }
+    },
+    {
+      "profile": "road.diesel",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.vehicle.hyundai_staria_2024",
+          "molen.entities.vehicle.isuzu_d_max_2024",
+          "molen.entities.vehicle.mercedes_benz_sprinter_2019",
+          "molen.entities.vehicle.pickup",
+          "molen.entities.vehicle.toyota_hiace_2024",
+          "molen.entities.vehicle.toyota_hilux_2024",
+          "molen.entities.vehicle.van"
+        ]
+      }
+    },
+    {
+      "profile": "road.electric",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.vehicle.bmw_i3_2017",
+          "molen.entities.vehicle.byd_seagull_2024",
+          "molen.entities.vehicle.electric_hatchback",
+          "molen.entities.vehicle.gmc_hummer_ev_suv_2024",
+          "molen.entities.vehicle.hyundai_casper_electric_2024",
+          "molen.entities.vehicle.hyundai_ioniq_5_2022",
+          "molen.entities.vehicle.jaguar_i_pace_2019",
+          "molen.entities.vehicle.lucid_air_2022",
+          "molen.entities.vehicle.nissan_leaf_2012",
+          "molen.entities.vehicle.rivian_r1t_2023",
+          "molen.entities.vehicle.tesla_model_3_2025",
+          "molen.entities.vehicle.tesla_model_y_2024",
+          "molen.entities.vehicle.wuling_hongguang_mini_ev_2025"
+        ]
+      }
+    },
+    {
+      "profile": "road.electric",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.vehicle.bmw_i3_2017",
+          "molen.entities.vehicle.byd_seagull_2024",
+          "molen.entities.vehicle.electric_hatchback",
+          "molen.entities.vehicle.gmc_hummer_ev_suv_2024",
+          "molen.entities.vehicle.hyundai_casper_electric_2024",
+          "molen.entities.vehicle.hyundai_ioniq_5_2022",
+          "molen.entities.vehicle.jaguar_i_pace_2019",
+          "molen.entities.vehicle.lucid_air_2022",
+          "molen.entities.vehicle.nissan_leaf_2012",
+          "molen.entities.vehicle.rivian_r1t_2023",
+          "molen.entities.vehicle.tesla_model_3_2025",
+          "molen.entities.vehicle.tesla_model_y_2024",
+          "molen.entities.vehicle.wuling_hongguang_mini_ev_2025"
+        ]
+      }
+    },
+    {
+      "profile": "road.four",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.vehicle.audi_tt_2021",
+          "molen.entities.vehicle.chevrolet_equinox_2025",
+          "molen.entities.vehicle.chevrolet_onix_2024",
+          "molen.entities.vehicle.chevrolet_trax_2025",
+          "molen.entities.vehicle.chrysler_pt_cruiser_2006",
+          "molen.entities.vehicle.compact",
+          "molen.entities.vehicle.dacia_duster_2024",
+          "molen.entities.vehicle.fiat_500_2012",
+          "molen.entities.vehicle.fiat_strada_2024",
+          "molen.entities.vehicle.ford_escape_2025",
+          "molen.entities.vehicle.geely_monjaro_2024",
+          "molen.entities.vehicle.honda_accord_2025",
+          "molen.entities.vehicle.honda_civic_2025",
+          "molen.entities.vehicle.honda_cr_v_2025",
+          "molen.entities.vehicle.honda_element_2008",
+          "molen.entities.vehicle.hyundai_tucson_2025",
+          "molen.entities.vehicle.hyundai_veloster_2020",
+          "molen.entities.vehicle.kia_k5_2024",
+          "molen.entities.vehicle.kia_soul_2015",
+          "molen.entities.vehicle.kia_sportage_2025",
+          "molen.entities.vehicle.mazda_cx_5_2025",
+          "molen.entities.vehicle.mazda_mx_5_miata_2016",
+          "molen.entities.vehicle.mini_cooper_2013",
+          "molen.entities.vehicle.mini_cooper_countryman_2012",
+          "molen.entities.vehicle.nissan_altima_2025",
+          "molen.entities.vehicle.nissan_rogue_2025",
+          "molen.entities.vehicle.peugeot_208_2024",
+          "molen.entities.vehicle.pontiac_solstice_2007",
+          "molen.entities.vehicle.renault_clio_2024",
+          "molen.entities.vehicle.renault_kwid_2024",
+          "molen.entities.vehicle.saab_9_3_sportcombi_2011",
+          "molen.entities.vehicle.scion_xb_2006",
+          "molen.entities.vehicle.sedan",
+          "molen.entities.vehicle.skoda_octavia_combi_2024",
+          "molen.entities.vehicle.smart_fortwo_2009",
+          "molen.entities.vehicle.station_wagon",
+          "molen.entities.vehicle.subaru_brz_2014",
+          "molen.entities.vehicle.subaru_forester_2025",
+          "molen.entities.vehicle.subaru_outback_2025",
+          "molen.entities.vehicle.suv",
+          "molen.entities.vehicle.suzuki_jimny_sierra_2024",
+          "molen.entities.vehicle.suzuki_swift_2024",
+          "molen.entities.vehicle.toyota_corolla_2025",
+          "molen.entities.vehicle.toyota_highlander_2025",
+          "molen.entities.vehicle.volkswagen_golf_gti_2016",
+          "molen.entities.vehicle.volkswagen_polo_2024"
+        ]
+      }
+    },
+    {
+      "profile": "road.four",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.vehicle.audi_tt_2021",
+          "molen.entities.vehicle.chevrolet_equinox_2025",
+          "molen.entities.vehicle.chevrolet_onix_2024",
+          "molen.entities.vehicle.chevrolet_trax_2025",
+          "molen.entities.vehicle.chrysler_pt_cruiser_2006",
+          "molen.entities.vehicle.compact",
+          "molen.entities.vehicle.dacia_duster_2024",
+          "molen.entities.vehicle.fiat_500_2012",
+          "molen.entities.vehicle.fiat_strada_2024",
+          "molen.entities.vehicle.ford_escape_2025",
+          "molen.entities.vehicle.geely_monjaro_2024",
+          "molen.entities.vehicle.honda_accord_2025",
+          "molen.entities.vehicle.honda_civic_2025",
+          "molen.entities.vehicle.honda_cr_v_2025",
+          "molen.entities.vehicle.honda_element_2008",
+          "molen.entities.vehicle.hyundai_tucson_2025",
+          "molen.entities.vehicle.hyundai_veloster_2020",
+          "molen.entities.vehicle.kia_k5_2024",
+          "molen.entities.vehicle.kia_soul_2015",
+          "molen.entities.vehicle.kia_sportage_2025",
+          "molen.entities.vehicle.mazda_cx_5_2025",
+          "molen.entities.vehicle.mazda_mx_5_miata_2016",
+          "molen.entities.vehicle.mini_cooper_2013",
+          "molen.entities.vehicle.mini_cooper_countryman_2012",
+          "molen.entities.vehicle.nissan_altima_2025",
+          "molen.entities.vehicle.nissan_rogue_2025",
+          "molen.entities.vehicle.peugeot_208_2024",
+          "molen.entities.vehicle.pontiac_solstice_2007",
+          "molen.entities.vehicle.renault_clio_2024",
+          "molen.entities.vehicle.renault_kwid_2024",
+          "molen.entities.vehicle.saab_9_3_sportcombi_2011",
+          "molen.entities.vehicle.scion_xb_2006",
+          "molen.entities.vehicle.sedan",
+          "molen.entities.vehicle.skoda_octavia_combi_2024",
+          "molen.entities.vehicle.smart_fortwo_2009",
+          "molen.entities.vehicle.station_wagon",
+          "molen.entities.vehicle.subaru_brz_2014",
+          "molen.entities.vehicle.subaru_forester_2025",
+          "molen.entities.vehicle.subaru_outback_2025",
+          "molen.entities.vehicle.suv",
+          "molen.entities.vehicle.suzuki_jimny_sierra_2024",
+          "molen.entities.vehicle.suzuki_swift_2024",
+          "molen.entities.vehicle.toyota_corolla_2025",
+          "molen.entities.vehicle.toyota_highlander_2025",
+          "molen.entities.vehicle.volkswagen_golf_gti_2016",
+          "molen.entities.vehicle.volkswagen_polo_2024"
+        ]
+      }
+    },
+    {
+      "profile": "road.hybrid",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.vehicle.byd_qin_plus_2024",
+          "molen.entities.vehicle.chevrolet_volt_2011",
+          "molen.entities.vehicle.ford_maverick_2025",
+          "molen.entities.vehicle.taxi",
+          "molen.entities.vehicle.toyota_alphard_2024",
+          "molen.entities.vehicle.toyota_camry_2025",
+          "molen.entities.vehicle.toyota_prius_2024",
+          "molen.entities.vehicle.toyota_sienna_2025",
+          "molen.entities.vehicle.toyota_yaris_2024"
+        ]
+      }
+    },
+    {
+      "profile": "road.hybrid",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.vehicle.byd_qin_plus_2024",
+          "molen.entities.vehicle.chevrolet_volt_2011",
+          "molen.entities.vehicle.ford_maverick_2025",
+          "molen.entities.vehicle.taxi",
+          "molen.entities.vehicle.toyota_alphard_2024",
+          "molen.entities.vehicle.toyota_camry_2025",
+          "molen.entities.vehicle.toyota_prius_2024",
+          "molen.entities.vehicle.toyota_sienna_2025",
+          "molen.entities.vehicle.toyota_yaris_2024"
+        ]
+      }
+    },
+    {
+      "profile": "road.kei",
+      "when": {
+        "renderable.ref": ["molen.entities.vehicle.honda_n_box_2024"]
+      }
+    },
+    {
+      "profile": "road.kei",
+      "when": {
+        "ambientAgent.type": ["molen.entities.vehicle.honda_n_box_2024"]
+      }
+    },
+    {
+      "profile": "road.six",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.vehicle.acura_mdx_2019",
+          "molen.entities.vehicle.acura_tl_2013",
+          "molen.entities.vehicle.alfa_romeo_giulia_2018",
+          "molen.entities.vehicle.bendy_class_a_compact",
+          "molen.entities.vehicle.bendy_class_b_camper",
+          "molen.entities.vehicle.cadillac_cts_2010",
+          "molen.entities.vehicle.chevrolet_colorado_2025",
+          "molen.entities.vehicle.chevrolet_traverse_2025",
+          "molen.entities.vehicle.chrysler_300_2015",
+          "molen.entities.vehicle.ford_bronco_2025",
+          "molen.entities.vehicle.ford_explorer_2025",
+          "molen.entities.vehicle.ford_f_150_2025",
+          "molen.entities.vehicle.ford_ranger_2025",
+          "molen.entities.vehicle.ford_transit_2021",
+          "molen.entities.vehicle.genesis_g80_2024",
+          "molen.entities.vehicle.gmc_sierra_1500_2025",
+          "molen.entities.vehicle.honda_odyssey_2025",
+          "molen.entities.vehicle.honda_pilot_2025",
+          "molen.entities.vehicle.hummer_h3_2007",
+          "molen.entities.vehicle.hyundai_palisade_2025",
+          "molen.entities.vehicle.jeep_grand_cherokee_2025",
+          "molen.entities.vehicle.jeep_wrangler_2025",
+          "molen.entities.vehicle.kia_telluride_2025",
+          "molen.entities.vehicle.land_rover_defender_90_2023",
+          "molen.entities.vehicle.lincoln_continental_2020",
+          "molen.entities.vehicle.offroad",
+          "molen.entities.vehicle.toyota_fj_cruiser_2010",
+          "molen.entities.vehicle.toyota_rav4_2025",
+          "molen.entities.vehicle.toyota_tacoma_2025",
+          "molen.entities.vehicle.toyota_tundra_2025",
+          "molen.entities.vehicle.volvo_v70_2008"
+        ]
+      }
+    },
+    {
+      "profile": "road.six",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.vehicle.acura_mdx_2019",
+          "molen.entities.vehicle.acura_tl_2013",
+          "molen.entities.vehicle.alfa_romeo_giulia_2018",
+          "molen.entities.vehicle.bendy_class_a_compact",
+          "molen.entities.vehicle.bendy_class_b_camper",
+          "molen.entities.vehicle.cadillac_cts_2010",
+          "molen.entities.vehicle.chevrolet_colorado_2025",
+          "molen.entities.vehicle.chevrolet_traverse_2025",
+          "molen.entities.vehicle.chrysler_300_2015",
+          "molen.entities.vehicle.ford_bronco_2025",
+          "molen.entities.vehicle.ford_explorer_2025",
+          "molen.entities.vehicle.ford_f_150_2025",
+          "molen.entities.vehicle.ford_ranger_2025",
+          "molen.entities.vehicle.ford_transit_2021",
+          "molen.entities.vehicle.genesis_g80_2024",
+          "molen.entities.vehicle.gmc_sierra_1500_2025",
+          "molen.entities.vehicle.honda_odyssey_2025",
+          "molen.entities.vehicle.honda_pilot_2025",
+          "molen.entities.vehicle.hummer_h3_2007",
+          "molen.entities.vehicle.hyundai_palisade_2025",
+          "molen.entities.vehicle.jeep_grand_cherokee_2025",
+          "molen.entities.vehicle.jeep_wrangler_2025",
+          "molen.entities.vehicle.kia_telluride_2025",
+          "molen.entities.vehicle.land_rover_defender_90_2023",
+          "molen.entities.vehicle.lincoln_continental_2020",
+          "molen.entities.vehicle.offroad",
+          "molen.entities.vehicle.toyota_fj_cruiser_2010",
+          "molen.entities.vehicle.toyota_rav4_2025",
+          "molen.entities.vehicle.toyota_tacoma_2025",
+          "molen.entities.vehicle.toyota_tundra_2025",
+          "molen.entities.vehicle.volvo_v70_2008"
+        ]
+      }
+    },
+    {
+      "profile": "road.snowmobile",
+      "when": {
+        "renderable.ref": ["molen.entities.vehicle.snowmobile"]
+      }
+    },
+    {
+      "profile": "road.snowmobile",
+      "when": {
+        "ambientAgent.type": ["molen.entities.vehicle.snowmobile"]
+      }
+    },
+    {
+      "profile": "road.sports",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.vehicle.nissan_370z_2009",
+          "molen.entities.vehicle.porsche_911_2017",
+          "molen.entities.vehicle.toyota_gr_supra_2024"
+        ]
+      }
+    },
+    {
+      "profile": "road.sports",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.vehicle.nissan_370z_2009",
+          "molen.entities.vehicle.porsche_911_2017",
+          "molen.entities.vehicle.toyota_gr_supra_2024"
+        ]
+      }
+    },
+    {
+      "profile": "road.truck",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.vehicle.bendy_class_a_grand",
+          "molen.entities.vehicle.bendy_class_a_touring",
+          "molen.entities.vehicle.box_truck",
+          "molen.entities.vehicle.winnebago_view_2022"
+        ]
+      }
+    },
+    {
+      "profile": "road.truck",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.vehicle.bendy_class_a_grand",
+          "molen.entities.vehicle.bendy_class_a_touring",
+          "molen.entities.vehicle.box_truck",
+          "molen.entities.vehicle.winnebago_view_2022"
+        ]
+      }
+    },
+    {
+      "profile": "road.tuktuk",
+      "when": {
+        "renderable.ref": ["molen.entities.vehicle.auto_rickshaw"]
+      }
+    },
+    {
+      "profile": "road.tuktuk",
+      "when": {
+        "ambientAgent.type": ["molen.entities.vehicle.auto_rickshaw"]
+      }
+    },
+    {
+      "profile": "road.v8",
+      "when": {
+        "renderable.ref": [
+          "molen.entities.vehicle.bendy_class_c_family",
+          "molen.entities.vehicle.chevrolet_corvette_2014",
+          "molen.entities.vehicle.chevrolet_silverado_1500_2025",
+          "molen.entities.vehicle.chevrolet_ssr_2005",
+          "molen.entities.vehicle.dodge_challenger_2018",
+          "molen.entities.vehicle.ford_gt_2005",
+          "molen.entities.vehicle.ford_mustang_2024",
+          "molen.entities.vehicle.ram_1500_2025",
+          "molen.entities.vehicle.sports_coupe"
+        ]
+      }
+    },
+    {
+      "profile": "road.v8",
+      "when": {
+        "ambientAgent.type": [
+          "molen.entities.vehicle.bendy_class_c_family",
+          "molen.entities.vehicle.chevrolet_corvette_2014",
+          "molen.entities.vehicle.chevrolet_silverado_1500_2025",
+          "molen.entities.vehicle.chevrolet_ssr_2005",
+          "molen.entities.vehicle.dodge_challenger_2018",
+          "molen.entities.vehicle.ford_gt_2005",
+          "molen.entities.vehicle.ford_mustang_2024",
+          "molen.entities.vehicle.ram_1500_2025",
+          "molen.entities.vehicle.sports_coupe"
+        ]
+      }
+    },
+    {
+      "profile": "aircraft.heli.medium",
+      "when": {
+        "aircraft.spec.model": "helicopter"
+      }
+    },
+    {
+      "profile": "aircraft.jet.fighter",
+      "when": {
+        "aircraft.spec.engines.0.afterburnerThrust": {
+          "exists": true
+        }
+      }
+    },
+    {
+      "profile": "aircraft.jet.airliner",
+      "when": {
+        "aircraft.spec.engines.0.propulsion": "jet"
+      }
+    },
+    {
+      "profile": "aircraft.prop.flat",
+      "when": {
+        "aircraft.spec.engines.0.mixtureControl": true
+      }
+    },
+    {
+      "profile": "aircraft.prop.turboprop",
+      "when": {
+        "aircraft.spec.model": "airplane"
+      }
+    },
+    {
+      "profile": "road.electric",
+      "when": {
+        "vehicle.spec.powertrain.curve": "electric"
+      }
+    },
+    {
+      "profile": "road.four",
+      "when": {
+        "vehicle.spec.bodyStyle": {
+          "exists": true
+        },
+        "vehicle.spec.cycle": {
+          "exists": false
+        },
+        "vehicle.spec.rail": {
+          "exists": false
+        }
+      }
+    },
+    {
+      "profile": "aircraft.jet.airliner",
+      "when": {
+        "ambientAgent.kind": "aircraft"
+      }
+    },
+    {
+      "profile": "rail.car",
+      "when": {
+        "ambientAgent.kind": "train"
+      }
+    },
+    {
+      "profile": "boat.inboard",
+      "when": {
+        "ambientAgent.kind": "boat"
+      }
+    },
+    {
+      "profile": "road.four",
+      "when": {
+        "ambientAgent.kind": "car"
+      }
+    }
+  ],
+  "profiles": {
+    "road.four": {
+      "description": "A four-cylinder petrol car.",
+      "cabin": {
+        "isolationDb": 24,
+        "cutoffHz": 900
+      },
+      "horn": "vehicle.horn.car",
+      "start": "vehicle.engine.start",
+      "stop": "vehicle.engine.stop",
+      "maxDistance": 250,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "vehicle.engine.car",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1.05,
+          "gain": 1,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [800, 0.8], [2795, 1.25], [6500, 1.8]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.6], [1, 1]]
+            },
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[800, 1], [2795, 0.55], [6500, 0.35]]
+            }
+          ]
+        },
+        {
+          "name": "engine-load",
+          "sound": "vehicle.engine.small.rev",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1,
+          "gain": 1,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[800, 0.6], [2795, 1], [6500, 1.55]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[1120, 0], [2795, 0.75], [6500, 1]]
+            },
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.45], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-cabin",
+          "sound": "vehicle.engine.car",
+          "perspective": "interior",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1.05,
+          "gain": 0.35,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [800, 0.8], [2795, 1.25], [6500, 1.8]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "vehicle.engine.car",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "pitch": 1.05,
+          "gain": 0.8,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.85], [12, 1.15], [30, 1.45]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [10, 0.8], [30, 1]]
+          }
+        },
+        {
+          "name": "tires",
+          "sound": "vehicle.tire.asphalt",
+          "when": {
+            "listener.surface": {
+              "exists": true
+            }
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [8, 0.3], [30, 0.85], [50, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[5, 0.85], [40, 1.25]]
+          }
+        },
+        {
+          "name": "tires-loose",
+          "sound": "vehicle.tire.gravel",
+          "when": {
+            "listener.surface": ["gravel", "dirt", "sand", "mud"],
+            "self.occupied": true
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [6, 0.6], [20, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[3, 0.85], [25, 1.15]]
+          }
+        },
+        {
+          "name": "skid",
+          "sound": "vehicle.skid",
+          "gainFrom": [
+            {
+              "signal": "vehicleState.skid",
+              "curve": [[0.2, 0], [0.6, 0.8], [1, 1]]
+            },
+            {
+              "signal": "self.speed",
+              "curve": [[2, 0], [6, 1]]
+            }
+          ]
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[12, 0], [25, 0.45], [45, 1]]
+          }
+        },
+        {
+          "name": "road",
+          "sound": "vehicle.cabin.road",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[2, 0], [15, 0.55], [35, 1]]
+          }
+        }
+      ]
+    },
+    "road.kei": {
+      "description": "A three-cylinder kei car.",
+      "cabin": {
+        "isolationDb": 20,
+        "cutoffHz": 1000
+      },
+      "horn": "vehicle.horn.car",
+      "start": "vehicle.engine.start",
+      "stop": "vehicle.engine.stop",
+      "maxDistance": 250,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "vehicle.engine.car",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1.2,
+          "gain": 0.85,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [800, 0.8], [3180, 1.25], [7600, 1.8]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.6], [1, 1]]
+            },
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[800, 1], [3180, 0.55], [7600, 0.35]]
+            }
+          ]
+        },
+        {
+          "name": "engine-load",
+          "sound": "vehicle.engine.small.rev",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1.15,
+          "gain": 0.85,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[800, 0.6], [3180, 1], [7600, 1.55]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[1120, 0], [3180, 0.75], [7600, 1]]
+            },
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.45], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-cabin",
+          "sound": "vehicle.engine.car",
+          "perspective": "interior",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1.2,
+          "gain": 0.2975,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [800, 0.8], [3180, 1.25], [7600, 1.8]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "vehicle.engine.car",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "pitch": 1.2,
+          "gain": 0.8,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.85], [12, 1.15], [30, 1.45]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [10, 0.8], [30, 1]]
+          }
+        },
+        {
+          "name": "tires",
+          "sound": "vehicle.tire.asphalt",
+          "when": {
+            "listener.surface": {
+              "exists": true
+            }
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [8, 0.3], [30, 0.85], [50, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[5, 0.85], [40, 1.25]]
+          }
+        },
+        {
+          "name": "tires-loose",
+          "sound": "vehicle.tire.gravel",
+          "when": {
+            "listener.surface": ["gravel", "dirt", "sand", "mud"],
+            "self.occupied": true
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [6, 0.6], [20, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[3, 0.85], [25, 1.15]]
+          }
+        },
+        {
+          "name": "skid",
+          "sound": "vehicle.skid",
+          "gainFrom": [
+            {
+              "signal": "vehicleState.skid",
+              "curve": [[0.2, 0], [0.6, 0.8], [1, 1]]
+            },
+            {
+              "signal": "self.speed",
+              "curve": [[2, 0], [6, 1]]
+            }
+          ]
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[12, 0], [25, 0.45], [45, 1]]
+          }
+        },
+        {
+          "name": "road",
+          "sound": "vehicle.cabin.road",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[2, 0], [15, 0.55], [35, 1]]
+          }
+        }
+      ]
+    },
+    "road.six": {
+      "description": "A six-cylinder petrol car.",
+      "cabin": {
+        "isolationDb": 24,
+        "cutoffHz": 900
+      },
+      "horn": "vehicle.horn.car",
+      "start": "vehicle.engine.start",
+      "stop": "vehicle.engine.stop",
+      "maxDistance": 250,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "vehicle.engine.car",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 0.95,
+          "gain": 1,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [800, 0.8], [2795, 1.25], [6500, 1.8]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.6], [1, 1]]
+            },
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[800, 1], [2795, 0.55], [6500, 0.35]]
+            }
+          ]
+        },
+        {
+          "name": "engine-load",
+          "sound": "vehicle.engine.small.rev",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 0.88,
+          "gain": 1,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[800, 0.6], [2795, 1], [6500, 1.55]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[1120, 0], [2795, 0.75], [6500, 1]]
+            },
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.45], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-cabin",
+          "sound": "vehicle.engine.car",
+          "perspective": "interior",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 0.95,
+          "gain": 0.35,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [800, 0.8], [2795, 1.25], [6500, 1.8]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "vehicle.engine.car",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "pitch": 0.95,
+          "gain": 0.8,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.85], [12, 1.15], [30, 1.45]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [10, 0.8], [30, 1]]
+          }
+        },
+        {
+          "name": "tires",
+          "sound": "vehicle.tire.asphalt",
+          "when": {
+            "listener.surface": {
+              "exists": true
+            }
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [8, 0.3], [30, 0.85], [50, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[5, 0.85], [40, 1.25]]
+          }
+        },
+        {
+          "name": "tires-loose",
+          "sound": "vehicle.tire.gravel",
+          "when": {
+            "listener.surface": ["gravel", "dirt", "sand", "mud"],
+            "self.occupied": true
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [6, 0.6], [20, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[3, 0.85], [25, 1.15]]
+          }
+        },
+        {
+          "name": "skid",
+          "sound": "vehicle.skid",
+          "gainFrom": [
+            {
+              "signal": "vehicleState.skid",
+              "curve": [[0.2, 0], [0.6, 0.8], [1, 1]]
+            },
+            {
+              "signal": "self.speed",
+              "curve": [[2, 0], [6, 1]]
+            }
+          ]
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[12, 0], [25, 0.45], [45, 1]]
+          }
+        },
+        {
+          "name": "road",
+          "sound": "vehicle.cabin.road",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[2, 0], [15, 0.55], [35, 1]]
+          }
+        }
+      ]
+    },
+    "road.v8": {
+      "description": "A V8: the burble of a muscle car or a full-size pickup.",
+      "cabin": {
+        "isolationDb": 24,
+        "cutoffHz": 900
+      },
+      "horn": "vehicle.horn.car",
+      "start": "vehicle.engine.start",
+      "stop": "vehicle.engine.stop",
+      "maxDistance": 250,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "vehicle.engine.v8",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1,
+          "gain": 1.1,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [700, 0.8], [2555, 1.25], [6000, 1.8]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.6], [1, 1]]
+            },
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[700, 1], [2555, 0.55], [6000, 0.35]]
+            }
+          ]
+        },
+        {
+          "name": "engine-load",
+          "sound": "vehicle.engine.v8.high",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1,
+          "gain": 1.1,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[700, 0.6], [2555, 1], [6000, 1.55]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[979.9999999999999, 0], [2555, 0.75], [6000, 1]]
+            },
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.45], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-cabin",
+          "sound": "vehicle.engine.v8",
+          "perspective": "interior",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1,
+          "gain": 0.385,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [700, 0.8], [2555, 1.25], [6000, 1.8]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "vehicle.engine.v8",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "pitch": 1,
+          "gain": 0.8,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.85], [12, 1.15], [30, 1.45]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [10, 0.8], [30, 1]]
+          }
+        },
+        {
+          "name": "tires",
+          "sound": "vehicle.tire.asphalt",
+          "when": {
+            "listener.surface": {
+              "exists": true
+            }
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [8, 0.3], [30, 0.85], [50, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[5, 0.85], [40, 1.25]]
+          }
+        },
+        {
+          "name": "tires-loose",
+          "sound": "vehicle.tire.gravel",
+          "when": {
+            "listener.surface": ["gravel", "dirt", "sand", "mud"],
+            "self.occupied": true
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [6, 0.6], [20, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[3, 0.85], [25, 1.15]]
+          }
+        },
+        {
+          "name": "skid",
+          "sound": "vehicle.skid",
+          "gainFrom": [
+            {
+              "signal": "vehicleState.skid",
+              "curve": [[0.2, 0], [0.6, 0.8], [1, 1]]
+            },
+            {
+              "signal": "self.speed",
+              "curve": [[2, 0], [6, 1]]
+            }
+          ]
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[12, 0], [25, 0.45], [45, 1]]
+          }
+        },
+        {
+          "name": "road",
+          "sound": "vehicle.cabin.road",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[2, 0], [15, 0.55], [35, 1]]
+          }
+        }
+      ]
+    },
+    "road.sports": {
+      "description": "A sports car: a high-revving six or V8, loud from outside.",
+      "cabin": {
+        "isolationDb": 20,
+        "cutoffHz": 1000
+      },
+      "horn": "vehicle.horn.car",
+      "start": "vehicle.engine.start",
+      "stop": "vehicle.engine.stop",
+      "maxDistance": 250,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "vehicle.engine.v8",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1.1,
+          "gain": 1.15,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [900, 0.8], [3210, 1.25], [7500, 1.8]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.6], [1, 1]]
+            },
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[900, 1], [3210, 0.55], [7500, 0.35]]
+            }
+          ]
+        },
+        {
+          "name": "engine-load",
+          "sound": "vehicle.engine.small.rev",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 0.85,
+          "gain": 1.15,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[900, 0.6], [3210, 1], [7500, 1.55]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[1260, 0], [3210, 0.75], [7500, 1]]
+            },
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.45], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-cabin",
+          "sound": "vehicle.engine.v8",
+          "perspective": "interior",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1.1,
+          "gain": 0.40249999999999997,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [900, 0.8], [3210, 1.25], [7500, 1.8]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "vehicle.engine.v8",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "pitch": 1.1,
+          "gain": 0.8,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.85], [12, 1.15], [30, 1.45]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [10, 0.8], [30, 1]]
+          }
+        },
+        {
+          "name": "tires",
+          "sound": "vehicle.tire.asphalt",
+          "when": {
+            "listener.surface": {
+              "exists": true
+            }
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [8, 0.3], [30, 0.85], [50, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[5, 0.85], [40, 1.25]]
+          }
+        },
+        {
+          "name": "tires-loose",
+          "sound": "vehicle.tire.gravel",
+          "when": {
+            "listener.surface": ["gravel", "dirt", "sand", "mud"],
+            "self.occupied": true
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [6, 0.6], [20, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[3, 0.85], [25, 1.15]]
+          }
+        },
+        {
+          "name": "skid",
+          "sound": "vehicle.skid",
+          "gainFrom": [
+            {
+              "signal": "vehicleState.skid",
+              "curve": [[0.2, 0], [0.6, 0.8], [1, 1]]
+            },
+            {
+              "signal": "self.speed",
+              "curve": [[2, 0], [6, 1]]
+            }
+          ]
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[12, 0], [25, 0.45], [45, 1]]
+          }
+        },
+        {
+          "name": "road",
+          "sound": "vehicle.cabin.road",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[2, 0], [15, 0.55], [35, 1]]
+          }
+        }
+      ]
+    },
+    "road.hybrid": {
+      "description": "A hybrid: electric at low speed, a four-cylinder under load.",
+      "cabin": {
+        "isolationDb": 24,
+        "cutoffHz": 900
+      },
+      "horn": "vehicle.horn.car",
+      "maxDistance": 250,
+      "layers": [
+        {
+          "name": "motor",
+          "sound": "vehicle.electric.motor",
+          "gain": 0.44000000000000006,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [30, 1.6]]
+          },
+          "gainFrom": [
+            {
+              "signal": "self.speed",
+              "curve": [[0.5, 0], [5, 0.45], [30, 1]]
+            }
+          ]
+        },
+        {
+          "name": "warning",
+          "sound": "vehicle.electric.hum",
+          "gain": 0.36000000000000004,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.9], [8, 1.15]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.6], [1, 0.85], [7.5, 0.6], [8.5, 0]]
+          }
+        },
+        {
+          "name": "motor-cabin",
+          "sound": "vehicle.electric.motor",
+          "perspective": "interior",
+          "gain": 0.25,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [30, 1.6]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0.5, 0], [30, 1]]
+          }
+        },
+        {
+          "name": "tires",
+          "sound": "vehicle.tire.asphalt",
+          "when": {
+            "listener.surface": {
+              "exists": true
+            }
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [8, 0.3], [30, 0.85], [50, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[5, 0.85], [40, 1.25]]
+          }
+        },
+        {
+          "name": "tires-loose",
+          "sound": "vehicle.tire.gravel",
+          "when": {
+            "listener.surface": ["gravel", "dirt", "sand", "mud"],
+            "self.occupied": true
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [6, 0.6], [20, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[3, 0.85], [25, 1.15]]
+          }
+        },
+        {
+          "name": "skid",
+          "sound": "vehicle.skid",
+          "gainFrom": [
+            {
+              "signal": "vehicleState.skid",
+              "curve": [[0.2, 0], [0.6, 0.8], [1, 1]]
+            },
+            {
+              "signal": "self.speed",
+              "curve": [[2, 0], [6, 1]]
+            }
+          ]
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[12, 0], [25, 0.45], [45, 1]]
+          }
+        },
+        {
+          "name": "road",
+          "sound": "vehicle.cabin.road",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[2, 0], [15, 0.55], [35, 1]]
+          }
+        },
+        {
+          "name": "engine",
+          "sound": "vehicle.engine.car",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1.05,
+          "gain": 0.85,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [800, 0.8], [2795, 1.25], [6500, 1.8]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.6], [1, 1]]
+            },
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[800, 1], [2795, 0.55], [6500, 0.35]]
+            }
+          ]
+        },
+        {
+          "name": "engine-load",
+          "sound": "vehicle.engine.small.rev",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1,
+          "gain": 0.85,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[800, 0.6], [2795, 1], [6500, 1.55]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[1120, 0], [2795, 0.75], [6500, 1]]
+            },
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.45], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-cabin",
+          "sound": "vehicle.engine.car",
+          "perspective": "interior",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1.05,
+          "gain": 0.2975,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [800, 0.8], [2795, 1.25], [6500, 1.8]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "vehicle.engine.car",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "pitch": 1.05,
+          "gain": 0.8,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.85], [12, 1.15], [30, 1.45]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [10, 0.8], [30, 1]]
+          }
+        }
+      ]
+    },
+    "road.electric": {
+      "description": "An electric car: motor whine, tires and wind, and its warning hum.",
+      "cabin": {
+        "isolationDb": 27,
+        "cutoffHz": 800
+      },
+      "horn": "vehicle.horn.car",
+      "maxDistance": 250,
+      "layers": [
+        {
+          "name": "motor",
+          "sound": "vehicle.electric.motor",
+          "gain": 0.55,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [30, 1.6]]
+          },
+          "gainFrom": [
+            {
+              "signal": "self.speed",
+              "curve": [[0.5, 0], [5, 0.45], [30, 1]]
+            }
+          ]
+        },
+        {
+          "name": "warning",
+          "sound": "vehicle.electric.hum",
+          "gain": 0.45,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.9], [8, 1.15]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.6], [1, 0.85], [7.5, 0.6], [8.5, 0]]
+          }
+        },
+        {
+          "name": "motor-cabin",
+          "sound": "vehicle.electric.motor",
+          "perspective": "interior",
+          "gain": 0.25,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [30, 1.6]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0.5, 0], [30, 1]]
+          }
+        },
+        {
+          "name": "tires",
+          "sound": "vehicle.tire.asphalt",
+          "when": {
+            "listener.surface": {
+              "exists": true
+            }
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [8, 0.3], [30, 0.85], [50, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[5, 0.85], [40, 1.25]]
+          }
+        },
+        {
+          "name": "tires-loose",
+          "sound": "vehicle.tire.gravel",
+          "when": {
+            "listener.surface": ["gravel", "dirt", "sand", "mud"],
+            "self.occupied": true
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [6, 0.6], [20, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[3, 0.85], [25, 1.15]]
+          }
+        },
+        {
+          "name": "skid",
+          "sound": "vehicle.skid",
+          "gainFrom": [
+            {
+              "signal": "vehicleState.skid",
+              "curve": [[0.2, 0], [0.6, 0.8], [1, 1]]
+            },
+            {
+              "signal": "self.speed",
+              "curve": [[2, 0], [6, 1]]
+            }
+          ]
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[12, 0], [25, 0.45], [45, 1]]
+          }
+        },
+        {
+          "name": "road",
+          "sound": "vehicle.cabin.road",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[2, 0], [15, 0.55], [35, 1]]
+          }
+        }
+      ]
+    },
+    "road.diesel": {
+      "description": "A light diesel: a pickup or a van.",
+      "cabin": {
+        "isolationDb": 24,
+        "cutoffHz": 900
+      },
+      "horn": "vehicle.horn.car",
+      "start": "vehicle.engine.start",
+      "stop": "vehicle.engine.stop",
+      "maxDistance": 250,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "vehicle.engine.diesel",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 0.92,
+          "gain": 1.05,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [750, 0.8], [2062.5, 1.25], [4500, 1.8]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.6], [1, 1]]
+            },
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[750, 1], [2062.5, 0.55], [4500, 0.35]]
+            }
+          ]
+        },
+        {
+          "name": "engine-load",
+          "sound": "vehicle.engine.diesel",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1.05,
+          "gain": 1.05,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[750, 0.6], [2062.5, 1], [4500, 1.55]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[1050, 0], [2062.5, 0.75], [4500, 1]]
+            },
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.45], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-cabin",
+          "sound": "vehicle.engine.diesel",
+          "perspective": "interior",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 0.92,
+          "gain": 0.3675,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [750, 0.8], [2062.5, 1.25], [4500, 1.8]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "vehicle.engine.diesel",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "pitch": 0.92,
+          "gain": 0.8,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.85], [12, 1.15], [30, 1.45]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [10, 0.8], [30, 1]]
+          }
+        },
+        {
+          "name": "tires",
+          "sound": "vehicle.tire.asphalt",
+          "when": {
+            "listener.surface": {
+              "exists": true
+            }
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [8, 0.3], [30, 0.85], [50, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[5, 0.85], [40, 1.25]]
+          }
+        },
+        {
+          "name": "tires-loose",
+          "sound": "vehicle.tire.gravel",
+          "when": {
+            "listener.surface": ["gravel", "dirt", "sand", "mud"],
+            "self.occupied": true
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [6, 0.6], [20, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[3, 0.85], [25, 1.15]]
+          }
+        },
+        {
+          "name": "skid",
+          "sound": "vehicle.skid",
+          "gainFrom": [
+            {
+              "signal": "vehicleState.skid",
+              "curve": [[0.2, 0], [0.6, 0.8], [1, 1]]
+            },
+            {
+              "signal": "self.speed",
+              "curve": [[2, 0], [6, 1]]
+            }
+          ]
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[12, 0], [25, 0.45], [45, 1]]
+          }
+        },
+        {
+          "name": "road",
+          "sound": "vehicle.cabin.road",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[2, 0], [15, 0.55], [35, 1]]
+          }
+        }
+      ]
+    },
+    "road.truck": {
+      "description": "A heavy diesel: a box truck or a motorhome.",
+      "cabin": {
+        "isolationDb": 20,
+        "cutoffHz": 900
+      },
+      "horn": "vehicle.horn.truck",
+      "start": "vehicle.engine.start",
+      "stop": "vehicle.engine.stop",
+      "maxDistance": 350,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "vehicle.engine.diesel.heavy",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1,
+          "gain": 1.15,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [600, 0.8], [1300, 1.25], [2600, 1.8]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.6], [1, 1]]
+            },
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[600, 1], [1300, 0.55], [2600, 0.35]]
+            }
+          ]
+        },
+        {
+          "name": "engine-load",
+          "sound": "vehicle.engine.diesel.heavy",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1.1,
+          "gain": 1.15,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[600, 0.6], [1300, 1], [2600, 1.55]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[840, 0], [1300, 0.75], [2600, 1]]
+            },
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.45], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-cabin",
+          "sound": "vehicle.engine.diesel.heavy",
+          "perspective": "interior",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1,
+          "gain": 0.40249999999999997,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [600, 0.8], [1300, 1.25], [2600, 1.8]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "vehicle.engine.diesel.heavy",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "pitch": 1,
+          "gain": 0.8,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.85], [12, 1.15], [30, 1.45]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [10, 0.8], [30, 1]]
+          }
+        },
+        {
+          "name": "tires",
+          "sound": "vehicle.tire.asphalt",
+          "when": {
+            "listener.surface": {
+              "exists": true
+            }
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [8, 0.3], [30, 0.85], [50, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[5, 0.85], [40, 1.25]]
+          }
+        },
+        {
+          "name": "tires-loose",
+          "sound": "vehicle.tire.gravel",
+          "when": {
+            "listener.surface": ["gravel", "dirt", "sand", "mud"],
+            "self.occupied": true
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [6, 0.6], [20, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[3, 0.85], [25, 1.15]]
+          }
+        },
+        {
+          "name": "skid",
+          "sound": "vehicle.skid",
+          "gainFrom": [
+            {
+              "signal": "vehicleState.skid",
+              "curve": [[0.2, 0], [0.6, 0.8], [1, 1]]
+            },
+            {
+              "signal": "self.speed",
+              "curve": [[2, 0], [6, 1]]
+            }
+          ]
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[12, 0], [25, 0.45], [45, 1]]
+          }
+        },
+        {
+          "name": "road",
+          "sound": "vehicle.cabin.road",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[2, 0], [15, 0.55], [35, 1]]
+          }
+        }
+      ]
+    },
+    "road.bus": {
+      "description": "A city bus.",
+      "cabin": {
+        "isolationDb": 18,
+        "cutoffHz": 900
+      },
+      "horn": "vehicle.horn.truck",
+      "start": "vehicle.engine.start",
+      "stop": "vehicle.engine.stop",
+      "maxDistance": 350,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "vehicle.engine.diesel.heavy",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1,
+          "gain": 1.2,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [600, 0.8], [1230, 1.25], [2400, 1.8]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.6], [1, 1]]
+            },
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[600, 1], [1230, 0.55], [2400, 0.35]]
+            }
+          ]
+        },
+        {
+          "name": "engine-load",
+          "sound": "vehicle.engine.diesel.heavy",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1.1,
+          "gain": 1.2,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[600, 0.6], [1230, 1], [2400, 1.55]]
+          },
+          "gainFrom": [
+            {
+              "signal": "vehicleState.rpm",
+              "curve": [[840, 0], [1230, 0.75], [2400, 1]]
+            },
+            {
+              "signal": "vehicleState.engineLoad",
+              "curve": [[0, 0.45], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-cabin",
+          "sound": "vehicle.engine.diesel.heavy",
+          "perspective": "interior",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1,
+          "gain": 0.42,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.7], [600, 0.8], [1230, 1.25], [2400, 1.8]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "vehicle.engine.diesel.heavy",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "pitch": 1,
+          "gain": 0.8,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.85], [12, 1.15], [30, 1.45]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [10, 0.8], [30, 1]]
+          }
+        },
+        {
+          "name": "tires",
+          "sound": "vehicle.tire.asphalt",
+          "when": {
+            "listener.surface": {
+              "exists": true
+            }
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [8, 0.3], [30, 0.85], [50, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[5, 0.85], [40, 1.25]]
+          }
+        },
+        {
+          "name": "tires-loose",
+          "sound": "vehicle.tire.gravel",
+          "when": {
+            "listener.surface": ["gravel", "dirt", "sand", "mud"],
+            "self.occupied": true
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [6, 0.6], [20, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[3, 0.85], [25, 1.15]]
+          }
+        },
+        {
+          "name": "skid",
+          "sound": "vehicle.skid",
+          "gainFrom": [
+            {
+              "signal": "vehicleState.skid",
+              "curve": [[0.2, 0], [0.6, 0.8], [1, 1]]
+            },
+            {
+              "signal": "self.speed",
+              "curve": [[2, 0], [6, 1]]
+            }
+          ]
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[12, 0], [25, 0.45], [45, 1]]
+          }
+        },
+        {
+          "name": "road",
+          "sound": "vehicle.cabin.road",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[2, 0], [15, 0.55], [35, 1]]
+          }
+        }
+      ]
+    },
+    "road.tuktuk": {
+      "description": "An auto-rickshaw: a small single-cylinder engine, open sides.",
+      "horn": "vehicle.horn.scooter",
+      "start": "vehicle.engine.start",
+      "cabin": {
+        "isolationDb": 4,
+        "cutoffHz": 6000
+      },
+      "maxDistance": 200,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "vehicle.engine.tuktuk",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1,
+          "gain": 1,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.75], [1500, 0.85], [6000, 2]]
+          },
+          "gainFrom": {
+            "signal": "vehicleState.engineLoad",
+            "curve": [[0, 0.55], [1, 1]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "vehicle.engine.tuktuk",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "pitch": 1,
+          "gain": 0.8,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.85], [10, 1.25], [25, 1.6]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.6], [15, 1]]
+          }
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "gain": 0.7,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[8, 0], [20, 0.6], [40, 1]]
+          }
+        },
+        {
+          "name": "tires",
+          "sound": "vehicle.tire.asphalt",
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[2, 0], [10, 0.5], [30, 1]]
+          }
+        }
+      ]
+    },
+    "road.snowmobile": {
+      "description": "A snowmobile.",
+      "cabin": {
+        "isolationDb": 0,
+        "cutoffHz": 20000
+      },
+      "start": "vehicle.engine.start",
+      "maxDistance": 300,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "vehicle.engine.snowmobile",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1,
+          "gain": 1,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.75], [1500, 0.85], [8000, 2]]
+          },
+          "gainFrom": {
+            "signal": "vehicleState.engineLoad",
+            "curve": [[0, 0.55], [1, 1]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "vehicle.engine.snowmobile",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "pitch": 1,
+          "gain": 0.8,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.85], [10, 1.25], [25, 1.6]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.6], [15, 1]]
+          }
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "gain": 0.7,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[8, 0], [20, 0.6], [40, 1]]
+          }
+        },
+        {
+          "name": "tires",
+          "sound": "vehicle.tire.asphalt",
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[2, 0], [10, 0.5], [30, 1]]
+          }
+        }
+      ]
+    },
+    "cycle.motorcycle": {
+      "description": "A motorcycle: an inline four.",
+      "cabin": {
+        "isolationDb": 0,
+        "cutoffHz": 20000
+      },
+      "horn": "vehicle.horn.scooter",
+      "start": "vehicle.engine.start",
+      "maxDistance": 300,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "vehicle.engine.motorcycle",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1,
+          "gain": 1,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.75], [1200, 0.85], [12000, 2]]
+          },
+          "gainFrom": {
+            "signal": "vehicleState.engineLoad",
+            "curve": [[0, 0.55], [1, 1]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "vehicle.engine.motorcycle",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "pitch": 1,
+          "gain": 0.8,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.85], [10, 1.25], [25, 1.6]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.6], [15, 1]]
+          }
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "gain": 0.7,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[8, 0], [20, 0.6], [40, 1]]
+          }
+        },
+        {
+          "name": "tires",
+          "sound": "vehicle.tire.asphalt",
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[2, 0], [10, 0.5], [30, 1]]
+          }
+        }
+      ]
+    },
+    "cycle.cruiser": {
+      "description": "A cruiser: a V-twin.",
+      "cabin": {
+        "isolationDb": 0,
+        "cutoffHz": 20000
+      },
+      "horn": "vehicle.horn.scooter",
+      "start": "vehicle.engine.start",
+      "maxDistance": 300,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "vehicle.engine.cruiser",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1,
+          "gain": 1.1,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.75], [900, 0.85], [5500, 2]]
+          },
+          "gainFrom": {
+            "signal": "vehicleState.engineLoad",
+            "curve": [[0, 0.55], [1, 1]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "vehicle.engine.cruiser",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "pitch": 1,
+          "gain": 0.8800000000000001,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.85], [10, 1.25], [25, 1.6]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.6], [15, 1]]
+          }
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "gain": 0.7,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[8, 0], [20, 0.6], [40, 1]]
+          }
+        },
+        {
+          "name": "tires",
+          "sound": "vehicle.tire.asphalt",
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[2, 0], [10, 0.5], [30, 1]]
+          }
+        }
+      ]
+    },
+    "cycle.scooter": {
+      "description": "A scooter or moped: a small two-stroke.",
+      "cabin": {
+        "isolationDb": 0,
+        "cutoffHz": 20000
+      },
+      "horn": "vehicle.horn.scooter",
+      "start": "vehicle.engine.start",
+      "maxDistance": 200,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "vehicle.engine.scooter",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "pitch": 1,
+          "gain": 0.9,
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [[0, 0.75], [1500, 0.85], [9000, 2]]
+          },
+          "gainFrom": {
+            "signal": "vehicleState.engineLoad",
+            "curve": [[0, 0.55], [1, 1]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "vehicle.engine.scooter",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "pitch": 1,
+          "gain": 0.7200000000000001,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.85], [10, 1.25], [25, 1.6]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.6], [15, 1]]
+          }
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "gain": 0.7,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[8, 0], [20, 0.6], [40, 1]]
+          }
+        },
+        {
+          "name": "tires",
+          "sound": "vehicle.tire.asphalt",
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[2, 0], [10, 0.5], [30, 1]]
+          }
+        }
+      ]
+    },
+    "cycle.electric": {
+      "description": "An electric moped, scooter or board.",
+      "cabin": {
+        "isolationDb": 0,
+        "cutoffHz": 20000
+      },
+      "maxDistance": 80,
+      "layers": [
+        {
+          "name": "motor",
+          "sound": "vehicle.electric.motor",
+          "perspective": "any",
+          "gain": 0.35,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.8], [12, 1.8]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0.5, 0], [4, 0.6], [12, 1]]
+          }
+        },
+        {
+          "name": "roll",
+          "sound": "vehicle.bicycle.tire",
+          "perspective": "any",
+          "gain": 1,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0.3, 0], [3, 0.6], [10, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0.85], [12, 1.2]]
+          }
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[6, 0], [15, 0.6], [30, 1]]
+          }
+        }
+      ]
+    },
+    "cycle.bicycle": {
+      "description": "A bicycle.",
+      "cabin": {
+        "isolationDb": 0,
+        "cutoffHz": 20000
+      },
+      "maxDistance": 60,
+      "layers": [
+        {
+          "name": "roll",
+          "sound": "vehicle.bicycle.tire",
+          "perspective": "any",
+          "gain": 1,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0.3, 0], [3, 0.6], [10, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0.85], [12, 1.2]]
+          }
+        },
+        {
+          "name": "freewheel",
+          "sound": "vehicle.bicycle.freewheel",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "gainFrom": [
+            {
+              "signal": "self.speed",
+              "curve": [[0.5, 0], [2, 0.8]]
+            },
+            {
+              "signal": "vehicleInput.throttle",
+              "curve": [[0, 1], [0.1, 0]]
+            }
+          ],
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0.8], [10, 1.3]]
+          }
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[6, 0], [15, 0.6], [30, 1]]
+          }
+        }
+      ]
+    },
+    "cycle.skateboard": {
+      "description": "A skateboard.",
+      "cabin": {
+        "isolationDb": 0,
+        "cutoffHz": 20000
+      },
+      "maxDistance": 60,
+      "layers": [
+        {
+          "name": "roll",
+          "sound": "vehicle.skateboard.roll",
+          "perspective": "any",
+          "gain": 1,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0.3, 0], [3, 0.6], [10, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0.85], [12, 1.2]]
+          }
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[6, 0], [15, 0.6], [30, 1]]
+          }
+        }
+      ]
+    },
+    "cycle.snow": {
+      "description": "Skis or a snowboard.",
+      "cabin": {
+        "isolationDb": 0,
+        "cutoffHz": 20000
+      },
+      "maxDistance": 60,
+      "layers": [
+        {
+          "name": "roll",
+          "sound": "vehicle.ski.snow",
+          "perspective": "any",
+          "gain": 1,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0.3, 0], [3, 0.6], [10, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0.85], [12, 1.2]]
+          }
+        },
+        {
+          "name": "wind",
+          "sound": "vehicle.wind",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[6, 0], [15, 0.6], [30, 1]]
+          }
+        }
+      ]
+    },
+    "rail.locomotive": {
+      "description": "A diesel-electric locomotive.",
+      "horn": "rail.horn.us",
+      "maxDistance": 1200,
+      "cabin": {
+        "isolationDb": 16,
+        "cutoffHz": 900
+      },
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "rail.locomotive.diesel",
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [[-1, 0.62], [0, 0.55], [0.5, 0.78], [1, 1]]
+          },
+          "gainFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [[-1, 0.75], [0, 0.6], [1, 1]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "rail.locomotive.diesel",
+          "when": {
+            "ambientAgent.state": ["move", "wait"],
+            "ambientAgent.consist": {
+              "exists": false
+            }
+          },
+          "spatial": {
+            "refDistance": 10,
+            "maxDistance": 1200,
+            "rolloff": 0.5
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.6], [20, 0.9]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.6], [10, 1]]
+          }
+        },
+        {
+          "name": "wheels",
+          "sound": "rail.wheels",
+          "when": {},
+          "spatial": {
+            "refDistance": 10,
+            "maxDistance": 1200,
+            "rolloff": 0.5
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [8, 0.6], [25, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[3, 0.8], [30, 1.2]]
+          }
+        },
+        {
+          "name": "horn-us",
+          "sound": "rail.horn.us",
+          "autoplay": false,
+          "when": {
+            "ambientAgent.state": ["move", "wait"],
+            "ambientAgent.consist": {
+              "exists": false
+            },
+            "host.railHorn": "us"
+          },
+          "spatial": {
+            "refDistance": 15,
+            "maxDistance": 2500,
+            "rolloff": 0.6
+          },
+          "triggerFrom": {
+            "signal": "self.distance",
+            "every": 1100
+          }
+        },
+        {
+          "name": "horn-eu",
+          "sound": "rail.horn.eu",
+          "autoplay": false,
+          "when": {
+            "ambientAgent.state": ["move", "wait"],
+            "ambientAgent.consist": {
+              "exists": false
+            },
+            "host.railHorn": "eu"
+          },
+          "spatial": {
+            "refDistance": 12,
+            "maxDistance": 1500,
+            "rolloff": 0.6
+          },
+          "triggerFrom": {
+            "signal": "self.distance",
+            "every": 1600
+          }
+        }
+      ]
+    },
+    "rail.car": {
+      "description": "A coach or freight car: its wheels, when it leads.",
+      "maxDistance": 600,
+      "layers": [
+        {
+          "name": "wheels",
+          "sound": "rail.wheels",
+          "when": {
+            "ambientAgent.consist": {
+              "exists": false
+            }
+          },
+          "spatial": {
+            "refDistance": 10,
+            "maxDistance": 1200,
+            "rolloff": 0.5
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [8, 0.6], [25, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[3, 0.8], [30, 1.2]]
+          }
+        }
+      ]
+    },
+    "rail.tram": {
+      "description": "A tram or light rail car.",
+      "horn": "rail.tram.bell",
+      "maxDistance": 400,
+      "cabin": {
+        "isolationDb": 18,
+        "cutoffHz": 1000
+      },
+      "layers": [
+        {
+          "name": "motor",
+          "sound": "rail.traction.hum",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.25], [5, 0.7], [15, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.7], [15, 1.3]]
+          }
+        },
+        {
+          "name": "ride",
+          "sound": "rail.tram.ride",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.4], [10, 1]]
+          }
+        },
+        {
+          "name": "wheels",
+          "sound": "rail.wheels",
+          "perspective": "exterior",
+          "gain": 0.6,
+          "spatial": {
+            "refDistance": 10,
+            "maxDistance": 1200,
+            "rolloff": 0.5
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0], [10, 0.7], [20, 1]]
+          }
+        },
+        {
+          "name": "bell",
+          "sound": "rail.tram.bell",
+          "autoplay": false,
+          "when": {
+            "ambientAgent.state": ["move", "wait"],
+            "ambientAgent.consist": {
+              "exists": false
+            }
+          },
+          "triggerFrom": {
+            "signal": "self.distance",
+            "every": 700
+          }
+        }
+      ]
+    },
+    "boat.outboard": {
+      "description": "A small boat with an outboard motor.",
+      "cabin": {
+        "isolationDb": 0,
+        "cutoffHz": 20000
+      },
+      "horn": "boat.horn",
+      "maxDistance": 600,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "boat.outboard",
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.75], [12, 1.25]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [8, 1]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "boat.outboard",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "spatial": {
+            "refDistance": 6,
+            "maxDistance": 800,
+            "rolloff": 0.8
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.8], [10, 1.1]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.5], [6, 1]]
+          }
+        },
+        {
+          "name": "wash",
+          "sound": "boat.wash",
+          "spatial": {
+            "refDistance": 6,
+            "maxDistance": 800,
+            "rolloff": 0.8
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0.5, 0], [4, 0.6], [15, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0.8], [15, 1.2]]
+          }
+        },
+        {
+          "name": "lapping",
+          "sound": "boat.lapping",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 1], [2, 0.6], [5, 0]]
+          }
+        }
+      ]
+    },
+    "boat.inboard": {
+      "description": "A fishing boat or a tug: an inboard diesel.",
+      "horn": "boat.horn",
+      "maxDistance": 900,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "boat.inboard",
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.75], [8, 1.25]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [5.333333333333333, 1]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "boat.inboard",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "spatial": {
+            "refDistance": 9,
+            "maxDistance": 1200,
+            "rolloff": 0.8
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.8], [10, 1.1]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.5], [6, 1]]
+          }
+        },
+        {
+          "name": "wash",
+          "sound": "boat.wash",
+          "spatial": {
+            "refDistance": 9,
+            "maxDistance": 1200,
+            "rolloff": 0.8
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0.5, 0], [4, 0.6], [15, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0.8], [15, 1.2]]
+          }
+        },
+        {
+          "name": "lapping",
+          "sound": "boat.lapping",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 1], [2, 0.6], [5, 0]]
+          }
+        }
+      ]
+    },
+    "boat.sail": {
+      "description": "A sailboat: water and rigging.",
+      "cabin": {
+        "isolationDb": 0,
+        "cutoffHz": 20000
+      },
+      "maxDistance": 300,
+      "layers": [
+        {
+          "name": "wash",
+          "sound": "boat.wash",
+          "spatial": {
+            "refDistance": 6,
+            "maxDistance": 800,
+            "rolloff": 0.8
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0.5, 0], [4, 0.6], [15, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0.8], [15, 1.2]]
+          }
+        },
+        {
+          "name": "lapping",
+          "sound": "boat.lapping",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 1], [2, 0.6], [5, 0]]
+          }
+        },
+        {
+          "name": "rigging",
+          "sound": "boat.rigging",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "gainFrom": {
+            "signal": "weather.windSpeed",
+            "curve": [[0, 0.3], [10, 1]]
+          }
+        }
+      ]
+    },
+    "boat.ship": {
+      "description": "A ship or a ferry: a deep engine drone and its horn.",
+      "horn": "boat.horn",
+      "maxDistance": 2500,
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "boat.ship",
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.75], [4, 1.25]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [2.6666666666666665, 1]]
+          }
+        },
+        {
+          "name": "traffic",
+          "sound": "boat.ship",
+          "when": {
+            "ambientAgent.state": ["move", "wait"]
+          },
+          "spatial": {
+            "refDistance": 18,
+            "maxDistance": 2400,
+            "rolloff": 0.8
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.8], [10, 1.1]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.5], [6, 1]]
+          }
+        },
+        {
+          "name": "wash",
+          "sound": "boat.wash",
+          "spatial": {
+            "refDistance": 18,
+            "maxDistance": 2400,
+            "rolloff": 0.8
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0.5, 0], [4, 0.6], [15, 1]]
+          },
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[1, 0.8], [15, 1.2]]
+          }
+        },
+        {
+          "name": "lapping",
+          "sound": "boat.lapping",
+          "perspective": "any",
+          "when": {
+            "self.occupied": true
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 1], [2, 0.6], [5, 0]]
+          }
+        }
+      ]
+    },
+    "aircraft.jet.fighter": {
+      "description": "A fighter: low-bypass jets with reheat.",
+      "start": "aircraft.start.turbine",
+      "maxDistance": 8000,
+      "cabin": {
+        "isolationDb": 22,
+        "cutoffHz": 1200
+      },
+      "layers": [
+        {
+          "name": "core",
+          "sound": "aircraft.fighter.idle",
+          "perspective": "exterior",
+          "gain": 1.2,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.9], [1, 1.35]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.05, 0.3], [0.2, 0.8], [0.6, 1], [1, 0.75]]
+            }
+          ]
+        },
+        {
+          "name": "core-traffic",
+          "sound": "aircraft.fighter.idle",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1.2,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "whine",
+          "sound": "aircraft.jet.whine",
+          "perspective": "exterior",
+          "gain": 0.96,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.3], [0.18, 0.55], [1, 1.12]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.1, 0.3], [0.6, 0.55], [1, 0.5]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 1.15], [90, 0.85], [180, 0.45]]
+            }
+          ]
+        },
+        {
+          "name": "thrust",
+          "sound": "aircraft.turbofan.thrust",
+          "perspective": "exterior",
+          "gain": 1.2,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.4, 0.85], [1, 1.08]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.35, 0], [0.7, 0.6], [1, 1]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+            }
+          ]
+        },
+        {
+          "name": "thrust-traffic",
+          "sound": "aircraft.turbofan.thrust",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1.2,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          },
+          "gainFrom": {
+            "signal": "self.listenerAngle",
+            "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+          }
+        },
+        {
+          "name": "roar",
+          "sound": "aircraft.jet.roar",
+          "perspective": "exterior",
+          "gain": 0.84,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.3, 0.8], [1, 1.1]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.2, 0.05], [0.7, 0.4], [1, 0.75]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+            }
+          ]
+        },
+        {
+          "name": "roar-traffic",
+          "sound": "aircraft.jet.roar",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 0.84,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          },
+          "gainFrom": {
+            "signal": "self.listenerAngle",
+            "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+          }
+        },
+        {
+          "name": "reheat",
+          "sound": "aircraft.fighter.afterburner",
+          "gain": 1.2,
+          "gainFrom": [
+            {
+              "signal": "aircraftState.engines.0.afterburner",
+              "curve": [[0, 0], [0.1, 0.5], [1, 1]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+            }
+          ]
+        },
+        {
+          "name": "reheat-rumble",
+          "sound": "aircraft.jet.reheat",
+          "gain": 0.96,
+          "gainFrom": {
+            "signal": "aircraftState.engines.0.afterburner",
+            "curve": [[0, 0], [1, 1]]
+          }
+        },
+        {
+          "name": "cockpit",
+          "sound": "aircraft.jet.whine",
+          "perspective": "interior",
+          "gain": 0.35,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.3], [1, 1.1]]
+          },
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0], [0.2, 0.5], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 1,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        },
+        {
+          "name": "ground-roll",
+          "sound": "aircraft.ground.roll",
+          "when": {
+            "aircraftState.grounded": true
+          },
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[1, 0], [10, 0.5], [60, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[5, 0.8], [70, 1.3]]
+          }
+        }
+      ]
+    },
+    "aircraft.jet.harrier": {
+      "description": "A Harrier: one vectored Pegasus, no reheat.",
+      "start": "aircraft.start.turbine",
+      "maxDistance": 8000,
+      "cabin": {
+        "isolationDb": 22,
+        "cutoffHz": 1200
+      },
+      "layers": [
+        {
+          "name": "core",
+          "sound": "aircraft.fighter.idle",
+          "perspective": "exterior",
+          "gain": 1.25,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.9720000000000001], [1, 1.4580000000000002]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.05, 0.3], [0.2, 0.8], [0.6, 1], [1, 0.75]]
+            }
+          ]
+        },
+        {
+          "name": "core-traffic",
+          "sound": "aircraft.fighter.idle",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1.25,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "whine",
+          "sound": "aircraft.jet.whine",
+          "perspective": "exterior",
+          "gain": 1,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.324], [0.18, 0.5940000000000001], [1, 1.2096000000000002]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.1, 0.3], [0.6, 0.55], [1, 0.5]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 1.15], [90, 0.85], [180, 0.45]]
+            }
+          ]
+        },
+        {
+          "name": "thrust",
+          "sound": "aircraft.turbofan.thrust",
+          "perspective": "exterior",
+          "gain": 1.25,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.4, 0.918], [1, 1.1664]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.35, 0], [0.7, 0.6], [1, 1]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+            }
+          ]
+        },
+        {
+          "name": "thrust-traffic",
+          "sound": "aircraft.turbofan.thrust",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1.25,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          },
+          "gainFrom": {
+            "signal": "self.listenerAngle",
+            "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+          }
+        },
+        {
+          "name": "roar",
+          "sound": "aircraft.jet.roar",
+          "perspective": "exterior",
+          "gain": 0.875,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.3, 0.8640000000000001], [1, 1.1880000000000002]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.2, 0.05], [0.7, 0.4], [1, 0.75]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+            }
+          ]
+        },
+        {
+          "name": "roar-traffic",
+          "sound": "aircraft.jet.roar",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 0.875,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          },
+          "gainFrom": {
+            "signal": "self.listenerAngle",
+            "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+          }
+        },
+        {
+          "name": "cockpit",
+          "sound": "aircraft.jet.whine",
+          "perspective": "interior",
+          "gain": 0.35,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.324], [1, 1.1880000000000002]]
+          },
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0], [0.2, 0.5], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 1,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        },
+        {
+          "name": "ground-roll",
+          "sound": "aircraft.ground.roll",
+          "when": {
+            "aircraftState.grounded": true
+          },
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[1, 0], [10, 0.5], [60, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[5, 0.8], [70, 1.3]]
+          }
+        }
+      ]
+    },
+    "aircraft.jet.airliner": {
+      "description": "A twin high-bypass airliner.",
+      "start": "aircraft.start.turbine",
+      "maxDistance": 8000,
+      "cabin": {
+        "isolationDb": 28,
+        "cutoffHz": 700
+      },
+      "layers": [
+        {
+          "name": "whine",
+          "sound": "aircraft.jet.whine",
+          "perspective": "exterior",
+          "gain": 0.8,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.3], [0.18, 0.55], [1, 1.12]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.1, 0.3], [0.6, 0.55], [1, 0.5]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 1.15], [90, 0.85], [180, 0.45]]
+            }
+          ]
+        },
+        {
+          "name": "thrust",
+          "sound": "aircraft.turbofan.thrust",
+          "perspective": "exterior",
+          "gain": 1,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.4, 0.85], [1, 1.08]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.35, 0], [0.7, 0.6], [1, 1]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+            }
+          ]
+        },
+        {
+          "name": "thrust-traffic",
+          "sound": "aircraft.turbofan.thrust",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          },
+          "gainFrom": {
+            "signal": "self.listenerAngle",
+            "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+          }
+        },
+        {
+          "name": "roar",
+          "sound": "aircraft.jet.roar",
+          "perspective": "exterior",
+          "gain": 0.7,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.3, 0.8], [1, 1.1]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.2, 0.05], [0.7, 0.4], [1, 0.75]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+            }
+          ]
+        },
+        {
+          "name": "roar-traffic",
+          "sound": "aircraft.jet.roar",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 0.7,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          },
+          "gainFrom": {
+            "signal": "self.listenerAngle",
+            "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+          }
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.turbofan.cabin",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        },
+        {
+          "name": "ground-roll",
+          "sound": "aircraft.ground.roll",
+          "when": {
+            "aircraftState.grounded": true
+          },
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[1, 0], [10, 0.5], [60, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[5, 0.8], [70, 1.3]]
+          }
+        }
+      ]
+    },
+    "aircraft.jet.heavy": {
+      "description": "A four-engine heavy jet.",
+      "start": "aircraft.start.turbine",
+      "maxDistance": 9000,
+      "cabin": {
+        "isolationDb": 28,
+        "cutoffHz": 700
+      },
+      "layers": [
+        {
+          "name": "whine",
+          "sound": "aircraft.jet.whine",
+          "perspective": "exterior",
+          "gain": 1,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.27], [0.18, 0.49500000000000005], [1, 1.0080000000000002]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.1, 0.3], [0.6, 0.55], [1, 0.5]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 1.15], [90, 0.85], [180, 0.45]]
+            }
+          ]
+        },
+        {
+          "name": "thrust",
+          "sound": "aircraft.turbofan.thrust",
+          "perspective": "exterior",
+          "gain": 1.25,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.4, 0.765], [1, 0.9720000000000001]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.35, 0], [0.7, 0.6], [1, 1]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+            }
+          ]
+        },
+        {
+          "name": "thrust-traffic",
+          "sound": "aircraft.turbofan.thrust",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1.25,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          },
+          "gainFrom": {
+            "signal": "self.listenerAngle",
+            "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+          }
+        },
+        {
+          "name": "roar",
+          "sound": "aircraft.jet.roar",
+          "perspective": "exterior",
+          "gain": 0.875,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.3, 0.7200000000000001], [1, 0.9900000000000001]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.2, 0.05], [0.7, 0.4], [1, 0.75]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+            }
+          ]
+        },
+        {
+          "name": "roar-traffic",
+          "sound": "aircraft.jet.roar",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 0.875,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          },
+          "gainFrom": {
+            "signal": "self.listenerAngle",
+            "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+          }
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.turbofan.cabin",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        },
+        {
+          "name": "ground-roll",
+          "sound": "aircraft.ground.roll",
+          "when": {
+            "aircraftState.grounded": true
+          },
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[1, 0], [10, 0.5], [60, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[5, 0.8], [70, 1.3]]
+          }
+        }
+      ]
+    },
+    "aircraft.jet.business": {
+      "description": "A business or regional jet.",
+      "start": "aircraft.start.turbine",
+      "maxDistance": 6000,
+      "cabin": {
+        "isolationDb": 28,
+        "cutoffHz": 700
+      },
+      "layers": [
+        {
+          "name": "whine",
+          "sound": "aircraft.jet.whine",
+          "perspective": "exterior",
+          "gain": 0.68,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.33], [0.18, 0.6050000000000001], [1, 1.2320000000000002]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.1, 0.3], [0.6, 0.55], [1, 0.5]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 1.15], [90, 0.85], [180, 0.45]]
+            }
+          ]
+        },
+        {
+          "name": "thrust",
+          "sound": "aircraft.turbofan.thrust",
+          "perspective": "exterior",
+          "gain": 0.85,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.4, 0.935], [1, 1.1880000000000002]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.35, 0], [0.7, 0.6], [1, 1]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+            }
+          ]
+        },
+        {
+          "name": "thrust-traffic",
+          "sound": "aircraft.turbofan.thrust",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 0.85,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          },
+          "gainFrom": {
+            "signal": "self.listenerAngle",
+            "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+          }
+        },
+        {
+          "name": "roar",
+          "sound": "aircraft.jet.roar",
+          "perspective": "exterior",
+          "gain": 0.595,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.3, 0.8800000000000001], [1, 1.2100000000000002]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.2, 0.05], [0.7, 0.4], [1, 0.75]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+            }
+          ]
+        },
+        {
+          "name": "roar-traffic",
+          "sound": "aircraft.jet.roar",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 0.595,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          },
+          "gainFrom": {
+            "signal": "self.listenerAngle",
+            "curve": [[0, 0.4], [90, 0.8], [150, 1.2], [180, 1.05]]
+          }
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.turbofan.cabin",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        },
+        {
+          "name": "ground-roll",
+          "sound": "aircraft.ground.roll",
+          "when": {
+            "aircraftState.grounded": true
+          },
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[1, 0], [10, 0.5], [60, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[5, 0.8], [70, 1.3]]
+          }
+        }
+      ]
+    },
+    "aircraft.prop.flat": {
+      "description": "A flat-four or flat-six piston engine and propeller.",
+      "start": "aircraft.start.piston",
+      "maxDistance": 3000,
+      "cabin": {
+        "isolationDb": 16,
+        "cutoffHz": 1100
+      },
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "aircraft.piston.flat",
+          "perspective": "exterior",
+          "gain": 1,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.75], [1, 1.15]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.15, 0], [0.4, 0.6], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-traffic",
+          "sound": "aircraft.piston.flat",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "idle",
+          "sound": "aircraft.piston.flat.idle",
+          "perspective": "exterior",
+          "gain": 1,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.9], [0.45, 1.15]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.05, 0.6], [0.22, 1], [0.45, 0.3], [0.7, 0]]
+            }
+          ]
+        },
+        {
+          "name": "prop",
+          "sound": "aircraft.prop.buzz",
+          "gain": 0.4,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.55], [1, 1.25]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.1, 0], [0.3, 0.4], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.4], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.piston.flat.cabin",
+          "perspective": "interior",
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.2, 0.85], [1, 1.05]]
+          },
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.6,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        },
+        {
+          "name": "stall-horn",
+          "sound": "aircraft.warning.stall",
+          "perspective": "interior",
+          "when": {
+            "aircraftState.stalled": true,
+            "aircraftState.grounded": false
+          }
+        },
+        {
+          "name": "ground-roll",
+          "sound": "aircraft.ground.roll",
+          "when": {
+            "aircraftState.grounded": true
+          },
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[1, 0], [10, 0.5], [60, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[5, 0.8], [70, 1.3]]
+          }
+        }
+      ]
+    },
+    "aircraft.prop.flat-twin": {
+      "description": "A light twin with flat piston engines.",
+      "start": "aircraft.start.piston",
+      "maxDistance": 3500,
+      "cabin": {
+        "isolationDb": 18,
+        "cutoffHz": 1100
+      },
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "aircraft.piston.flat",
+          "perspective": "exterior",
+          "gain": 1.2,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.7875000000000001], [1, 1.2075]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.15, 0], [0.4, 0.6], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-traffic",
+          "sound": "aircraft.piston.flat",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1.2,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "idle",
+          "sound": "aircraft.piston.flat.idle",
+          "perspective": "exterior",
+          "gain": 1.2,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.9450000000000001], [0.45, 1.2075]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.05, 0.6], [0.22, 1], [0.45, 0.3], [0.7, 0]]
+            }
+          ]
+        },
+        {
+          "name": "prop",
+          "sound": "aircraft.prop.buzz",
+          "gain": 0.48,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.5775000000000001], [1, 1.3125]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.1, 0], [0.3, 0.4], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.4], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.piston.flat.cabin",
+          "perspective": "interior",
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.2, 0.8925], [1, 1.1025]]
+          },
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.6,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        },
+        {
+          "name": "stall-horn",
+          "sound": "aircraft.warning.stall",
+          "perspective": "interior",
+          "when": {
+            "aircraftState.stalled": true,
+            "aircraftState.grounded": false
+          }
+        },
+        {
+          "name": "ground-roll",
+          "sound": "aircraft.ground.roll",
+          "when": {
+            "aircraftState.grounded": true
+          },
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[1, 0], [10, 0.5], [60, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[5, 0.8], [70, 1.3]]
+          }
+        }
+      ]
+    },
+    "aircraft.prop.radial": {
+      "description": "A radial piston engine.",
+      "start": "aircraft.start.piston",
+      "maxDistance": 3500,
+      "cabin": {
+        "isolationDb": 16,
+        "cutoffHz": 1100
+      },
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "aircraft.piston.radial",
+          "perspective": "exterior",
+          "gain": 1.15,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.7124999999999999], [1, 1.0924999999999998]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.05, 0.3], [0.22, 0.6], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-traffic",
+          "sound": "aircraft.piston.radial",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1.15,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "prop",
+          "sound": "aircraft.prop.buzz",
+          "gain": 0.575,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.5225], [1, 1.1875]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.1, 0], [0.3, 0.4], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.4], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.piston.flat.cabin",
+          "perspective": "interior",
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.2, 0.8075], [1, 0.9974999999999999]]
+          },
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.6,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        },
+        {
+          "name": "stall-horn",
+          "sound": "aircraft.warning.stall",
+          "perspective": "interior",
+          "when": {
+            "aircraftState.stalled": true,
+            "aircraftState.grounded": false
+          }
+        },
+        {
+          "name": "ground-roll",
+          "sound": "aircraft.ground.roll",
+          "when": {
+            "aircraftState.grounded": true
+          },
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[1, 0], [10, 0.5], [60, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[5, 0.8], [70, 1.3]]
+          }
+        }
+      ]
+    },
+    "aircraft.prop.merlin": {
+      "description": "The P-51's Rolls-Royce Merlin.",
+      "start": "aircraft.start.piston",
+      "maxDistance": 4000,
+      "cabin": {
+        "isolationDb": 14,
+        "cutoffHz": 1100
+      },
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "aircraft.engine.piston",
+          "perspective": "exterior",
+          "gain": 1.2,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.75], [1, 1.15]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.05, 0.3], [0.22, 0.6], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-traffic",
+          "sound": "aircraft.engine.piston",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1.2,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "prop",
+          "sound": "aircraft.prop.buzz",
+          "gain": 0.42,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.55], [1, 1.25]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.1, 0], [0.3, 0.4], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.4], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.piston.flat.cabin",
+          "perspective": "interior",
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.2, 0.85], [1, 1.05]]
+          },
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.6,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        },
+        {
+          "name": "stall-horn",
+          "sound": "aircraft.warning.stall",
+          "perspective": "interior",
+          "when": {
+            "aircraftState.stalled": true,
+            "aircraftState.grounded": false
+          }
+        },
+        {
+          "name": "ground-roll",
+          "sound": "aircraft.ground.roll",
+          "when": {
+            "aircraftState.grounded": true
+          },
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[1, 0], [10, 0.5], [60, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[5, 0.8], [70, 1.3]]
+          }
+        }
+      ]
+    },
+    "aircraft.prop.turboprop": {
+      "description": "A PT6-class turboprop.",
+      "start": "aircraft.start.turbine",
+      "maxDistance": 4000,
+      "cabin": {
+        "isolationDb": 20,
+        "cutoffHz": 1100
+      },
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "aircraft.turboprop",
+          "perspective": "exterior",
+          "gain": 1,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.75], [1, 1.15]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.05, 0.3], [0.22, 0.6], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-traffic",
+          "sound": "aircraft.turboprop",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "turbine",
+          "sound": "aircraft.turbine.small",
+          "perspective": "exterior",
+          "gain": 0.7,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.3], [0.2, 0.7], [1, 1.1]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.1, 0.3], [1, 0.45]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 1.15], [90, 0.85], [180, 0.45]]
+            }
+          ]
+        },
+        {
+          "name": "prop",
+          "sound": "aircraft.prop.buzz",
+          "gain": 0.4,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.55], [1, 1.25]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.1, 0], [0.3, 0.4], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.4], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.turboprop.cabin",
+          "perspective": "interior",
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.2, 0.85], [1, 1.05]]
+          },
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.6,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        },
+        {
+          "name": "stall-horn",
+          "sound": "aircraft.warning.stall",
+          "perspective": "interior",
+          "when": {
+            "aircraftState.stalled": true,
+            "aircraftState.grounded": false
+          }
+        },
+        {
+          "name": "ground-roll",
+          "sound": "aircraft.ground.roll",
+          "when": {
+            "aircraftState.grounded": true
+          },
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[1, 0], [10, 0.5], [60, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[5, 0.8], [70, 1.3]]
+          }
+        }
+      ]
+    },
+    "aircraft.prop.turboprop-large": {
+      "description": "A large turboprop transport or airliner.",
+      "start": "aircraft.start.turbine",
+      "maxDistance": 6000,
+      "cabin": {
+        "isolationDb": 24,
+        "cutoffHz": 1100
+      },
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "aircraft.turboprop.large",
+          "perspective": "exterior",
+          "gain": 1.25,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.675], [1, 1.035]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.05, 0.3], [0.22, 0.6], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-traffic",
+          "sound": "aircraft.turboprop.large",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1.25,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "turbine",
+          "sound": "aircraft.turbine.small",
+          "perspective": "exterior",
+          "gain": 0.875,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.27], [0.2, 0.63], [1, 0.9900000000000001]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.1, 0.3], [1, 0.45]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 1.15], [90, 0.85], [180, 0.45]]
+            }
+          ]
+        },
+        {
+          "name": "prop",
+          "sound": "aircraft.prop.buzz",
+          "gain": 0.625,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.49500000000000005], [1, 1.125]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.1, 0], [0.3, 0.4], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.4], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.turboprop.cabin",
+          "perspective": "interior",
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.2, 0.765], [1, 0.9450000000000001]]
+          },
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.6,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        },
+        {
+          "name": "stall-horn",
+          "sound": "aircraft.warning.stall",
+          "perspective": "interior",
+          "when": {
+            "aircraftState.stalled": true,
+            "aircraftState.grounded": false
+          }
+        },
+        {
+          "name": "ground-roll",
+          "sound": "aircraft.ground.roll",
+          "when": {
+            "aircraftState.grounded": true
+          },
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[1, 0], [10, 0.5], [60, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[5, 0.8], [70, 1.3]]
+          }
+        }
+      ]
+    },
+    "aircraft.tiltrotor": {
+      "description": "A tiltrotor: two big turboshafts and prop-rotors.",
+      "start": "aircraft.start.turbine",
+      "maxDistance": 6000,
+      "cabin": {
+        "isolationDb": 16,
+        "cutoffHz": 1100
+      },
+      "layers": [
+        {
+          "name": "engine",
+          "sound": "aircraft.turboprop.large",
+          "perspective": "exterior",
+          "gain": 1.3,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.6000000000000001], [1, 0.9199999999999999]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.05, 0.3], [0.22, 0.6], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "engine-traffic",
+          "sound": "aircraft.turboprop.large",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1.3,
+          "spatial": {
+            "refDistance": 50,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "turbine",
+          "sound": "aircraft.turbine.small",
+          "perspective": "exterior",
+          "gain": 0.9099999999999999,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.24], [0.2, 0.5599999999999999], [1, 0.8800000000000001]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.1, 0.3], [1, 0.45]]
+            },
+            {
+              "signal": "self.listenerAngle",
+              "curve": [[0, 1.15], [90, 0.85], [180, 0.45]]
+            }
+          ]
+        },
+        {
+          "name": "prop",
+          "sound": "aircraft.prop.buzz",
+          "gain": 0.9099999999999999,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.18, 0.44000000000000006], [1, 1]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0.1, 0], [0.3, 0.4], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.4], [1, 1]]
+            }
+          ]
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.heli.cabin",
+          "perspective": "interior",
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.2, 0.68], [1, 0.8400000000000001]]
+          },
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.6,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        },
+        {
+          "name": "stall-horn",
+          "sound": "aircraft.warning.stall",
+          "perspective": "interior",
+          "when": {
+            "aircraftState.stalled": true,
+            "aircraftState.grounded": false
+          }
+        },
+        {
+          "name": "ground-roll",
+          "sound": "aircraft.ground.roll",
+          "when": {
+            "aircraftState.grounded": true
+          },
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[1, 0], [10, 0.5], [60, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[5, 0.8], [70, 1.3]]
+          }
+        }
+      ]
+    },
+    "aircraft.heli.light": {
+      "description": "A light turbine helicopter.",
+      "start": "aircraft.start.turbine",
+      "maxDistance": 3000,
+      "cabin": {
+        "isolationDb": 16,
+        "cutoffHz": 1000
+      },
+      "layers": [
+        {
+          "name": "rotor",
+          "sound": "aircraft.engine.helicopter",
+          "gain": 1,
+          "pitchFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0.4], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.97], [1, 1.04]]
+            }
+          ],
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.15, 0.3], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.8], [1, 1.1]]
+            }
+          ]
+        },
+        {
+          "name": "rotor-traffic",
+          "sound": "aircraft.engine.helicopter",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1,
+          "pitch": 1,
+          "spatial": {
+            "refDistance": 30,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "turbine",
+          "sound": "aircraft.turbine.small",
+          "perspective": "exterior",
+          "gain": 0.6,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.3], [0.3, 0.75], [1, 1.05]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.3, 0.3], [1, 0.45]]
+            }
+          ]
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.heli.cabin",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        }
+      ]
+    },
+    "aircraft.heli.piston": {
+      "description": "A piston helicopter (Robinson).",
+      "start": "aircraft.start.piston",
+      "maxDistance": 2500,
+      "cabin": {
+        "isolationDb": 16,
+        "cutoffHz": 1000
+      },
+      "layers": [
+        {
+          "name": "rotor",
+          "sound": "aircraft.heli.piston",
+          "gain": 1,
+          "pitchFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0.4], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.97], [1, 1.04]]
+            }
+          ],
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.15, 0.3], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.8], [1, 1.1]]
+            }
+          ]
+        },
+        {
+          "name": "rotor-traffic",
+          "sound": "aircraft.heli.piston",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1,
+          "pitch": 1,
+          "spatial": {
+            "refDistance": 30,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.heli.cabin",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        }
+      ]
+    },
+    "aircraft.heli.twoblade": {
+      "description": "A two-blade utility helicopter: the Huey's slap.",
+      "start": "aircraft.start.turbine",
+      "maxDistance": 4000,
+      "cabin": {
+        "isolationDb": 16,
+        "cutoffHz": 1000
+      },
+      "layers": [
+        {
+          "name": "rotor",
+          "sound": "aircraft.heli.twoblade",
+          "gain": 1.15,
+          "pitchFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0.4], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.97], [1, 1.04]]
+            }
+          ],
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.15, 0.3], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.8], [1, 1.1]]
+            }
+          ]
+        },
+        {
+          "name": "rotor-traffic",
+          "sound": "aircraft.heli.twoblade",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1.15,
+          "pitch": 1,
+          "spatial": {
+            "refDistance": 30,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "turbine",
+          "sound": "aircraft.turbine.small",
+          "perspective": "exterior",
+          "gain": 0.69,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.3], [0.3, 0.75], [1, 1.05]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.3, 0.3], [1, 0.45]]
+            }
+          ]
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.heli.cabin",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        }
+      ]
+    },
+    "aircraft.heli.medium": {
+      "description": "A medium twin-turbine helicopter.",
+      "start": "aircraft.start.turbine",
+      "maxDistance": 3500,
+      "cabin": {
+        "isolationDb": 16,
+        "cutoffHz": 1000
+      },
+      "layers": [
+        {
+          "name": "rotor",
+          "sound": "aircraft.heli.medium",
+          "gain": 1.1,
+          "pitchFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0.4], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.97], [1, 1.04]]
+            }
+          ],
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.15, 0.3], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.8], [1, 1.1]]
+            }
+          ]
+        },
+        {
+          "name": "rotor-traffic",
+          "sound": "aircraft.heli.medium",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1.1,
+          "pitch": 1,
+          "spatial": {
+            "refDistance": 30,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "turbine",
+          "sound": "aircraft.turbine.small",
+          "perspective": "exterior",
+          "gain": 0.66,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.3], [0.3, 0.75], [1, 1.05]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.3, 0.3], [1, 0.45]]
+            }
+          ]
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.heli.cabin",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        }
+      ]
+    },
+    "aircraft.heli.utility": {
+      "description": "A Black Hawk class utility helicopter (a medium helicopter recording pitched down).",
+      "start": "aircraft.start.turbine",
+      "maxDistance": 4000,
+      "cabin": {
+        "isolationDb": 16,
+        "cutoffHz": 1000
+      },
+      "layers": [
+        {
+          "name": "rotor",
+          "sound": "aircraft.heli.medium",
+          "gain": 1.2,
+          "pitchFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0.35200000000000004], [1, 0.88]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.97], [1, 1.04]]
+            }
+          ],
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.15, 0.3], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.8], [1, 1.1]]
+            }
+          ]
+        },
+        {
+          "name": "rotor-traffic",
+          "sound": "aircraft.heli.medium",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1.2,
+          "pitch": 0.88,
+          "spatial": {
+            "refDistance": 30,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "turbine",
+          "sound": "aircraft.turbine.small",
+          "perspective": "exterior",
+          "gain": 0.72,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.264], [0.3, 0.66], [1, 0.924]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.3, 0.3], [1, 0.45]]
+            }
+          ]
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.heli.cabin",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        }
+      ]
+    },
+    "aircraft.heli.tandem": {
+      "description": "A tandem-rotor Chinook (two-blade and medium recordings pitched down).",
+      "start": "aircraft.start.turbine",
+      "maxDistance": 5000,
+      "cabin": {
+        "isolationDb": 16,
+        "cutoffHz": 1000
+      },
+      "layers": [
+        {
+          "name": "rotor",
+          "sound": "aircraft.heli.twoblade",
+          "gain": 1.2,
+          "pitchFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0.30000000000000004], [1, 0.75]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.97], [1, 1.04]]
+            }
+          ],
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.15, 0.3], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.8], [1, 1.1]]
+            }
+          ]
+        },
+        {
+          "name": "rotor-traffic",
+          "sound": "aircraft.heli.twoblade",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 1.2,
+          "pitch": 0.75,
+          "spatial": {
+            "refDistance": 30,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "rotor-2",
+          "sound": "aircraft.heli.medium",
+          "gain": 0.96,
+          "pitchFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0.255], [1, 0.6375]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.97], [1, 1.04]]
+            }
+          ],
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.15, 0.3], [1, 1]]
+            },
+            {
+              "signal": "aircraftInput.power",
+              "curve": [[0, 0.8], [1, 1.1]]
+            }
+          ]
+        },
+        {
+          "name": "rotor-2-traffic",
+          "sound": "aircraft.heli.medium",
+          "when": {
+            "ambientAgent.kind": "aircraft"
+          },
+          "gain": 0.96,
+          "pitch": 0.6375,
+          "spatial": {
+            "refDistance": 30,
+            "maxDistance": 9000,
+            "rolloff": 0.15
+          }
+        },
+        {
+          "name": "turbine",
+          "sound": "aircraft.turbine.small",
+          "perspective": "exterior",
+          "gain": 0.72,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.22499999999999998], [0.3, 0.5625], [1, 0.7875000000000001]]
+          },
+          "gainFrom": [
+            {
+              "signal": "aircraftState.rpm",
+              "curve": [[0, 0], [0.3, 0.3], [1, 0.45]]
+            }
+          ]
+        },
+        {
+          "name": "cabin",
+          "sound": "aircraft.heli.cabin",
+          "perspective": "interior",
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0.05, 0.25], [1, 1]]
+          }
+        },
+        {
+          "name": "airflow",
+          "sound": "aircraft.wind",
+          "perspective": "interior",
+          "gain": 0.5,
+          "gainFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[20, 0], [80, 0.4], [250, 1]]
+          },
+          "pitchFrom": {
+            "signal": "aircraftState.airspeed",
+            "curve": [[40, 0.85], [300, 1.25]]
+          }
+        }
+      ]
+    }
+  }
+}

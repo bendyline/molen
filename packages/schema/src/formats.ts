@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { assetId } from './asset-id';
 import type { AssetSidecar } from './assets';
-import type { SoundbankDoc } from './audio';
+import type { SoundbankDoc, SoundProfilesDoc } from './audio';
 import { type CameraTrackDoc, cameraTrackSchema, sceneCameraTrackSchema } from './camera-track';
 import { compileCommandPayload } from './commands';
 import {
@@ -1501,6 +1501,7 @@ export interface SchemaKindMap {
   'pack-source': PackSourceConfig;
   'pack-index': PackIndex;
   soundbank: SoundbankDoc;
+  'sound-profiles': SoundProfilesDoc;
 }
 
 export type SchemaKind = keyof SchemaKindMap;

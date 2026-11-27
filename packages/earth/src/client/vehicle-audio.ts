@@ -1,4 +1,4 @@
-import type { AudioLayer } from '@bendyline/molen-client/audio';
+import type { AudioLayer, ResolvedSoundProfile } from '@bendyline/molen-client/audio';
 import { Aircraft, AircraftState } from '@bendyline/molen-kernel/aircraft';
 import {
   Mountable,
@@ -36,6 +36,8 @@ interface Previous {
   at: number;
   airborneAt: number;
   landedAt: number;
+  /** Has been moving since it last stood still (for the air-brake release on stopping). */
+  rolling?: boolean;
 }
 
 /** Vehicle foley follows actual snapshot transitions; it never modifies the simulation. */
@@ -46,6 +48,8 @@ export class VehicleAudio {
   constructor(
     private readonly layer: AudioLayer,
     private readonly sounds: ReadonlySet<string>,
+    /** The sound profile the director gave an entity: its start and stop sounds. */
+    private readonly profileOf: (id: string) => ResolvedSoundProfile | undefined = () => undefined,
   ) {}
 
   private play(sound: string, entity: string, gain = 1, pitch = 1): void {
@@ -63,17 +67,23 @@ export class VehicleAudio {
       this.play(mounting ? 'vehicle.door.close' : 'vehicle.door.open', id);
     const role = world.get(id, Mountable)?.seats.find((s) => s.id === seat)?.role;
     const source = world.get(id, componentHandle('audioSource'));
+    const profile = this.profileOf(id);
+    // A profile names its own starter (none for an electric car or a bicycle); without one, the
+    // combustion engines of the entity types keep the generic car starter.
     const combustion = ['vehicle.engine.car', 'vehicle.engine.diesel'].includes(
       String(source?.sound),
     );
+    const start = profile ? profile.start : combustion ? 'vehicle.engine.start' : undefined;
+    const stop = profile ? profile.stop : combustion ? 'vehicle.engine.stop' : undefined;
     const driven = this.driven(world);
+    const sound = mounting ? start : stop;
     if (
-      combustion &&
+      sound &&
       (mounting
         ? role !== 'passenger' && !this.drivers.has(id)
         : this.drivers.has(id) && !driven.has(id))
     )
-      this.play(mounting ? 'vehicle.engine.start' : 'vehicle.engine.stop', id, 0.65);
+      this.play(sound, id, 0.65);
     this.drivers = driven;
   }
 
@@ -122,6 +132,7 @@ export class VehicleAudio {
         at: nowMs,
         airborneAt,
         landedAt: prior?.landedAt ?? -Infinity,
+        ...(prior?.rolling ? { rolling: true } : {}),
         ...(airState ? { aircraft: airState } : {}),
       };
       if (
@@ -146,6 +157,28 @@ export class VehicleAudio {
         const before = prior.aircraft;
         if (aircraft && airState && before)
           this.aircraftMotors(id, aircraft.spec, before, airState, nowMs);
+        // A heavy vehicle coming to rest lets its air brakes go.
+        const moving = aircraft ? undefined : (state as VehicleStateData).speed;
+        if (typeof moving === 'number') {
+          if (Math.abs(moving) > 2) next.rolling = true;
+          else if (Math.abs(moving) < 0.3 && next.rolling) {
+            next.rolling = false;
+            if (['road.truck', 'road.bus'].includes(this.profileOf(id)?.id ?? ''))
+              this.play('vehicle.brake.air', id, 0.8);
+          }
+        }
+        // An aircraft engine starting: the starter's whine or cranking as rpm leaves zero.
+        if (
+          aircraft &&
+          airState &&
+          before &&
+          !airState.crashed &&
+          before.rpm < 0.03 &&
+          airState.rpm >= 0.03
+        ) {
+          const start = this.profileOf(id)?.start;
+          if (start) this.play(start, id, 0.8);
+        }
         if (
           aircraft?.spec.model === 'airplane' &&
           airState &&

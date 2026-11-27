@@ -16,6 +16,7 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+import { petalNozzle } from './petal-nozzle.mjs';
 export const f15Frame = () => ({
   heli: false,
   fighter: true,
@@ -344,7 +345,9 @@ export function buildF15C(s) {
       roughness: 0.15,
     });
   const d = detailKit(root, 'F15-airframe'),
-    bindings = [];
+    bindings = [],
+    nozzleBindings = [],
+    nozzles = [];
   const rings = stations.map(ring3d),
     index = (z) => stations.findIndex((q) => q.z === z),
     radome = index(9.19),
@@ -487,38 +490,39 @@ export function buildF15C(s) {
       caps: false,
     });
     loft(nd, [oval(0.6, -5.4), oval(0.62, -5.75)], nozzle, { caps: false });
-    // Sixteen flat convergent petals (double-sided), each ending in a shallow point so the
-    // exit rim reads serrated rather than as a smooth cone.
-    for (let j = 0; j < 16; j++) {
-      const a = (j * Math.PI) / 8,
-        h = Math.PI / 16,
-        p = (r, t, z) => [Math.sin(a + t) * r, 2.18 + Math.cos(a + t) * r, z];
-      sheet(
-        nd,
-        [
-          p(0.622, -h, -5.75),
-          p(0.622, h, -5.75),
-          p(0.522, h, -6.57),
-          p(0.522 * Math.cos(h), 0, -6.65),
-          p(0.522, -h, -6.57),
-        ],
-        nozzle,
-        [Math.sin(a), Math.cos(a), -0.07],
-      );
-    }
+    // Sixteen flat petals (double-sided) hinged where the shroud ends, each ending in a shallow
+    // point so the exit rim reads serrated, with the exposed actuator rods of the featherless
+    // Eagle exhaust riding on them. They close toward military power and open at idle and in
+    // reheat (petal-nozzle.mjs): open, nearly as wide as the shroud, as a parked Eagle stands;
+    // closed, the exit narrows to about 0.84 m across.
+    const ring = petalNozzle(ng, {
+      name: `F15-nozzle-${side > 0 ? 1 : 2}`,
+      engine: side > 0 ? 'engine-1' : 'engine-2',
+      hinge: [0, 2.18, -5.75],
+      exit: [0, 2.18, -6.57],
+      hingeRadius: 0.61,
+      openRadius: 0.57,
+      closedRadius: 0.42,
+      petals: 16,
+      material: nozzle,
+      overlap: 1.03,
+      point: 0.08,
+      rods: [
+        { from: 0, to: 1.04, lift: 0.002, radius: 0.01 },
+        { from: 0.04, to: 0.6, lift: 0.01, radius: 0.018 },
+      ],
+    });
+    // Exterior only: the renderer computes the nozzle signal, which model.signals cannot read.
+    nozzleBindings.push(...ring.bindings);
+    nozzles.push(ring);
+    // Sooted liner narrowing to just inside the closed exit, so the petals never cut it, and the
+    // end plate the turbine sits on.
     nd.add(
-      new T.CylinderGeometry(0.44, 0.5, 0.8, 32, 1, true).rotateX(Math.PI / 2),
+      new T.CylinderGeometry(0.45, 0.4, 0.66, 32, 1, true).rotateX(Math.PI / 2),
       lining,
-      [0, 2.18, -6.24],
+      [0, 2.18, -6.17],
     );
     nd.add(new T.CircleGeometry(0.45, 32).rotateY(Math.PI), dark, [0, 2.18, -5.84]);
-    // Exposed actuator rods characteristic of the featherless Eagle exhaust.
-    for (let j = 0; j < 16; j++) {
-      const a = (j * Math.PI) / 8,
-        p = (r, z) => [Math.sin(a) * r, 2.18 + Math.cos(a) * r, z];
-      nd.rod(p(0.625, -5.74), p(0.53, -6.63), 0.01, metal);
-      nd.rod(p(0.64, -5.78), p(0.59, -6.25), 0.018, nozzle);
-    }
     nd.finish();
     // Fixed cropped-delta wing, with actual separate inboard flap and outboard aileron. The
     // aileron stops short of the raked tip, which stays fixed.
@@ -755,14 +759,19 @@ export function buildF15C(s) {
       paint,
     );
     gd.finish();
-    bindings.push({
-      node: g.name,
-      source: 'gear',
-      property: 'rotation',
-      axis: 'x',
-      scale: Math.PI / 2,
-      offset: -Math.PI / 2,
-    });
+    // Folded forward, the upright legs and wheels fit no bay in this shell (wheels and drag
+    // braces stood out below the intakes and nose): hidden once up, as the MiG-29's are.
+    bindings.push(
+      {
+        node: g.name,
+        source: 'gear',
+        property: 'rotation',
+        axis: 'x',
+        scale: Math.PI / 2,
+        offset: -Math.PI / 2,
+      },
+      { node: g.name, source: 'gearExposed', property: 'visible', scale: 1 },
+    );
   }
   d.rod([0, 1.76, -4.6], [0, 1.64, -6.3], 0.03, metal);
   d.finish();
@@ -785,10 +794,13 @@ export function buildF15C(s) {
     ],
     visual: {
       rotors: [],
+      exhausts: nozzles
+        .map((ring) => ring.exhaust(root))
+        .sort((a, b) => (a.engine < b.engine ? -1 : 1)),
       gearNodes: [],
       flaps: [],
       ailerons: [],
-      animation: { bindings },
+      animation: { bindings: [...bindings, ...nozzleBindings] },
       interior,
     },
     modelSignals: {
@@ -841,6 +853,7 @@ function f15Cockpit(root, m) {
     trueHeading: { op: 'modulo', args: ['headingRaw', Math.PI * 2] },
     aoaDegrees: { op: 'multiply', args: ['angleOfAttack', 180 / Math.PI] },
     gearDown: { op: 'greater', args: ['gear', 0.999] },
+    gearExposed: { op: 'greater', args: ['gear', 0.02] },
   });
   // Pixel coordinates from normalized 2048px MSIP foldout FO-3. Scale from a nominal 3.125in instrument.
   const k = 0.00225,

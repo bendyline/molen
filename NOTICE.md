@@ -25,7 +25,7 @@ Two things need your attention in particular:
 | §1 | Geospatial data — regional terrain packages |
 | §2 | Geospatial data — OpenStreetMap-derived test fixtures |
 | §3 | Brand identity data — OSM Name Suggestion Index |
-| §4 | Trademarks — business identities (4a), vehicle and aircraft identities (4b) |
+| §4 | Trademarks — business identities (4a), vehicle and aircraft identities (4b), aircraft liveries (4c) |
 | §5 | Generated art assets |
 | §6 | Webfonts |
 | §7 | Ported math code |
@@ -234,7 +234,42 @@ from an `asset-lock.json` older than that date carry the generators' earlier bad
 did reproduce several makers' emblems and wordmarks; a redistributor of those builds should
 rebuild from source or re-fetch the pack after the next lock update.
 
-### Statement for both
+### 4c. Aircraft liveries: operator schemes and military markings
+
+- **Paths:** the aircraft entries of `content/entities/source/liveries.json`, their design
+  modules in `packages/entities/scripts/liveries/`, the comparison sheets in
+  `content/entities/livery-previews/`, the livery gallery and catalog guides, and, in the built
+  `molen.entities` pack, the `livery` component of each type in `types/aircraft.types.json`
+
+Every aircraft carries three to eight selectable liveries. Each is modeled on a real operator's
+scheme, studied from public-domain or CC-licensed photographs that its
+`provenance.references` link. No reference image pixels are traced, copied or shipped: every
+marking is vector artwork drawn in the design modules, and lettering is outlined from the OFL
+fonts in §6.
+
+- **Military and government aircraft** show real national insignia (roundels, the U.S. star and
+  bar, crosses), service titles (U.S. AIR FORCE, NAVY, ARMY, RAF ...), tail codes, serials and
+  modex numbers as photographed, and squadron or unit tail art. The unit art is redrawn in
+  simplified form, such as the VF-103 skull and crossbones, as original vector art. It is not a
+  reproduction of any official emblem file and is not presented as an official or endorsed
+  replica. No trademarked character or mascot is drawn, even where a real unit uses one: VF-31's
+  Felix the Cat, for example, is left off.
+- **Civil operators** (airlines, cargo and charter operators, police, air ambulance, corporate
+  and flight-school fleets) are represented only by the layout and colors of their paint:
+  cheatlines, belly and tail colors, and abstract tail stripes or blocks. No operator name, logo,
+  emblem or wordmark is drawn. Plain functional words (POLICE, AMBULANCE, RESCUE) appear only
+  where the photographed scheme carries them. Civil registrations are fictional, in the right
+  national format, never the photographed aircraft's own. A civil variant's id and label describe
+  its colors ("White over navy belly, navy tail"); only its provenance note names the operator
+  whose scheme it follows, to identify the reference photograph.
+- **Manufacturer marks** are not drawn: no maker's logo, wordmark or type badge appears on any
+  livery.
+
+A color scheme can itself be protected trade dress. These liveries are offered as recognizable
+period and operator schemes for a simulation, not as an operator's branding. A host that must
+avoid any operator association can replace a type's `livery` component with its own recipe.
+
+### Statement for all three
 
 > All product names, company names, model names, logos, color schemes and other trade dress
 > referred to in this repository are the property of their respective owners. Molen and Bendyline
@@ -249,7 +284,10 @@ rebuild from source or re-fetch the pack after the next lock update.
 > Storefront signs set mapped names in Molen's own lettering on plain plates, with no source logo,
 > emblem, wordmark or brand typeface; signs without a name use generic text and initial emblems.
 > The generated vehicle geometry uses plain badges and fictional plates, not maker emblems or
-> lettering.
+> lettering. Aircraft liveries follow real operators' paint schemes: military liveries carry
+> national insignia, titles, codes and unit art redrawn as original vector art, and civil
+> liveries carry the operator's colors and layout without its name, logo or wordmark and with
+> fictional registrations.
 >
 > A downstream redistributor's use of these names is that redistributor's own. Trademark analysis
 > depends on use, context and likelihood of confusion, so a use that is descriptive in this
@@ -440,9 +478,11 @@ Every license statement above was checked against a primary source rather than f
   `source.json`.
 - Road-vehicle, motorhome, cycle and watercraft provenance: `generate-fleet.mjs`,
   `road-vehicle-geometry.mjs`, `rv-geometry.mjs`, `fleet-geometry.mjs` and `vehicle-detail.mjs`
-  import only Node built-ins, three.js, the §7 deterministic-math port and each other, contain no
-  file read other than each bundle's committed `models/recipe.json`, `source.json` and
-  `entity.types.json`, and have no network access. The absence of marks in §4b was checked by
+  import only Node built-ins, three.js (with its bundled opentype.js parser), the §7
+  deterministic-math port and each other, contain no file read other than each bundle's
+  committed `models/recipe.json`, `source.json` and `entity.types.json` and the pinned OFL font
+  files that `lettering-outlines.mjs` outlines (see "Lettering fonts"), and have no network
+  access. The absence of marks in §4b was checked by
   running the generators with the detail kit's text calls intercepted: every real-identity recipe
   emitted only its `MLN <yy>` plate (plus `WATER`/`POWER`/`LP` utility labels on the motorhome),
   and the source was searched for emblem, badge, wordmark and slot-count code paths.
@@ -461,6 +501,14 @@ are licensed under SIL OFL 1.1, independently of the engine's MIT license. Full 
 pinned source revisions and generation hashes accompany the assets in `content/earth/fonts/`.
 Original TTF inputs are in `content/earth/source/fonts/`. No font binaries are shipped in npm
 library packages.
+
+The entities pack's models and liveries carry lettering outlined from Overpass, Overpass Mono
+and Jost (copyright 2020 The Jost Project Authors), also under SIL OFL 1.1. This covers exterior
+stencils, plates, house lettering, registrations, serials and titles, and cockpit legends baked
+into font atlases. `packages/entities/scripts/lettering-outlines.mjs` reads the pinned TTFs
+(`content/earth/source/fonts/` and `content/entities/fonts/Jost-500-Medium.ttf`, with
+`Jost-OFL.txt` beside it) and writes glyph outlines as model geometry or livery polygons. No
+font file is embedded in a GLB or the livery catalog.
 
 The Kyoto glyph pack (`content/glyphs-kyoto/`) holds a distance-field atlas of the Japanese
 letters Kyoto's storefront names use, as Molen Sign Gothic JP, rasterized from Noto Sans JP Medium

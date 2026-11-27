@@ -7,8 +7,6 @@ loudness-normalized and re-encoded as MP3 by `tools/build.mjs`.
 
 | Source | Author | Site | Sounds |
 | --- | --- | --- | --- |
-| [servomotor.wav](https://freesound.org/people/vacuumfan7072/sounds/264592/) | vacuumfan7072 | freesound | `aircraft.gear.motor` |
-| [Servo motor](https://freesound.org/people/Burningmonkey/sounds/322021/) | Burningmonkey | freesound | `aircraft.flaps.motor` |
 | [Impact Sounds](https://kenney.nl/assets/impact-sounds) | Kenney | kenney | `footstep.carpet`, `footstep.concrete`, `footstep.grass`, `footstep.snow`, `footstep.wood`, `impact.bell`, `impact.glass`, `impact.metal.heavy`, `impact.metal.light`, `impact.punch`, `impact.soft`, `impact.wood.heavy` |
 | [Interface Sounds](https://kenney.nl/assets/interface-sounds) | Kenney | kenney | `ui.back`, `ui.click`, `ui.close`, `ui.confirm`, `ui.error`, `ui.open`, `ui.select`, `ui.toggle` |
 | [RPG Audio](https://kenney.nl/assets/rpg-audio) | Kenney | kenney | `foley.coins`, `foley.creak`, `foley.door.close`, `foley.door.open`, `foley.latch`, `footstep.stone`, `weapon.chop`, `weapon.draw`, `weapon.slash` |
@@ -137,6 +135,111 @@ loudness-normalized and re-encoded as MP3 by `tools/build.mjs`.
 | [Footstep_Metal_Crouch_5.wav](https://freesound.org/people/GiocoSound/sounds/421151/) | GiocoSound | freesound | `footstep.metal` |
 | [footstep_metal.ogg](https://freesound.org/people/raceynovel/sounds/398554/) | raceynovel | freesound | `footstep.metal` |
 | [Different steps on wood, stone, leaves, gravel and mud](https://opengameart.org/content/different-steps-on-wood-stone-leaves-gravel-and-mud) | TinyWorlds | opengameart | `footstep.gravel`, `footstep.leaves`, `footstep.mud` |
+| [servomotor.wav](https://freesound.org/people/vacuumfan7072/sounds/264592/) | vacuumfan7072 | freesound | `aircraft.gear.motor` |
+| [Servo motor](https://freesound.org/people/Burningmonkey/sounds/322021/) | Burningmonkey | freesound | `aircraft.flaps.motor` |
 | [screeching tyres / tires](https://freesound.org/people/johnnydekk/sounds/614627/) | johnnydekk | freesound | `aircraft.touchdown.tire` |
 | [Windshield wipers, slow #2](https://bigsoundbank.com/windshield-wipers-slow-2-s3111.html) | Joseph SARDIN & Axeline T. | bigsoundbank | `vehicle.wiper.sweep` |
 | [Sliding Doors](https://freesound.org/people/SwagMuffinPlus/sounds/176146/) | SwagMuffinPlus | freesound | `vehicle.door.slide` |
+| [PLANE_CESSNA152_STARTING_TAXING_GRASS.wav](https://freesound.org/people/keng-wai-chane-chick-te/sounds/443290/) | keng-wai-chane-chick-te | freesound | `aircraft.piston.flat`, `aircraft.piston.flat.idle`, `aircraft.start.piston` |
+| [PLANE_CESSNA152_FLIGHT.wav](https://freesound.org/people/keng-wai-chane-chick-te/sounds/444940/) | keng-wai-chane-chick-te | freesound | `aircraft.piston.flat.cabin` |
+| [BI-PLANE TAXI.wav](https://freesound.org/people/LOVEBURD/sounds/329615/) | LOVEBURD | freesound | `aircraft.piston.radial` |
+| [Single-Engine Turboprop KODIAK 100 landing log logo airstrip kenia.mp3](https://freesound.org/people/Marschal/sounds/696394/) | Marschal | freesound | `aircraft.turboprop` |
+| [airplane prop Dash-8 taxi and stop.flac](https://freesound.org/people/kyles/sounds/637148/) | kyles | freesound | `aircraft.turboprop.large` |
+| [ATR Engine noise inside the cabin](https://freesound.org/people/StaneStane/sounds/834221/) | StaneStane | freesound | `aircraft.turboprop.cabin` |
+| [Airplane cabin ambience / atmosphere Airbus A330-300](https://freesound.org/people/FillSoko/sounds/456092/) | FillSoko | freesound | `aircraft.turbofan.cabin` |
+| [F16 fighter jet start up.aif](https://freesound.org/people/ikbenraar/sounds/322178/) | ikbenraar | freesound | `aircraft.fighter.idle` |
+| [Afterburner sound.wav](https://freesound.org/people/StoneyJ/sounds/104883/) | StoneyJ | freesound | `aircraft.fighter.afterburner` |
+| [Helicopter Landing and Idle](https://freesound.org/people/Fission9/sounds/693866/) | Fission9 | freesound | `aircraft.heli.light` |
+| [Robinson R44 helicopter take off](https://freesound.org/people/geoffvt/sounds/810715/) | geoffvt | freesound | `aircraft.heli.piston` |
+| [UH-1 helicopter.wav](https://freesound.org/people/Rmutt/sounds/156906/) | Rmutt | freesound | `aircraft.heli.twoblade` |
+| [Medivac Helicopter start up and takeoff (Eurocopter EC-635)](https://freesound.org/people/RdmnPrd/sounds/848181/) | RdmnPrd | freesound | `aircraft.heli.medium`, `aircraft.start.turbine` |
+| [Helicopter #1](https://bigsoundbank.com/helicopter-1-s0263.html) | DenisChardonnet | bigsoundbank | `aircraft.heli.cabin` |
+| [Vehicle_Car_Peugeot_308_Acceleration_Idle_Mono.wav](https://freesound.org/people/Nox_Sound/sounds/522221/) | Nox_Sound | freesound | `vehicle.engine.small.rev` |
+| [AC Cobra Engine](https://bigsoundbank.com/ac-cobra-engine-s0534.html) | Joseph SARDIN | bigsoundbank | `vehicle.engine.v8`, `vehicle.engine.v8.high` |
+| [school bus old rattly idle various diesel truck semi dump.wav](https://freesound.org/people/kyles/sounds/450808/) | kyles | freesound | `vehicle.engine.diesel.heavy` |
+| [Truck Horn](https://bigsoundbank.com/truck-horn-s2721.html) | Pierre SIBANARCO | bigsoundbank | `street.horn.truck`, `vehicle.horn.truck` |
+| [Recent Car Horn #2](https://bigsoundbank.com/recent-car-horn-2-s0258.html) | DenisChardonnet | bigsoundbank | `street.horn.car`, `vehicle.horn.car` |
+| [13FMikovaA_simson klakson.wav](https://freesound.org/people/13FPanska_Mikova_Adela/sounds/378351/) | 13FPanska_Mikova_Adela | freesound | `street.horn.scooter`, `vehicle.horn.scooter` |
+| [Door on bus.wav](https://freesound.org/people/Ryding/sounds/110135/) | Ryding | freesound | `vehicle.door.bus` |
+| [Chrysler LHS tire squeal 04 (04-25-2009).wav](https://freesound.org/people/audible-edge/sounds/71739/) | audible-edge | freesound | `vehicle.skid` |
+| [KawasakiZX6RStart.wav](https://freesound.org/people/Sclolex/sounds/211668/) | Sclolex | freesound | `vehicle.engine.motorcycle` |
+| [car tire on gravel rear cu blyth 21 6 12.flac](https://freesound.org/people/TRP/sounds/577504/) | TRP | freesound | `vehicle.tire.gravel` |
+| [truck mack peterbilt delivery box idle nearby air release and pass rev medium speed and leave to slow and stop.flac](https://freesound.org/people/kyles/sounds/637922/) | kyles | freesound | `vehicle.brake.air` |
+| [Gilera Runner 2007 revs backfire cold idle](https://freesound.org/people/lovretta/sounds/140384/) | lovretta | freesound | `vehicle.engine.scooter` |
+| [Skidoo Skandik engine](https://freesound.org/people/SoundsLikeYukon/sounds/726286/) | SoundsLikeYukon | freesound | `vehicle.engine.snowmobile` |
+| [Freewheel clicks.wav](https://freesound.org/people/donkpow/sounds/156996/) | donkpow | freesound | `vehicle.bicycle.freewheel` |
+| [three_diesel_locomotives_idling_loop1.wav](https://freesound.org/people/themanitou/sounds/146326/) | themanitou | freesound | `rail.locomotive.diesel` |
+| [Thailand tuk tuk motorcycle taxi on board various speeds, slow down and accelerate.flac](https://freesound.org/people/kyles/sounds/177755/) | kyles | freesound | `vehicle.engine.tuktuk` |
+| [Train Horn #2](https://bigsoundbank.com/train-horn-2-s2846.html) | Joseph SARDIN | bigsoundbank | `rail.horn.eu` |
+| [over the bridge Highway drive interior](https://freesound.org/people/gecop/sounds/521767/) | gecop | freesound | `vehicle.cabin.road` |
+| [Train car](https://bigsoundbank.com/train-car-s2727.html) | Joseph SARDIN | bigsoundbank | `rail.wheels` |
+| [Harley Davidson Sportster - Idling with Engine Revs](https://freesound.org/people/demodave/sounds/502690/) | demodave | freesound | `vehicle.engine.cruiser` |
+| [Tram Interior #1](https://bigsoundbank.com/tram-interior-1-s3525.html) | Joseph SARDIN & Axeline T. | bigsoundbank | `rail.tram.ride` |
+| [FXSaSc Berlin Tram Train Ring Bell Alexanderplatz.wav](https://freesound.org/people/Profispiesser/sounds/543825/) | Profispiesser | freesound | `rail.tram.bell` |
+| [CP 3126-CP 4429 - 20201119-0132.flac](https://freesound.org/people/herkamur/sounds/545406/) | herkamur | freesound | `rail.bell` |
+| [Railway Crossing Warning Bell / Signal](https://freesound.org/people/mycompasstv/sounds/457125/) | mycompasstv | freesound | `world.rail-crossing.north-america.457125` |
+| [skate board rolling](https://freesound.org/people/bruno.auzet/sounds/836284/) | bruno.auzet | freesound | `vehicle.skateboard.roll` |
+| [Japanese Railroad Crossing - Gate Closing, Train Passing and Opening](https://freesound.org/people/KoimeMatsuchiya/sounds/872621/) | KoimeMatsuchiya | freesound | `world.rail-crossing.japan.872621` |
+| [passage à niveaux - cloche.wav](https://freesound.org/people/nicotep/sounds/574678/) | nicotep | freesound | `world.rail-crossing.europe.574678` |
+| [Diesel motor on Fishing Boat.MP3](https://freesound.org/people/Bansemer/sounds/35499/) | Bansemer | freesound | `boat.inboard` |
+| [Ship Horn - Fog Horn - Cruise Ship Grand Princess](https://freesound.org/people/coalcon/sounds/636075/) | coalcon | freesound | `boat.horn` |
+| [Alpine_ski_POV - - Stereo Out.wav](https://freesound.org/people/Lydmakeren/sounds/567839/) | Lydmakeren | freesound | `vehicle.ski.snow` |
+| [170722_MediumFerry_BelowDeck_R.wav](https://freesound.org/people/blaukreuz/sounds/398851/) | blaukreuz | freesound | `boat.ship` |
+| [A light freight train approaching with a horn sequence at the beginning; engine idles near the beginning.](https://freesound.org/people/ser%C3%B8ut%C5%8Dnin--depriv%C9%99d/sounds/723527/) | serøutōnin--deprivəd | freesound | `rail.horn.us` |
+| [outboard motor boat onboard high speed.flac](https://freesound.org/people/kyles/sounds/637744/) | kyles | freesound | `boat.outboard` |
+| [Parisian crossing #1](https://bigsoundbank.com/parisian-crossing-1-s3030.html) | Joseph SARDIN | bigsoundbank | `world.traffic.europe.3030` |
+| [Sailing boat, bow wave (close perspective)](https://freesound.org/people/Pfannkuchn/sounds/360631/) | Pfannkuchn | freesound | `boat.wash` |
+| [Parisian ring road #2](https://bigsoundbank.com/parisian-ring-road-2-s3027.html) | Joseph SARDIN | bigsoundbank | `world.highway.global.3027` |
+| [water lake waves light gentle lap at boats on beach.flac](https://freesound.org/people/kyles/sounds/637945/) | kyles | freesound | `boat.lapping` |
+| [Residential street - Weekend - Light traffic - Israel.wav](https://freesound.org/people/khenshom/sounds/481203/) | khenshom | freesound | `world.traffic.residential.481203` |
+| [SE 4CH DELHI ATMO cars horns traffic jam busy street (Binaural conversion & shorter version).mp3](https://freesound.org/people/SoundEnsemble/sounds/336468/) | SoundEnsemble | freesound | `world.traffic.south-asia.336468` |
+| [CuckooSignal.wav](https://freesound.org/people/hrhk/sounds/98154/) | hrhk | freesound | `world.crossing.japan.98154` |
+| [Pedestrian_Road_Crossing_Australia_Press_Button_Waiting_and_Go_Beep.wav](https://freesound.org/people/roisin.gleeson/sounds/699144/) | roisin.gleeson | freesound | `world.crossing.australia.699144` |
+| [Lovis ship sailboat metal deck rigging rattling.flac](https://freesound.org/people/kyles/sounds/450259/) | kyles | freesound | `boat.rigging` |
+| [120616 Siren, close pass, city, street, NYC.wav](https://freesound.org/people/TRP/sounds/616590/) | TRP | freesound | `street.siren.north-america` |
+| [Japan_Siren_Snippets.wav](https://freesound.org/people/RutgerMuller/sounds/613280/) | RutgerMuller | freesound | `street.siren.japan` |
+| [Recent Car Horn #7](https://bigsoundbank.com/recent-car-horn-7-s0969.html) | Joseph SARDIN | bigsoundbank | `street.horn.car` |
+| [Car horn #4](https://bigsoundbank.com/car-horn-4-s0260.html) | DenisChardonnet | bigsoundbank | `street.horn.car` |
+| [Berlin, Friedrichstraße police car siren OMNI.wav](https://freesound.org/people/gladkiy/sounds/347335/) | gladkiy | freesound | `street.siren.europe` |
+| [13FMikovaA_jawa klakson.wav](https://freesound.org/people/13FPanska_Mikova_Adela/sounds/378336/) | 13FPanska_Mikova_Adela | freesound | `street.horn.scooter` |
+| [Motorbike Passing By](https://freesound.org/people/JPBILLINGSLEYJR/sounds/484486/) | JPBILLINGSLEYJR | freesound | `street.motorcycle-pass` |
+| [Diesel bus pulling away](https://freesound.org/people/pnwheeler/sounds/831721/) | pnwheeler | freesound | `street.bus-pull-away` |
+| [Dog Barking in Neighborhood](https://freesound.org/people/Kinoton/sounds/516904/) | Kinoton | freesound | `street.dog` |
+| [Traffic In Hanoi](https://freesound.org/people/_Evile/sounds/854365/) | _Evile | freesound | `world.traffic.southeast-asia.854365` |
+| [130313 Traffic busy city engines, Lakeshore, Toronto](https://freesound.org/people/TRP/sounds/715633/) | TRP | freesound | `world.traffic.north-america.715633` |
+| [042616 ravens in Sapporo.mp3](https://freesound.org/people/pflanigan/sounds/390250/) | pflanigan | freesound | `street.crow.japan` |
+| [American Crow, calls, close and distant, urban residential, 2011.wav](https://freesound.org/people/TRP/sounds/577094/) | TRP | freesound | `street.crow.america` |
+| [busy_tokyo_street_evening_rush_3waves_120.wav](https://freesound.org/people/markystar/sounds/75271/) | markystar | freesound | `world.traffic.japan.75271` |
+| [Peepers4_20200407.mp3](https://freesound.org/people/rabban625/sounds/512801/) | rabban625 | freesound | `world.frogs.spring-peeper.512801` |
+| [Cicadas - Cigales - South of France 2](https://freesound.org/people/L.Finck/sounds/815112/) | L.Finck | freesound | `world.insects.mediterranean.815112` |
+| [Cicadas atmosphere 2 - Otford NSW 2.1.21.wav](https://freesound.org/people/ChrisHancock/sounds/557496/) | ChrisHancock | freesound | `world.insects.australia.557496` |
+| [Wind in Tall Grass](https://bigsoundbank.com/wind-in-tall-grass-s0908.html) | Joseph SARDIN | bigsoundbank | `world.wind.grass.0908` |
+| [Japan_Kashiwa_Field_Crickets_Midnight.wav](https://freesound.org/people/RutgerMuller/sounds/364860/) | RutgerMuller | freesound | `world.night.japan.364860` |
+| [Gulls on the Harbor](https://bigsoundbank.com/gulls-on-the-harbor-s2573.html) | Joseph SARDIN | bigsoundbank | `world.harbor.global.2573`, `world.harbor.gulls.2573` |
+| [Rain on car roof](https://bigsoundbank.com/rain-on-car-roof-s1293.html) | Joseph SARDIN | bigsoundbank | `ambience.rain.roof` |
+| [bagno-frogs-birds-forest.wav](https://freesound.org/people/jacekksiazek/sounds/393644/) | jacekksiazek | freesound | `world.frogs.europe.393644` |
+| [Thunder #1](https://bigsoundbank.com/thunder-s2718.html) | Joseph SARDIN | bigsoundbank | `ambience.thunder.storm` |
+| [Thunder #6](https://bigsoundbank.com/thunder-6-s3179.html) | Joseph SARDIN & Axeline T. | bigsoundbank | `ambience.thunder.storm` |
+| [Pacific Tree Frogs in Secluded Pond, Petrolia, CA](https://freesound.org/people/CVLTIV8R/sounds/852657/) | CVLTIV8R | freesound | `world.frogs.pacific-chorus.852657` |
+| [Small Waves Lapping on Lake Ontario Close Perspective](https://freesound.org/people/robotjay/sounds/518467/) | robotjay | freesound | `world.lake.global.518467` |
+| [AustralianMagpies.wav](https://freesound.org/people/DangerLaef/sounds/319767/) | DangerLaef | freesound | `world.birds.sydney.319767` |
+| [crowd int medium murmur convention space large cavernous.flac](https://freesound.org/people/kyles/sounds/451600/) | kyles | freesound | `world.crowd.global.451600` |
+| [Western Washington Foothills Early Spring Morning - Birds Outside.wav](https://freesound.org/people/tothrec2/sounds/508021/) | tothrec2 | freesound | `world.birds.pnw.508021` |
+| [silent windy pine forest.wav](https://freesound.org/people/bruno.auzet/sounds/670307/) | bruno.auzet | freesound | `world.wind.conifer.670307` |
+| [Summer rain on quiet city street](https://freesound.org/people/tarasyoung/sounds/399685/) | tarasyoung | freesound | `world.rain.city.399685` |
+| [Turbine whine (jet engine compressor and fan tones)](tools/synth.mjs) | Molen contributors | molen | `aircraft.jet.whine` |
+| [Jet exhaust roar (broadband mixing noise)](tools/synth.mjs) | Molen contributors | molen | `aircraft.jet.roar` |
+| [Afterburner rumble and crackle](tools/synth.mjs) | Molen contributors | molen | `aircraft.jet.reheat` |
+| [Small gas turbine whine (turboshaft or turboprop)](tools/synth.mjs) | Molen contributors | molen | `aircraft.turbine.small` |
+| [Propeller blade-pass buzz](tools/synth.mjs) | Molen contributors | molen | `aircraft.prop.buzz` |
+| [Airflow over an airframe](tools/synth.mjs) | Molen contributors | molen | `aircraft.wind` |
+| [Wind noise on a car body at speed](tools/synth.mjs) | Molen contributors | molen | `vehicle.wind` |
+| [Tire roar on asphalt](tools/synth.mjs) | Molen contributors | molen | `vehicle.tire.asphalt` |
+| [Runway roll: tire rumble and joint thumps](tools/synth.mjs) | Molen contributors | molen | `aircraft.ground.roll` |
+| [Stall warning horn](tools/synth.mjs) | Molen contributors | molen | `aircraft.warning.stall` |
+| [Landing gear warning horn](tools/synth.mjs) | Molen contributors | molen | `aircraft.warning.gear` |
+| [Electric car motor and inverter whine](tools/synth.mjs) | Molen contributors | molen | `vehicle.electric.motor` |
+| [Low-speed pedestrian warning hum of an electric car](tools/synth.mjs) | Molen contributors | molen | `vehicle.electric.hum` |
+| [Electric traction motor hum](tools/synth.mjs) | Molen contributors | molen | `rail.traction.hum` |
+| [Bicycle tires rolling on pavement](tools/synth.mjs) | Molen contributors | molen | `vehicle.bicycle.tire` |
+| [hawk jets.wav](https://freesound.org/people/Vax6131/sounds/105222/) | Vax6131 | freesound | `aircraft.turbofan.thrust` |

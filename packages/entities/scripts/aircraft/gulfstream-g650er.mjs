@@ -203,8 +203,30 @@ export const g650 = {
   },
   gear: {
     // Stations read from the photograph; Gulfstream's figures were not found.
-    nose: { u: 2.28, r: 0.3, w: 0.17, spread: 0.36, top: 1.75, strut: 0.07 },
-    main: { u: 15.2, x: 2.2, pivotX: 2.75, r: 0.5, w: 0.3, spread: 0.62, top: 2.2, strut: 0.1 },
+    // Pivots, rake and fold angles are set so the stowed legs and wheels lie inside the skin,
+    // fairings and wing (checked against these tables); the fold doors are not modelled.
+    nose: {
+      u: 2.28,
+      r: 0.3,
+      w: 0.17,
+      spread: 0.36,
+      top: 1.7,
+      strut: 0.07,
+      hinge: -0.2,
+      retract: 1.85,
+    },
+    main: {
+      u: 15.2,
+      x: 2.2,
+      pivotX: 2.1,
+      r: 0.5,
+      w: 0.3,
+      spread: 0.62,
+      top: 1.95,
+      hinge: 0.6,
+      retract: 1.55,
+      strut: 0.1,
+    },
   },
 };
 export const g650Frame = () => transportFrame(g650);

@@ -94,6 +94,7 @@ export {
 } from './client/audio';
 export { EarthAudioTerrain, type EarthAudioTerrainSample } from './client/audio-terrain';
 export { EarthAvatar, type EarthAvatarFrame, type EarthAvatarOptions } from './client/avatar';
+export { type ClimateQuery, climateTemperatureC } from './client/climate';
 export {
   EARTH_PACK_IDS,
   type EarthContent,
@@ -103,6 +104,15 @@ export {
   type OpenPacksFromIndexOptions,
   openPacksFromIndex,
 } from './client/content';
+export {
+  CrashCam,
+  type CrashCamFrame,
+  type CrashCamPose,
+  type CrashCamSubject,
+  type CrashCamWorld,
+  crashCamSettings,
+  type EarthCrashCamOptions,
+} from './client/crash-cam';
 export { afterPreparation } from './client/deferred';
 export {
   EarthDioramaDirector,
@@ -141,6 +151,13 @@ export type { EarthFleet, EarthFleetContent, EarthFleetOptions } from './client/
 export { createEarthFleet } from './client/fleet';
 export { composeEarthGroundGrading } from './client/ground-grading';
 export {
+  type EarthHarborBoatType,
+  type EarthHarborBudget,
+  type EarthHarborStats,
+  EarthHarbors,
+  type EarthHarborsOptions,
+} from './client/harbors';
+export {
   type EarthLocality,
   type EarthLocateOptions,
   type EarthLocation,
@@ -168,6 +185,14 @@ export {
   withModelArchives,
 } from './client/model-archives';
 export {
+  EarthMapScreen,
+  EarthMovingMap,
+  type EarthMovingMapPose,
+  type EarthMovingMapView,
+  type EarthMovingMapViewOptions,
+} from './client/moving-map';
+export {
+  type EarthLampField,
   EarthNightLighting,
   type EarthNightLightingFrame,
   type EarthNightLightingOptions,
@@ -189,11 +214,11 @@ export {
 } from './client/overrides';
 export {
   createEarthAdmissionGovernor,
+  createEarthMemoryGuard,
   EARTH_BACKLOG_MS,
   EARTH_CALIBRATION_QUALITY,
   EARTH_INDEPENDENT_LAYERS,
   EARTH_QUALITY_CALIBRATION_MS,
-  EARTH_STICKY_QUALITY,
   type EarthAdmissionLimits,
   type EarthDeviceMemory,
   type EarthFixedQuality,
@@ -246,6 +271,19 @@ export {
 } from './client/road-signs';
 export { createEarthSiteGrading, type EarthSiteGrades } from './client/site-grades';
 export { createSnowPace } from './client/snow';
+export {
+  loadSoundscapeCatalog,
+  type SoundscapeContext,
+  type SoundscapeEntry,
+  selectSoundscape,
+  soundscapeLevel,
+} from './client/soundscape-catalog';
+export {
+  StreetLife,
+  type TrafficCulture,
+  trafficByHour,
+  trafficCulture,
+} from './client/street-life';
 export {
   type EarthTrain,
   type EarthTrainCar,

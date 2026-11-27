@@ -23,7 +23,28 @@ flaps retain their existing graduated `gearPosition` / `flapPosition` state.
 - Fighters: opening canopies, F-14D and F/A-18C hooks, and graduated brakes. F-14 uses
   one upper and two lower brake leaves. F-35 uses its forward canopy hinge and separate
   canopy fragments for emergency escape. P-51D's bubble and its frame slide aft together
-  in the aircraft datum; the windscreen stays attached.
+  in the aircraft datum; the windscreen stays attached. Since the 2026-11-25 fidelity review
+  (`content/entities/MODEL-QUALITY.md`):
+  - Brakes:
+    - Dorsal and ventral brakes lie on the skin (`conformPanel`).
+    - The Gripen has one side panel a side that swings outward.
+    - The F-35 rudders splay apart for braking, and the Rafale's single rudder stays out of
+      the brake mix.
+  - Canopies:
+    - The AV-8B canopy slides aft.
+    - The Gripen's swings over to port.
+    - The F-22's one-piece bubble lifts whole.
+    - The F-16 hood hinges at its aft fairing and opens about 30°.
+    - The Typhoon, Rafale and Gripen keep their windscreen bow fixed.
+  - Variable exhaust nozzles (2026-11-26): the F-15C (16 petals a side), F-16B (20) and
+    F/A-18C (12 a side) nozzles are rings of hinged petals
+    (`packages/entities/scripts/aircraft/petal-nozzle.mjs`). Each petal is one node turned about
+    its own hinge by the renderer's `engines.<id>.nozzle` signal: open at idle and stopped,
+    closed at military power, opening with the lit reheat. Their bindings are exterior only
+    (`visual.animation`), since `model.signals` cannot read a renderer signal; a host without
+    the aircraft renderer shows them open. Open and closed exit radii are estimates read from
+    photographs, not engine drawings. The other seven afterburning fighters keep fixed nozzles.
+    All ten declare `visual.exhausts` for the client's afterburner flame.
 - Helicopters: proportional rotor-disc cyclic tilt, AW139 retractable wheels, and emergency
   blade release. **Blade release is a requested gameplay facility**, not a claim that these
   helicopters have real ejection seats. Released blades stop producing lift. Legacy batched

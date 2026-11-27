@@ -29,6 +29,39 @@ export const rafaleFrame = () => ({
   panelZ: 4.92,
   floor: 1.5,
 });
+/** Ray-casts onto the triangles `build(kit)` emits (the same quads the airframe uses) and lifts
+ * the hit along the face normal toward the caster, for laying panel lines on the actual skin. */
+function surfaceCaster(build, lift = 0.005) {
+  const holder = new T.Group(),
+    surface = new T.MeshBasicMaterial({ side: T.DoubleSide });
+  build({ add: (geometry) => holder.add(new T.Mesh(geometry, surface)) });
+  holder.updateMatrixWorld(true);
+  const ray = new T.Raycaster();
+  return (origin, direction) => {
+    const dir = new T.Vector3(...direction).normalize();
+    ray.set(new T.Vector3(...origin), dir);
+    const hit = ray.intersectObject(holder, true)[0];
+    if (!hit) throw Error(`Rafale marking misses the skin at ${origin}`);
+    const normal = hit.face.normal.clone();
+    if (normal.dot(dir) > 0) normal.negate();
+    return hit.point.addScaledVector(normal, lift).toArray();
+  };
+}
+/** Points every `step` metres along a polyline of 2-D corners, each mapped by `at`. A straight
+ * tube between two corners would cut through the creases between loft facets or float over
+ * the wing's camber. */
+function sampledPath(corners, at, step, closed = true) {
+  const points = [];
+  for (let i = 0; i < (closed ? corners.length : corners.length - 1); i++) {
+    const [ua, va] = corners[i],
+      [ub, vb] = corners[(i + 1) % corners.length],
+      steps = Math.max(1, Math.ceil(Math.hypot(ub - ua, vb - va) / step));
+    for (let k = 0; k < steps; k++)
+      points.push(at(ua + ((ub - ua) * k) / steps, va + ((vb - va) * k) / steps));
+  }
+  if (!closed) points.push(at(...corners.at(-1)));
+  return points;
+}
 export function buildRafaleC(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -198,19 +231,10 @@ export function buildRafaleC(s) {
     paint,
     [0, 0, -1],
   );
-  const skin = (side, y, z) => {
-    let i = aft.findIndex((a, i) => i < aft.length - 1 && z <= a.z && z >= aft[i + 1].z);
-    i = Math.max(0, i);
-    const a = aft[i],
-      b = aft[i + 1],
-      u = (a.z - z) / (a.z - b.z),
-      ps = a.points.slice(0, 8).map((p, j) => p.map((v, k) => v + (b.points[j][k] - v) * u));
-    let j = ps.findIndex((p, j) => j < ps.length - 1 && y <= p[1] && y >= ps[j + 1][1]);
-    if (j < 0) j = ps.length - 2;
-    const p = ps[j],
-      q = ps[j + 1];
-    return [side * (p[0] + ((q[0] - p[0]) * (y - p[1])) / (q[1] - p[1]) + 0.004), y, z];
-  };
+  // Panel markings lie on the loft's actual triangles: corners interpolated between rings sank
+  // under the warped quads' diagonals and showed only fragments of each rectangle.
+  const onSkin = surfaceCaster((kit) => loft(kit, aft, null, { caps: false, smooth: false }));
+  const skin = (side, y, z) => onSkin([side * 3, y, z], [-side, 0, 0]);
   // Two separate semi-ventral mouths, with visible duct depth and boundary-layer gaps.
   for (const side of [-1, 1]) {
     // Head-on photograph (Rafale M, Volkel 2007) and three-view front elevation: the lips
@@ -287,17 +311,19 @@ export function buildRafaleC(s) {
       a = stations[0],
       b = stations[1],
       mid = mix(a, b, (3.55 - a[0]) / (b[0] - a[0]));
-    wing(
-      d,
-      stations.map((p) => [
-        side * p[0],
-        p[1],
-        p[2] + (p[3] - p[2]) * 0.1,
-        p[2] + (p[3] - p[2]) * 0.8,
-        p[4],
-      ]),
-      paint,
-    );
+    const fixedWing = stations.map((p) => [
+      side * p[0],
+      p[1],
+      p[2] + (p[3] - p[2]) * 0.1,
+      p[2] + (p[3] - p[2]) * 0.8,
+      p[4],
+    ]);
+    wing(d, fixedWing, paint);
+    const onWing = surfaceCaster((kit) => wing(kit, fixedWing, null), 0.004),
+      wingAt = (x, f) => {
+        const p = mix(a, b, (x - a[0]) / (b[0] - a[0]));
+        return onWing([side * x, 4, p[2] + (p[3] - p[2]) * f], [0, -1, 0]);
+      };
     for (const [j, ss] of [
       [0, [a, mid]],
       [1, [mid, b]],
@@ -379,28 +405,44 @@ export function buildRafaleC(s) {
       axis: 'x',
       scale: -0.25,
     });
-    // Selected panel boundaries and flush screw lines follow the wing surface.
+    // Selected panel boundaries and flush screw lines follow the wing surface. They were drawn at
+    // the section's crest height everywhere, so the hinge lines floated up to 9 cm over the
+    // leading and trailing edges.
     for (const f of [0.11, 0.79])
       outline(
         d,
-        stations.map((p) => [side * p[0], p[1] + p[4] + 0.003, p[2] + (p[3] - p[2]) * f]),
+        sampledPath(
+          [
+            [a[0] + 0.03, f],
+            [b[0] - 0.03, f],
+          ],
+          wingAt,
+          0.3,
+          false,
+        ),
         0.004,
         seal,
         false,
       );
-    for (const x of [2.5, 3.55, 4.4]) {
-      const p = mix(a, b, (x - a[0]) / (b[0] - a[0]));
+    for (const x of [2.5, 3.55, 4.4])
       outline(
         d,
-        [
-          [side * x, p[1] + p[4] + 0.004, p[2] + (p[3] - p[2]) * 0.2],
-          [side * x, p[1] + p[4] + 0.004, p[2] + (p[3] - p[2]) * 0.7],
-        ],
+        sampledPath(
+          // Corners on the section's 25 % and 75 % creases of the fixed chord (0.1 to 0.8).
+          [
+            [x, 0.2],
+            [x, 0.275],
+            [x, 0.625],
+            [x, 0.7],
+          ],
+          wingAt,
+          0.2,
+          false,
+        ),
         0.003,
         seal,
         false,
       );
-    }
     for (const [za, zb, ya, yb] of [
       [0.3, -0.8, 2.17, 1.95],
       [-1, -2.4, 2.35, 2.08],
@@ -408,12 +450,16 @@ export function buildRafaleC(s) {
     ]) {
       outline(
         d,
-        [
-          [ya, za],
-          [ya, zb],
-          [yb, zb],
-          [yb, za],
-        ].map(([y, z]) => skin(side, y, z)),
+        sampledPath(
+          [
+            [ya, za],
+            [ya, zb],
+            [yb, zb],
+            [yb, za],
+          ],
+          (y, z) => skin(side, y, z),
+          0.08,
+        ),
         0.004,
         seal,
       );
@@ -422,29 +468,38 @@ export function buildRafaleC(s) {
     }
   }
   // One swept fin, a separate rudder and the characteristic top sensor fairing.
+  // The leading edge rises out of the spine in a long concave fillet before its straight 55 deg
+  // sweep (three-view and side photographs); a straight edge from the spine made the fin fuller.
   const fin = [
-    [0, 2.64, -1.65],
+    [0, 2.64, -1.2],
+    [0, 2.7, -2.0],
+    [0, 2.9, -2.6],
+    [0, 3.3, -3.2],
     [0, 4.95, -5.6],
     [0, 4.91, -6.25],
     [0, 2.66, -5.04],
   ];
+  const finHalf = (y) => 0.075 - ((y - 2.64) / (4.95 - 2.64)) * 0.05;
   for (const side of [-1, 1])
     sheet(
       d,
-      fin.map((p, i) => [side * (i === 1 || i === 2 ? 0.025 : 0.075), p[1], p[2]]),
+      fin.map((p) => [side * finHalf(p[1]), p[1], p[2]]),
       paint,
       [side, 0, 0],
     );
-  for (let i = 0; i < 4; i++)
+  for (let i = 0; i < fin.length; i++) {
+    const p = fin[i],
+      q = fin[(i + 1) % fin.length];
     quad(
       d,
-      [0.06, fin[i][1], fin[i][2]],
-      [-0.06, fin[i][1], fin[i][2]],
-      [-0.06, fin[(i + 1) % 4][1], fin[(i + 1) % 4][2]],
-      [0.06, fin[(i + 1) % 4][1], fin[(i + 1) % 4][2]],
+      [finHalf(p[1]), p[1], p[2]],
+      [-finHalf(p[1]), p[1], p[2]],
+      [-finHalf(q[1]), q[1], q[2]],
+      [finHalf(q[1]), q[1], q[2]],
       paint,
       [0, 1, 0],
     );
+  }
   const rb = [0, 2.66, -5.04],
     rt = [0, 4.91, -6.25],
     rg = group(root, 'Rafale-rudder', rb),
@@ -549,7 +604,9 @@ export function buildRafaleC(s) {
         seal,
         false,
       );
-    d.rod([side * 0.9, 2.62, -5.1], [side * 0.9, 2.62, -5.62], 0.07, paint);
+    // SPECTRA rear fairings ride on the spine beside the fin root (rear and 3/4 photographs);
+    // at x 0.9 they floated half a metre above the engine shoulders.
+    d.rod([side * 0.21, 2.6, -4.75], [side * 0.21, 2.6, -5.72], 0.07, paint);
   }
   // Central tail fairing over the nozzle pair and the narrow divider between them (rear photo).
   loft(
@@ -577,21 +634,7 @@ export function buildRafaleC(s) {
     beveledBox(d, [0.16, 0.12, 0.22], [x, 2.47, 6.15], paint, 0.03);
     d.add(new T.CircleGeometry(0.055, 16), glass, [x, 2.49, 6.264]);
   }
-  // French geometric roundels, no copied photographic decals.
-  const red = mat('Rafale-roundel-red', '#a34a47'),
-    blue = mat('Rafale-roundel-blue', '#3c535f'),
-    white = mat('Rafale-roundel-white', '#d1d0c4');
-  for (const side of [-1, 1])
-    for (const [r, m] of [
-      [0.18, red],
-      [0.12, white],
-      [0.065, blue],
-    ])
-      d.add(new T.CircleGeometry(r, 32).rotateX(-Math.PI / 2), m, [
-        side * 3.25,
-        1.88 + (r < 0.18 ? 0.003 : 0) + (r < 0.12 ? 0.003 : 0),
-        -2.48,
-      ]);
+  // National markings are livery decals (liveries/aircraft/rafale-c.mjs): operators differ.
   for (const [name, x, z, r, w, top] of [
     ['left', 1.42, -1.34, 0.38, 0.25, 1.23],
     ['right', -1.42, -1.34, 0.38, 0.25, 1.23],
@@ -721,14 +764,16 @@ function rafaleCockpit(root, m) {
       ].map(([u, v]) => [x + u * w, y + v * h, z + dz]),
     txt = (t, x, y, h = 0.008, color = ink, dz = -0.03) =>
       d.text(t, [x, y, z + dz], h, Math.PI, color);
+  // The shoulders stay 1.5 cm inside the canopy base (x 0.415 at the panel plane); at 0.43 the
+  // corners and their black rim stood out through the sill beside the windscreen.
   const edge = [
     [-0.41, 2.27],
-    [-0.43, 2.52],
+    [-0.4, 2.52],
     [-0.32, 2.69],
     [-0.17, 2.72],
     [0.17, 2.72],
     [0.32, 2.69],
-    [0.43, 2.52],
+    [0.4, 2.52],
     [0.41, 2.27],
     [0.14, 2.27],
     [0.1, 2.03],

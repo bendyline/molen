@@ -9,7 +9,8 @@ import { listPackSource, openFilePack } from '@bendyline/molen-pack/node';
 import { encodeStructureGeohash } from '@bendyline/molen-worldgen-earth/kernel';
 
 const MiB = 1024 * 1024;
-const ROUTES = 'model-archives.json';
+/** The core's model routing table; written by the build, never a source file. */
+export const ROUTES = 'model-archives.json';
 
 async function hashModel(path) {
   const hash = createHash('sha256');

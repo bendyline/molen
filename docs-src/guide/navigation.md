@@ -140,6 +140,13 @@ Default profiles come from `navigationInputProfiles()`:
 | `walk`, `drive` | WASD/arrows move, Space jump/brake, R or F interact, V view, Shift sprint. On foot Q/E step sideways as A/D do; in a vehicle Q/E lean a cycle's rider and Backspace recovers | left stick move, right stick look, A jump, X interact, Y view |
 | `pilot` | W/S or ↑/↓ nose down/up, A/D or ←/→ bank, Q/E rudder, Z/C (or −/=, numpad −/+, Page Down/Up) power, I engine, G gear, F flaps, Backspace recover, Space brake, V view, R exit | left stick pitch/bank, right stick look, triggers power, bumpers rudder, A brake, B engine, X exit, Y view |
 
+The left-stick bindings (axes 0 and 1) apply to any controller, so a flight stick moves and flies
+without setup. The right-stick look bindings (axes 2 and 3) carry `device: { mapping: 'standard' }`
+and apply only to a pad the browser lays out as a standard gamepad. On other devices those axes are
+often a twist grip or a throttle slider. A throttle resting at its stop would otherwise turn the
+view as soon as the page loads. Map such axes in **Controllers**. When saved controller settings
+still hold these look bindings without a selector, `createNavigationControls` adds it on load.
+
 In the `pilot` profile each `NavigationInput` also carries `pilot`: the held `throttle` and `yaw`
 axes (-1..1) and edge-triggered `engine`, `gear`, `flaps` and `recover` presses. Pitch is
 `-move.forward` and bank is `move.right`, so the touch stick flies too; hold-to-throttle buttons

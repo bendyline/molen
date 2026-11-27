@@ -3,6 +3,8 @@
  * hair, hair colour, eyes) are drawn independently of each other and of the steer; the steer
  * only weights body shape, facial hair and clothing. A look drawn without a steer rolls its own
  * from the seed, most often masculine or feminine, so those three agree with each other.
+ * Under `unspecified` only the clothes are drawn alike: facial hair still follows the body
+ * shape, so no random look puts a beard on a feminine-form body (a person may still choose one).
  */
 
 import { seedToInt } from '@bendyline/molen-kernel/determinism';
@@ -31,6 +33,7 @@ import {
   type FigureLookColorSlot,
   type FigureLookItem,
   type FigureLookItemColors,
+  type FigureLookOption,
   type FigureLookOutfit,
   type FigureLookPerson,
   type FigureLookPersonColor,
@@ -115,6 +118,24 @@ function keptSteer(
   return masculine ? 'masculine' : feminine ? 'feminine' : 'unspecified';
 }
 
+/** The kept parts that hold person choices. */
+function personParts(parts: readonly FigureLookPart[]): FigureLookPart[] {
+  return parts.filter(
+    (part) => part === 'person' || (FIGURE_LOOK_PERSON_CHOICES as readonly string[]).includes(part),
+  );
+}
+
+/** The steer an option leans toward: the only steer that suggests it, else undefined. */
+function optionLean(
+  category: FigureLookCategory,
+  option: FigureLookOption,
+): FigureLookSteer | undefined {
+  const masculine = figureLookSuggested(category, option, 'masculine');
+  const feminine = figureLookSuggested(category, option, 'feminine');
+  if (masculine === feminine) return undefined;
+  return masculine ? 'masculine' : 'feminine';
+}
+
 /** The catalogue id a look records: `<id>@<revision>`. */
 export function catalogTag(catalog: FigureLookCatalog): string {
   return `${catalog.id}@${catalog.revision}`;
@@ -197,8 +218,24 @@ export function randomFigureLook(
     hairColor: '',
     facialHair: '',
   };
-  for (const choice of FIGURE_LOOK_PERSON_CHOICES)
-    person[choice] = drawOption(required(catalog, choice), s, steer, age).id;
+  // Under `unspecified` only the clothes are drawn alike: the person agrees with itself. Its
+  // steered choices lean the way the kept person parts do, or else the way the first leaning
+  // choice drawn does (body shape comes first), so a feminine-form body draws no beard.
+  const keptPerson = keep === undefined ? [] : personParts(keep.parts);
+  const keptChoices = new Set(
+    keep === undefined ? [] : keptOptions(keep.look, keptPerson).map(([id]) => id),
+  );
+  let lean: FigureLookSteer | undefined = steer;
+  if (steer === 'unspecified') {
+    const kept = keep === undefined ? undefined : keptSteer(catalog, keep.look, keptPerson);
+    lean = kept === 'unspecified' ? undefined : kept;
+  }
+  for (const choice of FIGURE_LOOK_PERSON_CHOICES) {
+    const category = required(catalog, choice);
+    const option = drawOption(category, s, lean ?? 'unspecified', age);
+    person[choice] = option.id;
+    if (lean === undefined && !keptChoices.has(choice)) lean = optionLean(category, option);
+  }
   for (const color of ['skin', 'hairColor', 'eyes'] as const)
     person[color] = drawSwatch(catalog, FIGURE_LOOK_PERSON_PALETTES[color], s, color, age).hex;
 

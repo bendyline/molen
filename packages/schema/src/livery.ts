@@ -19,10 +19,32 @@ export interface LiveryAnchor extends JsonObject {
   rotation: [number, number, number];
 }
 
+/** One flat-colored region of artwork: an outer ring and optional holes (even-odd fill). */
+export interface LiveryShape extends JsonObject {
+  color: string;
+  points: [number, number][];
+  /** Rings cut out of the shape, such as the counters of lettering. */
+  holes?: [number, number][][];
+}
+
 /** Original flat artwork, including font outlines; coordinates are 0..1, Y up. */
 export interface LiveryGraphic extends JsonObject {
   label?: string;
-  shapes: { color: string; points: [number, number][] }[];
+  shapes: LiveryShape[];
+}
+
+/** A half-space in a paint region's normalized bounds: points with normal·p >= offset. */
+export interface LiveryPlane extends JsonObject {
+  normal: [number, number, number];
+  offset: number;
+}
+
+/** A color painted over part of a region: where every plane holds. */
+export interface LiveryZone extends JsonObject {
+  color: string;
+  roughness?: number;
+  metalness?: number;
+  planes: LiveryPlane[];
 }
 
 export interface LiveryPaint extends JsonObject {
@@ -30,7 +52,15 @@ export interface LiveryPaint extends JsonObject {
   roughness?: number;
   metalness?: number;
   /** Deterministic, model-space camouflage, independent of authored UVs. */
-  camouflage?: { colors: string[]; scale: number; seed: number };
+  camouflage?: {
+    colors: string[];
+    scale: number;
+    seed: number;
+    /** Organic patches (default), angular splinters, or square digital pixels. */
+    style?: 'blotch' | 'splinter' | 'digital';
+  };
+  /** Colors painted over parts of the region, in order: two-tone splits, cheatlines, bands. */
+  zones?: LiveryZone[];
 }
 
 export interface LiveryVariant extends JsonObject {
@@ -43,7 +73,8 @@ export interface LiveryVariant extends JsonObject {
     references: { title: string; url: string }[];
   };
   paints: Record<string, LiveryPaint>;
-  markings?: { anchor: string; graphic: LiveryGraphic }[];
+  /** Artwork projected through anchors: inline, or the id of a shared `graphics` entry. */
+  markings?: { anchor: string; graphic: LiveryGraphic | string; flip?: boolean }[];
 }
 
 /** Shared by vehicles, aircraft, boats and ordinary glTF props. No simulation behavior. */
@@ -51,6 +82,8 @@ export interface LiveryData extends JsonObject {
   selected: string;
   slots: Record<string, LiverySlot>;
   anchors?: Record<string, LiveryAnchor>;
+  /** Artwork shared by several variants' markings, referenced by id. */
+  graphics?: Record<string, LiveryGraphic>;
   variants: LiveryVariant[];
 }
 
@@ -59,6 +92,35 @@ const color = z.string().regex(/^#[0-9a-fA-F]{6}$/);
 const vec3 = z.tuple([z.number(), z.number(), z.number()]);
 const fraction = z.number().min(0).max(1);
 const positive = z.number().positive().max(4);
+const point = z.tuple([fraction, fraction]);
+const graphicSchema = z
+  .strictObject({
+    label: z
+      .string()
+      .max(256)
+      .optional()
+      .describe('Optional descriptive label; rendered lettering belongs in the polygon artwork.'),
+    shapes: z
+      .array(
+        z.strictObject({
+          color: color.describe('Flat polygon color as an sRGB hex triplet.'),
+          points: z
+            .array(point)
+            .min(3)
+            .max(2048)
+            .describe('Polygon vertices in normalized 0–1 coordinates with positive Y upward.'),
+          holes: z
+            .array(z.array(point).min(3).max(2048))
+            .max(64)
+            .optional()
+            .describe('Rings cut out of the polygon (even-odd), such as lettering counters.'),
+        }),
+      )
+      .min(1)
+      .max(4096)
+      .describe('Original flat artwork polygons, painted in order.'),
+  })
+  .describe('Resolution-independent artwork rasterized for the surface projector.');
 export const liverySchema: z.ZodType<LiveryData> = z
   .strictObject({
     selected: name.describe('Selected variant id; patch only this field to change the livery.'),
@@ -94,6 +156,10 @@ export const liverySchema: z.ZodType<LiveryData> = z
       )
       .optional()
       .describe('Reusable marking projectors attached to model paint regions.'),
+    graphics: z
+      .record(name, graphicSchema)
+      .optional()
+      .describe('Artwork shared by several variants, referenced by id from their markings.'),
     variants: z
       .array(
         z.strictObject({
@@ -150,10 +216,41 @@ export const liverySchema: z.ZodType<LiveryData> = z
                       .min(0)
                       .max(4294967295)
                       .describe('Unsigned deterministic pattern seed.'),
+                    style: z
+                      .enum(['blotch', 'splinter', 'digital'])
+                      .optional()
+                      .describe('Organic patches (default), angular splinters or square pixels.'),
                   })
                   .optional()
                   .describe(
                     'Optional camouflage projected in model space without changing authored UVs.',
+                  ),
+                zones: z
+                  .array(
+                    z.strictObject({
+                      color: color.describe('Zone paint color as an sRGB hex triplet.'),
+                      roughness: fraction.optional().describe('Optional zone roughness.'),
+                      metalness: fraction.optional().describe('Optional zone metalness.'),
+                      planes: z
+                        .array(
+                          z.strictObject({
+                            normal: vec3.describe(
+                              'Plane normal in the region bounds normalized to 0–1 on each axis.',
+                            ),
+                            offset: z
+                              .number()
+                              .describe('The zone holds where normal·p is at least this value.'),
+                          }),
+                        )
+                        .min(1)
+                        .max(8)
+                        .describe('Half-spaces that all hold inside the zone.'),
+                    }),
+                  )
+                  .max(12)
+                  .optional()
+                  .describe(
+                    'Colors painted over parts of the region in order: two-tone splits, cheatlines, bands.',
                   ),
               }),
             )
@@ -165,35 +262,17 @@ export const liverySchema: z.ZodType<LiveryData> = z
               z.strictObject({
                 anchor: name.describe('Reusable model marking anchor.'),
                 graphic: z
-                  .strictObject({
-                    label: z
-                      .string()
-                      .max(256)
-                      .optional()
-                      .describe(
-                        'Optional descriptive label; rendered lettering belongs in the polygon artwork.',
-                      ),
-                    shapes: z
-                      .array(
-                        z.strictObject({
-                          color: color.describe('Flat polygon color as an sRGB hex triplet.'),
-                          points: z
-                            .array(z.tuple([fraction, fraction]))
-                            .min(3)
-                            .max(512)
-                            .describe(
-                              'Polygon vertices in normalized 0–1 coordinates with positive Y upward.',
-                            ),
-                        }),
-                      )
-                      .min(1)
-                      .max(4096)
-                      .describe('Original flat artwork polygons, painted in order.'),
-                  })
-                  .describe('Resolution-independent artwork rasterized for the surface projector.'),
+                  .union([graphicSchema, name])
+                  .describe('Inline artwork, or the id of an entry in the shared graphics.'),
+                flip: z
+                  .boolean()
+                  .optional()
+                  .describe(
+                    'Mirror the artwork left to right, for art that faces forward on both sides.',
+                  ),
               }),
             )
-            .max(32)
+            .max(64)
             .optional()
             .describe('Surface markings to project for this variant.'),
         }),
@@ -212,9 +291,15 @@ export const liverySchema: z.ZodType<LiveryData> = z
       for (const slot of Object.keys(variant.paints))
         if (!Object.hasOwn(data.slots, slot))
           issue(['variants', index, 'paints', slot], 'Unknown paint slot');
-      for (const [i, marking] of (variant.markings ?? []).entries())
+      for (const [i, marking] of (variant.markings ?? []).entries()) {
         if (!Object.hasOwn(data.anchors ?? {}, marking.anchor))
           issue(['variants', index, 'markings', i, 'anchor'], 'Unknown marking anchor');
+        if (
+          typeof marking.graphic === 'string' &&
+          !Object.hasOwn(data.graphics ?? {}, marking.graphic)
+        )
+          issue(['variants', index, 'markings', i, 'graphic'], 'Unknown shared graphic');
+      }
       if (variant.provenance.kind !== 'original' && variant.provenance.references.length === 0)
         issue(
           ['variants', index, 'provenance', 'references'],

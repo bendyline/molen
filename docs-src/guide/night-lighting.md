@@ -51,12 +51,25 @@ Bridges, tunnels and unpaved roads do not receive inferred block lighting. Expli
 control whether fixtures are generated; historic and unlit styles keep their own choices.
 
 Each surface tile batches illuminated lamp heads and soft pavement pools. Pools follow terrain
-height, fade with dusk and share the fixtures' distance culling. Earth hosts also use sixteen
-real warm point lights selected from visible street fixtures near the camera and the ground it
-looks toward. They illuminate building walls, parked cars, moving vehicles and other lit
-materials. The fixed pool keeps shader light counts stable as tiles stream. These lights do
-not cast additional shadows; walls do not occlude them. Distant lamps keep their batched glow
-and pavement pools beyond the real-light budget.
+height, fade with dusk and share the fixtures' distance culling. In Earth hosts every lamp on
+show within about 300 m of the camera (or 250 m of the ground it looks toward) also lights the
+world around it: pavement, building walls, parked and moving cars and anything else with a lit
+material, with the warm light and 42 m reach a street lamp's point light had. Lamps fade out
+smoothly between 210 and 300 m, so none switches on as the camera approaches; past that they
+keep their batched glow and pavement pools. From the air the lit lamps reach farther: 300 m plus
+the camera's height above the ground, up to 900 m, fewer where a city has more than 1,024 lamps
+in that reach. The light is diffuse only and casts no shadows;
+walls do not occlude it.
+
+The lamps do not become three lights. Three lights every lit pixel with every light in the scene,
+so sixteen street lamps and eight headlight beams as point and spot lights cost a 1440x900 view
+of a residential street 14 ms of GPU time and 5 ms of the main thread a frame, the whole price of
+night. And as only the nearest sixteen could be lit, each lamp a driver approached switched on in
+its turn, with the walls around it. Instead the renderer keeps a lamp field
+(`Renderer.lampField`, [graphics performance](graphics-performance.md)): one small float texture
+holding up to 1,024 lamps and a 48x48 grid over them, each cell listing the lamps (up to 16, the
+nearest) whose reach touches it. A lit pixel reads its cell and adds those lamps' light, typically
+a handful. Every lit shader carries the field from the start, so nightfall compiles nothing.
 
 Traffic lenses remain self-lit in both daytime and nighttime and keep their simulation-driven
 signal phases. After dark each lit lens also gets a soft glow in its own color, about a meter
@@ -67,14 +80,16 @@ lamps and headlights. Each glow (`surface:night-street-names`, `surface:night-ro
 draws its face mesh's own geometry, so it adds a draw call per tile, not memory; blank sign
 backs and edges are a separate `surface:sign-backs` mesh and stay dark. Mapped props that
 replace inferred fixtures still need their own model lighting metadata; arbitrary tagged model
-lamps currently emit without creating a point light.
+lamps currently glow without lighting their surroundings.
 
 ## Cars
 
 Active traffic and the driven car get white headlights and red tail lights, including when
 stopped at a signal. Lenses follow vehicle dimensions and the full chassis rotation, through
 proxy/model changes and floating-origin shifts. Braking brightens the rear lenses. Four nearby
-cars also receive a pair of forward, downward-aimed spotlights, with the driven car taking priority.
+cars also cast a pair of forward, downward-aimed beams, with the driven car taking priority.
+They are a spot light's cone and falloff (60°, 55 m), evaluated beside the street lamps in the
+lamp field rather than as three spot lights.
 Each beam starts at its headlight lens and softly lights the road immediately ahead of the car.
 Their beams illuminate pavement, walls and vehicles ahead. Parked, unoccupied cars keep their
 lamps off and receive light from their surroundings. Hidden/despawned traffic loses its lights.
@@ -108,10 +123,20 @@ Lower-level worldgen hosts can create `NightWindowLighting` from
 `@bendyline/molen-worldgen/client`, assign it to their material set's `nightWindows`, and pass it
 to `StructureModelLibrary` or `StructureLodStreamer` as `nightWindows`. Dispose the controller
 after its building/model objects; model eviction retains the shared emission material.
-Compose real spill and traffic lighting with `EarthNightLighting` from
-`@bendyline/molen-earth/client`. Construct it with `{ root, world, surface, sampleHeight }`,
-where `root` uses absolute simulation coordinates (normally the terrain stream object).
-Pass `vehicleHeights` from the ambient content catalog for matching traffic model heights.
-Call `update({ camera, direction, factor, drivenVehicleId })` each frame and dispose it before
-its root. `TerrainSurfaceRenderer.visitStreetLights` exposes only attached, visible source tiles.
-Both graphics backends use standard materials and lights, without shader injection.
+Compose street lamp spill and traffic lighting with `EarthNightLighting` from
+`@bendyline/molen-earth/client`. Construct it with
+`{ root, world, surface, sampleHeight, lampField }`, where `root` uses absolute simulation
+coordinates (normally the terrain stream object) and `lampField` is the renderer's
+(`viewer.renderer.lampField`); without it, lamps and beams light nothing beyond their own glow,
+pools and lenses. Pass `vehicleHeights` from the ambient content catalog for matching traffic
+model heights. Call `update({ camera, direction, factor, drivenVehicleId })` each frame and
+dispose it before its root. `TerrainSurfaceRenderer.visitStreetLights` exposes only attached,
+visible source tiles.
+
+The lamp field is the renderer's, for its lifetime: on WebGL a hook on three's lit shader chunks
+(the one cloud shadows use) adds it to every standard, physical, Lambert, Phong and toon material;
+on WebGPU a light node in the scene does. Any host can write to it: `setLamps(lamps, count,
+fadeTo)` with x, y, z and strength per lamp measured from an anchor, `setView({ frame, anchor,
+eye, focus, intensity })` each frame, `setBeams(beams)` after it, and `clear()`. `frame` is the
+object the positions are in; the renderer places the anchor from its matrix just before drawing,
+so a floating-origin shift never leaves the lamps a frame behind.

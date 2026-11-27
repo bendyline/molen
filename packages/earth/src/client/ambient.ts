@@ -49,7 +49,10 @@ export interface EarthAmbientSettings {
   pedestrians?: boolean;
   rail?: boolean;
   aircraft?: boolean;
-  /** Ambient vessels on mapped ferry routes (default true). */
+  /**
+   * Ambient vessels on mapped ferry routes, boats moored at mapped docks and marinas, and boats
+   * under way on open water (default true).
+   */
   boats?: boolean;
   /** Habitat and range constrained animals when the wildlife content pack is loaded. */
   wildlife?: boolean;
@@ -75,6 +78,12 @@ export interface EarthAmbientBudget {
   posesPerFrame: number;
   /** Wildlife drawn at once, one skinned draw each (default 16, the Balanced tier's). */
   animals?: number;
+  /** Boats moored at docks drawn at once, most as low proxies (harbors.ts; default 900). */
+  mooredBoats?: number;
+  /** Of those, the nearest drawn as their model (default 96). */
+  mooredBoatModels?: number;
+  /** Boats under way on open water at once (default 8). */
+  cruisingBoats?: number;
 }
 
 export interface EarthAmbientStats {

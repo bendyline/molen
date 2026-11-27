@@ -10,6 +10,7 @@ import {
   threeWheelerProxyGeometry,
   twoWheelerProxyGeometry,
   vehicleProxyGeometry,
+  wheelTravelSignals,
 } from '../src/vehicles';
 
 const SPEC: VehicleSpec = {
@@ -215,6 +216,69 @@ describe('vehicle visuals', () => {
     car.quaternion.identity();
     visual.update(0, 0, { bodyRoll: 0, bodyPitch: 0 });
     for (const y of heights()) expect(y).toBeCloseTo(SPEC.wheelRadius, 12);
+    visual.dispose();
+  });
+
+  it('draws each wheel at its own strut travel where the host reports it', () => {
+    const visual = createVehicleVisual(model(), DATA);
+    const height = (name: string): number => {
+      visual.object.updateMatrixWorld(true);
+      const wheel = visual.object.getObjectByName(name);
+      if (!wheel) throw new Error(`No ${name}`);
+      return wheel.getWorldPosition(new THREE.Vector3()).y - SPEC.wheelRadius;
+    };
+    // Front left over a bump, front right at rest, rear left in a pothole, rear right hanging.
+    const travel = [0.06, 0, -0.04, -0.09];
+    expect(wheelTravelSignals(travel)).toEqual({
+      'wheelTravel.0': 0.06,
+      'wheelTravel.1': 0,
+      'wheelTravel.2': -0.04,
+      'wheelTravel.3': -0.09,
+    });
+    // The lean signals no longer place the wheels: the travel is the whole answer.
+    visual.update(0, 0, { bodyRoll: 0.05, bodyPitch: -0.03, ...wheelTravelSignals(travel) });
+    expect(height('front-left')).toBeCloseTo(0.06, 9);
+    expect(height('front-right')).toBeCloseTo(0, 9);
+    expect(height('rear-left')).toBeCloseTo(-0.04, 9);
+    expect(height('rear-right')).toBeCloseTo(-0.09, 9);
+    // A reading no strut could give does not throw a wheel off the car.
+    visual.update(0, 0, wheelTravelSignals([5, 0, 0, -5]));
+    expect(height('front-left')).toBeLessThan(SPEC.wheelRadius);
+    expect(height('rear-right')).toBeGreaterThan(-SPEC.wheelRadius);
+    // A state without travel (a boat, a cycle) passes nothing, and the wheels are as authored.
+    expect(wheelTravelSignals(undefined)).toEqual({});
+    expect(wheelTravelSignals([0, 0, 0])).toEqual({});
+    visual.update(0, 0);
+    for (const name of DATA.visual.wheelNodes) expect(height(name)).toBeCloseTo(0, 12);
+    visual.dispose();
+  });
+
+  it('gives a wheel that stands between the corners the travel of the struts beside it', () => {
+    // Three axles: the middle one rides halfway between the front and rear struts on its side.
+    const source = model();
+    for (const [name, x] of [
+      ['middle-right', -SPEC.wheelTrack / 2],
+      ['middle-left', SPEC.wheelTrack / 2],
+    ] as const) {
+      const pivot = new THREE.Group();
+      pivot.name = name;
+      pivot.position.set(x, SPEC.wheelRadius, 0);
+      pivot.add(new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.2)));
+      source.add(pivot);
+    }
+    const visual = createVehicleVisual(source, {
+      ...DATA,
+      visual: {
+        ...DATA.visual,
+        wheelNodes: [...DATA.visual.wheelNodes, 'middle-right', 'middle-left'],
+      },
+    });
+    visual.update(0, 0, wheelTravelSignals([0.08, 0.02, 0.04, -0.02]));
+    visual.object.updateMatrixWorld(true);
+    const lift = (name: string): number =>
+      (visual.object.getObjectByName(name)?.position.y ?? 0) - SPEC.wheelRadius;
+    expect(lift('middle-left')).toBeCloseTo(0.06, 9);
+    expect(lift('middle-right')).toBeCloseTo(0, 9);
     visual.dispose();
   });
 

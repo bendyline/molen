@@ -1,5 +1,35 @@
-import type { InputProfile } from '@bendyline/molen-schema';
+import type { GamepadAxisBinding, InputDevice, InputProfile } from '@bendyline/molen-schema';
 import { NAVIGATION_ACTIONS as A, type NavigationInputSource } from './input-source';
+
+const LOOK_AXES: ReadonlyArray<[axis: number, action: string, mode: 'negative' | 'positive']> = [
+  [2, A.lookLeft, 'negative'],
+  [2, A.lookRight, 'positive'],
+  [3, A.lookUp, 'negative'],
+  [3, A.lookDown, 'positive'],
+];
+
+/**
+ * Settings saved before the default look axes needed a standard-layout gamepad hold them for any
+ * controller, where a flight stick's throttle on axis 3 turned the view. Give an untouched
+ * default look binding the selector the defaults carry now.
+ */
+function upgradeSavedAxis(binding: GamepadAxisBinding): GamepadAxisBinding {
+  const fields = Object.keys(binding);
+  const untouched =
+    fields.length === 3 &&
+    LOOK_AXES.some(
+      ([axis, action, mode]) =>
+        binding.axis === axis && binding.action === action && binding.mode === mode,
+    );
+  return untouched ? { ...binding, device: { mapping: 'standard' } } : binding;
+}
+
+function describeDevice(device: InputDevice | undefined): string {
+  if (device?.id !== undefined) return device.id;
+  if (device?.mapping === 'standard') return 'standard gamepads';
+  if (device?.mapping !== undefined) return 'non-standard controllers';
+  return 'any controller';
+}
 
 export interface NavigationControlsOptions {
   /** Button destination. The editor opens in a modal dialog. */
@@ -39,7 +69,9 @@ export function createNavigationControls(
               const { axes, buttons } = stored as InputProfile;
               map.defineProfile(name, {
                 bindings: map.getProfile(name).bindings,
-                ...(axes !== undefined ? { axes } : {}),
+                ...(axes !== undefined
+                  ? { axes: Array.isArray(axes) ? axes.map(upgradeSavedAxis) : axes }
+                  : {}),
                 ...(buttons !== undefined ? { buttons } : {}),
               });
             } catch {
@@ -135,7 +167,7 @@ export function createNavigationControls(
         const row = doc.createElement('p');
         row.style.cssText = 'font-size:12px;overflow-wrap:anywhere';
         row.append(
-          `${'axis' in binding ? `Axis ${binding.axis} (${binding.mode ?? 'signed'}${binding.invert ? ', reversed' : ''})` : `Button ${binding.button}`} → ${binding.action.replace('nav-', '')} · ${binding.device?.id ?? 'any controller'} `,
+          `${'axis' in binding ? `Axis ${binding.axis} (${binding.mode ?? 'signed'}${binding.invert ? ', reversed' : ''})` : `Button ${binding.button}`} → ${binding.action.replace('nav-', '')} · ${describeDevice(binding.device)} `,
         );
         button('Remove', row, () => {
           const next = map.getProfile(profile.value);
@@ -147,12 +179,13 @@ export function createNavigationControls(
       });
     }
   };
-  const sameDevice = (binding: { device?: { id?: string; index?: number } }): boolean => {
+  const sameDevice = (binding: { device?: InputDevice }): boolean => {
     const pad = currentDevice();
     return (
       !!pad &&
       (binding.device?.id === undefined || binding.device.id === pad.id) &&
-      (binding.device?.index === undefined || binding.device.index === pad.index)
+      (binding.device?.index === undefined || binding.device.index === pad.index) &&
+      (binding.device?.mapping === undefined || binding.device.mapping === pad.mapping)
     );
   };
   const bindAxis = button('Assign axis', dialog, () => {

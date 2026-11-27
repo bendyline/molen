@@ -4,7 +4,13 @@ import { applyContactImpulse, type ContactBody, contactPoint, separate } from '.
 import { angularAcceleration, type Inertia, turnBody } from './dynamics/rigid-body';
 import { SLIP_REFERENCE_SPEED } from './dynamics/wheel';
 import { type Quat, quatConjugate, quatRotateVec3, type Vec3 } from './math3d';
-import { strutLoads, type WheelControls, type WheelsGeometry, wheelForces } from './vehicle-wheels';
+import {
+  strutLoads,
+  strutReach,
+  type WheelControls,
+  type WheelsGeometry,
+  wheelForces,
+} from './vehicle-wheels';
 
 /**
  * A car as a free rigid body: six degrees of freedom, standing on whatever of its four wheels
@@ -59,6 +65,11 @@ export interface CarBodyStep {
   wheelsDown: number;
   /** Wheels that met the ground this substep, with the speed they met it at, m/s. */
   landed: { wheel: number; speed: number }[];
+  /**
+   * How far the ground holds each wheel up its strut from the static ride height as the substep
+   * ends, m; a wheel that hangs clear is at the strut's full reach below it.
+   */
+  travel: Four;
   /** 0–1: the worst any loaded tire is past its grip. */
   skid: number;
   /** 0–1: how hard traction or stability control is intervening. */
@@ -120,6 +131,8 @@ export function stepCarBody(body: CarBody, input: CarBodyInput): CarBodyStep {
   const up = quatRotateVec3(rot, [0, 1, 0]);
   const left = quatRotateVec3(rot, [1, 0, 0]);
   const arms = wheelArms(geometry);
+  // A spring's free length is its static deflection: past that the wheel hangs.
+  const reach = strutReach(spec);
   const points: Vec3[] = [];
   const velocities: Vec3[] = [];
   const normals: Vec3[] = [];
@@ -139,6 +152,7 @@ export function stepCarBody(body: CarBody, input: CarBodyInput): CarBodyStep {
         upright: up[1],
         wheelsDown: 0,
         landed: [],
+        travel: [-reach, -reach, -reach, -reach],
         skid: 0,
         assist: 0,
         drivenSpeed: 0,
@@ -168,9 +182,7 @@ export function stepCarBody(body: CarBody, input: CarBodyInput): CarBodyStep {
   const struts = upright > STRUT_UPRIGHT;
 
   // Struts: how far the ground has pushed each wheel up its travel from the static ride
-  // height. A spring's free length is its static deflection: past that the wheel hangs.
-  const omega = m.TAU * (spec.suspensionFrequency ?? 1.5);
-  const reach = G / (omega * omega);
+  // height.
   const compression: Four = [-reach, -reach, -reach, -reach];
   const rate: Four = [0, 0, 0, 0];
   const touching: [boolean, boolean, boolean, boolean] = [false, false, false, false];
@@ -316,11 +328,16 @@ export function stepCarBody(body: CarBody, input: CarBodyInput): CarBodyStep {
   body.load = load;
   const frontSpeed = ((tires.spin[0] + tires.spin[1]) / 2) * spec.wheelRadius;
   const rearSpeed = ((tires.spin[2] + tires.spin[3]) / 2) * spec.wheelRadius;
+  // Where the substep leaves each strut: what it was pressed to, carried on at its own rate.
+  const travel: Four = [-reach, -reach, -reach, -reach];
+  for (let i = 0; i < 4; i++)
+    if (touching[i]) travel[i] = m.max(-reach, (compression[i] ?? 0) + (rate[i] ?? 0) * h);
   return {
     ok: true,
     upright,
     wheelsDown,
     landed,
+    travel,
     skid,
     assist: tires.assist,
     drivenSpeed: controls.frontDrive * frontSpeed + (1 - controls.frontDrive) * rearSpeed,

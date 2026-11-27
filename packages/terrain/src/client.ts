@@ -176,6 +176,7 @@ export {
   type TerrainPyramidView,
   type TerrainSurfaceColor,
   terrainPyramidBudgetForQuality,
+  terrainPyramidStreamRoot,
 } from './pyramid-stream';
 export { placeTerrainYardCars, type TerrainYardCarInput } from './rail-cars';
 export {
@@ -289,6 +290,8 @@ export {
   sampleTerrainTunnel,
   setTerrainSurfacePassages,
   type TerrainTunnelClearance,
+  type TerrainTunnelObjectOptions,
+  type TerrainTunnelOptions,
   withTerrainTunnels,
 } from './tunnels';
 
@@ -421,4 +424,4 @@ export {
   updateTerrainStreetLights,
 } from './surface-lights';
 export type { SurfaceSign } from './surface-sign-mesh';
-export { taggedTerrainObjects, tagTerrainObject } from './tagged-objects';
+export { taggedTerrainObjects, tagTerrainObject, terrainRootOffset } from './tagged-objects';

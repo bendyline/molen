@@ -4,6 +4,7 @@ import { mkdir, readdir, readFile, rename, rm, writeFile } from 'node:fs/promise
 import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { liverySchema, validate } from '@bendyline/molen-schema';
+import { stringifyWithCompactOutlines } from './livery-json.mjs';
 
 const packageRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 // The entities content (a Molen project: types, assets, scenes, source bundles) lives outside the
@@ -20,18 +21,21 @@ for (const [id, livery] of Object.entries(liveries)) {
 const biome = resolve(packageRoot, 'node_modules/@biomejs/biome/bin/biome');
 
 function formatJson(value, path) {
-  const formatted = execFileSync(
-    process.execPath,
-    [biome, 'format', '--files-max-size=16777216', '--stdin-file-path', path],
-    {
-      input: JSON.stringify(value, null, 2),
-      encoding: 'utf8',
-      maxBuffer: 16 * 1024 * 1024,
-    },
-  );
-  // Biome can skip oversized/ignored stdin with exit code 0. Never replace a catalog with
-  // empty output; preserve the previous file and surface an actionable generation failure.
-  if (!formatted.trim()) throw new Error(`Formatter produced no JSON for ${path}`);
+  // Livery shape outlines stay on one line each (livery-json.mjs); Biome formats the rest. The
+  // aircraft liveries' outlines would otherwise push the aircraft catalog past Biome's limit.
+  // Biome measures the expanded input (JSON.stringify with indentation, about 1.7x the formatted
+  // file), so its stdin limit is higher than biome.json's 16 MiB limit for files on disk.
+  const formatted = stringifyWithCompactOutlines(value, (input) => {
+    const text = execFileSync(
+      process.execPath,
+      [biome, 'format', `--files-max-size=${64 * 1024 * 1024}`, '--stdin-file-path', path],
+      { input, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 },
+    );
+    // Biome can skip oversized/ignored stdin with exit code 0. Never replace a catalog with
+    // empty output; preserve the previous file and surface an actionable generation failure.
+    if (!text.trim()) throw new Error(`Formatter produced no JSON for ${path}`);
+    return text;
+  });
   JSON.parse(formatted);
   return formatted;
 }

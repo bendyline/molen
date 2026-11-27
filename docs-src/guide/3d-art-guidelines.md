@@ -22,6 +22,18 @@ For all vehicle modeling, aim to verify both exterior and interior proportions w
 construction, record independent landmark checks, and document unavailable views and uncertain
 reconstructions. Surface detail does not compensate for incorrect body or cabin geometry.
 
+Lettering on a model is real type: the detail kit's `text()` outlines the repository's OFL faces
+(Overpass, Overpass Mono, Jost), never hand-built strokes or dot glyphs. Keep the model itself
+operator-neutral: plates, generic stencils (NO STEP, RESCUE, warning arrows) and Bendy house
+lettering belong in the geometry; a national title, unit marking or registration belongs in a
+[livery](liveries.md), so another operator's scheme never shows through it. Every aircraft
+carries three or more liveries modeled on real operators' photographed schemes. Military
+schemes show real national insignia, titles, tail codes, serials and unit art, redrawn as
+original vector art. Civil schemes (airlines, charter, police, ambulance, corporate) show the
+operator's real colors, cheatlines and tail patterns but no name, logo or wordmark, and carry
+fictional registrations in the national format. No trademarked character or mascot appears on
+any livery.
+
 ## Recognition and shape
 
 Work from large to small: footprint and height, roof and massing, entrance and facade rhythm,

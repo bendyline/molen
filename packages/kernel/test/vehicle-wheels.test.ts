@@ -10,6 +10,7 @@ import {
   tirePeakAngle,
   tirePeakRatio,
 } from '../src/dynamics/wheel';
+import { strutReach } from '../src/vehicle-wheels';
 import {
   initialVehicleState,
   stepVehicle,
@@ -429,5 +430,306 @@ describe('a car on four wheels', () => {
     expect(end.state.wheelSpin).toBeUndefined();
     expect(end.state.wheelLoad).toBeUndefined();
     expect(end.state.speed).toBeGreaterThan(8);
+  });
+});
+
+describe('each wheel on its own road', () => {
+  const weight = sedan.mass * G;
+  const reach = strutReach(sedan);
+  const stop = sedan.wheels?.travel ?? 0.09;
+  const holding = (speed: number) => (state: VehicleStateData) => ({
+    throttle: state.speed < speed ? 0.3 : 0,
+    steering: 0,
+    brake: false,
+  });
+  /** A smooth hump `height` high and `length` long, centred on `at`. */
+  const hump = (d: number, height: number, length: number): number =>
+    Math.abs(d) < length / 2 ? height * 0.5 * (1 + Math.cos((2 * Math.PI * d) / length)) : 0;
+  const travels = (state: VehicleStateData): [number, number, number, number] => {
+    if (!state.wheelTravel) throw new Error('No wheel travel');
+    return state.wheelTravel;
+  };
+  /** The most each strut closed and opened, and the most the body rose, pitched and rolled. */
+  const cross = (
+    env: VehicleEnvironment,
+    speed: number,
+    seconds: number,
+    start = rolling(speed),
+  ) => {
+    const closed = [0, 0, 0, 0];
+    const opened = [0, 0, 0, 0];
+    let rise = 0;
+    let pitch = 0;
+    let roll = 0;
+    let free = 0;
+    let heaviest = 0;
+    const base = start.transform.pos[1];
+    const end = drive(seconds, holding(speed), start, sedan, env, (result) => {
+      const state = result.state;
+      if (state.freeBody) free++;
+      for (const [i, travel] of travels(state).entries()) {
+        closed[i] = Math.max(closed[i] ?? 0, travel);
+        opened[i] = Math.min(opened[i] ?? 0, travel);
+      }
+      rise = Math.max(rise, Math.abs(result.transform.pos[1] - base));
+      pitch = Math.max(pitch, Math.abs(state.pitch + (state.bodyPitch ?? 0)));
+      roll = Math.max(roll, Math.abs(state.roll + (state.bodyRoll ?? 0)));
+      heaviest = Math.max(heaviest, ...loads(state));
+    });
+    return { closed, opened, rise, pitch, roll, free, heaviest, end };
+  };
+
+  it('reports no travel standing level, and the dive of its nose as travel under braking', () => {
+    const standing = drive(2, () => ({ throttle: 0, steering: 0, brake: true }), rolling(0)).state;
+    for (const travel of travels(standing)) expect(Math.abs(travel)).toBeLessThan(1e-4);
+    // A level road is left unsaid.
+    expect(standing.wheelRoad).toBeUndefined();
+    expect(standing.wheelRoadRate).toBeUndefined();
+    const braking = drive(1, () => ({ throttle: 0, steering: 0, brake: true }), rolling(25)).state;
+    const [fl, fr, rl, rr] = travels(braking);
+    expect(fl).toBeGreaterThan(0.01);
+    expect(fl).toBeCloseTo(fr, 6);
+    expect(rl).toBeLessThan(-0.01);
+    expect(rl).toBeCloseTo(rr, 6);
+  });
+
+  it('takes a bump under one wheel on that wheel: its strut closes and the body barely moves', () => {
+    // Six centimeters of hump, 1.2 m long, under the left wheels only.
+    const env: VehicleEnvironment = {
+      groundHeight: (x, z) => (x > 0.3 ? hump(z - 20, 0.06, 1.2) : 0),
+    };
+    const run = cross(env, 8, 5);
+    const [fl, fr, rl, rr] = run.closed as [number, number, number, number];
+    // Each left strut takes most of the hump as its wheel goes over, the right ones almost none.
+    expect(fl).toBeGreaterThan(0.035);
+    expect(rl).toBeGreaterThan(0.035);
+    expect(fr).toBeLessThan(0.02);
+    expect(rr).toBeLessThan(0.02);
+    // The body rises a fraction of what the wheel did and leans a degree or so.
+    expect(run.rise).toBeLessThan(0.02);
+    expect(run.roll).toBeGreaterThan(0.004);
+    expect(run.roll).toBeLessThan(0.03);
+    expect(run.free).toBe(0);
+    // And it is gone again: level, at rest on its springs, its weight on its wheels.
+    for (const travel of travels(run.end.state)) expect(Math.abs(travel)).toBeLessThan(0.004);
+    expect(loads(run.end.state).reduce((sum, load) => sum + load, 0)).toBeCloseTo(weight, -3);
+    expect(run.end.transform.pos[2]).toBeGreaterThan(35);
+  });
+
+  it('rides a speed bump on its front axle and then its rear', () => {
+    const env: VehicleEnvironment = { groundHeight: (_x, z) => hump(z - 20, 0.08, 2) };
+    let frontAt = 0;
+    let rearAt = 0;
+    let front = 0;
+    let rear = 0;
+    drive(5, holding(6), rolling(6), sedan, env, (result, time) => {
+      const [fl, , rl] = travels(result.state);
+      if (fl > front) {
+        front = fl;
+        frontAt = time;
+      }
+      if (rl > rear) {
+        rear = rl;
+        rearAt = time;
+      }
+    });
+    // A bump two meters long lifts the whole car as well as closing its struts.
+    expect(front).toBeGreaterThan(0.02);
+    expect(rear).toBeGreaterThan(0.02);
+    expect(front).toBeLessThan(0.08);
+    // The rear axle meets it a wheelbase later.
+    expect(rearAt - frontAt).toBeGreaterThan((0.7 * sedan.wheelbase) / 6);
+    expect(rearAt - frontAt).toBeLessThan((1.4 * sedan.wheelbase) / 6);
+    // The two sides are the same road, and stay the same.
+    const run = cross(env, 6, 5);
+    expect(run.roll).toBeLessThan(1e-6);
+    // The body goes over about half the bump's height, a little late and without the jolt.
+    expect(run.rise).toBeGreaterThan(0.02);
+    expect(run.rise).toBeLessThan(0.08);
+    expect(run.free).toBe(0);
+  });
+
+  it('drops a wheel into a pothole on its strut, and hangs it over a hole too deep to reach', () => {
+    const shallow: VehicleEnvironment = {
+      groundHeight: (x, z) => (x < -0.3 ? -hump(z - 20, 0.05, 1) : 0),
+    };
+    const run = cross(shallow, 8, 5);
+    // The right wheels go down into it; the body stays up on the other three.
+    expect(run.opened[1]).toBeLessThan(-0.025);
+    expect(run.opened[3]).toBeLessThan(-0.025);
+    expect(run.opened[0]).toBeGreaterThan(-0.02);
+    expect(run.rise).toBeLessThan(0.015);
+    // A hole deeper than the strut is long leaves the wheel hanging at the end of it, unloaded.
+    const deep: VehicleEnvironment = {
+      groundHeight: (x, z) => (x < -0.3 && Math.abs(z - 20) < 0.5 ? -0.5 : 0),
+    };
+    let hung = false;
+    const over = drive(5, holding(12), rolling(12), sedan, deep, (result) => {
+      const travel = travels(result.state);
+      if (travel[1] === -reach && loads(result.state)[1] === 0) hung = true;
+      for (const value of travel) expect(value).toBeGreaterThanOrEqual(-reach);
+    });
+    expect(hung).toBe(true);
+    expect(over.state.freeBody).toBeUndefined();
+    expect(over.transform.pos[2]).toBeGreaterThan(40);
+  });
+
+  it('stands on a twisted road with every wheel on it', () => {
+    // The front left wheel is parked on a 6 cm block.
+    const env: VehicleEnvironment = {
+      groundHeight: (x, z) => (x > 0.3 && z > 0.5 ? 0.06 : 0),
+    };
+    const start = rolling(0);
+    start.transform.pos[1] = 0.015;
+    const parked = drive(4, () => ({ throttle: 0, steering: 0, brake: true }), start, sedan, env);
+    const [fl, fr, rl, rr] = travels(parked.state);
+    // The block closes its own strut and the one diagonally across, and opens the other two.
+    expect(fl).toBeGreaterThan(0.005);
+    expect(rr).toBeGreaterThan(0.005);
+    expect(fr).toBeLessThan(-0.005);
+    expect(rl).toBeLessThan(-0.005);
+    // What the road is twisted by is all in the struts: together they make up the block.
+    expect(fl - fr - rl + rr).toBeCloseTo(0.06, 2);
+    expect(loads(parked.state).reduce((sum, load) => sum + load, 0)).toBeCloseTo(weight, -2);
+    // The plane it stands on is tipped by the block; the road's twist is what is left over.
+    const twist = parked.state.wheelRoad ?? [0, 0, 0, 0];
+    expect(twist[0]).toBeCloseTo(0.015, 3);
+    expect(twist[1]).toBeCloseTo(-0.015, 3);
+    expect(parked.state.speed).toBe(0);
+  });
+
+  it('climbs and descends a steady grade at its ride height', () => {
+    for (const grade of [0.1, -0.1]) {
+      const env: VehicleEnvironment = { groundHeight: (_x, z) => z * grade };
+      const level = drive(4, holding(20), rolling(20)).state;
+      const start = rolling(20);
+      start.state.pitch = -Math.atan(grade);
+      start.transform.rot = [
+        Math.sin(-Math.atan(grade) / 2),
+        0,
+        0,
+        Math.cos(-Math.atan(grade) / 2),
+      ];
+      const climbing = drive(4, holding(20), start, sedan, env);
+      // The road rises under it at two meters a second, and the dampers do not feel it: the
+      // struts sit where they do on the level, but for the weight the slope moves aft or forward.
+      const flatTravel = travels(level);
+      for (const [i, travel] of travels(climbing.state).entries())
+        expect(Math.abs(travel - (flatTravel[i] ?? 0))).toBeLessThan(0.012);
+      expect(Math.abs(climbing.state.bodyHeave ?? 1)).toBeLessThan(0.01);
+      expect(climbing.state.freeBody).toBeUndefined();
+      // Its height is the road's.
+      expect(climbing.transform.pos[1]).toBeCloseTo(climbing.transform.pos[2] * grade, 1);
+    }
+  });
+
+  it('turns on a slope without the slope turning it over its springs', () => {
+    // A circle on a hillside: the slope swings from ahead of the car to beside it and back.
+    const lean = (env: VehicleEnvironment, y: number) => {
+      let most = 0;
+      const start = rolling(8);
+      start.transform.pos[1] = y;
+      drive(
+        12,
+        (state) => ({ throttle: state.speed < 8 ? 0.4 : 0.05, steering: 0.35, brake: false }),
+        start,
+        sedan,
+        env,
+        (result, time) => {
+          if (time > 2)
+            most = Math.max(
+              most,
+              Math.abs(result.state.bodyRoll ?? 0) + Math.abs(result.state.bodyPitch ?? 0),
+            );
+          expect(result.state.freeBody).toBeUndefined();
+        },
+      );
+      return most;
+    };
+    const level = lean(flat, 0);
+    const hillside = lean({ groundHeight: (x, z) => 0.12 * x + 0.05 * z }, 0);
+    // On the hill the body leans on its springs as it does on the level, and a little more
+    // where it runs faster downhill and where the slope pulls it sideways: never by the slope
+    // itself (0.13 rad), which the plane it is solved in carries round with the car.
+    expect(level).toBeGreaterThan(0.005);
+    expect(hillside).toBeGreaterThan(level);
+    expect(hillside).toBeLessThan(level + 0.04);
+  });
+
+  it('is carried by the road once a strut is closed solid, and opens it again slowly', () => {
+    // The foot of a 17 degree ramp, met at 25 m/s: far more than the struts can take up.
+    const env: VehicleEnvironment = {
+      groundHeight: (_x, z) => (z > 30 ? (z - 30) * 0.3 : 0),
+    };
+    let most = 0;
+    let spent = false;
+    let free = 0;
+    const end = drive(2.5, holding(25), rolling(25), sedan, env, (result) => {
+      most = Math.max(most, ...travels(result.state));
+      if (result.state.wheelSpent) spent = true;
+      if (result.state.freeBody) free++;
+    });
+    // No strut closes past its stop, however hard the road comes up.
+    expect(most).toBeGreaterThan(stop);
+    expect(most).toBeLessThanOrEqual(1.5 * stop + 1e-4);
+    expect(spent).toBe(true);
+    // It is still a car on that road, climbing it, at its ride height again.
+    expect(free).toBe(0);
+    expect(end.state.wheelSpent).toBeUndefined();
+    expect(end.state.speed).toBeGreaterThan(15);
+    expect(end.transform.pos[1]).toBeCloseTo((end.transform.pos[2] - 30) * 0.3, 0);
+    expect(Math.abs(end.state.bodyHeave ?? 1)).toBeLessThan(0.02);
+    expect(end.state.pitch + (end.state.bodyPitch ?? 0)).toBeCloseTo(-Math.atan(0.3), 1);
+  });
+
+  it('hangs its wheels at the end of their struts in the air, and lands on them', () => {
+    const start = rolling(10);
+    start.transform.pos[1] = 0.8;
+    start.state.grounded = false;
+    let hanging = 0;
+    let closed = 0;
+    const landed = drive(
+      3,
+      () => ({ throttle: 0, steering: 0, brake: false }),
+      start,
+      sedan,
+      flat,
+      (r) => {
+        const travel = travels(r.state);
+        if (r.state.freeBody && !r.state.grounded) {
+          hanging++;
+          expect(travel).toEqual([-reach, -reach, -reach, -reach]);
+        }
+        closed = Math.max(closed, ...travel);
+      },
+    );
+    expect(hanging).toBeGreaterThan(10);
+    expect(closed).toBeGreaterThan(0.05);
+    for (const travel of travels(landed.state)) expect(Math.abs(travel)).toBeLessThan(0.01);
+  });
+
+  it('comes out the same at 30, 60 and 120 steps a second', () => {
+    const env: VehicleEnvironment = {
+      groundHeight: (x, z) => (x > 0.3 ? hump(z - 20, 0.06, 1.2) : 0),
+    };
+    // Where each strut is with the front left wheel on the crest, 2.3 s in.
+    const onCrest = (hz: number): [number, number, number, number] => {
+      let result = rolling(8);
+      for (let tick = 0; tick < Math.round(2.3 * hz); tick++)
+        result = stepVehicle(
+          result.transform,
+          result.state,
+          holding(8)(result.state),
+          sedan,
+          1 / hz,
+          env,
+        );
+      return travels(result.state);
+    };
+    const reference = onCrest(60);
+    expect(reference[0]).toBeGreaterThan(0.02);
+    for (const hz of [30, 120])
+      for (const [i, travel] of onCrest(hz).entries())
+        expect(Math.abs(travel - (reference[i] ?? 0))).toBeLessThan(0.002);
   });
 });

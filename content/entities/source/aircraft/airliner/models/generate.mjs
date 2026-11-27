@@ -264,8 +264,21 @@ export const airliner = {
     ],
   },
   gear: {
-    nose: { u: 3.95, r: 0.38, w: 0.21, spread: 0.44, top: 2.3, strut: 0.08 },
-    main: { u: 18.3, x: 3.2, pivotX: 3.9, r: 0.55, w: 0.38, spread: 0.76, top: 2.9, strut: 0.12 },
+    // Pivots, rake and fold angles put the stowed legs and wheels inside the nose, the wing and
+    // the wing-body fairing; before, stowed tyres stood out of the nose and above the wing root.
+    nose: { u: 3.95, r: 0.38, w: 0.21, spread: 0.44, top: 2.5, strut: 0.08, retract: 1.7 },
+    main: {
+      u: 18.3,
+      x: 3.2,
+      pivotX: 3.2,
+      r: 0.55,
+      w: 0.38,
+      spread: 0.76,
+      top: 2.9,
+      hinge: 0.6,
+      retract: 1.45,
+      strut: 0.12,
+    },
   },
 };
 
@@ -787,10 +800,10 @@ function flightDeck(body, D) {
   );
   d.finish();
   // Exterior fittings are their own batch, so the cockpit finishes and lettering applied to the
-  // deck (entity.types interior nodes) leave the livery title and skin fittings alone.
+  // deck (entity.types interior nodes) leave the skin fittings alone. Operator titles are livery
+  // markings (content/entities/source/liveries.json), so other operators' schemes carry none.
   const e = detailKit(body, 'airliner-exterior-detail');
   for (const side of [-1, 1]) {
-    e.text('BENDY', [side * 1.957, 1.72, zOf(9.6)], 0.5, (side * Math.PI) / 2, D.livery);
     for (const u of [5.45, 32.2]) {
       const [x, y] = M.point(u, M.angle(u, 2.62), side, 0.02);
       e.box([0.04, 0.06, 0.19], [x, y, zOf(u)], e.metal);
@@ -801,7 +814,15 @@ function flightDeck(body, D) {
       return [x, h, zOf(u)];
     };
     e.rod(skin(2.03, 2.31, 0.03), skin(1.98, 2.37, 0.03), 0.01, e.dark);
-    e.rod(skin(1.98, 2.37, 0.03), skin(1.74, 2.38, 0.03), 0.007, e.dark);
+    // The blade follows the nose in short runs: one straight rod across this curvature cut in
+    // under the skin and showed inside the deck, above the glareshield.
+    for (let k = 0; k < 4; k++)
+      e.rod(
+        skin(1.98 - k * 0.06, 2.37 + k * 0.0025, 0.03),
+        skin(1.92 - k * 0.06, 2.3725 + k * 0.0025, 0.03),
+        0.007,
+        e.dark,
+      );
     // Pitot masts forward of the door.
     e.rod(skin(2.7, 1.75, 0), skin(2.5, 1.75, 0.13), 0.012, e.metal);
     e.box([0.08, 0.08, 0.2], [side * 17.86, wingH(17.8), zOf(22.25)], side > 0 ? e.red : e.green);
@@ -841,6 +862,8 @@ function build() {
     'gear-0': 'gear-nose',
     'gear-1': 'gear-left',
     'gear-2': 'gear-right',
+    'gear-1-side-stay': 'gear-left-side-stay',
+    'gear-2-side-stay': 'gear-right-side-stay',
     'fan-1': 'fan-left',
     'fan-2': 'fan-right',
     'engine-1': 'engine-left',

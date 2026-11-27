@@ -47,7 +47,8 @@ function copyProfile(profile: InputProfile): InputProfile {
 function matches(device: InputDevice | undefined, pad: InputGamepad): boolean {
   return (
     (device?.id === undefined || device.id === pad.id) &&
-    (device?.index === undefined || device.index === pad.index)
+    (device?.index === undefined || device.index === pad.index) &&
+    (device?.mapping === undefined || device.mapping === pad.mapping)
   );
 }
 

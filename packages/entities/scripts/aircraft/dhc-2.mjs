@@ -90,6 +90,27 @@ function fairedLeg(d, a, b, thick, chord, taper, material) {
   return mesh;
 }
 /** Front and back z of a side-view outline [[z, y], ...] at height y (0 width outside it). */
+/** The lofted skin's ring at station z (linear between the authored rings). */
+function ringAt(rings, z) {
+  let i = rings.findIndex((r, n) => n < rings.length - 1 && z <= r.z && z >= rings[n + 1].z);
+  if (i < 0) i = z > rings[0].z ? 0 : rings.length - 2;
+  const a = rings[i].points,
+    b = rings[i + 1].points,
+    u = Math.min(1, Math.max(0, (z - rings[i].z) / (rings[i + 1].z - rings[i].z)));
+  return a.map((q, j) => [q[0] + (b[j][0] - q[0]) * u, q[1] + (b[j][1] - q[1]) * u]);
+}
+/** Skin half width at station z and height y; cabin trim and seats are kept inside it. */
+function skinHalfWidth(rings, z, y) {
+  const q = ringAt(rings, z);
+  let x = 0;
+  for (let j = 0; j < q.length; j++) {
+    const [ax, ay] = q[j],
+      [bx, by] = q[(j + 1) % q.length];
+    if ((ay - y) * (by - y) <= 0 && ay !== by)
+      x = Math.max(x, Math.abs(ax + ((bx - ax) * (y - ay)) / (by - ay)));
+  }
+  return x;
+}
 function chordAt(outline, y) {
   const zs = [];
   for (let n = 0; n < outline.length; n++) {
@@ -165,10 +186,12 @@ export const beaverFrame = () => ({
   radius: 0.75,
   cy: 1.7,
   ry: 0.9,
-  cabinZ: pose([0, 2.63, 2.33])[2],
+  cabinZ: pose([0, 2.585, 2.33])[2],
   cabinWidth: 1.4,
-  // The front seats sit high behind the radial; eye over the cushion and clear of the roof.
-  eye: pose([0.34, 2.63, 2.33]),
+  // The front seats sit high behind the radial: the eye clears the cowl/windscreen-frame
+  // sightline straight ahead and sits at the top of the crew-door window (N72355 photo), not
+  // against the roof above all the glazing.
+  eye: pose([0.34, 2.585, 2.33]),
   panelZ: pose([0, 2.1, 3.14])[2],
   floor: 1.04,
 });
@@ -262,25 +285,31 @@ export function buildBeaver(s) {
   };
   for (const side of [-1, 1]) {
     const pt = (z, y, off = 0) => [side * (sample(z, 1) + off), y, z],
+      // Crew-door window: from the roof rail down to the belt line, its front edge raked behind
+      // the windscreen frame and reaching aft past the pilot's head (Kenmore Air N72355 photo).
+      // It was a low quadrilateral wholly ahead of the pilot, who saw only the door post.
       h1 = [
-        [535, 1204],
-        [560, 1187],
-        [569, 1232],
-        [541, 1234],
+        [540, 1212],
+        [556, 1181],
+        [559, 1180],
+        [574, 1180],
+        [576, 1182],
+        [576, 1209],
+        [574, 1211],
       ].map(([u, v]) => pt(zz(u), yy(v))),
       // Cabin-door window: vertical front edge, level top, raked rear edge and rounded
-      // corners (U-6A 41707 photo); it was a peaked pentagon.
+      // corners (U-6A 41707 photo); it sits in the upper side like the crew window.
       h2 = [
-        [588, 1235],
-        [588, 1199],
-        [590, 1194],
-        [595, 1192],
-        [612, 1192],
-        [616, 1194],
-        [630, 1231],
-        [629, 1236],
-        [625, 1238],
-        [591, 1238],
+        [588, 1211],
+        [588, 1192],
+        [590, 1188],
+        [595, 1187],
+        [612, 1187],
+        [616, 1189],
+        [626, 1209],
+        [625, 1213],
+        [621, 1214],
+        [591, 1214],
       ].map(([u, v]) => pt(zz(u), yy(v))),
       h3 = Array.from({ length: 20 }, (_, j) =>
         pt(
@@ -307,8 +336,9 @@ export function buildBeaver(s) {
     for (const a of [
       [
         [534, 1200],
-        [563, 1183],
-        [578, 1253],
+        [552, 1182],
+        [579, 1182],
+        [579, 1253],
         [538, 1255],
       ],
       [
@@ -345,11 +375,8 @@ export function buildBeaver(s) {
       for (let y = b + 0.13; y < t - 0.2; y += 0.095)
         d.add(new T.SphereGeometry(0.0028, 5, 3), metal, pt(z + 0.018, y, 0.005));
     }
-    const label = group(airframe, `Beaver-lettering-${side}`, [side * 0.53, 1.57, -0.15]);
-    label.rotation.y = (side * Math.PI) / 2;
-    const ld = detailKit(label, label.name);
-    ld.text('DHC 2', [0, 0, 0], 0.1, 0, accent);
-    ld.finish();
+    // Registrations, titles and serials are livery markings (scripts/liveries/aircraft/dhc-2.mjs),
+    // not lettering baked into the skin.
     d.rod([side * 0.8, 1.05, 1.05], [side * 0.97, 0.76, 1.1], 0.02, metal);
     d.rod([side * 0.97, 0.76, 1.1], [side * 0.97, 0.76, 0.7], 0.02, metal);
     d.rod([side * 0.97, 0.76, 0.7], [side * 0.8, 1.05, 0.7], 0.02, metal);
@@ -697,8 +724,9 @@ function beaverCockpit(root, m, sections) {
     d,
     [-0.62, 2.14, z],
     [0.62, 2.14, z],
-    [0.65, 2.28, 3.5],
-    [-0.65, 2.28, 3.5],
+    // The coaming runs forward under the cowl; its corners stood out of the cowl sides.
+    [Math.min(0.65, skinHalfWidth(sections, 3.32, 2.24) - 0.025), 2.24, 3.32],
+    [-Math.min(0.65, skinHalfWidth(sections, 3.32, 2.24) - 0.025), 2.24, 3.32],
     m.dark,
     [0, 1, 0],
   );
@@ -952,12 +980,38 @@ function beaverCockpit(root, m, sections) {
       [0.62, 1.09, 2.5],
       [0.62, 1.34, 3.1],
       [-0.62, 1.34, 3.1],
-    ],
+    ].map(([x, y, zz]) => [
+      Math.sign(x) * Math.min(0.62, skinHalfWidth(sections, zz, y) - 0.025),
+      y,
+      zz,
+    ]),
     m.dark,
     [0, 1, -1],
   );
   for (const side of [-1, 1]) {
-    d.box([0.025, 0.3, 1.2], [side * 0.7, 1.4, 2.1], liner);
+    // Sidewall liner follows the skin where the lower sides turn under (it cut through them).
+    const inside = (zz) =>
+      Math.min(
+        0.7,
+        skinHalfWidth(sections, zz, 1.25) - 0.02,
+        skinHalfWidth(sections, zz, 1.55) - 0.02,
+      );
+    for (let zz = 2.7; zz > 1.55; zz -= 0.2) {
+      const za = zz,
+        zb = Math.max(1.5, zz - 0.2),
+        xa = side * inside(za),
+        xb = side * inside(zb);
+      quad(d, [xa, 1.25, za], [xb, 1.25, zb], [xb, 1.55, zb], [xa, 1.55, za], liner, [-side, 0, 0]);
+      quad(
+        d,
+        [xa, 1.55, za],
+        [xb, 1.55, zb],
+        [xb + side * 0.012, 1.55, zb],
+        [xa + side * 0.012, 1.55, za],
+        liner,
+        [0, 1, 0],
+      );
+    }
     d.rod([side * 0.67, 1.68, 2.6], [side * 0.67, 1.68, 2.12], 0.021, m.dark);
     for (const sign of [-1, 1]) {
       const pedal = group(cabin, `Beaver-pedal-${side}-${sign}`, [
@@ -985,20 +1039,28 @@ function beaverCockpit(root, m, sections) {
       });
     }
   }
-  for (const [x, z] of [
-    [0.34, 2.16],
-    [-0.34, 2.16],
-    [0.34, 1.15],
-    [-0.34, 1.15],
-    [0.34, 0.25],
-    [-0.34, 0.25],
+  // The rear bench sits where the cabin narrows and the belly rises: a narrower pair, a little
+  // forward, keeps it inside the skin (full-size seats stood out of both sides).
+  for (const [x, z, w] of [
+    [0.34, 2.16, 0.48],
+    [-0.34, 2.16, 0.48],
+    [0.34, 1.15, 0.48],
+    [-0.34, 1.15, 0.48],
+    [0.265, 0.4, 0.4],
+    [-0.265, 0.4, 0.4],
   ]) {
-    const lift = z > 2 ? 0.455 : 0;
-    beveledBox(d, [0.48, 0.11, 0.45], [x, 1.32 + lift, z], seat, 0.04);
-    beveledBox(d, [0.46, 0.6, 0.13], [x, 1.65 + lift, z - 0.2], seat, 0.04);
+    const lift = z > 2 ? 0.41 : 0,
+      n = w / 0.48;
+    beveledBox(d, [w, 0.11, 0.45], [x, 1.32 + lift, z], seat, 0.04);
+    beveledBox(d, [0.46 * n, 0.6, 0.13], [x, 1.65 + lift, z - 0.2], seat, 0.04);
     for (const side of [-1, 1])
-      d.rod([x + side * 0.19, 1.07, z], [x + side * 0.19, 1.28 + lift, z], 0.018, m.metal);
-    d.rod([x - 0.2, 1.4 + lift, z - 0.14], [x + 0.18, 1.4 + lift, z + 0.13], 0.013, liner);
+      d.rod(
+        [x + side * 0.19 * n, z < 1 ? 1.17 : 1.09, z],
+        [x + side * 0.19 * n, 1.28 + lift, z],
+        0.018,
+        m.metal,
+      );
+    d.rod([x - 0.2 * n, 1.4 + lift, z - 0.14], [x + 0.18 * n, 1.4 + lift, z + 0.13], 0.013, liner);
     d.box([0.05, 0.014, 0.03], [x + 0.04, 1.415 + lift, z + 0.04], m.metal);
   }
   d.finish();

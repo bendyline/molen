@@ -40,7 +40,8 @@ are [`content/worldgen`](https://github.com/bendyline/molen/tree/main/content/wo
 repository.
 
 The core package has no terrain dependency and a test forbids map vocabulary in its sources. Core
-inputs are `BuildingRequest` (identity, labels, outline, optional height/levels/minHeight) and
+inputs are `BuildingRequest` (identity, labels, outline, optional height/levels/minHeight, and a
+`waterline` for a building that floats) and
 `ScatterRequest` (labeled polygons, exclusions, an anchor frame, a keep fraction). Outputs are
 `MeshBuffers` (positions, normals, uvs, 8-bit colors, indices, material groups) and
 `PlacementSet`s (10 floats per instance: position, yaw, scale, tint).
@@ -383,6 +384,26 @@ Size alone is not enough in an old town, where a hotel, a school or a museum occ
 of the street: a footprint that is one of a row with no height mapped keeps its region's
 exterior, and so does one that holds four other businesses or a second institution, since old
 centers are often mapped a block to an outline (`BuildingUseEvidence.shared`).
+
+### Floating homes
+
+Houseboats moored along a dock (Lake Union, Portland, Sausalito, Amsterdam's canals) arrive as
+plain footprints drawn out on the water. The adapter reads a mapped building as a floating home
+(`associateFloatingHomes`) when it is house-sized (30 to 450 m²; larger ones over water are
+covered moorages and boathouse halls), at least three quarters of its corners and its middle lie
+in a lake, river, canal or sea polygon of 2,000 m² or more (never a pool or a fountain), less
+than a third of them on a `pier`, and two more such buildings lie within 40 m of it: floating
+homes are moored in rows, while a lone small building over water is most often a boat lift's
+canopy or a private boathouse. It is labelled `floating_home` (`FLOATING_HOME_LABEL`), takes the
+pack's `molen.worldgen.use.floating_home` style when the pack has one, whatever its tenants, and
+its request carries `waterline`: the height the host draws that water at, worked out as the
+terrain's water surface is (`floatingWaterLevel`; the adapter's `water` option names the host's
+offset and sea level, the Earth view's by default). A request with a `waterline` ignores the
+ground under its outline. It stands on a rectangular float in the style's foundation material,
+up to 1.15 m wider than its walls on each side (less round a narrow house) and reaching 0.8 m
+below the water, whose deck is the style's
+foundation height above it (clamped to 0.2 to 1.2 m), and everything it carries stands on that
+deck.
 
 ### How tall an unmeasured building is
 

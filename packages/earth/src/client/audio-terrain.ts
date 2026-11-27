@@ -26,7 +26,11 @@ export interface EarthAudioTerrainSample {
   /** Meters to a mapped ocean shore; Infinity when unknown or out of range. */
   coastDistance: number;
   riverDistance: number;
+  /** Meters to the shore of mapped still water (a lake, pond or reservoir); Infinity if none. */
+  lakeDistance?: number;
   streetDistance: number;
+  /** Meters to a motorway or freeway; Infinity if none is near. */
+  highwayDistance?: number;
   /** Meters to a mapped or rendered traffic signal; absent/Infinity means unknown. */
   intersectionDistance?: number;
   surface?: string;
@@ -101,6 +105,8 @@ function boundsDistance(x: number, z: number, points: Point[]): number {
 const OCEAN = new Set(['ocean', 'sea']);
 const RIVER_AREAS = new Set(['river', 'stream', 'canal']);
 const RIVER_LINES = new Set(['river', 'stream', 'canal', 'waterway', 'ditch']);
+/** Still water too small or too artificial to lap at a shore. */
+const NOT_LAKES = /pool|fountain|basin_ornamental|wastewater|dock/;
 const NOT_STREETS = new Set([
   'path',
   'footway',
@@ -183,7 +189,9 @@ export class EarthAudioTerrain {
     const result: EarthAudioTerrainSample = {
       coastDistance: Infinity,
       riverDistance: Infinity,
+      lakeDistance: Infinity,
       streetDistance: Infinity,
+      highwayDistance: Infinity,
       intersectionDistance: Infinity,
     };
     let surfaceLevel = Infinity,
@@ -212,6 +220,18 @@ export class EarthAudioTerrain {
         const ocean = OCEAN.has(water.class ?? '');
         // Lakes are quiet; flowing-water beds require a mapped river/stream.
         const river = !ocean && RIVER_AREAS.has(water.class ?? '');
+        const lake =
+          !ocean &&
+          !river &&
+          !RIVER_LINES.has(water.class ?? '') &&
+          !NOT_LAKES.test(water.class ?? '');
+        if (lake)
+          for (const p of water.polygons ?? []) {
+            if (boundsDistance(u, v, p.outer) * tileSize >= (result.lakeDistance ?? Infinity))
+              continue;
+            const d = inside(u, v, p) ? 0 : lineDistance(u, v, p.outer, true, true) * tileSize;
+            result.lakeDistance = Math.min(result.lakeDistance ?? Infinity, d);
+          }
         if (ocean || river)
           for (const p of water.polygons ?? []) {
             let near = boundsDistance(u, v, p.outer);
@@ -293,6 +313,18 @@ export class EarthAudioTerrain {
           d = Math.min(d, lineDistance(u, v, line) * tileSize - half);
         }
         if (street) result.streetDistance = Math.min(result.streetDistance, Math.max(0, d));
+        if (half * 2 >= 16) {
+          let h = Infinity;
+          for (const line of road.lines) {
+            if (
+              boundsDistance(u, v, line) * tileSize - half >=
+              (result.highwayDistance ?? Infinity)
+            )
+              continue;
+            h = Math.min(h, lineDistance(u, v, line) * tileSize - half);
+          }
+          result.highwayDistance = Math.min(result.highwayDistance ?? Infinity, Math.max(0, h));
+        }
         if (d <= 0.6 && underfoot) {
           roadSurface =
             surfaceOf(road.surface ?? '') ??

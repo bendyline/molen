@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:f6685bacdf1c01d4769d11b4fa745db71e597f3796d71448d1c11b2a5688a69a",
-  "sourceHash": "sha256:967458c62d74be520121783d0a396901d09112716abb37d5f72e20e5ca6a810c",
+  "hash": "sha256:53217b0a2f5e50888aa337a1ab506ff434d5c2aa16a3037e58c275f6f546aaa6",
+  "sourceHash": "sha256:4723ce01a922a05d39c300d029b95fff2ee05450b7b0919a2be8bb06c063a20f",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 58220,
-    "vertices": 64619,
-    "meshes": 205,
-    "primitives": 205,
-    "materials": 55,
+    "triangles": 60468,
+    "vertices": 65854,
+    "meshes": 211,
+    "primitives": 211,
+    "materials": 57,
     "textures": 10,
     "animations": 0,
-    "sizeBytes": 1965888
+    "sizeBytes": 2002652
   },
   "nodes": [
     {
@@ -51,6 +51,10 @@
     },
     {
       "name": "cockpit-canopy-glazing",
+      "triangles": 588
+    },
+    {
+      "name": "cockpit-canopy-glazing-inner",
       "triangles": 588
     },
     {
@@ -228,6 +232,14 @@
     {
       "name": "pylon-2",
       "triangles": 140
+    },
+    {
+      "name": "gear-0-door-right-skin",
+      "triangles": 64
+    },
+    {
+      "name": "gear-0-door-left-skin",
+      "triangles": 64
     },
     {
       "name": "skin-detail-0",
@@ -540,18 +552,6 @@
     {
       "name": "A20N-PFD-L-altitude-2-6-A20N-ink",
       "triangles": 12
-    },
-    {
-      "name": "A20N-PFD-L-altitude-3-0-A20N-ink",
-      "triangles": 12
-    },
-    {
-      "name": "A20N-PFD-L-altitude-3-1-A20N-ink",
-      "triangles": 12
-    },
-    {
-      "name": "A20N-PFD-L-altitude-3-2-A20N-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -575,6 +575,14 @@
     },
     {
       "name": "A20N-glazing",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "A20N-glazing-inner",
       "slots": [
         "baseColor"
       ],
@@ -936,6 +944,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "A20N-window-trim",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "A20N-gear",
       "slots": [
         "baseColor"
@@ -1080,6 +1096,35 @@
       },
       {
         "node": "cockpit-canopy-glazing",
+        "points": [
+          -1.6577,
+          4.1364,
+          15.4983,
+          -1.6577,
+          4.1364,
+          17.4387,
+          -1.6577,
+          4.8504,
+          15.4983,
+          -1.6577,
+          4.8504,
+          17.4387,
+          1.6577,
+          4.1364,
+          15.4983,
+          1.6577,
+          4.1364,
+          17.4387,
+          1.6577,
+          4.8504,
+          15.4983,
+          1.6577,
+          4.8504,
+          17.4387
+        ]
+      },
+      {
+        "node": "cockpit-canopy-glazing-inner",
         "points": [
           -1.6577,
           4.1364,
@@ -2381,6 +2426,64 @@
           -5.5801,
           3.4616,
           6.3929
+        ]
+      },
+      {
+        "node": "gear-0-door-right-skin",
+        "points": [
+          -0.4317,
+          1.7685,
+          13.5948,
+          -0.4317,
+          1.7685,
+          16.0755,
+          -0.4317,
+          1.9102,
+          13.5948,
+          -0.4317,
+          1.9102,
+          16.0755,
+          0,
+          1.7685,
+          13.5948,
+          0,
+          1.7685,
+          16.0755,
+          0,
+          1.9102,
+          13.5948,
+          0,
+          1.9102,
+          16.0755
+        ]
+      },
+      {
+        "node": "gear-0-door-left-skin",
+        "points": [
+          0,
+          1.7685,
+          13.5948,
+          0,
+          1.7685,
+          16.0755,
+          0,
+          1.9102,
+          13.5948,
+          0,
+          1.9102,
+          16.0755,
+          0.4317,
+          1.7685,
+          13.5948,
+          0.4317,
+          1.7685,
+          16.0755,
+          0.4317,
+          1.9102,
+          13.5948,
+          0.4317,
+          1.9102,
+          16.0755
         ]
       },
       {
@@ -4643,93 +4746,6 @@
           0.4984,
           4.0691,
           17.1618
-        ]
-      },
-      {
-        "node": "A20N-PFD-L-altitude-3-0-A20N-ink",
-        "points": [
-          0.4913,
-          4.0718,
-          17.1616,
-          0.4913,
-          4.0718,
-          17.1625,
-          0.4913,
-          4.0725,
-          17.1616,
-          0.4913,
-          4.0725,
-          17.1625,
-          0.4938,
-          4.0718,
-          17.1616,
-          0.4938,
-          4.0718,
-          17.1625,
-          0.4938,
-          4.0725,
-          17.1616,
-          0.4938,
-          4.0725,
-          17.1625
-        ]
-      },
-      {
-        "node": "A20N-PFD-L-altitude-3-1-A20N-ink",
-        "points": [
-          0.4907,
-          4.0691,
-          17.161,
-          0.4907,
-          4.0691,
-          17.1624,
-          0.4907,
-          4.0718,
-          17.161,
-          0.4907,
-          4.0718,
-          17.1624,
-          0.4912,
-          4.0691,
-          17.161,
-          0.4912,
-          4.0691,
-          17.1624,
-          0.4912,
-          4.0718,
-          17.161,
-          0.4912,
-          4.0718,
-          17.1624
-        ]
-      },
-      {
-        "node": "A20N-PFD-L-altitude-3-2-A20N-ink",
-        "points": [
-          0.4907,
-          4.0657,
-          17.1603,
-          0.4907,
-          4.0657,
-          17.1616,
-          0.4907,
-          4.0684,
-          17.1603,
-          0.4907,
-          4.0684,
-          17.1616,
-          0.4912,
-          4.0657,
-          17.1603,
-          0.4912,
-          4.0657,
-          17.1616,
-          0.4912,
-          4.0684,
-          17.1603,
-          0.4912,
-          4.0684,
-          17.1616
         ]
       }
     ]

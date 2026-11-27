@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
+import { GROUND_OPEN_RECHECK } from '../../src/client/ground-openings';
 import { ModelLibrary, type PreparedModel } from '../../src/client/instanced-models';
 import { SCATTER_CANOPY_ATTRIBUTE } from '../../src/client/scatter-material';
 import { createTurf, type TurfObject, type TurfSource, turfReach } from '../../src/client/turf';
@@ -324,6 +325,81 @@ describe('turf', () => {
     object.dispose();
     none.dispose();
     thin.dispose();
+  });
+
+  it('stands no tuft on ground the host opens, and asks again for ground that may open later', () => {
+    // A bore under x 90..120, z 40..80: the ground over it is cut away below 21 m (its roof),
+    // west of x = 110; east of that the ground is the hill over the roof and keeps its grass.
+    let bored = false;
+    const nearAsked: [number, number, number, number][] = [];
+    let atAsked = 0;
+    const opened = (x: number, y: number, z: number): boolean =>
+      bored && x >= 90 && x < 120 && z >= 40 && z < 80 && y < 21;
+    const object = createTurf(
+      field,
+      {
+        ...source,
+        open: {
+          near(x0, z0, x1, z1) {
+            nearAsked.push([x0, z0, x1, z1]);
+            return x0 < 120 && x1 > 90 && z0 < 80 && z1 > 40;
+          },
+          at(x, y, z) {
+            atAsked++;
+            return opened(x, y, z);
+          },
+        },
+      },
+      options,
+    );
+    object.updateMatrixWorld(true);
+    const camera = perspective(100, ground(100) + 2, 60);
+    object.update(camera);
+    // Before the bore is drawn the ground is whole, and its grass stands.
+    const whole = drawn(object);
+    const over = (tuft: Tuft): boolean =>
+      tuft.position.x >= 90 &&
+      tuft.position.x < 120 &&
+      tuft.position.z >= 40 &&
+      tuft.position.z < 80;
+    expect(whole.filter(over).length).toBeGreaterThan(500);
+    // Only the squares `near` names are asked about tuft by tuft.
+    expect(nearAsked.length).toBeGreaterThan(10);
+    const asked = atAsked;
+    expect(asked).toBeGreaterThan(0);
+    expect(asked).toBeLessThan(whole.length);
+    // The bore arrives; the camera stands still. Some frames on, its mouth has no grass; the
+    // hill over its roof and the rest keep theirs.
+    bored = true;
+    for (let frame = 0; frame < GROUND_OPEN_RECHECK; frame++) object.update(camera);
+    const after = drawn(object);
+    expect(
+      after.some((tuft) => opened(tuft.position.x, tuft.position.y + 0.02, tuft.position.z)),
+    ).toBe(false);
+    const outside = (list: Tuft[]): string[] =>
+      list
+        .filter((tuft) => !opened(tuft.position.x, tuft.position.y + 0.02, tuft.position.z))
+        .map(key)
+        .sort();
+    expect(outside(after)).toEqual(outside(whole));
+    expect(after.length).toBeLessThan(whole.length);
+    expect(after.filter(over).every((tuft) => tuft.position.x >= 110)).toBe(true);
+    expect(after.filter(over).length).toBeGreaterThan(100);
+    // Without an answer changing, frames ask again but choose nothing new.
+    const asking = atAsked;
+    for (let frame = 0; frame < GROUND_OPEN_RECHECK; frame++) object.update(camera);
+    expect(atAsked).toBeGreaterThan(asking);
+    expect(drawn(object).map(key).sort()).toEqual(after.map(key).sort());
+    // Squares worked out afresh ask at once.
+    object.update(perspective(100, ground(100) + 2, 250));
+    object.update(camera);
+    expect(drawn(object).map(key).sort()).toEqual(after.map(key).sort());
+    // A host that opens nothing asks nothing, and draws what it always did.
+    const plain = createTurf(field, source, options);
+    plain.choose(new THREE.Vector3(100, ground(100) + 2, 60));
+    expect(drawn(plain).map(key).sort()).toEqual(whole.map(key).sort());
+    plain.dispose();
+    object.dispose();
   });
 
   it('reaches as its options say', () => {

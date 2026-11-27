@@ -14,6 +14,7 @@ import {
 import { mergeSoundbanks, type SoundbankInput } from './bank';
 import { AudioDirector } from './director';
 import { type AudioCameraLike, listenerFromCamera } from './listener';
+import type { SoundProfileSet } from './profiles';
 import { createRecordingBackend } from './recording-backend';
 import type {
   AudioBackend,
@@ -48,7 +49,12 @@ export interface AudioLayerOptions {
   renderer?: AudioRendererLike;
   /** Extra signals merged over the renderer's each update (e.g. `host.landcover`). */
   signals?: () => AudioEnvironmentSignals | undefined;
-  /** Master volume 0–1 (default 1) and mute. */
+  /** Voices for families of entities (`mergeSoundProfiles(await loadPackSoundProfiles(packs))`). */
+  profiles?: SoundProfileSet;
+  /**
+   * Master volume 0–1 (default 1) as perceived loudness: half way is half as loud (-10 dB), not
+   * half the amplitude. `loudnessToGain` gives the gain. Mute is separate.
+   */
   volume?: number;
   muted?: boolean;
   /** Suspend output while the page is hidden; default true. */
@@ -91,12 +97,16 @@ export interface AudioLayer {
       pitch?: number;
       bus?: string;
       loop?: boolean;
+      /** Heard outside the listener's enclosure (muffled in a cabin); default: when positional. */
+      outside?: boolean;
     },
   ): string;
   stop(target: string | { entity?: EntityId; sound?: string }, fadeS?: number): void;
   music(playlist: string | string[] | null, opts?: { crossfadeS?: number }): void;
+  /** Perceived loudness 0–1; see `loudnessToGain`. */
   setVolume(volume: number): void;
   setMuted(muted: boolean): void;
+  setProfiles(profiles: SoundProfileSet | undefined): void;
   /** Host-side bus trim, multiplied with the environment's bus gain. */
   setBusGain(bus: string, gain: number): void;
   setEnvironment(environment: AudioEnvironmentData | undefined): void;
@@ -105,6 +115,15 @@ export interface AudioLayer {
   setSuspended(suspended: boolean): void;
   stats(): AudioLayerStats;
   dispose(): void;
+}
+
+/**
+ * Gain for a loudness setting 0–1. Loudness doubles about every 10 dB, so a linear slider spends
+ * its top half within 6 dB; this taper makes each half of the travel halve the loudness.
+ */
+export function loudnessToGain(loudness: number): number {
+  const v = Math.max(0, Math.min(1, loudness));
+  return v <= 0 ? 0 : v ** (Math.log(10) / Math.log(4));
 }
 
 function defaultBackend(opts: AudioLayerOptions): AudioBackend {
@@ -129,6 +148,7 @@ export function createAudioLayer(opts: AudioLayerOptions): AudioLayer {
     ...(opts.maxOneShots !== undefined ? { maxOneShots: opts.maxOneShots } : {}),
     ...(opts.seed !== undefined ? { seed: opts.seed } : {}),
     ...(opts.onWarning ? { onWarning: opts.onWarning } : {}),
+    ...(opts.profiles ? { profiles: opts.profiles } : {}),
   });
   const backend = defaultBackend(opts);
   let source: AudioEntitySource | undefined;
@@ -140,7 +160,7 @@ export function createAudioLayer(opts: AudioLayerOptions): AudioLayer {
   let disposed = false;
 
   const applyMaster = (): void => {
-    backend.apply([{ op: 'bus', bus: 'master', gain: muted ? 0 : volume }]);
+    backend.apply([{ op: 'bus', bus: 'master', gain: muted ? 0 : loudnessToGain(volume) }]);
   };
   const busGain = (bus: string): number => (envBus.get(bus) ?? 1) * (hostBus.get(bus) ?? 1);
   applyMaster();
@@ -224,6 +244,7 @@ export function createAudioLayer(opts: AudioLayerOptions): AudioLayer {
       muted = m;
       applyMaster();
     },
+    setProfiles: (profiles) => director.setProfiles(profiles),
     setBusGain(bus, gain) {
       hostBus.set(bus, gain);
       backend.apply([{ op: 'bus', bus, gain: busGain(bus) }]);

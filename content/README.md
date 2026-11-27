@@ -107,8 +107,8 @@ molen pack verify dist-packs/molen.worldgen.default-<hash>.zip
 
 The world explorer stages the content libraries into `examples/world-explorer/public/packs/`
 (with an `index.json`) during production `build` or the explicit `pnpm dev:content` command.
-Normal development reuses those packs; `pnpm dev:prepare` restores the repository assets and
-packages content for first-time setup. It and the docs site use a small worldgen core plus
+`pnpm dev` repackages only the packs whose files here changed since they were built;
+`pnpm dev:prepare` restores the repository assets and packages content for first-time setup. It and the docs site use a small worldgen core plus
 bounded geographic model archives. The core retains sidecars and style metadata; archive routes
 load a model's archive on demand through the host's fetch function. Hosts need HTTP Range
 support for selective network reads; a server returning a full-file response still works but

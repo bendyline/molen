@@ -212,7 +212,8 @@ export function buildR44(s) {
       d.rod([side * 0.4, 0.47, z], [side * 1.04, 0.08, z], 0.038, white);
       d.rod([side * 0.4, 0.47, z + 0.04], [side * 1.04, 0.08, z + 0.04], 0.018, metal);
     }
-    d.text('R44', q(-0.57, 1.28, 0.003), 0.075, (side * Math.PI) / 2, blue);
+    // The cowling's "R44 Raven II" title is livery lettering (liveries/aircraft/robinson-r44.mjs),
+    // painted only on the schemes photographed with it.
   }
   // Tall, tapered transmission fairing and slender rising tail boom.
   // Rounded pylon in plan (front and rear edges as in side view), tapering to the mast top.
@@ -247,10 +248,12 @@ export function buildR44(s) {
       y + Math.cos((i * Math.PI) / 6) * h,
     ]),
   });
+  // The boom root begins behind the cabin's rear bulkhead (the same line as before, cut at z
+  // -0.625): from -0.53 its front cap hung from the cabin ceiling above the rear seats.
   loft(
     d,
     [
-      boom(-0.53, 0.27, 1.62, 0.19),
+      boom(-0.625, 0.2648, 1.6215, 0.193),
       boom(-1.8, 0.2, 1.64, 0.23),
       boom(-4.0, 0.1, 1.9, 0.14),
       boom(-5.85, 0.062, 2.03, 0.072),
@@ -375,15 +378,16 @@ function cockpit(root, m, shell) {
     belt = mat('R44-belts', '#4c5358'),
     face = mat('R44-panel', '#333b3f'),
     tools = panelTools(d);
-  // Cabin deck trimmed to the rounded lower corners of the shell.
+  // Cabin deck trimmed to the rounded lower corners of the shell, from the rear bulkhead to
+  // under the pedals (it stopped short of both, leaving the pedals over bare belly skin).
   fittedFloor(
     d,
-    [-0.4, 0, 0.4, 0.8, 1.2, 1.5, 1.7].map((z) => ({
+    [-0.62, -0.4, 0, 0.4, 0.8, 1.2, 1.5, 1.7, 1.9].map((z) => ({
       z,
       points: Array.from({ length: 40 }, (_, j) => shell.at(z, -0.5 + j / 40).slice(0, 2)),
     })),
     m.trim,
-    { y: 0.483, front: 1.615, back: -0.315, width: 1.12, thickness: 0.026 },
+    { y: 0.483, front: 1.86, back: -0.6, width: 1.12, thickness: 0.026 },
   );
   const panel = [
     [-0.245, 1.28, z],
@@ -517,9 +521,10 @@ function cockpit(root, m, shell) {
   );
   const pd = detailKit(pedestal, 'R44-pedestal'),
     pt = panelTools(pd);
-  pd.box([0.28, 0.64, 0.19], [0, 0, 0.06], face);
+  // Ends on the floor: a full 0.64 m housing put its lower front corner through the belly.
+  pd.box([0.28, 0.57, 0.12], [0, 0.035, 0.025], face);
   for (let i = 0; i < 4; i++) {
-    const y = 0.23 - i * 0.145;
+    const y = 0.24 - i * 0.145;
     pd.box([0.25, 0.12, 0.012], [0, y, -0.042], m.trim);
     if (i < 2) {
       for (let c = 0; c < 2; c++) {
@@ -541,8 +546,37 @@ function cockpit(root, m, shell) {
       for (const x of [-0.103, 0.103]) pt.knob(x, y + 0.018, -0.06, 0.012);
     }
   }
-  pd.box([0.035, 0.055, 0.024], [-0.085, 0.02, -0.075], pd.red);
   pd.finish();
+  // The red mixture knob and the ignition key sit on the console face, as in the aircraft. As
+  // authored controls they also replace the generic bolt-on engine/mixture box that hung beside
+  // the console (cockpit-controls.mjs adds one only for controls a model lacks).
+  const mixture = group(pedestal, 'R44-mixture', [-0.085, 0.02, -0.035]);
+  mixture.userData.aircraftControl = {
+    action: 'mixture',
+    // Full rich is the rest pose; leaning pulls the knob out toward the pilot.
+    motion: { property: 'position', axis: 'z', scale: 0.035, offset: -0.035 },
+  };
+  const xd = detailKit(mixture, 'R44-mixture-knob');
+  xd.rod([0, 0, 0], [0, 0, -0.03], 0.004, m.metal);
+  xd.add(
+    new T.CylinderGeometry(0.013, 0.013, 0.02, 12).rotateX(Math.PI / 2),
+    xd.red,
+    [0, 0, -0.04],
+  );
+  xd.finish();
+  const key = group(pedestal, 'R44-ignition', [0.085, 0.02, -0.036]);
+  key.userData.aircraftControl = {
+    action: 'engine',
+    motion: { property: 'rotation', axis: 'z', scale: -0.9 },
+  };
+  const kd = detailKit(key, 'R44-ignition-key');
+  kd.add(
+    new T.CylinderGeometry(0.014, 0.014, 0.01, 12).rotateX(Math.PI / 2),
+    m.metal,
+    [0, 0, -0.005],
+  );
+  kd.box([0.008, 0.026, 0.008], [0, 0.004, -0.016], m.trim);
+  kd.finish();
   const cyclic = group(cabin, 'R44-T-bar-cyclic', [0, 0.48, 0.88]),
     cd = detailKit(cyclic, 'R44-T-bar');
   cd.rod([0, 0, 0], [0, 0.54, 0], 0.018, m.metal);
@@ -571,6 +605,10 @@ function cockpit(root, m, shell) {
       const x = side * 0.3,
         sz = row ? -0.3 : 0.8;
       beveledBox(d, [0.45, 0.1, 0.47], [x, 0.68, sz], seat);
+      // Seat base (the under-seat compartment) down to the deck, so the cushion does not float;
+      // the rear pair is narrower, clear of the belly where the cabin tapers.
+      if (row) d.box([0.34, 0.13, 0.44], [side * 0.26, 0.565, sz], face);
+      else d.box([0.43, 0.15, 0.44], [x, 0.555, sz], face);
       const back = beveledBox(d, [0.45, 0.54, 0.08], [x, 0.96, sz - 0.23], seat);
       back.rotation.x = -0.12;
       for (const e of [-1, 1]) {
@@ -616,6 +654,17 @@ function cockpit(root, m, shell) {
         });
       }
     }
+  // Upholstered rear bulkhead behind the back seats: without it the cabin looked straight into
+  // the engine bay, the boom root and the louvres from the front seats.
+  sheet(
+    d,
+    Array.from({ length: 32 }, (_, j) => {
+      const [x, y] = shell.at(-0.62, -0.5 + j / 32);
+      return [x * 0.985, 1.1 + (y - 1.1) * 0.985, -0.606];
+    }),
+    seat,
+    [0, 0, 1],
+  );
   d.box([0.095, 0.07, 0.06], [0, 1.56, 1.46], m.trim);
   tools.gauge(0, 1.56, 1.425, 0.026);
   d.rod([0, 1.6, 1.46], [0, 1.72, 1.4], 0.009, m.trim);

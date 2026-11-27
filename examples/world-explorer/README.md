@@ -22,13 +22,21 @@ detected. **Save** keeps mappings in this browser and shares them with the Earth
 the same origin; **Done** resumes play. Keyboard controls continue to work alongside analog input.
 
 **Your figure** is the person you walk as. Someone random is drawn when the page loads, and you see
-them from behind on foot (**V** switches to your own eyes and back; `?walkView=first` starts there)
-and in the seat of whatever you drive or fly, from the chase and flyby views. **Design…** opens the
+them from behind on foot (**V** steps on to the flyby view, then your own eyes, then back;
+`?walkView=first` starts in your eyes) and in the seat of whatever you drive or fly, from the chase
+and flyby views. **Design…** opens the
 [character designer](https://molen.dev/guide/figure-looks) to choose their skin tone, head, hair,
 body, clothing and accessories. A figure you design is kept in this browser for later visits;
 **Surprise me** draws someone new for this one. A backpack, shoulder bag or wide-brimmed hat comes
 off in a seat. `?figure=ada` (any word) always draws the same person, `?figure=0` leaves the figure
 out, and frozen captures (`?freeze=1`) are first person without one unless `?figure=1`.
+
+**In a car**, the centre screen is a moving map from the driver's seat: the streets and water
+around you, turned to the way you are driving, with the street you are on along the bottom. It
+zooms out as you speed up. A car with only a radio or a driver's cluster has no centre screen, so
+it shows none. **In an aircraft** with glass displays, one of them (the NAV page, the MFD, the
+navigation display) shows the same map from the pilot's seat, zoomed out with your ground speed.
+`?gps=0` keeps the still displays the cabins print.
 
 **Living places** plays six scripted dioramas at registered geographic sites. Choose a place
 and press **Visit**, or open `?diorama=football`, `airport`, `little-league`, `fireworks`, `fair`
@@ -110,9 +118,11 @@ which caps Mount Rainier and the high Cascades. See
 [snow cover](https://molen.dev/guide/snow).
 
 Ambient life fills the mapped streets around you: NPC cars that stop at signals and junctions,
-pedestrians on sidewalks and crossings, trains on rail lines and aircraft overhead. They spawn out of
-view ahead and disappear behind you as you move. Press L to hide or show them; `?ambient=0` turns
-them off, and frozen captures (`?freeze=1`) leave them off unless `?ambient=1`. See
+pedestrians on sidewalks and crossings, trains on rail lines and aircraft overhead. Boats lie
+moored at mapped docks and marinas, and speedboats, sailboats and fishing boats cross open water.
+They spawn out of view ahead and disappear behind you as you move. Press L to hide or show them;
+`?ambient=0` turns them off, `?boats=0` only the moored and cruising boats, and frozen captures
+(`?freeze=1`) leave them off unless `?ambient=1`. See
 [ambient life](https://molen.dev/guide/ambient-life).
 
 `?aerialOrtho=1600` draws a north-up orthographic frame 1,600 m tall centered under the camera,
@@ -156,11 +166,12 @@ Run it from the repository root:
 pnpm --filter @bendyline/molen-examples-world-explorer dev
 ```
 
-Development reuses the existing `public/packs/index.json` and its prepared content. Run
-`pnpm dev:content` from the repository root after changing and importing assets to package those
-edits for the browser. `dev` checks that the prepared packs are present; it never regenerates
-models or repackages them. Production `build` still runs `scripts/build-content-packs.mjs` to
-build the repository's `content/` directories into `public/packs/`. The page opens the entities, style,
+Development serves `public/packs/index.json` and its packs. Before starting, `dev` compares each
+pack with its `content/` source (`scripts/refresh-content-packs.mjs`) and repackages those whose
+files changed; it never fetches or regenerates models. `pnpm dev:content` from the repository root
+rebuilds every pack and its placement catalogs. Production `build` still runs
+`scripts/build-content-packs.mjs` to build the repository's `content/` directories into
+`public/packs/`. The page opens the entities, style,
 earth and sky packs in parallel: small packs arrive in one request each, and car and aircraft
 models are range-read from the entities pack only when one is shown.
 In real geography, choosing an aircraft places it on the starter airport’s existing runway once
@@ -333,14 +344,12 @@ comparison, `?roadGrading=0` turns both off and `?earthworks=0` only the levelin
 
 Performance defaults to **Auto (device)**: one of six tiers, guessed once from what the device
 reports and kept for the session, controlling render resolution, terrain refinement/range,
-concurrency, cache sizes, vegetation/building LOD, and surface decorations. Auto gives a tier up
-when frames run under 30 a second for ten seconds, content outgrows the memory budget, or
-streaming cannot keep up (ground rebuilt soon after its eviction while the ground near the camera
-falls behind), and brings it back toward the guess (never past it) once the view has
-been calm for about a minute; a tier that fails to hold again waits twice as long. Slow frames
-lower how the view is drawn first (resolution, shadows, clouds, model hand-over), for two steps,
-and leave the streamed world as built; the panel then reads "Auto · Balanced · drawn at Low".
-Only memory, streaming strain, or frames still slow after those steps lower the world. Choosing Auto
+concurrency, cache sizes, vegetation/building LOD, and surface decorations. Nothing a frame costs
+moves it afterwards, and nothing about the stream does: a tier change gives up every tile in view
+for a coarser one and builds it all again when the tier returns, which is what detail "reverting
+and rebuilding" under an aircraft was. The one exception is what is on show staying over the
+memory budget (ten seconds running), which gives a tier up for the rest of the session; the panel
+then reads "Auto · Medium · lowered for memory, kept". Choosing Auto
 again makes the guess afresh. Manual presets
 switch live without moving the camera. Object detail follows projected screen size with hysteresis; buildings retain their roof
 and wall shapes while distant materials and facade details simplify. Spatial cells improve
@@ -395,13 +404,19 @@ whose fleet has them (South and Southeast Asia, Taiwan, China, parts of Africa a
 parked motorcycles, scooters, mopeds and auto-rickshaws can be boarded with R like parked cars.
 
 Press B near mapped water (or use `?boat=1`) to launch a speedboat. W/S thrust, A/D helm,
-Space opposing thrust, hold Shift to anchor below walking speed, V helm/chase, R dockside exit.
+Space opposing thrust, hold Shift to anchor below walking speed, V helm/chase/flyby, R dockside
+exit.
 `?boat=molen.entities.watercraft.tugboat` selects another boat type from the content pack.
 
-In an aircraft, V switches between the cockpit and chase cameras and F5 opens the flyby view: a
-camera fixed beside the flight path a few seconds ahead turns to follow the aircraft as it goes
-by, then moves ahead again on the other side of the path. V or F5 returns to the previous view;
-Ctrl+F5 still reloads the page. A compact corner panel in chase and flyby views shows live
+In an aircraft, V steps through the cockpit, chase and flyby cameras, then back to the cockpit.
+The flyby view is a camera fixed beside the flight path a few seconds ahead that turns to follow
+the aircraft as it goes by, then moves ahead again on the other side of the path. F5 also opens
+the flyby view straight from the cockpit or chase view, and F5 again returns to that view;
+Ctrl+F5 still reloads the page. In a car, on a ride, a boat or a train V steps through the same
+three views, and on foot through your own eyes, the view from behind you and a flyby view. On the
+ground the flyby camera stands at eye height at the roadside or beside the way ahead, a few
+seconds or steps on, and keeps in front of facades, walls and slopes rather than behind them. On
+foot the mouse still turns you while it watches. F5 is the aircraft's alone. A compact corner panel in chase and flyby views shows live
 miniatures of the aircraft’s authored airspeed and altitude instruments, including their
 original faces, units and needle or digital display behavior. It hides in the cockpit, on
 exit/ejection and with `?hud=0`. Aircraft without live speed or altitude instrument bindings

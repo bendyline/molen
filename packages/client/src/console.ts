@@ -13,14 +13,17 @@
  */
 export {
   aircraftDeck,
+  buttonTip,
   type ConsoleAircraftSubject,
   type ConsoleButton,
   type ConsoleItem,
   type ConsoleOnFootSubject,
   type ConsoleSubject,
+  type ConsoleTip,
   type ConsoleVehicleSubject,
   type ConsoleZone,
   type DeckContext,
+  itemTip,
   onFootDeck,
   subjectButtons,
   vehicleDeck,
@@ -33,6 +36,7 @@ export {
 } from './console/layout';
 export type { ConsolePart } from './console/parts';
 export type { ConsoleRect } from './console/strip';
+export { actionKeys, keyName } from './console/tooltip';
 export {
   createVehicleConsole,
   type VehicleConsole,

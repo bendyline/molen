@@ -448,10 +448,12 @@ function deckFit(A, M) {
  * coaming the windscreen stands on and not as bare skin. Offset just inside the skin. */
 function coaming(parent, A, M, ck, zOf, material) {
   const bottom = A.eye.h - 0.6,
-    // Its top runs a little past the sill, so no bare skin shows between the two in parallax.
-    edge = ck.uStart + 0.07,
+    // Ahead of the glass it lines the whole nose; from the glass aft its top meets the sill, a
+    // hair over it so no bare skin shows between the two in parallax. Running the full lining
+    // 7 cm past the front of the glass hid the foot of a windscreen that crosses the nose (737).
+    edge = ck.uStart,
     us = [edge - 1e-3];
-  for (let u = edge - 0.1; u > 0.1 && us.length < 16; u -= 0.1) us.unshift(u);
+  for (let u = edge - 0.1; u > 0.04 && us.length < 40; u -= 0.1) us.unshift(u);
   for (let u = edge; u < A.eye.u - 0.45; u += 0.08) us.push(u);
   const n = 10,
     positions = [],
@@ -459,8 +461,10 @@ function coaming(parent, A, M, ck, zOf, material) {
   for (const side of [-1, 1]) {
     const first = positions.length / 3;
     for (const u of us) {
-      const a0 = u < edge ? 0 : Math.max(0, M.angle(u, ck.low(u)) - 0.07),
-        a1 = Math.max(a0, M.angle(u, bottom));
+      // Ahead of the glass it lines the whole nose down to the keel: a long nose (CJ4) drops below
+      // the deck's eye line, and over the glareshield the seat looked into the bare nose cone.
+      const a0 = u < edge ? 0 : Math.max(0, M.angle(u, ck.low(u)) - 0.02),
+        a1 = u < edge ? PI * 0.98 : Math.max(a0, M.angle(u, bottom));
       for (let j = 0; j <= n; j++) {
         const [x, y] = M.point(u, lerp(a0, a1, j / n), side, -0.035);
         positions.push(x, y, zOf(u));
@@ -472,8 +476,92 @@ function coaming(parent, A, M, ck, zOf, material) {
           b = a + n + 1;
         indices.push(a, b, a + 1, a + 1, b, b + 1);
       }
+    // A disc closes its forward end, or the nose cap showed through it like a lamp.
+    const { b, t } = M.section(us[0]),
+      hub = positions.length / 3;
+    positions.push(0, (b + t) / 2, zOf(us[0]));
+    for (let j = 0; j < n; j++) indices.push(hub, first + j, first + j + 1);
   }
   return indexedMesh(parent, 'cockpit-coaming', positions, indices, material);
+}
+
+/** The flight deck window structure seen from the seats: boxed members on the inside of the skin
+ * under each outer frame ribbon (pillars, sill, header, the aft frame and the centre post), so a
+ * post reads as one lined member rather than as the thin outside ribbon through the glass. */
+function windowFrames(parent, M, ck, zOf, material) {
+  const positions = [],
+    indices = [];
+  const onSkin = (u, y, side) => {
+    const a = M.angle(u, y),
+      [x, h] = M.point(u, a, side),
+      [nx, nh] = M.point(u, a, side, 0.1);
+    return {
+      p: new T.Vector3(x, h, zOf(u)),
+      n: new T.Vector3(nx - x, nh - h, 0).normalize(),
+    };
+  };
+  const member = (path, half, depth, inset = 0.012) => {
+    if (path.length < 2) return;
+    const first = positions.length / 3;
+    path.forEach(({ p, n }, i) => {
+      const t = path[Math.min(i + 1, path.length - 1)].p
+          .clone()
+          .sub(path[Math.max(i - 1, 0)].p)
+          .normalize(),
+        across = t.clone().cross(n).normalize().multiplyScalar(half),
+        a = p.clone().add(across).addScaledVector(n, -inset),
+        e = p.clone().sub(across).addScaledVector(n, -inset);
+      for (const v of [
+        a,
+        a.clone().addScaledVector(n, -depth),
+        e.clone().addScaledVector(n, -depth),
+        e,
+      ])
+        positions.push(v.x, v.y, v.z);
+    });
+    for (let i = 0; i < path.length - 1; i++)
+      for (let j = 0; j < 4; j++) {
+        const a = first + i * 4 + j,
+          b = first + i * 4 + ((j + 1) % 4);
+        indices.push(a, b, b + 4, a, b + 4, a + 4);
+      }
+    // End caps: a member stopping short of the crown otherwise showed its hollow section.
+    const last = first + (path.length - 1) * 4;
+    indices.push(first, first + 2, first + 1, first, first + 3, first + 2);
+    indices.push(last, last + 1, last + 2, last, last + 2, last + 3);
+  };
+  const steps = (from, to, n) => Array.from({ length: n + 1 }, (_, k) => lerp(from, to, k / n));
+  for (const side of [-1, 1]) {
+    for (const [uLow, uTop] of [...ck.posts, [ck.uEnd, ck.uEnd]]) {
+      const y0 = ck.low(uLow),
+        y1 = ck.top(uTop);
+      member(
+        steps(0, 1, 8)
+          .map((t) => [lerp(uLow, uTop, t), lerp(y0, y1, t)])
+          .filter(([u, y]) => M.crown(u) > y + 0.01)
+          .map(([u, y]) => onSkin(u, y, side)),
+        0.034,
+        0.045,
+      );
+    }
+    // Sill and header, where they run along the side of the nose (not across the crown).
+    const edge = (fn, from) =>
+      steps(from, ck.uEnd, Math.max(2, Math.round((ck.uEnd - from) / 0.08)))
+        .filter((u) => M.crown(u) > fn(u) + 0.03)
+        .map((u) => onSkin(u, fn(u), side));
+    member(edge(ck.low, ck.uStart + 0.04), 0.03, 0.04);
+    member(edge(ck.top, ck.uStart), 0.03, 0.04);
+  }
+  if (ck.centerPost)
+    member(
+      steps(ck.uStart + 0.03, ck.centerPost, 8).map((u) => {
+        const [x, h] = M.point(u, 0, 1);
+        return { p: new T.Vector3(x, h, zOf(u)), n: new T.Vector3(0, 1, 0) };
+      }),
+      0.034,
+      0.04,
+    );
+  return indexedMesh(parent, 'cockpit-window-frames', positions, indices, material);
 }
 
 /** Half rings of 2*H nodes in four bands, so node lines run exactly along the lower and upper edges
@@ -556,6 +644,21 @@ function fuselage(body, A, M, ck, m, zOf) {
   indexedMesh(body, 'fuselage-skin', positions, paint, m.paint);
   indexedMesh(body, 'fuselage-belly', positions, belly, m.belly);
   indexedMesh(body, 'cockpit-canopy-glazing', positions, glass, m.glass);
+  // The outer pane faces out only, so the deck saw open sky through a missing windscreen. The
+  // same panes, wound inward, are the pale inside of the glass: it tints and reflects a little
+  // from the seat and culls away from outside, where the dark outer face keeps the look.
+  const used = new Map(),
+    inner = [],
+    at = [];
+  for (let q = 0; q + 2 < glass.length; q += 3)
+    for (const v of [glass[q], glass[q + 2], glass[q + 1]]) {
+      if (!used.has(v)) {
+        used.set(v, used.size);
+        at.push(positions[v * 3], positions[v * 3 + 1], positions[v * 3 + 2]);
+      }
+      inner.push(used.get(v));
+    }
+  indexedMesh(body, 'cockpit-canopy-glazing-inner', at, inner, m.innerGlass);
 }
 const orientationOf = (list, positions) => {
   // Sign of the outward test on a quad well away from the axis.
@@ -579,7 +682,7 @@ function skinDetail(A, M, ck, m, dec, zOf) {
   const { windows, doors = [], seams = [] } = A;
   for (const side of [-1, 1]) {
     for (const run of windows?.runs ?? [])
-      for (let k = 0; k < run.count; k++) {
+      for (let k = 0; k < (run.side && run.side !== side ? 0 : run.count); k++) {
         const u = run.from + k * (run.pitch ?? windows.pitch),
           hw = windows.w / 2,
           hh = windows.h / 2,
@@ -963,7 +1066,7 @@ function wheelSet(k, m, { r, w, spread, x = 0, y, z = 0 }) {
 }
 /** Gear stands on the ground, outside the attitude group. `top` is the leg pivot in the world;
  * `hinge` puts that pivot ahead of the axle, and a negative `retract` folds the leg aft. */
-function gear(root, A, m, zOf, visual, bindings) {
+function gear(root, A, m, zOf, visual, bindings, body, M) {
   const legs = [
     { ...A.gear.nose, id: 0, x: 0, sign: 0 },
     { ...A.gear.main, id: 1, sign: 1 },
@@ -998,18 +1101,39 @@ function gear(root, A, m, zOf, visual, bindings) {
       0.05,
       m.hub,
     );
-    if (leg.sign) {
-      const span = (leg.top - leg.r) * 0.55;
-      k.rod([side * -0.5, -0.12, 0.28], [dx * 0.6, -span, az * 0.55], 0.05, m.hub);
-    }
-    wheelSet(k, m, { r: leg.r, w: leg.w, spread: leg.spread, x: dx, y: axle, z: az });
-    k.finish();
-    visual.gearNodes.push(name);
     // Mains fold inboard about the fore-and-aft axis unless a type says otherwise; a leg turning
     // about X folds forward, as every nose leg does, or aft with a negative `retract`.
     const axis = leg.axis ?? (leg.sign ? 'z' : 'x'),
       angle = leg.retract ?? (leg.sign ? 1.45 : 1.5),
       turn = axis === 'z' ? side : 1;
+    let stay,
+      fold = 0;
+    if (leg.sign) {
+      const span = (leg.top - leg.r) * 0.55,
+        foot = [dx * 0.6, -span, az * 0.55];
+      if (axis === 'z') {
+        // The side stay runs from the leg up and inboard to the wing. Rigid on the leg, its upper
+        // end swung up through the wing top as the leg folded inboard, so it folds onto the leg.
+        const anchor = [side * -0.5, -0.12, 0.28],
+          reach = [anchor[0] - foot[0], anchor[1] - foot[1], anchor[2] - foot[2]],
+          lay = Math.atan2(-foot[1], -foot[0]) - Math.atan2(reach[1], reach[0]);
+        fold = Math.atan2(Math.sin(lay), Math.cos(lay));
+        stay = new T.Group();
+        stay.name = `${name}-side-stay`;
+        stay.position.set(...foot);
+        node.add(stay);
+        const s = detailKit(stay, `${name}-side-stay-fittings`);
+        s.rod([0, 0, 0], reach, 0.05, m.hub);
+        s.finish();
+      } else {
+        // A leg folding fore and aft carries its stay into the bay beside it, kept in the leg's
+        // own plane: leaning forward, its top end dropped out under the bay.
+        k.rod(foot, [side * -0.5, -0.12, foot[2]], 0.05, m.hub);
+      }
+    }
+    wheelSet(k, m, { r: leg.r, w: leg.w, spread: leg.spread, x: dx, y: axle, z: az });
+    k.finish();
+    visual.gearNodes.push(name);
     bindings.push({
       node: name,
       source: 'gear',
@@ -1017,6 +1141,72 @@ function gear(root, A, m, zOf, visual, bindings) {
       axis,
       scale: turn * angle,
       offset: -turn * angle,
+    });
+    if (fold)
+      bindings.push({
+        node: stay.name,
+        source: 'gear',
+        property: 'rotation',
+        axis: 'z',
+        scale: -fold,
+        offset: fold,
+      });
+    if (!leg.sign && leg.doors !== false) noseDoors(body, M, m, zOf, leg, angle, bindings);
+  }
+}
+
+/** Twin nose-well doors on the belly, hinged along their outer edges, flush and shut with the gear
+ * up. The well runs from the leg pivot the way the leg folds, to a little past the stowed wheel. */
+function noseDoors(body, M, m, zOf, leg, angle, bindings) {
+  const pivotU = leg.u - (leg.hinge ?? 0),
+    reach = leg.top + 0.06,
+    [u0, u1] = angle >= 0 ? [pivotU - reach, pivotU + 0.12] : [pivotU - 0.12, pivotU + reach],
+    half = (leg.spread ?? 0) / 2 + leg.w / 2 + 0.07,
+    n = 8,
+    us = Array.from({ length: n + 1 }, (_, k) => lerp(u0, u1, k / n));
+  // Section angle, from the crown, at which the lower skin is `half` out from the keel line.
+  const edge = (u) => {
+    let lo = PI / 2,
+      hi = PI;
+    for (let i = 0; i < 30; i++) {
+      const mid = (lo + hi) / 2;
+      if (Math.abs(M.point(u, mid, 1)[0]) > half) lo = mid;
+      else hi = mid;
+    }
+    return lo;
+  };
+  for (const side of [-1, 1]) {
+    const at = (u, a) => {
+        const [x, y] = M.point(u, a, side, 0.006);
+        return [x, y, zOf(u)];
+      },
+      name = `gear-0-door-${side > 0 ? 'left' : 'right'}`,
+      { node, local } = hinged(body, name, at(u0, edge(u0)), at(u1, edge(u1)), 'x'),
+      positions = [],
+      indices = [];
+    for (const u of us)
+      for (let j = 0; j <= 4; j++) positions.push(...local(at(u, lerp(edge(u), PI, j / 4))));
+    for (let i = 0; i < n; i++)
+      for (let j = 0; j < 4; j++) {
+        const a = i * 5 + j,
+          b = a + 5;
+        indices.push(a, b, a + 1, a + 1, b, b + 1);
+      }
+    indexedMesh(node, `${name}-skin`, positions, indices, m.belly);
+    // Swings down about the outer edge, open through the cycle. Most types shut them again once
+    // the gear is down; a type whose doors hang open on the ground (737) says `doors: 'open'`.
+    const open = -side * 1.5;
+    bindings.push({
+      node: name,
+      source: 'gear',
+      property: 'rotation',
+      axis: 'x',
+      keys: [
+        [0, 0],
+        [0.15, open],
+        [0.85, open],
+        [1, leg.doors === 'open' ? open : 0],
+      ],
     });
   }
 }
@@ -1053,6 +1243,14 @@ export function buildTransport(s, A) {
       side: T.FrontSide,
       roughness: 0.12,
       metalness: 0.1,
+    }),
+    innerGlass: mat(`${A.prefix}-glazing-inner`, '#b9cdd4', {
+      transparent: true,
+      opacity: 0.13,
+      depthWrite: false,
+      side: T.FrontSide,
+      roughness: 0.06,
+      metalness: 0,
     }),
     tyre: mat(`${A.prefix}-tyres`, '#1b1e20', { roughness: 0.9 }),
     hub: mat(`${A.prefix}-gear`, '#a9aeb1', { metalness: 0.55 }),
@@ -1138,7 +1336,7 @@ export function buildTransport(s, A) {
       );
     enginePoints.push({ id: g.name, position: toWorld(A, [x, y, z]) });
   }
-  gear(root, A, m, zOf, visual, bindings);
+  gear(root, A, m, zOf, visual, bindings, body, M);
   dec.finish(body);
   // A type with its own flight deck builds it from the measured nose; the rest share one.
   const interior = A.flightDeck
@@ -1168,6 +1366,17 @@ export function buildTransport(s, A) {
     ck,
     zOf,
     mat(`${A.prefix}-coaming`, '#23282b', { side: T.DoubleSide, roughness: 1, metalness: 0 }),
+  );
+  windowFrames(
+    body.getObjectByName('cockpit'),
+    M,
+    ck,
+    zOf,
+    mat(`${A.prefix}-window-trim`, A.windowTrim ?? '#7d868b', {
+      side: T.DoubleSide,
+      roughness: 0.85,
+      metalness: 0,
+    }),
   );
   cleanGeometry(root);
   const { body: _, ...world } = frame;

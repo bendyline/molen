@@ -14,9 +14,11 @@ import {
   type AircraftCockpitSession,
   type AircraftInstrumentView,
   AircraftPointerAxes,
+  AircraftThrottleRamp,
   type AircraftVisual,
   aircraftCameraPose,
   aircraftObstacleContacts,
+  aircraftReheatDetent,
   applyAircraftControl,
   createAircraftInstrumentViews,
   createAircraftVisual,
@@ -26,6 +28,7 @@ import {
 } from '@bendyline/molen-client/aircraft';
 import type { ConsoleAircraftSubject } from '@bendyline/molen-client/console';
 import { WalkCollision } from '@bendyline/molen-client/navigation';
+import { findCockpitMapDisplay } from '@bendyline/molen-client/vehicles';
 import {
   Aircraft,
   type AircraftCollisionProbe,
@@ -33,6 +36,7 @@ import {
   AircraftInput,
   AircraftState,
   aircraftCollisionProbes,
+  aircraftTotalFuelFlow,
   flyAircraft,
   IDLE_AIRCRAFT_INPUT,
   initialAircraftState,
@@ -68,6 +72,7 @@ import { sampleAirportPavement } from '@bendyline/molen-terrain/client';
 import * as THREE from 'three';
 import { OBB } from 'three/addons/math/OBB.js';
 import { Livery, selectLivery } from './liveries';
+import { EarthMapScreen, type EarthMovingMap } from './moving-map';
 
 /** The actor that boards vehicles; shared with {@link EarthVehicles}. */
 const PLAYER = 'world-player';
@@ -100,6 +105,13 @@ export interface EarthAircraftOptions {
    * when omitted, `false` turns it off, an object changes its tuning.
    */
   pilotMotion?: boolean | PilotMotionOverrides;
+  /**
+   * The streamed roads, for a moving map on one of the flown aircraft's displays (wire
+   * `map.observer` into the human-features layer): its NAV or map page, or the screen the cockpit's
+   * live instruments leave clear (`findCockpitMapDisplay`). Painted in the cockpit view only;
+   * cockpits of round gauges show none. Without one the printed displays stay.
+   */
+  map?: EarthMovingMap;
 }
 
 /** Where and how a new aircraft appears. */
@@ -174,6 +186,17 @@ export interface EarthFlightStatus {
   /** Fuel remaining and full-tank capacity in kg, for aircraft that carry fuel. */
   fuel?: number;
   fuelCapacity?: number;
+  /** Fuel being burned, kg/s, for aircraft that carry fuel: several times more in reheat. */
+  fuelFlow?: number;
+  /**
+   * For an afterburning jet: where reheat begins on the `power` lever (its military-power detent),
+   * and the reheat lit, 0..1 (the most of any engine; it takes a moment to light). Read the lever
+   * as a pilot does with `aircraftThrottleReading` from `@bendyline/molen-client/aircraft`.
+   */
+  reheatDetent?: number;
+  afterburner?: number;
+  /** True while held throttle keys rest against the military-power detent: push again for reheat. */
+  throttleCaught?: boolean;
   /** Pre-stall and stalled-wing buffet, 0..1: the cockpit view shakes with it. */
   buffet: number;
   /**
@@ -231,6 +254,8 @@ export class EarthAircraft {
   private readonly types: TypeLibrary;
   private readonly vehicleEnvironment: VehicleEnvironment;
   private readonly visuals = new Map<string, AircraftVisual>();
+  /** The moving map on one of the flown aircraft's displays, with a map to draw from. */
+  private readonly mapScreen: EarthMapScreen | undefined;
   /** Each loaded aircraft's instruments, cropped out of its cockpit when first asked for. */
   private readonly instrumentViews = new WeakMap<AircraftVisual, AircraftInstrumentView[]>();
   private readonly shadowSubjects = new WeakMap<AircraftVisual, ShadowSubject>();
@@ -241,6 +266,8 @@ export class EarthAircraft {
   private controls: AircraftInputData = { ...IDLE_AIRCRAFT_INPUT };
   private readonly pointerAxes = new AircraftPointerAxes();
   private cockpitBrake = false;
+  /** Held throttle keys catch at an afterburner's military-power detent. */
+  private readonly throttleRamp = new AircraftThrottleRamp();
   /**
    * The pilot's body under load: the cockpit eye sinks in a pull, leans under braking and thrust,
    * and the head lags a quick roll. `pilotMotion.configure(false)` turns it off; its `tuning` is
@@ -322,6 +349,10 @@ export class EarthAircraft {
     this.types = options.types;
     this.vehicleEnvironment = options.vehicleEnvironment;
     this.prepare = options.prepare;
+    this.mapScreen =
+      options.map === undefined
+        ? undefined
+        : new EarthMapScreen(options.map, { zoom: 'air', street: false });
     if (options.pilotMotion !== undefined) this.pilotMotion.configure(options.pilotMotion);
     this.object.name = 'earth:aircraft';
     this.root.add(this.object);
@@ -721,10 +752,13 @@ export class EarthAircraft {
     if (this.world.get(id, Aircraft)?.spec.poweredLift && (controls.vector ?? 0) > 0)
       next.thrustVector =
         ((Math.round((next.thrustVector ?? 0) * 4) + (controls.vector ?? 0)) % 5) / 4;
-    if (controls.throttle !== 0)
-      this.setPower(
-        Math.max(0, Math.min(1, next.power + Math.min(dt, 0.1) * POWER_RATE * controls.throttle)),
-      );
+    const flownSpec = this.world.get(id, Aircraft)?.spec;
+    const lever = this.throttleRamp.step(
+      next.power,
+      Math.min(dt, 0.1) * POWER_RATE * controls.throttle,
+      flownSpec ? aircraftReheatDetent(flownSpec) : undefined,
+    );
+    if (lever !== next.power) this.setPower(lever);
     next.power = this.controls.power;
     next.engines = this.controls.engines;
     next.pitch = controls.pitch || this.pointerAxes.pitch;
@@ -796,6 +830,37 @@ export class EarthAircraft {
         this.world.tick / this.world.tickRate,
       );
     }
+    this.paintMap();
+  }
+
+  /** Keep the moving map on the flown aircraft's map display, and paint it from the seat. */
+  private paintMap(): void {
+    if (this.mapScreen === undefined) return;
+    const id = this.mountedId;
+    const visual = id === undefined ? undefined : this.visuals.get(id);
+    const t = id === undefined ? undefined : this.world.get(id, Transform);
+    const state = id === undefined ? undefined : this.world.get(id, AircraftState);
+    const spec = id === undefined ? undefined : this.world.get(id, Aircraft)?.spec;
+    this.mapScreen.update(
+      visual?.object,
+      (model) =>
+        spec === undefined
+          ? undefined
+          : findCockpitMapDisplay(model, {
+              eye: spec.pilotEye,
+              bindings: spec.visual.interior?.bindings ?? [],
+            }),
+      t !== undefined && state !== undefined
+        ? {
+            x: t.pos[0],
+            z: t.pos[2],
+            yaw: state.yaw,
+            // Over the ground: the map's zoom follows how fast the ground goes by.
+            speed: Math.hypot(state.velocity[0], state.velocity[2]),
+          }
+        : undefined,
+      this.view === 'cockpit',
+    );
   }
 
   /** The cockpit or chase camera for the mounted aircraft, pulled in front of walls. */
@@ -882,8 +947,19 @@ export class EarthAircraft {
         ? {
             fuel: state.fuel ?? aircraft.spec.fuel.capacity,
             fuelCapacity: aircraft.spec.fuel.capacity,
+            fuelFlow: aircraftTotalFuelFlow(aircraft.spec, state, this.controls.power),
           }
         : {}),
+      ...(() => {
+        const detent = aircraftReheatDetent(aircraft.spec);
+        if (detent === undefined) return {};
+        const lit = Object.values(state.engines ?? {}).map((engine) => engine.afterburner ?? 0);
+        return {
+          reheatDetent: detent,
+          afterburner: Math.max(0, ...lit),
+          throttleCaught: this.throttleRamp.caught,
+        };
+      })(),
       buffet: state.buffet ?? 0,
       greyout: state.greyout ?? 0,
       redout: state.redout ?? 0,
@@ -971,6 +1047,8 @@ export class EarthAircraft {
 
   dispose(): void {
     this.disposed = true;
+    // The screen first: it hangs in a cockpit disposed next.
+    this.mapScreen?.dispose();
     for (const id of [...this.spawned]) this.remove(id);
     for (const visual of this.visuals.values()) visual.dispose();
     this.visuals.clear();

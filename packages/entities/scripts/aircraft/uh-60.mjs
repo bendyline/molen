@@ -65,12 +65,13 @@ export function buildUH60(s) {
     [2.5, 1.1811, 0.42, 2.2],
     [1.0, 1.1811, 0.42, 2.2],
     [-1.6, 1.1811, 0.42, 2.12],
-    // Plan view (Commons orthographic and PD 3-view): the cabin keeps its width to z -3.0,
-    // steps in at the aft bulkhead (about 1.4 m wide at z -3.1) and the tail cone narrows
-    // to a slender, deep boom (0.81 m wide at z -3.9).
-    [-3.0, 1.06, 0.46, 2.11],
-    [-3.15, 0.72, 0.48, 2.09],
-    [-3.7, 0.45, 0.5, 2.06],
+    // Plan view (Commons orthographic and PD 3-view): the cabin keeps its width to z -2.9,
+    // then the transition section tapers to a slender, deep tail cone (about 1.5 m wide at
+    // z -3.45, 0.95 m at -4.2). It used to step 0.34 m a side in 0.15 m at the aft bulkhead,
+    // which read as a flat wall closing off a box.
+    [-2.9, 1.06, 0.46, 2.11],
+    [-3.45, 0.76, 0.485, 2.09],
+    [-4.2, 0.47, 0.515, 2.0],
     [-7.6, 0.25, 0.62, 1.55],
     [-9.5, 0.17, 0.75, 1.25],
     [-10.0, 0.08, 1, 1.2],
@@ -78,6 +79,8 @@ export function buildUH60(s) {
   // Head-on (Army front photo) the nose is a broad rounded bulb and the cockpit and cabin have
   // rounded roof shoulders and a tucked belly over flat, upright window sides: rounded
   // sections with the flat side between fixed indices (see `section`), smooth-shaded.
+  // Behind the aft cabin bulkhead (z -3.15) the tail cone is a deep oval (rear and side
+  // photos), not the cabin's rounded box: the box sections there read as a square tube.
   const ring = ([z, w, b, t], i) => ({
     z,
     points:
@@ -85,12 +88,40 @@ export function buildUH60(s) {
         ? section(w, b, t, (t - b) * 0.56, (t - b) * 0.42, 3, 2.6)
         : i === 3
           ? section(w, b, t, 0.3, 0.3, 3.2, 2.8)
-          : section(w, b, t, Math.min(0.2, (t - b) * 0.24), Math.min(0.24, (t - b) * 0.26)),
+          : z < -3.1
+            ? section(w, b, t, (t - b) * 0.44, (t - b) * 0.5, 2.3, 2.2)
+            : section(
+                w,
+                b,
+                t,
+                Math.min(0.2, (t - b) * 0.24),
+                Math.min(0.24, (t - b) * 0.26),
+                3.4,
+                2.7,
+              ),
   });
   const rings = measured.map(ring),
     n = rings[0].points.length,
     p = (i, j) => [...rings[i].points[(j + n) % n], rings[i].z],
     roof = (j) => j < SIDE_TOP || j >= n - SIDE_TOP;
+  // The skin's own section at any z (between lofted rings), and its half width at height y on
+  // the side, so seams, stencils and access panels lie on the oval tail cone.
+  const skinRing = (z) => {
+    let i = rings.findIndex((r, k) => k < rings.length - 1 && z <= r.z && z >= rings[k + 1].z);
+    if (i < 0) i = z > rings[0].z ? 0 : rings.length - 2;
+    const u = (rings[i].z - z) / (rings[i].z - rings[i + 1].z);
+    return rings[i].points.map((q, j) => q.map((v, k) => v + (rings[i + 1].points[j][k] - v) * u));
+  };
+  const skinX = (z, y) => {
+    const q = skinRing(z);
+    for (let j = 0; j < n / 2; j++) {
+      const a = q[j],
+        c = q[j + 1];
+      if ((y <= a[1] && y >= c[1]) || (y >= a[1] && y <= c[1]))
+        return a[0] + ((c[0] - a[0]) * (y - a[1])) / (c[1] - a[1] || 1);
+    }
+    return q[SIDE_TOP][0];
+  };
   noseDome(d, rings[0].points, 4.6, 4.68, 0.91, paint, 0.3);
   loft(d, rings, paint, {
     skip: (i, j) =>
@@ -144,16 +175,19 @@ export function buildUH60(s) {
       k = side * (SIDE_TOP + 1);
     // Side glazing per the M-model profile drawing and left-side photo: the cockpit door, two
     // narrow gunner windows and the two square sliding-door windows; solid skin aft of the door.
-    const rounded = (z0, z1, y0, y1, r) => [
-      [z0 - r, y0],
-      [z1 + r, y0],
-      [z1, y0 + r],
-      [z1, y1 - r],
-      [z1 + r, y1],
-      [z0 - r, y1],
-      [z0, y1 - r],
-      [z0, y0 + r],
-    ];
+    // Rounded rectangles (four arc steps a corner); chamfered octagons read as pills.
+    const rounded = (z0, z1, y0, y1, r) =>
+      [
+        [z1 + r, y0 + r, -Math.PI / 2],
+        [z1 + r, y1 - r, Math.PI],
+        [z0 - r, y1 - r, Math.PI / 2],
+        [z0 - r, y0 + r, 0],
+      ].flatMap(([cz, cy, a0]) =>
+        Array.from({ length: 5 }, (_, k) => {
+          const a = a0 - (k * Math.PI) / 8;
+          return [cz + Math.cos(a) * r, cy + Math.sin(a) * r];
+        }),
+      );
     const windows = [
       [
         [3.44, 1.37],
@@ -161,10 +195,13 @@ export function buildUH60(s) {
         [2.58, 1.98],
         [2.58, 1.3],
       ],
-      rounded(1.93, 1.62, 1.3, 1.92, 0.1),
-      rounded(1.56, 1.29, 1.3, 1.92, 0.1),
-      rounded(0.84, 0.16, 1.27, 1.93, 0.06),
-      rounded(0.03, -0.64, 1.27, 1.93, 0.06),
+      rounded(1.93, 1.62, 1.3, 1.92, 0.07),
+      rounded(1.56, 1.29, 1.3, 1.92, 0.07),
+      // Sliding-door windows are taller than wide (about 0.6 by 0.66 m) with a broad solid
+      // panel behind them (M-model side photos); they used to run 0.68 m wide to near the door's
+      // trailing edge.
+      rounded(0.85, 0.24, 1.27, 1.93, 0.08),
+      rounded(0.11, -0.5, 1.27, 1.93, 0.08),
     ].map((a) => a.map(([z, y]) => q(z, y)));
     sheet(
       d,
@@ -212,21 +249,13 @@ export function buildUH60(s) {
       for (let n = 0; n < 13; n++)
         d.add(new T.SphereGeometry(0.0035, 5, 3), metal, [sx(z, side) * 1.003, 0.68 + n * 0.1, z]);
     // Frame seams circle the whole section: draw them once.
-    for (const z of side > 0 ? [-2.1, -3.1, -4.4, -5.9, -7.3] : []) {
-      const i = measured.findIndex(
-        (a, i) => i < measured.length - 1 && z <= a[0] && z >= measured[i + 1][0],
-      );
-      const a = measured[i],
-        b = measured[i + 1],
-        u = (a[0] - z) / (a[0] - b[0]),
-        v = a.map((n, k) => n * (1 - u) + b[k] * u);
+    for (const z of side > 0 ? [-2.1, -3.1, -4.4, -5.9, -7.3] : [])
       outline(
         d,
-        ring(v).points.map((q) => [...q, z]),
+        skinRing(z).map((q) => [q[0] * 1.002, q[1], z]),
         0.0028,
         trim,
       );
-    }
     for (const [z, y, w, h] of [
       [-2.15, 1.73, 0.28, 0.13],
       [-2.45, 1.35, 0.37, 0.21],
@@ -237,16 +266,10 @@ export function buildUH60(s) {
         [z + w / 2, y - h / 2],
         [z + w / 2, y + h / 2],
         [z - w / 2, y + h / 2],
-      ].map(([z, y]) => q(z, y));
+      ].map(([z, y]) => [side * (skinX(z, y) + 0.003), y, z]);
       outline(d, a, 0.004, trim);
     }
-    d.text(
-      'UNITED STATES ARMY',
-      [sx(-4.65, side) * 1.01, 1.21, -4.65],
-      0.09,
-      (side * Math.PI) / 2,
-      trim,
-    );
+    // Operator titles (UNITED STATES ARMY and the like) are livery markings, not geometry.
     d.rod([side * 1.2, 0.54, 1.53], [side * 1.43, 0.54, 0.2], 0.026, trim);
     d.rod([side * 1.43, 0.54, 0.2], [side * 1.2, 0.54, -0.1], 0.026, trim);
     // Main gear upper fairing and exposed oleo/drag brace, without auxiliary stores.
@@ -256,8 +279,8 @@ export function buildUH60(s) {
     wheel(d, [side * 1.35382, 0.32, 1.14], 0.32, 0.254, rubber, metal, paint);
     d.box([0.05, 0.05, 0.08], [side * 1.2, 2.15, 1.65], side < 0 ? d.green : d.red);
   }
-  // Transmission fairing and paired T700 nacelles with open intakes and upward exhausts.
-  // Rounded crown over short upright flanks (front photo), smooth-shaded.
+  // Transmission fairing and paired T700 nacelles. Rounded crown over short upright flanks
+  // (front photo), smooth-shaded; it narrows between the engines, which sit against it.
   const cowl = (z, w, b, t) => ({
     z,
     points: [
@@ -278,62 +301,86 @@ export function buildUH60(s) {
     d,
     [
       cowl(2.48, 0.42, 2.12, 2.28),
-      cowl(1.55, 0.62, 2.18, 2.48),
-      cowl(0.4, 0.63, 2.2, 2.62),
-      cowl(-1.3, 0.62, 2.1, 2.58),
-      cowl(-2.45, 0.55, 2.02, 2.38),
-      cowl(-3.7, 0.4, 1.89, 2.04),
+      cowl(1.55, 0.5, 2.18, 2.48),
+      cowl(0.75, 0.46, 2.2, 2.6),
+      cowl(0.4, 0.44, 2.2, 2.62),
+      cowl(-1.3, 0.42, 2.1, 2.58),
+      cowl(-2.45, 0.4, 2.02, 2.38),
+      cowl(-3.7, 0.32, 1.89, 2.04),
     ],
     paint,
   );
+  // Each nacelle is a long cowling laid along the cabin roof against the transmission fairing:
+  // a round crown over skirts that run down into the roof (S-70/UH-60 close-ups and the
+  // head-on photo, outer edges about 0.85 m off the centreline), a round intake with a lip and
+  // a dark duct at the front, and the HIRSS suppressor behind. They used to be free round pods
+  // perched on the roof edges, overhanging the cabin sides.
+  const ENGINE_X = 0.7,
+    ENGINE_Y = 2.36,
+    SKIRT = -0.25;
+  const nacelleSection = (z, r, flare = 0.05) => ({
+    z,
+    points: [
+      ...Array.from({ length: 7 }, (_, k) => [
+        r * Math.sin((k * Math.PI) / 12),
+        r * Math.cos((k * Math.PI) / 12),
+      ]),
+      [r + flare * 0.35, SKIRT * 0.5],
+      [r + flare, SKIRT],
+      [0, SKIRT - 0.01],
+      [-r - flare, SKIRT],
+      [-r - flare * 0.35, SKIRT * 0.5],
+      ...Array.from({ length: 6 }, (_, k) => [
+        -r * Math.sin(((6 - k) * Math.PI) / 12),
+        r * Math.cos(((6 - k) * Math.PI) / 12),
+      ]),
+    ],
+  });
+  const INTAKE = 0.21,
+    INTAKE_Y = 0.02;
   for (const side of [-1, 1]) {
-    const e = group(root, `UH60-engine-${side}`, [side * 0.94, 2.42, 0]),
+    const e = group(root, `UH60-engine-${side}`, [side * ENGINE_X, ENGINE_Y, 0]),
       ed = detailKit(e, 'nacelle');
-    loft(
+    const sections = [
+      nacelleSection(0.78, 0.26, 0.03),
+      nacelleSection(0.68, 0.3, 0.05),
+      nacelleSection(0.3, 0.32, 0.06),
+      nacelleSection(-0.6, 0.325, 0.06),
+      nacelleSection(-1.35, 0.315, 0.06),
+      nacelleSection(-1.62, 0.3, 0.05),
+    ];
+    loft(ed, sections, paint, { caps: false });
+    // Front face around the intake, a rolled lip and a short dark duct to the engine face.
+    const mouth = Array.from({ length: 24 }, (_, k) => [
+      Math.sin((k * Math.PI) / 12) * INTAKE,
+      INTAKE_Y + Math.cos((k * Math.PI) / 12) * INTAKE,
+      0.78,
+    ]);
+    sheet(
       ed,
-      [
-        {
-          z: 0.65,
-          points: Array.from({ length: 16 }, (_, i) => [
-            Math.sin((i * Math.PI) / 8) * 0.33,
-            Math.cos((i * Math.PI) / 8) * 0.34,
-          ]),
-        },
-        {
-          z: -1.23,
-          points: Array.from({ length: 16 }, (_, i) => [
-            Math.sin((i * Math.PI) / 8) * 0.36,
-            Math.cos((i * Math.PI) / 8) * 0.35,
-          ]),
-        },
-        {
-          z: -1.65,
-          points: Array.from({ length: 16 }, (_, i) => [
-            Math.sin((i * Math.PI) / 8) * 0.29,
-            Math.cos((i * Math.PI) / 8) * 0.27,
-          ]),
-        },
-      ],
+      sections[0].points.map(([x, y]) => [x, y, 0.78]),
       paint,
-      { caps: false },
+      [0, 0, 1],
+      [mouth],
     );
-    ed.ring(0.31, 0.034, [0, 0, 0.66], paint);
-    ed.add(new T.CircleGeometry(0.28, 20), trim, [0, 0, 0.52]);
+    ed.ring(INTAKE + 0.012, 0.018, [0, INTAKE_Y, 0.785], paint);
     ed.add(
-      new T.CylinderGeometry(0.24, 0.28, 0.14, 20, 1, true).rotateX(Math.PI / 2),
+      new T.CylinderGeometry(INTAKE, INTAKE * 0.92, 0.26, 24, 1, true).rotateX(Math.PI / 2),
       trim,
-      [0, 0, 0.59],
+      [0, INTAKE_Y, 0.65],
     );
-    // HIRSS suppressor (M photos): the nacelle runs on into a flattened duct that settles onto
-    // the roof and turns its dark outlet aft and outboard, not a round tailpipe.
+    ed.add(new T.CircleGeometry(INTAKE * 0.92, 24), trim, [0, INTAKE_Y, 0.52]);
+    ed.add(new T.SphereGeometry(1, 12, 6).scale(0.07, 0.07, 0.05), metal, [0, INTAKE_Y, 0.53]);
+    // HIRSS (M photos): the nacelle runs on into a flattened duct that settles onto the roof
+    // and turns its dark outlet aft and outboard, not a round tailpipe.
     const exhaust = group(e, 'UH60-exhaust', [0, 0, -1.62]);
     const xd = detailKit(exhaust, 'exhaust'),
       duct = [
         // z, outboard shift, centre height, half width, height above / below the centre
-        [0.04, 0, 0, 0.29, 0.27, 0.27],
-        [-0.45, 0.03, -0.02, 0.29, 0.24, 0.28],
-        [-0.95, 0.1, -0.06, 0.26, 0.17, 0.24],
-        [-1.3, 0.17, -0.08, 0.22, 0.12, 0.18],
+        [0.04, 0, 0, 0.3, 0.3, 0.25],
+        [-0.45, 0.03, -0.02, 0.3, 0.26, 0.25],
+        [-0.95, 0.08, -0.05, 0.27, 0.19, 0.22],
+        [-1.3, 0.12, -0.07, 0.23, 0.14, 0.18],
       ].map(([z, dx, cy, w, up, down]) => ({
         z,
         points: Array.from({ length: 16 }, (_, i) => {
@@ -353,9 +400,29 @@ export function buildUH60(s) {
       [side * 0.3, 0, -1],
     );
     xd.finish();
-    for (const z of [0.2, -0.85]) ed.ring(0.353, 0.003, [0, 0, z], metal);
-    for (let i = 0; i < 8; i++)
-      ed.box([0.012, 0.04, 0.12], [side * 0.345, -0.12 + i * 0.04, -0.5], trim);
+    // Cowl seams over the crown and the outboard louvre bank on its side.
+    for (const z of [0.2, -0.85]) {
+      const r = 0.325;
+      outline(
+        ed,
+        Array.from({ length: 13 }, (_, k) => [
+          r * 1.01 * Math.sin(((k - 6) * Math.PI) / 12),
+          r * 1.01 * Math.cos(((k - 6) * Math.PI) / 12),
+          z,
+        ]),
+        0.003,
+        metal,
+        false,
+      );
+    }
+    for (let i = 0; i < 8; i++) {
+      const y = 0.02 + i * 0.03;
+      ed.box(
+        [0.012, 0.022, 0.12],
+        [side * (Math.sqrt(0.325 * 0.325 - y * y) + 0.004), y, -0.5],
+        trim,
+      );
+    }
     ed.finish();
   }
   // Vertical tail follows the common H-60 sweep; M fitting uses a folding stabilator.
@@ -442,7 +509,9 @@ export function buildUH60(s) {
       dd = detailKit(g, 'wide-chord-blade');
     g.rotation.y = -a;
     dd.rod([0.1, 0, 0], [0.83, 0, 0], 0.06, metal);
-    dd.rod([0.2, -0.38, 0.12], [0.75, -0.01, 0.12], 0.019, metal);
+    // Pitch link: a short upright rod from the swashplate rim to the blade's pitch horn.
+    dd.rod([0.27, -0.36, 0.12], [0.3, -0.06, 0.12], 0.017, metal);
+    dd.rod([0.3, -0.06, 0.12], [0.52, -0.02, 0.06], 0.022, metal);
     dd.rod([0.23, 0.06, -0.1], [0.68, 0.07, -0.1], 0.03, trim);
     wing(
       dd,
@@ -463,11 +532,43 @@ export function buildUH60(s) {
   d.rod([0, 1.62, -5.3], [0, 2.08, -5.65], 0.012, paint);
   d.rod([0, 0.54, -3.4], [0, 0.18, -3.1], 0.012, trim);
   d.box([0.055, 0.06, 0.055], [0, 2.59, -1.75], d.red);
+  // Windscreen wipers (front photo): pivoted low on each main pane a third of the way in from
+  // its outer edge and parked up toward the centre post, an arm with the blade alongside it,
+  // both lying 2-3 cm off the outside of the glass. The old arm ran inside the glazing to eye
+  // height and folded back into a Z across the pilot's view.
+  const pane = (side, c, v) => {
+    const at = (i) => {
+      const k = Math.floor(c),
+        f = c - k,
+        a = p(i, side * k),
+        b = p(i, side * (k + 1));
+      return a.map((x, m) => x + (b[m] - x) * f);
+    };
+    const a = at(3),
+      b = at(4);
+    return a.map((x, m) => x + (b[m] - x) * v);
+  };
+  const offGlass = (side, c, v, lift) => {
+    const q = pane(side, c, v),
+      du = pane(side, c + 0.05, v).map((x, m) => x - q[m]),
+      dv = pane(side, c, v + 0.05).map((x, m) => x - q[m]),
+      nrm = [
+        du[1] * dv[2] - du[2] * dv[1],
+        du[2] * dv[0] - du[0] * dv[2],
+        du[0] * dv[1] - du[1] * dv[0],
+      ],
+      len = Math.hypot(...nrm) || 1,
+      sign = nrm[2] > 0 ? 1 : -1;
+    return q.map((x, m) => x + (sign * nrm[m] * lift) / len);
+  };
   for (const side of [-1, 1]) {
     d.ring(0.055, 0.015, [side * 0.53, 1.12, 4.45], paint);
     d.add(new T.CircleGeometry(0.043, 12), glass, [side * 0.53, 1.12, 4.465]);
-    d.rod([side * 0.8, 1.56, 3.58], [side * 0.44, 1.87, 3.14], 0.01, trim);
-    d.rod([side * 0.44, 1.87, 3.14], [side * 0.65, 2.01, 2.97], 0.007, trim);
+    const pivot = offGlass(side, 2.1, 0.06, 0.02),
+      tip = offGlass(side, 0.75, 0.58, 0.02);
+    d.rod(pivot, tip, 0.006, trim);
+    d.rod(offGlass(side, 1.95, 0.1, 0.034), offGlass(side, 0.68, 0.64, 0.034), 0.0045, trim);
+    d.add(new T.SphereGeometry(0.018, 8, 4), trim, pivot);
   }
   d.finish();
   const interior = cockpit(root, { paint, trim, metal });
@@ -513,7 +614,8 @@ function cockpit(root, m) {
     bindings = [],
     face = mat('UH60-instrument-face', '#343c3e'),
     seat = mat('UH60-upholstery', '#434949'),
-    belt = mat('UH60-harness', '#9b9b8c'),
+    // Olive webbing: pale straps read through every cabin window as bright diagonal stripes.
+    belt = mat('UH60-harness', '#5c5b4b'),
     z = 3.4,
     // The photograph has no absolute size. Its displays are the UH-60M's 6 by 8 in MFDs, which makes
     // the face 1.25 m wide; the 1.63 m cabin-fit width used before drew them 1.3 times too large.
@@ -688,7 +790,8 @@ function cockpit(root, m) {
   pd.box([0.13, 0.025, 0.03], [0, -0.39, -0.16], m.trim);
   pd.text('PARK', [0, -0.35, -0.16], 0.008, Math.PI, pd.ivory);
   pd.finish();
-  d.box([1.94, 0.045, 5.1], [0, 0.56, 0.77], m.trim);
+  // Cabin floor, stopping short of the nose where the belly narrows (it showed through at z 3.3).
+  d.box([1.94, 0.045, 4.95], [0, 0.56, 0.695], m.trim);
   const addSeat = (parent, x, y, z, armored = false) => {
     const sd = detailKit(parent, 'UH60-seat');
     beveledBox(sd, [0.48, 0.12, 0.49], [x, y, z], seat);

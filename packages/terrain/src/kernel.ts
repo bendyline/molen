@@ -18,6 +18,12 @@ export {
   type TerrainArchiveSetTileType,
   terrainArchiveSetTierCells,
 } from './archive-set';
+export {
+  TERRAIN_BRIDGE_OUTLINE_MARGIN,
+  TERRAIN_BRIDGE_OUTLINE_SHARE,
+  terrainBridgeDeckShares,
+  withoutTerrainBridgeOutlines,
+} from './bridge-outlines';
 export { type BridgeDeckOptions, bridgeDeckHeightFn } from './bridge-profile';
 export {
   blurTerrainBuildingCoverage,
@@ -180,6 +186,7 @@ export {
   beginRoadEarthworks,
   clipRoadLine,
   gradeRoadEarthworks,
+  isRoadEarthworkGraded,
   ROAD_PROFILE_WINDOW,
   type RoadEarthworkLine,
   type RoadEarthworkOptions,
@@ -246,6 +253,28 @@ export {
   transportSurfaceLift,
   transportWidth,
 } from './transport-features';
+export {
+  findTerrainTunnelPortals,
+  isInferredTerrainTunnel,
+  TERRAIN_TUNNEL_COVER,
+  TERRAIN_TUNNEL_CUTTING_REACH,
+  TERRAIN_TUNNEL_GRADE,
+  TERRAIN_TUNNEL_INWARD_REACH,
+  TERRAIN_TUNNEL_PORTAL_ZONE,
+  type TerrainTunnelBoreProfile,
+  type TerrainTunnelCutting,
+  type TerrainTunnelFamily,
+  type TerrainTunnelPortalSeed,
+  type TerrainTunnelPortalSource,
+  type TerrainTunnelWay,
+  terrainTunnelBoreProfile,
+  terrainTunnelClearance,
+  terrainTunnelCutting,
+  terrainTunnelCuttingDepths,
+  terrainTunnelCuttingLines,
+  terrainTunnelFamily,
+  terrainTunnelWays,
+} from './tunnel-portals';
 export { TERRAIN_UNDERPASS_REACH, withTerrainUnderpasses } from './underpasses';
 
 import type { TerrainDescriptor } from './descriptor-types';

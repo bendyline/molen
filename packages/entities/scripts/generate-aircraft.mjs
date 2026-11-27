@@ -86,8 +86,15 @@ for (const s of aircraft) {
     for (const binding of visual.animation.bindings) include(binding.source);
     if (Object.keys(derived).length) visual.animation.derived = derived;
     // Only declare a source map when every binding dependency can be read explicitly.
-    // Legacy bindings may intentionally use the aircraft renderer's built-in telemetry.
-    if ([...visited].every((name) => Object.hasOwn(derived, name) || Object.hasOwn(sources, name)))
+    // Legacy bindings may intentionally use the aircraft renderer's built-in telemetry. Per-engine
+    // readings (engines.<id>.rpmNormalized, .afterburner, .nozzle) come from the renderer on
+    // every host, so a variable nozzle bound to one needs no source of its own.
+    const rendered = (name) => /^engines\.[A-Za-z][A-Za-z0-9_-]*\.[A-Za-z]+$/.test(name);
+    if (
+      [...visited].every(
+        (name) => rendered(name) || Object.hasOwn(derived, name) || Object.hasOwn(sources, name),
+      )
+    )
       visual.animation.sources = sources;
   }
   const components = structuredClone(f.heli ? baseHeli : basePlane);

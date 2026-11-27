@@ -89,10 +89,10 @@ export function buildA400M(s) {
   const stations = [
     [172, 0.025, 267, 264],
     [185, 0.65, 278, 249],
-    [200, 1.15, 286, 231],
-    [218, 1.32, 291, 216],
-    [239, 1.87, 295, 211],
-    [259, 2.32, 297, 210],
+    [200, 1.2, 284, 233],
+    [218, 1.45, 291, 216],
+    [239, 2.0, 295, 211],
+    [259, 2.42, 297, 210],
     [285, 2.75, 300, 209],
     [330, 2.82, 300, 209],
     [390, 2.82, 300, 205],
@@ -107,10 +107,14 @@ export function buildA400M(s) {
   ];
   // Round Atlas section (head-on photographs): a round nose and barrel; aft of the sponsons the
   // lower body flattens into the broad loading ramp. Index order is unchanged.
-  const section = (i, w, bottom, top) => {
+  // `dense` samples the same contour at twice the points (the shell's points stay at even indices)
+  // for the radome, whose round outline the 14-point shell ring would facet into a V.
+  const section = (i, w, bottom, top, dense = false) => {
     const [crown, belly, k] =
         i < 3
-          ? [2.15, 2.3, 0.45]
+          ? i === 2
+            ? [2.7, 2.0, 0.56]
+            : [2.15, 2.3, 0.45]
           : i < 6
             ? [i < 5 ? 2.9 : 2.65, 2.4, 0.45]
             : i < 11
@@ -125,11 +129,21 @@ export function buildA400M(s) {
         w * Math.pow(Math.sin(a), 2 / belly),
         mid - (mid - bottom) * Math.pow(Math.cos(a), 2 / belly),
       ],
-      right = [up(0), up(0.5), up(0.98), up(1.42), down(1.42), down(0.98), down(0.5), down(0)];
+      // Over the flight deck the first section line (the post between the front pane and the
+      // opening side window) sits further outboard, so the pilot's level line of sight passes
+      // through the wide front pane, as in the head-on photographs, not along the post.
+      shoulder = i >= 2 && i <= 5 ? 0.62 : 0.5,
+      right = dense
+        ? [
+            ...[0, shoulder / 2, shoulder, (shoulder + 0.98) / 2, 0.98, 1.2, 1.42].map(up),
+            [w, mid],
+            ...[1.42, 1.2, 0.98, 0.74, 0.5, 0.25, 0].map(down),
+          ]
+        : [up(0), up(shoulder), up(0.98), up(1.42), down(1.42), down(0.98), down(0.5), down(0)];
     return [
       ...right,
       ...right
-        .slice(1, 7)
+        .slice(1, right.length - 1)
         .map(([x, y]) => [-x, y])
         .reverse(),
     ];
@@ -372,47 +386,46 @@ export function buildA400M(s) {
         [1.82, 0.86],
       ],
     ]);
-    glazePatch(4, 1, 1, 1, side, [
+    // One long rear side window beside the pilot, about as long as the opening window ahead of it
+    // and its front edge raked the same way (nose photograph); it replaces two small square panes.
+    glazePatch(4, 1, 1, 2, side, [
       [
-        [0.1, 0.1],
-        [0.1, 0.9],
-        [0.92, 0.9],
-        [0.92, 0.1],
-      ],
-    ]);
-    glazePatch(5, 1, 1, 1, side, [
-      [
-        [0.1, 0.05],
-        [0.1, 0.4],
-        [0.88, 0.4],
-        [0.88, 0.05],
+        [0.06, 0.1],
+        [0.06, 1.42],
+        [0.82, 1.32],
+        [0.82, 0.28],
       ],
     ]);
     const wiper = (t) => {
       const q = lerp([0.12, 0.34], [0.98, 0.58], t);
       return new T.Vector3(...front.at(...q)).addScaledVector(front.normal(...q), 0.02).toArray();
     };
-    d.rod(wiper(0.15), wiper(0.55), 0.015, dark);
-    d.rod(wiper(0.55), wiper(0.9), 0.012, dark);
+    d.rod(wiper(0.15), wiper(0.55), 0.009, dark);
+    d.rod(wiper(0.55), wiper(0.9), 0.007, dark);
   }
-  // Blunt black radome: an elliptical dome on the radome joint ring (photographs), keeping the
-  // drawing's tip position.
+  // Black radome: a blunt ogive on the broad-topped joint ring (side and head-on photographs), its
+  // tip below the joint's centre, keeping the drawing's tip position.
+  // The base keeps the shell ring's facets (midpoints on its edges) so the joint stays closed.
   const base = rings[2],
     tipY = (rings[0].points[0][1] + rings[0].points[7][1]) / 2,
-    baseY = (base.points[0][1] + base.points[7][1]) / 2;
+    baseY = (base.points[0][1] + base.points[7][1]) / 2,
+    [, radomeW, radomeB, radomeT] = stations[2],
+    curve = section(2, radomeW, sy(radomeB), sy(radomeT), true),
+    joint = base.points.flatMap((q, j) => [q, lerp(q, base.points[(j + 1) % 14], 0.5)]);
   loft(
     d,
     [
-      rings[0],
-      ...[0.02, 0.08, 0.2, 0.38, 0.6, 0.8].map((f) => {
-        const s = Math.sqrt(1 - (1 - f) * (1 - f)),
+      // The tip closes on a point: the drawing's 5 cm tip ring left a hole into the cabin.
+      { z: rings[0].z, points: curve.map(() => [0, tipY]) },
+      ...[0.02, 0.06, 0.13, 0.22, 0.34, 0.48, 0.64, 0.8, 0.92].map((f) => {
+        const s = Math.pow(1 - (1 - f) * (1 - f), 0.62),
           y = tipY + (baseY - tipY) * f;
         return {
           z: rings[0].z + (base.z - rings[0].z) * f,
-          points: base.points.map(([x, yy]) => [x * s, y + (yy - baseY) * s]),
+          points: curve.map(([x, yy]) => [x * s, y + (yy - baseY) * s]),
         };
       }),
-      base,
+      { z: base.z, points: joint },
     ],
     dark,
     { caps: false },
@@ -423,9 +436,35 @@ export function buildA400M(s) {
     0.012,
     seam,
   );
-  // Refuelling probe and subtle roof fittings.
-  d.rod([0.77, 6.06, 18.2], [0.77, 6.45, 20.3], 0.052, paint);
-  d.rod([0.77, 6.45, 20.3], [0.77, 6.22, 22.35], 0.04, metal);
+  // Fixed refuelling probe (head-on and nose photographs): a long roof fairing left of the crown
+  // behind the side windows, then a straight tapered tube rising about 21 degrees, canted a little
+  // outboard, its nozzle ahead of the windscreen and well above the roof.
+  {
+    const from = new T.Vector3(0.92, 6.14, 17.5),
+      axis = new T.Vector3(1.2, 7.6, 21.3).sub(from),
+      turn = new T.Quaternion().setFromUnitVectors(
+        new T.Vector3(0, 1, 0),
+        axis.clone().normalize(),
+      ),
+      tube = (r0, r1, f0, f1, material) => {
+        const a = from.clone().addScaledVector(axis, f0),
+          b = from.clone().addScaledVector(axis, f1);
+        d.add(
+          new T.CylinderGeometry(r1, r0, a.distanceTo(b), 16).applyQuaternion(turn),
+          material,
+          a.add(b).multiplyScalar(0.5).toArray(),
+        );
+      };
+    d.add(
+      new T.SphereGeometry(1, 16, 6, 0, Math.PI * 2, 0, Math.PI / 2).scale(0.27, 0.3, 1.7),
+      paint,
+      [0.92, 6.07, 16.95],
+    );
+    tube(0.16, 0.13, 0, 0.36, paint);
+    tube(0.115, 0.09, 0.36, 0.94, paint);
+    tube(0.065, 0.055, 0.94, 1, metal);
+    ellipsoid(d, from.clone().add(axis).toArray(), [0.05, 0.05, 0.05], dark, 10);
+  }
   for (const z of [13, 1, -8])
     sheet(
       d,
@@ -443,16 +482,17 @@ export function buildA400M(s) {
     loft(
       d,
       [
-        [9.8, 0.12, 1.75, 0.12],
-        [8.1, 0.82, 1.75, 0.68],
-        [4.3, 1.08, 1.72, 0.9],
-        [-0.8, 1.04, 1.75, 0.6],
-        [-2.9, 0.62, 2.0, 0.36],
+        [9.8, 0.14, 1.75, 0.14],
+        [8.1, 0.92, 1.75, 0.7],
+        [4.3, 1.2, 1.72, 0.9],
+        [-0.8, 1.16, 1.75, 0.62],
+        [-2.9, 0.7, 2.0, 0.36],
         [-3.8, 0.1, 2.2, 0.06],
       ].map(([z, r, y, h]) => ({
         z,
+        // As wide as the outer main wheels (head-on photographs show them bulging past the body).
         points: Array.from({ length: 16 }, (_, i) => [
-          side * (2.25 + Math.sin((i * Math.PI) / 8) * r),
+          side * (2.4 + Math.sin((i * Math.PI) / 8) * r),
           y + Math.cos((i * Math.PI) / 8) * h,
         ]),
       })),
@@ -1156,7 +1196,8 @@ function cockpit(root, m) {
     const [low, high, far] = side > 0 ? [rim[1], rim[2], rim[3]] : [rim[0], rim[3], rim[2]];
     outline(d, [low, high, far], 0.005, black, false);
     outline(d, [far, side > 0 ? rim[0] : rim[1]], 0.002, m.dark, false);
-    beveledBox(d, [0.14, 0.09, 0.3], [x, 5.87, eye.z + 0.05], m.dark, 0.015);
+    // The projector hangs 4 cm under the roof facet, which flattens over the outboard post line.
+    beveledBox(d, [0.14, 0.09, 0.3], [x, 5.83, eye.z + 0.05], m.dark, 0.015);
     d.box([0.05, 0.05, 0.05], [outboard, 5.81, eye.z + 0.15], m.dark);
     outline(
       d,

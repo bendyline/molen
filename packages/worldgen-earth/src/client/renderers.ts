@@ -14,6 +14,7 @@ import {
   disposeTerrainSemanticObject,
   isTerrainGroundMaterial,
   keepTerrainSemanticTile,
+  sampleTerrainTunnel,
   setTerrainGroundCrownReach,
   setTerrainGroundCutouts,
   setTerrainSurfacePassages,
@@ -25,8 +26,11 @@ import {
   type TerrainSemanticPolygon,
   type TerrainSemanticTile,
   type TerrainSemanticTileRenderer,
+  type TerrainTransportationFeature,
   terrainGroundTurfColor,
   terrainLandcoverColor,
+  terrainPyramidStreamRoot,
+  terrainRootOffset,
   terrainSemanticTileContentHash,
 } from '@bendyline/molen-terrain/client';
 import {
@@ -34,6 +38,7 @@ import {
   pointInPolygon,
   polygonBounds,
   renderedGroundSampler,
+  transportWidth,
   wgs84ToWorld,
   worldToWgs84,
 } from '@bendyline/molen-terrain/kernel';
@@ -43,6 +48,7 @@ import {
   buildingBoxGeometry,
   createBuildingCellLod,
   createBuildingDetailLod,
+  createGroundOpeningGuard,
   createInstancedPlacementLod,
   createInstancedPlacements,
   createNearPlacements,
@@ -50,6 +56,7 @@ import {
   createTurf,
   createVertexColorMaterialSet,
   disposeWorldgenObject,
+  type GroundOpenings,
   type InteriorDoorQuery,
   type InteriorDoorState,
   type InteriorElevatorStop,
@@ -134,7 +141,81 @@ const COMPACT_SCATTER_KEEP = 0.5;
 const BALANCED_TURF: TurfOptions = { full: 18, radius: 44, plain: 18, density: 0.6 };
 /** Meters the draped land cover lies above the drawn ground where a host does not say. */
 const LANDCOVER_LIFT = 0.18;
+/** Meters past a tunnel way's side within which plants ask whether a bore opened the ground. */
+const TUNNEL_OPENING_MARGIN = 3;
 
+/**
+ * Where a tile's tunnels may open the ground its plants stand on (`GroundOpenings`), in the frame
+ * of `anchor` (the tile's plant group: x/z tile-local, y absolute). The map's ground cover runs
+ * on over a tunnel, as the hill over a bore grows grass and trees. But where a bore lies under
+ * less than its roof's depth of ground (its portals' mouths, an open cutting), the human-feature
+ * layer's bore (`withTerrainTunnels`) cuts the drawn ground away, and a plant stood on that
+ * ground's height stood in the bore. So near a tunnel way of the tile's map, a plant asks the
+ * bores round its terrain stream whether its root lies within one, as a walker does. The answers
+ * change when the tile's other layers (the bores' among them) are shown, hidden or replaced:
+ * `version` follows those. Undefined when the tile maps no tunnel.
+ */
+function tunnelGroundOpenings(
+  transportation: readonly TerrainTransportationFeature[],
+  tileSize: number,
+  anchor: () => THREE.Object3D | undefined,
+): GroundOpenings | undefined {
+  // Each tunnel segment's bounds, widened by its half width and the margin: minX, minZ, maxX, maxZ.
+  const bounds: number[] = [];
+  for (const feature of transportation) {
+    if (feature.tunnel !== true) continue;
+    const reach = transportWidth(feature) / 2 + TUNNEL_OPENING_MARGIN;
+    for (const line of feature.lines)
+      for (let i = 1; i < line.length; i++) {
+        const [au, av] = line[i - 1] as readonly [number, number],
+          [bu, bv] = line[i] as readonly [number, number];
+        bounds.push(
+          Math.min(au, bu) * tileSize - reach,
+          Math.min(av, bv) * tileSize - reach,
+          Math.max(au, bu) * tileSize + reach,
+          Math.max(av, bv) * tileSize + reach,
+        );
+      }
+  }
+  if (bounds.length === 0) return undefined;
+  return {
+    near(x0, z0, x1, z1) {
+      for (let i = 0; i < bounds.length; i += 4)
+        if (
+          (bounds[i] as number) <= x1 &&
+          (bounds[i + 2] as number) >= x0 &&
+          (bounds[i + 1] as number) <= z1 &&
+          (bounds[i + 3] as number) >= z0
+        )
+          return true;
+      return false;
+    },
+    at(x, y, z) {
+      const object = anchor();
+      const root = object !== undefined ? terrainPyramidStreamRoot(object) : undefined;
+      if (object === undefined || root === undefined) return false;
+      const offset = terrainRootOffset(object, root);
+      return (
+        offset !== null &&
+        sampleTerrainTunnel(root, x + offset.x, y + offset.y, z + offset.z) !== undefined
+      );
+    },
+    version() {
+      const object = anchor();
+      const root = object !== undefined ? terrainPyramidStreamRoot(object) : undefined;
+      if (object === undefined || root === undefined) return 0;
+      // The tile's group (the stream's child) and this layer's object in it.
+      let layer = object;
+      while (layer.parent !== null && layer.parent.parent !== root) layer = layer.parent;
+      const tile = layer.parent;
+      if (tile === null) return 0;
+      let version = 1;
+      for (const child of tile.children)
+        if (child !== layer && child.visible) version = (Math.imul(version, 31) + child.id) | 0;
+      return version;
+    },
+  };
+}
 /**
  * Meters a viewer on the ground moves before the buildings round them are chosen again. A tile's
  * detail budget reaches past 100 m in a dense suburb (148 buildings of a Seattle tile's 1,091,
@@ -761,12 +842,13 @@ export function createWorldgenSemanticRenderers(
   /**
    * The plants on a tile's painted crowns, drawn around the view camera (`createNearPlacements`):
    * each model at its near level, and its medium level farther out. A model that fails to load is
-   * left out, as `instancedProps` leaves it.
+   * left out, as `instancedProps` leaves it. None stands on ground `open` says is opened.
    */
   async function nearPlants(
     near: NearPlacements,
     context: TerrainPyramidTileLayerContext,
     name: string,
+    open: GroundOpenings | undefined,
   ): Promise<THREE.Object3D | undefined> {
     if (models === undefined || options.nearPlants === false || near.count === 0) return undefined;
     const levels = new Map<string, NearPlacementModel>();
@@ -785,7 +867,12 @@ export function createWorldgenSemanticRenderers(
       if (context.signal.aborted) return undefined;
     }
     const build = (): THREE.Object3D =>
-      createNearPlacements(near, levels, options.nearPlants || {}, `${name}:near`);
+      createNearPlacements(
+        near,
+        levels,
+        { ...(options.nearPlants || {}), ...(open !== undefined ? { open } : {}) },
+        `${name}:near`,
+      );
     const object = context.admission
       ? await context.admission.run(build, {
           signal: context.signal,
@@ -801,12 +888,14 @@ export function createWorldgenSemanticRenderers(
   /**
    * The tufts of a tile's turf cover, stood around the view camera (`createTurf`) on the ground
    * as it is drawn and in its colors: `colors` and `areas` are the palette and the palette areas
-   * the tile's land cover was painted with.
+   * the tile's land cover was painted with. None stands on ground `open` says is opened (a
+   * tunnel's mouth, `tunnelGroundOpenings`).
    */
   async function turfTufts(
     cover: TurfCover,
     context: TerrainPyramidTileLayerContext,
     name: string,
+    open: GroundOpenings | undefined,
     colors: Readonly<Record<string, string>> | undefined,
     areas:
       | ReadonlyArray<{
@@ -872,6 +961,7 @@ export function createWorldgenSemanticRenderers(
           far,
           ground: (x, z) => drawn(context.origin[0] + x, context.origin[1] + z) + lift,
           top: () => context.heightfield.heightExtent().max + lift,
+          ...(open !== undefined ? { open } : {}),
           color: (label, x, z, out) => {
             const worldX = context.origin[0] + x,
               worldZ = context.origin[1] + z;
@@ -2031,26 +2121,25 @@ export function createWorldgenSemanticRenderers(
       try {
         const generated = await scatter;
         if (generated !== undefined) {
-          for (const object of await instancedProps(
-            generated.output.placements,
-            context,
-            group.name,
-          )) {
-            group.add(object);
-          }
+          // No plant stands where a tunnel's bore cuts the ground away (its portals' mouths).
+          const open = tunnelGroundOpenings(tile.transportation, context.tileSize, () => group);
+          const placed = await instancedProps(generated.output.placements, context, group.name);
+          for (const object of placed) group.add(object);
+          if (open !== undefined && placed.length > 0)
+            group.add(createGroundOpeningGuard(placed, open, `${group.name}:openings`));
           // The plants on the painted crowns stand only around the camera; they choose
           // themselves each frame the tile is drawn (a THREE.LOD's update).
           const near = generated.output.near;
           const plants =
             near !== undefined && !context.signal.aborted
-              ? await nearPlants(near, context, group.name)
+              ? await nearPlants(near, context, group.name, open)
               : undefined;
           if (plants !== undefined) group.add(plants);
           // So does the grass: tufts on the ground this tile's land cover paints as growing it.
           const cover = generated.output.turf;
           const tufts =
             cover !== undefined && !context.signal.aborted
-              ? await turfTufts(cover, context, group.name, colors, paletteAreas)
+              ? await turfTufts(cover, context, group.name, open, colors, paletteAreas)
               : undefined;
           if (tufts !== undefined) group.add(tufts);
           if (!context.signal.aborted) return group;

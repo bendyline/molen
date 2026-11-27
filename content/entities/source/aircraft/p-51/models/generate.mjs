@@ -13,9 +13,10 @@
  * tips, a teardrop canopy behind a framed three-panel windscreen, the ventral radiator scoop, a
  * dorsal fillet and a 3.4 m four-blade Hamilton Standard propeller.
  *
- * Finish: natural metal with an olive-drab anti-glare panel, a red nose band, spinner and tail,
- * yellow wing bands and the 1943 star-and-bar insignia, all geometry lifted a few millimetres off
- * the skin so nothing z-fights. Surfaces are lofted from analytic sections with smooth normals and
+ * Finish: natural metal with an olive-drab anti-glare panel, a red nose band, spinner and tail and
+ * yellow wing bands, all geometry lifted a few millimetres off the skin so nothing z-fights.
+ * National insignia, codes and serials are livery markings (scripts/liveries/aircraft/p-51.mjs),
+ * so RAF, RAAF and post-war schemes are not painted over a baked US star. Surfaces are lofted from analytic sections with smooth normals and
  * modest segment counts: crisp polygonal silhouettes, clean shading.
  *
  * Bound nodes (entity.types.json `visual`): `propeller` spins about Z; `flap±1` and `aileron±1`
@@ -72,7 +73,6 @@ const white = mat('ivory-markings', '#ecebe3', 0.02, 0.45);
 const blue = mat('instrument-sky', '#33729c');
 const brown = mat('instrument-earth', '#79583e');
 const yellow = mat('warning-yellow', '#e7b52a', 0.05, 0.42);
-const insignia = mat('insignia-blue', '#1b2a5e', 0.05, 0.48);
 const blades = mat('propeller-black', '#141516', 0.25, 0.48);
 const iron = mat('exhaust-iron', '#4a3d36', 0.5, 0.6);
 const soot = mat('exhaust-stain', '#5d5c5a', 0.45, 0.55);
@@ -351,12 +351,6 @@ function flush() {
   for (const { parent, name, material, parts } of batches.values())
     mesh(parent, name, parts.length === 1 ? parts[0] : mergeGeometries(parts), material);
   batches.clear();
-}
-/** Temporary meshes of everything batched under `name` so far (for projecting markings). */
-function batched(name) {
-  return [...batches.values()]
-    .filter((entry) => entry.name === name)
-    .flatMap((entry) => entry.parts.map((geo) => new T.Mesh(geo)));
 }
 /** Cylinder from a to b (radius ra at a, rb at b). */
 function tubeBetween(a, b, ra, sides = 10, rb = ra) {
@@ -1027,10 +1021,17 @@ const bubbleAt = table([
 ]);
 /** Behind the cockpit opening the hood sits on the closed turtle deck rather than on the sill. */
 const onSill = (z) => z >= COCKPIT.rear - 1e-9;
-function bubblePoint(z, a) {
+// The hood and the windscreen's rear edges lap 8 mm below the sill: level with it, a hairline of
+// sky showed between the glass and the sill ledge from the seat.
+const HOOD_DROP = 0.008;
+function bubblePoint(z, a, drop = HOOD_DROP) {
   const [hc, n, override] = bubbleAt(z);
   const wc = onSill(z) ? sillWidth(z) + 0.004 : override;
-  return [wc * spow(Math.cos(a), 2 / n), SILL + hc * Math.pow(Math.sin(a), 2 / n), z];
+  return [
+    wc * spow(Math.cos(a), 2 / n),
+    SILL - drop + (hc + drop) * Math.pow(Math.sin(a), 2 / n),
+    z,
+  ];
 }
 function buildCanopy(g) {
   const slider = new T.Group();
@@ -1052,7 +1053,7 @@ function buildCanopy(g) {
   const baseX = [sillWidth(WINDSCREEN.base), sillWidth(WINDSCREEN.base) * 0.8, 0.19];
   const baseCorners = baseX.map((x, i) => [
     x,
-    i === 0 ? SILL : topAt(base, x) + 0.004,
+    i === 0 ? SILL - HOOD_DROP : topAt(base, x) + 0.004,
     WINDSCREEN.base,
   ]);
   const mirror = (p) => [-p[0], p[1], p[2]];
@@ -1571,134 +1572,7 @@ function sidePatch(side, zs, band, lift, count = 4) {
   });
   return orient(loft(rings), fuselageAxis);
 }
-// 2D triangle soups for the 1943 star-and-bar (radius r; star point up = +v).
-function disc(r, rings = 4, sectors = 40) {
-  const tris = [];
-  const p = (i, k) => {
-    const rr = (r * i) / rings,
-      a = (k / sectors) * Math.PI * 2;
-    return [rr * Math.cos(a), rr * Math.sin(a)];
-  };
-  for (let i = 0; i < rings; i++)
-    for (let k = 0; k < sectors; k++) {
-      if (i > 0)
-        tris.push([p(i, k), p(i + 1, k), p(i + 1, k + 1)], [p(i, k), p(i + 1, k + 1), p(i, k + 1)]);
-      else tris.push([[0, 0], p(1, k), p(1, k + 1)]);
-    }
-  return tris;
-}
-function rect(u0, u1, v0, v1, nu, nv) {
-  const tris = [];
-  const p = (i, k) => [u0 + ((u1 - u0) * i) / nu, v0 + ((v1 - v0) * k) / nv];
-  for (let i = 0; i < nu; i++)
-    for (let k = 0; k < nv; k++)
-      tris.push([p(i, k), p(i + 1, k), p(i + 1, k + 1)], [p(i, k), p(i + 1, k + 1), p(i, k + 1)]);
-  return tris;
-}
-function subdivide(tris, levels) {
-  let out = tris;
-  for (let l = 0; l < levels; l++) {
-    const next = [];
-    const mid = (a, b) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
-    for (const [a, b, c] of out) {
-      const ab = mid(a, b),
-        bc = mid(b, c),
-        ca = mid(c, a);
-      next.push([a, ab, ca], [ab, b, bc], [ca, bc, c], [ab, bc, ca]);
-    }
-    out = next;
-  }
-  return out;
-}
-function insigniaLayers(r) {
-  const border = r / 8,
-    v0 = -0.191 * r,
-    v1 = 0.309 * r;
-  const points = Array.from({ length: 10 }, (_, k) => {
-    const a = Math.PI / 2 + (k * Math.PI) / 5,
-      rr = k % 2 ? r * 0.382 : r;
-    return [rr * Math.cos(a), rr * Math.sin(a)];
-  });
-  const lerp2 = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
-  const star = subdivide(
-    points.map((p, k) => [[0, 0], p, points[(k + 1) % 10]]),
-    2,
-  );
-  // The blue disc around the star: strips from each star edge out to the circle.
-  const ring = [];
-  for (let k = 0; k < 10; k++)
-    for (let i = 0; i < 4; i++) {
-      const inner = [
-        lerp2(points[k], points[(k + 1) % 10], i / 4),
-        lerp2(points[k], points[(k + 1) % 10], (i + 1) / 4),
-      ];
-      const outer = inner.map(([u, v]) => {
-        const l = Math.sqrt(u * u + v * v);
-        return [(u / l) * r, (v / l) * r];
-      });
-      for (let f = 0; f < 3; f++) {
-        const a = lerp2(inner[0], outer[0], f / 3),
-          b = lerp2(inner[1], outer[1], f / 3),
-          c = lerp2(inner[1], outer[1], (f + 1) / 3),
-          d = lerp2(inner[0], outer[0], (f + 1) / 3);
-        ring.push([a, b, c], [a, c, d]);
-      }
-    }
-  // White bars from the circle out to two radii.
-  const bars = [];
-  for (const side of [-1, 1])
-    for (let i = 0; i < 8; i++)
-      for (let k = 0; k < 2; k++) {
-        const p = (ii, kk) => {
-          const v = v0 + ((v1 - v0) * kk) / 2;
-          return [
-            side * (Math.sqrt(r * r - v * v) + ((2 * r - Math.sqrt(r * r - v * v)) * ii) / 8),
-            v,
-          ];
-        };
-        bars.push([p(i, k), p(i + 1, k), p(i + 1, k + 1)], [p(i, k), p(i + 1, k + 1), p(i, k + 1)]);
-      }
-  return [
-    [
-      insignia,
-      0.004,
-      [
-        ...disc(r + border),
-        ...rect(-2 * r - border, 2 * r + border, v0 - border, v1 + border, 16, 3),
-      ],
-    ],
-    [white, 0.011, [...star, ...bars]],
-    [insignia, 0.011, ring],
-  ];
-}
-/** Project 2D triangles from `center` along -dir onto `targets`, lifted `lift` along the skin normal. */
-function decal(targets, center, u, v, dir, tris, lift) {
-  const caster = new T.Raycaster();
-  const keyed = new Map(),
-    positions = [],
-    indices = [];
-  const project = ([pu, pv]) => {
-    const key = `${pu.toFixed(5)},${pv.toFixed(5)}`;
-    if (keyed.has(key)) return keyed.get(key);
-    const origin = vec(center).addScaledVector(vec(u), pu).addScaledVector(vec(v), pv);
-    caster.set(origin.clone().addScaledVector(vec(dir), 1.5), vec(dir).negate());
-    const hit = caster.intersectObjects(targets, false)[0];
-    if (!hit) throw new Error(`marking misses the skin at ${origin.toArray()}`);
-    const p = hit.point.addScaledVector(hit.face.normal, lift);
-    positions.push(p.x, p.y, p.z);
-    keyed.set(key, positions.length / 3 - 1);
-    return positions.length / 3 - 1;
-  };
-  for (const tri of tris) {
-    // Mirrored artwork arrives clockwise: wind every triangle counter-clockwise in the plane.
-    const [p, q, r] = tri;
-    const ccw = (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0]) >= 0;
-    const [a, b, c] = (ccw ? tri : [p, r, q]).map(project);
-    pushTriangle(positions, indices, a, b, c);
-  }
-  return orient(geometryOf(positions, indices), () => vec(center).addScaledVector(vec(dir), -1));
-}
-function buildMarkings(g, fuselage) {
+function buildMarkings(g) {
   // Olive-drab anti-glare panel from the windscreen to the red nose band.
   add(
     g,
@@ -1728,28 +1602,6 @@ function buildMarkings(g, fuselage) {
         0.003,
       ),
     );
-  // Star-and-bar: both fuselage sides, upper left wing, lower right wing.
-  const skin = [new T.Mesh(fuselage)];
-  for (const side of [-1, 1])
-    for (const [paint, lift, tris] of insigniaLayers(0.28))
-      add(
-        g,
-        'national-insignia',
-        paint,
-        decal(skin, [side * 0.5, 1.6, -2.3], [0, 0, side], [0, 1, 0], [side, 0, 0], tris, lift),
-      );
-  for (const side of [-1, 1]) {
-    const st = wingStation(4.3);
-    const z = st.le - 0.45 * st.chord;
-    const wing = batched(`wing-${side}`);
-    for (const [paint, lift, tris] of insigniaLayers(0.4))
-      add(
-        g,
-        'national-insignia',
-        paint,
-        decal(wing, [side * 4.3, 1.5, z], [side, 0, 0], [0, 0, 1], [0, side, 0], tris, lift),
-      );
-  }
   // Radio mast behind the canopy.
   const mast = station(-1.75).top;
   add(
@@ -1794,7 +1646,7 @@ function mustang() {
   buildCanopy(g);
   buildNose(g);
   buildGear(g);
-  buildMarkings(g, g.getObjectByName('fuselage').geometry);
+  buildMarkings(g);
   buildSurfaceDetail(g);
   flush();
   const rows = [];

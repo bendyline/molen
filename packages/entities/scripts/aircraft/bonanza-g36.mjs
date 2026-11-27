@@ -271,6 +271,24 @@ export function buildBonanza(s) {
     );
   }
   const apertures = windows.map((w) => w.map(([z, y]) => [z, toV(z, y)]));
+  // Wing reference: chord line height, chord, leading edge, trailing edge, flap/aileron hinge.
+  const y = (x) => 0.77 + Math.abs(x) * Math.tan(Math.PI / 30),
+    chord = (x) => 2.185 - (1.075 * Math.abs(x)) / 5.08,
+    le = (x) => 0.77 - (2.185 - chord(x)) * 0.25,
+    te = (x) => le(x) - chord(x),
+    hinge = (x) => te(x) + chord(x) * 0.23,
+    // Half-thickness parameter of mesh-kit wing() (1.65 of it is the depth at 25% chord).
+    // The A36 root is a NACA 23016.5 tapering to a 23012 tip: about 14% of the chord at the
+    // root here and 11% outboard. The old 0.12 root (under 10%) had no room for the main
+    // wheel, which lay on top of the skin when retracted.
+    half = (x) => {
+      const a = Math.abs(x);
+      return a < 2.75
+        ? 0.19 - ((a - 0.52) * 0.055) / 2.23
+        : a < 4.86
+          ? 0.135 - ((a - 2.75) * 0.055) / 2.11
+          : 0.08 - ((a - 4.86) * 0.03) / 0.22;
+    };
   for (const side of [-1, 1]) {
     const pilotPoint = (z, y) => [side * halfWidth(z, y), y, z];
     band(side, apertures);
@@ -365,22 +383,28 @@ export function buildBonanza(s) {
       );
       for (const z of [-1.24, -1.51])
         d.box([0.02, 0.04, 0.08], [-halfWidth(z, 1.25) - 0.007, 1.25, z], metal);
-      d.box([0.24, 0.009, 0.8], [-0.76, 0.91, -0.31], dark);
+      // Wing walk on the right root, laid on the upper skin's two aft facets (40-92% of the
+      // chord to the flap hinge), not a flat plank that floats over the falling chord.
+      const walk = (x, u) => {
+        const h = half(x),
+          lift = u < 0.75 ? h * (1 - (u - 0.25) * 0.96) : (h * 0.52 * (1 - u)) / 0.25;
+        return [-x, y(x) + lift + 0.004, le(x) - u * (le(x) - hinge(x))];
+      };
+      for (const [u0, u1] of [
+        [0.4, 0.75],
+        [0.75, 0.92],
+      ])
+        quad(d, walk(0.64, u0), walk(0.88, u0), walk(0.88, u1), walk(0.64, u1), dark, [0, 1, 0]);
       d.rod([-0.54, 0.62, -1.46], [-0.8, 0.31, -1.48], 0.015, metal);
       d.box([0.25, 0.025, 0.12], [-0.88, 0.31, -1.48], dark);
     }
-    const y = (x) => 0.77 + Math.abs(x) * Math.tan(Math.PI / 30),
-      chord = (x) => 2.185 - (1.075 * Math.abs(x)) / 5.08,
-      le = (x) => 0.77 - (2.185 - chord(x)) * 0.25,
-      te = (x) => le(x) - chord(x),
-      hinge = (x) => te(x) + chord(x) * 0.23;
     wing(
       d,
       [
-        [side * 0.52, y(0.52), le(0.52), hinge(0.52), 0.12],
-        [side * 2.75, y(2.75), le(2.75), hinge(2.75), 0.09],
-        [side * 4.86, y(4.86), le(4.86), hinge(4.86), 0.058],
-        [side * 5.08, y(5.08), le(5.08) - 0.035, te(5.08) + 0.05, 0.035],
+        [side * 0.52, y(0.52), le(0.52), hinge(0.52), half(0.52)],
+        [side * 2.75, y(2.75), le(2.75), hinge(2.75), half(2.75)],
+        [side * 4.86, y(4.86), le(4.86), hinge(4.86), half(4.86)],
+        [side * 5.08, y(5.08), le(5.08) - 0.035, te(5.08) + 0.05, half(5.08)],
       ],
       paint,
     );
@@ -419,7 +443,7 @@ export function buildBonanza(s) {
       });
     }
     for (let x = 0.8; x < 4.88; x += 0.35) {
-      const h = 0.12 - (x - 0.52) * 0.014,
+      const h = half(x),
         upper = (u) =>
           u < 0.25
             ? (h * u) / 0.25
@@ -456,11 +480,12 @@ export function buildBonanza(s) {
       ]);
     d.add(new T.CylinderGeometry(0.045, 0.045, 0.01, 16), metal, [
       side * 1.17,
-      y(1.17) + 0.105,
+      y(1.17) + half(1.17) * 0.984 - 0.004,
       0.31,
     ]);
+    // Vortex generators stand on the leading-edge slope (upper surface 0.31 h at 0.1 m aft).
     for (let x = 2.9; x < 4.8; x += 0.24)
-      d.box([0.006, 0.025, 0.037], [side * x, y(x) + 0.06, le(x) - 0.1], paint);
+      d.box([0.006, 0.025, 0.037], [side * x, y(x) + half(x) * 0.31 + 0.011, le(x) - 0.1], paint);
     const leTail = (x) => -3.98 - Math.abs(x) * 0.11,
       teTail = (x) => -5.1 + Math.abs(x) * 0.06;
     wing(
@@ -595,10 +620,13 @@ export function buildBonanza(s) {
   }
   pd.finish();
   // Actual main struts retract inboard; nose leg retracts aft. Doors stay attached to their legs.
+  // Hinges sit where the stowed wheel lands inside the skin: the mains at mid-depth of the wing
+  // root (y 0.87; at 0.91 the tyre lay on top of the wing), the nose wheel up in the nose bowl
+  // (at 0.8 a third of it hung below the belly).
   for (const [index, x, z, top, r] of [
-    [0, 0, 2.46, 0.8, 0.205],
-    [1, 1.4605, 0, 0.91, 0.24],
-    [2, -1.4605, 0, 0.91, 0.24],
+    [0, 0, 2.46, 0.95, 0.205],
+    [1, 1.4605, 0, 0.87, 0.24],
+    [2, -1.4605, 0, 0.87, 0.24],
   ]) {
     const g = group(root, `Bonanza-gear-${index}`, [x, top, z]),
       dd = detailKit(g, g.name),
@@ -613,17 +641,26 @@ export function buildBonanza(s) {
         0,
       ]);
     if (x) {
-      dd.rod([-0.18 * Math.sign(x), 0, -0.28], [0, -h + 0.12, 0], 0.017, metal);
+      // The drag brace runs fore-aft in the leg's plane of swing, so it folds flat into the wing
+      // with the leg (an inboard brace swung 18 cm above the upper skin).
+      dd.rod([0, -0.04, -0.28], [0, -h + 0.12, 0], 0.017, metal);
+      // The strut door rides outboard of the leg, set off so that, retracted, it lies on the
+      // wing's lower skin (the leg's local y becomes the spanwise station inboard of the hinge).
+      const sx = Math.sign(x),
+        offset = (ly) => {
+          const at = Math.abs(x) + ly;
+          return sx * (top - (y(at) - half(at) * 0.586) + 0.004);
+        };
       sheet(
         dd,
         [
-          [Math.sign(x) * 0.095, -0.03, 0.25],
-          [Math.sign(x) * 0.095, -0.03, -0.3],
-          [Math.sign(x) * 0.095, -h + 0.07, -0.22],
-          [Math.sign(x) * 0.095, -h + 0.07, 0.12],
+          [offset(-0.03), -0.03, 0.25],
+          [offset(-0.03), -0.03, -0.3],
+          [offset(-h + 0.07), -h + 0.07, -0.22],
+          [offset(-h + 0.07), -h + 0.07, 0.12],
         ],
         paint,
-        [Math.sign(x), 0, 0],
+        [sx, 0, 0],
       );
     } else {
       for (const side of [-1, 1])
@@ -642,7 +679,24 @@ export function buildBonanza(s) {
     });
   }
   d.finish();
-  const interior = cockpit(root, { paint, accent, metal, dark });
+  // Skin height over the cowl at (x, z) along the dome (right-side points 0-6), for the
+  // glareshield to tuck under the windscreen base.
+  const skinTop = (x, z) => {
+    const q = ringAt(z),
+      ax = Math.min(Math.abs(x), q[6][0]);
+    for (let k = 0; k < 6; k++)
+      if (ax >= q[k][0] && ax <= q[k + 1][0])
+        return q[k][1] + ((q[k + 1][1] - q[k][1]) * (ax - q[k][0])) / (q[k + 1][0] - q[k][0] || 1);
+    return q[6][1];
+  };
+  // Firewall: the cowl was open from the cabin to the inlet, so from the seat the eye looked
+  // over the glareshield into the engine bay and out past the spinner to the propeller, and
+  // from the inlet straight into the cabin. A bulkhead just ahead of the windscreen base closes
+  // both views.
+  const firewall = ringAt(1.5).map(([x, yy]) => [x * 0.995, yy - 0.004, 1.5]);
+  sheet(d, firewall, dark, [0, 0, -1]);
+  sheet(d, [...firewall].reverse(), dark, [0, 0, 1]);
+  const interior = cockpit(root, { paint, accent, metal, dark, skinTop });
   cleanGeometry(root);
   return {
     root,
@@ -732,19 +786,16 @@ function cockpit(root, m) {
   );
   const brow = edge.slice(1, 8).map((p) => at(...p));
   outline(d, brow, 0.016, headliner, false);
-  // The glareshield runs forward under the windscreen and stops behind its base.
+  // The glareshield runs forward under the windscreen and tucks 5 cm under the cowl skin past
+  // the windscreen base (z 1.42). It used to stop at z 1.38, 6 cm under that base, leaving an
+  // open slot over the panel through which the eye saw into the cowl and out past the spinner
+  // to the propeller.
+  const tuck = 1.47,
+    front = (p) => [p[0], m.skinTop(p[0], tuck) - 0.012, tuck];
   for (let i = 0; i < brow.length - 1; i++) {
     const a = brow[i],
       b = brow[i + 1];
-    quad(
-      d,
-      a,
-      b,
-      [b[0] * 0.96, 1.66 - Math.abs(b[0]) * 0.1, 1.38],
-      [a[0] * 0.96, 1.66 - Math.abs(a[0]) * 0.1, 1.38],
-      m.dark,
-      [0, 1, 0],
-    );
+    quad(d, a, b, front(b), front(a), m.dark, [0, 1, 0]);
   }
   addG1000Bezels(d, centers, z, black, m.dark);
   const sources = addG1000Readouts({
@@ -989,7 +1040,8 @@ function cockpit(root, m) {
   dd.rod([-0.08, -0.06, -0.18], [-0.08, -0.13, -0.19], 0.004, m.metal);
   dd.box([0.03, 0.016, 0.02], [-0.08, -0.13, -0.19], black);
   dd.finish();
-  d.box([1.06, 0.035, 3.05], [0, 0.75, -0.38], m.dark);
+  // Cabin floor; 1.02 m keeps its aft corners inside the narrowing skin (1.06 showed through).
+  d.box([1.02, 0.035, 3.05], [0, 0.75, -0.38], m.dark);
   d.box([0.18, 0.03, 0.3], [0.24, 0.79, 0.42], face);
   d.ring(0.045, 0.005, [0.24, 0.81, 0.42], m.metal, 'y');
   d.rod([0.24, 0.82, 0.42], [0.27, 0.82, 0.45], 0.008, red);

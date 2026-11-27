@@ -59,6 +59,9 @@ it('walks with a figure behind the camera, which the designer dresses and rememb
     expect(await source()).toBe('random');
     expect(await saved()).toBeNull();
     await page.locator('canvas#view').focus();
+    // V steps on from behind the walker to the flyby view beside the way ahead, then their eyes.
+    await page.keyboard.press('v');
+    await status(page, { walkView: 'flyby', figure: 'true' });
     await page.keyboard.press('v');
     await status(page, { walkView: 'first', figure: 'false' });
     await page.keyboard.press('v');

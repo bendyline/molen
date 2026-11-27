@@ -228,12 +228,21 @@ export function buildDiamond(s) {
     const y = (x) => 0.93 + Math.max(0, x - 0.55) * Math.tan((5 * Math.PI) / 180),
       le = (x) => (x < 1.7 ? 1.0 - (x - 0.55) * 0.23 : 0.735 - (x - 1.7) * 0.018),
       te = (x) => (x < 1.7 ? -0.79 + (x - 0.55) * 0.27 : -0.479 + (x - 1.7) * 0.017),
-      hinge = (x) => te(x) + (le(x) - te(x)) * 0.22;
+      hinge = (x) => te(x) + (le(x) - te(x)) * 0.22,
+      // Upper half-thickness: the 13.7% root (FX 63-137) that houses the inward-folding mains.
+      thick = (x) =>
+        x < 1.7 ? 0.14 - ((x - 0.5) * 0.04) / 1.2 : 0.1 - ((x - 1.7) * 0.04) / (6.45 - 1.7),
+      // A point on the upper surface (same 6-point profile as wing()).
+      upperAt = (x, z, lift = 0.003) => {
+        const u = (le(x) - z) / (le(x) - hinge(x)),
+          f = u < 0.25 ? u / 0.25 : u < 0.75 ? 1 - (u - 0.25) * 0.96 : (0.52 * (1 - u)) / 0.25;
+        return [side * x, y(x) + thick(x) * f + lift, z];
+      };
     wing(
       d,
       [
-        [side * 0.5, y(0.5), le(0.5), hinge(0.5), 0.11],
-        [side * 1.7, y(1.7), le(1.7), hinge(1.7), 0.09],
+        [side * 0.5, y(0.5), le(0.5), hinge(0.5), thick(0.5)],
+        [side * 1.7, y(1.7), le(1.7), hinge(1.7), thick(1.7)],
         [side * 6.45, y(6.45), le(6.45), hinge(6.45), 0.06],
         [side * 6.71, y(6.71), le(6.71) - 0.07, te(6.71) + 0.12, 0.03],
       ],
@@ -255,7 +264,8 @@ export function buildDiamond(s) {
         paint,
       );
       for (let x = a + 0.12; x < b; x += name === 'aileron' ? 0.45 : 0.48)
-        dd.box([0.025, 0.025, 0.065], [side * (x - a), -0.018, hinge(x) - hinge(a) - 0.015], metal);
+        // Hinge fairings straddle the hinge line under the skin (they used to hang 2 cm low).
+        dd.box([0.022, 0.016, 0.07], [side * (x - a), -0.008, hinge(x) - hinge(a) + 0.01], metal);
       dd.finish();
       (name === 'aileron' ? ailerons : flaps).push({
         node: g.name,
@@ -277,12 +287,18 @@ export function buildDiamond(s) {
         [side, 0, 0],
       );
     ellipsoid(d, [side * 6.758, 1.53, -0.1], [0.017, 0.027, 0.055], side > 0 ? d.red : d.green, 12);
-    d.box([0.18, 0.014, 0.87], [side * 0.77, 1.047, 0.22], dark);
-    d.add(new T.CylinderGeometry(0.035, 0.035, 0.009, 16), metal, [
-      side * 2.2,
-      y(2.2) + 0.067,
-      0.38,
-    ]);
+    // Non-skid walkway draped on the wing root (a flat plate sank into the thicker root).
+    for (let z = 0.65; z > -0.2; z -= 0.17)
+      quad(
+        d,
+        upperAt(0.68, z),
+        upperAt(0.86, z),
+        upperAt(0.86, z - 0.17),
+        upperAt(0.68, z - 0.17),
+        dark,
+        [0, 1, 0],
+      );
+    d.add(new T.CylinderGeometry(0.035, 0.035, 0.009, 16), metal, upperAt(2.2, 0.38, 0.002));
     d.rod([side * 2.48, y(2.48) - 0.02, 0.48], [side * 2.48, y(2.48) - 0.24, 0.53], 0.007, metal);
     if (side > 0)
       d.rod([side * 2.48, y(2.48) - 0.24, 0.53], [side * 2.48, y(2.48) - 0.24, 0.72], 0.006, metal);
@@ -513,11 +529,14 @@ export function buildDiamond(s) {
     enginePoints.push({ id: eg.name, position: [x, cy, z] });
     rotors.push({ node: prop.name, axis: 'z', multiplier: 1, engine: eg.name });
   }
-  // 2.95m track, 1.735m wheelbase. Main legs fold inboard; nose leg folds forward.
-  for (const [index, x, z, top, r] of [
-    [0, 0, 1.735, 0.79, 0.18],
-    [1, 1.475, 0, 0.98, 0.1905],
-    [2, -1.475, 0, 0.98, 0.1905],
+  // 2.95m track, 1.735m wheelbase. Main legs fold inboard and swing forward (skewed trunnion)
+  // into the thick wing root ahead of the rear spar; the nose leg folds forward into the nose.
+  // Retracted, each leg also rises `lift` (its trunnion sits inside the structure), so the
+  // stowed wheel and leg stay inside the skin and the strut door lies along the wing's underside.
+  for (const [index, x, z, top, r, lift] of [
+    [0, 0, 1.735, 0.79, 0.18, 0.24],
+    [1, 1.475, 0, 0.9255, 0.1905, 0.11],
+    [2, -1.475, 0, 0.9255, 0.1905, 0.11],
   ]) {
     const g = group(root, `DA42-gear-${index}`, [x, top, z]),
       dd = detailKit(g, g.name),
@@ -531,16 +550,17 @@ export function buildDiamond(s) {
         -h,
         0,
       ]);
+    const sign = Math.sign(x);
     if (index) {
-      const sign = Math.sign(x);
-      dd.rod([-sign * 0.25, -0.04, -0.15], [0, -h + 0.12, 0], 0.018, metal);
+      // Drag brace in the leg's fore-aft plane so it folds flat with the leg.
+      dd.rod([sign * 0.02, -0.04, -0.22], [0, -h + 0.12, 0], 0.018, metal);
       sheet(
         dd,
         [
-          [sign * 0.08, -0.03, 0.22],
-          [sign * 0.08, -0.03, -0.21],
-          [sign * 0.08, -h + 0.03, -0.17],
-          [sign * 0.08, -h + 0.03, 0.17],
+          [sign * 0.059, -0.03, 0.22],
+          [sign * 0.059, -0.03, -0.21],
+          [sign * 0.086, -h + 0.03, -0.17],
+          [sign * 0.086, -h + 0.03, 0.17],
         ],
         paint,
         [sign, 0, 0],
@@ -551,7 +571,8 @@ export function buildDiamond(s) {
       dd.box([0.17, 0.36, 0.015], [0, -0.25, -0.07], paint);
     }
     dd.finish();
-    const angle = index ? (-Math.sign(x) * Math.PI) / 2 : -Math.PI / 2;
+    // Mains stop 5 degrees short of flat so the stowed wheel follows the 5-degree dihedral.
+    const angle = index ? -sign * (Math.PI / 2 - (5 * Math.PI) / 180) : -Math.PI / 2;
     bindings.push({
       node: g.name,
       source: 'gear',
@@ -559,6 +580,31 @@ export function buildDiamond(s) {
       axis: index ? 'z' : 'x',
       offset: angle,
       scale: -angle,
+    });
+    if (index)
+      bindings.push({
+        node: g.name,
+        source: 'gear',
+        property: 'rotation',
+        axis: 'y',
+        offset: sign * 0.5,
+        scale: -sign * 0.5,
+      });
+    bindings.push({
+      node: g.name,
+      source: 'gear',
+      property: 'position',
+      axis: 'y',
+      keys: index
+        ? [
+            [0, lift],
+            [1, 0],
+          ]
+        : [
+            [0, lift],
+            [0.6, 0],
+            [1, 0],
+          ],
     });
   }
   d.finish();
@@ -1023,7 +1069,14 @@ function cockpit(root, m) {
     d.rod([side * 0.51, 1.15, 0.46], [side * 0.51, 1.15, -0.1], 0.024, m.dark);
     d.box([0.019, 0.03, 0.11], [side * 0.51, 1.09, 0.23], red);
   }
-  d.box([1.02, 0.027, 2.38], [0, 0.76, 0.1], m.dark);
+  // Cabin floor trimmed to the sections: a full-width slab poked out of the narrowing aft belly.
+  fittedFloor(d, m.rings, m.dark, {
+    y: 0.7735,
+    front: 1.29,
+    back: -1.09,
+    width: 1.02,
+    thickness: 0.027,
+  });
   // The firewall and molded side panels close the footwells below the dashboard.
   beveledBox(d, [0.98, 0.46, 0.035], [0, 1.0, 1.36], face, 0.012);
   for (const side of [-1, 1])

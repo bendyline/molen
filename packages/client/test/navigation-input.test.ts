@@ -177,6 +177,20 @@ describe('navigation input source', () => {
     source.dispose();
     expect(windowTarget.count() + documentTarget.count()).toBe(0);
   });
+  it('holds the horn on H while driving, and nowhere else', () => {
+    const surface = new FakeSurface();
+    const source = new NavigationInputSource({ element: surface, profile: 'drive' });
+    expect(source.read(0).horn).toBeUndefined();
+    surface.emit('keydown', { code: 'KeyH' });
+    expect(source.read(0).horn).toBe(true);
+    expect(source.read(0).horn).toBe(true);
+    surface.emit('keyup', { code: 'KeyH' });
+    expect(source.read(0).horn).toBeUndefined();
+    source.setProfile('walk');
+    surface.emit('keydown', { code: 'KeyH' });
+    expect(source.read(0).horn).toBeUndefined();
+    source.dispose();
+  });
   it('starts mouse look when constructed in walk mode', () => {
     const surface = new FakeSurface();
     const source = new NavigationInputSource({ element: surface, profile: 'walk' });
@@ -249,6 +263,40 @@ describe('navigation input source', () => {
     expect(source.read(0.5).interact).toBe(0);
     source.dispose();
     expect(surface.count()).toBe(0);
+  });
+
+  it('looks with axes 2 and 3 only on a standard gamepad, not with a flight stick throttle', () => {
+    const surface = new FakeSurface();
+    // A flight stick (no standard mapping) with its throttle on axis 3 at the forward stop, and the
+    // stick itself pushed forward: on first load the view turned straight up.
+    const stick = {
+      id: 'Flight stick',
+      index: 0,
+      connected: true,
+      mapping: '',
+      axes: [0, -1, 0.8, -1],
+      buttons: [],
+    };
+    const pads = [stick];
+    const source = new NavigationInputSource({
+      element: surface,
+      profile: 'fly',
+      getGamepads: () => pads,
+      gamepadLookSpeed: 100,
+    });
+    const flying = source.read(0.5);
+    expect(flying.look).toEqual([0, 0]);
+    expect(flying.move.forward).toBe(1);
+    pads.push({
+      ...stick,
+      id: 'Xbox controller',
+      index: 1,
+      mapping: 'standard',
+      axes: [0, 0, 0, -1],
+    });
+    // The standard gamepad's right stick held up looks up at 100 px/s.
+    expect(source.read(0.5).look[1]).toBeCloseTo(-50, 6);
+    source.dispose();
   });
 
   it('switches bindings per mode: E climbs in the free camera and sidesteps on foot, where R interacts', () => {

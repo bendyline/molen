@@ -28,7 +28,7 @@ export const mig29Frame = () => ({
   cabinWidth: 0.88,
   eye: [0, 3.05, 3.4],
   panelZ: 4.2,
-  floor: 1.57,
+  floor: 1.7,
 });
 
 export function buildMiG29A(s) {
@@ -269,6 +269,19 @@ export function buildMiG29A(s) {
   }));
   // Do not lay a center roof across the cockpit aperture: front sections are separate shoulders.
   loft(d, br, paint, { caps: false, skip: (i, j) => i < 3 && (j === 0 || j === 13) });
+  // Height of the lifting body's upper skin at |x| and station z (its three upper facets).
+  const broadTop = (xx, zz) => {
+    const i = Math.max(0, br.findIndex((r) => r.z < zz) - 1),
+      a = br[i],
+      b = br[i + 1],
+      f = (zz - a.z) / (b.z - a.z),
+      pts = [0, 1, 2].map((k) => a.points[k].map((v, n) => v + (b.points[k][n] - v) * f));
+    for (let k = 0; k < 2; k++)
+      if (xx <= pts[k + 1][0] || k === 1) {
+        const g = (xx - pts[k][0]) / (pts[k + 1][0] - pts[k][0]);
+        return pts[k][1] + (pts[k + 1][1] - pts[k][1]) * g;
+      }
+  };
   // Join the widening wing-root shoulders to the tub at both profiles' stations.
   const joins = [
     ...new Set([
@@ -496,17 +509,39 @@ export function buildMiG29A(s) {
     d.add(new T.CircleGeometry(0.44, 28).rotateY(Math.PI), dark, [side * 0.87, 1.62, -5.7]);
     // Upper auxiliary intake louvers feed the engines while the inlet doors are shut: on the
     // ground (gear down, the built pose) each slat hangs open into its recess, and it closes
-    // flush as the gear retracts.
+    // flush as the gear retracts. Each slat lies on the LERX skin, rolled to its 0.08 outboard
+    // fall: level boxes at one height stood 1-6 cm proud, a raised dark rim round closed slats.
+    const roll = -side * 0.082;
     for (let j = 0; j < 5; j++) {
-      const zz = z(446 + j * 13);
-      d.box([0.49, 0.018, 0.18], [side * 0.78, 2.398, zz], dark);
-      const slat = group(root, `MiG29-louver-${side === 1 ? 'left' : 'right'}-${j}`, [
-          side * 0.78,
-          2.412,
-          zz + 0.0815,
-        ]),
+      const zz = z(446 + j * 13),
+        hingeZ = zz + 0.0815,
+        lift = broadTop(0.78, hingeZ) + 0.0075,
+        on = (dx, dy, dz) => [
+          side * 0.78 + dx * Math.cos(roll) - dy * Math.sin(roll),
+          lift + dx * Math.sin(roll) + dy * Math.cos(roll),
+          hingeZ + dz,
+        ];
+      // Dark duct opening under each slat only, covered when the slat is closed.
+      sheet(
+        d,
+        [
+          on(-0.21, -0.0045, -0.01),
+          on(0.21, -0.0045, -0.01),
+          on(0.21, -0.0045, -0.125),
+          on(-0.21, -0.0045, -0.125),
+        ],
+        dark,
+        [0, 1, 0],
+      );
+      const mount = group(root, `MiG29-louver-${side === 1 ? 'left' : 'right'}-${j}-mount`, [
+        side * 0.78,
+        lift,
+        hingeZ,
+      ]);
+      mount.rotation.z = roll;
+      const slat = group(mount, `MiG29-louver-${side === 1 ? 'left' : 'right'}-${j}`),
         sd = detailKit(slat, slat.name);
-      sd.box([0.45, 0.019, 0.135], [0, 0, -0.0675], paint);
+      sd.box([0.45, 0.012, 0.135], [0, 0, -0.0675], paint);
       sd.finish();
       slat.rotation.x = -0.6;
       bindings.push({
@@ -775,7 +810,6 @@ export function buildMiG29A(s) {
           q = r.points[j];
         d.add(new T.SphereGeometry(0.0036, 5, 3), metal, [q[0] * 1.008, q[1], r.z + 0.035]);
       }
-    d.text('29', [side * 0.505, 2.23, 4.4], 0.15, (side * Math.PI) / 2, seam);
     d.text('RESCUE', [side * 0.51, 2.6, 4.2], 0.025, (side * Math.PI) / 2, seam);
     d.rod([side * 1.7, 2.12, -4.1], [side * 1.7, 2.12, -4.5], 0.007, metal);
   }
@@ -1180,18 +1214,29 @@ function mig29Cockpit(root, m) {
   });
   text('GEAR', 0.335, 2.22, 0.006);
   d.finish();
+  // The tub stays inside the narrow forebody and LERX underside: a full-width floor at 1.57 m
+  // hung below the belly, and vertical walls down to it showed under the LERX from outside.
   d = detailKit(cabin, 'MiG29-tub');
-  d.box([0.87, 0.035, 1.9], [0, 1.57, 3.98], panel);
-  d.box([0.86, 0.42, 0.025], [0, 1.79, 5.2], panel);
+  d.box([0.68, 0.035, 1.9], [0, 1.7, 3.98], panel);
+  d.box([0.68, 0.32, 0.025], [0, 1.86, 5.2], panel);
   for (const side of [-1, 1]) {
     quad(
       d,
-      [side * 0.43, 1.57, 3.02],
-      [side * 0.43, 1.57, 5.1],
-      [side * 0.43, 2.5, 5.1],
-      [side * 0.43, 2.5, 3.02],
+      [side * 0.42, 2.02, 3.02],
+      [side * 0.42, 2.02, 5.1],
+      [side * 0.42, 2.5, 5.1],
+      [side * 0.42, 2.5, 3.02],
       panel,
       [-side, 0, 0],
+    );
+    quad(
+      d,
+      [side * 0.33, 1.7, 3.02],
+      [side * 0.33, 1.7, 5.1],
+      [side * 0.42, 2.02, 5.1],
+      [side * 0.42, 2.02, 3.02],
+      panel,
+      [-side, 1, 0],
     );
     d.box([0.18, 0.28, 1.5], [side * 0.37, 2.08, 3.94], panel);
   }

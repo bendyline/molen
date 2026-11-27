@@ -368,18 +368,22 @@ what it was.
   cannot reach further), which is box shells and no roads; the stream calls that finished, and a
   minute of calm brings the levels back to be built again. The slow frames came from the
   machine, not the place: the explorer wants about 15 threads while it streams.
-- The same two steps with the world held (see
-  [Adaptive rendering performance](../../../../docs-src/guide/adaptive-performance.md)): ground
-  within 1.5 km at the finest level throughout. The frame rate went from 25-28 to 41-50 a second
-  over the two steps, with the other work on the machine easing over the same minute (12 cores
-  to 8), so not all of that is the steps.
+- With the world held through the same two forced steps, ground within 1.5 km stayed at the
+  finest level throughout. That was the first answer (slow frames lowering what the view is drawn
+  at before the world, and a lowered level coming back when calm). The answer since 2026-11-25 is
+  the plain one: Auto does not move once a view is under way, in the explorer or the Earth view,
+  for slow frames or for the stream, in either direction (see
+  [Adaptive rendering performance](../../../../docs-src/guide/adaptive-performance.md)). The
+  2026-11-13 change that was meant to be that kept three ways down (memory, streaming strain and
+  a 30 frames a second floor), 11-19 added the way back up that made each loss a rebuild, and the
+  Earth view had never stopped adapting after its calibration.
 - Turning over one place rebuilds it. Three full turns over downtown Seattle at Balanced built
   480 tiles, 209 of them again and 190 within a minute of their eviction: a lap's ground is more
   than the warm cache's half of the budget holds (about 1 GiB hidden, with 1.1-1.5 GiB resident
   against a budget of 2.0). The building output cache answered half the building requests; land cover, road
   surfaces and graded ground have no such cache and were made again. The near ground stayed
-  finished throughout, so this no longer counts as streaming strain; it is still two fifths of
-  the stream's work in a turn.
+  finished throughout. Auto used to call this streaming strain and give a level up for it, and
+  no longer looks; it is still two fifths of the stream's work in a turn.
 - Zoom-14 tiles are generated in full and replaced on approach: 74 s of building generation
   against 166 s for the zoom-15 tiles in the same 150 s of flight.
 - A tile's layer waited for its prop sets one frame's turn at a time. Each set of street props or

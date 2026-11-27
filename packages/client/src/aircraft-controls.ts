@@ -418,6 +418,77 @@ export function applyAircraftControl(
   return next;
 }
 
+/**
+ * Where on the throttle lever (0..1) an afterburning jet's reheat begins: its military-power
+ * detent, the kernel's `afterburnerDetent` (default 0.85). Undefined for an aircraft with no
+ * afterburner. Reheat is the same lever pushed on past the detent, not a separate control.
+ */
+export function aircraftReheatDetent(spec: AircraftSpec): number | undefined {
+  const bank = spec.engines ?? (spec.engine ? [spec.engine] : []);
+  const engine = bank.find((candidate) => candidate.afterburnerThrust !== undefined);
+  return engine === undefined ? undefined : (engine.afterburnerDetent ?? 0.85);
+}
+
+/** A throttle position as a pilot reads it. */
+export interface AircraftThrottleReading {
+  /** Dry power, 0..1: 1 at military power (the detent), or the whole lever without reheat. */
+  dry: number;
+  /** How far into the reheat range the lever is, 0..1; undefined with no afterburner. */
+  reheat?: number;
+  /** HUD text: "74%", "MIL" at the detent, "AB 60%" past it. */
+  label: string;
+}
+
+/**
+ * Read a throttle lever (0..1) as 0–100% up to military power, then the share of the reheat range
+ * beyond it: pushing the throttle "past 100%". Without an afterburner the lever is its percentage.
+ */
+export function aircraftThrottleReading(
+  spec: AircraftSpec,
+  power: number,
+): AircraftThrottleReading {
+  const lever = Math.max(0, Math.min(1, power));
+  const detent = aircraftReheatDetent(spec);
+  if (detent === undefined) return { dry: lever, label: `${Math.round(lever * 100)}%` };
+  const dry = Math.min(1, lever / detent);
+  const reheat = Math.max(0, (lever - detent) / (1 - detent || 1));
+  const percent = Math.round(reheat * 100);
+  return {
+    dry,
+    reheat,
+    label: percent > 0 ? `AB ${percent}%` : dry >= 0.995 ? 'MIL' : `${Math.round(dry * 100)}%`,
+  };
+}
+
+/**
+ * A throttle worked by held keys or buttons, which catches at an afterburner's military-power
+ * detent as a real lever does: held forward from below, the lever runs up to the detent and
+ * stays there; let go and push again to carry it on into reheat. Pulling back passes the detent
+ * freely. Absolute levers (a joystick throttle axis, an on-screen lever) do not go through this.
+ */
+export class AircraftThrottleRamp {
+  /** Lever position when the current push began; undefined while no push is held. */
+  private start: number | undefined;
+  /** True while a held push is resting against the detent. */
+  caught = false;
+
+  /**
+   * The lever after this frame. `change` is this frame's signed movement from the held control
+   * (0 when nothing is held); `detent` from aircraftReheatDetent.
+   */
+  step(power: number, change: number, detent: number | undefined): number {
+    if (!Number.isFinite(change) || change <= 0) {
+      this.start = undefined;
+      this.caught = false;
+      return change < 0 ? Math.max(0, Math.min(1, power + change)) : power;
+    }
+    this.start ??= power;
+    const next = Math.max(0, Math.min(1, power + change));
+    this.caught = detent !== undefined && this.start < detent - 1e-9 && next > detent;
+    return this.caught && detent !== undefined ? detent : next;
+  }
+}
+
 /** Transient pointer axes are mixed with keyboard/gamepad axes without latching after release. */
 export class AircraftPointerAxes {
   pitch = 0;

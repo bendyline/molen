@@ -633,15 +633,8 @@ export function buildDC3(s) {
         m.engine,
         false,
       );
-    const decal = group(body, `DC3-label-${side}`, [
-      side * (halfWidth(3.7, 3.0) + 0.006),
-      3.0,
-      3.7,
-    ]);
-    decal.rotation.y = (side * Math.PI) / 2;
-    const dd = detailKit(decal, decal.name);
-    dd.text('DOUGLAS  DC-3', [0, 0, 0], 0.17, 0, m.blue);
-    dd.finish();
+    // Operator titles and registrations are livery markings (scripts/liveries/aircraft/dc-3.mjs):
+    // a baked type name contradicted the military and airline schemes.
   }
   // 170-inch centre-section chord, 51.5-inch outer-tip chord, five-degree dihedral.
   const join = 3.6068,
@@ -738,8 +731,23 @@ export function buildDC3(s) {
     for (const sign of [-1, 1]) {
       gd.rod([sign * 0.3, 0, 0], [sign * 0.3, -1.1, -0.18], 0.039, m.metal);
       gd.rod([sign * 0.3, -0.65, -0.11], [sign * 0.3, -1.5, -0.22], 0.03, m.engine);
-      gd.rod([sign * 0.3, -1.4, -0.22], [sign * 0.3, -0.15, -1.8], 0.031, m.metal);
     }
+    // The drag struts hinge on the nacelle structure, not on the leg: swung with the leg they
+    // hung 1.8 m below the nacelle with the gear up. Their own hinge turns them forward along
+    // the nacelle floor as the leg folds.
+    const drag = group(body, `DC3-drag-strut-${side}`, [side * 2.8194, 2.1, 4.4 - 1.8]),
+      dsd = detailKit(drag, drag.name);
+    for (const sign of [-1, 1])
+      dsd.rod([sign * 0.3, 0, 0], [sign * 0.3, -1.4, 1.58], 0.031, m.metal);
+    dsd.finish();
+    bindings.push({
+      node: drag.name,
+      source: 'gearPosition',
+      property: 'rotation',
+      axis: 'x',
+      scale: 0.725,
+      offset: -0.725,
+    });
     gd.rod([-0.34, -1.5285, -0.22], [0.34, -1.5285, -0.22], 0.05, m.metal);
     wheel(gd, [0, -1.5285, -0.22], 0.5715, 0.4318, m.rubber, m.metal, m.engine);
     for (const sign of [-1, 1])
@@ -865,13 +873,15 @@ export function buildDC3(s) {
   d.rod([0, 4.78, 6.2], [0, 5.12, 6.0], 0.014, m.metal);
   d.rod([0, 5.12, 6], [0, 6.3, -7.5], 0.002, m.dark);
   for (const side of [-1, 1]) {
-    d.rod([side * 0.07, 4.03, 8.3], [side * 0.55, 4.17, 8.08], 0.012, m.dark);
-    d.rod([side * 0.4, 4.12, 8.17], [side * 0.77, 4.23, 7.95], 0.009, m.dark);
+    // Wiper arm and blade at wiper scale; 1.8-2.4 cm bars read as frame members from the seat.
+    d.rod([side * 0.07, 4.03, 8.3], [side * 0.55, 4.17, 8.08], 0.007, m.dark);
+    d.rod([side * 0.4, 4.12, 8.17], [side * 0.77, 4.23, 7.95], 0.0055, m.dark);
     d.rod([side * 0.6, 2.1, 8.1], [side * 0.6, 1.78, 8.1], 0.016, m.dark);
     d.rod([side * 0.6, 1.78, 8.1], [side * 0.6, 1.78, 8.45], 0.013, m.metal);
   }
   d.finish();
-  const interior = dc3Cockpit(body, m);
+  // The cockpit group is shifted 0.25 m aft below; the cabin reads the skin in its own frame.
+  const interior = dc3Cockpit(body, { ...m, skin: (z, y) => halfWidth(z - 0.25, y) });
   body.getObjectByName('cockpit').position.z = -0.25;
   cleanGeometry(root);
   return {

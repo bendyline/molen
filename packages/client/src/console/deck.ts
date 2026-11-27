@@ -6,7 +6,11 @@ import type { AircraftSpec, BoatData, ModelSignalSpec, VehicleData } from '@bend
 import * as THREE from 'three';
 import type { AircraftVisual } from '../aircraft';
 import type { AircraftCockpitSession } from '../aircraft-cockpit-pointer';
-import { type AircraftCockpitControl, aircraftControlValue } from '../aircraft-controls';
+import {
+  type AircraftCockpitControl,
+  aircraftControlValue,
+  aircraftReheatDetent,
+} from '../aircraft-controls';
 import { createAircraftInstrumentViews } from '../aircraft-instruments';
 import type { ModelSignals } from '../model-signals';
 import { NAVIGATION_ACTIONS } from '../navigation/input-source';
@@ -87,10 +91,22 @@ export type ConsoleSubject = ConsoleAircraftSubject | ConsoleVehicleSubject | Co
 /** A plain button: a named navigation action held while pressed, or pressed once per tap. */
 export interface ConsoleButton {
   label: string;
+  /** How to work it, for its tooltip ("Hold to brake"). */
+  hint?: string;
   /** SVG markup inside a 24 x 24 view box, stroked in the button's color. */
   icon: string;
   action: string;
   mode: 'hold' | 'tap';
+}
+
+/** What a control's tooltip says when a mouse rests on it. */
+export interface ConsoleTip {
+  /** Its name ("Throttle", "Landing gear"). */
+  label: string;
+  /** How to work it ("Drag up for more power"). */
+  hint?: string;
+  /** Navigation actions the keyboard works it with: the tooltip lists the keys bound to them. */
+  actions?: readonly string[];
 }
 
 /** How a touch works an item. */
@@ -138,6 +154,8 @@ export interface ConsoleItem {
   part?: () => ConsolePart;
   button?: ConsoleButton;
   zone?: ConsoleZone;
+  /** Its tooltip (a button's comes from the button when this is left out). */
+  tip?: ConsoleTip;
   /** Readings that override the subject's while posing (a refused gear handle's shake). */
   overrides?(nowMs: number): ModelSignals | undefined;
 }
@@ -171,7 +189,31 @@ const button = (
   icon: keyof typeof CONSOLE_ICONS,
   action: string,
   mode: 'hold' | 'tap',
-): ConsoleButton => ({ label, icon: CONSOLE_ICONS[icon], action, mode });
+  hint?: string,
+): ConsoleButton => ({
+  label,
+  ...(hint !== undefined ? { hint } : {}),
+  icon: CONSOLE_ICONS[icon],
+  action,
+  mode,
+});
+
+/** The keyboard's stick: W A S D, as a keycap row reads. */
+const MOVE_ACTIONS = [A.forward, A.left, A.back, A.right] as const;
+
+/** A button's tooltip: its label and hint, and the keys of its action. */
+export function buttonTip(spec: ConsoleButton): ConsoleTip {
+  return {
+    label: spec.label,
+    ...(spec.hint !== undefined ? { hint: spec.hint } : {}),
+    ...(spec.action ? { actions: [spec.action] } : {}),
+  };
+}
+
+/** A control's tooltip: its own, or its button's. */
+export function itemTip(item: ConsoleItem): ConsoleTip | undefined {
+  return item.tip ?? (item.button ? buttonTip(item.button) : undefined);
+}
 
 /** The buttons shown at the top for a mounted vehicle: the view, and leaving it. */
 export function mountedButtons(): ConsoleButton[] {
@@ -481,12 +523,26 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
   const corners = [-1, 1].flatMap((pitchInput) =>
     [-1, 1].map((rollInput): ModelSignals => ({ pitchInput, rollInput })),
   );
+  const yoke = stick?.targets.some((target) => {
+    let found = false;
+    target.traverse((node) => {
+      found ||= /yoke/i.test(node.name);
+    });
+    return found;
+  });
   items.push({
     id: 'stick',
     side: 'left',
     size: [160, 168],
     priority: 0,
     zone: { kind: 'stick' },
+    tip: {
+      label: helicopter ? 'Cyclic' : yoke ? 'Yoke' : 'Stick',
+      hint: helicopter
+        ? 'Drag up to fly forward, sideways to bank'
+        : 'Drag down to raise the nose, sideways to bank',
+      actions: MOVE_ACTIONS,
+    },
     part: () =>
       stick
         ? liftedPart({
@@ -513,6 +569,11 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
     side: 'left',
     size: [124, 96],
     priority: 4,
+    tip: {
+      label: helicopter ? 'Pedals' : 'Rudder pedals',
+      hint: 'Slide sideways to swing the nose',
+      actions: [A.yawLeft, A.yawRight],
+    },
     zone: {
       kind: 'lever',
       axis: 'x',
@@ -568,6 +629,19 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
     side: 'right',
     priority: 1,
     size: [Math.min(140, 86 + 16 * Math.max(0, (levers?.targets.length ?? 1) - 1)), 160],
+    tip: {
+      label: helicopter
+        ? 'Collective'
+        : (levers?.targets.length ?? 0) > 1
+          ? 'Throttles'
+          : 'Throttle',
+      hint: helicopter
+        ? 'Drag up for more lift'
+        : aircraftReheatDetent(spec) === undefined
+          ? 'Drag up for more power'
+          : 'Drag up for more power; the top of the travel, past military power, is the afterburner',
+      actions: [A.throttleDown, A.throttleUp],
+    },
     zone: {
       kind: 'lever',
       travel: 0.8,
@@ -600,6 +674,11 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
       side: 'right',
       size: [62, 120],
       priority: 2,
+      tip: {
+        label: 'Landing gear',
+        hint: 'Drag down to lower, up to raise',
+        actions: [A.gear],
+      },
       zone: {
         kind: 'lever',
         travel: 0.55,
@@ -645,6 +724,11 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
       side: 'right',
       size: [62, 120],
       priority: 3,
+      tip: {
+        label: 'Flaps',
+        hint: 'Drag down for more: up, half, full',
+        actions: [A.flaps],
+      },
       zone: {
         kind: 'lever',
         travel: 0.55,
@@ -677,6 +761,7 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
       side: 'right',
       size: [52, 76],
       priority: 6,
+      tip: { label: 'Engine', hint: 'Tap to start or stop', actions: [A.engine] },
       zone: { kind: 'tap', press: () => change(engine, value(engine) > 0.5 ? 0 : 1) },
       part: () =>
         kitPart('engine', kitEngineSwitch(DECK_ELEVATION), deck, [{ engine: 0 }, { engine: 1 }]),
@@ -690,6 +775,7 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
       side: 'right',
       size: [52, 76],
       priority: 8,
+      tip: { label: 'Parking brake', hint: 'Tap to set or release' },
       zone: { kind: 'tap', press: () => change(parking, value(parking) > 0.5 ? 0 : 1) },
       part: () =>
         kitPart('parking-brake', kitParkingBrake(DECK_ELEVATION), deck, [
@@ -705,18 +791,27 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
       side: 'right',
       size: [56, 56],
       priority: 7,
-      button: button('Brakes', 'brake', A.jump, 'hold'),
+      button: button('Brakes', 'brake', A.jump, 'hold', 'Hold to brake the wheels'),
     });
 
   // Secondary levers: behind the drawer on a phone.
-  const secondary: [AircraftCockpitControl['action'], 'red' | 'blue' | 'grey' | 'green', string][] =
+  const secondary: [
+    AircraftCockpitControl['action'],
+    'red' | 'blue' | 'grey' | 'green',
+    string,
+    ConsoleTip,
+  ][] = [
+    ['mixture', 'red', 'mixture', { label: 'Mixture', hint: 'Drag up for richer, down to lean' }],
+    ['propeller', 'blue', 'propeller', { label: 'Propeller', hint: 'Drag up for more rpm' }],
     [
-      ['mixture', 'red', 'mixture'],
-      ['propeller', 'blue', 'propeller'],
-      ['thrustVector', 'green', 'vectorCommand'],
-      ['speedBrake', 'grey', 'speedBrake'],
-    ];
-  for (const [action, color, signal] of secondary) {
+      'thrustVector',
+      'green',
+      'vectorCommand',
+      { label: 'Thrust vector', hint: 'Drag to swing the thrust', actions: [A.vector] },
+    ],
+    ['speedBrake', 'grey', 'speedBrake', { label: 'Speed brake', hint: 'Drag up to open' }],
+  ];
+  for (const [action, color, signal, tip] of secondary) {
     const controls = of(action);
     if (controls.length === 0) continue;
     const first = common(action);
@@ -731,6 +826,7 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
       size: [58, 120],
       drawer: true,
       priority: 10 + secondary.findIndex(([name]) => name === action),
+      tip,
       zone: {
         kind: 'lever',
         travel: 0.8,
@@ -764,10 +860,14 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
       size: [84, 84],
       priority: 5,
       gauge: true,
+      tip: { label: view.kind === 'speed' ? 'Airspeed' : 'Altitude' },
       part: () => createGaugePart(view.kind, view),
     });
   return items;
 }
+
+/** How the stick drives a vehicle. */
+const STEER_HINT = 'Drag sideways to steer, up to go, down to brake or reverse';
 
 /** A vehicle's top speed when its spec names none, m/s (about 140 km/h). */
 const DEFAULT_TOP_SPEED = 40;
@@ -803,6 +903,11 @@ export function vehicleDeck(subject: ConsoleVehicleSubject, context: DeckContext
       side: 'left',
       size: [160, 168],
       zone: { kind: 'stick' },
+      tip: {
+        label: bars ? 'Handlebars' : 'Steering wheel',
+        hint: STEER_HINT,
+        actions: MOVE_ACTIONS,
+      },
       part: () =>
         liftedPart({
           id: 'stick',
@@ -819,11 +924,18 @@ export function vehicleDeck(subject: ConsoleVehicleSubject, context: DeckContext
       side: 'left',
       size: [160, 168],
       zone: { kind: 'stick' },
+      tip: { label: 'Steering wheel', hint: STEER_HINT, actions: MOVE_ACTIONS },
       part: () => kitPart('stick', kitSteeringWheel(), WHEEL_VIEW, spin),
     });
   } else {
     // Boards and skis: the plain stick.
-    items.push({ id: 'stick', side: 'left', size: [160, 168], zone: { kind: 'stick' } });
+    items.push({
+      id: 'stick',
+      side: 'left',
+      size: [160, 168],
+      zone: { kind: 'stick' },
+      tip: { label: 'Steer', hint: STEER_HINT, actions: MOVE_ACTIONS },
+    });
   }
   const deck = deckView(DECK_AZIMUTH, DECK_ELEVATION, context.mirror);
   if (subject.boat) {
@@ -831,14 +943,14 @@ export function vehicleDeck(subject: ConsoleVehicleSubject, context: DeckContext
       id: 'anchor',
       side: 'right',
       size: [60, 60],
-      button: button('Anchor', 'anchor', A.sprint, 'hold'),
+      button: button('Anchor', 'anchor', A.sprint, 'hold', 'Hold to stop'),
     });
   } else if (cycle || handlebar) {
     items.push({
       id: 'brakes',
       side: 'right',
       size: [60, 60],
-      button: button('Brake', 'brake', A.jump, 'hold'),
+      button: button('Brake', 'brake', A.jump, 'hold', 'Hold to brake'),
     });
   } else {
     // A car: its pedals by the wheel (hold them to brake; a held zone previews 1, pressed) and
@@ -848,6 +960,7 @@ export function vehicleDeck(subject: ConsoleVehicleSubject, context: DeckContext
       side: 'left',
       size: [100, 96],
       zone: { kind: 'hold', action: A.jump },
+      tip: { label: 'Brake pedal', hint: 'Hold to brake', actions: [A.jump] },
       part: () =>
         kitPart('pedals', kitCarPedals(), PEDAL_VIEW, [
           { throttle: 1 },
@@ -858,6 +971,7 @@ export function vehicleDeck(subject: ConsoleVehicleSubject, context: DeckContext
       id: 'handbrake',
       side: 'right',
       size: [70, 120],
+      tip: { label: 'Handbrake', hint: 'Pull up and hold', actions: [A.sprint] },
       zone: {
         kind: 'lever',
         travel: 0.5,
@@ -877,6 +991,7 @@ export function vehicleDeck(subject: ConsoleVehicleSubject, context: DeckContext
     size: [84, 84],
     priority: 5,
     gauge: true,
+    tip: { label: 'Speed' },
     part: () =>
       createGaugePart(
         'speed',
@@ -893,17 +1008,42 @@ export function vehicleDeck(subject: ConsoleVehicleSubject, context: DeckContext
 /** The console's items on foot: the plain stick, and jumping and using things. */
 export function onFootDeck(subject: ConsoleOnFootSubject): ConsoleItem[] {
   const items: ConsoleItem[] = [
-    { id: 'stick', side: 'left', size: [160, 168], zone: { kind: 'stick' } },
+    {
+      id: 'stick',
+      side: 'left',
+      size: [160, 168],
+      zone: { kind: 'stick' },
+      tip: {
+        label: 'Move',
+        hint: subject.kind === 'free' ? 'Drag to fly around' : 'Drag to walk',
+        actions: MOVE_ACTIONS,
+      },
+    },
   ];
   if (subject.kind === 'free') {
     items.push(
-      { id: 'up', side: 'right', size: [60, 60], button: button('Up', 'up', A.up, 'hold') },
-      { id: 'down', side: 'right', size: [60, 60], button: button('Down', 'down', A.down, 'hold') },
+      {
+        id: 'up',
+        side: 'right',
+        size: [60, 60],
+        button: button('Up', 'up', A.up, 'hold', 'Hold to rise'),
+      },
+      {
+        id: 'down',
+        side: 'right',
+        size: [60, 60],
+        button: button('Down', 'down', A.down, 'hold', 'Hold to sink'),
+      },
     );
   } else {
     items.push(
       { id: 'jump', side: 'right', size: [68, 68], button: button('Jump', 'jump', A.jump, 'hold') },
-      { id: 'use', side: 'right', size: [56, 56], button: button('Use', 'use', A.interact, 'tap') },
+      {
+        id: 'use',
+        side: 'right',
+        size: [56, 56],
+        button: button('Use', 'use', A.interact, 'tap', 'Board a vehicle or open a door'),
+      },
     );
   }
   return items;

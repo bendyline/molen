@@ -365,16 +365,28 @@ export function buildTwinOtter(s) {
     }
     const upper = side > 0 ? 2 : 12,
       lower = side > 0 ? 4 : 10;
-    sheet(
-      d,
-      [
-        ...[4, 5, 6, 7, 8, 9, 10].map((i) => p(i, upper)),
-        ...[10, 9, 8, 7, 6, 5, 4].map((i) => p(i, lower)),
-      ],
-      paint,
-      [side, 0, 0],
-      holes,
-    );
+    // The side band is triangulated in three runs (constant-width cabin, then each tapering bay)
+    // with the apertures that fall in each run. One sheet over all seven rings made long
+    // triangles across the aft taper that cut inside the loft and left gaps, so the aft seats
+    // and belts showed through the skin.
+    for (const [first, last] of [
+      [4, 8],
+      [8, 9],
+      [9, 10],
+    ])
+      sheet(
+        d,
+        [
+          ...Array.from({ length: last - first + 1 }, (_, n) => p(first + n, upper)),
+          ...Array.from({ length: last - first + 1 }, (_, n) => p(last - n, lower)),
+        ],
+        paint,
+        [side, 0, 0],
+        holes.filter((hole) => {
+          const zs = hole.map((q) => q[2]);
+          return Math.max(...zs) <= rings[first].z && Math.min(...zs) >= rings[last].z;
+        }),
+      );
     for (const [n, hole] of holes.entries()) {
       sheet(d, hole, n ? tinted : glass, [side, 0, 0]);
       outline(d, hole, 0.005, dark);
@@ -435,11 +447,7 @@ export function buildTwinOtter(s) {
         [side, 0, 0],
       );
     }
-    const label = group(root, `TwinOtter-label-${side}`, [side * 0.921, 1.56, -0.7]);
-    label.rotation.y = (side * Math.PI) / 2;
-    const ld = detailKit(label, label.name);
-    ld.text('DHC 6 400', [0, 0, 0], 0.11, 0, accent);
-    ld.finish();
+    // Registrations and titles are livery markings (scripts/liveries/aircraft/dhc-6.mjs).
     d.rod(pt(z(397), y(1306), 0.05), [side * 1.15, 0.71, z(397)], 0.024, metal);
     d.box([0.22, 0.04, 0.28], [side * 1.15, 0.69, z(397)], dark);
   }
@@ -1105,7 +1113,8 @@ function twinOtterCockpit(root, m, sections) {
   // Floor, two pilot seats, belts, pedals, side door trim and 19-seat utility cabin.
   fittedFloor(d, sections, m.dark, { y: 1.09, front: 5.3, back: -1.575, width: 1.68 });
   for (const side of [-1, 1]) {
-    d.box([0.025, 0.28, 1.15], [side * 0.88, 1.36, 4.46], liner);
+    // Door-frame trim inside the tapering cockpit skin (it sat on the skin and showed outside).
+    d.box([0.025, 0.28, 1.15], [side * 0.86, 1.36, 4.46], liner);
     d.rod([side * 0.84, 1.66, 4.75], [side * 0.84, 1.66, 4.23], 0.019, m.dark);
     for (const off of [-0.105, 0.105]) {
       const pedal = group(cabin, `TwinOtter-pedal-${side}-${off < 0 ? 'a' : 'b'}`, [
@@ -1136,10 +1145,40 @@ function twinOtterCockpit(root, m, sections) {
     seats.push([0.58, 3.15 - row * 0.79], [-0.22, 3.15 - row * 0.79], [-0.66, 3.15 - row * 0.79]);
   }
   seats.push([0.58, -1.6]);
-  seats.forEach(([x, zz], i) => {
+  // Cabin half width at a station and height, from the loft sections.
+  const rings = [...sections].sort((a, b) => b.z - a.z),
+    skinX = (zz, yy) => {
+      const n = Math.max(
+          0,
+          rings.findIndex((r, j) => j < rings.length - 1 && zz <= r.z && zz >= rings[j + 1].z),
+        ),
+        a = rings[n],
+        b = rings[n + 1],
+        f = (a.z - zz) / (a.z - b.z),
+        q = a.points.map(([x0, y0], j) => [
+          x0 + (b.points[j][0] - x0) * f,
+          y0 + (b.points[j][1] - y0) * f,
+        ]);
+      for (let j = 0; j < q.length / 2; j++) {
+        const [x0, y0] = q[j],
+          [x1, y1] = q[j + 1];
+        if ((yy - y0) * (yy - y1) <= 0 && y0 !== y1)
+          return x0 + ((x1 - x0) * (yy - y0)) / (y1 - y0);
+      }
+      return q[3][0];
+    };
+  seats.forEach(([seatX, zz], i) => {
     const pilot = i < 2,
       w = pilot ? 0.44 : 0.39,
-      lift = pilot ? 0.3 : 0;
+      lift = pilot ? 0.3 : 0,
+      // Where the belly rises aft the outboard seats move in so legs and cushions stay inside.
+      x =
+        Math.sign(seatX) *
+        Math.min(
+          Math.abs(seatX),
+          skinX(zz, 1.12) - w * 0.38 - 0.03,
+          skinX(zz, 1.33) - w / 2 - 0.02,
+        );
     beveledBox(d, [w, 0.11, 0.42], [x, 1.38 + lift, zz], seat, 0.035);
     beveledBox(d, [w, 0.54, 0.12], [x, 1.7 + lift, zz - 0.19], seat, 0.04);
     beveledBox(d, [w * 0.7, 0.17, 0.13], [x, 2.02 + lift, zz - 0.19], seat, 0.035);

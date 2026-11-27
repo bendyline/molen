@@ -155,7 +155,11 @@ export function buildCH47(s) {
   // Rings 1-3: matt glare shield ahead of the panes and glazed chin corners, framed.
   for (let j = 0; j < n; j++) {
     for (const i of [1, 2]) {
-      if (shield(j)) quad(d, p(i, j), p(i + 1, j), p(i + 1, j + 1), p(i, j + 1), trim, [0, 1, 1]);
+      // The shield has no lining: its inside face closes the sill under the windscreen, where
+      // the one-sided outer face culled and showed sky past the cockpit glare shield's edge.
+      if (shield(j))
+        for (const facing of [1, -1])
+          quad(d, p(i, j), p(i + 1, j), p(i + 1, j + 1), p(i, j + 1), trim, [0, facing, facing]);
       if (chin(j)) quad(d, p(i, j), p(i + 1, j), p(i + 1, j + 1), p(i, j + 1), tint, [0, -1, 1]);
     }
     // The eyebrows run on over the shoulders into the ring 4-5 bay, painted behind.
@@ -376,7 +380,6 @@ export function buildCH47(s) {
       sd.box([0.01, 0.16, 0.2], [side * 1.856, 1.13, z], paint);
       sd.ring(0.054, 0.009, [side * 1.863, 1.17, z], metal, 'x');
     }
-    sd.text('UNITED STATES ARMY', [side * 1.86, 1.3, 0.55], 0.12, (side * Math.PI) / 2, trim);
     sd.finish();
     // Forward twin wheels and aft singles: four oleo legs, not a tailwheel layout.
     for (const [z, x, dual] of [
@@ -427,15 +430,17 @@ export function buildCH47(s) {
   loft(
     d,
     [
-      // Head-on photo (fleet reference exterior-1): pylon crest about 4.0 m, hub 4.4 m, about
-      // 1.0 m wide (0.27 of the pod span in the photo and the 3-view). Its front face rises
-      // from the cockpit roof behind the windscreen header (right-side photo); no overhang.
-      pylon(6.12, 0.3, 2.95, 3.45),
-      pylon(6.0, 0.46, 3.0, 3.86),
-      pylon(5.85, 0.52, 3.06, 4.0),
-      pylon(5.0, 0.48, 3.2, 3.88),
-      pylon(4.4, 0.39, 3.2, 3.42),
-      pylon(4.15, 0.3, 3.2, 3.27),
+      // Head-on photo (fleet reference exterior-1): about 1.0 m wide (0.27 of the pod span in
+      // the photo and the 3-view). Its front face rises from the cockpit roof behind the
+      // windscreen header (right-side photo); no overhang. Side photos of 06-08021 put the
+      // flat crest about 1.1 m over the cabin roof, just under the swashplate: at 4.0 m it stood
+      // 0.45 m under the hub over a long bare mast, a stubby hump beside the tall aft pylon.
+      pylon(6.12, 0.3, 2.95, 3.55),
+      pylon(6.0, 0.46, 3.0, 4.02),
+      pylon(5.85, 0.52, 3.06, FORWARD_CREST),
+      pylon(5.0, 0.48, 3.2, 4.14),
+      pylon(4.4, 0.39, 3.2, 3.62),
+      pylon(4.15, 0.3, 3.2, 3.3),
     ],
     paint,
   );
@@ -504,15 +509,17 @@ export function buildCH47(s) {
     d.add(new T.CircleGeometry(0.05, 16), glass, [side * 0.55, 1.48, 7.455]);
   }
   // Intermeshing counter-rotating three-bladed heads at published longitudinal spacing.
-  for (const [i, z, y] of [
-    [0, 5.9309, 4.43],
-    [1, -5.9309, 5.5],
+  // The swashplate rings sit on each pylon's crest (5.17 m aft).
+  for (const [i, z, y, crest] of [
+    [0, 5.9309, 4.43, FORWARD_CREST],
+    [1, -5.9309, 5.5, 5.17],
   ]) {
     const mast = group(root, `CH47-mast-${i}`, [0, y, z]),
-      md = detailKit(mast, 'mast');
+      md = detailKit(mast, 'mast'),
+      rise = Math.min(0.17, (y - crest) * 0.55);
     md.rod([0, -0.43, 0], [0, 0, 0], 0.13, metal);
-    md.ring(0.37, 0.04, [0, -0.33, 0], trim, 'y');
-    md.ring(0.27, 0.035, [0, -0.16, 0], metal, 'y');
+    md.ring(0.37, 0.04, [0, crest - y, 0], trim, 'y');
+    md.ring(0.27, 0.035, [0, crest - y + rise, 0], metal, 'y');
     md.finish();
     const rotor = group(mast, `rotor-${i}`),
       rd = detailKit(rotor, 'hub');
@@ -584,7 +591,20 @@ function cockpit(root, m, rings) {
     // The glareshield meets the windscreen sill, as the Army photograph shows: no skin between them.
     py = (v) => 2.03 - (v - 800) * k,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz],
-    pt = panelTools(d);
+    pt = panelTools(d),
+    // Windscreen sill height at x: ring 3's crown, from the centre line out to the flat side.
+    crown = rings[3].points.slice(0, SIDE_TOP + 1),
+    sill = (x) => {
+      const ax = Math.abs(x),
+        i = Math.max(
+          1,
+          crown.findIndex(([cx]) => cx >= ax),
+        );
+      if (crown.at(-1)[0] < ax) return crown.at(-1)[1];
+      const [x0, y0] = crown[i - 1],
+        [x1, y1] = crown[i];
+      return y0 + ((y1 - y0) * (ax - x0)) / (x1 - x0 || 1);
+    };
   // Central MFD scale uses Collins' 6x8-inch active display; outer banks retain photo perspective.
   const contour = [
     [370, 817],
@@ -619,7 +639,11 @@ function cockpit(root, m, rings) {
     [1254, 722],
     [1430, 764],
     [1490, 806],
-  ].map(([u, v]) => at(u, 800 - (800 - v) * 0.5, -0.015));
+  ]
+    .map(([u, v]) => at(u, 800 - (800 - v) * 0.5, -0.015))
+    // Held just under the windscreen sill (ring 3), which falls round the shoulders: the outer
+    // ends of the hood stood up to 4 cm above it, through the skin beside the windscreen.
+    .map(([x, y, zz]) => [x, Math.min(y, sill(x) - 0.012), zz]);
   sheet(d, [...brow, ...contour.slice(0, 6).reverse()], m.trim, [0, 0, -1]);
   for (let i = 0; i < brow.length - 1; i++) {
     const a = brow[i],
@@ -854,6 +878,8 @@ function cockpit(root, m, rings) {
 
 /** Index of the +X side's upper corner in `section` rings (its mirror is ring length - 5). */
 const SIDE_TOP = 5;
+/** Forward pylon crest height over the mast, just under the 4.43 m hub. */
+const FORWARD_CREST = 4.24;
 /** 22-point fuselage section in the template's point order (top, +X side, keel): superelliptic
  * roof shoulders `upper` tall and belly corners `lower` tall (exponents n, m) joined by a flat,
  * upright side from index SIDE_TOP to SIDE_TOP + 1, so window sheets stay planar. */

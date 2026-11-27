@@ -58,6 +58,13 @@ async function addViteServer(name, root, base, configFile = false) {
     root,
     base,
     configFile,
+    // A dependency cache of its own. Vite's default, `<root>/node_modules/.vite`, is shared with
+    // every other server on the example (its own `pnpm dev`, headless probes, captures), and this
+    // server's extra plugin gives it a different cache hash: each of them rebuilt the directory
+    // under the other on start. A running server then served three from its memory and three's
+    // addons from the new files on disk, two copies of three in one page, and a chosen aircraft
+    // failed to prepare ("reading 'promise'").
+    cacheDir: resolve(root, 'node_modules/.vite-home'),
     appType: 'spa',
     clearScreen: false,
     plugins: [

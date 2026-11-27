@@ -244,15 +244,19 @@ export const a320neo = {
   },
   gear: {
     // 12.64 m wheelbase, 7.59 m track between leg centres, 0.93 and 0.50 m axle spreads.
-    nose: { u: 5.07, r: 0.38, w: 0.22, spread: 0.5, top: 2.2, strut: 0.085 },
+    // Pivots, rake and fold angles are set so the stowed legs and wheels lie inside the skin,
+    // fairings and wing (checked against these tables); the fold doors are not modelled.
+    nose: { u: 5.07, r: 0.38, w: 0.22, spread: 0.5, top: 2.3, strut: 0.085, retract: 1.6 },
     main: {
       u: 17.71,
       x: 3.795,
-      pivotX: 4.45,
+      pivotX: 3.8,
       r: 0.585,
       w: 0.43,
       spread: 0.93,
-      top: 3.2,
+      top: 3.25,
+      hinge: 0.35,
+      retract: 1.45,
       strut: 0.12,
     },
   },

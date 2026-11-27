@@ -213,9 +213,24 @@ export const a220 = {
   },
   gear: {
     // Locators Z wheelbase, W nose gear station, Y track, X axle spread.
-    nose: { u: 3.39, r: 0.31, w: 0.19, spread: 0.42, top: 2, strut: 0.075 },
-    main: { u: 18.7, x: 3.365, pivotX: 4, r: 0.51, w: 0.34, spread: 0.69, top: 2.55, strut: 0.11 },
+    // Pivots, rake and fold angles are set so the stowed legs and wheels lie inside the skin,
+    // fairings and wing (checked against these tables); the fold doors are not modelled.
+    nose: { u: 3.39, r: 0.31, w: 0.19, spread: 0.42, top: 2.3, strut: 0.075, retract: 1.7 },
+    main: {
+      u: 18.7,
+      x: 3.365,
+      pivotX: 3.4,
+      r: 0.51,
+      w: 0.34,
+      spread: 0.69,
+      top: 2.9,
+      hinge: 0.8,
+      retract: 1.45,
+      strut: 0.11,
+    },
   },
 };
 export const a220Frame = () => transportFrame(a220);
-export const buildA220 = (s) => buildTransport(s, a220);
+// Pro Line Fusion: five 15.1 in displays across the panel (two PFDs, two MFDs, EICAS between),
+// where the catalog entry's four left the panel a display short.
+export const buildA220 = (s) => buildTransport({ ...s, screens: 5 }, a220);

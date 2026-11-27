@@ -162,6 +162,17 @@ async function pump(frames: number): Promise<void> {
   }
 }
 
+/** Frames `frameMs` apart, for as long as `ms`: a device (or a busy machine) drawing that slowly. */
+async function pumpFor(ms: number, frameMs: number): Promise<void> {
+  for (let elapsed = 0; elapsed < ms; elapsed += frameMs) {
+    clock += frameMs;
+    const due = [...callbacks.values()];
+    callbacks.clear();
+    for (const callback of due) callback(clock);
+    await nextTimerTurn();
+  }
+}
+
 // Tiles are admitted to the scene only on animation frames, a few milliseconds' worth per frame,
 // so a slow machine needs more frames. Keep pumping until the view is idle, as a browser would.
 async function settle(view: { whenIdle(): Promise<void> }): Promise<void> {
@@ -339,6 +350,104 @@ describe('mountEarthView', () => {
     view.dispose();
     await collectGarbage();
     expect(meshes.filter((mesh) => mesh.deref() !== undefined)).toHaveLength(0);
+  });
+
+  // The view times its levels by the browser's clock; these start the frame clock there, so
+  // seconds of frames are seconds to it.
+  it('chooses its automatic level at the beginning and keeps it, however frames run afterwards', {
+    timeout: 120_000,
+  }, async () => {
+    clock = performance.now();
+    const { view, errors } = await mount();
+    await pump(20);
+    await settle(view);
+    const start = view.stats().qualityLevel;
+    expect(view.stats()).toMatchObject({ worldQualityLevel: start, qualityCalibrating: true });
+    // A level that has held for twelve seconds after the view settled is the level.
+    await pumpFor(14_000, 16);
+    expect(view.stats()).toMatchObject({
+      qualityLevel: start,
+      worldQualityLevel: start,
+      qualityCalibrating: false,
+    });
+    // Twenty frames a second (a city, a piloted aircraft, other work on the machine): left
+    // adapting, the view lost a level every few seconds of this and rebuilt it when frames
+    // recovered, the ground under an aircraft going to box shells and back each time.
+    await pumpFor(30_000, 50);
+    expect(view.stats()).toMatchObject({ qualityLevel: start, worldQualityLevel: start });
+    // Nor do fast frames raise anything.
+    await pumpFor(25_000, 16);
+    expect(view.stats()).toMatchObject({ qualityLevel: start, worldQualityLevel: start });
+    expect(view.stats().qualityReason).toBeUndefined();
+    expect(errors).toEqual([]);
+    view.dispose();
+  });
+
+  it('lowers what the view is drawn at for slow frames at the beginning, never the world', {
+    timeout: 120_000,
+  }, async () => {
+    clock = performance.now();
+    const { view, errors } = await mount();
+    await pump(20);
+    await settle(view);
+    const start = view.stats().qualityLevel;
+    // Slow from the first settled frame: a weak graphics chip, or a busy first minute.
+    for (let i = 0; i < 30 && view.stats().qualityLevel === start; i++) await pumpFor(1000, 50);
+    expect(view.stats().qualityLevel).toBeLessThan(start);
+    expect(view.stats().worldQualityLevel).toBe(start);
+    // Drawn with less: the level's shadows and clouds. Built the same: the device's first level.
+    const drawn = view.stats().qualityLevel;
+    await pump(10);
+    expect(viewerState.shadowQuality).toBe(earthPerformanceTier(drawn).shadows);
+    expect(viewerState.cloudQuality).toBe(earthPerformanceTier(drawn).clouds);
+    // Still slow: the drawing may go lower while the beginning lasts, the world does not.
+    await pumpFor(25_000, 50);
+    expect(view.stats().worldQualityLevel).toBe(start);
+    // Then the beginning is over, and what was chosen stays through fast frames too.
+    await pumpFor(14_000, 16);
+    expect(view.stats().qualityCalibrating).toBe(false);
+    const kept = view.stats().qualityLevel;
+    await pumpFor(25_000, 16);
+    expect(view.stats()).toMatchObject({ qualityLevel: kept, worldQualityLevel: start });
+    // Asking for Auto again starts over: the device's first level, and a new beginning.
+    view.setQuality('balanced');
+    view.setQuality('auto');
+    expect(view.stats()).toMatchObject({
+      qualityLevel: start,
+      worldQualityLevel: start,
+      qualityCalibrating: true,
+    });
+    expect(errors).toEqual([]);
+    view.dispose();
+  });
+
+  it('gives a world level up for good when what is on show stays over the memory budget', {
+    timeout: 120_000,
+  }, async () => {
+    clock = performance.now();
+    const view = await mountEarthView({
+      canvas: fakeCanvas() as unknown as HTMLCanvasElement,
+      terrain: earth,
+      archives: { elevation: archive },
+      camera: { latitude: 47.6, longitude: -122.33, range: 2_000, pitch: 0.6 },
+      style: { sky: false },
+      // Any streamed ground is over this budget.
+      memoryBudget: 1,
+    });
+    const start = view.stats().worldQualityLevel;
+    for (let frame = 0; frame < 600 && view.stats().worldQualityLevel === start; frame++)
+      await pump(1);
+    expect(view.stats()).toMatchObject({
+      worldQualityLevel: start - 1,
+      qualityLevel: start - 1,
+      qualityReason: 'memory-pressure',
+    });
+    // One level at a time, with half a minute for its tiles to take over.
+    await pumpFor(20_000, 16);
+    expect(view.stats().worldQualityLevel).toBe(start - 1);
+    await pumpFor(20_000, 16);
+    expect(view.stats().worldQualityLevel).toBe(start - 2);
+    view.dispose();
   });
 
   it('changes quality on the live view, keeping the viewer and what has streamed', async () => {

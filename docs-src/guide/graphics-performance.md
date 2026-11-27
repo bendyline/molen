@@ -173,12 +173,26 @@ frame's render took 24 ms of main thread instead of 48 ms and about half the GPU
 drawn in one frame of eight.
 
 Work that follows a city's size rather than the view is kept off the frame. At night the Earth
-hosts' street lights (sixteen real lights on the nearest lamps) are chosen four times a second
-and whenever the camera has moved 8 m, from the tiles within reach, not from every lamp on show
-every frame: `TerrainSurfaceRenderer.visitStreetLights` takes a second callback that refuses a
-tile's lamps whole. Traffic signal lenses are advanced ten times a second of signal time, and
+hosts' lit street lamps (every lamp within about 300 m, in the renderer's lamp field) are chosen
+four times a second and whenever the camera has moved 8 m, from the tiles within reach, not from
+every lamp on show every frame: `TerrainSurfaceRenderer.visitStreetLights` takes a second
+callback that refuses a tile's lamps whole. Traffic signal lenses are advanced ten times a second of signal time, and
 only on tiles whose lenses are within their draw distance (`updateSignals`). Over Osaka at night
 those two were 51 and 17 ms of each second of a flight.
+
+Night lighting adds no three lights. Three's forward renderer lights every lit fragment with
+every light in the scene through the full physical model, and re-sends each light's uniforms to
+every program it switches to. Sixteen street lamps and eight headlight beams as point and spot
+lights made a residential street in Seattle (1440x900, High, 1,900 draws) cost 36 ms of GPU a
+frame at night against 22 ms at noon, and 5 ms more of the main thread's render; at a 2880-pixel
+display that was most of a 26 fps frame. Since only the nearest sixteen lamps could be lit,
+lamps also switched on one at a time ahead of a driver. The renderer's lamp field
+(`Renderer.lampField`, `three/lamp-field.ts`; see [night lighting](night-lighting.md)) carries
+every lamp within 300 m, and the beams, in one float texture and a short uniform array that every
+lit shader reads: a fragment adds only the few lamps its grid cell lists, diffuse only. In one
+page, the same view measured 33 ms of GPU with the old lights and 27 ms with the field (minimums
+30 and 23), and 21 ms at noon; the field's own cost was under the noise of a shared machine.
+Nightfall compiles nothing, since every shader carries the field from the start.
 
 An instanced detail switch (the level-of-detail batch for plants and props) chooses its level
 again only once the camera could have reached a handover: each choice keeps how far the

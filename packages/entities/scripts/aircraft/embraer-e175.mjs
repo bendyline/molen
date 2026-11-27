@@ -221,8 +221,21 @@ export const e175 = {
   },
   gear: {
     // 11.40 m wheelbase, 5.20 m track, 4.13 m nose to nose gear.
-    nose: { u: 4.13, r: 0.3, w: 0.19, spread: 0.37, top: 1.6, strut: 0.07 },
-    main: { u: 15.53, x: 2.6, pivotX: 3.2, r: 0.48, w: 0.33, spread: 0.72, top: 2.25, strut: 0.1 },
+    // Pivots, rake and fold angles are set so the stowed legs and wheels lie inside the skin,
+    // fairings and wing (checked against these tables); the fold doors are not modelled.
+    nose: { u: 4.13, r: 0.3, w: 0.19, spread: 0.37, top: 1.9, strut: 0.07, retract: 1.6 },
+    main: {
+      u: 15.53,
+      x: 2.6,
+      pivotX: 2.4,
+      r: 0.48,
+      w: 0.33,
+      spread: 0.72,
+      top: 2.1,
+      hinge: 0.5,
+      retract: 1.55,
+      strut: 0.1,
+    },
   },
 };
 export const e175Frame = () => transportFrame(e175);

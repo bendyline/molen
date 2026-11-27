@@ -171,6 +171,9 @@ export function buildH145(s) {
     zs,
     28,
   );
+  // The dark nose cap is single-sided trim: from the crew seats it vanished and the ground
+  // showed through the nose beside the glareshield. An inward lining closes it.
+  shell.build(d, trim, [], [3.345, ...zs.filter((z) => z > 3.345)], 28, 0.004);
   for (const poly of panes) shell.strip(d, poly, 0.028, trim);
   for (const poly of [...chins, ...windows]) shell.strip(d, poly, 0.026, trim, false);
   for (const side of [-1, 1]) {
@@ -199,8 +202,9 @@ export function buildH145(s) {
       shell.strip(d, shell.region(a.map(([z, y]) => [z, y, side])), 0.008, trim, false);
     d.rod(q(0.67, 1.33, 0.017), q(0.89, 1.33, 0.017), 0.015, metal);
     d.rod(q(1.9, 1.32, 0.013), q(2.04, 1.32, 0.013), 0.012, metal);
-    // Sliding-door rail under the roof shoulder.
-    d.rod(q(0.45, 2.19, 0.016), q(-1.4, 2.11, 0.016), 0.014, metal);
+    // Sliding-door rail under the roof shoulder, standing off the skin far enough that the
+    // faceted shoulder does not let it show inside the cabin.
+    d.rod(q(0.45, 2.19, 0.026), q(-1.4, 2.11, 0.026), 0.014, metal);
     for (const z of [0.55, -0.8])
       for (const y of [0.98, 1.95]) d.box([0.035, 0.03, 0.07], q(z, y, 0.008), metal);
     for (const z of [1.41, -0.48]) {
@@ -224,7 +228,7 @@ export function buildH145(s) {
     for (const z of [1.7, 0.55, -1.2])
       for (let n = 0; n < 10; n++)
         d.add(new T.SphereGeometry(0.0035, 5, 3), metal, q(z, 0.99 + n * 0.1, 0.002));
-    d.text('H145', q(-0.42, 1.15, 0.008), 0.09, (side * Math.PI) / 2, paint);
+    // Titles and registrations are livery lettering (liveries/aircraft/airbus-h145.mjs).
     // Rear clamshell seam and hinges, following the upward-sloping aft floor.
     const rear = [
       [-1.85, 0.85],
@@ -238,38 +242,66 @@ export function buildH145(s) {
   // Twin engine cowlings stand above the cabin: upright flanks leaning in slightly under a
   // rounded crown, their foot following the roof as it rolls over the shoulders.
   const cr = (z, w, b, t) => {
-    // The underside follows the roof, so no slab hangs inside the cabin.
-    const under = (x) => Math.min(b, shell.at(z, roof(z, x))[1] - 0.03),
-      foot = under(w),
+    const foot = Math.min(b, shell.at(z, roof(z, w))[1] - 0.03),
       y = t - (t - foot) * 0.62;
     return {
       z,
+      w,
+      arc: Array.from({ length: 13 }, (_, k) => {
+        const a = ((k - 6) * Math.PI) / 12,
+          s = Math.sin(a),
+          h = y + (t - y) * Math.pow(Math.cos(a), 2 / 2.6);
+        return [
+          w *
+            (1 - (0.08 * (h - foot)) / (t - foot)) *
+            Math.sign(s) *
+            Math.pow(Math.abs(s), 2 / 2.6),
+          h,
+        ];
+      }),
+    };
+  };
+  // The flanks keep their shape (feet 3 cm under the roof), but the side walls stop on
+  // the skin and the underside rides 15 mm over it, re-fitted every 0.2 m between the stations
+  // (each in-between arc on the old straight loft). The old straight underside ran below the
+  // curved roof for 10-15 cm in from each foot: broad blue bands on the cabin ceiling.
+  const section = ({ z, w, arc }) => {
+    const roofY = (x) => shell.at(z, roof(z, x))[1],
+      base = roofY(w) + 0.001;
+    return {
+      z,
       points: [
-        [-w, foot],
-        ...Array.from({ length: 13 }, (_, k) => {
-          const a = ((k - 6) * Math.PI) / 12,
-            s = Math.sin(a),
-            h = y + (t - y) * Math.pow(Math.cos(a), 2 / 2.6);
-          return [
-            w *
-              (1 - (0.08 * (h - foot)) / (t - foot)) *
-              Math.sign(s) *
-              Math.pow(Math.abs(s), 2 / 2.6),
-            h,
-          ];
-        }),
-        [w, foot],
-        ...[0.6, 0, -0.6].map((k) => [k * w, under(k * w) + 0.05]),
+        [-w, base],
+        ...arc,
+        [w, base],
+        ...[0.9, 0.75, 0.6, 0.4, 0.2, 0, -0.2, -0.4, -0.6, -0.75, -0.9].map((k) => [
+          k * w,
+          roofY(k * w) + 0.015,
+        ]),
       ],
     };
   };
-  const cowls = [
+  const stations = [
     cr(1.48, 0.32, 2.36, 2.62),
     cr(0.68, 0.61, 2.37, 2.99),
     cr(-0.45, 0.65, 2.3, 3.0),
     cr(-1.5, 0.56, 2.23, 2.75),
     cr(-2.6, 0.3, 2.06, 2.35),
   ];
+  const cowls = stations.flatMap((a, i) => {
+    const b = stations[i + 1];
+    if (!b) return [section(a)];
+    const n = Math.ceil((a.z - b.z) / 0.2);
+    return Array.from({ length: n }, (_, k) => {
+      const u = k / n,
+        mix = (p, q) => p + (q - p) * u;
+      return section({
+        z: mix(a.z, b.z),
+        w: mix(a.w, b.w),
+        arc: a.arc.map((p, j) => p.map((c, m) => mix(c, b.arc[j][m]))),
+      });
+    });
+  });
   loft(d, cowls, paint);
   /** Half width of the cowling at station z and height y (its +X flank). */
   const cowlX = (z, y) => {
@@ -357,18 +389,21 @@ export function buildH145(s) {
   // Fenestron has a real through-duct; no opaque disk behind its ten blades. The shroud is
   // 0.4 m thick round the duct and its faces bevel down to a slim rim, so from the rear it
   // reads as a faired duct, not a plate; the fin above it thins toward the tip.
-  const yz = [
+  // The shroud rounds off behind and under the duct (side photographs): the booklet trace's
+  // four corners there made a hexagon of it.
+  const cy = 2.12,
+    cz = -7.02,
+    yz = [
       [2.3, -5.91],
       [3.96, -7.06],
       [4, -8.1],
-      [3.03, -7.77],
-      [2.1, -8.19],
-      [1.05, -7.66],
-      [0.98, -6.71],
+      ...[45, 63, 81, 99, 117, 135, 153, 171, 186, 200].map((deg) => {
+        const a = (deg * Math.PI) / 180,
+          rr = deg < 120 ? 1.16 : 1.16 + (0.04 * (deg - 120)) / 80;
+        return [cy + rr * Math.cos(a), cz - rr * Math.sin(a)];
+      }),
       [1.63, -6.28],
     ],
-    cy = 2.12,
-    cz = -7.02,
     r = 0.575,
     half = (y) => (y <= 2.75 ? 0.2 : 0.2 - (0.08 * (y - 2.75)) / 1.25),
     rim = (y) => half(y) * 0.4;
@@ -792,6 +827,18 @@ function cockpit(root, m, shell) {
       od.rod([x, -0.025, -0.25 + r * 0.075], [x, -0.065, -0.24 + r * 0.075], 0.004, m.metal);
   od.finish();
   d.rod([0.12, 1.0, 0.72], [0.12, 1.3, 0.81], 0.012, d.red);
+  // Header over the clamshell doors: the tail boom's root, inside the pod's rear dome, showed
+  // from the cabin as a blue disc under the ceiling.
+  const header = shell.vAt(-2.3, 1.76, 1);
+  sheet(
+    d,
+    Array.from({ length: 25 }, (_, j) => {
+      const [x, y] = shell.at(-2.3, -header + (2 * header * j) / 24);
+      return [x * 0.985, 1.76 + (y - 1.76) * 0.97, -2.3];
+    }),
+    face,
+    [0, 0, 1],
+  );
   d.finish();
   return { nodes: ['cockpit'], bindings };
 }

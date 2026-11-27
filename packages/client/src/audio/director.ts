@@ -14,9 +14,11 @@ import {
   type JsonObject,
   type JsonValue,
   nearestWithDistance,
+  type SoundProfilePerspective,
   type SoundSpatial,
 } from '@bendyline/molen-schema';
 import { type ResolvedSound, type SoundBank, unitRandom } from './bank';
+import type { ResolvedSoundProfile, SoundProfileSet } from './profiles';
 import { rotorAcoustics } from './rotor-acoustics';
 import {
   curve,
@@ -27,6 +29,7 @@ import {
   type SignalContext,
 } from './signals';
 import type {
+  AudioEnclosure,
   AudioEntitySource,
   AudioListenerState,
   AudioVec3,
@@ -51,6 +54,8 @@ export interface AudioDirectorOptions {
   seed?: string | number;
   /** Called once per distinct warning (unknown sound ids, unknown signals). */
   onWarning?: (message: string) => void;
+  /** Voices for families of entities (engines, tires, cabins); see `mergeSoundProfiles`. */
+  profiles?: SoundProfileSet;
 }
 
 /** A persistent voice the director is keeping alive. */
@@ -68,6 +73,11 @@ export interface VoiceSnapshot {
 
 interface Desired {
   tone?: VoiceTone;
+  /** Routed through the listener's enclosure (muffled by a cabin or building around the ears). */
+  outside: boolean;
+  /** An ambience bed or zone: loud nearby sources mask it. */
+  bed?: boolean;
+  lowpassHz?: number;
   key: string;
   sound: ResolvedSound;
   loop: boolean;
@@ -85,6 +95,8 @@ interface Desired {
 
 interface LiveVoice {
   tone?: VoiceTone;
+  outside: boolean;
+  lowpassHz?: number;
   key: string;
   voice: string;
   sound: string;
@@ -139,6 +151,16 @@ const DEFAULT_SPATIAL: Omit<VoiceSpatial, 'position'> = {
 };
 const ONE_SHOT_MIN_INTERVAL_MS = 30;
 const TELEPORT_SPEED = 400; // m/s: a jump faster than this is a teleport, not travel
+const SOUND_SPEED = 343; // m/s
+/** Outside its cabin, the listener's own vehicle is heard as if from no farther than this. */
+const OWN_HOLD_M = 6;
+const OPEN: AudioEnclosure = { isolationDb: 0, cutoffHz: 20000 };
+const DEFAULT_CABIN = { isolationDb: 22, cutoffHz: 1000 };
+
+/** Air absorbs treble over distance: the cutoff of a low-pass that stands in for it. */
+function airCutoff(d: number): number {
+  return d <= 40 ? 20000 : Math.max(1800, 20000 / (1 + (d - 40) / 160));
+}
 
 type ListenerCtx = SignalContext['listener'];
 
@@ -214,9 +236,18 @@ export class AudioDirector {
   private readonly stopFades = new Map<string, number>();
   private readonly gates = new Map<string, Gate>();
   private readonly motion = new Map<EntityId, EntityMotion>();
-  private readonly firedOnce = new Set<EntityId>();
-  private readonly startTickFired = new Map<EntityId, number>();
-  private readonly triggers = new Map<EntityId, TriggerState>();
+  private readonly firedOnce = new Set<string>();
+  private readonly startTickFired = new Map<string, number>();
+  private readonly triggers = new Map<string, TriggerState>();
+  private profiles: SoundProfileSet | undefined;
+  /** Each entity's profile (null: none matched), decided once while it exists. */
+  private readonly profileOf = new Map<EntityId, ResolvedSoundProfile | null>();
+  /** Entities carrying a profiled component, measured this frame. */
+  private profileCandidates: EntityId[] = [];
+  private listenerVel: AudioVec3 = [0, 0, 0];
+  private mask = 1;
+  private enclosure: AudioEnclosure = OPEN;
+  private enclosureKey = '';
   private readonly lastFire = new Map<string, number>();
   private readonly lastClip = new Map<string, number>();
   private readonly busGains = new Map<string, number>();
@@ -244,10 +275,27 @@ export class AudioDirector {
     this.maxOneShots = opts.maxOneShots ?? 16;
     this.seed = opts.seed ?? 'molen-audio';
     this.onWarning = opts.onWarning;
+    this.profiles = opts.profiles;
   }
 
   setBank(bank: SoundBank): void {
     this.bank = bank;
+  }
+
+  /** Replace the sound profiles; every entity is matched again. */
+  setProfiles(profiles: SoundProfileSet | undefined): void {
+    this.profiles = profiles;
+    this.profileOf.clear();
+  }
+
+  /** What the listener's surroundings did to outside sound on the last update. */
+  get currentEnclosure(): AudioEnclosure {
+    return this.enclosure;
+  }
+
+  /** The profile an entity was matched to on the last update, if any. */
+  profileFor(id: EntityId): ResolvedSoundProfile | undefined {
+    return this.profileOf.get(id) ?? undefined;
   }
 
   setEnvironment(environment: AudioEnvironmentData | undefined): void {
@@ -270,6 +318,7 @@ export class AudioDirector {
       pitch?: number;
       bus?: string;
       loop?: boolean;
+      outside?: boolean;
     } = {},
   ): string {
     const handle = `host:${sound}#${this.hostHandles++}`;
@@ -334,6 +383,8 @@ export class AudioDirector {
     this.musicOverride = undefined;
     this.events.length = 0;
     this.gates.clear();
+    this.enclosureKey = '';
+    this.mask = 1;
     return cmds;
   }
 
@@ -357,20 +408,26 @@ export class AudioDirector {
       motion: this.motion,
       occupied: occupiedBy(source),
       seconds: (now - this.startMs) / 1000,
+      listenerVelocity: this.listenerVel,
     };
 
     const cmds: VoiceCommand[] = [
       { op: 'listener', position: listener.position, forward: listener.forward, up: listener.up },
     ];
     this.syncBuses(env, cmds);
+    this.syncEnclosure(ctx, cmds);
     const desired: Desired[] = [];
     this.processEvents(env, ctx, now, tick, cmds);
     this.collectAmbience(env, ctx, now, desired);
     this.collectZones(ctx, now, desired);
-    this.collectSources(ctx, now, tick, desired, cmds);
+    const seenKeys = new Set<string>();
+    const profiled = this.collectProfiles(env, ctx, now, tick, desired, cmds, seenKeys);
+    this.collectSources(env, ctx, now, tick, desired, cmds, profiled, seenKeys);
+    this.pruneSourceState(seenKeys);
     this.collectScriptLoops(ctx, desired);
     this.footsteps(env, ctx, now, tick, cmds);
     this.updateMusic(env, ctx, now, cmds);
+    this.applyMasking(desired, env, listener, dtMs);
     this.reconcile(desired, env, listener, tick, cmds);
     this.pruneOneShots(now);
     return cmds;
@@ -391,8 +448,12 @@ export class AudioDirector {
       if (d <= Math.max(5, (TELEPORT_SPEED * dtMs) / 1000)) {
         distance += d;
         measured = measured + (d / (dtMs / 1000) - measured) * 0.3;
-      }
+        this.listenerVel = this.listenerVel.map(
+          (v, i) => v + (((position[i] ?? 0) - (prev.position[i] ?? 0)) / (dtMs / 1000) - v) * 0.3,
+        ) as AudioVec3;
+      } else this.listenerVel = [0, 0, 0];
     }
+    if (partial?.velocity) this.listenerVel = [...partial.velocity];
     const velocity = partial?.velocity;
     const speed = partial?.speed ?? (velocity ? Math.hypot(...velocity) : measured);
     const next: ListenerCtx = {
@@ -409,6 +470,10 @@ export class AudioDirector {
       ...(partial?.heightAboveGround !== undefined
         ? { heightAboveGround: partial.heightAboveGround }
         : {}),
+      ...(partial?.space !== undefined ? { space: partial.space } : {}),
+      ...(partial?.vehicle !== undefined ? { vehicle: partial.vehicle } : {}),
+      ...(partial?.enclosure !== undefined ? { enclosure: partial.enclosure } : {}),
+      ...(partial?.reverb !== undefined ? { reverb: partial.reverb } : {}),
     };
     // Keep the measured speed (not an override) for smoothing on the next update.
     this.listenerState = { ...next, speed: partial?.speed ?? measured };
@@ -418,29 +483,87 @@ export class AudioDirector {
   private measureEntities(source: AudioEntitySource | undefined, dtMs: number): void {
     if (!source) {
       this.motion.clear();
+      this.profileOf.clear();
+      this.profileCandidates = [];
       return;
     }
     const seen = new Set<EntityId>();
-    for (const [id] of source.each('audioSource')) {
+    const measure = (id: EntityId): boolean => {
+      if (seen.has(id)) return true;
       const pos = this.entityPos(source, id);
-      if (!pos) continue;
+      if (!pos) return false;
       seen.add(id);
       const prev = this.motion.get(id);
       if (!prev) {
-        this.motion.set(id, { pos, speed: 0, distance: 0 });
-        continue;
+        this.motion.set(id, { pos, speed: 0, distance: 0, vel: [0, 0, 0] });
+        return true;
       }
       let { speed, distance } = prev;
+      let vel = prev.vel ?? [0, 0, 0];
       if (dtMs > 0) {
         const d = dist(pos, prev.pos);
         if (d <= Math.max(5, (TELEPORT_SPEED * dtMs) / 1000)) {
           distance += d;
           speed += (d / (dtMs / 1000) - speed) * 0.3;
-        }
+          vel = vel.map(
+            (v, i) => v + (((pos[i] ?? 0) - (prev.pos[i] ?? 0)) / (dtMs / 1000) - v) * 0.3,
+          ) as AudioVec3;
+        } else vel = [0, 0, 0];
       }
-      this.motion.set(id, { pos, speed, distance });
-    }
+      this.motion.set(id, { pos, speed, distance, vel });
+      return true;
+    };
+    for (const [id] of source.each('audioSource')) measure(id);
+    const claimed = new Set<EntityId>();
+    for (const component of this.profiles?.components ?? [])
+      for (const [id] of source.each(component)) if (measure(id)) claimed.add(id);
+    this.profileCandidates = [...claimed];
     for (const id of this.motion.keys()) if (!seen.has(id)) this.motion.delete(id);
+    for (const id of this.profileOf.keys()) if (!seen.has(id)) this.profileOf.delete(id);
+  }
+
+  /** The space around the ears, as the backend's enclosure. */
+  private enclosureFor(ctx: SignalContext): AudioEnclosure {
+    const l = ctx.listener;
+    if (l.enclosure) return l.enclosure;
+    const space = l.space ?? (l.indoors ? 'building' : 'open');
+    const reverb = l.reverb ?? (space === 'tunnel' ? 'tunnel' : undefined);
+    const wet = reverb === 'tunnel' ? 0.6 : reverb === 'street' ? 0.25 : 0.35;
+    let base: AudioEnclosure = OPEN;
+    if (space === 'cabin') {
+      const own = l.vehicle !== undefined ? this.matchProfile(l.vehicle, ctx) : undefined;
+      base = { ...(own?.cabin ?? DEFAULT_CABIN) };
+    } else if (space === 'building') base = { isolationDb: 26, cutoffHz: 500 };
+    if (space === 'building') return { ...base, reverb: 'room', wet: 0.3 };
+    // Inside a cabin the tunnel is heard through the body, so less of it.
+    return reverb ? { ...base, reverb, wet: space === 'cabin' ? wet * 0.4 : wet } : base;
+  }
+
+  private syncEnclosure(ctx: SignalContext, cmds: VoiceCommand[]): void {
+    const enclosure = this.enclosureFor(ctx);
+    const key = JSON.stringify(enclosure);
+    if (key === this.enclosureKey) return;
+    // A door closing or opening, not a slow fade; the first frame sets it outright.
+    cmds.push({ op: 'enclosure', enclosure, rampS: this.enclosureKey === '' ? 0.01 : 0.35 });
+    this.enclosureKey = key;
+    this.enclosure = enclosure;
+  }
+
+  /** The profile the match rules give an entity (decided once while the entity exists). */
+  private matchProfile(id: EntityId, ctx: SignalContext): ResolvedSoundProfile | undefined {
+    if (!this.profiles || !ctx.source) return undefined;
+    const cached = this.profileOf.get(id);
+    if (cached !== undefined) return cached ?? undefined;
+    const entityCtx: SignalContext = { ...ctx, entity: id };
+    let found: ResolvedSoundProfile | null = null;
+    for (const rule of this.profiles.match) {
+      if (!evalWhen(rule.when, entityCtx)) continue;
+      found = this.profiles.resolve(rule.profile) ?? null;
+      if (!found) this.warn(`profile:${rule.profile}`, `unknown sound profile "${rule.profile}"`);
+      break;
+    }
+    this.profileOf.set(id, found);
+    return found ?? undefined;
   }
 
   private environmentFor(source: AudioEntitySource | undefined): AudioEnvironmentData | undefined {
@@ -563,6 +686,8 @@ export class AudioDirector {
       entity?: EntityId;
       handle?: string;
       key: string;
+      outside?: boolean;
+      lowpassHz?: number;
     },
     listener: ListenerCtx,
     now: number,
@@ -580,6 +705,13 @@ export class AudioDirector {
       const oldest = this.oneShots.shift();
       if (oldest) cmds.push({ op: 'stop', voice: oldest.voice, fadeS: 0.05 });
     }
+    const outside =
+      shot.outside ??
+      (shot.position !== undefined &&
+        (shot.entity === undefined || shot.entity !== listener.vehicle));
+    const air =
+      shot.lowpassHz ??
+      (shot.position && shot.spatial ? airCutoff(dist(shot.position, listener.position)) : 20000);
     const clip = this.pickClip(sound, tick, shot.key, this.serial);
     const pitch = this.basePitch(sound, tick, shot.key, this.serial) * shot.pitchMul;
     const voice = `shot:${this.serial++}`;
@@ -596,6 +728,8 @@ export class AudioDirector {
       ...(shot.spatial && shot.position
         ? { spatial: { ...shot.spatial, position: shot.position } }
         : {}),
+      ...(outside ? { outside: true } : {}),
+      ...(air < 19000 ? { lowpassHz: air } : {}),
     });
     const lengthS = (entry.durationS ?? 5) / Math.max(0.05, pitch);
     this.oneShots.push({
@@ -647,6 +781,8 @@ export class AudioDirector {
         sound,
         loop: true,
         gain,
+        outside: !layer.inside,
+        bed: !layer.inside,
         pitchMul: this.bound(layer.pitchFrom, ctx),
         bus: sound.entry.bus ?? 'ambience',
         fadeInS: fade,
@@ -689,6 +825,8 @@ export class AudioDirector {
         sound,
         loop: true,
         gain,
+        outside: true,
+        bed: true,
         pitchMul: 1,
         bus: zone.bus ?? sound.entry.bus ?? 'ambience',
         fadeInS: 1,
@@ -700,148 +838,278 @@ export class AudioDirector {
     }
   }
 
-  private collectSources(
+  /**
+   * Entities voiced by a sound profile: the one the listener rides and the nearest others within
+   * range, up to `maxEmitters`. Returns every entity a profile claims, voiced or not: their own
+   * `audioSource` is replaced by the profile.
+   */
+  private collectProfiles(
+    env: AudioEnvironmentData | undefined,
     ctx: SignalContext,
     now: number,
     tick: number,
     desired: Desired[],
     cmds: VoiceCommand[],
+    seenKeys: Set<string>,
+  ): Set<EntityId> {
+    const claimed = new Set<EntityId>();
+    if (!this.profiles || !ctx.source) return claimed;
+    const own = ctx.listener.vehicle;
+    const near: { id: EntityId; profile: ResolvedSoundProfile; d: number }[] = [];
+    for (const id of this.profileCandidates) {
+      const profile = this.matchProfile(id, ctx);
+      if (!profile) continue;
+      claimed.add(id);
+      const pos = this.motion.get(id)?.pos;
+      if (!pos) continue;
+      const d = dist(pos, ctx.listener.position);
+      if (id !== own && d > profile.maxDistance) continue;
+      near.push({ id, profile, d });
+    }
+    near.sort((a, b) => (a.id === own ? -1 : b.id === own ? 1 : a.d - b.d));
+    const max = env?.maxEmitters ?? 8;
+    // A parked car is a candidate too, but silent: only an entity that sounds takes a place, so
+    // the street's parked cars do not crowd out the traffic behind them. Evaluating is bounded
+    // as well, for a lot full of them.
+    let emitters = 0;
+    let evaluated = 0;
+    for (const { id, profile } of near) {
+      if (id !== own && (emitters >= max || evaluated >= max * 4)) break;
+      if (id !== own) evaluated++;
+      const before = desired.length;
+      for (const layer of profile.layers) {
+        const key = `prof:${id}:${layer.name}`;
+        seenKeys.add(key);
+        this.evaluateSource(id, key, layer, ctx, now, tick, desired, cmds, env, {
+          perspective: layer.perspective ?? 'exterior',
+        });
+      }
+      if (id !== own && desired.length > before) emitters++;
+    }
+    return claimed;
+  }
+
+  private collectSources(
+    env: AudioEnvironmentData | undefined,
+    ctx: SignalContext,
+    now: number,
+    tick: number,
+    desired: Desired[],
+    cmds: VoiceCommand[],
+    profiled: ReadonlySet<EntityId>,
+    seenKeys: Set<string>,
   ): void {
     const source = ctx.source;
-    const seen = new Set<EntityId>();
-    if (source) {
-      const lateTicks = source.tickRate ?? 30;
-      for (const [id, data] of source.each('audioSource')) {
-        const d = data as AudioSourceData;
-        seen.add(id);
-        this.checkSignals('audioSource', d, `entity "${id}" audioSource`);
-        const sound = this.sound(d.sound, `entity "${id}" audioSource`);
-        if (!sound) continue;
-        const key = `src:${id}`;
-        const entityCtx: SignalContext = { ...ctx, entity: id };
-        const gate = this.gate(key);
-        const active = gate.update(evalWhen(d.when, entityCtx, gate.active), now);
-        const position = this.entityPos(source, id);
-        const spatial = this.spatialFor(d.spatial, sound, position);
-        let gain = (sound.entry.gain ?? 1) * (d.gain ?? 1) * this.bound(d.gainFrom, entityCtx);
-        const pitchMul = (d.pitch ?? 1) * this.bound(d.pitchFrom, entityCtx);
-        let tone: VoiceTone | undefined;
-        const aircraft = source.get(id, 'aircraft') as AircraftData | undefined;
-        const state = source.get(id, 'aircraftState') as AircraftStateData | undefined;
-        if (aircraft?.spec.model === 'helicopter' && state && sound.entry.tags?.includes('rotor')) {
-          const delta = ctx.listener.position.map((v, i) => v - (position?.[i] ?? 0));
-          // Inverse quaternion rotation into the aircraft's left/up/forward coordinate frame.
-          const q = vec4(source.get(id, 'transform')?.rot);
-          const [x, y, z] = delta as AudioVec3;
-          const tx = 2 * (q[2] * y - q[1] * z);
-          const ty = 2 * (q[0] * z - q[2] * x);
-          const tz = 2 * (q[1] * x - q[0] * y);
-          const local = [
-            x + q[3] * tx - q[1] * tz + q[2] * ty,
-            y + q[3] * ty - q[2] * tx + q[0] * tz,
-            z + q[3] * tz - q[0] * ty + q[1] * tx,
-          ];
-          const rotor = rotorAcoustics(
-            aircraft.spec,
-            state,
-            source.get(id, 'aircraftInput') as AircraftInputData | undefined,
-            local,
-          );
-          gain *= rotor.gain;
-          tone = {
-            lowpassHz: rotor.lowpassHz,
-            pulseHz: rotor.pulseHz,
-            pulseDepth: rotor.pulseDepth,
-          };
-        }
-        const bus = d.bus ?? sound.entry.bus ?? 'sfx';
-        const loop = d.loop ?? sound.entry.loop ?? false;
-        const autoplay = d.autoplay ?? true;
-        const shotBase = {
-          gain,
-          pitchMul,
-          bus,
-          entity: id,
-          ...(spatial ? { spatial } : {}),
-          ...(position ? { position } : {}),
-        };
+    if (!source) return;
+    for (const [id, data] of source.each('audioSource')) {
+      if (profiled.has(id)) continue;
+      const key = `src:${id}`;
+      seenKeys.add(key);
+      this.evaluateSource(id, key, data as AudioSourceData, ctx, now, tick, desired, cmds, env, {});
+    }
+  }
 
-        // A loop driven to silence (an aircraft engine at 0 rpm) holds no voice.
-        const audible = gain >= (this.live.has(key) ? 0.002 : 0.01);
-        if (loop && autoplay && active && audible) {
-          desired.push({
-            key,
-            sound,
-            loop: true,
-            gain,
-            pitchMul,
-            bus,
-            fadeInS: 0.3,
-            fadeOutS: 0.5,
-            rampS: this.smoothing(0.15, d.pitchFrom, d.gainFrom),
-            priority: 3,
-            ...(tone ? { tone } : {}),
-            entity: id,
-            ...(spatial ? { spatial } : {}),
-            ...(position ? { position } : {}),
-          });
-        }
-        if (!loop && autoplay && active && !this.firedOnce.has(id)) {
-          this.firedOnce.add(id);
-          this.fireOneShot({ ...shotBase, sound, key }, ctx.listener, now, tick, cmds);
-        }
-        if (d.startTick !== undefined && this.startTickFired.get(id) !== d.startTick) {
-          if (tick >= d.startTick) {
-            this.startTickFired.set(id, d.startTick);
-            if (tick - d.startTick <= lateTicks)
-              this.fireOneShot({ ...shotBase, sound, key }, ctx.listener, now, tick, cmds);
-          }
-        }
-        if (d.triggerFrom) {
-          const t = d.triggerFrom;
-          const state = this.triggers.get(id) ?? { acc: 0 };
-          this.triggers.set(id, state);
-          const raw = resolveSignal(t.signal, entityCtx);
-          const value = num(raw);
-          let fire = false;
-          if (t.every !== undefined && state.last !== undefined && active) {
-            state.acc += Math.abs(value - state.last);
-            if (state.acc >= t.every) {
-              fire = true;
-              state.acc -= t.every;
-              if (state.acc > t.every) state.acc = 0;
-            }
-          }
-          if (t.onChange && active && state.lastRaw !== undefined && raw !== state.lastRaw)
-            fire = true;
-          state.last = value;
-          if (raw !== undefined) state.lastRaw = raw;
-          if (fire) {
-            const shotSound = t.sound ? this.sound(t.sound, `entity "${id}" triggerFrom`) : sound;
-            if (shotSound)
-              this.fireOneShot(
-                {
-                  ...shotBase,
-                  sound: shotSound,
-                  bus: d.bus ?? shotSound.entry.bus ?? 'sfx',
-                  key: `${key}:t`,
-                },
-                ctx.listener,
-                now,
-                tick,
-                cmds,
-              );
-          }
-        }
+  private pruneSourceState(seenKeys: ReadonlySet<string>): void {
+    for (const key of [...this.firedOnce]) if (!seenKeys.has(key)) this.firedOnce.delete(key);
+    for (const key of [...this.startTickFired.keys()])
+      if (!seenKeys.has(key)) this.startTickFired.delete(key);
+    for (const key of [...this.triggers.keys()]) if (!seenKeys.has(key)) this.triggers.delete(key);
+    for (const key of [...this.gates.keys()])
+      if ((key.startsWith('src:') || key.startsWith('prof:')) && !seenKeys.has(key))
+        this.gates.delete(key);
+  }
+
+  /** One emitter: an audioSource, or one layer of an entity's sound profile. */
+  private evaluateSource(
+    id: EntityId,
+    key: string,
+    d: AudioSourceData,
+    ctx: SignalContext,
+    now: number,
+    tick: number,
+    desired: Desired[],
+    cmds: VoiceCommand[],
+    env: AudioEnvironmentData | undefined,
+    opts: { perspective?: SoundProfilePerspective },
+  ): void {
+    const source = ctx.source as AudioEntitySource;
+    const lateTicks = source.tickRate ?? 30;
+    this.checkSignals('audioSource', d, `entity "${id}" audioSource`);
+    const sound = this.sound(d.sound, `entity "${id}" audioSource`);
+    if (!sound) return;
+    const own = ctx.listener.vehicle === id;
+    const inCabin = own && (ctx.listener.space ?? 'open') === 'cabin';
+    const entityCtx: SignalContext = { ...ctx, entity: id };
+    const gate = this.gate(key);
+    const perspectiveOk = opts.perspective !== 'interior' || inCabin;
+    const active = gate.update(perspectiveOk && evalWhen(d.when, entityCtx, gate.active), now);
+    // Profile layers say where they are heard; a plain audioSource is outside unless it is the
+    // listener's own vehicle, whose one engine must not be muffled by its own cabin.
+    const outside = opts.perspective === undefined ? !own : opts.perspective === 'exterior';
+    let position = this.entityPos(source, id);
+    if (position && own && !inCabin) {
+      // The chase camera's distance must not make the vehicle you drive go quiet.
+      const away = dist(position, ctx.listener.position);
+      if (away > OWN_HOLD_M) {
+        const k = OWN_HOLD_M / away;
+        const at = position;
+        position = ctx.listener.position.map((v, i) => v + ((at[i] ?? v) - v) * k) as AudioVec3;
       }
     }
-    for (const id of [...this.firedOnce]) if (!seen.has(id)) this.firedOnce.delete(id);
-    for (const id of [...this.startTickFired.keys()])
-      if (!seen.has(id)) this.startTickFired.delete(id);
-    for (const id of [...this.triggers.keys()]) if (!seen.has(id)) this.triggers.delete(id);
-    for (const key of [...this.gates.keys()]) {
-      if (key.startsWith('src:') && !seen.has(key.slice(4))) this.gates.delete(key);
+    const spatial = this.spatialFor(d.spatial, sound, position);
+    let gain = (sound.entry.gain ?? 1) * (d.gain ?? 1) * this.bound(d.gainFrom, entityCtx);
+    let pitchMul = (d.pitch ?? 1) * this.bound(d.pitchFrom, entityCtx);
+    let lowpassHz: number | undefined;
+    if (spatial && position && !own) {
+      const doppler = env?.doppler ?? 1;
+      const m = this.motion.get(id);
+      if (doppler > 0 && m) {
+        const u = ctx.listener.position.map((v, i) => v - (m.pos[i] ?? 0));
+        const len = Math.hypot(u[0] ?? 0, u[1] ?? 0, u[2] ?? 0);
+        if (len > 1) {
+          const vs = (m.vel ?? [0, 0, 0]).reduce((a, v, i) => a + (v * (u[i] ?? 0)) / len, 0);
+          const vl = -this.listenerVel.reduce((a, v, i) => a + (v * (u[i] ?? 0)) / len, 0);
+          const ratio =
+            (SOUND_SPEED + Math.max(-200, Math.min(200, vl))) /
+            (SOUND_SPEED - Math.max(-200, Math.min(200, vs)));
+          pitchMul *= Math.max(0.5, Math.min(2, ratio ** doppler));
+        }
+      }
+      lowpassHz = airCutoff(dist(position, ctx.listener.position));
     }
+    let tone: VoiceTone | undefined;
+    const aircraft = source.get(id, 'aircraft') as AircraftData | undefined;
+    const state = source.get(id, 'aircraftState') as AircraftStateData | undefined;
+    if (aircraft?.spec.model === 'helicopter' && state && sound.entry.tags?.includes('rotor')) {
+      const delta = ctx.listener.position.map((v, i) => v - (position?.[i] ?? 0));
+      // Inverse quaternion rotation into the aircraft's left/up/forward coordinate frame.
+      const q = vec4(source.get(id, 'transform')?.rot);
+      const [x, y, z] = delta as AudioVec3;
+      const tx = 2 * (q[2] * y - q[1] * z);
+      const ty = 2 * (q[0] * z - q[2] * x);
+      const tz = 2 * (q[1] * x - q[0] * y);
+      const local = [
+        x + q[3] * tx - q[1] * tz + q[2] * ty,
+        y + q[3] * ty - q[2] * tx + q[0] * tz,
+        z + q[3] * tz - q[0] * ty + q[1] * tx,
+      ];
+      const rotor = rotorAcoustics(
+        aircraft.spec,
+        state,
+        source.get(id, 'aircraftInput') as AircraftInputData | undefined,
+        local,
+      );
+      gain *= rotor.gain;
+      tone = {
+        lowpassHz: rotor.lowpassHz,
+        pulseHz: rotor.pulseHz,
+        pulseDepth: rotor.pulseDepth,
+      };
+    }
+    const bus = d.bus ?? sound.entry.bus ?? 'sfx';
+    const loop = d.loop ?? sound.entry.loop ?? false;
+    const autoplay = d.autoplay ?? true;
+    const shotBase = {
+      gain,
+      pitchMul,
+      bus,
+      entity: id,
+      outside,
+      ...(lowpassHz !== undefined ? { lowpassHz } : {}),
+      ...(spatial ? { spatial } : {}),
+      ...(position ? { position } : {}),
+    };
+
+    // A loop driven to silence (an aircraft engine at 0 rpm) holds no voice.
+    const audible = gain >= (this.live.has(key) ? 0.002 : 0.01);
+    if (loop && autoplay && active && audible) {
+      desired.push({
+        key,
+        sound,
+        loop: true,
+        gain,
+        pitchMul,
+        bus,
+        outside,
+        fadeInS: 0.3,
+        fadeOutS: 0.5,
+        rampS: this.smoothing(0.15, d.pitchFrom, d.gainFrom),
+        priority: own ? 5 : 3,
+        ...(tone ? { tone } : {}),
+        ...(lowpassHz !== undefined ? { lowpassHz } : {}),
+        entity: id,
+        ...(spatial ? { spatial } : {}),
+        ...(position ? { position } : {}),
+      });
+    }
+    if (!loop && autoplay && active && !this.firedOnce.has(key)) {
+      this.firedOnce.add(key);
+      this.fireOneShot({ ...shotBase, sound, key }, ctx.listener, now, tick, cmds);
+    }
+    if (d.startTick !== undefined && this.startTickFired.get(key) !== d.startTick) {
+      if (tick >= d.startTick) {
+        this.startTickFired.set(key, d.startTick);
+        if (tick - d.startTick <= lateTicks)
+          this.fireOneShot({ ...shotBase, sound, key }, ctx.listener, now, tick, cmds);
+      }
+    }
+    if (d.triggerFrom) {
+      const t = d.triggerFrom;
+      const trigger = this.triggers.get(key) ?? { acc: 0 };
+      this.triggers.set(key, trigger);
+      const raw = resolveSignal(t.signal, entityCtx);
+      const value = num(raw);
+      let fire = false;
+      if (t.every !== undefined && trigger.last !== undefined && active) {
+        trigger.acc += Math.abs(value - trigger.last);
+        if (trigger.acc >= t.every) {
+          fire = true;
+          trigger.acc -= t.every;
+          if (trigger.acc > t.every) trigger.acc = 0;
+        }
+      }
+      if (t.onChange && active && trigger.lastRaw !== undefined && raw !== trigger.lastRaw)
+        fire = true;
+      trigger.last = value;
+      if (raw !== undefined) trigger.lastRaw = raw;
+      if (fire) {
+        const shotSound = t.sound ? this.sound(t.sound, `entity "${id}" triggerFrom`) : sound;
+        if (shotSound)
+          this.fireOneShot(
+            {
+              ...shotBase,
+              sound: shotSound,
+              bus: d.bus ?? shotSound.entry.bus ?? 'sfx',
+              key: `${key}:t`,
+            },
+            ctx.listener,
+            now,
+            tick,
+            cmds,
+          );
+      }
+    }
+  }
+
+  /** Loud nearby sources (an engine, a train going by) lower the ambience beds under them. */
+  private applyMasking(
+    desired: Desired[],
+    env: AudioEnvironmentData | undefined,
+    listener: ListenerCtx,
+    dtMs: number,
+  ): void {
+    const k = env?.masking ?? 0.6;
+    const through = 10 ** (-this.enclosure.isolationDb / 20);
+    let loud = 0;
+    for (const d of desired) {
+      if (d.priority < 3) continue;
+      const away = d.position ? dist(d.position, listener.position) : 0;
+      loud += audibility(d.gain, d.spatial, away) * (d.outside ? through : 1);
+    }
+    const target = k <= 0 ? 1 : Math.max(0.3, 1 / (1 + 2 * k * loud));
+    this.mask += (target - this.mask) * (dtMs > 0 ? 1 - Math.exp(-dtMs / 800) : 1);
+    if (this.mask > 0.995) return;
+    for (const d of desired) if (d.bed) d.gain *= this.mask;
   }
 
   private collectScriptLoops(ctx: SignalContext, desired: Desired[]): void {
@@ -860,6 +1128,7 @@ export class AudioDirector {
         loop: true,
         gain: (sound.entry.gain ?? 1) * loop.gain,
         pitchMul: loop.pitch,
+        outside: position !== undefined && loop.entity !== ctx.listener.vehicle,
         bus: loop.bus ?? sound.entry.bus ?? 'sfx',
         fadeInS: 0.1,
         fadeOutS: 0.3,
@@ -922,6 +1191,7 @@ export class AudioDirector {
           const gain = typeof p.gain === 'number' ? p.gain : 1;
           const pitch = typeof p.pitch === 'number' ? p.pitch : 1;
           const bus = typeof p.bus === 'string' ? p.bus : undefined;
+          const outside = typeof p.outside === 'boolean' ? p.outside : undefined;
           if (loop) {
             const position = vec3(p.position);
             this.scriptLoops.set(handle, {
@@ -944,6 +1214,7 @@ export class AudioDirector {
                 bus: bus ?? sound.entry.bus ?? 'sfx',
                 handle,
                 key: handle,
+                ...(outside !== undefined ? { outside } : {}),
                 ...(entity !== undefined ? { entity } : {}),
                 ...(where ? { position: where } : {}),
                 ...(spatial ? { spatial } : {}),
@@ -1198,7 +1469,13 @@ export class AudioDirector {
       this.live.delete(key);
     }
     for (const d of kept) {
-      const live = this.live.get(d.key);
+      let live = this.live.get(d.key);
+      if (live && live.outside !== d.outside) {
+        // The route changed (the listener boarded or left): restart on the new one.
+        cmds.push({ op: 'stop', voice: live.voice, fadeS: 0.15 });
+        this.live.delete(d.key);
+        live = undefined;
+      }
       if (!live) {
         const basePitch = this.basePitch(d.sound, tick, d.key);
         const pitch = basePitch * d.pitchMul;
@@ -1219,9 +1496,13 @@ export class AudioDirector {
           ...(d.spatial && d.position ? { spatial: { ...d.spatial, position: d.position } } : {}),
           fadeInS: d.fadeInS,
           ...(d.tone ? { tone: d.tone } : {}),
+          ...(d.outside ? { outside: true } : {}),
+          ...(d.lowpassHz !== undefined && d.lowpassHz < 19000 ? { lowpassHz: d.lowpassHz } : {}),
         });
         this.live.set(d.key, {
           key: d.key,
+          outside: d.outside,
+          ...(d.lowpassHz !== undefined ? { lowpassHz: d.lowpassHz } : {}),
           voice,
           sound: d.sound.id,
           bus: d.bus,
@@ -1263,6 +1544,15 @@ export class AudioDirector {
       if (d.position && (!live.position || dist(d.position, live.position) > 0.05)) {
         set.position = d.position;
         live.position = d.position;
+        changed = true;
+      }
+      const air = d.lowpassHz ?? 20000;
+      if (
+        Math.abs(air - (live.lowpassHz ?? 20000)) >
+        0.08 * Math.min(air, live.lowpassHz ?? 20000)
+      ) {
+        set.lowpassHz = air;
+        live.lowpassHz = air;
         changed = true;
       }
       live.fadeOutS = d.fadeOutS;

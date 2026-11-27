@@ -1,6 +1,14 @@
 import { AUDIO_BUSES } from '@bendyline/molen-schema';
 import type { AssetProvider } from '../assets';
-import type { AudioBackend, AudioBackendStats, AudioVec3, VoiceCommand, VoiceTone } from './types';
+import type {
+  AudioBackend,
+  AudioBackendStats,
+  AudioEnclosure,
+  AudioReverb,
+  AudioVec3,
+  VoiceCommand,
+  VoiceTone,
+} from './types';
 
 type StartCommand = Extract<VoiceCommand, { op: 'start' }>;
 
@@ -25,7 +33,52 @@ interface Voice {
   requestedAt: number;
   targetGain: number;
   pitch: number;
-  tone?: { filter: BiquadFilterNode; pulse: GainNode; oscillator: OscillatorNode; depth: GainNode };
+  /** One low-pass serves the rotor tone and air absorption: its cutoff is the lower of the two. */
+  filter?: BiquadFilterNode;
+  toneHz?: number;
+  airHz?: number;
+  tone?: { pulse: GainNode; oscillator: OscillatorNode; depth: GainNode };
+}
+
+/** Buses that never reverberate or pass through the listener's enclosure. */
+const DRY_BUSES = new Set(['music', 'ui']);
+const OPEN_HZ = 20000;
+
+/** A deterministic, generated impulse response: no recording, so nothing to license. */
+function impulse(ctx: AudioContext, preset: AudioReverb): AudioBuffer {
+  const spec = {
+    room: { seconds: 0.7, decay: 3.2, flutterS: 0, darkening: 0.35 },
+    street: { seconds: 1.3, decay: 2.6, flutterS: 0.045, darkening: 0.25 },
+    tunnel: { seconds: 2.8, decay: 1.6, flutterS: 0.032, darkening: 0.12 },
+  }[preset];
+  const rate = ctx.sampleRate;
+  const length = Math.round(spec.seconds * rate);
+  const buffer = ctx.createBuffer(2, length, rate);
+  let seed = preset === 'room' ? 0x9e3779b9 : preset === 'street' ? 0x85ebca6b : 0xc2b2ae35;
+  const random = (): number => {
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  for (let c = 0; c < 2; c++) {
+    const data = buffer.getChannelData(c);
+    let smooth = 0;
+    for (let i = 0; i < length; i++) {
+      const t = i / rate;
+      // Darker as it decays: a one-pole filter whose cutoff falls with time.
+      const k = Math.max(0.04, 1 - spec.darkening * t * 4);
+      smooth += k * (random() * 2 - 1 - smooth);
+      let v = smooth * Math.exp((-spec.decay * t * 6.9) / spec.seconds);
+      // Parallel walls give a flutter of discrete early echoes.
+      if (spec.flutterS > 0 && t < spec.seconds * 0.5) {
+        const phase = (t % spec.flutterS) / spec.flutterS;
+        if (phase < 0.02) v += (0.5 - t / spec.seconds) * (random() * 2 - 1) * 0.6;
+      }
+      data[i] = v * (i < 32 ? i / 32 : 1);
+    }
+  }
+  return buffer;
 }
 
 /** Plays director commands through Web Audio: buses, panners, looped buffers, fades. */
@@ -37,6 +90,15 @@ export class WebAudioBackend implements AudioBackend {
   private readonly master: GainNode;
   private readonly limiter: DynamicsCompressorNode;
   private readonly buses = new Map<string, GainNode>();
+  private readonly outsideBuses = new Map<string, GainNode>();
+  private readonly busGainValues = new Map<string, number>();
+  /** Every inside, reverberating bus sums here; every outside bus into `outsideSum`. */
+  private readonly insideSum: GainNode;
+  private readonly outsideSum: GainNode;
+  /** Outside sound after the enclosure: its low-pass (created on first use) and level. */
+  private readonly enclosureGain: GainNode;
+  private enclosureFilter: BiquadFilterNode | undefined;
+  private readonly reverbs = new Map<AudioReverb, { send: GainNode; convolver: ConvolverNode }>();
   private readonly buffers = new Map<string, Promise<AudioBuffer | null>>();
   private readonly bufferSizes = new Map<string, number>();
   private readonly maxDecodedBytes: number;
@@ -63,6 +125,12 @@ export class WebAudioBackend implements AudioBackend {
     this.limiter.release.value = 0.2;
     this.master.connect(this.limiter);
     this.limiter.connect(this.context.destination);
+    this.insideSum = this.context.createGain();
+    this.insideSum.connect(this.master);
+    this.outsideSum = this.context.createGain();
+    this.enclosureGain = this.context.createGain();
+    this.outsideSum.connect(this.enclosureGain);
+    this.enclosureGain.connect(this.master);
     for (const bus of AUDIO_BUSES) this.bus(bus);
   }
 
@@ -115,7 +183,14 @@ export class WebAudioBackend implements AudioBackend {
           this.setListener(cmd.position, cmd.forward, cmd.up);
           break;
         case 'bus':
+          this.busGainValues.set(cmd.bus, cmd.gain);
           this.bus(cmd.bus).gain.setTargetAtTime(cmd.gain, this.context.currentTime, 0.05);
+          this.outsideBuses
+            .get(cmd.bus)
+            ?.gain.setTargetAtTime(cmd.gain, this.context.currentTime, 0.05);
+          break;
+        case 'enclosure':
+          this.setEnclosure(cmd.enclosure, cmd.rampS ?? 0.4);
           break;
       }
     }
@@ -129,6 +204,11 @@ export class WebAudioBackend implements AudioBackend {
     this.bufferSizes.clear();
     this.decodedBytes = 0;
     this.limiter.disconnect();
+    for (const { send, convolver } of this.reverbs.values()) {
+      send.disconnect();
+      convolver.disconnect();
+    }
+    this.reverbs.clear();
     this.context.close().catch(() => {});
   }
 
@@ -139,10 +219,61 @@ export class WebAudioBackend implements AudioBackend {
     let g = this.buses.get(name);
     if (!g) {
       g = this.context.createGain();
-      g.connect(this.master);
+      g.connect(DRY_BUSES.has(name) ? this.master : this.insideSum);
       this.buses.set(name, g);
     }
     return g;
+  }
+
+  /** The bus's twin on the outside route: same level, then the listener's enclosure. */
+  private outsideBus(name: string): GainNode {
+    if (name === 'master' || DRY_BUSES.has(name)) return this.bus(name);
+    let g = this.outsideBuses.get(name);
+    if (!g) {
+      g = this.context.createGain();
+      g.gain.value = this.busGainValues.get(name) ?? 1;
+      g.connect(this.outsideSum);
+      this.outsideBuses.set(name, g);
+    }
+    return g;
+  }
+
+  private setEnclosure(enclosure: AudioEnclosure, rampS: number): void {
+    const ctx = this.context;
+    const now = ctx.currentTime;
+    const tau = Math.max(0.01, rampS / 3);
+    const gain = 10 ** (-Math.max(0, enclosure.isolationDb) / 20);
+    this.enclosureGain.gain.setTargetAtTime(gain, now, tau);
+    const cutoff = Math.max(80, Math.min(OPEN_HZ, enclosure.cutoffHz));
+    if (!this.enclosureFilter && cutoff < OPEN_HZ * 0.95) {
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.Q.value = 0.5;
+      filter.frequency.value = OPEN_HZ;
+      this.outsideSum.disconnect();
+      this.outsideSum.connect(filter);
+      filter.connect(this.enclosureGain);
+      this.enclosureFilter = filter;
+    }
+    this.enclosureFilter?.frequency.setTargetAtTime(cutoff, now, tau);
+    const wet = Math.max(0, Math.min(1, enclosure.wet ?? 0));
+    if (enclosure.reverb && wet > 0) this.reverb(enclosure.reverb);
+    for (const [preset, node] of this.reverbs)
+      node.send.gain.setTargetAtTime(preset === enclosure.reverb ? wet * 0.5 : 0, now, tau);
+  }
+
+  private reverb(preset: AudioReverb): void {
+    const ctx = this.context;
+    if (this.reverbs.has(preset) || typeof ctx.createConvolver !== 'function') return;
+    const send = ctx.createGain();
+    send.gain.value = 0;
+    const convolver = ctx.createConvolver();
+    convolver.buffer = impulse(ctx, preset);
+    this.insideSum.connect(send);
+    this.enclosureGain.connect(send);
+    send.connect(convolver);
+    convolver.connect(this.master);
+    this.reverbs.set(preset, { send, convolver });
   }
 
   private load(ref: string): Promise<AudioBuffer | null> {
@@ -213,9 +344,9 @@ export class WebAudioBackend implements AudioBackend {
         positionZ: s.position[2],
       });
       gain.connect(panner);
-      panner.connect(this.bus(cmd.bus));
+      panner.connect(cmd.outside ? this.outsideBus(cmd.bus) : this.bus(cmd.bus));
     } else {
-      gain.connect(this.bus(cmd.bus));
+      gain.connect(cmd.outside ? this.outsideBus(cmd.bus) : this.bus(cmd.bus));
     }
     const voice: Voice = {
       cmd,
@@ -229,6 +360,7 @@ export class WebAudioBackend implements AudioBackend {
     };
     this.voices.set(cmd.voice, voice);
     if (cmd.tone) this.setTone(voice, cmd.tone, 0.01);
+    if (cmd.lowpassHz !== undefined) this.setAir(voice, cmd.lowpassHz, 0.01);
     void this.load(cmd.ref).then((buffer) => {
       if (voice.stopped || this.disposed || !buffer) {
         if (!buffer) this.cleanup(cmd.voice, voice);
@@ -244,7 +376,7 @@ export class WebAudioBackend implements AudioBackend {
       if (cmd.loop && cmd.loopStart !== undefined) src.loopStart = cmd.loopStart;
       if (cmd.loop && cmd.loopEnd !== undefined) src.loopEnd = cmd.loopEnd;
       src.playbackRate.value = voice.pitch;
-      src.connect(voice.tone?.filter ?? gain);
+      src.connect(voice.filter ?? gain);
       const now = ctx.currentTime;
       const fade = cmd.fadeInS ?? 0;
       gain.gain.setValueAtTime(fade > 0 ? 0 : voice.targetGain, now);
@@ -262,6 +394,7 @@ export class WebAudioBackend implements AudioBackend {
     const now = this.context.currentTime;
     const tau = Math.max(0.01, (cmd.rampS ?? 0.1) / 3);
     if (cmd.tone) this.setTone(v, cmd.tone, tau);
+    if (cmd.lowpassHz !== undefined) this.setAir(v, cmd.lowpassHz, tau);
     if (cmd.gain !== undefined) {
       v.targetGain = cmd.gain;
       if (v.src) v.gain.gain.setTargetAtTime(cmd.gain, now, tau);
@@ -278,16 +411,42 @@ export class WebAudioBackend implements AudioBackend {
     }
   }
 
+  /** The voice's low-pass, created on first need and placed between the source and the rest. */
+  private ensureFilter(v: Voice, to: AudioNode = v.tone?.pulse ?? v.gain): BiquadFilterNode {
+    if (v.filter) return v.filter;
+    const filter = this.context.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.Q.value = 0.7;
+    filter.frequency.value = OPEN_HZ;
+    filter.connect(to);
+    if (v.src) {
+      v.src.disconnect();
+      v.src.connect(filter);
+    }
+    v.filter = filter;
+    return filter;
+  }
+
+  private applyCutoff(v: Voice, tau: number): void {
+    if (!v.filter) return;
+    const hz = Math.max(100, Math.min(OPEN_HZ, v.toneHz ?? OPEN_HZ, v.airHz ?? OPEN_HZ));
+    v.filter.frequency.setTargetAtTime(hz, this.context.currentTime, tau);
+  }
+
+  /** Air absorption: distant sound loses its treble. Until it matters, no filter is made. */
+  private setAir(v: Voice, hz: number, tau: number): void {
+    v.airHz = hz;
+    if (!v.filter && hz >= OPEN_HZ * 0.95) return;
+    this.ensureFilter(v);
+    this.applyCutoff(v, tau);
+  }
+
   private setTone(v: Voice, tone: VoiceTone, tau: number): void {
     const ctx = this.context;
     const amount = Math.max(0, Math.min(0.9, tone.pulseDepth)) / 2;
-    const frequency = Math.max(100, Math.min(20000, tone.lowpassHz));
     const rate = Math.max(0.1, Math.min(60, tone.pulseHz));
+    v.toneHz = Math.max(100, Math.min(OPEN_HZ, tone.lowpassHz));
     if (!v.tone) {
-      const filter = ctx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.Q.value = 0.7;
-      filter.frequency.value = frequency;
       const pulse = ctx.createGain();
       pulse.gain.value = 1 - amount;
       const oscillator = ctx.createOscillator();
@@ -297,18 +456,17 @@ export class WebAudioBackend implements AudioBackend {
       oscillator.type = 'sine';
       oscillator.connect(depth);
       depth.connect(pulse.gain);
-      filter.connect(pulse);
+      if (v.filter) {
+        v.filter.disconnect();
+        v.filter.connect(pulse);
+      } else this.ensureFilter(v, pulse);
       pulse.connect(v.gain);
-      if (v.src) {
-        v.src.disconnect();
-        v.src.connect(filter);
-      }
-      v.tone = { filter, pulse, oscillator, depth };
+      v.tone = { pulse, oscillator, depth };
       oscillator.start();
     }
     // The envelope only attenuates (1-depth .. 1), preserving the master headroom.
     const now = ctx.currentTime;
-    v.tone.filter.frequency.setTargetAtTime(frequency, now, tau);
+    this.applyCutoff(v, tau);
     v.tone.oscillator.frequency.setTargetAtTime(rate, now, tau);
     v.tone.depth.gain.setTargetAtTime(amount, now, tau);
     v.tone.pulse.gain.setTargetAtTime(1 - amount, now, tau);
@@ -344,7 +502,7 @@ export class WebAudioBackend implements AudioBackend {
       v.tone?.oscillator.stop();
       v.tone?.oscillator.disconnect();
       v.tone?.depth.disconnect();
-      v.tone?.filter.disconnect();
+      v.filter?.disconnect();
       v.tone?.pulse.disconnect();
     } catch {
       // already disconnected

@@ -9,7 +9,8 @@ checkout, on the pull request that changes them, and publishes it as a GitHub re
 
 ## How the pieces fit
 
-`pnpm dev` reuses previously prepared browser packs and never invokes this GLB pipeline.
+`pnpm dev` repackages the browser packs whose `content/` files changed since they were built,
+and never invokes this GLB pipeline.
 Run `pnpm dev:prepare` explicitly for initial setup; its `assets:fetch` step may fall back to a
 local source build when the bundle for the current input hash is unpublished. After targeted
 model generation/import, `pnpm dev:content` repackages the current runtime assets for the browser.

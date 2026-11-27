@@ -603,6 +603,7 @@ export function createTerrainElevationWorkerSource(
             points: line.points,
             halfWidth: line.halfWidth,
             bounds: line.bounds,
+            ...(line.depths ? { depths: line.depths } : {}),
           })),
           water: [...water],
         },

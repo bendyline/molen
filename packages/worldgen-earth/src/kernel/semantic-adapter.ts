@@ -58,6 +58,12 @@ import {
   shaftLevels,
   withDistrictLevels,
 } from './district-heights';
+import {
+  associateFloatingHomes,
+  FLOATING_HOME_LABEL,
+  FLOATING_HOME_STYLE,
+  type FloatingHomeWater,
+} from './floating-homes';
 import { batchGroundCrowns } from './ground-crowns';
 import { corridor } from './infill-geometry';
 import { contextLabelForPolygon, isLandcoverDesignation, landcoverLabel } from './labels';
@@ -129,6 +135,11 @@ export interface SemanticAdapterOptions {
    * not recognized and street furniture is not placed.
    */
   places?: PlacesContent;
+  /**
+   * How the host draws its water (offset above the ground samples, sea level), so floating homes
+   * ride on the surface a viewer sees. Defaults to the Earth view's.
+   */
+  water?: FloatingHomeWater;
 }
 
 export interface SemanticBatch extends WorldgenBatchInput {
@@ -623,6 +634,11 @@ export function semanticTileToBatch(
     const partyWalls: ReadonlyMap<BuildingPiece, PartyWalls> = tile.buildingsGeneralized
       ? new Map()
       : associatePartyWalls(mapped, size);
+    // Houses moored out on the water, read before any use or tenant: a floating home with an
+    // office or a shop on it is still a houseboat.
+    const floatingHomes = associateFloatingHomes(tile, mapped, size, ground, options.water);
+    const floatingStyle =
+      options.pack.archstyles[FLOATING_HOME_STYLE] !== undefined ? FLOATING_HOME_STYLE : undefined;
     for (const piece of pieces) {
       const { feature, labels, polygon: source, polygonIndex } = piece;
       const host = isMapOverrideFeature(feature);
@@ -704,6 +720,14 @@ export function semanticTileToBatch(
       if (walls !== undefined) {
         request.partyEdges = walls.edges;
         if (attached) request.labels = [...request.labels, ATTACHED_LABEL];
+      }
+      const floating = floatingHomes.get(piece);
+      if (floating !== undefined) {
+        request.waterline = floating.waterline;
+        request.labels = [FLOATING_HOME_LABEL, ...request.labels];
+        if (floatingStyle !== undefined) request.style = floatingStyle;
+        buildings.push(request);
+        continue;
       }
       const use = buildingUses.get(piece);
       const parkingStructure = parkingStructures.get(piece);

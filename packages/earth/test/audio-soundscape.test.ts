@@ -139,8 +139,13 @@ describe('World soundscape content and behavior', () => {
     expect(dawn.sound).toContain('.europe.');
     expect(category(run({ regionalAmbience: { birds: 0, insects: 0 } }), 'birds')).toHaveLength(1);
     expect(dawn.gain).toBeGreaterThan((category(run({ solarHour: 14 }), 'birds')[0] as Voice).gain);
+    // A cabin muffles the outside through the listener's enclosure; it no longer turns beds down.
     const cabin = category(run({ mode: 'drive', inVehicle: true }), 'birds')[0] as Voice;
-    expect(cabin.gain).toBeCloseTo(dawn.gain * 0.18, 3);
+    expect(cabin.gain).toBeCloseTo(dawn.gain, 3);
+    expect(audio.layer.director.currentEnclosure.isolationDb).toBeGreaterThanOrEqual(20);
+    expect(audio.layer.director.currentEnclosure.cutoffHz).toBeLessThan(2000);
+    run();
+    expect(audio.layer.director.currentEnclosure.isolationDb).toBe(0);
     expect(category(run({ location: places[5] }), 'birds')[0]?.sound).toContain('.oceania.');
     renderer.sky.frame.daylight = 0;
     const night = run();

@@ -1188,6 +1188,20 @@ const RENDER_BOUNDS_PADDING = 8;
  */
 export const TERRAIN_COVERS_GROUND: 'terrainCoversGround' = 'terrainCoversGround';
 
+/** Every stream's `object`, for {@link terrainPyramidStreamRoot}. */
+const streamRoots = new WeakSet<THREE.Object3D>();
+
+/**
+ * The `object` of the terrain stream `object` is drawn under, or undefined while it is under
+ * none. Tile content asks queries that take a stream's root (`sampleTerrainTunnel`) with it,
+ * in its frame: a tile layer's object lies a translation from it (`terrainRootOffset`).
+ */
+export function terrainPyramidStreamRoot(object: THREE.Object3D): THREE.Object3D | undefined {
+  for (let cursor: THREE.Object3D | null = object; cursor !== null; cursor = cursor.parent)
+    if (streamRoots.has(cursor)) return cursor;
+  return undefined;
+}
+
 interface ResidentTile {
   /** Whether the tile's group is among the stream object's children. */
   attached: boolean;
@@ -1694,6 +1708,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       this.retryPolicy,
     );
     this.object.name = `terrain-pyramid:${descriptor.name}`;
+    streamRoots.add(this.object);
     // A static root: recomposing it every frame would dirty every resident tile's world matrix.
     // Hosts that move the stream call `object.updateMatrix()` afterwards.
     this.object.matrixAutoUpdate = false;

@@ -241,6 +241,73 @@ describe('road grading across tiles', () => {
     worker.dispose?.();
   });
 
+  it('cuts the approaches to a tunnel into the ground, alike in the worker, and tells the bore', async () => {
+    // Level ground as an elevation archive, so the worker and the main thread read the same.
+    const side = pyramid.tileResolution;
+    const archive = {
+      async getZxy() {
+        const data = new Float32Array(side * side).fill((0 - RANGE.min) / (RANGE.max - RANGE.min));
+        return { data: encodePng16({ width: side, height: side, data }).slice().buffer };
+      },
+    };
+    const pkg = { tileMatrix: { scheme: 'xyz' } } as TerrainPackageDescriptor;
+    const direct = createTerrainPackagePyramidHeightSource(pkg, pyramid, archive);
+    const [host, thread] = ports();
+    installTerrainElevationWorker(thread);
+    const worker = createTerrainElevationWorkerSource(host, pkg, pyramid, archive);
+    // A street dips under something 40 m wide (1400 m to 1440 m east), with 160 m of street
+    // before it and 120 m after it; its other carriageway, 9 m away, stays on the ground.
+    const roads = (): TerrainSemanticTileSource =>
+      featuresFor({
+        '3/3': [
+          way([
+            [0.1, 0.5225],
+            [0.9, 0.5225],
+          ]),
+          way([
+            [0.1, 0.5],
+            [0.5, 0.5],
+          ]),
+          way(
+            [
+              [0.5, 0.5],
+              [0.6, 0.5],
+            ],
+            { tunnel: true },
+          ),
+          way([
+            [0.6, 0.5],
+            [0.9, 0.5],
+          ]),
+        ],
+      });
+    const address = { level: 3, x: 3, z: 3 };
+    const onMain = createTerrainRoadGrading({ features: roads() });
+    const inWorker = createTerrainRoadGrading({ features: roads() });
+    // Nothing is cut until the level's ground is graded.
+    expect(await onMain.tunnelPortalGround(3, 1400, 1400)).toBeUndefined();
+    const graded = await onMain.transformHeightfield(await context(direct, address), direct);
+    // The clear height, the cover over the bore and the pavement's lift, at the portal; less by
+    // 8% of the way back from it; nothing once it is back on the ground.
+    const full = 6.5 + 1.5 + 0.32;
+    expect(graded.sampleHeight(1400, 1400)).toBeCloseTo(-full, 1);
+    expect(graded.sampleHeight(1350, 1400)).toBeCloseTo(-(full - 0.08 * 50), 1);
+    expect(graded.sampleHeight(1250, 1400)).toBeCloseTo(0, 1);
+    // A cutting stops at its portal: the ground over the bore is left as it was.
+    expect(Math.abs(graded.sampleHeight(1420, 1400))).toBeLessThan(0.5);
+    expect(graded.sampleHeight(1300, 1300)).toBeCloseTo(0, 2);
+    // Each portal's cutting is where its bore begins.
+    expect(await onMain.tunnelPortalGround(3, 1400, 1400)).toBeCloseTo(-full);
+    expect(await onMain.tunnelPortalGround(3, 1440, 1400)).toBeCloseTo(-full);
+    expect(await onMain.tunnelPortalGround(3, 1300, 1400)).toBeUndefined();
+    // The worker cuts the same.
+    const elsewhere = await inWorker.transformHeightfield(await context(worker, address), worker);
+    expect(elsewhere.copySamples()).toEqual(graded.copySamples());
+    onMain.dispose();
+    inWorker.dispose();
+    worker.dispose?.();
+  });
+
   it('grades bridges in the elevation worker to the profiles the main thread makes', async () => {
     // Flat ground that climbs 20 m to a bank in the easternmost tile, as an elevation archive,
     // so the worker and the main thread read the same stored heights.

@@ -124,6 +124,13 @@ const buildingRequest = z.strictObject({
     .nonnegative()
     .describe('Lowest floor above the base, meters.')
     .optional(),
+  waterline: z
+    .number()
+    .finite()
+    .describe(
+      'The building floats: height of the water surface it rides on. It stands on a float, not on the ground under its outline.',
+    )
+    .optional(),
   clipped: z.boolean().describe('The outline is a cut piece: flat roof and seam walls.').optional(),
   seamEdges: z
     .array(z.int().min(0))

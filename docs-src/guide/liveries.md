@@ -2,7 +2,9 @@
 
 Liveries combine reusable paint regions and surface markings on one model. Cars, aircraft,
 RVs, boats, cycles and transit use the same `livery` component. The `molen.entities` content
-pack includes two or three photo-based choices for each of its 192 vehicle types.
+pack includes 560 photo-based choices across its 202 vehicle types. Each of the 54 aircraft has
+four to seven real operators' schemes (264 in all), with real military markings and civil
+operators' colors; every other vehicle has two.
 
 Browse the [visual livery gallery](livery-gallery.md) for comparisons and evidence coverage,
 or the [complete livery catalog](livery-catalog.md) for every vehicle, choice and source link.
@@ -24,11 +26,15 @@ type's `livery.variants` for its ids, labels, paint recipes and provenance. Over
 }
 ```
 
-The F-16B choices are `danish-et-612`, `usaf-mc-gray` and `nsawc-07-blue-camouflage`.
-The Danish scheme places roundels behind the canopy, the ET-612 serial aft of them, and small
-flags high on the fin, using photographs of both sides. The other choices adapt photographed
-USAF and NSAWC F-16 finishes to the two-seat model. Each recipe records its approximations
-and omitted details. There is no F-4 model in this pack.
+The F-16B has seven choices:
+- four USAF units with their tail codes and serials: `usaf-wp-80fs` (the default), `usaf-sp-480fs`, `usaf-av-31fw` and `usaf-mc-gray`;
+- the Royal Danish Air Force `danish-et-612`;
+- the Israeli Air Force `iaf-netz-989`;
+- the US Navy adversary `nsawc-07-blue-camouflage`.
+
+The Danish scheme places roundels behind the canopy, the ET-612 serial aft of them, and small flags high on the fin, using photographs of both sides. Several references show two-seat F-16Ds, adapted to the F-16B model. Each recipe records its approximations and omitted details.
+
+There is no F-4 model in this pack.
 
 Change a scene entity from a script with `molen.patch('aircraft', 'livery',
 { selected: 'danish-et-612' })`. The client retains the model and replaces its appearance;
@@ -126,16 +132,47 @@ low-frequency pattern using a private model-space UV channel:
 
 This is box projection with seams at changes in dominant face direction, not a reproduction
 of an aircraft's official paint masking diagram. The pattern ignores authored UVs and stays
-fixed on animated parts. Preserve separate upper/lower paint slots for precise two-tone work.
-The renderer chooses a UV channel unused by the model's textures. If all four channels are
+fixed on animated parts. `style` picks the pattern's shape: `blotch` (the default; soft-edged
+organic patches), `splinter` (hard-edged angular facets, as on Swedish and German splinter
+schemes) or `digital` (square pixel blocks). Each color covers an equal share of the area. The
+renderer chooses a UV channel unused by the model's textures. If all four channels are
 occupied, it reports a warning and uses the base paint color to preserve those texture bindings.
 
-Graphics are ordered colored polygons in a 0–1 square, Y up. They are rasterized to a small
-sRGB texture, with no font or network dependency at runtime. Roundels, stars, bars, stripes,
-swoops and labels use this same format. For labels, outline text using `buildTextMesh` from
-`@bendyline/molen-materials/text` and a font library; normalize its triangles into the square
-while preserving the intended aspect ratio. See [fonts and lettering](typography.md).
+Paint `zones` repaint part of a slot: two-tone splits, cheatlines, belly colors, fin tip bands
+and anti-glare panels. A zone is a color, with optional roughness and metalness, and up to eight
+planes. A point is in the zone when `normal · u ≥ offset` holds for every plane, where `u` is
+its position in the slot's normalized bounds (0–1 per axis, like anchor positions). One plane
+makes a split, two make a band and several make a wedge or swoosh. The renderer cuts triangles exactly
+along each plane, so the edges are sharp at any distance and follow the real surface. Later
+zones paint over earlier ones:
+
+```json
+{
+  "color": "#f4f4f0",
+  "zones": [
+    { "color": "#1d3a6b", "planes": [{ "normal": [0, -1, 0], "offset": -0.38 }] },
+    { "color": "#c8102e", "planes": [
+      { "normal": [0, 1, 0], "offset": 0.38 }, { "normal": [0, -1, 0], "offset": -0.44 }
+    ] }
+  ]
+}
+```
+
+Graphics are ordered colored shapes in a 0–1 square, Y up. Each shape is an outer polygon with
+optional `holes` (even-odd fill), so ring roundels, lettering counters and stencil cut-outs stay
+open. They are rasterized with anti-aliased edges into one shared texture atlas per livery,
+with no font or network dependency at runtime. Roundels, stars, bars, stripes, swoops and
+lettering use this same format. Put artwork used by several markings in the component's
+`graphics` map and reference it by id (`"graphic": "squadron-badge"`). `flip: true` on a marking
+mirrors it, for art that faces forward on both sides. For labels, outline text from a font: the
+aircraft authoring kit's `Canvas.text()` does this with the repository's OFL faces, or use
+`buildTextMesh` from `@bendyline/molen-materials/text` and normalize its triangles into the
+square while preserving the intended aspect ratio. See [fonts and lettering](typography.md).
 The `graphic.label` field describes artwork for tools; it does not itself draw text.
+
+All of a mesh's markings share one decal mesh named `livery:markings`. Its
+`userData.liveryMarkings` lists each marking's anchor and index range, for tools that need to
+locate one.
 
 Custom three.js hosts call `applyLivery(modelInstance, data)` from `@bendyline/molen-client`.
 Read its `warnings`, then call the returned `dispose()` before selecting another recipe or
@@ -153,10 +190,17 @@ note and source URLs. `photo` and `inspired` require references. Do not label a 
 palette as a real unit or factory option without supporting evidence. Source photographs
 are references for original artwork; they are not shipped as textures.
 
-All 385 fleet choices link real-world photographs. The [gallery](livery-gallery.md) compares
+All 560 fleet choices link real-world photographs. The [gallery](livery-gallery.md) compares
 every choice and records its scope, while the [catalog](livery-catalog.md#source-index) lists
 source attribution. They use `inspired` provenance because paint values, model variants,
 camouflage masks and simplified artwork are adaptations rather than exact replicas.
+
+Aircraft liveries are authored as design modules, one per aircraft, in
+`packages/entities/scripts/liveries/aircraft/`. They use a small kit for lettering, insignia and
+model-space placement, and `build-aircraft-liveries.mjs --ids=<slug>` builds them into the
+catalog after applying every variant to the runtime model. The modules'
+[authoring guide](https://github.com/bendyline/molen/blob/main/packages/entities/scripts/liveries/README.md)
+covers the marking policy and workflow.
 
 In the engine repository, `content/entities/source/liveries.json` is the editable catalog.
 `generate-models.mjs` validates and merges it into the runtime type libraries; the individual

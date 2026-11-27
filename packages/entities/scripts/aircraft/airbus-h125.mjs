@@ -80,12 +80,14 @@ export function buildH125(s) {
   const screen = [...screenSide(-1), ...screenSide(1).reverse()];
   const panes = [
     // Front door upper and lower windows, rear door window, chin window. The door windows run
-    // up to 2.09 m, above the pilot eye (2.03 m), so the side view at eye level is glass.
+    // up to 2.09 m, above the pilot eye (2.03 m), so the side view at eye level is glass. The
+    // upper window's front edge follows the windscreen's 5 cm behind it: 15 cm back, the post
+    // between them read as a broad black bar from the seats.
     [
-      [1.86, 2.09],
+      [1.94, 2.09],
       [1.57, 2.09],
       [1.63, 1.39],
-      [2.18, 1.39],
+      [2.225, 1.39],
     ],
     [
       [2.24, 1.31],
@@ -222,16 +224,20 @@ export function buildH125(s) {
     );
     for (let i = 0; i < 17; i++)
       d.add(new T.SphereGeometry(0.0035, 5, 3), metal, q(1.0 - i * 0.11, 0.94, 0.002));
-    d.text('H125', q(-0.55, 1.82, 0.003), 0.072, (side * Math.PI) / 2, blue);
+    // Titles and registrations are livery lettering (liveries/aircraft/airbus-h125.mjs).
   }
   // Rounded Arriel cowling (superelliptic crown over upright sides), forward intake and rear
   // exhaust distinct from the cabin.
+  // The side walls stop just under the roof skin, inside the cabin trim's 3 cm gap: down at `b`
+  // they and the cowl's flat underside hung 8-11 cm into the cabin as a blue ceiling.
+  const roofAt = (z, x) => shell.at(z, shell.vAtX(z, x))[1] - 0.012;
   const cowl = (z, w, b, t) => {
-    const y = t - (t - b) * 0.6;
+    const y = t - (t - b) * 0.6,
+      base = Math.min(y, Math.max(b, roofAt(z, w)));
     return {
       z,
       points: [
-        [-w, b],
+        [-w, base],
         ...Array.from({ length: 11 }, (_, k) => {
           const a = ((k - 5) * Math.PI) / 10,
             s = Math.sin(a);
@@ -240,7 +246,7 @@ export function buildH125(s) {
             y + (t - y) * Math.pow(Math.cos(a), 2 / 3),
           ];
         }),
-        [w, b],
+        [w, base],
       ],
     };
   };
@@ -257,6 +263,8 @@ export function buildH125(s) {
       cowl(-1.95, 0.28, 1.85, 2.3),
     ],
     blue,
+    // No underside: it lies inside the fuselage, under the roof.
+    { skip: (_, j) => j === 12 },
   );
   for (const side of [-1, 1]) {
     for (let i = 0; i < 5; i++)
@@ -420,6 +428,8 @@ function cockpit(root, m, shell, apertures) {
     py = (v) => 1.6 - (v - 200) * k,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz],
     tools = panelTools(d);
+  // The board runs on across the pilot's side to 0.2 m short of the right door (cockpit
+  // photos): ending at -0.36 m it left the pilot, at -0.42 m, nothing but windscreen ahead.
   const contour = [
     [0, 345],
     [100, 285],
@@ -427,8 +437,11 @@ function cockpit(root, m, shell, apertures) {
     [650, 192],
     [950, 190],
     [1230, 225],
-    [1460, 275],
-    [1510, 370],
+    [1600, 250],
+    [1950, 268],
+    [2200, 292],
+    [2275, 360],
+    [2290, 930],
     [1540, 960],
     [0, 910],
   ].map(([u, v]) => at(u, v));
@@ -444,7 +457,15 @@ function cockpit(root, m, shell, apertures) {
       b = contour[(i + 1) % contour.length];
     quad(d, a, b, [b[0], b[1], z + 0.2], [a[0], a[1], z + 0.2], m.trim, [0, 1, 0]);
   }
-  outline(d, contour.slice(0, 8), 0.018, m.trim, false);
+  outline(d, contour.slice(0, 11), 0.018, m.trim, false);
+  // Flight instruments in front of the pilot: airspeed, altimeter, vertical speed and turn.
+  for (const [u, v] of [
+    [1780, 470],
+    [2090, 470],
+    [1780, 760],
+    [2090, 760],
+  ])
+    tools.gauge(px(u), py(v), z - 0.008, 0.038);
   // TXi split display, dimensioned from its active screen; geometry-only original graphics.
   const gx = px(1190),
     gy = py(644),
@@ -561,9 +582,21 @@ function cockpit(root, m, shell, apertures) {
     d,
     face,
     apertures.map((poly) => ({ poly, material: null })),
-    shell.samples(0.35).filter((z) => z > -1),
+    shell.samples(0.35).filter((z) => z > -1.05),
     16,
     0.03,
+  );
+  // Rear cabin bulkhead behind the bench: the cabin used to open straight into the baggage
+  // bay, the boom root and the cowling.
+  sheet(
+    d,
+    Array.from({ length: 32 }, (_, j) => {
+      const p = shell.at(-0.99, -0.5 + j / 32),
+        n = shell.normal(-0.99, -0.5 + j / 32);
+      return [p[0] - n[0] * 0.03, p[1] - n[1] * 0.03, -0.99];
+    }),
+    face,
+    [0, 0, 1],
   );
   // Cabin deck trimmed to the rounded lower corners of the shell.
   fittedFloor(

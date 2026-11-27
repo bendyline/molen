@@ -37,6 +37,11 @@ export interface WheelsState {
   rollRate: number;
   /** Load on each wheel, N. */
   load: Four;
+  /**
+   * Struts the road has closed solid that have not yet opened again (`restOnStops`). Such a
+   * strut has spent its travel: it opens slowly, against several times its usual damping.
+   */
+  spent?: [boolean, boolean, boolean, boolean];
 }
 
 export interface WheelsGeometry {
@@ -110,6 +115,92 @@ export function wheelsGeometry(spec: VehicleSpec, mass: number): WheelsGeometry 
     // A wheel and tire are a little under a hundredth of the car, most of it near the rim.
     wheelInertia: wheels.inertia ?? 0.008 * mass * spec.wheelRadius * spec.wheelRadius * 0.8,
   };
+}
+
+/**
+ * How far a strut extends from its static ride height before its spring is slack, m: the static
+ * deflection, the same at every wheel since each rides at the suspension's one frequency. Past
+ * it the wheel hangs clear of the road.
+ */
+export function strutReach(spec: VehicleSpec): number {
+  const omega = m.TAU * (spec.suspensionFrequency ?? 1.5);
+  return G / (omega * omega);
+}
+
+/**
+ * A strut closes this many times its travel and no further: past the travel its bump stop is
+ * rubber being squashed (`strutLoad`), and here it is solid.
+ */
+const SOLID_STOP = 1.5;
+/**
+ * A strut that was closed solid opens against this many times its usual damping, until it is
+ * within this share of its travel of the ride height again. The energy of a blow that used up
+ * the whole travel goes into the stop and the damper; given back through the spring it would
+ * throw the body off the road it has just been carried up.
+ */
+const SPENT_REBOUND = 6;
+const SPENT_OPEN = 0.2;
+
+/**
+ * Carry the body on any strut the road has closed solid. A spring cannot be pressed past its
+ * stop, so where the road under a wheel has risen further than that (the foot of a ramp met at
+ * speed, a curb, a landing), the body is lifted and tipped by the least that opens the strut to
+ * its stop, and stops closing on it: from there the road carries that corner directly, as it
+ * would a car with no springs. `road` and `roadRate` are as `WheelsInput`'s `bump` and
+ * `roadRate`. Mutates `state`; returns whether any strut was closed solid.
+ */
+export function restOnStops(
+  state: WheelsState,
+  geometry: WheelsGeometry,
+  mass: number,
+  road: Readonly<Four>,
+  roadRate?: Readonly<Four>,
+): boolean {
+  const limit = SOLID_STOP * geometry.travel;
+  let solid = false;
+  // Two struts usually close together (an axle at the foot of a ramp). Answered one after
+  // the other, the first would take the whole blow and roll the car by it; each is answered
+  // against the same body instead and they share the result, a few times over.
+  for (let pass = 0; pass < 12; pass++) {
+    let closed = 0;
+    let heave = 0;
+    let pitch = 0;
+    let roll = 0;
+    let heaveRate = 0;
+    let pitchRate = 0;
+    let rollRate = 0;
+    for (let i = 0; i < 4; i++) {
+      const x = geometry.x[i] ?? 0;
+      const z = geometry.z[i] ?? 0;
+      const over = (road[i] ?? 0) - state.heave + state.pitch * z - state.roll * x - limit;
+      if (!(over > 1e-6)) continue;
+      closed++;
+      state.spent ??= [false, false, false, false];
+      state.spent[i] = true;
+      // How readily the body gives way at this wheel: by rising, pitching and rolling.
+      const give = 1 / mass + (z * z) / geometry.pitchInertia + (x * x) / geometry.rollInertia;
+      const push = over / give;
+      heave += push / mass;
+      pitch -= (push * z) / geometry.pitchInertia;
+      roll += (push * x) / geometry.rollInertia;
+      const closing =
+        (roadRate?.[i] ?? 0) - state.heaveRate + state.pitchRate * z - state.rollRate * x;
+      if (!(closing > 0)) continue;
+      const blow = closing / give;
+      heaveRate += blow / mass;
+      pitchRate -= (blow * z) / geometry.pitchInertia;
+      rollRate += (blow * x) / geometry.rollInertia;
+    }
+    if (closed === 0) break;
+    solid = true;
+    state.heave += heave / closed;
+    state.pitch += pitch / closed;
+    state.roll += roll / closed;
+    state.heaveRate += heaveRate / closed;
+    state.pitchRate += pitchRate / closed;
+    state.rollRate += rollRate / closed;
+  }
+  return solid;
 }
 
 /** A car standing on its wheels: rolling at `speed`, body level. */
@@ -215,8 +306,14 @@ export interface WheelsInput extends WheelControls {
   steer: number;
   /** Aerodynamic lift on the body, N. */
   lift: number;
-  /** Road height under each wheel above the plane through all four, m. */
+  /** Road height under each wheel above the plane the body's heave and lean are measured from, m. */
   bump?: Readonly<Four>;
+  /**
+   * How fast the road under each wheel is rising, m/s, in the frame the body's own rates are
+   * measured in. The dampers work against the difference, and a body held at the end of its
+   * travel moves as the road does.
+   */
+  roadRate?: Readonly<Four>;
   grounded: boolean;
 }
 
@@ -437,6 +534,20 @@ export function stepWheels(state: WheelsState, input: WheelsInput): WheelsOutput
         state.roll * (x[i] ?? 0) +
         (input.bump?.[i] ?? 0);
       rate[i] = -state.heaveRate + state.pitchRate * (z[i] ?? 0) - state.rollRate * (x[i] ?? 0);
+      if (input.roadRate) rate[i] = (rate[i] ?? 0) + (input.roadRate[i] ?? 0);
+    }
+    if (state.spent) {
+      // A strut that was closed solid opens slowly, until it is nearly at its ride height.
+      let spent = false;
+      for (let i = 0; i < 4; i++) {
+        if (!state.spent[i]) continue;
+        if ((compression[i] ?? 0) <= SPENT_OPEN * geometry.travel) state.spent[i] = false;
+        else {
+          spent = true;
+          if ((rate[i] ?? 0) < 0) rate[i] = (rate[i] ?? 0) * SPENT_REBOUND;
+        }
+      }
+      if (!spent) delete state.spent;
     }
     load = strutLoads(geometry, compression, rate);
   }
@@ -498,15 +609,25 @@ export function stepWheels(state: WheelsState, input: WheelsInput): WheelsOutput
   state.heave += state.heaveRate * h;
   state.pitch += state.pitchRate * h;
   state.roll += state.rollRate * h;
-  for (const axis of ['pitch', 'roll'] as const) {
-    if (m.abs(state[axis]) <= MAX_BODY_ANGLE) continue;
-    state[axis] = m.sign(state[axis]) * MAX_BODY_ANGLE;
-    state[`${axis}Rate`] = 0;
+  // Held at the end of what the model describes, the body moves as the road under it does:
+  // rising with it, and tipping as the road under the two axles or the two sides rises apart.
+  const rising = input.roadRate;
+  if (m.abs(state.pitch) > MAX_BODY_ANGLE) {
+    state.pitch = m.sign(state.pitch) * MAX_BODY_ANGLE;
+    state.pitchRate = rising
+      ? (rising[2] + rising[3] - rising[0] - rising[1]) / 2 / m.max((z[0] ?? 0) - (z[2] ?? 0), 0.1)
+      : 0;
+  }
+  if (m.abs(state.roll) > MAX_BODY_ANGLE) {
+    state.roll = m.sign(state.roll) * MAX_BODY_ANGLE;
+    state.rollRate = rising
+      ? (rising[0] + rising[2] - rising[1] - rising[3]) / 2 / m.max((x[0] ?? 0) - (x[1] ?? 0), 0.1)
+      : 0;
   }
   const travel = 2 * geometry.travel;
   if (m.abs(state.heave) > travel) {
     state.heave = m.sign(state.heave) * travel;
-    state.heaveRate = 0;
+    state.heaveRate = rising ? (rising[0] + rising[1] + rising[2] + rising[3]) / 4 : 0;
   }
 
   const frontSpeed = ((next[0] + next[1]) / 2) * radius;

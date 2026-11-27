@@ -61,6 +61,29 @@ function hinged(root, name, stations, material, bindings, source, scale) {
   bindings.push({ node: name, source, property: 'rotation', axis: 'x', scale });
   return g;
 }
+/** A loft target whose faces point inward: intake lips and ducts are seen from inside, where an
+ * outward-facing, single-sided lip was culled and showed the cowl's inner skin instead. */
+const inward = (d) => ({
+  add: (geometry, material, at) => {
+    const normal = geometry.getAttribute('normal');
+    if (normal)
+      for (let i = 0; i < normal.count; i++)
+        normal.setXYZ(i, -normal.getX(i), -normal.getY(i), -normal.getZ(i));
+    if (geometry.index) {
+      const a = geometry.index.array;
+      for (let i = 0; i < a.length; i += 3) [a[i + 1], a[i + 2]] = [a[i + 2], a[i + 1]];
+    } else
+      for (const attribute of Object.values(geometry.attributes))
+        for (let i = 0; i < attribute.count; i += 3)
+          for (let c = 0; c < attribute.itemSize; c++) {
+            const t = attribute.array[(i + 1) * attribute.itemSize + c];
+            attribute.array[(i + 1) * attribute.itemSize + c] =
+              attribute.array[(i + 2) * attribute.itemSize + c];
+            attribute.array[(i + 2) * attribute.itemSize + c] = t;
+          }
+    return d.add(geometry, material, at);
+  },
+});
 export function buildC17A(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -136,7 +159,8 @@ export function buildC17A(s) {
   const point = (i, j) => [...rings[i].points[(j + 14) % 14], rings[i].z];
   const windowFace = (i, j) =>
     ([2, 3].includes(i) && [0, 1, 12, 13].includes(j)) ||
-    ([3, 4].includes(i) && [2, 11].includes(j));
+    (i === 4 && [1, 12].includes(j)) ||
+    (i === 3 && [2, 11].includes(j));
   const lerp = (a, b, t) => a.map((v, j) => v + (b[j] - v) * t);
   // Blunt radome: domed rings between the tip and the first station instead of a cone point.
   const tipY = (rings[0].points[0][1] + rings[0].points[7][1]) / 2,
@@ -294,32 +318,45 @@ export function buildC17A(s) {
     return { at, normal };
   };
   for (const side of [-1, 1]) {
-    // Two uninterrupted front panes, with a real painted surround. The shell's construction
-    // facets must not become a fictitious spiderweb of window mullions.
+    // Head-on and side photographs: a broad front pane and a side pane wrapping the forehead
+    // behind a post, a second side pane in the same row beside the pilot, and one small lower
+    // window under the front pane. The shell's construction facets do not become extra mullions.
     const front = glazePatch(2, 0, 2, 2, side, [
       [
         [0.11, 0.2],
         [0.11, 1.28],
+        [0.95, 1.58],
+        [0.95, 0.49],
+      ],
+      [
+        [1.06, 0.53],
+        [1.06, 1.62],
         [1.8, 1.88],
         [1.8, 0.78],
       ],
     ]);
-    // Clearview side windows, one per facet behind the windscreen.
-    for (const i of [3, 4])
-      glazePatch(i, 2, 1, 1, side, [
-        [
-          [0.12, 0.08],
-          [0.12, 0.92],
-          [0.88, 0.92],
-          [0.88, 0.08],
-        ],
-      ]);
+    glazePatch(4, 1, 1, 1, side, [
+      [
+        [0.1, 0.06],
+        [0.1, 0.72],
+        [0.88, 0.62],
+        [0.88, 0.06],
+      ],
+    ]);
+    glazePatch(3, 2, 1, 1, side, [
+      [
+        [0.18, 0.12],
+        [0.18, 0.72],
+        [0.8, 0.72],
+        [0.8, 0.12],
+      ],
+    ]);
     const wiper = (t) => {
       const q = lerp([0.11, 0.2], [1.8, 0.78], t);
       return new T.Vector3(...front.at(...q)).addScaledVector(front.normal(...q), 0.02).toArray();
     };
-    d.rod(wiper(0.12), wiper(0.55), 0.015, dark);
-    d.rod(wiper(0.55), wiper(0.9), 0.011, dark);
+    d.rod(wiper(0.12), wiper(0.55), 0.009, dark);
+    d.rod(wiper(0.55), wiper(0.9), 0.007, dark);
   }
   // Skin points at a station: x on the side for a height, or y on the crown/belly for a span.
   const ringAt = (z) => {
@@ -628,7 +665,7 @@ export function buildC17A(s) {
       paint,
       { caps: false },
     );
-    loft(d, [ring(front, 1.3), ring(front - 0.13, 1.18), ring(front - 0.75, 1.14)], metal, {
+    loft(inward(d), [ring(front, 1.3), ring(front - 0.13, 1.18), ring(front - 0.75, 1.14)], metal, {
       caps: false,
     });
     loft(d, [ring(front - 0.74, 1.14), ring(front - 1.0, 1.07)], dark, { caps: false });

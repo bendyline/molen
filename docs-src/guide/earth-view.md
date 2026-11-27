@@ -181,13 +181,32 @@ once and boards when that has streamed in, keeping the orbit camera on the spot 
 lane after a few seconds the car takes the nearest open ground, never a roof, deck or catalogued
 landmark. Leaving follows the vehicle's rules (stop, land, shut down); a host control such as a
 mode menu passes `{ force: true }` to step out at once, which also removes a vehicle `setMode`
-added.
+added. A crashed car can always be left: with both doors blocked (a wall, a tree's crown) the
+driver climbs out on the nearest open ground around it, a car lying off its wheels is left beside
+it even with nowhere clear, and a car that has held still for three quarters of a second counts as
+stopped whatever speed its state reports (a wreck caught in a tree). A stopped car on its wheels
+with nowhere clear around it is climbed out of on a second press of R within six seconds
+("Doors blocked — try again to climb out").
+
+**Crash camera.** `mountEarthView({ crashCam: true })` (off by default; `{ seconds }` sets the
+shortest shot, 4 by default, half as long again for an aircraft) cuts to a camera beside the
+vehicle's path, a little ahead of it, when a part breaks off the car being driven or the aircraft
+being flown (an aircraft's crash counts too). The camera follows the wreck with a slow push in,
+dollies after it if it runs on, and gives the view back once it has come to rest, at least
+`seconds` and at most that again past the last part to break. The view key (V) cuts back at once,
+and `view.setCrashCam(false | true | { seconds })` changes it live (off mid-shot cuts back);
+`view.crashCam` reads the settings and whether a shot is on screen. The `crash` event reports each
+break (`{ id, kind, parts, broken }`) whether or not the camera is on, and `crashcam` reports the
+cuts (`{ active }`), for a HUD that names the shot or holds its own impact card back. The pieces
+are exported for hosts with their own vehicles: `CrashCam` takes the vehicle each frame and
+returns the camera.
 
 `view.vehicleStatus()` describes the car or aircraft the viewer is in for a HUD: speed and
 heading for a car, with its gear, engine rev/min, traction or stability control at work
 (`assist`) and the grip of the surface under it (`surfaceGrip`); airspeed, altitude and height
 above ground, vertical speed, attitude, load factor (g), sideslip, power, engine, gear, flaps,
-fuel remaining, stall buffet, the pilot's `greyout` and `redout` under g, and stall/impact flags
+fuel remaining and burn, reheat for an afterburning jet, stall buffet, the pilot's `greyout` and
+`redout` under g, and stall/impact flags
 for an aircraft (SI units, compass radians). Both carry the type's `label` and entity `type`, and, where the type declares them, its name-free
 `genericLabel` (`Full-size pickup`) and `bodyStyle`, so a HUD that must not show a real
 manufacturer or model name has something to show instead. An airplane started in flight is trimmed for level flight at its launch speed.
@@ -211,6 +230,14 @@ is a dial of the console kit for every vehicle (a dashboard's own dial has no nu
 cycle or boat has none), numbered a little past the vehicle's top speed in the `speedUnit` the
 view was mounted with (`'km/h'` by default, or `'mph'`; a boat's reads knots), with the speed in
 digits under the hub. It draws in every view.
+
+From the driver's seat, a car's centre screen shows a moving map in place of the still one its
+dashboard prints: the streamed roads and water around the car, turned so the way it is going is up,
+with the street it is on along the bottom. It zooms out as the car speeds up. From the pilot's
+seat, one of an aircraft's displays shows the same map, zoomed out with its ground speed: a glass
+NAV page, a G1000's MFD, an airliner's navigation display, a fighter's MFD. Cars with only a radio
+or a driver's cluster, and cockpits of round gauges, show none. `mountEarthView({ movingMap: false })`
+keeps the printed displays; see [Vehicles](vehicles.md#screens-and-a-moving-map) for the pieces.
 
 ```ts
 const view = await mountEarthView({ canvas, speedUnit: 'mph' /* ...content, workers */ });
@@ -790,8 +817,9 @@ network requests, stored bytes and prefetch progress.
 ## Ambient life
 
 Cars drive the mapped roads, pedestrians walk the footways, trains run the railways and aircraft
-pass overhead. They appear out of sight around the viewer and leave once it moves on. The layer is
-on by default:
+pass overhead. Ferries run their mapped routes, boats lie moored at mapped docks and marinas, and
+boats under way cross open water. They appear out of sight around the viewer and leave once it
+moves on. The layer is on by default:
 
 ```ts
 const view = await mountEarthView({ canvas, terrain, content, camera, ambient: { density: 0.4 } });
@@ -799,8 +827,8 @@ view.setAmbientEnabled(false);
 view.setAmbientDensity(1); // busier streets from now on (view.ambientDensity reads it)
 ```
 
-`density` runs from 0 to 1 (default 0.6). `cars`, `pedestrians`, `rail` and `aircraft` switch a
-class off, and `ambient: false` removes the layer. The quality tier caps how many agents run and
+`density` runs from 0 to 1 (default 0.6). `cars`, `pedestrians`, `rail`, `aircraft` and `boats`
+switch a class off, and `ambient: false` removes the layer. The quality tier caps how many agents run and
 how many cars get full models. With the entities pack in `content`, vehicles use its car, bus,
 light-rail and airliner models near the camera. The car you drive stops against ambient traffic,
 and traffic waits for it. See [Ambient life](ambient-life.md) for the tier table and how the
@@ -1375,8 +1403,9 @@ does not establish bridge engineering type, navigation clearance, foundations or
 The SR-520 preview replaces the floating section; its approaches use this same fallback.
 
 Mapped tunnels receive separate inferred underground bores and portal cuts that retain the
-terrain above them; a way tagged as a tunnel only beneath bridges is drawn as the street under
-them instead. Aircraft support queries use the bore floor while underground. Centerlines
+terrain above them. The roads into them run down cuttings to their portals, and the bores keep
+their clear height and cover under level ground rather than standing on it; a way tagged as a
+tunnel only beneath bridges is drawn as the street under them instead. Aircraft support queries use the bore floor while underground. Centerlines
 alone do not establish surveyed grades, widths or clearances; see [Tunnels](surface-rendering.md#tunnels)
 for the metadata overrides, inference and bounded route stitching.
 
@@ -1400,12 +1429,20 @@ These regional forms are visual priors, not surveyed attributes of individual bu
   switch to the high preset, which rebuilds them across the view). Where the browser can time the GPU (`renderer.createGpuTimer()`), the view
   reports GPU and CPU work per frame, so slow frames while tiles stream in lower the level only
   when rendering itself is the cost; without GPU timing it goes by frame times alone. The view
-  first calibrates quickly, so a slow device settles within seconds (it lowers detail after 2.5 s
-  of overload, not one burst of streaming as a takeoff reveals the view). Once a level has held for
-  12 s it turns sticky, because a level change swaps resolution and detail across the view: down
-  after 2.5 s of sustained overload, up after 20 s of headroom, at least 6 s apart. Any change
-  waits until the camera has been still for 0.6 s (at most 4 s); memory pressure above 1.25
-  applies it at once.
+  calibrates at the beginning and then keeps what it chose. For the first seconds after its first
+  view has settled a slow device settles on what it can draw (a step down after 2.5 s of
+  overload, not one burst of streaming as a takeoff reveals the view; a change waits until the
+  camera has been still for 0.6 s, at most 4 s). Once a level has held for 12 s it is the level
+  for the session: nothing a frame costs moves it again, up or down, and `stats().qualityCalibrating`
+  turns false. Left adapting, a view over a city lost a level every time frames dipped and rebuilt
+  it when they recovered. Calibration moves the level the view is drawn at (`stats().qualityLevel`:
+  resolution, shadows, clouds, ambient life, model hand-over). The level the world is built at
+  (`stats().worldQualityLevel`: terrain detail and reach, building and surface quality) follows it
+  up, and is never taken below the level the device started at for slow frames. Only memory lowers
+  the world, at any time and for good: what is on show over `memoryBudget` for ten seconds running
+  (or a quarter past it for two) gives a level up for the rest of the session, so size a custom
+  budget for the level the view should keep in the densest place it shows. See
+  [Adaptive rendering performance](adaptive-performance.md).
 - A fixed quality never adapts. `'economy'`, `'balanced'` and `'high'` hold a terrain preset's
   budgets at the device's pixel ratio. `'ultra'` is `'high'` drawn sharper: models load their
   finer levels sooner (the Ultra tier's object error, 1.5 px rather than 2), and the view
@@ -1444,17 +1481,26 @@ These regional forms are visual priors, not surveyed attributes of individual bu
 
 ## Sound
 
-With the `molen.sounds` pack in `content`, the view plays 100 contextual sounds: 88 recorded
-ambience beds and 12 walking surfaces, alongside vehicle engines and music. Rain and wind
-follow weather, morning birds and warm-night crickets/frogs follow the rendered sky clock,
-and broad regional palettes follow geographic location. Surf fades away from mapped ocean
-shores; rivers and traffic follow nearby watercourses and streets. Enclosed cockpits smoothly
-reduce outdoor ambience to 18%; open boats and exterior cameras retain outside sound.
-Mapped ground materials, rain and snow select walking sounds. Birds, crickets and traffic come from
-the ground, so they fade as the view rises above the terrain and are gone a few hundred meters
-up. Unknown terrain height silences ground ambience. Traffic also fades with distance from the nearest street. Sound starts on the first click or
-key press. The `audioready` event fires once it has loaded, and then `view.audio` sets volume,
-mute and bus gains (`view.audio.setBusGain('music', 0)` turns music off).
+With the `molen.sounds` pack in `content`, the view plays a soundscape chosen by place, season,
+hour and weather, the voice of every vehicle, aircraft, train and boat, and music. Each ambience
+bed comes from the pack's soundscape catalog, which says where and when it belongs: Pacific chorus
+frogs on a spring night near Seattle, cicadas only in a hot Tokyo or Chicago summer, a horn-free
+road bed in Japan and a honking one in Delhi. Insects and frogs follow a climate estimate for the
+place and season, not the weather preset's temperature. Surf, lakes, rivers, harbors, motorways
+and streets follow the mapped water and roads near the camera, and fade as the view rises above
+the terrain; unknown terrain height silences ground ambience. Horns, sirens, dogs, crows, a
+motorcycle or a bus going by, level-crossing bells and thunder are events at rates set by the
+country's traffic, the hour and how near a street the camera is. Mapped ground materials, rain and
+snow select walking sounds.
+
+Vehicles are voiced by the pack's sound profiles: the one you drive or fly, and the nearest eight
+others (three on a touch-only device). In a cockpit view the cabin muffles the world by its own
+figures (an airliner's more than a Cessna's, a motorcycle's not at all) and plays its interior
+layers; in a chase view the vehicle is held close. Tunnels reverberate. Hold H (gamepad B) to
+sound the horn. Sound starts on the first click or key press. The `audioready` event fires once
+it has loaded, and then `view.audio` sets volume (as perceived loudness), mute and bus gains:
+`view.audio.setBusGain('music', 0)` turns music off, and `ambience` and `sfx` set the world
+and the vehicles.
 
 ```ts
 const view = await mountEarthView({ canvas, content, terrain, audio: { volume: 0.6, music: false } });
@@ -1462,18 +1508,18 @@ view.on('audioready', () => view.audio?.setMuted(localStorage.getItem('muted') =
 ```
 
 Pass `audio: false` to keep the view silent, or `audio: { environment }` to replace the rules.
-The legacy/default rules are exported as `EARTH_AUDIO_ENVIRONMENT`; `createEarthAudio` extends
-them using bank tags `earth:category:*` and `earth:region:*` unless given a custom environment.
-A composing host passes `location`, `solarHour`, `terrain`, and `inVehicle` to `update`.
-`EarthAudioTerrain.observer` can wrap water, landcover and features renderers with
-`observeSemanticTiles`; sample it at about 4 Hz for coast/river/street distances and ground
-material. `surface` overrides the mapped walking material, and `indoors` attenuates outdoor
-ambience for a host that detects interiors. Missing mapped data uses conservative fallbacks;
-lakes do not produce surf, and wildlife rendering density does not mute regional ambience.
-A pack's `birdsong` catalog replaces broad bird palettes with curated recordings selected by
-geography, habitat, season and sunlight; uncovered places stay quiet. The default pack includes
-eight such recordings. Hosts pass the sky's `utcMs` and `sunAltitudeDeg` in `location`, along with
-`regionalAmbience.habitat` and habitat levels. Curated birds fade out inside enclosed vehicles.
+The default rules are exported as `EARTH_AUDIO_ENVIRONMENT`; `createEarthAudio` extends them with
+the catalog's beds (or, for a pack without one, beds tagged `earth:category:*` and
+`earth:region:*`) unless given a custom environment. A composing host passes `location`,
+`solarHour`, `terrain`, `inVehicle`, `vehicle` (the entity ridden), `reverb: 'tunnel'` inside a
+bore, and `horn` to `update`. `EarthAudioTerrain.observer` can wrap water, landcover and features
+renderers with `observeSemanticTiles`; sample it at about 4 Hz for coast, river, lake, street and
+motorway distances and ground material. `surface` overrides the mapped walking material, and
+`indoors` (or `space: 'building'`) muffles the outdoors for a host that detects interiors. A
+pack's `birdsong` catalog adds curated recordings selected by geography, habitat, season and
+sunlight; where one sings it replaces the regional bird bed. Hosts pass the sky's `utcMs` and
+`sunAltitudeDeg` in `location`, along with `regionalAmbience.habitat` and habitat levels.
+`createEarthAudio` takes `maxVoices` and `maxEmitters` for a tighter budget.
 See [Sound and music](audio.md) for the rule format.
 
 The composing pieces are exported too, for hosts that build their own view: `createEarthWorldgen`,

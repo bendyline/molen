@@ -89,8 +89,9 @@ function encode(sound, clip, src, dest) {
   const bitrate = channels === 1 ? '64k' : '96k';
   const { input, filters } = shape(sound, clip);
   const padding = clip.loopPadding ?? 0;
-  if (padding && (sound.kind !== 'loop' || !clip.crossfade || !clip.duration))
-    throw new Error('loopPadding requires a crossfaded loop with an explicit duration');
+  // A periodic clip (tools/synth.mjs) loops without a crossfade: it already joins seamlessly.
+  if (padding && (sound.kind !== 'loop' || !(clip.crossfade || clip.periodic) || !clip.duration))
+    throw new Error('loopPadding requires a crossfaded or periodic loop with an explicit duration');
   const pre = filters.length > 0 ? `${filters.join(',')},` : '';
   const base = [...input, '-i', src];
   let norm;
@@ -201,6 +202,7 @@ for (const [id, sound] of Object.entries(sources.sounds)) {
   if (first.clip.start !== undefined || first.clip.duration !== undefined)
     edits.push(`trimmed from ${first.clip.start ?? 0}s`);
   if (first.clip.crossfade) edits.push(`${first.clip.crossfade}s crossfade loop`);
+  if (first.clip.periodic) edits.push('periodic loop');
   if (first.clip.highpass) edits.push(`${first.clip.highpass} Hz high-pass`);
   edits.push(
     sound.kind === 'oneshot'
@@ -238,6 +240,7 @@ for (const [id, sound] of Object.entries(sources.sounds)) {
       url: origin.page,
       author: origin.author,
       title: origin.title,
+      ...(origin.synth ? { generator: `tools/synth.mjs ${origin.synth}` } : {}),
       notes: edits.join(', '),
     },
   };

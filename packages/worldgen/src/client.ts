@@ -13,6 +13,13 @@ export type {
 } from './client/entity-layer';
 export { createWorldgenEntityLayer } from './client/entity-layer';
 export {
+  createGroundOpeningGuard,
+  GROUND_OPEN_RECHECK,
+  GroundOpeningGuard,
+  type GroundOpenings,
+  GroundOpeningsWatch,
+} from './client/ground-openings';
+export {
   buildingBoxGeometry,
   createInstancedPlacements,
   gableBoxGeometry,

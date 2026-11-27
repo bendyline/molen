@@ -8,9 +8,12 @@ import {
   type AircraftCockpitSession,
   type AircraftInstrumentSource,
   AircraftPointerAxes,
+  AircraftThrottleRamp,
   type AircraftVisual,
   aircraftCameraPose,
   aircraftObstacleContacts,
+  aircraftReheatDetent,
+  aircraftThrottleReading,
   applyAircraftControl,
   createAircraftVisual,
   PilotMotion,
@@ -18,12 +21,15 @@ import {
 } from '@bendyline/molen-client/aircraft';
 import type { ConsoleAircraftSubject } from '@bendyline/molen-client/console';
 import { type NavigationInput, WalkCollision } from '@bendyline/molen-client/navigation';
+import { findCockpitMapDisplay } from '@bendyline/molen-client/vehicles';
+import { EarthMapScreen, type EarthMovingMap } from '@bendyline/molen-earth/client';
 import {
   Aircraft,
   type AircraftCollisionProbe,
   type AircraftContact,
   AircraftInput,
   AircraftState,
+  aircraftTotalFuelFlow,
   flyAircraft,
   IDLE_AIRCRAFT_INPUT,
   initialAircraftState,
@@ -32,12 +38,19 @@ import {
 } from '@bendyline/molen-kernel/aircraft';
 import type { TypeLibrary } from '@bendyline/molen-kernel/content';
 import { Mounted, mountEntity, Vehicle, vehicleLocalPoint } from '@bendyline/molen-kernel/vehicles';
-import { Transform, type TransformData, type World } from '@bendyline/molen-kernel/world';
+import {
+  type ComponentType,
+  defineComponent,
+  Transform,
+  type TransformData,
+  type World,
+} from '@bendyline/molen-kernel/world';
 import type {
   AircraftData,
   AircraftInputData,
   AircraftStateData,
   ComponentMap,
+  LiveryData,
   VehicleSpec,
 } from '@bendyline/molen-schema';
 import { sampleAirportPavement } from '@bendyline/molen-terrain/client';
@@ -49,6 +62,11 @@ import { FlybyCamera } from './flyby-camera.js';
 import type { EjectionSeat } from './world-parachute.js';
 
 const PLAYER = 'world-player';
+/**
+ * An entity's livery recipe (the `livery` component, as the Earth client names it): its type's
+ * variants with the one shown `selected`. Cars and boats carry it as well as aircraft.
+ */
+export const Livery: ComponentType<LiveryData> = defineComponent<LiveryData>('livery');
 /** Speed (m/s), about a jog, above which a wreck is ejected from rather than climbed out of. */
 const WRECK_EXIT_SPEED = 5;
 /** Speed (m/s) of the pilot's own aircraft above which parked aircraft keep their cockpits hidden. */
@@ -95,7 +113,7 @@ function skipWhenHidden(object: THREE.Object3D): void {
   };
 }
 export const AIRCRAFT_HELP: string =
-  'I engine · Z/C power · W/S pitch · A/D bank · Q/E pedals · Space brakes · G gear · F flaps · B speed brake · H hook · O canopy · J nozzle/nacelles · M assisted/direct controls (helicopter cyclic, airplane surfaces) · V view · F5 flyby · R exit · Ctrl+R eject in flight · Backspace recover after impact';
+  'I engine · Z/C power · W/S pitch · A/D bank · Q/E pedals · Space brakes · G gear · F flaps · B speed brake · H hook · O canopy · J nozzle/nacelles · M assisted/direct controls (helicopter cyclic, airplane surfaces) · V cockpit/chase/flyby view · F5 flyby · R exit · Ctrl+R eject in flight · Backspace recover after impact';
 
 /** Whether `box` overlaps any parked or flying aircraft other than `except`: an obstacle for cars. */
 export function aircraftBlocks(world: World, box: OBB, except?: string): boolean {
@@ -124,6 +142,10 @@ export class WorldAircraft {
   message = '';
   private elevation: number | undefined;
   private visuals = new Map<AircraftChoice, AircraftVisual>();
+  /** The moving map on the flown aircraft's map display ({@link showMap}). */
+  private mapScreen: EarthMapScreen | undefined;
+  /** The view the last {@link cameraPose} was for: the map is painted from the seat only. */
+  private shownView: 'cockpit' | 'chase' | 'flyby' = 'chase';
   private readonly shadowSubjects = new WeakMap<AircraftVisual, ShadowSubject>();
   private loading = false;
   private disposed = false;
@@ -153,6 +175,8 @@ export class WorldAircraft {
   private readonly pointerAxes = new AircraftPointerAxes();
   private readonly flyby = new FlybyCamera();
   private cockpitBrake = false;
+  /** Held throttle keys catch at an afterburner's military-power detent. */
+  private readonly throttleRamp = new AircraftThrottleRamp();
   /**
    * The pilot's body under load: the cockpit eye sinks in a pull, leans under braking and thrust,
    * and the head lags a quick roll. `configure(false)` turns it off; its `tuning` is live.
@@ -162,6 +186,8 @@ export class WorldAircraft {
   private pilotSeat: AircraftChoice | undefined;
   /** The aircraft last ejected from, flying on without a pilot until it comes to rest. */
   private abandoned: AircraftChoice | undefined;
+  /** Liveries the visitor picked, by aircraft: kept when that aircraft is loaded again. */
+  private readonly liveryChoices = new Map<AircraftChoice, string>();
   instrumentSource(): AircraftInstrumentSource | undefined {
     const kind = this.mountedKind;
     const visual = kind ? this.visuals.get(kind) : undefined;
@@ -264,6 +290,37 @@ export class WorldAircraft {
   label(kind: string): string {
     return this.aircraftData(this.typeId(kind)).spec.label;
   }
+  /** The type's livery recipe, showing the visitor's pick for this aircraft if they made one. */
+  private liveryRecipe(kind: AircraftChoice, type: string): LiveryData | undefined {
+    const recipe = this.typeComponents(type).livery as LiveryData | undefined;
+    const chosen = this.liveryChoices.get(kind);
+    return recipe && chosen !== undefined && recipe.variants.some((v) => v.id === chosen)
+      ? { ...recipe, selected: chosen }
+      : recipe;
+  }
+  /** A loaded aircraft's livery recipe: its type's variants and the one it shows. */
+  livery(kind: AircraftChoice): LiveryData | undefined {
+    if (!this.visuals.has(kind)) return undefined;
+    return this.world.get(`aircraft-${kind}`, Livery) ?? this.liveryRecipe(kind, this.typeId(kind));
+  }
+  /** Repaint an aircraft in another of its type's liveries; it keeps it when loaded again. */
+  setLivery(kind: AircraftChoice, selected: string): void {
+    const recipe = this.liveryRecipe(kind, this.typeId(kind));
+    if (!recipe?.variants.some((variant) => variant.id === selected))
+      throw new Error(`Unknown livery for ${kind}: ${selected}`);
+    this.liveryChoices.set(kind, selected);
+    const data = { ...recipe, selected };
+    if (this.world.exists(`aircraft-${kind}`)) this.world.set(`aircraft-${kind}`, Livery, data);
+    this.visuals.get(kind)?.setLivery(data);
+  }
+  /** The aircraft being flown, else the one the visitor last chose to visit, once it has loaded. */
+  get selectedKind(): AircraftChoice | undefined {
+    const mounted = this.mountedKind;
+    if (mounted !== undefined) return mounted;
+    return this.requested !== undefined && this.visuals.has(this.requested)
+      ? this.requested
+      : undefined;
+  }
   get apronCount(): number {
     return [...this.apron.keys()].filter((id) => this.visuals.has(id)).length;
   }
@@ -285,9 +342,10 @@ export class WorldAircraft {
     const placement = { type, position: [x, height, z] as [number, number, number], yaw };
     this.apron.set(kind, placement);
     let visual: AircraftVisual | undefined;
+    const livery = this.liveryRecipe(kind, type);
     try {
       const model = await this.loadModel(type);
-      visual = createAircraftVisual(model, this.aircraftData(type).spec);
+      visual = createAircraftVisual(model, this.aircraftData(type).spec, livery);
       dropTinyShadowCasters(visual.object);
       visual.object.traverse(skipWhenHidden);
       visual.updateView(FAR_AWAY);
@@ -307,6 +365,7 @@ export class WorldAircraft {
       };
       components.aircraftState = initialAircraftState(yaw);
       components.aircraftInput = { ...IDLE_AIRCRAFT_INPUT };
+      if (livery !== undefined) components.livery = livery;
       this.world.spawnRaw(components, `aircraft-${kind}`);
       this.visuals.set(kind, visual);
       this.object.add(visual.object);
@@ -377,7 +436,8 @@ export class WorldAircraft {
     }
     const request = (async () => {
       const model = await this.loadModel(this.typeId(kind));
-      const visual = createAircraftVisual(model, this.aircraftData(this.typeId(kind)).spec);
+      const livery = this.liveryRecipe(kind, this.typeId(kind));
+      const visual = createAircraftVisual(model, this.aircraftData(this.typeId(kind)).spec, livery);
       dropTinyShadowCasters(visual.object);
       visual.object.traverse(skipWhenHidden);
       // Drawn before its shaders were built, each aircraft at the airfield built them in a frame.
@@ -419,6 +479,7 @@ export class WorldAircraft {
         ...(components.aircraftState as AircraftStateData),
         yaw,
       };
+      if (livery !== undefined) components.livery = livery;
       this.world.spawnRaw(components, `aircraft-${kind}`);
       this.render();
     })().finally(() => {
@@ -723,14 +784,21 @@ export class WorldAircraft {
     ] as const) {
       for (let i = 0; i < (pilot?.[action] ?? 0); i++) this.key(code);
     }
-    if (pilot?.power !== undefined || pilot?.throttle) {
+    const flownSpec = this.aircraftData(this.typeId(kind)).spec;
+    // An absolute lever (a joystick axis) sets the throttle; held keys ramp it and catch at MIL.
+    const ramped = this.throttleRamp.step(
+      this.inputs.power,
+      pilot?.power === undefined ? Math.min(dt, 0.1) * 0.22 * (pilot?.throttle ?? 0) : 0,
+      aircraftReheatDetent(flownSpec),
+    );
+    if (pilot?.power !== undefined || ramped !== this.inputs.power) {
       this.inputs = applyAircraftControl(
         this.inputs,
         {
           control: { id: 'common', label: 'Power', action: 'power', nodes: [] },
-          value: pilot.power ?? this.inputs.power + Math.min(dt, 0.1) * 0.22 * pilot.throttle,
+          value: pilot?.power ?? ramped,
         },
-        this.aircraftData(this.typeId(kind)).spec,
+        flownSpec,
       );
     }
     this.inputs = {
@@ -798,12 +866,50 @@ export class WorldAircraft {
         this.world.tick / this.world.tickRate,
       );
     }
+    this.paintMap();
+  }
+  /**
+   * Show the streamed roads on the flown aircraft's map display, as `EarthAircraft` does; undefined
+   * takes the map off again.
+   */
+  showMap(map: EarthMovingMap | undefined): void {
+    this.mapScreen?.dispose();
+    this.mapScreen =
+      map === undefined ? undefined : new EarthMapScreen(map, { zoom: 'air', street: false });
+  }
+  private paintMap(): void {
+    if (this.mapScreen === undefined) return;
+    const kind = this.mountedKind;
+    const id = kind === undefined ? undefined : `aircraft-${kind}`;
+    const t = id === undefined ? undefined : this.world.get(id, Transform);
+    const state = id === undefined ? undefined : this.world.get(id, AircraftState);
+    const spec = id === undefined ? undefined : this.world.get(id, Aircraft)?.spec;
+    this.mapScreen.update(
+      kind === undefined ? undefined : this.visuals.get(kind)?.object,
+      (model) =>
+        spec === undefined
+          ? undefined
+          : findCockpitMapDisplay(model, {
+              eye: spec.pilotEye,
+              bindings: spec.visual.interior?.bindings ?? [],
+            }),
+      t !== undefined && state !== undefined
+        ? {
+            x: t.pos[0],
+            z: t.pos[2],
+            yaw: state.yaw,
+            speed: Math.hypot(state.velocity[0], state.velocity[2]),
+          }
+        : undefined,
+      this.shownView === 'cockpit',
+    );
   }
   cameraPose(
     view: 'cockpit' | 'chase' | 'flyby',
     lookYaw: number,
     lookPitch: number,
   ): AircraftCameraPose | undefined {
+    this.shownView = view;
     // Each return to the flyby view places its camera afresh.
     if (view !== 'flyby') this.flyby.reset();
     const kind = this.mountedKind;
@@ -859,7 +965,9 @@ export class WorldAircraft {
         : (s.departure ?? 0) > 0.8 && Math.abs(s.yawRate ?? 0) > 0.8
           ? 'DEPARTURE / SPIN'
           : s.overspeed
-            ? 'OVERSPEED — reduce speed / check gear and flaps'
+            ? airplane
+              ? 'OVERSPEED — reduce speed / check gear and flaps'
+              : 'OVERSPEED — ease the stick back, lower collective'
             : s.stalled
               ? 'STALL — nose down, power up, wings level'
               : s.fuel === 0
@@ -871,7 +979,9 @@ export class WorldAircraft {
                   : (s.greyout ?? 0) > 0.3
                     ? 'GREYING OUT — ease the pull'
                     : (s.buffet ?? 0) > 0.25
-                      ? 'BUFFET — close to the stall'
+                      ? airplane
+                        ? 'BUFFET — close to the stall'
+                        : 'BLADE STALL — lower collective, ease the stick back'
                       : spec.fuel !== undefined &&
                           (s.fuel ?? spec.fuel.capacity) < 0.1 * spec.fuel.capacity
                         ? 'FUEL LOW'
@@ -886,7 +996,11 @@ export class WorldAircraft {
       0,
       ...Object.values(s.engines ?? {}).map((engine) => engine.afterburner ?? 0),
     );
-    const airData = `${s.mach === undefined ? '' : `M ${s.mach.toFixed(2)} · `}${s.equivalentAirspeed === undefined ? '' : `${(s.equivalentAirspeed * 1.94384).toFixed(0)} KEAS · `}${reheat > 0 ? `AB ${Math.round(reheat * 100)}% · ` : ''}`;
+    const airData = `${s.mach === undefined ? '' : `M ${s.mach.toFixed(2)} · `}${s.equivalentAirspeed === undefined ? '' : `${(s.equivalentAirspeed * 1.94384).toFixed(0)} KEAS · `}`;
+    // Reheat is the throttle pushed past military power: "MIL", then "AB n%" of the reheat range,
+    // flagged while the afterburner is still lighting.
+    const lever = aircraftThrottleReading(spec, this.inputs.power);
+    const throttle = `${lever.label}${lever.reheat !== undefined && lever.reheat > 0 && reheat < lever.reheat - 0.05 ? ' lighting' : ''}${this.throttleRamp.caught ? ' (push again for reheat)' : ''}`;
     // The selection, until the gear and flaps actually get there.
     const gearPosition = s.gearPosition ?? Number(this.inputs.gear);
     const flapPosition = s.flapPosition ?? Number(this.inputs.flaps);
@@ -907,8 +1021,8 @@ export class WorldAircraft {
     const fuel =
       spec.fuel === undefined
         ? ''
-        : `Fuel ${Math.round(((s.fuel ?? spec.fuel.capacity) / spec.fuel.capacity) * 100)}% · `;
-    return `${spec.label} · ${(s.airspeed * 1.94384).toFixed(0)} KTAS · ${airData}${(s.altitudeAGL * 3.28084).toFixed(0)} ft AGL · ${(s.verticalSpeed * 196.85).toFixed(0)} ft/min · ${load}${airplane ? 'Throttle' : 'Collective'} ${(this.inputs.power * 100).toFixed(0)}% · RPM ${(s.rpm * 100).toFixed(0)}% · ${this.inputs.engine ? 'Engine on' : 'Engine off'} · ${fuel}${airplane ? `Gear ${gear} · Flaps ${flaps} · ` : ''}${spec.poweredLift ? `Vector ${Math.round((s.thrustVectorPosition ?? 0) * 90)}° · ` : ''}${spec.model === 'helicopter' ? `Cyclic ${this.inputs.cyclicMode === 'direct' ? 'direct' : 'assisted'} · ` : ''}${this.inputs.controlMode === 'direct' ? 'Direct controls · ' : ''}${alert}`;
+        : `Fuel ${Math.round(((s.fuel ?? spec.fuel.capacity) / spec.fuel.capacity) * 100)}% ${Math.round(aircraftTotalFuelFlow(spec, s, this.inputs.power) * 3600).toLocaleString('en-US')} kg/h · `;
+    return `${spec.label} · ${(s.airspeed * 1.94384).toFixed(0)} KTAS · ${airData}${(s.altitudeAGL * 3.28084).toFixed(0)} ft AGL · ${(s.verticalSpeed * 196.85).toFixed(0)} ft/min · ${load}${airplane ? `Throttle ${throttle}` : `Collective ${(this.inputs.power * 100).toFixed(0)}%`} · RPM ${(s.rpm * 100).toFixed(0)}% · ${this.inputs.engine ? 'Engine on' : 'Engine off'} · ${fuel}${airplane ? `Gear ${gear} · Flaps ${flaps} · ` : ''}${spec.poweredLift ? `Vector ${Math.round((s.thrustVectorPosition ?? 0) * 90)}° · ` : ''}${spec.model === 'helicopter' ? `Cyclic ${this.inputs.cyclicMode === 'direct' ? 'direct' : 'assisted'} · ` : ''}${this.inputs.controlMode === 'direct' ? 'Direct controls · ' : ''}${alert}`;
   }
   /** Why the exit key (R) did nothing, and in the air the way out that remains. */
   exitHint(): void {
@@ -999,6 +1113,8 @@ export class WorldAircraft {
   }
   dispose(): void {
     this.disposed = true;
+    // The screen first: it hangs in a cockpit disposed next.
+    this.mapScreen?.dispose();
     for (const v of this.visuals.values()) v.dispose();
     this.object.traverse((o) => {
       if (o instanceof THREE.Mesh) {

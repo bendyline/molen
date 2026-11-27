@@ -1,4 +1,9 @@
-import type { AircraftInputData, AircraftSpec, AircraftStateData } from '@bendyline/molen-schema';
+import {
+  type AircraftInputData,
+  type AircraftSpec,
+  type AircraftStateData,
+  aircraftGearLayout,
+} from '@bendyline/molen-schema';
 import { describe, expect, it } from 'vitest';
 import {
   type AircraftEnvironment,
@@ -14,6 +19,7 @@ const cessna = molenAircraft('molen.entities.aircraft.cessna_172s').spec;
 const mustang = molenAircraft('molen.entities.aircraft.p51d').spec;
 const viper = molenAircraft('molen.entities.aircraft.f_16b').spec;
 const airliner = molenAircraft('molen.entities.aircraft.boeing_737_800').spec;
+const hughes = molenAircraft('molen.entities.aircraft.oh6').spec;
 if (!cessna.airplane || !mustang.airplane || !viper.airplane || !airliner.airplane)
   throw new Error('Missing airplane physics');
 
@@ -412,5 +418,116 @@ describe('tires on the runway', () => {
     const held = arrive(off);
     expect(held.steepest).toBeLessThan(0.08);
     expect(held.crashed).toBe(false);
+  });
+});
+
+describe('strut travel', () => {
+  const travel = (flight: Flight): number[] => {
+    const read = flight.state.wheels?.travel;
+    if (!read) throw new Error('No strut travel');
+    return read;
+  };
+
+  it('stands where the schema says its legs are, and reports no travel at rest', () => {
+    for (const spec of [cessna, mustang, viper, airliner, hughes]) {
+      const layout = aircraftGearLayout(spec);
+      const gear = aircraftGear(spec);
+      // One definition of the undercarriage: the flight model's legs are the layout's.
+      expect(gear.legs.map((leg) => [leg.arm[0], leg.arm[2]])).toEqual(
+        layout.legs.map((leg) => [leg.x, leg.z]),
+      );
+      for (const leg of gear.legs) {
+        expect(leg.travel).toBe(layout.travel);
+        expect(leg.staticLoad / leg.spring).toBeCloseTo(layout.reach, 12);
+      }
+      expect(gear.wheelbase).toBe(layout.wheelbase);
+      const parked = fly(spec, 3, () => IDLE_AIRCRAFT_INPUT);
+      for (const closed of travel(parked)) expect(Math.abs(closed)).toBeLessThan(0.002);
+    }
+  });
+
+  it('hangs its legs at their full reach in flight and closes them at touchdown', () => {
+    const layout = aircraftGearLayout(cessna);
+    // Let go half a meter up: the struts hang, meet the runway, close to their stops and
+    // come back to rest.
+    let hanging = false;
+    const closed = [0, 0, 0];
+    const dropped = fly(
+      cessna,
+      4,
+      () => IDLE_AIRCRAFT_INPUT,
+      {
+        transform: { pos: [0, 0.5, 0], rot: [0, 0, 0, 1] },
+        state: { ...initialAircraftState(), gearPosition: 1, grounded: false },
+      },
+      flat,
+      (flight) => {
+        const read = travel(flight);
+        if (read.every((leg) => Math.abs(leg + layout.reach) < 1e-9)) hanging = true;
+        for (const [i, leg] of read.entries()) {
+          closed[i] = Math.max(closed[i] ?? 0, leg);
+          // A strut is never longer than its reach.
+          expect(leg).toBeGreaterThanOrEqual(-layout.reach - 1e-9);
+        }
+      },
+    );
+    expect(hanging).toBe(true);
+    for (const leg of closed) {
+      expect(leg).toBeGreaterThan(0.6 * layout.travel);
+      expect(leg).toBeLessThan(2 * layout.travel);
+    }
+    expect(dropped.state.crashed).toBe(false);
+    for (const leg of travel(dropped)) expect(Math.abs(leg)).toBeLessThan(0.003);
+  });
+
+  it('dips its nose leg under braking and lifts it off first on the takeoff roll', () => {
+    const layout = aircraftGearLayout(cessna);
+    // Rolling at 15 m/s, then hard on the brakes: the weight goes forward onto the nose leg.
+    let nose = 0;
+    let mains = 0;
+    fly(
+      cessna,
+      4,
+      () => ({ ...off, brake: true }),
+      onRunway(15),
+      flat,
+      (flight) => {
+        const [front, left, right] = travel(flight) as [number, number, number];
+        nose = Math.max(nose, front);
+        mains = Math.max(mains, left, right);
+      },
+    );
+    expect(nose).toBeGreaterThan(0.03);
+    expect(mains).toBeLessThan(0.02);
+    // Full power and the stick back: the nose leg runs out to its reach while the mains still
+    // carry the airplane, and all three hang once it is flying.
+    let rotated = false;
+    let flying: number[] | undefined;
+    fly(
+      cessna,
+      40,
+      (state) => ({ ...running, power: 1, pitch: state.airspeed > 25 ? 0.7 : 0 }),
+      onRunway(),
+      flat,
+      (flight) => {
+        const read = flight.state.wheels?.travel;
+        if (!read) return;
+        const [front, left, right] = read as [number, number, number];
+        if (front <= -layout.reach + 1e-9 && left > -layout.reach && right > -layout.reach)
+          rotated = true;
+        if (flight.state.altitudeAGL > 3) flying ??= [...read];
+      },
+    );
+    expect(rotated).toBe(true);
+    expect(flying).toHaveLength(3);
+    for (const leg of flying ?? []) expect(leg).toBeCloseTo(-layout.reach, 9);
+  });
+
+  it('reports the four ends of a helicopter on skids as it does wheels', () => {
+    const layout = aircraftGearLayout(hughes);
+    expect(layout.legs).toHaveLength(4);
+    const parked = fly(hughes, 2, () => IDLE_AIRCRAFT_INPUT);
+    expect(travel(parked)).toHaveLength(4);
+    for (const leg of travel(parked)) expect(Math.abs(leg)).toBeLessThan(0.002);
   });
 });

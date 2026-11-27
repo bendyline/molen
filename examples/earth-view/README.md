@@ -20,8 +20,9 @@ pnpm --filter @bendyline/molen-examples-earth-view dev
 It reuses the World Explorer's terrain packages and content packs (`publicDir` points at
 `../world-explorer/public`). A production build keeps only the Seattle and Sammamish terrain it
 loads (`src/terrain-regions.ts`), not the explorer's other regions, so the hosted sample does not
-publish them twice. Development reuses prepared packs; run `pnpm dev:content` from the
-root to refresh them after asset edits. Production `prebuild` still builds the packs. This sample
+publish them twice. Development repackages the packs whose `content/` files changed before it
+starts; `pnpm dev:content` from the root rebuilds them all. Production `prebuild` still builds the
+packs. This sample
 lists the World Explorer as a dev dependency so `pnpm -r build` builds the two in
 order instead of regenerating the shared packs concurrently.
 

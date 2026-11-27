@@ -4,17 +4,45 @@ import type {
   AudioSignalBinding,
   SoundbankDoc,
 } from '@bendyline/molen-schema';
+import type { SoundscapeEntry } from './soundscape-catalog';
 
 export interface EarthSoundscapeClip {
   id: string;
   category: string;
   region: string;
 }
-/** Recording regions are broad sound palettes, not a claim to exact local species coverage. */
+/** The latitude of the US–Mexico border west of the Gulf, roughly, by longitude. */
+function borderLatitude(longitude: number): number {
+  if (longitude <= -108) return 32.5;
+  if (longitude <= -106.5) return 31.8;
+  // Down the Rio Grande from El Paso to Brownsville.
+  return 31.8 + ((longitude + 106.5) / 9.1) * (25.9 - 31.8);
+}
+
+/**
+ * Recording regions are broad sound palettes, not a claim to exact local species coverage. Only
+ * packs without a soundscape catalog use them; a catalog names each bed's own bounds.
+ */
 export function earthAudioRegion(latitude = 45, longitude = 0): string {
   if (Math.abs(latitude) > 66) return 'polar';
-  if (longitude < -30) return latitude < 28 ? 'latin-america' : 'north-america';
+  // Hawaii's birds and insects are Pacific island ones, not Mexican or Californian.
+  if (longitude >= -161 && longitude < -154 && latitude >= 18 && latitude < 23) return 'oceania';
+  if (longitude < -30) {
+    if (longitude < -97.4)
+      return latitude >= borderLatitude(longitude) ? 'north-america' : 'latin-america';
+    // East of Texas the Gulf and the Florida Straits are the line.
+    return latitude >= 24.4 ? 'north-america' : 'latin-america';
+  }
   if (longitude > 110 && latitude < -10) return 'oceania';
+  // The Levant, Arabia and Iran have no beds of their own: the global palettes stand in.
+  if (
+    longitude >= 34 &&
+    longitude < 63 &&
+    latitude >= 12 &&
+    latitude < 42 &&
+    !(longitude < 36 && latitude < 31.5)
+  )
+    return 'middle-east';
   if (longitude >= -20 && longitude < 52 && latitude < 36 && latitude > -36) return 'africa';
   return longitude < 60 && latitude >= 30 ? 'europe' : 'asia';
 }
@@ -45,7 +73,13 @@ const identity = (signal: string): AudioSignalBinding => ({
 
 export function earthSoundscapeClips(
   banks: readonly (SoundbankDoc | SoundbankInput)[],
+  catalog?: readonly SoundscapeEntry[],
 ): EarthSoundscapeClip[] {
+  // A catalog names every bed and its category; region tags no longer apply.
+  if (catalog)
+    return catalog
+      .map((e) => ({ id: e.sound, category: e.category, region: 'catalog' }))
+      .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
   const entries = new Map<string, EarthSoundscapeClip>();
   for (const bank of banks)
     for (const [id, sound] of Object.entries(('doc' in bank ? bank.doc : bank).sounds)) {
@@ -97,26 +131,18 @@ export function earthSoundscapeEnvironment(
     'ambience.rain': 'rain',
     'ambience.city.traffic': 'traffic',
   };
-  const ambience = (base.ambience ?? [])
-    .filter(
-      (layer) =>
-        !categories.has(replaced[layer.sound] ?? '') ||
-        // Keep speed-driven rushing air alongside the new weather-driven wind beds.
-        (layer.sound === 'ambience.wind' && layer.when?.['listener.mode'] !== undefined),
-    )
-    .map((layer) => ({
-      ...layer,
-      gainFrom: [
-        ...(Array.isArray(layer.gainFrom)
-          ? layer.gainFrom
-          : layer.gainFrom
-            ? [layer.gainFrom]
-            : []),
-        OUTDOOR_GAIN,
-      ],
-    }));
+  // A cabin or building muffles these through the listener's enclosure; no gain rule needed.
+  const ambience = (base.ambience ?? []).filter(
+    (layer) =>
+      !categories.has(replaced[layer.sound] ?? '') ||
+      // Keep speed-driven rushing air alongside the new weather-driven wind beds.
+      (layer.sound === 'ambience.wind' && layer.when?.['listener.mode'] !== undefined),
+  );
   for (const clip of clips) {
-    const drives: AudioSignalBinding[] = [OUTDOOR_GAIN];
+    // How strongly the catalog says this bed belongs here now (1 without a catalog).
+    const drives: AudioSignalBinding[] = [
+      { ...identity(`host.soundscapeLevel.${clip.category}`), smoothS: 3 },
+    ];
     let gain = 0.3;
     switch (clip.category) {
       case 'birds':
@@ -212,6 +238,74 @@ export function earthSoundscapeEnvironment(
         );
         gain = 0.3;
         break;
+      case 'frogs':
+        drives.push(ground, identity('host.frogActivity'));
+        gain = 0.3;
+        break;
+      case 'lake':
+        drives.push(ground, {
+          signal: 'host.lakeDistance',
+          curve: [
+            [0, 1],
+            [15, 0.8],
+            [60, 0.3],
+            [150, 0],
+          ],
+          smoothS: 2,
+        });
+        gain = 0.3;
+        break;
+      case 'harbor':
+        drives.push(ground, {
+          signal: 'host.coastDistance',
+          curve: [
+            [0, 1],
+            [60, 0.6],
+            [250, 0],
+          ],
+          smoothS: 2,
+        });
+        gain = 0.32;
+        break;
+      case 'highway':
+        drives.push(
+          {
+            signal: 'listener.heightAboveGround',
+            curve: [
+              [3, 1],
+              [40, 0.7],
+              [150, 0.3],
+              [500, 0],
+            ],
+          },
+          {
+            signal: 'host.highwayDistance',
+            curve: [
+              [0, 1],
+              [60, 0.6],
+              [250, 0.25],
+              [700, 0],
+            ],
+            smoothS: 1.5,
+          },
+          identity('host.trafficActivity'),
+        );
+        gain = 0.32;
+        break;
+      case 'crowd':
+        drives.push(
+          {
+            signal: 'listener.heightAboveGround',
+            curve: [
+              [3, 1],
+              [15, 0.4],
+              [40, 0],
+            ],
+          },
+          { ...identity('host.crowd'), smoothS: 2 },
+        );
+        gain = 0.28;
+        break;
       case 'crossing':
         // This recording contains an audible pedestrian signal, not a generic road bed.
         // Missing junction data is deliberately silent, even alongside a busy street.
@@ -242,7 +336,19 @@ export function earthSoundscapeEnvironment(
         continue;
     }
     // A missing streamed terrain sample must not resolve to ground-level volume.
-    if (['birds', 'night', 'insects', 'coast', 'river', 'traffic'].includes(clip.category))
+    if (
+      [
+        'birds',
+        'night',
+        'insects',
+        'frogs',
+        'coast',
+        'river',
+        'lake',
+        'harbor',
+        'traffic',
+      ].includes(clip.category)
+    )
       drives.push(identity('host.terrainKnown'));
     ambience.push({
       sound: clip.id,

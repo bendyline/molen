@@ -33,6 +33,7 @@ import {
   aircraftGear,
   type GearState,
   type GearStep,
+  hangingGear,
   initialGearState,
   stepGear,
 } from './aircraft-gear';
@@ -259,6 +260,26 @@ export function setAircraftEngineFailed(
   engines[engine] = { ...current, failed, thrust: failed ? 0 : current.thrust };
   world.patch(aircraft, AircraftState, { engines });
   return true;
+}
+/**
+ * Fuel the aircraft is burning, kg/s, summed over its burning engines exactly as the flight step
+ * burns it: by thrust for a jet (several times more per newton with the afterburner lit), by shaft
+ * power for propeller and rotor engines. `power` is the throttle or collective, 0..1; a governed
+ * helicopter rotor burns by it. For a host's fuel-flow readout; 0 for an aircraft with no engines
+ * running.
+ */
+export function aircraftTotalFuelFlow(
+  spec: AircraftSpec,
+  state: AircraftStateData,
+  power: number,
+): number {
+  const load = spec.model === 'helicopter' ? 0.3 + 0.7 * m.clamp(power, 0, 1) : 1;
+  let flow = 0;
+  for (const engine of aircraftEngines(spec)) {
+    const e = state.engines?.[engine.id];
+    if (e && (e.combustion ?? 0) > 0) flow += aircraftFuelFlow(engine, e, load);
+  }
+  return flow;
 }
 /**
  * Fill the tanks of an aircraft standing on the ground with every engine stopped, as a ground
@@ -855,11 +876,16 @@ export function stepAircraft(
       let held = false;
       if (gearOut >= 1 && aircraftSectionAuthority(spec, s, 'gear') > 0) {
         const standing: GearState = s.wheels
-          ? { spin: [...s.wheels.spin], load: [...s.wheels.load] }
+          ? {
+              spin: [...s.wheels.spin],
+              load: [...s.wheels.load],
+              travel: s.wheels.travel ? [...s.wheels.travel] : legs.legs.map(() => 0),
+            }
           : initialGearState(legs);
         if (t.pos[1] - ground > 1.5 + m.abs(s.velocity[1]) * h * travelScale) {
-          // Well clear of the ground: nothing to ask it.
+          // Well clear of the ground: nothing to ask it, and every strut hangs at its reach.
           standing.load = standing.load.map(() => 0);
+          standing.travel = hangingGear(legs);
         } else {
           const carried = standing.load.reduce((total, load) => total + load, 0);
           const grip = legs.friction * weatherGrip(env.weather) * carried;

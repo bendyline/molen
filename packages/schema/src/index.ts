@@ -3,6 +3,7 @@ import './source-bundle';
 
 export * from './actuators';
 export * from './aircraft';
+export * from './aircraft-gear';
 export type {
   AssetBounds,
   AssetCollision,
@@ -30,6 +31,12 @@ export type {
   AudioZoneData,
   SoundbankDoc,
   SoundEntry,
+  SoundProfile,
+  SoundProfileCabin,
+  SoundProfileLayer,
+  SoundProfileMatch,
+  SoundProfilePerspective,
+  SoundProfilesDoc,
   SoundSource,
   SoundSpatial,
 } from './audio';
@@ -47,10 +54,14 @@ export {
   audioSourceSchema,
   audioWhenSchema,
   audioZoneSchema,
+  resolveSoundProfile,
   SOUND_ID_PATTERN,
+  SOUND_PROFILES_EXAMPLE,
   SOUNDBANK_EXAMPLE,
   soundbankSchema,
+  soundProfilesSchema,
   validateSoundbank,
+  validateSoundProfiles,
 } from './audio';
 export type {
   BoatData,

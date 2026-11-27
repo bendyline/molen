@@ -8,10 +8,13 @@ import {
   createAircraftVisual,
 } from '../src/aircraft';
 import {
+  actionKeys,
   aircraftDeck,
   type ConsoleItem,
   type ConsoleLayoutItem,
   type ConsoleSubject,
+  itemTip,
+  keyName,
   layoutConsole,
   onFootDeck,
   subjectButtons,
@@ -19,7 +22,8 @@ import {
 import { PEDAL_LEAN, PEDAL_VIEW } from '../src/console/camera';
 import { kitCarPedals, kitRudderPedals } from '../src/console/kit';
 import { leanPedals, pedalLean } from '../src/console/pedals';
-import { TouchLever } from '../src/navigation';
+import { placeTip } from '../src/console/tooltip';
+import { navigationInputProfiles, TouchLever } from '../src/navigation';
 
 describe('touch lever', () => {
   it('moves by thumb travel from where the thumb landed, never jumping', () => {
@@ -476,5 +480,72 @@ describe('on foot', () => {
     expect(actions({ kind: 'aircraft' } as ConsoleSubject)).toEqual(['nav-view', 'nav-interact']);
     expect(actions({ kind: 'walk' })).toEqual(['nav-view']);
     expect(actions({ kind: 'free' })).toEqual([]);
+  });
+});
+
+describe('tooltips', () => {
+  const profiles = navigationInputProfiles();
+  /** The keys a tooltip lists for an item, in a profile. */
+  const keysOf = (entry: ConsoleItem, profile: keyof typeof profiles): string[] =>
+    actionKeys(profiles[profile].bindings, itemTip(entry)?.actions ?? []);
+
+  it('names every control of the P-51 and the keys that work it in the cockpit', () => {
+    const { items } = flying(false);
+    for (const entry of items) expect(itemTip(entry)?.label, entry.id).toBeTruthy();
+    const tip = (id: string) => itemTip(item(items, id));
+    expect(tip('stick')?.label).toBe('Stick');
+    expect(tip('throttle')).toMatchObject({ label: 'Throttle', hint: 'Drag up for more power' });
+    expect(tip('pedals')?.label).toBe('Rudder pedals');
+    expect(keysOf(item(items, 'stick'), 'pilot')).toEqual(['W', 'A', 'S', 'D']);
+    expect(keysOf(item(items, 'throttle'), 'pilot')).toEqual(['Z', 'C']);
+    expect(keysOf(item(items, 'pedals'), 'pilot')).toEqual(['Q', 'E']);
+    expect(keysOf(item(items, 'gear'), 'pilot')).toEqual(['G']);
+    expect(keysOf(item(items, 'flaps'), 'pilot')).toEqual(['F']);
+    expect(keysOf(item(items, 'engine'), 'pilot')).toEqual(['I']);
+    // A button's tooltip comes from the button.
+    expect(tip('brakes')).toMatchObject({ label: 'Brakes', actions: ['nav-jump'] });
+    expect(keysOf(item(items, 'brakes'), 'pilot')).toEqual(['Space']);
+    // No key works the parking brake or the mixture: their tooltips list none.
+    expect(keysOf(item(items, 'parking-brake'), 'pilot')).toEqual([]);
+    expect(keysOf(item(items, 'mixture'), 'pilot')).toEqual([]);
+  });
+  it('names the controls on foot and the buttons at the top', () => {
+    for (const kind of ['walk', 'free'] as const)
+      for (const entry of onFootDeck({ kind })) expect(itemTip(entry)?.label).toBeTruthy();
+    const [view, leave] = subjectButtons({ kind: 'aircraft' } as ConsoleSubject);
+    expect(view?.label).toBe('Change view');
+    expect(actionKeys(profiles.drive.bindings, [view?.action ?? ''])).toEqual(['V']);
+    expect(actionKeys(profiles.drive.bindings, [leave?.action ?? ''])).toEqual(['R']);
+  });
+  it('follows remapped keys and names codes as their keycaps read', () => {
+    const bindings = { ...profiles.pilot.bindings, KeyC: 'unused', KeyX: 'nav-throttle-up' };
+    expect(actionKeys(bindings, ['nav-throttle-down', 'nav-throttle-up'])).toEqual(['Z', 'X']);
+    expect(actionKeys({ ShiftLeft: 'a', ShiftRight: 'b' }, ['a', 'b'])).toEqual(['Shift']);
+    expect(
+      [
+        'ArrowUp',
+        'Space',
+        'Digit3',
+        'Numpad4',
+        'NumpadAdd',
+        'ControlLeft',
+        'Mouse0',
+        'F5',
+        'Foo',
+      ].map(keyName),
+    ).toEqual(['↑', 'Space', '3', 'Num 4', 'Num +', 'Ctrl', 'Mouse 1', 'F5', 'Foo']);
+  });
+  it('sits centered above its control, below it at the top, and inside the layer', () => {
+    const bounds = { width: 800, height: 400 };
+    const size = { width: 120, height: 40 };
+    expect(placeTip({ left: 300, top: 250, width: 80, height: 120 }, size, bounds)).toEqual({
+      left: 280,
+      top: 202,
+    });
+    expect(placeTip({ left: 744, top: 12, width: 44, height: 44 }, size, bounds)).toEqual({
+      left: 672,
+      top: 64,
+    });
+    expect(placeTip({ left: 0, top: 250, width: 40, height: 120 }, size, bounds).left).toBe(8);
   });
 });

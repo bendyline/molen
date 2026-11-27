@@ -19,12 +19,17 @@
  * it the view camera every frame, and each time that has moved `step` meters it writes the tufts
  * within reach into three instance batches, which exist from the start (empty and hidden). Only a
  * perspective camera chooses. The batches cast no shadows, and walk collision leaves them out.
+ *
+ * The mask is painted from the map's ground cover, which runs on over a tunnel. Where the host
+ * cuts its drawn ground open down to a bore (a portal's mouth, an open cutting), its `open`
+ * says so and no tuft stands there: they stood on the cut-away hillside's height, in the bore.
  */
 
 import { InstanceBatch } from '@bendyline/molen-client/instancing';
 import * as THREE from 'three';
 import { readTurfRow } from '../kernel/turf';
 import type { TurfCover } from '../kernel/types';
+import { type GroundOpenings, GroundOpeningsWatch } from './ground-openings';
 import { levelMaterial } from './instanced-lod';
 import type { PreparedModel } from './instanced-models';
 
@@ -72,6 +77,12 @@ export interface TurfSource {
    * ground under the camera is asked for instead.
    */
   top?(): number;
+  /**
+   * Ground the host draws open where the cover says grass grows: a tunnel's mouth or cutting,
+   * where the hillside the mask was painted from is cut away down to the bore. No tuft stands
+   * on it (see `GroundOpenings`).
+   */
+  open?: GroundOpenings;
 }
 
 /** Edge of the squares tufts are worked out in, meters. */
@@ -173,6 +184,13 @@ export class TurfObject extends THREE.LOD {
   private readonly chosenAt = new THREE.Vector3(Number.NaN, Number.NaN, Number.NaN);
   /** Tufts by square (`row * columns + column` of `CHUNK` squares); empty squares hold `null`. */
   private readonly chunks = new Map<number, Float32Array | null>();
+  /**
+   * For each square whose ground the host may open (`TurfSource.open`), its tufts' answers:
+   * 1 where the ground under a tuft is opened, and it does not stand.
+   */
+  private readonly opened = new Map<number, Uint8Array>();
+  /** When to ask the host about those squares again. */
+  private readonly watch: GroundOpeningsWatch | undefined;
   private readonly chunkColumns: number;
   private readonly chunkRows: number;
   private mask = new Uint8Array(0);
@@ -199,6 +217,7 @@ export class TurfObject extends THREE.LOD {
     this.band = cover.swards.map((sward) =>
       Math.min(1, Math.max(LEAST_BAND, sward.height / FULL_BAND_HEIGHT)),
     );
+    this.watch = source.open !== undefined ? new GroundOpeningsWatch(source.open) : undefined;
     this.anchorX = source.anchor?.[0] ?? 0;
     this.anchorZ = source.anchor?.[1] ?? 0;
     const width = cover.columns * cover.cell,
@@ -280,9 +299,46 @@ export class TurfObject extends THREE.LOD {
     const local = cameraPosition
       .setFromMatrixPosition(camera.matrixWorld)
       .applyMatrix4(inverseWorld.copy(this.matrixWorld).invert());
-    if (local.distanceToSquared(this.chosenAt) < this.step * this.step) return;
+    // Ground that may be opened is asked about again when the host's openings may have changed,
+    // and the tufts chosen again where an answer did, though the camera has not moved.
+    const reopened = this.opened.size > 0 && this.watch?.due() === true && this.askOpened();
+    if (!reopened && local.distanceToSquared(this.chosenAt) < this.step * this.step) return;
     this.chosenAt.copy(local);
     this.choose(local);
+  }
+
+  /**
+   * Ask the host again about the ground under each tuft of the squares it may open; true when an
+   * answer changed.
+   */
+  private askOpened(): boolean {
+    let changed = false;
+    for (const [key, flags] of this.opened) {
+      const tufts = this.chunks.get(key);
+      if (tufts) changed = this.askTufts(tufts, flags) || changed;
+    }
+    return changed;
+  }
+
+  /** Ask the host about the ground under each of `tufts`, into `flags`; true when one changed. */
+  private askTufts(tufts: Float32Array, flags: Uint8Array): boolean {
+    const open = this.source.open;
+    if (open === undefined) return false;
+    let changed = false;
+    for (let at = 0, i = 0; at < tufts.length; at += STRIDE, i++) {
+      const answer = open.at(
+        tufts[at] as number,
+        (tufts[at + 1] as number) + SINK,
+        tufts[at + 2] as number,
+      )
+        ? 1
+        : 0;
+      if (flags[i] !== answer) {
+        flags[i] = answer;
+        changed = true;
+      }
+    }
+    return changed;
   }
 
   /** Choose and write the tufts within reach of `camera` (this object's frame). */
@@ -343,9 +399,24 @@ export class TurfObject extends THREE.LOD {
           if (tufts === undefined) {
             tufts = this.build(column, row);
             chunks.set(key, tufts);
+            if (
+              tufts !== null &&
+              this.source.open?.near(
+                x0,
+                z0,
+                Math.min(maxX, x0 + CHUNK),
+                Math.min(maxZ, z0 + CHUNK),
+              ) === true
+            ) {
+              const flags = new Uint8Array(tufts.length / STRIDE);
+              this.askTufts(tufts, flags);
+              this.opened.set(key, flags);
+            }
           }
           if (tufts === null) continue;
-          for (let at = 0; at < tufts.length; at += STRIDE) {
+          const opened = this.opened.get(key);
+          for (let at = 0, index = 0; at < tufts.length; at += STRIDE, index++) {
+            if (opened !== undefined && opened[index] === 1) continue;
             const x = tufts[at] as number,
               y = tufts[at + 1] as number,
               z = tufts[at + 2] as number;
@@ -374,10 +445,16 @@ export class TurfObject extends THREE.LOD {
             z0 = minZ + row * CHUNK;
           const dx = Math.max(x0 - camera.x, 0, camera.x - x0 - CHUNK),
             dz = Math.max(z0 - camera.z, 0, camera.z - z0 - CHUNK);
-          if (dx * dx + dz * dz > keep * keep) chunks.delete(key);
+          if (dx * dx + dz * dz > keep * keep) {
+            chunks.delete(key);
+            this.opened.delete(key);
+          }
         }
       }
-    } else if (chunks.size > 0) chunks.clear();
+    } else if (chunks.size > 0) {
+      chunks.clear();
+      this.opened.clear();
+    }
     for (const slot of this.slots) this.publish(slot);
     this.drawn = drawn;
   }
@@ -518,6 +595,7 @@ export class TurfObject extends THREE.LOD {
   dispose(): void {
     for (const slot of this.slots) slot.batch.dispose();
     this.chunks.clear();
+    this.opened.clear();
   }
 }
 

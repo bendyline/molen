@@ -576,12 +576,7 @@ export function buildBeech18(s) {
           m.metal,
         );
     }
-    // Laid on the tapering tail cone (it was half buried in the skin ahead of its centre).
-    const decal = group(body, `Beech18-decal-${side}`, [side * (sample(-2, 1) + 0.006), 2.29, -2]);
-    decal.rotation.y = side * (Math.PI / 2 + Math.atan((sample(-1.7, 1) - sample(-2.3, 1)) / 0.6));
-    const dd = detailKit(decal, decal.name);
-    dd.text('D 18 S', [0, 0, 0], 0.11, 0, m.blue);
-    dd.finish();
+    // Registrations, serials and titles are livery markings (scripts/liveries/aircraft/beech-18.mjs).
   }
   // Taper and six-degree dihedral checked against the manufacturer's wing dimensions. Wing height:
   // head-on photograph (VH-CII, prop hubs anchored) and the C-45 front silhouette both put the
@@ -666,9 +661,14 @@ export function buildBeech18(s) {
     nd.finish();
     const gear = group(body, `Beech18-main-gear-${side}`, [side * 1.9685, 0.94, 2.84]),
       gd = detailKit(gear, gear.name);
+    // The legs fold AFT into the nacelle wells behind the engine (the open well and its fairing
+    // behind each leg in the Smithsonian D18S photos; in flight the tyres show under the middle
+    // of the nacelles). Folded forward they had sat under the engine cowl.
     for (const sign of [-1, 1]) {
       gd.rod([sign * 0.14, 0, 0], [sign * 0.14, -0.55, 0.08], 0.041, m.metal);
-      gd.rod([sign * 0.14, -0.15, -0.48], [sign * 0.14, -0.52, 0.08], 0.025, m.metal);
+      // Drag strut from the axle up to the nacelle floor behind the trunnion; it used to stop
+      // 0.2 m short of the nacelle. It folds up into the well with the leg.
+      gd.rod([sign * 0.14, 0.07, -0.48], [sign * 0.14, -0.52, 0.08], 0.025, m.metal);
     }
     wheel(gd, [0, -0.57, 0.08], 0.35, 0.25, m.rubber, m.metal);
     gd.finish();
@@ -677,8 +677,21 @@ export function buildBeech18(s) {
       source: 'gearPosition',
       property: 'rotation',
       axis: 'x',
-      scale: 1.32,
-      offset: -1.32,
+      scale: -1.6,
+      offset: 1.6,
+    });
+    // The trunnion rides up into the nacelle as the leg folds, so the stowed tyre shows only
+    // its lower third below the nacelle.
+    bindings.push({
+      node: gear.name,
+      source: 'gearPosition',
+      property: 'position',
+      axis: 'y',
+      keys: [
+        [0, 0.25],
+        [0.5, 0],
+        [1, 0],
+      ],
     });
     // Rounded twin fins, outboard rudders and full-span horizontal stabilizer.
     wing(
@@ -828,11 +841,13 @@ export function buildBeech18(s) {
   d.rod([0, 2.76, -0.9], [0, 2.98, -1], 0.01, m.metal);
   d.rod([0, 2.98, -1], [0, 2.52, -4.1], 0.0018, m.dark);
   for (const side of [-1, 1]) {
-    d.rod([side * 0.03, 2.46, 3.86], [side * 0.4, 2.67, 3.51], 0.009, m.dark);
-    d.rod([side * 0.3, 2.61, 3.62], [side * 0.54, 2.73, 3.35], 0.007, m.dark);
+    // Wiper arm and blade at wiper scale (1 cm); at 1.6-1.8 cm they read as frame bars from the seat.
+    d.rod([side * 0.03, 2.46, 3.86], [side * 0.4, 2.67, 3.51], 0.005, m.dark);
+    d.rod([side * 0.3, 2.61, 3.62], [side * 0.54, 2.73, 3.35], 0.0055, m.dark);
   }
   d.finish();
-  const interior = beech18Cockpit(body, m);
+  // The cockpit group sits 0.55 m up and forward (below); its cabin reads the skin in its frame.
+  const interior = beech18Cockpit(body, { ...m, skin: (z, y) => skinX(z + 0.55, y + 0.55) });
   body.getObjectByName('cockpit').position.set(0, 0.55, 0.55);
   cleanGeometry(root);
   return {

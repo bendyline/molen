@@ -190,10 +190,51 @@ describe('random looks', () => {
     expect(count.feminine / n).toBeGreaterThan(0.4);
     expect(count.unspecified / n).toBeGreaterThan(0.05);
     expect(count.unspecified / n).toBeLessThan(0.15);
-    // Facial hair on a feminine-form body stays possible and rare: 0.018 of these looks, against
-    // 0.206 when every look is drawn unsteered.
-    expect(count.mixed).toBeGreaterThan(0);
-    expect(count.mixed / n).toBeLessThan(0.04);
+    // No random look puts facial hair on a feminine-form body (before facial hair followed the
+    // body under `unspecified`, 0.018 of these looks did).
+    expect(count.mixed).toBe(0);
+  });
+
+  it('keep the person consistent under unspecified, drawing only the clothes alike', () => {
+    const body = category('body');
+    const form = (look: FigureLook) =>
+      body.options.find((o) => o.id === look.person.body)?.figure.features?.form;
+    const bodies = new Set<string>();
+    const facial = new Set<string>();
+    const neutralFacial = new Set<string>();
+    const masculineTops = new Set<string>();
+    const n = 6000;
+    for (let i = 0; i < n; i++) {
+      const look = randomFigureLook(`unspecified-${i}`, { steer: 'unspecified' });
+      bodies.add(look.person.body);
+      facial.add(look.person.facialHair);
+      if (form(look) === 'feminine') expect(look.person.facialHair, `${i}`).toBe('facial.none');
+      if (form(look) === 'neutral') neutralFacial.add(look.person.facialHair);
+      if (form(look) === 'masculine') masculineTops.add(look.outfit.top.id);
+    }
+    // Every body shape and every kind of facial hair is still drawn, on a body that suits it,
+    // and the clothes are drawn alike: a masculine-form body may still wear a dress.
+    expect(bodies.size).toBe(body.options.length);
+    expect(facial.size).toBe(category('facialHair').options.length);
+    expect(neutralFacial.size).toBe(category('facialHair').options.length);
+    expect(masculineTops.has('top.dress')).toBe(true);
+    // Crowds cycle the three steers; none of their people mixes the two either.
+    for (const look of figureLookPool('crowd-consistency', { count: 300 }))
+      if (form(look) === 'feminine') expect(look.person.facialHair).toBe('facial.none');
+    // Kept person parts lead: a kept beard with a kept dress (steered by neither) draws a body
+    // that suits the beard.
+    const bearded = setFigureLookOption(
+      setFigureLookOption(randomFigureLook('kept-mixed'), 'facialHair', 'facial.beard'),
+      'top',
+      'top.dress',
+    );
+    for (let i = 0; i < 300; i++) {
+      const next = randomFigureLook(`kept-mixed-${i}`, {
+        keep: { look: bearded, parts: ['facialHair', 'top'] },
+      });
+      expect(next.person.facialHair).toBe('facial.beard');
+      expect(form(next), `${i}`).not.toBe('feminine');
+    }
   });
 
   it('lean the way the parts they keep do', () => {

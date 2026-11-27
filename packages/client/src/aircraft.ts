@@ -7,11 +7,15 @@ import type {
 import * as THREE from 'three';
 import { type AircraftCockpit, createAircraftCockpit } from './aircraft-controls';
 import { createAircraftDamageVisual } from './aircraft-damage';
+import { createAircraftExhaust, jetNozzleOpening, NOZZLE_RESPONSE } from './aircraft-exhaust';
+import { type AircraftGearVisual, createAircraftGearVisual } from './aircraft-gear';
 import { createAircraftPropellers } from './aircraft-propellers';
 
 export * from './aircraft-cockpit-pointer';
 export * from './aircraft-collision';
 export * from './aircraft-controls';
+export * from './aircraft-exhaust';
+export * from './aircraft-gear';
 export * from './aircraft-instruments';
 export * from './pilot-motion';
 
@@ -53,6 +57,12 @@ export interface AircraftVisual {
   /** The spec's exterior `animation` bindings (gear legs and doors, control surfaces). */
   animation?: ModelSignalVisual;
   /**
+   * The model's gear legs, slid along their struts by the travel `state.wheels.travel` reports:
+   * extended in flight, closed at touchdown and under braking. Absent where the model has no
+   * separate legs (gear that is part of the shell, skids).
+   */
+  gear?: AircraftGearVisual;
+  /**
    * The readings the cockpit and exterior were last posed with: telemetry, pilot input and the
    * host's own signals, before derived expressions. A copy of a cockpit part posed from them (the
    * vehicle console) moves exactly as the cockpit does.
@@ -71,7 +81,8 @@ export interface AircraftVisual {
    * behind the canopy, yet it held most of an aircraft's draw calls, and as many again in the
    * shadow pass. Boarded and chase views are always near enough, but within the cabin a part too
    * small to see from the camera (CABIN_DETAIL_ANGLE) leaves the frame through its render layers,
-   * so a binding's or damage's own `visible` is never overridden.
+   * so a binding's or damage's own `visible` is never overridden. The next `update` also turns the
+   * afterburner flames (`spec.visual.exhausts`) to face this camera; call this first.
    */
   updateView(camera: readonly [number, number, number]): void;
   /**
@@ -137,8 +148,19 @@ export function createAircraftVisual(
       if ((object as THREE.Mesh).isMesh) object.userData.walkIgnore = true;
     });
   const cabinRange = Math.max(60, 3 * Math.max(spec.length, spec.span));
+  // Gear legs ride on their struts by the travel the state reports.
+  const struts = createAircraftGearVisual(model, spec, new Set(cabin));
   const damage = createAircraftDamageVisual(model, spec);
   let propellers = createAircraftPropellers(model, spec);
+  // Afterburner flames and tailpipe glow at the spec's nozzle exits, posed in update().
+  const exhaust = createAircraftExhaust(model, spec);
+  // Each variable nozzle's opening as its actuators carry it, and when that was last read.
+  const nozzles: Record<string, number | undefined> = Object.create(null);
+  let nozzleTime: number | undefined;
+  // The camera from the last updateView, in the coordinates of model.position.
+  let viewer: readonly [number, number, number] | undefined;
+  const localViewer = new THREE.Vector3();
+  const inverseTurn = new THREE.Quaternion();
   // Airplane propellers (tiltrotors' included) cross-fade into the disk createAircraftPropellers
   // draws, which follows damage and liveries. Every other rotor (helicopter main and tail rotors,
   // fans a jet binds as rotors) blurs here.
@@ -221,12 +243,15 @@ export function createAircraftVisual(
     cockpit,
     interior,
     animation,
+    ...(struts ? { gear: struts } : {}),
     get signals() {
       return lastSignals;
     },
     update(state, input, altitude, signals, timeSeconds) {
       const gear = state.gearPosition ?? Number(input.gear);
       const flaps = state.flapPosition ?? Number(input.flaps);
+      // Before the bindings pose the gear: some write the very positions the struts moved.
+      struts?.release();
       for (const binding of spec.visual.rotors) {
         const engine = binding.engine === undefined ? undefined : state.engines?.[binding.engine];
         turn(
@@ -264,9 +289,24 @@ export function createAircraftVisual(
       }
       const engineSignals: Record<string, number | undefined> = Object.create(null);
       const bank = spec.engines ?? (spec.engine ? [{ ...spec.engine, id: 'main' }] : []);
+      // Nozzle actuators follow the schedule with a lag; without a clock they arrive at once.
+      const elapsed =
+        timeSeconds !== undefined && nozzleTime !== undefined && timeSeconds >= nozzleTime
+          ? timeSeconds - nozzleTime
+          : undefined;
+      nozzleTime = timeSeconds;
       for (const engine of bank) {
         const reading = state.engines?.[engine.id];
         const prefix = `engines.${engine.id}.`;
+        const scheduled = jetNozzleOpening(engine, reading);
+        if (scheduled !== undefined) {
+          const previous = nozzles[engine.id];
+          nozzles[engine.id] =
+            previous === undefined || elapsed === undefined
+              ? scheduled
+              : previous + (scheduled - previous) * -Math.expm1(-elapsed / NOZZLE_RESPONSE);
+          engineSignals[`${prefix}nozzle`] = nozzles[engine.id];
+        }
         engineSignals[`${prefix}rpmNormalized`] = reading?.rpm;
         engineSignals[`${prefix}rotorRpm`] =
           reading === undefined
@@ -354,6 +394,24 @@ export function createAircraftVisual(
       lastSignals = telemetry;
       interior?.update(telemetry, timeSeconds);
       animation?.update(telemetry, timeSeconds);
+      struts?.update(state, gear);
+      if (exhaust) {
+        const camera = viewer
+          ? localViewer
+              .fromArray(viewer)
+              .sub(model.position)
+              .applyQuaternion(inverseTurn.copy(model.quaternion).invert())
+              .divide(model.scale)
+          : undefined;
+        const density = signals?.airDensity ?? 1.225 * Math.exp(-Math.max(0, altitude) / 8500);
+        exhaust.update(
+          state,
+          nozzles,
+          camera,
+          density / 1.225,
+          timeSeconds ?? performance.now() / 1000,
+        );
+      }
       propellers.update(state, !shadowsOut);
       damage.update(state);
     },
@@ -363,6 +421,7 @@ export function createAircraftVisual(
       if (out !== shadowsOut) castShadows(!out);
     },
     updateView(camera) {
+      viewer = camera;
       if (cabin.length === 0) return;
       const p = model.position;
       const distance = Math.hypot(p.x - camera[0], p.y - camera[1], p.z - camera[2]);

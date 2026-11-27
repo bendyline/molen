@@ -1,10 +1,10 @@
 # Adaptive rendering performance
 
 The world explorer defaults to **Auto (device)** quality: one of six rendering tiers, guessed once
-from what the device reports and then kept, without changing simulation state. It measures frame
-cadence, CPU frame work, and asynchronous GPU time when WebGL timer queries or WebGPU timestamps
-are available, and gives a tier up only when the device plainly cannot run it. Manual Economy,
-Balanced, and High remain available and can be selected without reloading or moving the camera.
+from what the device reports and then kept for the session, without changing simulation state.
+Nothing a frame costs moves it afterwards. Manual Economy, Balanced, and High remain available and
+can be selected without reloading or moving the camera. The embeddable Earth view's `'auto'`
+chooses at the beginning and keeps its choice the same way (see below).
 
 ## Feedback and budgets
 
@@ -19,18 +19,14 @@ of being mistaken for normal rendering. A second pause within a minute of render
 (`pauseRepeatMs`) is a stall rather than a tab resume, and lowers detail one level.
 
 Frame times cannot show a level that streams more than it can hold: that work runs outside the
-frame. A host reports it as `strained` in each sample (the explorer does when half of the
-tiles built over ten seconds had been evicted within the minute before, the terrain stream's
-`thrashedTiles`, while the ground within 2 km of the camera falls behind, or when the view fills
-most of a full terrain cache). Ground built again
-minutes after it was evicted (`rebuiltTiles` counts it too) is a flight coming back, not strain:
-over a session in one region it becomes nearly every tile built. Nor is ground built again while
-the view keeps up: three full turns over downtown Seattle rebuilt two fifths of their tiles within
-a minute of eviction with all of the near ground at its selected detail (the stream's
-`viewCoverage`), and lowering the tier for that took detail off the screen to save worker time.
-Strain blocks upgrades at once and, sustained for `strainDelayMs` (10 s), lowers
-detail with the reason `'streaming'`. `upgradeWorkFraction` (default 0.9) is the share of the
-target that measured frame work must stay under before a step up.
+frame. A host can report it as `strained` in each sample. Strain blocks upgrades at once and,
+sustained for `strainDelayMs` (10 s), lowers detail with the reason `'streaming'`. Neither the
+explorer nor the Earth view reports it: tiles built again soon after their eviction (the terrain
+stream's `thrashedTiles`) are what turning over one place does, three full turns over downtown
+Seattle rebuilt two fifths of their tiles that way with the near ground at its selected detail
+throughout, and a level given up for it took the city off the screen to save worker time.
+`upgradeWorkFraction` (default 0.9) is the share of the target that measured frame work must
+stay under before a step up.
 While content streams, slow frames lower detail only when the measured CPU/GPU frame work is itself
 heavy: streaming work runs outside the frame, and a lower tier would restart it. After a memory
 step, the controller lets that step's lower-detail replacements load (up to the recovery delay)
@@ -40,59 +36,69 @@ first frames carry one-time work (ground refining under the camera, collision tr
 each refinement, models and materials arriving), and measured as overload it stepped a fast
 desktop to the lowest tier before the visitor had moved.
 
-The explorer's Auto does not follow frame times up and down. It starts at
-`earthInitialQualityLevel()` (Low on touch devices and at 2 GiB or less, Medium at 4 GiB, otherwise
-Balanced) and keeps that tier for the session. What a frame costs depends on where the camera is
-and what it is doing more than on the tier: a piloted aircraft weaving over a city crossed the
-controller's thresholds both ways, Balanced to Medium to Balanced to High in four minutes, each
-step a change of resolution, shadows and terrain detail across the whole view, and a slow takeoff
-roll left a fast laptop at the lowest tiers for the rest of the flight.
+## Auto is chosen at the beginning and kept
 
-Three things still lower the tier, one step at a time: displayed content over the memory budget,
-streaming strain, and frames under 30 a second for ten seconds running. Slow frames while content
-loads count only when frame work itself is heavy, and long stalls never do.
+A tier change swaps resolution, shadows, terrain detail and tile budget across the whole view at
+once: every tile in view is given up for a coarser one that has to be built first, and built
+again when the tier comes back. What a frame costs depends on where the camera is, what it is
+doing and what else the machine is doing more than on the tier. Each rule that let the tier
+follow frame times, once a view was under way, lost a flight the world it was flying over:
 
-A tier is two things, and slow frames lower only one of them at first. The tier the view is drawn
-at sets resolution, shadows, clouds, ambient life and how soon a model hands over to a coarser
-one: each changes in place, with nothing to rebuild. The tier the world is built at sets how far
-the ground refines, how many tiles are held, and building and surface quality: a change there
-gives up every tile in view for a coarser one that has to be built first. The first two steps
-slow frames take (as many as the guess has tiers under it, if fewer) lower the drawing alone. A
-P-51 over Seattle with other work on the machine lost two tiers to slow frames in forty seconds,
-and at Low the ground beneath it was the box shells of a tile four times too coarse, with no
-roads, until the tiers came back a minute later and it was all built again; with the world held,
-the same two steps left the ground within 1.5 km at full detail while the frame rate went from 25
-to 45 a second. Only when the drawing has those steps behind it and frames are still slow
-does the world follow, a step at a time, so a device that cannot draw its guess still ends at the
-bottom. Memory and streaming strain are the world's own size and lower both at once. The
-explorer's panel names both when they differ ("Auto · Balanced · drawn at Low"), and
-`#performance-status` carries `data-level` (drawn) and `data-detail-level` (world). `?tier=N`
-holds one tier for both.
+- Followed both ways, a piloted aircraft weaving over a city went Balanced, Medium, Balanced,
+  High in four minutes, each step a visible drop or rebuild.
+- Guessed once but given up for good on slow frames, streaming strain or memory, a long session
+  ran down to Minimum, where a street view shows bare ground with no buildings near and has
+  nothing left to load.
+- With a lowered tier brought back after a minute of calm, a P-51 over Seattle with other work on
+  the machine lost two tiers to slow frames in forty seconds. At Low the ground beneath it was the
+  box shells of a tile four times too coarse, with no roads, until the tiers came back and it was
+  all built again. Turning over downtown did the same through streaming strain.
+- The Earth view, after its calibration, went down a tier after 2.5 s under 50 frames a second and
+  came back after 20 s of headroom, for as long as it ran.
 
-A lowered tier comes
-back one step at a time, never past the guess, once the view has been calm for most of a minute:
-frames at 45 a second or better, frame work within 20 ms, no streaming strain, and displayed
-content within three quarters of the memory budget. A hitch (a frame over 100 ms) costs a couple of
-seconds of that minute rather than restarting it. A tier lost again within three
-minutes of coming back waits twice as long the next time (up to ten minutes), so a device or a
-place that cannot hold it does not flip back and forth. Each lowering used to be for good, and the
-busy moments behind them pass: a ten-minute circle over Seattle lost a tier over downtown and kept
-the lower one at 50 frames a second for the rest of the flight, and a longer session went the same
-way down to Minimum, where a street view shows bare ground with no buildings near and has nothing
-left to load. Nothing raises the tier past the guess: High is a manual preset (Ultra, whose view
-alone holds most of the terrain cache, is reached only with `?tier=5`, which also holds that tier).
-Choosing Auto again in the quality menu makes the guess afresh. Manual presets remain fixed.
+So neither moves once it is under way.
+
+**The explorer** starts at `earthInitialQualityLevel()` (Low on touch devices and at 2 GiB or less,
+Medium at 4 GiB, otherwise Balanced) and keeps that tier: no frame rate lowers it, nothing about
+the stream does, and nothing raises it. A device the guess is wrong for has the quality menu: a
+manual preset is a tier by choice, and choosing Auto again makes the guess afresh. High is a
+manual preset (Ultra, whose view alone holds most of the terrain cache, is reached only with
+`?tier=5`); `?tier=N` holds one tier outright.
+
+**The Earth view** (`quality: 'auto'`) starts at the same guess, no higher than
+`maxQualityLevel` (default 3, Balanced), and calibrates at the beginning: for the first seconds
+after its first view has settled it runs the controller with its quick recovery and cooldown
+(`EARTH_CALIBRATION_QUALITY`: down after 2.5 s of overload, not one burst of streaming as a
+takeoff reveals the view), so a slow device settles on what it can draw. Once a level has held for
+`EARTH_QUALITY_CALIBRATION_MS` (12 s) that is the level for the session, and the controller is not
+asked again (`stats().qualityCalibrating` turns false). `setQuality('auto')` starts over.
+
+Calibration moves two levels differently. The level the view is *drawn* at
+(`stats().qualityLevel`: resolution, shadows, clouds, ambient life, how soon a model hands over
+to a coarser one) follows the controller, since each of those changes in place. The level the
+world is *built* at (`stats().worldQualityLevel`: how far the ground refines, how many tiles are
+held, building and surface quality) follows it upward, for a tablet that starts low and proves
+faster, and is never taken below the level the device started at: a busy first minute on a
+capable machine costs resolution, not the city.
+
+**Memory is the one exception, in both.** What is on show holding more than the memory budget
+(`earthMemoryBudget()`, or a host's `memoryBudget`) for ten seconds running, or more than a
+quarter past it for two, gives one level up, with half a minute for the lower level's tiles to
+take over before the budget is judged again (`createEarthMemoryGuard`). Shorter spells are
+handovers, when a tile and what replaces it are both on show. The level does not come back:
+over the same place it would outgrow the budget again, and each round is the whole view rebuilt.
+Left alone, a view over its budget ends with the tab killed. A host that sets `memoryBudget`
+should size it for the level it wants kept in the densest place it shows. The explorer's panel
+says when this has happened ("Auto · Medium · lowered for memory, kept"), and choosing Auto again
+restores the guess.
+
+The explorer's panel also says how the ground near the camera stands: "ground within 2km 96%
+finished · level 14.8 of 15". Finished means drawn at the detail the view selects, with its
+layers. Coarse ground that is finished is all the view asks for (the tier, the camera's height or
+its speed); coarse ground that is not finished is late.
 
 The explorer applies a tier's resolution, terrain, building, surface and shadow changes over
-separate frames. The embeddable Earth view keeps its own policy: a default ceiling of Balanced
-(`maxQualityLevel: 3`), which hosts can raise, and an initial 12 s calibration.
-
-A level change rebuilds detail across the view, and that burst of work can outlast the controller's
-default cooldown, read as overload, and step down again until the view reaches the lowest level.
-Earth hosts therefore calibrate quickly and then hold: once a level has lasted
-`EARTH_QUALITY_CALIBRATION_MS` (12 s), they replace the controller with one using
-`EARTH_STICKY_QUALITY`, which needs 2.5 s of sustained overload to step down, 20 s of headroom to
-step up, and keeps changes at least 6 s apart.
+separate frames, as the Earth view does when calibration or `setQuality` changes its level.
 
 The explorer applies each tier to drawing-buffer resolution, terrain screen-space error and
 range, selected/resident tile limits, terrain and semantic request concurrency, worldgen cache

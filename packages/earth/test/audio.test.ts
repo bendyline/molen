@@ -108,7 +108,7 @@ describe('createEarthAudio', () => {
   it.each([
     { daylight: 1, wildlife: 'ambience.birds' },
     { daylight: 0, wildlife: 'ambience.crickets' },
-  ])('keeps $wildlife and traffic quiet without a known ground height or while driving', async ({
+  ])('keeps $wildlife and traffic quiet without a known ground height, muffled while driving', async ({
     daylight,
     wildlife,
   }) => {
@@ -145,14 +145,20 @@ describe('createEarthAudio', () => {
       expect(sounds).toContain(wildlife);
       expect(sounds).toContain('ambience.city.traffic');
     };
+    // In a cabin the beds keep playing, muffled by its enclosure (no longer cut off).
+    const expectMuffled = (sounds: string[]) => {
+      expectAudible(sounds);
+      expect(audio.layer.director.currentEnclosure.isolationDb).toBeGreaterThanOrEqual(20);
+    };
     // Unloaded terrain must not default to ground-level volume in an aerial view.
     expectQuiet(after('fly'));
     // Ground level in the mountains is still audible; absolute altitude is irrelevant.
     for (const mode of ['walk', 'fly', 'orbit']) expectAudible(after(mode, 1.7));
-    expectQuiet(after('drive', 1.7));
-    expectQuiet(after('pilot', 1.7));
-    // Leaving the vehicle restores outdoor ambience.
+    expectMuffled(after('drive', 1.7));
+    expectMuffled(after('pilot', 1.7));
+    // Leaving the vehicle opens the enclosure again.
     expectAudible(after('walk', 1.7));
+    expect(audio.layer.director.currentEnclosure.isolationDb).toBe(0);
     // Losing terrain coverage after a valid sample must not turn the volume back up.
     expectQuiet(after('fly', 3200));
     // A single missing sample after climbing must not restart a loud ground loop, even for

@@ -17,6 +17,7 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+import { petalNozzle } from './petal-nozzle.mjs';
 
 export const f16Frame = () => ({
   heli: false,
@@ -54,6 +55,7 @@ export function buildF16B(s) {
     rubber = mat('F16-tire', '#222528');
   const d = detailKit(root, 'F16-airframe'),
     bindings = [],
+    nozzleBindings = [],
     flaps = [],
     ailerons = [];
   // Per-station fuselage sections: the intake is a separate hollow duct below it. Radome rows are
@@ -76,13 +78,45 @@ export function buildF16B(s) {
     [-4.3, 0.63, 1.2, 2.42],
     [-5.25, 0.51, 1.37, 2.3],
   ];
+  // Below the sill the forward fuselage is a full, flat-bottomed body over the intake, not a round
+  // tube: the lower half is a superellipse from the radome seam aft, easing back to round over
+  // the engine bay. A round belly left a waist above the duct with the cockpit tub showing in it.
+  const belly = (z) =>
+    z >= 7.6
+      ? 1
+      : z >= 6.45
+        ? 1 - (0.45 * (7.6 - z)) / 1.15
+        : z >= 2.5
+          ? 0.55
+          : z >= 0
+            ? 0.55 + (0.45 * (2.5 - z)) / 2.5
+            : 1;
+  const section = (j, w, b, t, e) => {
+    const a = (j * Math.PI) / 12,
+      s = Math.sin(a),
+      c = Math.cos(a);
+    if (c >= 0) return [s * w, (t + b) / 2 + (c * (t - b)) / 2];
+    return [
+      Math.sign(s) * Math.pow(Math.abs(s), e) * w,
+      (t + b) / 2 - (Math.pow(-c, e) * (t - b)) / 2,
+    ];
+  };
   const rings = stations.map(([z, w, b, t]) => ({
     z,
-    points: Array.from({ length: 24 }, (_, j) => {
-      const a = (j * Math.PI) / 12;
-      return [Math.sin(a) * w, (t + b) / 2 + (Math.cos(a) * (t - b)) / 2];
-    }),
+    points: Array.from({ length: 24 }, (_, j) => section(j, w, b, t, belly(z))),
   }));
+  // Half-width of the skin at a station and height, for markings laid on the side.
+  const skinX = (z, y) => {
+    const n = Math.max(0, stations.findIndex((st) => st[0] < z) - 1),
+      a = stations[n],
+      b = stations[Math.min(n + 1, stations.length - 1)],
+      f = a[0] === b[0] ? 0 : Math.min(1, Math.max(0, (a[0] - z) / (a[0] - b[0]))),
+      [w, lo, hi] = [1, 2, 3].map((k) => a[k] + (b[k] - a[k]) * f),
+      u = Math.min(1, Math.abs((2 * y - lo - hi) / (hi - lo)));
+    return y >= (lo + hi) / 2
+      ? w * Math.sqrt(1 - u * u)
+      : w * Math.pow(Math.sqrt(1 - Math.pow(u, 2 / belly(z))), belly(z));
+  };
   loft(d, rings, paint, {
     skip: (i, j) => i < 3 || (i >= 4 && i <= 7 && (j < 5 || j >= 19)),
     caps: true,
@@ -104,46 +138,106 @@ export function buildF16B(s) {
       d.rod(p(i, edge), p(i + 1, edge), 0.012, dark);
     }
   // One long two-seat canopy with its central transverse arch; no invented center mullion.
+  // F-16B/D photographs: the transparency runs level from the bow over the rear seat (a low
+  // aft dome put the rear seat's head box through the glass), then an opaque painted fairing
+  // slopes onto the spine. The whole hood lifts about its aft end: no fixed windscreen.
+  const skinTop = (z, x) => {
+    const n = Math.max(0, stations.findIndex((st) => st[0] < z) - 1),
+      a = stations[n],
+      b = stations[Math.min(n + 1, stations.length - 1)],
+      f = a[0] === b[0] ? 0 : Math.min(1, Math.max(0, (a[0] - z) / (a[0] - b[0]))),
+      [w, lo, hi] = [1, 2, 3].map((k) => a[k] + (b[k] - a[k]) * f);
+    return (lo + hi) / 2 + ((hi - lo) / 2) * Math.sqrt(Math.max(0, 1 - (x / w) * (x / w)));
+  };
   const canopy = [
     [6.45, 0.15, 2.35, 2.37],
     [6.05, 0.39, 2.4, 2.7],
     [5.55, 0.49, 2.43, 2.96],
     [4.95, 0.52, 2.45, 3.08],
     [4.2, 0.52, 2.45, 3.1],
-    [3.55, 0.49, 2.45, 3.06],
-    [2.95, 0.43, 2.45, 2.93],
-    [2.5, 0.32, 2.45, 2.66],
-    [2.3, 0.02, 2.44, 2.46],
+    [3.55, 0.5, 2.45, 3.08],
+    [2.95, 0.47, 2.45, 3.03],
+    [2.65, 0.44, 2.45, 2.97],
   ];
-  const cr = canopy.map(([z, w, b, t]) => ({
-    z,
-    points: Array.from({ length: 17 }, (_, i) => {
-      const a = (i * Math.PI) / 16;
-      return [Math.cos(a) * w, b + Math.sin(a) * (t - b)];
-    }),
-  }));
-  loft(d, cr, glass, { caps: false, skip: (_i, j) => j === 16 });
-  for (const i of [0, 4, 8])
+  // Aft of the cockpit opening (z 2.5) the fairing's lower edge sits just under the spine skin.
+  const fairing = [
+    [2.65, 0.44, 2.45, 2.97],
+    [2.5, 0.41, skinTop(2.5, 0.41) - 0.012, 2.91],
+    [2.15, 0.34, skinTop(2.15, 0.34) - 0.012, 2.77],
+    [1.8, 0.25, skinTop(1.8, 0.25) - 0.012, 2.61],
+    [1.4, 0.1, skinTop(1.4, 0.1) - 0.012, 2.47],
+  ];
+  const hinge = [0, fairing.at(-1)[2], fairing.at(-1)[0]];
+  const hood = group(root, 'canopy-opening', hinge),
+    cd = detailKit(hood, 'F16-canopy');
+  const arch = (rows) =>
+    rows.map(([z, w, b, t]) => ({
+      z: z - hinge[2],
+      points: Array.from({ length: 17 }, (_, i) => {
+        const a = (i * Math.PI) / 16;
+        return [Math.cos(a) * w, b + Math.sin(a) * (t - b) - hinge[1]];
+      }),
+    }));
+  const cr = arch(canopy),
+    fr = arch(fairing);
+  loft(cd, cr, glass, { caps: false, skip: (_i, j) => j === 16 });
+  // Glaze the 2 cm nose arch too: left open, head-on it showed the panel top beneath the hood.
+  sheet(
+    cd,
+    cr[0].points.map((q) => [...q, cr[0].z]),
+    glass,
+    [0, 0, 1],
+  );
+  loft(cd, fr, paint, { caps: false, skip: (_i, j) => j === 16 });
+  sheet(
+    cd,
+    fr.at(-1).points.map((q) => [...q, fr.at(-1).z]),
+    paint,
+    [0, 0, -1],
+  );
+  for (const [rows, i, radius] of [
+    [cr, 0, 0.013],
+    [cr, 4, 0.019],
+    [cr, cr.length - 1, 0.016],
+  ])
     outline(
-      d,
-      cr[i].points.map((q) => [...q, cr[i].z]),
-      i === 4 ? 0.019 : 0.013,
+      cd,
+      rows[i].points.map((q) => [...q, rows[i].z]),
+      radius,
       dark,
       false,
     );
   for (const side of [0, 16])
     outline(
-      d,
-      cr.map((r) => [...r.points[side], r.z]),
+      cd,
+      [...cr, ...fr.slice(1)].map((r) => [...r.points[side], r.z]),
       0.016,
       paint,
       false,
     );
+  cd.finish();
+  // The hood's painted skin wears the airframe livery, as panels extracted from it do.
+  for (const mesh of cd.root.children)
+    if (mesh.material === paint)
+      mesh.userData.liverySourceNodes = ['F16-airframe-F16-light-gray', 'F16-airframe'];
+  // The canopy nose and its shoulder quads leave a crescent under the skin's forward opening
+  // edge; this coaming closes it (head-on the panel top showed through), below the line of sight.
+  sheet(
+    d,
+    [5, 4, 3, 2, 1, 0, 23, 22, 21, 20, 19].map((j) => {
+      const [x, y] = rings[4].points[j];
+      // Up to the hood's 2.35 m nose chord, which stands just above the skin arc off centre.
+      return [x, Math.abs(x) < 0.16 ? Math.max(y, canopy[0][2] + 0.005) : y, rings[4].z - 0.01];
+    }),
+    paint,
+    [0, 0, 1],
+  );
   // Close the lower canopy shoulder to the open fuselage ring, retaining a hollow cabin.
-  for (let i = 0; i < canopy.length - 1; i++)
+  const sill = [...canopy, fairing[1]];
+  for (let i = 0; i < sill.length - 1; i++)
     for (const sign of [-1, 1]) {
-      const a = canopy[i],
-        b = canopy[i + 1];
+      const a = sill[i],
+        b = sill[i + 1];
       const shoulder = (z) => {
         const j = stations.findIndex(
           (st, n) => n < stations.length - 1 && z <= st[0] && z >= stations[n + 1][0],
@@ -191,10 +285,13 @@ export function buildF16B(s) {
     intakeSection(0.2, 0.72, 0.72, 1.82),
   ];
   loft(d, intake, paint, { caps: false });
+  // The duct floor climbs toward the engine face (an S-duct), leaving the nose-gear bay beneath
+  // it: the retracted leg and wheel lie inside the intake shell, not in the open duct.
   const inner = [
     intakeSection(4.8, 0.65, 0.88, 1.54),
-    intakeSection(4.1, 0.59, 0.92, 1.57),
-    intakeSection(3.1, 0.51, 1.02, 1.7),
+    intakeSection(4.45, 0.62, 1.0, 1.555),
+    intakeSection(3.85, 0.57, 1.22, 1.6),
+    intakeSection(3.1, 0.51, 1.26, 1.7),
   ];
   loft(d, inner, duct, { caps: false });
   sheet(
@@ -318,17 +415,32 @@ export function buildF16B(s) {
       upper,
       [side, 0, 0],
     );
-    sheet(
-      d,
-      [
-        [x(0.5), 2.15, -4.33],
-        [x(1.08), 1.98, -4.5],
-        [x(1.08), 1.85, -5.3],
-        [x(0.5), 1.85, -5.3],
+    // Speed-brake housings: closed fairings from the fuselage side to the petal hinge at z -4.95,
+    // inboard of the stabilator root. The split petals (articulation) continue them aft to the
+    // nozzle exit; a single sheet running to z -5.3 left the closed petals floating beside it.
+    const housingTop = [
+        [x(0.52), 2.08, -4.3],
+        [x(1.0), 1.93, -4.55],
+        [x(1.0), 1.8975, -4.95],
+        [x(0.54), 1.8975, -4.95],
       ],
-      paint,
-      [0, 1, 0],
-    );
+      housingBottom = [
+        [x(0.52), 1.75, -4.3],
+        [x(1.0), 1.8, -4.55],
+        [x(1.0), 1.8225, -4.95],
+        [x(0.54), 1.8225, -4.95],
+      ];
+    sheet(d, housingTop, paint, [0, 1, 0]);
+    sheet(d, housingBottom, paint, [0, -1, 0]);
+    for (let k = 0; k < 4; k++) {
+      const n = (k + 1) % 4,
+        mid = housingTop[k].map((v, q) => (v + housingTop[n][q]) / 2);
+      quad(d, housingTop[k], housingTop[n], housingBottom[n], housingBottom[k], paint, [
+        mid[0] - x(0.77),
+        0,
+        mid[2] + 4.62,
+      ]);
+    }
     d.rod([x(4.62), 1.92, -1.78], [x(4.62), 1.92, -2.03], 0.006, dark);
     for (const xx of [2.1, 2.6]) d.rod([x(xx), 1.58, -5.23], [x(xx), 1.58, -5.43], 0.004, dark);
   }
@@ -361,18 +473,20 @@ export function buildF16B(s) {
     );
   const rg = group(root, 'F16-rudder', [0, 2.5, -4.64]),
     rd = detailKit(rg, rg.name);
-  for (const side of [-1, 1])
-    sheet(
-      rd,
-      [
-        [side * 0.07, 0, 0],
-        [side * 0.055, 2.34, -0.52],
-        [side * 0.055, 2.34, -1.02],
-        [side * 0.07, 0, -0.33],
-      ],
-      paint,
-      [side, 0, 0],
-    );
+  // A tapered wedge closing to a thin trailing edge; two parallel sheets left an open slot aft.
+  const rudder = (side) => [
+    [side * 0.07, 0, 0],
+    [side * 0.055, 2.34, -0.52],
+    [side * 0.008, 2.34, -1.02],
+    [side * 0.008, 0, -0.33],
+  ];
+  for (const side of [-1, 1]) sheet(rd, rudder(side), paint, [side, 0, 0]);
+  for (const [k, n, normal] of [
+    [0, 3, [0, -1, 0]],
+    [1, 2, [0, 1, 0]],
+    [2, 3, [0, 0.42, -1]],
+  ])
+    quad(rd, rudder(1)[k], rudder(1)[n], rudder(-1)[n], rudder(-1)[k], paint, normal);
   rd.finish();
   bindings.push({
     node: rg.name,
@@ -381,28 +495,35 @@ export function buildF16B(s) {
     axis: 'y',
     scale: 0.4,
   });
-  // Petal nozzle, internal tunnel and recessed turbine disk. No luminous fake flame.
-  const nr = [
-    [-5.23, 0.51],
-    [-5.36, 0.505],
-    [-5.66, 0.435],
-  ];
+  // Petal nozzle, internal tunnel and recessed turbine disk; the afterburner flame is drawn by
+  // the client at the exit (visual.exhausts). The collar is fixed; twenty petals hinged behind it
+  // close toward military power and open at idle and in reheat (petal-nozzle.mjs).
   for (let j = 0; j < 20; j++) {
     const a = (j * Math.PI) / 10,
       b = ((j + 1) * Math.PI) / 10,
       p = (r, ang, z) => [Math.sin(ang) * r, 1.86 + Math.cos(ang) * r, z];
-    for (let n = 0; n < 2; n++)
-      quad(
-        d,
-        p(nr[n][1], a, nr[n][0]),
-        p(nr[n][1], b, nr[n][0]),
-        p(nr[n + 1][1], b, nr[n + 1][0]),
-        p(nr[n + 1][1], a, nr[n + 1][0]),
-        nozzle,
-        [Math.sin(a), Math.cos(a), 0],
-      );
-    d.rod(p(0.508, a, -5.36), p(0.437, a, -5.66), 0.005, dark);
+    quad(d, p(0.51, a, -5.23), p(0.51, b, -5.23), p(0.505, b, -5.36), p(0.505, a, -5.36), nozzle, [
+      Math.sin(a),
+      Math.cos(a),
+      0,
+    ]);
   }
+  const ring = petalNozzle(root, {
+    name: 'F16-nozzle-1',
+    engine: 'engine-1',
+    hinge: [0, 1.86, -5.36],
+    exit: [0, 1.86, -5.66],
+    hingeRadius: 0.499,
+    openRadius: 0.48,
+    closedRadius: 0.4,
+    petals: 20,
+    phase: Math.PI / 20,
+    material: nozzle,
+    overlap: 1.03,
+    rods: [{ from: 0.02, to: 0.98, lift: 0.001, radius: 0.006 }],
+  });
+  // Exterior only: the renderer computes the nozzle signal, which model.signals cannot read.
+  nozzleBindings.push(...ring.bindings);
   d.add(
     new T.CylinderGeometry(0.415, 0.36, 0.55, 32, true).rotateX(Math.PI / 2),
     duct,
@@ -415,12 +536,14 @@ export function buildF16B(s) {
     [1, -1.1811, 0, 0.32385],
     [2, 1.1811, 0, 0.32385],
   ]) {
-    const pivot = [i ? x * 0.48 : 0, i ? 1.12 : 1.33, i ? 0.57 : 4.28];
+    // The nose trunnion sits under the duct floor; the leg swings aft until it lies level in
+    // the bay below the climbing duct, so nothing shows in the inlet mouth with the gear up.
+    const pivot = [i ? x * 0.48 : 0, i ? 1.12 : 0.95, i ? 0.57 : 4.3];
     // The splayed main legs must swing aft/up about mirrored canted trunnions.
     // Rotating them about airframe Z brings the wheels together BELOW the belly.
     // These hinge angles fit this medium-fi shell; they are not maintenance dimensions.
     const frame = group(root, `F16-gear-${i}-hinge`, pivot);
-    let swing = 1.45;
+    let swing = new T.Vector3(0, r - pivot[1], z - pivot[2]).angleTo(new T.Vector3(0, 0, -1));
     if (i) {
       const down = new T.Vector3(x, r, z).sub(new T.Vector3(...pivot));
       const up = new T.Vector3(Math.sign(x) * 0.32, 1.6, -0.46)
@@ -436,13 +559,13 @@ export function buildF16B(s) {
       dd = detailKit(parts, g.name),
       at = (a) => a.map((v, k) => v - pivot[k]);
     parts.quaternion.copy(frame.quaternion).invert();
-    // The nose leg starts at the duct floor, so no strut shows inside the dark inlet mouth.
-    const top = i ? pivot : [0, 0.82, 4.17];
-    dd.rod(at(top), at([x, r + 0.17, z + 0.08]), 0.045, metal);
+    dd.rod(at(pivot), at([x, r + 0.17, z + 0.08]), 0.045, metal);
     dd.rod(at([x, r + 0.17, z + 0.08]), at([x, r, z]), 0.03, metal);
+    // Main side braces; the nose has a torque link down the front of its strut instead, as any
+    // brace ahead of or behind the trunnion would sweep up into the duct on retraction.
     dd.rod(
-      at(i ? [x * 0.2, 1.14, z + 0.72] : [0.15, 0.81, 4.55]),
-      at([x, r + 0.2, z + 0.06]),
+      at(i ? [x * 0.2, 1.14, z + 0.72] : [0.05, 0.55, 4.16]),
+      at([x + (i ? 0 : 0.05), r + 0.2, z + 0.06]),
       0.018,
       metal,
     );
@@ -471,7 +594,7 @@ export function buildF16B(s) {
       }
     }
     if (i) dd.box([0.04, 0.43, 0.78], at([x * 0.8, 0.69, 0.05]), paint);
-    else dd.box([0.04, 0.42, 0.63], at([0.22, 0.84, 4.17]), paint);
+    else dd.box([0.03, 0.4, 0.12], at([0.1, 0.6, 4.2]), paint);
     dd.finish();
     bindings.push({
       node: g.name,
@@ -485,15 +608,13 @@ export function buildF16B(s) {
   // Close-view access panels, panel fasteners, rescue markings and embedded port muzzle opening.
   for (const side of [-1, 1]) {
     for (const z of [6.7, 5.8, 4.9, 3.7, 2.7, 0.4, -1.1, -2.6]) {
-      const w = z > 2 ? 0.6 : 0.74,
-        points = [
-          [side * w, 1.83, z - 0.26],
-          [side * w, 2.11, z - 0.26],
-          [side * w, 2.11, z + 0.26],
-          [side * w, 1.83, z + 0.26],
-        ];
+      // Laid on the skin; fixed offsets left the aft rows floating up to 0.15 m off the side.
+      const on = (zz, y) => [side * (skinX(zz, y) + 0.003), y, zz],
+        edge = (zz, y0, y1) => [0, 1, 2, 3].map((k) => on(zz, y0 + ((y1 - y0) * k) / 3)),
+        points = [...edge(z - 0.26, 1.83, 2.11), ...edge(z + 0.26, 2.11, 1.83)];
       outline(d, points, 0.003, dark);
-      for (const p of points) d.add(new T.SphereGeometry(0.006, 5, 3), metal, p);
+      for (const p of [points[0], points[3], points[4], points[7]])
+        d.add(new T.SphereGeometry(0.006, 5, 3), metal, p);
     }
     const yaw = (side * Math.PI) / 2;
     d.text('RESCUE', [side * 0.61, 2.12, 5.08], 0.055, yaw, d.ivory);
@@ -545,10 +666,11 @@ export function buildF16B(s) {
     enginePoints: [{ id: 'engine-1', position: [0, 1.86, -4.6] }],
     visual: {
       rotors: [],
+      exhausts: [ring.exhaust(root)],
       gearNodes: [],
       flaps,
       ailerons,
-      animation: { bindings },
+      animation: { bindings: [...bindings, ...nozzleBindings] },
       interior,
     },
     modelSignals: {
@@ -1015,7 +1137,8 @@ function f16Cockpits(root, m) {
     // Side consoles, reclined seat, footwell and elbow-supported force-sensing sidestick.
     const seatZ = rear ? 2.9 : 4.55,
       base = rear ? 1.58 : 1.46;
-    d.box([0.86, 0.035, 1.34], [0, base, seatZ + 0.13], m.dark);
+    // The floor stays inside the narrowing belly (a full-width plate poked out below it).
+    d.box([rear ? 0.86 : 0.56, 0.035, 1.34], [0, base, seatZ + 0.13], m.dark);
     for (const side of [-1, 1]) {
       d.box([0.155, 0.23, 1.08], [side * 0.39, base + 0.27, seatZ + 0.13], panel);
       for (let j = 0; j < 4; j++) {
@@ -1122,18 +1245,29 @@ function f16Cockpits(root, m) {
       });
     }
   }
-  // Dark inner tub panels close the aperture down to the floor, leaving no view through skin seams.
+  // Dark inner tub panels close the aperture down to the floor, leaving no view through skin
+  // seams. Below the consoles they slope in with the belly: a vertical wall down to floor level
+  // stood outside the skin and showed as a grey band above the intake from outside.
   for (const side of [-1, 1]) {
     sheet(
       d,
       [
-        [side * 0.52, 1.43, 2.45],
-        [side * 0.52, 1.43, 5.9],
+        [side * 0.52, 1.75, 2.45],
+        [side * 0.52, 1.75, 5.9],
         [side * 0.52, 2.12, 5.9],
         [side * 0.52, 2.12, 2.45],
       ],
       panel,
       [-side, 0, 0],
+    );
+    quad(
+      d,
+      [side * 0.25, 1.46, 2.45],
+      [side * 0.25, 1.46, 5.9],
+      [side * 0.52, 1.75, 5.9],
+      [side * 0.52, 1.75, 2.45],
+      panel,
+      [-side, 1, 0],
     );
     d.rod([side * 0.48, 2.12, 2.5], [side * 0.48, 2.12, 5.8], 0.022, m.dark);
   }

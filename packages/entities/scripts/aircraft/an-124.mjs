@@ -60,6 +60,29 @@ function hinge(root, name, stations, material, bindings, source, scale) {
   }
   bindings.push({ node: name, source, property: 'rotation', axis: 'x', scale });
 }
+/** A loft target whose faces point inward: intake lips and ducts are seen from inside, where an
+ * outward-facing, single-sided lip was culled and showed the cowl's inner skin instead. */
+const inward = (d) => ({
+  add: (geometry, material, at) => {
+    const normal = geometry.getAttribute('normal');
+    if (normal)
+      for (let i = 0; i < normal.count; i++)
+        normal.setXYZ(i, -normal.getX(i), -normal.getY(i), -normal.getZ(i));
+    if (geometry.index) {
+      const a = geometry.index.array;
+      for (let i = 0; i < a.length; i += 3) [a[i + 1], a[i + 2]] = [a[i + 2], a[i + 1]];
+    } else
+      for (const attribute of Object.values(geometry.attributes))
+        for (let i = 0; i < attribute.count; i += 3)
+          for (let c = 0; c < attribute.itemSize; c++) {
+            const t = attribute.array[(i + 1) * attribute.itemSize + c];
+            attribute.array[(i + 1) * attribute.itemSize + c] =
+              attribute.array[(i + 2) * attribute.itemSize + c];
+            attribute.array[(i + 2) * attribute.itemSize + c] = t;
+          }
+    return d.add(geometry, material, at);
+  },
+});
 export function buildAn124(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -68,7 +91,6 @@ export function buildAn124(s) {
     metal = mat('AN124-alloy', '#acb5b8', { metalness: 0.7 }),
     seam = mat('AN124-seam', '#78858c'),
     rubber = mat('AN124-tire', '#171d20'),
-    blue = mat('AN124-stripe', '#236b9b'),
     glass = mat('AN124-glass', '#a5c2ca', {
       transparent: true,
       opacity: 0.13,
@@ -445,9 +467,14 @@ export function buildAn124(s) {
       paint,
       { caps: false },
     );
-    loft(d, [ring(front, 1.25), ring(front - 0.14, 1.15), ring(front - 0.75, 1.12)], metal, {
-      caps: false,
-    });
+    loft(
+      inward(d),
+      [ring(front, 1.25), ring(front - 0.14, 1.15), ring(front - 0.75, 1.12)],
+      metal,
+      {
+        caps: false,
+      },
+    );
     d.add(new T.CircleGeometry(1.12, 32), dark, [x, cy, front - 0.91]);
     const fan = group(root, `AN124-engine-fan-${i + 1}`, [x, cy, front - 0.82]),
       fd = detailKit(fan, fan.name);
@@ -609,19 +636,8 @@ export function buildAn124(s) {
         0.015,
         seam,
       );
-    // Original two-tone stripe; no operator identity or photographic texture.
-    const stripe = rings.slice(3, 12).map((r) => r.z);
-    for (let j = 0; j < stripe.length - 1; j++)
-      quad(
-        d,
-        skin(side, 5.15, stripe[j], 0.025),
-        skin(side, 5.15, stripe[j + 1], 0.025),
-        skin(side, 5.7, stripe[j + 1], 0.025),
-        skin(side, 5.7, stripe[j], 0.025),
-        blue,
-        [side, 0, 0],
-      );
-    d.text('AN-124', [side * 4.01, 6.7, 13.8], 0.48, (side * Math.PI) / 2, blue);
+    // Cheatlines, titles and registrations are operator paint: they live in the liveries
+    // (packages/entities/scripts/liveries/aircraft/an-124.mjs), not in the geometry.
   }
   for (const i of [6, 7, 9, 11, 13]) {
     const r = rings[i];
@@ -918,16 +934,21 @@ function cockpit(root, m) {
   });
   // Glareshield radios/autoflight housings, separate from the roof-mounted panel.
   // Housings sit under the raked windshield glass, brought aft and up with the panel.
-  d.box([2.5, 0.13, 0.22], [0, 8.96, 28.14], m.dark);
-  d.box([1.2, 0.22, 0.2], [0, 9.08, 28.13], m.dark);
+  // The hood sits on the panel's top edge: hung lower, it hid the top instrument row, attitude
+  // indicators included, from the pilots' eyes. The radio heads stand on it, inboard of the
+  // pilots' line ahead; the navigation head hangs from the windshield header above the centre
+  // post, as the upper centre panel does in the flight-deck photograph (at eye height it blocked
+  // the view ahead).
+  d.box([2.1, 0.12, 0.18], [0, 9.095, 28.11], m.dark);
+  d.box([1.12, 0.12, 0.15], [0, 9.215, 28.105], m.dark);
   for (const side of [-1, 1]) {
-    d.box([0.57, 0.2, 0.025], [side * 0.31, 9.19, 28.04], side > 0 ? m.dark : face);
-    d.box([0.27, 0.06, 0.008], [side * 0.31, 9.23, 28.02], black);
-    d.text('--', [side * 0.31, 9.23, 28.01], 0.018, Math.PI, ink);
-    for (let j = 0; j < 4; j++) pt.knob(side * 0.31 - 0.21 + j * 0.14, 9.14, 28.01, 0.018);
+    d.box([0.54, 0.115, 0.025], [side * 0.29, 9.215, 28.02], side > 0 ? m.dark : face);
+    d.box([0.27, 0.045, 0.008], [side * 0.29, 9.235, 28.003], black);
+    d.text('--', [side * 0.29, 9.235, 27.998], 0.018, Math.PI, ink);
+    for (let j = 0; j < 4; j++) pt.knob(side * 0.29 - 0.2 + j * 0.133, 9.185, 27.995, 0.016);
   }
-  d.box([0.36, 0.16, 0.09], [0, 9.39, 27.9], m.dark);
-  d.text('NAV --', [0, 9.39, 27.85], 0.02, Math.PI, ink, 'display');
+  d.box([0.36, 0.16, 0.09], [0, 9.65, 27.54], m.dark);
+  d.text('NAV --', [0, 9.65, 27.49], 0.02, Math.PI, ink, 'display');
   // Long pedestal with four tall ivory levers, low radar scopes and offset flap handle.
   const ped = group(cabin, 'AN124-pedestal', [0, 8.37, 27.05]);
   ped.rotation.x = Math.PI / 2;
@@ -1011,7 +1032,9 @@ function cockpit(root, m) {
     }
     ellipsoid(fd, [0, 0, -0.01], [0.022, 0.022, 0.03], m.dark, 8);
     fd.finish();
-    d.box([0.36, 0.012, 0.26], [side * 1.15, 9.45, 27.55], visor).rotation.x = -0.43;
+    // Stowed under the roof just behind the windscreen header, above the pilot's head and tilted
+    // with the roof's slope (at eye height they hung in front of his forehead).
+    d.box([0.36, 0.012, 0.26], [side * 0.95, 9.56, 27.22], visor).rotation.z = -side * 0.2;
   }
   // Columns, U-shaped handwheels, pedal pairs and six seats.
   // The pilots sit on a raised platform: their eye stands level with the windshield, far above the

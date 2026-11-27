@@ -81,8 +81,15 @@ describe('Seattle PMTiles tunnel integration', () => {
       const clearance = sampleTerrainTunnel(root, seamX, 36, z);
       expect(clearance).toBeDefined();
       if (!clearance) throw new Error('Mount Baker bore is missing at the seam');
-      expect(clearance.ceiling - clearance.floor).toBeCloseTo(6.5);
+      // The seam lies a few meters short of the portal, where the hillside has not yet closed
+      // over the roof: an open cutting there, its walls as high as the ground beside them.
+      expect(clearance.ceiling - clearance.floor).toBeGreaterThanOrEqual(6.5);
       floors.push(clearance.floor);
+      // Inside the ridge the bore has its clear height under a roof, on its straight grade.
+      if (x === 5252) {
+        const inside = sampleTerrainTunnel(root, seamX - 50, 36, z);
+        expect((inside?.ceiling ?? 0) - (inside?.floor ?? 0)).toBeCloseTo(6.5);
+      }
       expect(sampleTerrainTunnel(root, seamX, 100, z)).toBeUndefined();
       renderer.disposeTile?.(object);
     }

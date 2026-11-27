@@ -2357,6 +2357,30 @@ registerComponent(
       .tuple([num, num, num, num])
       .optional()
       .describe('With wheels on struts: load on each wheel in newtons, in the same order.'),
+    wheelTravel: z
+      .tuple([num, num, num, num])
+      .optional()
+      .describe(
+        "With wheels on struts: how far the road holds each wheel up its strut from the static ride height, in meters and the same order. Positive is compressed; a wheel that hangs clear of the road is at the strut's full reach below it.",
+      ),
+    wheelRoad: z
+      .tuple([num, num, num, num])
+      .optional()
+      .describe(
+        'With wheels on struts, on the road: how far the road under each wheel stands above the plane bodyHeave, bodyPitch and bodyRoll are measured from, in meters and the same order. Absent on a level road.',
+      ),
+    wheelRoadRate: z
+      .tuple([num, num, num, num])
+      .optional()
+      .describe(
+        'With wheels on struts, on the road: how fast the road under each wheel is rising as its tire follows it, in meters per second and the same order. Absent on a level road.',
+      ),
+    wheelSpent: z
+      .tuple([z.boolean(), z.boolean(), z.boolean(), z.boolean()])
+      .optional()
+      .describe(
+        'With wheels on struts: true for each wheel whose strut the road closed solid and which has not yet opened to its ride height again; it opens slowly. Present only while there is one.',
+      ),
     freeBody: z
       .object({
         velocity: z
@@ -2862,7 +2886,7 @@ const helicopterPhysicsSchema = z.strictObject(
       .positive()
       .optional()
       .describe(
-        'Sea-level TAS for estimated retreating-blade onset, m/s; decreases with density and rotor RPM.',
+        'Sea-level TAS the type is not to exceed, m/s: on a rotor block the retreating blades stall past it and the assist holds it; on the response model drag rises from it.',
       ),
     rotorDiscs: num
       .int()
@@ -2986,7 +3010,7 @@ const helicopterPhysicsSchema = z.strictObject(
               .tuple([num, num])
               .optional()
               .describe(
-                'Blade pitch at full right and full left pedal, radians. Default -0.14 and 0.42.',
+                'Blade pitch at full right and full left pedal, radians. Default -0.14 and 0.42; a fan (eight blades or more) -0.35 and 0.75.',
               ),
           })
           .optional()
@@ -3398,6 +3422,37 @@ const aircraftSpecSchema = z
                 .describe('Engine id driving this propeller; omitted follows the first engine.'),
             }),
           ),
+          exhausts: z
+            .array(
+              z.strictObject(
+                describedFields({
+                  engine: aircraftEngineId.describe('The jet engine this nozzle belongs to.'),
+                  position: vec3.describe('Center of the nozzle exit, model coordinates (m).'),
+                  radius: num
+                    .positive()
+                    .describe('Exit radius fully open (full reheat), or of a fixed nozzle (m).'),
+                  closedRadius: num
+                    .positive()
+                    .optional()
+                    .describe(
+                      "Exit radius of a variable nozzle closed to its minimum (military power); the exit follows the engine's nozzle signal between the two.",
+                    ),
+                  direction: vec3
+                    .optional()
+                    .describe(
+                      "Direction the exhaust leaves in; default the reverse of the engine's thrust axis.",
+                    ),
+                  aspect: num
+                    .positive()
+                    .optional()
+                    .describe('Width over height of a rectangular (2-D) nozzle exit; default 1.'),
+                }),
+              ),
+            )
+            .optional()
+            .describe(
+              'Jet nozzle exits the client draws the afterburner flame and tailpipe glow at.',
+            ),
           gearNodes: z
             .array(z.string().min(1))
             .describe('Nodes hidden while the landing gear is fully up.'),
@@ -3504,6 +3559,25 @@ const aircraftSpecSchema = z
           message: 'Engine ids must be unique.',
         });
       ids.add(engine.id);
+    }
+    for (const [index, exhaust] of (value.visual.exhausts ?? []).entries()) {
+      const engine = value.engines
+        ? value.engines.find((candidate) => candidate.id === exhaust.engine)
+        : exhaust.engine === 'main'
+          ? value.engine
+          : undefined;
+      if (engine?.propulsion !== 'jet')
+        ctx.addIssue({
+          code: 'custom',
+          path: ['visual', 'exhausts', index, 'engine'],
+          message: 'An exhaust must name one of the aircraft’s jet engines.',
+        });
+      if (exhaust.closedRadius !== undefined && exhaust.closedRadius > exhaust.radius)
+        ctx.addIssue({
+          code: 'custom',
+          path: ['visual', 'exhausts', index, 'closedRadius'],
+          message: 'A closed nozzle cannot be wider than the open one.',
+        });
     }
     exclusiveAnimationChannels(value.visual, ctx, ['visual']);
     const partIds = new Set<string>();
@@ -3909,6 +3983,12 @@ registerComponent(
       .object({
         spin: z.array(num).describe('Wheel speeds in radians per second, one per leg.'),
         load: z.array(num).describe('Load on each leg in newtons.'),
+        travel: z
+          .array(num)
+          .optional()
+          .describe(
+            "How far the ground holds each leg's strut closed from where it rests, in meters: positive compressed, negative extended, and at the strut's full reach below rest where the wheel hangs clear.",
+          ),
       })
       .optional()
       .describe(
@@ -3934,7 +4014,7 @@ registerComponent(
       .max(1)
       .optional()
       .describe(
-        'Airplane pre-stall and stalled-wing buffet, 0..1: a cue to shake the view, starting a few degrees before the stall.',
+        'Pre-stall and stalled-wing buffet, 0..1: a cue to shake the view, starting a few degrees before the stall. On a helicopter with a rotor block, its retreating blades.',
       ),
     greyout: num
       .min(0)

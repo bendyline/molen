@@ -315,7 +315,20 @@ export function buildC130J(s) {
     for (let i = 0; i < noseStations.length - 1; i++) {
       const fore = noseStations[i],
         aft = noseStations[i + 1];
-      if (fore.z === aft.z) continue;
+      if (fore.z === aft.z) {
+        // Two samplings of one section meet at a window station: zip the slivers between their
+        // chords shut, or the hold liner shows through an arch of cracks over the roof.
+        const c = (section(fore.z, 2) + section(fore.z, 3)) / 2,
+          order = (q) => Math.atan2(q[0], q[1] - c),
+          at = (q) => [sign * q[0], q[1], fore.z],
+          A = fore.points,
+          B = aft.points;
+        for (let a = 0, b = 0; a < A.length - 1 || b < B.length - 1; )
+          if (b >= B.length - 1 || (a < A.length - 1 && order(A[a + 1]) <= order(B[b + 1])))
+            facet(paint, at(A[a]), at(A[++a]), at(B[b]), c);
+          else facet(paint, at(A[a]), at(B[++b]), at(B[b - 1]), c);
+        continue;
+      }
       const mid = (fore.z + aft.z) / 2,
         centre = (section(mid, 2) + section(mid, 3)) / 2,
         lit = fore.zone !== 'plain' && aft.zone !== 'plain';
@@ -377,7 +390,8 @@ export function buildC130J(s) {
     }
     for (const z of [midZ, aftZ]) frame([topRail(z), atLevel(dividerY)(z), atLevel(sillY)(z)]);
     // Wipers on the flanking panes and the two pitot masts on the cheek, as photographed.
-    d.rod(onCrown(0.74, 13.0), onCrown(0.74, 12.82), 0.011, dark);
+    // A slim arm parked beside the outer post (a 2 cm rod read as a post from the seat).
+    d.rod(onCrown(0.75, 13.0), onCrown(0.75, 12.82), 0.0065, dark);
     for (const y of [2.02, 2.36]) {
       const root = [side * section(12.85, 1), y, 12.85];
       d.rod(root, [root[0] + side * 0.1, y + 0.03, 13.12], 0.013, metal);

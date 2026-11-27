@@ -22,6 +22,7 @@
  * is replaced by a larger one with the same flags. Only perspective cameras choose: a sun's orthographic shadow
  * camera sees what the view camera chose. Walk collision leaves the batches out
  * (`userData.walkIgnore`): they change as the camera moves, and a walker passes through brush.
+ * A plant whose root stands on ground the host opens (`open`, a tunnel's mouth) is not drawn.
  *
  * Related: `../kernel/scatter.ts` (`crowns` rules, `ScatterSample.near`), `../kernel/types.ts`
  * (`NearPlacements`), `./instanced-lod.ts` (the rest of the scatter, and `levelMaterial`).
@@ -30,6 +31,7 @@
 import { InstanceBatch } from '@bendyline/molen-client/instancing';
 import * as THREE from 'three';
 import { type NearPlacements, PLACEMENT_STRIDE } from '../kernel/types';
+import { type GroundOpenings, GroundOpeningsWatch } from './ground-openings';
 import { levelMaterial } from './instanced-lod';
 import type { PreparedModel } from './instanced-models';
 
@@ -44,6 +46,11 @@ export interface NearPlacementOptions {
   detail?: number;
   /** Meters the camera moves before the plants are chosen again (default 2). */
   step?: number;
+  /**
+   * Ground the host opens under the plants (a tunnel's mouth or cutting): a plant whose root
+   * stands on it is not drawn (see `GroundOpenings`).
+   */
+  open?: GroundOpenings;
 }
 
 /**
@@ -123,6 +130,11 @@ export class NearPlacementObject extends THREE.LOD {
   /** Instances are written relative to the grid's middle, so matrices stay small. */
   private readonly anchorX: number;
   private readonly anchorZ: number;
+  /** The plants standing where the host may open the ground, and which of them it has (1). */
+  private readonly watched: Uint32Array;
+  private readonly opened: Uint8Array;
+  private readonly open: GroundOpenings | undefined;
+  private readonly watch: GroundOpeningsWatch | undefined;
 
   constructor(
     readonly placements: NearPlacements,
@@ -141,6 +153,21 @@ export class NearPlacementObject extends THREE.LOD {
     const { cell, columns, rows, originX, originZ, count, data } = placements;
     this.anchorX = originX + (columns * cell) / 2;
     this.anchorZ = originZ + (rows * cell) / 2;
+    // Plants in cells the host may open the ground of are asked about; the rest never are.
+    const open = options.open;
+    const watched: number[] = [];
+    if (open !== undefined)
+      for (let k = 0; k < columns * rows; k++) {
+        const x0 = originX + (k % columns) * cell,
+          z0 = originZ + Math.floor(k / columns) * cell;
+        if (!open.near(x0, z0, x0 + cell, z0 + cell)) continue;
+        for (let i = placements.start[k] as number; i < (placements.start[k + 1] as number); i++)
+          watched.push(i);
+      }
+    this.open = watched.length > 0 ? open : undefined;
+    this.watch = this.open !== undefined ? new GroundOpeningsWatch(this.open) : undefined;
+    this.watched = Uint32Array.from(watched);
+    this.opened = new Uint8Array(this.open !== undefined ? count : 0);
     // Each plant's reach: its crown's own place in the band when the batch carries it (a ground
     // painting the crowns reads the same value), else one drawn from its position.
     this.reaches = new Float32Array(count);
@@ -250,9 +277,31 @@ export class NearPlacementObject extends THREE.LOD {
     const local = cameraPosition
       .setFromMatrixPosition(camera.matrixWorld)
       .applyMatrix4(inverseWorld.copy(this.matrixWorld).invert());
-    if (local.distanceToSquared(this.chosenAt) < this.step * this.step) return;
+    // Plants where the ground may be opened are asked about again when the host's openings may
+    // have changed, and chosen again where an answer did, though the camera has not moved.
+    const reopened = this.watch?.due() === true && this.askOpened();
+    if (!reopened && local.distanceToSquared(this.chosenAt) < this.step * this.step) return;
     this.chosenAt.copy(local);
     this.choose(local);
+  }
+
+  /** Ask the host about the ground under each watched plant; true when an answer changed. */
+  private askOpened(): boolean {
+    const open = this.open;
+    if (open === undefined) return false;
+    const data = this.placements.data;
+    let changed = false;
+    for (const i of this.watched) {
+      const at = i * PLACEMENT_STRIDE;
+      const answer = open.at(data[at] as number, data[at + 1] as number, data[at + 2] as number)
+        ? 1
+        : 0;
+      if (this.opened[i] !== answer) {
+        this.opened[i] = answer;
+        changed = true;
+      }
+    }
+    return changed;
   }
 
   /** Choose and write the plants within reach of `camera` (this object's frame). */
@@ -282,6 +331,7 @@ export class NearPlacementObject extends THREE.LOD {
         const k = row * columns + column;
         const end = start[k + 1] as number;
         for (let i = start[k] as number; i < end; i++) {
+          if (this.opened[i] === 1) continue;
           const at = i * PLACEMENT_STRIDE;
           const x = data[at] as number,
             y = data[at + 1] as number,

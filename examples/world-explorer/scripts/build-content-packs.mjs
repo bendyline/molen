@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { buildPack } from '@bendyline/molen-pack/node';
 import { buildEntityPack } from './build-entity-pack.mjs';
 import { buildRegionalPacks } from './build-regional-packs.mjs';
+import { CONTENT_PACKS } from './refresh-content-packs.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const content = resolve(root, '../../content');
@@ -18,7 +19,7 @@ const outDir = resolve(root, 'public/packs');
 const compression = process.env.MOLEN_PACK_COMPRESSION === 'store' ? 'store' : undefined;
 
 await buildPlacementCatalogs();
-for (const name of ['entities', 'earth', 'ecology', 'wildlife', 'sky', 'sounds', 'glyphs-kyoto']) {
+for (const name of CONTENT_PACKS) {
   const build = name === 'entities' ? buildEntityPack : buildPack;
   const built = await build(resolve(content, name), { outDir, compression });
   console.log(`${built.manifest.id}: ${built.file} (${Math.round(built.size / 1024)} KB)`);

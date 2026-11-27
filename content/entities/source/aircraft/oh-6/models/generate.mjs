@@ -13,7 +13,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as T from 'three';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
-import { mergeGeometries, mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { completeCockpitControls } from '../../../../../../packages/entities/scripts/aircraft/cockpit-controls.mjs';
 import {
   embedCockpitTextures,
@@ -21,7 +21,6 @@ import {
   writeCockpitTextures,
 } from '../../../../../../packages/entities/scripts/aircraft/cockpit-surfaces.mjs';
 import { addRivetRows } from '../../../../../../packages/entities/scripts/vehicle-detail.mjs';
-import { instrumentParts } from './instruments.mjs';
 import { addInterior } from './interior.mjs';
 
 globalThis.FileReader = class {
@@ -236,7 +235,6 @@ const api = {
   red,
   glass,
 };
-const { text } = instrumentParts(api);
 
 /**
  * TM 55-1520-214-23 / NPS fuselage station diagram, traced at 7.18 px/in along the body and
@@ -464,7 +462,9 @@ const doorField = polygonField(smoothLoop(doorWindow)),
   roofField = polygonField(roofPanel);
 const POST = 0.85,
   RAIL = 0.72,
-  VENT = 5.2;
+  VENT = 5.2,
+  /** Cabin lining depth inside the skin, metres. */
+  LINING = 0.014;
 const chin = (x) => 9.5 + 10.5 * Math.pow(clamp((x - VENT) / 19, 0, 1), 2.2);
 const glazing = [
   {
@@ -526,7 +526,7 @@ function split(polygon, field) {
       if (v <= 0 === fa <= 0) lo = mid;
       else hi = mid;
     }
-    const cut = { q: lerp(a.q, b.q, lo), t: lerp(a.t, b.t, lo) };
+    const cut = { q: lerp(a.q, b.q, lo), t: lerp(a.t, b.t, lo), cut: true };
     inside.push(cut);
     outside.push(cut);
   });
@@ -562,6 +562,39 @@ function cabin(parent) {
       if (facing) dst.indices.push(start, start + i, start + i + 1);
       else dst.indices.push(start, start + i + 1, start + i);
   };
+  // The lining sits LINING inside the skin, while the glass lies on the skin itself: past every
+  // lining edge an eye in the cabin saw the back of the one-sided skin, which culls, and so sky
+  // and the rotor through a thin slot along each frame. Each panel edge cut by a glazing outline
+  // gets the frame's own reveal, skin to lining, facing into the window it frames.
+  const reveal = (polygon) => {
+    const dst = buffer('cabin-interior'),
+      centre = new T.Vector3();
+    for (const p of polygon) centre.add(skinPosition(p.q, p.t));
+    centre.divideScalar(polygon.length);
+    for (let i = 0; i < polygon.length; i++) {
+      const a = polygon[i],
+        b = polygon[(i + 1) % polygon.length];
+      if (!a.cut || !b.cut) continue;
+      const pa = skinPosition(a.q, a.t),
+        pb = skinPosition(b.q, b.t);
+      if (pa.distanceToSquared(pb) < 1e-10) continue;
+      const na = skinNormal(a.q, a.t),
+        nb = skinNormal(b.q, b.t),
+        ia = pa.clone().addScaledVector(na, -LINING),
+        ib = pb.clone().addScaledVector(nb, -LINING),
+        normal = pb.clone().sub(pa).cross(na.clone().add(nb)).normalize();
+      if (normal.dot(pa.clone().add(pb).multiplyScalar(0.5).sub(centre)) < 0) normal.negate();
+      const start = dst.positions.length / 3;
+      for (const p of [pa, pb, ib, ia]) {
+        dst.positions.push(p.x, p.y, p.z);
+        dst.normals.push(normal.x, normal.y, normal.z);
+      }
+      const face = pb.clone().sub(pa).cross(ia.clone().sub(pa));
+      if (face.dot(normal) > 0)
+        dst.indices.push(start, start + 1, start + 2, start, start + 2, start + 3);
+      else dst.indices.push(start, start + 2, start + 1, start, start + 3, start + 2);
+    }
+  };
   for (let j = 0; j < rows; j++)
     for (let i = 0; i < columns; i++) {
       const q0 = (top * j) / rows,
@@ -587,7 +620,10 @@ function cabin(parent) {
       if (rest?.length > 2) {
         emit('cabin-panels', rest);
         // The lining stops at the aft bulkhead; nothing behind it can be seen from the cabin.
-        if (28 + q0 * q0 < 126) emit('cabin-interior', rest, 0.014);
+        if (28 + q0 * q0 < 126) {
+          emit('cabin-interior', rest, LINING);
+          reveal(rest);
+        }
       }
     }
   for (const [name, data] of buffers) {
@@ -818,14 +854,6 @@ function boomSection(sta) {
     center = crown - radius,
     fair = clamp((sta - 172) / 26, 0, 1);
   return { crown, keel, breadth, radius, center, lower: lerp(1.6, 2, fair) };
-}
-function boomHalf(sta, wl) {
-  const s = boomSection(sta),
-    up = wl >= s.center,
-    a = up ? s.radius : s.center - s.keel,
-    n = up ? 2 : s.lower,
-    r = clamp(Math.abs(wl - s.center) / a, 0, 1);
-  return s.breadth * Math.pow(1 - Math.pow(r, n), 1 / n);
 }
 /**
  * Close a set of rings, each the same length, into one smooth indexed surface. The faces point
@@ -1296,65 +1324,8 @@ function skids(parent) {
     }
   }
 }
-/** Split every triangle into four, `levels` times, interpolating every attribute. */
-function subdivide(geometry, levels) {
-  let result = geometry.index ? geometry.toNonIndexed() : geometry;
-  for (let level = 0; level < levels; level++) {
-    const next = new T.BufferGeometry();
-    for (const [key, attribute] of Object.entries(result.attributes)) {
-      const size = attribute.itemSize,
-        vertex = (i) => Array.from(attribute.array.subarray(i * size, (i + 1) * size)),
-        mid = (p, q) => p.map((v, k) => (v + q[k]) / 2),
-        values = [];
-      for (let i = 0; i < attribute.count; i += 3) {
-        const a = vertex(i),
-          b = vertex(i + 1),
-          c = vertex(i + 2),
-          ab = mid(a, b),
-          bc = mid(b, c),
-          ca = mid(c, a);
-        // Three corner triangles and the middle one, each wound like its parent.
-        for (const child of [
-          [a, ab, ca],
-          [ab, b, bc],
-          [ca, bc, c],
-          [ab, bc, ca],
-        ])
-          values.push(...child.flat());
-      }
-      next.setAttribute(key, new T.Float32BufferAttribute(values, size));
-    }
-    result = next;
-  }
-  return mergeVertices(result);
-}
-/** Map flat lettering, in its local XY, onto a side of the airframe. */
-function wrapText(parent, name, value, sta, wl, side, pixel, half, slope = 0) {
-  const object = text(parent, name, value, 0, 0, 0, pixel, dark);
-  // Each glyph is one flat quad. Wrapped by its corners alone, the middle of a tall glyph cuts
-  // under the boom's curve (about 6 mm on the stencil); a 4 x 4 grid per glyph follows it.
-  object.geometry = subdivide(object.geometry, 2);
-  const positions = object.geometry.getAttribute('position');
-  for (let i = 0; i < positions.count; i++) {
-    const lx = positions.getX(i),
-      ly = positions.getY(i),
-      s = sta - (side * lx) / IN,
-      w = wl + ly / IN + slope * (s - sta),
-      p = at(s, w, side * (half(s, w) + 0.12));
-    positions.setXYZ(i, ...p);
-  }
-  object.geometry.computeVertexNormals();
-  object.geometry.computeBoundingBox();
-  object.geometry.computeBoundingSphere();
-  return object;
-}
 function details(parent) {
-  for (const side of [-1, 1]) {
-    wrapText(parent, 'army-stencil', 'UNITED STATES ARMY', 190, 55.6, side, 0.03, boomHalf, -0.03);
-    wrapText(parent, 'aircraft-serial', '16172', 137, 70, side, 0.03, (s, w) =>
-      pylonWidth(lerp(50, 77.7, (w - 50) / (pylonTop(s) - 50))),
-    );
-  }
+  // Operator lettering (titles, serials) belongs to the liveries, not the master.
   rod(parent, 'belly-antenna', at(50, 4, 4), at(38, 0, 0.6), 0.005, dark);
   rod(parent, 'belly-antenna', at(50, 4, -4), at(38, 0, -0.6), 0.005, dark);
   sphere(parent, 'anti-collision-beacon', [0.05, 0.03, 0.14], at(64, 1.2), red);

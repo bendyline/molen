@@ -280,16 +280,21 @@ export function buildBaron(s) {
   // Side-view (z, y) window layout: the pilot window, then three cabin windows whose bays span
   // u along the station pair and v down from 0.14 m under the crown towards 0.15 m over the
   // belly, each with a level sill.
+  // The pilot window's front edge runs parallel to the windscreen's side edge (the 45-degree dome
+  // line from z 1.42 to 0.6) behind a narrow A-post, as on the G58: a wide opaque band there read
+  // as a thick blind pillar from the seat.
+  const screenEdge = (y) => 1.42 - ((1.42 - 0.6) * (y - 1.653)) / (1.98 - 1.653);
   const windows = [
     [
-      [1.02, 1.56],
-      [0.57, 1.98],
-      [0.48, 2.0],
+      [1.3, 1.6],
+      [screenEdge(1.68) - 0.15, 1.68],
+      [screenEdge(1.955) - 0.15, 1.955],
+      [0.36, 1.99],
       [0.02, 1.98],
       [0.0, 1.92],
       [0.0, 1.55],
       [0.06, 1.52],
-      [0.95, 1.52],
+      [1.2, 1.52],
     ],
   ];
   for (let i = 4; i <= 6; i++) {
@@ -371,10 +376,12 @@ export function buildBaron(s) {
       outline(
         d,
         onSkin(-1, [
-          [0.57, 1.99],
+          [screenEdge(1.955) - 0.1, 1.965],
           [-0.08, 1.98],
           [-0.08, 0.71],
-          [1.15, 0.7],
+          [1.3, 0.72],
+          [1.36, 1.58],
+          [screenEdge(1.68) - 0.1, 1.68],
         ]),
         0.003,
         metal,
@@ -407,7 +414,6 @@ export function buildBaron(s) {
       );
       for (const z of [-1.24, -1.51])
         d.box([0.02, 0.04, 0.08], [-halfWidth(z, 1.25) - 0.007, 1.25, z], metal);
-      d.box([0.24, 0.009, 0.8], [-0.76, 0.91, -0.31], dark);
       d.rod([-0.54, 0.62, -1.46], [-0.8, 0.31, -1.48], 0.015, metal);
       d.box([0.25, 0.025, 0.12], [-0.88, 0.31, -1.48], dark);
     }
@@ -415,17 +421,42 @@ export function buildBaron(s) {
       chord = (x) => 2.27 - (1.32 * Math.abs(x)) / 5.74,
       le = (x) => 0.83 - (2.27 - chord(x)) * 0.25,
       te = (x) => le(x) - chord(x),
-      hinge = (x) => te(x) + chord(x) * 0.23;
+      hinge = (x) => te(x) + chord(x) * 0.23,
+      // Upper half-thickness at the stations: a 15%-class root (NACA 23015) thinning to the tip;
+      // the root also has to house the inward-retracting main wheels.
+      thick = (x) =>
+        Math.abs(x) < 3.08
+          ? 0.18 - ((Math.abs(x) - 0.52) * (0.18 - 0.095)) / (3.08 - 0.52)
+          : 0.095 - ((Math.abs(x) - 3.08) * (0.095 - 0.058)) / (5.51 - 3.08);
     wing(
       d,
       [
-        [side * 0.52, y(0.52), le(0.52), hinge(0.52), 0.12],
-        [side * 3.08, y(3.08), le(3.08), hinge(3.08), 0.09],
-        [side * 5.51, y(5.51), le(5.51), hinge(5.51), 0.058],
+        [side * 0.52, y(0.52), le(0.52), hinge(0.52), thick(0.52)],
+        [side * 3.08, y(3.08), le(3.08), hinge(3.08), thick(3.08)],
+        [side * 5.51, y(5.51), le(5.51), hinge(5.51), thick(5.51)],
         [side * 5.74, y(5.74), le(5.74) - 0.035, te(5.74) + 0.05, 0.035],
       ],
       paint,
     );
+    // Non-skid walkway on the right wing root, draped on the upper surface (it used to be a flat
+    // plate under the root, seen from below as a black patch).
+    if (side < 0) {
+      const upperAt = (x, z) => {
+        const u = (le(x) - z) / (le(x) - hinge(x)),
+          f = u < 0.25 ? u / 0.25 : u < 0.75 ? 1 - (u - 0.25) * 0.96 : (0.52 * (1 - u)) / 0.25;
+        return [-x, y(x) + thick(x) * f + 0.004, z];
+      };
+      for (let z = 0.09; z > -0.66; z -= 0.15)
+        quad(
+          d,
+          upperAt(0.64, z),
+          upperAt(0.88, z),
+          upperAt(0.88, z - 0.15),
+          upperAt(0.64, z - 0.15),
+          dark,
+          [0, 1, 0],
+        );
+    }
     // Fixed trailing-edge bay behind the nacelle, between the split flap panels.
     wing(
       d,
@@ -475,7 +506,7 @@ export function buildBaron(s) {
       });
     }
     for (let x = 0.8; x < 5.53; x += 0.35) {
-      const h = 0.12 - (x - 0.52) * 0.014,
+      const h = thick(x),
         upper = (u) =>
           u < 0.25
             ? (h * u) / 0.25
@@ -512,11 +543,15 @@ export function buildBaron(s) {
       ]);
     d.add(new T.CylinderGeometry(0.045, 0.045, 0.01, 16), metal, [
       side * 1.17,
-      y(1.17) + 0.105,
+      y(1.17) + thick(1.17) * 0.96 + 0.004,
       0.31,
     ]);
     for (let x = 3.2; x < 5.4; x += 0.24)
-      d.box([0.006, 0.025, 0.037], [side * x, y(x) + 0.06, le(x) - 0.1], paint);
+      d.box(
+        [0.006, 0.025, 0.037],
+        [side * x, y(x) + (thick(x) * 0.1) / (0.25 * (le(x) - hinge(x))) + 0.011, le(x) - 0.1],
+        paint,
+      );
     const leTail = (x) => -3.82 - Math.abs(x) * 0.11,
       teTail = (x) => -5.08 + Math.abs(x) * 0.06;
     wing(
@@ -622,8 +657,12 @@ export function buildBaron(s) {
       [1.65, 0.45, -0.29, 0.31],
       [0.65, 0.455, -0.38, 0.3],
       [0, 0.41, -0.4, 0.25],
-      [-0.35, 0.27, -0.22, 0.12],
-      [-0.72, 0.06, -0.06, 0.04],
+      // The aft nacelle fairs down onto the upper wing and runs just past the trailing edge
+      // (local wing chord line -0.26, trailing edge z -1.07), as on the G58; it does not stop short
+      // over the flap hinge.
+      [-0.4, 0.34, -0.34, 0.17],
+      [-0.8, 0.22, -0.28, 0.02],
+      [-1.14, 0.05, -0.255, -0.2],
     ];
     // Rounded cowl sections: a domed top over a flatter belly that carries the gear doors.
     const nr = sections.map(([zz, w, b, t]) => ({
@@ -708,15 +747,20 @@ export function buildBaron(s) {
     metal,
   );
   d.box([0.015, 0.035, 0.08], [noseX(2.32, 1.34) + 0.008, 1.34, 2.32], dark);
-  // Actual main struts retract inboard; nose leg retracts aft. Doors stay attached to their legs.
+  // Actual main struts retract inboard into the thick wing root; the nose leg retracts aft into
+  // the nose. Doors stay attached to their legs. Retracted, each main leg also rises `lift` into the
+  // wing (the trunnion sits inside the wing, not under it), so the flat-stowed wheel, strut and
+  // door stay inside the skin; the strut door then lies along the wing's lower surface.
+  const lift = 0.075;
   for (const [index, x, z, top, r] of [
-    [0, 0, 2.46, 0.8, 0.205],
-    [1, 1.4605, 0, 0.91, 0.24],
-    [2, -1.4605, 0, 0.91, 0.24],
+    [0, 0, 2.46, 0.83, 0.205],
+    [1, 1.4605, 0, 0.94, 0.24],
+    [2, -1.4605, 0, 0.94, 0.24],
   ]) {
     const g = group(root, `Baron-gear-${index}`, [x, top, z]),
       dd = detailKit(g, g.name),
-      h = top - r;
+      h = top - r,
+      sx = Math.sign(x);
     dd.rod([0, 0, 0], [0, -h, 0], 0.03, metal);
     dd.rod([0, -0.18, -0.08], [0, -h + 0.1, 0], 0.018, dark);
     dd.add(new T.CylinderGeometry(r, r, 0.13, 24).rotateZ(Math.PI / 2), rubber, [0, -h, 0]);
@@ -727,17 +771,19 @@ export function buildBaron(s) {
         0,
       ]);
     if (x) {
-      dd.rod([-0.18 * Math.sign(x), 0, -0.28], [0, -h + 0.12, 0], 0.017, metal);
+      // Drag brace in the leg's fore-aft plane, so it folds flat with the leg.
+      dd.rod([sx * 0.02, -0.03, -0.28], [0, -h + 0.12, 0], 0.017, metal);
+      // Strut door splayed to the wing's lower surface (dihedral) when the leg lies inboard.
       sheet(
         dd,
         [
-          [Math.sign(x) * 0.095, -0.03, 0.25],
-          [Math.sign(x) * 0.095, -0.03, -0.3],
-          [Math.sign(x) * 0.095, -h + 0.07, -0.22],
-          [Math.sign(x) * 0.095, -h + 0.07, 0.12],
+          [sx * 0.045, -0.03, 0.25],
+          [sx * 0.045, -0.03, -0.3],
+          [sx * 0.11, -h + 0.07, -0.22],
+          [sx * 0.11, -h + 0.07, 0.12],
         ],
         paint,
-        [Math.sign(x), 0, 0],
+        [sx, 0, 0],
       );
     } else {
       for (const side of [-1, 1])
@@ -745,7 +791,9 @@ export function buildBaron(s) {
       dd.box([0.19, 0.35, 0.018], [0, -0.22, -0.09], paint);
     }
     dd.finish();
-    const angle = x ? (-Math.sign(x) * Math.PI) / 2 : Math.PI / 2;
+    // The nose leg swings 100 degrees so the stowed wheel rides up inside the nose, clear of the
+    // belly; the mains stay a quarter turn (instrument tests read that pose).
+    const angle = x ? (-sx * Math.PI) / 2 : Math.PI / 2 + 0.17;
     bindings.push({
       node: g.name,
       source: 'gear',
@@ -754,6 +802,17 @@ export function buildBaron(s) {
       offset: angle,
       scale: -angle,
     });
+    if (x)
+      bindings.push({
+        node: g.name,
+        source: 'gear',
+        property: 'position',
+        axis: 'y',
+        keys: [
+          [0, lift],
+          [1, 0],
+        ],
+      });
   }
   d.finish();
   const interior = cockpit(root, { paint, accent, metal, dark });
@@ -834,6 +893,14 @@ function cockpit(root, m) {
     edge.map((p) => at(...p, 0.065)),
     m.dark,
     [0, 0, 1],
+  );
+  // Closed back behind the display cut-outs: at a slant the hairline between bezel and screen
+  // showed the nose gear bay.
+  sheet(
+    d,
+    edge.map((p) => at(...p, 0.03)),
+    m.dark,
+    [0, 0, -1],
   );
   const brow = edge.map((p) => at(...p));
   outline(d, brow, 0.014, m.dark, false);
@@ -1071,7 +1138,8 @@ function cockpit(root, m) {
   dd.ring(0.035, 0.006, [0, -0.02, -0.14], black, 'y');
   dd.text('RUD TRIM', [0, 0.01, -0.2], 0.006, Math.PI, ink);
   dd.finish();
-  d.box([1.06, 0.035, 3.05], [0, 0.75, -0.38], m.dark);
+  // Cabin floor inside the tapering aft cabin skin (its corners poked out behind the wing).
+  d.box([1.02, 0.035, 2.98], [0, 0.75, -0.345], m.dark);
   for (const [row, zz, facing] of [
     [0, 0.17, 0],
     [1, -0.53, Math.PI],
@@ -1100,7 +1168,8 @@ function cockpit(root, m) {
       sd.finish();
     }
   for (const side of [-1, 1]) {
-    d.box([0.022, 0.25, 2.6], [side * 0.531, 0.99, -0.35], seat);
+    // Sidewall down to the floor line, over the wing root carry-through.
+    d.box([0.022, 0.3, 2.6], [side * 0.531, 0.965, -0.35], seat);
     d.box([0.028, 0.035, 2.6], [side * 0.51, 1.12, -0.35], m.dark);
     for (const zz of [-0.7, -1.4]) {
       d.ring(0.033, 0.005, [side * 0.5, 1.145, zz], m.metal, 'y');

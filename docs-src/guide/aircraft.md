@@ -35,7 +35,7 @@ streaming and floating-origin changes. Reloading starts a fresh session.
 | R | Board, or exit after landing, stopping and engine shutdown |
 | Ctrl+R | World Explorer: eject in flight, or from a wreck still moving (R alone never fires the seat) |
 | I | Start/stop engine; allow the propeller or rotor to spool |
-| Z / C | Decrease/increase throttle or helicopter collective (− / =, numpad − / + and Page Down / Up do too); fighter afterburners engage above 85% throttle |
+| Z / C | Decrease/increase throttle or helicopter collective (− / =, numpad − / + and Page Down / Up do too). On a fighter, holding C stops at military power (MIL); press again to push on into the afterburner |
 | W / S | Nose down / nose up |
 | A / D | Bank left / right; helicopter cyclic |
 | Q / E | Left / right rudder or anti-torque pedals; steering on the wheels |
@@ -44,7 +44,7 @@ streaming and floating-origin changes. Reloading starts a fresh session.
 | F | Toggle airplane flaps |
 | J | Cycle powered-lift lever: forward, 22.5°, 45°, 67.5°, vertical; Osprey/Harrier only |
 | M | Assisted or direct controls. Helicopter: a cyclic that levels itself and feet that hold the heading, or the swashplate and tail rotor themselves. Airplane: the assist that holds the flight path, or the stick and pedals straight on the elevator, ailerons and rudder (not on fly-by-wire types) |
-| V | Cockpit / chase |
+| V | Cockpit / chase; World Explorer: cockpit, chase, flyby in turn (F5 toggles flyby directly) |
 | Mouse | Look around the cockpit |
 | Backspace | Recover at the airfield after an impact |
 
@@ -107,12 +107,19 @@ flight while airborne. After an impact, Backspace resets its aircraft state and 
 
 The helicopter's controls start assisted: W/S and A/D ask for a tilt of up to about 30°, the
 helicopter levels itself when you let go, and the pedals ask for a turn while the tail rotor is
-worked for you against the main rotor's torque. Press M for direct controls: the stick is then
+worked for you against the main rotor's torque. Under way you turn with the stick: bank, and the
+nose follows the turn. The pedals swing the nose, and the heading they give is kept: the assist
+banks gently to bring the flight path round to it, as a pilot would. Press M for direct controls: the stick is then
 the swashplate and the pedals the tail rotor's pitch, and the helicopter is the real, unstable
 thing. The controls stay where the assist had them when you take over, so nothing lurches, but
 nothing levels it either: a hover has to be flown, every change of collective swings the nose
 until a pedal answers it (more collective, left pedal), and the nose rises by itself as the
-helicopter gathers speed. A stick or pedal that is held slowly becomes where that control
+helicopter gathers speed. Every type has a speed it should not pass (167 knots in the AW139).
+Push on to it assisted and the airframe starts to shake, the HUD warns, and the nose comes up by
+itself to hold it. Fly past it directly, or pull hard near it, and the blades on the retreating
+side stall: the nose pitches up, the helicopter rolls toward them (left, in most), and the rotor
+slows. Lower the collective and ease the stick back. A stick or pedal that is held slowly becomes
+where that control
 rests, which is how to trim on a keyboard. Keys are all-or-nothing and the swashplate is quick:
 full aft stick pitches the OH-6 at about 180° a second, so fly it in taps, or with a pointer or
 touch stick. There are no attitude limits. Keep the rotor loaded: control comes mostly from the
@@ -142,8 +149,10 @@ Cockpit needles show airspeed, altitude, heading, vertical speed and RPM; the ar
 banks with the aircraft. The HUD supplies precise knot/feet/feet-per-minute readings, AGL height,
 g load, power, fuel remaining, engine/gear/flap state, stall, buffet, low-rotor-RPM, low-fuel
 and greyout alerts and terrain waiting status. It distinguishes
-KTAS from equivalent airspeed (KEAS), shows local Mach and afterburner percentage, and flags
-airframe/surface overspeed and developed departures. KEAS is not calibrated indicated airspeed.
+KTAS from equivalent airspeed (KEAS), shows local Mach, and flags
+airframe/surface overspeed and developed departures. A fighter's throttle reads 0–100% up to
+military power, `MIL` at the detent and `AB n%` past it, marked `lighting` until the afterburner
+has caught up, and the fuel readout adds the burn in kg/h. KEAS is not calibrated indicated airspeed.
 Propellers, both helicopter
 rotors, controls, gear, flaps, ailerons, elevators and rudder animate from simulation state. A
 rotor turning too fast for a display to sample fades from blades into a translucent disc, so a
@@ -250,7 +259,8 @@ ownership of a loaded GLB and animates the nodes named by `spec.visual` from air
 `VehicleCameraOptions` that `@bendyline/molen-client/vehicles` exports. The chase view aims at
 the center of mass, the point the airframe turns about in flight, so a roll or a loop turns the
 aircraft about the middle of the frame. The gear and flaps follow
-`aircraftState.gearPosition` and `flapPosition` as they travel. `spec.visual.animation` adds
+`aircraftState.gearPosition` and `flapPosition` as they travel, and the gear legs ride on their
+struts ([landing gear](#landing-gear)). `spec.visual.animation` adds
 exterior moving parts as [model-signal bindings](vehicle-interiors.md#exterior-animation), with
 keyframed curves so one gear position can sequence doors and legs.
 
@@ -313,10 +323,36 @@ power by 18,000 ft. `'jet'` uses `dryThrust` in newtons and a density lapse. A t
 `bypassRatio` loses thrust as the airplane speeds up, faster for a larger fan, so an airliner
 has about three fifths of its static thrust at cruise Mach number before the thin air takes its
 share; engines without one use the Mach-dependent ram term `ramRise`, as the fighters do.
-`afterburnerThrust` is total augmented thrust per engine. The last 15% of throttle
-commands reheat by default (`afterburnerDetent: 0.85`); it takes 0.6 seconds to light fully after
-the engine reaches operating RPM. Engine failure or cutoff extinguishes it. Ordinary turbofans
-and the Harrier have no afterburner. Omitting `propulsion` retains legacy constant-power behavior.
+`afterburnerThrust` is total augmented thrust per engine. Reheat is not a separate control, as in
+the real aircraft: it is the same throttle lever pushed on past its military-power detent, so the
+last 15% of the lever commands reheat by default (`afterburnerDetent: 0.85`). It takes 0.6 seconds
+to light fully after the engine reaches operating RPM. Engine failure or cutoff extinguishes it.
+Ordinary turbofans and the Harrier have no afterburner. Omitting `propulsion` retains legacy
+constant-power behavior.
+
+Held keys and buttons work the lever through `AircraftThrottleRamp` from
+`@bendyline/molen-client/aircraft`: held forward from below, the lever stops at the detent, and a
+second push carries it into reheat; pulling back passes the detent freely. An absolute throttle
+(a joystick axis or an on-screen lever) moves straight through. `aircraftReheatDetent(spec)` and
+`aircraftThrottleReading(spec, power)` give a host the detent and the lever as a pilot reads it.
+
+#### Afterburner flame and variable nozzles
+
+`spec.visual.exhausts` places each jet nozzle's exit (`engine`, `position`, open `radius`, and for
+a variable nozzle `closedRadius`; `direction` and a rectangular nozzle's `aspect` are optional).
+The aircraft visual draws a flame there with the afterburner lit: a pale blue-violet cone at
+minimum reheat, an orange-yellow one at full, with shock diamonds spaced by the Prandtl–Pack
+estimate `1.306 · D · √(Mj² − 1)` from the jet's expanded Mach number. The flame lengthens and
+widens in thin air, and the hot tailpipe glows dull orange from behind at high dry power. The
+flame adds light to what is behind it and hides a little of it, so it reads orange against a
+bright sky and glows at night; it is one unlit mesh with a standard material on both renderers,
+casts no shadow, and is never hit by a ray. The ten afterburning fighters declare their exits.
+
+Afterburning engines also publish an `engines.<id>.nozzle` signal for exterior bindings: 0 with
+the nozzle closed to its minimum area, 1 open to its maximum. It follows a generic schedule:
+about 80% open at idle and with the engine stopped (to cut idle thrust), closing as the engine
+winds up to military power, and opening with the reheat lit, through a 0.35 s actuator lag. The
+F-15C, F-16B and F/A-18C nozzles are rings of hinged petals bound to it.
 
 The atmosphere has standard temperature lapse layers, including the tropopause; sound speed
 therefore changes with altitude. Wind-relative TAS drives forces; `equivalentAirspeed` is
@@ -396,6 +432,14 @@ It is a rigid body with these forces on it, each acting where it acts:
   power over the ideal. The blades stall at a mean lift coefficient `maxLift`, sooner in fast
   flight, which is what sets the ceiling; power is induced, profile (`profileDrag`) and the
   work of climbing.
+- **Retreating-blade stall.** The blades on the side that goes away from the wind meet less of
+  it the faster the helicopter flies, and carry less: a line from the hover's `maxLift` to 1.2
+  times the weight at 1.11 times the type's limit speed (`retreatingBladeSpeed`). The line is
+  straight because a rotor's measured limit is (CL/σ 0.156 in a hover, 0.104 at an advance ratio
+  of 0.4: McHugh, NASA CR 145217), and 1.11 is as fast as a type is shown safe. Weight, height, a
+  hard turn or a slowed rotor bring it on sooner. Asked for more than it carries, the disc tilts
+  back (about 1° at the limit, 3 to 4° a third past it) and a third as much toward the retreating
+  side, the thrust stops growing, the blades drag, and `aircraftState.buffet` shakes the view.
 - **Flapping.** The disc does not stay square to the shaft. It tilts back from the air it flies
   into and toward its advancing side, and it follows a pitching or rolling shaft late (by
   16 / (`lock` × rotor speed) seconds: the rotor's own damping). The swashplate tilts it by up
@@ -410,12 +454,15 @@ It is a rigid body with these forces on it, each acting where it acts:
   default), to the left for a clockwise one. The tail rotor (`tail`: radius, blades, chord, tip
   speed, arm and height) is a small rotor of the same kind pushing sideways on the boom. It
   takes its own share of the power, and its push is why a helicopter hovers leaning: left skid
-  low for a counterclockwise rotor. Lose it and the helicopter spins.
-- **The fuselage.** Drag on `dragArea`, more broadside and from below; the rotor's wash on it
-  in a hover (`download`); a fin and a stabilizer (`finArea`, `stabilizerArea`) that keep the
-  nose into the wind once it is moving. The body itself turns the other way, further off the
-  air it meets, and takes back part of what the stabilizer does (about a third on a Black Hawk,
-  whose measured moment is scaled by mass for the rest).
+  low for a counterclockwise rotor. Lose it and the helicopter spins. Eight blades or more are a
+  fan in a duct, which carries half of the thrust and lets the wake run straight out, for about
+  0.7 of the power.
+- **The fuselage.** Drag on `dragArea`, more broadside; the rotor's wash on it in a hover
+  (`download`); a fin and a stabilizer (`finArea`, `stabilizerArea`) that keep the nose into the
+  wind once it is moving. The body itself turns the other way, further off the air it meets, and
+  takes back part of what the stabilizer does (about a third on a Black Hawk), and air that
+  meets it from above or below pushes it down or up. Both are a Black Hawk's measured figures,
+  scaled by mass.
 - **The governor and the rotor's speed.** The rotor holds `rotorInertiaTime` seconds of hover
   power. The governor gives the rotors what they take, up to what the engines and the gearbox
   (`transmission`, and the engine's rated power) can deliver. Ask for more and the rotor slows.
@@ -431,7 +478,9 @@ Calibration builds the block from the type's published rotor (blade count, chord
 tail rotor, the entries marked `rotor` in the trial ledger) and fits four figures to published
 performance: `inducedFactor` to the hover ceiling out of ground effect, the rotor's
 `groundEffect` to the ceiling in it, `dragArea` to the cruise speed and `maxLift` to the
-service ceiling. The OH-6 comes out at an induced factor of 1.02 and 0.54 m² of drag area
+service ceiling. The limit speed is the type's published never-exceed speed (`neverExceedKt` in
+the ledger) or 1.13 times its cruise, and a tail rotor whose chord is not published is sized to
+hold full torque in the thinnest air the engines still make full power in. The OH-6 comes out at an induced factor of 1.02 and 0.54 m² of drag area
 (published: 0.46). Rates of climb and autorotation descents are not fitted; they are checks on
 [the scorecard](https://github.com/bendyline/molen/blob/main/content/entities/source/AIRCRAFT-TRIALS.md).
 
@@ -452,9 +501,21 @@ different helicopter:
   over its spot in a wind and stops from a creep. It fades out between 4 and 10 m/s; under
   way, a helicopter whose stick is let go keeps its speed and has to be slowed.
 - The pedals ask for a rate of turn (`yawRate` at full pedal) and the tail rotor is set to
-  give it, holding the main rotor's torque whatever the collective does.
-- When the rotor falls below 97% under power, the lever is eased down to keep it turning. With
-  the engines out the lever is the pilot's alone.
+  give it, holding the main rotor's torque whatever the collective does. Under way (from 15 m/s
+  of air, fully by 25) the assist keeps the nose on the air it flies through, as a pilot keeps
+  the ball in the middle. While the stick banks, the feet follow the turn and take a sideslip
+  out in about half a second. Otherwise the feet hold the heading, against the fin too, and the
+  hands bank (up to 0.45 rad, taking the sideslip out over about three seconds) to bring the
+  flight path round to the nose, so a heading the pedals gave is kept; they leave it while the
+  stick is pushed or pulled. A held pedal has its way. In the hover and slow flight the feet hold
+  the heading.
+- When the rotor falls below 97% under power, the lever is eased down to keep it turning, and
+  it is held to what the retreating blades carry. With the engines out the lever is the
+  pilot's alone.
+- The stick does not push past the type's limit speed. The forward tilt it can ask for runs out
+  over the last 20 knots or so and the nose comes up to hold about 1.05 times it, falling with
+  height (about 3 knots indicated per 1,000 ft, as the H125's does). Direct controls have no such
+  hand.
 
 The assist can only do what the controls can: with the swashplate at its stop, the tail rotor
 at full pitch or the rotor unloaded, the helicopter does what it does.
@@ -567,9 +628,11 @@ empty tanks), and when the tanks are dry every engine stops: an airplane becomes
 helicopter autorotates. A propeller or rotor engine burns by the shaft work it delivers
 (`engine.fuelConsumption` in kg per joule; default 7.5e-8 with a manual mixture, about 0.27
 kg/kWh, and 9.5e-8 otherwise), a jet by its thrust (kg per newton-second; default 2e-5), and
-`afterburnerFuelConsumption` (default 5.4e-5, per newton of total thrust at full reheat) is why
-the afterburner is for moments: an F-16 that flies over half an hour at military power
-empties its tanks in about eight minutes with the burner lit. Engines never burn less than an idle
+`afterburnerFuelConsumption` (default 5.4e-5, per newton of total thrust at full reheat; the two
+defaults are about 0.71 and 1.9 lb/lbf/h) is why the afterburner is for moments: an F-16 that
+flies over half an hour at military power empties its tanks in about eight minutes with the
+burner lit. `aircraftTotalFuelFlow(spec, state, power)` from `@bendyline/molen-kernel/aircraft`
+is the burn the step applies, in kg/s, for a host's readout. Engines never burn less than an idle
 flow. All 54 shipped aircraft carry fuel, sized by class as a share of their mass (13–17% for
 propeller aircraft, 22% for airliners and transports, 28% for fighters and small jets, 14% for
 helicopters): estimates, not flight-manual capacities. Recovering (Backspace) starts a fresh aircraft
@@ -648,8 +711,23 @@ mass (ahead of it with a tailwheel) so the small wheel carries a tenth of the we
 track of a fifth of the span, and struts that bounce at 1.4 Hz with 0.65 of critical damping.
 `gear.wheelbase`, `track`, `auxiliaryShare`, `frequency`, `damping`, `travel`, `wheelRadius`
 and `grip` override them. No shipped type authors its own yet, so a Mustang stands on a
-narrower track than the real one and an airliner on a wider one. `aircraftState.wheels` reports each wheel's spin and
-the load on it.
+narrower track than the real one and an airliner on a wider one. `aircraftState.wheels` reports each wheel's spin,
+the load on it and its strut's `travel`: how far the ground holds the strut closed from where
+it rests, in meters. Standing, that is zero. In flight every leg hangs at its full reach (the
+spring's static deflection: 13 cm at 1.4 Hz), a touchdown closes the legs to their stops
+(`gear.travel`, 0.6 of the reach unless authored), braking closes the nose leg and opens the
+mains, and the nose leg runs out to its reach as the airplane rotates. `aircraftGearLayout(spec)`
+from `@bendyline/molen-schema` gives where each leg stands and its reach and travel, resolved
+from the `gear` block and the class rules above.
+
+The aircraft visual draws that travel. `createAircraftVisual` looks in the model for its gear
+legs (the outermost nodes named as gear or wheels whose geometry stands on the ground the
+model stands on) and slides each along the airframe's up axis, so a tire stays on the runway
+while the airframe sinks onto its struts, and the legs hang longer in flight. The model's
+wheels are rarely where the flight model's legs are, so each leg is moved by what the plane
+through the reported travel gives at its own tire. `visual.gear.legs` lists what was found.
+A model whose gear is part of its shell (most fixed-gear light aircraft) or that stands on
+skids has no legs to move, and is drawn as before.
 
 The taildraggers' models are posed tail-down and their wings are rigged to that pose, so body
 pitch 0 is both the three-point attitude and zero incidence. The tailwheel has some soft give
@@ -663,7 +741,9 @@ from the model's pose would fix both; it has not been done.
 and stays there in separated flow, scaled down where the air is too slow to shake anything. It
 is a cue, not a force: the flight path is unchanged. `aircraftCameraPose` takes
 `shake: { amount, time }` and shakes the seated view by it (the Earth view and the world
-explorer pass the buffet), and the world explorer's HUD warns.
+explorer pass the buffet), and the world explorer's HUD warns. On a helicopter that flies on its
+rotors it is the retreating blades: nothing until they carry 0.9 of what they can, and 1 a fifth
+past it.
 
 `aircraftState.greyout` and `redout` (0–1) are the pilot's accumulated strain. Above
 `airplane.pilotGTolerance` (default 4.5 g, or 6.5 g where `maxLoadFactor` is 7.5 or more: a
@@ -672,7 +752,9 @@ the view after about three seconds and takes it away in eight; a g below the tol
 recovers in four. Below -1.5 g, `redout` builds a sixth of the excess per second. The controls
 keep working throughout: this is what the pilot sees, for a host to draw (the world explorer
 narrows the view to a tunnel, then darkens it, and tints it red), not a loss of consciousness.
-`view.vehicleStatus()` reports `buffet`, `greyout`, `redout`, and `fuel` with `fuelCapacity`.
+`view.vehicleStatus()` reports `buffet`, `greyout`, `redout`, and `fuel` with `fuelCapacity` and
+the burn `fuelFlow` (kg/s); an afterburning jet adds `reheatDetent`, the lit `afterburner` and
+`throttleCaught` (held keys resting at military power).
 
 ### The pilot's body in the seat
 

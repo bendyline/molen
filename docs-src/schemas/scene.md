@@ -610,6 +610,10 @@ Root document an experience boots from; instantiates into ECS state at tick 0.
                     "minimum": 0,
                     "maximum": 9007199254740991,
                     "description": "Browser Gamepad.index; may change on reconnect."
+                  },
+                  "mapping": {
+                    "type": "string",
+                    "description": "Browser Gamepad.mapping: 'standard' matches only standard-layout gamepads, '' only other devices; omit to match any layout."
                   }
                 },
                 "additionalProperties": false
@@ -689,6 +693,10 @@ Root document an experience boots from; instantiates into ECS state at tick 0.
                     "minimum": 0,
                     "maximum": 9007199254740991,
                     "description": "Browser Gamepad.index; may change on reconnect."
+                  },
+                  "mapping": {
+                    "type": "string",
+                    "description": "Browser Gamepad.mapping: 'standard' matches only standard-layout gamepads, '' only other devices; omit to match any layout."
                   }
                 },
                 "additionalProperties": false
@@ -758,6 +766,10 @@ Root document an experience boots from; instantiates into ECS state at tick 0.
                           "minimum": 0,
                           "maximum": 9007199254740991,
                           "description": "Browser Gamepad.index; may change on reconnect."
+                        },
+                        "mapping": {
+                          "type": "string",
+                          "description": "Browser Gamepad.mapping: 'standard' matches only standard-layout gamepads, '' only other devices; omit to match any layout."
                         }
                       },
                       "additionalProperties": false
@@ -837,6 +849,10 @@ Root document an experience boots from; instantiates into ECS state at tick 0.
                           "minimum": 0,
                           "maximum": 9007199254740991,
                           "description": "Browser Gamepad.index; may change on reconnect."
+                        },
+                        "mapping": {
+                          "type": "string",
+                          "description": "Browser Gamepad.mapping: 'standard' matches only standard-layout gamepads, '' only other devices; omit to match any layout."
                         }
                       },
                       "additionalProperties": false

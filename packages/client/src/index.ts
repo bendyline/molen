@@ -103,6 +103,17 @@ export type {
   MirrorReader,
   RenderableKind,
 } from './three/kinds';
+export type {
+  LampFieldBeam,
+  LampFieldOptions,
+  LampFieldUniforms,
+  LampFieldView,
+} from './three/lamp-field';
+export {
+  LAMP_FIELD_MAX_BEAMS,
+  LAMP_FIELD_MAX_LAMPS,
+  LampField,
+} from './three/lamp-field';
 export type { DecoderConfig } from './three/loaders';
 export { createGltfLoader } from './three/loaders';
 export { MaterialResolver, materialFromBaked } from './three/materials';

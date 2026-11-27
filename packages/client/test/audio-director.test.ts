@@ -8,6 +8,7 @@ import {
   curve,
   entitySourceFromWorld,
   Gate,
+  loudnessToGain,
   mergeSoundbanks,
   type VoiceCommand,
 } from '../src/audio';
@@ -196,7 +197,8 @@ describe('entity sources', () => {
         ],
       },
     });
-    const d = director();
+    // Doppler would lower the receding engine's pitch; this test is about the binding.
+    const d = director({ doppler: 0 });
     const [start] = starts(d.update({ nowMs: 0, source: s }));
     expect(start).toMatchObject({ sound: 'engine.car', loop: true, pitch: 1 });
     expect(start?.spatial?.position).toEqual([10, 0, 0]);
@@ -561,7 +563,7 @@ describe('layer', () => {
     for (const h of handlers)
       h({ type: 'audio.play', payload: { sound: 'ui.click' } }, { tick: 1 });
     layer.update(16);
-    expect(backend.log[0]).toEqual({ op: 'bus', bus: 'master', gain: 0.5 });
+    expect(backend.log[0]).toEqual({ op: 'bus', bus: 'master', gain: loudnessToGain(0.5) });
     const refs = backend.log.filter((c) => c.op === 'start').map((c) => (c as { ref: string }).ref);
     expect(refs).toEqual(['pack:test/engine.mp3', 'pack:test/click.mp3']);
     layer.setMuted(true);

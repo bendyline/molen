@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { liverySchema } from '@bendyline/molen-schema';
-import { Box3 } from 'three';
+import { Box3, Vector3 } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { expect, it } from 'vitest';
 import { applyLivery } from '../../client/dist/index.mjs';
@@ -17,7 +17,7 @@ const loadModel = async (bytes) => {
     )
   ).scene;
 };
-it('ships 2–4 photo-sourced choices with working paint and decal bindings for every vehicle', async () => {
+it('ships photo-sourced choices (3–8 per aircraft, 2–4 per vehicle) with working paint and decal bindings', async () => {
   const catalog = (await read('source/liveries.json')).models;
   const project = await read('project.json');
   const seen = new Set();
@@ -32,8 +32,10 @@ it('ships 2–4 photo-sourced choices with working paint and decal bindings for 
       const data = components.livery;
       expect(data, id).toEqual(catalog[id]);
       expect(liverySchema.safeParse(data).success, id).toBe(true);
-      expect(data.variants.length, id).toBeGreaterThanOrEqual(2);
-      expect(data.variants.length, id).toBeLessThanOrEqual(4);
+      // Aircraft carry three to eight operator schemes; other vehicles two to four.
+      const [fewest, most] = components.aircraft ? [3, 8] : [2, 4];
+      expect(data.variants.length, id).toBeGreaterThanOrEqual(fewest);
+      expect(data.variants.length, id).toBeLessThanOrEqual(most);
       expect(
         new Set(data.variants.map((v) => JSON.stringify([v.paints, v.markings]))).size,
         id,
@@ -76,10 +78,21 @@ it('keeps Danish F-16 roundels behind the canopy, serials aft of them and flags 
   const appearance = applyLivery(model, { ...data, selected: 'danish-et-612' });
   model.updateMatrixWorld(true);
   for (const side of ['left', 'right']) {
+    // Markings on one mesh share a decal draw; userData.liveryMarkings names their vertices.
     const bounds = (name) => {
-      const decal = model.getObjectByName(`livery:${name}-${side}`);
-      expect(decal, name).toBeDefined();
-      return new Box3().setFromObject(decal);
+      const box = new Box3();
+      model.traverse((decal) => {
+        for (const range of decal.userData.liveryMarkings ?? []) {
+          if (range.anchor !== `${name}-${side}`) continue;
+          const p = decal.geometry.getAttribute('position');
+          for (let i = range.start; i < range.start + range.count; i++)
+            box.expandByPoint(
+              new Vector3().fromBufferAttribute(p, i).applyMatrix4(decal.matrixWorld),
+            );
+        }
+      });
+      expect(box.isEmpty(), name).toBe(false);
+      return box;
     };
     const roundel = bounds('roundel'),
       serial = bounds('serial'),

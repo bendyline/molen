@@ -10,6 +10,7 @@ import {
   cleanGeometry,
   detailKit,
   ellipsoid,
+  fittedFloor,
   group,
   loft,
   mat,
@@ -19,6 +20,23 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+
+/** Clamp an instrument's fixed mask (a square larger than its aperture) below the panel top:
+ * otherwise the black square stands above the glareshield in the pilot's view. */
+function trimMask(frame, top) {
+  frame.traverse((mesh) => {
+    if (!mesh.isMesh) return;
+    let offset = 0;
+    for (let node = mesh; node !== frame; node = node.parent) {
+      if (/-bank$/.test(node.name)) return;
+      offset += node.position.y;
+    }
+    const position = mesh.geometry.getAttribute('position'),
+      limit = top - frame.position.y - offset;
+    for (let i = 0; i < position.count; i++) if (position.getY(i) > limit) position.setY(i, limit);
+    position.needsUpdate = true;
+  });
+}
 
 export const cessna172Frame = () => ({
   heli: false,
@@ -129,6 +147,17 @@ export function buildCessna172(s) {
       b = rings[i + 1].points,
       u = (z - rings[i].z) / (rings[i + 1].z - rings[i].z);
     return a.map((q, j) => [q[0] + (b[j][0] - q[0]) * u, q[1] + (b[j][1] - q[1]) * u]);
+  };
+  // Skin height at station z and lateral offset x (top half), for trim sealed to the cowl.
+  const roofAt = (z, x) => {
+    const q = ringAt(z);
+    for (let j = 0; j < 10; j++)
+      if (Math.abs(x) <= q[j + 1][0] && Math.abs(x) >= q[j][0])
+        return (
+          q[j][1] +
+          ((q[j + 1][1] - q[j][1]) * (Math.abs(x) - q[j][0])) / (q[j + 1][0] - q[j][0] || 1)
+        );
+    return q[4][1];
   };
   const halfWidth = (z, y) => {
     const q = ringAt(z);
@@ -535,7 +564,7 @@ export function buildCessna172(s) {
     loft(d, pant, paint);
   }
   d.finish();
-  const interior = cockpit(root, { paint, blue, metal, dark });
+  const interior = cockpit(root, { paint, blue, metal, dark, rings, halfWidth, roofAt });
   cleanGeometry(root);
   return {
     root,
@@ -605,28 +634,41 @@ function cockpit(root, m) {
         z,
       ]),
     );
+  // Panel, coaming and deck stop short of the curved side skin (they used to cut through it).
+  const fit = ([x, y, zz], margin = 0.014) => {
+    const limit = m.halfWidth(zz, y) - margin;
+    return [Math.abs(x) > limit ? Math.sign(x) * limit : x, y, zz];
+  };
   sheet(
     d,
-    edge.map(([u, v]) => at(u, v)),
+    edge.map(([u, v]) => fit(at(u, v))),
     face,
     [0, 0, -1],
     holes,
   );
   sheet(
     d,
-    edge.map(([u, v]) => at(u, v, 0.065)),
+    edge.map(([u, v]) => fit(at(u, v, 0.065))),
     m.dark,
     [0, 0, 1],
   );
   // Panel, coaming and padded rail use the same contour at every bend.
-  const brow = edge.map(([u, v]) => at(u, v));
+  const brow = edge.map(([u, v]) => fit(at(u, v), 0.03));
   outline(d, brow, 0.014, m.dark, false);
   const deckY = (x) =>
     1.45 - (Math.abs(x) < 0.4 ? Math.abs(x) * 0.0625 : 0.025 + (Math.abs(x) - 0.4) * 0.92);
   for (let i = 0; i < brow.length - 1; i++) {
     const a = brow[i],
       b = brow[i + 1];
-    quad(d, a, b, [b[0], deckY(b[0]), 1.3], [a[0], deckY(a[0]), 1.3], m.dark, [0, 1, 0]);
+    quad(
+      d,
+      a,
+      b,
+      fit([b[0], Math.max(deckY(b[0]), m.roofAt(1.3, b[0]) - 0.004), 1.3], 0.02),
+      fit([a[0], Math.max(deckY(a[0]), m.roofAt(1.3, a[0]) - 0.004), 1.3], 0.02),
+      m.dark,
+      [0, 1, 0],
+    );
   }
   // Actual display and bezel dimensions, fixed physical controls; no decorative map pretending to navigate.
   for (const [u, v] of screens) {
@@ -680,7 +722,7 @@ function cockpit(root, m) {
   const sx = px(425),
     sy = py(215);
   // Horizon is behind the cut-out panel/screen mask, so it cannot bleed outside the display.
-  instruments.horizon('PFD-horizon', [sx, sy + 0.026, z + 0.012], 0.11, 0.068);
+  trimMask(instruments.horizon('PFD-horizon', [sx, sy + 0.026, z + 0.012], 0.11, 0.068), 1.5);
   const screenMask = rect(sx, sy, sw, sh, z + 0.007);
   sheet(
     d,
@@ -965,7 +1007,16 @@ function cockpit(root, m) {
   d.ring(0.043, 0.004, [0, 0.67, 0.53], m.metal, 'y');
   d.rod([0, 0.68, 0.53], [-0.03, 0.68, 0.49], 0.008, ink);
   d.text('FUEL', [0, 0.7, 0.73], 0.008, Math.PI, ink);
-  d.box([1.0, 0.035, 2.0], [0, 0.61, -0.03], m.dark);
+  // Cabin floor trimmed to the rounded belly; a flat 1 m box cut through the skin fore and aft.
+  fittedFloor(d, m.rings, m.dark, { y: 0.6275, front: 1.32, back: -1.03, width: 1.0 });
+  // Firewall kick panel ahead of the pedals: the footwell showed the bare inside of the cowl.
+  const kick = [0.6275, 0.75, 0.9, 1.05, 1.16].map((y) => [m.halfWidth(1.33, y) - 0.015, y]);
+  sheet(
+    d,
+    [...kick.map(([x, y]) => [x, y, 1.33]), ...kick.toReversed().map(([x, y]) => [-x, y, 1.33])],
+    face,
+    [0, 0, -1],
+  );
   for (const zz of [0.1, -0.74])
     for (const x of [-0.255, 0.255]) {
       beveledBox(d, [0.43, 0.105, 0.46], [x, 0.81, zz], seats);

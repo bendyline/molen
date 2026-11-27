@@ -4,6 +4,11 @@ import { z } from 'zod';
 export interface InputDevice {
   id?: string;
   index?: number;
+  /**
+   * Browser `Gamepad.mapping`: `'standard'` matches only pads the browser lays out as the standard
+   * gamepad (right stick on axes 2 and 3), `''` only pads it does not.
+   */
+  mapping?: string;
 }
 
 /** Any raw axis index, including non-standard flight sticks, pedals and throttles. */
@@ -46,6 +51,12 @@ const device = z.strictObject({
     .int()
     .nonnegative()
     .describe('Browser Gamepad.index; may change on reconnect.')
+    .optional(),
+  mapping: z
+    .string()
+    .describe(
+      "Browser Gamepad.mapping: 'standard' matches only standard-layout gamepads, '' only other devices; omit to match any layout.",
+    )
     .optional(),
 });
 

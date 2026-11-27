@@ -301,9 +301,11 @@ const centerBody = [
   [-1.9, 1, 2.4, 1.75],
   [-3.5, 1, 2.36, 1.75],
   [-4.4, 1, 2.3, 1.74],
-  [-5, 0.9, 2.25, 1.73],
-  [-5.9, 0.81, 2.12, 1.72],
-  [-6.2, 0.56, 2.04, 1.72],
+  // The deck runs level under the upper speed brake (z -4.8 to -6.05), so the closed panel lies
+  // flush; on the old 0.3 m slope it stood 10 cm proud aft and overhung the tapering paddle.
+  [-4.75, 0.94, 2.15, 1.73],
+  [-5.9, 0.81, 2.15, 1.72],
+  [-6.2, 0.56, 2.1, 1.72],
   [-6.56, 0.31, 1.96, 1.72],
 ];
 export function buildF14D(s) {
@@ -313,6 +315,7 @@ export function buildF14D(s) {
     upper = mat('F14-upper', '#7b858e', { side: T.DoubleSide }),
     nose = mat('F14-radome', '#a0a4a2', { side: T.DoubleSide }),
     dark = mat('F14-seals', '#24292c'),
+    intake = mat('F14-intake', '#b3b8b7', { side: T.DoubleSide }),
     metal = mat('F14-alloy', '#b4bcc0', { metalness: 0.7 }),
     exhaust = mat('F14-exhaust', '#666866', { metalness: 0.72, side: T.DoubleSide }),
     liner = mat('F14-nozzle-liner', '#2c2b28', {
@@ -438,30 +441,33 @@ export function buildF14D(s) {
       flank.map((ring) => ring.map(local)),
       paint,
     );
-    // Dark duct behind the raked lip; the round engine stays out of sight.
+    // Duct behind the raked lip; the round engine stays out of sight. The front of the duct is
+    // painted light like the real intakes and the deep part falls dark. An all-black duct behind
+    // the tilted, raked mouth left the lit outboard wall crossing a black parallelogram, which
+    // read as a hole through the aircraft from low ahead (owner report 11-26).
     const cx = side * 1.33,
       cy = 2.05,
       back = lip.map(([x, y]) => [cx + (x - cx) * 0.8, cy + (y - cy) * 0.8, 2.4]),
+      mid = lip.map((p, j) => p.map((v, n) => v + (back[j][n] - v) * 0.4)),
       lipLocal = lip.map(local),
+      midLocal = mid.map(local),
       backLocal = back.map(local);
     for (let j = 0; j < lip.length; j++) {
-      const k = (j + 1) % lip.length;
-      quad(nd, lipLocal[j], lipLocal[k], backLocal[k], backLocal[j], dark, [
-        cx - lip[j][0],
-        cy - lip[j][1],
-        0,
-      ]);
+      const k = (j + 1) % lip.length,
+        inward = [cx - lip[j][0], cy - lip[j][1], 0];
+      quad(nd, lipLocal[j], lipLocal[k], midLocal[k], midLocal[j], intake, inward);
+      quad(nd, midLocal[j], midLocal[k], backLocal[k], backLocal[j], dark, inward);
     }
     sheet(nd, backLocal, dark, [0, 0, 1]);
     outline(nd, lipLocal, 0.024, paint);
-    // Hinged ramps show under the upper lip of the mouth.
+    // Hinged ramps show under the upper lip of the mouth, in the duct's interior paint.
     quad(
       nd,
       local([side * 0.98, 2.42, 5.65]),
       local([side * 1.74, 2.52, 5.65]),
       local([side * 1.7, 2.3, 3.7]),
       local([side * 1.02, 2.2, 3.7]),
-      upper,
+      intake,
       [0, -1, 0],
     );
     for (const z of [2.1, -1.9, -5.4])
@@ -520,6 +526,46 @@ export function buildF14D(s) {
       ],
       paint,
     );
+    // Glove underside: the real glove is closed, its lower skin sweeping from the sharp leading
+    // edge down into the nacelle side ahead of the lip, then onto the lip's own leading edge.
+    // Without it the upper glove overhung an open pocket that showed the sky through it from
+    // low ahead (owner report 11-26).
+    const gloveLe = [
+        [1.72, 2.64, 6.03],
+        [1.85, 2.64, 5],
+        [2.44, 2.62, 3.4],
+        [3.1, 2.56, 1.8],
+        [3.19, 2.55, 1.4],
+      ],
+      along = (z) => {
+        let k = 0;
+        while (k < gloveLe.length - 2 && z < gloveLe[k + 1][2]) k++;
+        const a = gloveLe[k],
+          b = gloveLe[k + 1],
+          f = (a[2] - z) / (a[2] - b[2]);
+        return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f - 0.012, z];
+      },
+      // Where the underside meets the nacelle (ahead of the lip) or the lip's leading edge.
+      gloveFoot = (z) => {
+        if (z <= 3.2) {
+          const f = (3.2 - z) / (3.2 - 1.4);
+          return [2.05 + (3.19 - 2.05) * f, 2.3 + (2.34 - 2.3) * f, z];
+        }
+        const f = (z - 3.2) / (6.03 - 3.2),
+          y = 2.24 + 0.3 * f;
+        return [lookup(column(nacelle, 2), z) + 0.02, y, z];
+      },
+      zs = [6.03, 5.5, 5, 4.5, 4, 3.6, 3.2, 2.7, 2.2, 1.8, 1.4];
+    for (let i = 0; i < zs.length - 1; i++)
+      quad(
+        d,
+        [side, 1, 1].map((m, n) => along(zs[i])[n] * (n ? 1 : m)),
+        [side, 1, 1].map((m, n) => along(zs[i + 1])[n] * (n ? 1 : m)),
+        [side, 1, 1].map((m, n) => gloveFoot(zs[i + 1])[n] * (n ? 1 : m)),
+        [side, 1, 1].map((m, n) => gloveFoot(zs[i])[n] * (n ? 1 : m)),
+        paint,
+        [side, -1, 0.6],
+      );
     // Wing plane sits at the fuselage side, well below the glove top; the panel droops outboard.
     const pivot = [side * 2.8, 2.4, 1.25],
       wg = group(root, `F14-wing-${side}`, pivot),
@@ -587,13 +633,50 @@ export function buildF14D(s) {
         axis: 'x',
         scale: -0.45,
       });
-      const sp = group(
-          wg,
-          `F14-spoiler-${side}-${j}`,
-          toLocal((lo + hi) / 2, (a.y + b.y) / 2 + 0.08, (a.h + b.h) / 2 + 0.35),
-        ),
-        sd = detailKit(sp, sp.name);
-      sd.box([hi - lo - 0.04, 0.016, 0.32], [0, 0, -0.16], upper);
+      // Spoilers lie flush on the upper skin just ahead of the flaps until roll input raises
+      // them. They were level slabs 4-7 cm above the drooping wing, stepped from panel to panel,
+      // and read as deployed at rest (owner report 11-26).
+      const skinY = (x, z) => {
+          let k = 0;
+          while (k < ws.length - 2 && x > ws[k + 1][0]) k++;
+          const p = ws[k],
+            q = ws[k + 1],
+            f = Math.max(0, Math.min(1, (x - p[0]) / (q[0] - p[0]))),
+            [y, le, te, hh] = [1, 2, 3, 4].map((n) => p[n] + (q[n] - p[n]) * f),
+            back = te + (le - te) * 0.26,
+            z75 = back + (le - back) * 0.25,
+            z25 = le - (le - back) * 0.25;
+          return z <= z75
+            ? y + (0.52 * hh * (z - back)) / (z75 - back)
+            : y + hh * (0.52 + (0.48 * (z - z75)) / (z25 - z75));
+        },
+        corner = (x, aft) => {
+          const z = edge(x).h + (aft ? 0.04 : 0.35);
+          return [x, skinY(x, z) + 0.004, z];
+        },
+        x0 = lo + 0.02,
+        x1 = hi - 0.02,
+        hingeAt = [
+          (x0 + x1) / 2,
+          (corner(x0)[1] + corner(x1)[1]) / 2,
+          (corner(x0)[2] + corner(x1)[2]) / 2,
+        ],
+        sp = group(wg, `F14-spoiler-${side}-${j}`, toLocal(...hingeAt)),
+        sd = detailKit(sp, sp.name),
+        rel = ([x, y, z]) => {
+          const p = toLocal(x, y, z),
+            o = toLocal(...hingeAt);
+          return [p[0] - o[0], p[1] - o[1], p[2] - o[2]];
+        };
+      quad(
+        sd,
+        rel(corner(x0)),
+        rel(corner(x1)),
+        rel(corner(x1, true)),
+        rel(corner(x0, true)),
+        upper,
+        [0, 1, 0],
+      );
       sd.finish();
       bindings.push({
         node: sp.name,
@@ -830,14 +913,20 @@ export function buildF14D(s) {
       });
     }
     gd.finish();
-    bindings.push({
-      node: g.name,
-      source: 'gear',
-      property: 'rotation',
-      axis: noseGear ? 'x' : 'z',
-      scale: noseGear ? Math.PI / 2 : Math.sign(x) * 1.35,
-      offset: noseGear ? -Math.PI / 2 : Math.sign(x) * -1.35,
-    });
+    // Stowed, the legs and wheels fit no bay in this shell (main wheels hung below the tunnel
+    // and through the lower glove, nose wheels and braces below the keel): like the MiG-29's,
+    // they are hidden once up, behind the closed bay doors, and swing in transit only.
+    bindings.push(
+      {
+        node: g.name,
+        source: 'gear',
+        property: 'rotation',
+        axis: noseGear ? 'x' : 'z',
+        scale: noseGear ? Math.PI / 2 : Math.sign(x) * 1.35,
+        offset: noseGear ? -Math.PI / 2 : Math.sign(x) * -1.35,
+      },
+      { node: g.name, source: 'gearExposed', property: 'visible', scale: 1 },
+    );
   }
   const hook = group(root, 'arresting-hook', [0, 1.9, -4.8]);
   const hd = detailKit(hook, 'hook-skin');
@@ -960,6 +1049,7 @@ function f14Cockpits(root, m) {
     headingDegrees: { op: 'multiply', args: ['trueHeading', 180 / Math.PI] },
     aoaDegrees: { op: 'multiply', args: ['angleOfAttack', 180 / Math.PI] },
     gearDown: { op: 'greater', args: ['gear', 0.999] },
+    gearExposed: { op: 'greater', args: ['gear', 0.02] },
   });
   // Coordinates are measured from the two different normalized foldouts (FO-3 / FO-4).
   for (const rear of [false, true]) {

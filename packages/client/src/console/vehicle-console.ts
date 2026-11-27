@@ -13,10 +13,13 @@ import {
 } from '../navigation/touch-lever';
 import {
   aircraftDeck,
+  buttonTip,
   CONSOLE_ICONS,
   type ConsoleButton,
   type ConsoleItem,
   type ConsoleSubject,
+  type ConsoleTip,
+  itemTip,
   onFootDeck,
   subjectButtons,
   vehicleDeck,
@@ -24,11 +27,18 @@ import {
 import { type ConsoleLayout, layoutConsole } from './layout';
 import type { ConsolePart } from './parts';
 import { type ConsoleRect, createConsoleStrip, type StripPlacement } from './strip';
+import { actionKeys, createConsoleTooltips, type TipRect } from './tooltip';
 
 export interface VehicleConsoleOptions {
-  /** Where the controls write: a navigation input map (`NavigationInputSource.map`). */
-  input: Pick<InputMap, 'setVirtual' | 'clearVirtual'>;
-  /** Refocused when a control is touched, so keys keep working (usually the canvas). */
+  /**
+   * Where the controls write: a navigation input map (`NavigationInputSource.map`). With
+   * `getProfile`, a control's tooltip lists the keys its actions are bound to.
+   */
+  input: Pick<InputMap, 'setVirtual' | 'clearVirtual'> & Partial<Pick<InputMap, 'getProfile'>>;
+  /**
+   * Refocused when a control is touched, so keys keep working (usually the canvas). A mouse
+   * resting on a dial over it shows the dial's tooltip.
+   */
   focusTarget?: HTMLElement;
   /** `left` puts the stick on the right and the throttle on the left. */
   handed?: 'right' | 'left';
@@ -176,6 +186,43 @@ export function createVehicleConsole(
   });
   root.append(top);
 
+  // --- Tooltips, for a mouse or pen resting on a control. ---
+  const tooltips = createConsoleTooltips(root, (actions) => {
+    try {
+      const bindings = options.input.getProfile?.().bindings;
+      return bindings ? actionKeys(bindings, actions) : [];
+    } catch {
+      return [];
+    }
+  });
+  const hovering = (event: PointerEvent): boolean =>
+    (event.pointerType === 'mouse' || event.pointerType === 'pen') && event.buttons === 0;
+  /** An element's rectangle in the console's layer. */
+  const rectOf = (element: HTMLElement): TipRect => {
+    const layer = root.getBoundingClientRect();
+    const box = element.getBoundingClientRect();
+    return {
+      left: box.left - layer.left,
+      top: box.top - layer.top,
+      width: box.width,
+      height: box.height,
+    };
+  };
+  /** Show `tip()` while a mouse rests on `element`, placed against `rect()` (default its own). */
+  const hoverable = (
+    element: HTMLElement,
+    key: object,
+    tip: () => ConsoleTip | undefined,
+    rect: () => TipRect = () => rectOf(element),
+  ): void => {
+    element.addEventListener('pointerenter', (event) => {
+      const shown = hovering(event) ? tip() : undefined;
+      if (shown) tooltips.enter(key, shown, rect);
+    });
+    element.addEventListener('pointerleave', () => tooltips.leave(key));
+    element.addEventListener('pointerdown', () => tooltips.press(key));
+  };
+
   let drawing = true;
   const strip = createConsoleStrip(canvas, () => {
     drawing = false;
@@ -209,7 +256,8 @@ export function createVehicleConsole(
     element.type = 'button';
     element.className = 'molen-console-button';
     element.setAttribute('aria-label', spec.label);
-    element.title = spec.label;
+    // The console's own tooltip, not `title`: the browser's would show over it a moment later.
+    hoverable(element, element, () => buttonTip(spec));
     element.innerHTML = `<svg viewBox="0 0 24 24" width="${Math.round(size * 0.45)}" height="${Math.round(size * 0.45)}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${spec.icon}</svg>`;
     Object.assign(element.style, {
       width: `${size}px`,
@@ -273,6 +321,58 @@ export function createVehicleConsole(
   let topButtons: HTMLButtonElement[] = [];
   let drawerButton: HTMLButtonElement | undefined;
   let generation = 0;
+  /** The dial a mouse rests on: dials have no element over them, so the console finds it. */
+  let hoveredGauge: Slot | undefined;
+
+  // The stick's zone is the touch stick's own element, kept for every subject.
+  const stickSlot = (): Slot | undefined => slots.find((slot) => slot.item.zone?.kind === 'stick');
+  hoverable(
+    joystick.element,
+    joystick,
+    () => {
+      const slot = stickSlot();
+      return slot ? itemTip(slot.item) : undefined;
+    },
+    () => stickSlot()?.rect ?? rectOf(joystick.element),
+  );
+  // A dial lets touches through to the world, so a mouse over one is over the canvas.
+  const gaugeAt = (event: PointerEvent): Slot | undefined => {
+    if (!hovering(event) || options.focusTarget === undefined) return undefined;
+    if (event.target !== options.focusTarget) return undefined;
+    const layer = root.getBoundingClientRect();
+    const x = event.clientX - layer.left;
+    const y = event.clientY - layer.top;
+    return slots.find((slot) => {
+      const rect = slot.item.gauge ? slot.rect : undefined;
+      return (
+        rect !== undefined &&
+        x >= rect.left &&
+        x < rect.left + rect.width &&
+        y >= rect.top &&
+        y < rect.top + rect.height
+      );
+    });
+  };
+  const hoverGauge = (slot: Slot | undefined): void => {
+    if (slot === hoveredGauge) return;
+    if (hoveredGauge) tooltips.leave(hoveredGauge);
+    hoveredGauge = slot;
+    const tip = slot ? itemTip(slot.item) : undefined;
+    // A relayout hides the tooltip, so the dial's rectangle holds while it shows.
+    const rect = slot?.rect;
+    if (slot && tip && rect) tooltips.enter(slot, tip, () => rect);
+  };
+  const hideTips = (): void => {
+    tooltips.hide();
+    hoveredGauge = undefined;
+  };
+  const onGaugeMove = (event: PointerEvent): void => {
+    if (visible && subject !== undefined) hoverGauge(gaugeAt(event));
+  };
+  const onGaugeLeave = (): void => hoverGauge(undefined);
+  container.addEventListener('pointermove', onGaugeMove, { capture: true, passive: true });
+  container.addEventListener('pointerdown', onGaugeLeave, { capture: true, passive: true });
+  container.addEventListener('pointerleave', onGaugeLeave);
 
   const outline = (zone: TouchZone, item: ConsoleItem): void => {
     Object.assign(zone.element.style, {
@@ -288,6 +388,7 @@ export function createVehicleConsole(
   };
 
   const clearSlots = (): void => {
+    hideTips();
     for (const slot of slots) {
       slot.zone?.dispose();
       slot.button?.remove();
@@ -384,7 +485,16 @@ export function createVehicleConsole(
           },
         });
       }
-      if (slot.zone && !drawing) outline(slot.zone, item);
+      if (slot.zone) {
+        const element = slot.zone.element;
+        hoverable(
+          element,
+          slot,
+          () => itemTip(item),
+          () => slot.rect ?? rectOf(element),
+        );
+        if (!drawing) outline(slot.zone, item);
+      }
       if (item.button) {
         slot.button = makeButton(item.button, Math.round(item.size[0]));
         slot.button.style.position = 'absolute';
@@ -395,8 +505,7 @@ export function createVehicleConsole(
     buttons = subjectButtons(next);
     topButtons = options.cornerButtons === false ? [] : buttons.map((spec) => makeButton(spec, 44));
     top.replaceChildren(...topButtons);
-    const stickSlot = slots.find((slot) => slot.item.zone?.kind === 'stick');
-    joystick.setAppearance(stickSlot?.part && drawing ? 'none' : 'circles');
+    joystick.setAppearance(stickSlot()?.part && drawing ? 'none' : 'circles');
     ready = false;
     const built = ++generation;
     const parts = slots.flatMap((slot) => (slot.part ? [slot.part] : []));
@@ -423,6 +532,8 @@ export function createVehicleConsole(
     const height = container.clientHeight;
     size = { width, height };
     if (subject === undefined) return;
+    // Controls may move under a tooltip.
+    hideTips();
     const insets = readInsets();
     const gauges = showsGauges(subject);
     const items = slots
@@ -465,7 +576,13 @@ export function createVehicleConsole(
     });
     if (layout.drawer && drawerButton === undefined) {
       drawerButton = makeButton(
-        { label: 'More controls', icon: CONSOLE_ICONS.more, action: '', mode: 'tap' },
+        {
+          label: 'More controls',
+          hint: 'Show or hide the other levers',
+          icon: CONSOLE_ICONS.more,
+          action: '',
+          mode: 'tap',
+        },
         44,
       );
       drawerButton.addEventListener('pointerup', () => {
@@ -491,6 +608,7 @@ export function createVehicleConsole(
     root.style.display = on ? '' : 'none';
     joystick.setVisible(on);
     if (!on) {
+      hideTips();
       for (const slot of slots) {
         slot.zone?.setVisible(false);
         slot.active = false;
@@ -586,6 +704,10 @@ export function createVehicleConsole(
     dispose() {
       generation++;
       clearSlots();
+      container.removeEventListener('pointermove', onGaugeMove, { capture: true });
+      container.removeEventListener('pointerdown', onGaugeLeave, { capture: true });
+      container.removeEventListener('pointerleave', onGaugeLeave);
+      tooltips.dispose();
       strip.dispose();
       joystick.dispose();
       root.remove();

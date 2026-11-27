@@ -266,6 +266,13 @@ export interface BuildingRequest {
   levels?: number;
   /** Height of the lowest floor above the base (skyways, cantilevers). */
   minHeight?: number;
+  /**
+   * The building floats (a floating home, a houseboat): the height of the water surface it rides
+   * on. The ground under its outline is not read. It stands on a float in the style's foundation
+   * material whose deck is the style's foundation height above the water and reaches a little
+   * past its walls, and what it carries (access, yard, props, interior) stands on that deck.
+   */
+  waterline?: number;
   /** The outline is a cut piece of a larger shape: flat roof, seam walls, no ownership choices. */
   clipped?: boolean;
   /** Outline edge indices that lie on a cut boundary. */

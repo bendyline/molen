@@ -29,15 +29,16 @@ turbofan systems simulator. `ambientRole` retains its overhead and airport traff
   (animated by gear selection); `flap-left`, `flap-right` and their `-inner` pairs;
   `control-yoke`, `control-column` and their `-right` pairs, `pedal-*`, `power-lever-*` and
   `horizon-*`.
-- Paint: `airliner-livery` (fin, cheatline and lettering) takes the agent colour.
+- Paint: `airliner-livery` (fin and cheatline) takes the agent colour. Titles are livery markings
+  (the Bendy house scheme carries the BENDY title), so other operators' schemes show none.
 - Close detail: individual passenger windows, glazed windscreen and side windows with outer
   frames and boxed inner pillars, door outlines, intake lips and fan blades, navigation lamps,
-  wipers, pitot masts, Bendy lettering and flush fuselage fasteners.
+  wipers, pitot masts and flush fuselage fasteners.
 - Flight deck: two seats, glareshield rising from the windscreen sill, 6 by 8 in displays, 3 1/8 in
   standby dials, mode control panel, control columns, centre pedestal, side consoles and overhead
   panel. Screens are diagrammatic, except a live horizon cue; flight readings are in the HUD.
   The seated eye is 0.75 m from the panel face, with the glareshield about 14 degrees below it.
-- Budget: 60,062 rendered triangles, no textures. Generic fastener rows suggest structural frame
+- Budget: 59,282 rendered triangles, no textures. Generic fastener rows suggest structural frame
   stations; they do not reproduce a particular manufacturer's engineering drawing.
 
 ## Evidence

@@ -5,7 +5,11 @@
  * `?audio=0`, the explorer is silent.
  */
 
-import type { AudioLayer, AudioRendererLike } from '@bendyline/molen-client/audio';
+import {
+  type AudioLayer,
+  type AudioRendererLike,
+  loudnessToGain,
+} from '@bendyline/molen-client/audio';
 import {
   createEarthAudio,
   EARTH_PACK_IDS,
@@ -22,10 +26,14 @@ interface StoredSettings {
   volume: number;
   muted: boolean;
   music: boolean;
+  /** Ambience: weather, nature, streets. */
+  world: number;
+  /** Engines, footsteps, horns, impacts. */
+  vehicles: number;
 }
 
 function readSettings(): StoredSettings {
-  const fallback = { volume: 0.8, muted: false, music: true };
+  const fallback = { volume: 0.8, muted: false, music: true, world: 1, vehicles: 1 };
   try {
     return { ...fallback, ...JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '{}') };
   } catch {
@@ -77,6 +85,8 @@ function mountSoundControls(layer: AudioLayer, settings: StoredSettings): () => 
       <label><input id="sound-mute" type="checkbox" /> Mute</label>
       <label><input id="sound-music" type="checkbox" /> Music</label></div>
     <input id="sound-volume" type="range" min="0" max="100" step="1" aria-label="Volume" />
+    <label class="sound-mix">World <input id="sound-world" type="range" min="0" max="100" step="1" aria-label="World volume" /></label>
+    <label class="sound-mix">Vehicles <input id="sound-vehicles" type="range" min="0" max="100" step="1" aria-label="Vehicles and effects volume" /></label>
     <p id="sound-status"></p>`;
   const weather = document.getElementById('weather-controls');
   if (weather?.parentElement === hud) weather.after(root);
@@ -84,20 +94,35 @@ function mountSoundControls(layer: AudioLayer, settings: StoredSettings): () => 
   const volume = root.querySelector('#sound-volume') as HTMLInputElement;
   const mute = root.querySelector('#sound-mute') as HTMLInputElement;
   const music = root.querySelector('#sound-music') as HTMLInputElement;
+  const world = root.querySelector('#sound-world') as HTMLInputElement;
+  const vehicles = root.querySelector('#sound-vehicles') as HTMLInputElement;
   const status = root.querySelector('#sound-status') as HTMLElement;
   volume.value = String(Math.round(settings.volume * 100));
+  world.value = String(Math.round(settings.world * 100));
+  vehicles.value = String(Math.round(settings.vehicles * 100));
   mute.checked = settings.muted;
   music.checked = settings.music;
-  const save = (): void => {
-    settings.volume = Number(volume.value) / 100;
-    settings.muted = mute.checked;
-    settings.music = music.checked;
+  const apply = (): void => {
     layer.setVolume(settings.volume);
     layer.setMuted(settings.muted);
     layer.setBusGain('music', settings.music ? 1 : 0);
+    // Like the master volume, the mix sliders follow loudness.
+    layer.setBusGain('ambience', loudnessToGain(settings.world));
+    layer.setBusGain('sfx', loudnessToGain(settings.vehicles));
+  };
+  const save = (): void => {
+    settings.volume = Number(volume.value) / 100;
+    settings.world = Number(world.value) / 100;
+    settings.vehicles = Number(vehicles.value) / 100;
+    settings.muted = mute.checked;
+    settings.music = music.checked;
+    apply();
     writeSettings(settings);
   };
+  apply();
   volume.addEventListener('input', save);
+  world.addEventListener('input', save);
+  vehicles.addEventListener('input', save);
   mute.addEventListener('change', save);
   music.addEventListener('change', save);
   const timer = setInterval(() => {
@@ -114,6 +139,8 @@ function mountSoundControls(layer: AudioLayer, settings: StoredSettings): () => 
     status.dataset.unlocked = String(layer.unlocked);
   }, 500);
   return () => {
+    world.removeEventListener('input', save);
+    vehicles.removeEventListener('input', save);
     clearInterval(timer);
     root.remove();
   };

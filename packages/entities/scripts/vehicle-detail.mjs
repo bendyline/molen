@@ -3,6 +3,7 @@ import '../../worldgen/scripts/install-deterministic-math.mjs';
 import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { joinedPath } from '../../worldgen/scripts/joined-path.mjs';
+import { textShapes } from './lettering-outlines.mjs';
 import { prepareSurface } from './surface-normals.mjs';
 import {
   addMarineDashboard,
@@ -79,66 +80,34 @@ export function detailKit(parent, name = 'close-detail') {
     if (axis === 'y') mesh.rotation.x = Math.PI / 2;
     return mesh;
   };
-  // Compact sans-serif geometry, front +Z. Both sides must be rotated, never mirrored.
-  const glyphs = {
-    A: '010101111101101',
-    B: '110101110101110',
-    C: '011100100100011',
-    D: '110101101101110',
-    E: '111100110100111',
-    F: '111100110100100',
-    G: '011100101101011',
-    H: '101101111101101',
-    I: '111010010010111',
-    J: '001001001101010',
-    K: '101101110101101',
-    L: '100100100100111',
-    M: '101111111101101',
-    N: '101111111111101',
-    O: '010101101101010',
-    P: '110101110100100',
-    Q: '010101101111011',
-    R: '110101110101101',
-    S: '011100010001110',
-    T: '111010010010010',
-    U: '101101101101111',
-    V: '101101101101010',
-    W: '101101111111101',
-    X: '101101010101101',
-    Y: '101101010010010',
-    Z: '111001010100111',
-    0: '111101101101111',
-    1: '010110010010111',
-    2: '110001010100111',
-    3: '110001010001110',
-    4: '101101111001001',
-    5: '111100110001110',
-    6: '011100111101111',
-    7: '111001010010010',
-    8: '111101111101111',
-    9: '111101111001110',
-    '-': '000000111000000',
-    '.': '000000000000010',
-  };
+  // Outlined lettering (Overpass SemiBold, lettering-outlines.mjs), front +Z. Both sides must
+  // be rotated, never mirrored. The old 3x5 dot font read as hand-drawn; the outlines keep its
+  // cap height and are condensed where needed so no label grows past the width it had.
   const text = (label, at, height = 0.05, yaw = 0, material = ivory, role = 'panel') => {
     const g = new T.Group();
     g.position.fromArray(at);
     g.rotation.y = yaw;
     root.add(g);
     textGroups.set(g, { label, height, role });
-    const pixel = height / 5,
-      width = (label.length * 4 - 1) * pixel;
-    [...label.toUpperCase()].forEach((char, n) => {
-      [...(glyphs[char] ?? '')].forEach((bit, i) => {
-        if (bit === '1')
-          box(
-            [pixel * 0.85, pixel * 0.85, 0.001],
-            [-width / 2 + (n * 4 + (i % 3)) * pixel, height / 2 - Math.floor(i / 3) * pixel, 0],
-            material,
-            g,
-          );
-      });
-    });
+    const upper = label.toUpperCase(),
+      { shapes, width } = textShapes(upper, { height }),
+      fit = (upper.length * 4 - 1) * (height / 5);
+    if (!shapes.length) return g;
+    const front = new T.ShapeGeometry(shapes, 3);
+    if (width > fit) front.scale(fit / width, 1, 1);
+    front.deleteAttribute('uv');
+    // A back face as well, as the dot boxes had, so lettering on thin parts reads from both sides.
+    const back = front.clone();
+    const index = back.index.array;
+    for (let i = 0; i < index.length; i += 3)
+      [index[i + 1], index[i + 2]] = [index[i + 2], index[i + 1]];
+    const normal = back.getAttribute('normal');
+    for (let i = 0; i < normal.count; i++) normal.setXYZ(i, 0, 0, -1);
+    front.translate(0, 0, 0.0005);
+    back.translate(0, 0, -0.0005);
+    add(mergeGeometries([front, back]), material, [0, 0, 0], g);
+    front.dispose();
+    back.dispose();
     return g;
   };
   const finish = () => {

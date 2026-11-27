@@ -1,10 +1,22 @@
 {
   "format": "molen/pack-source@1",
   "id": "molen.sounds",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "title": "Molen sounds: CC0 ambience, vehicles, footsteps, impacts, UI and music",
   "license": "CC0-1.0",
   "notice": "NOTICE.md",
-  "include": ["sounds.soundbank.json", "birdsong.json", "audio/**", "NOTICE.md"],
-  "provides": { "soundbank": "sounds.soundbank.json", "birdsong": "birdsong.json" }
+  "include": [
+    "sounds.soundbank.json",
+    "sound-profiles.json",
+    "soundscape.json",
+    "birdsong.json",
+    "audio/**",
+    "NOTICE.md"
+  ],
+  "provides": {
+    "soundbank": "sounds.soundbank.json",
+    "sound-profiles": "sound-profiles.json",
+    "soundscape": "soundscape.json",
+    "birdsong": "birdsong.json"
+  }
 }

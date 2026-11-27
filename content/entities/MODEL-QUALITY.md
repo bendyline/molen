@@ -6,6 +6,216 @@ people, animals and the animated diorama structures. It complements the
 this page records what a whole-fleet review found, the rules that came out of it, and the
 tools that make the next review fast.
 
+## The aircraft fidelity review of 2026-11-25
+
+The owner flew the fleet in the World Explorer and found faults no earlier review had caught.
+
+- **UH-60M:** round engine pods, a boxy fuselage, odd door windows, and a wiper that crossed the pilot's view.
+- **Bonanza G36:** the propeller showed between the panel and the glareshield, and retracted gear showed through the wing.
+- **F/A-18C:** a speed brake that looked half open at rest.
+
+Every one of the 54 aircraft was then reviewed. Each was rendered from outside and from every
+seat (the explorer's 60° vertical field of view, entry pitch -0.18 rad), with gear down and up
+and with brakes, canopies and doors closed and open. The renders were compared with Commons
+photographs of the type.
+
+Each render was also scanned with an ID buffer, which flags three kinds of pixel:
+
+- **From a seat:** a pixel showing sky, a propeller or rotor, gear, or the outside of the skin,
+  with no glass in between. A dark disc stands in where a propeller or rotor spins, so a slot
+  that would show the blur disc in flight is caught.
+- **From outside:** a pixel showing a cockpit part with no glass in between.
+- **With the gear up:** a pixel showing any gear part.
+
+The baseline scan flagged about 40 aircraft. After the pass, every seat view of every type is
+closed:
+
+- No sky or propeller shows from any seat; the transport flight decks used to show over half
+  their view as open sky.
+- Interior parts no longer show from outside, except slivers of a few pixels.
+- Retracted gear is hidden or flush, except where the real aircraft shows it (DC-3, Beech 18 and
+  CJ4 tyres) and the closed strut doors.
+
+| Fault | Where | Cause | Fix |
+| --- | --- | --- | --- |
+| Engine bay seen from the seat | Bonanza, OV-10, P-51, CH-47, H145, UH-1H/412 | The Bonanza's glareshield ended 3 cm under the windscreen base. Behind it the cowl was open all the way to the inlet, so the eye looked through the engine bay at the propeller. Elsewhere, roof quarters stopped short of curved headers, canopy bases bulged past the last nose ring, and one-sided glare shields and nose caps were culled from inside. | A firewall and a glareshield tucked under the cowl skin. Roof quarters follow the header curve. Frames close the coaming corners. Inward faces added where a surface is seen from inside. |
+| No windscreen glass from the flight deck | The seven transport-kit types and the generic airliner | The panes faced outward only, so from the seat the deck looked out through open frames. | An inward glass layer, faint from inside and culled outside, plus lined pillars, sill and header inside the skin (`transport-kit.mjs`). |
+| Retracted gear outside the skin | Bonanza, Baron, DA42, King Air, PC-12, AW139, F-14, F-15, the transport-kit types, the airliner, OV-10 | GA wing roots were 9–12% thick against 14–17% on the real aircraft, so a stowed wheel lay on top of the skin. Drag braces inboard of a leg swung up through the upper skin. Nose wheels stowed below the belly. The generic fallback swung a leg 90° wherever it stood. | Roots thickened to the real airfoils. Hinges re-set so the stowed wheel sits mid-depth. Braces fold in the leg's plane, and strut doors are shaped to lie on the lower skin. The AW139 and the kit types author their own rigs (side stays that fold, nose doors). The F-14 and F-15 have no bay that fits their gear, so it is hidden by `visible`. The Beech 18 mains fold aft as the real ones do. |
+| Interior through the skin | Cessnas, Caravan, Cirrus, Beaver, PC-6, PC-12, Twin Otter, DC-3, Beech 18, F-16, MiG-29, F-22, F-35, Bell 412, R44, ATR 72, MV-22 | Flat floor and liner boxes, seats and tubs were sized to the cabin's widest section. Where the belly rose and the fuselage tapered, they cut through it. | Floors and liners are sampled from the skin rings (`fittedFloor`, builder `ringAt`/`skinHalfWidth` helpers). Tubs stop above the lower fuselage, and seats are clamped inside. |
+| Cabin open to the tail or engines | All the helicopters, AV-8B, UH-1H, Gripen | No aft wall: from the seat the eye looked down the tail boom (9 m on the AW139), into the engine bay, or at a fan disc. From behind, the cabin showed past the Bell 206/407 boom roots (the aft frame was an open octagon) and up the Gripen's hollow fuselage around its nozzle. | Bulkheads and firewalls. An aft closing sheet around each Bell boom; a ring and an aft face around the Gripen nozzle. |
+| Surfaces not flush at rest | F/A-18, Typhoon, Gripen, F-14, F-16, AV-8B | Speed brakes were flat plates at a fixed height on curved or sloping skin. Buried at the hinge and proud aft, they read as half open; some sat inside the fuselage and broke out through the skin when opened. | `conformPanel` lays each panel on the skin from above, from the side (`sideBrakes`: the Gripen's side panels swing outward) or from below (the AV-8B ventral brake). Panel sizes follow photographs. |
+| Canopies and brake mixing | F-22, Typhoon, Rafale, Gripen, F-16, AV-8B, F-35 | The opening was cut 0.4 m ahead of the eye, splitting the glass. Every canopy rotated about a rear hinge. Both F-35 rudders deflected one way for braking (a yaw), and the Rafale's single rudder yawed. | Per-type cut points: the F-22 bubble lifts whole. The Gripen swings to port, the AV-8B slides aft, and the F-16 hood opens about 30°. Paired rudders splay; a centreline rudder stays out of the mix. |
+| Recognizable shape | UH-60, A400M, C-17A, C-5M, An-124, CH-47, UH-1H, Gripen, Rafale, F-16, AV-8B, CJ4, Caravan, Beaver, PC-12, H145, Bell 407, AW139, Baron, King Air | Examples: UH-60 nacelles as free pods overhanging the cabin, a square tail tube, and a wall where the cabin met the tail; a pointed A400M radome with its refuelling probe lying flat; a Gripen canopy a metre too long; a stubby CH-47 forward pylon; window layouts that did not match the type. | Rebuilt against photographs. UH-60: faired nacelles beside the transmission, an oval tail cone and taper, rounded windows, upright pitch links. Also new A400M, C-17A and C-5M windscreens and nose, CJ4/Caravan/Beaver/PC-12 windows, H145 Fenestron, 407 endplates, AW139 exhausts and Baron nacelles. |
+| Oversized or misplaced details | UH-60, UH-1H, C-130J, An-124, MV-22, Cessnas, Caravan, many wipers | Wipers 2–2.4 cm thick: the UH-60's ran inside the glass to eye height and folded into a Z, and the UH-1H's sat inside the cabin. Also sun visors at forehead height, a glareshield that hid the An-124's attitude indicators, and black horizon backing squares standing over panel tops (MV-22, Caravan). | Wipers parked on the outside of the glass at 1 cm or less. Visors stowed. Masks trimmed under the brow. |
+| Markings off the skin | UH-60 stencil, Gripen/Typhoon/Rafale panel lines, Bonanza and Baron wing details | Flat lettering and lines on tapering or curved skin. "UNITED STATES ARMY" read "TATES ARMY". | Text turned with the taper. Panel lines cast onto the actual triangles. Fuel caps, vortex generators and wing walks laid on the surface. |
+
+Rules that came out of it:
+
+- **A seat view must be closed.** From the eye, every ray ends on glass, a cockpit part or the
+  inside of the skin. A slot a few centimetres high under a glareshield shows the whole engine
+  bay. Check with the propeller disc present, because the disc is what shows in flight.
+- **A one-sided surface is invisible from behind.** Anything seen from inside the cabin (glare
+  shields, nose caps, the skin past a lining edge) needs an inward face.
+- **Check stowed gear against the wing section.** Real light-aircraft roots are 14–17% thick; a
+  wheel stowed in a 10% root lies on top of it.
+- **Fit interior parts to the skin.** A box sized to the cabin's widest section cuts through a
+  tapering belly.
+- **Lay moving panels on the surface.** A flat plate on a sloping or curved spine reads as
+  partly open.
+- **Wipers, visors and handles belong outside the line of sight**, or outside the glass, at real
+  thickness.
+
+Left for later:
+
+- 737 main wheels are hidden in flight; real ones show in their wells, which needs well
+  cut-outs.
+- Main-gear doors are not modelled on the A320, A220, E175, G650 and Q400.
+- The A400M side windows sit high (glazePatch cannot bend over the roof shoulder).
+- The UH-1H crew door is about 0.3 m aft of the TM figure.
+- The OH-6 transmission base shows when looking aft.
+- The H145 has a broad opaque band between the windscreen and the front-door window.
+- The Beech 18 nacelles end mid-chord, and its tailwheel shows when stowed.
+- The C-130J's lower cockpit side window is missing.
+- The F-14 mains swing inboard (a test pins it); the real ones retract forward.
+- One spoiler panel per wing (real types have 4–5).
+- `horizon()` in instrument-geometry draws a backing square larger than its aperture. Builders
+  near a panel top trim it locally; a shared `maskTop` option would remove the workarounds.
+
+The renderer, the scan, reference fetching and the per-family evidence stayed local to the
+session, as the see-through scan's did. The scan is the "interior-clearance check" listed under
+"Worth adding next" below, extended to the exterior and to stowed gear.
+
+### Lettering and liveries (same day)
+
+**Real-font lettering.** The detail kit's `text()` lost its hand-built 3x5 dot glyphs. It now
+outlines Overpass, Overpass Mono and Jost through `lettering-outlines.mjs`. Every road vehicle,
+motorhome, cycle, watercraft, rail, transit and aircraft model was regenerated and imported.
+
+**Operator markings moved into liveries.** Builders no longer bake in markings that belong to
+one operator, or that contradict other operators' schemes:
+- national titles: UNITED STATES ARMY on the UH-60, CH-47 and OH-6, and MARINES on the AV-8B;
+- national roundels on the Gripen, Rafale and Typhoon;
+- the P-51's star-and-bar;
+- the MiG-29's nose number;
+- the An-124's blue cheatline and the Bell 412's red stripes;
+- type designations that took the accent color in every scheme: R44, H125, H145, AW139, 206B,
+  407 GX, 412 EP, DHC 2, PC 6, PC-12 NGX, DHC 6, D 18 S, DOUGLAS DC-3, KING AIR 350i, AN-124,
+  MV-22B and ATR 72 600;
+- BENDY on the generic airliner.
+
+Generic stencils (RESCUE, NO STEP, warning arrows) stay in the geometry.
+
+**The liveries.** Every aircraft has 3–7 real operators' liveries, 264 in all, authored as design
+modules in `packages/entities/scripts/liveries/`. Their authoring guide is the README there. The
+civil models' unpainted masters are now plainer than before, since the color now comes from the
+liveries.
+
+### AV-8B nozzles (2026-11-26)
+
+The owner saw the Harrier's nozzles as much larger than the real ones. They were long round pipes
+reaching 0.5 m out from the skin before turning aft, with black discs for exits. Each front pipe
+sat behind a fixed pod 0.6 m wide and 0.86 m tall, and each rear one behind a dark pod of the same
+size. The rear pair stood 3.1 m behind the front pair. In flight, from above and behind, they read
+as four large drums.
+
+Checked against side, head-on and close-up photographs of the AV-8B and Harrier GR.9, and against
+museum Pegasus 11 and 103 engines:
+- **Shape:** each nozzle is now a compact elbow. A round bearing collar eases into a
+  rounded-rectangle outlet: 0.50 by 0.36 m at the front, 0.42 by 0.30 m at the rear. The outlet
+  shows a grey duct and turning vanes (two at the front, one at the rear), and its outer face is
+  about 0.2 m outboard of the intake cowl.
+- **Positions:** the front bearings keep the drawing's station (z 1.13). The rear bearings now sit
+  1.9 m behind them, the spacing of the nozzle rings on the Pegasus. Two side photographs disagree
+  by 0.5 m on the front station, so it was left at the drawing's value.
+- **Fairings:** a fixed pod 1.1 m long and 0.44 m tall sits ahead of each front nozzle; every
+  service's insignia sits on it. The intake cowl now fairs into the body behind the nozzles; the
+  old pods had closed it.
+- **Materials:** the front nozzles take the livery. The rear nozzles and a heat shield on the body
+  behind them are bare metal under every livery.
+- **Insignia:** the livery anchors moved from the intake trunk onto the pods: the US
+  star-and-bar, the Spanish roundel and the Italian anchor badge.
+
+Still open: the same photographs put the intake lip and the pod 0.2–0.5 m further aft than the
+drawing-based layout. That has not been reconciled, and the intakes are unchanged.
+
+### F-35A aft body, nozzle and detail (2026-11-26)
+
+The owner saw the F-35A as fat and chunky from behind, more than the real one. The model was
+checked against the public-domain three-view, Komatsu photographs from the rear and low rear, and
+photographs from a tanker boom.
+
+The side profile and the front silhouette already agreed within about 0.15 m. The difference was
+in the aft body:
+- It kept a round belly 2.6 m wide to within 0.65 m of the nozzle, then pinched into it, which
+  read as a bomb shape from behind.
+- The real engine bay is a tube about 1.5 m across that runs almost parallel to the nozzle. Above
+  it a thin shelf carries the fins and the stabilator booms, and under it the belly narrows to a
+  shallow keel.
+
+What changed:
+- **Aft body:** two new sections at z −3.2 and −3.75 build the fin-root shelf, the keel and a
+  collar just outside the nozzle. The booms widen so the fin roots sit on them.
+- **Nozzle:** 1.25 m across at the base, down from 1.36 m, and 0.92 m at the exit. It has 15 flat
+  flaps with dark seams, a hinge band and a saw-toothed exit lip. The body overlaps the nozzle
+  with 24 saw teeth where there used to be a line. Inside are an exhaust cone, spray bars and a
+  flame-holder ring behind the turbine disc.
+- **Detail:**
+  - Gun: the GAU-22/A fairing on the left shoulder, with its port door and gas louvres.
+  - Vents: two louvred grilles on the right shoulder.
+  - Bays: weapons-bay door outlines with saw-toothed ends.
+  - Sensors: six EO-DAS windows (above and below the nose, behind the canopy, under the aft body,
+    and one on each side of the nose).
+  - Lights: formation-light strips on the fins.
+- **Livery:** the RAAF serial anchor moved 0.35 m forward onto the full-depth aft side.
+
+### F-14D intake mouth, glove underside and spoilers (2026-11-26)
+
+The owner reported two things on the F-14.
+
+**"Transparency" where the glove meets the wing.** Nothing was open. The raked, tilted intake
+mouth had an all-black duct behind it. Seen from low ahead, the lit outboard intake wall crossed a
+black parallelogram, which read as a hole through the airframe. The fix:
+- The front 40% of the duct and the variable ramp take a light interior paint, as on the real
+  Tomcat, whose intakes are white inside near the mouth.
+- The deep duct stays dark.
+- The ramp no longer uses F14-upper, so the livery module drops the nacelles' F14-upper slots.
+
+The glove also gained its lower skin, from the swept leading edge down into the nacelle side and
+the lower lip. Until then the upper glove overhung an open pocket.
+
+**Slats that looked "all up".** These were the spoilers, not slats. The F-14 model has no slats.
+The spoilers were level slabs floating 4–7 cm above the drooping wing, stepped from panel to
+panel, so they read as deployed at rest. Each is now a flush panel 4 mm above the skin, following
+the wing's surface and its swept hinge line. They still rise with roll input.
+
+The seat and exterior leak scans are unchanged under the baseline's conditions.
+
+### UH-1H shading and nose (2026-11-26)
+
+The owner said the UH-1H looked a little boxy and its nose was not quite right. Against the TM
+fig 2-2 overlay, the outline already matched. The causes were shading and the lower nose.
+
+**Boxy:**
+- The cowling's section had 11 points. The loft smooths normals only from 12, so it rendered as
+  flat chamfers.
+- The cabin's rounded corners had four points each, so the roof and belly corners showed as
+  bands.
+
+The crown now has nine points and each corner seven. A closing sheet beside the corner pane had
+hard-coded the old corner's indices; with the new count it left a gap that showed sky and the
+rotor from the seat. It now derives them from the corner count.
+
+**Nose:** below the tip, the rows fell steadily back, leaving a long sloping chin under the upper
+nose, a duck bill. In the JGSDF 41659 side photograph and the TM side view, the chin face stays
+within about 6 cm of the tip 0.4 m lower, then rounds into a broad underside. The lower rows are
+now fuller and slightly wider.
+
+The chin windows also changed. Their glass is now tinted (70% opacity), because clear glass over
+the dark footwell read as an open mouth. Their frame is slimmer: a 9 mm tube in place of 16 mm.
+
+**Scans:** the seat scans match the baseline, except the chin-window view. It shows more of the
+dark footwell lining through the fuller nose, plus a 2-pixel seam.
+
 ## The human review of 2026-11-23
 
 Seen in the world explorer's designer, the twelve faces looked like one person, braids and locks

@@ -404,20 +404,33 @@ export function beech18Cockpit(root, m) {
     [-0.8, 0.55, 0.91],
     [-1.6, 0.45, 1.07],
   ];
-  for (let i = 0; i < floors.length - 1; i++) {
-    const [za, wa, ya] = floors[i],
-      [zb, wb, yb] = floors[i + 1];
-    sheet(
-      d,
-      [
-        [-wa, ya, za],
-        [wa, ya, za],
-        [wb, yb, zb],
-        [-wb, yb, zb],
-      ],
-      m.dark,
-      [0, 1, 0],
-    );
+  // Sampled strips trimmed to the skin at their height: the straight-edged panels poked out of
+  // the curved lower sides beside the nose wheel-well bulkhead.
+  const wall = (zz, yy) => (m.skin ? m.skin(zz, yy) : 9),
+    floorAt = (zz) => {
+      const i = Math.max(0, Math.min(floors.length - 2, floors.findIndex((f) => f[0] < zz) - 1)),
+        [za, wa, ya] = floors[i],
+        [zb, wb, yb] = floors[i + 1],
+        f = Math.max(0, Math.min(1, (za - zz) / (za - zb))),
+        yy = ya + (yb - ya) * f;
+      return [Math.min(wa + (wb - wa) * f, wall(zz, yy) - 0.02, wall(zz, yy + 0.02) - 0.02), yy];
+    };
+  for (let zz = floors[0][0]; zz > floors.at(-1)[0] + 1e-6; zz -= 0.2) {
+    const z1 = Math.max(floors.at(-1)[0], zz - 0.2),
+      [wa, ya] = floorAt(zz),
+      [wb, yb] = floorAt(z1);
+    if (wa > 0.05 && wb > 0.05)
+      sheet(
+        d,
+        [
+          [-wa, ya, zz],
+          [wa, ya, zz],
+          [wb, yb, z1],
+          [-wb, yb, z1],
+        ],
+        m.dark,
+        [0, 1, 0],
+      );
   }
   for (const zz of [2.18, 1.05, -0.05, -1.15])
     for (const side of [-1, 1]) {

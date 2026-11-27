@@ -24,9 +24,16 @@ export {
   type AudioLayerStats,
   type AudioRendererLike,
   createAudioLayer,
+  loudnessToGain,
 } from './audio/layer';
 export { type AudioCameraLike, listenerFromCamera } from './audio/listener';
 export { type AudioPackSetLike, loadPackSoundbanks } from './audio/packs';
+export {
+  loadPackSoundProfiles,
+  mergeSoundProfiles,
+  type ResolvedSoundProfile,
+  type SoundProfileSet,
+} from './audio/profiles';
 export { createRecordingBackend, type RecordingBackend } from './audio/recording-backend';
 export {
   curve,
@@ -40,9 +47,12 @@ export {
 export type {
   AudioBackend,
   AudioBackendStats,
+  AudioEnclosure,
   AudioEntitySource,
   AudioEnvironmentSignals,
+  AudioListenerSpace,
   AudioListenerState,
+  AudioReverb,
   AudioSkySignals,
   AudioVec3,
   DirectorInput,

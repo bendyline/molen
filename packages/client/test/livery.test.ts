@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { expect, it, vi } from 'vitest';
 import { AssetCache } from '../src/assets';
 import { applyLivery, liveryGraphicTexture } from '../src/livery';
+import { WalkCollision } from '../src/navigation/walk-collision';
 import { SceneMirror } from '../src/sync';
 import { ThreeSceneBackend } from '../src/three/backend';
 
@@ -123,6 +124,36 @@ it('isolates paint and decals, excludes glass, follows moving parts and restores
   ).toEqual(local);
   next.dispose();
 });
+it('stands markings 2 mm off the skin, where no depth mode can tie them with it', () => {
+  // Under a logarithmic depth buffer polygon offset does nothing, and a marking flush with the skin
+  // fought it in speckles; it stands off along the surface normals instead.
+  const { root, mesh } = fixture();
+  const appearance = applyLivery(root, data);
+  const position = (mesh.children[0] as THREE.Mesh).geometry.getAttribute('position');
+  expect(position.count).toBeGreaterThan(0);
+  for (let i = 0; i < position.count; i++) expect(position.getX(i)).toBeCloseTo(1.002, 6);
+  appearance.dispose();
+});
+
+it('keeps markings out of collision, so a vehicle never strikes its own paint', () => {
+  const { root, mesh } = fixture();
+  // Hosts flag a model's meshes as vehicle geometry before they apply its livery.
+  root.traverse((object) => {
+    object.userData.vehicleGeometry = true;
+  });
+  const appearance = applyLivery(root, data);
+  expect(mesh.children[0]?.name).toBe('livery:markings');
+  const sideways = new THREE.Ray(new THREE.Vector3(3, 0, 0), new THREE.Vector3(-1, 0, 0));
+  // An aircraft's or car's own obstacle scan skips vehicles: nothing of this one may remain.
+  const own = new WalkCollision({ ignoreVehicles: true });
+  own.update(root, 0, 0);
+  expect(own.octree.rayIntersect(sideways)).toBeFalsy();
+  // A walker still meets the hull under the paint.
+  const walker = new WalkCollision();
+  walker.update(root, 0, 0);
+  expect(walker.octree.rayIntersect(sideways)?.distance).toBeCloseTo(2, 5);
+  appearance.dispose();
+});
 it('projects camouflage on a private UV channel, preserves source UVs and is reproducible', () => {
   const { root, mesh } = fixture(),
     original = mesh.geometry;
@@ -223,4 +254,147 @@ it('reconciles latest selection during loading, changes without a reload and res
   expect((mesh.material as THREE.MeshStandardMaterial).color.getHexString()).toBe('909090');
   backend.destroy('a');
   cache.dispose();
+});
+
+it('rasterizes holes even-odd and anti-aliases shape edges', () => {
+  const ring = (a: number, b: number): [number, number][] => [
+    [a, a],
+    [b, a],
+    [b, b],
+    [a, b],
+  ];
+  const texture = liveryGraphicTexture(
+    { shapes: [{ color: '#ff0000', points: ring(0.1, 0.9), holes: [ring(0.4, 0.6)] }] },
+    64,
+  );
+  const alpha = (x: number, y: number): number =>
+    texture.image.data[(y * 64 + x) * 4 + 3] as number;
+  expect(alpha(16, 16)).toBe(255);
+  expect(alpha(32, 32)).toBe(0); // inside the hole
+  // 0.1 * 64 = 6.4: the edge column is 60% covered, not all or nothing.
+  expect(alpha(6, 32)).toBeGreaterThan(120);
+  expect(alpha(6, 32)).toBeLessThan(170);
+  texture.dispose();
+});
+
+it('paints zones over a slot with exact plane splits and restores the authored geometry', () => {
+  const { root, mesh, material } = fixture();
+  const original = mesh.geometry;
+  const zoned: LiveryData = {
+    ...data,
+    selected: 'two-tone',
+    variants: [
+      {
+        id: 'two-tone',
+        label: 'Two tone',
+        // The lower 40% of the box gray, a 10% stripe above it blue.
+        paints: {
+          body: {
+            color: '#eeeeee',
+            zones: [
+              { color: '#777777', planes: [{ normal: [0, -1, 0], offset: -0.4 }] },
+              {
+                color: '#2244aa',
+                planes: [
+                  { normal: [0, 1, 0], offset: 0.4 },
+                  { normal: [0, -1, 0], offset: -0.5 },
+                ],
+              },
+            ],
+          },
+        },
+        provenance: { kind: 'original', note: 'Test', references: [] },
+      },
+    ],
+  };
+  const visual = applyLivery(root, zoned);
+  expect(visual.warnings).toEqual([]);
+  const materials = mesh.material as THREE.MeshStandardMaterial[];
+  expect(materials.map((m) => m.color.getHexString()).sort()).toEqual([
+    '2244aa',
+    '777777',
+    'eeeeee',
+  ]);
+  const p = mesh.geometry.getAttribute('position');
+  for (const group of mesh.geometry.groups) {
+    const ys: number[] = [];
+    for (let i = group.start; i < group.start + group.count; i++) ys.push(p.getY(i));
+    // Box spans y -1..1: gray below -0.2, blue in -0.2..0, white above 0.
+    const [lo, hi] = [Math.min(...ys), Math.max(...ys)];
+    const color = materials[group.materialIndex ?? 0]?.color.getHexString();
+    if (color === '777777') expect(hi).toBeLessThanOrEqual(-0.2 + 1e-6);
+    if (color === '2244aa')
+      expect([lo, hi]).toEqual([expect.closeTo(-0.2, 5), expect.closeTo(0, 5)]);
+    if (color === 'eeeeee') expect(lo).toBeGreaterThanOrEqual(-1e-6);
+  }
+  visual.dispose();
+  expect(mesh.geometry).toBe(original);
+  expect(mesh.material).toBe(material);
+});
+
+it('shares one marking atlas among instances, flips shared art and frees it with the last user', () => {
+  const shared: LiveryData = {
+    ...data,
+    graphics: { bar: graphic },
+    variants: [
+      {
+        ...(data.variants[0] as LiveryData['variants'][number]),
+        markings: [
+          { anchor: 'side', graphic: 'bar' },
+          { anchor: 'side', graphic: 'bar', flip: true },
+        ],
+      },
+    ],
+  };
+  const a = fixture(),
+    b = fixture();
+  const first = applyLivery(a.root, shared),
+    second = applyLivery(b.root, shared);
+  expect(first.warnings).toEqual([]);
+  // Both markings on one mesh merge into one decal draw.
+  expect(a.mesh.children).toHaveLength(1);
+  const material = (a.mesh.children[0] as THREE.Mesh).material as THREE.MeshStandardMaterial;
+  expect((b.mesh.children[0] as THREE.Mesh).material).toBe(material);
+  const uv = (a.mesh.children[0] as THREE.Mesh).geometry.getAttribute('uv');
+  const half = uv.count / 2;
+  // The flipped copy mirrors u within the same atlas rectangle: u + u' is the same everywhere.
+  const sum = uv.getX(0) + uv.getX(half);
+  for (let i = 0; i < half; i++) expect(uv.getX(i) + uv.getX(i + half)).toBeCloseTo(sum, 6);
+  for (let i = 0; i < half; i++) expect(uv.getY(i)).toBeCloseTo(uv.getY(i + half), 6);
+  const dispose = vi.spyOn(material.map as THREE.Texture, 'dispose');
+  first.dispose();
+  expect(dispose).not.toHaveBeenCalled();
+  second.dispose();
+  expect(dispose).toHaveBeenCalledTimes(1);
+});
+
+it('draws every camouflage style deterministically with each color represented', () => {
+  for (const style of ['blotch', 'splinter', 'digital'] as const) {
+    const { root, mesh } = fixture();
+    const recipe: LiveryData = {
+      ...data,
+      selected: 'camo',
+      variants: [
+        {
+          id: 'camo',
+          label: 'Camo',
+          paints: {
+            body: {
+              color: '#ffffff',
+              camouflage: { colors: ['#556644', '#aa9977', '#332211'], scale: 1, seed: 7, style },
+            },
+          },
+          provenance: { kind: 'original', note: 'Test', references: [] },
+        },
+      ],
+    };
+    const visual = applyLivery(root, recipe);
+    const bytes = ((mesh.material as THREE.MeshStandardMaterial).map as THREE.DataTexture).image
+      .data as Uint8Array;
+    const seen = new Set<string>();
+    for (let i = 0; i < bytes.length; i += 4)
+      seen.add(`${bytes[i]},${bytes[i + 1]},${bytes[i + 2]}`);
+    expect(seen.size, style).toBe(3);
+    visual.dispose();
+  }
 });

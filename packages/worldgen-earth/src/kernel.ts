@@ -40,6 +40,13 @@ export type {
 } from './kernel/ecology-atlas';
 export { checkEcologyAtlas, createEcologyResolver } from './kernel/ecology-atlas';
 export { ECOLOGY_ATLAS_EXAMPLE, registerEcologyAtlasSchema } from './kernel/ecology-atlas-schema';
+export type { FloatingHome, FloatingHomeWater } from './kernel/floating-homes';
+export {
+  associateFloatingHomes,
+  FLOATING_HOME_LABEL,
+  FLOATING_HOME_STYLE,
+  floatingWaterLevel,
+} from './kernel/floating-homes';
 export { buildingLabels, contextLabelAt, landcoverLabel } from './kernel/labels';
 export type { LandSiteOptions } from './kernel/land-sites';
 export { LAND_SITE_COLORS, landSiteProps, prepareLandSites } from './kernel/land-sites';

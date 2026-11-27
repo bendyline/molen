@@ -256,15 +256,28 @@ export const b737 = {
   },
   gear: {
     // 15.60 m wheelbase, 5.72 m track, 13 ft 5 in nose to nose gear. Tyres H44.5x16.5-21, 27x7.75R15.
-    nose: { u: 4.09, r: 0.345, w: 0.2, spread: 0.42, top: 1.42, strut: 0.075 },
+    // Pivots, rake and fold angles are set so the stowed legs and wheels lie inside the skin,
+    // fairings and wing (checked against these tables); the fold doors are not modelled.
+    // The nose doors are linked to the leg and stay open on the ground.
+    nose: {
+      u: 4.09,
+      r: 0.345,
+      w: 0.2,
+      spread: 0.42,
+      top: 1.7,
+      strut: 0.075,
+      retract: 1.6,
+      doors: 'open',
+    },
     main: {
       u: 19.69,
       x: 2.86,
-      pivotX: 3.45,
+      pivotX: 3.1,
       r: 0.555,
       w: 0.42,
       spread: 0.86,
-      top: 2.3,
+      top: 2.5,
+      retract: 1.35,
       strut: 0.11,
     },
   },

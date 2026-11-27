@@ -45,6 +45,23 @@ and optional maximum width, uses actual advances and kerning, and emits two tria
 glyph facing local -Z. `completeCockpitControls` accepts `letteringFont` for direct use; the other
 aircraft's labels are converted by the shared finish step.
 
+## Exterior lettering and liveries
+
+Outside the cockpit, lettering is geometry rather than an atlas.
+`packages/entities/scripts/lettering-outlines.mjs` outlines the same pinned fonts with
+opentype.js into three.js shapes. The faces are `technical` (Overpass SemiBold), `regular`
+(Overpass Regular), `geometric` (Jost Medium) and `mono` (Overpass Mono SemiBold).
+
+- The detail kit's `text()` uses these outlines for every road vehicle, motorhome, cycle,
+  watercraft, rail and transit model and for aircraft exteriors. This covers plates, stencils and
+  `BENDY` house lettering. Each label is a flat two-sided glyph mesh fitted to the label's
+  authored width, with counters left open.
+- The aircraft livery kit's `Canvas.text()` (`packages/entities/scripts/liveries/kit.mjs`) uses
+  the same outlines for registrations, serials, codes and titles. It flattens them to livery
+  polygons with holes, which the client rasterizes at runtime.
+
+Before 2026-11-25 exterior lettering used a hand-built 3x5 dot font.
+
 ## Font provenance
 
 - Jost: Owen Earl / indestructible type; [designer's page](https://indestructibletype.com/Jost.html).
