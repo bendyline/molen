@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:1b17080b62ffd3565a45af56f0ff45f5e991edb139e2b9fbbb952d49bd7f2923",
-  "sourceHash": "sha256:891aea7c8c8ddde4cbc3866961067e863ae22d802f61e3e90777dd76923010f3",
+  "hash": "sha256:a8d0e9bf7299e6dc2f500cde838b782b2afd691878da656fb70603c08bfa1846",
+  "sourceHash": "sha256:9cbc8b9d26905422e4e513d40d0be77f34c5e237d5288cbb97e6025ff4fc1880",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 21744,
-    "vertices": 19710,
-    "meshes": 94,
-    "primitives": 94,
-    "materials": 32,
+    "triangles": 28590,
+    "vertices": 26627,
+    "meshes": 109,
+    "primitives": 109,
+    "materials": 37,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 977696
+    "sizeBytes": 1169380
   },
   "nodes": [
     {
@@ -51,7 +51,7 @@
     },
     {
       "name": "Gripen-airframe-Gripen-seal",
-      "triangles": 4528
+      "triangles": 4858
     },
     {
       "name": "Gripen-airframe-Gripen-alloy",
@@ -76,6 +76,10 @@
     {
       "name": "Gripen-airframe-Gripen-nozzle",
       "triangles": 98
+    },
+    {
+      "name": "Gripen-airframe-Gripen-gray-lining",
+      "triangles": 145
     },
     {
       "name": "Gripen-elevon-right-0-Gripen-gray",
@@ -548,10 +552,6 @@
     {
       "name": "Gripen-vertical-speed-3-3-Gripen-display",
       "triangles": 12
-    },
-    {
-      "name": "Gripen-vertical-speed-3-4-Gripen-display",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -627,6 +627,14 @@
         "baseColor"
       ],
       "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
@@ -769,20 +777,9 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "turbine-blades",
+      "name": "flight-control-tread",
       "slots": [
         "baseColor"
-      ],
-      "doubleSided": true,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-panel-satin",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -810,13 +807,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend-technical-font",
+      "name": "flight-control-black",
       "slots": [
-        "baseColor",
-        "emissive"
+        "baseColor"
       ],
       "doubleSided": false,
-      "alphaMode": "BLEND"
+      "alphaMode": "OPAQUE"
     },
     {
       "name": "flight-control-master",
@@ -827,11 +823,52 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend",
+      "name": "flight-control-steel",
       "slots": [
         "baseColor"
       ],
       "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-knob",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-lamp",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-caution",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "turbine-blades",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
       "alphaMode": "OPAQUE"
     }
   ],
@@ -1096,6 +1133,35 @@
           0.53,
           2.33,
           -6.1
+        ]
+      },
+      {
+        "node": "Gripen-airframe-Gripen-gray-lining",
+        "points": [
+          -0.5488,
+          1.0726,
+          1.0527,
+          -0.5488,
+          1.0726,
+          4.9031,
+          -0.5488,
+          2.6643,
+          1.0527,
+          -0.5488,
+          2.6643,
+          4.9031,
+          0.5493,
+          1.0726,
+          1.0527,
+          0.5493,
+          1.0726,
+          4.9031,
+          0.5493,
+          2.6643,
+          1.0527,
+          0.5493,
+          2.6643,
+          4.9031
         ]
       },
       {
@@ -4517,35 +4583,6 @@
           3.8246,
           0.2027,
           1.9618,
-          3.8254
-        ]
-      },
-      {
-        "node": "Gripen-vertical-speed-3-4-Gripen-display",
-        "points": [
-          0.2028,
-          1.9621,
-          3.8246,
-          0.2028,
-          1.9621,
-          3.8254,
-          0.2028,
-          1.9654,
-          3.8246,
-          0.2028,
-          1.9654,
-          3.8254,
-          0.2035,
-          1.9621,
-          3.8246,
-          0.2035,
-          1.9621,
-          3.8254,
-          0.2035,
-          1.9654,
-          3.8246,
-          0.2035,
-          1.9654,
           3.8254
         ]
       }

@@ -2,6 +2,17 @@
  * +Z forward, +X pilot left; ground datum. References and limits are in reference-review.json.
  */
 import { cockpitText } from './cockpit-lettering.mjs';
+import {
+  bar,
+  contour,
+  lathe,
+  loftUp,
+  partPalette,
+  pedalGeometry,
+  place,
+  roundedBox,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -16,6 +27,7 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+import { mfdPage } from './mfd-page.mjs';
 
 export const f22Frame = () => ({
   heli: false,
@@ -174,7 +186,7 @@ export function buildF22A(s) {
     }),
   }));
   loft(d, cr, glass, { caps: false, skip: (_, j) => j === 20 });
-  for (const j of [0, 20])
+  for (const j of [0, 20]) {
     outline(
       d,
       cr.map((r) => [...r.points[j], r.z]),
@@ -182,6 +194,22 @@ export function buildF22A(s) {
       paint,
       false,
     );
+    // The frame's inboard face is the dark canopy seal, so from the seat the sill rail reads
+    // black (NMUSAF cockpit photograph), not as the painted rail it is outside.
+    outline(
+      d,
+      cr
+        .slice(1, -1)
+        .map((r) => [
+          r.points[j][0] - Math.sign(r.points[j][0]) * 0.012,
+          r.points[j][1] + 0.006,
+          r.z,
+        ]),
+      0.017,
+      dark,
+      false,
+    );
+  }
   // No transverse windscreen bow: the F-22 has a continuous bubble canopy.
   for (const side of [-1, 1]) {
     for (let i = 0; i < rings.length - 1; i++) {
@@ -782,7 +810,11 @@ export function buildF22A(s) {
       ]);
   }
   d.finish();
-  const interior = f22Cockpit(root, { paint, metal, glass }, fore);
+  const { stations: controlStations, ...interior } = f22Cockpit(
+    root,
+    { paint, metal, glass },
+    fore,
+  );
   Object.assign(interior.derived, {
     pitchDeflection: { op: 'multiply', args: ['pitchInput', 0.32] },
     rollDeflection: { op: 'multiply', args: ['rollInput', 0.13] },
@@ -792,7 +824,7 @@ export function buildF22A(s) {
   cleanGeometry(root);
   return {
     root,
-    frame: f22Frame(),
+    frame: { ...f22Frame(), controlStations },
     enginePoints: [
       { id: 'engine-1', position: [0.64, 2, -5.0] },
       { id: 'engine-2', position: [-0.64, 2, -5.0] },
@@ -944,9 +976,10 @@ function f22Cockpit(root, m, fore) {
   txt('GEO FT', 0.185, 2.417, 0.006, green, undefined, 'display');
   ins.readout('altitude', [0.185, 2.405, z - 0.03], 'feet', 5, 0.008, green, true, true);
   display('PMFD', 0, 2.44, 0.2032, 0.2032);
-  txt('TACTICAL INOP', 0, 2.44, 0.012, amber, undefined, 'display');
+  // Blank tactical and sensor formats: neither picture is simulated.
+  mfdPage(d, [0, 2.44, z - 0.011], 0.2032 * 0.82, 0.2032 * 0.82, 'tactical');
   display('SMFD', -0.225, 2.47, 0.1524, 0.1524);
-  txt('SENSORS INOP', -0.225, 2.47, 0.009, amber, undefined, 'display');
+  mfdPage(d, [-0.225, 2.47, z - 0.011], 0.1524 * 0.82, 0.1524 * 0.82, 'radar');
   display('NAV / SIM', 0, 2.165, 0.1524, 0.1524);
   const hg = group(dashboard, 'F22-heading', [0, 2.165, z - 0.03]),
     hd = detailKit(hg, hg.name);
@@ -987,8 +1020,80 @@ function f22Cockpit(root, m, fore) {
       txt('--  --', side * 0.225, 2.662, 0.01, amber);
     }
   }
-  // Projecting integrated control panel: photograph places it over the upper center display.
-  const icp = group(dashboard, 'F22-ICP', [0, 2.66, z - 0.07]),
+  // Deep glare-shield hood: the photograph's black visor overhangs the panel top by about 12 cm
+  // and wraps down both sides to the side displays' middle. Its top stays level with the panel
+  // edge, so seen from the eye it sits under the existing over-nose cut line and hides only the
+  // panel's top strip, never the HUD or the view ahead. Root on the panel face, 12 mm thick.
+  const hoodT = 0.012,
+    sideAt = (y) => 0.41 - (0.09 * (y - 2.43)) / 0.36,
+    sideOut = [0.36 / Math.hypot(0.09, 0.36), 0.09 / Math.hypot(0.09, 0.36)],
+    hoodPath = [
+      [2.44, 0.05],
+      [2.5, 0.085],
+      [2.58, 0.108],
+      [2.68, 0.122],
+    ].map(([y, depth]) => ({ at: [-sideAt(y), y], out: [-sideOut[0], sideOut[1]], depth }));
+  hoodPath.push(
+    { at: [-0.32, 2.79], out: [-0.5, 0.87], depth: 0.128 },
+    { at: [0, 2.79], out: [0, 1], depth: 0.13 },
+  );
+  for (const p of hoodPath.slice(0, -1).reverse())
+    hoodPath.push({ at: [-p.at[0], p.at[1]], out: [-p.out[0], p.out[1]], depth: p.depth });
+  const hoodRing = hoodPath.map(({ at: [x, y], out: [ox, oy], depth }) => {
+    const flare = 0.016 * Math.min(1, depth / 0.1),
+      at = (s, dz) => [x + ox * s, y + oy * s, z + dz];
+    return {
+      out: [ox, oy, 0],
+      root: at(0, 0),
+      tip: at(flare, -depth),
+      rootIn: at(-hoodT, 0),
+      tipIn: at(flare - hoodT, -depth),
+    };
+  });
+  for (let j = 0; j < hoodRing.length - 1; j++) {
+    const a = hoodRing[j],
+      b = hoodRing[j + 1],
+      out = a.out.map((v, k) => v + b.out[k]);
+    quad(d, a.root, b.root, b.tip, a.tip, black, out);
+    quad(
+      d,
+      a.rootIn,
+      b.rootIn,
+      b.tipIn,
+      a.tipIn,
+      black,
+      out.map((v) => -v),
+    );
+    quad(d, a.tip, b.tip, b.tipIn, a.tipIn, black, [0, 0, -1]);
+  }
+  for (const [end, next] of [
+    [hoodRing[0], hoodRing[1]],
+    [hoodRing.at(-1), hoodRing.at(-2)],
+  ])
+    quad(
+      d,
+      end.root,
+      end.tip,
+      end.tipIn,
+      end.rootIn,
+      black,
+      end.root.map((v, k) => v - next.root[k]),
+    );
+  // Blue padded edging along the two side wings' lips, as on the photographed hood; the centre
+  // lip is hidden behind the HUD and ICP there.
+  const hoodEdge = mat('F22-hood-edge', '#23315c');
+  for (const wing of [hoodRing.slice(0, 5), hoodRing.slice(-5)])
+    outline(
+      d,
+      wing.map(({ tip, tipIn }) => tip.map((v, k) => (v + tipIn[k]) / 2)),
+      0.0065,
+      hoodEdge,
+      false,
+    );
+  // Integrated control panel hangs from the hood straight under the HUD, its face at the
+  // visor lip, on a black hanger back to the panel (photograph: protruding toward the pilot).
+  d.box([0.19, 0.11, 0.076], [0, 2.72, z - 0.037], black);
+  const icp = group(dashboard, 'F22-ICP', [0, 2.7, z - 0.1]),
     cd = detailKit(icp, icp.name);
   beveledBox(cd, [0.235, 0.155, 0.055], [0, 0, 0], black, 0.008);
   for (let j = 0; j < 9; j++)
@@ -1010,9 +1115,10 @@ function f22Cockpit(root, m, fore) {
     ]);
   }
   cd.finish();
+  // Warning and caution light boxes hang from the hood underside beside the ICP.
   for (const side of [-1, 1]) {
-    d.box([0.061, 0.032, 0.027], [side * 0.18, 2.763, z - 0.055], black);
-    txt(side === 1 ? 'WARN' : 'CAUT', side * 0.18, 2.763, 0.007, amber, -0.072);
+    d.box([0.061, 0.032, 0.1], [side * 0.18, 2.7615, z - 0.05], black);
+    txt(side === 1 ? 'WARN' : 'CAUT', side * 0.18, 2.7615, 0.007, amber, -0.1015);
   }
   // HUD optical combiner: geometry only, no invented conformal targeting symbology.
   // The mount sits 0.097 m lower (0.088 in the 1.1-scaled dashboard), so the view over the nose
@@ -1169,19 +1275,22 @@ function f22Cockpit(root, m, fore) {
     g.rotation.x = Math.PI / 2;
     const gd = detailKit(g, g.name);
     for (const [j, label] of (side === 1
-      ? ['FUEL', 'START', 'POWER', 'COMM']
+      ? ['FUEL', 'START', 'ENGINE', 'COMM']
       : ['ECS', 'LIGHT', 'OXY', 'CANOPY']
     ).entries()) {
       const v = 0.45 - j * 0.27;
       gd.box([0.145, 0.23, 0.008], [0, v, 0], black);
       gd.text(label, [0, v + 0.085, -0.008], 0.009, Math.PI, ink);
+      // The engine panel and the canopy panel carry stations (end of this function).
+      const station = (side === 1 && j === 2) || (side === -1 && j === 3);
       for (const x of [-0.04, 0.04]) {
-        gd.add(new T.CylinderGeometry(0.009, 0.01, 0.014, 12).rotateX(Math.PI / 2), button, [
-          x,
-          v - 0.045,
-          -0.014,
+        gd.add(new T.CylinderGeometry(0.0085, 0.0095, 0.01, 16).rotateX(Math.PI / 2), button, [
+          station ? x * 1.4 : x,
+          v - 0.06,
+          -0.009,
         ]);
-        gd.rod([x, v + 0.015, -0.012], [x, v + 0.021, -0.032], 0.003, m.metal);
+        if (!station)
+          gd.add(bar([x, v + 0.015, -0.004], [x, v + 0.021, -0.02], 0.0016, 10, 0.0024), m.metal);
       }
     }
     gd.finish();
@@ -1213,14 +1322,10 @@ function f22Cockpit(root, m, fore) {
   sd.finish();
   const stick = group(cabin, 'F22-stick', [-0.35, 2.23, 7.48]),
     st = detailKit(stick, stick.name);
-  st.rod([0, 0, 0], [0, 0.12, -0.025], 0.016, black);
-  beveledBox(st, [0.065, 0.115, 0.07], [0, 0.17, -0.025], black, 0.012);
-  for (const p of [
-    [-0.02, 0.22, -0.06],
-    [0.02, 0.2, -0.06],
-  ])
-    st.add(new T.SphereGeometry(0.009, 8, 6), button, p);
+  f22StickGeometry(st);
   st.finish();
+  // The side-stick's raised block on the right console.
+  tub.add(place(roundedBox([0.09, 0.03, 0.12], 0.008), [-0.355, 2.215, 7.485]), black);
   bindings.push(
     { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.08 },
     { node: stick.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.08 },
@@ -1228,8 +1333,8 @@ function f22Cockpit(root, m, fore) {
   for (let j = 0; j < 2; j++) {
     const g = group(cabin, `F22-throttle-${j}`, [0.3 + j * 0.065, 2.22, 7.48]),
       gd = detailKit(g, g.name);
-    gd.rod([0, 0, 0], [0, 0.11, 0], 0.012, black);
-    beveledBox(gd, [0.055, 0.055, 0.095], [0, 0.12, 0], black, 0.008);
+    // Twin throttles side by side: the outboard (left engine) grip carries the switches.
+    f22ThrottleGeometry(gd, j === 1);
     gd.finish();
     bindings.push({
       node: g.name,
@@ -1243,8 +1348,7 @@ function f22Cockpit(root, m, fore) {
   for (const side of [-1, 1]) {
     const g = group(cabin, `F22-pedal-${side}`, [side * 0.14, 2, 7.95]),
       gd = detailKit(g, g.name);
-    gd.box([0.13, 0.13, 0.03], [0, 0, 0], m.metal);
-    for (let j = 0; j < 5; j++) gd.box([0.11, 0.004, 0.004], [0, -0.05 + j * 0.025, -0.02], black);
+    pedalGeometry(gd, { style: 'fighter', side, drop: 0.07 });
     gd.finish();
     bindings.push({
       node: g.name,
@@ -1266,7 +1370,209 @@ function f22Cockpit(root, m, fore) {
     missing: 'hide',
   });
   txt('GEAR', 0.37, 2.28, 0.006);
+  // The throttle quadrant: a raised block on the console's inboard edge, a slot per lever.
+  tub.add(place(roundedBox([0.125, 0.03, 0.22], 0.008), [0.332, 2.203, 7.48]), black);
+  for (let j = 0; j < 2; j++) tub.box([0.01, 0.003, 0.17], [0.3 + j * 0.065, 2.2185, 7.48], panel);
   d.finish();
   tub.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Where the real controls are (NMUSAF cockpit photograph, USAF YF-22/F-22 cockpit releases):
+  // the gear handle on the left lower panel beside the gear lamp, the flap override beside it,
+  // the parking brake handle on the right lower panel, the speed brake on the outboard throttle
+  // grip, the APU and engine switches on the left console, the canopy switch aft on the right.
+  // The dashboard is scaled 1.1 about its own origin and offset; `panelAt` converts its frame.
+  const panelAt = (x, y) => [x * 1.1, y * 1.1 - 0.11, z - 0.18 - 0.002],
+    top = [Math.PI / 2, 0, 0],
+    plate = (side, j, dx = 0) => [side * 0.4 + dx, 2.209, 7.18 + 0.45 - j * 0.27 + 0.02];
+  const stations = [
+    {
+      action: 'gear',
+      style: 'jet',
+      scale: 0.8,
+      at: panelAt(0.285, 2.3),
+      label: 'LDG GEAR',
+      labelAt: [0, 0.036, -0.002],
+      labelHeight: 0.0065,
+    },
+    {
+      action: 'flaps',
+      style: 'toggle',
+      scale: 1.2,
+      at: panelAt(0.19, 2.31),
+      label: 'FLAPS',
+      labelAt: [0, -0.034, -0.002],
+      labelHeight: 0.0065,
+    },
+    {
+      action: 'brake',
+      style: 'loop',
+      scale: 0.85,
+      at: panelAt(-0.27, 2.3),
+      label: 'PARK BRK',
+      labelAt: [0, 0.032, -0.002],
+      labelHeight: 0.0065,
+    },
+    {
+      action: 'speedBrake',
+      style: 'slider',
+      parent: 'F22-throttle-1',
+      at: [0.372, 2.3625, 7.464],
+      rotation: [Math.PI / 2, 0, 0],
+    },
+    {
+      action: 'engine',
+      engine: 0,
+      style: 'guarded',
+      at: plate(1, 2, 0.045),
+      rotation: top,
+      label: 'L ENG',
+      labelAt: [0, 0.03, -0.002],
+    },
+    {
+      action: 'engine',
+      engine: 1,
+      style: 'guarded',
+      at: plate(1, 2),
+      rotation: top,
+      label: 'R ENG',
+      labelAt: [0, 0.03, -0.002],
+    },
+    {
+      action: 'engine',
+      style: 'guarded',
+      at: plate(1, 2, -0.045),
+      rotation: top,
+      label: 'APU',
+      labelAt: [0, 0.03, -0.002],
+    },
+    {
+      action: 'canopy',
+      style: 'paddle',
+      scale: 1.3,
+      at: plate(-1, 3),
+      rotation: top,
+      label: 'CANOPY',
+      labelAt: [0, 0.035, -0.002],
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
+}
+
+/** F-22 side-stick: a squared pistol grip, raked forward, whose head overhangs the trigger; the
+ * trim hat and weapon buttons on top, the thumb switches on the inboard (+X) flank. */
+function f22StickGeometry(d) {
+  const P = partPalette();
+  d.add(
+    lathe(
+      [
+        [0, -0.008],
+        [0.032, -0.008],
+        [0.032, 0.002],
+        [0.028, 0.006],
+        [0, 0.006],
+      ],
+      18,
+    ),
+    P.steel,
+  );
+  d.add(
+    lathe(
+      [
+        [0, 0.004],
+        [0.025, 0.004],
+        [0.023, 0.015],
+        [0.018, 0.022],
+        [0.017, 0.03],
+        [0.013, 0.038],
+        [0, 0.038],
+      ],
+      18,
+      28,
+    ),
+    P.tread,
+  );
+  const mount = (g) => place(g, [0, 0.034, 0], [0.16, 0, -0.06]);
+  const rows = [
+    [0, 0.004, 0.016, 0.02, 2.8],
+    [0.03, 0.006, 0.019, 0.025, 2.8],
+    [0.07, 0.008, 0.0195, 0.026, 2.8],
+    [0.1, 0.008, 0.019, 0.025, 2.8],
+    [0.118, 0.014, 0.021, 0.031, 3],
+    [0.134, 0.018, 0.02, 0.031, 3],
+    [0.142, 0.018, 0.013, 0.022, 2.6],
+  ];
+  d.add(
+    mount(loftUp(rows.map(([y, cz, rx, rz, p]) => ({ y, points: contour(0, cz, rx, rz, 18, p) })))),
+    P.grip,
+  );
+  d.add(
+    mount(
+      place(new T.SphereGeometry(0.017, 14, 10), [-0.012, 0.055, -0.006], [0, 0, 0], [0.7, 1.4, 1]),
+    ),
+    P.grip,
+  );
+  d.add(
+    mount(
+      tube(
+        [
+          [0, 0.098, 0.03],
+          [0, 0.088, 0.042],
+          [0, 0.074, 0.038],
+        ],
+        0.0055,
+        10,
+      ),
+    ),
+    P.black,
+  );
+  d.add(
+    mount(place(new T.CylinderGeometry(0.006, 0.006, 0.007, 14), [0.004, 0.144, 0.012])),
+    P.black,
+  );
+  d.add(
+    mount(place(new T.SphereGeometry(0.004, 10, 6), [0.004, 0.148, 0.012], [0, 0, 0], [1, 0.6, 1])),
+    P.black,
+  );
+  d.add(
+    mount(
+      place(new T.CylinderGeometry(0.0045, 0.0045, 0.005, 12), [-0.007, 0.142, 0.03], [0.45, 0, 0]),
+    ),
+    P.red,
+  );
+  d.add(mount(place(roundedBox([0.006, 0.012, 0.012], 0.002), [0.021, 0.12, 0.002])), P.black);
+  d.add(
+    mount(place(roundedBox([0.012, 0.01, 0.008], 0.002), [0, 0.03, 0.028], [0.3, 0, 0])),
+    P.black,
+  );
+}
+/** F-22 throttle grip on a flat lever: a tall rounded grip leaning aft at the top. The outboard
+ * grip carries the speed brake, radio and cursor switches on its outboard flank and top. */
+function f22ThrottleGeometry(d, outboard) {
+  const P = partPalette();
+  d.add(place(roundedBox([0.012, 0.075, 0.022], 0.003), [0, 0.037, 0]), P.alloy);
+  const rows = [
+    [0.07, 0, 0, 0.018, 0.028],
+    [0.085, 0.002, -0.004, 0.024, 0.038],
+    [0.11, 0.004, -0.01, 0.026, 0.043],
+    [0.13, 0.004, -0.016, 0.023, 0.04],
+    [0.142, 0.003, -0.018, 0.015, 0.028],
+  ];
+  d.add(
+    loftUp(rows.map(([y, cx, cz, rx, rz]) => ({ y, points: contour(cx, cz, rx, rz, 16, 2.7) }))),
+    P.grip,
+  );
+  if (outboard) {
+    for (const [x, y, z] of [
+      [0.03, 0.12, -0.03],
+      [0.03, 0.12, 0.004],
+    ])
+      d.add(place(roundedBox([0.009, 0.01, 0.01], 0.002), [x, y, z]), P.black);
+    d.add(
+      place(
+        new T.CylinderGeometry(0.005, 0.005, 0.007, 14),
+        [0.03, 0.1, -0.035],
+        [0, 0, Math.PI / 2],
+      ),
+      P.black,
+    );
+  } else d.add(place(roundedBox([0.008, 0.03, 0.008], 0.002), [0, 0.1, 0.028]), P.black);
 }

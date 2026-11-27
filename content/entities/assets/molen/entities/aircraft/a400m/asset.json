@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:6166f6007817a2b5e3db4f6ebf438d5fed165c42c93f1beddc441f18f0e9500c",
-  "sourceHash": "sha256:eac51b5d5381ceabbfbd03839ffb8f31210f283e8d378837172ada343c84a46e",
+  "hash": "sha256:4b7da337535589b5b7dc7d092bac2e82e279ce65131b8b7cbcaf80cc7cffbec4",
+  "sourceHash": "sha256:e8f9e9fe68749b55b4a6ec9388e9d5e0e8683b0589c38272a4c10e3818188e75",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 56656,
-    "vertices": 48425,
-    "meshes": 157,
-    "primitives": 157,
-    "materials": 37,
+    "triangles": 60029,
+    "vertices": 51114,
+    "meshes": 168,
+    "primitives": 168,
+    "materials": 43,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 1760608
+    "sizeBytes": 1834828
   },
   "nodes": [
     {
@@ -72,6 +72,10 @@
     {
       "name": "A400-exterior-detail-lettering",
       "triangles": 224
+    },
+    {
+      "name": "A400-exterior-A400-airframe-lining",
+      "triangles": 184
     },
     {
       "name": "A400-flap--1-0-A400-airframe",
@@ -447,15 +451,15 @@
     },
     {
       "name": "A400-cabin-A400-trim",
-      "triangles": 1406
+      "triangles": 1252
+    },
+    {
+      "name": "A400-cabin-A400-instrument-black",
+      "triangles": 326
     },
     {
       "name": "A400-cabin-A400-alloy",
       "triangles": 672
-    },
-    {
-      "name": "A400-cabin-A400-instrument-black",
-      "triangles": 116
     },
     {
       "name": "A400-cabin-detail-alloy",
@@ -472,6 +476,10 @@
     {
       "name": "A400-cabin-A400-combiner",
       "triangles": 4
+    },
+    {
+      "name": "A400-cabin-flight-control-tread",
+      "triangles": 448
     },
     {
       "name": "A400-cabin-A400-cushion",
@@ -544,14 +552,6 @@
     {
       "name": "A400-pilot-horizon-card-A400-pilot-instrument-ink",
       "triangles": 168
-    },
-    {
-      "name": "A400-pilot-horizon-card-A400-pilot-instrument-ink-dial-print",
-      "triangles": 16
-    },
-    {
-      "name": "A400-pilot-speed-0-0-A400-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -622,6 +622,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "detail-amber",
       "slots": [
         "baseColor"
@@ -660,20 +668,20 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "A400-instrument-black",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "A400-alloy-brushed",
       "slots": [
         "baseColor",
         "roughness",
         "metalness",
         "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "A400-instrument-black",
-      "slots": [
-        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -704,6 +712,14 @@
       ],
       "doubleSided": true,
       "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-tread",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     },
     {
       "name": "A400-cushion",
@@ -814,7 +830,78 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "flight-control-steel",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-knob",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "A400-instrument-red",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-black",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-lamp",
       "slots": [
         "baseColor"
       ],
@@ -833,46 +920,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-alloy-brushed",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-grip-rubber",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-legend-technical-font",
-      "slots": [
-        "baseColor",
-        "emissive"
-      ],
-      "doubleSided": false,
-      "alphaMode": "BLEND"
-    },
-    {
       "name": "flight-control-legend",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -1112,6 +1160,35 @@
           2.8142,
           3.6749,
           16.2296
+        ]
+      },
+      {
+        "node": "A400-exterior-A400-airframe-lining",
+        "points": [
+          -2.1011,
+          5.1021,
+          17.3849,
+          -2.1011,
+          5.1021,
+          20.005,
+          -2.1011,
+          6.1888,
+          17.3849,
+          -2.1011,
+          6.1888,
+          20.005,
+          2.1011,
+          5.1021,
+          17.3849,
+          2.1011,
+          5.1021,
+          20.005,
+          2.1011,
+          6.1888,
+          17.3849,
+          2.1011,
+          6.1888,
+          20.005
         ]
       },
       {
@@ -3814,29 +3891,58 @@
       {
         "node": "A400-cabin-A400-trim",
         "points": [
-          -1.5,
-          2.2101,
+          -1.4999,
+          2.2099,
           14.325,
-          -1.5,
-          2.2101,
+          -1.4999,
+          2.2099,
+          19.616,
+          -1.4999,
+          5.8751,
+          14.325,
+          -1.4999,
+          5.8751,
+          19.616,
+          1.4999,
+          2.2099,
+          14.325,
+          1.4999,
+          2.2099,
+          19.616,
+          1.4999,
+          5.8751,
+          14.325,
+          1.4999,
+          5.8751,
+          19.616
+        ]
+      },
+      {
+        "node": "A400-cabin-A400-instrument-black",
+        "points": [
+          -1.38,
+          4.1099,
+          18.18,
+          -1.38,
+          4.1099,
           20.1,
-          -1.5,
-          5.8749,
-          14.325,
-          -1.5,
-          5.8749,
+          -1.38,
+          5.5424,
+          18.18,
+          -1.38,
+          5.5424,
           20.1,
-          1.5,
-          2.2101,
-          14.325,
-          1.5,
-          2.2101,
+          1.38,
+          4.1099,
+          18.18,
+          1.38,
+          4.1099,
           20.1,
-          1.5,
-          5.8749,
-          14.325,
-          1.5,
-          5.8749,
+          1.38,
+          5.5424,
+          18.18,
+          1.38,
+          5.5424,
           20.1
         ]
       },
@@ -3867,35 +3973,6 @@
           1.18,
           5.013,
           19.587
-        ]
-      },
-      {
-        "node": "A400-cabin-A400-instrument-black",
-        "points": [
-          -1.38,
-          4.1099,
-          18.78,
-          -1.38,
-          4.1099,
-          19.609,
-          -1.38,
-          5.5424,
-          18.78,
-          -1.38,
-          5.5424,
-          19.609,
-          1.38,
-          4.1099,
-          18.78,
-          1.38,
-          4.1099,
-          19.609,
-          1.38,
-          5.5424,
-          18.78,
-          1.38,
-          5.5424,
-          19.609
         ]
       },
       {
@@ -4012,6 +4089,35 @@
           0.93,
           5.5375,
           19.0998
+        ]
+      },
+      {
+        "node": "A400-cabin-flight-control-tread",
+        "points": [
+          -1.405,
+          4.606,
+          18.785,
+          -1.405,
+          4.606,
+          18.915,
+          -1.405,
+          4.711,
+          18.785,
+          -1.405,
+          4.711,
+          18.915,
+          1.405,
+          4.606,
+          18.785,
+          1.405,
+          4.606,
+          18.915,
+          1.405,
+          4.711,
+          18.785,
+          1.405,
+          4.711,
+          18.915
         ]
       },
       {
@@ -4534,64 +4640,6 @@
           1.2522,
           4.9702,
           19.6157
-        ]
-      },
-      {
-        "node": "A400-pilot-horizon-card-A400-pilot-instrument-ink-dial-print",
-        "points": [
-          1.0687,
-          4.8248,
-          19.615,
-          1.0687,
-          4.8248,
-          19.615,
-          1.0687,
-          4.9752,
-          19.615,
-          1.0687,
-          4.9752,
-          19.615,
-          1.0859,
-          4.8248,
-          19.615,
-          1.0859,
-          4.8248,
-          19.615,
-          1.0859,
-          4.9752,
-          19.615,
-          1.0859,
-          4.9752,
-          19.615
-        ]
-      },
-      {
-        "node": "A400-pilot-speed-0-0-A400-instrument-ink",
-        "points": [
-          1.1652,
-          4.9051,
-          19.5956,
-          1.1652,
-          4.9051,
-          19.5964,
-          1.1652,
-          4.9059,
-          19.5956,
-          1.1652,
-          4.9059,
-          19.5964,
-          1.1693,
-          4.9051,
-          19.5956,
-          1.1693,
-          4.9051,
-          19.5964,
-          1.1693,
-          4.9059,
-          19.5956,
-          1.1693,
-          4.9059,
-          19.5964
         ]
       }
     ]

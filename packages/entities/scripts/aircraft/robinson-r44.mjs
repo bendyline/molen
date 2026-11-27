@@ -4,6 +4,19 @@
 
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import {
+  bar,
+  contour,
+  engineMasterGeometry,
+  lathe,
+  loftUp,
+  partPalette,
+  pedalGeometry,
+  place,
+  pushPullGeometry,
+  roundedBox,
+  tube,
+} from './cockpit-parts.mjs';
+import {
   beveledBox,
   cleanGeometry,
   detailKit,
@@ -17,6 +30,230 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+
+// ---------------------------------------------------------------------------------------------
+// Cockpit helpers shared by this family's builders (R44, H125, H145, AW139).
+
+/** A view of kit `d` whose additions land in a posed sub-group of its root, so a library part
+ * drawn in its own frame (pivot at the origin, +Y up) can stand at any pose inside one batched
+ * kit. Only `add` is posed; the kit's other helpers still draw in the kit's own frame. */
+export function posedKit(d, at = [0, 0, 0], rotation = [0, 0, 0]) {
+  const holder = new T.Group();
+  holder.position.fromArray(at);
+  holder.rotation.set(...rotation);
+  d.root.add(holder);
+  return { ...d, add: (geometry, material, p = [0, 0, 0]) => d.add(geometry, material, p, holder) };
+}
+/** An authored cockpit control: a fixed mount posed in `parent`'s frame and a moving pivot inside
+ * it (rest pose zero, so its motion turns about the mount's own axes). Returns the pivot's kit. */
+export function authoredControl(parent, name, at, rotation, control) {
+  const mount = group(parent, `${name}-mount`, at);
+  mount.rotation.set(...rotation);
+  const pivot = group(mount, name);
+  pivot.userData.aircraftControl = control;
+  return { mount, pivot, d: detailKit(pivot, `${name}-part`) };
+}
+/** Merge [material, geometry] pairs per material into kit `d` (at its origin). */
+export function addParts(d, parts) {
+  const byMaterial = new Map();
+  for (const [material, geometry] of parts) {
+    if (!byMaterial.has(material)) byMaterial.set(material, []);
+    byMaterial.get(material).push(geometry.index ? geometry.toNonIndexed() : geometry);
+  }
+  for (const [material, list] of byMaterial)
+    for (const geometry of list) {
+      geometry.deleteAttribute('uv');
+      if (!geometry.getAttribute('normal')) geometry.computeVertexNormals();
+      d.add(geometry, material);
+    }
+}
+/** Rounded grip body lofted up +Y through [y, z-centre, half-width, half-depth, squareness]. */
+export const gripBody = (rows, count = 16) =>
+  loftUp(
+    rows.map(([y, cz, rx, rz, power = 2.4]) => ({
+      y,
+      points: contour(0, cz, rx, rz, count, power),
+    })),
+  );
+/**
+ * A turbine helicopter's collective lever, drawn along +Y from its pivot (pose it so +Y runs up
+ * the lever): pivot clevis and friction knob, round tube, rubber hand grip, and a switch head
+ * whose face (-Z) looks up at the pilot. `head` picks the type: 'h125' (compact box, landing
+ * light and starter guard), 'h145' (wide Helionix head with beeper and thumb wheel), 'aw139'
+ * (canted pistol head crowded with switches, red guarded release). `side` (+1 left) turns the
+ * friction knob outboard.
+ */
+export function turbineCollective(d, { head = 'h125', length = 0.44, side = 1, palette } = {}) {
+  const P = partPalette(palette);
+  const grip = head === 'aw139' ? 0.11 : 0.1,
+    shaft = length - grip - (head === 'h125' ? 0.04 : 0.05);
+  const parts = [
+    [P.steel, place(roundedBox([0.046, 0.05, 0.058], 0.01), [0, 0.006, 0])],
+    [
+      P.black,
+      place(
+        lathe(
+          [
+            [0, 0],
+            [0.013, 0],
+            [0.014, 0.012],
+            [0.011, 0.016],
+            [0, 0.017],
+          ],
+          16,
+        ),
+        [side * 0.023, 0.006, 0],
+        [0, 0, (-side * Math.PI) / 2],
+      ),
+    ],
+    [P.alloy, bar([0, 0.02, 0], [0, shaft + 0.01, 0], 0.0145, 16)],
+    [
+      P.alloy,
+      lathe(
+        [
+          [0.0145, 0],
+          [0.019, 0.004],
+          [0.019, 0.012],
+          [0.016, 0.016],
+        ],
+        16,
+      ).translate(0, shaft - 0.012, 0),
+    ],
+    [
+      P.grip,
+      gripBody([
+        [shaft, 0, 0.017, 0.018, 2],
+        [shaft + 0.02, 0, 0.0195, 0.02, 2],
+        [shaft + grip - 0.02, 0, 0.0195, 0.02, 2],
+        [shaft + grip, 0, 0.018, 0.019, 2],
+      ]),
+    ],
+  ];
+  // Finger ridges round the grip.
+  for (let i = 1; i < 4; i++)
+    parts.push([
+      P.black,
+      place(
+        new T.TorusGeometry(0.0196, 0.0012, 3, 16),
+        [0, shaft + (grip * i) / 4, 0],
+        [Math.PI / 2, 0, 0],
+      ),
+    ]);
+  const top = shaft + grip;
+  if (head === 'h125') {
+    parts.push(
+      [
+        P.grip,
+        place(roundedBox([0.044, 0.04, 0.05], 0.009), [0, top + 0.02, -0.004], [-0.25, 0, 0]),
+      ],
+      [
+        P.black,
+        place(roundedBox([0.008, 0.012, 0.006], 0.002), [0.01, top + 0.026, -0.033], [-0.25, 0, 0]),
+      ],
+      [
+        P.black,
+        place(
+          roundedBox([0.008, 0.012, 0.006], 0.002),
+          [-0.01, top + 0.026, -0.033],
+          [-0.25, 0, 0],
+        ),
+      ],
+      [P.red, place(new T.CylinderGeometry(0.005, 0.005, 0.006, 14), [0, top + 0.041, -0.012])],
+      [
+        P.white,
+        place(roundedBox([0.016, 0.003, 0.002], 0.001), [0, top + 0.012, -0.031], [-0.25, 0, 0]),
+      ],
+    );
+  } else if (head === 'h145') {
+    parts.push(
+      [
+        P.grip,
+        place(roundedBox([0.06, 0.05, 0.058], 0.012), [0, top + 0.026, -0.006], [-0.3, 0, 0]),
+      ],
+      [
+        P.black,
+        place(
+          new T.CylinderGeometry(0.0065, 0.0065, 0.008, 16),
+          [0, top + 0.035, -0.038],
+          [Math.PI / 2 - 0.3, 0, 0],
+        ),
+      ],
+      [
+        P.black,
+        place(
+          new T.SphereGeometry(0.0045, 10, 6),
+          [0, top + 0.037, -0.043],
+          [0, 0, 0],
+          [1, 1, 0.55],
+        ),
+      ],
+      [
+        P.black,
+        place(
+          new T.CylinderGeometry(0.009, 0.009, 0.006, 18),
+          [-side * 0.031, top + 0.02, -0.008],
+          [0, 0, Math.PI / 2],
+        ),
+      ],
+      [
+        P.yellow,
+        place(
+          roundedBox([0.012, 0.008, 0.006], 0.002),
+          [side * 0.016, top + 0.022, -0.036],
+          [-0.3, 0, 0],
+        ),
+      ],
+      [
+        P.red,
+        place(
+          new T.CylinderGeometry(0.005, 0.005, 0.006, 14),
+          [-side * 0.016, top + 0.024, -0.036],
+          [Math.PI / 2 - 0.3, 0, 0],
+        ),
+      ],
+    );
+  } else if (head === 'aw139') {
+    parts.push(
+      [
+        P.grip,
+        gripBody([
+          [top - 0.004, 0, 0.02, 0.021, 2.2],
+          [top + 0.02, -0.006, 0.027, 0.03, 2.6],
+          [top + 0.05, -0.012, 0.03, 0.036, 2.8],
+          [top + 0.066, -0.014, 0.024, 0.03, 2.6],
+          [top + 0.072, -0.014, 0.012, 0.016, 2.2],
+        ]),
+      ],
+      [
+        P.red,
+        place(roundedBox([0.02, 0.004, 0.028], 0.0015), [0.004, top + 0.074, -0.02], [0.2, 0, 0]),
+      ],
+      [P.black, place(roundedBox([0.01, 0.012, 0.01], 0.002), [-0.012, top + 0.07, -0.004])],
+      [
+        P.black,
+        place(new T.CylinderGeometry(0.0055, 0.0055, 0.008, 14), [0.014, top + 0.072, 0.004]),
+      ],
+      [
+        P.black,
+        place(
+          new T.CylinderGeometry(0.0055, 0.0055, 0.008, 14),
+          [0, top + 0.044, -0.05],
+          [Math.PI / 2, 0, 0],
+        ),
+      ],
+      [
+        P.black,
+        place(
+          new T.CylinderGeometry(0.0055, 0.0055, 0.008, 14),
+          [0, top + 0.024, -0.042],
+          [Math.PI / 2, 0, 0],
+        ),
+      ],
+      [P.white, place(roundedBox([0.014, 0.003, 0.002], 0.001), [0, top + 0.034, -0.048])],
+    );
+  } else throw Error(`Unknown collective head: ${head}`);
+  addParts(d, parts);
+}
 export const r44Frame = () => ({
   heli: true,
   fighter: false,
@@ -350,7 +587,10 @@ export function buildR44(s) {
   }
   td.finish();
   d.finish();
-  const interior = cockpit(root, { white, blue, trim, metal }, shell);
+  const interior = cockpit(root, { white, blue, trim, metal }, shell, [
+    shell.region(bubble),
+    ...windows,
+  ]);
   cleanGeometry(root);
   return {
     root,
@@ -369,12 +609,14 @@ export function buildR44(s) {
     },
   };
 }
-function cockpit(root, m, shell) {
+function cockpit(root, m, shell, apertures) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'R44-cabin'),
     bindings = [],
     z = 1.67,
-    seat = mat('R44-gray-leather', '#8a959d'),
+    // Neutral light-gray leather and gray carpet, as in the cockpit photograph.
+    seat = mat('R44-gray-leather', '#979b9e'),
+    carpet = mat('R44-carpet', '#7f8487', { roughness: 0.97 }),
     belt = mat('R44-belts', '#4c5358'),
     face = mat('R44-panel', '#333b3f'),
     tools = panelTools(d);
@@ -386,8 +628,35 @@ function cockpit(root, m, shell) {
       z,
       points: Array.from({ length: 40 }, (_, j) => shell.at(z, -0.5 + j / 40).slice(0, 2)),
     })),
-    m.trim,
+    carpet,
     { y: 0.483, front: 1.86, back: -0.6, width: 1.12, thickness: 0.026 },
+  );
+  // Dark trim 12 mm inside the skin, open at the bubble and every door window: from the seats the
+  // door frames, posts, roof and lower nose read as the black interior of the cockpit photograph
+  // instead of the white exterior paint seen from behind.
+  shell.build(
+    d,
+    face,
+    apertures.map((poly) => ({ poly, material: null })),
+    shell.samples(0.25).filter((q) => q > -0.63),
+    24,
+    0.012,
+  );
+  for (const poly of apertures) shell.reveal(d, poly, 0.013, face);
+  // The bubble's centre seam seen from the seats: a dark bonded strip inside the glass, under the
+  // painted strip outside.
+  shell.strip(
+    d,
+    [
+      [1.2, 0],
+      [2.36, 0],
+    ],
+    0.042,
+    face,
+    true,
+    false,
+    0.004,
+    -0.01,
   );
   const panel = [
     [-0.245, 1.28, z],
@@ -412,6 +681,30 @@ function cockpit(root, m, shell) {
     quad(d, a, b, [b[0], b[1], z + 0.1], [a[0], a[1], z + 0.1], m.trim, [0, 1, 0]);
   }
   outline(d, panel, 0.008, m.trim);
+  // The pod's rounded top hood overhangs the instrument face and runs down its upper sides
+  // (cockpit photograph). Both faces, so it reads from the seats and through the bubble.
+  {
+    const rim = [
+        [-0.238, 1.19, 0],
+        [-0.245, 1.28, 0.04],
+        [-0.22, 1.335, 0.06],
+        [0, 1.335, 0.065],
+        [0.22, 1.335, 0.06],
+        [0.245, 1.28, 0.04],
+        [0.238, 1.19, 0],
+      ],
+      lip = rim.map(([x, y, deep]) => [x * (1 + deep * 0.3), y + deep * 0.12, z - deep]);
+    for (let i = 0; i < rim.length - 1; i++) {
+      const a = [rim[i][0], rim[i][1], z],
+        b = [rim[i + 1][0], rim[i + 1][1], z],
+        n = new T.Vector3(...b)
+          .sub(new T.Vector3(...a))
+          .cross(new T.Vector3(...lip[i + 1]).sub(new T.Vector3(...a)));
+      quad(d, a, b, lip[i + 1], lip[i], face, n.toArray());
+      quad(d, a, b, lip[i + 1], lip[i], face, n.negate().toArray());
+    }
+    outline(d, lip, 0.007, m.trim, false);
+  }
   const gauges = [
     ['VSI', 0.1575, 1.22, 'verticalSpeed'],
     ['ATT', 0.0525, 1.22, 'roll'],
@@ -546,10 +839,11 @@ function cockpit(root, m, shell) {
       for (const x of [-0.103, 0.103]) pt.knob(x, y + 0.018, -0.06, 0.012);
     }
   }
-  pd.finish();
   // The red mixture knob and the ignition key sit on the console face, as in the aircraft. As
   // authored controls they also replace the generic bolt-on engine/mixture box that hung beside
   // the console (cockpit-controls.mjs adds one only for controls a model lacks).
+  // The mixture is a red push-pull knob under its guard; the ignition is a key switch (MAGS /
+  // START), both on the console face, as in the cockpit photograph.
   const mixture = group(pedestal, 'R44-mixture', [-0.085, 0.02, -0.035]);
   mixture.userData.aircraftControl = {
     action: 'mixture',
@@ -557,12 +851,7 @@ function cockpit(root, m, shell) {
     motion: { property: 'position', axis: 'z', scale: 0.035, offset: -0.035 },
   };
   const xd = detailKit(mixture, 'R44-mixture-knob');
-  xd.rod([0, 0, 0], [0, 0, -0.03], 0.004, m.metal);
-  xd.add(
-    new T.CylinderGeometry(0.013, 0.013, 0.02, 12).rotateX(Math.PI / 2),
-    xd.red,
-    [0, 0, -0.04],
-  );
+  pushPullGeometry(xd, { kind: 'mixture', reach: 0.022, scale: 0.85 });
   xd.finish();
   const key = group(pedestal, 'R44-ignition', [0.085, 0.02, -0.036]);
   key.userData.aircraftControl = {
@@ -570,31 +859,14 @@ function cockpit(root, m, shell) {
     motion: { property: 'rotation', axis: 'z', scale: -0.9 },
   };
   const kd = detailKit(key, 'R44-ignition-key');
-  kd.add(
-    new T.CylinderGeometry(0.014, 0.014, 0.01, 12).rotateX(Math.PI / 2),
-    m.metal,
-    [0, 0, -0.005],
-  );
-  kd.box([0.008, 0.026, 0.008], [0, 0.004, -0.016], m.trim);
+  engineMasterGeometry(kd, { style: 'key', scale: 0.9 });
   kd.finish();
+  pd.finish();
+  // The T-bar cyclic: a black post from the floor between the seats, a teeter hinge on top and a
+  // bent arm out to each grip, which hangs down and back toward the pilot's lap.
   const cyclic = group(cabin, 'R44-T-bar-cyclic', [0, 0.48, 0.88]),
     cd = detailKit(cyclic, 'R44-T-bar');
-  cd.rod([0, 0, 0], [0, 0.54, 0], 0.018, m.metal);
-  for (const side of [-1, 1]) {
-    outline(
-      cd,
-      [
-        [0, 0.54, 0],
-        [side * 0.24, 0.54, 0],
-        [side * 0.3, 0.45, -0.07],
-      ],
-      0.016,
-      m.metal,
-      false,
-    );
-    cd.rod([side * 0.3, 0.45, -0.07], [side * 0.3, 0.33, -0.08], 0.025, m.trim);
-    cd.box([0.018, 0.012, 0.02], [side * 0.3, 0.45, -0.09], cd.red);
-  }
+  r44Cyclic(cd, m);
   cd.finish();
   bindings.push(
     { node: cyclic.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.14 },
@@ -629,8 +901,7 @@ function cockpit(root, m, shell) {
       if (row) continue;
       const cg = group(cabin, `R44-collective-${side}`, [x + 0.235, 0.55, sz - 0.15]),
         ld = detailKit(cg, 'collective');
-      ld.rod([0, 0, 0], [0, 0.12, 0.35], 0.02, m.trim);
-      ld.box([0.04, 0.04, 0.12], [0, 0.12, 0.35], m.trim);
+      r44Collective(posedKit(ld, [0, 0, 0], [Math.atan2(0.35, 0.12), 0, 0]), m, side);
       ld.finish();
       bindings.push({
         node: cg.name,
@@ -640,10 +911,10 @@ function cockpit(root, m, shell) {
         scale: -0.35,
       });
       for (const k of [-1, 1]) {
-        const pg = group(cabin, `R44-pedal-${side}-${k}`, [x + k * 0.1, 0.56, 1.7]),
+        // Small paddle pedals on posts that rise from the floor (the left set is removable).
+        const pg = group(cabin, `R44-pedal-${side}-${k}`, [x + k * 0.1, 0.6, 1.7]),
           dd = detailKit(pg, 'pedal');
-        dd.rod([-0.07, 0, 0], [0.07, 0, 0], 0.014, m.metal);
-        dd.rod([0, 0, 0], [0, -0.07, 0.06], 0.01, m.trim);
+        pedalGeometry(dd, { style: 'heli', side: k, scale: 0.85, drop: 0.07, lean: 0.4 });
         dd.finish();
         bindings.push({
           node: pg.name,
@@ -674,6 +945,159 @@ function cockpit(root, m, shell) {
   }
   d.finish();
   return { nodes: ['cockpit'], bindings };
+}
+
+/** The R44 T-bar cyclic in its pivot frame (floor between the seats). */
+function r44Cyclic(d, m) {
+  const P = partPalette();
+  const parts = [
+    // Rubber boot over the floor opening, then the black post up to the teeter hinge.
+    [
+      P.tread,
+      lathe(
+        [
+          [0, 0],
+          [0.05, 0],
+          [0.047, 0.012],
+          [0.034, 0.022],
+          [0.033, 0.034],
+          [0.024, 0.046],
+          [0.02, 0.06],
+          [0, 0.06],
+        ],
+        18,
+        28,
+      ),
+    ],
+    [P.black, bar([0, 0.04, 0], [0, 0.5, 0], 0.016, 16, 0.0145)],
+    [
+      P.black,
+      place(
+        new T.CylinderGeometry(0.021, 0.021, 0.072, 16),
+        [0, 0.522, -0.004],
+        [Math.PI / 2, 0, 0],
+      ),
+    ],
+    [P.black, place(roundedBox([0.034, 0.03, 0.03], 0.006), [0, 0.506, -0.004])],
+  ];
+  for (const z of [-0.042, 0.034])
+    parts.push([
+      m.metal,
+      place(new T.CylinderGeometry(0.009, 0.009, 0.006, 6), [0, 0.522, z], [Math.PI / 2, 0, 0]),
+    ]);
+  for (const s of [-1, 1]) {
+    // Arm out of the hinge, rising a little, then bending down into the grip.
+    parts.push([
+      P.black,
+      tube(
+        [
+          [0, 0.528, -0.004],
+          [s * 0.1, 0.545, -0.01],
+          [s * 0.2, 0.552, -0.024],
+          [s * 0.255, 0.54, -0.042],
+          [s * 0.275, 0.51, -0.058],
+        ],
+        0.0125,
+        14,
+      ),
+    ]);
+    // The grip: a rubber sleeve hanging down and back toward the pilot's lap, a switch housing
+    // with the radio trigger at the bend.
+    parts.push(
+      [
+        P.grip,
+        tube(
+          [
+            [s * 0.275, 0.51, -0.058],
+            [s * 0.284, 0.44, -0.082],
+            [s * 0.29, 0.385, -0.098],
+          ],
+          0.0165,
+          16,
+        ),
+      ],
+      [P.grip, place(new T.SphereGeometry(0.0165, 14, 8), [s * 0.29, 0.385, -0.098])],
+      [
+        P.black,
+        place(roundedBox([0.03, 0.036, 0.034], 0.008), [s * 0.273, 0.522, -0.056], [0.35, 0, 0]),
+      ],
+      [
+        P.red,
+        place(roundedBox([0.012, 0.01, 0.008], 0.002), [s * 0.273, 0.512, -0.029], [0.35, 0, 0]),
+      ],
+      [P.black, place(new T.CylinderGeometry(0.005, 0.005, 0.006, 14), [s * 0.268, 0.542, -0.06])],
+    );
+  }
+  addParts(d, parts);
+}
+/** An R44 collective along +Y from its hinge beside the seat: a black tube with the twist-grip
+ * throttle and the governor switch and starter button at its end. `side` +1 is the left seat. */
+function r44Collective(d, m, side) {
+  const P = partPalette();
+  const parts = [
+    [P.steel, place(roundedBox([0.04, 0.045, 0.05], 0.008), [0, 0.008, 0])],
+    [
+      m.metal,
+      place(new T.CylinderGeometry(0.008, 0.008, 0.056, 12), [0, 0.008, 0], [0, 0, Math.PI / 2]),
+    ],
+    [P.black, bar([0, 0.02, 0], [0, 0.275, 0], 0.0125, 16)],
+    // Friction knob on the inboard side near the hinge.
+    [
+      P.black,
+      place(
+        lathe(
+          [
+            [0, 0],
+            [0.012, 0],
+            [0.013, 0.01],
+            [0.01, 0.014],
+            [0, 0.015],
+          ],
+          16,
+        ),
+        [-side * 0.012, 0.07, 0],
+        [0, 0, (side * Math.PI) / 2],
+      ),
+    ],
+    // Twist-grip throttle.
+    [
+      P.grip,
+      gripBody([
+        [0.272, 0, 0.0165, 0.0165, 2],
+        [0.285, 0, 0.019, 0.019, 2],
+        [0.385, 0, 0.019, 0.019, 2],
+        [0.395, 0, 0.0175, 0.0175, 2],
+      ]),
+    ],
+    // Governor switch housing on the end, its face (-Z) up toward the pilot.
+    [P.black, place(roundedBox([0.03, 0.034, 0.032], 0.007), [0, 0.41, 0.002])],
+    [
+      m.metal,
+      place(
+        new T.CylinderGeometry(0.0025, 0.0025, 0.014, 10),
+        [0.006, 0.412, -0.018],
+        [Math.PI / 2 - 0.4, 0, 0],
+      ),
+    ],
+    [
+      P.red,
+      place(
+        new T.CylinderGeometry(0.0055, 0.0055, 0.006, 14),
+        [-0.008, 0.418, -0.016],
+        [Math.PI / 2, 0, 0],
+      ),
+    ],
+  ];
+  for (let i = 0; i < 6; i++)
+    parts.push([
+      P.black,
+      place(
+        new T.TorusGeometry(0.0192, 0.0011, 4, 16),
+        [0, 0.297 + i * 0.017, 0],
+        [Math.PI / 2, 0, 0],
+      ),
+    ]);
+  addParts(d, parts);
 }
 
 /** Monotone cubic through (xs ascending, ys): smooth between stations without overshoot. */
@@ -895,8 +1319,17 @@ export function cabinShell(stations, nose, tail) {
       return result;
     },
     /** Flush seal or seam on the skin along (z, v) points: a strip, not a tube (`inside` also
-     * faces the cabin). */
-    strip(d, points, width, material, inside = true, closed = true, tolerance = 0.004) {
+     * faces the cabin; a negative `lift` lays it on the inside of the skin or glass). */
+    strip(
+      d,
+      points,
+      width,
+      material,
+      inside = true,
+      closed = true,
+      tolerance = 0.004,
+      lift = 0.003,
+    ) {
       const path = this.trace(points, closed, 0, tolerance, true),
         n = path.length,
         position = [],
@@ -910,7 +1343,7 @@ export function cabinShell(stations, nose, tail) {
             .cross(new T.Vector3(...up))
             .normalize()
             .multiplyScalar(width / 2);
-        return [-1, 1].map((e) => p.map((c, i) => c + up[i] * 0.003 + across.getComponent(i) * e));
+        return [-1, 1].map((e) => p.map((c, i) => c + up[i] * lift + across.getComponent(i) * e));
       });
       for (let k = 0; k < (closed ? n : n - 1); k++) {
         const [a, b] = rails[k],
@@ -929,6 +1362,34 @@ export function cabinShell(stations, nose, tail) {
       const geometry = new T.BufferGeometry();
       geometry.setAttribute('position', new T.Float32BufferAttribute(position, 3));
       geometry.setAttribute('normal', new T.Float32BufferAttribute(normals, 3));
+      d.add(geometry, material);
+    },
+    /** The reveal round a lining aperture: a band from the skin down to the lining `inset`
+     * inside it, so the painted skin's inside never shows in the gap at a window. */
+    reveal(d, points, inset, material) {
+      const path = this.trace(points, true, 0, 0.012, true),
+        position = [];
+      const rim = path.map((q) => {
+        const p = at(...q),
+          n = normal(...q);
+        // Its outer edge starts just under the skin: on the true surface it stood proud of the
+        // faceted skin between its vertices and showed from outside.
+        return [p.map((c, k) => c - n[k] * 0.006), p.map((c, k) => c - n[k] * inset)];
+      });
+      // One face only, turned toward the middle of the opening: that is the side seen through it.
+      const mid = rim.reduce((sum, [p]) => sum.map((c, k) => c + p[k] / rim.length), [0, 0, 0]);
+      for (let k = 0; k < rim.length; k++) {
+        const [a, b] = rim[k],
+          [c, e] = rim[(k + 1) % rim.length],
+          facing = new T.Vector3(c[0] - a[0], c[1] - a[1], c[2] - a[2])
+            .cross(new T.Vector3(b[0] - a[0], b[1] - a[1], b[2] - a[2]))
+            .dot(new T.Vector3(mid[0] - a[0], mid[1] - a[1], mid[2] - a[2]));
+        if (facing > 0) position.push(...a, ...c, ...b, ...b, ...c, ...e);
+        else position.push(...a, ...b, ...c, ...b, ...e, ...c);
+      }
+      const geometry = new T.BufferGeometry();
+      geometry.setAttribute('position', new T.Float32BufferAttribute(position, 3));
+      geometry.computeVertexNormals();
       d.add(geometry, material);
     },
     /** Skin cells between the z samples (ascending) and `count` ring steps; each cell is split

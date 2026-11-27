@@ -95,6 +95,82 @@ eye, the view over the nose, and whether the attitude display is in frame. Then 
 render: world-explorer enters the cockpit 10.3 degrees below level, and Earth view enters level, so
 check the frame the pilot gets. `content/entities/PROPORTION-REVIEW.md` lists each column and limit.
 
+### Shared cockpit and cabin parts
+
+The fleet builders draw controls from two part libraries instead of repeating one generic
+shape. `packages/entities/scripts/aircraft/cockpit-parts.mjs` covers aircraft. It has:
+
+- rudder pedals in fighter, light-aircraft, airliner, helicopter and warbird forms;
+- stick grips: Hornet, B-8, F-16 side-stick, European, Soviet, cyclic, Airbus side-stick and
+  AN-5;
+- control wheels: Cessna ram's horn, Piper, Beech, King Air, Boeing and spoked;
+- quadrant knobs, thrust and power levers, HOTAS throttles and collectives;
+- gear, flap, parking-brake, engine-master, speed-brake, hook and canopy handles;
+- toggles, guarded switches, rockers, lit pushbuttons and rotary knobs;
+- eyeball vents.
+
+`packages/entities/scripts/cabin-parts.mjs` covers cars. It has eight vent families (slat,
+chrome slat, slim, vertical, grid, round, turbine, eyeball), six steering-wheel families, hung
+and floor-hinged pedals, and gear selectors. Dashboards pick a family from their interior
+profile's layout; a profile's optional `vents` or `wheel` field overrides it. Car parts repeat in
+every car on the street, so they are drawn lean: a vent costs 160 to 630 triangles and a wheel
+about 1,000 to 1,700.
+
+A profile in `content/entities/source/interiors.json` names a `layout`, and these optional fields
+override what the layout implies:
+
+| Field | Values | What it sets |
+| --- | --- | --- |
+| `vents` | a vent family, or a map by vent shape | Air vent family |
+| `wheel` | modern, two-spoke, sport, four-spoke, retro, bus | Steering wheel family |
+| `shifter` | sculpted, tee, ball, joystick | Gear selector family |
+| `knobs` | pointer, fluted, concentric | Rotary knob family |
+| `dash` | colour | Fascia, tunnel and door cards |
+| `stack` | colour, or `body` | Centre stack |
+| `band` | `body` or colour | Accent band apart from the trim (a Tesla's wood strip) |
+| `headliner` | colour | Headliner and pillar trim |
+| `cluster` | digital, analog | Driver display. A stated digital cluster draws a virtual dial with a live speed needle. |
+| `screen` | embedded, floating | Centre screen set into the fascia, or standing on it |
+| `panel` | joined, separate | Joined: driver display and centre screen in one gloss-black panel, the screen raised to the cluster. Separate: the centre screen stands apart in a layout that would link them. |
+| `centerVents` | rail, flank, none | One slim vent rail; vents beside the screen in one bezel; or no centre vents |
+| `dials` | light, dark | Light dial faces, or dark ones where a layout defaults to light (a Mini's centre speedometer) |
+| `climateKnobs` | 0, 1, 3 | No dials (climate on the screen), one volume knob, or three climate dials rather than two |
+| `screenSize` | [width, height] in metres | Centre screen size. On a radio layout, a touchscreen of that size replaces the radio. |
+| `gauges` | dial radii in metres, driver's left to right | The analog cluster's round dials; the largest carries the live needle |
+| `dashTop` | colour | Upper dash pad apart from the fascia |
+| `bandHeight` | metres | A tall accent band the screens sit in |
+| `cornerPods` | true | Round speaker pods on the dash top's outer corners (a Kia Soul's) |
+| `lowerDash` | colour | The fascia below the accent band, apart from the hood and bezels (a Genesis's cream lower dash) |
+| `grabHandle` | false | No passenger grab handle across the fascia where the layout would add one |
+| `clusterHood` | `body` | Cluster hood in the body colour |
+| `pod` | colour | A Mini's centre speedometer pod |
+| `screenBezel` | `black` | Black screen bezels on a light dash |
+| `selectorSide` | `driver` | Push-button selector beside the screen on the driver's side |
+| `stackWidth` | metres | A narrow floating stack |
+| `stackAngle` | degrees | The stack turned toward the driver |
+| `stackFrame` | true | A thin bright outline round the stack's upper section |
+| `railWidth` | metres | Width of a `centerVents: rail` vent; over 0.5 it runs across the fascia without widening the stack |
+
+Parts on the centre stack sit on its face, never in front of it.
+
+Round forms use 12 to 24 sides and switch-sized parts stay cheap. A model's own stick, pedals,
+throttle, gear handle and flap lever are what the
+[vehicle console](vehicle-console.md) lifts into its overlay, so distinct parts make distinct
+overlays.
+
+A control the simulation supports must have a physical part where the real aircraft has it. A
+builder places a control it does not otherwise model through `controlStations` on its build
+frame: the action, an optional engine index, a model-frame position and mount rotation, a part
+style and a legend. `cockpit-controls.mjs` builds each station's part and its rest-relative
+motion. A strip of generic switches is added only as a fallback for a new aircraft whose
+stations are not written yet; it reports itself when a builder declares stations.
+
+`packages/entities/scripts/aircraft/cockpit-fit.mjs` slices the model's own opaque skin at a
+fuselage station. It builds a bulkhead around the instrument panel and liners along the
+sidewalls, so no painted exterior skin shows from the seat. The cockpit finisher then runs
+`lineSeatFrames` from every crew eye. It lines the exterior frames a seat sees directly, such as
+canopy bows, sills and window posts, in dark trim, and only the faces nothing else hides.
+
 Aircraft generators accept `--out /path/to/candidate.glb` for reviewing changes without
 overwriting the master or baseline. Import an approved master with `molen asset import`, update
 the source manifest hash, and run the entity package's `generate` command for aggregate types.

@@ -5,6 +5,18 @@
  * Meter geometry, +Y up, +Z nose, +X pilot left. Reference stations remain approximate.
  */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitLiner } from './cockpit-fit.mjs';
+import {
+  bar,
+  flapSelectorGeometry,
+  lathe,
+  loftUp,
+  partPalette,
+  place,
+  roundedBox,
+  contour as superEllipse,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -790,12 +802,21 @@ export function buildC130J(s) {
       bz,
     ]);
   bulkhead.push([1.7, 1.1, bz], [-1.7, 1.1, bz]);
-  const interior = cockpit(root, { paint, dark, metal, glass, skinX, skinY, section, bulkhead });
+  const { stations: controlStations, ...interior } = cockpit(root, {
+    paint,
+    dark,
+    metal,
+    glass,
+    skinX,
+    skinY,
+    section,
+    bulkhead,
+  });
   cleanGeometry(root);
   smoothNormals(root.getObjectByName('C130J-forebody-C130J-airframe'));
   return {
     root,
-    frame: c130Frame(),
+    frame: { ...c130Frame(), controlStations },
     enginePoints,
     visual: { rotors, gearNodes: [], flaps: [], ailerons: [], animation: { bindings }, interior },
     modelSignals: {
@@ -833,6 +854,8 @@ function cockpit(root, m) {
       side: T.DoubleSide,
       roughness: 0.1,
     });
+  // Control parts share the library's rubber/alloy finishes, on this deck's own panel gray.
+  const P = partPalette({ panel: face });
   const sources = Object.fromEntries(
     ['airspeed', 'pitch', 'roll', 'yaw', 'verticalSpeed', 'gearPosition', 'flapPosition'].map(
       (k) => [
@@ -1107,6 +1130,8 @@ function cockpit(root, m) {
     [370, 340, 0.28, 0.16, 'HYD'],
   ]) {
     sheet(d, rectangle(px(u), py(v), w, h, z - 0.014), face, [0, 0, -1]);
+    // The gear panel carries the landing-gear lever (a control station) beside its down lamps.
+    if (label === 'GEAR') continue;
     d.text(label, at(u, v - 10, -0.027), 0.008, Math.PI, ink);
     for (let row = 0; row < 2; row++)
       for (let col = 0; col < 4; col++) {
@@ -1153,10 +1178,12 @@ function cockpit(root, m) {
     const x = 0.09 - i * 0.06;
     td.box([0.02, 0.39, 0.008], [x, 0.34, -0.074], black);
     const g = group(ped, `C130J-throttle-${i + 1}`, [x, 0.16, -0.09]),
-      dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0], [0, 0.13, -0.14], 0.012, m.metal);
-    beveledBox(dd, [0.053, 0.047, 0.035], [0, 0.13, -0.14], m.dark);
-    dd.text(String(i + 1), [0, 0.13, -0.161], 0.009, Math.PI, ink);
+      // The console is laid on its back and scaled 0.8: stand the lever upright at true size.
+      upright = group(g, `${g.name}-lever`);
+    upright.rotation.x = -Math.PI / 2;
+    upright.scale.setScalar(1 / 0.8);
+    const dd = detailKit(upright, g.name);
+    herculesPowerLever(dd, P, String(i + 1), black);
     dd.finish();
     bindings.push({
       node: g.name,
@@ -1173,10 +1200,20 @@ function cockpit(root, m) {
   for (let row = 0; row < 5; row++)
     for (let col = 0; col < 5; col++)
       td.box([0.025, 0.022, 0.009], [-0.07 + col * 0.035, -0.8 - row * 0.031, -0.093], m.dark);
+  // Flap lever at the right of the quadrant: an airfoil-section handle on a flat lever, in a
+  // gated slot with UP / DN marks.
+  td.box([0.02, 0.34, 0.008], [-0.23, -0.35, -0.074], black);
+  for (const [yy, label] of [
+    [-0.2, 'UP'],
+    [-0.5, 'DN'],
+  ])
+    td.text(label, [-0.29, yy, -0.08], 0.014, Math.PI, ink);
   const fg = group(ped, 'C130J-flap-lever', [-0.23, -0.35, -0.09]),
-    fd = detailKit(fg, fg.name);
-  fd.rod([0, 0, 0], [0, 0, -0.12], 0.012, m.metal);
-  fd.box([0.09, 0.027, 0.035], [0, 0, -0.13], liner);
+    fu = group(fg, `${fg.name}-upright`);
+  fu.rotation.x = -Math.PI / 2;
+  fu.scale.setScalar(1 / 0.8);
+  const fd = detailKit(fu, fg.name);
+  flapSelectorGeometry(fd, { style: 'lever', height: 0.085, palette: P });
   fd.finish();
   bindings.push({
     node: fg.name,
@@ -1204,17 +1241,34 @@ function cockpit(root, m) {
     [-0.34, -0.36, 0.2, 0.43, 'LIGHTS'],
   ]) {
     od.box([w, h, 0.014], [x, y, -0.043], m.dark);
-    od.text(label, [x, y + h * 0.36, -0.055], 0.011, Math.PI, ink);
+    // The start panel: four fire T-handles in their striped wells over the engine start switches
+    // (control stations below). The APU switch replaces one electrical toggle.
+    od.text(
+      label === 'START' ? 'ENGINE START' : label,
+      [x, label === 'START' ? y - h * 0.43 : y + h * 0.36, -0.055],
+      0.011,
+      Math.PI,
+      ink,
+    );
+    if (label === 'START') continue;
     for (let row = 0; row < 2; row++)
       for (let col = 0; col < 3; col++) {
         const xx = x + (col - 1) * w * 0.27,
           yy = y + (0.1 - row * 0.36) * h;
         op.knob(xx, yy, -0.057, 0.009);
+        if (label === 'ELECTRICAL' && row === 1 && col === 2) continue;
         od.rod([xx, yy, -0.067], [xx, yy + 0.017, -0.085], 0.003, m.metal);
       }
   }
-  for (let i = 0; i < 4; i++)
-    beveledBox(od, [0.044, 0.08, 0.025], [-0.1 + i * 0.067, 0.4, -0.067], od.red, 0.005);
+  for (let i = 0; i < 4; i++) {
+    const xx = 0.1 - i * 0.067;
+    od.box([0.056, 0.06, 0.006], [xx, 0.47, -0.053], black);
+    for (let j = 0; j < 3; j++)
+      od.box([0.008, 0.045, 0.002], [xx - 0.017 + j * 0.017, 0.47, -0.0565], amber).rotation.z =
+        0.6;
+    od.add(place(roundedBox([0.046, 0.016, 0.018], 0.005), [xx, 0.48, -0.072]), od.red);
+    od.add(bar([xx, 0.48, -0.058], [xx, 0.48, -0.064], 0.004, 10), m.metal);
+  }
   od.finish();
   // Head-up displays: a small projector in the roof beside the overhead, and a hinged arm dropping
   // a framed combiner in front of each pilot's eye, 0.33 m ahead of it. Static, deployed glass.
@@ -1250,34 +1304,17 @@ function cockpit(root, m) {
     );
     const yg = group(deck, `C130J-yoke-${side}`, [x, 3.4, 10.97]),
       yd = detailKit(yg, yg.name);
-    yd.rod([0, -0.65, 0.28], [0, 0, 0], 0.045, m.metal);
-    outline(
-      yd,
-      [
-        [-0.16, 0.12, -0.05],
-        [-0.22, 0.08, -0.05],
-        [-0.19, -0.1, -0.05],
-        [0.19, -0.1, -0.05],
-        [0.22, 0.08, -0.05],
-        [0.16, 0.12, -0.05],
-      ],
-      0.028,
-      m.dark,
-      false,
-    );
-    beveledBox(yd, [0.15, 0.16, 0.065], [0, -0.01, -0.05], m.dark);
-    yd.text('C-130J', [0, 0.02, -0.087], 0.012, Math.PI, ink);
+    herculesYoke(yd, P, side);
     yd.finish();
     bindings.push(
       { node: yg.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.72 },
       { node: yg.name, source: 'pitchInput', property: 'position', axis: 'z', scale: -0.09 },
     );
     for (const dx of [-0.16, 0.16]) {
-      const g = group(deck, `C130J-pedal-${side}-${Math.sign(dx)}`, [x + dx, 2.86, 11.46]),
+      // Broad hanging pedals with toe brakes, their arms rising to the pedal box under the panel.
+      const g = group(deck, `C130J-pedal-${side}-${Math.sign(dx)}`, [x + dx, 2.9, 11.46]),
         dd = detailKit(g, g.name);
-      dd.box([0.19, 0.08, 0.13], [0, 0, 0], m.dark);
-      for (let j = 0; j < 5; j++)
-        dd.rod([-0.08, 0.046, -0.05 + j * 0.025], [0.08, 0.046, -0.05 + j * 0.025], 0.003, m.metal);
+      herculesPedal(dd, P, Math.sign(dx));
       dd.finish();
       bindings.push({
         node: g.name,
@@ -1309,8 +1346,12 @@ function cockpit(root, m) {
     cd.box([0.1, 0.21, 0.22], [side * 1.23, 3.6, 10.02], black);
     cd.rod([side * 1.25, 3.65, 10.17], [side * 1.22, 3.38, 10.28], 0.014, m.dark);
     if (side > 0) {
-      cd.ring(0.1, 0.012, [1.02, 3.52, 10.95], black, 'y');
-      cd.rod([1.02, 3.36, 10.95], [1.02, 3.52, 10.95], 0.014, m.dark);
+      // A small hand wheel (about 17 cm across, Lockheed flight-station photographs), not a car
+      // steering wheel: a rim on a hub with a spinner knob.
+      cd.ring(0.075, 0.009, [1.02, 3.47, 10.95], black, 'y');
+      cd.rod([1.02, 3.37, 10.95], [1.02, 3.475, 10.95], 0.016, m.dark);
+      cd.rod([0.945, 3.47, 10.95], [1.095, 3.47, 10.95], 0.006, black);
+      cd.rod([1.02, 3.47, 11.03], [1.02, 3.515, 11.03], 0.008, black);
       cd.box([0.2, 0.05, 0.3], [1.03, 3.35, 10.95], face);
     }
   }
@@ -1350,7 +1391,9 @@ function cockpit(root, m) {
         [edge, hood(edge, panelZ), panelZ + 0.01],
         [0.725, 3.68, panelZ + 0.01],
       ].map(flip),
-      face,
+      // Black like the hood above: in the photographs the panel ends just outboard of each pilot
+      // display, and this blanking only closes the nose bay behind the side console.
+      black,
       [0, 0, -1],
     );
     quad(
@@ -1393,13 +1436,233 @@ function cockpit(root, m) {
   for (let i = 0; i < 4; i++)
     hold.box([0.64, 0.08, 0.28], [0, 2.5 - i * 0.35, 8.55 - i * 0.28], m.dark);
   hold.box([2.95, 0.04, 10.75], [0, 1.1, 2.775], liner);
+  // Sidewall liners from the flight-deck floor to the side-window sill, so the painted skin does
+  // not show beside the seats, consoles and foot wells.
+  const fit = detailKit(cabin, 'C130J-fit');
+  cockpitLiner(fit, root, {
+    zFrom: 10.2,
+    zTo: 13.15,
+    yFrom: 2.75,
+    yTo: 3.47,
+    material: liner,
+    zSteps: 14,
+    ySteps: 6,
+    inset: 0.035,
+  });
+  // Above and aft of the side windows, up the crown to the overhead's edge.
+  cockpitLiner(fit, root, {
+    zFrom: 10.2,
+    zTo: 11.93,
+    yFrom: 3.47,
+    yTo: 4.33,
+    material: liner,
+    zSteps: 8,
+    ySteps: 4,
+    inset: 0.035,
+  });
+  cockpitLiner(fit, root, {
+    zFrom: 10.2,
+    zTo: 12.74,
+    yFrom: 4.33,
+    yTo: 4.8,
+    material: liner,
+    zSteps: 10,
+    ySteps: 4,
+    inset: 0.035,
+  });
+  fit.finish();
   d.finish();
   cd.finish();
   hold.finish();
+  // Where the real controls are (Lockheed flight-station layout): the landing-gear lever on the
+  // centre panel beside its down lamps, the parking-brake T-handle low on the pilot's panel, the
+  // four engine start switches under the fire handles on the overhead, the APU switch beside them.
+  const scale0 = 0.687,
+    onPanel = (u, v, dz = 0) => [
+      scale0 * px(u),
+      3.72 + scale0 * (py(v) - 4.025),
+      12.92 + scale0 * dz,
+    ],
+    tilt = -Math.PI / 2 + 0.44,
+    onOverhead = (x, y, zz) => [
+      0.85 * x,
+      4.46 + 0.85 * (y * Math.cos(tilt) - zz * Math.sin(tilt)),
+      deckShift + 10.46 + 0.85 * (y * Math.sin(tilt) + zz * Math.cos(tilt)),
+    ];
+  const stations = [
+    {
+      action: 'gear',
+      style: 'jet',
+      at: onPanel(294, 338, -0.015),
+      scale: 1.15,
+      label: 'LDG GEAR',
+      labelAt: [0, 0.048, -0.002],
+    },
+    {
+      action: 'brake',
+      style: 'tee',
+      at: onPanel(82, 343, -0.001),
+      scale: 1.2,
+      label: 'PARK BRAKE',
+      labelAt: [0, 0.03, -0.002],
+    },
+    ...[0, 1, 2, 3].map((i) => ({
+      action: 'engine',
+      engine: i,
+      style: 'rotary',
+      at: onOverhead(0.1 - i * 0.067, 0.375, -0.05),
+      rotation: [tilt, 0, 0],
+      label: `ENG ${i + 1}`,
+      labelAt: [0, 0.03, -0.002],
+      labelHeight: 0.007,
+    })),
+    {
+      action: 'engine',
+      style: 'guarded',
+      at: onOverhead(0.1026, 0.0678, -0.05),
+      rotation: [tilt, 0, 0],
+      label: 'APU',
+      labelAt: [0, -0.022, -0.002],
+    },
+  ];
   // The two display faces use one telemetry graph, including digit decoding and validity.
   // There is no second simulated AHRS or air-data computer behind the copilot screen.
   for (const binding of bindings)
     binding.source = binding.source.replace('C130J-copilot.', 'C130J-pilot.');
   for (const key of Object.keys(derived)) if (key.startsWith('C130J-copilot.')) delete derived[key];
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
+}
+
+/** The Hercules control wheel: a centre hub carrying the trim and autopilot-disconnect switches,
+ * swept arms and two tall grips canted outward. Origin at the hub; the column runs down and
+ * forward to the floor. */
+function herculesYoke(d, P, side) {
+  // Column, its collar and the floor boot (the column pivots in the boot).
+  const lean = -Math.atan2(0.245, 0.59);
+  d.add(bar([0, -0.64, 0.275], [0, -0.05, 0.03], 0.034, 16), P.steel);
+  d.add(
+    place(
+      lathe(
+        [
+          [0, 0],
+          [0.075, 0],
+          [0.07, 0.03],
+          [0.05, 0.05],
+          [0.04, 0.09],
+          [0, 0.09],
+        ],
+        18,
+        30,
+      ),
+      [0, -0.655, 0.282],
+      [lean, 0, 0],
+    ),
+    P.tread,
+  );
+  d.add(
+    place(
+      lathe(
+        [
+          [0.04, 0],
+          [0.045, 0.02],
+          [0.042, 0.05],
+          [0.036, 0.06],
+        ],
+        16,
+      ),
+      [0, -0.12, 0.06],
+      [lean, 0, 0],
+    ),
+    P.steel,
+  );
+  // Hub with the emblem plate.
+  d.add(place(roundedBox([0.13, 0.095, 0.065], 0.02), [0, -0.012, -0.01]), P.grip);
+  d.add(place(roundedBox([0.07, 0.03, 0.004], 0.004), [0, -0.01, -0.044]), P.alloy);
+  for (const s of [-1, 1]) {
+    d.add(
+      tube(
+        [
+          [s * 0.05, -0.03, -0.01],
+          [s * 0.13, -0.085, -0.02],
+          [s * 0.185, -0.07, -0.028],
+          [s * 0.205, -0.035, -0.03],
+        ],
+        0.016,
+        14,
+      ),
+      P.grip,
+    );
+    // Grip: a lofted horn, canted outward, swelling under the hand.
+    const grip = loftUp([
+      { y: 0, points: superEllipse(0, 0, 0.017, 0.02, 16, 2.2) },
+      { y: 0.04, points: superEllipse(0, 0.001, 0.019, 0.022, 16, 2.2) },
+      { y: 0.09, points: superEllipse(0, 0.002, 0.0195, 0.022, 16, 2.2) },
+      { y: 0.125, points: superEllipse(0, 0, 0.021, 0.024, 16, 2.4) },
+      { y: 0.14, points: superEllipse(0, -0.002, 0.016, 0.019, 16, 2.4) },
+      { y: 0.146, points: superEllipse(0, -0.002, 0.007, 0.008, 16, 2.2) },
+    ]);
+    d.add(place(grip, [s * 0.21, -0.045, -0.03], [0, 0, -s * 0.16]), P.grip);
+  }
+  // Pitch trim switch on the outboard grip's thumb head, autopilot disconnect on the inboard one.
+  const outboard = side,
+    head = (s, y) => [s * (0.21 + y * Math.sin(0.16)), -0.045 + y * Math.cos(0.16), -0.032];
+  d.add(place(roundedBox([0.012, 0.008, 0.012], 0.003), head(outboard, 0.146)), P.black);
+  d.add(place(new T.CylinderGeometry(0.0055, 0.0055, 0.006, 14), head(-outboard, 0.146)), P.red);
+}
+
+/** C-130J power lever: a flat lever raked forward under a broad squared light-gray knob (WC-130J
+ * flight-deck photograph), its engine number
+ * on the face toward the pilot. */
+function herculesPowerLever(d, P, label, ink, height = 0.12, rake = 0.085) {
+  const tilt = Math.atan2(rake, height),
+    length = Math.hypot(height, rake);
+  d.add(
+    place(roundedBox([0.011, length, 0.02], 0.003, 1), [0, height / 2, rake / 2], [tilt, 0, 0]),
+    P.alloy,
+  );
+  const knob = loftUp([
+    { y: -0.014, points: superEllipse(0, 0, 0.014, 0.012, 16, 2.6) },
+    { y: -0.004, points: superEllipse(0, 0, 0.026, 0.019, 16, 3) },
+    { y: 0.022, points: superEllipse(0, -0.002, 0.028, 0.021, 16, 3.2) },
+    { y: 0.032, points: superEllipse(0, -0.003, 0.024, 0.017, 16, 3) },
+    { y: 0.036, points: superEllipse(0, -0.003, 0.013, 0.009, 16, 2.4) },
+  ]);
+  d.add(place(knob, [0, height, rake], [tilt, 0, 0]), P.white);
+  const face = [
+    0,
+    height + 0.012 * Math.cos(tilt) + 0.0235 * Math.sin(tilt),
+    rake + 0.012 * Math.sin(tilt) - 0.0235 * Math.cos(tilt),
+  ];
+  d.text(label, face, 0.011, Math.PI, ink).rotation.x = tilt;
+}
+
+/** Hercules rudder pedal: a tall plate with a ribbed rubber face, the toe-brake hinge across its
+ * top and a heel ledge, hung from an arm that rises forward into the pedal box. */
+function herculesPedal(d, P, side, { w = 0.105, h = 0.2, lean = 0.24 } = {}) {
+  const pad = (g) => place(g, [0, 0, 0], [lean, 0, 0]);
+  d.add(pad(roundedBox([w, h, 0.016], 0.012, 1)), P.steel);
+  for (let j = 0; j < 4; j++)
+    d.add(
+      pad(place(new T.BoxGeometry(w * 0.78, 0.022, 0.004), [0, -h * 0.3 + j * h * 0.18, -0.009])),
+      P.tread,
+    );
+  d.add(pad(bar([-w * 0.46, h * 0.42, -0.003], [w * 0.46, h * 0.42, -0.003], 0.006, 8)), P.alloy);
+  d.add(
+    pad(place(new T.BoxGeometry(w * 0.92, 0.012, 0.045), [0, -h / 2 - 0.004, -0.018])),
+    P.steel,
+  );
+  d.add(
+    pad(
+      tube(
+        [
+          [side * w * 0.18, h * 0.3, 0.012],
+          [side * w * 0.18, h * 0.5 + 0.035, 0.05],
+          [side * w * 0.18, h * 0.5 + 0.07, 0.1],
+        ],
+        0.01,
+        8,
+      ),
+    ),
+    P.alloy,
+  );
 }

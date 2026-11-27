@@ -1,6 +1,8 @@
 /** Single-seat Typhoon, clean configuration. Dimensions and reference limits in reference-review.
  * +Z forward, +X pilot left. Three-display cockpit, not the proposed large-area-display upgrade.
  */
+import { cockpitBulkhead, skinSection, wallAt } from './cockpit-fit.mjs';
+import { bar, leverGeometry, pedalGeometry, stickGeometry } from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -150,6 +152,29 @@ export function buildTyphoon(s) {
       cr[i].points.map((p) => [...p, cr[i].z]),
       i === 2 ? 0.018 : 0.016,
       paint,
+      false,
+    );
+  // The frames' inboard faces are the dark canopy seal: from the seat the windscreen bow and the
+  // sill rails read dark, as in the cockpit photographs, not as the gray they wear outside.
+  outline(
+    d,
+    cr[2].points.map(([x, y]) => [x * 0.975, y - 0.006, cr[2].z - 0.012]),
+    0.018,
+    seal,
+    false,
+  );
+  for (const j of [0, 20])
+    outline(
+      d,
+      cr
+        .slice(1, -1)
+        .map((r) => [
+          r.points[j][0] - Math.sign(r.points[j][0]) * 0.013,
+          r.points[j][1] + 0.006,
+          r.z,
+        ]),
+      0.018,
+      seal,
       false,
     );
   for (const side of [-1, 1]) {
@@ -707,7 +732,7 @@ export function buildTyphoon(s) {
     );
   }
   d.finish();
-  const interior = typhoonCockpit(root, { metal, glass });
+  const { stations: controlStations, ...interior } = typhoonCockpit(root, { metal, glass });
   Object.assign(interior.derived, {
     pitchDeflection: { op: 'multiply', args: ['pitchInput', 0.28] },
     rollDeflection: { op: 'multiply', args: ['rollInput', 0.24] },
@@ -717,7 +742,7 @@ export function buildTyphoon(s) {
   cleanGeometry(root);
   return {
     root,
-    frame: typhoonFrame(),
+    frame: { ...typhoonFrame(), controlStations },
     enginePoints: [
       { id: 'engine-1', position: [0.52, 1.82, -5.14] },
       { id: 'engine-2', position: [-0.52, 1.82, -5.14] },
@@ -804,18 +829,23 @@ function typhoonCockpit(root, m) {
     [-0.13, 2.11],
     [-0.13, 2.38],
   ];
+  // The main panel face is the same medium gray as the consoles around black display glass and
+  // a black head-up control panel (Commons "Eurofighter Cockpit.jpg", tribp, and "Eurofighter
+  // Typhoon cockpit.jpg", ReaL-FrienD); only the coaming above it is dark.
   sheet(
     d,
     edge.map((p) => [...p, z]),
-    button,
+    panel,
     [0, 0, -1],
     [rect(0.218, 2.59, 0.103, 0.078), rect(-0.255, 2.775, 0.052, 0.042)],
   );
+  // A thin panel-gray rim, not a black frame: the photographed gray panel runs straight into
+  // the coaming with no dark border.
   outline(
     d,
-    edge.map((p) => [...p, z - 0.004]),
-    0.008,
-    black,
+    edge.map((p) => [...p, z - 0.003]),
+    0.005,
+    panel,
   );
   for (let i = 0; i < 7; i++) {
     const a = edge[i],
@@ -831,11 +861,14 @@ function typhoonCockpit(root, m) {
     );
   }
   // Three equal 6x6in active areas, center lower. Manufacturer cockpit and BAE dimensions.
+  // The bezels are a shade darker than the panel and nearly touch (4 mm gaps), filling the
+  // panel width as in both photographs.
+  const bezel = mat('Typhoon-bezel', '#5f6a6d');
   function display(x, y, live = false) {
     sheet(
       d,
-      rect(x, y, 0.199, 0.204, -0.009),
-      panel,
+      rect(x, y, 0.214, 0.222, -0.009),
+      bezel,
       [0, 0, -1],
       live ? [rect(x, y + 0.016, 0.103, 0.078, -0.009)] : [],
     );
@@ -848,13 +881,13 @@ function typhoonCockpit(root, m) {
     );
     for (const side of [-1, 1])
       for (let i = 0; i < 6; i++)
-        d.box([0.012, 0.017, 0.005], [x + side * 0.088, y - 0.064 + i * 0.026, z - 0.02], black);
+        d.box([0.012, 0.017, 0.005], [x + side * 0.092, y - 0.064 + i * 0.026, z - 0.02], black);
     for (let i = 0; i < 6; i++)
-      d.box([0.017, 0.012, 0.005], [x - 0.065 + i * 0.026, y - 0.09, z - 0.02], black);
+      d.box([0.017, 0.012, 0.005], [x - 0.065 + i * 0.026, y - 0.094, z - 0.02], black);
     for (const side of [-1, 1])
       d.add(new T.CylinderGeometry(0.009, 0.01, 0.011, 12).rotateX(Math.PI / 2), button, [
-        x + side * 0.088,
-        y - 0.09,
+        x + side * 0.092,
+        y - 0.094,
         z - 0.026,
       ]);
   }
@@ -977,20 +1010,19 @@ function typhoonCockpit(root, m) {
       [0, 0.064, -0.021],
     );
     for (let j = 0; j < 5; j++)
-      gd.rod([-0.032, 0.042 + j * 0.011, -0.03], [0.032, 0.042 + j * 0.011, -0.03], 0.002, button);
+      gd.add(
+        bar([-0.032, 0.042 + j * 0.011, -0.03], [0.032, 0.042 + j * 0.011, -0.03], 0.002, 8),
+        button,
+      );
     gd.box([0.048, 0.043, 0.004], [0.039, -0.028, -0.018], amber);
     gd.add(
       new T.CylinderGeometry(0.012, 0.014, 0.016, 10).rotateX(Math.PI / 2),
       black,
       [0.039, -0.028, -0.028],
     );
-    gd.text(side === 1 ? 'GEAR' : 'OXY', [0, -0.088, -0.018], 0.009, Math.PI, ink);
-    if (side === 1) {
-      gd.rod([-0.045, -0.035, -0.025], [-0.045, -0.062, -0.07], 0.007, m.metal);
-      gd.add(new T.SphereGeometry(0.017, 10, 6), black, [-0.045, -0.062, -0.07]);
-    } else
-      for (let j = 0; j < 3; j++)
-        gd.box([0.019, 0.012, 0.006], [-0.045, -0.018 - j * 0.023, -0.02], black);
+    // The landing-gear lever (left) and the parking brake and flap selectors (right) are
+    // stations on the outboard half of these panels (end of this function).
+    gd.text(side === 1 ? 'GEAR' : 'BRAKE', [0, -0.088, -0.018], 0.009, Math.PI, ink);
     gd.finish();
   }
   for (let i = 0; i < 2; i++)
@@ -1011,23 +1043,38 @@ function typhoonCockpit(root, m) {
     panel,
     [0, 0, -1],
   );
+  // Fit: dark liners follow the skin from the floor up to the canopy sill, the console tops and the
+  // floor run out to them and a bulkhead closes the nose ahead of the pedals, so no painted skin
+  // shows beside the consoles, around the panel or along the sill (it did all round the old
+  // sloped side walls).
+  sillLiner(d, root, {
+    zFrom: 3.85,
+    zTo: 5.83,
+    yFrom: 1.69,
+    yTo: 2.8,
+    material: panel,
+    zSteps: 20,
+    inset: 0.02,
+  });
+  consoleShelf(d, root, { zFrom: 3.9, zTo: 5.4, y: 2.265, x: 0.45, material: panel, inset: 0.025 });
+  consoleShelf(d, root, {
+    zFrom: 3.85,
+    zTo: 5.83,
+    y: 1.718,
+    x: 0.29,
+    material: panel,
+    steps: 10,
+    inset: 0.025,
+  });
+  cockpitBulkhead(d, root, { z: 5.835, yFrom: 1.69, yTo: 2.5, material: panel });
   for (const side of [-1, 1]) {
-    quad(
-      d,
-      [side * 0.4, 1.72, 3.8],
-      [side * 0.36, 1.72, 5.82],
-      [side * 0.43, 2.36, 5.82],
-      [side * 0.5, 2.5, 3.8],
-      panel,
-      [-side, 0, 0],
-    );
     d.box([0.18, 0.25, 1.5], [side * 0.36, 2.14, 4.65], panel);
     const g = group(cabin, `Typhoon-console-${side}`, [side * 0.36, 2.27, 4.55]);
     g.rotation.x = Math.PI / 2;
     const gd = detailKit(g, g.name);
     for (const [i, label] of (side === 1
       ? ['FUEL', 'POWER', 'START', 'COMM']
-      : ['LIGHT', 'ECS', 'OXY', 'CANOPY']
+      : ['LIGHT', 'CANOPY', 'OXY', 'ECS']
     ).entries()) {
       const v = 0.49 - i * 0.3;
       gd.box([0.16, 0.27, 0.008], [0, v, 0], panel);
@@ -1043,17 +1090,21 @@ function typhoonCockpit(root, m) {
         black,
       );
       gd.text(label, [0, v + 0.09, -0.009], 0.009, Math.PI, ink);
+      // START (left) and CANOPY (right) carry stations (end of this function).
+      const station = (side === 1 && i === 2) || (side === -1 && i === 1);
       for (const x of [-0.045, 0.04]) {
-        gd.add(new T.CylinderGeometry(0.009, 0.01, 0.013, 10).rotateX(Math.PI / 2), button, [
-          x,
-          v - 0.05,
-          -0.012,
-        ]);
-        gd.rod([x, v + 0.015, -0.01], [x, v + 0.024, -0.028], 0.003, m.metal);
+        if (!station) {
+          gd.add(new T.CylinderGeometry(0.0085, 0.0095, 0.01, 16).rotateX(Math.PI / 2), button, [
+            x,
+            v - 0.05,
+            -0.009,
+          ]);
+          gd.add(bar([x, v + 0.015, -0.004], [x, v + 0.022, -0.02], 0.0016, 10, 0.0024), m.metal);
+        }
         for (const y of [-0.115, 0.115])
           gd.add(new T.CircleGeometry(0.003, 6).rotateY(Math.PI), black, [x * 1.5, v + y, -0.007]);
       }
-      if (i === 2) {
+      if (i === 2 && side === -1) {
         gd.box([0.038, 0.043, 0.003], [0.02, v - 0.05, -0.009], amber);
         for (let n = 0; n < 3; n++)
           gd.rod(
@@ -1115,19 +1166,8 @@ function typhoonCockpit(root, m) {
   sd.finish();
   const stick = group(cabin, 'Typhoon-stick', [0, 1.87, 5.17]),
     st = detailKit(stick, stick.name);
-  st.add(new T.CylinderGeometry(0.047, 0.067, 0.15, 16), black, [0, 0.075, 0]);
-  st.rod([0, 0.14, 0], [0, 0.5, -0.05], 0.022, black);
-  beveledBox(st, [0.083, 0.155, 0.063], [0, 0.56, -0.05], button, 0.012);
-  for (const [x, y] of [
-    [-0.026, 0.61],
-    [0.024, 0.6],
-    [0, 0.535],
-  ])
-    st.add(new T.CylinderGeometry(0.012, 0.012, 0.007, 10).rotateX(Math.PI / 2), black, [
-      x,
-      y,
-      -0.085,
-    ]);
+  // Tall centre stick in a rubber boot, the Eurofighter grip with its crowded thumb shelf.
+  stickGeometry(st, { style: 'euro', height: 0.5, rake: -0.05, shaft: 0.014, scale: 1.05 });
   st.finish();
   bindings.push(
     { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.2 },
@@ -1136,9 +1176,11 @@ function typhoonCockpit(root, m) {
   for (let i = 0; i < 2; i++) {
     const g = group(cabin, `Typhoon-throttle-${i}`, [0.3 + i * 0.06, 2.27, 4.95]),
       gd = detailKit(g, g.name);
-    gd.rod([0, 0, 0], [0, 0.1, 0], 0.012, black);
-    beveledBox(gd, [0.055, 0.07, 0.105], [0, 0.13, 0], black, 0.009);
+    // Twin throttles: the outboard (left engine) grip carries the switches, the inboard one is a
+    // plain hand rest; a single slot each in the console's quadrant block.
+    leverGeometry(gd, { style: i === 1 ? 'hotas-euro' : 'hotas-right', height: 0.075, side: 1 });
     gd.finish();
+    d.box([0.01, 0.003, 0.2], [0.3 + i * 0.06, 2.2745, 4.95], black);
     bindings.push({
       node: g.name,
       source: 'power',
@@ -1151,8 +1193,7 @@ function typhoonCockpit(root, m) {
   for (const side of [-1, 1]) {
     const g = group(cabin, `Typhoon-pedal-${side}`, [side * 0.15, 1.89, 5.42]),
       gd = detailKit(g, g.name);
-    gd.box([0.13, 0.15, 0.025], [0, 0, 0], m.metal);
-    for (let i = 0; i < 5; i++) gd.box([0.11, 0.006, 0.006], [0, -0.06 + i * 0.03, -0.016], black);
+    pedalGeometry(gd, { style: 'fighter', side, drop: 0.09, scale: 1.04, lean: 0.32 });
     gd.finish();
     bindings.push({
       node: g.name,
@@ -1175,5 +1216,147 @@ function typhoonCockpit(root, m) {
   });
   txt('GEAR', 0.35, 2.387, 0.006);
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Where the controls are (cockpit sources in reference-review.json):
+  // the landing-gear lever on the left front console, the parking brake and flap selectors on the
+  // right one, the airbrake on the outboard throttle grip, the engine and APU switches on the
+  // left console behind the throttles, the canopy handle on the right console.
+  const frontAt = (side, u, v) => {
+      const a = 0.38;
+      return [
+        side * 0.32 + u,
+        2.28 + v * Math.cos(a) + 0.0135 * Math.sin(a),
+        5.38 + v * Math.sin(a) - 0.0135 * Math.cos(a),
+      ];
+    },
+    tilt = [0.38, 0, 0],
+    top = [Math.PI / 2, 0, 0],
+    plate = (side, i, dx = 0) => [side * 0.36 + dx, 2.2745, 4.55 + 0.49 - i * 0.3 + 0.02];
+  const stations = [
+    { action: 'gear', style: 'jet', scale: 0.78, at: frontAt(1, -0.045, -0.025), rotation: tilt },
+    {
+      action: 'brake',
+      style: 'tee',
+      scale: 0.75,
+      at: frontAt(-1, -0.045, -0.02),
+      rotation: tilt,
+      label: 'PARK',
+      labelAt: [0, 0.022, -0.002],
+      labelHeight: 0.006,
+    },
+    {
+      action: 'flaps',
+      style: 'toggle',
+      scale: 1.15,
+      at: frontAt(-1, -0.074, 0.07),
+      rotation: tilt,
+      label: 'FLAP',
+      labelAt: [0, -0.026, -0.002],
+      labelHeight: 0.006,
+    },
+    {
+      action: 'speedBrake',
+      style: 'slider',
+      parent: 'Typhoon-throttle-1',
+      at: [0.366, 2.405, 4.9],
+      rotation: [0, 0, 0],
+    },
+    {
+      action: 'engine',
+      engine: 0,
+      style: 'guarded',
+      at: plate(1, 2, 0.045),
+      rotation: top,
+      label: 'ENG L',
+      labelAt: [0, 0.03, -0.002],
+    },
+    {
+      action: 'engine',
+      engine: 1,
+      style: 'guarded',
+      at: plate(1, 2),
+      rotation: top,
+      label: 'ENG R',
+      labelAt: [0, 0.03, -0.002],
+    },
+    {
+      action: 'engine',
+      style: 'guarded',
+      at: plate(1, 2, -0.045),
+      rotation: top,
+      label: 'APU',
+      labelAt: [0, 0.03, -0.002],
+    },
+    {
+      action: 'canopy',
+      style: 'canopy',
+      at: plate(-1, 1),
+      rotation: top,
+      label: 'CANOPY',
+      labelAt: [0, -0.045, -0.002],
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
+}
+
+/** Sidewall liners from `yFrom` up to the canopy sill, `inset` inside the skin. Each station's
+ * column climbs the wall in 1 cm steps and stops below `yTo` where that side's skin ends or jumps
+ * to another surface (a shoulder or chine outboard), so the liner meets the sill instead of
+ * leaving a painted strip above its last row, and never reaches out through the skin. */
+function sillLiner(
+  d,
+  root,
+  { zFrom, zTo, yFrom, yTo, material, zSteps = 14, ySteps = 8, inset = 0.008 },
+) {
+  for (const side of [1, -1]) {
+    const columns = [];
+    for (let i = 0; i <= zSteps; i++) {
+      const z = zFrom + ((zTo - zFrom) * i) / zSteps,
+        segments = skinSection(root, z);
+      let lo = yFrom,
+        last = wallAt(segments, yFrom, side);
+      if (last === undefined) {
+        columns.push(undefined);
+        continue;
+      }
+      for (let y = yFrom + 0.01; y <= yTo + 1e-9; y += 0.01) {
+        const x = wallAt(segments, y, side);
+        if (x === undefined || Math.abs(x - last) > 0.03) break;
+        lo = y;
+        last = x;
+      }
+      columns.push(
+        Array.from({ length: ySteps + 1 }, (_, j) => {
+          const y = yFrom + ((lo - yFrom) * j) / ySteps,
+            x = wallAt(segments, y, side);
+          return x === undefined ? undefined : [x - side * inset, y, z];
+        }),
+      );
+    }
+    for (let i = 0; i < zSteps; i++)
+      for (let j = 0; j < ySteps; j++) {
+        const corners = [
+          columns[i]?.[j],
+          columns[i + 1]?.[j],
+          columns[i + 1]?.[j + 1],
+          columns[i]?.[j + 1],
+        ];
+        if (corners.every(Boolean)) quad(d, ...corners, material, [-side, 0, 0]);
+      }
+  }
+}
+/** A console top at height `y` from its outboard edge `x` out to the skin, both sides. */
+function consoleShelf(d, root, { zFrom, zTo, y, x, material, steps = 8, inset = 0.008 }) {
+  for (const side of [1, -1]) {
+    const row = [];
+    for (let i = 0; i <= steps; i++) {
+      const z = zFrom + ((zTo - zFrom) * i) / steps,
+        wall = wallAt(skinSection(root, z), y, side);
+      if (wall !== undefined) row.push([z, wall - side * inset]);
+    }
+    for (let i = 0; i + 1 < row.length; i++) {
+      const [z0, w0] = row[i],
+        [z1, w1] = row[i + 1];
+      quad(d, [side * x, y, z0], [side * x, y, z1], [w1, y, z1], [w0, y, z0], material, [0, 1, 0]);
+    }
+  }
 }

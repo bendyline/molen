@@ -3,6 +3,16 @@
  */
 
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import {
+  engineMasterGeometry,
+  lathe,
+  pedalGeometry,
+  place,
+  roundedBox,
+  stickGeometry,
+  switchGeometry,
+  tube,
+} from './cockpit-parts.mjs';
 import { glassDisplay } from './glass-display.mjs';
 import {
   beveledBox,
@@ -18,7 +28,13 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
-import { cabinShell } from './robinson-r44.mjs';
+import {
+  addParts,
+  authoredControl,
+  cabinShell,
+  posedKit,
+  turbineCollective,
+} from './robinson-r44.mjs';
 export const h125Frame = () => ({
   heli: true,
   fighter: false,
@@ -430,9 +446,13 @@ function cockpit(root, m, shell, apertures) {
     tools = panelTools(d);
   // The board runs on across the pilot's side to 0.2 m short of the right door (cockpit
   // photos): ending at -0.36 m it left the pilot, at -0.42 m, nothing but windscreen ahead.
+  // The left side mirrors it under the hood (F-HGRU photograph): ending at +0.38 m it left the
+  // hood's left third open to the chin window.
   const contour = [
-    [0, 345],
-    [100, 285],
+    [-675, 360],
+    [-600, 292],
+    [-350, 268],
+    [0, 250],
     [350, 225],
     [650, 192],
     [950, 190],
@@ -443,7 +463,8 @@ function cockpit(root, m, shell, apertures) {
     [2275, 360],
     [2290, 930],
     [1540, 960],
-    [0, 910],
+    [0, 955],
+    [-690, 930],
   ].map(([u, v]) => at(u, v));
   sheet(d, contour, face, [0, 0, -1]);
   sheet(
@@ -457,7 +478,14 @@ function cockpit(root, m, shell, apertures) {
       b = contour[(i + 1) % contour.length];
     quad(d, a, b, [b[0], b[1], z + 0.2], [a[0], a[1], z + 0.2], m.trim, [0, 1, 0]);
   }
-  outline(d, contour.slice(0, 11), 0.018, m.trim, false);
+  outline(d, contour.slice(0, 13), 0.018, m.trim, false);
+  // The left side of the board (F-HGRU): clock, a radio head and the ELT switch plate.
+  tools.gauge(px(-200), py(470), z - 0.008, 0.03);
+  d.box([0.16, 0.045, 0.02], at(-260, 700, -0.01), m.trim);
+  d.box([0.12, 0.022, 0.004], at(-260, 700, -0.021), d.green);
+  for (const u of [-470, -50]) tools.knob(px(u), py(700), z - 0.026, 0.01);
+  d.box([0.06, 0.04, 0.012], at(-520, 480, -0.006), m.trim);
+  d.box([0.014, 0.02, 0.01], at(-520, 480, -0.016), d.red);
   // Flight instruments in front of the pilot: airspeed, altimeter, vertical speed and turn.
   for (const [u, v] of [
     [1780, 470],
@@ -551,6 +579,33 @@ function cockpit(root, m, shell, apertures) {
     [866, 210],
   ])
     d.add(new T.CircleGeometry(0.003, 8).rotateY(Math.PI), m.metal, at(u, v, -0.004));
+  // Switch strip at the panel's outboard end beside the pilot (F-HGRU H125 cockpit photograph): a
+  // pale gray plate with its toggles and, at the foot, the red flip guard over the engine master
+  // switch.
+  const strip = [-0.688, 1.39, z - 0.012];
+  beveledBox(d, [0.042, 0.26, 0.024], strip, mat('H125-switch-strip', '#b3b6b4'), 0.006);
+  for (const y of [1.48, 1.44, 1.4]) {
+    switchGeometry(posedKit(d, [strip[0], y, z - 0.024]), { style: 'toggle', scale: 0.9 });
+    d.add(new T.CircleGeometry(0.0035, 10).rotateY(Math.PI), d.ivory, [
+      strip[0] + 0.012,
+      y + 0.008,
+      z - 0.0245,
+    ]);
+  }
+  d.text('FUEL', [strip[0], 1.355, z - 0.0245], 0.006, Math.PI, d.dark);
+  // The guard flips up with the switch: on is up, as for every guarded station.
+  const { d: fuel } = authoredControl(
+    cabin,
+    'H125-fuel-shutoff',
+    [strip[0], 1.3, z - 0.024],
+    [0, 0, 0],
+    {
+      action: 'engine',
+      motion: { property: 'rotation', axis: 'x', scale: 0.5, offset: -0.5 },
+    },
+  );
+  engineMasterGeometry(fuel, { style: 'guarded' });
+  fuel.finish();
   // The console slopes from the panel's lower edge down to the floor between the seats.
   const pg = group(cabin, 'H125-console', [0.02, 1.02, 1.745]);
   pg.rotation.x = 0.9;
@@ -560,7 +615,7 @@ function cockpit(root, m, shell, apertures) {
   d.box([0.28, 0.22, 0.4], [0.02, 0.83, 1.85], face);
   for (let i = 0; i < 6; i++) {
     const x = (i - 2.5) * 0.044;
-    pd.rod([x, 0.31, -0.033], [x, 0.33, -0.06], 0.004, i === 0 ? pd.red : m.metal);
+    switchGeometry(posedKit(pd, [x, 0.31, -0.033]), { style: i === 0 ? 'guarded' : 'toggle' });
     pd.text(
       ['BAT', 'GEN', 'BCN', 'HORN', 'AV', 'LT'][i],
       [x, 0.345, -0.061],
@@ -577,14 +632,54 @@ function cockpit(root, m, shell, apertures) {
   for (let i = 0; i < 9; i++)
     pd.box([0.025, 0.024, 0.01], [-0.128, -0.01 - i * 0.035, -0.04], i === 6 ? pd.red : m.trim);
   pd.finish();
-  // Dark cabin trim 3 cm inside the skin, open at every window, so the glazing reads dark.
+  // Cabin trim 3 cm inside the skin, open at every window: the light gray lining of the walls,
+  // roof and door frames in the AS350 360-degree cabin photograph and the F-HGRU cockpit
+  // photograph (it was dark slate); the panel, consoles and deck stay black, and so does the nose
+  // ahead of the panel below the windscreen (footwells and the strip past the glare shield).
+  const lining = mat('H125-cabin-lining', '#a9aaa5', { roughness: 0.9 });
   shell.build(
     d,
-    face,
-    apertures.map((poly) => ({ poly, material: null })),
+    lining,
+    [
+      ...apertures.map((poly) => ({ poly, material: null })),
+      ...[-1, 1].map((side) => ({
+        poly: shell.region([
+          [1.95, 1.8, side],
+          [3.5, 1.8, side],
+          [1.95, 0.5 * side],
+          [3.5, 0.5 * side],
+        ]),
+        material: face,
+      })),
+      // The nose top between the glare shield and the windscreen's foot, on the centreline.
+      {
+        poly: [
+          [2.3, -0.12],
+          [3.5, -0.12],
+          [3.5, 0.12],
+          [2.3, 0.12],
+        ],
+        material: face,
+      },
+    ],
     shell.samples(0.35).filter((z) => z > -1.05),
     16,
     0.03,
+  );
+  for (const poly of apertures) shell.reveal(d, poly, 0.031, lining);
+  // The windscreen's centre seam seen from the seats: a dark strip inside the glass.
+  shell.strip(
+    d,
+    [
+      [2.0, 0],
+      [3.02, 0],
+    ],
+    0.05,
+    face,
+    true,
+    false,
+    0.004,
+    -0.01,
   );
   // Rear cabin bulkhead behind the bench: the cabin used to open straight into the baggage
   // bay, the boom root and the cowling.
@@ -595,7 +690,7 @@ function cockpit(root, m, shell, apertures) {
         n = shell.normal(-0.99, -0.5 + j / 32);
       return [p[0] - n[0] * 0.03, p[1] - n[1] * 0.03, -0.99];
     }),
-    face,
+    lining,
     [0, 0, 1],
   );
   // Cabin deck trimmed to the rounded lower corners of the shell.
@@ -642,22 +737,50 @@ function cockpit(root, m, shell, apertures) {
   for (const side of [-1, 1]) {
     const x = side * 0.42;
     addSeat(x, 1.02, 1.25, 0.7175);
+    // The cyclic rises from its floor boot, cranks back toward the seat and carries the
+    // helicopter grip (trim beeper, release and radio switches) at lap height.
     const cg = group(cabin, `H125-cyclic-${side}`, [x, 0.72, 1.63]),
       cd = detailKit(cg, 'cyclic');
-    outline(
-      cd,
+    addParts(cd, [
       [
-        [0, 0, 0],
-        [0, 0.25, 0],
-        [0, 0.38, -0.18],
-        [0, 0.55, -0.2],
+        cd.dark,
+        tube(
+          [
+            [0, 0.04, 0],
+            [0, 0.24, 0],
+            [0, 0.3, -0.06],
+            [0, 0.37, -0.165],
+            [0, 0.42, -0.198],
+            [0, 0.5, -0.205],
+          ],
+          0.0135,
+          14,
+        ),
       ],
-      0.017,
-      m.trim,
-      false,
-    );
-    beveledBox(cd, [0.06, 0.15, 0.06], [0, 0.57, -0.2], m.trim, 0.01);
-    cd.box([0.018, 0.015, 0.015], [0, 0.64, -0.235], cd.red);
+      [
+        m.trim,
+        lathe(
+          [
+            [0, 0],
+            [0.045, 0],
+            [0.043, 0.012],
+            [0.032, 0.02],
+            [0.03, 0.032],
+            [0.021, 0.044],
+            [0.018, 0.06],
+            [0, 0.06],
+          ],
+          18,
+          28,
+        ),
+      ],
+    ]);
+    stickGeometry(posedKit(cd, [0, 0.5, -0.205]), {
+      style: 'cyclic',
+      height: 0.035,
+      boot: false,
+      shaft: 0.0135,
+    });
     cd.finish();
     bindings.push(
       { node: cg.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.15 },
@@ -665,15 +788,17 @@ function cockpit(root, m, shell, apertures) {
     );
     const lg = group(cabin, `H125-collective-${side}`, [x + 0.24, 0.83, 1.05]),
       ld = detailKit(lg, 'collective');
-    ld.rod([0, 0, 0], [0, 0.14, 0.42], 0.021, m.trim);
-    ld.box([0.05, 0.055, 0.13], [0, 0.14, 0.42], m.trim);
+    turbineCollective(posedKit(ld, [0, 0, 0], [Math.atan2(0.42, 0.14), 0, 0]), {
+      head: 'h125',
+      length: 0.47,
+      side: -1,
+    });
     ld.finish();
     bindings.push({ node: lg.name, source: 'power', property: 'rotation', axis: 'x', scale: -0.4 });
     for (const k of [-1, 1]) {
       const g = group(cabin, `H125-pedal-${side}-${k}`, [x + k * 0.13, 0.8, 2.1]),
         dd = detailKit(g, 'pedal');
-      dd.rod([-0.08, 0, 0], [0.08, 0, 0], 0.017, m.trim);
-      dd.rod([0, 0, 0], [0, -0.08, 0.1], 0.012, m.metal);
+      pedalGeometry(dd, { style: 'heli', side: k, drop: 0.035 });
       dd.finish();
       bindings.push({
         node: g.name,
@@ -688,7 +813,22 @@ function cockpit(root, m, shell, apertures) {
   d.box([0.23, 0.045, 0.58], [0, 2.12, 1.1], m.trim);
   for (let i = 0; i < 6; i++)
     d.rod([0.06, 2.08, 0.9 + i * 0.06], [0.06, 2.04, 0.91 + i * 0.06], 0.005, m.metal);
-  d.rod([-0.06, 2.08, 1.08], [-0.06, 1.96, 1.22], 0.012, d.red);
+  // Rotor brake handle under the roof console: a lever down and forward to a red grip.
+  addParts(d, [
+    [
+      m.metal,
+      tube(
+        [
+          [-0.06, 2.095, 1.06],
+          [-0.06, 2.06, 1.12],
+          [-0.06, 1.985, 1.2],
+        ],
+        0.007,
+        12,
+      ),
+    ],
+    [d.red, place(roundedBox([0.06, 0.022, 0.026], 0.008), [-0.06, 1.975, 1.21], [0.7, 0, 0])],
+  ]);
   d.finish();
   return { nodes: ['cockpit'], bindings };
 }

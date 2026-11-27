@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:8bd19485edf221766fe6f2a716ff785404b7e3f2aa1c9ee85733af57cc3a5f1d",
-  "sourceHash": "sha256:e22962d51541c9ec8e8d1245b572c57b8e7098eb958b4fe1a02d783e6b36eca5",
+  "hash": "sha256:c5cea72b60290928fdead5dc50fffe4ed8e8e6b217fd990403c1b87e14dfa926",
+  "sourceHash": "sha256:8b86c539682bdbcf65485d056827dcc1ed775fb94a6f768a381409b0891a8e50",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 72430,
-    "vertices": 46763,
-    "meshes": 243,
-    "primitives": 243,
-    "materials": 39,
+    "triangles": 73427,
+    "vertices": 48558,
+    "meshes": 262,
+    "primitives": 262,
+    "materials": 40,
     "textures": 22,
     "animations": 0,
-    "sizeBytes": 2241408
+    "sizeBytes": 2296936
   },
   "nodes": [
     {
@@ -427,7 +427,7 @@
     },
     {
       "name": "airspeed-hub",
-      "triangles": 720
+      "triangles": 48
     },
     {
       "name": "airspeed-cover",
@@ -483,7 +483,7 @@
     },
     {
       "name": "rpm-hub",
-      "triangles": 720
+      "triangles": 48
     },
     {
       "name": "rpm-short-pointer",
@@ -566,7 +566,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "interior-green",
+      "name": "cabin-lining-black",
       "slots": [
         "baseColor"
       ],
@@ -801,6 +801,17 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "cabin-floor-paint-paint",
       "slots": [
         "baseColor",
@@ -845,34 +856,20 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-panel-panel",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-alloy-brushed",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "flight-control-grip-rubber",
       "slots": [
         "baseColor",
         "roughness",
         "metalness",
         "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-black",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -886,7 +883,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend",
+      "name": "interior-green",
       "slots": [
         "baseColor"
       ],
@@ -894,13 +891,20 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend-technical-font",
+      "name": "flight-control-tread",
       "slots": [
-        "baseColor",
-        "emissive"
+        "baseColor"
       ],
       "doubleSided": false,
-      "alphaMode": "BLEND"
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     },
     {
       "name": "rotor-blade-coating",
@@ -3701,29 +3705,29 @@
         "node": "airspeed-hub",
         "points": [
           -0.0414,
-          1.5688,
-          1.0797,
+          1.5686,
+          1.0808,
           -0.0414,
-          1.5688,
-          1.0857,
+          1.5686,
+          1.0845,
           -0.0414,
-          1.5755,
-          1.0797,
+          1.5757,
+          1.0808,
           -0.0414,
-          1.5755,
-          1.0857,
+          1.5757,
+          1.0845,
           -0.0346,
-          1.5688,
-          1.0797,
+          1.5686,
+          1.0808,
           -0.0346,
-          1.5688,
-          1.0857,
+          1.5686,
+          1.0845,
           -0.0346,
-          1.5755,
-          1.0797,
+          1.5757,
+          1.0808,
           -0.0346,
-          1.5755,
-          1.0857
+          1.5757,
+          1.0845
         ]
       },
       {
@@ -4107,29 +4111,29 @@
         "node": "rpm-hub",
         "points": [
           -0.0414,
-          1.4744,
-          1.069,
+          1.4742,
+          1.0701,
           -0.0414,
-          1.4744,
-          1.075,
+          1.4742,
+          1.0738,
           -0.0414,
-          1.4811,
-          1.069,
+          1.4813,
+          1.0701,
           -0.0414,
-          1.4811,
-          1.075,
+          1.4813,
+          1.0738,
           -0.0346,
-          1.4744,
-          1.069,
+          1.4742,
+          1.0701,
           -0.0346,
-          1.4744,
-          1.075,
+          1.4742,
+          1.0738,
           -0.0346,
-          1.4811,
-          1.069,
+          1.4813,
+          1.0701,
           -0.0346,
-          1.4811,
-          1.075
+          1.4813,
+          1.0738
         ]
       },
       {

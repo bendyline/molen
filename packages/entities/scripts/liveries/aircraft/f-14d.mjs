@@ -17,10 +17,13 @@
 // Paint slots: the existing airframe, nacelle, wing, flap, rudder and gear regions, plus the
 // fins and stabilators (their own material, F14-upper). The intake ramps are no longer F14-upper
 // (they take the duct's white interior paint under every scheme), so the nacelles' old
-// F14-upper slots are dropped.
+// F14-upper slots are dropped. The cockpit side consoles were airframe gray once; they are
+// cockpit parts in their own finish now, and a livery never paints them.
 export function slots(existing) {
   existing = Object.fromEntries(
-    Object.entries(existing).filter(([name]) => !/^upper-F14-nacelle-/.test(name)),
+    Object.entries(existing).filter(
+      ([name]) => !/^upper-F14-nacelle-|^body-F14-(pilot|RIO)-console-/.test(name),
+    ),
   );
   const extra = {};
   for (const side of ['1', '-1']) {

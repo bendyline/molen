@@ -1,6 +1,18 @@
 /** Rafale C, clean configuration. Reference scope and uncertainty: reference-review.json.
  * Metres, +Z forward, +X pilot left. Geometry authored from separate C photos and B arrangement.
  */
+import { cockpitBulkhead, skinSection, wallAt } from './cockpit-fit.mjs';
+import {
+  bar,
+  contour,
+  lathe,
+  loftUp,
+  partPalette,
+  pedalGeometry,
+  place,
+  roundedBox,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -159,6 +171,29 @@ export function buildRafaleC(s) {
       cr[i].points.map((p) => [...p, cr[i].z]),
       i === 2 ? 0.018 : 0.015,
       paint,
+      false,
+    );
+  // The frames' inboard faces are the dark canopy seal: from the seat the windscreen bow and the
+  // sill rails read dark, as in the cockpit photographs, not as the gray they wear outside.
+  outline(
+    d,
+    cr[2].points.map(([x, y]) => [x * 0.975, y - 0.006, cr[2].z - 0.012]),
+    0.018,
+    seal,
+    false,
+  );
+  for (const j of [0, 20])
+    outline(
+      d,
+      cr
+        .slice(1, -1)
+        .map((r) => [
+          r.points[j][0] - Math.sign(r.points[j][0]) * 0.013,
+          r.points[j][1] + 0.006,
+          r.z,
+        ]),
+      0.018,
+      seal,
       false,
     );
   for (const side of [-1, 1])
@@ -681,7 +716,7 @@ export function buildRafaleC(s) {
     );
   }
   d.finish();
-  const interior = rafaleCockpit(root, { metal, glass });
+  const { stations: controlStations, ...interior } = rafaleCockpit(root, { metal, glass });
   Object.assign(interior.derived, {
     pitchDeflection: { op: 'multiply', args: ['pitchInput', 0.28] },
     rollDeflection: { op: 'multiply', args: ['rollInput', 0.24] },
@@ -691,7 +726,7 @@ export function buildRafaleC(s) {
   cleanGeometry(root);
   return {
     root,
-    frame: rafaleFrame(),
+    frame: { ...rafaleFrame(), controlStations },
     enginePoints: [
       { id: 'engine-1', position: [0.61, 1.92, -5.4] },
       { id: 'engine-2', position: [-0.61, 1.92, -5.4] },
@@ -717,8 +752,10 @@ function rafaleCockpit(root, m) {
     d = detailKit(cabin, 'Rafale-cabin'),
     ins = instrumentGeometry(cabin, 'Rafale'),
     { bindings, derived, ink, black, amber } = ins;
-  const panel = mat('Rafale-panel', '#4e575b', { side: T.DoubleSide }),
-    button = mat('Rafale-key', '#313a3e'),
+  // Panel, consoles and tub are near-black neutral gray in the Rafale C cockpit photographs
+  // (Flickr 9248863866, EC 1/7 dusk photograph), not the blue slate they were.
+  const panel = mat('Rafale-panel', '#3c4043', { side: T.DoubleSide }),
+    button = mat('Rafale-key', '#2a2e30'),
     green = mat('Rafale-display', '#89d79c', { emissive: '#27563b', emissiveIntensity: 0.6 }),
     seat = mat('Rafale-cushion', '#343d38'),
     belt = mat('Rafale-harness', '#636c64');
@@ -916,8 +953,7 @@ function rafaleCockpit(root, m) {
     }
   }
   // The keypad sits on the lower left of the panel, under the left display and clear of the
-  // gear lamp. The panel's foot below the HLD carries the systems module (cockpit-controls.mjs):
-  // the seat cushion, moved forward under the eye, hides anything lower.
+  // gear lamp.
   const lower = group(cabin, 'Rafale-lower-control-panel', [0.265, 2.375, z - 0.022]),
     ld = detailKit(lower, lower.name);
   lower.scale.setScalar(0.85);
@@ -949,7 +985,8 @@ function rafaleCockpit(root, m) {
     [0.17, 0, 0],
   ];
   sheet(ud, hc, m.glass, [0, 0, -1]);
-  outline(ud, hc, 0.003, black);
+  // A hairline edge: the combiner has no frame of its own, only the two posts.
+  outline(ud, hc, 0.0012, button);
   for (const side of [-1, 1])
     ud.rod([side * 0.15, -0.12, -0.15], [side * 0.17, 0.02, 0], 0.012, button);
   // Put the projector forward of the panel, under the windscreen coaming.
@@ -972,23 +1009,82 @@ function rafaleCockpit(root, m) {
     panel,
     [0, 0, -1],
   );
-  for (const side of [-1, 1]) {
-    quad(
+  // Fit: dark liners follow the skin from the floor up to the canopy sill, the console tops and the
+  // floor run out to them and a bulkhead closes the nose ahead of the pedals, so no painted skin
+  // shows beside the consoles, around the panel or along the sill (it did all round the old
+  // sloped side walls).
+  sillLiner(d, root, {
+    zFrom: 3.4,
+    zTo: 5.17,
+    yFrom: 1.47,
+    yTo: 2.55,
+    material: panel,
+    zSteps: 20,
+    inset: 0.02,
+  });
+  consoleShelf(d, root, {
+    zFrom: 3.38,
+    zTo: 4.72,
+    y: 2.005,
+    x: 0.47,
+    material: panel,
+    inset: 0.025,
+  });
+  consoleShelf(d, root, {
+    zFrom: 3.4,
+    zTo: 5.17,
+    y: 1.498,
+    x: 0.27,
+    material: panel,
+    steps: 10,
+    inset: 0.025,
+  });
+  cockpitBulkhead(d, root, { z: 5.17, yFrom: 1.47, yTo: 2.42, material: panel });
+  // Below the head-level display (Rafale C, redskin83 on Flickr; Rafale B front seat, Gilles
+  // Galvao for Master194): a wide faceted box right under the HLD, its black face with three small
+  // knobs along the top and a recessed plate, then the housing narrowing between the knees to a
+  // thin silver bar and a small grille, a near-black knee well either side.
+  beveledBox(d, [0.235, 0.15, 0.155], [0, 2.272, 4.8425], button, 0.012);
+  d.box([0.205, 0.122, 0.004], [0, 2.268, 4.7635], black);
+  for (const x of [-0.055, 0, 0.055])
+    d.add(new T.CylinderGeometry(0.0065, 0.0065, 0.01, 12).rotateX(Math.PI / 2), panel, [
+      x,
+      2.316,
+      4.758,
+    ]);
+  d.box([0.12, 0.05, 0.003], [0, 2.24, 4.761], panel);
+  beveledBox(d, [0.165, 0.22, 0.13], [0, 2.09, 4.85], button, 0.012);
+  beveledBox(d, [0.13, 0.34, 0.1], [0, 1.81, 4.9], button, 0.01);
+  d.add(bar([-0.085, 1.975, 4.779], [0.085, 1.975, 4.779], 0.0045, 12), m.metal);
+  d.box([0.01, 0.022, 0.006], [0, 1.958, 4.782], m.metal);
+  d.box([0.09, 0.05, 0.004], [0, 1.915, 4.848], black);
+  for (let i = 0; i < 4; i++) d.box([0.08, 0.003, 0.004], [0, 1.897 + i * 0.012, 4.845], panel);
+  for (const side of [-1, 1])
+    sheet(
       d,
-      [side * 0.42, 1.5, 3.18],
-      [side * 0.3, 1.5, 5.18],
-      [side * 0.42, 2.15, 5.18],
-      [side * 0.52, 2.22, 3.18],
-      panel,
-      [-side, 0, 0],
+      [
+        [side * 0.07, 1.6, 5.152],
+        [side * 0.27, 1.6, 5.152],
+        [side * 0.27, 2.27, 5.152],
+        [side * 0.07, 2.27, 5.152],
+      ],
+      black,
+      [0, 0, -1],
     );
+  // The side-stick and the throttle stand high, on raised blocks at the front of the side
+  // consoles, just under the canopy sill (FlightGlobal flight test; Rafale C cockpit photograph):
+  // the stick's on the right, the throttle quadrant's on the left, both outboard of the seat.
+  beveledBox(d, [0.11, 0.195, 0.27], [-0.335, 2.1025, 4.43], button, 0.01);
+  beveledBox(d, [0.11, 0.185, 0.3], [0.335, 2.0975, 4.4], button, 0.01);
+  d.box([0.07, 0.004, 0.11], [0.32, 2.191, 4.37], black);
+  for (const side of [-1, 1]) {
     d.box([0.2, 0.15, 1.35], [side * 0.37, 1.93, 4.05], panel);
     const g = group(cabin, `Rafale-console-${side}`, [side * 0.37, 2.01, 4.03]);
     g.rotation.x = Math.PI / 2;
     const gd = detailKit(g, g.name);
     for (const [i, label] of (side === 1
       ? ['FUEL', 'START', 'COMM', 'POWER']
-      : ['LIGHT', 'ECS', 'OXY', 'CANOPY']
+      : ['LIGHT', 'CANOPY', 'OXY', 'ECS']
     ).entries()) {
       const v = 0.47 - i * 0.29;
       gd.box([0.18, 0.26, 0.008], [0, v, 0], panel);
@@ -1004,25 +1100,102 @@ function rafaleCockpit(root, m) {
         black,
       );
       gd.text(label, [0, v + 0.085, -0.009], 0.008, Math.PI, ink);
+      // The START and CANOPY plates carry stations (end of this function).
+      const station = i === 1;
       for (const x of [-0.05, 0.05]) {
-        gd.add(new T.CylinderGeometry(0.011, 0.011, 0.014, 12).rotateX(Math.PI / 2), black, [
-          x,
-          v - 0.04,
-          -0.014,
-        ]);
-        gd.rod([x, v + 0.015, -0.01], [x, v + 0.025, -0.028], 0.003, m.metal);
+        if (!station) {
+          gd.add(new T.CylinderGeometry(0.009, 0.01, 0.01, 16).rotateX(Math.PI / 2), black, [
+            x,
+            v - 0.04,
+            -0.009,
+          ]);
+          gd.add(bar([x, v + 0.015, -0.004], [x, v + 0.022, -0.02], 0.0016, 10, 0.0024), m.metal);
+        }
         for (const y of [-0.112, 0.112])
           gd.add(new T.CircleGeometry(0.003, 6).rotateY(Math.PI), black, [x * 1.5, v + y, -0.007]);
       }
     }
     gd.finish();
-    const front = group(cabin, `Rafale-front-console-${side}`, [side * 0.36, 2.18, 4.7]);
-    front.rotation.x = 0.4;
-    const fd = detailKit(front, front.name);
-    beveledBox(fd, [0.21, 0.24, 0.025], [0, 0, 0], button, 0.006);
-    for (let row = 0; row < 3; row++)
-      for (let col = 0; col < 3; col++)
-        fd.box([0.03, 0.024, 0.005], [-0.055 + col * 0.055, 0.06 - row * 0.052, -0.019], panel);
+    // The lower panel strip beside each knee, from under the side screens down to the console
+    // (Rafale C photograph, redskin83; Rafale B front seat, Master194): black faceplates with
+    // white legends. Face-local y runs up the strip, x is the body's x.
+    const front = group(cabin, `Rafale-front-console-${side}`, [side * 0.335, 2.135, 4.84]);
+    front.rotation.x = 0.22;
+    const fd = detailKit(front, front.name),
+      FP = partPalette(),
+      face = -0.0125,
+      plateAt = (v, h) => fd.box([0.148, h, 0.003], [0, v, face - 0.0015], black),
+      write = (label, u, v, size = 0.0055) =>
+        fd.text(label, [u, v, face - 0.0035], size, Math.PI, ink),
+      pushButton = (u, v, r, material) =>
+        fd.add(new T.CylinderGeometry(r, r, 0.008, 16).rotateX(Math.PI / 2), material, [
+          u,
+          v,
+          face - 0.004,
+        ]),
+      stripes = (u, v, w) => {
+        for (const k of [-1, 0, 1])
+          fd.add(
+            place(
+              new T.BoxGeometry(w * 0.16, w, 0.002),
+              [u + k * w * 0.32, v, face - 0.0085],
+              [0, 0, 0.7],
+            ),
+            FP.black,
+          );
+      };
+    beveledBox(fd, [0.16, 0.28, 0.025], [0, 0, 0], button, 0.006);
+    if (side === 1) {
+      // STORES jettison: the big yellow striped push button and its selector.
+      plateAt(0.105, 0.055);
+      pushButton(-0.022, 0.102, 0.017, FP.yellow);
+      stripes(-0.022, 0.102, 0.022);
+      fd.add(new T.CylinderGeometry(0.007, 0.007, 0.012, 12).rotateX(Math.PI / 2), FP.black, [
+        0.045,
+        0.1,
+        face - 0.006,
+      ]);
+      write('STORES', 0.04, 0.122, 0.0045);
+      // Gear, hook and refuelling probe: the gear lever's slot inboard, a square indicator, the
+      // HOOK switch under its striped cover outboard, the probe switch under them.
+      plateAt(0.022, 0.1);
+      fd.box([0.01, 0.06, 0.002], [-0.042, 0.03, face - 0.0035], FP.black);
+      fd.box([0.016, 0.01, 0.01], [-0.042, 0.066, face - 0.005], FP.black);
+      fd.box([0.022, 0.02, 0.004], [0, 0.04, face - 0.004], panel);
+      fd.box([0.024, 0.024, 0.006], [0.045, 0.04, face - 0.005], FP.yellow);
+      stripes(0.045, 0.04, 0.02);
+      write('HOOK', 0.045, 0.06, 0.0045);
+      fd.add(bar([0, -0.004, face - 0.002], [0, 0.004, face - 0.018], 0.0018, 10), m.metal);
+      write('RFL', 0.02, -0.004, 0.0045);
+      // Electrical and flight-control restart selector.
+      plateAt(-0.052, 0.045);
+      fd.add(new T.CylinderGeometry(0.01, 0.011, 0.012, 14).rotateX(Math.PI / 2), FP.black, [
+        0,
+        -0.055,
+        face - 0.006,
+      ]);
+      for (const u of [-0.045, 0.045])
+        fd.box([0.016, 0.016, 0.005], [u, -0.045, face - 0.004], panel);
+      // Auxiliary engine control: two small red-capped levers, IDLE / STOP.
+      plateAt(-0.11, 0.05);
+      for (const u of [-0.012, 0.012]) {
+        fd.add(bar([u, -0.12, face - 0.002], [u, -0.1, face - 0.014], 0.0022, 10), m.metal);
+        fd.add(place(roundedBox([0.008, 0.012, 0.008], 0.002), [u, -0.098, face - 0.016]), FP.red);
+      }
+      write('IDLE STOP', 0.0, -0.133, 0.004);
+    } else {
+      // The guarded switch at the top (the flap switch station, below) and the framed
+      // automatic-recovery button beside it.
+      plateAt(0.105, 0.055);
+      fd.box([0.026, 0.026, 0.003], [-0.03, 0.1, face - 0.003], FP.yellow);
+      fd.box([0.018, 0.018, 0.005], [-0.03, 0.1, face - 0.0045], FP.black);
+      // Two small square standby screens, one above the other.
+      for (const v of [0.045, -0.015]) {
+        fd.box([0.062, 0.054, 0.006], [0, v, face - 0.003], FP.black);
+        fd.box([0.048, 0.04, 0.002], [0, v, face - 0.0065], button);
+      }
+      plateAt(-0.11, 0.05);
+    }
     fd.finish();
   }
   // F16F seat: large black headbox, angular side shells, separated cushions and harness straps.
@@ -1076,19 +1249,9 @@ function rafaleCockpit(root, m) {
   sd.finish();
   const stick = group(cabin, 'Rafale-stick', [-0.31, 2.02, 4.38]),
     st = detailKit(stick, stick.name);
-  st.add(new T.CylinderGeometry(0.045, 0.055, 0.08, 16), black, [0, 0.04, 0]);
-  st.rod([0, 0.07, 0], [0, 0.18, -0.02], 0.019, black);
-  beveledBox(st, [0.08, 0.13, 0.07], [0, 0.23, -0.02], button, 0.012);
-  for (const [x, y] of [
-    [-0.025, 0.27],
-    [0.025, 0.25],
-    [0, 0.2],
-  ])
-    st.add(new T.CylinderGeometry(0.011, 0.011, 0.008, 10).rotateX(Math.PI / 2), black, [
-      x,
-      y,
-      -0.06,
-    ]);
+  // The grip stands on its raised block, 2.5 cm outboard of the pivot, clear of the seat shell.
+  rafaleStickGeometry({ add: (g, material) => st.add(place(g, [-0.025, 0.18, 0]), material) });
+  st.add(bar([-0.025, 0, 0], [-0.025, 0.183, 0], 0.017, 14), partPalette().black);
   st.finish();
   bindings.push(
     { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.12 },
@@ -1097,8 +1260,9 @@ function rafaleCockpit(root, m) {
   for (let i = 0; i < 2; i++) {
     const g = group(cabin, `Rafale-throttle-${i}`, [0.29 + i * 0.06, 2.02, 4.37]),
       gd = detailKit(g, g.name);
-    gd.rod([0, 0, 0], [0, 0.09, 0], 0.012, black);
-    beveledBox(gd, [0.055, 0.065, 0.11], [0, 0.12, 0], black, 0.009);
+    // The Rafale's single throttle grip, split between the two engine levers: each lever carries
+    // the half of the grip toward the other, so together they read as one handle.
+    rafaleThrottleGeometry(gd, i === 1 ? 1 : -1, 0.19);
     gd.finish();
     bindings.push({
       node: g.name,
@@ -1113,8 +1277,7 @@ function rafaleCockpit(root, m) {
     d.box([0.13, 0.055, 0.27], [side * 0.32, 2.02, 4.03], black);
     const g = group(cabin, `Rafale-pedal-${side}`, [side * 0.15, 1.66, 4.96]),
       gd = detailKit(g, g.name);
-    gd.box([0.13, 0.15, 0.025], [0, 0, 0], m.metal);
-    for (let i = 0; i < 5; i++) gd.box([0.11, 0.006, 0.006], [0, -0.06 + i * 0.03, -0.016], black);
+    pedalGeometry(gd, { style: 'fighter', side, drop: 0.08, scale: 1.02, lean: 0.28 });
     gd.finish();
     bindings.push({
       node: g.name,
@@ -1123,6 +1286,63 @@ function rafaleCockpit(root, m) {
       axis: 'z',
       scale: -side * 0.06,
     });
+  }
+  {
+    // Mounted on the left strip, so it pivots in the strip's own tilted frame.
+    const strip = cabin.getObjectByName('Rafale-front-console-1'),
+      gear = group(strip, 'Rafale-gear-handle', [-0.042, 0.036, -0.0125]);
+    gear.userData.aircraftControl = {
+      action: 'gear',
+      motion: { property: 'rotation', axis: 'x', scale: -0.7, offset: 0.35 },
+    };
+    const gk = detailKit(gear, gear.name),
+      GP = partPalette();
+    gk.add(bar([0, 0, 0], [0, 0, -0.026], 0.0042, 12), GP.alloy);
+    for (const x of [-0.0048, 0.0048])
+      gk.add(
+        place(
+          new T.CylinderGeometry(0.0125, 0.0125, 0.0045, 20),
+          [x, 0, -0.034],
+          [0, 0, Math.PI / 2],
+        ),
+        GP.red,
+      );
+    gk.add(
+      place(new T.CylinderGeometry(0.006, 0.006, 0.006, 12), [0, 0, -0.034], [0, 0, Math.PI / 2]),
+      GP.alloy,
+    );
+    gk.finish();
+  }
+  {
+    // Parking brake handle (AzurPoly Rafale manual, right-console figure, item 16 "Parking Brake
+    // Handle"; Rafale B front cockpit photographs, Gilles Galvao/Master194): an unlabelled dark
+    // grey grip with finger grooves, lying across a well at the inboard edge of the right console
+    // directly inboard of the canopy switch, against the seat. It hangs on a tube that runs aft
+    // under the console's inboard lip. No source shows how it moves; here it is hinged on that
+    // tube and lifts its outboard end to set the brake.
+    const KP = partPalette(),
+      hinge = [-0.272, 2.012, 4.232];
+    // The well's fore and aft cheeks, and the tube aft to its bracket under the lip.
+    for (const dz of [-0.026, 0.026])
+      d.box([0.112, 0.016, 0.006], [-0.33, 2.022, 4.232 + dz], black);
+    d.add(bar([-0.265, 2.0, 4.215], [-0.265, 2.0, 3.99], 0.0055, 10), KP.grip);
+    d.box([0.016, 0.022, 0.014], [-0.262, 1.996, 3.985], black);
+    const park = group(cabin, 'Rafale-park-brake', hinge);
+    park.userData.aircraftControl = {
+      action: 'brake',
+      motion: { property: 'rotation', axis: 'z', scale: -0.55 },
+    };
+    const pk = detailKit(park, park.name);
+    pk.add(bar([0, 0, -0.019], [0, 0, 0.019], 0.009, 14), KP.grip);
+    pk.add(place(roundedBox([0.094, 0.024, 0.034], 0.008), [-0.06, 0.016, 0]), KP.panel);
+    // Four finger grooves across the grip's aft face and a worn end cap outboard.
+    for (let i = 0; i < 4; i++)
+      pk.add(
+        place(new T.BoxGeometry(0.009, 0.016, 0.004), [-0.03 - i * 0.017, 0.016, -0.0165]),
+        KP.tread,
+      );
+    pk.add(place(roundedBox([0.012, 0.026, 0.036], 0.005), [-0.106, 0.016, 0]), KP.steel);
+    pk.finish();
   }
   const lamp = group(cabin, 'Rafale-gear-lamp', [0.395, 2.3, z - 0.03]),
     gp = detailKit(lamp, lamp.name);
@@ -1137,5 +1357,257 @@ function rafaleCockpit(root, m) {
   });
   txt('GEAR', 0.395, 2.28, 0.006);
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Where the controls are (cockpit sources in reference-review.json and the lower-panel
+  // photographs above): the gear lever on the left lower strip (modelled above), a flap switch at
+  // the foot of the right strip, the parking brake on the right console beside the seat, the
+  // airbrake on the throttle grip, the engine master and start switches behind the throttle on
+  // the left console, the canopy handle on the right.
+  const frontAt = (side, u, v) => {
+      const a = 0.22;
+      return [
+        side * 0.335 + u,
+        2.135 + v * Math.cos(a) + 0.0155 * Math.sin(a),
+        4.84 + v * Math.sin(a) - 0.0155 * Math.cos(a),
+      ];
+    },
+    tilt = [0.22, 0, 0],
+    top = [Math.PI / 2, 0, 0],
+    plate = (side, dx) => [side * 0.37 + dx, 2.0145, 4.03 + 0.47 - 0.29 + 0.02];
+  const stations = [
+    {
+      action: 'flaps',
+      style: 'guarded',
+      scale: 0.9,
+      at: frontAt(-1, 0.038, 0.098),
+      rotation: tilt,
+      label: 'FLAPS',
+      labelAt: [0, 0.024, -0.002],
+      labelHeight: 0.0045,
+    },
+    {
+      action: 'speedBrake',
+      style: 'slider',
+      parent: 'Rafale-throttle-1',
+      at: [0.338, 2.3485, 4.356],
+      rotation: [Math.PI / 2, 0, 0],
+    },
+    {
+      action: 'engine',
+      style: 'guarded',
+      at: plate(1, -0.005),
+      rotation: top,
+      label: 'START',
+      labelAt: [0, 0.03, -0.002],
+    },
+    {
+      action: 'engine',
+      engine: 0,
+      style: 'guarded',
+      at: plate(1, 0.075),
+      rotation: top,
+      label: 'ENG L',
+      labelAt: [0, 0.03, -0.002],
+    },
+    {
+      action: 'engine',
+      engine: 1,
+      style: 'guarded',
+      at: plate(1, 0.035),
+      rotation: top,
+      label: 'ENG R',
+      labelAt: [0, 0.03, -0.002],
+    },
+    {
+      action: 'canopy',
+      style: 'canopy',
+      at: plate(-1, -0.045),
+      rotation: top,
+      label: 'CANOPY',
+      labelAt: [0, -0.045, -0.002],
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
+}
+
+/** Sidewall liners from `yFrom` up to the canopy sill, `inset` inside the skin. Each station's
+ * column climbs the wall in 1 cm steps and stops below `yTo` where that side's skin ends or jumps
+ * to another surface (a shoulder or chine outboard), so the liner meets the sill instead of
+ * leaving a painted strip above its last row, and never reaches out through the skin. */
+function sillLiner(
+  d,
+  root,
+  { zFrom, zTo, yFrom, yTo, material, zSteps = 14, ySteps = 8, inset = 0.008 },
+) {
+  for (const side of [1, -1]) {
+    const columns = [];
+    for (let i = 0; i <= zSteps; i++) {
+      const z = zFrom + ((zTo - zFrom) * i) / zSteps,
+        segments = skinSection(root, z);
+      let lo = yFrom,
+        last = wallAt(segments, yFrom, side);
+      if (last === undefined) {
+        columns.push(undefined);
+        continue;
+      }
+      for (let y = yFrom + 0.01; y <= yTo + 1e-9; y += 0.01) {
+        const x = wallAt(segments, y, side);
+        if (x === undefined || Math.abs(x - last) > 0.03) break;
+        lo = y;
+        last = x;
+      }
+      columns.push(
+        Array.from({ length: ySteps + 1 }, (_, j) => {
+          const y = yFrom + ((lo - yFrom) * j) / ySteps,
+            x = wallAt(segments, y, side);
+          return x === undefined ? undefined : [x - side * inset, y, z];
+        }),
+      );
+    }
+    for (let i = 0; i < zSteps; i++)
+      for (let j = 0; j < ySteps; j++) {
+        const corners = [
+          columns[i]?.[j],
+          columns[i + 1]?.[j],
+          columns[i + 1]?.[j + 1],
+          columns[i]?.[j + 1],
+        ];
+        if (corners.every(Boolean)) quad(d, ...corners, material, [-side, 0, 0]);
+      }
+  }
+}
+/** A console top at height `y` from its outboard edge `x` out to the skin, both sides. */
+function consoleShelf(d, root, { zFrom, zTo, y, x, material, steps = 8, inset = 0.008 }) {
+  for (const side of [1, -1]) {
+    const row = [];
+    for (let i = 0; i <= steps; i++) {
+      const z = zFrom + ((zTo - zFrom) * i) / steps,
+        wall = wallAt(skinSection(root, z), y, side);
+      if (wall !== undefined) row.push([z, wall - side * inset]);
+    }
+    for (let i = 0; i + 1 < row.length; i++) {
+      const [z0, w0] = row[i],
+        [z1, w1] = row[i + 1];
+      quad(d, [side * x, y, z0], [side * x, y, z1], [w1, y, z1], [w0, y, z0], material, [0, 1, 0]);
+    }
+  }
+}
+/** Rafale side-stick (right console): a short pistol grip on a wide fixed base, its head canted
+ * forward over the trigger, the thumb switches on the inboard (+X) flank. */
+function rafaleStickGeometry(d) {
+  const P = partPalette();
+  d.add(
+    lathe(
+      [
+        [0, 0],
+        [0.05, 0],
+        [0.05, 0.012],
+        [0.044, 0.02],
+        [0.03, 0.026],
+        [0, 0.026],
+      ],
+      20,
+    ),
+    P.steel,
+  );
+  d.add(
+    lathe(
+      [
+        [0, 0.024],
+        [0.026, 0.024],
+        [0.022, 0.036],
+        [0.016, 0.044],
+        [0.014, 0.052],
+        [0, 0.052],
+      ],
+      18,
+      28,
+    ),
+    P.tread,
+  );
+  const mount = (g) => place(g, [0, 0.048, 0], [0.22, 0, -0.08]);
+  const rows = [
+    [0, 0.002, 0.016, 0.019, 2.3],
+    [0.03, 0.005, 0.019, 0.024, 2.3],
+    [0.065, 0.008, 0.02, 0.025, 2.4],
+    [0.088, 0.014, 0.022, 0.03, 2.6],
+    [0.103, 0.018, 0.021, 0.031, 2.7],
+    [0.11, 0.018, 0.013, 0.02, 2.4],
+  ];
+  d.add(
+    mount(loftUp(rows.map(([y, cz, rx, rz, p]) => ({ y, points: contour(0, cz, rx, rz, 18, p) })))),
+    P.grip,
+  );
+  d.add(
+    mount(
+      tube(
+        [
+          [0, 0.075, 0.034],
+          [0, 0.066, 0.045],
+          [0, 0.054, 0.04],
+        ],
+        0.0055,
+        10,
+      ),
+    ),
+    P.black,
+  );
+  d.add(
+    mount(place(new T.CylinderGeometry(0.0055, 0.0055, 0.007, 14), [0.004, 0.111, 0.012])),
+    P.black,
+  );
+  d.add(
+    mount(place(new T.SphereGeometry(0.004, 10, 6), [0.004, 0.115, 0.012], [0, 0, 0], [1, 0.6, 1])),
+    P.black,
+  );
+  d.add(
+    mount(
+      place(new T.CylinderGeometry(0.0042, 0.0042, 0.005, 12), [-0.007, 0.109, 0.03], [0.4, 0, 0]),
+    ),
+    P.red,
+  );
+  d.add(mount(place(roundedBox([0.006, 0.011, 0.011], 0.002), [0.021, 0.092, 0.006])), P.black);
+}
+let throttleGray;
+const rafaleThrottleGray = () =>
+  (throttleGray ??= mat('Rafale-throttle-grip', '#8b9092', { roughness: 0.7 }));
+/** One half of the Rafale throttle grip: the lever, and the grip half that leans toward the other
+ * lever (`toward` +1 for the outboard half reaching -X, -1 for the inboard half reaching +X),
+ * raised `lift` above the pivot so it stands out of the quadrant block. */
+function rafaleThrottleGeometry(d0, toward, lift = 0) {
+  const P = partPalette(),
+    d = { add: (g, material) => d0.add(place(g, [0, lift, 0]), material) };
+  d0.add(place(roundedBox([0.011, 0.08 + lift, 0.02], 0.003), [0, (0.08 + lift) / 2, 0]), P.steel);
+  const cx = -toward * 0.012;
+  const rows = [
+    [0.075, cx * 0.5, 0, 0.017, 0.028],
+    [0.09, cx, -0.004, 0.022, 0.04],
+    [0.112, cx, -0.01, 0.023, 0.046],
+    [0.13, cx, -0.014, 0.02, 0.04],
+    [0.138, cx, -0.015, 0.012, 0.026],
+  ];
+  // The grip is a light gray molding with black switches (Rafale C cockpit photograph).
+  d.add(
+    loftUp(rows.map(([y, x, z, rx, rz]) => ({ y, points: contour(x, z, rx, rz, 16, 2.8) }))),
+    rafaleThrottleGray(),
+  );
+  if (toward > 0) {
+    d.add(place(roundedBox([0.009, 0.012, 0.01], 0.002), [0.012, 0.11, -0.05]), P.black);
+    d.add(
+      place(
+        new T.CylinderGeometry(0.005, 0.005, 0.007, 14),
+        [0.013, 0.095, -0.032],
+        [0, 0, Math.PI / 2],
+      ),
+      P.black,
+    );
+    d.add(place(roundedBox([0.012, 0.01, 0.008], 0.002), [-0.004, 0.11, 0.028]), P.black);
+  } else
+    d.add(
+      place(
+        new T.CylinderGeometry(0.0045, 0.0045, 0.006, 12),
+        [-0.013, 0.1, -0.02],
+        [0, 0, Math.PI / 2],
+      ),
+      P.red,
+    );
 }

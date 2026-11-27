@@ -2,6 +2,18 @@
  * Main-axle datum, +Z forward, +X pilot left. Separate measured SAC and MSIP panels.
  */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead } from './cockpit-fit.mjs';
+import {
+  bar,
+  contour,
+  lathe,
+  loftUp,
+  partPalette,
+  place,
+  roundedBox,
+  stickGeometry,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -16,7 +28,91 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+import { mfdPage } from './mfd-page.mjs';
 import { petalNozzle } from './petal-nozzle.mjs';
+
+/** Eagle rudder pedal, drawn at its pad center: a broad plate under a raised rubber pad, a toe
+ * lip curled over its top and twin arms running forward to the pedal bar. The top leans
+ * forward. */
+function eaglePedal(kit) {
+  const P = partPalette(),
+    lean = 0.24;
+  const parts = [
+    [P.steel, roundedBox([0.104, 0.142, 0.012], 0.01, 1)],
+    [P.tread, place(roundedBox([0.084, 0.096, 0.004], 0.008, 1), [0, -0.008, -0.007])],
+    [
+      P.steel,
+      tube(
+        [
+          [-0.05, 0.068, -0.004],
+          [-0.04, 0.078, -0.022],
+          [0.04, 0.078, -0.022],
+          [0.05, 0.068, -0.004],
+        ],
+        0.0045,
+        8,
+      ),
+    ],
+    [P.steel, place(new T.BoxGeometry(0.1, 0.01, 0.03), [0, -0.072, -0.012])],
+  ];
+  for (const x of [-0.035, 0.035])
+    parts.push([
+      P.alloy,
+      tube(
+        [
+          [x, -0.04, 0.008],
+          [x, -0.11, 0.04],
+          [x, -0.16, 0.06],
+        ],
+        0.0065,
+        10,
+      ),
+    ]);
+  parts.push([P.alloy, bar([-0.05, -0.16, 0.06], [0.05, -0.16, 0.06], 0.009, 12)]);
+  for (const [material, geometry] of parts)
+    kit.add(place(geometry, [0, 0, 0], [lean, 0, 0]), material);
+}
+/** Eagle throttle grip on its arm: a squared block flared outboard, a finger lift on its
+ * forward face. The outboard (left engine) grip carries the speed brake, mic and
+ * countermeasures switches; the inboard one the radar and weapon switches. */
+function eagleThrottle(kit, outboard) {
+  const P = partPalette(),
+    s = outboard ? 1 : -1;
+  kit.add(place(roundedBox([0.014, 0.08, 0.026], 0.003, 1), [0, 0.04, 0]), P.alloy);
+  kit.add(
+    loftUp([
+      { y: 0.07, points: contour(0, 0, 0.02, 0.03, 16, 3.2) },
+      { y: 0.1, points: contour(s * 0.004, -0.006, 0.027, 0.042, 16, 3.4) },
+      { y: 0.145, points: contour(s * 0.006, -0.012, 0.029, 0.048, 16, 3.4) },
+      { y: 0.168, points: contour(s * 0.005, -0.018, 0.025, 0.042, 16, 3) },
+      { y: 0.176, points: contour(s * 0.004, -0.018, 0.016, 0.03, 16, 2.6) },
+    ]),
+    P.grip,
+  );
+  kit.add(
+    tube(
+      [
+        [0, 0.085, 0.026],
+        [0, 0.083, 0.046],
+        [0, 0.112, 0.05],
+      ],
+      0.0045,
+      8,
+    ),
+    P.alloy,
+  );
+  for (const [x, y, z] of [
+    [0.033, 0.15, -0.02],
+    [0.034, 0.125, -0.045],
+    [0.012, 0.176, -0.036],
+  ])
+    kit.add(place(roundedBox([0.009, 0.011, 0.009], 0.002), [s * x, y, z]), P.black);
+  if (!outboard)
+    kit.add(
+      place(new T.CylinderGeometry(0.0055, 0.0055, 0.007, 10), [-0.018, 0.176, -0.004]),
+      P.black,
+    );
+}
 export const f15Frame = () => ({
   heli: false,
   fighter: true,
@@ -775,7 +871,13 @@ export function buildF15C(s) {
   }
   d.rod([0, 1.76, -4.6], [0, 1.64, -6.3], 0.03, metal);
   d.finish();
-  const interior = f15Cockpit(root, { paint, upper, dark, metal, glass });
+  const { stations: controlStations, ...interior } = f15Cockpit(root, {
+    paint,
+    upper,
+    dark,
+    metal,
+    glass,
+  });
   Object.assign(interior.derived, {
     pitchDeflection: { op: 'multiply', args: ['pitchInput', 0.3] },
     rollDeflection: { op: 'multiply', args: ['rollInput', 0.12] },
@@ -787,7 +889,7 @@ export function buildF15C(s) {
   cleanGeometry(root);
   return {
     root,
-    frame: f15Frame(),
+    frame: { ...f15Frame(), controlStations },
     enginePoints: [
       { id: 'engine-1', position: [0.7, 2.18, -5.5 + BODY_SHIFT] },
       { id: 'engine-2', position: [-0.7, 2.18, -5.5 + BODY_SHIFT] },
@@ -817,9 +919,32 @@ function f15Cockpit(root, m) {
     pt = panelTools(d),
     ins = instrumentGeometry(cabin, 'F15'),
     { bindings, derived, ink, black, amber } = ins;
-  const panel = mat('F15-panel', '#4f575b', { side: T.DoubleSide }),
+  // Dark gull grey: photographed Eagle panels read as a medium grey round black instrument
+  // cases; the black-faced control heads use the darker parts-library panel below.
+  const panel = mat('F15-panel', '#6f777c', { side: T.DoubleSide }),
+    face = partPalette().panel,
     seat = mat('F15-seat', '#51584b'),
     belt = mat('F15-harness', '#9a9e90');
+  // A flush panel screw head (facing local -Z): six triangles where a sphere spent forty.
+  const screw = new T.CircleGeometry(0.0024, 6).rotateY(Math.PI);
+  // Console switch parts built once, protruding along local -Z: a toggle's bushing and a
+  // selector knob 2.2 cm across.
+  const bushing = lathe(
+    [
+      [0.005, 0],
+      [0.005, 0.004],
+      [0, 0.004],
+    ],
+    10,
+  ).rotateX(-Math.PI / 2);
+  const knob = lathe(
+    [
+      [0.011, 0],
+      [0.0095, 0.013],
+      [0, 0.013],
+    ],
+    14,
+  ).rotateX(-Math.PI / 2);
   const sources = Object.fromEntries(
     [
       'airspeed',
@@ -1009,11 +1134,18 @@ function f15Cockpit(root, m) {
       }
     box(u, v, w * 0.72, h * 0.65, ins.black);
     text(label, u, v - h * 0.22, 5);
-    text('INOP', u, v, 8, amber, 'display');
+    // The VSD's radar format and the MPCD's stores format, blank: neither is simulated.
+    mfdPage(
+      d,
+      at(u, v + h * 0.08, -0.0262),
+      w * 0.66 * k,
+      h * 0.46 * k,
+      label === 'VSD' ? 'radar' : 'stores',
+    );
   };
   display(983, 280, 76, 91, 'VSD');
   display(934, 372, 86, 100, 'MPCD');
-  box(923, 300, 43, 43, panel);
+  box(923, 300, 43, 43, face);
   for (const [u, v] of [
     [910, 313],
     [933, 313],
@@ -1029,9 +1161,49 @@ function f15Cockpit(root, m) {
   }
   text('VSD CONT', 922, 303, 3);
   text('TEST', 923, 284, 3);
+  // Left of the ADI: the yellow EMERG JETT button over its striped placard, the STEER MODE knob,
+  // and the striped EMERG BK STEER pull handle beside the HSI. Seated on the panel face.
+  const caution = partPalette().yellow,
+    hatch = (u, v, w, h, n, dz) => {
+      d.box([w * k, h * k, 0.003], at(u, v, dz + 0.0015), caution);
+      for (let j = 0; j < n; j++)
+        d.add(
+          place(
+            new T.BoxGeometry(h * k * 0.32, h * k * 0.95, 0.0015),
+            at(u + (j - (n - 1) / 2) * (w / n), v, dz - 0.0006),
+            [0, 0, 0.75],
+          ),
+          black,
+        );
+    },
+    flush = (t, u, v, h, material = ink) =>
+      d.text(t, at(u, v, -0.001), h * k, Math.PI, material, 'panel');
+  d.add(
+    new T.CylinderGeometry(0.021, 0.021, 0.006, 20).rotateX(Math.PI / 2),
+    black,
+    at(1033, 340, -0.003),
+  );
+  d.add(
+    new T.CylinderGeometry(0.017, 0.0175, 0.008, 20).rotateX(Math.PI / 2),
+    caution,
+    at(1033, 340, -0.009),
+  );
+  d.text('JETT', at(1033, 340, -0.0135), 3 * k, Math.PI, black, 'panel');
+  hatch(1033, 355, 22, 6, 4, -0.003);
+  flush('EMERG JETT', 1033, 362, 2.5);
+  flush('STEER MODE', 1033, 369, 2.5);
+  d.add(place(knob.clone(), at(1033, 378)), black);
+  d.rod(at(1033, 378, -0.0135), at(1033, 373, -0.0135), 0.0008, ink);
+  hatch(1029, 408, 22, 6, 4, -0.003);
+  flush('BK STEER', 1029, 415, 2.5);
+  d.add(
+    new T.CylinderGeometry(0.011, 0.011, 0.006, 14).rotateX(Math.PI / 2),
+    black,
+    at(1029, 430, -0.003),
+  );
+  d.box([0.019, 0.04, 0.012], at(1029, 430, -0.012), caution);
+  for (const v of [424, 436]) d.box([0.0194, 0.006, 0.0122], at(1029, v, -0.0121), black);
   for (const [u, v] of [
-    [1034, 347],
-    [1034, 374],
     [1110, 344],
     [1110, 372],
     [1110, 398],
@@ -1042,8 +1214,8 @@ function f15Cockpit(root, m) {
   d.box([35 * k, 43 * k, 0.015], at(1236, 405, 0.005), panel);
   d.box([36 * k, 43 * k, 0.015], at(1248, 459, 0.005), panel);
   pt.gauge(...at(1171, 289).slice(0, 2), z - 0.01, 35 * k, black, false);
-  text('TEWS', 1171, 281, 7);
-  text('INOP', 1171, 298, 7, amber, 'display');
+  // The threat scope's rings, blank: the warning system is not simulated.
+  mfdPage(d, at(1171, 289, -0.0135), 52 * k, 52 * k, 'tews');
   // The centrally stacked analog engine indicators stay blank until those quantities exist.
   for (const [v, label] of [
     [341, 'RPM'],
@@ -1093,7 +1265,7 @@ function f15Cockpit(root, m) {
     [264, 'HUD'],
     [308, 'STEER'],
   ]) {
-    box(1071, v, 75, v === 264 ? 54 : 20, panel);
+    box(1071, v, 75, v === 264 ? 54 : 20, face);
     text(label, 1071, v - 7, 3);
   }
   for (const [u, v] of [
@@ -1211,35 +1383,40 @@ function f15Cockpit(root, m) {
         [-side, 0.2, 0],
       );
     }
-    d.box([0.22, 0.4, 1.8], [side * 0.42, 2.33, 6.25], panel);
-    const cg = group(cabin, `F15-console-${side}`, [side * 0.42, 2.54, 6.25]);
+    // The consoles stand inside the tub walls (x 0.48); wider, their outboard switches sank into
+    // the wall.
+    d.box([0.17, 0.4, 1.8], [side * 0.395, 2.33, 6.25], panel);
+    const cg = group(cabin, `F15-console-${side}`, [side * 0.4, 2.54, 6.25]);
     cg.rotation.x = Math.PI / 2;
     const cd = detailKit(cg, cg.name);
+    // Left console, aft to forward: radio, IFF, fuel, the engine master panel and the throttle
+    // quadrant with the flap switch outboard; right console: nav, ECS, oxygen, test and lights.
+    const labels =
+      side === 1
+        ? ['COMM', 'IFF', 'FUEL', 'ENG MASTER', 'THROTTLE', '']
+        : ['NAV', 'ECS', 'OXY', 'TEST', 'LIGHT', 'AUDIO'];
     for (let j = 0; j < 6; j++) {
-      cd.box([0.19, 0.245, 0.012], [0, -0.69 + j * 0.27, 0], black);
-      cd.text(
-        (side === 1
-          ? ['LIGHT', 'COMM', 'SAS', 'ILS', 'RADAR', 'AUDIO']
-          : ['ENGINE', 'NAV', 'POWER', 'ECS', 'OXY', 'TEST'])[j],
-        [0, -0.74 + j * 0.27, -0.009],
-        0.018,
-        Math.PI,
-        ink,
-      );
+      const y = -0.69 + j * 0.27;
+      cd.box([0.158, 0.245, 0.012], [0, y, 0], black);
+      for (const a of [-1, 1])
+        for (const b of [-1, 1]) cd.add(screw.clone(), m.metal, [a * 0.07, y + b * 0.113, -0.0062]);
+      // The engine master panel's switches sit at its aft end, its title forward of them.
+      const title = side === 1 && j === 3 ? y + 0.075 : y - 0.05;
+      if (labels[j]) cd.text(labels[j], [0, title, -0.0065], 0.014, Math.PI, ink);
+      if (side === 1 && j >= 3) continue;
+      // Bat toggles about two centimetres proud, and selector knobs with a pointer line.
       for (let q = 0; q < 3; q++) {
-        cd.rod(
-          [-0.06 + q * 0.06, -0.66 + j * 0.27, -0.01],
-          [-0.06 + q * 0.06, -0.66 + j * 0.27, -0.034],
-          0.004,
-          m.metal,
-        );
-        cd.add(new T.CylinderGeometry(0.009, 0.01, 0.012, 10).rotateX(Math.PI / 2), panel, [
-          -0.06 + q * 0.06,
-          -0.6 + j * 0.27,
-          -0.017,
-        ]);
+        const x = -0.05 + q * 0.05;
+        cd.add(place(bushing.clone(), [x, y + 0.03, -0.006]), m.metal);
+        cd.add(bar([x, y + 0.03, -0.009], [x, y + 0.036, -0.026], 0.0016, 8, 0.0026), m.metal);
+        cd.add(place(knob.clone(), [x, y + 0.085, -0.006]), black);
+        cd.add(new T.BoxGeometry(0.0018, 0.008, 0.001), ink, [x, y + 0.089, -0.0195]);
       }
     }
+    // Throttle slots on the quadrant.
+    if (side === 1)
+      for (const x of [0.04, -0.03])
+        cd.add(place(roundedBox([0.012, 0.26, 0.002], 0.0008), [x, 0.52, -0.0065]), ins.black);
     cd.finish();
   }
   d.box([0.44, 0.5, 0.5], [0, 2.25, 6.62], black);
@@ -1266,11 +1443,30 @@ function f15Cockpit(root, m) {
   }
   sd.box([0.065, 0.04, 0.025], [0, 0.12, 0.13], m.metal);
   sd.finish();
+  // The Eagle's tall center stick rises out of a deep accordion boot to the B-8-family grip
+  // (trim button, weapon release, castle switch, trigger, paddle switch).
+  const P = partPalette();
   const stick = group(cabin, 'F15-stick', [0, 2.04, 6.93]),
     st = detailKit(stick, stick.name);
-  st.rod([0, 0, 0], [0, 0.72, -0.06], 0.023, black);
-  st.box([0.07, 0.11, 0.07], [0, 0.75, -0.06], black);
-  st.add(new T.SphereGeometry(0.011, 8, 6), d.red, [-0.03, 0.79, -0.085]);
+  const bellows = [
+    [0, 0],
+    [0.085, 0],
+  ];
+  for (let i = 0; i < 7; i++) {
+    const y = 0.02 + i * 0.026,
+      r = 0.08 - i * 0.008;
+    bellows.push([r, y], [r - 0.012, y + 0.013]);
+  }
+  bellows.push([0.018, 0.2], [0.016, 0.21], [0, 0.21]);
+  st.add(lathe(bellows, 18, 30), P.tread);
+  stickGeometry(st, {
+    style: 'b8',
+    height: 0.6,
+    rake: -0.06,
+    shaft: 0.0145,
+    boot: false,
+    scale: 1.1,
+  });
   st.finish();
   bindings.push(
     { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.23 },
@@ -1279,8 +1475,7 @@ function f15Cockpit(root, m) {
   for (const side of [-1, 1]) {
     const g = group(cabin, `F15-pedal-${side}`, [side * 0.14, 2.2, 7.22]),
       gd = detailKit(g, g.name);
-    gd.box([0.14, 0.16, 0.04], [0, 0, 0], m.metal);
-    for (let j = 0; j < 5; j++) gd.box([0.12, 0.005, 0.004], [0, -0.06 + j * 0.03, -0.023], black);
+    eaglePedal(gd);
     gd.finish();
     bindings.push({
       node: g.name,
@@ -1291,10 +1486,11 @@ function f15Cockpit(root, m) {
     });
   }
   for (let i = 0; i < 2; i++) {
+    // Twin throttles; the outboard (left engine) grip carries the speed brake, mic and
+    // countermeasure switches.
     const g = group(cabin, `F15-throttle-${i}`, [0.37 + i * 0.07, 2.55, 6.76]),
       gd = detailKit(g, g.name);
-    gd.rod([0, 0, 0], [0, 0.1, 0], 0.014, black);
-    gd.box([0.055, 0.06, 0.09], [0, 0.11, 0], black);
+    eagleThrottle(gd, i === 1);
     gd.finish();
     bindings.push({
       node: g.name,
@@ -1305,6 +1501,110 @@ function f15Cockpit(root, m) {
       offset: -0.3,
     });
   }
+  // Lower vertical panels either side of the knee well: the gear lamps, gear handle and parking
+  // brake on the left, the JFS handle on the right.
+  for (const side of [-1, 1]) {
+    sheet(
+      d,
+      [
+        [0.2, 2.47],
+        [0.48, 2.47],
+        [0.48, 2.695],
+        [0.2, 2.695],
+      ].map(([x, y]) => [side * x, y, 7.414]),
+      black,
+      [0, 0, -1],
+    );
+    for (const [x, y] of [
+      [0.21, 2.48],
+      [0.47, 2.48],
+      [0.47, 2.685],
+      [0.21, 2.685],
+    ])
+      d.add(screw.clone(), m.metal, [side * x, y, 7.4125]);
+  }
+  // Close the nose behind the panel down to the floor, so no painted skin shows around the panel,
+  // under it or past the knee well.
+  cockpitBulkhead(d, root, { z: 7.46, yFrom: 1.99, yTo: 2.93, material: panel });
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Where the controls are (MSIP F-15C): gear handle and emergency/parking brake on the lower
+  // left panel, JFS handle on the lower right panel, engine master switches and the flap switch
+  // on the left console beside the throttles, speed brake on the outboard throttle grip, canopy
+  // control on the left wall under the sill, forward of the throttles. The airframe sits
+  // BODY_SHIFT forward of the cockpit's build frame.
+  const top = [Math.PI / 2, 0, 0],
+    shift = (v) => v + BODY_SHIFT;
+  const stations = [
+    {
+      action: 'gear',
+      style: 'jet',
+      at: [0.27, 2.625, shift(7.411)],
+      label: 'LDG GEAR',
+      labelAt: [0, -0.045, -0.002],
+      labelHeight: 0.007,
+    },
+    {
+      action: 'brake',
+      style: 'tee',
+      at: [0.43, 2.51, shift(7.411)],
+      label: 'PARK BRK',
+      labelAt: [0, 0.028, -0.002],
+      labelHeight: 0.0065,
+    },
+    {
+      action: 'engine',
+      style: 'fuel-valve',
+      at: [-0.3, 2.6, shift(7.411)],
+      label: 'JFS',
+      labelAt: [0, 0.045, -0.002],
+      labelHeight: 0.008,
+    },
+    {
+      action: 'engine',
+      engine: 0,
+      style: 'guarded',
+      at: [0.44, 2.547, shift(6.4)],
+      rotation: top,
+      label: 'L ENG',
+      labelAt: [0, -0.032, -0.002],
+      labelHeight: 0.0065,
+    },
+    {
+      action: 'engine',
+      engine: 1,
+      style: 'guarded',
+      at: [0.37, 2.547, shift(6.4)],
+      rotation: top,
+      label: 'R ENG',
+      labelAt: [0, -0.032, -0.002],
+      labelHeight: 0.0065,
+    },
+    {
+      action: 'flaps',
+      style: 'toggle',
+      scale: 1.3,
+      at: [0.462, 2.547, shift(7.0)],
+      rotation: top,
+      label: 'FLAP',
+      labelAt: [0, 0.035, -0.002],
+      labelHeight: 0.0065,
+    },
+    {
+      action: 'speedBrake',
+      style: 'slider',
+      parent: 'F15-throttle-1',
+      at: [0.444, 2.727, shift(6.742)],
+      rotation: [Math.PI / 2 - 0.2, 0, 0],
+    },
+    {
+      action: 'canopy',
+      style: 'canopy',
+      at: [0.477, 2.63, shift(6.95)],
+      rotation: [0, Math.PI / 2, 0],
+      label: 'CANOPY',
+      labelAt: [0, -0.03, -0.002],
+      labelHeight: 0.007,
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
 }

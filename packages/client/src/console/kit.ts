@@ -402,16 +402,16 @@ function pedal(
 } {
   const group = new THREE.Group();
   const pad = new THREE.Group();
-  pad.add(box([width, height, 0.014], [0, height / 2, 0], material));
-  const treads = Math.max(2, Math.round(height / 0.02));
-  for (let i = 0; i < treads; i++)
-    pad.add(
-      box(
-        [width * 0.82, 0.006, 0.006],
-        [0, (height * (i + 0.6)) / (treads + 0.2), -0.009],
-        materials.tread,
-      ),
-    );
+  // A rounded plate under a raised rubber inset and a toe lip: rows of dark bars on a box read
+  // as an air vent once the part is enlarged.
+  const corner = Math.min(width, height) * 0.24;
+  const back = plate(width, height, corner, 0.012);
+  back.material = material;
+  back.position.set(0, height / 2, -0.006);
+  const inset = plate(width * 0.76, height * 0.7, corner * 0.75, 0.003);
+  inset.material = materials.tread;
+  inset.position.set(0, height * 0.49, -0.0095);
+  pad.add(back, inset, box([width * 0.86, 0.006, 0.012], [0, height - 0.005, -0.012], material));
   // Hinged at the floor, its top leaning forward, away from the foot: the treaded face looks up
   // and back at the operator. Pressing tips it further forward.
   pad.rotation.x = PEDAL_LEAN;

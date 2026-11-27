@@ -747,7 +747,7 @@ export function buildATR72(s) {
   ])
     d.rod([0, 3.61, z(u)], [0, 3.61 + h, z(u) - 0.1], 0.015, dark);
   d.finish();
-  const interior = buildATR72Cockpit(
+  const { stations: controlStations, ...interior } = buildATR72Cockpit(
     root,
     {
       paint,
@@ -763,7 +763,7 @@ export function buildATR72(s) {
   smoothNormals(root.getObjectByName('ATR72-nose-ATR72-ivory'));
   return {
     root,
-    frame: atr72Frame(),
+    frame: { ...atr72Frame(), controlStations },
     enginePoints,
     visual: { rotors, gearNodes: [], flaps: [], ailerons: [], animation: { bindings }, interior },
     modelSignals: {

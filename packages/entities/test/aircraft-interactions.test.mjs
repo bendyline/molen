@@ -57,6 +57,12 @@ it.each([
         control.nodes.length,
         `${slug}: ${control.label} has physical geometry`,
       ).toBeGreaterThan(0);
+    // Each control is the aircraft's own part where the real type has it: none falls back to
+    // the bolted switch module (cockpit-controls.mjs keeps it only for a new aircraft).
+    expect(
+      model.getObjectByName('flight-controls'),
+      `${slug}: bolted control module`,
+    ).toBeUndefined();
     expect(controls.find((c) => c.action === 'stick')?.nodes.length, slug).toBeGreaterThan(0);
     expect(
       controls.some((c) => c.action === 'engine' && !c.engine),

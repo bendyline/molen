@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:89aaac110d25915b84d391b278ac43a388e38ddbbc2b7685aa7506af8b9affb5",
-  "sourceHash": "sha256:bd28750ba39606ca832c01d6f6d66bec31c3f9bb7341fa25bab1f3b05fd45308",
+  "hash": "sha256:98caa46b4385826536e603572ff91924ea03afdf0eee44ed53312c09e77eadeb",
+  "sourceHash": "sha256:5efaefc78e5b5635fee38c8632c23762e8e6e1c57ba0b40fb6e6776634c6099c",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 36308,
-    "vertices": 38284,
-    "meshes": 121,
-    "primitives": 121,
-    "materials": 29,
+    "triangles": 47789,
+    "vertices": 53008,
+    "meshes": 147,
+    "primitives": 147,
+    "materials": 43,
     "textures": 17,
     "animations": 0,
-    "sizeBytes": 1790384
+    "sizeBytes": 2178164
   },
   "nodes": [
     {
@@ -76,6 +76,14 @@
     {
       "name": "Skyhawk-shell-Skyhawk-tire",
       "triangles": 336
+    },
+    {
+      "name": "Skyhawk-shell-Skyhawk-white-lining",
+      "triangles": 672
+    },
+    {
+      "name": "Skyhawk-shell-Skyhawk-alloy-lining",
+      "triangles": 193
     },
     {
       "name": "flap--1-Skyhawk-white",
@@ -151,39 +159,59 @@
     },
     {
       "name": "Skyhawk-cabin-Skyhawk-panel",
-      "triangles": 152
+      "triangles": 156
     },
     {
       "name": "Skyhawk-cabin-Skyhawk-trim",
-      "triangles": 1162
+      "triangles": 1462
     },
     {
       "name": "Skyhawk-cabin-Skyhawk-instrument-black",
-      "triangles": 572
+      "triangles": 584
     },
     {
       "name": "Skyhawk-cabin-detail-alloy",
-      "triangles": 3704
+      "triangles": 3752
     },
     {
       "name": "Skyhawk-cabin-detail-trim",
-      "triangles": 896
+      "triangles": 1004
     },
     {
       "name": "Skyhawk-cabin-detail-lettering",
-      "triangles": 864
+      "triangles": 972
     },
     {
       "name": "Skyhawk-cabin-Skyhawk-instrument-amber",
       "triangles": 24
     },
     {
+      "name": "Skyhawk-cabin-Skyhawk-kap-lcd",
+      "triangles": 12
+    },
+    {
+      "name": "Skyhawk-cabin-Skyhawk-compass-case",
+      "triangles": 72
+    },
+    {
       "name": "Skyhawk-cabin-Skyhawk-alloy",
-      "triangles": 480
+      "triangles": 944
+    },
+    {
+      "name": "Skyhawk-cabin-flight-control-panel",
+      "triangles": 156
+    },
+    {
+      "name": "Skyhawk-cabin-flight-control-black",
+      "triangles": 188
+    },
+    {
+      "name": "Skyhawk-cabin-flight-control-legend",
+      "triangles": 240
     },
     {
       "name": "Skyhawk-cabin-Skyhawk-seats",
-      "triangles": 360
+      "triangles": 416
     },
     {
       "name": "Skyhawk-cabin-Skyhawk-upholstery-piping",
@@ -194,8 +222,16 @@
       "triangles": 8
     },
     {
+      "name": "Skyhawk-cabin-Skyhawk-sidewall",
+      "triangles": 2608
+    },
+    {
+      "name": "Skyhawk-cabin-Skyhawk-headliner",
+      "triangles": 120
+    },
+    {
       "name": "Skyhawk-cabin-Skyhawk-instrument-ink",
-      "triangles": 168
+      "triangles": 180
     },
     {
       "name": "Skyhawk-cabin-Skyhawk-instrument-ink-display-print",
@@ -203,7 +239,7 @@
     },
     {
       "name": "Skyhawk-cabin-Skyhawk-instrument-ink-panel-print",
-      "triangles": 58
+      "triangles": 118
     },
     {
       "name": "Skyhawk-PFD-horizon-fixed-Skyhawk-instrument-black",
@@ -516,42 +552,6 @@
     {
       "name": "Skyhawk-PFD-altitude-1-5-Skyhawk-instrument-ink",
       "triangles": 12
-    },
-    {
-      "name": "Skyhawk-PFD-altitude-1-6-Skyhawk-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skyhawk-PFD-altitude-2-0-Skyhawk-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skyhawk-PFD-altitude-2-1-Skyhawk-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skyhawk-PFD-altitude-2-2-Skyhawk-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skyhawk-PFD-altitude-2-3-Skyhawk-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skyhawk-PFD-altitude-2-4-Skyhawk-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skyhawk-PFD-altitude-2-5-Skyhawk-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skyhawk-PFD-altitude-2-6-Skyhawk-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skyhawk-PFD-altitude-3-0-Skyhawk-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -630,6 +630,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Skyhawk-panel-panel",
       "slots": [
         "baseColor",
@@ -687,12 +695,55 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "Skyhawk-kap-lcd",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Skyhawk-compass-case",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Skyhawk-alloy-brushed",
       "slots": [
         "baseColor",
         "roughness",
         "metalness",
         "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-black",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -728,6 +779,28 @@
         "normal"
       ],
       "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Skyhawk-sidewall-vinyl",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Skyhawk-headliner-vinyl",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
@@ -811,6 +884,61 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-knob",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-steel",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
     }
   ],
   "collision": {
@@ -1074,6 +1202,64 @@
           1.351,
           0.444,
           1.8311
+        ]
+      },
+      {
+        "node": "Skyhawk-shell-Skyhawk-white-lining",
+        "points": [
+          -0.5619,
+          0.4877,
+          -1.5101,
+          -0.5619,
+          0.4877,
+          2.1372,
+          -0.5619,
+          1.8876,
+          -1.5101,
+          -0.5619,
+          1.8876,
+          2.1372,
+          0.5619,
+          0.4877,
+          -1.5101,
+          0.5619,
+          0.4877,
+          2.1372,
+          0.5619,
+          1.8876,
+          -1.5101,
+          0.5619,
+          1.8876,
+          2.1372
+        ]
+      },
+      {
+        "node": "Skyhawk-shell-Skyhawk-alloy-lining",
+        "points": [
+          -0.5592,
+          0.7108,
+          -0.3,
+          -0.5592,
+          0.7108,
+          1.1289,
+          -0.5592,
+          1.6811,
+          -0.3,
+          -0.5592,
+          1.6811,
+          1.1289,
+          0.5592,
+          0.7108,
+          -0.3,
+          0.5592,
+          0.7108,
+          1.1289,
+          0.5592,
+          1.6811,
+          -0.3,
+          0.5592,
+          1.6811,
+          1.1289
         ]
       },
       {
@@ -1601,16 +1787,16 @@
       {
         "node": "Skyhawk-cabin-Skyhawk-panel",
         "points": [
-          -0.5015,
+          -0.5088,
           0.6275,
           1.1,
-          -0.5015,
+          -0.5088,
           0.6275,
           1.33,
-          -0.5015,
+          -0.5088,
           1.5119,
           1.1,
-          -0.5015,
+          -0.5088,
           1.5119,
           1.33,
           0.5088,
@@ -1630,28 +1816,28 @@
       {
         "node": "Skyhawk-cabin-Skyhawk-trim",
         "points": [
-          -0.5049,
+          -0.5275,
           0.5925,
           -1.03,
-          -0.5049,
-          0.5925,
-          1.32,
-          -0.5049,
-          1.524,
-          -1.03,
-          -0.5049,
-          1.524,
-          1.32,
-          0.5078,
-          0.5925,
-          -1.03,
-          0.5078,
+          -0.5275,
           0.5925,
           1.32,
-          0.5078,
+          -0.5275,
           1.524,
           -1.03,
-          0.5078,
+          -0.5275,
+          1.524,
+          1.32,
+          0.5275,
+          0.5925,
+          -1.03,
+          0.5275,
+          0.5925,
+          1.32,
+          0.5275,
+          1.524,
+          -1.03,
+          0.5275,
           1.524,
           1.32
         ]
@@ -1690,25 +1876,25 @@
         "points": [
           -0.4802,
           1.0657,
-          1.0735,
+          1.0645,
           -0.4802,
           1.0657,
           1.107,
           -0.4802,
           1.4583,
-          1.0735,
+          1.0645,
           -0.4802,
           1.4583,
           1.107,
           0.5161,
           1.0657,
-          1.0735,
+          1.0645,
           0.5161,
           1.0657,
           1.107,
           0.5161,
           1.4583,
-          1.0735,
+          1.0645,
           0.5161,
           1.4583,
           1.107
@@ -1719,25 +1905,25 @@
         "points": [
           -0.477,
           1.0665,
-          1.073,
+          1.064,
           -0.477,
           1.0665,
           1.086,
           -0.477,
           1.4578,
-          1.073,
+          1.064,
           -0.477,
           1.4578,
           1.086,
           0.5129,
           1.0665,
-          1.073,
+          1.064,
           0.5129,
           1.0665,
           1.086,
           0.5129,
           1.4578,
-          1.073,
+          1.064,
           0.5129,
           1.4578,
           1.086
@@ -1748,25 +1934,25 @@
         "points": [
           -0.269,
           1.0706,
-          1.07,
+          1.061,
           -0.269,
           1.0706,
           1.081,
           -0.269,
           1.4574,
-          1.07,
+          1.061,
           -0.269,
           1.4574,
           1.081,
           0.4562,
           1.0706,
-          1.07,
+          1.061,
           0.4562,
           1.0706,
           1.081,
           0.4562,
           1.4574,
-          1.07,
+          1.061,
           0.4562,
           1.4574,
           1.081
@@ -1802,59 +1988,204 @@
         ]
       },
       {
+        "node": "Skyhawk-cabin-Skyhawk-kap-lcd",
+        "points": [
+          -0.0472,
+          1.1537,
+          1.0755,
+          -0.0472,
+          1.1537,
+          1.0765,
+          -0.0472,
+          1.1647,
+          1.0755,
+          -0.0472,
+          1.1647,
+          1.0765,
+          0.0148,
+          1.1537,
+          1.0755,
+          0.0148,
+          1.1537,
+          1.0765,
+          0.0148,
+          1.1647,
+          1.0755,
+          0.0148,
+          1.1647,
+          1.0765
+        ]
+      },
+      {
+        "node": "Skyhawk-cabin-Skyhawk-compass-case",
+        "points": [
+          -0.0283,
+          1.6817,
+          0.658,
+          -0.0283,
+          1.6817,
+          0.716,
+          -0.0283,
+          1.7383,
+          0.658,
+          -0.0283,
+          1.7383,
+          0.716,
+          0.0283,
+          1.6817,
+          0.658,
+          0.0283,
+          1.6817,
+          0.716,
+          0.0283,
+          1.7383,
+          0.658,
+          0.0283,
+          1.7383,
+          0.716
+        ]
+      },
+      {
         "node": "Skyhawk-cabin-Skyhawk-alloy",
         "points": [
-          -0.4063,
+          -0.52,
           0.64,
           -0.903,
-          -0.4063,
+          -0.52,
           0.64,
-          0.577,
-          -0.4063,
-          0.897,
+          1.1,
+          -0.52,
+          1.8001,
           -0.903,
-          -0.4063,
-          0.897,
-          0.577,
-          0.4063,
+          -0.52,
+          1.8001,
+          1.1,
+          0.52,
           0.64,
           -0.903,
-          0.4063,
+          0.52,
           0.64,
-          0.577,
-          0.4063,
-          0.897,
+          1.1,
+          0.52,
+          1.8001,
           -0.903,
-          0.4063,
-          0.897,
-          0.577
+          0.52,
+          1.8001,
+          1.1
+        ]
+      },
+      {
+        "node": "Skyhawk-cabin-flight-control-panel",
+        "points": [
+          -0.1636,
+          1.0704,
+          1.0815,
+          -0.1636,
+          1.0704,
+          1.0865,
+          -0.1636,
+          1.1224,
+          1.0815,
+          -0.1636,
+          1.1224,
+          1.0865,
+          -0.1416,
+          1.0704,
+          1.0815,
+          -0.1416,
+          1.0704,
+          1.0865,
+          -0.1416,
+          1.1224,
+          1.0815,
+          -0.1416,
+          1.1224,
+          1.0865
+        ]
+      },
+      {
+        "node": "Skyhawk-cabin-flight-control-black",
+        "points": [
+          -0.1566,
+          1.0756,
+          1.08,
+          -0.1566,
+          1.0756,
+          1.082,
+          -0.1566,
+          1.1172,
+          1.08,
+          -0.1566,
+          1.1172,
+          1.082,
+          -0.1486,
+          1.0756,
+          1.08,
+          -0.1486,
+          1.0756,
+          1.082,
+          -0.1486,
+          1.1172,
+          1.08,
+          -0.1486,
+          1.1172,
+          1.082
+        ]
+      },
+      {
+        "node": "Skyhawk-cabin-flight-control-legend",
+        "points": [
+          -0.1484,
+          1.0767,
+          1.0798,
+          -0.1484,
+          1.0767,
+          1.0808,
+          -0.1484,
+          1.1162,
+          1.0798,
+          -0.1484,
+          1.1162,
+          1.0808,
+          -0.1435,
+          1.0767,
+          1.0798,
+          -0.1435,
+          1.0767,
+          1.0808,
+          -0.1435,
+          1.1162,
+          1.0798,
+          -0.1435,
+          1.1162,
+          1.0808
         ]
       },
       {
         "node": "Skyhawk-cabin-Skyhawk-seats",
         "points": [
-          -0.5095,
+          -0.54,
           0.6901,
           -1.005,
-          -0.5095,
-          0.6901,
-          0.625,
-          -0.5095,
-          1.4249,
-          -1.005,
-          -0.5095,
-          1.4249,
-          0.625,
-          0.5095,
-          0.6901,
-          -1.005,
-          0.5095,
+          -0.54,
           0.6901,
           0.625,
-          0.5095,
+          -0.54,
           1.4249,
           -1.005,
-          0.5095,
+          -0.54,
+          1.4249,
+          0.625,
+          0.54,
+          0.6901,
+          -1.005,
+          0.54,
+          0.6901,
+          0.625,
+          0.54,
+          1.4249,
+          -1.005,
+          0.54,
           1.4249,
           0.625
         ]
@@ -1918,31 +2249,89 @@
         ]
       },
       {
+        "node": "Skyhawk-cabin-Skyhawk-sidewall",
+        "points": [
+          -0.54,
+          0.5699,
+          -1,
+          -0.54,
+          0.5699,
+          1.335,
+          -0.54,
+          1.8109,
+          -1,
+          -0.54,
+          1.8109,
+          1.335,
+          0.54,
+          0.5699,
+          -1,
+          0.54,
+          0.5699,
+          1.335,
+          0.54,
+          1.8109,
+          -1,
+          0.54,
+          1.8109,
+          1.335
+        ]
+      },
+      {
+        "node": "Skyhawk-cabin-Skyhawk-headliner",
+        "points": [
+          -0.478,
+          1.7581,
+          -0.432,
+          -0.478,
+          1.7581,
+          0.504,
+          -0.478,
+          1.8471,
+          -0.432,
+          -0.478,
+          1.8471,
+          0.504,
+          0.478,
+          1.7581,
+          -0.432,
+          0.478,
+          1.7581,
+          0.504,
+          0.478,
+          1.8471,
+          -0.432,
+          0.478,
+          1.8471,
+          0.504
+        ]
+      },
+      {
         "node": "Skyhawk-cabin-Skyhawk-instrument-ink",
         "points": [
-          -0.0833,
+          -0.0832,
           0.6726,
           0.4852,
-          -0.0833,
-          0.6726,
-          1.1024,
-          -0.0833,
-          1.4405,
-          0.4852,
-          -0.0833,
-          1.4405,
-          1.1024,
-          0.1498,
-          0.6726,
-          0.4852,
-          0.1498,
+          -0.0832,
           0.6726,
           1.1024,
+          -0.0832,
+          1.6815,
+          0.4852,
+          -0.0832,
+          1.6815,
+          1.1024,
           0.1498,
-          1.4405,
+          0.6726,
           0.4852,
           0.1498,
-          1.4405,
+          0.6726,
+          1.1024,
+          0.1498,
+          1.6815,
+          0.4852,
+          0.1498,
+          1.6815,
           1.1024
         ]
       },
@@ -1983,25 +2372,25 @@
           0.73,
           -0.4036,
           0.696,
-          1.09,
+          1.098,
           -0.4036,
           1.462,
           0.73,
           -0.4036,
           1.462,
-          1.09,
+          1.098,
           0.456,
           0.696,
           0.73,
           0.456,
           0.696,
-          1.09,
+          1.098,
           0.456,
           1.462,
           0.73,
           0.456,
           1.462,
-          1.09
+          1.098
         ]
       },
       {
@@ -4263,267 +4652,6 @@
           1.1016,
           0.1737,
           1.3948,
-          1.1024
-        ]
-      },
-      {
-        "node": "Skyhawk-PFD-altitude-1-6-Skyhawk-instrument-ink",
-        "points": [
-          0.1703,
-          1.3913,
-          1.1016,
-          0.1703,
-          1.3913,
-          1.1024,
-          0.1703,
-          1.3918,
-          1.1016,
-          0.1703,
-          1.3918,
-          1.1024,
-          0.1731,
-          1.3913,
-          1.1016,
-          0.1731,
-          1.3913,
-          1.1024,
-          0.1731,
-          1.3918,
-          1.1016,
-          0.1731,
-          1.3918,
-          1.1024
-        ]
-      },
-      {
-        "node": "Skyhawk-PFD-altitude-2-0-Skyhawk-instrument-ink",
-        "points": [
-          0.1654,
-          1.395,
-          1.1016,
-          0.1654,
-          1.395,
-          1.1024,
-          0.1654,
-          1.3956,
-          1.1016,
-          0.1654,
-          1.3956,
-          1.1024,
-          0.1682,
-          1.395,
-          1.1016,
-          0.1682,
-          1.395,
-          1.1024,
-          0.1682,
-          1.3956,
-          1.1016,
-          0.1682,
-          1.3956,
-          1.1024
-        ]
-      },
-      {
-        "node": "Skyhawk-PFD-altitude-2-1-Skyhawk-instrument-ink",
-        "points": [
-          0.1648,
-          1.392,
-          1.1016,
-          0.1648,
-          1.392,
-          1.1024,
-          0.1648,
-          1.3948,
-          1.1016,
-          0.1648,
-          1.3948,
-          1.1024,
-          0.1653,
-          1.392,
-          1.1016,
-          0.1653,
-          1.392,
-          1.1024,
-          0.1653,
-          1.3948,
-          1.1016,
-          0.1653,
-          1.3948,
-          1.1024
-        ]
-      },
-      {
-        "node": "Skyhawk-PFD-altitude-2-2-Skyhawk-instrument-ink",
-        "points": [
-          0.1648,
-          1.3883,
-          1.1016,
-          0.1648,
-          1.3883,
-          1.1024,
-          0.1648,
-          1.3911,
-          1.1016,
-          0.1648,
-          1.3911,
-          1.1024,
-          0.1653,
-          1.3883,
-          1.1016,
-          0.1653,
-          1.3883,
-          1.1024,
-          0.1653,
-          1.3911,
-          1.1016,
-          0.1653,
-          1.3911,
-          1.1024
-        ]
-      },
-      {
-        "node": "Skyhawk-PFD-altitude-2-3-Skyhawk-instrument-ink",
-        "points": [
-          0.1654,
-          1.3875,
-          1.1016,
-          0.1654,
-          1.3875,
-          1.1024,
-          0.1654,
-          1.3881,
-          1.1016,
-          0.1654,
-          1.3881,
-          1.1024,
-          0.1682,
-          1.3875,
-          1.1016,
-          0.1682,
-          1.3875,
-          1.1024,
-          0.1682,
-          1.3881,
-          1.1016,
-          0.1682,
-          1.3881,
-          1.1024
-        ]
-      },
-      {
-        "node": "Skyhawk-PFD-altitude-2-4-Skyhawk-instrument-ink",
-        "points": [
-          0.1682,
-          1.3883,
-          1.1016,
-          0.1682,
-          1.3883,
-          1.1024,
-          0.1682,
-          1.3911,
-          1.1016,
-          0.1682,
-          1.3911,
-          1.1024,
-          0.1688,
-          1.3883,
-          1.1016,
-          0.1688,
-          1.3883,
-          1.1024,
-          0.1688,
-          1.3911,
-          1.1016,
-          0.1688,
-          1.3911,
-          1.1024
-        ]
-      },
-      {
-        "node": "Skyhawk-PFD-altitude-2-5-Skyhawk-instrument-ink",
-        "points": [
-          0.1682,
-          1.392,
-          1.1016,
-          0.1682,
-          1.392,
-          1.1024,
-          0.1682,
-          1.3948,
-          1.1016,
-          0.1682,
-          1.3948,
-          1.1024,
-          0.1688,
-          1.392,
-          1.1016,
-          0.1688,
-          1.392,
-          1.1024,
-          0.1688,
-          1.3948,
-          1.1016,
-          0.1688,
-          1.3948,
-          1.1024
-        ]
-      },
-      {
-        "node": "Skyhawk-PFD-altitude-2-6-Skyhawk-instrument-ink",
-        "points": [
-          0.1654,
-          1.3913,
-          1.1016,
-          0.1654,
-          1.3913,
-          1.1024,
-          0.1654,
-          1.3918,
-          1.1016,
-          0.1654,
-          1.3918,
-          1.1024,
-          0.1682,
-          1.3913,
-          1.1016,
-          0.1682,
-          1.3913,
-          1.1024,
-          0.1682,
-          1.3918,
-          1.1016,
-          0.1682,
-          1.3918,
-          1.1024
-        ]
-      },
-      {
-        "node": "Skyhawk-PFD-altitude-3-0-Skyhawk-instrument-ink",
-        "points": [
-          0.1604,
-          1.395,
-          1.1016,
-          0.1604,
-          1.395,
-          1.1024,
-          0.1604,
-          1.3956,
-          1.1016,
-          0.1604,
-          1.3956,
-          1.1024,
-          0.1632,
-          1.395,
-          1.1016,
-          0.1632,
-          1.395,
-          1.1024,
-          0.1632,
-          1.3956,
-          1.1016,
-          0.1632,
-          1.3956,
           1.1024
         ]
       }

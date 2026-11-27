@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:8e59c0298e0fd3fd0c9a7a43165fa687e4dbac432d8d30de281f8e4f673c51a5",
-  "sourceHash": "sha256:d591be1dcc29f14df33c5860a30661e2755ed15a0b4a12764663130d9a9119e3",
+  "hash": "sha256:6d6eb885b25c676f2b8743285b818b276ce2a5214084a40205b377b2623227cc",
+  "sourceHash": "sha256:34e44fda247b73fd0e530f18888f4b94962b448d58824f49b38d03721965f6d4",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 15526,
-    "vertices": 15229,
-    "meshes": 98,
-    "primitives": 98,
-    "materials": 35,
+    "triangles": 22664,
+    "vertices": 22022,
+    "meshes": 117,
+    "primitives": 117,
+    "materials": 41,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 858388
+    "sizeBytes": 1032988
   },
   "nodes": [
     {
@@ -80,6 +80,10 @@
     {
       "name": "F35-airframe-F35-sensor",
       "triangles": 32
+    },
+    {
+      "name": "F35-airframe-F35-gray-lining",
+      "triangles": 31
     },
     {
       "name": "F35-leading--1-F35-edge",
@@ -183,11 +187,27 @@
     },
     {
       "name": "F35-cabin-F35-panel",
-      "triangles": 76
+      "triangles": 756
+    },
+    {
+      "name": "F35-cabin-mfd-phosphor-dim",
+      "triangles": 288
+    },
+    {
+      "name": "F35-cabin-mfd-phosphor",
+      "triangles": 252
+    },
+    {
+      "name": "F35-cabin-mfd-phosphor",
+      "triangles": 240
+    },
+    {
+      "name": "F35-cabin-mfd-phosphor-dim",
+      "triangles": 120
     },
     {
       "name": "F35-cabin-F35-instrument-black",
-      "triangles": 262
+      "triangles": 402
     },
     {
       "name": "F35-cabin-F35-instrument-black-panel-print",
@@ -207,7 +227,7 @@
     },
     {
       "name": "F35-cabin-F35-instrument-amber-display-print",
-      "triangles": 74
+      "triangles": 58
     },
     {
       "name": "F35-cabin-F35-instrument-ink",
@@ -532,26 +552,6 @@
     {
       "name": "F35-vertical-speed-2-1-F35-display",
       "triangles": 12
-    },
-    {
-      "name": "F35-vertical-speed-2-2-F35-display",
-      "triangles": 12
-    },
-    {
-      "name": "F35-vertical-speed-2-3-F35-display",
-      "triangles": 12
-    },
-    {
-      "name": "F35-vertical-speed-2-4-F35-display",
-      "triangles": 12
-    },
-    {
-      "name": "F35-vertical-speed-2-5-F35-display",
-      "triangles": 12
-    },
-    {
-      "name": "F35-vertical-speed-2-6-F35-display",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -638,6 +638,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "F35-formation",
       "slots": [
         "baseColor"
@@ -654,6 +662,22 @@
         "normal"
       ],
       "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "mfd-phosphor-dim",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "mfd-phosphor",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
@@ -794,37 +818,50 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "turbine-blades",
+      "name": "flight-control-steel",
       "slots": [
         "baseColor"
-      ],
-      "doubleSided": true,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-panel-satin",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-alloy-brushed",
+      "name": "flight-control-tread",
       "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-black",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
       "slots": [
         "baseColor",
         "roughness",
@@ -844,7 +881,7 @@
       "alphaMode": "BLEND"
     },
     {
-      "name": "flight-control-master",
+      "name": "flight-control-knob",
       "slots": [
         "baseColor"
       ],
@@ -852,11 +889,19 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend",
+      "name": "flight-control-lamp",
       "slots": [
         "baseColor"
       ],
       "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "turbine-blades",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
       "alphaMode": "OPAQUE"
     }
   ],
@@ -1150,6 +1195,35 @@
           0.5999,
           2.85,
           7.7
+        ]
+      },
+      {
+        "node": "F35-airframe-F35-gray-lining",
+        "points": [
+          -0.6612,
+          1.5461,
+          4.4522,
+          -0.6612,
+          1.5461,
+          6.698,
+          -0.6612,
+          2.7204,
+          4.4522,
+          -0.6612,
+          2.7204,
+          6.698,
+          0.6889,
+          1.5461,
+          4.4522,
+          0.6889,
+          1.5461,
+          6.698,
+          0.6889,
+          2.7204,
+          4.4522,
+          0.6889,
+          2.7204,
+          6.698
         ]
       },
       {
@@ -1880,57 +1954,173 @@
       {
         "node": "F35-cabin-F35-panel",
         "points": [
-          -0.48,
+          -0.6449,
           1.67,
           4.9,
-          -0.48,
+          -0.6449,
           1.67,
-          6.8175,
-          -0.48,
+          6.84,
+          -0.6449,
           2.68,
           4.9,
-          -0.48,
+          -0.6449,
           2.68,
-          6.8175,
-          0.48,
+          6.84,
+          0.645,
           1.67,
           4.9,
-          0.48,
+          0.645,
           1.67,
-          6.8175,
-          0.48,
+          6.84,
+          0.645,
           2.68,
           4.9,
-          0.48,
+          0.645,
           2.68,
-          6.8175
+          6.84
+        ]
+      },
+      {
+        "node": "F35-cabin-mfd-phosphor-dim",
+        "points": [
+          0.1438,
+          2.4538,
+          6.5341,
+          0.1438,
+          2.4538,
+          6.5355,
+          0.1438,
+          2.5462,
+          6.5341,
+          0.1438,
+          2.5462,
+          6.5355,
+          0.2362,
+          2.4538,
+          6.5341,
+          0.2362,
+          2.4538,
+          6.5355,
+          0.2362,
+          2.5462,
+          6.5341,
+          0.2362,
+          2.5462,
+          6.5355
+        ]
+      },
+      {
+        "node": "F35-cabin-mfd-phosphor",
+        "points": [
+          0.1454,
+          2.4554,
+          6.5342,
+          0.1454,
+          2.4554,
+          6.5354,
+          0.1454,
+          2.5446,
+          6.5342,
+          0.1454,
+          2.5446,
+          6.5354,
+          0.2346,
+          2.4554,
+          6.5342,
+          0.2346,
+          2.4554,
+          6.5354,
+          0.2346,
+          2.5446,
+          6.5342,
+          0.2346,
+          2.5446,
+          6.5354
+        ]
+      },
+      {
+        "node": "F35-cabin-mfd-phosphor",
+        "points": [
+          -0.2368,
+          2.4534,
+          6.5341,
+          -0.2368,
+          2.4534,
+          6.5355,
+          -0.2368,
+          2.5402,
+          6.5341,
+          -0.2368,
+          2.5402,
+          6.5355,
+          -0.1432,
+          2.4534,
+          6.5341,
+          -0.1432,
+          2.4534,
+          6.5355,
+          -0.1432,
+          2.5402,
+          6.5341,
+          -0.1432,
+          2.5402,
+          6.5355
+        ]
+      },
+      {
+        "node": "F35-cabin-mfd-phosphor-dim",
+        "points": [
+          -0.2362,
+          2.4604,
+          6.5341,
+          -0.2362,
+          2.4604,
+          6.5355,
+          -0.2362,
+          2.5396,
+          6.5341,
+          -0.2362,
+          2.5396,
+          6.5355,
+          -0.1438,
+          2.4604,
+          6.5341,
+          -0.1438,
+          2.4604,
+          6.5355,
+          -0.1438,
+          2.5396,
+          6.5341,
+          -0.1438,
+          2.5396,
+          6.5355
         ]
       },
       {
         "node": "F35-cabin-F35-instrument-black",
         "points": [
-          -0.446,
+          -0.3875,
           1.7,
-          5.0478,
-          -0.446,
-          1.7,
-          6.81,
-          -0.446,
-          2.6869,
-          5.0478,
-          -0.446,
-          2.6869,
-          6.81,
-          0.446,
-          1.7,
-          5.0478,
-          0.446,
+          5.47,
+          -0.3875,
           1.7,
           6.81,
-          0.446,
+          -0.3875,
           2.6869,
-          5.0478,
-          0.446,
+          5.47,
+          -0.3875,
+          2.6869,
+          6.81,
+          0.377,
+          1.7,
+          5.47,
+          0.377,
+          1.7,
+          6.81,
+          0.377,
+          2.6869,
+          5.47,
+          0.377,
           2.6869,
           6.81
         ]
@@ -4426,151 +4616,6 @@
           6.5136,
           0.0748,
           2.4926,
-          6.5144
-        ]
-      },
-      {
-        "node": "F35-vertical-speed-2-2-F35-display",
-        "points": [
-          0.0744,
-          2.4874,
-          6.5136,
-          0.0744,
-          2.4874,
-          6.5144,
-          0.0744,
-          2.4896,
-          6.5136,
-          0.0744,
-          2.4896,
-          6.5144,
-          0.0748,
-          2.4874,
-          6.5136,
-          0.0748,
-          2.4874,
-          6.5144,
-          0.0748,
-          2.4896,
-          6.5136,
-          0.0748,
-          2.4896,
-          6.5144
-        ]
-      },
-      {
-        "node": "F35-vertical-speed-2-3-F35-display",
-        "points": [
-          0.0749,
-          2.4868,
-          6.5136,
-          0.0749,
-          2.4868,
-          6.5144,
-          0.0749,
-          2.4872,
-          6.5136,
-          0.0749,
-          2.4872,
-          6.5144,
-          0.0771,
-          2.4868,
-          6.5136,
-          0.0771,
-          2.4868,
-          6.5144,
-          0.0771,
-          2.4872,
-          6.5136,
-          0.0771,
-          2.4872,
-          6.5144
-        ]
-      },
-      {
-        "node": "F35-vertical-speed-2-4-F35-display",
-        "points": [
-          0.0772,
-          2.4874,
-          6.5136,
-          0.0772,
-          2.4874,
-          6.5144,
-          0.0772,
-          2.4896,
-          6.5136,
-          0.0772,
-          2.4896,
-          6.5144,
-          0.0776,
-          2.4874,
-          6.5136,
-          0.0776,
-          2.4874,
-          6.5144,
-          0.0776,
-          2.4896,
-          6.5136,
-          0.0776,
-          2.4896,
-          6.5144
-        ]
-      },
-      {
-        "node": "F35-vertical-speed-2-5-F35-display",
-        "points": [
-          0.0772,
-          2.4904,
-          6.5136,
-          0.0772,
-          2.4904,
-          6.5144,
-          0.0772,
-          2.4926,
-          6.5136,
-          0.0772,
-          2.4926,
-          6.5144,
-          0.0776,
-          2.4904,
-          6.5136,
-          0.0776,
-          2.4904,
-          6.5144,
-          0.0776,
-          2.4926,
-          6.5136,
-          0.0776,
-          2.4926,
-          6.5144
-        ]
-      },
-      {
-        "node": "F35-vertical-speed-2-6-F35-display",
-        "points": [
-          0.0749,
-          2.4898,
-          6.5136,
-          0.0749,
-          2.4898,
-          6.5144,
-          0.0749,
-          2.4902,
-          6.5136,
-          0.0749,
-          2.4902,
-          6.5144,
-          0.0771,
-          2.4898,
-          6.5136,
-          0.0771,
-          2.4898,
-          6.5144,
-          0.0771,
-          2.4902,
-          6.5136,
-          0.0771,
-          2.4902,
           6.5144
         ]
       }

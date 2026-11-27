@@ -3,6 +3,18 @@
  * Mast z=0. Geometry follows the B-3 sheet; the Commons 206A drawing is secondary.
  */
 import {
+  contour,
+  lathe,
+  loftUp,
+  partPalette,
+  pedalGeometry,
+  place,
+  roundedBox,
+  switchGeometry,
+  tube,
+} from './cockpit-parts.mjs';
+import { partBatch, skinBacking } from './huey.mjs';
+import {
   cleanGeometry,
   detailKit,
   group,
@@ -134,6 +146,200 @@ export function bellNose(d, s, m) {
     m.upper,
     false,
   );
+}
+const disc = (r, h, at, rotation = [0, 0, 0], sides = 16) =>
+  place(new T.CylinderGeometry(r, r, h, sides), at, rotation);
+const ball = (r, at, scale = [1, 1, 1]) =>
+  place(new T.SphereGeometry(r, 12, 8), at, [0, 0, 0], scale);
+/** A knurled round grip up local +Y from `y`: `ribs` shallow flutes round radius `r`. */
+export const fluted = (r, h, ribs = 20, depth = 0.08, y = 0) =>
+  loftUp(
+    [0, h * 0.06, h * 0.94, h].map((dy, i) => ({
+      y: y + dy,
+      points: Array.from({ length: ribs * 2 }, (_, j) => {
+        const a = (j / (ribs * 2)) * Math.PI * 2,
+          rr = r * (j % 2 ? 1 - depth : 1) * (i === 0 || i === 3 ? 0.93 : 1);
+        return [Math.cos(a) * rr, Math.sin(a) * rr];
+      }),
+    })),
+    30,
+  );
+/** A bat toggle on its bushing, standing up local +Y from `at` and tipped toward -Z. */
+const toggle = (b, P, at, length = 0.016) => {
+  b.add(P.alloy, disc(0.0045, 0.004, [at[0], at[1] + 0.002, at[2]], [0, 0, 0], 12));
+  b.add(
+    P.alloy,
+    place(
+      new T.CylinderGeometry(0.0014, 0.0022, length, 10),
+      [at[0], at[1] + length / 2, at[2] - 0.003],
+      [-0.3, 0, 0],
+    ),
+  );
+};
+/**
+ * The Bell light-helicopter cyclic grip (206, 407), base at the origin, up +Y, trigger toward +Z:
+ * a plain hand-hold swelling into a head cocked forward, the trim hat under the thumb on the
+ * crown, the radio/ICS trigger under the forefinger and the red cargo-release button on the left
+ * shoulder under its guard. The 407 head adds the float-arm button and a second hat.
+ */
+export function bellLightGripInto(b, P, variant = '206') {
+  const L = (rows) =>
+    loftUp(
+      rows.map(([y, cz, rx, rz, power = 2.2]) => ({
+        y,
+        points: contour(0, cz, rx, rz, 18, power),
+      })),
+    );
+  b.add(
+    P.alloy,
+    lathe(
+      [
+        [0, -0.018],
+        [0.0152, -0.018],
+        [0.0162, -0.006],
+        [0.0172, 0.004],
+        [0.0148, 0.009],
+        [0, 0.009],
+      ],
+      18,
+    ),
+  );
+  const crown = variant === '407' ? 0.136 : 0.13;
+  b.add(
+    P.grip,
+    L([
+      [0.004, 0, 0.0162, 0.0172],
+      [0.032, 0.001, 0.0172, 0.0182],
+      [0.066, 0.002, 0.0178, 0.019],
+      [crown - 0.038, 0.006, 0.0184, 0.021],
+      [crown - 0.022, 0.012, 0.0196, 0.0245, 2.5],
+      [crown - 0.01, 0.016, 0.0188, 0.0245, 2.6],
+      [crown - 0.003, 0.017, 0.013, 0.018, 2.4],
+      [crown, 0.017, 0.006, 0.008],
+    ]),
+  );
+  b.add(P.black, disc(0.0058, 0.007, [0.001, crown - 0.002, 0.016], [0.3, 0, 0], 14));
+  b.add(P.black, ball(0.0046, [0.001, crown + 0.002, 0.017], [1, 0.55, 1]));
+  b.add(
+    P.black,
+    tube(
+      [
+        [0, crown - 0.03, 0.032],
+        [0, crown - 0.039, 0.043],
+        [0, crown - 0.052, 0.04],
+      ],
+      0.0048,
+      10,
+    ),
+  );
+  b.add(P.red, disc(0.0042, 0.006, [0.0195, crown - 0.016, 0.012], [0, 0, Math.PI / 2], 12));
+  b.add(P.black, place(roundedBox([0.004, 0.014, 0.016], 0.0015), [0.0205, crown - 0.016, 0.004]));
+  if (variant === '407') {
+    b.add(P.black, disc(0.0042, 0.006, [-0.0195, crown - 0.02, 0.012], [0, 0, Math.PI / 2], 12));
+    b.add(P.black, disc(0.004, 0.005, [-0.009, crown - 0.004, 0.006], [0.2, 0, 0], 12));
+  }
+}
+/**
+ * A Bell light-helicopter cyclic from its floor pivot: the rubber gaiter at `floor`, the black
+ * tube bent through `path` (smoothed, 12-sided) and the Bell grip on its end, aligned with the
+ * tube's last run.
+ */
+export function bellCyclic(
+  d,
+  { path, floor = 0, radius = 0.0125, tubeMaterial, palette, grip = '206' },
+) {
+  const P = partPalette(palette);
+  const b = partBatch(),
+    curve = through(path),
+    points = Array.from({ length: 15 }, (_, i) => curve(i / 14));
+  b.add(tubeMaterial ?? P.black, tube(points, radius, 12));
+  b.add(
+    P.tread,
+    lathe(
+      [
+        [0, floor],
+        [0.046, floor],
+        [0.044, floor + 0.008],
+        [0.031, floor + 0.016],
+        [0.029, floor + 0.026],
+        [0.021, floor + 0.034],
+        [0.02, floor + 0.044],
+        [radius * 1.35, floor + 0.064],
+        [radius * 1.3, floor + 0.072],
+        [0, floor + 0.072],
+      ],
+      18,
+      28,
+    ),
+  );
+  b.emit(d);
+  const top = points.at(-1),
+    back = points.at(-3);
+  bellLightGripInto(b, P, grip);
+  b.emit(d, top, [Math.atan2(top[2] - back[2], top[1] - back[1]), 0, 0]);
+}
+/**
+ * A Bell light-helicopter collective from its pivot beside the seat, lying forward and up to
+ * `end` ([0, rise, run]): the black lever tube with its friction collar at the root, the knurled
+ * twist-grip throttle and its idle-release button, and the switch box on the tip. The 206 box
+ * carries the governor-RPM and landing-light switches on top and the starter trigger beneath;
+ * the 407's taller FADEC box adds a starter button, a guarded float switch and a third switch.
+ */
+export function bellCollective(d, { end, palette, tubeMaterial, head = '206' }) {
+  const P = partPalette(palette);
+  const length = Math.hypot(end[1], end[2]),
+    pitch = Math.atan2(end[1], end[2]),
+    along = [Math.PI / 2, 0, 0],
+    b = partBatch(),
+    lever = tubeMaterial ?? P.black;
+  const cyl = (r, l, z, r2 = r, sides = 16) =>
+    place(new T.CylinderGeometry(r2, r, l, sides), [0, 0, z + l / 2], along);
+  const grip = length - (head === '407' ? 0.19 : 0.175);
+  b.add(
+    P.tread,
+    lathe(
+      [
+        [0, -0.03],
+        [0.034, -0.03],
+        [0.032, -0.018],
+        [0.022, -0.006],
+        [0.019, 0.014],
+        [0, 0.014],
+      ],
+      16,
+    ).rotateX(Math.PI / 2),
+  );
+  b.add(lever, cyl(0.0155, grip + 0.005, 0, 0.0155, 16));
+  b.add(P.steel, place(fluted(0.024, 0.026, 14, 0.12), [0, 0, 0.07], along));
+  b.add(P.grip, place(fluted(0.0205, 0.13, 22, 0.07), [0, 0, grip], along));
+  b.add(P.white, place(roundedBox([0.0025, 0.002, 0.03], 0.0008), [0, 0.0205, grip + 0.04]));
+  b.add(P.black, disc(0.0055, 0.008, [0.018, 0.006, grip + 0.124], [0, 0, Math.PI / 2], 12));
+  const tip = grip + 0.13;
+  if (head === '407') {
+    b.add(P.grip, place(roundedBox([0.054, 0.066, 0.078], 0.013), [0, 0.012, tip + 0.036]));
+    for (const x of [-0.014, 0, 0.014]) toggle(b, P, [x, 0.045, tip + 0.03]);
+    b.add(P.red, place(roundedBox([0.016, 0.006, 0.022], 0.002), [0.0, 0.049, tip + 0.058]));
+    b.add(P.white, disc(0.0062, 0.008, [0, 0.016, tip + 0.076], along, 14));
+    b.add(P.black, disc(0.0055, 0.008, [-0.028, 0.02, tip + 0.036], [0, 0, Math.PI / 2], 12));
+  } else {
+    b.add(P.grip, place(roundedBox([0.05, 0.05, 0.07], 0.012), [0, 0.006, tip + 0.032]));
+    for (const x of [-0.011, 0.011]) toggle(b, P, [x, 0.031, tip + 0.03]);
+    b.add(P.black, disc(0.006, 0.006, [0, 0.016, tip + 0.068], along, 14));
+  }
+  // Starter trigger under the box.
+  b.add(
+    P.black,
+    tube(
+      [
+        [0, -0.014, tip + 0.02],
+        [0, -0.03, tip + 0.026],
+        [0, -0.032, tip + 0.042],
+      ],
+      0.0045,
+      10,
+    ),
+  );
+  b.emit(d, [0, 0, 0], [-pitch, 0, 0]);
 }
 export const bell206Frame = () => ({
   heli: true,
@@ -320,15 +526,22 @@ export function buildBell206(s) {
         0.005,
         trim,
       );
+    // Handles and hinges stand on the skin: centred 1 % out, their inner halves stood through the
+    // cabin lining.
     for (const z of [1.04, 0.0])
-      d.rod([sx(z) * 1.01, 0.83, z - 0.055], [sx(z) * 1.01, 0.83, z + 0.055], 0.013, metal);
+      d.rod(
+        [sx(z) + side * 0.014, 0.83, z - 0.055],
+        [sx(z) + side * 0.014, 0.83, z + 0.055],
+        0.013,
+        metal,
+      );
     for (const [z, y] of [
       [1.67, 0.82],
       [1.32, 1.4],
       [0.87, 0.76],
       [0.71, 1.38],
     ])
-      d.box([0.035, 0.04, 0.06], [sx(z) * 1.01, y, z], metal);
+      d.box([0.035, 0.04, 0.06], [sx(z) + side * 0.019, y, z], metal);
     // Blue lower fuselage stripe follows the measured contour; no photo texture.
     const stripe = sections
       .slice(0, 5)
@@ -535,11 +748,17 @@ export function buildBell206(s) {
       d.add(new T.SphereGeometry(0.0035, 5, 3), metal, [side * 0.662, 0.52, 1.46 - i * 0.1]);
   d.box([0.045, 0.045, 0.055], [0, 2.55, -6.2], d.red);
   d.finish();
-  const interior = bell206Cockpit(root, { paint, blue, trim, metal, seat });
+  const { stations: controlStations, ...interior } = bell206Cockpit(root, {
+    paint,
+    blue,
+    trim,
+    metal,
+    seat,
+  });
   cleanGeometry(root);
   return {
     root,
-    frame: bell206Frame(),
+    frame: { ...bell206Frame(), controlStations },
     enginePoints: [],
     visual: {
       rotors: [
@@ -563,6 +782,31 @@ function bell206Cockpit(root, m) {
     panelGroup = group(cabin, '206-instrument-panel', [0.0375, 0.52, 0.74]),
     bindings = [];
   panelGroup.scale.setScalar(0.5);
+  const parts = partPalette();
+  // Line the painted skin inside the cabin: the nose round the footwells and chin windows, the
+  // doors and side walls round their windows in dark gray trim, the roof in a pale headliner.
+  // Without it the double-sided ivory paint showed round the panel, in the footwells and on the
+  // inside of every door.
+  {
+    const lining = mat('206-cabin-trim', '#3d4447', { roughness: 0.9 }),
+      headliner = mat('206-headliner', '#a3a69e', { roughness: 0.95 }),
+      ld = detailKit(cabin, '206-lining');
+    skinBacking(ld, root, {
+      materials: [m.paint],
+      inside: ([x, y, z]) =>
+        Math.abs(x) < 0.72 &&
+        z > -0.66 &&
+        y < 1.78 &&
+        (y < 1.02 || (z > 1.6 && y < 1.12 && Math.abs(x) > 0.03)
+          ? z < 2.9
+          : Math.abs(x) > 0.5
+            ? z < 1.75
+            : z < 1.28 && y > 1.6),
+      lining: ([x, y]) => (y > 1.6 && Math.abs(x) < 0.56 ? headliner : lining),
+      toward: ([, y, z]) => (z > 1.62 ? [0, 0.82, 1.45] : [0, y > 1.5 ? 1.1 : 1.05, z]),
+    });
+    ld.finish();
+  }
   let d = detailKit(cabin, '206-floor');
   const panel = mat('206-panel', '#7b8584'),
     face = mat('206-dials', '#142027'),
@@ -699,20 +943,66 @@ function bell206Cockpit(root, m) {
   for (const g of gauges) gauge(...g);
   d.box([0.13, 0.09, 0.006], [-0.019, 0.898, 1.96], face);
   d.text('12.00', [-0.019, 0.91, 1.951], 0.022, Math.PI, ink);
+  // Hydraulic-boost and governor switches on a small plate. The panel is drawn at twice life size,
+  // so these life-size parts are scaled up to match it. The engine's fuel valve switch is a control
+  // station at the panel's lower right corner (end of this function).
   d.box([0.17, 0.12, 0.004], [0.37, 1.29, 1.96], m.trim);
-  const master = group(panelGroup, '206-engine-master', [0.37, 1.29, 1.94]);
-  master.userData.aircraftControl = {
-    action: 'engine',
-    motion: { property: 'rotation', axis: 'x', scale: -0.5 },
-  };
-  const md = detailKit(master, master.name);
-  md.box([0.04, 0.06, 0.025], [0, 0, 0], d.red);
-  md.finish();
-  d.text('ENGINE', [0.37, 1.335, 1.935], 0.012, Math.PI, d.ivory);
+  for (const [x, label] of [
+    [0.41, 'HYD SYS'],
+    [0.33, 'GOV'],
+  ]) {
+    const sw = group(panelGroup, `206-${label.replace(' ', '-').toLowerCase()}-switch`, [
+      x,
+      1.28,
+      1.958,
+    ]);
+    sw.scale.setScalar(2);
+    const swd = detailKit(sw, sw.name);
+    switchGeometry(swd, { style: label === 'GOV' ? 'toggle' : 'guarded', palette: parts });
+    swd.finish();
+    d.text(label, [x, 1.335, 1.955], 0.014, Math.PI, d.ivory);
+  }
   d.box([0.22, 0.16, 0.004], [0.37, 1.04, 1.959], d.ivory);
   d.text('DANGER', [0.37, 1.07, 1.949], 0.024, Math.PI, d.red);
   d.text('TAIL ROTOR', [0.37, 1.025, 1.949], 0.016, Math.PI, m.trim);
-  d.box([0.05, 0.075, 0.03], [-0.54, 0.81, 1.94], d.red);
+  // The FUEL VALVE plate in the corner right of the ADF and under the turn coordinator (PT-HUR
+  // panel photo, and the TH-57C and AB-206 photographs): the guarded switch itself is a station.
+  d.box([0.11, 0.13, 0.004], [-0.565, 0.88, 1.976], mat('206-valve-plate', '#a3aaa8'));
+  // The glare-shield hood over the panel: deepest over the top and down the pilot's side, shallow
+  // on the left, closed off at the panel's foot (PT-HUR, PS-67 and TAM photographs). Drawn both
+  // sides so it reads from the seats and through the windscreen.
+  {
+    const rim = [
+      [-0.65, 0.9, 0.02],
+      [-0.65, 1.16, 0.13],
+      [-0.65, 1.43, 0.26],
+      [-0.62, 1.53, 0.29],
+      [-0.54, 1.56, 0.3],
+      [0.37, 1.56, 0.26],
+      [0.47, 1.5, 0.2],
+      [0.5, 1.4, 0.12],
+      [0.5, 1.12, 0.02],
+    ];
+    const cx = -0.075,
+      cy = 1.16,
+      out = ([x, y, deep], k) => {
+        const l = Math.hypot(x - cx, y - cy);
+        return [x + ((x - cx) / l) * deep * k, y + ((y - cy) / l) * deep * k, 1.98 - deep];
+      },
+      lip = rim.map((p) => out(p, 0.12));
+    for (let i = 0; i < rim.length - 1; i++) {
+      const a = [rim[i][0], rim[i][1], 1.98],
+        b = [rim[i + 1][0], rim[i + 1][1], 1.98],
+        c = lip[i + 1],
+        e = lip[i],
+        n = new T.Vector3(...b)
+          .sub(new T.Vector3(...a))
+          .cross(new T.Vector3(...c).sub(new T.Vector3(...a)));
+      quad(d, a, b, c, e, m.trim, n.toArray());
+      quad(d, a, b, c, e, m.trim, n.negate().toArray());
+    }
+    outline(d, lip, 0.018, m.trim, false);
+  }
   const radio = group(cabin, '206-radio-pedestal', [0, 0.69, 1.61]);
   radio.rotation.x = 0.55;
   const rd = detailKit(radio, '206-radio');
@@ -748,31 +1038,31 @@ function bell206Cockpit(root, m) {
       d.rod([x + sx * 0.13, 1.2, 0.69], [x + sx * 0.025, 0.74, 1.12], 0.015, m.trim);
     }
     d.box([0.065, 0.04, 0.025], [x, 0.75, 1.12], m.metal);
+    // Bent cream-painted cyclic tube out of a floor gaiter, the black Bell grip on top (AB-206B
+    // PS-67 cockpit photo).
     const stick = group(cabin, `206-cyclic-${side}`, [x, 0.44, 1.39]),
       sd = detailKit(stick, 'cyclic');
-    outline(
-      sd,
-      [
+    bellCyclic(sd, {
+      path: [
         [0, 0, 0],
-        [0, 0.26, 0],
-        [0, 0.4, -0.16],
-        [0, 0.54, -0.18],
+        [0, 0.2, 0.005],
+        [0, 0.33, -0.07],
+        [0, 0.44, -0.165],
+        [0, 0.52, -0.182],
       ],
-      0.017,
-      m.trim,
-      false,
-    );
-    sd.box([0.045, 0.12, 0.045], [0, 0.57, -0.18], m.trim);
-    sd.box([0.015, 0.015, 0.013], [0, 0.64, -0.19], sd.red);
+      floor: 0.045,
+      tubeMaterial: parts.white,
+      palette: parts,
+    });
     sd.finish();
     bindings.push(
       { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.15 },
       { node: stick.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.15 },
     );
+    // Cream collective beside the seat, black twist-grip throttle and switch box on its end.
     const collective = group(cabin, `206-collective-${side}`, [x + 0.24, 0.5, 0.82]),
       cd = detailKit(collective, 'collective');
-    cd.rod([0, 0, 0], [0, 0.15, 0.44], 0.021, m.trim);
-    cd.box([0.047, 0.048, 0.13], [0, 0.15, 0.44], m.trim);
+    bellCollective(cd, { end: [0, 0.15, 0.44], tubeMaterial: parts.white, palette: parts });
     cd.finish();
     bindings.push({
       node: collective.name,
@@ -782,9 +1072,10 @@ function bell206Cockpit(root, m) {
       scale: -0.4,
     });
     for (const k of [-1, 1]) {
-      const pg = group(cabin, `206-pedal-${side}-${k}`, [x + k * 0.11, 0.64, 1.86]),
+      // Paddle pedals on posts from the forward floor, raised to stand clear of it.
+      const pg = group(cabin, `206-pedal-${side}-${k}`, [x + k * 0.11, 0.68, 1.86]),
         pd = detailKit(pg, 'pedal');
-      pd.box([0.14, 0.075, 0.02], [0, 0, 0], m.metal);
+      pedalGeometry(pd, { style: 'heli', side: k, drop: 0.06, scale: 0.92, palette: parts });
       pd.finish();
       bindings.push({
         node: pg.name,
@@ -823,10 +1114,51 @@ function bell206Cockpit(root, m) {
   }
   for (const x of [-0.4, 0, 0.4])
     d.rod([x - 0.12, 1.2, -0.67], [x + 0.12, 0.72, -0.16], 0.018, m.trim);
-  // Just under the roof: at 1.68 its top edge showed through the skin.
+  // Overhead console just under the roof (at 1.68 its top edge showed through the skin): two rows
+  // of circuit-breaker buttons aft, the battery, generator and lighting switches forward.
   d.box([0.19, 0.035, 0.46], [0, 1.665, 0.58], m.trim);
-  for (let i = 0; i < 8; i++)
-    d.rod([0, 1.635, 0.39 + i * 0.047], [0, 1.605, 0.4 + i * 0.047], 0.004, m.metal);
+  for (let i = 0; i < 7; i++)
+    for (const x of [-0.045, 0.045])
+      d.add(new T.CylinderGeometry(0.0055, 0.0055, 0.008, 10), m.metal, [
+        x,
+        1.644,
+        0.38 + i * 0.033,
+      ]);
   d.finish();
-  return { nodes: ['cockpit'], bindings };
+  const over = detailKit(cabin, '206-overhead-switches'),
+    down = [Math.PI / 2, Math.PI, 0];
+  for (const [x, z] of [
+    [-0.055, 0.66],
+    [-0.055, 0.73],
+    [0.055, 0.66],
+  ]) {
+    const sw = group(cabin, `206-overhead-switch-${x}-${z}`, [x, 1.6475, z]);
+    sw.rotation.set(...down);
+    const swd = detailKit(sw, sw.name);
+    switchGeometry(swd, { style: 'toggle', palette: parts });
+    swd.finish();
+  }
+  for (const [x, z, label] of [
+    [-0.055, 0.7, 'BATT  GEN'],
+    [0.055, 0.7, 'LTS'],
+  ]) {
+    // Facing down, read with the nose up the page.
+    over.text(label, [x, 1.646, z], 0.008, 0, over.ivory).rotation.set(Math.PI / 2, 0, 0);
+  }
+  over.finish();
+  // The fuel valve switch, guarded under its red cover, on its plate at the instrument panel's
+  // lower right corner in front of the pilot (PT-HUR panel photograph; the TH-57C and AB-206
+  // photographs agree): the engine runs only with it open. The panel group's half scale puts the
+  // plate's face at z 1.974 there at 0.74 + 1.974 / 2.
+  const stations = [
+    {
+      action: 'engine',
+      style: 'guarded',
+      at: [0.0375 - 0.565 / 2, 0.52 + 0.905 / 2, 0.74 + 1.974 / 2],
+      label: 'FUEL VALVE',
+      labelAt: [0, -0.024, -0.001],
+      labelHeight: 0.0055,
+    },
+  ];
+  return { nodes: ['cockpit'], bindings, stations };
 }

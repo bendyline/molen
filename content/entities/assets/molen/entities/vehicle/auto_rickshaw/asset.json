@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:176831f8599beea9c00c64e056e3f0a13e4d036dca9712fbef8cfe20fede88b4",
-  "sourceHash": "sha256:5dae6a20001cfc44f837b9c22154b22a73319e198058e110aae56eea054c8a3a",
+  "hash": "sha256:dc37e651337c049a9750462fc885afe848e9b5b83cddcd9f6290fc4a5404909d",
+  "sourceHash": "sha256:8a773300e7f4c354cd9c58ba50f652bc05604072a24912e2fc99823d4c0c6cfd",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 6862,
-    "vertices": 6115,
+    "triangles": 6738,
+    "vertices": 6099,
     "meshes": 31,
     "primitives": 31,
     "materials": 16,
     "textures": 0,
     "animations": 0,
-    "sizeBytes": 163500
+    "sizeBytes": 163220
   },
   "nodes": [
     {
       "name": "body-vehicle-paint-and-trim",
-      "triangles": 452
+      "triangles": 536
     },
     {
       "name": "body-floor-rubber",
@@ -51,7 +51,7 @@
     },
     {
       "name": "body-rubber-and-trim",
-      "triangles": 1240
+      "triangles": 1156
     },
     {
       "name": "body-glazing",
@@ -139,11 +139,31 @@
     },
     {
       "name": "rider-controls-detail-trim",
-      "triangles": 24
+      "triangles": 88
     },
     {
       "name": "rider-controls-detail-alloy",
       "triangles": 48
+    },
+    {
+      "name": "rider-controls-detail-alloy",
+      "triangles": 96
+    },
+    {
+      "name": "rider-controls-detail-lettering",
+      "triangles": 32
+    },
+    {
+      "name": "rider-controls-detail-trim",
+      "triangles": 156
+    },
+    {
+      "name": "rider-controls-detail-red",
+      "triangles": 24
+    },
+    {
+      "name": "rider-controls-instrument-display",
+      "triangles": 12
     },
     {
       "name": "headlights-lit-headlight-emission",
@@ -156,26 +176,6 @@
     {
       "name": "close-detail-detail-trim",
       "triangles": 968
-    },
-    {
-      "name": "close-detail-detail-alloy",
-      "triangles": 128
-    },
-    {
-      "name": "close-detail-detail-lettering",
-      "triangles": 32
-    },
-    {
-      "name": "close-detail-detail-trim",
-      "triangles": 312
-    },
-    {
-      "name": "close-detail-detail-red",
-      "triangles": 24
-    },
-    {
-      "name": "close-detail-instrument-display",
-      "triangles": 12
     },
     {
       "name": "close-detail-detail-red",
@@ -282,14 +282,6 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "headlight-emission",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "detail-lettering",
       "slots": [
         "baseColor"
@@ -307,6 +299,14 @@
     },
     {
       "name": "instrument-display",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "headlight-emission",
       "slots": [
         "baseColor"
       ],
@@ -1028,25 +1028,25 @@
           0.492,
           -0.265,
           1.0025,
-          0.532,
+          0.6147,
           -0.265,
-          1.0375,
+          1.1007,
           0.492,
           -0.265,
-          1.0375,
-          0.532,
+          1.1007,
+          0.6147,
           0.265,
           1.0025,
           0.492,
           0.265,
           1.0025,
-          0.532,
+          0.6147,
           0.265,
-          1.0375,
+          1.1007,
           0.492,
           0.265,
-          1.0375,
-          0.532
+          1.1007,
+          0.6147
         ]
       },
       {
@@ -1076,6 +1076,151 @@
           0.3914,
           1.0337,
           0.5857
+        ]
+      },
+      {
+        "node": "rider-controls-detail-alloy",
+        "points": [
+          -0.044,
+          1.0267,
+          0.508,
+          -0.044,
+          1.0267,
+          0.5882,
+          -0.044,
+          1.0955,
+          0.508,
+          -0.044,
+          1.0955,
+          0.5882,
+          0.044,
+          1.0267,
+          0.508,
+          0.044,
+          1.0267,
+          0.5882,
+          0.044,
+          1.0955,
+          0.508,
+          0.044,
+          1.0955,
+          0.5882
+        ]
+      },
+      {
+        "node": "rider-controls-detail-lettering",
+        "points": [
+          -0.04,
+          1.0448,
+          0.5099,
+          -0.04,
+          1.0448,
+          0.5726,
+          -0.04,
+          1.0946,
+          0.5099,
+          -0.04,
+          1.0946,
+          0.5726,
+          0.04,
+          1.0448,
+          0.5099,
+          0.04,
+          1.0448,
+          0.5726,
+          0.04,
+          1.0946,
+          0.5099,
+          0.04,
+          1.0946,
+          0.5726
+        ]
+      },
+      {
+        "node": "rider-controls-detail-trim",
+        "points": [
+          -0.0364,
+          1.0542,
+          0.5188,
+          -0.0364,
+          1.0542,
+          0.5691,
+          -0.0364,
+          1.0946,
+          0.5188,
+          -0.0364,
+          1.0946,
+          0.5691,
+          0.0364,
+          1.0542,
+          0.5188,
+          0.0364,
+          1.0542,
+          0.5691,
+          0.0364,
+          1.0946,
+          0.5188,
+          0.0364,
+          1.0946,
+          0.5691
+        ]
+      },
+      {
+        "node": "rider-controls-detail-red",
+        "points": [
+          -0.0006,
+          1.0612,
+          0.5211,
+          -0.0006,
+          1.0612,
+          0.5384,
+          -0.0006,
+          1.0752,
+          0.5211,
+          -0.0006,
+          1.0752,
+          0.5384,
+          0.0206,
+          1.0612,
+          0.5211,
+          0.0206,
+          1.0612,
+          0.5384,
+          0.0206,
+          1.0752,
+          0.5211,
+          0.0206,
+          1.0752,
+          0.5384
+        ]
+      },
+      {
+        "node": "rider-controls-instrument-display",
+        "points": [
+          -0.013,
+          1.059,
+          0.5219,
+          -0.013,
+          1.059,
+          0.5294,
+          -0.013,
+          1.0658,
+          0.5219,
+          -0.013,
+          1.0658,
+          0.5294,
+          0.013,
+          1.059,
+          0.5219,
+          0.013,
+          1.059,
+          0.5294,
+          0.013,
+          1.0658,
+          0.5219,
+          0.013,
+          1.0658,
+          0.5294
         ]
       },
       {
@@ -1163,151 +1308,6 @@
           0.6349,
           1.2385,
           1.2655
-        ]
-      },
-      {
-        "node": "close-detail-detail-alloy",
-        "points": [
-          -0.0605,
-          0.9202,
-          0.7175,
-          -0.0605,
-          0.9202,
-          0.7913,
-          -0.0605,
-          1.035,
-          0.7175,
-          -0.0605,
-          1.035,
-          0.7913,
-          0.0605,
-          0.9202,
-          0.7175,
-          0.0605,
-          0.9202,
-          0.7913,
-          0.0605,
-          1.035,
-          0.7175,
-          0.0605,
-          1.035,
-          0.7913
-        ]
-      },
-      {
-        "node": "close-detail-detail-lettering",
-        "points": [
-          -0.055,
-          0.9346,
-          0.7184,
-          -0.055,
-          0.9346,
-          0.7711,
-          -0.055,
-          1.0311,
-          0.7184,
-          -0.055,
-          1.0311,
-          0.7711,
-          0.055,
-          0.9346,
-          0.7184,
-          0.055,
-          0.9346,
-          0.7711,
-          0.055,
-          1.0311,
-          0.7184,
-          0.055,
-          1.0311,
-          0.7711
-        ]
-      },
-      {
-        "node": "close-detail-detail-trim",
-        "points": [
-          -0.0501,
-          0.9518,
-          0.7249,
-          -0.0501,
-          0.9518,
-          0.768,
-          -0.0501,
-          1.0283,
-          0.7249,
-          -0.0501,
-          1.0283,
-          0.768,
-          0.0501,
-          0.9518,
-          0.7249,
-          0.0501,
-          0.9518,
-          0.768,
-          0.0501,
-          1.0283,
-          0.7249,
-          0.0501,
-          1.0283,
-          0.768
-        ]
-      },
-      {
-        "node": "close-detail-detail-red",
-        "points": [
-          -0.0009,
-          0.9605,
-          0.725,
-          -0.0009,
-          0.9605,
-          0.7407,
-          -0.0009,
-          0.9869,
-          0.725,
-          -0.0009,
-          0.9869,
-          0.7407,
-          0.0284,
-          0.9605,
-          0.725,
-          0.0284,
-          0.9605,
-          0.7407,
-          0.0284,
-          0.9869,
-          0.725,
-          0.0284,
-          0.9869,
-          0.7407
-        ]
-      },
-      {
-        "node": "close-detail-instrument-display",
-        "points": [
-          -0.0179,
-          0.9595,
-          0.7265,
-          -0.0179,
-          0.9595,
-          0.7338,
-          -0.0179,
-          0.9696,
-          0.7265,
-          -0.0179,
-          0.9696,
-          0.7338,
-          0.0179,
-          0.9595,
-          0.7265,
-          0.0179,
-          0.9595,
-          0.7338,
-          0.0179,
-          0.9696,
-          0.7265,
-          0.0179,
-          0.9696,
-          0.7338
         ]
       },
       {

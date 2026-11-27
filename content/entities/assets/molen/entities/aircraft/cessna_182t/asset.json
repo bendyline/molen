@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:7040d590c05918a424d6fc953c6489e5b057cc935df7d078219d43ce43d9e81b",
-  "sourceHash": "sha256:326278f781ea8494ec33b6dfd078802d8d13ed22c5699648ddd30dc512dd7930",
+  "hash": "sha256:01516cf2df70fe5fe7329476a69341673fcab4f4ff9e5f832823372978084b1f",
+  "sourceHash": "sha256:d0946aee81cb36068ca390e8c892bbc12f2aa7e02312c5e5b15ba290ea64bd7c",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 34990,
-    "vertices": 36456,
-    "meshes": 122,
-    "primitives": 122,
-    "materials": 24,
+    "triangles": 46331,
+    "vertices": 50604,
+    "meshes": 147,
+    "primitives": 147,
+    "materials": 39,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 1595156
+    "sizeBytes": 1930592
   },
   "nodes": [
     {
@@ -76,6 +76,14 @@
     {
       "name": "Skylane-shell-Skylane-tires",
       "triangles": 336
+    },
+    {
+      "name": "Skylane-shell-Skylane-white-lining",
+      "triangles": 586
+    },
+    {
+      "name": "Skylane-shell-Skylane-alloy-lining",
+      "triangles": 134
     },
     {
       "name": "Skylane-flap--1-Skylane-white",
@@ -163,43 +171,71 @@
     },
     {
       "name": "Skylane-cabin-Skylane-panel",
-      "triangles": 69
+      "triangles": 68
     },
     {
       "name": "Skylane-cabin-Skylane-trim",
-      "triangles": 1281
+      "triangles": 1581
     },
     {
       "name": "Skylane-cabin-Skylane-instrument-black",
-      "triangles": 320
+      "triangles": 332
     },
     {
       "name": "Skylane-cabin-detail-alloy",
-      "triangles": 4088
+      "triangles": 4136
     },
     {
       "name": "Skylane-cabin-detail-trim",
-      "triangles": 992
+      "triangles": 1100
     },
     {
       "name": "Skylane-cabin-detail-lettering",
-      "triangles": 960
+      "triangles": 1068
     },
     {
       "name": "Skylane-cabin-Skylane-instrument-amber",
       "triangles": 24
     },
     {
+      "name": "Skylane-cabin-Skylane-kap-lcd",
+      "triangles": 12
+    },
+    {
+      "name": "Skylane-cabin-Skylane-compass-case",
+      "triangles": 72
+    },
+    {
       "name": "Skylane-cabin-Skylane-alloy",
-      "triangles": 768
+      "triangles": 1360
+    },
+    {
+      "name": "Skylane-cabin-flight-control-panel",
+      "triangles": 156
+    },
+    {
+      "name": "Skylane-cabin-flight-control-black",
+      "triangles": 188
+    },
+    {
+      "name": "Skylane-cabin-flight-control-legend",
+      "triangles": 240
     },
     {
       "name": "Skylane-cabin-Skylane-seats",
-      "triangles": 160
+      "triangles": 216
+    },
+    {
+      "name": "Skylane-cabin-Skylane-sidewall",
+      "triangles": 2336
+    },
+    {
+      "name": "Skylane-cabin-Skylane-headliner",
+      "triangles": 120
     },
     {
       "name": "Skylane-cabin-Skylane-instrument-ink",
-      "triangles": 180
+      "triangles": 368
     },
     {
       "name": "Skylane-cabin-Skylane-instrument-ink-display-print",
@@ -207,7 +243,7 @@
     },
     {
       "name": "Skylane-cabin-Skylane-instrument-ink-panel-print",
-      "triangles": 82
+      "triangles": 112
     },
     {
       "name": "Skylane-PFD-horizon-fixed-Skylane-instrument-black",
@@ -516,42 +552,6 @@
     {
       "name": "Skylane-PFD-altitude-1-4-Skylane-instrument-ink",
       "triangles": 12
-    },
-    {
-      "name": "Skylane-PFD-altitude-1-5-Skylane-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skylane-PFD-altitude-1-6-Skylane-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skylane-PFD-altitude-2-0-Skylane-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skylane-PFD-altitude-2-1-Skylane-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skylane-PFD-altitude-2-2-Skylane-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skylane-PFD-altitude-2-3-Skylane-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skylane-PFD-altitude-2-4-Skylane-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skylane-PFD-altitude-2-5-Skylane-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Skylane-PFD-altitude-2-6-Skylane-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -630,6 +630,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Skylane-panel-panel",
       "slots": [
         "baseColor",
@@ -687,6 +695,22 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "Skylane-kap-lcd",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Skylane-compass-case",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Skylane-alloy-brushed",
       "slots": [
         "baseColor",
@@ -698,7 +722,50 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "flight-control-panel-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-black",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Skylane-seats",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Skylane-sidewall",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Skylane-headliner",
       "slots": [
         "baseColor"
       ],
@@ -756,12 +823,75 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Skylane-prop-blue",
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-propeller",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-knob",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-tread",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-steel",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
     }
   ],
   "collision": {
@@ -1025,6 +1155,64 @@
           1.4476,
           0.444,
           1.8691
+        ]
+      },
+      {
+        "node": "Skylane-shell-Skylane-white-lining",
+        "points": [
+          -0.6317,
+          0.4876,
+          -1.1275,
+          -0.6317,
+          0.4876,
+          2.5371,
+          -0.6317,
+          1.938,
+          -1.1275,
+          -0.6317,
+          1.938,
+          2.5371,
+          0.6317,
+          0.4876,
+          -1.1275,
+          0.6317,
+          0.4876,
+          2.5371,
+          0.6317,
+          1.938,
+          -1.1275,
+          0.6317,
+          1.938,
+          2.5371
+        ]
+      },
+      {
+        "node": "Skylane-shell-Skylane-alloy-lining",
+        "points": [
+          -0.5997,
+          0.6211,
+          -0.2702,
+          -0.5997,
+          0.6211,
+          1.6178,
+          -0.5997,
+          1.7613,
+          -0.2702,
+          -0.5997,
+          1.7613,
+          1.6178,
+          0.5997,
+          0.6211,
+          -0.2702,
+          0.5997,
+          0.6211,
+          1.6178,
+          0.5997,
+          1.7613,
+          -0.2702,
+          0.5997,
+          1.7613,
+          1.6178
         ]
       },
       {
@@ -1668,28 +1856,28 @@
       {
         "node": "Skylane-cabin-Skylane-trim",
         "points": [
-          -0.5547,
+          -0.5725,
           0.6024,
           -1.05,
-          -0.5547,
-          0.6024,
-          1.61,
-          -0.5547,
-          1.5757,
-          -1.05,
-          -0.5547,
-          1.5757,
-          1.61,
-          0.5547,
-          0.6024,
-          -1.05,
-          0.5547,
+          -0.5725,
           0.6024,
           1.61,
-          0.5547,
+          -0.5725,
           1.5757,
           -1.05,
-          0.5547,
+          -0.5725,
+          1.5757,
+          1.61,
+          0.5725,
+          0.6024,
+          -1.05,
+          0.5725,
+          0.6024,
+          1.61,
+          0.5725,
+          1.5757,
+          -1.05,
+          0.5725,
           1.5757,
           1.61
         ]
@@ -1699,25 +1887,25 @@
         "points": [
           -0.52,
           1.0684,
-          1.4825,
+          1.4765,
           -0.52,
           1.0684,
           1.5105,
           -0.52,
           1.4978,
-          1.4825,
+          1.4765,
           -0.52,
           1.4978,
           1.5105,
           0.52,
           1.0684,
-          1.4825,
+          1.4765,
           0.52,
           1.0684,
           1.5105,
           0.52,
           1.4978,
-          1.4825,
+          1.4765,
           0.52,
           1.4978,
           1.5105
@@ -1728,25 +1916,25 @@
         "points": [
           -0.4954,
           1.1055,
-          1.4715,
+          1.4615,
           -0.4954,
           1.1055,
           1.507,
           -0.4954,
           1.4918,
-          1.4715,
+          1.4615,
           -0.4954,
           1.4918,
           1.507,
           0.5381,
           1.1055,
-          1.4715,
+          1.4615,
           0.5381,
           1.1055,
           1.507,
           0.5381,
           1.4918,
-          1.4715,
+          1.4615,
           0.5381,
           1.4918,
           1.507
@@ -1757,25 +1945,25 @@
         "points": [
           -0.4926,
           1.1063,
-          1.471,
+          1.461,
           -0.4926,
           1.1063,
           1.486,
           -0.4926,
           1.4913,
-          1.471,
+          1.461,
           -0.4926,
           1.4913,
           1.486,
           0.5353,
           1.1063,
-          1.471,
+          1.461,
           0.5353,
           1.1063,
           1.486,
           0.5353,
           1.4913,
-          1.471,
+          1.461,
           0.5353,
           1.4913,
           1.486
@@ -1786,25 +1974,25 @@
         "points": [
           -0.2399,
           1.1104,
-          1.468,
+          1.458,
           -0.2399,
           1.1104,
           1.481,
           -0.2399,
           1.4909,
-          1.468,
+          1.458,
           -0.2399,
           1.4909,
           1.481,
           0.4302,
           1.1104,
-          1.468,
+          1.458,
           0.4302,
           1.1104,
           1.481,
           0.4302,
           1.4909,
-          1.468,
+          1.458,
           0.4302,
           1.4909,
           1.481
@@ -1840,61 +2028,264 @@
         ]
       },
       {
+        "node": "Skylane-cabin-Skylane-kap-lcd",
+        "points": [
+          -0.0555,
+          1.149,
+          1.4735,
+          -0.0555,
+          1.149,
+          1.4745,
+          -0.0555,
+          1.16,
+          1.4735,
+          -0.0555,
+          1.16,
+          1.4745,
+          0.0065,
+          1.149,
+          1.4735,
+          0.0065,
+          1.149,
+          1.4745,
+          0.0065,
+          1.16,
+          1.4735,
+          0.0065,
+          1.16,
+          1.4745
+        ]
+      },
+      {
+        "node": "Skylane-cabin-Skylane-compass-case",
+        "points": [
+          -0.0283,
+          1.7717,
+          0.848,
+          -0.0283,
+          1.7717,
+          0.906,
+          -0.0283,
+          1.8283,
+          0.848,
+          -0.0283,
+          1.8283,
+          0.906,
+          0.0283,
+          1.7717,
+          0.848,
+          0.0283,
+          1.7717,
+          0.906,
+          0.0283,
+          1.8283,
+          0.848,
+          0.0283,
+          1.8283,
+          0.906
+        ]
+      },
+      {
         "node": "Skylane-cabin-Skylane-alloy",
         "points": [
-          -0.4413,
-          0.65,
+          -0.5651,
+          0.6499,
           -0.643,
-          -0.4413,
-          0.65,
-          1.4777,
-          -0.4413,
-          1.2791,
+          -0.5651,
+          0.6499,
+          1.4835,
+          -0.5651,
+          1.8787,
           -0.643,
-          -0.4413,
-          1.2791,
-          1.4777,
-          0.4413,
-          0.65,
+          -0.5651,
+          1.8787,
+          1.4835,
+          0.5651,
+          0.6499,
           -0.643,
-          0.4413,
-          0.65,
-          1.4777,
-          0.4413,
-          1.2791,
+          0.5651,
+          0.6499,
+          1.4835,
+          0.5651,
+          1.8787,
           -0.643,
-          0.4413,
-          1.2791,
-          1.4777
+          0.5651,
+          1.8787,
+          1.4835
+        ]
+      },
+      {
+        "node": "Skylane-cabin-flight-control-panel",
+        "points": [
+          -0.1609,
+          1.0793,
+          1.4815,
+          -0.1609,
+          1.0793,
+          1.4865,
+          -0.1609,
+          1.1393,
+          1.4815,
+          -0.1609,
+          1.1393,
+          1.4865,
+          -0.1389,
+          1.0793,
+          1.4815,
+          -0.1389,
+          1.0793,
+          1.4865,
+          -0.1389,
+          1.1393,
+          1.4815,
+          -0.1389,
+          1.1393,
+          1.4865
+        ]
+      },
+      {
+        "node": "Skylane-cabin-flight-control-black",
+        "points": [
+          -0.1539,
+          1.0853,
+          1.48,
+          -0.1539,
+          1.0853,
+          1.482,
+          -0.1539,
+          1.1333,
+          1.48,
+          -0.1539,
+          1.1333,
+          1.482,
+          -0.1459,
+          1.0853,
+          1.48,
+          -0.1459,
+          1.0853,
+          1.482,
+          -0.1459,
+          1.1333,
+          1.48,
+          -0.1459,
+          1.1333,
+          1.482
+        ]
+      },
+      {
+        "node": "Skylane-cabin-flight-control-legend",
+        "points": [
+          -0.1457,
+          1.0867,
+          1.4798,
+          -0.1457,
+          1.0867,
+          1.4808,
+          -0.1457,
+          1.1319,
+          1.4798,
+          -0.1457,
+          1.1319,
+          1.4808,
+          -0.1408,
+          1.0867,
+          1.4798,
+          -0.1408,
+          1.0867,
+          1.4808,
+          -0.1408,
+          1.1319,
+          1.4798,
+          -0.1408,
+          1.1319,
+          1.4808
         ]
       },
       {
         "node": "Skylane-cabin-Skylane-seats",
         "points": [
-          -0.5575,
+          -0.585,
           0.71,
           -0.87,
-          -0.5575,
-          0.71,
-          0.8,
-          -0.5575,
-          1.864,
-          -0.87,
-          -0.5575,
-          1.864,
-          0.8,
-          0.5575,
-          0.71,
-          -0.87,
-          0.5575,
+          -0.585,
           0.71,
           0.8,
-          0.5575,
+          -0.585,
           1.864,
           -0.87,
-          0.5575,
+          -0.585,
+          1.864,
+          0.8,
+          0.585,
+          0.71,
+          -0.87,
+          0.585,
+          0.71,
+          0.8,
+          0.585,
+          1.864,
+          -0.87,
+          0.585,
           1.864,
           0.8
+        ]
+      },
+      {
+        "node": "Skylane-cabin-Skylane-sidewall",
+        "points": [
+          -0.5899,
+          0.58,
+          -1.05,
+          -0.5899,
+          0.58,
+          1.625,
+          -0.5899,
+          1.8908,
+          -1.05,
+          -0.5899,
+          1.8908,
+          1.625,
+          0.5899,
+          0.58,
+          -1.05,
+          0.5899,
+          0.58,
+          1.625,
+          0.5899,
+          1.8908,
+          -1.05,
+          0.5899,
+          1.8908,
+          1.625
+        ]
+      },
+      {
+        "node": "Skylane-cabin-Skylane-headliner",
+        "points": [
+          -0.5467,
+          1.8281,
+          -0.518,
+          -0.5467,
+          1.8281,
+          0.646,
+          -0.5467,
+          1.923,
+          -0.518,
+          -0.5467,
+          1.923,
+          0.646,
+          0.5468,
+          1.8281,
+          -0.518,
+          0.5468,
+          1.8281,
+          0.646,
+          0.5468,
+          1.923,
+          -0.518,
+          0.5468,
+          1.923,
+          0.646
         ]
       },
       {
@@ -1907,22 +2298,22 @@
           0.6726,
           1.5024,
           -0.0541,
-          1.474,
+          1.7715,
           0.7152,
           -0.0541,
-          1.474,
+          1.7715,
           1.5024,
-          0.4658,
+          0.4648,
           0.6726,
           0.7152,
-          0.4658,
+          0.4648,
           0.6726,
           1.5024,
-          0.4658,
-          1.474,
+          0.4648,
+          1.7715,
           0.7152,
-          0.4658,
-          1.474,
+          0.4648,
+          1.7715,
           1.5024
         ]
       },
@@ -1958,28 +2349,28 @@
       {
         "node": "Skylane-cabin-Skylane-instrument-ink-panel-print",
         "points": [
-          -0.4159,
+          -0.4158,
           0.696,
           0.96,
-          -0.4159,
-          0.696,
-          1.5,
-          -0.4159,
-          1.4831,
-          0.96,
-          -0.4159,
-          1.4831,
-          1.5,
-          0.0117,
-          0.696,
-          0.96,
-          0.0117,
+          -0.4158,
           0.696,
           1.5,
-          0.0117,
+          -0.4158,
           1.4831,
           0.96,
-          0.0117,
+          -0.4158,
+          1.4831,
+          1.5,
+          0.5062,
+          0.696,
+          0.96,
+          0.5062,
+          0.696,
+          1.5,
+          0.5062,
+          1.4831,
+          0.96,
+          0.5062,
           1.4831,
           1.5
         ]
@@ -4214,267 +4605,6 @@
           1.5016,
           0.1802,
           1.4245,
-          1.5024
-        ]
-      },
-      {
-        "node": "Skylane-PFD-altitude-1-5-Skylane-instrument-ink",
-        "points": [
-          0.1796,
-          1.4255,
-          1.5016,
-          0.1796,
-          1.4255,
-          1.5024,
-          0.1796,
-          1.4283,
-          1.5016,
-          0.1796,
-          1.4283,
-          1.5024,
-          0.1802,
-          1.4255,
-          1.5016,
-          0.1802,
-          1.4255,
-          1.5024,
-          0.1802,
-          1.4283,
-          1.5016,
-          0.1802,
-          1.4283,
-          1.5024
-        ]
-      },
-      {
-        "node": "Skylane-PFD-altitude-1-6-Skylane-instrument-ink",
-        "points": [
-          0.1768,
-          1.4247,
-          1.5016,
-          0.1768,
-          1.4247,
-          1.5024,
-          0.1768,
-          1.4253,
-          1.5016,
-          0.1768,
-          1.4253,
-          1.5024,
-          0.1795,
-          1.4247,
-          1.5016,
-          0.1795,
-          1.4247,
-          1.5024,
-          0.1795,
-          1.4253,
-          1.5016,
-          0.1795,
-          1.4253,
-          1.5024
-        ]
-      },
-      {
-        "node": "Skylane-PFD-altitude-2-0-Skylane-instrument-ink",
-        "points": [
-          0.1718,
-          1.4285,
-          1.5016,
-          0.1718,
-          1.4285,
-          1.5024,
-          0.1718,
-          1.429,
-          1.5016,
-          0.1718,
-          1.429,
-          1.5024,
-          0.1746,
-          1.4285,
-          1.5016,
-          0.1746,
-          1.4285,
-          1.5024,
-          0.1746,
-          1.429,
-          1.5016,
-          0.1746,
-          1.429,
-          1.5024
-        ]
-      },
-      {
-        "node": "Skylane-PFD-altitude-2-1-Skylane-instrument-ink",
-        "points": [
-          0.1712,
-          1.4255,
-          1.5016,
-          0.1712,
-          1.4255,
-          1.5024,
-          0.1712,
-          1.4283,
-          1.5016,
-          0.1712,
-          1.4283,
-          1.5024,
-          0.1718,
-          1.4255,
-          1.5016,
-          0.1718,
-          1.4255,
-          1.5024,
-          0.1718,
-          1.4283,
-          1.5016,
-          0.1718,
-          1.4283,
-          1.5024
-        ]
-      },
-      {
-        "node": "Skylane-PFD-altitude-2-2-Skylane-instrument-ink",
-        "points": [
-          0.1712,
-          1.4217,
-          1.5016,
-          0.1712,
-          1.4217,
-          1.5024,
-          0.1712,
-          1.4245,
-          1.5016,
-          0.1712,
-          1.4245,
-          1.5024,
-          0.1718,
-          1.4217,
-          1.5016,
-          0.1718,
-          1.4217,
-          1.5024,
-          0.1718,
-          1.4245,
-          1.5016,
-          0.1718,
-          1.4245,
-          1.5024
-        ]
-      },
-      {
-        "node": "Skylane-PFD-altitude-2-3-Skylane-instrument-ink",
-        "points": [
-          0.1718,
-          1.421,
-          1.5016,
-          0.1718,
-          1.421,
-          1.5024,
-          0.1718,
-          1.4215,
-          1.5016,
-          0.1718,
-          1.4215,
-          1.5024,
-          0.1746,
-          1.421,
-          1.5016,
-          0.1746,
-          1.421,
-          1.5024,
-          0.1746,
-          1.4215,
-          1.5016,
-          0.1746,
-          1.4215,
-          1.5024
-        ]
-      },
-      {
-        "node": "Skylane-PFD-altitude-2-4-Skylane-instrument-ink",
-        "points": [
-          0.1747,
-          1.4217,
-          1.5016,
-          0.1747,
-          1.4217,
-          1.5024,
-          0.1747,
-          1.4245,
-          1.5016,
-          0.1747,
-          1.4245,
-          1.5024,
-          0.1752,
-          1.4217,
-          1.5016,
-          0.1752,
-          1.4217,
-          1.5024,
-          0.1752,
-          1.4245,
-          1.5016,
-          0.1752,
-          1.4245,
-          1.5024
-        ]
-      },
-      {
-        "node": "Skylane-PFD-altitude-2-5-Skylane-instrument-ink",
-        "points": [
-          0.1747,
-          1.4255,
-          1.5016,
-          0.1747,
-          1.4255,
-          1.5024,
-          0.1747,
-          1.4283,
-          1.5016,
-          0.1747,
-          1.4283,
-          1.5024,
-          0.1752,
-          1.4255,
-          1.5016,
-          0.1752,
-          1.4255,
-          1.5024,
-          0.1752,
-          1.4283,
-          1.5016,
-          0.1752,
-          1.4283,
-          1.5024
-        ]
-      },
-      {
-        "node": "Skylane-PFD-altitude-2-6-Skylane-instrument-ink",
-        "points": [
-          0.1718,
-          1.4247,
-          1.5016,
-          0.1718,
-          1.4247,
-          1.5024,
-          0.1718,
-          1.4253,
-          1.5016,
-          0.1718,
-          1.4253,
-          1.5024,
-          0.1746,
-          1.4247,
-          1.5016,
-          0.1746,
-          1.4247,
-          1.5024,
-          0.1746,
-          1.4253,
-          1.5016,
-          0.1746,
-          1.4253,
           1.5024
         ]
       }

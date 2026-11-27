@@ -1,6 +1,17 @@
 /** MV-22B, from the USAF rescue arrangement and cited cockpit photography.
  * Geometry is original; dimensions without an independent drawing remain estimates. */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitLiner } from './cockpit-fit.mjs';
+import {
+  bar,
+  lathe,
+  loftUp,
+  partPalette,
+  place,
+  roundedBox,
+  contour as section,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -16,6 +27,118 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+
+/** The Osprey's centre stick (cockpit photographs): a rubber boot, a straight shaft and a grip
+ * leaning forward under a broad switch head (trim hat, force-trim release, the red
+ * disconnect), the trigger in front. Pivot at the origin, +Y up, +Z forward. */
+function v22Stick(d, P, { height, rake }) {
+  d.add(
+    lathe(
+      [
+        [0, 0],
+        [0.05, 0],
+        [0.047, 0.016],
+        [0.036, 0.026],
+        [0.034, 0.04],
+        [0.024, 0.052],
+        [0.022, 0.064],
+        [0.016, 0.085],
+        [0.015, 0.095],
+        [0, 0.095],
+      ],
+      18,
+      28,
+    ),
+    P.tread,
+  );
+  const top = [0, height, rake];
+  d.add(bar([0, 0.09, 0], top, 0.013, 14, 0.012), P.alloy);
+  const grip = [
+    [
+      P.grip,
+      loftUp([
+        { y: 0, points: section(0, 0, 0.019, 0.022, 16, 2.2) },
+        { y: 0.05, points: section(0, 0.006, 0.021, 0.025, 16, 2.2) },
+        { y: 0.095, points: section(0, 0.014, 0.022, 0.027, 16, 2.3) },
+        { y: 0.12, points: section(0, 0.02, 0.03, 0.033, 16, 2.8) },
+        { y: 0.142, points: section(0, 0.022, 0.03, 0.032, 16, 2.8) },
+        { y: 0.152, points: section(0, 0.022, 0.018, 0.02, 16, 2.4) },
+      ]),
+    ],
+    [P.black, new T.CylinderGeometry(0.007, 0.007, 0.008, 12).translate(0.008, 0.154, 0.016)],
+    [P.black, roundedBox([0.01, 0.008, 0.01], 0.002).translate(-0.014, 0.151, 0.03)],
+    [
+      P.red,
+      new T.CylinderGeometry(0.0055, 0.0055, 0.006, 12)
+        .rotateZ(Math.PI / 2)
+        .translate(0.03, 0.13, 0.02),
+    ],
+    [P.black, roundedBox([0.009, 0.012, 0.01], 0.002).translate(-0.03, 0.128, 0.014)],
+    [
+      P.black,
+      tube(
+        [
+          [0, 0.112, 0.045],
+          [0, 0.098, 0.056],
+          [0, 0.084, 0.05],
+        ],
+        0.0055,
+        10,
+      ),
+    ],
+  ];
+  for (const [material, geometry] of grip)
+    d.add(place(geometry, top, [Math.atan2(rake, height) + 0.18, 0, 0]), material);
+}
+/** The thrust control lever (TCL): an arm out of its quadrant to a broad, canted grip whose
+ * switches face the pilot; the nacelle thumbwheel is its own node. Pivot at the origin. */
+function v22ThrustLever(d, P, side) {
+  d.add(
+    tube(
+      [
+        [0, 0, 0],
+        [0, 0.16, 0.07],
+        [0, 0.27, 0.14],
+      ],
+      0.014,
+      14,
+    ),
+    P.alloy,
+  );
+  const head = [0, 0.3, 0.16],
+    cant = [-0.35, 0, 0];
+  d.add(
+    place(
+      loftUp([
+        { y: -0.04, points: section(0, 0, 0.026, 0.035, 16, 2.6) },
+        { y: 0.0, points: section(side * 0.004, -0.004, 0.034, 0.05, 16, 2.6) },
+        { y: 0.035, points: section(side * 0.006, -0.008, 0.035, 0.055, 16, 2.8) },
+        { y: 0.055, points: section(side * 0.004, -0.01, 0.028, 0.047, 16, 2.6) },
+        { y: 0.062, points: section(side * 0.004, -0.01, 0.016, 0.028, 16, 2.4) },
+      ]),
+      head,
+      cant,
+    ),
+    P.grip,
+  );
+  for (const [x, y, z] of [
+    [-0.02, 0.058, -0.02],
+    [0.0, 0.06, 0.012],
+    [-0.03, 0.03, -0.045],
+  ])
+    d.add(
+      place(roundedBox([0.012, 0.01, 0.012], 0.003).translate(x * side, y, z), head, cant),
+      P.black,
+    );
+  d.add(
+    place(
+      new T.CylinderGeometry(0.005, 0.005, 0.006, 12).translate(-side * 0.012, 0.062, -0.03),
+      head,
+      cant,
+    ),
+    P.red,
+  );
+}
 export const mv22Frame = () => ({
   heli: false,
   fighter: false,
@@ -790,11 +913,11 @@ export function buildMV22(s) {
   ellipsoid(d, [nozzle, 1.02, 8.64], [0.065, 0.065, 0.05], dark, 12);
   ellipsoid(d, [0, 3.37, 2], [0.055, 0.065, 0.08], d.red, 8);
   d.finish();
-  const interior = cockpit(root, { paint, dark, metal, glass });
+  const { stations: controlStations, ...interior } = cockpit(root, { paint, dark, metal, glass });
   cleanGeometry(root);
   return {
     root,
-    frame: mv22Frame(),
+    frame: { ...mv22Frame(), controlStations },
     enginePoints,
     visual: { rotors, gearNodes: [], flaps: [], ailerons: [], animation: { bindings }, interior },
     modelSignals: {
@@ -810,6 +933,7 @@ function cockpit(root, m) {
     ins = instrumentGeometry(cabin, 'MV22'),
     { bindings, derived, ink, black } = ins,
     pt = panelTools(d);
+  const P = partPalette();
   const face = mat('MV22-panel', '#343f3f', { side: T.DoubleSide }),
     liner = mat('MV22-liner', '#808884', { side: T.DoubleSide }),
     seat = mat('MV22-seat', '#4b5550'),
@@ -880,21 +1004,37 @@ function cockpit(root, m) {
   holes.push(rect(px(783), py(615), 0.085, 0.085, z));
   sheet(d, contour, face, [0, 0, -1], holes);
   outline(d, contour, 0.011, m.dark);
+  // Each display is its own square bezel, buttons on all four sides, with panel showing in the
+  // 2.5 cm gap between a pilot's pair (cockpit photographs): the bezel frames the recessed screen.
+  const bezel = mat('MV22-display-bezel', '#1e2427', { roughness: 0.7 }),
+    bw = 0.255,
+    sw = 0.205,
+    sh = 0.255,
+    sy = -0.008,
+    front = z - 0.016;
   for (const [i, x] of displayXs.entries()) {
     const y = py(630),
-      outer = rect(x, y, 0.27, 0.335, z - 0.004),
+      screen = rect(x, y + sy, sw, sh, z - 0.004),
       hole = i === 0 || i === 3 ? [rect(x, py(602), 0.15, 0.12, z - 0.004)] : [];
-    sheet(d, outer, black, [0, 0, -1], hole);
-    outline(d, outer, 0.009, face);
-    for (const side of [-1, 1])
+    sheet(d, screen, black, [0, 0, -1], hole);
+    const top = y + sy + sh / 2,
+      bottom = y + sy - sh / 2;
+    d.box([bw, y + 0.16 - top, 0.016], [x, (y + 0.16 + top) / 2, z - 0.008], bezel);
+    d.box([bw, bottom - (y - 0.16), 0.016], [x, (bottom + y - 0.16) / 2, z - 0.008], bezel);
+    for (const side of [-1, 1]) {
+      d.box([(bw - sw) / 2, sh, 0.016], [x + (side * (bw + sw)) / 4, y + sy, z - 0.008], bezel);
       for (let j = 0; j < 6; j++) {
-        d.box([0.015, 0.018, 0.012], [x + side * 0.15, y - 0.118 + j * 0.048, z - 0.014], face);
-        d.box([0.006, 0.002, 0.001], [x + side * 0.15, y - 0.118 + j * 0.048, z - 0.021], ink);
+        const by = y - 0.118 + j * 0.048;
+        d.box([0.012, 0.016, 0.005], [x + side * 0.115, by, front - 0.0025], face);
+        d.box([0.006, 0.002, 0.001], [x + side * 0.115, by, front - 0.0055], ink);
       }
+    }
     for (let j = 0; j < 5; j++)
-      d.box([0.025, 0.013, 0.009], [x - 0.1 + j * 0.05, y + 0.184, z - 0.012], face);
-    pt.knob(x - 0.125, y - 0.174, z - 0.018, 0.013);
-    pt.knob(x + 0.125, y - 0.174, z - 0.018, 0.013);
+      d.box([0.024, 0.013, 0.005], [x - 0.08 + j * 0.04, y + 0.14, front - 0.0025], face);
+    for (let j = 0; j < 4; j++)
+      d.box([0.022, 0.011, 0.005], [x - 0.06 + j * 0.04, y - 0.148, front - 0.0025], face);
+    pt.knob(x - 0.106, y - 0.148, front - 0.0065, 0.008);
+    pt.knob(x + 0.106, y - 0.148, front - 0.0065, 0.008);
     if (i === 0 || i === 3) {
       ins.horizon(`pfd-${i}`, [x, py(602), z + 0.018], 0.15, 0.12, { blankBackdrop: true });
       ins.readout(`tas-${i}`, [x + 0.075, y - 0.045, z - 0.012], 'knots', 3, 0.019);
@@ -927,11 +1067,11 @@ function cockpit(root, m) {
           path: ['engines', `engine-${j}`, 'rpm'],
         };
         derived[`enginePercent${j}`] = { op: 'multiply', args: [`engine${j}`, 100] };
-        const xx = x + (j === 1 ? 0.064 : -0.064);
+        const xx = x + (j === 1 ? 0.056 : -0.056);
         ins.dial(
           `rpm-${i}-${j}`,
           [xx, y + 0.07, z - 0.012],
-          0.046,
+          0.04,
           `enginePercent${j}`,
           [
             [0, -2.4],
@@ -977,17 +1117,18 @@ function cockpit(root, m) {
   d.add(new T.CircleGeometry(0.056, 28).rotateY(Math.PI), black, at(851, 725, -0.006));
   d.ring(0.057, 0.005, at(851, 725, -0.01), m.metal);
   d.text('NAV --', at(851, 725, -0.012), 0.011, Math.PI, ink, 'display');
-  beveledBox(d, [0.27, 0.145, 0.05], at(650, 610, 0.025), m.dark, 0.012);
-  d.text('SYSTEM --', at(650, 610, -0.003), 0.018, Math.PI, ink);
-  // Upper autoflight controller, fire handle and side radio windows. No invented modes or values.
+  // The small display beside the standby instruments at the head of the centre column (cockpit
+  // photographs); the landing gear, flap and parking brake stand at the console's foot.
+  d.box([0.2, 0.135, 0.012], [px(650), 2.083, z - 0.006], m.dark);
+  d.box([0.15, 0.1, 0.004], [px(650) + 0.012, 2.083, z - 0.013], black);
+  for (const y of [2.113, 2.053]) pt.knob(px(650) - 0.082, y, z - 0.018, 0.009);
+  // Upper autoflight controller and side radio windows. No invented modes or values.
   beveledBox(d, [0.82, 0.145, 0.12], [0, 2.22, 6.72], face, 0.012);
   for (let i = 0; i < 6; i++) {
     pt.knob(-0.34 + i * 0.135, 2.21, 6.65, 0.017);
     d.box([0.035, 0.026, 0.012], [-0.34 + i * 0.135, 2.17, 6.65], m.dark);
   }
   d.text('AFCS', [0, 2.274, 6.65], 0.015, Math.PI, ink);
-  d.box([0.15, 0.033, 0.06], [0, 2.32, 6.7], d.red);
-  d.text('APU', [0, 2.32, 6.665], 0.015, Math.PI, ink);
   // Radio heads sit on the panel's top edge, under the side glazing (x 0.89 m there); they also
   // hide the top of each attitude card's mask.
   for (const side of [-1, 1]) {
@@ -996,20 +1137,31 @@ function cockpit(root, m) {
     pt.knob(side * 0.83, 2.295, 6.63, 0.017);
   }
   d.box([1.7, 0.055, 0.22], [0, 2.155, 6.78], m.dark);
-  // Lower central display and two independent keypads on a sloping pedestal.
-  const console = group(cabin, 'MV22-console', [0.045, 1.68, 6.36]);
-  console.rotation.x = 0.55;
+  // The centre pedestal between the seats, as in the cockpit photographs: the central display at
+  // its head under the panel, the two keypads side by side below it and, at its foot, the landing
+  // gear handle, the flap lever and the parking brake handle (control stations, below). Its foot
+  // stands on the crew deck; its head stays under the centre column's standby instruments and
+  // inside the inboard displays' edges as seen from either seat.
+  const consoleAt = [0.045, 1.78, 6.3],
+    tilt = 0.55,
+    onConsole = (x, y, zz = -0.046) => [
+      consoleAt[0] + x,
+      consoleAt[1] + y * Math.cos(tilt) - zz * Math.sin(tilt),
+      consoleAt[2] + y * Math.sin(tilt) + zz * Math.cos(tilt),
+    ];
+  const console = group(cabin, 'MV22-console', consoleAt);
+  console.rotation.x = tilt;
   const cd = detailKit(console, console.name),
     cp = panelTools(cd);
-  beveledBox(cd, [0.57, 0.78, 0.09], [0, 0, 0], face, 0.025);
-  cd.box([0.34, 0.27, 0.02], [0, 0.2, -0.06], black);
-  outline(cd, rect(0, 0.2, 0.39, 0.32, -0.075), 0.01, m.dark);
-  cd.text('NAVIGATION --', [0, 0.2, -0.078], 0.022, Math.PI, ink);
+  beveledBox(cd, [0.5, 0.88, 0.09], [0, -0.05, 0], face, 0.025);
+  cd.box([0.26, 0.2, 0.02], [0, 0.255, -0.06], black);
+  outline(cd, rect(0, 0.255, 0.31, 0.25, -0.075), 0.01, m.dark);
+  cd.text('NAVIGATION --', [0, 0.255, -0.078], 0.018, Math.PI, ink);
   for (const side of [-1, 1])
     for (let row = 0; row < 6; row++)
       for (let col = 0; col < 5; col++) {
-        const x = side * 0.145 + (col - 2) * 0.042,
-          y = -0.02 - row * 0.047;
+        const x = side * 0.12 + (col - 2) * 0.038,
+          y = 0.085 - row * 0.047;
         cd.box([0.031, 0.028, 0.012], [x, y, -0.065], m.dark);
         cd.text(
           row < 2 ? String((row * 5 + col) % 10) : ['NAV', 'COM', 'ENT', 'CLR', 'FPL'][col],
@@ -1019,7 +1171,10 @@ function cockpit(root, m) {
           ink,
         );
       }
-  for (const side of [-1, 1]) cp.knob(side * 0.23, 0.32, -0.08, 0.014);
+  for (const side of [-1, 1]) cp.knob(side * 0.2, 0.33, -0.08, 0.014);
+  // Gear, flap and brake plate at the pedestal's foot.
+  cd.box([0.44, 0.17, 0.008], [0, -0.27, -0.049], m.dark);
+  outline(cd, rect(0, -0.27, 0.44, 0.17, -0.0535), 0.0012, ink);
   cd.finish();
   const overhead = group(cabin, 'MV22-overhead', [0, 2.79, 4.5]);
   overhead.rotation.x = -Math.PI / 2;
@@ -1041,7 +1196,7 @@ function cockpit(root, m) {
   }
   op.knob(0.055, -0.12, -0.055, 0.035);
   od.box([0.065, 0.08, 0.035], [-0.12, -0.12, -0.06], d.red);
-  od.text('BATT', [-0.12, -0.045, -0.04], 0.015, Math.PI, ink);
+  od.text('ECS', [-0.12, -0.045, -0.04], 0.015, Math.PI, ink);
   od.text('APU', [0.055, -0.045, -0.04], 0.015, Math.PI, ink);
   for (const side of [-1, 1]) {
     od.box([0.065, 0.22, 0.035], [side * 0.12, 0.4, -0.055], black);
@@ -1099,9 +1254,7 @@ function cockpit(root, m) {
     dd.finish();
     const stick = group(cabin, `MV22-cyclic-${side}`, [x, 1.4, 6.25]),
       sd = detailKit(stick, stick.name);
-    sd.rod([0, 0, 0], [0, 0.58, -0.08], 0.023, m.metal);
-    beveledBox(sd, [0.065, 0.17, 0.075], [0, 0.64, -0.1], m.dark, 0.015);
-    sd.add(new T.CircleGeometry(0.012, 12).rotateY(Math.PI), d.red, [0.013, 0.695, -0.141]);
+    v22Stick(sd, P, { height: 0.56, rake: -0.08 });
     sd.finish();
     bindings.push(
       { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.22 },
@@ -1110,9 +1263,11 @@ function cockpit(root, m) {
     // Each pilot's left-hand thrust lever has the nacelle control thumbwheel.
     const lever = group(cabin, `MV22-thrust-${side}`, [x + 0.28, 1.66, 5.95]),
       ld = detailKit(lever, lever.name);
-    ld.rod([0, 0, 0], [0, 0.3, 0.16], 0.025, m.metal);
-    beveledBox(ld, [0.1, 0.09, 0.15], [0, 0.32, 0.16], m.dark, 0.018);
+    v22ThrustLever(ld, P, side);
     ld.finish();
+    // The TCL's quadrant: a housing from the deck to the lever's pivot, its slot on top.
+    beveledBox(d, [0.11, 0.3, 0.42], [x + 0.28, 1.515, 5.98], face, 0.015);
+    d.box([0.022, 0.003, 0.3], [x + 0.28, 1.666, 5.98], black);
     bindings.push({
       node: lever.name,
       source: 'power',
@@ -1122,7 +1277,19 @@ function cockpit(root, m) {
     });
     const thumb = group(lever, `MV22-nacelle-thumb-${side}`, [0.055, 0.34, 0.16]),
       td = detailKit(thumb, thumb.name);
-    td.add(new T.CylinderGeometry(0.025, 0.025, 0.022, 12).rotateZ(Math.PI / 2), m.metal);
+    // Nacelle thumbwheel: a knurled wheel in the grip's forward shoulder.
+    td.add(new T.CylinderGeometry(0.017, 0.017, 0.012, 18).rotateZ(Math.PI / 2), P.steel);
+    for (let k = 0; k < 9; k++) {
+      const a = (k / 9) * Math.PI * 2;
+      td.add(
+        new T.BoxGeometry(0.013, 0.004, 0.004).translate(
+          0,
+          Math.cos(a) * 0.017,
+          Math.sin(a) * 0.017,
+        ),
+        P.black,
+      );
+    }
     td.finish();
     bindings.push({
       node: thumb.name,
@@ -1134,14 +1301,23 @@ function cockpit(root, m) {
     for (const dx of [-0.16, 0.16]) {
       const pg = group(cabin, `MV22-pedal-${side}-${Math.sign(dx)}`, [x + dx, 1.52, 6.61]),
         pd = detailKit(pg, pg.name);
-      pd.box([0.18, 0.2, 0.045], [0, 0, 0], m.metal);
-      for (let j = 0; j < 5; j++)
-        pd.rod(
-          [-0.075, -0.08 + j * 0.04, -0.028],
-          [0.075, -0.08 + j * 0.04, -0.028],
-          0.005,
-          m.dark,
-        );
+      // A broad rubber-faced pedal with its toe-brake hinge, on an arm to the floor pivot.
+      const lean = [0.26, 0, 0];
+      pd.add(place(roundedBox([0.13, 0.17, 0.016], 0.016, 1), [0, 0, 0], lean), P.steel);
+      pd.add(place(roundedBox([0.108, 0.13, 0.005], 0.012, 1), [0, 0.01, -0.0095], lean), P.tread);
+      pd.add(bar([-0.06, -0.09, 0.02], [0.06, -0.09, 0.02], 0.009, 12), P.alloy);
+      pd.add(
+        tube(
+          [
+            [0, -0.08, 0.02],
+            [0, -0.11, 0.06],
+            [0, -0.13, 0.12],
+          ],
+          0.011,
+          12,
+        ),
+        P.alloy,
+      );
       pd.finish();
       bindings.push({
         node: pg.name,
@@ -1203,6 +1379,137 @@ function cockpit(root, m) {
     [0, 0, 1],
     [rect(0, 1.91, 0.7, 1.72, 3.55)],
   );
+  // Fit the flight deck to the airframe, so no painted skin shows from the seats: liners down
+  // the sidewalls from the deck to the window sills, aft bulkhead to toe board, and a headliner
+  // under the roof forward of the cabin's overhead liner.
+  cockpitLiner(d, root, {
+    zFrom: 4.8,
+    zTo: 7.14,
+    yFrom: 1.33,
+    yTo: 2.2,
+    material: liner,
+    zSteps: 16,
+    ySteps: 6,
+  });
+  // The roof dips to 2.92 m beside the centreline over the pilots' heads. That dip is the
+  // overhead console's black underside (cockpit photograph looking forward): switch panels flank
+  // the centre fire / engine-lever column, set with toggles and knobs.
+  const overheadBlack = mat('MV22-overhead', '#181c1e', { roughness: 0.8 });
+  d.box([1.1, 0.02, 0.85], [0, 2.9, 5.995], overheadBlack);
+  for (const side of [-1, 1]) {
+    const x = side * 0.37;
+    beveledBox(d, [0.33, 0.03, 0.62], [x, 2.875, 6.0], face, 0.008);
+    for (const zz of [5.9, 6.1]) d.box([0.31, 0.003, 0.006], [x, 2.8585, zz], overheadBlack);
+    for (const [row, zz] of [5.8, 6.0, 6.2].entries())
+      for (const [col, dx] of [-0.1, 0, 0.1].entries()) {
+        const at = [x + side * dx, 2.86, zz];
+        if ((row + col) % 2) {
+          d.add(new T.CylinderGeometry(0.016, 0.016, 0.018, 12), black, [at[0], 2.851, zz]);
+          d.box([0.003, 0.002, 0.012], [at[0], 2.8415, zz + 0.006], ink);
+        } else
+          for (const ox of [-0.025, 0.025]) {
+            d.add(new T.CylinderGeometry(0.006, 0.006, 0.006, 8), m.metal, [at[0] + ox, 2.857, zz]);
+            d.rod([at[0] + ox, 2.857, zz], [at[0] + ox, 2.834, zz + 0.008], 0.0028, m.metal);
+          }
+      }
+  }
+  // Forward overhead console between the pilots' heads (cockpit photographs looking up): at its
+  // forward end the fire-suppression panel, two T-handles on yellow-and-black placards either side
+  // of the discharge button; just aft of it the two engine control levers (OFF / IDLE / FLY)
+  // hanging in fore-and-aft slots 0.15 m apart; then the engine start switches and the battery
+  // switch.
+  beveledBox(d, [0.34, 0.05, 0.62], [0, 2.865, 6.0], face, 0.012);
+  const ecl = [0.075, -0.075];
+  for (const x of ecl) d.box([0.018, 0.003, 0.2], [x, 2.8385, 6.08], black);
+  d.box([0.3, 0.004, 0.085], [0, 2.838, 6.255], m.dark);
+  for (const x of ecl) {
+    d.box([0.07, 0.002, 0.05], [x, 2.8355, 6.255], P.yellow);
+    for (const dx of [-0.02, 0, 0.02])
+      d.box([0.009, 0.0015, 0.04], [x + dx, 2.8343, 6.255], P.black).rotation.y = 0.7;
+    d.rod([x, 2.834, 6.255], [x, 2.806, 6.255], 0.004, m.metal);
+    d.rod([x - 0.024, 2.803, 6.255], [x + 0.024, 2.803, 6.255], 0.0065, m.metal);
+  }
+  d.add(new T.CylinderGeometry(0.014, 0.014, 0.012, 16), black, [0, 2.831, 6.255]);
+  // Legends on the console's underside, read from the seats with the nose up the page.
+  const legend = (text, x, zz, size = 0.009) =>
+    d.text(text, [x, 2.8365, zz], size, 0, ink).rotation.set(Math.PI / 2, 0, 0);
+  legend('FIRE', 0, 6.222, 0.008);
+  for (const [i, x] of ecl.entries()) legend(`ECL ${i + 1}`, x, 5.962);
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // The engine control levers, modeled here as a fore-and-aft paddle grip (a black spool, wide at
+  // both ends, as the photographs show it from below) on a short blade. Each hangs from its
+  // slot: the holder is turned about Z, so the pivot's local +Y points down and +X to the right,
+  // and +rotation.x still swings the grip forward, to FLY.
+  for (const [i, x] of ecl.entries()) {
+    const holder = group(cabin, `MV22-ecl-${i + 1}-mount`, [x, 2.838, 6.08]);
+    holder.rotation.z = Math.PI;
+    const lever = group(holder, `MV22-ecl-${i + 1}`),
+      ld = detailKit(lever, lever.name);
+    ld.add(place(roundedBox([0.008, 0.062, 0.018], 0.003), [0, 0.031, 0]), P.alloy);
+    ld.add(place(roundedBox([0.019, 0.026, 0.07], 0.008), [0, 0.072, 0]), P.grip);
+    for (const zz of [-0.034, 0.034])
+      ld.add(place(roundedBox([0.028, 0.034, 0.018], 0.008), [0, 0.072, zz]), P.grip);
+    ld.finish();
+    lever.userData.aircraftControl = {
+      action: 'power',
+      engine: `engine-${i + 1}`,
+      motion: { property: 'rotation', axis: 'x', scale: 0.6, offset: -0.3 },
+    };
+  }
+  const down = [-Math.PI / 2, 0, 0],
+    foot = [tilt, 0, 0];
+  const stations = [
+    // At the pedestal's foot, left to right as seen from behind the seats: the wheel-shaped gear
+    // handle, the flap lever and the parking brake T-handle.
+    {
+      action: 'gear',
+      style: 'jet',
+      scale: 0.75,
+      at: onConsole(0.15, -0.255, -0.054),
+      rotation: foot,
+      label: 'LDG GEAR',
+      labelAt: [0, -0.05, -0.001],
+      labelHeight: 0.0075,
+    },
+    {
+      action: 'flaps',
+      style: 'toggle',
+      scale: 1.4,
+      at: onConsole(-0.07, -0.25, -0.054),
+      rotation: foot,
+      label: 'FLAP',
+      labelAt: [0, -0.04, -0.001],
+      labelHeight: 0.0075,
+    },
+    {
+      action: 'brake',
+      style: 'tee',
+      at: onConsole(-0.16, -0.28, -0.054),
+      rotation: foot,
+      label: 'PARK BRK',
+      labelAt: [0, -0.04, -0.001],
+      labelHeight: 0.0075,
+    },
+    ...[0, 1].map((engine) => ({
+      action: 'engine',
+      engine,
+      style: 'guarded',
+      at: [ecl[engine], 2.839, 5.9],
+      rotation: down,
+      label: `ENG ${engine + 1} START`,
+      labelAt: [0, 0.042, -0.001],
+      labelHeight: 0.009,
+    })),
+    {
+      action: 'engine',
+      style: 'toggle',
+      scale: 1.2,
+      at: [0, 2.839, 5.76],
+      rotation: down,
+      label: 'BATT',
+      labelAt: [0, 0.032, -0.001],
+      labelHeight: 0.009,
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
 }

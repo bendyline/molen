@@ -2,7 +2,7 @@
  * Art Mills / Paul Matt's earlier Model 18 three-view, checked against Smithsonian N522B photographs. */
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { smoothSurface } from '../surface-normals.mjs';
-import { beech18Cockpit } from './beech-18-cockpit.mjs';
+import { beech18Cockpit, cockpitFrameStations } from './beech-18-cockpit.mjs';
 import {
   cleanGeometry,
   detailKit,
@@ -847,12 +847,22 @@ export function buildBeech18(s) {
   }
   d.finish();
   // The cockpit group sits 0.55 m up and forward (below); its cabin reads the skin in its frame.
-  const interior = beech18Cockpit(body, { ...m, skin: (z, y) => skinX(z + 0.55, y + 0.55) });
-  body.getObjectByName('cockpit').position.set(0, 0.55, 0.55);
+  const {
+    stations: cabinStations,
+    fit,
+    ...interior
+  } = beech18Cockpit(body, {
+    ...m,
+    skin: (z, y) => skinX(z + 0.55, y + 0.55),
+  });
+  const cabin = body.getObjectByName('cockpit');
+  cabin.position.set(0, 0.55, 0.55);
+  fit(body);
+  const controlStations = cockpitFrameStations(root, cabin, cabinStations);
   cleanGeometry(root);
   return {
     root,
-    frame: beech18Frame(),
+    frame: { ...beech18Frame(), controlStations },
     enginePoints: [
       { id: 'engine-1', position: pose([1.9685, engineY, 4.0]) },
       { id: 'engine-2', position: pose([-1.9685, engineY, 4.0]) },

@@ -4,6 +4,20 @@
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { smoothSurface } from '../surface-normals.mjs';
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead, cockpitLiner } from './cockpit-fit.mjs';
+import {
+  bar,
+  contour,
+  flapSelectorGeometry,
+  lathe,
+  leverGate,
+  leverGeometry,
+  loftUp,
+  partPalette,
+  place,
+  roundedBox,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -135,6 +149,190 @@ function foil(d, ribs, material) {
   sheet(d, rings.at(-1), material, [0, 1, 0]);
 }
 
+/** A kit proxy that places a library part at `at` / `rotation` inside an existing kit, so small
+ * panel parts batch with the panel instead of each taking a node. */
+const placed = (d, at, rotation = [0, 0, 0]) => ({
+  add: (geometry, material) => d.add(place(geometry, at, rotation), material),
+});
+/** The 350's control wheel (factory cockpit photographs): a broad hub plate tipped back toward
+ * the pilot with the digital clock in it, arms dipping out of its lower corners and tall
+ * swept horns rising to switch heads, the "M" seen from the seat. Hub at the origin, horns
+ * facing -Z; the column runs forward (+Z) from `column`. */
+function kingAirYoke(d, P, { lcd, column }) {
+  const hubAt = [0, 0, -0.065],
+    hubTilt = [-0.38, 0, 0];
+  d.add(
+    place(
+      loftUp([
+        { y: -0.034, points: contour(0, 0.002, 0.04, 0.015, 14, 3) },
+        { y: 0.0, points: contour(0, 0, 0.058, 0.017, 14, 3.2) },
+        { y: 0.026, points: contour(0, 0, 0.066, 0.017, 14, 3.4) },
+        { y: 0.036, points: contour(0, 0.002, 0.06, 0.012, 14, 3) },
+      ]),
+      hubAt,
+      hubTilt,
+    ),
+    P.grip,
+  );
+  // Clock window and its two buttons on the hub face.
+  d.add(
+    place(roundedBox([0.046, 0.017, 0.004], 0.003).translate(0, 0.012, -0.017), hubAt, hubTilt),
+    P.black,
+  );
+  d.add(
+    place(roundedBox([0.036, 0.01, 0.002], 0.001).translate(0, 0.012, -0.0195), hubAt, hubTilt),
+    lcd,
+  );
+  for (const x of [-0.011, 0.011])
+    d.add(
+      place(
+        roundedBox([0.012, 0.006, 0.004], 0.0015).translate(x, -0.008, -0.0175),
+        hubAt,
+        hubTilt,
+      ),
+      P.alloy,
+    );
+  for (const s of [-1, 1]) {
+    d.add(
+      tube(
+        [
+          [s * 0.042, -0.022, -0.062],
+          [s * 0.085, -0.043, -0.07],
+          [s * 0.118, -0.04, -0.078],
+          [s * 0.134, -0.018, -0.084],
+        ],
+        0.0125,
+        14,
+      ),
+      P.grip,
+    );
+    // Horn: an oval grip, swept back and canted outboard, swelling into the switch head.
+    const horn = [
+      loftUp([
+        { y: 0, points: contour(0, 0, 0.0135, 0.016, 12, 2.2) },
+        { y: 0.05, points: contour(0, 0.001, 0.0145, 0.018, 12, 2.2) },
+        { y: 0.09, points: contour(0, 0.002, 0.0145, 0.018, 12, 2.2) },
+        { y: 0.108, points: contour(0, -0.002, 0.018, 0.025, 12, 2.6) },
+        { y: 0.128, points: contour(0, -0.004, 0.019, 0.027, 12, 2.6) },
+        { y: 0.137, points: contour(0, -0.004, 0.012, 0.018, 12, 2.4) },
+      ]),
+    ];
+    const head = [
+      // Trim rocker on top, autopilot disconnect on the outboard face, push-to-talk inboard.
+      [P.black, roundedBox([0.012, 0.006, 0.016], 0.002).translate(0, 0.138, -0.006)],
+      [
+        P.red,
+        new T.CylinderGeometry(0.0048, 0.0048, 0.006, 14)
+          .rotateZ(Math.PI / 2)
+          .translate(s * 0.018, 0.122, -0.012),
+      ],
+      [P.black, roundedBox([0.006, 0.01, 0.008], 0.002).translate(-s * 0.016, 0.115, -0.012)],
+    ];
+    const at = [s * 0.136, -0.02, -0.085],
+      rotation = [-0.28, 0, -s * 0.1];
+    d.add(place(horn[0], at, rotation), P.grip);
+    for (const [material, geometry] of head) d.add(place(geometry, at, rotation), material);
+  }
+  d.add(bar(column, [0, 0.003, -0.055], 0.019, 18), P.grip);
+}
+/** The 350's pedal (cockpit photographs): a curved, ribbed aluminium pad on an arm rising from
+ * its hinge at the floor. Origin at the pad centre; the pad faces the pilot (-Z). */
+function kingAirPedal(d, P, side) {
+  const rows = [-0.052, -0.035, -0.017, 0, 0.017, 0.035, 0.052];
+  const bow = (y) => -0.01 + 0.01 * (y / 0.052) ** 2;
+  const pad = loftUp(
+    rows.map((y) => ({ y, points: contour(0, bow(y) + 0.003, 0.05, 0.005, 12, 5) })),
+    40,
+  );
+  const lean = [0.3, 0, 0];
+  d.add(place(pad, [0, 0, 0], lean), P.alloy);
+  for (const y of rows.slice(1, -1))
+    d.add(
+      place(
+        bar([-0.044, y, bow(y) - 0.002], [0.044, y, bow(y) - 0.002], 0.0024, 8),
+        [0, 0, 0],
+        lean,
+      ),
+      P.alloy,
+    );
+  // Toe-brake hinge along the bottom, the arm down to the floor hinge, and the brake cylinder.
+  d.add(bar([-0.04, -0.058, 0.012], [0.04, -0.058, 0.012], 0.006, 12), P.steel);
+  d.add(
+    tube(
+      [
+        [side * 0.03, -0.05, 0.02],
+        [side * 0.03, -0.075, 0.045],
+        [side * 0.03, -0.09, 0.06],
+      ],
+      0.007,
+      12,
+    ),
+    P.steel,
+  );
+  d.add(bar([-side * 0.022, -0.04, 0.03], [-side * 0.022, -0.085, 0.085], 0.008, 12), P.alloy);
+  d.add(bar([side * 0.045, -0.09, 0.06], [-side * 0.04, -0.09, 0.06], 0.009, 12), P.steel);
+}
+/** A light bat-handle toggle for the busy switch groups: a hex bushing and a tapered lever tipped
+ * up toward the pilot (a paddle cap on the start switches). Panel face at `at`, facing -Z. */
+function panelToggle(d, P, at, paddle = false) {
+  d.add(
+    place(new T.CylinderGeometry(0.0052, 0.0052, 0.0035, 6, 1, true).rotateX(Math.PI / 2), [
+      at[0],
+      at[1],
+      at[2] - 0.0017,
+    ]),
+    P.alloy,
+  );
+  d.add(
+    place(new T.CircleGeometry(0.0052, 6).rotateY(Math.PI), [at[0], at[1], at[2] - 0.0035]),
+    P.alloy,
+  );
+  const tip = [at[0], at[1] + 0.005, at[2] - 0.017];
+  d.add(bar([at[0], at[1], at[2] - 0.003], tip, 0.0013, 8, 0.0021), P.alloy);
+  if (paddle) d.add(place(roundedBox([0.008, 0.0035, 0.009], 0.0012), tip, [0.3, 0, 0]), P.black);
+}
+/** Condition lever knob: a red barrel with two white bands turned into it. About +Y from y=0. */
+function conditionKnob(P, red) {
+  const r = 0.0145;
+  return [
+    [
+      red,
+      lathe(
+        [
+          [0.005, 0],
+          [r * 0.85, 0.004],
+          [r, 0.012],
+          [r, 0.022],
+          [r * 0.93, 0.03],
+          [r, 0.036],
+          [r * 0.8, 0.044],
+          [0, 0.046],
+        ],
+        14,
+      ),
+    ],
+    [
+      P.white,
+      lathe(
+        [
+          [r * 1.01, 0.022],
+          [r * 1.02, 0.025],
+          [r * 0.95, 0.028],
+          [r * 0.94, 0.03],
+        ],
+        14,
+      ),
+    ],
+  ];
+}
+/** One of a pair of power lever knobs: the two halves form a broad T when side by side, each
+ * offset outboard (`side`) of its own lever. Built about +Y from y=0. */
+function kingAirPowerKnob(side) {
+  return [
+    place(roundedBox([0.036, 0.022, 0.03], 0.008), [side * 0.007, 0.012, 0]),
+    place(roundedBox([0.016, 0.012, 0.018], 0.004), [0, 0.0, 0]),
+  ];
+}
 export const kingAirFrame = () => ({
   heli: false,
   fighter: false,
@@ -273,27 +471,23 @@ export function buildKingAir(s) {
   };
   for (const j of [0, 1, 2, 11, 12, 13])
     quad(d, p(4, j), p(5, j), p(5, (j + 1) % 14), p(4, (j + 1) % 14), glass, [0, 1, 1]);
-  outline(
-    d,
-    [
-      p(4, 11),
-      p(5, 11),
-      p(5, 12),
-      p(5, 13),
-      p(5, 0),
-      p(5, 1),
-      p(5, 2),
-      p(5, 3),
-      p(4, 3),
-      p(4, 2),
-      p(4, 1),
-      p(4, 0),
-      p(4, 13),
-      p(4, 12),
-    ],
-    0.016,
-    paint,
-  );
+  const windshieldFrame = [
+    p(4, 11),
+    p(5, 11),
+    p(5, 12),
+    p(5, 13),
+    p(5, 0),
+    p(5, 1),
+    p(5, 2),
+    p(5, 3),
+    p(4, 3),
+    p(4, 2),
+    p(4, 1),
+    p(4, 0),
+    p(4, 13),
+    p(4, 12),
+  ];
+  outline(d, windshieldFrame, 0.016, paint);
   d.rod(p(4, 0), p(5, 0), 0.014, dark);
   const sample = (z, n) => {
     for (let i = 0; i < stations.length - 1; i++)
@@ -423,6 +617,7 @@ export function buildKingAir(s) {
         .sort((a, b) => a - b)
         .map((t) => onBand(side, s0 + (s1 - s0) * t, v0 + (v1 - v0) * t));
     });
+  const sideSheets = [];
   for (const side of [-1, 1]) {
     const pt = (z, y, lift = 0) => {
       // Details on the curved (ruled, triangulated) nose sit a little proud of the skin.
@@ -445,13 +640,18 @@ export function buildKingAir(s) {
       [2.25, 2.08],
     ].map(([z, y]) => pt(z, y));
     const end = (idx, j) => p(idx, side > 0 ? j : 14 - j);
-    sheet(
-      d,
-      [end(4, 2), end(5, 2), end(6, 2), end(6, 3), end(6, 4), end(5, 4), end(4, 4)],
-      paint,
-      [side, 0, 0],
-      [pilot, sideWindow],
-    );
+    const cockpitSide = [
+      end(4, 2),
+      end(5, 2),
+      end(6, 2),
+      end(6, 3),
+      end(6, 4),
+      end(5, 4),
+      end(4, 4),
+    ];
+    sheet(d, cockpitSide, paint, [side, 0, 0], [pilot, sideWindow]);
+    // The flight deck lines this sheet from inside, windows and all (kingAirCockpit).
+    sideSheets.push({ side, contour: cockpitSide, holes: [pilot, sideWindow] });
     for (const h of [pilot, sideWindow]) {
       sheet(d, h, glass, [side, 0, 0]);
       outline(d, h, 0.007, dark);
@@ -903,11 +1103,18 @@ export function buildKingAir(s) {
     });
   }
   d.finish();
-  const interior = kingAirCockpit(root, { paint, accent, metal, dark });
+  const { stations: controlStations, ...interior } = kingAirCockpit(root, {
+    paint,
+    accent,
+    metal,
+    dark,
+    sideSheets,
+    windshieldFrame,
+  });
   cleanGeometry(root);
   return {
     root,
-    frame: kingAirFrame(),
+    frame: { ...kingAirFrame(), controlStations },
     enginePoints,
     visual: { rotors, gearNodes: [], flaps, ailerons, animation: { bindings }, interior },
     modelSignals: {
@@ -927,8 +1134,7 @@ function kingAirCockpit(root, m) {
     face = mat('KingAir-panel', '#303337'),
     leather = mat('KingAir-leather', '#b6ab91'),
     headliner = mat('KingAir-headliner', '#d9d2be'),
-    wood = mat('KingAir-cabinet', '#634b34'),
-    blue = mat('KingAir-prop-control', '#3d72ad');
+    wood = mat('KingAir-cabinet', '#634b34');
   // Factory photo at 1376px width: 174px active screen width. 14in diagonal, ~1.6 aspect.
   const sw = 0.3556 / Math.hypot(1, 1 / 1.6),
     sh = sw / 1.6,
@@ -1174,12 +1380,15 @@ function kingAirCockpit(root, m) {
     d.box([0.12, 0.026, 0.012], at(u, 836, -0.01), black);
     for (let n = 0; n < 5; n++) pt.knob(px(u - 25 + n * 13), py(836), z - 0.022, 0.004);
   }
-  for (const u of [385, 435, 490, 540, 790, 835])
-    for (let row = 0; row < 2; row++) {
-      pt.knob(px(u), py(866 + row * 24), z - 0.016, 0.004);
-      d.rod(at(u, 866 + row * 24, -0.021), at(u, 859 + row * 24, -0.03), 0.0025, m.metal);
-    }
-  d.text('BAT GEN LIGHTS', at(467, 853, -0.027), 0.005, Math.PI, ink);
+  // Subpanel switch groups: real bat-handle toggles (cockpit-parts), one set per group. The
+  // master switch gang (BAT, the engine master station, then both generators) sits above the
+  // start group; the subpanel face is 2.5 mm proud of the panel plane.
+  const P = partPalette();
+  const face2 = z - 0.0025;
+  const toggle = (x, y, paddle = false) => panelToggle(d, P, [x, y, face2], paddle);
+  for (const u of [505, 530]) toggle(px(u), py(838));
+  d.box([0.1, 0.004, 0.004], [px(505), py(838) + 0.017, face2 - 0.016], m.metal);
+  d.text('GEN', at(518, 826, -0.0035), 0.0045, Math.PI, ink);
   for (const [u, label] of [
     [383, 'IGNITION'],
     [454, 'START'],
@@ -1189,23 +1398,16 @@ function kingAirCockpit(root, m) {
   ]) {
     const x = px(u),
       y = py(880);
-    outline(d, rect(x, y, 0.072, 0.073, z - 0.021), 0.001, ink);
-    d.text(label, [x, y + 0.031, z - 0.025], 0.004, Math.PI, ink);
+    outline(d, rect(x, y, 0.072, 0.073, face2 - 0.0008), 0.0008, ink);
+    d.text(label, [x, y + 0.029, face2 - 0.001], 0.004, Math.PI, ink);
     for (const side of [-1, 1])
-      for (const v of [-0.018, 0.008]) {
-        pt.knob(x + side * 0.018, y + v, z - 0.028, 0.003);
-        d.rod(
-          [x + side * 0.018, y + v, z - 0.031],
-          [x + side * 0.018, y + v + 0.007, z - 0.044],
-          0.002,
-          m.metal,
-        );
-      }
+      for (const v of [-0.016, 0.01]) toggle(x + side * 0.018, y + v, v < 0);
   }
-  for (const u of [767, 798, 827, 861]) pt.vent(px(u), py(899), z - 0.024, 'round', 0.029);
+  // Round fresh-air outlets, set into the subpanel (they stood 2 cm proud of it).
+  for (const u of [767, 798, 827, 861]) pt.vent(px(u), py(899), face2 + 0.004, 'round', 0.029);
   for (const u of [646, 682, 718]) {
-    pt.gauge(px(u), py(908), z - 0.018, 0.023, black, false);
-    d.text('INOP', at(u, 908, -0.031), 0.0045, Math.PI, ink);
+    pt.gauge(px(u), py(908), face2 - 0.0005, 0.023, black, false);
+    d.text('INOP', [px(u), py(908), face2 - 0.0075], 0.0045, Math.PI, ink);
   }
   derived.gearLocked = { op: 'greater', args: ['gear', 0.999] };
   derived.gearOffStop = { op: 'greater', args: ['gear', 0.001] };
@@ -1216,8 +1418,9 @@ function kingAirCockpit(root, m) {
     [1, 598, 869],
     [2, 616, 869],
   ]) {
-    d.add(new T.CircleGeometry(0.0055, 12).rotateY(Math.PI), black, at(u, v, -0.025));
-    const g = group(cabin, `KingAir-gear-lamp-${n}`, at(u, v, -0.027)),
+    // Lamps sit in the subpanel face; they floated 2 cm proud of it.
+    d.add(new T.CircleGeometry(0.0055, 12).rotateY(Math.PI), black, [px(u), py(v), face2 - 0.0005]);
+    const g = group(cabin, `KingAir-gear-lamp-${n}`, [px(u), py(v), face2 - 0.001]),
       dd = detailKit(g, g.name);
     dd.add(new T.CircleGeometry(0.0045, 12).rotateY(Math.PI), d.green);
     dd.finish();
@@ -1229,7 +1432,7 @@ function kingAirCockpit(root, m) {
       missing: 'hide',
     });
   }
-  const transit = group(cabin, 'KingAir-gear-transit', at(607, 888, -0.027)),
+  const transit = group(cabin, 'KingAir-gear-transit', [px(607), py(888), face2 - 0.001]),
     td = detailKit(transit, transit.name);
   td.add(new T.CircleGeometry(0.005, 12).rotateY(Math.PI), red);
   td.finish();
@@ -1242,13 +1445,42 @@ function kingAirCockpit(root, m) {
   });
   const gear = group(cabin, 'KingAir-gear-handle', at(586, 888, -0.04)),
     gd = detailKit(gear, gear.name);
-  gd.rod([0, 0, 0], [0, -0.02, -0.02], 0.004, m.metal);
-  gd.add(
-    new T.CylinderGeometry(0.012, 0.012, 0.012, 14).rotateX(Math.PI / 2),
-    black,
-    [0, -0.025, -0.025],
-  );
+  // The 350's gear handle: a lever with a wheel knob whose red lamp lights in transit, pivoted
+  // at the subpanel face (2.5 mm proud of the panel plane) and hanging a little down at rest.
+  {
+    const handle = placed(gd, [0, 0, face2 - gear.position.z], [-0.2, 0, 0]);
+    handle.add(bar([0, 0, 0], [0, 0, -0.054], 0.0042, 12), P.alloy);
+    handle.add(roundedBox([0.01, 0.012, 0.014], 0.003).translate(0, 0, -0.005), P.alloy);
+    // Wheel knob: a white tyre-shaped disc round the red transit lamp.
+    handle.add(
+      lathe(
+        [
+          [0, -0.007],
+          [0.012, -0.0072],
+          [0.0168, -0.0055],
+          [0.0175, 0],
+          [0.0168, 0.0055],
+          [0.012, 0.0072],
+          [0, 0.007],
+        ],
+        20,
+      )
+        .rotateX(Math.PI / 2)
+        .translate(0, 0, -0.062),
+      P.white,
+    );
+    handle.add(
+      new T.CylinderGeometry(0.0065, 0.0065, 0.0152, 14)
+        .rotateX(Math.PI / 2)
+        .translate(0, 0, -0.062),
+      P.lamp,
+    );
+  }
   gd.finish();
+  leverGate(placed(d, [px(586), py(888), face2]), { size: [0.026, 0.07], marks: 2 });
+  d.text('UP', [px(586) - 0.024, py(888) + 0.026, face2 - 0.001], 0.0045, Math.PI, ink);
+  d.text('DN', [px(586) - 0.024, py(888) - 0.026, face2 - 0.001], 0.0045, Math.PI, ink);
+  d.text('LDG GEAR', [px(586), py(888) + 0.043, face2 - 0.001], 0.0042, Math.PI, ink);
   bindings.push({
     node: gear.name,
     source: 'gear',
@@ -1257,33 +1489,21 @@ function kingAirCockpit(root, m) {
     offset: -0.7,
     scale: 0.7,
   });
-  // Photograph-matched broad, downturned yokes, with pitch and bank travel.
+  // The 350's control wheels: an M of swept horns off a broad clock hub (kingAirYoke), on a black
+  // column that runs into the subpanel through a fixed escutcheon. Pitch and bank travel.
+  const clock = mat('KingAir-clock', '#6f8f64', { emissive: '#1f3a1c', emissiveIntensity: 0.5 });
   for (const u of [433, 938]) {
     const g = group(cabin, `KingAir-yoke-${u}`, at(u, 850, -0.18)),
       dd = detailKit(g, g.name);
-    dd.rod([0, -0.055, 0.13], [0, 0, -0.045], 0.022, m.metal);
-    outline(
-      dd,
-      [
-        [-0.133, 0.078, -0.065],
-        [-0.155, -0.018, -0.065],
-        [-0.112, -0.046, -0.065],
-        [0, -0.027, -0.065],
-        [0.112, -0.046, -0.065],
-        [0.155, -0.018, -0.065],
-        [0.133, 0.078, -0.065],
-      ],
-      0.018,
-      black,
-      false,
-    );
-    beveledBox(dd, [0.103, 0.065, 0.026], [0, 0.006, -0.07], face, 0.014);
-    dd.text('Beechcraft', [0, 0.004, -0.085], 0.008, Math.PI, ink);
-    for (const side of [-1, 1]) {
-      beveledBox(dd, [0.047, 0.037, 0.045], [side * 0.13, 0.075, -0.065], black, 0.008);
-      dd.box([0.014, 0.007, 0.015], [side * 0.14, 0.097, -0.068], red);
-    }
+    kingAirYoke(dd, P, { lcd: clock, column: [0, -0.0895, 0.24] });
     dd.finish();
+    // Column line: through the hub and (0, -0.055, 0.13) from the pivot, so it meets the
+    // subpanel face 7 cm under the pivot.
+    d.add(new T.CylinderGeometry(0.028, 0.032, 0.006, 20).rotateX(Math.PI / 2), m.dark, [
+      px(u),
+      py(850) - 0.0699,
+      face2 - 0.002,
+    ]);
     bindings.push(
       { node: g.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.65 },
       { node: g.name, source: 'pitchInput', property: 'position', axis: 'z', scale: -0.06 },
@@ -1294,10 +1514,10 @@ function kingAirCockpit(root, m) {
     pd = detailKit(pedestal, pedestal.name);
   beveledBox(pd, [0.3, 0.34, 1.1], [0, 0, 0], face, 0.025);
   pd.ring(0.08, 0.012, [0.158, 0.14, 0.3], black, 'x');
-  for (const [pair, x, label, col] of [
-    [0, 0.095, 'power', black],
-    [1, 0, 'prop', blue],
-    [2, -0.095, 'condition', red],
+  for (const [pair, x, label] of [
+    [0, 0.095, 'power'],
+    [1, 0, 'prop'],
+    [2, -0.095, 'condition'],
   ])
     for (let i = 0; i < 2; i++) {
       const g = group(pedestal, `KingAir-${label === 'prop' ? 'prop-lever' : label}-${i + 1}`, [
@@ -1306,10 +1526,38 @@ function kingAirCockpit(root, m) {
           0.3 - pair * 0.035,
         ]),
         dd = detailKit(g, g.name),
-        h = pair === 2 ? 0.08 : 0.18;
-      dd.rod([0, 0, 0], [0, h, -0.07], 0.006, m.metal);
-      beveledBox(dd, [0.03, 0.029, 0.045], [0, h, -0.07], col, 0.005);
+        h = pair === 2 ? 0.08 : 0.18,
+        outboard = i ? -1 : 1;
+      // Quadrant knobs after the 350: broad T power levers whose halves meet as a pair, ribbed
+      // blue propeller knobs and red-banded condition levers.
+      if (pair === 0) {
+        const tilt = Math.atan2(-0.07, h);
+        dd.add(
+          place(
+            roundedBox([0.01, Math.hypot(h, 0.07), 0.018], 0.002, 1),
+            [0, h / 2, -0.035],
+            [tilt, 0, 0],
+          ),
+          P.alloy,
+        );
+        for (const knob of kingAirPowerKnob(outboard))
+          dd.add(place(knob, [0, h, -0.07], [tilt, 0, 0]), P.black);
+      } else if (pair === 1)
+        leverGeometry(dd, { style: 'prop', height: h, rake: -0.07, shaft: 'round' });
+      else {
+        dd.add(bar([0, 0, 0], [0, h, -0.07], 0.0045, 12), P.alloy);
+        for (const [material, knob] of conditionKnob(P, red))
+          dd.add(place(knob, [0, h, -0.07], [Math.atan2(-0.07, h), 0, 0]), material);
+      }
       dd.finish();
+      if (pair === 2) {
+        // The condition levers are the engines' run/cut-off controls (LOW IDLE forward).
+        g.userData.aircraftControl = {
+          action: 'engine',
+          engine: `engine-${i + 1}`,
+          motion: { property: 'rotation', axis: 'x', scale: 0.55, offset: -0.55 },
+        };
+      }
       if (pair === 0)
         bindings.push({
           node: g.name,
@@ -1322,8 +1570,10 @@ function kingAirCockpit(root, m) {
     }
   const flap = group(pedestal, 'KingAir-flap-handle', [-0.09, 0.2, -0.02]),
     fd = detailKit(flap, flap.name);
-  fd.box([0.046, 0.014, 0.037], [0, 0, 0], ink);
+  // Airfoil-knobbed flap lever in its slot on the pedestal's right side (UP / APPROACH / DOWN).
+  flapSelectorGeometry(placed(fd, [0, -0.03, 0]), { style: 'lever', height: 0.03, scale: 0.72 });
   fd.finish();
+  pd.box([0.009, 0.002, 0.1], [-0.09, 0.1705, -0.055], black);
   bindings.push({
     node: flap.name,
     source: 'flapPosition',
@@ -1362,9 +1612,9 @@ function kingAirCockpit(root, m) {
     op.gauge(x, -0.055, -0.02, 0.034, black, false);
     od.text('INOP', [x, -0.055, -0.033], 0.006, Math.PI, ink);
   }
-  for (let i = 0; i < 8; i++) op.knob(-0.29 + i * 0.082, 0.066, -0.025, 0.009);
-  for (let i = 0; i < 5; i++)
-    od.rod([-0.15 + i * 0.075, 0.025, -0.02], [-0.15 + i * 0.075, 0.007, -0.035], 0.003, m.metal);
+  // Knobs and toggles seated on the panel face (it is 12.5 mm thick about the frame).
+  for (let i = 0; i < 8; i++) op.knob(-0.29 + i * 0.082, 0.066, -0.019, 0.009);
+  for (let i = 0; i < 5; i++) panelToggle(od, P, [-0.15 + i * 0.075, 0.02, -0.0125]);
   od.finish();
   ins.headingDrum('compass', [0, 2.49, 2.75], 0.025, 'trueHeading');
   // Separate sidewall switch/breaker panels, angled toward the crew.
@@ -1425,11 +1675,10 @@ function kingAirCockpit(root, m) {
       ellipsoid(d, [side * 0.31, 2.59, zz], [0.014, 0.01, 0.014], black, 12);
     }
     for (const j of [-1, 1]) {
+      // j = +1 is the left pedal of each pair (outboard +X).
       const g = group(cabin, `KingAir-pedal-${side}-${j}`, [side * 0.34 + j * 0.09, 1.3, 2.66]),
         dd = detailKit(g, g.name);
-      dd.box([0.15, 0.09, 0.045], [0, 0, 0], m.metal);
-      for (let n = 0; n < 4; n++)
-        dd.box([0.005, 0.06, 0.005], [-0.052 + n * 0.035, 0, -0.027], black);
+      kingAirPedal(dd, P, j);
       dd.finish();
       bindings.push({
         node: g.name,
@@ -1457,7 +1706,101 @@ function kingAirCockpit(root, m) {
   beveledBox(d, [0.12, 0.58, 0.49], [-0.47, 1.75, -4.1], leather, 0.025);
   for (const side of [-1, 1])
     beveledBox(d, [0.29, 0.85, 0.35], [side * 0.49, 1.64, 1.0], wood, 0.025);
+  // Fit the flight deck to the airframe, so no painted skin shows from the seats: a bulkhead
+  // around the panel (beside it to the walls, behind its back sheet), a footwell bulkhead ahead
+  // of the pedals, cream sidewall liners from the cabin divider to the footwell, cream trim over
+  // the inner half of the windshield frame, and a dark deck
+  // from the glare shield to the windshield's lower frame (ring 4: 0.39 m / 2.205 m, 0.5915 m /
+  // 2.07 m and 0.65 m / 1.886 m out from the 2.23 m centre).
+  const sidewall = mat('KingAir-sidewall', '#cbc1a6', { roughness: 0.8 });
+  // Knee panel under the pilot's subpanel carrying the parking brake handle.
+  beveledBox(d, [0.12, 0.055, 0.02], [0.52, 1.6475, 2.5575], face, 0.004);
+  cockpitBulkhead(d, root, { z: 2.636, yFrom: 1.675, yTo: 2.16, material: face });
+  // At the floor's forward end (2.8 m); tall enough that no ray under the subpanel passes it.
+  cockpitBulkhead(d, root, { z: 2.795, yFrom: 1.2, yTo: 1.95, material: m.dark });
+  // The cockpit side sheets (ring 6 forward, 1.73 m) carry the windows: their liner is the same
+  // sheet 9 mm inboard with the same apertures. Aft of them, and above and below them, the
+  // liners follow the sliced skin; the carpet skirt closes the belly beside the floor.
+  for (const { side, contour, holes } of m.sideSheets) {
+    const inboard = (q) => [q[0] - side * 0.009, q[1], q[2]];
+    sheet(
+      d,
+      contour.map(inboard),
+      sidewall,
+      [-side, 0, 0],
+      holes.map((h) => h.map(inboard)),
+    );
+  }
+  const inside = new T.Vector3(0, 2.0, 2.2);
+  outline(
+    d,
+    m.windshieldFrame.map((q) => {
+      const v = new T.Vector3(...q);
+      return v.addScaledVector(inside.clone().sub(v).normalize(), 0.009).toArray();
+    }),
+    // Thinner than the painted frame (0.016) and offset inboard, so it shows only inside.
+    0.0135,
+    sidewall,
+  );
+  const liner = (zFrom, zTo, yFrom, yTo, zSteps, ySteps, material = sidewall) =>
+    cockpitLiner(d, root, { zFrom, zTo, yFrom, yTo, material, zSteps, ySteps });
+  liner(0.84, 1.73, 1.218, 2.64, 8, 22);
+  liner(1.73, 2.795, 1.218, 1.24, 9, 1);
+  liner(1.73, 2.795, 2.5, 2.66, 9, 3);
+  liner(0.84, 2.795, 1.07, 1.218, 16, 2, m.dark);
+  const base = [
+      [0, 2.23],
+      [0.39, 2.205],
+      [0.5915, 2.07],
+      [0.65, 1.886],
+    ],
+    baseY = (x) => {
+      const ax = Math.abs(x);
+      for (let i = 0; i < base.length - 1; i++)
+        if (ax <= base[i + 1][0])
+          return (
+            base[i][1] +
+            ((base[i + 1][1] - base[i][1]) * (ax - base[i][0])) / (base[i + 1][0] - base[i][0])
+          );
+      return base.at(-1)[1];
+    };
+  const shield = edge.filter((p) => p[1] > 2.12).map((p) => [p[0], p[1] - 0.01, 2.92]);
+  for (let i = 0; i < shield.length - 1; i++) {
+    const a = shield[i],
+      b = shield[i + 1];
+    quad(
+      d,
+      a,
+      b,
+      [b[0], baseY(b[0]) - 0.012, 3.245],
+      [a[0], baseY(a[0]) - 0.012, 3.245],
+      black,
+      [0, 1, 0],
+    );
+  }
   d.finish();
+  // Where the 350's remaining controls are: the parking brake T-handle under the pilot's
+  // subpanel, the battery switch at the head of the master switch gang (both generators beside
+  // it). Each engine's run/cut-off is its condition lever on the pedestal (set above).
+  const stations = [
+    {
+      action: 'brake',
+      style: 'tee',
+      at: [0.52, 1.648, 2.5455],
+      label: 'PARKING BRAKE',
+      labelAt: [0, -0.019, -0.001],
+      labelHeight: 0.0042,
+    },
+    {
+      action: 'engine',
+      style: 'toggle',
+      scale: 0.8,
+      at: [px(480), py(838), face2],
+      label: 'BAT',
+      labelAt: [0, 0.021, -0.001],
+      labelHeight: 0.0045,
+    },
+  ];
   // Both crew displays consume the same sensors. Reuse identical named calculations;
   // only their physical node bindings differ. Leave room for authored fixture inputs.
   for (const [name, value] of Object.entries(derived)) {
@@ -1479,5 +1822,5 @@ function kingAirCockpit(root, m) {
         expression.args = expression.args.map((v) => (v === name ? shared : v));
     delete derived[name];
   }
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
 }

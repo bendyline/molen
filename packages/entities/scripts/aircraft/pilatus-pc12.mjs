@@ -3,6 +3,18 @@
  * The model-building plan contains legacy four-blade callouts; the NGX POH wins.
  */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead, cockpitLiner } from './cockpit-fit.mjs';
+import {
+  bar,
+  contour,
+  flapSelectorGeometry,
+  lathe,
+  loftUp,
+  partPalette,
+  place,
+  roundedBox,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -156,6 +168,163 @@ function foil(d, ribs, material) {
   sheet(d, rings.at(-1), material, [0, 1, 0]);
 }
 
+/** A kit proxy that places a library part at `at` / `rotation` inside an existing kit. */
+const placed = (d, at, rotation = [0, 0, 0]) => ({
+  add: (geometry, material) => d.add(place(geometry, at, rotation), material),
+});
+/** The PC-12's control wheel (NG and NGX cockpit photographs): a deep U whose tall horns rise
+ * beside a trapezoid checklist plate, the left horn capped by the trim and autopilot switch box,
+ * the right by a rounded head. Hub at the origin, horns facing -Z, the column forward (+Z). */
+function pc12Yoke(d, P, { plate }) {
+  const y0 = -0.09;
+  d.add(
+    tube(
+      [
+        [0.14, 0.0, -0.05],
+        [0.138, -0.05, -0.052],
+        [0.115, -0.083, -0.055],
+        [0.06, y0, -0.058],
+        [0, y0 + 0.004, -0.06],
+        [-0.06, y0, -0.058],
+        [-0.115, -0.083, -0.055],
+        [-0.138, -0.05, -0.052],
+        [-0.14, 0.0, -0.05],
+      ],
+      0.0165,
+      14,
+    ),
+    P.grip,
+  );
+  for (const s of [-1, 1]) {
+    // Horn: an oval grip, thickest under the hand, curving in a little at the top.
+    d.add(
+      place(
+        loftUp([
+          { y: -0.004, points: contour(0, 0, 0.016, 0.0175, 12, 2.2) },
+          { y: 0.05, points: contour(-s * 0.002, 0.001, 0.0175, 0.019, 12, 2.2) },
+          { y: 0.1, points: contour(-s * 0.006, 0.002, 0.016, 0.018, 12, 2.2) },
+          { y: 0.125, points: contour(-s * 0.01, 0, 0.015, 0.017, 12, 2.2) },
+        ]),
+        [s * 0.14, 0, -0.05],
+        [-0.12, 0, 0],
+      ),
+      P.grip,
+    );
+  }
+  // Left horn head: the switch box (trim rocker, red autopilot disconnect); right: a round cap.
+  const head = [0.13, 0.135, -0.068];
+  d.add(place(roundedBox([0.05, 0.03, 0.036], 0.009), head, [-0.12, 0, 0]), P.grip);
+  d.add(
+    place(
+      roundedBox([0.012, 0.007, 0.016], 0.002),
+      [head[0] + 0.01, head[1] + 0.017, head[2]],
+      [-0.12, 0, 0],
+    ),
+    P.black,
+  );
+  d.add(
+    place(new T.CylinderGeometry(0.0055, 0.0055, 0.006, 14).rotateX(Math.PI / 2), [
+      head[0] - 0.012,
+      head[1] + 0.002,
+      head[2] - 0.019,
+    ]),
+    P.red,
+  );
+  d.add(
+    place(
+      lathe(
+        [
+          [0, 0],
+          [0.019, 0],
+          [0.02, 0.008],
+          [0.014, 0.018],
+          [0, 0.021],
+        ],
+        14,
+      ),
+      [-0.134, 0.122, -0.065],
+      [-0.12, 0, 0],
+    ),
+    P.grip,
+  );
+  // Checklist plate: a trapezoid narrowing downward, its alloy face lettered.
+  d.add(
+    loftUp([
+      { y: -0.075, points: contour(0, 0, 0.028, 0.012, 14, 3.5) },
+      { y: 0.03, points: contour(0, 0, 0.042, 0.013, 14, 3.5) },
+      { y: 0.07, points: contour(0, 0, 0.046, 0.012, 14, 3.5) },
+      { y: 0.078, points: contour(0, 0, 0.04, 0.008, 14, 3) },
+    ]).translate(0, 0, -0.072),
+    P.grip,
+  );
+  d.add(
+    loftUp([
+      { y: -0.064, points: contour(0, 0, 0.022, 0.002, 8, 8) },
+      { y: 0.066, points: contour(0, 0, 0.038, 0.002, 8, 8) },
+    ]).translate(0, 0, -0.085),
+    plate,
+  );
+  d.add(bar([0, 0, 0.21], [0, 0, -0.06], 0.017, 18), P.black);
+}
+/** The PC-12's rudder pedal: a tall rubber-faced pad on an alloy back plate, hung on an arm from
+ * the pedal shaft at the footwell's forward wall. Origin at the pad centre, facing -Z. */
+function pc12Pedal(d, P) {
+  const lean = [0.28, 0, 0];
+  d.add(place(roundedBox([0.09, 0.13, 0.012], 0.012), [0, 0, 0.004], lean), P.alloy);
+  d.add(place(roundedBox([0.074, 0.108, 0.005], 0.01), [0, 0, -0.004], lean), P.tread);
+  for (const y of [-0.036, -0.012, 0.012, 0.036])
+    d.add(place(roundedBox([0.066, 0.004, 0.002], 0.0008), [0, y, -0.0068], lean), P.black);
+  d.add(
+    tube(
+      [
+        [0, 0.05, 0.022],
+        [0, 0.12, 0.12],
+        [0, 0.2, 0.3],
+      ],
+      0.0075,
+      12,
+    ),
+    P.steel,
+  );
+  d.add(bar([-0.022, 0.2, 0.3], [0.022, 0.2, 0.3], 0.012, 14), P.black);
+}
+/** A light bat-handle toggle: a hex bushing and a tapered lever tipped up toward the pilot.
+ * Panel face at `at`, facing -Z. */
+function panelToggle(d, P, at) {
+  d.add(
+    place(new T.CylinderGeometry(0.0052, 0.0052, 0.0035, 6, 1, true).rotateX(Math.PI / 2), [
+      at[0],
+      at[1],
+      at[2] - 0.0017,
+    ]),
+    P.alloy,
+  );
+  d.add(
+    place(new T.CircleGeometry(0.0052, 6).rotateY(Math.PI), [at[0], at[1], at[2] - 0.0035]),
+    P.alloy,
+  );
+  d.add(
+    bar([at[0], at[1], at[2] - 0.003], [at[0], at[1] + 0.005, at[2] - 0.017], 0.0013, 8, 0.0021),
+    P.alloy,
+  );
+}
+/** The PC-12 power control lever's grip: a broad rounded handle canted toward the pilot, with a
+ * thumb switch on its left. Built about +Y from y=0. */
+function pc12PowerGrip(P) {
+  return [
+    [
+      P.grip,
+      loftUp([
+        { y: 0, points: contour(0, 0, 0.014, 0.016, 16, 2.4) },
+        { y: 0.018, points: contour(0, -0.004, 0.026, 0.022, 16, 2.6) },
+        { y: 0.042, points: contour(0, -0.008, 0.033, 0.026, 16, 2.8) },
+        { y: 0.056, points: contour(0, -0.009, 0.03, 0.023, 16, 2.6) },
+        { y: 0.062, points: contour(0, -0.009, 0.02, 0.014, 16, 2.4) },
+      ]),
+    ],
+    [P.black, place(roundedBox([0.008, 0.012, 0.01], 0.002), [0.033, 0.04, -0.012])],
+  ];
+}
 export const pc12Frame = () => ({
   heli: false,
   fighter: false,
@@ -293,6 +462,7 @@ export function buildPC12(s) {
     paint,
     [0, 0, -1],
   );
+  const cockpitLining = [];
   for (const j of [0, 1, 12, 13])
     quad(d, p(2, j), p(3, j), p(3, (j + 1) % 14), p(2, (j + 1) % 14), glass, [0, 1, 1]);
   for (const j of [3, 10])
@@ -309,7 +479,13 @@ export function buildPC12(s) {
     // Forward part of the one large crew side window (EI-NGX photo): it runs aft to the header
     // ring, where the rest of the pane continues in the window band (a broad post split them).
     const opening = [at(0.35, 0.1), at(0.99, 0.05), at(0.99, 0.84)];
-    sheet(d, [p(2, upper), p(3, upper), p(3, lower), p(2, lower)], paint, [side, 0, 0], [opening]);
+    const forward = [p(2, upper), p(3, upper), p(3, lower), p(2, lower)];
+    sheet(d, forward, paint, [side, 0, 0], [opening]);
+    // The flight deck lines this sheet from inside (pc12Cockpit), 8 mm inboard.
+    const inboard = (q) => [q[0] - side * 0.008, q[1], q[2]];
+    cockpitLining.push((kit, material) =>
+      sheet(kit, forward.map(inboard), material, [-side, 0, 0], [opening.map(inboard)]),
+    );
     sheet(d, opening, glass, [side, 0, 0]);
     outline(d, opening, 0.012, dark);
   }
@@ -346,9 +522,15 @@ export function buildPC12(s) {
   // The leaning window band (points 2-3, header ring to the tail cone) around convex (z, v)
   // apertures, by vertical decomposition: every sub-column between window corners and stations
   // leaves quads bounded by the band edges or window edges, all on the loft's own facet.
-  const windowBand = (side, windows) => {
+  // With `inset` it draws the cockpit's lining of the same band instead (kit, material, rings).
+  const windowBand = (side, windows, { kit = d, material = paint, inset = 0, last = 8 } = {}) => {
     const edges = windows.flatMap((w) => w.map((a, n) => [a, w[(n + 1) % w.length]]));
-    for (let i = 3; i <= 8; i++) {
+    const at = (z, v) => {
+      const q = onBand(side, z, v);
+      q[0] -= side * inset;
+      return q;
+    };
+    for (let i = 3; i <= last; i++) {
       const z0 = rings[i + 1].z,
         z1 = rings[i].z,
         cuts = [z0, z1];
@@ -376,15 +558,11 @@ export function buildPC12(s) {
         let low = () => 2;
         for (const [f, g] of [...spans, [() => 3, () => 3]]) {
           if (f(sm) > low(sm) + 1e-9)
-            quad(
-              d,
-              onBand(side, sa, low(sa)),
-              onBand(side, sb, low(sb)),
-              onBand(side, sb, f(sb)),
-              onBand(side, sa, f(sa)),
-              paint,
-              [side, 0, 0],
-            );
+            quad(kit, at(sa, low(sa)), at(sb, low(sb)), at(sb, f(sb)), at(sa, f(sa)), material, [
+              inset ? -side : side,
+              0,
+              0,
+            ]);
           low = g;
         }
       }
@@ -432,6 +610,9 @@ export function buildPC12(s) {
     ]);
     const apertures = windows.map((w) => w.map(([z, y]) => [z, toV(z, y)]));
     windowBand(side, apertures);
+    cockpitLining.push((kit, material) =>
+      windowBand(side, apertures, { kit, material, inset: 0.008, last: 4 }),
+    );
     for (const [n, w] of apertures.entries()) {
       const h = aperture(side, w);
       sheet(d, h, n ? tinted : glass, [side, 0, 0]);
@@ -787,11 +968,18 @@ export function buildPC12(s) {
     });
   }
   d.finish();
-  const interior = pc12Cockpit(root, { paint, blue, metal, dark, rings });
+  const { stations: controlStations, ...interior } = pc12Cockpit(root, {
+    paint,
+    blue,
+    metal,
+    dark,
+    rings,
+    cockpitLining,
+  });
   cleanGeometry(root);
   return {
     root,
-    frame: pc12Frame(),
+    frame: { ...pc12Frame(), controlStations },
     enginePoints: [{ id: 'engine-1', position: [0, 1.69, 5.29] }],
     visual: {
       rotors: [{ node: prop.name, axis: 'z', multiplier: 1, engine: 'engine-1' }],
@@ -1125,15 +1313,35 @@ function pc12Cockpit(root, m) {
       for (let n = 0; n < 5; n++)
         pt.knob(side * 0.24 + (n - 2) * 0.022, 2.11 - row * 0.028, z - 0.02, 0.004);
   }
+  // The gear lever: a short alloy arm out of its slot to a white wheel knob standing on edge,
+  // hanging a little down at rest (gear down).
+  const P = partPalette();
   const gear = group(cabin, 'PC12-gear-handle', at(552, 442, -0.04)),
     gd = detailKit(gear, gear.name);
-  gd.rod([0, 0, 0], [0, -0.022, -0.025], 0.005, m.metal);
-  gd.add(
-    new T.CylinderGeometry(0.013, 0.013, 0.012, 16).rotateX(Math.PI / 2),
-    black,
-    [0, -0.025, -0.028],
-  );
+  {
+    const handle = placed(gd, [0, 0, 0.038], [-0.2, 0, 0]);
+    handle.add(bar([0, 0, 0], [0, 0, -0.05], 0.0045, 12), P.alloy);
+    handle.add(
+      lathe(
+        [
+          [0, -0.009],
+          [0.014, -0.0092],
+          [0.0195, -0.007],
+          [0.0205, 0],
+          [0.0195, 0.007],
+          [0.014, 0.0092],
+          [0, 0.009],
+        ],
+        22,
+      )
+        .rotateZ(Math.PI / 2)
+        .translate(0, 0, -0.064),
+      P.white,
+    );
+  }
   gd.finish();
+  d.box([0.012, 0.07, 0.003], [px(552), py(442), z - 0.0015], black);
+  d.text('LDG GEAR', at(552, 402, -0.002), 0.0042, Math.PI, ink);
   bindings.push({
     node: gear.name,
     source: 'gear',
@@ -1142,50 +1350,13 @@ function pc12Cockpit(root, m) {
     offset: -0.7,
     scale: 0.7,
   });
-  // Distinct silver-center U yokes. Positive roll is right-bank, toward local -X.
+  // The PC-12's U yokes (pc12Yoke) with the silver checklist plate. Positive roll is right-bank,
+  // toward local -X.
   for (const u of [375, 997]) {
     const g = group(cabin, `PC12-yoke-${u}`, at(u, 414, -0.2)),
       dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0.2], [0, 0, -0.03], 0.023, m.metal);
-    const path = [
-      [-0.132, 0.096, -0.045],
-      [-0.145, 0.02, -0.045],
-      [-0.126, -0.028, -0.045],
-      [-0.052, -0.036, -0.045],
-      [0, -0.014, -0.045],
-      [0.052, -0.036, -0.045],
-      [0.126, -0.028, -0.045],
-      [0.145, 0.02, -0.045],
-      [0.132, 0.096, -0.045],
-    ].map((p) => new T.Vector3(...p));
-    dd.add(new T.TubeGeometry(new T.CatmullRomCurve3(path), 48, 0.017, 8, false), black);
-    const hub = new T.Shape();
-    [
-      [-0.025, 0.075],
-      [0.025, 0.075],
-      [0.045, 0.012],
-      [0.028, -0.07],
-      [-0.028, -0.07],
-      [-0.045, 0.012],
-    ].forEach(([x, y], i) => {
-      if (i) hub.lineTo(x, y);
-      else hub.moveTo(x, y);
-    });
-    hub.closePath();
-    const hg = new T.ExtrudeGeometry(hub, {
-      depth: 0.022,
-      bevelEnabled: true,
-      bevelSize: 0.005,
-      bevelThickness: 0.005,
-      bevelSegments: 1,
-      steps: 1,
-    });
-    dd.add(hg, m.metal, [0, 0, -0.07]);
-    dd.text('PILATUS', [0, 0, -0.078], 0.007, Math.PI, ink);
-    for (const side of [-1, 1]) {
-      beveledBox(dd, [0.046, 0.035, 0.043], [side * 0.13, 0.097, -0.045], black, 0.008);
-      dd.box([0.012, 0.006, 0.013], [side * 0.13, 0.116, -0.045], d.red);
-    }
+    pc12Yoke(dd, P, { plate: m.metal });
+    dd.text('PILATUS', [0, 0.045, -0.0875], 0.0065, Math.PI, black);
     dd.finish();
     bindings.push(
       { node: g.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.65 },
@@ -1211,8 +1382,19 @@ function pc12Cockpit(root, m) {
   dd.finish();
   const power = group(pedestal, 'PC12-power', [0.055, 0.2, 0.06]),
     powerD = detailKit(power, power.name);
-  powerD.rod([0, 0, 0], [0, 0.14, -0.055], 0.009, m.metal);
-  beveledBox(powerD, [0.085, 0.043, 0.06], [0, 0.14, -0.055], black, 0.012);
+  {
+    const tilt = Math.atan2(-0.055, 0.14);
+    powerD.add(
+      place(
+        roundedBox([0.012, Math.hypot(0.14, 0.055), 0.02], 0.003, 1),
+        [0, 0.07, -0.0275],
+        [tilt, 0, 0],
+      ),
+      P.alloy,
+    );
+    for (const [material, geometry] of pc12PowerGrip(P))
+      powerD.add(place(geometry, [0, 0.14, -0.055], [tilt, 0, 0]), material);
+  }
   powerD.finish();
   bindings.push({
     node: power.name,
@@ -1224,9 +1406,11 @@ function pc12Cockpit(root, m) {
   });
   const flapLever = group(pedestal, 'PC12-flap-handle', [-0.09, 0.22, 0.2]),
     flapD = detailKit(flapLever, flapLever.name);
-  flapD.rod([0, 0, 0], [0, 0.03, 0], 0.005, m.metal);
-  flapD.box([0.034, 0.018, 0.03], [0, 0.035, 0], black);
+  // Flap selector: an airfoil knob on a short blade out of its slot.
+  flapSelectorGeometry(placed(flapD, [0, -0.04, 0]), { style: 'lever', height: 0.05, scale: 0.85 });
   flapD.finish();
+  pd.box([0.01, 0.002, 0.16], [-0.09, 0.1905, 0.13], black);
+  pd.box([0.014, 0.002, 0.2], [0.055, 0.1905, 0.03], black);
   bindings.push({
     node: flapLever.name,
     source: 'flapPosition',
@@ -1261,9 +1445,7 @@ function pc12Cockpit(root, m) {
     for (const j of [-1, 1]) {
       const g = group(cabin, `PC12-pedal-${side}-${j}`, [side * 0.35 + j * 0.09, 1.37, 2.76]),
         dd = detailKit(g, g.name);
-      dd.box([0.14, 0.09, 0.04], [0, 0, 0], m.metal);
-      for (let n = 0; n < 4; n++)
-        dd.box([0.006, 0.06, 0.006], [-0.05 + n * 0.033, 0, -0.023], black);
+      pc12Pedal(dd, P);
       dd.finish();
       bindings.push({
         node: g.name,
@@ -1304,10 +1486,23 @@ function pc12Cockpit(root, m) {
   const oh = group(cabin, 'PC12-overhead', [0, 2.72, 2.25]);
   oh.rotation.x = -1.1;
   const od = detailKit(oh, oh.name);
-  beveledBox(od, [0.26, 0.3, 0.02], [0, 0, 0], face, 0.01);
-  for (let row = 0; row < 4; row++)
-    for (let col = 0; col < 4; col++)
-      od.box([0.035, 0.024, 0.008], [-0.09 + col * 0.06, -0.1 + row * 0.065, -0.02], black);
+  // A medium grey panel in the cream headliner (Apex photograph a.jpg), not the dark main-panel
+  // paint.
+  beveledBox(od, [0.26, 0.3, 0.02], [0, 0, 0], mat('PC12-overhead', '#73777a'), 0.01);
+  // Electrical power management panel (NG/NGX photographs): rows of bat-handle toggles on a
+  // bus diagram, and the red-guarded MASTER POWER switch in its red field at the top right as
+  // the pilot looks up (local +y is aft, -x is the right side).
+  for (let row = 0; row < 3; row++)
+    for (let col = 0; col < 5; col++) {
+      if (row === 0 && col === 4) continue;
+      panelToggle(od, P, [0.1 - col * 0.05, 0.1 - row * 0.075, -0.0105]);
+    }
+  od.box([0.22, 0.0015, 0.001], [0, 0.07, -0.0105], ink);
+  od.box([0.0015, 0.15, 0.001], [-0.01, 0.0, -0.0105], ink);
+  od.box([0.05, 0.045, 0.002], [-0.095, 0.1, -0.011], d.red);
+  panelToggle(od, P, [-0.095, 0.1, -0.012]);
+  od.box([0.022, 0.004, 0.028], [-0.095, 0.115, -0.026], d.red);
+  od.text('MASTER POWER', [-0.095, 0.128, -0.0125], 0.004, Math.PI, ink);
   od.finish();
   // Two crew and six executive seats, with broad tapered backs and a center aisle.
   for (const [row, zz, facing] of [
@@ -1443,7 +1638,47 @@ function pc12Cockpit(root, m) {
   beveledBox(d, [0.4, 1.2, 0.025], [0.22, 1.9, -3.7], wood, 0.01);
   d.rod([0.08, 1.85, -3.68], [0.08, 1.94, -3.68], 0.009, m.metal);
   d.box([0.025, 1.38, 0.62], [0.55, 1.94, 0.95], liner);
+  // Fit the flight deck to the airframe, so no painted skin shows from the seats: a bulkhead
+  // beside and behind the panel out to the walls, the panel's blue-grey down the sidewalls to
+  // the window band and cream trim over the band (its own apertures) and the crown, from the
+  // cabin partition to the footwell wall.
+  cockpitBulkhead(d, root, { z: 2.936, yFrom: 1.97, yTo: 2.34, material: face });
+  // Behind the footwell wall, out to the skin beside it and down past the floor's front edge.
+  cockpitBulkhead(d, root, { z: 3.114, yFrom: 1.2, yTo: 2.06, material: face });
+  // Carpet strip closing the floor's front edge against the footwell wall.
+  d.box([1.3, 0.03, 0.075], [0, 1.25, 3.075], m.dark);
+  const trim = mat('PC12-trim', '#cbc7b8', { roughness: 0.8 });
+  const lining = (yFrom, yTo, ySteps, material) =>
+    cockpitLiner(d, root, { zFrom: 1.25, zTo: 3.11, yFrom, yTo, material, zSteps: 20, ySteps });
+  lining(1.268, 1.965, 8, face);
+  lining(2.6, 2.8, 4, trim);
+  lining(1.15, 1.268, 1, m.dark);
+  // The window band and the forward side sheet, windows and all, lined in cream.
+  for (const line of m.cockpitLining) line(d, trim);
+  // The parking brake handle's bracket under the pilot's panel.
+  beveledBox(d, [0.1, 0.05, 0.02], [0.5, 1.955, 2.85], face, 0.004);
   d.finish();
+  // Where the NGX's remaining controls are: the parking brake T-handle under the pilot's panel
+  // and the condition lever (cut-off / ground idle / flight idle) right of the power lever,
+  // which runs and stops the engine.
+  const stations = [
+    {
+      action: 'brake',
+      style: 'tee',
+      at: [0.5, 1.958, 2.8395],
+      label: 'PARK BRAKE',
+      labelAt: [0, -0.018, -0.001],
+      labelHeight: 0.004,
+    },
+    {
+      action: 'engine',
+      style: 'condition',
+      at: [-0.03, 1.821, 2.25],
+      height: 0.1,
+      rake: -0.03,
+      shaft: 'round',
+    },
+  ];
   // Identical crew displays share calculations, while retaining independent physical nodes.
   for (const [name, value] of Object.entries(derived)) {
     if (!name.includes('PFD-R')) continue;
@@ -1464,5 +1699,5 @@ function pc12Cockpit(root, m) {
         expression.args = expression.args.map((v) => (v === name ? shared : v));
     delete derived[name];
   }
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
 }

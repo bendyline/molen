@@ -238,7 +238,14 @@ describe('cockpit meshes', () => {
   it('animates independent throttles and both stick axes from the same pilot commands', () => {
     const { model, bindingSpec, left, right, yoke } = fixture();
     const visual = createAircraftVisual(model, bindingSpec);
-    const throttle = requireValue(visual.cockpit.controls.find((c) => c.nodes.includes(left.name)));
+    const throttle = requireValue(
+      visual.cockpit.controls.find((c) => c.engine !== undefined && c.nodes.includes(left.name)),
+    );
+    // "All throttles" is the set of per-engine levers, not a lever (or switch) of its own.
+    const all = requireValue(
+      visual.cockpit.controls.find((c) => c.action === 'power' && c.engine === undefined),
+    );
+    expect([...all.nodes].sort()).toEqual([left.name, right.name].sort());
     let next = applyAircraftControl(input, { control: throttle, value: 0.9 }, bindingSpec, state);
     next = applyAircraftControl(
       next,

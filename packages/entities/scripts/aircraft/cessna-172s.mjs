@@ -3,7 +3,24 @@
  * The published three-view is schematic: see reference-review.json for residuals.
  */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import {
+  flapSelectorGeometry,
+  lathe,
+  leverGate,
+  leverGeometry,
+  place,
+  roundedBox,
+  yokeGeometry,
+} from './cockpit-parts.mjs';
 import { finishCockpit } from './cockpit-surfaces.mjs';
+import {
+  cabinHeadliner,
+  cabinLiner,
+  frameTrim,
+  gaPedal,
+  placedKit,
+  pushPullKit,
+} from './ga-cabin.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -564,11 +581,19 @@ export function buildCessna172(s) {
     loft(d, pant, paint);
   }
   d.finish();
-  const interior = cockpit(root, { paint, blue, metal, dark, rings, halfWidth, roofAt });
+  const { stations: controlStations, ...interior } = cockpit(root, {
+    paint,
+    blue,
+    metal,
+    dark,
+    rings,
+    halfWidth,
+    roofAt,
+  });
   cleanGeometry(root);
   return {
     root,
-    frame: cessna172Frame(),
+    frame: { ...cessna172Frame(), controlStations },
     enginePoints: [{ id: 'engine-1', position: [0, 1.25095, 2.285] }],
     visual: {
       rotors: [{ node: prop.name, axis: 'z', multiplier: 1, engine: 'engine-1' }],
@@ -592,8 +617,11 @@ function cockpit(root, m) {
     pt = panelTools(d),
     instruments = instrumentGeometry(cabin, 'Skyhawk');
   const { bindings, derived, ink, black, red } = instruments;
-  const face = mat('Skyhawk-panel', '#666861'),
+  // NAV III panels are dark charcoal (Marostegui's 172S photograph), not mid gray.
+  const face = mat('Skyhawk-panel', '#4d5153'),
     seats = mat('Skyhawk-seats', '#b5afa0'),
+    sidewall = mat('Skyhawk-sidewall', '#8d8a82'),
+    headliner = mat('Skyhawk-headliner', '#c8c3b4'),
     piping = mat('Skyhawk-upholstery-piping', '#898579', { metalness: 0, roughness: 0.9 }),
     belt = mat('Skyhawk-belts', '#454b49', { side: T.DoubleSide });
   const k = 0.29972 / 334,
@@ -903,6 +931,29 @@ function cockpit(root, m) {
   instruments.horizon('standby-attitude', at(725, 395, 0.008), 0.06, 0.06, { round: true });
   d.ring(0.034, 0.004, at(725, 395, -0.005), black);
   instruments.altimeter('standby-altimeter', at(832, 395, -0.006), 0.038, 'feet');
+  // KAP 140 autopilot head under the standby trio, above the throttle and mixture (Marostegui's
+  // photograph): a slim black box with its LCD window, the mode-button row and the knob at the
+  // right end. It overhangs the switch strip's top edge.
+  d.box([0.159, 0.033, 0.022], at(725, 455, -0.011), black);
+  d.box([0.153, 0.028, 0.002], at(725, 455, -0.0225), m.dark);
+  d.box([0.062, 0.011, 0.001], at(718, 446, -0.024), mat('Skyhawk-kap-lcd', '#2c0f0c'));
+  pt.buttons(px(718), py(463), z - 0.027, 8, 0.0165);
+  pt.knob(px(796), py(452), z - 0.029, 0.0085);
+  d.text('KAP 140', at(658, 446, -0.024), 0.0042, Math.PI, ink);
+  // Wet compass hung from the windscreen header on the centreline (one-piece windscreen, no
+  // post): a round black housing with the card behind its window (an open can, so the drum
+  // shows through the face) and a deviation card under it.
+  // The can is drawn both sides: seen through the window at an angle its inside closes the view.
+  const compassCase = mat('Skyhawk-compass-case', '#15191b', { side: T.DoubleSide });
+  instruments.headingDrum('compass', [0, 1.71, 0.66], 0.028, 'trueHeading');
+  d.add(
+    new T.CylinderGeometry(0.0283, 0.0283, 0.058, 24, 1, true).rotateX(Math.PI / 2),
+    compassCase,
+    [0, 1.71, 0.687],
+  );
+  d.add(new T.CircleGeometry(0.0283, 24), compassCase, [0, 1.71, 0.716]);
+  d.rod([0, 1.736, 0.7], [0, 1.795, 0.636], 0.007, m.metal);
+  d.box([0.042, 0.014, 0.003], [0, 1.6745, 0.662], ink);
   // Lower switch/breaker strip and standby battery/master controls.
   d.box([0.94, 0.089, 0.027], at(700, 516, -0.003), black);
   for (let row = 0; row < 3; row++)
@@ -918,68 +969,140 @@ function cockpit(root, m) {
       ink,
     );
   }
+  // BAT/ALT split master rocker. The engine is started and stopped on the magneto key below it
+  // (a control station), not on the master.
   for (const u of [182, 211]) {
-    const rocker = group(cabin, `Skyhawk-master-${u}`, at(u, 310, -0.013));
+    const rocker = group(cabin, `Skyhawk-master-${u}`, at(u, 310, -0.006));
     const rd = detailKit(rocker, rocker.name);
-    rd.box([0.013, 0.026, 0.01], [0, 0, 0], u === 182 ? red : ink);
-    if (u === 182)
-      rocker.userData.aircraftControl = {
-        action: 'engine',
-        motion: { property: 'rotation', axis: 'x', scale: -0.5 },
-      };
+    rd.add(
+      place(roundedBox([0.012, 0.026, 0.007], 0.002), [0, 0, -0.002], [0.16, 0, 0]),
+      u === 182 ? red : ink,
+    );
     rd.finish();
   }
-  // Parking-brake T-handle under the lower left panel, outboard of the yoke sightline.
-  const parkingBrake = group(cabin, 'Skyhawk-parking-brake', [0.33, 0.97, 1.06]),
+  // Lower panels either side of the switch strip, down to knee height: from the seat the eye
+  // looked under the panel edge into the footwell and the bare skin beside it.
+  for (const side of [-1, 1]) {
+    const inner = side * 0.425,
+      bottom = 1.0;
+    sheet(
+      d,
+      [
+        fit([inner, py(463) + 0.004, z]),
+        fit([side * 0.62, py(463) + 0.004, z]),
+        fit([side * 0.62, bottom + 0.04, z]),
+        fit([side * 0.6, bottom, z]),
+        [inner, bottom, z],
+      ],
+      face,
+      [0, 0, -1],
+    );
+  }
+  // Parking-brake T-handle on the lower left panel, outboard of the yoke column.
+  const parkingBrake = group(cabin, 'Skyhawk-parking-brake', [0.37, 1.04, z - 0.001]),
     bd = detailKit(parkingBrake, parkingBrake.name);
-  bd.rod([0, 0, 0.05], [0, 0, -0.022], 0.005, m.metal);
-  bd.box([0.07, 0.016, 0.018], [0, 0, -0.03], black);
+  bd.add(
+    place(
+      lathe(
+        [
+          [0, 0],
+          [0.0035, 0],
+          [0.0035, 0.034],
+          [0, 0.034],
+        ],
+        12,
+      ),
+      [0, 0, 0.004],
+      [-Math.PI / 2, 0, 0],
+    ),
+    m.metal,
+  );
+  bd.add(place(roundedBox([0.056, 0.015, 0.016], 0.006), [0, 0, -0.036]), black);
   parkingBrake.userData.aircraftControl = {
     action: 'brake',
     motion: { property: 'position', axis: 'z', scale: -0.022 },
   };
   bd.finish();
+  d.add(
+    place(
+      lathe(
+        [
+          [0.004, 0],
+          [0.011, 0],
+          [0.011, 0.003],
+          [0.008, 0.005],
+          [0.004, 0.005],
+        ],
+        16,
+      ),
+      [0.37, 1.04, z],
+      [-Math.PI / 2, 0, 0],
+    ),
+    m.metal,
+  );
+  d.text('PARK BRAKE', [0.37, 1.062, z - 0.002], 0.0055, Math.PI, ink);
   d.text('172S', at(1130, 190, -0.01), 0.012, Math.PI, ink);
   d.text('NAV III', at(1130, 215, -0.01), 0.008, Math.PI, ink);
   for (const u of [150, 1210]) pt.vent(px(u), py(360), z - 0.008, 'round', 0.045);
   d.box([0.13, 0.022, 0.015], at(1110, 250, -0.01), black);
   d.text('ELT', at(1080, 112, -0.012), 0.006, Math.PI, ink);
+  // Ram's-horn yokes on round columns out of the panel. The Skyhawk SP hub wears a padded cover
+  // that hangs below the arms, with an oval emblem (Marostegui's 172S photograph).
   for (const u of [405, 995]) {
     const g = group(cabin, `Skyhawk-yoke-${u}`, at(u, 428, -0.17)),
       dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0.18], [0, 0, -0.06], 0.015, m.metal);
-    outline(
-      dd,
-      [
-        [-0.125, 0.11, -0.085],
-        [-0.133, -0.025, -0.085],
-        [-0.085, -0.045, -0.085],
-        [0.085, -0.045, -0.085],
-        [0.133, -0.025, -0.085],
-        [0.125, 0.11, -0.085],
-      ],
-      0.014,
-      m.dark,
-      false,
+    yokeGeometry(placedKit(dd, [0, 0, -0.085]), {
+      style: 'cessna',
+      width: 0.29,
+      column: 0.265,
+      columnRadius: 0.0125,
+    });
+    dd.add(place(roundedBox([0.086, 0.118, 0.03], 0.014), [0, -0.024, -0.112]), black);
+    dd.add(
+      place(new T.TorusGeometry(0.021, 0.0028, 6, 24), [0, -0.05, -0.128], [0, 0, 0], [1, 0.72, 1]),
+      m.metal,
     );
-    beveledBox(dd, [0.075, 0.115, 0.035], [0, 0.012, -0.085], m.dark, 0.008);
-    dd.text('172', [0, -0.02, -0.107], 0.009, Math.PI, ink);
-    for (const side of [-1, 1]) dd.box([0.022, 0.012, 0.025], [side * 0.123, 0.107, -0.088], black);
+    dd.text('SKYHAWK', [0, -0.05, -0.1285], 0.004, Math.PI, ink);
     dd.finish();
     bindings.push(
       { node: g.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.65 },
       { node: g.name, source: 'pitchInput', property: 'position', axis: 'z', scale: -0.05 },
     );
   }
+  // Push-pull throttle (black knob, chrome face) and red mixture with its scalloped rim, each
+  // through a knurled friction collar on the lower panel.
   const throttle = group(cabin, 'Skyhawk-throttle', at(670, 536, -0.065)),
     td = detailKit(throttle, 'throttle');
-  td.rod([0, 0, 0.075], [0, 0, -0.065], 0.007, m.metal);
+  leverGeometry(pushPullKit(td, [0, 0, 0.07]), {
+    style: 'throttle',
+    height: 0.128,
+    shaft: 'round',
+  });
   td.add(
-    new T.CylinderGeometry(0.019, 0.019, 0.022, 16).rotateX(Math.PI / 2),
-    black,
-    [0, 0, -0.071],
+    place(new T.CylinderGeometry(0.0105, 0.0105, 0.002, 18), [0, 0, -0.0825], [Math.PI / 2, 0, 0]),
+    m.metal,
   );
   td.finish();
+  for (const u of [670, 741])
+    d.add(
+      place(
+        lathe(
+          [
+            [0.005, 0],
+            [0.013, 0],
+            [0.013, 0.007],
+            [0.0095, 0.01],
+            [0.005, 0.01],
+          ],
+          16,
+        ),
+        at(u, 536, -0.0165),
+        [-Math.PI / 2, 0, 0],
+      ),
+      m.metal,
+    );
+  d.text('THROTTLE', at(670, 506, -0.0175), 0.0045, Math.PI, ink);
+  d.text('MIXTURE', at(741, 506, -0.0175), 0.0045, Math.PI, ink);
   bindings.push({
     node: throttle.name,
     source: 'power',
@@ -989,18 +1112,19 @@ function cockpit(root, m) {
   });
   const mixture = group(cabin, 'Skyhawk-mixture', at(741, 536, -0.01));
   const md = detailKit(mixture, mixture.name);
-  md.rod([0, 0, 0], [0, 0, -0.074], 0.007, m.metal);
-  md.add(new T.CylinderGeometry(0.018, 0.018, 0.025, 10).rotateX(Math.PI / 2), red, [0, 0, -0.085]);
+  leverGeometry(pushPullKit(md), { style: 'mixture', height: 0.07, shaft: 'round' });
   md.finish();
-  const flapSelector = group(cabin, 'Skyhawk-flap-selector', at(870, 500, -0.035));
+  // Wing-flap lever: an airfoil knob riding down a slotted gate (UP, 10, 20, FULL).
+  const flapSelector = group(cabin, 'Skyhawk-flap-selector', at(870, 500, -0.0175));
   const fd = detailKit(flapSelector, flapSelector.name);
-  fd.box([0.02, 0.026, 0.025], [0, 0, 0], ink);
+  flapSelectorGeometry(fd, { style: 'airfoil' });
   flapSelector.userData.aircraftControl = {
     action: 'flaps',
     motion: { property: 'position', axis: 'y', scale: -0.028 },
   };
   fd.finish();
-  d.text('FLAPS', at(870, 529, -0.025), 0.005, Math.PI, ink);
+  leverGate(placedKit(d, at(870, 516, -0.0165)), { size: [0.022, 0.052], marks: 4 });
+  d.text('FLAPS', at(908, 500, -0.0175), 0.005, Math.PI, ink);
   d.box([0.16, 0.34, 0.23], [0, 0.78, 0.93], black);
   d.ring(0.065, 0.009, [0.06, 0.87, 0.83], black, 'x');
   d.box([0.17, 0.025, 0.46], [0, 0.65, 0.49], m.dark);
@@ -1052,11 +1176,42 @@ function cockpit(root, m) {
   for (const side of [-1, 1]) {
     // Sidewall trim sits inside the skin where the cabin narrows aft of the doors.
     d.box([0.025, 0.28, 1.35], [side * 0.497, 0.83, -0.05], seats);
-    d.rod([side * 0.49, 1.03, 0.24], [side * 0.49, 1.03, -0.08], 0.016, m.dark);
+    // Door card: a padded armrest with its pull cup, the inside door latch lever ahead of it and
+    // a map pocket below, over the plastic door liner.
+    beveledBox(d, [0.07, 0.05, 0.5], [side * 0.505, 1.03, 0.1], seats, 0.018);
+    beveledBox(
+      d,
+      [0.03, 0.012, 0.09],
+      [side * (0.505 - 0.034), 1.03 + 0.018, 0.1 + 0.02],
+      m.dark,
+      0.004,
+    );
+    beveledBox(
+      d,
+      [0.02, 0.02, 0.09],
+      [side * (0.505 + 0.005), 1.03 + 0.09, 0.1 + 0.34],
+      m.metal,
+      0.005,
+    );
+    beveledBox(
+      d,
+      [0.03, 0.025, 0.012],
+      [side * (0.505 + 0.005), 1.03 + 0.09, 0.1 + 0.39],
+      m.dark,
+      0.004,
+    );
+    beveledBox(
+      d,
+      [0.025, 0.12, 0.34],
+      [side * (0.505 + 0.01), 1.03 - 0.16, 0.1 + 0.05],
+      m.dark,
+      0.008,
+    );
+    // Toe-brake pedals hung from the floor torque tubes (library 'ga' pedal).
     for (const j of [-1, 1]) {
-      const g = group(cabin, `Skyhawk-pedal-${side}-${j}`, [side * 0.25 + j * 0.075, 0.69, 1.25]),
+      const g = group(cabin, `Skyhawk-pedal-${side}-${j}`, [side * 0.25 + j * 0.075, 0.74, 1.25]),
         dd = detailKit(g, g.name);
-      dd.box([0.12, 0.055, 0.04], [0, 0, 0], m.metal);
+      gaPedal(dd, { side: j, drop: 0.07 });
       dd.finish();
       bindings.push({
         node: g.name,
@@ -1067,12 +1222,81 @@ function cockpit(root, m) {
       });
     }
   }
+  // Gray plastic sidewalls from the floor to the door sill, from the firewall to the baggage
+  // bulkhead, and above the windows to a fabric headliner: from the seat the inside of the
+  // painted skin showed white on every wall and the roof.
+  // The lower liner tucks under the floor edge and past the firewall kick panel; the upper one
+  // runs fine rows so the window openings leave no painted band, and stands clear of the
+  // window-frame tubes.
+  cabinLiner(d, root, {
+    zFrom: 1.335,
+    zTo: -1.0,
+    yFrom: 0.57,
+    yTo: 1.25,
+    material: sidewall,
+    zSteps: 12,
+    rows: 4,
+    reach: 0.62,
+  });
+  // Kick panels over the strut-root fittings, which stood into the footwells beside the pedals.
+  for (const side of [-1, 1])
+    beveledBox(d, [0.05, 0.1, 0.34], [side * 0.455, 0.71, 0.76], sidewall, 0.015);
+  cabinLiner(d, root, {
+    zFrom: 1.3,
+    zTo: -0.9,
+    yFrom: 1.25,
+    yTo: 1.77,
+    material: sidewall,
+    zSteps: 16,
+    rows: 4,
+    reach: 0.62,
+    inset: 0.014,
+  });
+  cabinHeadliner(d, root, {
+    zFrom: 0.66,
+    zTo: -0.9,
+    yFrom: 1.77,
+    material: headliner,
+    zSteps: 10,
+    margin: 0.002,
+  });
+  // Windscreen posts and header: trim over the painted frame tubes, which read white from the seat.
+  const ringPoint = (i, j) => [...m.rings[i].points[j], m.rings[i].z];
+  frameTrim(
+    d,
+    [ringPoint(2, 3), ...[3, 2, 1, 0, 19, 18, 17].map((j) => ringPoint(3, j)), ringPoint(2, 17)],
+    sidewall,
+    { center: 1.15 },
+  );
+  frameTrim(
+    d,
+    [3, 2, 1, 0, 19, 18, 17].map((j) => ringPoint(2, j)),
+    m.dark,
+    { center: 1.15 },
+  );
+  // Wing-root trim rails (the fresh-air vent ducts) over the wing root ribs, which stand inboard
+  // of the cabin side at the roof line.
+  for (const side of [-1, 1])
+    beveledBox(d, [0.04, 0.05, 0.86], [side * 0.455, 1.73, 0.19], sidewall, 0.012);
   d.finish();
   finishCockpit(cabin, (mesh) => {
     // Surface preparation may clone materials; names remain stable through batching.
     if (mesh.material.name === face.name) return 'panel';
     if ([seats.name, piping.name].includes(mesh.material.name)) return 'vinyl';
+    if (mesh.material.name === sidewall.name) return 'vinyl';
+    if (mesh.material.name === headliner.name) return 'vinyl';
     if (mesh.material.name === belt.name) return 'webbing';
   });
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // The magneto key (OFF R L BOTH START) sits low on the left panel, outboard of the yoke.
+  const stations = [
+    {
+      action: 'engine',
+      style: 'key',
+      at: at(168, 432, -0.001),
+      label: 'MAGNETOS',
+      labelAt: [0, 0.03, -0.002],
+      labelHeight: 0.0055,
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
 }

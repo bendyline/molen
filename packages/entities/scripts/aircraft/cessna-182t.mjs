@@ -2,6 +2,24 @@
  * Independently measured airframe and panel; see the per-model reference review.
  */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import {
+  flapSelectorGeometry,
+  lathe,
+  leverGate,
+  leverGeometry,
+  partPalette,
+  place,
+  roundedBox,
+  yokeGeometry,
+} from './cockpit-parts.mjs';
+import {
+  cabinHeadliner,
+  cabinLiner,
+  frameTrim,
+  gaPedal,
+  placedKit,
+  pushPullKit,
+} from './ga-cabin.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -556,11 +574,19 @@ export function buildCessna182(s) {
     loft(d, pant, paint);
   }
   d.finish();
-  const interior = cockpit(root, { paint, accent, metal, dark, rings, halfWidth, roofAt });
+  const { stations: controlStations, ...interior } = cockpit(root, {
+    paint,
+    accent,
+    metal,
+    dark,
+    rings,
+    halfWidth,
+    roofAt,
+  });
   cleanGeometry(root);
   return {
     root,
-    frame: cessna182Frame(),
+    frame: { ...cessna182Frame(), controlStations },
     enginePoints: [{ id: 'engine-1', position: [0, 1.279525, 2.735] }],
     visual: {
       rotors: [{ node: prop.name, axis: 'z', multiplier: 1, engine: 'engine-1' }],
@@ -583,9 +609,12 @@ function cockpit(root, m) {
     pt = panelTools(d),
     instruments = instrumentGeometry(cabin, 'Skylane');
   const { bindings, derived, ink, black, red } = instruments;
-  const face = mat('Skylane-panel', '#757b74'),
+  // T182T NAV III: blue-gray main panel over a black subpanel, cream plastic sidewalls and a
+  // beige headliner (Cessna T182T G1000 cockpit photograph, Commons, CC BY-SA 3.0).
+  const face = mat('Skylane-panel', '#5d656c'),
     seats = mat('Skylane-seats', '#b9b5a7'),
-    propBlue = mat('Skylane-prop-blue', '#3e8ba1');
+    sidewall = mat('Skylane-sidewall', '#a29c8e'),
+    headliner = mat('Skylane-headliner', '#cbc5b5');
   const k = 0.29972 / 232,
     px = (u) => (607 - u) * k,
     py = (v) => 1.4 - (v - 550) * k,
@@ -881,6 +910,27 @@ function cockpit(root, m) {
   d.ring(0.034, 0.004, at(607, 672, -0.005), black);
   instruments.altimeter('standby-altimeter', at(680, 672, -0.006), 0.038, 'feet');
   d.box([1.04, 0.1, 0.027], at(607, 768, -0.003), black);
+  // KAP 140 autopilot head set into the top of the black subpanel above the prop and mixture
+  // knobs (T182T photograph): its LCD window, the mode-button row and the knob at the right end.
+  d.box([0.159, 0.033, 0.008], at(632, 747, -0.0195), black);
+  d.box([0.153, 0.028, 0.002], at(632, 747, -0.0245), m.dark);
+  d.box([0.062, 0.011, 0.001], at(626, 740, -0.026), mat('Skylane-kap-lcd', '#2c0f0c'));
+  pt.buttons(px(626), py(754), z - 0.0295, 8, 0.0165);
+  pt.knob(px(694), py(745), z - 0.032, 0.0085);
+  d.text('KAP 140', at(579, 740, -0.026), 0.0042, Math.PI, ink);
+  // Wet compass hung from the windscreen header on the centreline: a round black can with the
+  // card behind its window and a deviation card under it. The can is drawn both sides: seen
+  // through the window at an angle its inside closes the view.
+  const compassCase = mat('Skylane-compass-case', '#15191b', { side: T.DoubleSide });
+  instruments.headingDrum('compass', [0, 1.8, 0.85], 0.028, 'trueHeading');
+  d.add(
+    new T.CylinderGeometry(0.0283, 0.0283, 0.058, 24, 1, true).rotateX(Math.PI / 2),
+    compassCase,
+    [0, 1.8, 0.877],
+  );
+  d.add(new T.CircleGeometry(0.0283, 24), compassCase, [0, 1.8, 0.906]);
+  d.rod([0, 1.826, 0.89], [0, 1.873, 0.826], 0.007, m.metal);
+  d.box([0.042, 0.014, 0.003], [0, 1.7645, 0.852], ink);
   for (let row = 0; row < 3; row++)
     for (let col = 0; col < 14; col++)
       pt.knob(px(275 + col * 18), py(749 + row * 13), z - 0.02, 0.0038);
@@ -891,74 +941,121 @@ function cockpit(root, m) {
       pt.knob(px(u), py(v), z - 0.022, 0.005);
       d.rod(at(u, v, -0.024), at(u, v - 8, -0.035), 0.0025, m.metal);
     }
-  // Red master rocker is the engine master; parking-brake T-handle sits under the lower left
-  // panel, outboard of the yoke sightline.
-  d.box([0.017, 0.03, 0.011], at(253, 614, -0.012), ink);
-  const master = group(cabin, 'Skylane-master', at(220, 614, -0.012)),
+  // BAT/ALT split master rocker. The engine starts and stops on the magneto key below it (a
+  // control station); the parking-brake T-handle sits at the left end of the black subpanel.
+  d.add(place(roundedBox([0.015, 0.03, 0.008], 0.002), at(253, 614, -0.006), [0.16, 0, 0]), ink);
+  const master = group(cabin, 'Skylane-master', at(220, 614, -0.006)),
     md = detailKit(master, master.name);
-  md.box([0.017, 0.03, 0.011], [0, 0, 0], red);
-  master.userData.aircraftControl = {
-    action: 'engine',
-    motion: { property: 'rotation', axis: 'x', scale: -0.5 },
-  };
+  md.add(place(roundedBox([0.015, 0.03, 0.008], 0.002), [0, 0, 0], [0.16, 0, 0]), red);
   md.finish();
-  const parkingBrake = group(cabin, 'Skylane-parking-brake', [0.42, 0.98, 1.45]),
+  const brakeAt = [0.485, 1.088, 1.4835],
+    parkingBrake = group(cabin, 'Skylane-parking-brake', brakeAt),
     bd = detailKit(parkingBrake, parkingBrake.name);
-  bd.rod([0, 0, 0.05], [0, 0, -0.022], 0.005, m.metal);
-  bd.box([0.07, 0.016, 0.018], [0, 0, -0.03], black);
+  bd.add(
+    place(
+      lathe(
+        [
+          [0, 0],
+          [0.0035, 0],
+          [0.0035, 0.034],
+          [0, 0.034],
+        ],
+        12,
+      ),
+      [0, 0, 0.004],
+      [-Math.PI / 2, 0, 0],
+    ),
+    m.metal,
+  );
+  bd.add(place(roundedBox([0.056, 0.015, 0.016], 0.006), [0, 0, -0.036]), black);
   parkingBrake.userData.aircraftControl = {
     action: 'brake',
     motion: { property: 'position', axis: 'z', scale: -0.022 },
   };
   bd.finish();
+  d.add(
+    place(
+      lathe(
+        [
+          [0.004, 0],
+          [0.011, 0],
+          [0.011, 0.003],
+          [0.008, 0.005],
+          [0.004, 0.005],
+        ],
+        16,
+      ),
+      brakeAt,
+      [-Math.PI / 2, 0, 0],
+    ),
+    m.metal,
+  );
+  d.text('PARK BRAKE', [brakeAt[0], brakeAt[1] + 0.024, brakeAt[2] - 0.001], 0.0055, Math.PI, ink);
   d.box([0.18, 0.034, 0.015], at(902, 593, -0.01), black);
   d.text('ADF INOP', at(902, 593, -0.02), 0.008, Math.PI, ink);
   d.text('ELT', at(836, 488, -0.012), 0.006, Math.PI, ink);
   d.text('182T', at(915, 666, -0.012), 0.012, Math.PI, ink);
   for (const u of [206, 975]) pt.vent(px(u), py(645), z - 0.008, 'round', 0.04);
+  // Ram's-horn yokes on black column tubes; the Skylane hub cover is a padded leather shield
+  // that reaches below the arms, with the oval Skylane emblem (T182T photograph).
   for (const u of [397, 805]) {
     const g = group(cabin, `Skylane-yoke-${u}`, at(u, 701, -0.17)),
       dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0.18], [0, 0, -0.06], 0.017, m.metal);
-    outline(
-      dd,
-      [
-        [-0.12, 0.11, -0.085],
-        [-0.14, -0.025, -0.085],
-        [-0.085, -0.045, -0.085],
-        [0.085, -0.045, -0.085],
-        [0.14, -0.025, -0.085],
-        [0.12, 0.11, -0.085],
-      ],
-      0.017,
-      m.dark,
-      false,
+    yokeGeometry(placedKit(dd, [0, 0, -0.085]), {
+      style: 'cessna',
+      width: 0.3,
+      column: 0.265,
+      columnRadius: 0.014,
+    });
+    dd.add(place(roundedBox([0.1, 0.13, 0.034], 0.016), [0, -0.03, -0.114]), black);
+    dd.add(
+      place(new T.TorusGeometry(0.022, 0.003, 6, 24), [0, -0.062, -0.132], [0, 0, 0], [1, 0.7, 1]),
+      m.metal,
     );
-    beveledBox(dd, [0.075, 0.115, 0.035], [0, 0.012, -0.085], m.dark, 0.009);
-    dd.text('182', [0, -0.02, -0.107], 0.009, Math.PI, ink);
-    for (const side of [-1, 1]) dd.box([0.024, 0.016, 0.026], [side * 0.12, 0.108, -0.088], black);
+    dd.text('SKYLANE', [0, -0.062, -0.1325], 0.004, Math.PI, ink);
     dd.finish();
     bindings.push(
       { node: g.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.65 },
       { node: g.name, source: 'pitchInput', property: 'position', axis: 'z', scale: -0.05 },
     );
   }
-  for (const [u, label, col] of [
-    [576, 'throttle', black],
-    [630, 'prop', propBlue],
-    [677, 'mixture', red],
+  // Push-pull engine controls through knurled friction collars: a chrome-faced throttle, the
+  // blue serrated propeller knob and the red scalloped mixture.
+  for (const [u, label] of [
+    [576, 'throttle'],
+    [630, 'prop'],
+    [677, 'mixture'],
   ]) {
     const g = group(cabin, `Skylane-${label}`, at(u, 784, -0.065)),
       dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0.075], [0, 0, -0.065], 0.007, m.metal);
-    dd.add(
-      new T.CylinderGeometry(0.019, 0.019, 0.025, label === 'mixture' ? 10 : 16).rotateX(
-        Math.PI / 2,
-      ),
-      col,
-      [0, 0, -0.071],
-    );
+    leverGeometry(pushPullKit(dd, [0, 0, 0.07]), { style: label, height: 0.128, shaft: 'round' });
+    if (label === 'throttle')
+      dd.add(
+        place(
+          new T.CylinderGeometry(0.0105, 0.0105, 0.002, 18),
+          [0, 0, -0.0825],
+          [Math.PI / 2, 0, 0],
+        ),
+        m.metal,
+      );
     dd.finish();
+    d.add(
+      place(
+        lathe(
+          [
+            [0.005, 0],
+            [0.013, 0],
+            [0.013, 0.007],
+            [0.0095, 0.01],
+            [0.005, 0.01],
+          ],
+          16,
+        ),
+        at(u, 784, -0.0165),
+        [-Math.PI / 2, 0, 0],
+      ),
+      m.metal,
+    );
     if (label === 'throttle')
       bindings.push({
         node: g.name,
@@ -968,10 +1065,12 @@ function cockpit(root, m) {
         scale: 0.055,
       });
   }
-  const flap = group(cabin, 'Skylane-flap', at(723, 761, -0.036)),
+  // Wing-flap lever: an airfoil knob riding down a slotted gate (UP, 10, 20, FULL).
+  const flap = group(cabin, 'Skylane-flap', at(723, 761, -0.0175)),
     fd = detailKit(flap, flap.name);
-  fd.box([0.02, 0.026, 0.025], [0, 0, 0], ink);
+  flapSelectorGeometry(fd, { style: 'airfoil' });
   fd.finish();
+  leverGate(placedKit(d, at(723, 775, -0.0165)), { size: [0.022, 0.06], marks: 4 });
   sources.flapPosition = { component: 'aircraftState', path: ['flapPosition'] };
   bindings.push({
     node: flap.name,
@@ -980,7 +1079,7 @@ function cockpit(root, m) {
     axis: 'y',
     scale: -0.035,
   });
-  d.text('FLAPS', at(723, 792, -0.025), 0.005, Math.PI, ink);
+  d.text('FLAPS', at(752, 761, -0.0175), 0.005, Math.PI, ink);
   const pedestal = group(cabin, 'Skylane-pedestal', [0, 0.85, 1.19]),
     dd = detailKit(pedestal, pedestal.name);
   beveledBox(dd, [0.17, 0.48, 0.2], [0, 0, 0], black);
@@ -1023,13 +1122,42 @@ function cockpit(root, m) {
   for (const side of [-1, 1]) {
     // Sidewall trim sits inside the skin where the cabin narrows aft of the doors.
     d.box([0.025, 0.28, 1.45], [side * 0.545, 0.85, 0.05], seats);
-    d.rod([side * 0.54, 1.06, 0.4], [side * 0.54, 1.06, 0.05], 0.017, m.dark);
+    // Door card: a padded armrest with its pull cup, the inside door latch lever ahead of it and
+    // a map pocket below, over the plastic door liner.
+    beveledBox(d, [0.07, 0.05, 0.5], [side * 0.55, 1.06, 0.25], seats, 0.018);
+    beveledBox(
+      d,
+      [0.03, 0.012, 0.09],
+      [side * (0.55 - 0.034), 1.06 + 0.018, 0.25 + 0.02],
+      m.dark,
+      0.004,
+    );
+    beveledBox(
+      d,
+      [0.02, 0.02, 0.09],
+      [side * (0.55 + 0.005), 1.06 + 0.09, 0.25 + 0.34],
+      m.metal,
+      0.005,
+    );
+    beveledBox(
+      d,
+      [0.03, 0.025, 0.012],
+      [side * (0.55 + 0.005), 1.06 + 0.09, 0.25 + 0.39],
+      m.dark,
+      0.004,
+    );
+    beveledBox(
+      d,
+      [0.025, 0.12, 0.34],
+      [side * (0.55 + 0.01), 1.06 - 0.16, 0.25 + 0.05],
+      m.dark,
+      0.008,
+    );
     for (const j of [-1, 1]) {
-      const g = group(cabin, `Skylane-pedal-${side}-${j}`, [side * 0.28 + j * 0.08, 0.71, 1.54]),
+      // Toe-brake pedals with black rubber pads, as the T182T's.
+      const g = group(cabin, `Skylane-pedal-${side}-${j}`, [side * 0.28 + j * 0.08, 0.76, 1.54]),
         pd = detailKit(g, g.name);
-      pd.box([0.13, 0.06, 0.04], [0, 0, 0], m.metal);
-      for (let t = 0; t < 4; t++)
-        pd.box([0.003, 0.05, 0.004], [-0.047 + t * 0.031, 0, -0.023], black);
+      gaPedal(pd, { side: j, drop: 0.08, tread: partPalette().tread });
       pd.finish();
       bindings.push({
         node: g.name,
@@ -1043,6 +1171,65 @@ function cockpit(root, m) {
     // 1.91 m here).
     d.box([0.3, 0.008, 0.2], [side * 0.33, 1.86, 0.7], seats);
   }
+  // Cream plastic sidewalls from under the floor edge to the sill and on up round the windows,
+  // a beige headliner, and kick panels over the strut-root fittings: from the seat the inside of
+  // the painted skin showed white on every wall and the roof.
+  cabinLiner(d, root, {
+    zFrom: 1.625,
+    zTo: -1.05,
+    yFrom: 0.58,
+    yTo: 1.29,
+    material: sidewall,
+    zSteps: 12,
+    rows: 4,
+    reach: 0.66,
+  });
+  cabinLiner(d, root, {
+    zFrom: 1.58,
+    zTo: -1.0,
+    yFrom: 1.28,
+    yTo: 1.84,
+    material: sidewall,
+    zSteps: 16,
+    rows: 4,
+    reach: 0.66,
+    inset: 0.014,
+  });
+  cabinHeadliner(d, root, {
+    zFrom: 0.84,
+    zTo: -1.1,
+    yFrom: 1.84,
+    material: headliner,
+    zSteps: 10,
+    margin: 0.002,
+  });
+  // Windscreen posts and header: trim over the painted frame tubes, which read white from the seat.
+  const ringPoint = (i, j) => [...m.rings[i].points[j], m.rings[i].z];
+  frameTrim(
+    d,
+    [ringPoint(2, 3), ...[3, 2, 1, 0, 19, 18, 17].map((j) => ringPoint(3, j)), ringPoint(2, 17)],
+    sidewall,
+    { center: 1.18 },
+  );
+  frameTrim(
+    d,
+    [3, 2, 1, 0, 19, 18, 17].map((j) => ringPoint(2, j)),
+    m.dark,
+    { center: 1.18 },
+  );
+  for (const side of [-1, 1])
+    beveledBox(d, [0.05, 0.1, 0.36], [side * 0.505, 0.72, 0.8], sidewall, 0.015);
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // The magneto key (OFF R L BOTH START) sits low on the left panel, outboard of the yoke.
+  const stations = [
+    {
+      action: 'engine',
+      style: 'key',
+      at: at(205, 690, -0.001),
+      label: 'MAGNETOS',
+      labelAt: [0, 0.03, -0.002],
+      labelHeight: 0.0055,
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
 }

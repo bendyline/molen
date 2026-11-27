@@ -115,6 +115,8 @@ export const b737 = {
   eye: { u: 2.49, x: 0.51, h: 2.76, floor: 1.55, bulkhead: 5.35 },
   cabinWidth: 1.84,
   flightDeck: build737Cockpit,
+  // Window posts and sills seen from the seats: the deck's grey, not a near-white trim.
+  windowTrim: '#646c70',
   windows: {
     y: 2.58,
     w: 0.23,

@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:aef29d2382de95eeb95e7a81daac5629a1c1ab405b7ce21b2a83c833a337ca0f",
-  "sourceHash": "sha256:347eab9fc0f6d726d2e581b7aebcc3c0d689bbf7ecf61049058eee01fb220b8d",
+  "hash": "sha256:7d554d6672dfd3f59d679a852c7d51ba5a53e1326bdcf16c2111349d66ab2e32",
+  "sourceHash": "sha256:907ac349efdc3f29ac2a45965b3a57a6b69479145286eb2ae3ecb6967d6d911a",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 41348,
-    "vertices": 41736,
-    "meshes": 153,
-    "primitives": 153,
-    "materials": 31,
+    "triangles": 48582,
+    "vertices": 50785,
+    "meshes": 169,
+    "primitives": 169,
+    "materials": 37,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 1551796
+    "sizeBytes": 1759768
   },
   "nodes": [
     {
@@ -80,6 +80,14 @@
     {
       "name": "Bonanza-shell",
       "triangles": 20
+    },
+    {
+      "name": "Bonanza-shell-Bonanza-ivory-lining",
+      "triangles": 366
+    },
+    {
+      "name": "Bonanza-shell-Bonanza-alloy-lining",
+      "triangles": 232
     },
     {
       "name": "Bonanza-flap--1-Bonanza-ivory",
@@ -215,19 +223,15 @@
     },
     {
       "name": "Bonanza-cabin-Bonanza-panel",
-      "triangles": 93
+      "triangles": 91
     },
     {
       "name": "Bonanza-cabin-Bonanza-trim",
-      "triangles": 763
-    },
-    {
-      "name": "Bonanza-cabin-Bonanza-headliner",
-      "triangles": 136
+      "triangles": 883
     },
     {
       "name": "Bonanza-cabin-Bonanza-instrument-black",
-      "triangles": 1400
+      "triangles": 1588
     },
     {
       "name": "Bonanza-cabin-detail-alloy",
@@ -254,8 +258,28 @@
       "triangles": 36
     },
     {
+      "name": "Bonanza-cabin-flight-control-panel",
+      "triangles": 156
+    },
+    {
+      "name": "Bonanza-cabin-flight-control-black",
+      "triangles": 188
+    },
+    {
+      "name": "Bonanza-cabin-flight-control-legend",
+      "triangles": 180
+    },
+    {
       "name": "Bonanza-cabin-Bonanza-leather",
       "triangles": 24
+    },
+    {
+      "name": "Bonanza-cabin-Bonanza-headliner",
+      "triangles": 280
+    },
+    {
+      "name": "Bonanza-cabin-Bonanza-sidewall",
+      "triangles": 2264
     },
     {
       "name": "Bonanza-cabin-Bonanza-instrument-ink",
@@ -267,7 +291,7 @@
     },
     {
       "name": "Bonanza-cabin-Bonanza-instrument-ink-panel-print",
-      "triangles": 68
+      "triangles": 86
     },
     {
       "name": "Bonanza-PFD-horizon-fixed-Bonanza-instrument-black",
@@ -528,30 +552,6 @@
     {
       "name": "Bonanza-PFD-speed-1-5-Bonanza-instrument-ink",
       "triangles": 12
-    },
-    {
-      "name": "Bonanza-PFD-speed-1-6-Bonanza-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Bonanza-PFD-speed-2-0-Bonanza-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Bonanza-PFD-speed-2-1-Bonanza-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Bonanza-PFD-speed-2-2-Bonanza-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Bonanza-PFD-speed-2-3-Bonanza-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Bonanza-PFD-speed-2-4-Bonanza-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -622,6 +622,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Bonanza-tires",
       "slots": [
         "baseColor"
@@ -647,14 +655,6 @@
         "roughness",
         "metalness",
         "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "Bonanza-headliner",
-      "slots": [
-        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -714,7 +714,50 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-black",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Bonanza-leather",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Bonanza-headliner",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Bonanza-sidewall",
       "slots": [
         "baseColor"
       ],
@@ -764,25 +807,6 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Bonanza-prop-control",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-panel-satin",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "flight-control-alloy-brushed",
       "slots": [
         "baseColor",
@@ -794,12 +818,49 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-grip-rubber",
+      "name": "flight-control-knob",
       "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Bonanza-yoke",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-propeller",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-steel",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-tread",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -812,22 +873,6 @@
       ],
       "doubleSided": false,
       "alphaMode": "BLEND"
-    },
-    {
-      "name": "flight-control-master",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-legend",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
     }
   ],
   "collision": {
@@ -1120,6 +1165,64 @@
           0.568,
           1.7085,
           1.5
+        ]
+      },
+      {
+        "node": "Bonanza-shell-Bonanza-ivory-lining",
+        "points": [
+          -0.624,
+          0.7036,
+          -1.377,
+          -0.624,
+          0.7036,
+          1.4245,
+          -0.624,
+          2.0774,
+          -1.377,
+          -0.624,
+          2.0774,
+          1.4245,
+          0.624,
+          0.7036,
+          -1.377,
+          0.624,
+          0.7036,
+          1.4245,
+          0.624,
+          2.0774,
+          -1.377,
+          0.624,
+          2.0774,
+          1.4245
+        ]
+      },
+      {
+        "node": "Bonanza-shell-Bonanza-alloy-lining",
+        "points": [
+          -0.6256,
+          0.7034,
+          -1.2768,
+          -0.6256,
+          0.7034,
+          1.1485,
+          -0.6256,
+          1.9326,
+          -1.2768,
+          -0.6256,
+          1.9326,
+          1.1485,
+          0.6107,
+          0.7034,
+          -1.2768,
+          0.6107,
+          0.7034,
+          1.1485,
+          0.6107,
+          1.9326,
+          -1.2768,
+          0.6107,
+          1.9326,
+          1.1485
         ]
       },
       {
@@ -2111,59 +2214,30 @@
       {
         "node": "Bonanza-cabin-Bonanza-trim",
         "points": [
-          -0.5239,
-          0.7325,
+          -0.524,
+          0.7326,
           -1.905,
-          -0.5239,
-          0.7325,
-          1.47,
-          -0.5239,
-          1.7049,
+          -0.524,
+          0.7326,
+          1.5,
+          -0.524,
+          1.717,
           -1.905,
-          -0.5239,
-          1.7049,
-          1.47,
-          0.5239,
-          0.7325,
+          -0.524,
+          1.717,
+          1.5,
+          0.524,
+          0.7326,
           -1.905,
-          0.5239,
-          0.7325,
-          1.47,
-          0.5239,
-          1.7049,
+          0.524,
+          0.7326,
+          1.5,
+          0.524,
+          1.717,
           -1.905,
-          0.5239,
-          1.7049,
-          1.47
-        ]
-      },
-      {
-        "node": "Bonanza-cabin-Bonanza-headliner",
-        "points": [
-          -0.5304,
-          0.8799,
-          -1.21,
-          -0.5304,
-          0.8799,
-          1.136,
-          -0.5304,
-          1.9626,
-          -1.21,
-          -0.5304,
-          1.9626,
-          1.136,
-          0.5267,
-          0.8799,
-          -1.21,
-          0.5267,
-          0.8799,
-          1.136,
-          0.5267,
-          1.9626,
-          -1.21,
-          0.5267,
-          1.9626,
-          1.136
+          0.524,
+          1.717,
+          1.5
         ]
       },
       {
@@ -2370,6 +2444,93 @@
         ]
       },
       {
+        "node": "Bonanza-cabin-flight-control-panel",
+        "points": [
+          -0.2136,
+          1.2536,
+          1.1115,
+          -0.2136,
+          1.2536,
+          1.1165,
+          -0.2136,
+          1.2986,
+          1.1115,
+          -0.2136,
+          1.2986,
+          1.1165,
+          -0.1936,
+          1.2536,
+          1.1115,
+          -0.1936,
+          1.2536,
+          1.1165,
+          -0.1936,
+          1.2986,
+          1.1115,
+          -0.1936,
+          1.2986,
+          1.1165
+        ]
+      },
+      {
+        "node": "Bonanza-cabin-flight-control-black",
+        "points": [
+          -0.2076,
+          1.2581,
+          1.11,
+          -0.2076,
+          1.2581,
+          1.112,
+          -0.2076,
+          1.2941,
+          1.11,
+          -0.2076,
+          1.2941,
+          1.112,
+          -0.1996,
+          1.2581,
+          1.11,
+          -0.1996,
+          1.2581,
+          1.112,
+          -0.1996,
+          1.2941,
+          1.11,
+          -0.1996,
+          1.2941,
+          1.112
+        ]
+      },
+      {
+        "node": "Bonanza-cabin-flight-control-legend",
+        "points": [
+          -0.1998,
+          1.2589,
+          1.1098,
+          -0.1998,
+          1.2589,
+          1.1108,
+          -0.1998,
+          1.2933,
+          1.1098,
+          -0.1998,
+          1.2933,
+          1.1108,
+          -0.1954,
+          1.2589,
+          1.1098,
+          -0.1954,
+          1.2589,
+          1.1108,
+          -0.1954,
+          1.2933,
+          1.1098,
+          -0.1954,
+          1.2933,
+          1.1108
+        ]
+      },
+      {
         "node": "Bonanza-cabin-Bonanza-leather",
         "points": [
           -0.542,
@@ -2396,6 +2557,64 @@
           0.542,
           1.1151,
           0.95
+        ]
+      },
+      {
+        "node": "Bonanza-cabin-Bonanza-headliner",
+        "points": [
+          -0.516,
+          0.8799,
+          -1.21,
+          -0.516,
+          0.8799,
+          0.613,
+          -0.516,
+          2.0611,
+          -1.21,
+          -0.516,
+          2.0611,
+          0.613,
+          0.4729,
+          0.8799,
+          -1.21,
+          0.4729,
+          0.8799,
+          0.613,
+          0.4729,
+          2.0611,
+          -1.21,
+          0.4729,
+          2.0611,
+          0.613
+        ]
+      },
+      {
+        "node": "Bonanza-cabin-Bonanza-sidewall",
+        "points": [
+          -0.615,
+          0.6599,
+          -2,
+          -0.615,
+          0.6599,
+          1.49,
+          -0.615,
+          1.9501,
+          -2,
+          -0.615,
+          1.9501,
+          1.49,
+          0.615,
+          0.6599,
+          -2,
+          0.615,
+          0.6599,
+          1.49,
+          0.615,
+          1.9501,
+          -2,
+          0.615,
+          1.9501,
+          1.49
         ]
       },
       {
@@ -2464,25 +2683,25 @@
           1.094,
           -0.4202,
           1.2705,
-          1.097,
+          1.112,
           -0.4202,
           1.5444,
           1.094,
           -0.4202,
           1.5444,
-          1.097,
+          1.112,
           0.44,
           1.2705,
           1.094,
           0.44,
           1.2705,
-          1.097,
+          1.112,
           0.44,
           1.5444,
           1.094,
           0.44,
           1.5444,
-          1.097
+          1.112
         ]
       },
       {
@@ -4367,180 +4586,6 @@
           1.1216,
           0.3618,
           1.5694,
-          1.1224
-        ]
-      },
-      {
-        "node": "Bonanza-PFD-speed-1-6-Bonanza-instrument-ink",
-        "points": [
-          0.3573,
-          1.5646,
-          1.1216,
-          0.3573,
-          1.5646,
-          1.1224,
-          0.3573,
-          1.5654,
-          1.1216,
-          0.3573,
-          1.5654,
-          1.1224,
-          0.361,
-          1.5646,
-          1.1216,
-          0.361,
-          1.5646,
-          1.1224,
-          0.361,
-          1.5654,
-          1.1216,
-          0.361,
-          1.5654,
-          1.1224
-        ]
-      },
-      {
-        "node": "Bonanza-PFD-speed-2-0-Bonanza-instrument-ink",
-        "points": [
-          0.3507,
-          1.5696,
-          1.1216,
-          0.3507,
-          1.5696,
-          1.1224,
-          0.3507,
-          1.5704,
-          1.1216,
-          0.3507,
-          1.5704,
-          1.1224,
-          0.3544,
-          1.5696,
-          1.1216,
-          0.3544,
-          1.5696,
-          1.1224,
-          0.3544,
-          1.5704,
-          1.1216,
-          0.3544,
-          1.5704,
-          1.1224
-        ]
-      },
-      {
-        "node": "Bonanza-PFD-speed-2-1-Bonanza-instrument-ink",
-        "points": [
-          0.3499,
-          1.5656,
-          1.1216,
-          0.3499,
-          1.5656,
-          1.1224,
-          0.3499,
-          1.5694,
-          1.1216,
-          0.3499,
-          1.5694,
-          1.1224,
-          0.3506,
-          1.5656,
-          1.1216,
-          0.3506,
-          1.5656,
-          1.1224,
-          0.3506,
-          1.5694,
-          1.1216,
-          0.3506,
-          1.5694,
-          1.1224
-        ]
-      },
-      {
-        "node": "Bonanza-PFD-speed-2-2-Bonanza-instrument-ink",
-        "points": [
-          0.3499,
-          1.5606,
-          1.1216,
-          0.3499,
-          1.5606,
-          1.1224,
-          0.3499,
-          1.5644,
-          1.1216,
-          0.3499,
-          1.5644,
-          1.1224,
-          0.3506,
-          1.5606,
-          1.1216,
-          0.3506,
-          1.5606,
-          1.1224,
-          0.3506,
-          1.5644,
-          1.1216,
-          0.3506,
-          1.5644,
-          1.1224
-        ]
-      },
-      {
-        "node": "Bonanza-PFD-speed-2-3-Bonanza-instrument-ink",
-        "points": [
-          0.3507,
-          1.5596,
-          1.1216,
-          0.3507,
-          1.5596,
-          1.1224,
-          0.3507,
-          1.5604,
-          1.1216,
-          0.3507,
-          1.5604,
-          1.1224,
-          0.3544,
-          1.5596,
-          1.1216,
-          0.3544,
-          1.5596,
-          1.1224,
-          0.3544,
-          1.5604,
-          1.1216,
-          0.3544,
-          1.5604,
-          1.1224
-        ]
-      },
-      {
-        "node": "Bonanza-PFD-speed-2-4-Bonanza-instrument-ink",
-        "points": [
-          0.3545,
-          1.5606,
-          1.1216,
-          0.3545,
-          1.5606,
-          1.1224,
-          0.3545,
-          1.5644,
-          1.1216,
-          0.3545,
-          1.5644,
-          1.1224,
-          0.3552,
-          1.5606,
-          1.1216,
-          0.3552,
-          1.5606,
-          1.1224,
-          0.3552,
-          1.5644,
-          1.1216,
-          0.3552,
-          1.5644,
           1.1224
         ]
       }

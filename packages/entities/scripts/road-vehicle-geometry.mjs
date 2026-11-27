@@ -7,7 +7,12 @@ import '../../worldgen/scripts/install-deterministic-math.mjs';
 import * as T from 'three';
 import { articulateRoadVehicle } from './road-articulation.mjs';
 import { detailKit } from './vehicle-detail.mjs';
-import { addRoadDashboard, interiorProfile } from './vehicle-interiors.mjs';
+import {
+  addCabinLiner,
+  addRoadDashboard,
+  angleCabinStack,
+  interiorProfile,
+} from './vehicle-interiors.mjs';
 
 /**
  * Fascia vocabulary the builder draws: recipe `grille`, `lamps`, `tail` and `intake`, and the
@@ -2028,12 +2033,13 @@ export function roadVehicleModel(s) {
   }
   // Windscreen wipers are attached to the sloping pane.
   for (const x of [-W * 0.21, W * 0.21]) {
-    const dz = 0.08,
-      y =
-        screenPoint(screens.front, dz / (cowl - rf), 0)[1] - roofCrown * (dz / (cowl - rf)) + 0.018;
+    // Parked a fixed 3 cm up the glass from its base: a fixed run back in z climbed half way up
+    // an upright truck windscreen.
+    const t = Math.min(0.2, 0.03 / Math.hypot(cowl - rf, roofY - belt)),
+      y = screenPoint(screens.front, t, 0)[1] - roofCrown * t + 0.018;
     const mount = new T.Group();
     mount.name = `wiper-mount-${Math.sign(x)}`;
-    mount.position.set(x - 0.15, y, cowl - dz);
+    mount.position.set(x - 0.15, y, cowl - t * (cowl - rf));
     mount.rotation.x = -Math.atan2(cowl - rf, roofY - belt);
     root.add(mount);
     const arm = new T.Group();
@@ -4246,6 +4252,15 @@ export function roadVehicleModel(s) {
   cabin.box([0.2, 0.06, 0.025], [0, frontGlassY - 0.11, rf + 0.12], black);
   cabin.box([0.18, 0.043, 0.005], [0, frontGlassY - 0.11, rf + 0.105], chrome);
   for (const d of [shell, details, windows, cabin, front, rear]) d.finish();
+  angleCabinStack(root);
+  addCabinLiner(root, {
+    paints: [paint, roofPaint],
+    color: interiorProfile(s.id).headliner ?? '#b3b0a8',
+    zFront: cowl + 0.05,
+    zRear: rb - 0.05,
+    beltAt,
+    halfWidth: W * 0.5,
+  });
   // Engine bay under the opening hood (road-articulation.mjs): a dark tray that follows the
   // hood's fall and stays inset from the plan outline, section and nose, built before the end
   // lean so it leans with the nose and never shows through a rounded or low front.

@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:9cbeea5bf5f6f60f00a97b814258b16e08ae66fd786f6e053d23869a06cfb464",
-  "sourceHash": "sha256:634a4cf2f21a0506be19709c831731ce6decc3dc720993e91f433722512a4d0e",
+  "hash": "sha256:b4e1d35140da3a3bc011af70f16ccaa32b6ae78b4d946a5d8f8ccca6f98b9779",
+  "sourceHash": "sha256:c4ec2e7260162469d22ba92d60eb2190cfd0e344113ea94a0f475c6ee63891ed",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 51725,
-    "vertices": 55826,
-    "meshes": 160,
-    "primitives": 160,
-    "materials": 31,
+    "triangles": 39322,
+    "vertices": 43813,
+    "meshes": 165,
+    "primitives": 165,
+    "materials": 34,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 2099788
+    "sizeBytes": 1860108
   },
   "nodes": [
     {
@@ -63,7 +63,7 @@
     },
     {
       "name": "Caravan-shell-Caravan-alloy",
-      "triangles": 9580
+      "triangles": 5596
     },
     {
       "name": "Caravan-shell-detail-green",
@@ -76,6 +76,14 @@
     {
       "name": "Caravan-shell-Caravan-tires",
       "triangles": 336
+    },
+    {
+      "name": "Caravan-shell-Caravan-white-lining",
+      "triangles": 160
+    },
+    {
+      "name": "Caravan-shell-Caravan-alloy-lining",
+      "triangles": 12
     },
     {
       "name": "Caravan-flap--1-Caravan-white",
@@ -167,11 +175,11 @@
     },
     {
       "name": "Caravan-cabin-Caravan-panel",
-      "triangles": 77
+      "triangles": 76
     },
     {
       "name": "Caravan-cabin-Caravan-instrument-black",
-      "triangles": 86
+      "triangles": 98
     },
     {
       "name": "Caravan-cabin-detail-alloy",
@@ -183,15 +191,23 @@
     },
     {
       "name": "Caravan-cabin-detail-lettering",
-      "triangles": 1512
+      "triangles": 1356
     },
     {
       "name": "Caravan-cabin-Caravan-alloy",
-      "triangles": 1392
+      "triangles": 1344
     },
     {
       "name": "Caravan-cabin-instrument-display",
       "triangles": 12
+    },
+    {
+      "name": "Caravan-cabin-flight-control-tread",
+      "triangles": 384
+    },
+    {
+      "name": "Caravan-cabin-Caravan-sidewall",
+      "triangles": 44
     },
     {
       "name": "Caravan-cabin-Caravan-seats",
@@ -203,7 +219,7 @@
     },
     {
       "name": "Caravan-cabin-Caravan-trim",
-      "triangles": 2380
+      "triangles": 2436
     },
     {
       "name": "Caravan-cabin-Caravan-trim-panel-print",
@@ -215,7 +231,7 @@
     },
     {
       "name": "Caravan-cabin-Caravan-instrument-ink-panel-print",
-      "triangles": 118
+      "triangles": 132
     },
     {
       "name": "Caravan-cabin-Caravan-instrument-ink-display-print",
@@ -536,22 +552,6 @@
     {
       "name": "Caravan-PFD-altitude-0-5-Caravan-PFD-instrument-ink",
       "triangles": 12
-    },
-    {
-      "name": "Caravan-PFD-altitude-0-6-Caravan-PFD-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Caravan-PFD-altitude-1-0-Caravan-PFD-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Caravan-PFD-altitude-1-1-Caravan-PFD-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Caravan-PFD-altitude-1-2-Caravan-PFD-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -630,6 +630,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Caravan-panel-panel",
       "slots": [
         "baseColor",
@@ -688,6 +696,22 @@
     },
     {
       "name": "instrument-display",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-tread",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Caravan-sidewall",
       "slots": [
         "baseColor"
       ],
@@ -781,13 +805,20 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Caravan-instrument-black-technical-font",
+      "name": "Caravan-pedestal",
       "slots": [
-        "baseColor",
-        "emissive"
+        "baseColor"
       ],
       "doubleSided": false,
-      "alphaMode": "BLEND"
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-black",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     },
     {
       "name": "Caravan-prop-blue",
@@ -798,32 +829,17 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-lettering-technical-font",
+      "name": "flight-control-knob",
       "slots": [
-        "baseColor",
-        "emissive"
-      ],
-      "doubleSided": false,
-      "alphaMode": "BLEND"
-    },
-    {
-      "name": "flight-control-alloy-brushed",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-grip-rubber",
+      "name": "flight-control-steel",
       "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -979,30 +995,30 @@
       {
         "node": "Caravan-shell-Caravan-alloy",
         "points": [
-          -7.4524,
-          0.1312,
-          -7.3425,
-          -7.4524,
-          0.1312,
-          4.6781,
-          -7.4524,
-          3.0987,
-          -7.3425,
-          -7.4524,
-          3.0987,
-          4.6781,
-          7.452,
-          0.1312,
-          -7.3425,
-          7.452,
-          0.1312,
-          4.6781,
-          7.452,
-          3.0987,
-          -7.3425,
-          7.452,
-          3.0987,
-          4.6781
+          -7.4528,
+          0.1311,
+          -7.3433,
+          -7.4528,
+          0.1311,
+          4.6783,
+          -7.4528,
+          3.0989,
+          -7.3433,
+          -7.4528,
+          3.0989,
+          4.6783,
+          7.4528,
+          0.1311,
+          -7.3433,
+          7.4528,
+          0.1311,
+          4.6783,
+          7.4528,
+          3.0989,
+          -7.3433,
+          7.4528,
+          3.0989,
+          4.6783
         ]
       },
       {
@@ -1090,6 +1106,64 @@
           1.893,
           0.7199,
           4.3307
+        ]
+      },
+      {
+        "node": "Caravan-shell-Caravan-white-lining",
+        "points": [
+          -0.8741,
+          1.2623,
+          -0.2803,
+          -0.8741,
+          1.2623,
+          2.8599,
+          -0.8741,
+          2.7692,
+          -0.2803,
+          -0.8741,
+          2.7692,
+          2.8599,
+          0.8741,
+          1.2623,
+          -0.2803,
+          0.8741,
+          1.2623,
+          2.8599,
+          0.8741,
+          2.7692,
+          -0.2803,
+          0.8741,
+          2.7692,
+          2.8599
+        ]
+      },
+      {
+        "node": "Caravan-shell-Caravan-alloy-lining",
+        "points": [
+          -0.854,
+          2.0186,
+          1.3856,
+          -0.854,
+          2.0186,
+          1.5753,
+          -0.854,
+          2.0446,
+          1.3856,
+          -0.854,
+          2.0446,
+          1.5753,
+          0.854,
+          2.0186,
+          1.3856,
+          0.854,
+          2.0186,
+          1.5753,
+          0.854,
+          2.0446,
+          1.3856,
+          0.854,
+          2.0446,
+          1.5753
         ]
       },
       {
@@ -1878,30 +1952,30 @@
       {
         "node": "Caravan-cabin-Caravan-alloy",
         "points": [
-          -0.6439,
-          1.33,
+          -0.6437,
+          1.3301,
           -3.516,
-          -0.6439,
-          1.33,
-          2.61,
-          -0.6439,
-          2.2872,
+          -0.6437,
+          1.3301,
+          2.4459,
+          -0.6437,
+          2.2871,
           -3.516,
-          -0.6439,
-          2.2872,
-          2.61,
-          0.6439,
-          1.33,
+          -0.6437,
+          2.2871,
+          2.4459,
+          0.6437,
+          1.3301,
           -3.516,
-          0.6439,
-          1.33,
-          2.61,
-          0.6439,
-          2.2872,
+          0.6437,
+          1.3301,
+          2.4459,
+          0.6437,
+          2.2871,
           -3.516,
-          0.6439,
-          2.2872,
-          2.61
+          0.6437,
+          2.2871,
+          2.4459
         ]
       },
       {
@@ -1931,6 +2005,64 @@
           -0.112,
           2.0609,
           2.4385
+        ]
+      },
+      {
+        "node": "Caravan-cabin-flight-control-tread",
+        "points": [
+          -0.3685,
+          2.066,
+          2.408,
+          -0.3685,
+          2.066,
+          2.448,
+          -0.3685,
+          2.138,
+          2.408,
+          -0.3685,
+          2.138,
+          2.448,
+          0.406,
+          2.066,
+          2.408,
+          0.406,
+          2.066,
+          2.448,
+          0.406,
+          2.138,
+          2.408,
+          0.406,
+          2.138,
+          2.448
+        ]
+      },
+      {
+        "node": "Caravan-cabin-Caravan-sidewall",
+        "points": [
+          -0.828,
+          1.32,
+          1.18,
+          -0.828,
+          1.32,
+          2.8,
+          -0.828,
+          2.758,
+          1.18,
+          -0.828,
+          2.758,
+          2.8,
+          0.828,
+          1.32,
+          1.18,
+          0.828,
+          1.32,
+          2.8,
+          0.828,
+          2.758,
+          1.18,
+          0.828,
+          2.758,
+          2.8
         ]
       },
       {
@@ -1994,28 +2126,28 @@
       {
         "node": "Caravan-cabin-Caravan-trim",
         "points": [
-          -0.8001,
+          -0.8396,
           1.2849,
           -3.675,
-          -0.8001,
-          1.2849,
-          2.84,
-          -0.8001,
-          2.6839,
-          -3.675,
-          -0.8001,
-          2.6839,
-          2.84,
-          0.8001,
-          1.2849,
-          -3.675,
-          0.8001,
+          -0.8396,
           1.2849,
           2.84,
-          0.8001,
+          -0.8396,
           2.6839,
           -3.675,
-          0.8001,
+          -0.8396,
+          2.6839,
+          2.84,
+          0.8396,
+          1.2849,
+          -3.675,
+          0.8396,
+          1.2849,
+          2.84,
+          0.8396,
+          2.6839,
+          -3.675,
+          0.8396,
           2.6839,
           2.84
         ]
@@ -4424,122 +4556,6 @@
           2.4536,
           0.3009,
           2.2571,
-          2.4544
-        ]
-      },
-      {
-        "node": "Caravan-PFD-altitude-0-6-Caravan-PFD-instrument-ink",
-        "points": [
-          0.2975,
-          2.2536,
-          2.4536,
-          0.2975,
-          2.2536,
-          2.4544,
-          0.2975,
-          2.2542,
-          2.4536,
-          0.2975,
-          2.2542,
-          2.4544,
-          0.3002,
-          2.2536,
-          2.4536,
-          0.3002,
-          2.2536,
-          2.4544,
-          0.3002,
-          2.2542,
-          2.4536,
-          0.3002,
-          2.2542,
-          2.4544
-        ]
-      },
-      {
-        "node": "Caravan-PFD-altitude-1-0-Caravan-PFD-instrument-ink",
-        "points": [
-          0.2925,
-          2.2573,
-          2.4536,
-          0.2925,
-          2.2573,
-          2.4544,
-          0.2925,
-          2.2579,
-          2.4536,
-          0.2925,
-          2.2579,
-          2.4544,
-          0.2953,
-          2.2573,
-          2.4536,
-          0.2953,
-          2.2573,
-          2.4544,
-          0.2953,
-          2.2579,
-          2.4536,
-          0.2953,
-          2.2579,
-          2.4544
-        ]
-      },
-      {
-        "node": "Caravan-PFD-altitude-1-1-Caravan-PFD-instrument-ink",
-        "points": [
-          0.2919,
-          2.2544,
-          2.4536,
-          0.2919,
-          2.2544,
-          2.4544,
-          0.2919,
-          2.2571,
-          2.4536,
-          0.2919,
-          2.2571,
-          2.4544,
-          0.2925,
-          2.2544,
-          2.4536,
-          0.2925,
-          2.2544,
-          2.4544,
-          0.2925,
-          2.2571,
-          2.4536,
-          0.2925,
-          2.2571,
-          2.4544
-        ]
-      },
-      {
-        "node": "Caravan-PFD-altitude-1-2-Caravan-PFD-instrument-ink",
-        "points": [
-          0.2919,
-          2.2506,
-          2.4536,
-          0.2919,
-          2.2506,
-          2.4544,
-          0.2919,
-          2.2534,
-          2.4536,
-          0.2919,
-          2.2534,
-          2.4544,
-          0.2925,
-          2.2506,
-          2.4536,
-          0.2925,
-          2.2506,
-          2.4544,
-          0.2925,
-          2.2534,
-          2.4536,
-          0.2925,
-          2.2534,
           2.4544
         ]
       }

@@ -1,6 +1,18 @@
 /** An-124-100: individual Ruslan stations, ten main struts and six-place analog flight deck.
  * See reference-review.json for diagram discrepancies and estimated cockpit dimensions. */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead, cockpitLiner } from './cockpit-fit.mjs';
+import {
+  bar,
+  flapSelectorGeometry,
+  lathe,
+  loftUp,
+  partPalette,
+  place,
+  roundedBox,
+  contour as superEllipse,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -682,11 +694,17 @@ export function buildAn124(s) {
       .map((j) => [bring[j][0] * 0.95, bmid + (bring[j][1] - bmid) * 0.97, bz])
       .filter((q) => q[1] > 7.6);
   bulkhead.push([bulkhead.at(-1)[0], 7.525, bz], [bulkhead[0][0], 7.525, bz]);
-  const interior = cockpit(root, { paint, dark, metal, glass, bulkhead });
+  const { stations: controlStations, ...interior } = cockpit(root, {
+    paint,
+    dark,
+    metal,
+    glass,
+    bulkhead,
+  });
   cleanGeometry(root);
   return {
     root,
-    frame: an124Frame(),
+    frame: { ...an124Frame(), controlStations },
     enginePoints,
     visual: { rotors, gearNodes: [], flaps: [], ailerons: [], animation: { bindings }, interior },
     modelSignals: {
@@ -703,7 +721,9 @@ function cockpit(root, m) {
     pt = panelTools(d),
     ins = instrumentGeometry(cabin, 'AN124'),
     { bindings, derived, ink, black, amber } = ins;
-  const face = mat('AN124-panel', '#4989a7', { side: T.DoubleSide }),
+  // The Ruslan's panels are the Soviet turquoise (Petrov's and the Polet flight-deck photographs),
+  // a blue-green grey rather than a steel blue.
+  const face = mat('AN124-panel', '#5f9490', { side: T.DoubleSide }),
     liner = mat('AN124-liner', '#c4c3ba', { side: T.DoubleSide }),
     seat = mat('AN124-seat', '#343d47'),
     cushion = mat('AN124-cushion', '#697e87'),
@@ -715,6 +735,8 @@ function cockpit(root, m) {
     }),
     belt = mat('AN124-belt', '#aaa99e'),
     wood = mat('AN124-desktop', '#805332');
+  // Control parts share the library's rubber/alloy finishes, on this deck's own panel colour.
+  const P = partPalette({ panel: face });
   const sources = Object.fromEntries(
     ['airspeed', 'pitch', 'roll', 'yaw', 'verticalSpeed', 'gearPosition', 'flapPosition'].map(
       (k) => [
@@ -874,9 +896,34 @@ function cockpit(root, m) {
             row === 2 ? m.dark : liner,
           );
     }
+    // The Polet photograph's panel is packed edge to edge: the gaps between the primary
+    // instruments carry more (unsimulated, blank) gauges and switch blocks.
+    for (const [u, v, r] of i
+      ? [
+          [1290, 600, 0.05],
+          [1290, 655, 0.045],
+          [1340, 625, 0.04],
+        ]
+      : [
+          [400, 655, 0.045],
+          [430, 595, 0.04],
+          [725, 590, 0.045],
+          [725, 640, 0.045],
+          [725, 690, 0.045],
+        ])
+      blank(`${side}-${u}-${v}`, u, v, r);
+    for (const u of i ? [1165, 1225] : [465, 525])
+      for (let row = 0; row < 3; row++)
+        for (let col = 0; col < 4; col++)
+          d.box(
+            [0.024, 0.013, 0.007],
+            at(u + col * 11, 768 + row * 7, -0.01),
+            row === 2 ? m.dark : liner,
+          );
   }
   ins.horizon('standby', at(772, 625, 0.018), 0.12, 0.12, { round: true, blankBackdrop: true });
   blank('standby-nav', 772, 694, 0.071);
+  for (const u of [805, 855, 925, 975]) blank(`centre-${u}`, u, 738, 0.03);
   // Two original vertical instrument housings with four independently driven simulator RPM pointers.
   for (let i = 0; i < 4; i++) {
     sources[`engine${i + 1}`] = {
@@ -958,11 +1005,13 @@ function cockpit(root, m) {
   for (let i = 0; i < 4; i++) {
     const x = 0.18 - i * 0.12;
     td.box([0.025, 0.68, 0.009], [x, 0.5, -0.08], black);
+    // Tall levers under ivory barrel knobs; the pedestal lies on its back, so each lever stands up
+    // in its own frame.
     const g = group(ped, `AN124-throttle-${i + 1}`, [x, 0.54, -0.1]),
-      dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0], [0, 0.1, -0.42], 0.014, m.metal);
-    beveledBox(dd, [0.105, 0.12, 0.05], [0, 0.1, -0.42], liner, 0.008);
-    dd.text(String(i + 1), [0, 0.1, -0.449], 0.014, Math.PI, m.dark);
+      upright = group(g, `${g.name}-lever`);
+    upright.rotation.x = -Math.PI / 2;
+    const dd = detailKit(upright, g.name);
+    ruslanThrottle(dd, P, liner, String(i + 1), m.dark);
     dd.finish();
     bindings.push({
       node: g.name,
@@ -986,21 +1035,35 @@ function cockpit(root, m) {
     for (let j = 0; j < n; j++) tp.knob(-0.29 + (j * 0.58) / (n - 1), yy, -0.11, 0.018);
     td.rod([-0.38, yy + 0.1, -0.1], [0.38, yy + 0.1, -0.1], 0.003, ink);
   }
-  for (const x of [-0.33, 0.33]) {
-    const g = group(ped, `AN124-${x > 0 ? 'trim' : 'flap'}-lever`, [x, 0.42, -0.12]),
-      dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0], [0, 0, -0.22], 0.013, m.metal);
-    dd.box([0.12, 0.05, 0.07], [0, 0, -0.22], liner);
-    dd.finish();
-    if (x < 0)
-      bindings.push({
-        node: g.name,
-        source: 'flapPosition',
-        property: 'rotation',
-        axis: 'x',
-        scale: -0.55,
-      });
+  // Flap lever right of the throttles and the spoiler lever (a control station) left of them, each
+  // in a gated slot; the parking brake handle and the guarded engine and APU switches (stations)
+  // sit behind the throttles.
+  for (const [x, label] of [
+    [-0.33, 'FLAPS'],
+    [0.33, 'SPOILER'],
+  ]) {
+    td.box([0.022, 0.34, 0.006], [x, 0.5, -0.074], black);
+    td.text(label, [x, 0.29, -0.078], 0.016, Math.PI, ink);
   }
+  td.text('PARK BRK', [0.33, 0.04, -0.078], 0.013, Math.PI, ink);
+  const flap = group(ped, 'AN124-flap-lever', [-0.33, 0.42, -0.12]),
+    fu = group(flap, `${flap.name}-upright`);
+  fu.rotation.x = -Math.PI / 2;
+  const fl = detailKit(fu, flap.name);
+  flapSelectorGeometry(fl, {
+    style: 'lever',
+    height: 0.17,
+    scale: 1.2,
+    palette: { ...P, white: liner },
+  });
+  fl.finish();
+  bindings.push({
+    node: flap.name,
+    source: 'flapPosition',
+    property: 'rotation',
+    axis: 'x',
+    scale: -0.55,
+  });
   td.finish();
   // Overhead, two ventilation fans and sun visors. AN-124 flight deck photograph: the three-bladed
   // fans hang from the windshield header beside the center post, about 17 cm across, and the tinted
@@ -1059,8 +1122,30 @@ function cockpit(root, m) {
     const x = side * 0.98,
       col = group(cabin, `AN124-column-${side}`, [x, 7.7, 27.85]),
       cd = detailKit(col, col.name);
-    cd.rod([0, 0, 0], [0, 0.91, -0.1], 0.07, m.dark);
-    for (let j = 0; j < 8; j++) cd.ring(0.075, 0.012, [0, 0.55 + j * 0.04, -0.06], m.dark, 'y');
+    // A round column out of a pleated boot where it leaves the pilots' platform.
+    cd.add(bar([0, 0, 0], [0, 0.91, -0.1], 0.055, 16, 0.048), m.dark);
+    cd.add(
+      place(
+        lathe(
+          [
+            [0, 0],
+            [0.12, 0],
+            [0.115, 0.03],
+            [0.085, 0.05],
+            [0.09, 0.08],
+            [0.068, 0.1],
+            [0.072, 0.13],
+            [0.06, 0.15],
+            [0, 0.15],
+          ],
+          16,
+          28,
+        ),
+        [0, 0.3, -0.033],
+        [-0.11, 0, 0],
+      ),
+      P.tread,
+    );
     cd.finish();
     bindings.push({
       node: col.name,
@@ -1071,22 +1156,7 @@ function cockpit(root, m) {
     });
     const yoke = group(col, `AN124-yoke-${side}`, [0, 0.96, -0.1]),
       yd = detailKit(yoke, yoke.name);
-    outline(
-      yd,
-      [
-        [-0.24, 0.17, 0],
-        [-0.24, -0.02, 0],
-        [-0.14, -0.14, 0],
-        [0.14, -0.14, 0],
-        [0.24, -0.02, 0],
-        [0.24, 0.17, 0],
-      ],
-      0.029,
-      m.dark,
-      false,
-    );
-    beveledBox(yd, [0.16, 0.19, 0.08], [0, -0.04, -0.02], m.dark);
-    for (const xx of [-0.24, 0.24]) yd.rod([xx, 0.04, 0], [xx, 0.2, 0], 0.033, liner);
+    ruslanYoke(yd, P, side, m.dark, liner);
     yd.finish();
     bindings.push({
       node: yoke.name,
@@ -1098,9 +1168,7 @@ function cockpit(root, m) {
     for (const dx of [-0.18, 0.18]) {
       const pg = group(cabin, `AN124-pedal-${side}-${Math.sign(dx)}`, [x + dx, 8.18, 28.08]),
         pd = detailKit(pg, pg.name);
-      pd.box([0.23, 0.28, 0.05], [0, 0, 0], m.metal);
-      for (let j = 0; j < 6; j++)
-        pd.rod([-0.1, -0.1 + j * 0.04, -0.03], [0.1, -0.1 + j * 0.04, -0.03], 0.005, m.dark);
+      ruslanPedal(pd, P, Math.sign(dx));
       pd.finish();
       bindings.push({
         node: pg.name,
@@ -1162,7 +1230,7 @@ function cockpit(root, m) {
             for (let j = 0; j < 4; j++) {
               const x = xx - 0.22 + j * 0.145,
                 y = 0.25 - row * 0.18;
-              dd.rod([x, y, -0.065], [x, y + 0.03, -0.11], 0.008, m.metal);
+              dd.rod([x, y, -0.06], [x, y + 0.008, -0.083], 0.004, m.metal);
               if (row === 3) dd.box([0.06, 0.035, 0.008], [x, y - 0.06, -0.07], m.dark);
             }
       }
@@ -1187,7 +1255,212 @@ function cockpit(root, m) {
   // authored, under the raked windshield and level roof of the rebuilt nose.
   d.box([3, 0.46, 2.55], [0, 7.78, 26.875], m.dark);
   d.box([3, 0.23, 0.32], [0, 7.665, 25.45], m.dark);
-
+  // Fit: the nose closed just ahead of the panel from the crew floor to the lower side windows, and
+  // sidewall liners from the floor to the side windows and up the crown behind them, so no painted
+  // skin shows beside the panel or the pilots' platform.
+  const fit = detailKit(cabin, 'AN124-fit');
+  cockpitBulkhead(fit, root, { z: 28.24, yFrom: 7.55, yTo: 8.62, material: face, inset: 0.015 });
+  cockpitLiner(fit, root, {
+    zFrom: 24,
+    zTo: 27.5,
+    yFrom: 7.55,
+    yTo: 8.88,
+    material: liner,
+    zSteps: 10,
+    ySteps: 6,
+    inset: 0.035,
+  });
+  cockpitLiner(fit, root, {
+    zFrom: 27.5,
+    zTo: 28.22,
+    yFrom: 7.55,
+    yTo: 8.55,
+    material: liner,
+    zSteps: 2,
+    ySteps: 4,
+    inset: 0.035,
+  });
+  cockpitLiner(fit, root, {
+    zFrom: 24,
+    zTo: 26.9,
+    yFrom: 8.88,
+    yTo: 9.5,
+    material: liner,
+    zSteps: 6,
+    ySteps: 3,
+    inset: 0.035,
+  });
+  fit.finish();
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Where the controls are: the landing-gear lever on the centre panel beside its down lamps, the
+  // spoiler lever left of the throttles, the parking brake handle and the four guarded engine
+  // switches behind the throttles, and the APU switch opposite the brake.
+  const pedestalTop = 8.44;
+  const stations = [
+    {
+      action: 'gear',
+      style: 'lever',
+      at: at(958, 642, -0.002),
+      scale: 1.2,
+      label: 'LDG GEAR',
+      labelAt: [0, 0.05, -0.002],
+    },
+    {
+      action: 'speedBrake',
+      style: 'lever',
+      at: [0.33, pedestalTop, 27.05 + 0.42],
+      height: 0.15,
+      scale: 1.2,
+    },
+    { action: 'brake', style: 'lever', at: [0.33, pedestalTop, 27.05 + 0.12] },
+    ...[0, 1, 2, 3].map((i) => ({
+      action: 'engine',
+      engine: i,
+      style: 'guarded',
+      at: [0.18 - i * 0.12, pedestalTop, 27.05 + 0.08],
+      rotation: [Math.PI / 2, 0, 0],
+      scale: 1.3,
+      label: `ENG ${i + 1}`,
+      labelAt: [0, 0.034, -0.002],
+    })),
+    {
+      action: 'engine',
+      style: 'guarded',
+      at: [-0.33, pedestalTop, 27.05 + 0.12],
+      rotation: [Math.PI / 2, 0, 0],
+      scale: 1.3,
+      label: 'APU',
+      labelAt: [0, 0.034, -0.002],
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
+}
+
+/** Ruslan throttle: a tall round lever raked forward under an ivory barrel knob, the engine number
+ * on its face toward the pilot. */
+function ruslanThrottle(d, P, ivory, label, ink, height = 0.4, rake = 0.1) {
+  const tilt = Math.atan2(rake, height);
+  d.add(bar([0, 0, 0], [0, height - 0.01, rake - 0.0025], 0.011, 12, 0.009), P.alloy);
+  const knob = lathe(
+    [
+      [0, -0.012],
+      [0.014, -0.012],
+      [0.024, -0.004],
+      [0.027, 0.012],
+      [0.026, 0.034],
+      [0.02, 0.046],
+      [0, 0.048],
+    ],
+    16,
+    40,
+  );
+  d.add(place(knob, [0, height, rake], [tilt, 0, 0]), ivory);
+  const r = 0.0275;
+  d.text(
+    label,
+    [
+      0,
+      height + 0.016 * Math.cos(tilt) + r * Math.sin(tilt),
+      rake + 0.016 * Math.sin(tilt) - r * Math.cos(tilt),
+    ],
+    0.013,
+    Math.PI,
+    ink,
+  ).rotation.x = tilt;
+}
+
+/** The Ruslan's control wheel ("horns"): a broad hub with the trim boss, a straight crossbar and
+ * two horns that rise and flare outward to ivory grips capped with the trim and radio switches.
+ * Origin at the column head. */
+function ruslanYoke(d, P, side, dark, ivory) {
+  d.add(place(roundedBox([0.17, 0.12, 0.08], 0.024), [0, -0.05, -0.02]), dark);
+  d.add(
+    place(new T.CylinderGeometry(0.035, 0.035, 0.012, 18), [0, -0.05, -0.064], [Math.PI / 2, 0, 0]),
+    P.steel,
+  );
+  d.add(
+    tube(
+      [
+        [-0.23, -0.03, -0.01],
+        [-0.2, -0.085, -0.008],
+        [0.2, -0.085, -0.008],
+        [0.23, -0.03, -0.01],
+      ],
+      0.02,
+      12,
+    ),
+    dark,
+  );
+  for (const s of [-1, 1]) {
+    d.add(
+      place(
+        loftUp([
+          { y: 0, points: superEllipse(0, 0, 0.021, 0.024, 16, 2.2) },
+          { y: 0.06, points: superEllipse(0, 0.002, 0.024, 0.027, 16, 2.2) },
+          { y: 0.13, points: superEllipse(0, 0.004, 0.025, 0.028, 16, 2.2) },
+          { y: 0.16, points: superEllipse(0, 0.002, 0.022, 0.025, 16, 2.2) },
+          { y: 0.17, points: superEllipse(0, 0, 0.012, 0.014, 16, 2.2) },
+        ]),
+        [s * 0.235, -0.04, -0.012],
+        [-0.12, 0, -s * 0.14],
+      ),
+      ivory,
+    );
+  }
+  const top = (s) => [
+    s * (0.235 + 0.165 * Math.sin(0.14)),
+    -0.04 + 0.165 * Math.cos(0.14),
+    -0.012 - 0.165 * Math.sin(0.12) - 0.012,
+  ];
+  d.add(place(roundedBox([0.014, 0.012, 0.012], 0.003), top(side)), P.black);
+  d.add(
+    place(new T.CylinderGeometry(0.006, 0.006, 0.006, 12), top(-side), [Math.PI / 2, 0, 0]),
+    P.red,
+  );
+}
+
+/** Antonov rudder pedal: a rectangular tread plate between side rails with a strap over the toes,
+ * on an arm running forward to the pedal box. */
+function ruslanPedal(d, P, side, { w = 0.13, h = 0.2, lean = 0.26 } = {}) {
+  const pad = (g) => place(g, [0, 0, 0], [lean, 0, 0]);
+  d.add(pad(roundedBox([w, h, 0.012], 0.01, 1)), P.steel);
+  for (let j = 0; j < 3; j++)
+    d.add(
+      pad(place(new T.BoxGeometry(w * 0.82, 0.012, 0.004), [0, -h * 0.3 + j * h * 0.3, -0.008])),
+      P.tread,
+    );
+  d.add(
+    pad(
+      tube(
+        [
+          [-w * 0.52, h * 0.06, -0.004],
+          [0, h * 0.1, -0.034],
+          [w * 0.52, h * 0.06, -0.004],
+        ],
+        0.005,
+        8,
+      ),
+    ),
+    P.tread,
+  );
+  for (const s of [-1, 1])
+    d.add(
+      pad(bar([s * w * 0.52, -h / 2, -0.004], [s * w * 0.52, h / 2, -0.004], 0.006, 8)),
+      P.alloy,
+    );
+  d.add(pad(place(new T.BoxGeometry(w, 0.014, 0.05), [0, -h / 2 - 0.005, -0.02])), P.steel);
+  d.add(
+    pad(
+      tube(
+        [
+          [side * w * 0.2, h * 0.3, 0.008],
+          [side * w * 0.2, h * 0.5 + 0.03, 0.04],
+          [side * w * 0.2, h * 0.5 + 0.05, 0.085],
+        ],
+        0.011,
+        8,
+      ),
+    ),
+    P.alloy,
+  );
 }

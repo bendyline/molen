@@ -3,7 +3,18 @@
  */
 
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import {
+  contour,
+  lathe,
+  loftUp,
+  partPalette,
+  pedalGeometry,
+  place,
+  roundedBox,
+  tube,
+} from './cockpit-parts.mjs';
 import { glassDisplay } from './glass-display.mjs';
+import { partBatch, skinBacking } from './huey.mjs';
 import {
   beveledBox,
   cleanGeometry,
@@ -152,14 +163,21 @@ export function buildCH47(s) {
   const upper = Array.from({ length: 2 * SIDE_TOP + 1 }, (_, k) => k - SIDE_TOP),
     front = [...upper.map((j) => top(j)), ...[...upper].reverse().map((j) => p(3, j))];
   outline(d, front, 0.021, paint);
-  // Rings 1-3: matt glare shield ahead of the panes and glazed chin corners, framed.
+  // Rings 1-3: matt glare shield ahead of the panes and glazed chin corners, framed. The shield is
+  // flat black: seen from the seats through the windscreen's foot it reads as the coaming's top,
+  // which the Army cockpit photographs show black.
+  const shieldBlack = mat('CH47-glare-shield', '#121615', { roughness: 0.96 });
   for (let j = 0; j < n; j++) {
     for (const i of [1, 2]) {
       // The shield has no lining: its inside face closes the sill under the windscreen, where
       // the one-sided outer face culled and showed sky past the cockpit glare shield's edge.
       if (shield(j))
         for (const facing of [1, -1])
-          quad(d, p(i, j), p(i + 1, j), p(i + 1, j + 1), p(i, j + 1), trim, [0, facing, facing]);
+          quad(d, p(i, j), p(i + 1, j), p(i + 1, j + 1), p(i, j + 1), shieldBlack, [
+            0,
+            facing,
+            facing,
+          ]);
       if (chin(j)) quad(d, p(i, j), p(i + 1, j), p(i + 1, j + 1), p(i, j + 1), tint, [0, -1, 1]);
     }
     // The eyebrows run on over the shoulders into the ring 4-5 bay, painted behind.
@@ -578,7 +596,197 @@ function wheel(d, p, r, w, rubber, metal, paint) {
     d.ring(r * 0.38, 0.012, [p[0] + s * w * 0.57, p[1], p[2]], metal, 'x');
   }
 }
+const cylinder = (r, h, at, rotation = [0, 0, 0], sides = 16, r2 = r) =>
+  place(new T.CylinderGeometry(r2, r, h, sides), at, rotation);
+/**
+ * The Chinook cyclic grip, base at the origin, up +Y, trigger toward +Z: a round hand-hold under a
+ * head swept well forward, its crown carrying the trim beep hat and the cargo-hook release, a
+ * thumb pad with the AFCS and hover buttons on the pilot's side and the ICS trigger in front.
+ */
+function chinookGripInto(b, P) {
+  const L = (rows) =>
+    loftUp(
+      rows.map(([y, cz, rx, rz, power = 2.2]) => ({
+        y,
+        points: contour(0, cz, rx, rz, 16, power),
+      })),
+    );
+  b.add(
+    P.alloy,
+    lathe(
+      [
+        [0, -0.022],
+        [0.019, -0.022],
+        [0.02, 0.002],
+        [0.018, 0.01],
+        [0, 0.01],
+      ],
+      14,
+    ),
+  );
+  b.add(
+    P.grip,
+    L([
+      [0.006, 0, 0.019, 0.019],
+      [0.05, 0.002, 0.021, 0.021],
+      [0.09, 0.008, 0.021, 0.022],
+      [0.112, 0.02, 0.024, 0.028, 2.6],
+      [0.128, 0.032, 0.025, 0.033, 2.8],
+      [0.14, 0.038, 0.021, 0.03, 2.6],
+      [0.146, 0.04, 0.012, 0.018, 2.4],
+    ]),
+  );
+  b.add(P.black, cylinder(0.006, 0.008, [0, 0.146, 0.026], [0.35, 0, 0], 12));
+  b.add(
+    P.black,
+    place(new T.SphereGeometry(0.0048, 10, 6), [0, 0.15, 0.028], [0, 0, 0], [1, 0.55, 1]),
+  );
+  b.add(P.red, cylinder(0.0048, 0.006, [-0.011, 0.142, 0.05], [0.35, 0, 0], 10));
+  b.add(P.grip, place(roundedBox([0.03, 0.03, 0.012], 0.005, 1), [0, 0.124, 0.004], [-0.45, 0, 0]));
+  for (const x of [-0.008, 0.008])
+    b.add(P.black, cylinder(0.0042, 0.006, [x, 0.126, -0.003], [Math.PI / 2 - 0.45, 0, 0], 10));
+  b.add(
+    P.black,
+    tube(
+      [
+        [0, 0.112, 0.05],
+        [0, 0.098, 0.062],
+        [0, 0.082, 0.056],
+      ],
+      0.0055,
+      8,
+    ),
+  );
+}
+/** The Chinook cyclic from its pivot in the deck: a boot, the tube bent aft through `path` and
+ * the grip on its end. */
+function chinookCyclic(d, { path, tubeMaterial, palette }) {
+  const P = partPalette(palette),
+    b = partBatch();
+  const points = [];
+  for (let i = 0; i < path.length - 1; i++)
+    for (let k = 0; k < (i === path.length - 2 ? 5 : 4); k++)
+      points.push(path[i].map((v, j) => v + (path[i + 1][j] - v) * (k / 4)));
+  b.add(tubeMaterial ?? P.black, tube(points, 0.017, 12));
+  b.add(
+    P.tread,
+    lathe(
+      [
+        [0, 0],
+        [0.065, 0],
+        [0.06, 0.016],
+        [0.042, 0.03],
+        [0.036, 0.06],
+        [0.026, 0.085],
+        [0.022, 0.1],
+        [0, 0.1],
+      ],
+      14,
+      28,
+    ),
+  );
+  b.emit(d);
+  const top = points.at(-1),
+    back = points.at(-2);
+  chinookGripInto(b, P);
+  b.emit(d, top, [Math.atan2(top[2] - back[2], top[1] - back[1]), 0, 0]);
+}
+/**
+ * The Chinook thrust control lever from its pivot in the side console to `end` ([0, rise, run]):
+ * the lever arm and an upright pistol grip on its tip, the thumb switches (trim beep, searchlight,
+ * hover hold) on its crown and the release trigger in front; no twist grip, the engines run
+ * from the condition levers overhead.
+ */
+function thrustControlLever(d, { end, palette, tubeMaterial }) {
+  const P = partPalette(palette),
+    b = partBatch();
+  const length = Math.hypot(end[1], end[2]),
+    pitch = Math.atan2(end[1], end[2]),
+    along = [Math.PI / 2, 0, 0];
+  b.add(
+    P.tread,
+    lathe(
+      [
+        [0, -0.04],
+        [0.045, -0.04],
+        [0.043, -0.022],
+        [0.03, -0.008],
+        [0.026, 0.02],
+        [0, 0.02],
+      ],
+      12,
+    ).rotateX(Math.PI / 2),
+  );
+  b.add(tubeMaterial ?? P.black, cylinder(0.0185, length, [0, 0, length / 2], along, 14));
+  b.add(P.steel, place(roundedBox([0.05, 0.05, 0.06], 0.01, 1), [0, 0, length]));
+  b.emit(d, [0, 0, 0], [-pitch, 0, 0]);
+  const g = partBatch(),
+    tip = [0, end[1] + 0.02, end[2]];
+  g.add(
+    P.grip,
+    loftUp(
+      [
+        [0, 0, 0.02, 0.024],
+        [0.04, 0.004, 0.021, 0.026],
+        [0.08, 0.008, 0.022, 0.028],
+        [0.1, 0.01, 0.024, 0.031],
+        [0.112, 0.01, 0.02, 0.026],
+      ].map(([y, cz, rx, rz]) => ({ y, points: contour(0, cz, rx, rz, 16, 2.4) })),
+    ),
+  );
+  g.add(P.black, place(roundedBox([0.036, 0.006, 0.04], 0.003, 1), [0, 0.113, 0.01]));
+  g.add(P.black, cylinder(0.0065, 0.008, [0.006, 0.118, 0.016], [0, 0, 0], 12));
+  for (const [x, z] of [
+    [-0.01, -0.004],
+    [0.01, -0.004],
+  ]) {
+    g.add(P.alloy, cylinder(0.004, 0.004, [x, 0.118, z], [0, 0, 0], 8));
+    g.add(
+      P.alloy,
+      place(new T.CylinderGeometry(0.0013, 0.002, 0.013, 8), [x, 0.125, z - 0.002], [-0.3, 0, 0]),
+    );
+  }
+  g.add(P.red, cylinder(0.0045, 0.006, [-0.012, 0.117, 0.024], [0, 0, 0], 10));
+  g.add(
+    P.black,
+    tube(
+      [
+        [0, 0.085, 0.034],
+        [0, 0.072, 0.046],
+        [0, 0.058, 0.04],
+      ],
+      0.0055,
+      8,
+    ),
+  );
+  g.emit(d, tip, [0.15, 0, 0]);
+}
+/** An engine condition lever hanging from the overhead quadrant: a flat bar under a round
+ * fluted knob, pivot at the origin, the lever down local +Y. */
+function conditionLever(d, P, length = 0.085) {
+  const b = partBatch();
+  b.add(P.alloy, place(roundedBox([0.008, length, 0.016], 0.002, 1), [0, length / 2, 0]));
+  b.add(
+    P.grip,
+    place(
+      lathe(
+        [
+          [0.006, 0],
+          [0.016, 0.004],
+          [0.019, 0.016],
+          [0.017, 0.028],
+          [0.011, 0.034],
+          [0, 0.035],
+        ],
+        14,
+      ),
+      [0, length, 0],
+    ),
+  );
+  b.emit(d);
+}
 function cockpit(root, m, rings) {
+  const parts = partPalette();
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'CH47-cockpit'),
     bindings = [],
@@ -605,6 +813,20 @@ function cockpit(root, m, rings) {
         [x1, y1] = crown[i];
       return y0 + ((y1 - y0) * (ax - x0)) / (x1 - x0 || 1);
     };
+  // Line the olive skin round the cockpit in flat dark gray: the walls and doors below and between
+  // the windows, the posts, the roof and the nose round the chin windows, where the painted
+  // skin's back faces showed beside and under the panel.
+  {
+    const lining = mat('CH47-cockpit-lining', '#363c3b', { roughness: 0.93 }),
+      ld = detailKit(cabin, 'CH47-lining');
+    skinBacking(ld, root, {
+      materials: [m.paint],
+      inside: ([x, y, zz]) => zz > 5.0 && zz < 7.6 && y > 1.0 && y < 3.2 && Math.abs(x) < 1.3,
+      lining: () => lining,
+      toward: ([, , zz]) => [0, 2.0, Math.min(zz, 6.5)],
+    });
+    ld.finish();
+  }
   // Central MFD scale uses Collins' 6x8-inch active display; outer banks retain photo perspective.
   const contour = [
     [370, 817],
@@ -708,11 +930,40 @@ function cockpit(root, m, rings) {
   for (const u of [786, 979]) glassDisplay(d, px(u), py(850), z - 0.026, 0.058, 0.06, 'attitude');
   pt.gauge(px(979), py(916), z - 0.02, 0.034, undefined, false);
   pt.knob(px(979), py(980), z - 0.04, 0.014);
-  for (const v of [781, 806]) {
-    d.box([0.15, 0.027, 0.024], at(885, v, -0.023), m.trim);
-    for (let i = 0; i < 7; i++)
-      d.box([0.01, 0.004, 0.004], at(839 + i * 16, v - 8, -0.04), i % 2 ? d.amber : d.ivory);
-    d.text(`ENG ${v === 781 ? '1' : '2'}`, at(887, v, -0.042), 0.007, Math.PI, d.ivory);
+  // Engine fire T-handles at the head of the centre panel (Army cockpit photograph): a plate in a
+  // yellow-and-black hatched border, the ENG 1 (left) and ENG 2 handles side by side and the
+  // discharge button between them. It sits below the hood's rounded lip (down to 2.05 m), which
+  // hides anything above 2.04 m from the seats, and above the engine display's bezel (1.985 m).
+  {
+    const fy = 2.0115,
+      fw = 0.19,
+      fh = 0.05,
+      band = 0.008;
+    d.box([fw, fh, 0.006], [0, fy, z - 0.003], parts.yellow);
+    const dash = (x, y) => {
+      d.box([0.003, 0.0075, 0.0012], [x, y, z - 0.0066], parts.black).rotation.z = 0.6;
+    };
+    for (let i = 0; i < 13; i++)
+      for (const s of [-1, 1]) dash(-fw / 2 + 0.008 + i * 0.0145, fy + s * (fh / 2 - band / 2));
+    for (const s of [-1, 1])
+      for (const dy of [-0.01, 0, 0.01]) dash(s * (fw / 2 - band / 2), fy + dy);
+    d.box([fw - 2 * band, fh - 2 * band, 0.004], [0, fy, z - 0.008], m.trim);
+    for (const s of [-1, 1]) {
+      d.box([0.008, 0.008, 0.008], [s * 0.042, fy - 0.005, z - 0.014], parts.steel);
+      d.box([0.062, 0.012, 0.01], [s * 0.042, fy - 0.005, z - 0.023], parts.steel);
+      d.text(
+        s > 0 ? 'ENG 1' : 'ENG 2',
+        [s * 0.042, fy + 0.01, z - 0.0102],
+        0.005,
+        Math.PI,
+        d.ivory,
+      );
+    }
+    d.add(new T.CylinderGeometry(0.006, 0.006, 0.006, 12).rotateX(Math.PI / 2), parts.black, [
+      0,
+      fy + 0.009,
+      z - 0.013,
+    ]);
   }
   // Two CDU keypads descend into a broad inclined pedestal, matching the Army photo.
   const pg = group(cabin, 'CH47-pedestal', [0, 1.73, 6.7]);
@@ -786,22 +1037,20 @@ function cockpit(root, m, rings) {
   for (const side of [-1, 1]) {
     const x = side * 0.57;
     addSeat(cabin, x, 1.43, 5.96, true);
+    // Deck-mounted cyclic jogged aft, the Chinook grip on top (Army CH-47F cockpit photos).
     const cg = group(cabin, `CH47-cyclic-${side}`, [x, 1.16, 6.27]),
       cd = detailKit(cg, 'cyclic');
-    outline(
-      cd,
-      [
+    chinookCyclic(cd, {
+      path: [
         [0, 0, 0],
-        [0, 0.29, 0],
-        [0, 0.42, -0.08],
-        [0, 0.61, -0.08],
+        [0, 0.28, 0],
+        [0, 0.39, -0.06],
+        [0, 0.47, -0.085],
+        [0, 0.58, -0.09],
       ],
-      0.021,
-      m.trim,
-      false,
-    );
-    beveledBox(cd, [0.08, 0.17, 0.08], [0, 0.64, -0.08], m.trim, 0.013);
-    cd.box([0.024, 0.02, 0.015], [0, 0.7, -0.13], cd.red);
+      tubeMaterial: m.trim,
+      palette: parts,
+    });
     cd.finish();
     bindings.push(
       { node: cg.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.15 },
@@ -809,16 +1058,21 @@ function cockpit(root, m, rings) {
     );
     const lg = group(cabin, `CH47-thrust-${side}`, [x + 0.28, 1.3, 5.72]),
       ld = detailKit(lg, 'thrust');
-    ld.rod([0, 0, 0], [0, 0.27, 0.4], 0.026, m.trim);
-    beveledBox(ld, [0.12, 0.075, 0.18], [0, 0.29, 0.43], m.trim, 0.01);
-    for (const u of [-0.035, 0.035]) ld.box([0.02, 0.015, 0.025], [u, 0.34, 0.45], ld.dark);
+    // Thrust control lever with its upright switch grip (the Chinook's collective).
+    thrustControlLever(ld, { end: [0, 0.27, 0.4], tubeMaterial: m.trim, palette: parts });
     ld.finish();
     bindings.push({ node: lg.name, source: 'power', property: 'rotation', axis: 'x', scale: -0.4 });
     for (const j of [-1, 1]) {
       const g = group(cabin, `CH47-pedal-${side}-${j}`, [x + j * 0.14, 1.27, 6.94]),
         dd = detailKit(g, 'pedal');
-      dd.box([0.16, 0.045, 0.1], [0, 0, 0], m.metal);
-      dd.rod([0, 0, 0], [0, -0.1, 0.09], 0.016, m.trim);
+      pedalGeometry(dd, {
+        style: 'heli',
+        side: j,
+        scale: 1.15,
+        drop: 0.045,
+        lean: 0.45,
+        palette: parts,
+      });
       dd.finish();
       bindings.push({
         node: g.name,
@@ -852,26 +1106,106 @@ function cockpit(root, m, rings) {
       addSeat(g, 0, 1.305, 0);
     }
   }
-  // Ends at the windscreen top: forward of 5.96 m the console stood out through the glass.
-  const og = group(cabin, 'CH47-overhead', [0, 3, 5.48]),
-    od = detailKit(og, 'overhead');
-  od.box([0.69, 0.065, 0.95], [0, 0, 0], m.trim);
-  for (let r = 0; r < 6; r++)
-    for (const x of [-0.24, -0.08, 0.08, 0.24]) {
-      od.box([0.13, 0.009, 0.12], [x, -0.038, -0.38 + r * 0.15], face);
-      for (const z of [-0.025, 0.025])
-        od.rod(
-          [x, -0.045, -0.38 + r * 0.15 + z],
-          [x, -0.078, -0.37 + r * 0.15 + z],
-          0.004,
-          r === 3 ? od.red : m.metal,
-        );
+  // A deep overhead console fills the roof between the pilots (Army cockpit photograph looking
+  // forward): its top follows the roof lining 1-2 cm under it (probed), and a narrower nose runs
+  // on down the header's slope to the centre windscreen's top, inside the solid skin there (the
+  // upper panes start outboard of 0.3 m). Black switch panels hang under both.
+  const og = group(cabin, 'CH47-overhead', [0, 2.95, 5.48]),
+    od = detailKit(og, 'overhead'),
+    local = ([zz, y]) => [y - 2.95, zz - 5.48];
+  const prism = (profile, hw) => {
+    const pts = profile.map(local),
+      [cy, cz] = pts.reduce(([a, b], [y, zz]) => [a + y / pts.length, b + zz / pts.length], [0, 0]);
+    for (const s of [-1, 1])
+      sheet(
+        od,
+        pts.map(([y, zz]) => [s * hw, y, zz]),
+        m.trim,
+        [s, 0, 0],
+      );
+    for (let i = 0; i < pts.length; i++) {
+      const [ya, za] = pts[i],
+        [yb, zb] = pts[(i + 1) % pts.length];
+      let ny = zb - za,
+        nz = ya - yb;
+      if (ny * ((ya + yb) / 2 - cy) + nz * ((za + zb) / 2 - cz) < 0) [ny, nz] = [-ny, -nz];
+      quad(od, [-hw, ya, za], [hw, ya, za], [hw, yb, zb], [-hw, yb, zb], m.trim, [0, ny, nz]);
     }
+  };
+  prism(
+    [
+      [5.005, 2.9175],
+      [5.005, 3.175],
+      [5.955, 3.03],
+      [5.955, 2.9175],
+    ],
+    0.345,
+  );
+  prism(
+    [
+      [5.955, 2.9175],
+      [5.955, 3.03],
+      [6.05, 2.96],
+      [6.15, 2.88],
+      [6.2, 2.81],
+      [6.25, 2.73],
+      [6.25, 2.69],
+    ],
+    0.3,
+  );
+  // A black switch panel on an underside whose face is at local y = face: toggles tipped forward.
+  const switchPanel = (k, x, zz, face, red = false) => {
+    k.box([0.13, 0.009, 0.12], [x, face - 0.0045, zz], od.dark);
+    for (const dz of [-0.025, 0.025]) {
+      k.add(new T.CylinderGeometry(0.004, 0.004, 0.006, 8), m.metal, [x, face - 0.012, zz + dz]);
+      k.add(new T.CylinderGeometry(0.0024, 0.0015, 0.017, 8), red ? od.red : m.metal, [
+        x,
+        face - 0.0225,
+        zz + dz + 0.003,
+      ]).rotation.x = 0.35;
+    }
+  };
+  for (let r = 0; r < 5; r++)
+    for (const x of [-0.24, -0.08, 0.08, 0.24])
+      switchPanel(od, x, -0.38 + r * 0.15, -0.0325, r === 3);
+  // The nose's sloping underside, from the console's foot at 5.955 m to 2.69 m at the header.
+  const fg = group(cabin, 'CH47-overhead-nose', [0, (2.9175 + 2.69) / 2, (5.955 + 6.25) / 2]);
+  fg.rotation.x = Math.atan2(2.9175 - 2.69, 6.25 - 5.955);
+  const fd = detailKit(fg, 'overhead-nose');
+  for (const zz of [-0.085, 0.085])
+    for (const x of [-0.16, 0, 0.16]) switchPanel(fd, x, zz, 0, zz > 0 && x === 0);
+  fd.finish();
+  // Engine control quadrant at the forward end: slots and detents for the two condition levers.
+  od.box([0.42, 0.02, 0.17], [0, -0.0425, 0.41], od.dark);
   for (const x of [-0.15, 0.15]) {
-    od.box([0.1, 0.035, 0.1], [x, -0.058, 0.41], m.trim);
-    od.rod([x, -0.07, 0.41], [x, -0.12, 0.45], 0.01, m.metal);
+    od.box([0.012, 0.004, 0.13], [x, -0.0535, 0.41], parts.black);
+    // Facing down, read with the nose up the page.
+    for (const [zz, label] of [
+      [0.36, 'STOP'],
+      [0.41, 'GND'],
+      [0.46, 'FLT'],
+    ])
+      od.text(label, [x + 0.03, -0.054, zz], 0.0065, 0, od.ivory).rotation.set(Math.PI / 2, 0, 0);
+    od.text(x > 0 ? 'ENG 1' : 'ENG 2', [x, -0.054, 0.335], 0.008, 0, od.ivory).rotation.set(
+      Math.PI / 2,
+      0,
+      0,
+    );
   }
   od.finish();
+  // ENG 1 and ENG 2 condition levers (STOP / GROUND / FLIGHT), moving together as the engine
+  // master: forward is FLIGHT. They hang from the quadrant, so their rest pose is upside down.
+  for (const x of [0.15, -0.15]) {
+    const lever = group(og, `CH47-condition-lever-${x > 0 ? 1 : 2}`, [x, -0.053, 0.41]);
+    lever.rotation.x = Math.PI;
+    const lk = detailKit(lever, lever.name);
+    conditionLever(lk, parts, 0.075);
+    lk.finish();
+    lever.userData.aircraftControl = {
+      action: 'engine',
+      motion: { property: 'rotation', axis: 'x', scale: -0.7, offset: 0.35 },
+    };
+  }
   d.finish();
   return { nodes: ['cockpit'], bindings };
 }

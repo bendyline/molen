@@ -87,6 +87,8 @@ export const e175 = {
   eye: { u: 2.92, x: 0.53, h: 2.5, floor: 1.42, bulkhead: 5.45 },
   cabinWidth: 1.8,
   flightDeck: buildE175Cockpit,
+  // Window posts and sills seen from the seats: the deck's light grey.
+  windowTrim: '#7b8287',
   // Photograph N401YX gives 0.72 m between windows; the APM schematic draws them 0.95 m apart.
   windows: {
     y: 2.39,

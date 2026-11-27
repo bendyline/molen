@@ -2,6 +2,20 @@
  * Main axle origin; +Y up, +Z nose, +X pilot left. See the per-aircraft reference review.
  */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import {
+  bar,
+  contour,
+  flapSelectorGeometry,
+  lathe,
+  leverGeometry,
+  loftUp,
+  parkingBrakeGeometry,
+  partPalette,
+  place,
+  roundedBox,
+  switchGeometry,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -114,6 +128,220 @@ function trimMask(frame, top) {
   });
 }
 
+/** Cessna rudder pedal, origin at the pad centre (`out` = +1 when its outboard side is +X): a
+ * cast plate widening toward the top, leaning its top forward, with the toe-brake lip rolled
+ * forward across its top and a stiffening rib down its face; an arm down to the floor torque tube,
+ * the hinge bar at its foot and the brake cylinder running forward from the pedal top. */
+function caravanPedal(d, P, out, lean = 0.26) {
+  const leaned = (geometry, extra = 0) => place(geometry, [0, 0, 0], [lean + extra, 0, 0]);
+  // The plate: a trapezoid with eased corners, one flat face front and back (the console reads
+  // a pedal's lean from its broad face, so the plate must hold most of its surface).
+  const outline = new T.Shape();
+  for (const [i, [x, y]] of [
+    [-0.045, -0.05],
+    [0.045, -0.05],
+    [0.06, 0.034],
+    [-0.06, 0.034],
+  ].entries())
+    i ? outline.lineTo(x, y) : outline.moveTo(x, y);
+  const plate = new T.ExtrudeGeometry(outline, {
+    depth: 0.008,
+    bevelEnabled: true,
+    bevelThickness: 0.002,
+    bevelSize: 0.003,
+    bevelSegments: 1,
+  }).translate(0, 0, -0.004);
+  plate.deleteAttribute('uv');
+  d.add(leaned(plate), P.steel);
+  // Toe-brake roll across the top and the hinge bar at the foot.
+  d.add(leaned(bar([-0.06, 0.04, 0.001], [0.06, 0.04, 0.001], 0.0065, 12)), P.alloy);
+  d.add(leaned(bar([-0.045, -0.05, 0.008], [0.045, -0.05, 0.008], 0.006, 12)), P.steel);
+  d.add(bar([0, -0.045, 0.0], [0, -0.135, 0.07], 0.006, 10), P.steel);
+  d.add(bar([-0.03, -0.135, 0.07], [0.03, -0.135, 0.07], 0.01, 12), P.steel);
+  d.add(bar([out * 0.04, 0.025, 0.02], [out * 0.04, -0.08, 0.12], 0.005, 10), P.alloy);
+}
+/** A horn grip lofted up from its foot. */
+const caravanHorn = (h) =>
+  loftUp([
+    { y: 0, points: contour(0, 0, 0.0135, 0.0165, 14, 2.2) },
+    { y: h * 0.35, points: contour(0, 0.001, 0.016, 0.019, 14, 2.2) },
+    { y: h * 0.75, points: contour(0, 0.002, 0.0165, 0.0195, 14, 2.2) },
+    { y: h * 0.93, points: contour(0, 0.001, 0.0135, 0.016, 14, 2.2) },
+    { y: h, points: contour(0, 0, 0.006, 0.007, 14, 2.2) },
+  ]);
+/** Caravan control wheel in its yoke group (wheel plane at z, hub at the origin): a tall squared
+ * hub with the chrome name plate, arms sweeping down and out to ram's-horn grips canted outward,
+ * the electric trim and autopilot disconnect on the left horn, push-to-talk on the right, all on
+ * a chrome tube running forward into the panel. */
+function caravanYoke(d, P, z) {
+  d.add(bar([0, -0.008, 0.25], [0, -0.008, z + 0.02], 0.0145, 16), P.alloy);
+  d.add(
+    place(
+      loftUp([
+        { y: -0.066, points: contour(0, 0, 0.03, 0.017, 16, 3) },
+        { y: -0.058, points: contour(0, 0, 0.04, 0.022, 16, 3) },
+        { y: 0.04, points: contour(0, 0, 0.04, 0.022, 16, 3) },
+        { y: 0.05, points: contour(0, 0, 0.031, 0.017, 16, 3) },
+      ]),
+      [0, 0, z],
+    ),
+    P.grip,
+  );
+  d.add(place(roundedBox([0.052, 0.03, 0.003], 0.005, 1), [0, 0.012, z - 0.0225]), P.alloy);
+  for (const s of [-1, 1]) {
+    d.add(
+      tube(
+        [
+          [s * 0.036, -0.03, z],
+          [s * 0.09, -0.056, z - 0.002],
+          [s * 0.14, -0.047, z - 0.004],
+          [s * 0.162, -0.012, z - 0.006],
+        ],
+        0.0135,
+        14,
+      ),
+      P.grip,
+    );
+    d.add(place(caravanHorn(0.13), [s * 0.163, -0.02, z - 0.006], [0, 0, -s * 0.12]), P.grip);
+  }
+  d.add(
+    place(roundedBox([0.012, 0.006, 0.018], 0.002, 1), [0.177, 0.111, z - 0.008], [0, 0, -0.12]),
+    P.black,
+  );
+  d.add(
+    place(
+      new T.CylinderGeometry(0.0048, 0.0048, 0.006, 12),
+      [0.158, 0.088, z - 0.006],
+      [0, 0, Math.PI / 2],
+    ),
+    P.red,
+  );
+  d.add(
+    place(roundedBox([0.006, 0.016, 0.011], 0.002, 1), [-0.158, 0.08, z - 0.006], [0, 0, 0.12]),
+    P.black,
+  );
+}
+/** Crew-station trim inside the skin's flat side bays (loft points 2 to 3): the crew-door bay
+ * lined round its window, the windscreen-side bay lined below and above its pane, and the
+ * headliner over the crew, 12 mm inside the skin, with dark reveals out to the glass so no
+ * painted skin shows round the windows. `rings` are the fuselage loft rings. */
+function caravanLiner(d, rings, material, reveal, floor) {
+  const inset = 0.012,
+    [r3, r4, r5] = [rings[3], rings[4], rings[5]],
+    lerp = (a, b, f) => a + (b - a) * f,
+    bayAt = (z) => (z >= r4.z ? [r3, r4] : [r4, r5]),
+    at = (z, j) => {
+      const [a, b] = bayAt(z),
+        f = (a.z - z) / (a.z - b.z);
+      return [lerp(a.points[j][0], b.points[j][0], f), lerp(a.points[j][1], b.points[j][1], f)];
+    },
+    shoulder = (z) => at(z, 2)[1],
+    wall =
+      (s) =>
+      ([z, y]) => [s * (at(z, 2)[0] - inset), y, z];
+  // Window outlines in side view [z, y]. The crew door's is authored in bay fractions.
+  const pane = [
+    [2.8, 2.07],
+    [2.62, 2.12],
+    [1.73, 2.53],
+    [1.7, 2.49],
+    [1.95, 1.99],
+    [2.7, 2.04],
+  ];
+  const door = [
+    [0.36, 0.07],
+    [0.9, 0.07],
+    [0.94, 0.11],
+    [0.94, 0.44],
+    [0.9, 0.48],
+    [0.05, 0.48],
+    [0.02, 0.44],
+  ].map(([u, v]) => {
+    const z = lerp(r4.z, r5.z, u),
+      top = shoulder(z),
+      bottom = at(z, 3)[1];
+    return [z, top - v * (top - bottom)];
+  });
+  const paneBottom = (z) => lerp(1.99, 2.04, (z - 1.95) / 0.75);
+  for (const s of [-1, 1]) {
+    const w = wall(s),
+      normal = [-s, 0, 0];
+    // Crew-door bay with its window.
+    sheet(
+      d,
+      [
+        [r4.z, floor],
+        [r5.z, floor],
+        [r5.z, shoulder(r5.z) - 0.004],
+        [r4.z, shoulder(r4.z) - 0.004],
+      ].map(w),
+      material,
+      normal,
+      [door.map(w)],
+    );
+    // Windscreen-side bay: below the pane back to the firewall, and the wedge above it.
+    sheet(
+      d,
+      [
+        [2.66, paneBottom(2.66)],
+        [1.95, 1.99],
+        [r4.z, 2.49],
+        [r4.z, floor],
+        [2.66, floor],
+      ].map(w),
+      material,
+      normal,
+    );
+    sheet(
+      d,
+      [
+        [2.8, 2.07],
+        [2.62, 2.12],
+        [1.73, 2.53],
+        [r4.z, 2.49],
+        [r4.z, shoulder(r4.z) - 0.004],
+        [2.8, shoulder(2.8) - 0.004],
+      ].map(w),
+      material,
+      normal,
+    );
+    // Dark reveals from the lining out to the glass, which sits on the skin line: round the door
+    // window, and along the windscreen-side pane back of the firewall.
+    const glass = ([z, y]) => [s * (at(z, 2)[0] + 0.003), y, z];
+    for (const [outline, closed, centre] of [
+      [door, true, [1.44, 2.2]],
+      [[...pane.slice(0, 5), [2.66, paneBottom(2.66)]], false, [2.2, 2.25]],
+    ])
+      for (let i = 0; i < outline.length - (closed ? 0 : 1); i++) {
+        const a = outline[i],
+          b = outline[(i + 1) % outline.length];
+        quad(d, w(a), w(b), glass(b), glass(a), reveal, [
+          0,
+          centre[1] - (a[1] + b[1]) / 2,
+          centre[0] - (a[0] + b[0]) / 2,
+        ]);
+      }
+    // A floor-coloured sill along the wall foot hides the slot between the floor and the lining.
+    for (const [za, zb] of [
+      [2.66, r4.z],
+      [r4.z, r5.z],
+    ]) {
+      const sill = (z, inward) => [s * (at(z, 2)[0] - inset - inward), floor + 0.0025, z];
+      quad(d, sill(za, 0), sill(zb, 0), sill(zb, 0.07), sill(za, 0.07), reveal, [0, 1, 0]);
+    }
+    // Headliner over the crew-door bay: the roof shoulder (point 2 to 1) and the roof (1 to 0).
+    const roof = (z, j) => {
+      const [x, y] = at(z, j);
+      return [s * Math.max(0, x - (j ? inset : 0)), y - inset, z];
+    };
+    quad(d, roof(r4.z, 2), roof(r5.z, 2), roof(r5.z, 1), roof(r4.z, 1), material, [-s, -1, 0]);
+    quad(d, roof(r4.z, 1), roof(r5.z, 1), roof(r5.z, 0), roof(r4.z, 0), material, [
+      -s * 0.2,
+      -1,
+      0,
+    ]);
+  }
+}
 export const caravanFrame = () => ({
   heli: false,
   fighter: false,
@@ -311,7 +539,7 @@ export function buildCaravan(s) {
         [side, 0, 0],
       );
       for (let t = 0; t < 1; t += 0.18 / Math.abs(b[0] - a[0]))
-        d.add(new T.SphereGeometry(0.003, 5, 3), metal, [
+        d.add(new T.SphereGeometry(0.003, 4, 2), metal, [
           side * (x(i, a, -0.04) + (x(i + 1, b, -0.04) - x(i, a, -0.04)) * t + 0.001),
           yy(a) + (yy(b) - yy(a)) * t - 0.04,
           a[0] + (b[0] - a[0]) * t,
@@ -411,7 +639,7 @@ export function buildCaravan(s) {
             : u < 0.75
               ? h * (1 - (u - 0.25) * 0.96)
               : (h * 0.52 * (1 - u)) / 0.25;
-        d.add(new T.SphereGeometry(0.0028, 5, 3), metal, [
+        d.add(new T.SphereGeometry(0.0028, 4, 2), metal, [
           side * x,
           y(x) + upper + 0.003,
           le(x) - u * (le(x) - hinge(x)),
@@ -713,6 +941,7 @@ function cockpit(root, m) {
     seat = mat('Caravan-seats', '#3e484a'),
     propBlue = mat('Caravan-prop-blue', '#3e7bb2'),
     liner = mat('Caravan-liner', '#c4c4b7');
+  const P = partPalette({ grip: m.dark, alloy: m.metal });
   const k = 0.29972 / 320,
     px = (u) => (875 - u) * k,
     py = (v) => 2.23 - (v - 215) * k,
@@ -837,110 +1066,121 @@ function cockpit(root, m) {
     verticalFpm: { op: 'multiply', args: ['verticalSpeed', 60 / 0.3048] },
   });
   // Duplicate displays share sensor expressions; they do not invent independent AHRS systems.
-  const pfd = group(cabin, 'Caravan-PFD', at(480, 213)),
-    pd = detailKit(pfd, 'Caravan-PFD-face'),
-    pi = instrumentGeometry(pfd, 'Caravan-PFD');
-  trimMask(pi.horizon('horizon', [0, 0.022, 0.014], 0.13, 0.085), py(44) - py(213) - 0.012);
-  sheet(
-    pd,
-    rect(0, 0, sw, sh, 0.008),
-    black,
-    [0, 0, -1],
-    [rect(0, 0.022, 0.13, 0.085, 0.008), rect(0.084, 0.022, 0.03, 0.071, 0.008)],
-  );
-  const tape = group(pfd, 'Caravan-PFD-speed-tape', [0.084, 0.022, 0.009]);
-  pi.bindings.push({
-    node: tape.name,
-    source: 'knots',
-    property: 'position',
-    axis: 'y',
-    scale: -0.001,
-  });
-  for (let value = 20; value <= 220; value += 10) {
-    const row = group(tape, `Caravan-PFD-speed-tape-${value}`, [0, value * 0.001, 0]),
-      rd = detailKit(row, row.name);
-    rd.text(String(value), [0.002, 0, 0], 0.0045, Math.PI, pi.ink);
-    rd.rod([-0.009, 0, 0], [-0.014, 0, 0], 0.0004, pi.ink);
-    rd.finish();
-    const distance = `Caravan.tape.${value}.distance`,
-      absolute = `Caravan.tape.${value}.absolute`,
-      show = `Caravan.tape.${value}.show`;
-    pi.derived[distance] = { op: 'subtract', args: ['knots', value] };
-    pi.derived[absolute] = { op: 'abs', args: [distance] };
-    pi.derived[show] = { op: 'less', args: [absolute, 34] };
+  // Each PFD is built, not cloned: a clone loses the batched lettering, and its outline text
+  // cost 11,000 triangles more than the pilot's display.
+  const buildPfd = (position) => {
+    const pfd = group(cabin, 'Caravan-PFD', position),
+      pd = detailKit(pfd, 'Caravan-PFD-face'),
+      pi = instrumentGeometry(pfd, 'Caravan-PFD');
+    trimMask(pi.horizon('horizon', [0, 0.022, 0.014], 0.13, 0.085), py(44) - py(213) - 0.012);
+    sheet(
+      pd,
+      rect(0, 0, sw, sh, 0.008),
+      black,
+      [0, 0, -1],
+      [rect(0, 0.022, 0.13, 0.085, 0.008), rect(0.084, 0.022, 0.03, 0.071, 0.008)],
+    );
+    const tape = group(pfd, 'Caravan-PFD-speed-tape', [0.084, 0.022, 0.009]);
     pi.bindings.push({
-      node: row.name,
-      source: show,
-      property: 'visible',
-      scale: 1,
-      missing: 'hide',
+      node: tape.name,
+      source: 'knots',
+      property: 'position',
+      axis: 'y',
+      scale: -0.001,
     });
-  }
-  pd.box([0.03, 0.014, 0.002], [0.084, 0.022, 0.005], black);
-  pi.readout('speed', [0.084, 0.022, 0.004], 'knots', 3, 0.01, pi.ink, false, true);
-  pi.readout('altitude', [-0.081, 0.022, 0.004], 'feet', 5, 0.0075, pi.ink, true, true);
-  pd.text('TAS', [0.083, 0.064, 0.003], 0.005, Math.PI, pi.ink, 'display');
-  pd.text('GEO FT', [-0.081, 0.05, 0.003], 0.005, Math.PI, pi.ink, 'display');
-  const rose = group(pfd, 'Caravan-PFD-rose', [0, -0.045, 0.003]),
-    rr = detailKit(rose, rose.name);
-  for (let deg = 0; deg < 360; deg += 10) {
-    const a = (deg * Math.PI) / 180,
-      p = (r) => [-Math.sin(a) * r, Math.cos(a) * r, 0];
-    rr.rod(p(deg % 30 ? 0.021 : 0.019), p(0.025), 0.0005, pi.ink);
-    if (deg % 30 === 0)
-      rr.text(
-        deg % 90 ? String(deg / 10) : ['N', 'E', 'S', 'W'][deg / 90],
-        p(0.015),
-        0.004,
-        Math.PI,
+    for (let value = 20; value <= 220; value += 10) {
+      const row = group(tape, `Caravan-PFD-speed-tape-${value}`, [0, value * 0.001, 0]),
+        rd = detailKit(row, row.name);
+      rd.text(String(value), [0.002, 0, 0], 0.0045, Math.PI, pi.ink);
+      rd.rod([-0.009, 0, 0], [-0.014, 0, 0], 0.0004, pi.ink);
+      rd.finish();
+      const distance = `Caravan.tape.${value}.distance`,
+        absolute = `Caravan.tape.${value}.absolute`,
+        show = `Caravan.tape.${value}.show`;
+      pi.derived[distance] = { op: 'subtract', args: ['knots', value] };
+      pi.derived[absolute] = { op: 'abs', args: [distance] };
+      pi.derived[show] = { op: 'less', args: [absolute, 34] };
+      pi.bindings.push({
+        node: row.name,
+        source: show,
+        property: 'visible',
+        scale: 1,
+        missing: 'hide',
+      });
+    }
+    pd.box([0.03, 0.014, 0.002], [0.084, 0.022, 0.005], black);
+    pi.readout('speed', [0.084, 0.022, 0.004], 'knots', 3, 0.01, pi.ink, false, true);
+    pi.readout('altitude', [-0.081, 0.022, 0.004], 'feet', 5, 0.0075, pi.ink, true, true);
+    pd.text('TAS', [0.083, 0.064, 0.003], 0.005, Math.PI, pi.ink, 'display');
+    pd.text('GEO FT', [-0.081, 0.05, 0.003], 0.005, Math.PI, pi.ink, 'display');
+    const rose = group(pfd, 'Caravan-PFD-rose', [0, -0.045, 0.003]),
+      rr = detailKit(rose, rose.name);
+    for (let deg = 0; deg < 360; deg += 10) {
+      const a = (deg * Math.PI) / 180,
+        p = (r) => [-Math.sin(a) * r, Math.cos(a) * r, 0];
+      rr.rod(p(deg % 30 ? 0.021 : 0.019), p(0.025), 0.0005, pi.ink);
+      if (deg % 30 === 0)
+        rr.text(
+          deg % 90 ? String(deg / 10) : ['N', 'E', 'S', 'W'][deg / 90],
+          p(0.015),
+          0.004,
+          Math.PI,
+          pi.ink,
+        );
+    }
+    rr.finish();
+    pi.bindings.push({
+      node: rose.name,
+      source: 'trueHeading',
+      property: 'rotation',
+      axis: 'z',
+      scale: -1,
+      period: Math.PI * 2,
+      responseSeconds: 0.15,
+    });
+    pi.available('heading', 'trueHeading', rose.name);
+    pd.rod([0, -0.017, 0.002], [0, -0.025, 0.002], 0.0008, pi.amber);
+    pd.text('TRUE', [0, -0.01, 0.002], 0.004, Math.PI, pi.ink, 'display');
+    pd.text('NAV -- COM --', [0, 0.071, 0.003], 0.005, Math.PI, pi.ink, 'display');
+    const vg = group(pfd, 'Caravan-PFD-vsi', [-0.101, 0.022, 0.003]),
+      vd = detailKit(vg, vg.name);
+    vd.rod([-0.002, 0, 0], [0.002, 0.002, 0], 0.0008, pi.ink);
+    vd.finish();
+    pi.bindings.push({
+      node: vg.name,
+      source: 'verticalFpm',
+      property: 'position',
+      axis: 'y',
+      scale: 0.00001,
+      min: -0.03,
+      max: 0.03,
+      responseSeconds: 0.6,
+    });
+    pi.available('vsi', 'verticalFpm', vg.name);
+    for (const value of [-3000, -2000, -1000, 0, 1000, 2000, 3000])
+      pd.rod(
+        [-0.1, 0.022 + value * 0.00001, 0.003],
+        [-0.097, 0.022 + value * 0.00001, 0.003],
+        0.0004,
         pi.ink,
       );
-  }
-  rr.finish();
-  pi.bindings.push({
-    node: rose.name,
-    source: 'trueHeading',
-    property: 'rotation',
-    axis: 'z',
-    scale: -1,
-    period: Math.PI * 2,
-    responseSeconds: 0.15,
-  });
-  pi.available('heading', 'trueHeading', rose.name);
-  pd.rod([0, -0.017, 0.002], [0, -0.025, 0.002], 0.0008, pi.amber);
-  pd.text('TRUE', [0, -0.01, 0.002], 0.004, Math.PI, pi.ink, 'display');
-  pd.text('NAV -- COM --', [0, 0.071, 0.003], 0.005, Math.PI, pi.ink, 'display');
-  const vg = group(pfd, 'Caravan-PFD-vsi', [-0.101, 0.022, 0.003]),
-    vd = detailKit(vg, vg.name);
-  vd.rod([-0.002, 0, 0], [0.002, 0.002, 0], 0.0008, pi.ink);
-  vd.finish();
-  pi.bindings.push({
-    node: vg.name,
-    source: 'verticalFpm',
-    property: 'position',
-    axis: 'y',
-    scale: 0.00001,
-    min: -0.03,
-    max: 0.03,
-    responseSeconds: 0.6,
-  });
-  pi.available('vsi', 'verticalFpm', vg.name);
-  for (const value of [-3000, -2000, -1000, 0, 1000, 2000, 3000])
-    pd.rod(
-      [-0.1, 0.022 + value * 0.00001, 0.003],
-      [-0.097, 0.022 + value * 0.00001, 0.003],
-      0.0004,
-      pi.ink,
-    );
-  pd.finish();
+    pd.finish();
+    return { pfd, pi };
+  };
+  const { pfd, pi } = buildPfd(at(480, 213));
   bindings.push(...pi.bindings);
   Object.assign(derived, pi.derived);
-  const copilot = pfd.clone(true);
-  copilot.position.fromArray(at(1230, 213));
+  const { pfd: copilot } = buildPfd(at(1230, 213));
+  // Share the pilot display's materials, as the clone did, and suffix every node name.
+  const shared = new Map();
+  pfd.traverse((node) => {
+    if (node.isMesh) shared.set(node.material.name, node.material);
+  });
   copilot.traverse((node) => {
     node.name = `${node.name}-copilot`;
+    if (node.isMesh && shared.has(node.material.name))
+      node.material = shared.get(node.material.name);
   });
-  cabin.add(copilot);
   bindings.push(...pi.bindings.map((b) => ({ ...b, node: `${b.node}-copilot` })));
   const mx = px(865),
     my = py(213);
@@ -1038,18 +1278,19 @@ function cockpit(root, m) {
   d.text('GRAND CARAVAN EX', at(1310, 495, -0.02), 0.011, Math.PI, m.dark);
   // Starter/engine master rocker and parking-brake T-handle on the lower left panel, both
   // outboard of and above the pilot's yoke sightline.
-  const starter = group(cabin, 'Caravan-starter', at(255, 335, -0.012)),
+  const starter = group(cabin, 'Caravan-starter', at(255, 335, -0.006)),
     starterKit = detailKit(starter, starter.name);
-  starterKit.box([0.017, 0.03, 0.011], [0, 0, 0], starterKit.red);
+  switchGeometry(starterKit, { style: 'toggle', palette: P, scale: 1.25 });
+  d.box([0.03, 0.044, 0.004], at(255, 333, -0.004), black);
+  d.text('STARTER', at(255, 312, -0.007), 0.0045, Math.PI, ink);
   starter.userData.aircraftControl = {
     action: 'engine',
     motion: { property: 'rotation', axis: 'x', scale: -0.5 },
   };
   starterKit.finish();
-  const parkingBrake = group(cabin, 'Caravan-parking-brake', at(150, 500, -0.03)),
+  const parkingBrake = group(cabin, 'Caravan-parking-brake', at(150, 500, -0.003)),
     bd = detailKit(parkingBrake, parkingBrake.name);
-  bd.rod([0, 0, 0.03], [0, 0, -0.022], 0.005, m.metal);
-  bd.box([0.07, 0.016, 0.018], [0, 0, -0.03], black);
+  parkingBrakeGeometry(bd, { style: 'tee', palette: { ...P, red: black }, scale: 1.2 });
   parkingBrake.userData.aircraftControl = {
     action: 'brake',
     motion: { property: 'position', axis: 'z', scale: -0.022 },
@@ -1064,18 +1305,31 @@ function cockpit(root, m) {
   const ped = group(cabin, 'Caravan-pedestal', [0, 1.78, 2.17]);
   ped.rotation.x = 0.65;
   const td = detailKit(ped, ped.name);
-  beveledBox(td, [0.28, 0.44, 0.09], [0, 0, 0], face);
-  for (const [x, label, col, source] of [
-    [0.085, 'power', m.dark, 'power'],
-    [0.015, 'prop', propBlue, undefined],
-    [-0.055, 'condition', td.red, undefined],
-    [-0.11, 'flap', m.dark, 'flapPosition'],
+  // The quadrant and trim housing are dark grey, not the panel paint (FedEx Caravan photo).
+  const pedFace = mat('Caravan-pedestal', '#3d4446');
+  beveledBox(td, [0.28, 0.44, 0.09], [0, 0, 0], pedFace);
+  // Power lever with its broad grip and reverse latch, the ribbed blue propeller knob, the fuel
+  // condition lever's banded red knob and the flap selector's wing-shaped knob (EX pedestal).
+  for (const [x, label, source] of [
+    [0.085, 'power', 'power'],
+    [0.015, 'prop', undefined],
+    [-0.055, 'condition', undefined],
+    [-0.11, 'flap', 'flapPosition'],
   ]) {
     td.box([0.013, 0.22, 0.007], [x, 0.06, -0.05], black);
     const g = group(ped, `Caravan-lever-${label}`, [x, 0, -0.06]),
-      dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0], [0, 0.07, -0.1], 0.008, m.metal);
-    beveledBox(dd, [label === 'power' ? 0.065 : 0.027, 0.035, 0.025], [0, 0.07, -0.1], col);
+      // The library levers stand on +Y; the arm turns them out of the sloped face.
+      arm = group(g, `${g.name}-arm`);
+    arm.rotation.x = -0.96;
+    const dd = detailKit(arm, g.name);
+    if (label === 'flap')
+      flapSelectorGeometry(dd, { style: 'lever', height: 0.1, scale: 0.72, palette: P });
+    else
+      leverGeometry(dd, {
+        style: { power: 'power-turboprop', prop: 'prop', condition: 'condition' }[label],
+        height: 0.115,
+        palette: { ...P, blue: propBlue, grip: label === 'condition' ? td.red : P.grip },
+      });
     dd.finish();
     if (source)
       bindings.push({
@@ -1086,41 +1340,65 @@ function cockpit(root, m) {
         scale: label === 'flap' ? -0.6 : 0.7,
       });
   }
-  td.text('PWR PROP COND FLAP', [0, 0.19, -0.05], 0.009, Math.PI, black);
-  for (const x of [-0.09, 0.09]) {
-    td.add(new T.CylinderGeometry(0.027, 0.027, 0.025, 12).rotateX(Math.PI / 2), black, [
-      x,
-      -0.15,
-      -0.067,
+  td.text('PWR PROP COND FLAP', [0, 0.19, -0.05], 0.009, Math.PI, ink);
+  td.add(
+    new T.CylinderGeometry(0.027, 0.027, 0.025, 12).rotateX(Math.PI / 2),
+    black,
+    [-0.09, -0.15, -0.067],
+  );
+  td.text('FRICTION', [-0.09, -0.19, -0.051], 0.007, Math.PI, ink);
+  // The big elevator trim wheel on the lower left of the pedestal: a ribbed black drum turning on
+  // a lateral axle, its front half standing out of a dark slot plate and its back half sunk in
+  // the pedestal.
+  const trim = [0.092, -0.13, -0.045],
+    trimR = 0.09;
+  td.add(new T.CylinderGeometry(trimR, trimR, 0.046, 40).rotateZ(Math.PI / 2), black, trim);
+  for (let i = 0; i < 30; i++) {
+    const a = (i * Math.PI * 2) / 30;
+    // Ribs on the sunk half would never show.
+    if (Math.sin(a) > 0.2) continue;
+    td.add(new T.BoxGeometry(0.04, 0.005, 0.005).rotateX(a), black, [
+      trim[0],
+      trim[1] + Math.cos(a) * trimR,
+      trim[2] + Math.sin(a) * trimR,
     ]);
-    td.text(x > 0 ? 'TRIM' : 'FRICTION', [x, -0.19, -0.051], 0.007, Math.PI, black);
   }
+  // Its takeoff index across the rim, facing the pilot at neutral.
+  td.box([0.047, 0.004, 0.003], [trim[0], trim[1], trim[2] - trimR - 0.001], ink);
+  td.box([0.074, 0.19, 0.004], [trim[0], -0.128, -0.047], m.dark);
+  for (const [label, y] of [
+    ['NOSE DN', -0.07],
+    ['ELEV TRIM', -0.13],
+    ['NOSE UP', -0.19],
+  ])
+    td.text(label, [0.035, y, -0.0465], label === 'ELEV TRIM' ? 0.006 : 0.005, Math.PI, ink);
   td.finish();
   for (const u of [480, 1230]) {
     const x = px(u),
       g = group(cabin, `Caravan-yoke-${u}`, [x, 2.11, 2.2]),
       dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0.25], [0, -0.02, -0.23], 0.024, m.metal);
-    outline(
-      dd,
-      [
-        [-0.12, 0.12, -0.23],
-        [-0.16, 0.105, -0.23],
-        [-0.14, -0.055, -0.23],
-        [0.14, -0.055, -0.23],
-        [0.16, 0.105, -0.23],
-        [0.12, 0.12, -0.23],
-      ],
-      0.018,
-      m.dark,
-      false,
+    caravanYoke(dd, { ...P, red: dd.red }, -0.23);
+    // The rubber boot where the control tube leaves the panel.
+    d.add(
+      place(
+        lathe(
+          [
+            [0.036, 0],
+            [0.031, 0.007],
+            [0.033, 0.013],
+            [0.026, 0.021],
+            [0.028, 0.027],
+            [0.02, 0.035],
+            [0.017, 0.04],
+          ],
+          16,
+        ),
+        [x, 2.102, z - 0.002],
+        [-Math.PI / 2, 0, 0],
+      ),
+      P.tread,
     );
-    beveledBox(dd, [0.075, 0.13, 0.04], [0, 0.005, -0.23], m.dark);
-    for (const sign of [-1, 1]) {
-      dd.add(new T.SphereGeometry(0.021, 8, 6), m.dark, [sign * 0.135, 0.118, -0.23]);
-      dd.box([0.012, 0.008, 0.012], [sign * 0.13, 0.139, -0.23], sign > 0 ? dd.red : dd.ivory);
-    }
-    dd.text('CESSNA', [0, 0.02, -0.253], 0.007, Math.PI, dd.ivory);
+    dd.text('CESSNA', [0, 0.012, -0.2545], 0.0065, Math.PI, m.dark);
     dd.finish();
     bindings.push(
       { node: g.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.65 },
@@ -1143,6 +1421,8 @@ function cockpit(root, m) {
   );
   // Cabin floor trimmed to the skin: the flat 1.6 m slab stood out of the cowl and tail cone.
   fittedFloor(d, m.rings, m.dark, { y: 1.32, front: 2.675, back: -3.675, width: 1.6 });
+  // Line the crew station so no painted skin shows from the seats.
+  caravanLiner(d, m.rings, mat('Caravan-sidewall', '#a3a7a2'), m.dark, 1.32);
   for (const zz of [1.5, 0.3, -0.65, -1.6, -2.55, -3.5])
     for (const x of [-0.44, 0.44]) {
       // Pilot seats ride high on their rails: eye 0.8 m above the cushion, thighs under the yoke.
@@ -1191,8 +1471,25 @@ function cockpit(root, m) {
       );
     }
     d.rod([sign * 0.74, 1.8, 1.85], [sign * 0.74, 1.8, 1.25], 0.024, m.dark);
-    for (const off of [-0.1, 0.1])
-      d.box([0.15, 0.065, 0.06], [sign * 0.4 + off, 1.44, 2.58], m.metal);
+    // Rudder pedals with toe brakes for both seats. Right rudder pushes the right pedal (-X)
+    // of each pair forward.
+    for (const off of [-0.1, 0.1]) {
+      const pedal = group(cabin, `Caravan-pedal-${sign}-${off < 0 ? 'a' : 'b'}`, [
+          sign * 0.4 + off,
+          1.455,
+          2.43,
+        ]),
+        pk = detailKit(pedal, pedal.name);
+      caravanPedal(pk, P, Math.sign(off));
+      pk.finish();
+      bindings.push({
+        node: pedal.name,
+        source: 'yawInput',
+        property: 'position',
+        axis: 'z',
+        scale: off < 0 ? 0.035 : -0.035,
+      });
+    }
     for (let z = -3.3; z < 1.4; z += 0.95) {
       // Passenger vents and lights hang under the headliner, never through the roof.
       const ceiling = Math.min(2.67 + Math.max(0, z) * 0.1, skinRoof(m.rings, z, 0.63) - 0.035);

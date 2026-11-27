@@ -2,7 +2,7 @@
  * Boeing dimensions and Knoxville museum photographs. All positions in flight datum. */
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { smoothSurface } from '../surface-normals.mjs';
-import { dc3Cockpit } from './dc-3-cockpit.mjs';
+import { dc3Cockpit, dc3FrameStations } from './dc-3-cockpit.mjs';
 import {
   cleanGeometry,
   detailKit,
@@ -881,12 +881,19 @@ export function buildDC3(s) {
   }
   d.finish();
   // The cockpit group is shifted 0.25 m aft below; the cabin reads the skin in its own frame.
-  const interior = dc3Cockpit(body, { ...m, skin: (z, y) => halfWidth(z - 0.25, y) });
-  body.getObjectByName('cockpit').position.z = -0.25;
+  const {
+    stations: cabinStations,
+    fit,
+    ...interior
+  } = dc3Cockpit(body, { ...m, lining, skin: (z, y) => halfWidth(z - 0.25, y) });
+  const cabin = body.getObjectByName('cockpit');
+  cabin.position.z = -0.25;
+  fit(body);
+  const controlStations = dc3FrameStations(root, cabin, cabinStations);
   cleanGeometry(root);
   return {
     root,
-    frame: dc3Frame(),
+    frame: { ...dc3Frame(), controlStations },
     enginePoints: [
       { id: 'engine-1', position: dc3Pose([2.8194, 2.159, 6.57]) },
       { id: 'engine-2', position: dc3Pose([-2.8194, 2.159, 6.57]) },

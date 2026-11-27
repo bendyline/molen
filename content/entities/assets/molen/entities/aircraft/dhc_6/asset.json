@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:25e11aa2bce29800f6f318e8328bf5d9c87b0c68455a614ab286022466512648",
-  "sourceHash": "sha256:6d8831f59025a95216a2a39fe394220582f83fef14f443451ee789c022e618c2",
+  "hash": "sha256:15820b8eaec57aba8dd11a789ef6d82a5bdd70517a8e822c0869d92a6f0862dc",
+  "sourceHash": "sha256:f3deab71c25ecf88445c521c78cb8ae29f111e9fe8080e4a007845c1a92a388e",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 45282,
-    "vertices": 43130,
-    "meshes": 119,
-    "primitives": 119,
-    "materials": 31,
+    "triangles": 39225,
+    "vertices": 40641,
+    "meshes": 120,
+    "primitives": 120,
+    "materials": 33,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 1774124
+    "sizeBytes": 1708860
   },
   "nodes": [
     {
@@ -59,7 +59,7 @@
     },
     {
       "name": "TwinOtter-shell-TwinOtter-alloy",
-      "triangles": 8456
+      "triangles": 3728
     },
     {
       "name": "TwinOtter-shell-TwinOtter-red",
@@ -72,6 +72,10 @@
     {
       "name": "TwinOtter-shell-detail-red",
       "triangles": 220
+    },
+    {
+      "name": "TwinOtter-shell-TwinOtter-ivory-lining",
+      "triangles": 130
     },
     {
       "name": "TwinOtter-flap--1-TwinOtter-ivory",
@@ -239,7 +243,7 @@
     },
     {
       "name": "TwinOtter-cabin-TwinOtter-panel",
-      "triangles": 69
+      "triangles": 86
     },
     {
       "name": "TwinOtter-cabin-TwinOtter-instrument-black",
@@ -247,7 +251,7 @@
     },
     {
       "name": "TwinOtter-cabin-TwinOtter-trim",
-      "triangles": 928
+      "triangles": 1004
     },
     {
       "name": "TwinOtter-cabin-detail-alloy",
@@ -267,15 +271,19 @@
     },
     {
       "name": "TwinOtter-cabin-TwinOtter-alloy",
-      "triangles": 1740
-    },
-    {
-      "name": "TwinOtter-cabin-TwinOtter-liner",
-      "triangles": 528
+      "triangles": 1804
     },
     {
       "name": "TwinOtter-cabin-TwinOtter-seat",
       "triangles": 1764
+    },
+    {
+      "name": "TwinOtter-cabin-TwinOtter-liner",
+      "triangles": 504
+    },
+    {
+      "name": "TwinOtter-cabin-TwinOtter-sidewall",
+      "triangles": 38
     },
     {
       "name": "TwinOtter-cabin-TwinOtter-instrument-ink",
@@ -287,7 +295,7 @@
     },
     {
       "name": "TwinOtter-cabin-TwinOtter-instrument-ink-panel-print",
-      "triangles": 270
+      "triangles": 344
     },
     {
       "name": "TwinOtter-PFD-0-attitude-fixed-TwinOtter-instrument-black",
@@ -544,14 +552,6 @@
     {
       "name": "TwinOtter-PFD-0-VSI-face-TwinOtter-instrument-black",
       "triangles": 128
-    },
-    {
-      "name": "TwinOtter-PFD-0-VSI-face-detail-alloy",
-      "triangles": 240
-    },
-    {
-      "name": "TwinOtter-PFD-0-VSI-face-TwinOtter-instrument-ink",
-      "triangles": 72
     }
   ],
   "nodesTruncated": true,
@@ -615,6 +615,14 @@
     },
     {
       "name": "detail-red",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "cockpit-frame-lining",
       "slots": [
         "baseColor"
       ],
@@ -698,6 +706,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "TwinOtter-seat",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "TwinOtter-liner",
       "slots": [
         "baseColor"
@@ -706,7 +722,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "TwinOtter-seat",
+      "name": "TwinOtter-sidewall",
       "slots": [
         "baseColor"
       ],
@@ -764,6 +780,30 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-tread",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-black",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "TwinOtter-instrument-black-technical-font",
       "slots": [
         "baseColor",
@@ -773,12 +813,17 @@
       "alphaMode": "BLEND"
     },
     {
-      "name": "flight-control-panel-panel",
+      "name": "flight-control-propeller",
       "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-knob",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -790,42 +835,6 @@
         "roughness",
         "metalness",
         "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-grip-rubber",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-legend-technical-font",
-      "slots": [
-        "baseColor",
-        "emissive"
-      ],
-      "doubleSided": false,
-      "alphaMode": "BLEND"
-    },
-    {
-      "name": "flight-control-legend",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-master",
-      "slots": [
-        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -952,30 +961,30 @@
       {
         "node": "TwinOtter-shell-TwinOtter-alloy",
         "points": [
-          -9.3526,
-          0.6983,
-          -4.7013,
-          -9.3526,
-          0.6983,
-          4.8511,
-          -9.3526,
+          -9.353,
+          0.6982,
+          -4.7016,
+          -9.353,
+          0.6982,
+          4.8514,
+          -9.353,
           3.4155,
-          -4.7013,
-          -9.3526,
+          -4.7016,
+          -9.353,
           3.4155,
-          4.8511,
-          9.3521,
-          0.6983,
-          -4.7013,
-          9.3521,
-          0.6983,
-          4.8511,
-          9.3521,
+          4.8514,
+          9.353,
+          0.6982,
+          -4.7016,
+          9.353,
+          0.6982,
+          4.8514,
+          9.353,
           3.4155,
-          -4.7013,
-          9.3521,
+          -4.7016,
+          9.353,
           3.4155,
-          4.8511
+          4.8514
         ]
       },
       {
@@ -1063,6 +1072,35 @@
           9.92,
           3.3343,
           1.5356
+        ]
+      },
+      {
+        "node": "TwinOtter-shell-TwinOtter-ivory-lining",
+        "points": [
+          -0.9139,
+          1.1351,
+          0.5447,
+          -0.9139,
+          1.1351,
+          5.8422,
+          -0.9139,
+          3.0074,
+          0.5447,
+          -0.9139,
+          3.0074,
+          5.8422,
+          0.9139,
+          1.1351,
+          0.5447,
+          0.9139,
+          1.1351,
+          5.8422,
+          0.9139,
+          3.0074,
+          0.5447,
+          0.9139,
+          3.0074,
+          5.8422
         ]
       },
       {
@@ -2257,30 +2295,30 @@
       {
         "node": "TwinOtter-cabin-TwinOtter-panel",
         "points": [
-          -0.7711,
-          1.74,
+          -0.8727,
+          1.06,
           5.261,
-          -0.7711,
-          1.74,
-          5.287,
-          -0.7711,
-          2.2762,
+          -0.8727,
+          1.06,
+          5.3,
+          -0.8727,
+          2.2763,
           5.261,
-          -0.7711,
-          2.2762,
-          5.287,
-          0.735,
-          1.74,
+          -0.8727,
+          2.2763,
+          5.3,
+          0.8727,
+          1.06,
           5.261,
-          0.735,
-          1.74,
-          5.287,
-          0.735,
-          2.2762,
+          0.8727,
+          1.06,
+          5.3,
+          0.8727,
+          2.2763,
           5.261,
-          0.735,
-          2.2762,
-          5.287
+          0.8727,
+          2.2763,
+          5.3
         ]
       },
       {
@@ -2315,29 +2353,29 @@
       {
         "node": "TwinOtter-cabin-TwinOtter-trim",
         "points": [
-          -0.8564,
-          1.055,
+          -0.9092,
+          1.0551,
           -1.415,
-          -0.8564,
-          1.055,
+          -0.9092,
+          1.0551,
           5.84,
-          -0.8564,
-          2.456,
+          -0.9092,
+          2.6483,
           -1.415,
-          -0.8564,
-          2.456,
+          -0.9092,
+          2.6483,
           5.84,
-          0.8564,
-          1.055,
+          0.9092,
+          1.0551,
           -1.415,
-          0.8564,
-          1.055,
+          0.9092,
+          1.0551,
           5.84,
-          0.8564,
-          2.456,
+          0.9092,
+          2.6483,
           -1.415,
-          0.8564,
-          2.456,
+          0.9092,
+          2.6483,
           5.84
         ]
       },
@@ -2460,59 +2498,30 @@
       {
         "node": "TwinOtter-cabin-TwinOtter-alloy",
         "points": [
-          -0.823,
-          1.0701,
+          -0.8227,
+          1.0699,
           -1.617,
-          -0.823,
-          1.0701,
-          5.2578,
-          -0.823,
-          1.8296,
+          -0.8227,
+          1.0699,
+          5.2589,
+          -0.8227,
+          1.8329,
           -1.617,
-          -0.823,
-          1.8296,
-          5.2578,
-          0.743,
-          1.0701,
+          -0.8227,
+          1.8329,
+          5.2589,
+          0.7427,
+          1.0699,
           -1.617,
-          0.743,
-          1.0701,
-          5.2578,
-          0.743,
-          1.8296,
+          0.7427,
+          1.0699,
+          5.2589,
+          0.7427,
+          1.8329,
           -1.617,
-          0.743,
-          1.8296,
-          5.2578
-        ]
-      },
-      {
-        "node": "TwinOtter-cabin-TwinOtter-liner",
-        "points": [
-          -0.8725,
-          1.2201,
-          -1.7484,
-          -0.8725,
-          1.2201,
-          5.035,
-          -0.8725,
-          1.7617,
-          -1.7484,
-          -0.8725,
-          1.7617,
-          5.035,
-          0.8725,
-          1.2201,
-          -1.7484,
-          0.8725,
-          1.2201,
-          5.035,
-          0.8725,
-          1.7617,
-          -1.7484,
-          0.8725,
-          1.7617,
-          5.035
+          0.7427,
+          1.8329,
+          5.2589
         ]
       },
       {
@@ -2542,6 +2551,64 @@
           0.7752,
           2.405,
           4.51
+        ]
+      },
+      {
+        "node": "TwinOtter-cabin-TwinOtter-liner",
+        "points": [
+          -0.8158,
+          1.4384,
+          -1.7484,
+          -0.8158,
+          1.4384,
+          4.4387,
+          -0.8158,
+          1.7617,
+          -1.7484,
+          -0.8158,
+          1.7617,
+          4.4387,
+          0.728,
+          1.4384,
+          -1.7484,
+          0.728,
+          1.4384,
+          4.4387,
+          0.728,
+          1.7617,
+          -1.7484,
+          0.728,
+          1.7617,
+          4.4387
+        ]
+      },
+      {
+        "node": "TwinOtter-cabin-TwinOtter-sidewall",
+        "points": [
+          -0.9036,
+          1.09,
+          3.9801,
+          -0.9036,
+          1.09,
+          5.2807,
+          -0.9036,
+          2.9975,
+          3.9801,
+          -0.9036,
+          2.9975,
+          5.2807,
+          0.9036,
+          1.09,
+          3.9801,
+          0.9036,
+          1.09,
+          5.2807,
+          0.9036,
+          2.9975,
+          3.9801,
+          0.9036,
+          2.9975,
+          5.2807
         ]
       },
       {
@@ -2605,28 +2672,28 @@
       {
         "node": "TwinOtter-cabin-TwinOtter-instrument-ink-panel-print",
         "points": [
-          -0.5161,
-          1.8384,
+          -0.5156,
+          1.8334,
           5.251,
-          -0.5161,
-          1.8384,
+          -0.5156,
+          1.8334,
           5.27,
-          -0.5161,
+          -0.5156,
           2.2379,
           5.251,
-          -0.5161,
+          -0.5156,
           2.2379,
           5.27,
-          0.5014,
-          1.8384,
+          0.6362,
+          1.8334,
           5.251,
-          0.5014,
-          1.8384,
+          0.6362,
+          1.8334,
           5.27,
-          0.5014,
+          0.6362,
           2.2379,
           5.251,
-          0.5014,
+          0.6362,
           2.2379,
           5.27
         ]
@@ -4485,64 +4552,6 @@
           0.5323,
           2.002,
           5.2735
-        ]
-      },
-      {
-        "node": "TwinOtter-PFD-0-VSI-face-detail-alloy",
-        "points": [
-          0.4923,
-          1.9619,
-          5.2632,
-          0.4923,
-          1.9619,
-          5.2638,
-          0.4923,
-          2.0021,
-          5.2632,
-          0.4923,
-          2.0021,
-          5.2638,
-          0.5324,
-          1.9619,
-          5.2632,
-          0.5324,
-          1.9619,
-          5.2638,
-          0.5324,
-          2.0021,
-          5.2632,
-          0.5324,
-          2.0021,
-          5.2638
-        ]
-      },
-      {
-        "node": "TwinOtter-PFD-0-VSI-face-TwinOtter-instrument-ink",
-        "points": [
-          0.4975,
-          1.9711,
-          5.2628,
-          0.4975,
-          1.9711,
-          5.2632,
-          0.4975,
-          2.0002,
-          5.2628,
-          0.4975,
-          2.0002,
-          5.2632,
-          0.5272,
-          1.9711,
-          5.2628,
-          0.5272,
-          1.9711,
-          5.2632,
-          0.5272,
-          2.0002,
-          5.2628,
-          0.5272,
-          2.0002,
-          5.2632
         ]
       }
     ]

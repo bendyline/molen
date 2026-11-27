@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:ab4c784aab756b1ab5b82f55584a80d1fe71920c6d793c8bd881e7a9c4199911",
-  "sourceHash": "sha256:c85d9ac8b11d2677adf0a745b74ca3b192a9c626468187d33d8b52d8e595ad50",
+  "hash": "sha256:16bb406b0ea1826f750f04cc89f39f2a956c1120c8f122200bd0267a2bae5b5c",
+  "sourceHash": "sha256:a7e591326a43987fc8d940195897506ccf0ebe4d01417cac3f80a62b4aa18ec9",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 20322,
-    "vertices": 23683,
-    "meshes": 134,
-    "primitives": 134,
-    "materials": 31,
+    "triangles": 25713,
+    "vertices": 30771,
+    "meshes": 141,
+    "primitives": 141,
+    "materials": 36,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 1108416
+    "sizeBytes": 1267632
   },
   "nodes": [
     {
@@ -76,6 +76,14 @@
     {
       "name": "Cirrus-shell-Cirrus-tire",
       "triangles": 288
+    },
+    {
+      "name": "Cirrus-shell-Cirrus-pearl-lining",
+      "triangles": 253
+    },
+    {
+      "name": "Cirrus-shell-Cirrus-alloy-lining",
+      "triangles": 398
     },
     {
       "name": "Cirrus-flap--1-Cirrus-pearl",
@@ -155,7 +163,7 @@
     },
     {
       "name": "Cirrus-cabin-Cirrus-trim",
-      "triangles": 463
+      "triangles": 1013
     },
     {
       "name": "Cirrus-cabin-CirrusStandby-instrument-black",
@@ -167,15 +175,15 @@
     },
     {
       "name": "Cirrus-cabin-detail-alloy",
-      "triangles": 1984
+      "triangles": 1936
     },
     {
       "name": "Cirrus-cabin-detail-trim",
-      "triangles": 436
+      "triangles": 424
     },
     {
       "name": "Cirrus-cabin-detail-lettering",
-      "triangles": 372
+      "triangles": 360
     },
     {
       "name": "Cirrus-cabin-Cirrus-alloy",
@@ -192,6 +200,14 @@
     {
       "name": "Cirrus-cabin-CirrusStandby-instrument-red",
       "triangles": 36
+    },
+    {
+      "name": "Cirrus-cabin-Cirrus-sidewall",
+      "triangles": 2056
+    },
+    {
+      "name": "Cirrus-cabin-Cirrus-headliner",
+      "triangles": 120
     },
     {
       "name": "Cirrus-cabin-CirrusStandby-instrument-ink-panel-print",
@@ -536,22 +552,6 @@
     {
       "name": "Cirrus-PFD-altitude-0-6-Cirrus-instrument-ink",
       "triangles": 12
-    },
-    {
-      "name": "Cirrus-PFD-altitude-1-0-Cirrus-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Cirrus-PFD-altitude-1-1-Cirrus-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Cirrus-PFD-altitude-1-2-Cirrus-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "Cirrus-PFD-altitude-1-3-Cirrus-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -623,6 +623,14 @@
     },
     {
       "name": "Cirrus-tire",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "cockpit-frame-lining",
       "slots": [
         "baseColor"
       ],
@@ -714,6 +722,22 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "Cirrus-sidewall",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Cirrus-headliner",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "CirrusStandby-instrument-ink-technical-font",
       "slots": [
         "baseColor",
@@ -764,7 +788,18 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Cirrus-seat-inserts",
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-knob",
       "slots": [
         "baseColor"
       ],
@@ -772,23 +807,17 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-panel-satin",
+      "name": "flight-control-black",
       "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-alloy-brushed",
+      "name": "flight-control-master",
       "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -805,6 +834,30 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "flight-control-tread",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-steel",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Cirrus-seat-inserts",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "flight-control-legend-technical-font",
       "slots": [
         "baseColor",
@@ -812,22 +865,6 @@
       ],
       "doubleSided": false,
       "alphaMode": "BLEND"
-    },
-    {
-      "name": "flight-control-master",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-legend",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
     }
   ],
   "collision": {
@@ -1091,6 +1128,64 @@
           1.4443,
           0.3801,
           2.29
+        ]
+      },
+      {
+        "node": "Cirrus-shell-Cirrus-pearl-lining",
+        "points": [
+          -0.6786,
+          0.685,
+          -0.9976,
+          -0.6786,
+          0.685,
+          1.609,
+          -0.6786,
+          2.0591,
+          -0.9976,
+          -0.6786,
+          2.0591,
+          1.609,
+          0.6786,
+          0.685,
+          -0.9976,
+          0.6786,
+          0.685,
+          1.609,
+          0.6786,
+          2.0591,
+          -0.9976,
+          0.6786,
+          2.0591,
+          1.609
+        ]
+      },
+      {
+        "node": "Cirrus-shell-Cirrus-alloy-lining",
+        "points": [
+          -0.6829,
+          0.9416,
+          -0.2698,
+          -0.6829,
+          0.9416,
+          1.5984,
+          -0.6829,
+          1.996,
+          -0.2698,
+          -0.6829,
+          1.996,
+          1.5984,
+          0.6765,
+          0.9416,
+          -0.2698,
+          0.6765,
+          0.9416,
+          1.5984,
+          0.6765,
+          1.996,
+          -0.2698,
+          0.6765,
+          1.996,
+          1.5984
         ]
       },
       {
@@ -1647,30 +1742,30 @@
       {
         "node": "Cirrus-cabin-Cirrus-trim",
         "points": [
-          -0.6067,
-          0.7024,
+          -0.6289,
+          0.68,
           -1.08,
-          -0.6067,
-          0.7024,
-          1.42,
-          -0.6067,
-          2.0051,
+          -0.6289,
+          0.68,
+          1.613,
+          -0.6289,
+          2.005,
           -1.08,
-          -0.6067,
-          2.0051,
-          1.42,
-          0.6096,
-          0.7024,
+          -0.6289,
+          2.005,
+          1.613,
+          0.6286,
+          0.68,
           -1.08,
-          0.6096,
-          0.7024,
-          1.42,
-          0.6096,
-          2.0051,
+          0.6286,
+          0.68,
+          1.613,
+          0.6286,
+          2.005,
           -1.08,
-          0.6096,
-          2.0051,
-          1.42
+          0.6286,
+          2.005,
+          1.613
         ]
       },
       {
@@ -1735,10 +1830,10 @@
         "node": "Cirrus-cabin-detail-alloy",
         "points": [
           -0.3472,
-          1.1951,
+          1.195,
           1.0935,
           -0.3472,
-          1.1951,
+          1.195,
           1.155,
           -0.3472,
           1.636,
@@ -1746,16 +1841,16 @@
           -0.3472,
           1.636,
           1.155,
-          0.4861,
-          1.1951,
+          0.477,
+          1.195,
           1.0935,
-          0.4861,
-          1.1951,
+          0.477,
+          1.195,
           1.155,
-          0.4861,
+          0.477,
           1.636,
           1.0935,
-          0.4861,
+          0.477,
           1.636,
           1.155
         ]
@@ -1775,16 +1870,16 @@
           -0.3436,
           1.6344,
           1.138,
-          0.4837,
+          0.4735,
           1.1968,
           1.093,
-          0.4837,
+          0.4735,
           1.1968,
           1.138,
-          0.4837,
+          0.4735,
           1.6344,
           1.093,
-          0.4837,
+          0.4735,
           1.6344,
           1.138
         ]
@@ -1793,28 +1888,28 @@
         "node": "Cirrus-cabin-detail-lettering",
         "points": [
           -0.3304,
-          1.2067,
+          1.2066,
           1.09,
           -0.3304,
-          1.2067,
+          1.2066,
           1.137,
           -0.3304,
-          1.6333,
+          1.6334,
           1.09,
           -0.3304,
-          1.6333,
+          1.6334,
           1.137,
-          0.4754,
-          1.2067,
+          0.4185,
+          1.2066,
           1.09,
-          0.4754,
-          1.2067,
+          0.4185,
+          1.2066,
           1.137,
-          0.4754,
-          1.6333,
+          0.4185,
+          1.6334,
           1.09,
-          0.4754,
-          1.6333,
+          0.4185,
+          1.6334,
           1.137
         ]
       },
@@ -1932,6 +2027,64 @@
           0.0375,
           2.0045,
           0.44
+        ]
+      },
+      {
+        "node": "Cirrus-cabin-Cirrus-sidewall",
+        "points": [
+          -0.6675,
+          0.6999,
+          -1.72,
+          -0.6675,
+          0.6999,
+          1.6077,
+          -0.6675,
+          2.041,
+          -1.72,
+          -0.6675,
+          2.041,
+          1.6077,
+          0.6675,
+          0.6999,
+          -1.72,
+          0.6675,
+          0.6999,
+          1.6077,
+          0.6675,
+          2.041,
+          -1.72,
+          0.6675,
+          2.041,
+          1.6077
+        ]
+      },
+      {
+        "node": "Cirrus-cabin-Cirrus-headliner",
+        "points": [
+          -0.5224,
+          1.9483,
+          -0.54,
+          -0.5224,
+          1.9483,
+          0.64,
+          -0.5224,
+          2.0356,
+          -0.54,
+          -0.5224,
+          2.0356,
+          0.64,
+          0.5224,
+          1.9483,
+          -0.54,
+          0.5224,
+          1.9483,
+          0.64,
+          0.5224,
+          2.0356,
+          -0.54,
+          0.5224,
+          2.0356,
+          0.64
         ]
       },
       {
@@ -4425,122 +4578,6 @@
           1.1618,
           0.1686,
           1.5692,
-          1.1628
-        ]
-      },
-      {
-        "node": "Cirrus-PFD-altitude-1-0-Cirrus-instrument-ink",
-        "points": [
-          0.1597,
-          1.5728,
-          1.1618,
-          0.1597,
-          1.5728,
-          1.1628,
-          0.1597,
-          1.5735,
-          1.1618,
-          0.1597,
-          1.5735,
-          1.1628,
-          0.1629,
-          1.5728,
-          1.1618,
-          0.1629,
-          1.5728,
-          1.1628,
-          0.1629,
-          1.5735,
-          1.1618,
-          0.1629,
-          1.5735,
-          1.1628
-        ]
-      },
-      {
-        "node": "Cirrus-PFD-altitude-1-1-Cirrus-instrument-ink",
-        "points": [
-          0.159,
-          1.5694,
-          1.1618,
-          0.159,
-          1.5694,
-          1.1628,
-          0.159,
-          1.5726,
-          1.1618,
-          0.159,
-          1.5726,
-          1.1628,
-          0.1596,
-          1.5694,
-          1.1618,
-          0.1596,
-          1.5694,
-          1.1628,
-          0.1596,
-          1.5726,
-          1.1618,
-          0.1596,
-          1.5726,
-          1.1628
-        ]
-      },
-      {
-        "node": "Cirrus-PFD-altitude-1-2-Cirrus-instrument-ink",
-        "points": [
-          0.159,
-          1.5651,
-          1.1618,
-          0.159,
-          1.5651,
-          1.1628,
-          0.159,
-          1.5683,
-          1.1618,
-          0.159,
-          1.5683,
-          1.1628,
-          0.1596,
-          1.5651,
-          1.1618,
-          0.1596,
-          1.5651,
-          1.1628,
-          0.1596,
-          1.5683,
-          1.1618,
-          0.1596,
-          1.5683,
-          1.1628
-        ]
-      },
-      {
-        "node": "Cirrus-PFD-altitude-1-3-Cirrus-instrument-ink",
-        "points": [
-          0.1597,
-          1.5642,
-          1.1618,
-          0.1597,
-          1.5642,
-          1.1628,
-          0.1597,
-          1.5648,
-          1.1618,
-          0.1597,
-          1.5648,
-          1.1628,
-          0.1629,
-          1.5642,
-          1.1618,
-          0.1629,
-          1.5642,
-          1.1628,
-          0.1629,
-          1.5648,
-          1.1618,
-          0.1629,
-          1.5648,
           1.1628
         ]
       }

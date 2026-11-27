@@ -6,6 +6,23 @@
  * of mass, ahead of the main wheels.
  */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead, cockpitLiner } from './cockpit-fit.mjs';
+import {
+  bar,
+  contour,
+  engineMasterGeometry,
+  flapSelectorGeometry,
+  gearHandleGeometry,
+  lathe,
+  loftUp,
+  parkingBrakeGeometry,
+  partPalette,
+  pedalGeometry,
+  place,
+  roundedBox,
+  stickGeometry,
+  switchGeometry,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -701,18 +718,78 @@ export function buildOV10(s) {
 
 const RATED_SHAFT_W = 533000;
 
+/** A Bronco power lever: a flat lever under a tall, slightly flared grip; the outboard (engine 1)
+ * grip carries the microphone and flap-trim thumb switches on its outboard face. */
+function powerLever(kit, P, height, outboard) {
+  kit.add(place(roundedBox([0.007, height, 0.014], 0.002, 1), [0, height / 2, 0.004]), P.alloy);
+  const g = loftUp([
+    { y: 0, points: contour(0, 0, 0.008, 0.013, 16, 2.4) },
+    { y: 0.012, points: contour(0, -0.002, 0.0105, 0.018, 16, 2.4) },
+    { y: 0.034, points: contour(0, -0.004, 0.011, 0.02, 16, 2.6) },
+    { y: 0.046, points: contour(0, -0.004, 0.0095, 0.017, 16, 2.4) },
+    { y: 0.051, points: contour(0, -0.003, 0.005, 0.009, 16, 2.2) },
+  ]);
+  kit.add(place(g, [0, height, 0]), P.grip);
+  if (outboard) {
+    kit.add(
+      place(roundedBox([0.004, 0.012, 0.01], 0.0015), [0.011, height + 0.032, -0.006]),
+      P.black,
+    );
+    kit.add(
+      place(
+        new T.CylinderGeometry(0.0035, 0.0035, 0.004, 12),
+        [0.011, height + 0.018, -0.01],
+        [0, 0, Math.PI / 2],
+      ),
+      P.red,
+    );
+  }
+}
+/** A condition lever: a thin lever under a slim knob with a grip ring. */
+function conditionLever(kit, P, height, knob) {
+  kit.add(bar([0, 0, 0], [0, height, 0.008], 0.0035, 12), P.alloy);
+  kit.add(
+    place(
+      lathe(
+        [
+          [0, 0],
+          [0.006, 0],
+          [0.0085, 0.006],
+          [0.0085, 0.022],
+          [0.007, 0.027],
+          [0, 0.028],
+        ],
+        16,
+      ),
+      [0, height, 0.008],
+    ),
+    knob,
+  );
+  kit.add(
+    place(
+      new T.TorusGeometry(0.0086, 0.0012, 4, 18),
+      [0, height + 0.015, 0.008],
+      [Math.PI / 2, 0, 0],
+    ),
+    P.black,
+  );
+}
+
 function broncoCockpit(root, m, sections) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'Bronco-cabin'),
     ins = instrumentGeometry(cabin, 'Bronco'),
     pt = panelTools(d),
     { bindings, derived, ink, black } = ins;
-  const face = mat('Bronco-panel', '#2f3538'),
-    consoleMat = mat('Bronco-console', '#3a4144'),
+  // OV-10A tub, consoles and liners are dark gull gray under black panels (CHECO "OV-10
+  // Operation in SEAsia" fig. 10 and the Hermeskeil OV-10B); the old blue-black read as navy.
+  const face = mat('Bronco-panel', '#2a2e30'),
+    consoleMat = mat('Bronco-console', '#5a6064'),
     cushion = mat('Bronco-seat-cushion', '#58604f'),
     seatFrame = mat('Bronco-seat-frame', '#454b4b'),
     yellow = mat('Bronco-ejection-handle', '#d8b432'),
     green = mat('Bronco-cockpit-green', '#5e6b63');
+  const P = partPalette();
   const sources = {};
   for (const [name, component, path] of [
     ['trueAirspeed', 'aircraftState', ['airspeed']],
@@ -799,8 +876,9 @@ function broncoCockpit(root, m, sections) {
     d,
     [0.31, 2.02, PZ],
     [-0.31, 2.02, PZ],
-    [-0.5, 2.03, 3.35],
-    [0.5, 2.03, 3.35],
+    // Outer front corners tucked under the windshield's base arch (at 0.5 they poked out).
+    [-0.47, 2.0, 3.345],
+    [0.47, 2.0, 3.345],
     m.accent,
     [0, 1, 0],
   );
@@ -821,7 +899,9 @@ function broncoCockpit(root, m, sections) {
       responseSeconds: 0.2,
     },
   );
-  ins.altimeter('front-altimeter', [-0.135, 1.86, PZ - 0.006], 0.042, 'feet');
+  // OV-10A flight group (CHECO fig. 10): airspeed over altimeter on the left, the ADI over the
+  // heading card in the middle, vertical speed over the course indicator on the right.
+  ins.altimeter('front-altimeter', [0.135, 1.72, PZ - 0.006], 0.042, 'feet');
   ins.dial(
     'front-heading',
     [0, 1.7, PZ - 0.006],
@@ -837,45 +917,40 @@ function broncoCockpit(root, m, sections) {
   );
   ins.dial(
     'front-VSI',
-    [-0.135, 1.72, PZ - 0.006],
+    [-0.135, 1.86, PZ - 0.006],
     0.038,
     'verticalFpm',
     vsi,
     [-4000, 0, 4000],
     'VSI',
   );
-  pt.gauge(0.135, 1.72, PZ - 0.006, 0.034, black, false);
-  d.text('CLOCK', [0.135, 1.705, PZ - 0.013], 0.006, Math.PI, ink);
-  // Engine instruments on the right of the panel: torque and RPM for each engine, and fuel.
+  pt.gauge(-0.135, 1.72, PZ - 0.006, 0.042, black, false);
+  d.text('COURSE', [-0.135, 1.745, PZ - 0.013], 0.006, Math.PI, ink);
+  pt.gauge(0.232, 1.72, PZ - 0.006, 0.03, black, false);
+  d.text('CLOCK', [0.232, 1.705, PZ - 0.013], 0.006, Math.PI, ink);
+  // Engine instruments right of the flight group, a column per engine: torque over RPM over
+  // turbine temperature. The caution-light grid stands outboard of them, fuel quantity below it.
   for (const [j, x] of [
-    [1, -0.255],
-    [2, -0.335],
+    [1, -0.232],
+    [2, -0.302],
   ]) {
     ins.dial(
       `torque-${j}`,
       [x, 1.9, PZ - 0.006],
-      0.034,
+      0.032,
       `torque${j}`,
       percent,
       [0, 50, 100],
       `TQ ${j}`,
     );
-    ins.dial(
-      `rpm-${j}`,
-      [x, 1.79, PZ - 0.006],
-      0.034,
-      `rpm${j}`,
-      percent,
-      [0, 50, 100],
-      `RPM ${j}`,
-    );
-    pt.gauge(x, 1.68, PZ - 0.006, 0.03, black, false);
-    d.text(`TIT ${j}`, [x, 1.665, PZ - 0.012], 0.005, Math.PI, ink);
+    ins.dial(`rpm-${j}`, [x, 1.8, PZ - 0.006], 0.032, `rpm${j}`, percent, [0, 50, 100], `RPM ${j}`);
+    pt.gauge(x, 1.7, PZ - 0.006, 0.03, black, false);
+    d.text(`TIT ${j}`, [x, 1.685, PZ - 0.012], 0.005, Math.PI, ink);
   }
   ins.dial(
     'fuel',
-    [-0.295, 1.565, PZ - 0.006],
-    0.04,
+    [-0.366, 1.7, PZ - 0.006],
+    0.027,
     'fuelPounds',
     [
       [0, -2.3],
@@ -884,6 +959,79 @@ function broncoCockpit(root, m, sections) {
     [0, 800, 1600],
     'FUEL LB',
   );
+  // Caution-light grid, unlit capsules in a black frame.
+  d.add(place(roundedBox([0.05, 0.15, 0.006], 0.003), [-0.367, 1.84, PZ - 0.003]), black);
+  for (let row = 0; row < 5; row++)
+    for (const x of [-0.355, -0.379])
+      d.box([0.02, 0.022, 0.004], [x, 1.9 - row * 0.029, PZ - 0.007], P.panel);
+  d.text('CAUTION', [-0.367, 1.925, PZ - 0.007], 0.0045, Math.PI, ink);
+  // Fuel control switches under the engine columns (gauge select, transfer, emergency shutoff).
+  for (const [i, x] of [-0.25, -0.29, -0.33].entries()) {
+    d.add(new T.CylinderGeometry(0.006, 0.006, 0.005, 12).rotateX(Math.PI / 2), black, [
+      x,
+      1.6,
+      PZ - 0.004,
+    ]);
+    d.add(bar([x, 1.6, PZ - 0.006], [x, 1.608, PZ - 0.024], 0.0018, 10), P.alloy);
+    d.text(['GAGE', 'XFER', 'SHUTOFF'][i], [x, 1.622, PZ - 0.006], 0.0042, Math.PI, ink);
+  }
+  d.text('FUEL', [-0.29, 1.575, PZ - 0.006], 0.006, Math.PI, ink);
+  // TACAN control box hanging below the panel's centre, over the pedestal that carries the
+  // emergency and parking-brake handles (fig. 10).
+  d.add(place(roundedBox([0.15, 0.13, 0.09], 0.006), [0, 1.405, PZ + 0.04]), face);
+  pt.knob(0.035, 1.41, PZ - 0.012, 0.016);
+  pt.knob(-0.04, 1.39, PZ - 0.012, 0.011);
+  d.text('TACAN', [0.035, 1.45, PZ - 0.006], 0.006, Math.PI, ink);
+  d.text('VOL', [-0.04, 1.415, PZ - 0.006], 0.005, Math.PI, ink);
+  d.add(place(roundedBox([0.11, 0.24, 0.1], 0.01), [0, 1.22, PZ + 0.03]), consoleMat);
+  d.add(place(roundedBox([0.104, 0.07, 0.003], 0.003), [0, 1.3, PZ - 0.021]), black);
+  // Square instrument cases round the front dials: in CHECO fig. 10 the cases nearly touch,
+  // which is what makes the real panel read as full. The ADI gets a square frame round its hole.
+  const caseMat = mat('Bronco-instrument-case', '#3b4043');
+  for (const [x, y, r] of [
+    [0.135, 1.86, 0.042],
+    [0.135, 1.72, 0.042],
+    [0, 1.7, 0.045],
+    [-0.135, 1.86, 0.038],
+    [-0.135, 1.72, 0.042],
+    [-0.135, 1.962, 0.028],
+    [0.232, 1.72, 0.03],
+    [0.3, 1.9, 0.03],
+    [-0.366, 1.7, 0.027],
+    [-0.232, 1.9, 0.032],
+    [-0.232, 1.8, 0.032],
+    [-0.232, 1.7, 0.03],
+    [-0.302, 1.9, 0.032],
+    [-0.302, 1.8, 0.032],
+    [-0.302, 1.7, 0.03],
+  ])
+    d.add(place(roundedBox([2.15 * r, 2.15 * r, 0.004], 0.004), [x, y, PZ - 0.002]), caseMat);
+  for (const s of [-1, 1]) {
+    d.box([0.124, 0.01, 0.004], [adi[0], adi[1] + s * 0.057, PZ - 0.002], caseMat);
+    d.box([0.01, 0.104, 0.004], [adi[0] + s * 0.057, adi[1], PZ - 0.002], caseMat);
+  }
+  // Turn and slip above the vertical speed indicator, upper right of the ADI (fig. 10): a turn
+  // needle over the slip ball's curved glass.
+  pt.gauge(-0.135, 1.962, PZ - 0.006, 0.028, black, false);
+  d.box([0.003, 0.02, 0.002], [-0.135, 1.97, PZ - 0.011], ink);
+  d.add(new T.TorusGeometry(0.03, 0.0035, 6, 12, 0.9).rotateZ(Math.PI * 1.5 - 0.45), ink, [
+    -0.135,
+    1.975,
+    PZ - 0.011,
+  ]);
+  d.add(new T.SphereGeometry(0.0032, 8, 6), black, [-0.135, 1.945, PZ - 0.014]);
+  d.text('TURN', [-0.135, 1.938, PZ - 0.012], 0.0038, Math.PI, ink);
+  // Switch strip over the ADI (ALT/TCN PWR, FIRE DET, WARN LTS test), fig. 10.
+  d.add(place(roundedBox([0.104, 0.032, 0.006], 0.003), [0, 1.966, PZ - 0.003]), black);
+  for (const [i, x] of [0.034, 0, -0.034].entries()) {
+    d.add(new T.CylinderGeometry(0.005, 0.005, 0.004, 12).rotateX(Math.PI / 2), caseMat, [
+      x,
+      1.96,
+      PZ - 0.007,
+    ]);
+    d.add(bar([x, 1.96, PZ - 0.008], [x, 1.967, PZ - 0.024], 0.0016, 8), P.alloy);
+    d.text(['ALT/TCN', 'FIRE DET', 'WARN LTS'][i], [x, 1.976, PZ - 0.0065], 0.0036, Math.PI, ink);
+  }
   // Flap position and gear lamps on the left of the panel, the wheel-shaped gear handle below.
   ins.dial(
     'flap-position',
@@ -924,16 +1072,16 @@ function broncoCockpit(root, m, sections) {
     missing: 'hide',
   });
   d.text('GEAR', [0.315, 1.815, PZ - 0.006], 0.006, Math.PI, ink);
-  const gearHandle = group(cabin, 'Bronco-gear-handle', [0.32, 1.66, PZ - 0.012]),
-    gh = detailKit(gearHandle, gearHandle.name);
-  gh.box([0.012, 0.02, 0.01], [0, -0.012, 0.004], d.metal);
-  gh.rod([0, 0, 0], [0, -0.03, -0.035], 0.004, d.metal);
-  gh.add(
-    new T.CylinderGeometry(0.016, 0.016, 0.012, 16).rotateX(Math.PI / 2),
-    black,
-    [0, -0.032, -0.04],
-  );
+  const gearHandle = group(cabin, 'Bronco-gear-handle', [0.32, 1.66, PZ - 0.012]);
+  // The wheel-knob gear handle; down (gear down, rest pose) it points down and aft.
+  const gearArm = group(gearHandle, 'Bronco-gear-handle-arm');
+  gearArm.rotation.x = -0.4;
+  const gh = detailKit(gearArm, gearHandle.name);
+  gearHandleGeometry(gh, { style: 'jet', scale: 0.62 });
   gh.finish();
+  // Its slotted escutcheon on the panel face.
+  d.add(place(roundedBox([0.026, 0.07, 0.004], 0.003), [0.32, 1.66, PZ - 0.003]), black);
+  d.add(place(roundedBox([0.007, 0.056, 0.002], 0.001), [0.32, 1.66, PZ - 0.0055]), P.black);
   bindings.push({
     node: gearHandle.name,
     source: 'gear',
@@ -947,7 +1095,7 @@ function broncoCockpit(root, m, sections) {
   d.box([0.06, 0.04, 0.05], [-0.2, 2.055, 3.265], black);
 
   // Floors: the rear cockpit sits 0.2 m higher than the front.
-  fittedFloor(d, sections, m.dark, { y: 1.12, front: 3.3, back: 1.72, width: 1.04 });
+  fittedFloor(d, sections, m.dark, { y: 1.12, front: 3.55, back: 1.72, width: 1.04 });
   fittedFloor(d, sections, m.dark, { y: 1.32, front: 1.72, back: 0.45, width: 1.04 });
   // Riser between the two floor levels, tapered to the pod's rounded belly (a full-width box's
   // lower corners stood out of the skin below the sponson roots).
@@ -972,13 +1120,26 @@ function broncoCockpit(root, m, sections) {
 
   const cockpit = (tag, z, floor, eyeY) => {
     // Stick, pedals and the ejection seat. LW-3B-style seats: tall back, headbox, side rails.
+    // The stick is a straight tube in a rubber boot under the US fighter-style grip (trim hat,
+    // trigger, bomb button), as in the OV-10A flight manual's cockpit figures.
     const stick = group(cabin, `Bronco-stick-${tag}`, [0, floor + 0.04, z + 0.42]),
       sd = detailKit(stick, `${stick.name}-moving`);
-    sd.rod([0, 0, 0], [0, 0.5, -0.05], 0.014, d.metal);
-    sd.add(new T.CylinderGeometry(0.019, 0.022, 0.12, 12), black, [0, 0.56, -0.058]);
-    sd.box([0.016, 0.012, 0.016], [0, 0.625, -0.05], ins.red);
+    stickGeometry(sd, { style: 'b8', height: 0.49, rake: -0.05, shaft: 0.012 });
     sd.finish();
-    d.add(new T.CylinderGeometry(0.06, 0.08, 0.06, 14), black, [0, floor + 0.03, z + 0.42]);
+    // The boot's floor ring, bolted through the cockpit floor.
+    d.add(
+      lathe(
+        [
+          [0.05, 0],
+          [0.07, 0],
+          [0.07, 0.006],
+          [0.052, 0.012],
+        ],
+        20,
+      ),
+      black,
+      [0, floor + 0.016, z + 0.42],
+    );
     bindings.push(
       { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.15 },
       { node: stick.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.14 },
@@ -990,10 +1151,9 @@ function broncoCockpit(root, m, sections) {
           z + 0.78,
         ]),
         pd = detailKit(pedal, `${pedal.name}-moving`);
-      pd.box([0.1, 0.16, 0.025], [0, 0, 0], d.metal);
-      for (let j = 0; j < 4; j++)
-        pd.box([0.09, 0.004, 0.006], [0, -0.06 + j * 0.04, -0.015], black);
-      pd.rod([0, -0.08, 0.01], [0, -0.16, 0.1], 0.012, d.metal);
+      // Fighter-type pedal with toe-brake tread and outboard boot guard; its arm runs down and
+      // forward to the rudder bar under the floor line.
+      pedalGeometry(pd, { style: 'fighter', side, drop: 0.07, scale: 1.05 });
       pd.finish();
       bindings.push({
         node: pedal.name,
@@ -1043,6 +1203,8 @@ function broncoCockpit(root, m, sections) {
     const top = floor + (floor > 1.2 ? 0.46 : 0.5);
     for (const side of [-1, 1]) {
       beveledBox(d, [0.12, 0.2, 0.95], [side * 0.38, top - 0.1, z + 0.05], consoleMat, 0.02);
+      // Black console panel faces on the gray console bodies.
+      d.box([0.096, 0.002, 0.88], [side * 0.38, top + 0.001, z + 0.05], black);
       d.box(
         [0.02, top - 0.2 - floor, 0.8],
         [side * 0.33, (top - 0.2 + floor) / 2, z + 0.05],
@@ -1059,8 +1221,7 @@ function broncoCockpit(root, m, sections) {
   for (const [i, x] of [0.425, 0.4].entries()) {
     const lever = group(cabin, `Bronco-power-lever-${i + 1}`, [x, 1.62, 2.72]),
       ld = detailKit(lever, `${lever.name}-moving`);
-    ld.rod([0, 0, 0], [0, 0.11, 0.01], 0.006, d.metal);
-    beveledBox(ld, [0.026, 0.035, 0.04], [0, 0.125, 0.012], black, 0.008);
+    powerLever(ld, P, 0.1, i === 0);
     ld.finish();
     bindings.push({
       node: lever.name,
@@ -1074,8 +1235,7 @@ function broncoCockpit(root, m, sections) {
   for (const [i, x] of [0.365, 0.343].entries()) {
     const lever = group(cabin, `Bronco-condition-lever-${i + 1}`, [x, 1.62, 2.6]),
       ld = detailKit(lever, `${lever.name}-moving`);
-    ld.rod([0, 0, 0], [0, 0.085, 0.01], 0.005, d.metal);
-    beveledBox(ld, [0.018, 0.026, 0.03], [0, 0.095, 0.012], ins.red, 0.006);
+    conditionLever(ld, P, 0.075, P.red);
     ld.finish();
     lever.userData.aircraftControl = {
       action: 'propeller',
@@ -1084,10 +1244,27 @@ function broncoCockpit(root, m, sections) {
     };
   }
   d.text('PWR COND', [0.38, 1.625, 2.9], 0.008, Math.PI / 2, ink);
+  // The quadrant's black escutcheon on the console top, a slot under each lever, and the flap
+  // lever's gate aft of it with its UP and DN stops.
+  d.add(place(roundedBox([0.112, 0.003, 0.25], 0.004, 1), [0.385, 1.6215, 2.665]), black);
+  for (const [x, z, length] of [
+    [0.425, 2.72, 0.14],
+    [0.4, 2.72, 0.14],
+    [0.365, 2.6, 0.1],
+    [0.343, 2.6, 0.1],
+  ])
+    d.add(new T.BoxGeometry(0.006, 0.001, length).translate(x, 1.6235, z), P.black);
+  d.add(place(roundedBox([0.04, 0.003, 0.11], 0.004, 1), [0.4, 1.6215, 2.36]), black);
+  d.add(new T.BoxGeometry(0.008, 0.001, 0.085).translate(0.4, 1.6235, 2.36), P.black);
+  for (const [label, z] of [
+    ['UP', 2.415],
+    ['DN', 2.305],
+  ])
+    d.text(label, [0.425, 1.6235, z], 0.006, Math.PI / 2, ink);
   const flapLever = group(cabin, 'Bronco-flap-lever', [0.4, 1.62, 2.36]),
     fl = detailKit(flapLever, `${flapLever.name}-moving`);
-  fl.rod([0, 0, 0], [0, 0.07, 0], 0.005, d.metal);
-  fl.box([0.03, 0.012, 0.03], [0, 0.075, 0], ink);
+  // A short lever under a wing-section knob, the shape-coded flap control.
+  flapSelectorGeometry(fl, { style: 'lever', height: 0.06, scale: 0.62 });
   fl.finish();
   bindings.push({
     node: flapLever.name,
@@ -1100,8 +1277,7 @@ function broncoCockpit(root, m, sections) {
   for (const [i, x] of [0.425, 0.4].entries()) {
     const lever = group(cabin, `Bronco-rear-pwr-${i + 1}`, [x, 1.78, 1.48]),
       ld = detailKit(lever, `${lever.name}-moving`);
-    ld.rod([0, 0, 0], [0, 0.1, 0.01], 0.006, d.metal);
-    beveledBox(ld, [0.024, 0.032, 0.036], [0, 0.112, 0.012], black, 0.008);
+    powerLever(ld, P, 0.09, i === 0);
     ld.finish();
     bindings.push({
       node: lever.name,
@@ -1119,10 +1295,15 @@ function broncoCockpit(root, m, sections) {
     ['Bronco-start-2', 'engine-2', 2.64],
   ];
   for (const [name, engine, z] of switches) {
-    const sw = group(cabin, name, [-0.38, 1.627, z]),
-      sd = detailKit(sw, `${name}-moving`);
-    sd.box([0.035, 0.012, 0.03], [0, 0, 0], engine ? black : ins.red);
-    sd.rod([0, 0, 0], [0, 0.03, 0.006], 0.004, d.metal);
+    const sw = group(cabin, name, [-0.38, 1.627, z]);
+    // Each switch lies on the console top (the part frame's -Z turned up): the master under a
+    // red guard, the starters as plain toggles in their bezels.
+    const face = group(sw, `${name}-switch`);
+    face.rotation.x = Math.PI / 2;
+    const sd = detailKit(face, `${name}-moving`);
+    if (engine) switchGeometry(sd, { style: 'toggle', scale: 1.2 });
+    else engineMasterGeometry(sd, { style: 'guarded', scale: 1.2 });
+    sd.add(place(roundedBox([0.03, 0.026, 0.003], 0.002), [0, 0, 0.0005]), P.panel);
     sd.finish();
     sw.userData.aircraftControl = {
       action: 'engine',
@@ -1133,16 +1314,19 @@ function broncoCockpit(root, m, sections) {
   d.text('MASTER START', [-0.38, 1.625, 2.92], 0.007, -Math.PI / 2, ink);
   for (let r = 0; r < 3; r++)
     for (let c = 0; c < 3; c++) pt.knob(-0.41 + c * 0.03, 1.627, 2.45 - r * 0.07, 0.007);
-  const brake = group(cabin, 'Bronco-parking-brake', [-0.25, 1.52, PZ - 0.03]),
+  const brake = group(cabin, 'Bronco-parking-brake', [0.04, 1.3, PZ - 0.024]),
     bk = detailKit(brake, `${brake.name}-moving`);
-  bk.rod([0, 0, 0], [0, 0, -0.05], 0.005, d.metal);
-  bk.box([0.05, 0.016, 0.014], [0, 0, -0.055], black);
+  // The parking brake is a T-handle pulled aft out of the centre pedestal, left of centre under
+  // the TACAN box (CHECO fig. 10), beside the emergency handle.
+  parkingBrakeGeometry(bk, { style: 'tee', scale: 0.9 });
   bk.finish();
   brake.userData.aircraftControl = {
     action: 'brake',
     motion: { property: 'position', axis: 'z', scale: -0.022 },
   };
-  d.text('PARK BRK', [-0.25, 1.545, PZ - 0.004], 0.005, Math.PI, ink);
+  d.text('PARK BRK', [0.032, 1.322, PZ - 0.0235], 0.005, Math.PI, ink);
+  d.add(place(roundedBox([0.012, 0.03, 0.012], 0.003), [-0.03, 1.295, PZ - 0.027]), yellow);
+  d.text('EMER', [-0.03, 1.322, PZ - 0.0235], 0.0045, Math.PI, ink);
 
   // ---- Rear cockpit: two instrument pods either side of the front seat's headbox, each a
   // flat face over a shallow housing. The left pod's attitude card shows through an aperture.
@@ -1214,6 +1398,41 @@ function broncoCockpit(root, m, sections) {
     [0, 800, 1600],
     'FUEL LB',
   );
+  // Fit the tubs to the pod: the painted skin showed between the consoles, the sills and the
+  // floors, and past the panel's sides into the nose. Gray liners follow the skin from each floor
+  // to the sill; a closeout behind the panel fills its sides up to the sill, and a footwell
+  // bulkhead under the coaming ends the front floor ahead of the pedals.
+  cockpitLiner(d, root, {
+    zFrom: 1.72,
+    zTo: 3.55,
+    yFrom: 1.03,
+    yTo: SILL - 0.002,
+    material: consoleMat,
+    inset: 0.005,
+    zSteps: 12,
+    ySteps: 8,
+  });
+  cockpitLiner(d, root, {
+    zFrom: 0.47,
+    zTo: 1.72,
+    yFrom: 1.22,
+    yTo: SILL - 0.002,
+    material: consoleMat,
+    inset: 0.005,
+    zSteps: 8,
+    ySteps: 5,
+  });
+  cockpitBulkhead(d, root, { z: PZ + 0.066, yFrom: 1.46, yTo: SILL - 0.004, material: black });
+  // Under the coaming's outer edges the nose skin ahead of the windshield showed past the
+  // panel's top corners: close the windshield base from the sill to its arch, just aft of the
+  // frame (the coaming hides its middle).
+  sheet(
+    d,
+    canopyArc(0.512, 2.034).map(([x, y]) => [x, Math.max(y, SILL - 0.004), 3.343]),
+    black,
+    [0, 0, -1],
+  );
+  cockpitBulkhead(d, root, { z: 3.55, yFrom: 1.1, yTo: 1.5, material: consoleMat });
   d.finish();
   return { nodes: ['cockpit'], sources, derived, bindings };
 }

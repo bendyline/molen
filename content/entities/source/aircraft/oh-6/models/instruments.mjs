@@ -222,7 +222,14 @@ export function instrumentParts(api) {
         : (spec.angle ?? -0.65);
       box(needle, `${id}-pointer`, [r * 0.035, r * 0.79, 0.002], [0, r * 0.29, 0], paper);
       box(needle, `${id}-counterweight`, [r * 0.07, r * 0.23, 0.002], [0, -r * 0.17, 0], paper);
-      sphere(needle, `${id}-hub`, [r * 0.085, r * 0.085, 0.003], [0, 0, -0.002], bezel);
+      // A 3 mm hub: twelve sides read as round at this size (a full sphere cost 720 triangles).
+      mesh(
+        needle,
+        `${id}-hub`,
+        new T.CylinderGeometry(r * 0.085, r * 0.085, 0.003, 12).rotateX(Math.PI / 2),
+        bezel,
+        [0, 0, -0.002],
+      );
       if (id === 'altimeter' || spec.dual) {
         const second = group(needle, `${id}-second-hand`);
         second.rotation.z = 1.3;

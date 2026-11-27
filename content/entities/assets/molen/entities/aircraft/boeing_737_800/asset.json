@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:a51532b2ccc18f102ba403e33fe5717a156a6582b53f59ce6ed4b5813b8c01a6",
-  "sourceHash": "sha256:4a5cc11481a0183c59726e5ebdf7f9825a186d52d3be1656f69759e93a9afc23",
+  "hash": "sha256:7cc3f28e9f367d7011a9415b46640c97bdb007be6a75861caa9f944ff03c03f5",
+  "sourceHash": "sha256:7508515994e6b9dd494414b1568e7a88aa7c3c257695018f4bad8820273027c5",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 63758,
-    "vertices": 68605,
-    "meshes": 205,
-    "primitives": 205,
-    "materials": 58,
+    "triangles": 71750,
+    "vertices": 75636,
+    "meshes": 222,
+    "primitives": 222,
+    "materials": 61,
     "textures": 10,
     "animations": 0,
-    "sizeBytes": 2051020
+    "sizeBytes": 2228876
   },
   "nodes": [
     {
@@ -255,11 +255,15 @@
     },
     {
       "name": "B738-cabin-fixed-coaming-padding",
-      "triangles": 96
+      "triangles": 140
     },
     {
       "name": "B738-cabin-fixed-instrument-panel",
-      "triangles": 148
+      "triangles": 132
+    },
+    {
+      "name": "B738-cabin-fixed-flight-control-knob",
+      "triangles": 240
     },
     {
       "name": "B738-cabin-fixed-B738-seat",
@@ -274,16 +278,28 @@
       "triangles": 48
     },
     {
+      "name": "B738-cabin-fixed-B738-grip",
+      "triangles": 160
+    },
+    {
+      "name": "B738-cabin-fixed-B738-bezel",
+      "triangles": 36
+    },
+    {
       "name": "B738-cabin-fixed-B738-floor",
-      "triangles": 78
+      "triangles": 80
+    },
+    {
+      "name": "B738-cabin-fixed-B738-wall-liner",
+      "triangles": 2000
     },
     {
       "name": "B738-cabin-fixed-B738-liner",
-      "triangles": 3440
+      "triangles": 1720
     },
     {
       "name": "B738-main-panel-fixed-B738-bezel",
-      "triangles": 418
+      "triangles": 432
     },
     {
       "name": "B738-main-panel-fixed-B738-screen",
@@ -303,7 +319,7 @@
     },
     {
       "name": "B738-main-panel-fixed-B738-lettering",
-      "triangles": 72
+      "triangles": 144
     },
     {
       "name": "B738-main-panel-fixed-B738-cyan",
@@ -315,7 +331,7 @@
     },
     {
       "name": "B738-main-panel-fixed-instrument-panel",
-      "triangles": 38
+      "triangles": 88
     },
     {
       "name": "B738-PFD-L-fixed-B738-ink",
@@ -536,22 +552,6 @@
     {
       "name": "B738-PFD-L-altitude-2-6-B738-ink",
       "triangles": 12
-    },
-    {
-      "name": "B738-PFD-L-altitude-3-0-B738-ink",
-      "triangles": 12
-    },
-    {
-      "name": "B738-PFD-L-altitude-3-1-B738-ink",
-      "triangles": 12
-    },
-    {
-      "name": "B738-PFD-L-altitude-3-2-B738-ink",
-      "triangles": 12
-    },
-    {
-      "name": "B738-PFD-L-altitude-3-3-B738-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -700,6 +700,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "flight-control-knob",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "B738-seat",
       "slots": [
         "baseColor"
@@ -727,19 +735,11 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "B738-floor",
+      "name": "B738-grip",
       "slots": [
         "baseColor"
       ],
       "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "B738-liner",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": true,
       "alphaMode": "OPAQUE"
     },
     {
@@ -748,6 +748,30 @@
         "baseColor"
       ],
       "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "B738-floor",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "B738-wall-liner",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "B738-liner",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
       "alphaMode": "OPAQUE"
     },
     {
@@ -891,9 +915,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "B738-toggle",
+      "name": "flight-control-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -923,6 +950,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "flight-control-steel",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "B738-lever-d9d5c9",
       "slots": [
         "baseColor"
@@ -931,7 +966,42 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "B738-grip",
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-black",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "B738-toggle",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-tread",
       "slots": [
         "baseColor"
       ],
@@ -963,6 +1033,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "B738-gear",
       "slots": [
         "baseColor"
@@ -980,64 +1058,6 @@
     },
     {
       "name": "B738-tyres",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-panel-satin",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-alloy-brushed",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-grip-rubber",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-legend-technical-font",
-      "slots": [
-        "baseColor",
-        "emissive"
-      ],
-      "doubleSided": false,
-      "alphaMode": "BLEND"
-    },
-    {
-      "name": "flight-control-legend",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -2643,6 +2663,35 @@
         ]
       },
       {
+        "node": "B738-cabin-fixed-flight-control-knob",
+        "points": [
+          -0.2393,
+          3.0138,
+          17.4763,
+          -0.2393,
+          3.0138,
+          17.7338,
+          -0.2393,
+          3.278,
+          17.4763,
+          -0.2393,
+          3.278,
+          17.7338,
+          0.2393,
+          3.0138,
+          17.4763,
+          0.2393,
+          3.0138,
+          17.7338,
+          0.2393,
+          3.278,
+          17.4763,
+          0.2393,
+          3.278,
+          17.7338
+        ]
+      },
+      {
         "node": "B738-cabin-fixed-B738-seat",
         "points": [
           -0.75,
@@ -2730,60 +2779,147 @@
         ]
       },
       {
+        "node": "B738-cabin-fixed-B738-grip",
+        "points": [
+          -0.695,
+          2.9679,
+          18.2644,
+          -0.695,
+          2.9679,
+          18.3187,
+          -0.695,
+          3.2685,
+          18.2644,
+          -0.695,
+          3.2685,
+          18.3187,
+          0.695,
+          2.9679,
+          18.2644,
+          0.695,
+          2.9679,
+          18.3187,
+          0.695,
+          3.2685,
+          18.2644,
+          0.695,
+          3.2685,
+          18.3187
+        ]
+      },
+      {
+        "node": "B738-cabin-fixed-B738-bezel",
+        "points": [
+          -0.8438,
+          2.6924,
+          18.0905,
+          -0.8438,
+          2.6924,
+          18.354,
+          -0.8438,
+          3.2905,
+          18.0905,
+          -0.8438,
+          3.2905,
+          18.354,
+          0.8438,
+          2.6924,
+          18.0905,
+          0.8438,
+          2.6924,
+          18.354,
+          0.8438,
+          3.2905,
+          18.0905,
+          0.8438,
+          3.2905,
+          18.354
+        ]
+      },
+      {
         "node": "B738-cabin-fixed-B738-floor",
         "points": [
-          -1.6505,
-          2.695,
+          -1.6506,
+          2.6944,
           14.4059,
-          -1.6505,
-          2.695,
-          18.3055,
-          -1.6505,
+          -1.6506,
+          2.6944,
+          18.3454,
+          -1.6506,
           2.7511,
           14.4059,
-          -1.6505,
+          -1.6506,
           2.7511,
-          18.3055,
-          1.6505,
-          2.695,
+          18.3454,
+          1.6506,
+          2.6944,
           14.4059,
-          1.6505,
-          2.695,
-          18.3055,
-          1.6505,
+          1.6506,
+          2.6944,
+          18.3454,
+          1.6506,
           2.7511,
           14.4059,
-          1.6505,
+          1.6506,
           2.7511,
-          18.3055
+          18.3454
+        ]
+      },
+      {
+        "node": "B738-cabin-fixed-B738-wall-liner",
+        "points": [
+          -1.6857,
+          2.7027,
+          14.4061,
+          -1.6857,
+          2.7027,
+          18.3545,
+          -1.6857,
+          3.7699,
+          14.4061,
+          -1.6857,
+          3.7699,
+          18.3545,
+          1.6857,
+          2.7027,
+          14.4061,
+          1.6857,
+          2.7027,
+          18.3545,
+          1.6857,
+          3.7699,
+          14.4061,
+          1.6857,
+          3.7699,
+          18.3545
         ]
       },
       {
         "node": "B738-cabin-fixed-B738-liner",
         "points": [
-          -1.6863,
-          2.7122,
-          14.4061,
-          -1.6863,
-          2.7122,
+          -1.4663,
+          4.096,
+          14.4257,
+          -1.4663,
+          4.096,
           17.8372,
-          -1.6863,
-          5.025,
-          14.4061,
-          -1.6863,
-          5.025,
+          -1.4663,
+          5.0251,
+          14.4257,
+          -1.4663,
+          5.0251,
           17.8372,
-          1.6863,
-          2.7122,
-          14.4061,
-          1.6863,
-          2.7122,
+          1.4663,
+          4.096,
+          14.4257,
+          1.4663,
+          4.096,
           17.8372,
-          1.6863,
-          5.025,
-          14.4061,
-          1.6863,
-          5.025,
+          1.4663,
+          5.0251,
+          14.4257,
+          1.4663,
+          5.0251,
           17.8372
         ]
       },
@@ -2821,25 +2957,25 @@
         "points": [
           -0.677,
           3.3726,
-          18.0014,
+          18.0044,
           -0.677,
           3.3726,
           18.0774,
           -0.677,
           3.553,
-          18.0014,
+          18.0044,
           -0.677,
           3.553,
           18.0774,
           0.677,
           3.3726,
-          18.0014,
+          18.0044,
           0.677,
           3.3726,
           18.0774,
           0.677,
           3.553,
-          18.0014,
+          18.0044,
           0.677,
           3.553,
           18.0774
@@ -2908,57 +3044,57 @@
         "points": [
           -0.19,
           3.3611,
-          17.9988,
+          18.0027,
           -0.19,
           3.3611,
           18.042,
           -0.19,
-          3.4883,
-          17.9988,
+          3.4872,
+          18.0027,
           -0.19,
-          3.4883,
+          3.4872,
           18.042,
           -0.12,
           3.3611,
-          17.9988,
+          18.0027,
           -0.12,
           3.3611,
           18.042,
           -0.12,
-          3.4883,
-          17.9988,
+          3.4872,
+          18.0027,
           -0.12,
-          3.4883,
+          3.4872,
           18.042
         ]
       },
       {
         "node": "B738-main-panel-fixed-B738-lettering",
         "points": [
-          -0.1864,
-          3.3819,
+          -0.1876,
+          3.3786,
           17.9923,
-          -0.1864,
-          3.3819,
-          18.0276,
-          -0.1864,
-          3.4684,
+          -0.1876,
+          3.3786,
+          18.0334,
+          -0.1876,
+          3.4726,
           17.9923,
-          -0.1864,
-          3.4684,
-          18.0276,
+          -0.1876,
+          3.4726,
+          18.0334,
           -0.119,
-          3.3819,
-          17.9923,
-          -0.119,
-          3.3819,
-          18.0276,
-          -0.119,
-          3.4684,
+          3.3786,
           17.9923,
           -0.119,
-          3.4684,
-          18.0276
+          3.3786,
+          18.0334,
+          -0.119,
+          3.4726,
+          17.9923,
+          -0.119,
+          3.4726,
+          18.0334
         ]
       },
       {
@@ -4641,122 +4777,6 @@
           0.4471,
           3.4785,
           18.0423
-        ]
-      },
-      {
-        "node": "B738-PFD-L-altitude-3-0-B738-ink",
-        "points": [
-          0.4395,
-          3.4813,
-          18.0424,
-          0.4395,
-          3.4813,
-          18.0433,
-          0.4395,
-          3.4821,
-          18.0424,
-          0.4395,
-          3.4821,
-          18.0433,
-          0.4422,
-          3.4813,
-          18.0424,
-          0.4422,
-          3.4813,
-          18.0433,
-          0.4422,
-          3.4821,
-          18.0424,
-          0.4422,
-          3.4821,
-          18.0433
-        ]
-      },
-      {
-        "node": "B738-PFD-L-altitude-3-1-B738-ink",
-        "points": [
-          0.4389,
-          3.4785,
-          18.0416,
-          0.4389,
-          3.4785,
-          18.0431,
-          0.4389,
-          3.4814,
-          18.0416,
-          0.4389,
-          3.4814,
-          18.0431,
-          0.4394,
-          3.4785,
-          18.0416,
-          0.4394,
-          3.4785,
-          18.0431,
-          0.4394,
-          3.4814,
-          18.0416,
-          0.4394,
-          3.4814,
-          18.0431
-        ]
-      },
-      {
-        "node": "B738-PFD-L-altitude-3-2-B738-ink",
-        "points": [
-          0.4389,
-          3.4749,
-          18.0405,
-          0.4389,
-          3.4749,
-          18.0421,
-          0.4389,
-          3.4778,
-          18.0405,
-          0.4389,
-          3.4778,
-          18.0421,
-          0.4394,
-          3.4749,
-          18.0405,
-          0.4394,
-          3.4749,
-          18.0421,
-          0.4394,
-          3.4778,
-          18.0405,
-          0.4394,
-          3.4778,
-          18.0421
-        ]
-      },
-      {
-        "node": "B738-PFD-L-altitude-3-3-B738-ink",
-        "points": [
-          0.4395,
-          3.4742,
-          18.0403,
-          0.4395,
-          3.4742,
-          18.0413,
-          0.4395,
-          3.475,
-          18.0403,
-          0.4395,
-          3.475,
-          18.0413,
-          0.4422,
-          3.4742,
-          18.0403,
-          0.4422,
-          3.4742,
-          18.0413,
-          0.4422,
-          3.475,
-          18.0403,
-          0.4422,
-          3.475,
-          18.0413
         ]
       }
     ]

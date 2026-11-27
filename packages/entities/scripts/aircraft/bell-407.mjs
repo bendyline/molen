@@ -4,8 +4,10 @@
  */
 
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
-import { bellNose, through } from './bell-206.mjs';
+import { bellCollective, bellCyclic, bellNose, through } from './bell-206.mjs';
+import { partPalette, pedalGeometry, switchGeometry } from './cockpit-parts.mjs';
 import { glassDisplay } from './glass-display.mjs';
+import { skinBacking } from './huey.mjs';
 import {
   beveledBox,
   cleanGeometry,
@@ -48,6 +50,8 @@ export function buildBell407(s) {
       roughness: 0.18,
     }),
     gold = mat('407-stripe', '#b5a16b');
+  // Dark enough to pass for trim, but it is paint: the cabin frame lining covers it inside.
+  red.userData.paint = true;
   const d = detailKit(root, '407-airframe');
   // Forward of the door post the fuselage is bellNose below; the first section is its belly only.
   const measured = [
@@ -228,8 +232,15 @@ export function buildBell407(s) {
         0.0045,
         trim,
       );
+    // Handles and hinges stand on the skin: centred 1 % out, their inner halves stood through the
+    // cabin lining.
     for (const z of [1.47, 0.77, -0.13])
-      d.rod([sx(z) * 1.01, 0.87, z - 0.05], [sx(z) * 1.01, 0.87, z + 0.05], 0.012, metal);
+      d.rod(
+        [sx(z) + side * 0.013, 0.87, z - 0.05],
+        [sx(z) + side * 0.013, 0.87, z + 0.05],
+        0.012,
+        metal,
+      );
     for (const [z, y] of [
       [2.02, 0.76],
       [1.76, 1.4],
@@ -238,7 +249,7 @@ export function buildBell407(s) {
       [0.53, 0.76],
       [0.41, 1.4],
     ])
-      d.box([0.026, 0.045, 0.055], [sx(z) * 1.01, y, z], metal);
+      d.box([0.026, 0.045, 0.055], [sx(z) + side * 0.014, y, z], metal);
     // The lower cream band and gold beltline follow the side stations.
     for (let i = 0; i < 4; i++) {
       const a = p(i, k),
@@ -477,11 +488,16 @@ export function buildBell407(s) {
   }
   td.finish();
   d.finish();
-  const interior = add407Cockpit(root, { red, white, trim, metal });
+  const { stations: controlStations, ...interior } = add407Cockpit(root, {
+    red,
+    white,
+    trim,
+    metal,
+  });
   cleanGeometry(root);
   return {
     root,
-    frame: bell407Frame(),
+    frame: { ...bell407Frame(), controlStations },
     enginePoints: [],
     visual: {
       rotors: [
@@ -502,7 +518,31 @@ function add407Cockpit(root, m) {
     panel = mat('407-panel', '#c0bdb0'),
     seat = mat('407-upholstery', '#b3a58b', { roughness: 0.92 }),
     belt = mat('407-belts', '#5b6263'),
-    bindings = [];
+    bindings = [],
+    parts = partPalette();
+  // Line the painted skin inside the cabin: the nose round the footwells and chin windows and the
+  // walls round the doors in dark gray trim, the roof in a warm headliner. Without it the
+  // double-sided wine and cream paint showed round the panel, in the footwells and on the doors.
+  {
+    const lining = mat('407-cabin-trim', '#3c4143', { roughness: 0.9 }),
+      headliner = mat('407-headliner', '#aaa595', { roughness: 0.95 }),
+      ld = detailKit(cabin, '407-lining');
+    skinBacking(ld, root, {
+      materials: [m.red, m.white],
+      inside: ([x, y, z]) =>
+        Math.abs(x) < 0.78 &&
+        z > -1.62 &&
+        y < 1.82 &&
+        (y < 1.02 || (z > 1.9 && y < 1.2 && Math.abs(x) > 0.03)
+          ? z < 3.15
+          : Math.abs(x) > 0.55
+            ? z < 2.06
+            : z < 1.6 && y > 1.66),
+      lining: ([x, y]) => (y > 1.66 && Math.abs(x) < 0.6 ? headliner : lining),
+      toward: ([, y, z]) => (z > 1.95 ? [0, 0.86, 1.75] : [0, y > 1.5 ? 1.15 : 1.1, z]),
+    });
+    ld.finish();
+  }
   // The face is authored at 1.6 times life size. At 0.62 each display case is 0.295 m wide against
   // the real GDU's 0.30 m, and the standby dials are 3.125 in, for a panel 0.74 m wide and 0.45 m
   // tall, its top 0.23 m below the eye. The 407 cabin sits 0.3 m further forward of the mast than
@@ -524,10 +564,9 @@ function add407Cockpit(root, m) {
     [0.54, 1.53, z],
     [0.61, 1.42, z],
     [0.61, 0.9, z],
-    [0.18, 0.9, z],
-    [-0.18, 0.96, z],
-    [-0.31, 1.04, z],
-    [-0.59, 1.04, z],
+    [-0.22, 0.9, z],
+    [-0.33, 1.0, z],
+    [-0.59, 1.0, z],
   ];
   sheet(fk, face, panel, [0, 0, -1]);
   sheet(
@@ -594,14 +633,25 @@ function add407Cockpit(root, m) {
       offset: -1.7,
     });
   }
-  fk.box([0.47, 0.075, 0.012], [0.04, 0.96, z - 0.014], m.trim);
+  // The switch row along the panel's foot (407GX panel photo): float, fire test, pedal stop,
+  // overspeed and fuel-quantity tests and the red FADEC backup button, then the lit FADEC MODE
+  // pushbutton and, under the pilot's display, the guarded FUEL VALVE switch (a control station).
+  fk.box([0.5, 0.075, 0.012], [0.045, 0.96, z - 0.014], m.trim);
   for (let i = 0; i < 6; i++)
     fk.add(
       new T.CylinderGeometry(0.014, 0.014, 0.016, 10).rotateX(Math.PI / 2),
       i === 5 ? fk.red : m.metal,
-      [0.22 - i * 0.072, 0.96, z - 0.032],
+      [0.25 - i * 0.057, 0.96, z - 0.032],
     );
-  fk.box([0.035, 0.06, 0.025], [-0.25, 0.98, z - 0.025], fk.red);
+  // The face is drawn at 1.6 times life size, so the life-size part is scaled to match.
+  {
+    const sw = group(faceGroup, '407-fadec-mode-switch', [-0.1, 0.958, z - 0.02]);
+    sw.scale.setScalar(1 / 0.62);
+    const swd = detailKit(sw, sw.name);
+    switchGeometry(swd, { style: 'korry', lit: fk.green, palette: parts });
+    swd.finish();
+    fk.text('FADEC MODE', [-0.1, 0.988, z - 0.021], 0.009, Math.PI, fk.ivory);
+  }
   fk.box([0.045, 0.02, 0.01], [-0.21, 1.415, z - 0.025], fk.red);
   fk.finish();
   // Runs from the panel's foot down between the seats, 0.26 m wide as in the GX photograph.
@@ -657,22 +707,22 @@ function add407Cockpit(root, m) {
     const x = side * 0.36;
     addSeat(x, 0.73, 1.29);
     addSeat(x, 0.73, 0.72, -1);
+    // Bent cyclic tube from a floor gaiter, the 407's Bell grip with its float-arm button on top.
     const stick = group(cabin, `407-cyclic-${side}`, [x, 0.49, 1.8]),
       sd = detailKit(stick, 'cyclic');
-    outline(
-      sd,
-      [
+    bellCyclic(sd, {
+      path: [
         [0, 0, 0],
-        [0, 0.23, 0],
-        [0, 0.37, -0.15],
-        [0, 0.5, -0.18],
+        [0, 0.18, 0.004],
+        [0, 0.3, -0.06],
+        [0, 0.41, -0.16],
+        [0, 0.49, -0.182],
       ],
-      0.018,
-      m.trim,
-      false,
-    );
-    sd.box([0.05, 0.13, 0.05], [0, 0.55, -0.18], m.trim);
-    sd.box([0.016, 0.014, 0.016], [0, 0.62, -0.19], sd.red);
+      floor: 0.085,
+      tubeMaterial: m.trim,
+      palette: parts,
+      grip: '407',
+    });
     sd.finish();
     bindings.push(
       { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.15 },
@@ -680,8 +730,8 @@ function add407Cockpit(root, m) {
     );
     const lever = group(cabin, `407-collective-${side}`, [x + 0.24, 0.6, 1.23]),
       ld = detailKit(lever, 'collective');
-    ld.rod([0, 0, 0], [0, 0.11, 0.38], 0.022, m.trim);
-    ld.box([0.06, 0.06, 0.15], [0, 0.11, 0.38], m.trim);
+    // Twist-grip throttle and the FADEC switch box with its starter button on the tip.
+    bellCollective(ld, { end: [0, 0.11, 0.38], tubeMaterial: m.trim, palette: parts, head: '407' });
     ld.finish();
     bindings.push({
       node: lever.name,
@@ -693,8 +743,7 @@ function add407Cockpit(root, m) {
     for (const k of [-1, 1]) {
       const g = group(cabin, `407-pedal-${side}-${k}`, [x + k * 0.11, 0.72, 2.16]),
         gd = detailKit(g, 'pedal');
-      gd.rod([-0.07, 0, 0], [0.07, 0, 0], 0.018, m.trim);
-      gd.rod([0, -0.09, 0.1], [0, 0, 0], 0.012, m.metal);
+      pedalGeometry(gd, { style: 'heli', side: k, drop: 0.085, palette: parts });
       gd.finish();
       bindings.push({
         node: g.name,
@@ -729,9 +778,48 @@ function add407Cockpit(root, m) {
       [0, 0, 1],
     );
   }
+  // Overhead console under the roof: circuit-breaker rows aft, battery, generator and lighting
+  // switches forward of them.
   d.box([0.21, 0.035, 0.55], [0, 1.73, 1.0], m.trim);
   for (let i = 0; i < 8; i++)
-    d.rod([0, 1.7, 0.77 + i * 0.055], [0, 1.67, 0.78 + i * 0.055], 0.004, m.metal);
+    for (const xx of [-0.05, 0.05])
+      d.add(new T.CylinderGeometry(0.0055, 0.0055, 0.008, 10), m.metal, [
+        xx,
+        1.709,
+        0.75 + i * 0.033,
+      ]);
   d.finish();
-  return { nodes: ['cockpit'], bindings };
+  const over = detailKit(cabin, '407-overhead-switches'),
+    down = [Math.PI / 2, Math.PI, 0];
+  for (const [xx, zz] of [
+    [-0.06, 1.1],
+    [-0.06, 1.16],
+    [0.06, 1.1],
+  ]) {
+    const sw = group(cabin, `407-overhead-switch-${xx}-${zz}`, [xx, 1.7125, zz]);
+    sw.rotation.set(...down);
+    const swd = detailKit(sw, sw.name);
+    switchGeometry(swd, { style: 'toggle', palette: parts });
+    swd.finish();
+  }
+  for (const [xx, zz, label] of [
+    [-0.06, 1.13, 'BATT  GEN'],
+    [0.06, 1.13, 'LTS'],
+  ])
+    over.text(label, [xx, 1.711, zz], 0.008, 0, over.ivory).rotation.set(Math.PI / 2, 0, 0);
+  over.finish();
+  // The fuel valve switch, ON / OFF under its red guard, at the right end of the switch row along
+  // the panel's foot, under the pilot's display (407GX and 407 trade-show panel photographs). The
+  // face group's 0.62 scale puts the row's front at face z - 0.02 at 0.9464 + (z - 0.02) * 0.62.
+  const stations = [
+    {
+      action: 'engine',
+      style: 'guarded',
+      at: [-0.165 * 0.62, 0.3194 + 0.958 * 0.62, 0.9464 + (z - 0.02) * 0.62],
+      label: 'FUEL VALVE',
+      labelAt: [0, -0.016, -0.001],
+      labelHeight: 0.0055,
+    },
+  ];
+  return { nodes: ['cockpit'], bindings, stations };
 }

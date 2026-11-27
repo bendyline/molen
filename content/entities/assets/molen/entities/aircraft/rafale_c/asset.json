@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:bb416c9fec993031026c9dbb85865b5eab6805a7bc36c49e2375e35e86cfbb88",
-  "sourceHash": "sha256:e17aa01b657a7ff195303f53f13c081c5dc2522315d133881f856dd154897abc",
+  "hash": "sha256:7686e1af035974624b808e0c8bf96c32a0778a8241bce985e872bf429f3f68ed",
+  "sourceHash": "sha256:d49fcfa322777d990b270375e9483c4d54947708f263c1bf122506111159c5f3",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 20224,
-    "vertices": 19329,
-    "meshes": 103,
-    "primitives": 103,
-    "materials": 29,
+    "triangles": 27087,
+    "vertices": 26728,
+    "meshes": 132,
+    "primitives": 132,
+    "materials": 34,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 962760
+    "sizeBytes": 1161064
   },
   "nodes": [
     {
@@ -51,7 +51,7 @@
     },
     {
       "name": "Rafale-airframe-Rafale-seal",
-      "triangles": 5064
+      "triangles": 5388
     },
     {
       "name": "Rafale-airframe-Rafale-glass",
@@ -68,6 +68,14 @@
     {
       "name": "Rafale-airframe-Rafale-exhaust",
       "triangles": 196
+    },
+    {
+      "name": "Rafale-airframe-Rafale-gray-lining",
+      "triangles": 129
+    },
+    {
+      "name": "Rafale-airframe-Rafale-alloy-lining",
+      "triangles": 40
     },
     {
       "name": "Rafale-elevon-right-0-Rafale-gray",
@@ -143,15 +151,23 @@
     },
     {
       "name": "Rafale-cabin-Rafale-panel",
-      "triangles": 264
+      "triangles": 1223
     },
     {
       "name": "Rafale-cabin-Rafale-instrument-black",
-      "triangles": 426
+      "triangles": 502
     },
     {
       "name": "Rafale-cabin-Rafale-key",
-      "triangles": 416
+      "triangles": 556
+    },
+    {
+      "name": "Rafale-cabin-Rafale-alloy",
+      "triangles": 60
+    },
+    {
+      "name": "Rafale-cabin-flight-control-grip",
+      "triangles": 40
     },
     {
       "name": "Rafale-cabin-Rafale-display-panel-print",
@@ -536,22 +552,6 @@
     {
       "name": "Rafale-altitude-3-1-Rafale-display",
       "triangles": 12
-    },
-    {
-      "name": "Rafale-altitude-3-2-Rafale-display",
-      "triangles": 12
-    },
-    {
-      "name": "Rafale-altitude-3-3-Rafale-display",
-      "triangles": 12
-    },
-    {
-      "name": "Rafale-altitude-3-4-Rafale-display",
-      "triangles": 12
-    },
-    {
-      "name": "Rafale-altitude-3-5-Rafale-display",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -614,6 +614,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Rafale-panel-satin",
       "slots": [
         "baseColor",
@@ -636,6 +644,28 @@
       "name": "Rafale-key",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Rafale-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -717,7 +747,31 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Rafale-alloy-brushed",
+      "name": "flight-control-caution",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-black",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
       "slots": [
         "baseColor",
         "roughness",
@@ -744,37 +798,31 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "turbine-blades",
+      "name": "flight-control-steel",
       "slots": [
         "baseColor"
       ],
-      "doubleSided": true,
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-tread",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Rafale-throttle-grip",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "flight-control-panel-satin",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-alloy-brushed",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-grip-rubber",
       "slots": [
         "baseColor",
         "roughness",
@@ -794,19 +842,11 @@
       "alphaMode": "BLEND"
     },
     {
-      "name": "flight-control-legend",
+      "name": "turbine-blades",
       "slots": [
         "baseColor"
       ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-master",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
+      "doubleSided": true,
       "alphaMode": "OPAQUE"
     }
   ],
@@ -880,10 +920,10 @@
           1.3848,
           5.956,
           -5.4232,
-          2.4252,
+          3.1997,
           -5.7507,
           -5.4232,
-          2.4252,
+          3.1997,
           5.956,
           5.4232,
           1.3848,
@@ -892,10 +932,10 @@
           1.3848,
           5.956,
           5.4232,
-          2.4252,
+          3.1997,
           -5.7507,
           5.4232,
-          2.4252,
+          3.1997,
           5.956
         ]
       },
@@ -1013,6 +1053,64 @@
           1.11,
           2.42,
           -5.4001
+        ]
+      },
+      {
+        "node": "Rafale-airframe-Rafale-gray-lining",
+        "points": [
+          -0.7878,
+          1.7711,
+          3.2515,
+          -0.7878,
+          1.7711,
+          5.3053,
+          -0.7878,
+          3.2048,
+          3.2515,
+          -0.7878,
+          3.2048,
+          5.3053,
+          0.6038,
+          1.7711,
+          3.2515,
+          0.6038,
+          1.7711,
+          5.3053,
+          0.6038,
+          3.2048,
+          3.2515,
+          0.6038,
+          3.2048,
+          5.3053
+        ]
+      },
+      {
+        "node": "Rafale-airframe-Rafale-alloy-lining",
+        "points": [
+          -0.4502,
+          2.5156,
+          4.7806,
+          -0.4502,
+          2.5156,
+          4.872,
+          -0.4502,
+          2.5298,
+          4.7806,
+          -0.4502,
+          2.5298,
+          4.872,
+          0.4496,
+          2.5156,
+          4.7806,
+          0.4496,
+          2.5156,
+          4.872,
+          0.4496,
+          2.5298,
+          4.7806,
+          0.4496,
+          2.5298,
+          4.872
         ]
       },
       {
@@ -1540,88 +1638,146 @@
       {
         "node": "Rafale-cabin-Rafale-panel",
         "points": [
-          -0.52,
-          1.4601,
+          -0.7193,
+          1.46,
           3.13,
-          -0.52,
-          1.4601,
-          5.18,
-          -0.52,
-          2.7199,
+          -0.7193,
+          1.46,
+          5.17,
+          -0.7193,
+          2.72,
           3.13,
-          -0.52,
-          2.7199,
-          5.18,
-          0.52,
-          1.4601,
+          -0.7193,
+          2.72,
+          5.17,
+          0.7212,
+          1.46,
           3.13,
-          0.52,
-          1.4601,
-          5.18,
-          0.52,
-          2.7199,
+          0.7212,
+          1.46,
+          5.17,
+          0.7212,
+          2.72,
           3.13,
-          0.52,
-          2.7199,
-          5.18
+          0.7212,
+          2.72,
+          5.17
         ]
       },
       {
         "node": "Rafale-cabin-Rafale-instrument-black",
         "points": [
           -0.4181,
-          1.9925,
+          1.6,
           3.895,
           -0.4181,
-          1.9925,
-          4.925,
+          1.6,
+          5.152,
           -0.4181,
           2.7278,
           3.895,
           -0.4181,
           2.7278,
-          4.925,
+          5.152,
           0.4181,
-          1.9925,
+          1.6,
           3.895,
           0.4181,
-          1.9925,
-          4.925,
+          1.6,
+          5.152,
           0.4181,
           2.7278,
           3.895,
           0.4181,
           2.7278,
-          4.925
+          5.152
         ]
       },
       {
         "node": "Rafale-cabin-Rafale-key",
         "points": [
           -0.422,
-          2.25,
-          4.7507,
+          1.64,
+          4.25,
           -0.422,
-          2.25,
+          1.64,
           5.24,
           -0.422,
           2.72,
-          4.7507,
+          4.25,
           -0.422,
           2.72,
           5.24,
           0.422,
-          2.25,
-          4.7507,
+          1.64,
+          4.25,
           0.422,
-          2.25,
+          1.64,
           5.24,
           0.422,
           2.72,
-          4.7507,
+          4.25,
           0.422,
           2.72,
           5.24
+        ]
+      },
+      {
+        "node": "Rafale-cabin-Rafale-alloy",
+        "points": [
+          -0.085,
+          1.947,
+          4.7745,
+          -0.085,
+          1.947,
+          4.785,
+          -0.085,
+          1.9795,
+          4.7745,
+          -0.085,
+          1.9795,
+          4.785,
+          0.085,
+          1.947,
+          4.7745,
+          0.085,
+          1.947,
+          4.785,
+          0.085,
+          1.9795,
+          4.7745,
+          0.085,
+          1.9795,
+          4.785
+        ]
+      },
+      {
+        "node": "Rafale-cabin-flight-control-grip",
+        "points": [
+          -0.2702,
+          1.9945,
+          3.99,
+          -0.2702,
+          1.9945,
+          4.215,
+          -0.2702,
+          2.0055,
+          3.99,
+          -0.2702,
+          2.0055,
+          4.215,
+          -0.2598,
+          1.9945,
+          3.99,
+          -0.2598,
+          1.9945,
+          4.215,
+          -0.2598,
+          2.0055,
+          3.99,
+          -0.2598,
+          2.0055,
+          4.215
         ]
       },
       {
@@ -4404,122 +4560,6 @@
           2.5136,
           4.8916,
           0.1979,
-          2.5136,
-          4.8924
-        ]
-      },
-      {
-        "node": "Rafale-altitude-3-2-Rafale-display",
-        "points": [
-          0.1974,
-          2.5084,
-          4.8916,
-          0.1974,
-          2.5084,
-          4.8924,
-          0.1974,
-          2.5106,
-          4.8916,
-          0.1974,
-          2.5106,
-          4.8924,
-          0.1979,
-          2.5084,
-          4.8916,
-          0.1979,
-          2.5084,
-          4.8924,
-          0.1979,
-          2.5106,
-          4.8916,
-          0.1979,
-          2.5106,
-          4.8924
-        ]
-      },
-      {
-        "node": "Rafale-altitude-3-3-Rafale-display",
-        "points": [
-          0.1979,
-          2.5078,
-          4.8916,
-          0.1979,
-          2.5078,
-          4.8924,
-          0.1979,
-          2.5082,
-          4.8916,
-          0.1979,
-          2.5082,
-          4.8924,
-          0.2001,
-          2.5078,
-          4.8916,
-          0.2001,
-          2.5078,
-          4.8924,
-          0.2001,
-          2.5082,
-          4.8916,
-          0.2001,
-          2.5082,
-          4.8924
-        ]
-      },
-      {
-        "node": "Rafale-altitude-3-4-Rafale-display",
-        "points": [
-          0.2002,
-          2.5084,
-          4.8916,
-          0.2002,
-          2.5084,
-          4.8924,
-          0.2002,
-          2.5106,
-          4.8916,
-          0.2002,
-          2.5106,
-          4.8924,
-          0.2006,
-          2.5084,
-          4.8916,
-          0.2006,
-          2.5084,
-          4.8924,
-          0.2006,
-          2.5106,
-          4.8916,
-          0.2006,
-          2.5106,
-          4.8924
-        ]
-      },
-      {
-        "node": "Rafale-altitude-3-5-Rafale-display",
-        "points": [
-          0.2002,
-          2.5114,
-          4.8916,
-          0.2002,
-          2.5114,
-          4.8924,
-          0.2002,
-          2.5136,
-          4.8916,
-          0.2002,
-          2.5136,
-          4.8924,
-          0.2006,
-          2.5114,
-          4.8916,
-          0.2006,
-          2.5114,
-          4.8924,
-          0.2006,
-          2.5136,
-          4.8916,
-          0.2006,
           2.5136,
           4.8924
         ]

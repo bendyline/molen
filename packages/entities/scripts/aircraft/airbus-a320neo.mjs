@@ -100,6 +100,8 @@ export const a320neo = {
   eye: { u: 2.41, x: 0.53, h: 2.8, floor: 1.66, bulkhead: 5.2 },
   cabinWidth: 2,
   flightDeck: buildA320Cockpit,
+  // Window posts and sills seen from the seats: the deck's grey, not a near-white trim.
+  windowTrim: '#5f6872',
   windows: {
     y: 2.81,
     w: 0.23,

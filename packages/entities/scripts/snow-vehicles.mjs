@@ -8,6 +8,7 @@
  */
 import * as T from 'three';
 import { detailKit } from './vehicle-detail.mjs';
+import { panelTools } from './vehicle-interiors.mjs';
 
 /**
  * Plank sections [z, half-width, bottom, top, x] for a ski or a board: a sidecut between the
@@ -515,6 +516,19 @@ function buildSnowmobile(k) {
   k.box(body, [0.48, 0.03, 0.05], [0, 0.775, frontZ + 0.59], dark, 'windscreen-base').rotation.x =
     -0.62;
   k.box(body, [0.22, 0.07, 0.1], [0, 0.87, frontZ + 0.44], dark, 'gauge-pod').rotation.x = -0.5;
+  // A trail sled's analog pair on the pod's top face, read past the bar pad: speedometer on the
+  // rider's left, tachometer on the right, each with its small LCD window.
+  const gauges = new T.Group();
+  gauges.name = 'gauge-faces';
+  const podTop = [0, 0.87 + 0.035 * Math.cos(0.5) + 0.004, frontZ + 0.44 - 0.035 * Math.sin(0.5)];
+  gauges.position.set(...podTop);
+  gauges.rotation.x = Math.PI / 2 - 0.5;
+  body.add(gauges);
+  const faces = detailKit(gauges, 'instrument-face');
+  const dials = panelTools(faces);
+  dials.gauge(0.052, 0, 0, 0.04);
+  dials.gauge(-0.052, 0, 0, 0.04);
+  faces.finish();
   // Handlebars: a raked column, a riser block, bars with a brace and hooked ends.
   const handlebar = new T.Group();
   handlebar.name = 'handlebar';
@@ -549,14 +563,29 @@ function buildSnowmobile(k) {
   for (const side of [-1, 1]) {
     k.cylinderX(bars, [side * (gx - 0.03), gy, gz], 0.018, 0.13, dark, 10);
     // Brake lever on the left, thumb throttle on the right, a hand guard on each.
-    k.rod(
-      bars,
-      [side * (gx - 0.11), gy + 0.004, gz + 0.03],
-      [side * (gx + 0.01), gy, gz + 0.055],
-      0.005,
-      metal,
-      5,
-    );
+    if (side > 0)
+      k.rod(
+        bars,
+        [side * (gx - 0.11), gy + 0.004, gz + 0.03],
+        [side * (gx + 0.01), gy, gz + 0.055],
+        0.005,
+        metal,
+        5,
+      );
+    else {
+      // The thumb throttle: a short lever from the right housing, its paddle under the thumb
+      // inboard of the grip; the red engine-stop switch on the housing above it.
+      k.rod(
+        bars,
+        [side * (gx - 0.115), gy - 0.004, gz + 0.012],
+        [side * (gx - 0.085), gy - 0.012, gz - 0.035],
+        0.005,
+        metal,
+        5,
+      );
+      k.box(bars, [0.024, 0.006, 0.03], [side * (gx - 0.082), gy - 0.013, gz - 0.045], dark);
+      k.box(bars, [0.016, 0.016, 0.016], [side * (gx - 0.125), gy + 0.026, gz + 0.004], red);
+    }
     k.box(
       bars,
       [0.11, 0.07, 0.012],

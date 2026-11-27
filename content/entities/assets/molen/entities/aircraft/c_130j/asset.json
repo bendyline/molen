@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:f2db4e8e54cbf4f5207a9422b47db3708111d4630441cf4af0e50a152a673c34",
-  "sourceHash": "sha256:b410d962b5ae892a0dd10fb83adb48d5ce1436202f72163b25e018c025629e89",
+  "hash": "sha256:930040ce8a620fef434500d71ab0d749af322d5185e8a351ed0bb6eeaf9c34f5",
+  "sourceHash": "sha256:20a3b8948edc0122fd5b6fa6d08ab67d2c53d6f296885b26f653a7cafca530d6",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 60298,
-    "vertices": 61150,
-    "meshes": 150,
-    "primitives": 150,
-    "materials": 34,
+    "triangles": 64714,
+    "vertices": 64478,
+    "meshes": 162,
+    "primitives": 162,
+    "materials": 40,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 2090168
+    "sizeBytes": 2179548
   },
   "nodes": [
     {
@@ -72,6 +72,10 @@
     {
       "name": "C130J-forebody-C130J-glazing",
       "triangles": 166
+    },
+    {
+      "name": "C130J-forebody-C130J-airframe-lining",
+      "triangles": 424
     },
     {
       "name": "C130J-flap--1-C130J-airframe",
@@ -323,7 +327,7 @@
     },
     {
       "name": "C130J-panel-face-C130J-alloy",
-      "triangles": 576
+      "triangles": 384
     },
     {
       "name": "C130J-panel-face-C130J-display-green",
@@ -339,7 +343,7 @@
     },
     {
       "name": "C130J-panel-face-C130J-instrument-ink-panel-print",
-      "triangles": 32
+      "triangles": 24
     },
     {
       "name": "C130J-pilot-display-C130J-instrument-black",
@@ -548,10 +552,6 @@
     {
       "name": "C130J-pilot-altitude-2-5-C130J-instrument-ink",
       "triangles": 12
-    },
-    {
-      "name": "C130J-pilot-altitude-2-6-C130J-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -612,6 +612,14 @@
       ],
       "doubleSided": true,
       "alphaMode": "BLEND"
+    },
+    {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     },
     {
       "name": "C130J-tire",
@@ -790,15 +798,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "C130J-liner",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": true,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-panel-satin",
+      "name": "flight-control-alloy-brushed",
       "slots": [
         "baseColor",
         "roughness",
@@ -809,12 +809,34 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-alloy-brushed",
+      "name": "flight-control-knob",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "C130J-instrument-black-technical-font",
       "slots": [
         "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-steel",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-tread",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -831,16 +853,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend-technical-font",
-      "slots": [
-        "baseColor",
-        "emissive"
-      ],
-      "doubleSided": false,
-      "alphaMode": "BLEND"
-    },
-    {
-      "name": "flight-control-legend",
+      "name": "flight-control-black",
       "slots": [
         "baseColor"
       ],
@@ -851,6 +864,42 @@
       "name": "flight-control-master",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "C130J-liner",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-lamp",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -1088,6 +1137,35 @@
           1.7573,
           4.3199,
           13.2999
+        ]
+      },
+      {
+        "node": "C130J-forebody-C130J-airframe-lining",
+        "points": [
+          -1.9157,
+          3.067,
+          10.6524,
+          -1.9157,
+          3.067,
+          13.2377,
+          -1.9157,
+          4.8434,
+          10.6524,
+          -1.9157,
+          4.8434,
+          13.2377,
+          1.9157,
+          3.067,
+          10.6524,
+          1.9157,
+          3.067,
+          13.2377,
+          1.9157,
+          4.8434,
+          10.6524,
+          1.9157,
+          4.8434,
+          13.2377
         ]
       },
       {
@@ -3008,28 +3086,28 @@
         "node": "C130J-panel-face-C130J-instrument-ink-panel-print",
         "points": [
           -0.3296,
-          3.1914,
+          3.1915,
           12.9015,
           -0.3296,
-          3.1914,
+          3.1915,
           12.9028,
           -0.3296,
-          3.2825,
+          3.2823,
           12.9015,
           -0.3296,
-          3.2825,
+          3.2823,
           12.9028,
           0.3165,
-          3.1914,
+          3.1915,
           12.9015,
           0.3165,
-          3.1914,
+          3.1915,
           12.9028,
           0.3165,
-          3.2825,
+          3.2823,
           12.9015,
           0.3165,
-          3.2825,
+          3.2823,
           12.9028
         ]
       },
@@ -4538,35 +4616,6 @@
           12.9197,
           0.4629,
           3.4948,
-          12.9203
-        ]
-      },
-      {
-        "node": "C130J-pilot-altitude-2-6-C130J-instrument-ink",
-        "points": [
-          0.4607,
-          3.4925,
-          12.9197,
-          0.4607,
-          3.4925,
-          12.9203,
-          0.4607,
-          3.4929,
-          12.9197,
-          0.4607,
-          3.4929,
-          12.9203,
-          0.4625,
-          3.4925,
-          12.9197,
-          0.4625,
-          3.4925,
-          12.9203,
-          0.4625,
-          3.4929,
-          12.9197,
-          0.4625,
-          3.4929,
           12.9203
         ]
       }

@@ -1,6 +1,20 @@
 /** AV-8B II Plus, clean configuration. Public NATOPS Fig1-2 sheet2 and FO-1.
  * Original geometry. Dimensioned layout and estimated transverse sections are kept separate. */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead, cockpitLiner } from './cockpit-fit.mjs';
+import {
+  bar,
+  contour,
+  gearHandleGeometry,
+  lathe,
+  loftUp,
+  partPalette,
+  place,
+  roundedBox,
+  sphere,
+  stickGeometry,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -16,6 +30,127 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+
+/** Harrier rudder pedal, drawn at its pad center: a compact plate with a toe strap across it,
+ * a heel bar and a straight arm forward to the pedal box. The top leans forward. */
+function harrierPedal(kit) {
+  const P = partPalette(),
+    lean = 0.38;
+  const parts = [
+    [P.steel, roundedBox([0.082, 0.13, 0.011], 0.009, 1)],
+    [P.tread, place(roundedBox([0.066, 0.1, 0.003], 0.007, 1), [0, -0.004, -0.007])],
+    [
+      P.tread,
+      tube(
+        [
+          [-0.042, 0.02, -0.004],
+          [-0.03, 0.026, -0.03],
+          [0.03, 0.026, -0.03],
+          [0.042, 0.02, -0.004],
+        ],
+        0.006,
+        8,
+      ),
+    ],
+    [P.steel, bar([-0.042, -0.064, -0.016], [0.042, -0.064, -0.016], 0.005, 10)],
+    [P.alloy, bar([0, -0.03, 0.008], [0, -0.09, 0.07], 0.0075, 10)],
+  ];
+  for (const [material, geometry] of parts)
+    kit.add(place(geometry, [0, 0, 0], [lean, 0, 0]), material);
+}
+/** Harrier throttle grip on its arm: a fat, forward-canted grip with a thumb shelf on its
+ * inboard side carrying the speed-brake and mic switches; the nozzle lever stands inboard of it
+ * (NATOPS: the nozzle control lever is inboard of the throttle). */
+function harrierThrottle(kit) {
+  const P = partPalette();
+  kit.add(place(roundedBox([0.012, 0.065, 0.02], 0.003, 1), [0, 0.0325, 0]), P.alloy);
+  kit.add(
+    loftUp([
+      { y: 0.055, points: contour(0, 0, 0.018, 0.024, 16, 2.6) },
+      { y: 0.085, points: contour(-0.002, 0.008, 0.024, 0.032, 16, 2.4) },
+      { y: 0.12, points: contour(-0.003, 0.018, 0.025, 0.034, 16, 2.4) },
+      { y: 0.14, points: contour(-0.002, 0.024, 0.02, 0.028, 16, 2.4) },
+      { y: 0.148, points: contour(-0.001, 0.024, 0.01, 0.014, 16, 2.2) },
+    ]),
+    P.grip,
+  );
+  kit.add(
+    place(roundedBox([0.018, 0.01, 0.03], 0.003), [-0.024, 0.122, 0.012], [0, 0, -0.3]),
+    P.grip,
+  );
+  for (const [x, z] of [
+    [-0.026, 0.004],
+    [-0.024, 0.022],
+  ])
+    kit.add(place(roundedBox([0.008, 0.007, 0.008], 0.002), [x, 0.13, z]), P.black);
+  // AV-8B 164549 and up (NATOPS Figure 2-6): the round slew/designate control in a ring on the
+  // grip's top, with the ECM dispense knob ahead of it.
+  kit.add(
+    lathe(
+      [
+        [0.0128, 0],
+        [0.0128, 0.003],
+        [0.0104, 0.0042],
+        [0, 0.0042],
+      ],
+      16,
+    ),
+    P.black,
+    [0, 0.1465, 0.024],
+  );
+  kit.add(place(new T.CylinderGeometry(0.0092, 0.0092, 0.003, 16), [0, 0.1497, 0.024]), P.alloy);
+  kit.add(
+    place(new T.CylinderGeometry(0.0032, 0.0036, 0.006, 10), [0.009, 0.1445, 0.036]),
+    P.black,
+  );
+}
+/** The nozzle control lever: a slim stalk to a black ball knob (NATOPS Figure 2-6; DCS AV-8B
+ * N/A cockpit), standing in the slot of the raised nozzle quadrant. */
+function harrierNozzleLever(kit) {
+  const P = partPalette();
+  kit.add(bar([0, 0.002, 0], [0, 0.103, 0.003], 0.0034, 12, 0.0029), P.alloy);
+  kit.add(sphere(0.0135, [0, 0.114, 0.003], [1, 1.08, 1], 12, 8), P.black);
+}
+/** The raised nozzle quadrant inboard of the throttle: a band curved over the nozzle lever's
+ * pivot (`zc`), `half` long either way and `rise` above the console face at `y`. Across it (`xs`,
+ * ascending x): a plain strip, the lever slot, and the scale strip with the short-takeoff stop's
+ * row of detent holes and the nozzle-angle ticks. */
+function nozzleQuadrant(d, { xs, y, zc, half, rise, R = 0.3, n = 12, strip, scale, ticks }) {
+  const A = Math.asin(half / R),
+    yc = y + rise - R,
+    at = (a, x, dy = 0) => [x, yc + R * Math.cos(a) + dy, zc + R * Math.sin(a)],
+    base = (a, x) => [x, y, zc + R * Math.sin(a)];
+  for (let k = 0; k < n; k++) {
+    const a = -A + (2 * A * k) / n,
+      b = -A + (2 * A * (k + 1)) / n;
+    quad(d, at(a, xs[0]), at(a, xs[1]), at(b, xs[1]), at(b, xs[0]), strip, [0, 1, 0]);
+    quad(d, at(a, xs[2]), at(a, xs[3]), at(b, xs[3]), at(b, xs[2]), scale, [0, 1, 0]);
+    for (const [j, x] of xs.entries())
+      quad(d, at(a, x), at(b, x), base(b, x), base(a, x), strip, [j % 2 ? 1 : -1, 0, 0]);
+  }
+  // The lever slot's floor, and the scale strip's holes and ticks.
+  d.box([xs[2] - xs[1], 0.002, 2 * half], [(xs[1] + xs[2]) / 2, y + 0.001, zc], strip);
+  for (let i = 0; i < 9; i++) {
+    const a = -A * 0.82 + (1.64 * A * i) / 8;
+    d.add(
+      place(new T.CircleGeometry(0.0021, 8), at(a, xs[2] + 0.0075, 0.0004), [
+        a - Math.PI / 2,
+        0,
+        0,
+      ]),
+      strip,
+    );
+    d.add(
+      place(new T.BoxGeometry(0.007, 0.0012, 0.0006), at(a, xs[3] - 0.0075, 0.0004), [
+        a - Math.PI / 2,
+        0,
+        0,
+      ]),
+      ticks,
+    );
+  }
+  return (a, x) => ({ at: at(a, x), angle: a, A });
+}
 export const av8Frame = () => ({
   heli: false,
   fighter: true,
@@ -759,11 +894,16 @@ export function buildAV8B(s) {
       [1, 0, 0],
     );
   d.finish();
-  const interior = av8Cockpit(root, { paint, dark, metal, glass });
+  const { stations: controlStations, ...interior } = av8Cockpit(root, {
+    paint,
+    dark,
+    metal,
+    glass,
+  });
   cleanGeometry(root);
   return {
     root,
-    frame: av8Frame(),
+    frame: { ...av8Frame(), controlStations },
     enginePoints: [{ id: 'engine-1', position: [0, 1.68, -1.94] }],
     visual: {
       rotors: [],
@@ -787,7 +927,9 @@ function av8Cockpit(root, m) {
     pt = panelTools(d),
     ins = instrumentGeometry(cabin, 'AV8'),
     { bindings, derived, ink, black, amber } = ins,
-    panel = mat('AV8-panel', '#596266', { side: T.DoubleSide }),
+    // Medium grey structure and console sides under black sub-panels (AV-8B+ photographs: Flickr
+    // 1346172320, Spanish Navy BUNO 165033, and 6761992205).
+    panel = mat('AV8-panel', '#7b8387', { side: T.DoubleSide }),
     seat = mat('AV8-upholstery', '#686b50'),
     belt = mat('AV8-harness', '#a5aa96'),
     green = mat('AV8-display', '#79d38d', { emissive: '#295e37', emissiveIntensity: 0.7 });
@@ -1070,63 +1212,154 @@ function av8Cockpit(root, m) {
   box(812, 479, 192, 84);
   text('FUEL', 812, 452, 8);
   text('-----', 798, 480, 12, amber, 'display');
-  // Dark warning cells remain unlit unless a corresponding simulated state exists.
-  for (let row = 0; row < 3; row++)
-    for (let col = 0; col < 3; col++) {
-      box(237 + col * 65, 55 + row * 28, 57, 18);
-      text(
-        ['FIRE', 'HYD', 'CAUTION', 'OIL', 'GEN', 'ECS', 'FLAPS', 'GEAR', 'WATER'][row * 3 + col],
-        237 + col * 65,
-        55 + row * 28,
-        5,
-      );
-    }
-  box(280, 475, 273, 106);
-  for (let j = 0; j < 9; j++) {
-    const u = 160 + j * 28;
-    box(u, 438, 22, 12);
+  // Over the left MPCD the padded coaming comes down close to its top (AV-8B+ photographs),
+  // leaving a narrow band with the display day/night switch and brightness knob.
+  sheet(
+    d,
+    [
+      [150, 120],
+      [176, 82],
+      [212, 58],
+      [292, 19],
+      [398, 9],
+      [398, 120],
+    ].map((p) => at(...p, -0.03)),
+    black,
+    [0, 0, -1],
+  );
+  d.add(bar(at(152, 120, -0.03), at(398, 120, -0.03), 0.0045, 12), black);
+  for (const [u, label] of [
+    [215, 'DAY'],
+    [262, 'BRT'],
+  ]) {
     d.add(
-      new T.CylinderGeometry(0.006, 0.007, 0.012, 10).rotateX(Math.PI / 2),
-      panel,
-      at(u, 465, -0.031),
+      new T.CylinderGeometry(0.0055, 0.0065, 0.01, 12).rotateX(Math.PI / 2),
+      black,
+      at(u, 134, -0.022),
     );
-    d.rod(at(u, 500, -0.03), at(u, 492, -0.049), 0.0025, m.metal);
+    text(label, u + 22, 134, 5);
   }
+  // Left of the MPCD: master-mode buttons, a guarded button under a striped guard and the
+  // MASTER ARM plate with its bat toggle, all on the yellow-and-black hatching at its foot.
+  const AP = partPalette(),
+    stripes = (u, v, w, h, n = 3, dz = -0.026) => {
+      const len = Math.min(w, h) * 0.95,
+        tall = h > w;
+      for (let j = 0; j < n; j++) {
+        const off = (j - (n - 1) / 2) * ((tall ? h : w) / n);
+        d.add(
+          place(
+            new T.BoxGeometry(len * k * 0.2, len * k, 0.002),
+            at(u + (tall ? 0 : off), v + (tall ? off : 0), dz),
+            [0, 0, 0.75],
+          ),
+          black,
+        );
+      }
+    };
+  for (const v of [190, 222]) box(158, v, 22, 22, panel, 0.008);
+  text('TOL', 158, 172, 5);
+  box(158, 262, 28, 28, AP.yellow, 0.01);
+  stripes(158, 262, 22, 20, 3, -0.0225);
+  box(158, 318, 30, 62, AP.yellow, 0.006);
+  stripes(158, 318, 26, 56, 4, -0.0185);
+  text('MASTER ARM', 158, 300, 4);
+  d.add(bar(at(158, 336, -0.02), at(158, 330, -0.042), 0.0028, 12), m.metal);
+  // Armament control panel under the left MPCD (AV-8B+ photographs): MODE, FUZ, QTY, MULT and
+  // INTV windows, a row of seven bat toggles, eight round station buttons, the grey rotary at the
+  // top right and the red jettison button at the lower left.
+  box(280, 475, 273, 106);
+  for (const [j, label] of ['MODE', 'FUZ', 'QTY', 'MULT', 'INTV'].entries()) {
+    box(178 + j * 44, 442, 30, 12, panel, 0.004);
+    text(label, 178 + j * 44, 431, 5);
+  }
+  d.add(
+    new T.CylinderGeometry(0.011, 0.012, 0.012, 14).rotateX(Math.PI / 2),
+    m.metal,
+    at(390, 444, -0.03),
+  );
+  for (let j = 0; j < 7; j++) {
+    const u = 190 + j * 30;
+    d.add(
+      new T.CylinderGeometry(0.0055, 0.0055, 0.004, 12).rotateX(Math.PI / 2),
+      m.metal,
+      at(u, 470, -0.026),
+    );
+    d.add(bar(at(u, 470, -0.026), at(u, 464, -0.046), 0.0024, 12), m.metal);
+  }
+  for (let j = 0; j < 8; j++)
+    d.add(
+      new T.CylinderGeometry(0.0055, 0.0055, 0.006, 14).rotateX(Math.PI / 2),
+      j % 7 ? black : panel,
+      at(185 + j * 28, 503, -0.027),
+    );
+  d.add(
+    new T.CylinderGeometry(0.0075, 0.0075, 0.008, 14).rotateX(Math.PI / 2),
+    AP.red,
+    at(158, 505, -0.028),
+  );
+  // Center pedestal (NATOPS FO-2, AV-8B 163853 and up): the FLIR switch; the miscellaneous
+  // switch panel with the INS mode knob and the VRS, MPCD, DMT, DP, probe heat and MC switches;
+  // the bureau number plate; the circuit breaker panel below.
   box(534, 703, 195, 270);
-  for (const [v, labels] of [
-    [625, ['FLR', 'VIS', 'ECS']],
-    [700, ['MODE', 'SAFE', 'BRT']],
-    [775, ['RPS', 'YAW', 'PITCH']],
-    [845, ['ON', 'AUTO', 'OFF']],
-  ])
-    for (let j = 0; j < 3; j++) {
-      const u = 473 + j * 59;
-      d.add(
-        new T.CylinderGeometry(0.007, 0.009, 0.014, 10).rotateX(Math.PI / 2),
-        panel,
-        at(u, v, -0.033),
-      );
-      text(labels[j], u, v - 17, 6);
-    }
+  for (const [u, v, label] of [
+    [481, 653, 'FLIR'],
+    [542, 645, 'VRS'],
+    [568, 645, 'MPCD'],
+    [542, 679, 'DMT'],
+    [568, 679, 'DP'],
+    [542, 717, 'PRB HT'],
+    [568, 717, 'MC'],
+  ]) {
+    d.add(bar(at(u, v, -0.024), at(u, v - 6, -0.042), 0.0024, 10, 0.0017), m.metal);
+    text(label, u, v - 16, 5);
+  }
+  d.add(
+    new T.CylinderGeometry(0.013, 0.011, 0.014, 16).rotateX(Math.PI / 2),
+    panel,
+    at(493, 700, -0.031),
+  );
+  d.box([0.0016, 0.011, 0.002], at(493, 694, -0.0385), AP.white);
+  text('INS', 493, 678, 6);
+  d.box([28 * k, 50 * k, 0.003], at(610, 649, -0.0255), panel);
+  text('BUNO', 610, 640, 4, black);
+  for (const [u, v, label] of [
+    [478, 766, 'AIL'],
+    [504, 766, 'STAB'],
+    [532, 766, 'RUD'],
+    [559, 766, 'FLAPS'],
+    [478, 792, 'SP BR'],
+    [505, 792, 'LG'],
+    [533, 792, 'PROBE'],
+  ]) {
+    d.add(
+      new T.CylinderGeometry(0.0045, 0.0045, 0.006, 8).rotateX(Math.PI / 2),
+      panel,
+      at(u, v, -0.027),
+    );
+    text(label, u, v - 10, 4);
+  }
   box(872, 667, 103, 231);
   for (let row = 0; row < 12; row++)
     for (let col = 0; col < 2; col++) {
       box(847 + col * 51, 568 + row * 17, 45, 12, panel);
       text('--', 847 + col * 51, 568 + row * 17, 4, ink, 'display');
     }
-  // Lower side panels, distinct from the center pedestal: gear/flap controls left,
-  // V/STOL/radio-altimeter controls right. Detached foldout details are not copied twice.
-  for (const [edge, label, u, v] of [
+  // Lower side panels, distinct from the center pedestal: the black lower left panel beside the
+  // stick (AV-8B+ photograph, Flickr 1346172320: EMER JETT, FLAPS, ANTISKID and the gear handle
+  // at its foot), V/STOL/radio-altimeter controls right.
+  for (const [edge, label, u, v, face = panel] of [
     [
       [
-        [135, 720],
-        [272, 710],
-        [272, 920],
-        [135, 920],
+        [140, 560],
+        [370, 560],
+        [370, 905],
+        [140, 905],
       ],
-      'GEAR / FLAPS',
-      180,
-      734,
+      '',
+      0,
+      0,
+      black,
     ],
     [
       [
@@ -1154,17 +1387,53 @@ function av8Cockpit(root, m) {
     sheet(
       d,
       edge.map((p) => at(...p, -0.006)),
-      panel,
+      face,
       [0, 0, -1],
     );
     outline(
       d,
       edge.map((p) => at(...p, -0.008)),
       0.003,
-      black,
+      face === black ? panel : black,
     );
-    text(label, u, v, 6);
+    if (label) text(label, u, v, 6);
   }
+  // EMER JETT: the big yellow button in its striped square bezel.
+  box(180, 612, 56, 56, AP.yellow, 0.006);
+  stripes(180, 612, 50, 50, 4, -0.0185);
+  d.add(
+    new T.CylinderGeometry(0.019, 0.019, 0.01, 20).rotateX(Math.PI / 2),
+    AP.yellow,
+    at(180, 612, -0.026),
+  );
+  stripes(180, 612, 26, 26, 3, -0.0315);
+  text('EMER JETT', 180, 575, 5);
+  // FLAPS: the mode switch (a station, below) and its second switch.
+  text('FLAPS', 272, 578, 6);
+  for (const [label, v] of [
+    ['CRUISE', 598],
+    ['AUTO', 614],
+    ['STOL', 630],
+  ])
+    text(label, 312, v, 4);
+  d.add(
+    new T.CylinderGeometry(0.006, 0.007, 0.008, 12).rotateX(Math.PI / 2),
+    black,
+    at(272, 680, -0.024),
+  );
+  d.add(bar(at(272, 680, -0.026), at(272, 674, -0.045), 0.0024, 12), m.metal);
+  // The emergency gear placard over the handle, LDG GEAR lettered down its edge.
+  box(268, 772, 44, 40, AP.yellow, 0.004);
+  stripes(268, 772, 38, 34, 3, -0.0165);
+  text('LDG GEAR', 312, 790, 6).rotation.z = -Math.PI / 2;
+  // ANTISKID switch.
+  d.add(
+    new T.CylinderGeometry(0.006, 0.007, 0.008, 12).rotateX(Math.PI / 2),
+    black,
+    at(160, 850, -0.024),
+  );
+  d.add(bar(at(160, 850, -0.026), at(160, 844, -0.045), 0.0024, 12), m.metal);
+  text('ANTISKID', 160, 830, 4);
   pt.gauge(...at(164, 767).slice(0, 2), z - 0.012, 27 * k, black, false);
   text('FLAPS', 164, 750, 5);
   ins.pointer('flap-indicator', at(164, 767, -0.032), 20 * k, 'flapPosition', [
@@ -1172,9 +1441,6 @@ function av8Cockpit(root, m) {
     [1, 1.8],
   ]);
   for (const [u, v] of [
-    [248, 766],
-    [248, 814],
-    [152, 851],
     [741, 830],
     [792, 830],
     [741, 885],
@@ -1186,12 +1452,15 @@ function av8Cockpit(root, m) {
     );
     d.rod(at(u, v - 3, -0.04), at(u, v + 3, -0.04), 0.001, ink);
   }
-  box(209, 871, 28, 45, m.metal);
-  text('ANTI SKID', 165, 830, 5);
+  box(211, 868, 16, 56, AP.black, 0.006);
+  // The gear handle: a stem out of its gate to the large light grey wheel-shaped knob.
   const gearLever = group(cabin, 'AV8-gear-lever', at(211, 874, -0.055)),
     gld = detailKit(gearLever, gearLever.name);
-  gld.rod([0, 0, 0], [0, 0.035, -0.018], 0.004, m.metal);
-  gld.box([0.025, 0.018, 0.014], [0, 0.038, -0.02], black);
+  gld.add(
+    place(new T.CylinderGeometry(0.0045, 0.0045, 0.044, 12), [0, 0, 0.026], [Math.PI / 2, 0, 0]),
+    m.metal,
+  );
+  gearHandleGeometry(gld, { style: 'jet', scale: 0.8, lamp: false, knobColor: AP.white });
   gld.finish();
   bindings.push({
     node: gearLever.name,
@@ -1227,6 +1496,67 @@ function av8Cockpit(root, m) {
       missing: 'hide',
     });
   }
+  {
+    const sill = group(cabin, 'AV8-left-sill', [0.407, 2.38, 4.5]);
+    sill.rotation.y = Math.PI / 2 - 0.2;
+    const sk = detailKit(sill, sill.name);
+    sk.box([0.13, 0.065, 0.01], [0, 0, 0], black);
+    sk.box([0.05, 0.034, 0.002], [0.03, -0.002, -0.006], AP.white);
+    sk.text('LANDING', [-0.022, 0.023, -0.0062], 0.0055, Math.PI, ink);
+    // The plate's checks as lettered in the GR9 cockpit photograph (MOD 45151641).
+    for (const [j, line] of [
+      'GEAR',
+      'FLAPS',
+      'FUEL',
+      'BRAKES',
+      'STO',
+      'DUCTS',
+      'CAUT LTS',
+    ].entries())
+      sk.text(line, [-0.022, 0.0135 - j * 0.0062, -0.0062], 0.004, Math.PI, ink);
+    sk.box([0.03, 0.05, 0.01], [-0.075, 0.005, 0], black);
+    sk.add(place(roundedBox([0.022, 0.009, 0.014], 0.003), [-0.075, 0.012, -0.012]), AP.alloy);
+    sk.text('H2O', [-0.075, 0.03, -0.0062], 0.005, Math.PI, ink);
+    sk.add(
+      new T.CylinderGeometry(0.024, 0.024, 0.014, 20).rotateX(Math.PI / 2),
+      black,
+      [-0.01, 0.075, 0.004],
+    );
+    sk.add(
+      new T.CylinderGeometry(0.019, 0.019, 0.002, 20).rotateX(Math.PI / 2),
+      AP.white,
+      [-0.01, 0.075, -0.004],
+    );
+    sk.box([0.0015, 0.016, 0.001], [-0.01, 0.081, -0.0055], black);
+    sk.finish();
+  }
+  {
+    // Its twin on the right sill: the black TAKEOFF checklist plate (Harrier II GR9 cockpit
+    // photograph, Crown copyright OGL, Commons 45151641: same Harrier II cockpit family).
+    const sill = group(cabin, 'AV8-right-sill', [-0.407, 2.38, 4.5]);
+    sill.rotation.y = -(Math.PI / 2 - 0.2);
+    const sk = detailKit(sill, sill.name);
+    sk.box([0.075, 0.068, 0.01], [0, 0, 0], black);
+    sk.text('TAKEOFF', [0, 0.024, -0.0062], 0.0055, Math.PI, ink);
+    for (const [j, line] of ['FUEL', 'FLAPS', 'STO', 'TRIMS', 'DUCTS', 'CAUT LTS'].entries())
+      sk.text(line, [0, 0.0135 - j * 0.0072, -0.0062], 0.0042, Math.PI, ink);
+    for (const u of [-0.031, 0.031])
+      for (const v of [-0.028, 0.028])
+        sk.add(new T.CircleGeometry(0.0022, 8).rotateY(Math.PI), AP.alloy, [u, v, -0.0055]);
+    sk.finish();
+  }
+  // A white ring fitting on each cockpit wall just aft of the checklist plates (same photograph).
+  for (const [x, yaw] of [
+    [0.414, -Math.PI / 2],
+    [-0.404, Math.PI / 2],
+  ]) {
+    d.add(new T.TorusGeometry(0.014, 0.0032, 6, 20).rotateY(yaw), AP.white, [x, 2.36, 4.3]);
+    d.add(new T.CircleGeometry(0.0115, 16).rotateY(yaw), black, [
+      x + Math.sign(x) * 0.002,
+      2.36,
+      4.3,
+    ]);
+  }
   // Physical combiner and triangulated supports; HUD symbology is not collimated yet.
   const hud = [
     [430, 4],
@@ -1259,67 +1589,282 @@ function av8Cockpit(root, m) {
     black,
     [0, 0, 1],
   );
+  // Sidewall liners follow the skin from the floor up to the canopy rail: flat tub walls inboard
+  // of the skin left the painted shoulders showing between console and sill, and the nozzle
+  // lever stood in the left one.
+  // They stand 4.5 cm in, inside the RESCUE markings, which sit within the skin.
+  cockpitLiner(d, root, {
+    zFrom: 2.64,
+    zTo: 4.7,
+    yFrom: 1.95,
+    yTo: 2.96,
+    zSteps: 12,
+    ySteps: 14,
+    inset: 0.045,
+    material: panel,
+  });
+  // Close the nose behind the panel and the knee wells under it.
+  cockpitBulkhead(d, root, { z: 4.7, yFrom: 1.96, yTo: 2.66, material: panel });
+  // Side consoles, laid out from the AV-8B NATOPS cockpit foldout (A1-AV8BB-NFM-000, FO-2: AV-8B
+  // 163853 and up) and its Figure 2-6 throttle nozzle quadrant, checked against the DCS AV-8B N/A
+  // cockpit (RAZBAM pocket guide; Chuck's guide). Left, fore to aft: trim, SAAHS, the throttle
+  // nozzle quadrant, fuel, exterior lights and pilot services, with the seat-adjust and
+  // exterior-lights master switches on the wall beside the fuel panel. Right: electrical, V/UHF
+  // radio set control, ACNIP, interior lights, ECS, the air vent and the NVG and video recorder
+  // stowage. Black panels, white legends, silver bats and grey knobs. Spacing follows the
+  // foldout, anchored on the throttle and nozzle lever pivots; both consoles end beside the
+  // seat, where the liner closes over them.
   for (const side of [-1, 1]) {
-    sheet(
-      d,
-      [
-        [side * 0.37, 1.95, 2.7],
-        [side * 0.37, 1.95, 4.9],
-        [side * 0.37, 2.42, 4.9],
-        [side * 0.37, 2.43, 2.7],
-      ],
-      panel,
-      [-side, 0, 0],
-    );
     d.box([0.18, 0.21, 1.55], [side * 0.33, 2.16, 3.7], panel);
     const cg = group(cabin, `AV8-console-${side}`, [side * 0.33, 2.275, 3.7]);
     cg.rotation.x = Math.PI / 2;
-    const cd = detailKit(cg, cg.name);
-    const units =
-      side === 1
-        ? [
-            ['SERVICES', -0.62, 0.25, 5],
-            ['LIGHTS', -0.38, 0.18, 3],
-            ['FUEL', -0.16, 0.2, 6],
-            ['THROTTLE', 0.12, 0.34, 0],
-            ['SAAHS', 0.43, 0.22, 6],
-            ['TRIM', 0.64, 0.15, 2],
-          ]
-        : [
-            ['AWLS', -0.62, 0.22, 4],
-            ['NVG', -0.35, 0.28, 0],
-            ['ECS', -0.06, 0.25, 5],
-            ['LIGHTS', 0.21, 0.23, 5],
-            ['RCS', 0.43, 0.17, 3],
-            ['ELECT', 0.64, 0.21, 5],
-          ];
-    for (let j = 0; j < units.length; j++) {
-      const [label, y, h, n] = units[j];
-      cd.box([0.17, h, 0.01], [0, y, 0], black);
-      cd.text(label, [0, y + h / 2 - 0.025, -0.008], 0.011, Math.PI, ink);
-      if (label === 'NVG') cd.box([0.12, 0.2, 0.035], [0, y - 0.01, -0.022], panel);
-      if (label === 'THROTTLE')
-        for (const x of [-0.045, 0.045]) cd.box([0.018, 0.27, 0.004], [x, y - 0.01, -0.008], panel);
-      for (let q = 0; q < n; q++) {
-        const x = -0.047 + (q % 3) * 0.047,
-          v = y - 0.015 - Math.floor(q / 3) * 0.055;
-        if ((j + q) % 2) cd.rod([x, v, -0.008], [x, v + 0.006, -0.028], 0.003, m.metal);
-        else
-          cd.add(new T.CylinderGeometry(0.008, 0.009, 0.012, 10).rotateX(Math.PI / 2), panel, [
-            x,
-            v,
-            -0.015,
-          ]);
-        cd.text(
-          label === 'FUEL' ? ['L', 'R', 'PROP', 'ON', 'OFF', 'AUTO'][q] : String(q + 1),
-          [x, v + 0.025, -0.009],
-          0.006,
-          Math.PI,
-          ink,
+    const cd = detailKit(cg, cg.name),
+      // Console frame: o across the console (+ outboard), zz the model station, h above the face.
+      L = (o, zz, h = 0) => [side * o, zz - 3.7, -h],
+      unit = (z0, z1, o0 = -0.085, o1 = 0.085, material = black, h = 0) =>
+        cd.box([o1 - o0, z1 - z0, 0.01], L((o0 + o1) / 2, (z0 + z1) / 2, h), material),
+      label = (t, o, zz, size = 0.0046, hb = 0.005, material = ink) =>
+        cd.text(t, L(o, zz, hb + 0.0006), size, Math.PI, material),
+      toggle = (o, zz, t, hb = 0.005) => {
+        cd.add(bar(L(o, zz, hb), L(o, zz + 0.005, hb + 0.016), 0.0026, 8, 0.0017), m.metal);
+        if (t) label(t, o, zz + 0.015, 0.0046, hb);
+      },
+      knob = (o, zz, t, r = 0.0075, hb = 0.005, sides = 12) => {
+        cd.add(
+          new T.CylinderGeometry(r * 0.85, r, 0.011, sides).rotateX(-Math.PI / 2),
+          panel,
+          L(o, zz, hb + 0.0055),
         );
-      }
+        cd.box([0.0012, r * 0.8, 0.0008], L(o, zz + r * 0.4, hb + 0.0112), AP.white);
+        if (t) label(t, o, zz + r + 0.007, 0.0046, hb);
+      },
+      dial = (o, zz, r = 0.011) => {
+        cd.add(
+          new T.CylinderGeometry(r, r, 0.004, 16).rotateX(-Math.PI / 2),
+          black,
+          L(o, zz, 0.007),
+        );
+        cd.add(new T.TorusGeometry(r, 0.0011, 4, 16), m.metal, L(o, zz, 0.009));
+        cd.box([0.0012, r * 0.75, 0.0008], L(o, zz + r * 0.35, 0.0095), AP.white);
+      };
+    if (side === 1) {
+      // Trim: the rudder pedal shaker and landing/taxi light switches, the aileron and rudder trim
+      // indicators.
+      unit(4.352, 4.475);
+      label('TRIM', -0.05, 4.462, 0.0055);
+      toggle(0.05, 4.398, 'RPS/YAW');
+      toggle(0.01, 4.398, 'APRCH');
+      dial(-0.05, 4.437);
+      dial(-0.05, 4.386);
+      label('AIL', -0.05, 4.418, 0.004);
+      label('RUD', -0.05, 4.367, 0.004);
+      // Stability augmentation and attitude hold, just forward of the quadrant.
+      unit(4.272, 4.35);
+      for (const [o, zz, t] of [
+        [0.05, 4.322, 'Q FEEL'],
+        [0, 4.322, 'ALT HOLD'],
+        [-0.05, 4.322, 'AFC'],
+        [0.05, 4.284, 'YAW'],
+        [0, 4.284, 'ROLL'],
+        [-0.05, 4.284, 'PITCH'],
+      ])
+        toggle(o, zz, t);
+      label('SAAHS', -0.074, 4.33, 0.0042);
+      // Throttle nozzle quadrant: the throttle's slot outboard with the parking brake lever's
+      // detent beside it, the JPTL switch, EMS button, rudder trim and the striped manual fuel
+      // switch down the middle, the friction knobs aft and the raised nozzle quadrant inboard.
+      unit(4.004, 4.272);
+      cd.box([0.012, 0.232, 0.002], L(0.05, 4.14, 0.0055), AP.tread);
+      for (const o of [0.0425, 0.0575])
+        cd.box([0.0015, 0.232, 0.0015], L(o, 4.14, 0.0058), m.metal);
+      cd.box([0.006, 0.07, 0.002], L(0.077, 4.195, 0.0055), AP.tread);
+      toggle(0.021, 4.236, 'JPTL');
+      cd.add(
+        new T.CylinderGeometry(0.0055, 0.0055, 0.004, 14).rotateX(-Math.PI / 2),
+        AP.alloy,
+        L(0.021, 4.198, 0.007),
+      );
+      label('EMS', 0.021, 4.21);
+      toggle(0.021, 4.13, 'RUD TRIM');
+      unit(4.046, 4.104, 0.005, 0.037, AP.yellow, 0.0015);
+      for (let i = 0; i < 4; i++)
+        cd.add(
+          place(
+            new T.BoxGeometry(0.004, 0.034, 0.001),
+            L(0.021, 4.06 + i * 0.012, 0.0072),
+            [0, 0, 0.7],
+          ),
+          black,
+        );
+      toggle(0.021, 4.07, '', 0.0065);
+      label('MAN FUEL', 0.021, 4.037, 0.0038);
+      for (const o of [0.05, -0.035])
+        cd.add(
+          new T.CylinderGeometry(0.0078, 0.0085, 0.012, 6).rotateX(-Math.PI / 2),
+          AP.black,
+          L(o, 4.0165, 0.011),
+        );
+      // Fuel: proportioner, boost pumps, air refuelling probe and wing dump switches.
+      unit(3.896, 4.0);
+      cd.add(
+        new T.CylinderGeometry(0.0085, 0.0095, 0.011, 6).rotateX(-Math.PI / 2),
+        panel,
+        L(0.048, 3.97, 0.0105),
+      );
+      label('FUEL PROP', 0.048, 3.988, 0.0038);
+      toggle(0.002, 3.968);
+      toggle(-0.042, 3.968);
+      label('PUMP', -0.02, 3.986);
+      toggle(0.048, 3.916, 'A/R');
+      toggle(0.002, 3.916);
+      toggle(-0.042, 3.916);
+      label('DUMP', -0.02, 3.934);
+      label('FUEL', -0.074, 3.95, 0.0042);
+      // Exterior lights: formation knob, position, anti-collision and auxiliary lights.
+      unit(3.828, 3.892);
+      knob(0.05, 3.85, 'FORM', 0.0085);
+      toggle(0.012, 3.85, 'POS');
+      toggle(-0.022, 3.85, 'COLL');
+      toggle(-0.056, 3.85, 'AUX');
+      // Pilot services: oxygen, water dump, LIDS, engine RPM select and engine fuel control
+      // switches outboard, the personal services connector block and its fittings inboard.
+      unit(3.615, 3.824);
+      toggle(0.062, 3.79, 'OXY');
+      toggle(0.03, 3.79, 'H2O');
+      toggle(0.062, 3.727, 'LIDS');
+      toggle(0.062, 3.66, 'ENG RPM');
+      toggle(0.028, 3.66, 'EFC');
+      cd.add(
+        place(roundedBox([0.046, 0.062, 0.012], 0.004, 1, 1), L(-0.012, 3.727, 0.011)),
+        AP.steel,
+      );
+      cd.add(
+        new T.CylinderGeometry(0.0095, 0.0105, 0.008, 14).rotateX(-Math.PI / 2),
+        AP.alloy,
+        L(-0.012, 3.727, 0.021),
+      );
+      for (const zz of [3.79, 3.652])
+        cd.add(
+          new T.CylinderGeometry(0.0115, 0.0125, 0.016, 14).rotateX(-Math.PI / 2),
+          AP.steel,
+          L(-0.058, zz, 0.013),
+        );
+    } else {
+      // Electrical: battery voltmeter and DC test switch, then the APU generator, engine start,
+      // generator and battery switches.
+      unit(4.37, 4.475);
+      dial(-0.05, 4.448, 0.0105);
+      toggle(-0.005, 4.442, 'DC TEST');
+      label('ELEC', 0.055, 4.458, 0.0055);
+      for (const [o, t] of [
+        [-0.06, 'APU GEN'],
+        [-0.02, 'ENG ST'],
+        [0.02, 'GEN'],
+        [0.06, 'BATT'],
+      ])
+        toggle(o, 4.388, t);
+      // V/UHF radio set control: its frequency window and four knobs.
+      unit(4.29, 4.368);
+      cd.box([0.07, 0.02, 0.002], L(0, 4.345, 0.0055), panel);
+      label('251.000', 0, 4.345, 0.0075, 0.0065, black);
+      for (const [o, zz, r] of [
+        [-0.062, 4.346, 0.005],
+        [-0.055, 4.307, 0.008],
+        [0.062, 4.346, 0.0055],
+        [0.055, 4.307, 0.008],
+      ])
+        knob(o, zz, '', r);
+      label('V/UHF', 0, 4.304);
+      // ACNIP: the key display window, mode, KY, zero and IFF switches, code and mode knobs and
+      // the volume knob.
+      unit(4.1, 4.288);
+      cd.box([0.036, 0.036, 0.002], L(-0.048, 4.248, 0.0055), AP.steel);
+      toggle(-0.005, 4.252, 'MODE');
+      toggle(0.032, 4.252);
+      toggle(0.064, 4.252);
+      label('KY', 0.048, 4.27);
+      toggle(0.032, 4.198, 'ZERO');
+      toggle(0.064, 4.198, 'RVI');
+      knob(-0.06, 4.186, 'CODE', 0.0065);
+      knob(-0.032, 4.186, '', 0.0065);
+      knob(-0.05, 4.128, 'VOL', 0.0085);
+      toggle(-0.005, 4.128, 'MIC');
+      toggle(0.032, 4.128);
+      toggle(0.064, 4.128);
+      label('IFF', 0.048, 4.146);
+      label('ACNIP', -0.074, 4.215, 0.0042);
+      // Interior lights: compass/lights test, instrument, console, flood and warning knobs.
+      unit(3.955, 4.098);
+      toggle(-0.05, 4.062, 'COMP');
+      knob(0, 4.062, 'INST', 0.0085);
+      knob(0.05, 4.062, 'CONSL', 0.0085);
+      knob(0, 3.99, 'FLD', 0.0085);
+      knob(0.05, 3.99, 'WARN', 0.0085);
+      label('INTR LT', -0.05, 3.985);
+      // Environmental control: the large temperature selector, equipment, defog and pressure.
+      unit(3.81, 3.953);
+      knob(-0.035, 3.87, 'TEMP', 0.0135, 0.005, 16);
+      toggle(0.032, 3.912, 'EQUIP');
+      toggle(0.066, 3.912, 'DFOG');
+      toggle(0.05, 3.842, 'PRESS');
+      label('ECS', -0.072, 3.935, 0.0055);
+      // The air vent, then the lidded NVG and video recorder stowage, then a blank.
+      unit(3.748, 3.808);
+      for (let i = 0; i < 4; i++)
+        cd.box([0.11, 0.005, 0.004], L(0, 3.758 + i * 0.013, 0.007), AP.steel);
+      unit(3.5, 3.746);
+      cd.add(
+        place(roundedBox([0.15, 0.226, 0.02], 0.004, 1, 1), L(-0.002, 3.623, 0.015)),
+        AP.tread,
+      );
+      knob(-0.03, 3.655, 'LOCK', 0.009, 0.025);
+      toggle(0.045, 3.54, 'REC', 0.025);
+      label('NVG', 0.03, 3.69, 0.0055, 0.025);
+      unit(3.42, 3.498);
     }
     cd.finish();
+  }
+  {
+    // The raised nozzle quadrant on the left console, over the nozzle lever's pivot, with the
+    // short-takeoff stop's mushroom knob on its scale strip.
+    const onBand = nozzleQuadrant(d, {
+      xs: [0.262, 0.285, 0.295, 0.326],
+      y: 2.28,
+      zc: 4.14,
+      half: 0.11,
+      rise: 0.022,
+      strip: black,
+      scale: m.metal,
+      ticks: AP.legend,
+    });
+    const { at: sto, angle } = onBand(Math.asin(-0.066 / 0.3), 0.31);
+    d.add(
+      place(
+        lathe(
+          [
+            [0.0024, 0],
+            [0.0024, 0.011],
+            [0.0072, 0.0125],
+            [0.0072, 0.016],
+            [0.0045, 0.0185],
+            [0, 0.019],
+          ],
+          12,
+        ),
+        sto,
+        [angle, 0, 0],
+      ),
+      AP.black,
+    );
+    // Seat-adjust and exterior-lights master switches on the wall beside the fuel panel.
+    d.box([0.01, 0.06, 0.088], [0.424, 2.336, 3.94], black);
+    for (const [zz, t] of [
+      [3.962, 'SEAT ADJ'],
+      [3.918, 'EXT LT'],
+    ]) {
+      d.add(bar([0.419, 2.33, zz], [0.403, 2.336, zz], 0.0026, 8, 0.0017), m.metal);
+      d.text(t, [0.4185, 2.352, zz], 0.0042, -Math.PI / 2, ink);
+    }
   }
   // SJU-4-style seat structure, harness and center stick. Detail dimensions are estimates.
   const sg = group(cabin, 'AV8-seat', [0, 2.14, 3.78]);
@@ -1346,25 +1891,39 @@ function av8Cockpit(root, m) {
   sd.box([0.055, 0.04, 0.025], [0, 0.12, 0.16], m.metal);
   sd.ring(0.045, 0.008, [0, 0.13, 0.43], amber);
   sd.finish();
+  // Center stick: the B-8-family grip (trim, bomb release, castle switch, trigger) on a slim
+  // column out of a short boot, with the stick-mounted nosewheel-steering button.
+  const P = partPalette();
   const stick = group(cabin, 'AV8-stick', [0, 2.0, 4.3]),
     st = detailKit(stick, stick.name);
-  st.rod([0, 0, 0], [0, 0.42, -0.05], 0.021, black);
-  beveledBox(st, [0.07, 0.12, 0.07], [0, 0.48, -0.06], black, 0.009);
-  for (const x of [-0.024, 0.024])
-    st.add(new T.SphereGeometry(0.009, 8, 4), panel, [x, 0.52, -0.095]);
+  stickGeometry(st, { style: 'b8', height: 0.4, rake: -0.05, shaft: 0.012, scale: 1.0 });
+  st.add(
+    lathe(
+      [
+        [0.0145, 0],
+        [0.0155, 0.01],
+        [0.0145, 0.02],
+      ],
+      14,
+    ),
+    P.steel,
+    [0, 0.3, -0.037],
+  );
   st.finish();
   bindings.push(
     { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.22 },
     { node: stick.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.22 },
   );
   for (const [name, x, source, scale] of [
-    ['throttle', 0.29, 'power', 0.7],
-    ['nozzle-lever', 0.38, 'thrustVector', -0.9],
+    ['throttle', 0.38, 'power', 0.7],
+    ['nozzle-lever', 0.29, 'thrustVector', -0.9],
   ]) {
     const g = group(cabin, `AV8-${name}`, [x, 2.29, 4.14]),
       dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0], [0, 0.12, 0], 0.01, m.metal);
-    dd.box([0.055, 0.04, 0.065], [0, 0.13, 0], black);
+    // The throttle carries the HOTAS grip; the nozzle lever inboard of it is a slim stalk with a
+    // ball knob, out of the raised nozzle quadrant.
+    if (source === 'power') harrierThrottle(dd);
+    else harrierNozzleLever(dd);
     dd.finish();
     bindings.push({
       node: g.name,
@@ -1378,8 +1937,7 @@ function av8Cockpit(root, m) {
   for (const side of [-1, 1]) {
     const g = group(cabin, `AV8-pedal-${side}`, [side * 0.13, 2.06, 4.6]),
       dd = detailKit(g, g.name);
-    dd.box([0.12, 0.14, 0.025], [0, 0, 0], m.metal);
-    for (let j = 0; j < 5; j++) dd.box([0.1, 0.005, 0.004], [0, -0.05 + j * 0.025, -0.017], black);
+    harrierPedal(dd);
     dd.finish();
     bindings.push({
       node: g.name,
@@ -1389,6 +1947,68 @@ function av8Cockpit(root, m) {
       scale: -side * 0.055,
     });
   }
+  {
+    // Parking brake lever: a flat black paddle in its detent slot just outboard of the throttle
+    // (NATOPS 2.17.6.1, "outboard of the throttle"; Figure 2-6; DCS cockpit). Aft is ON.
+    const brake = group(cabin, 'AV8-park-brake', [0.407, 2.281, 4.205]);
+    brake.userData.aircraftControl = {
+      action: 'brake',
+      motion: { property: 'rotation', axis: 'x', scale: -0.45 },
+    };
+    const bk = detailKit(brake, brake.name);
+    bk.add(bar([0, -0.004, 0], [0, 0.022, 0.004], 0.0028, 10), AP.steel);
+    bk.add(
+      place(roundedBox([0.007, 0.03, 0.026], 0.003), [0, 0.034, 0.006], [0.15, 0, 0]),
+      AP.black,
+    );
+    bk.finish();
+  }
+  {
+    // Fuel shutoff handle on the wall aft of the left console, over the pilot services panel
+    // (NATOPS FO-2 item 8; DCS cockpit): a yellow-and-black striped grip on a short arm out of
+    // its pivot box, the DECS enable switch on the box. Down is ON.
+    d.box([0.026, 0.07, 0.07], [0.407, 2.395, 3.6], black);
+    d.add(bar([0.394, 2.422, 3.585], [0.379, 2.427, 3.586], 0.0026, 8, 0.0017), m.metal);
+    d.text('DECS', [0.3935, 2.44, 3.585], 0.0042, -Math.PI / 2, ink);
+    const fuel = group(cabin, 'AV8-fuel-shutoff', [0.392, 2.39, 3.625]);
+    fuel.userData.aircraftControl = {
+      action: 'engine',
+      motion: { property: 'rotation', axis: 'x', scale: 0.5, offset: -0.25 },
+    };
+    const fk = detailKit(fuel, fuel.name),
+      ax = (zz) => -0.003 - ((zz - 0.05) / 0.068) * 0.004;
+    fk.add(bar([0, 0, -0.01], [-0.003, 0, 0.05], 0.0045, 12), AP.alloy);
+    fk.add(bar([-0.003, 0, 0.05], [-0.007, 0, 0.118], 0.0088, 12), AP.yellow);
+    for (let i = 0; i < 3; i++) {
+      const z0 = 0.058 + i * 0.02;
+      fk.add(bar([ax(z0), 0, z0], [ax(z0 + 0.008), 0, z0 + 0.008], 0.0091, 12), AP.black);
+    }
+    fk.add(bar([-0.007, 0, 0.118], [-0.0072, 0, 0.122], 0.004, 10), AP.alloy);
+    fk.finish();
+  }
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Where the controls are (AV-8B NATOPS cockpit, FO-2 and Figure 2-6; AV-8B+ photographs): the
+  // flap mode switch at the top of the lower left panel, the speed brake switch on the throttle
+  // grip's inboard thumb shelf and the canopy handle on the right sill. The parking brake lever
+  // and the fuel shutoff handle are modelled above.
+  const stations = [
+    { action: 'flaps', style: 'toggle', scale: 1.15, at: at(272, 614, -0.0065) },
+    {
+      action: 'speedBrake',
+      style: 'slider',
+      parent: 'AV8-throttle',
+      at: [0.356, 2.422, 4.156],
+      rotation: [Math.PI / 2, 0, -0.3],
+    },
+    {
+      action: 'canopy',
+      style: 'canopy',
+      at: [-0.455, 2.42, 4.0],
+      rotation: [0, -Math.PI / 2, 0],
+      label: 'CANOPY',
+      labelAt: [0, -0.03, -0.002],
+      labelHeight: 0.0065,
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
 }

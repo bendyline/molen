@@ -3,6 +3,19 @@
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { smoothSurface } from '../surface-normals.mjs';
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead, cockpitLiner } from './cockpit-fit.mjs';
+import {
+  bar,
+  flapSelectorGeometry,
+  lathe,
+  leverGeometry,
+  loftUp,
+  partPalette,
+  place,
+  roundedBox,
+  contour as superEllipse,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -889,11 +902,17 @@ export function buildA400M(s) {
       .map((j) => [bring[j][0] * 0.95, bmid + (bring[j][1] - bmid) * 0.97, bz])
       .filter((q) => q[1] > 2.65);
   bulkhead.push([bulkhead.at(-1)[0] * 0.94, 2.6, bz], [bulkhead[0][0] * 0.94, 2.6, bz]);
-  const interior = cockpit(root, { paint, dark, metal, glass, bulkhead });
+  const { stations: controlStations, ...interior } = cockpit(root, {
+    paint,
+    dark,
+    metal,
+    glass,
+    bulkhead,
+  });
   cleanGeometry(root);
   return {
     root,
-    frame: a400Frame(),
+    frame: { ...a400Frame(), controlStations },
     enginePoints,
     visual: { rotors, gearNodes: [], flaps: [], ailerons: [], animation: { bindings }, interior },
     modelSignals: {
@@ -923,6 +942,8 @@ function cockpit(root, m) {
       side: T.DoubleSide,
       roughness: 0.1,
     });
+  // Control parts share the library's rubber/alloy finishes, on this deck's own panel gray.
+  const P = partPalette({ panel: face });
   const sources = Object.fromEntries(
     ['airspeed', 'pitch', 'roll', 'yaw', 'verticalSpeed', 'gearPosition', 'flapPosition'].map(
       (k) => [
@@ -1009,8 +1030,8 @@ function cockpit(root, m) {
   for (const [i, x] of screenXs.entries()) {
     sheet(
       d,
-      rect(x, y, w + 0.035, h + 0.03, z - 0.006),
-      m.dark,
+      rect(x, y, w + 0.045, h + 0.045, z - 0.006),
+      black,
       [0, 0, -1],
       [rect(x, y, w, h, z - 0.006)],
     );
@@ -1146,25 +1167,26 @@ function cockpit(root, m) {
       [1.05, 5.03, 20.1],
       [-1.05, 5.03, 20.1],
     ],
-    m.dark,
+    black,
     [0, 1, 0.34],
   );
   const banks = group(cabin, 'A400-glareshield-controls', [0, 5.17, 19.53]);
   banks.rotation.x = 0.7;
   const bd = detailKit(banks, banks.name),
     bp = panelTools(bd);
-  bd.box([2.42, 0.19, 0.02], [0, 0, 0.022], m.dark);
+  // ILA 2014 photograph: the hood, the FCU and both EFIS/radio heads are black, with grey keys.
+  bd.box([2.42, 0.19, 0.02], [0, 0, 0.022], black);
   for (const side of [-1, 1]) {
-    bd.box([0.63, 0.19, 0.022], [side * 0.92, 0, 0], face);
+    bd.box([0.63, 0.19, 0.022], [side * 0.92, 0, 0], m.dark);
     bd.box([0.39, 0.044, 0.008], [side * 0.92, 0.03, -0.018], black);
     bd.text('COM --', [side * 0.92, 0.03, -0.025], 0.012, Math.PI, green, 'display');
     for (let j = 0; j < 6; j++)
-      bd.box([0.028, 0.021, 0.008], [side * 0.92 - 0.13 + j * 0.051, -0.025, -0.03], m.dark);
+      bd.box([0.028, 0.021, 0.008], [side * 0.92 - 0.13 + j * 0.051, -0.025, -0.03], face);
     bp.knob(side * 0.92 - 0.27, 0.01, -0.03, 0.024);
     bp.knob(side * 0.92 + 0.27, 0.01, -0.03, 0.024);
-    bd.box([0.2, 0.19, 0.03], [side * 1.19, 0, 0], face);
+    bd.box([0.2, 0.19, 0.03], [side * 1.19, 0, 0], m.dark);
     for (let j = 0; j < 4; j++)
-      bd.box([0.045, 0.03, 0.01], [side * 1.23, 0.07 - j * 0.045, -0.02], m.dark);
+      bd.box([0.045, 0.03, 0.01], [side * 1.23, 0.07 - j * 0.045, -0.02], face);
     bp.knob(side * 1.15, 0, -0.03, 0.022);
   }
   for (const [x, label] of [
@@ -1232,12 +1254,21 @@ function cockpit(root, m) {
   for (let i = 0; i < 4; i++) {
     const x = 0.12 - i * 0.08;
     td.box([0.023, 0.61, 0.009], [x, 0.36, -0.12], black);
+    // Airbus-style power levers with sculpted grips: the pedestal lies on its back, so each lever
+    // stands up in its own frame.
     const g = group(ped, `A400-throttle-${i + 1}`, [x, 0.28, -0.145]),
-      dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0], [0, 0.08, -0.22], 0.014, m.metal);
-    beveledBox(dd, [0.075, 0.057, 0.055], [0, 0.08, -0.22], m.dark);
-    dd.text(String(i + 1), [0, 0.08, -0.25], 0.012, Math.PI, ink);
+      upright = group(g, `${g.name}-lever`);
+    upright.rotation.x = -Math.PI / 2;
+    const dd = detailKit(upright, g.name);
+    leverGeometry(dd, {
+      style: 'thrust-airbus',
+      height: 0.17,
+      rake: 0.06,
+      side: i < 2 ? 1 : -1,
+      palette: P,
+    });
     dd.finish();
+    td.text(String(i + 1), [x, 0.03, -0.122], 0.014, Math.PI, ink);
     bindings.push({
       node: g.name,
       source: 'power',
@@ -1266,19 +1297,37 @@ function cockpit(root, m) {
         td.box([0.024, 0.018, 0.009], [x - 0.083 + j * 0.042, yy + 0.005, -0.15], black);
     }
   }
-  for (const [x, name, source] of [
-    [0.35, 'speedbrake', 'unavailable'],
-    [-0.35, 'flap', 'flapPosition'],
-  ]) {
-    const g = group(ped, `A400-${name}-lever`, [x, -0.48, -0.16]),
-      dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0], [0, 0.03, -0.15], 0.011, m.metal);
-    dd.box([0.065, 0.03, 0.045], [0, 0.03, -0.15], ink);
-    dd.finish();
-    if (source !== 'unavailable')
-      bindings.push({ node: g.name, source, property: 'rotation', axis: 'x', scale: -0.6 });
-  }
+  // Flap lever in its gate on the right; the speed brake lever and the rotary parking brake (control
+  // stations) left of the power levers, as on Airbus pedestals.
+  td.box([0.018, 0.3, 0.006], [-0.35, -0.48, -0.118], black);
+  td.text('FLAPS', [-0.35, -0.3, -0.122], 0.016, Math.PI, ink);
+  td.box([0.018, 0.18, 0.006], [0.27, 0.38, -0.118], black);
+  td.text('SPEED BRK', [0.27, 0.25, -0.122], 0.013, Math.PI, ink);
+  td.text('PARK BRK', [0.27, 0.505, -0.122], 0.012, Math.PI, ink);
+  const flap = group(ped, 'A400-flap-lever', [-0.35, -0.48, -0.16]),
+    fu = group(flap, `${flap.name}-upright`);
+  fu.rotation.x = -Math.PI / 2;
+  const fl = detailKit(fu, flap.name);
+  flapSelectorGeometry(fl, { style: 'lever', height: 0.09, palette: P });
+  fl.finish();
+  bindings.push({
+    node: flap.name,
+    source: 'flapPosition',
+    property: 'rotation',
+    axis: 'x',
+    scale: -0.6,
+  });
   td.finish();
+  // The black quadrant cheeks either side of the power levers.
+  for (const sx of [-0.148, 0.148])
+    d.add(
+      place(
+        new T.CylinderGeometry(0.15, 0.15, 0.012, 20, 1, false, 0, Math.PI),
+        [sx, 4.6, 18.33],
+        [0, 0, Math.PI / 2],
+      ),
+      black,
+    );
   // Overhead groups follow MOD photograph: fire guards aft; fuel/electric/air schematics forward.
   const over = group(cabin, 'A400-overhead', [0, 5.88, 17.95]);
   over.rotation.x = -Math.PI / 2;
@@ -1313,6 +1362,8 @@ function cockpit(root, m) {
       for (let col = 0; col < cols; col++) {
         const xx = x - ww * 0.32 + (col * ww * 0.64) / (cols - 1),
           y0 = yy + hh * 0.22 - row * hh * 0.26;
+        // The APU master pushbutton (a control station) takes this place.
+        if (label === 'HYD' && row === 2 && col === 2) continue;
         od.box([0.062, 0.043, 0.012], [xx, y0, -0.05], black);
         outline(od, rect(xx, y0, 0.065, 0.046, -0.058), 0.0022, label === 'FIRE' ? ins.red : ink);
         od.rod([xx - 0.018, y0 + 0.008, -0.063], [xx + 0.018, y0 + 0.008, -0.063], 0.0015, ink);
@@ -1327,19 +1378,32 @@ function cockpit(root, m) {
     const x = side * 0.83;
     // Sidestick fixed base/boot and articulated grip.
     d.box([0.3, 0.18, 0.45], [side * 1.34, 4.5, 18.85], face);
-    for (let j = 0; j < 4; j++)
-      beveledBox(
-        d,
-        [0.22 - j * 0.025, 0.025, 0.25 - j * 0.025],
-        [side * 1.34, 4.61 + j * 0.027, 18.85],
-        m.dark,
-        0.008,
-      );
+    // A square bezel and a pleated rubber boot on the side console under the side-stick.
+    d.add(place(roundedBox([0.17, 0.016, 0.2], 0.012, 1), [side * 1.34, 4.598, 18.85]), m.dark);
+    d.add(
+      place(
+        lathe(
+          [
+            [0, 0],
+            [0.065, 0],
+            [0.06, 0.02],
+            [0.045, 0.03],
+            [0.044, 0.05],
+            [0.03, 0.06],
+            [0.028, 0.08],
+            [0.018, 0.105],
+            [0, 0.105],
+          ],
+          16,
+          28,
+        ),
+        [side * 1.34, 4.606, 18.85],
+      ),
+      P.tread,
+    );
     const sg = group(cabin, `A400-stick-${side}`, [side * 1.34, 4.71, 18.85]),
       sd = detailKit(sg, sg.name);
-    sd.rod([0, 0, 0], [0, 0.25, 0.035], 0.032, m.dark);
-    beveledBox(sd, [0.095, 0.14, 0.12], [0, 0.29, 0.03], m.dark);
-    ellipsoid(sd, [side * 0.032, 0.37, 0.02], [0.017, 0.012, 0.017], ins.red, 8);
+    atlasSideStick(sd, P, side);
     sd.finish();
     bindings.push(
       { node: sg.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.22 },
@@ -1348,14 +1412,7 @@ function cockpit(root, m) {
     for (const dx of [-0.17, 0.17]) {
       const pg = group(cabin, `A400-pedal-${side}-${Math.sign(dx)}`, [x + dx, 4.16, 19.23]),
         pd = detailKit(pg, pg.name);
-      pd.box([0.21, 0.28, 0.05], [0, 0, 0], m.dark);
-      for (let j = 0; j < 8; j++)
-        pd.rod(
-          [-0.09, -0.11 + j * 0.031, -0.028],
-          [0.09, -0.11 + j * 0.031, -0.028],
-          0.004,
-          m.metal,
-        );
+      atlasPedal(pd, P);
       pd.finish();
       bindings.push({
         node: pg.name,
@@ -1400,8 +1457,130 @@ function cockpit(root, m) {
   for (let i = 0; i < 6; i++)
     d.box([0.72, 0.08, 0.27], [-1.05, 3.85 - i * 0.32, 15.76 - i * 0.26], m.dark);
   d.box([4, 0.05, 17.7], [0, 2.2, 8.35], liner);
+  // Fit: the nose closed just ahead of the panel from the floor to the glare shield, and sidewall
+  // liners from the floor to the side windows, so no painted skin shows from the seats.
+  const fit = detailKit(cabin, 'A400-fit');
+  cockpitBulkhead(fit, root, { z: 19.64, yFrom: 4.05, yTo: 5.2, material: face });
+  cockpitLiner(fit, root, {
+    zFrom: 16.3,
+    zTo: 19.62,
+    yFrom: 4.05,
+    yTo: 5.28,
+    material: liner,
+    zSteps: 12,
+    ySteps: 6,
+    inset: 0.025,
+  });
+  cockpitLiner(fit, root, {
+    zFrom: 16.3,
+    zTo: 17.2,
+    yFrom: 5.28,
+    yTo: 5.9,
+    material: liner,
+    zSteps: 3,
+    ySteps: 3,
+    inset: 0.025,
+  });
+  fit.finish();
   d.finish();
   for (const b of bindings) b.source = b.source.replace('A400-copilot.', 'A400-pilot.');
   for (const key of Object.keys(derived)) if (key.startsWith('A400-copilot.')) delete derived[key];
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Where the real controls are (Airbus layout): the gear lever on the centre panel under the
+  // standby display, the speed brake lever and rotary parking brake left of the power levers, four
+  // engine master switches behind them, and the APU master pushbutton on the overhead.
+  const pedestalTop = 4.597;
+  const stations = [
+    {
+      action: 'gear',
+      style: 'jet',
+      at: [0.435, 4.72, 19.598],
+      label: 'L/G',
+      labelAt: [0, 0.05, -0.002],
+    },
+    { action: 'speedBrake', style: 'lever', at: [0.27, pedestalTop, 18.04 + 0.36], height: 0.09 },
+    { action: 'brake', style: 'rotary', at: [0.27, pedestalTop, 18.04 + 0.58], scale: 1.1 },
+    ...[0, 1, 2, 3].map((i) => ({
+      action: 'engine',
+      engine: i,
+      style: 'paddle',
+      at: [0.12 - i * 0.08, pedestalTop, 18.04 - 0.02],
+      rotation: [Math.PI / 2, 0, 0],
+      scale: 1.6,
+      label: `ENG ${i + 1}`,
+      labelAt: [0, 0.032, -0.002],
+      labelHeight: 0.0085,
+    })),
+    {
+      action: 'engine',
+      style: 'korry',
+      at: [0.443, 5.845, 17.95 + 0.499],
+      rotation: [-Math.PI / 2, 0, 0],
+      scale: 1.6,
+      label: 'APU MASTER',
+      labelAt: [0, -0.03, -0.002],
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
+}
+
+/** The Atlas side-stick: a short shaft out of the boot and a tall grip raked forward, the red
+ * takeover pushbutton under the thumb on top, a trim/radio switch beside it and a trigger. */
+function atlasSideStick(d, P, side) {
+  d.add(bar([0, -0.01, 0], [0, 0.06, 0.008], 0.012, 12), P.steel);
+  d.add(
+    loftUp([
+      { y: 0.05, points: superEllipse(0, 0.008, 0.02, 0.025, 16, 2.2) },
+      { y: 0.09, points: superEllipse(0, 0.013, 0.022, 0.027, 16, 2.2) },
+      { y: 0.13, points: superEllipse(0, 0.019, 0.023, 0.028, 16, 2.3) },
+      { y: 0.16, points: superEllipse(0, 0.026, 0.022, 0.027, 16, 2.5) },
+      { y: 0.178, points: superEllipse(0, 0.031, 0.017, 0.021, 16, 2.4) },
+      { y: 0.184, points: superEllipse(0, 0.032, 0.008, 0.01, 16, 2.2) },
+    ]),
+    P.grip,
+  );
+  d.add(
+    place(
+      new T.CylinderGeometry(0.0065, 0.0065, 0.008, 14),
+      [-side * 0.008, 0.182, 0.028],
+      [0.25, 0, 0],
+    ),
+    P.red,
+  );
+  d.add(place(roundedBox([0.01, 0.008, 0.012], 0.003), [side * 0.01, 0.178, 0.038]), P.black);
+  d.add(
+    tube(
+      [
+        [0, 0.15, 0.052],
+        [0, 0.138, 0.064],
+        [0, 0.124, 0.058],
+      ],
+      0.0055,
+      10,
+    ),
+    P.black,
+  );
+}
+
+/** Airbus-type rudder pedal: a broad plate with a rubber face, the toe-brake hinge across its top
+ * and a heel ledge, hung from an arm that runs forward to the pedal box. */
+function atlasPedal(d, P, { w = 0.12, h = 0.2, lean = 0.22 } = {}) {
+  const pad = (g) => place(g, [0, 0, 0], [lean, 0, 0]);
+  d.add(pad(roundedBox([w, h, 0.016], 0.016, 1)), P.steel);
+  d.add(pad(place(new T.BoxGeometry(w * 0.8, h * 0.7, 0.004), [0, h * 0.04, -0.009])), P.tread);
+  d.add(pad(bar([-w * 0.46, h * 0.44, -0.003], [w * 0.46, h * 0.44, -0.003], 0.006, 8)), P.alloy);
+  d.add(pad(place(new T.BoxGeometry(w * 0.9, 0.012, 0.05), [0, -h / 2 - 0.004, -0.02])), P.steel);
+  d.add(
+    pad(
+      tube(
+        [
+          [0, h * 0.3, 0.012],
+          [0, h * 0.5 + 0.03, 0.05],
+          [0, h * 0.5 + 0.08, 0.11],
+        ],
+        0.01,
+        8,
+      ),
+    ),
+    P.alloy,
+  );
 }

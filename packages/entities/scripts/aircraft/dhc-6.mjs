@@ -2,6 +2,19 @@
  * Hand-authored contours in metres; photo/reference calibration is in reference-review.json.
  */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead } from './cockpit-fit.mjs';
+import {
+  bar,
+  contour,
+  lathe,
+  leverGeometry,
+  loftUp,
+  partPalette,
+  place,
+  roundedBox,
+  switchGeometry,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -160,6 +173,200 @@ function foil(d, ribs, material) {
     }
   sheet(d, rings[0], material, [0, -1, 0]);
   sheet(d, rings.at(-1), material, [0, 1, 0]);
+}
+/** Twin Otter rudder pedal, origin at the pad centre (+X is `out`, outboard): a broad plate with
+ * a rubber face, the toe-brake bar hinged across its top, a heel stop, and the arm down to the
+ * floor rocker shaft with the brake cylinder outboard. The whole pedal leans its top forward. */
+function otterPedal(d, P, out, lean = 0.3) {
+  const add = (material, geometry) => d.add(place(geometry, [0, 0, 0], [lean, 0, 0]), material);
+  add(P.steel, roundedBox([0.096, 0.112, 0.012], 0.012, 1));
+  add(P.tread, new T.BoxGeometry(0.078, 0.07, 0.004).translate(0, -0.012, -0.0075));
+  add(P.alloy, place(roundedBox([0.1, 0.028, 0.016], 0.008, 1), [0, 0.066, -0.004]));
+  add(P.steel, bar([-0.044, 0.052, 0.007], [0.044, 0.052, 0.007], 0.0045, 12));
+  add(P.steel, bar([-0.045, -0.058, -0.012], [0.045, -0.058, -0.012], 0.006, 12));
+  add(
+    P.alloy,
+    tube(
+      [
+        [0, -0.03, 0.008],
+        [0, -0.06, 0.028],
+        [0, -0.088, 0.06],
+      ],
+      0.0085,
+      12,
+    ),
+  );
+  add(P.steel, bar([-0.026, -0.088, 0.062], [0.026, -0.088, 0.062], 0.012, 10));
+  add(P.alloy, bar([out * 0.036, 0.05, 0.012], [out * 0.036, -0.07, 0.07], 0.0065, 12));
+}
+/** A grip horn lofted up from its foot, oval in section with a swell under the palm. */
+const otterHorn = (h) =>
+  loftUp([
+    { y: 0, points: contour(0, 0, 0.0125, 0.0155, 14, 2.2) },
+    { y: h * 0.3, points: contour(0, 0.001, 0.0152, 0.0182, 14, 2.2) },
+    { y: h * 0.72, points: contour(0, 0.002, 0.0158, 0.0188, 14, 2.2) },
+    { y: h * 0.92, points: contour(0, 0.001, 0.0135, 0.016, 14, 2.2) },
+    { y: h, points: contour(0, 0, 0.006, 0.007, 14, 2.2) },
+  ]);
+/** DHC-6 control wheel, origin at its mounting point: the W-shaped wheel of the photographs, its
+ * swept arms dipping below a raised hub, two upright horn grips, the trim switch, autopilot
+ * disconnect and push-to-talk on the horns, and a short shaft forward into the column arm. */
+function otterWheel(d, P) {
+  const hub = [0, 0.045, -0.012];
+  for (const s of [-1, 1]) {
+    d.add(
+      tube(
+        [
+          [s * 0.02, 0.038, -0.012],
+          [s * 0.075, -0.012, -0.012],
+          [s * 0.125, -0.05, -0.012],
+          [s * 0.162, -0.04, -0.012],
+          [s * 0.176, -0.008, -0.012],
+        ],
+        0.0125,
+        14,
+      ),
+      P.grip,
+    );
+    d.add(place(otterHorn(0.135), [s * 0.177, -0.012, -0.012], [0, 0, -s * 0.05]), P.grip);
+  }
+  // Hub: a turned boss with the type placard, on a shaft forward into the column arm.
+  d.add(
+    place(
+      lathe(
+        [
+          [0, 0],
+          [0.03, 0],
+          [0.033, 0.008],
+          [0.03, 0.02],
+          [0.022, 0.026],
+          [0, 0.027],
+        ],
+        16,
+      ),
+      [hub[0], hub[1], hub[2] + 0.012],
+      [-Math.PI / 2, 0, 0],
+    ),
+    P.grip,
+  );
+  d.add(place(roundedBox([0.036, 0.018, 0.003], 0.004, 1), [0, hub[1], hub[2] - 0.017]), P.alloy);
+  d.add(bar([0, hub[1], hub[2]], [0, 0.01, 0.034], 0.011, 14), P.alloy);
+  // Left horn (+X): trim rocker on top, red autopilot disconnect on its inboard face; right horn
+  // carries the push-to-talk.
+  d.add(place(roundedBox([0.011, 0.007, 0.016], 0.002, 1), [0.171, 0.125, -0.016]), P.black);
+  d.add(
+    place(
+      new T.CylinderGeometry(0.0045, 0.0045, 0.006, 12),
+      [0.16, 0.098, -0.014],
+      [0, 0, Math.PI / 2],
+    ),
+    P.red,
+  );
+  d.add(place(roundedBox([0.006, 0.014, 0.01], 0.002, 1), [-0.164, 0.09, -0.012]), P.black);
+}
+/** Cockpit trim from the seat backs to the panel: sidewall panels on the planar side band of the
+ * skin (outer loft point 4 up to point 2), the roof corner and headliner, 12 mm inside the skin.
+ * The cockpit side window is cut through the sidewall with a dark reveal back to the glass, so
+ * no painted skin shows around it. `sections` are the fuselage loft rings. */
+function otterLiner(d, sections, material, reveal) {
+  const inset = 0.012,
+    ppm = 655 / 15.77,
+    zu = (u) => 7.885 - (u - 270) / ppm,
+    yv = (v) => (1348 - v) / ppm;
+  const ringAt = (z) => {
+    const i = sections.findIndex(
+        (r, n) => n < sections.length - 1 && z <= r.z && z >= sections[n + 1].z,
+      ),
+      a = sections[i],
+      b = sections[i + 1],
+      f = (a.z - z) / (a.z - b.z);
+    return a.points.map((q, j) => [
+      q[0] + (b.points[j][0] - q[0]) * f,
+      q[1] + (b.points[j][1] - q[1]) * f,
+    ]);
+  };
+  // Side band: a straight line from point 4 (lower) to point 2 (upper) at each station.
+  const side = (z, y, s) => {
+    const q = ringAt(z),
+      [x4, y4] = q[4],
+      [x2, y2] = q[2],
+      f = (y - y4) / (y2 - y4);
+    return [s * (x4 + (x2 - x4) * f - inset), y, z];
+  };
+  const stations = [3.98, sections[5].z, sections[4].z - 0.004];
+  const floor = 1.09;
+  for (const s of [-1, 1]) {
+    const top = (z) => ringAt(z)[2][1] - inset;
+    // Aft bay, then the forward bay with the window cut out of it.
+    quad(
+      d,
+      side(stations[0], floor, s),
+      side(stations[1], floor, s),
+      side(stations[1], top(stations[1]), s),
+      side(stations[0], top(stations[0]), s),
+      material,
+      [-s, 0, 0],
+    );
+    const window = [
+      [380, 1248],
+      [384, 1238],
+      [401, 1239],
+      [393, 1269],
+      [380, 1273],
+    ].map(([u, v]) => [zu(u), yv(v)]);
+    sheet(
+      d,
+      [
+        side(stations[1], floor, s),
+        side(stations[2], floor, s),
+        side(stations[2], top(stations[2]), s),
+        side(stations[1], top(stations[1]), s),
+      ],
+      material,
+      [-s, 0, 0],
+      [window.map(([z, y]) => side(z, y, s))],
+    );
+    for (let i = 0; i < window.length; i++) {
+      const [za, ya] = window[i],
+        [zb, yb] = window[(i + 1) % window.length],
+        a = side(za, ya, s),
+        b = side(zb, yb, s),
+        // Out to the glass, which sits on the outer skin line (point 3), outboard of the band.
+        out = (p) => [s * (ringAt(p[2])[3][0] + 0.004), p[1], p[2]],
+        mz = (za + zb) / 2,
+        my = (ya + yb) / 2,
+        // The reveal faces the window's centre.
+        normal = [0, 2.2 - my, 5.0 - mz];
+      quad(d, a, b, out(b), out(a), reveal, normal);
+    }
+    // A floor-coloured sill along the wall foot hides the slot between the floor and the lining.
+    for (let i = 0; i < stations.length - 1; i++) {
+      const sill = (z, inward) => {
+        const [x] = side(z, floor, s);
+        return [x - s * inward, floor + 0.0025, z];
+      };
+      quad(
+        d,
+        sill(stations[i], 0),
+        sill(stations[i + 1], 0),
+        sill(stations[i + 1], 0.07),
+        sill(stations[i], 0.07),
+        reveal,
+        [0, 1, 0],
+      );
+    }
+    // Roof corner (point 2 to point 1) and the headliner to the centreline (point 1 to 0).
+    for (let i = 0; i < stations.length - 1; i++) {
+      const za = stations[i],
+        zb = stations[i + 1],
+        p = (z, j) => {
+          const [x, y] = ringAt(z)[j];
+          return [s * Math.max(0, Math.abs(x) - inset * (j ? 1 : 0)), y - inset, z];
+        };
+      quad(d, p(za, 2), p(zb, 2), p(zb, 1), p(za, 1), material, [-s, -1, 0]);
+      quad(d, p(za, 1), p(zb, 1), p(zb, 0), p(za, 0), material, [-s * 0.2, -1, 0]);
+    }
+  }
 }
 export const twinOtterFrame = () => ({
   heli: false,
@@ -431,8 +638,10 @@ export function buildTwinOtter(s) {
       const b = sample(zz, 2),
         t = sample(zz, 3);
       d.rod(pt(zz, b + 0.16, 0.002), pt(zz, t - 0.2, 0.002), 0.0015, metal);
+      // Rivet heads are 8-triangle domes: at 6 mm across a rounder one reads no differently, and
+      // the airframe's 450 rivets cost 9000 triangles as 5x3 spheres.
       for (let yy = b + 0.18; yy < t - 0.24; yy += 0.11)
-        d.add(new T.SphereGeometry(0.0028, 5, 3), metal, pt(zz + 0.025, yy, 0.004));
+        d.add(new T.SphereGeometry(0.0028, 4, 2), metal, pt(zz + 0.025, yy, 0.004));
     }
     for (let i = 2; i < stations.length - 2; i++) {
       const a = stations[i],
@@ -504,7 +713,7 @@ export function buildTwinOtter(s) {
     for (let x = 1.1; x < 9.5; x += 0.55)
       for (let u = 0.14; u < 0.8; u += 0.13) {
         const h = 0.15 * (u < 0.25 ? u / 0.25 : 1 - (u - 0.25) * 0.96);
-        d.add(new T.SphereGeometry(0.003, 5, 3), metal, [
+        d.add(new T.SphereGeometry(0.003, 4, 2), metal, [
           side * x,
           wy(x) + h + 0.003,
           2.62 - u * 1.47,
@@ -767,11 +976,15 @@ export function buildTwinOtter(s) {
   d.rod([0, 2.88, -2.6], [0, 3.18, -2.8], 0.016, dark);
   d.rod([0, 3.18, -2.8], [0, 5.77, -6.37], 0.003, dark);
   d.finish();
-  const interior = twinOtterCockpit(root, { paint, accent, dark, metal }, rings);
+  const { stations: controlStations, ...interior } = twinOtterCockpit(
+    root,
+    { paint, accent, dark, metal },
+    rings,
+  );
   cleanGeometry(root);
   return {
     root,
-    frame: twinOtterFrame(),
+    frame: { ...twinOtterFrame(), controlStations },
     enginePoints,
     visual: { rotors, gearNodes: [], flaps: [], ailerons: [], animation: { bindings }, interior },
     modelSignals: {
@@ -788,9 +1001,11 @@ function twinOtterCockpit(root, m, sections) {
     ins = instrumentGeometry(cabin, 'TwinOtter'),
     pt = panelTools(d),
     { bindings, derived, ink, black } = ins;
-  const face = mat('TwinOtter-panel', '#647783'),
+  // Near-black panel face, as in the Twin Otter cockpit photographs (was slate blue).
+  const face = mat('TwinOtter-panel', '#30363a'),
     liner = mat('TwinOtter-liner', '#d2d3c8'),
     seat = mat('TwinOtter-seat', '#59646a');
+  const P = partPalette({ grip: black, steel: m.dark, alloy: m.metal });
   const k = 0.00162,
     px = (u) => (650 - u) * k,
     py = (v) => 2.03 + (370 - v) * k,
@@ -1001,15 +1216,44 @@ function twinOtterCockpit(root, m, sections) {
     d.box([0.034, 0.031, 0.012], at(u, 244, -0.015), m.accent);
     d.text('FIRE', at(u, 244, -0.022), 0.007, Math.PI, ink);
   }
-  for (const [u0, label] of [
-    [428, 'ELECTRICAL'],
-    [880, 'ENVIRONMENT'],
+  // Series 400 lower switch panels. On the pilot's ELECTRICAL panel the battery master and the two
+  // engine start switches are working control stations (see the end of this function).
+  const stationSwitches = {
+    0: 'TwinOtter-battery-master',
+    3: 'TwinOtter-start-1',
+    4: 'TwinOtter-start-2',
+  };
+  for (const [u0, label, legends] of [
+    [
+      428,
+      'ELECTRICAL',
+      ['BATT', 'GEN 1', 'GEN 2', 'START 1', 'START 2', 'IGN 1', 'IGN 2', 'INV', 'AVION', 'EXT PWR'],
+    ],
+    [
+      880,
+      'ENVIRONMENT',
+      ['PITOT', 'STALL', 'WSHLD', 'PROP', 'BOOT', 'FAN', 'HEAT', 'NAV', 'STROBE', 'LDG'],
+    ],
   ]) {
-    d.text(label, at(u0, 477, -0.027), 0.008, Math.PI, ink);
+    d.text(label, at(u0, 470, -0.027), 0.008, Math.PI, ink);
     for (let j = 0; j < 10; j++) {
       const u = u0 - 85 + j * 19;
-      d.rod(at(u, 503, -0.024), at(u, 495, -0.04), 0.0028, m.metal);
-      d.text(['GEN', 'BAT', 'BUS', 'LTS', 'EXT'][j % 5], at(u, 487, -0.025), 0.0038, Math.PI, ink);
+      d.text(legends[j], at(u, 484, -0.021), 0.0034, Math.PI, ink);
+      if (u0 === 428 && stationSwitches[j]) {
+        // A working switch: its own pivot carries the toggle (the start switches under red
+        // guards) and the control metadata, as the toggles rotate about their bushing.
+        const pivot = group(cabin, stationSwitches[j], at(u, 500, -0.019)),
+          sd = detailKit(pivot, `${pivot.name}-moving`);
+        switchGeometry(sd, { style: j ? 'guarded' : 'toggle', palette: P, scale: j ? 1 : 1.15 });
+        sd.finish();
+        pivot.userData.aircraftControl = {
+          action: 'engine',
+          ...(j ? { engine: j === 3 ? 'engine-1' : 'engine-2' } : {}),
+          motion: { property: 'rotation', axis: 'x', scale: 0.7, offset: -0.7 },
+        };
+        continue;
+      }
+      d.add(bar(at(u, 500, -0.022), at(u, 493, -0.038), 0.0016, 8, 0.0026), m.metal);
     }
   }
   for (const u of [507, 561, 782]) {
@@ -1017,33 +1261,57 @@ function twinOtterCockpit(root, m, sections) {
     pt.knob(px(u), py(351), z - 0.028, 0.006);
   }
   // Common pitch column with split ram-horn wheels, photographed geometry rather than two sticks.
+  // The single centre column rises out of a floor boot to a Y-shaped head; each painted arm ends
+  // in a boss carrying its pilot's wheel on a short shaft.
   const column = group(cabin, 'TwinOtter-column', [0, 1.47, 4.71]),
     cd = detailKit(column, column.name);
-  cd.rod([0, -0.4, 0], [0, 0.32, 0], 0.055, m.metal);
+  cd.add(
+    lathe(
+      [
+        [0.075, -0.38],
+        [0.068, -0.35],
+        [0.056, -0.33],
+        [0.05, -0.3],
+        [0.04, -0.28],
+        [0.033, -0.26],
+      ],
+      16,
+      28,
+    ),
+    P.tread,
+  );
+  cd.add(bar([0, -0.3, 0], [0, 0.3, 0], 0.031, 18, 0.029), face);
+  cd.add(
+    lathe(
+      [
+        [0, 0.27],
+        [0.036, 0.27],
+        [0.04, 0.3],
+        [0.036, 0.35],
+        [0, 0.36],
+      ],
+      14,
+    ),
+    face,
+  );
   for (const side of [-1, 1]) {
-    cd.rod([0, 0.32, 0], [side * 0.47, 0.55, 0.04], 0.041, liner);
+    cd.add(
+      tube(
+        [
+          [0, 0.33, 0],
+          [side * 0.12, 0.4, 0.02],
+          [side * 0.3, 0.5, 0.036],
+          [side * 0.44, 0.555, 0.04],
+        ],
+        0.021,
+        16,
+      ),
+      face,
+    );
+    cd.add(bar([side * 0.425, 0.56, 0.04], [side * 0.485, 0.56, 0.04], 0.029, 14), face);
     const g = group(column, `TwinOtter-yoke-${side}`, [side * 0.47, 0.55, 0.01]),
       gd = detailKit(g, g.name);
-    outline(
-      gd,
-      [
-        [-0.17, 0.12, 0],
-        [-0.18, -0.02, 0],
-        [-0.12, -0.055, 0],
-        [0, 0.045, 0],
-        [0.12, -0.055, 0],
-        [0.18, -0.02, 0],
-        [0.17, 0.12, 0],
-      ],
-      0.018,
-      liner,
-      false,
-    );
-    for (const sign of [-1, 1]) {
-      gd.rod([sign * 0.17, 0.01, -0.005], [sign * 0.17, 0.13, -0.005], 0.018, m.dark);
-      gd.box([0.027, 0.016, 0.018], [sign * 0.17, 0.145, -0.008], m.metal);
-    }
-    ellipsoid(gd, [0, 0.045, -0.015], [0.032, 0.032, 0.021], m.metal, 12);
+    otterWheel(gd, P);
     gd.finish();
     bindings.push({
       node: g.name,
@@ -1071,15 +1339,14 @@ function twinOtterCockpit(root, m, sections) {
       pd.box([0.014, 0.012, 0.004], [-0.078 + c * 0.022, 0.12 - r * 0.03, -0.099], m.dark);
   for (const side of [-1, 1]) {
     pd.box([0.07, 0.5, 0.035], [side * 0.08, -0.39, 0.025], black);
+    // Circuit-breaker heads: small studs (they were 110-triangle spheres, 6600 in all).
     for (let r = 0; r < 10; r++)
       for (let c = 0; c < 3; c++)
-        ellipsoid(
-          pd,
-          [side * 0.08 - 0.02 + c * 0.02, -0.18 - r * 0.045, 0],
-          [0.004, 0.004, 0.004],
-          ink,
-          5,
-        );
+        pd.add(new T.CylinderGeometry(0.004, 0.004, 0.006, 6).rotateX(Math.PI / 2), ink, [
+          side * 0.08 - 0.02 + c * 0.02,
+          -0.18 - r * 0.045,
+          0.005,
+        ]);
   }
   pd.finish();
   // Paired power/propeller/condition levers remain overhead. Series 400 switches
@@ -1091,31 +1358,73 @@ function twinOtterCockpit(root, m, sections) {
   // The pilot sits below and left of the quadrant and sees the levers almost end-on. The
   // propeller levers hang 1 cm lower, and their alloy knobs are separate parts rather than merged
   // into the shafts, so at full RPM the knobs show under the power knobs instead of behind them.
-  for (const [i, x, col, source, reach] of [
-    [0, 0.12, m.dark, 'power', 0.11],
-    [1, 0.07, m.dark, 'power', 0.11],
-    [2, 0.025, null, null, 0.12],
-    [3, -0.025, null, null, 0.12],
-    [4, -0.07, m.accent, null, 0.11],
-    [5, -0.12, m.accent, null, 0.11],
+  // Power levers carry broad black grips, the propeller levers ribbed blue knobs and the fuel
+  // levers red ones (Viking -400 overhead). Each part hangs from its pivot: a child group turns
+  // the library's upright lever (+Y) down out of the console (local -Z).
+  for (const [i, x, style, palette, source, reach] of [
+    [0, 0.12, 'throttle-t', { black }, 'power', 0.11],
+    [1, 0.07, 'throttle-t', { black }, 'power', 0.11],
+    [2, 0.025, 'prop', {}, null, 0.12],
+    [3, -0.025, 'prop', {}, null, 0.12],
+    [4, -0.07, 'throttle', { black: m.accent }, null, 0.11],
+    [5, -0.12, 'throttle', { black: m.accent }, null, 0.11],
   ]) {
     od.box([0.012, 0.29, 0.006], [x, 0, -0.031], black);
     const g = group(oh, `TwinOtter-overhead-lever-${i}`, [x, 0, -0.035]),
-      dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0], [0, 0.03, -reach], 0.007, m.metal);
-    beveledBox(dd, [0.038, 0.047, 0.027], [0, 0.03, -reach - 0.01], col ?? dd.metal);
+      hang = group(g, `${g.name}-arm`);
+    hang.rotation.x = -Math.PI / 2;
+    const dd = detailKit(hang, g.name);
+    leverGeometry(dd, {
+      style,
+      height: reach,
+      rake: 0.03,
+      scale: style === 'throttle-t' ? 0.82 : 1,
+      palette: { ...partPalette({ alloy: m.metal }), ...palette },
+    });
     dd.finish();
     if (source)
       bindings.push({ node: g.name, source, property: 'rotation', axis: 'x', scale: 0.65 });
   }
-  od.text('POWER PROP COND', [0, 0.18, -0.04], 0.012, Math.PI, black);
+  od.text('POWER PROP FUEL', [0, 0.18, -0.04], 0.012, Math.PI, black);
+  // Flap selector at the aft right of the console: a lever with a flap-shaped knob hanging in its
+  // own gated slot, beside the position scale (UP 10 20 37.5).
+  od.box([0.014, 0.085, 0.006], [-0.152, 0.002, -0.031], black);
+  for (const [j, label] of ['UP', '10', '20', 'FULL'].entries()) {
+    const y = 0.083 * Math.sin(-0.35 + j * 0.25);
+    od.box([0.01, 0.0018, 0.002], [-0.137, y, -0.0285], ink);
+    od.text(label, [-0.118, y, -0.029], 0.0065, Math.PI, ink);
+  }
+  const flapLever = group(oh, 'TwinOtter-flap-lever', [-0.152, 0.0, -0.035]),
+    flapArm = group(flapLever, 'TwinOtter-flap-lever-arm');
+  flapArm.rotation.x = -Math.PI / 2;
+  const fd = detailKit(flapArm, flapLever.name);
+  fd.add(place(roundedBox([0.008, 0.075, 0.014], 0.002, 1), [0, 0.0375, 0]), m.metal);
+  fd.add(
+    place(
+      loftUp([
+        { y: 0, points: contour(0, 0.004, 0.006, 0.022, 12, 2.4) },
+        { y: 0.008, points: contour(0, 0.002, 0.009, 0.03, 12, 2.4) },
+        { y: 0.032, points: contour(0, 0.002, 0.009, 0.03, 12, 2.4) },
+        { y: 0.04, points: contour(0, 0.004, 0.006, 0.022, 12, 2.4) },
+      ]),
+      [0.02, 0.083, 0.0],
+      [0, 0, Math.PI / 2],
+    ),
+    P.white,
+  );
+  fd.finish();
+  // UP at rest is forward in the slot; full flap swings the knob aft, toward the crew.
+  flapLever.userData.aircraftControl = {
+    action: 'flaps',
+    motion: { property: 'rotation', axis: 'x', scale: 0.75, offset: -0.35 },
+  };
+  od.text('FLAP', [-0.152, -0.11, -0.04], 0.01, Math.PI, ink);
   od.finish();
   // Floor, two pilot seats, belts, pedals, side door trim and 19-seat utility cabin.
   fittedFloor(d, sections, m.dark, { y: 1.09, front: 5.3, back: -1.575, width: 1.68 });
   for (const side of [-1, 1]) {
-    // Door-frame trim inside the tapering cockpit skin (it sat on the skin and showed outside).
-    d.box([0.025, 0.28, 1.15], [side * 0.86, 1.36, 4.46], liner);
-    d.rod([side * 0.84, 1.66, 4.75], [side * 0.84, 1.66, 4.23], 0.019, m.dark);
+    // Armrest rail along the lined sidewall.
+    d.add(bar([side * 0.855, 1.66, 4.75], [side * 0.855, 1.66, 4.23], 0.015, 12), m.dark);
     for (const off of [-0.105, 0.105]) {
       const pedal = group(cabin, `TwinOtter-pedal-${side}-${off < 0 ? 'a' : 'b'}`, [
           side * 0.43 + off,
@@ -1123,9 +1432,7 @@ function twinOtterCockpit(root, m, sections) {
           5.18,
         ]),
         dd = detailKit(pedal, pedal.name);
-      dd.box([0.16, 0.12, 0.035], [0, 0, 0], m.metal);
-      for (let j = 0; j < 5; j++)
-        dd.rod([-0.07, -0.04 + j * 0.02, -0.02], [0.07, -0.04 + j * 0.02, -0.02], 0.003, m.dark);
+      otterPedal(dd, P, Math.sign(off));
       dd.finish();
       bindings.push({
         node: pedal.name,
@@ -1197,6 +1504,14 @@ function twinOtterCockpit(root, m, sections) {
     );
     d.box([0.04, 0.013, 0.03], [x + 0.04, 1.465 + lift, zz + 0.04], m.metal);
   });
+  // Close the nose behind and beside the panel down to the floor, so no painted skin shows around
+  // the panel or forward of the pedals.
+  cockpitBulkhead(d, root, { z: 5.3, yFrom: 1.06, yTo: 2.26, material: face });
+  otterLiner(d, sections, mat('TwinOtter-sidewall', '#8d9597'), m.dark);
+  d.text('PARK BRAKE', at(268, 490, -0.02), 0.0045, Math.PI, ink);
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // The parking brake T-handle under the left end of the panel (the battery master and start
+  // switches are modeled on the ELECTRICAL panel above).
+  const stations = [{ action: 'brake', style: 'tee', at: at(268, 505, -0.019) }];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
 }

@@ -1,8 +1,193 @@
 /** Wright-powered DC-3, Knoxville museum panel; Carol M. Highsmith, LOC 2015630848.
  * The panel photograph supplies layout, not surveyed cockpit dimensions. */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead, cockpitLiner, skinSection, wallAt } from './cockpit-fit.mjs';
+import { bar, lathe, partPalette, place, roundedBox, tube } from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
-import { beveledBox, detailKit, ellipsoid, group, mat, outline, sheet, T } from './mesh-kit.mjs';
+import { beveledBox, detailKit, group, mat, outline, quad, sheet, T } from './mesh-kit.mjs';
+
+/** The Douglas control wheel (C-47A Le Bourget photo): a rim open across the top, three spokes
+ * from a domed hub, the rim's ends rounded off as grips. Hub at the origin, facing -Z. */
+function douglasWheel(wd, P, rim, hub) {
+  const r = 0.28,
+    points = Array.from({ length: 29 }, (_, i) => {
+      const a = ((140 + (i * 260) / 28) * Math.PI) / 180;
+      return [r * Math.cos(a), r * Math.sin(a), 0];
+    });
+  wd.add(tube(points, 0.0145, 10), rim);
+  // Rounded rim ends and the thicker hand grips at the upper corners of the open rim.
+  for (const s of [-1, 1]) {
+    const a = s > 0 ? (40 * Math.PI) / 180 : (140 * Math.PI) / 180;
+    wd.add(new T.SphereGeometry(0.0165, 10, 6), rim, [r * Math.cos(a), r * Math.sin(a), 0]);
+    const grip = Array.from({ length: 5 }, (_, i) => {
+      const b = a + (s * ((-8 - i * 9) * Math.PI)) / 180;
+      return [r * Math.cos(b), r * Math.sin(b), 0];
+    });
+    wd.add(tube(grip, 0.0175, 12), P.grip);
+  }
+  for (const a of [35, 145, 270])
+    wd.add(
+      bar(
+        [0.04 * Math.cos((a * Math.PI) / 180), 0.04 * Math.sin((a * Math.PI) / 180), 0],
+        [(r - 0.01) * Math.cos((a * Math.PI) / 180), (r - 0.01) * Math.sin((a * Math.PI) / 180), 0],
+        0.0105,
+        12,
+        0.0075,
+      ),
+      hub,
+    );
+  wd.add(
+    lathe(
+      [
+        [0, -0.04],
+        [0.03, -0.04],
+        [0.05, -0.02],
+        [0.052, 0.0],
+        [0.042, 0.016],
+        [0.022, 0.024],
+        [0, 0.026],
+      ],
+      18,
+    ).rotateX(-Math.PI / 2),
+    hub,
+  );
+  wd.add(
+    new T.CylinderGeometry(0.016, 0.016, 0.004, 16).rotateX(Math.PI / 2).translate(0, 0, -0.026),
+    P.black,
+  );
+}
+
+/** Douglas rudder pedal: a broad cast plate with a raised rim and a rubber tread, the toe-brake
+ * hinge across its top, on an arm down to the floor pivot. Origin at the middle of the pad. */
+function douglasPedal(pd, P, out) {
+  const lean = [0.25, 0, 0];
+  pd.add(place(roundedBox([0.16, 0.13, 0.014], 0.03, 1), [0, 0, 0], lean), P.steel);
+  // Oval rubber tread on the cast plate.
+  pd.add(
+    place(
+      new T.CylinderGeometry(1, 1, 0.006, 20).scale(0.062, 1, 0.046).rotateX(Math.PI / 2),
+      [0, -0.004, -0.009],
+      lean,
+    ),
+    P.grip,
+  );
+  pd.add(
+    place(bar([-0.075, 0.068, 0.004], [0.075, 0.068, 0.004], 0.008, 12), [0, 0, 0], lean),
+    P.steel,
+  );
+  pd.add(place(roundedBox([0.15, 0.014, 0.03], 0.005, 1), [0, -0.068, -0.012], lean), P.alloy);
+  pd.add(
+    tube(
+      [
+        [out * 0.05, -0.03, 0.03],
+        [out * 0.05, -0.08, 0.06],
+        [out * 0.05, -0.1, 0.1],
+      ],
+      0.011,
+      10,
+    ),
+    P.alloy,
+  );
+  pd.add(
+    new T.CylinderGeometry(0.016, 0.016, 0.05, 12)
+      .rotateZ(Math.PI / 2)
+      .translate(out * 0.05, -0.1, 0.1),
+    P.steel,
+  );
+  pd.add(bar([-out * 0.04, 0.06, 0.03], [-out * 0.04, -0.09, 0.13], 0.008, 10, 0.009), P.steel);
+}
+
+/** Sidewall lining between window panes, triangle by triangle: a cell with three of its four
+ * corners on skin still gets the triangle between them, so the lining reaches the frames. */
+function paneLiner(
+  d,
+  body,
+  {
+    zFrom,
+    zTo,
+    yFrom,
+    yTo,
+    zSteps,
+    ySteps,
+    inset = 0.008,
+    from = 0.3,
+    material,
+    exclude = ['cockpit'],
+  },
+) {
+  const grid = [];
+  for (let i = 0; i <= zSteps; i++) {
+    const z = zFrom + ((zTo - zFrom) * i) / zSteps,
+      segments = skinSection(body, z, { exclude });
+    grid.push(
+      Array.from({ length: ySteps + 1 }, (_, j) => {
+        const y = yFrom + ((yTo - yFrom) * j) / ySteps;
+        return {
+          z,
+          y,
+          x: { 1: wallAt(segments, y, 1, from), [-1]: wallAt(segments, y, -1, from) },
+        };
+      }),
+    );
+  }
+  const positions = [],
+    u = new T.Vector3(),
+    v = new T.Vector3(),
+    sections = new Map();
+  // A partial cell's triangle is kept only when skin also lies under its centroid, so it does
+  // not reach across a slanted pane edge.
+  const onSkin = (corners, side) => {
+    const z = (corners[0][2] + corners[1][2] + corners[2][2]) / 3,
+      y = (corners[0][1] + corners[1][1] + corners[2][1]) / 3;
+    if (!sections.has(z)) sections.set(z, skinSection(body, z, { exclude }));
+    return wallAt(sections.get(z), y, side, from) !== undefined;
+  };
+  for (const side of [1, -1]) {
+    const at = (p) => (p.x[side] === undefined ? undefined : [p.x[side] - side * inset, p.y, p.z]);
+    const tri = (partial, ...corners) => {
+      if (corners.some((c) => !c) || (partial && !onSkin(corners, side))) return false;
+      const [a, b, c] = corners;
+      u.set(b[0] - a[0], b[1] - a[1], b[2] - a[2]);
+      v.set(c[0] - a[0], c[1] - a[1], c[2] - a[2]);
+      positions.push(...a, ...(u.cross(v).x * -side >= 0 ? [...b, ...c] : [...c, ...b]));
+      return true;
+    };
+    for (let i = 0; i < zSteps; i++)
+      for (let j = 0; j < ySteps; j++) {
+        const [p, q, r, w] = [grid[i][j], grid[i + 1][j], grid[i + 1][j + 1], grid[i][j + 1]].map(
+          at,
+        );
+        if (p && q && r && w) {
+          tri(false, p, q, r);
+          tri(false, p, r, w);
+        } else tri(true, p, q, r) || tri(true, p, r, w) || tri(true, p, q, w) || tri(true, q, r, w);
+      }
+  }
+  if (!positions.length) return;
+  const geometry = new T.BufferGeometry();
+  geometry.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
+  geometry.computeVertexNormals();
+  d.add(geometry, material);
+}
+
+/** Convert stations authored in the cockpit group's frame into the model frame that
+ * completeCockpitControls expects (the airframe sits pitched on its tail wheel). */
+export function dc3FrameStations(root, cabin, stations) {
+  root.updateMatrixWorld(true);
+  const frame = root.matrixWorld.clone().invert().multiply(cabin.matrixWorld),
+    turn = new T.Quaternion();
+  frame.decompose(new T.Vector3(), turn, new T.Vector3());
+  return stations.map((station) => {
+    const local = new T.Quaternion().setFromEuler(new T.Euler(...(station.rotation ?? [0, 0, 0])));
+    const e = new T.Euler().setFromQuaternion(turn.clone().multiply(local), 'XYZ');
+    return {
+      ...station,
+      at: new T.Vector3(...station.at).applyMatrix4(frame).toArray(),
+      rotation: [e.x, e.y, e.z],
+    };
+  });
+}
+
 export function dc3Cockpit(root, m) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'DC3-cockpit'),
@@ -12,7 +197,8 @@ export function dc3Cockpit(root, m) {
   const green = mat('DC3-cockpit-green', '#34473b'),
     liner = mat('DC3-cabin-liner', '#c4bca5'),
     cloth = mat('DC3-seat-cloth', '#6b7c6f'),
-    blue = mat('DC3-prop-controls', '#366ba0');
+    blue = mat('DC3-prop-controls', '#366ba0'),
+    P = partPalette();
   const deck = 2.9,
     k = 1.95 / 1145,
     x = (u) => (925 - u) * k,
@@ -44,6 +230,12 @@ export function dc3Cockpit(root, m) {
     black,
     [0, 0, 1],
   );
+  // Close the panel housing's top between the face and its back sheet: from the seat, above
+  // the eye-level edge, the back sheet showed as a black band over the panel.
+  for (let i = 0; i < 3; i++) {
+    const [a, b] = [edge[i], edge[i + 1]];
+    quad(d, a, b, [b[0], b[1], b[2] + 0.16], [a[0], a[1], a[2] + 0.16], m.dark, [0, 1, 0]);
+  }
   outline(d, edge, 0.012, m.dark);
   const sources = {};
   for (const [name, component, path] of [
@@ -206,7 +398,8 @@ export function dc3Cockpit(root, m) {
   }
   for (const u of [947, 1085])
     for (const v of [506, 543, 629]) {
-      ellipsoid(d, at(u, v, -0.026), [0.009, 0.009, 0.005], m.orange, 8);
+      // Pressure warning lamps: 9 mm domes need few facets.
+      d.add(new T.SphereGeometry(1, 10, 6).scale(0.009, 0.009, 0.005), m.orange, at(u, v, -0.026));
       d.text('PRESS --', at(u, v + 13, -0.02), 0.006, Math.PI, ink);
     }
   for (const [u, v] of [
@@ -237,59 +430,148 @@ export function dc3Cockpit(root, m) {
   beveledBox(d, [0.14, 0.17, 0.12], [0, 4.3, 7.97], m.dark, 0.02);
   ins.headingDrum('compass', [0, 4.31, 7.904], 0.045, 'trueHeading');
   d.text('TRUE', [0, 4.238, 7.905], 0.012, Math.PI, ink, 'display');
+  // Throttle quadrant at the panel's lower centre (C-47A Le Bourget photo): cranked flat levers,
+  // white propeller balls (P), black throttle balls (T), red mixture balls (M).
   const q = group(cabin, 'DC3-quadrant', [0, 3.16, 7.65]),
-    qd = detailKit(q, q.name);
+    qd = detailKit(q, q.name),
+    knobRed = P.red;
   beveledBox(qd, [0.43, 0.48, 0.66], [0, 0, 0], m.dark, 0.025);
   for (const [i, xx, label, color, signal] of [
     [0, 0.175, 'P', liner, null],
     [1, 0.115, 'P', liner, null],
-    [2, 0.037, 'T', m.metal, 'power'],
-    [3, -0.037, 'T', m.metal, 'power'],
-    [4, -0.115, 'M', blue, null],
-    [5, -0.175, 'M', blue, null],
+    [2, 0.037, 'T', P.black, 'power'],
+    [3, -0.037, 'T', P.black, 'power'],
+    [4, -0.115, 'M', knobRed, null],
+    [5, -0.175, 'M', knobRed, null],
   ]) {
-    qd.box([0.018, 0.012, 0.49], [xx, 0.247, 0], black);
+    qd.box([0.011, 0.004, 0.49], [xx, 0.2405, 0], black);
     const g = group(q, `DC3-lever-${i}`, [xx, 0.24, 0.12]),
       ld = detailKit(g, g.name);
-    ld.rod([0, 0, 0], [0, 0.28, -0.11], 0.01, m.metal);
-    ellipsoid(ld, [0, 0.3, -0.12], [0.028, 0.027, 0.026], color, 12);
-    ld.text(label, [0, 0.3, -0.15], 0.015, Math.PI, ink);
+    // A flat bar cranked aft halfway up, as the Douglas levers are.
+    const knee = [0, 0.15, -0.02],
+      top = [0, 0.285, -0.115];
+    for (const [a, b] of [
+      [[0, 0, 0], knee],
+      [knee, top],
+    ])
+      ld.add(
+        place(
+          roundedBox([0.009, Math.hypot(b[1] - a[1], b[2] - a[2]) + 0.012, 0.016], 0.002, 1),
+          [0, (a[1] + b[1]) / 2, (a[2] + b[2]) / 2],
+          [Math.atan2(b[2] - a[2], b[1] - a[1]), 0, 0],
+        ),
+        m.engine,
+      );
+    ld.add(new T.SphereGeometry(0.026, 14, 10), color, [0, 0.3, -0.12]);
+    ld.text(label, [0, 0.3, -0.147], 0.014, Math.PI, label === 'P' ? black : ink);
     ld.finish();
     if (signal)
       bindings.push({ node: g.name, source: signal, property: 'rotation', axis: 'x', scale: 0.7 });
   }
   // White elevator trim wheel on the left; no simulated trim signal is invented.
-  qd.add(new T.TorusGeometry(0.2, 0.017, 6, 32).rotateY(Math.PI / 2), liner, [0.26, 0.03, -0.07]);
+  qd.add(new T.TorusGeometry(0.2, 0.016, 6, 36).rotateY(Math.PI / 2), liner, [0.26, 0.03, -0.07]);
   for (let a = 0; a < Math.PI * 2; a += Math.PI / 2)
-    qd.rod(
-      [0.26, 0.03, -0.07],
-      [0.26, 0.03 + Math.sin(a) * 0.19, -0.07 + Math.cos(a) * 0.19],
-      0.009,
+    qd.add(
+      bar(
+        [0.26, 0.03, -0.07],
+        [0.26, 0.03 + Math.sin(a) * 0.19, -0.07 + Math.cos(a) * 0.19],
+        0.008,
+        10,
+      ),
       liner,
     );
-  qd.text('PARKING BRAKE', [0, -0.29, -0.345], 0.018, Math.PI, ink);
-  qd.rod([0, -0.32, -0.35], [0, -0.42, -0.38], 0.016, m.metal);
+  qd.add(
+    new T.CylinderGeometry(0.03, 0.03, 0.04, 16).rotateZ(Math.PI / 2),
+    m.metal,
+    [0.25, 0.03, -0.07],
+  );
   qd.finish();
+  // Landing gear and flap levers on the floor between the seats, aft of the pedestal. The gear
+  // lever carries its red safety latch; both swing forward for down.
+  const floorQuadrant = group(cabin, 'DC3-floor-quadrant', [-0.1, deck, 7.22]),
+    fq = detailKit(floorQuadrant, floorQuadrant.name);
+  fq.add(place(roundedBox([0.2, 0.05, 0.16], 0.012, 1), [0, 0.025, 0]), m.dark);
+  for (const x of [0.045, -0.055]) fq.box([0.012, 0.003, 0.12], [x, 0.051, 0], black);
+  fq.text('GEAR', [0.045, 0.053, -0.07], 0.016, Math.PI, ink);
+  fq.text('FLAPS', [-0.055, 0.053, -0.07], 0.016, Math.PI, ink);
+  fq.finish();
+  for (const [name, x, action, height, knob] of [
+    ['DC3-gear-lever', 0.045, 'gear', 0.34, P.red],
+    ['DC3-flap-lever', -0.055, 'flaps', 0.28, P.black],
+  ]) {
+    const g = group(floorQuadrant, name, [x, 0.04, 0]),
+      gd = detailKit(g, name);
+    gd.add(new T.CylinderGeometry(0.016, 0.016, 0.028, 14).rotateZ(Math.PI / 2), m.metal);
+    gd.add(bar([0, 0, 0], [0, height, -0.02], 0.009, 12, 0.007), m.metal);
+    if (action === 'gear') {
+      // Ball grip and the hinged latch plate that blocks the lever until lifted.
+      gd.add(new T.SphereGeometry(0.021, 14, 10), knob, [0, height + 0.012, -0.02]);
+      gd.add(
+        place(roundedBox([0.032, 0.06, 0.006], 0.003, 1), [0, 0.1, -0.022], [-0.08, 0, 0]),
+        P.yellow,
+      );
+      gd.add(bar([-0.018, 0.13, -0.024], [0.018, 0.13, -0.024], 0.004, 10), P.yellow);
+    } else {
+      gd.add(
+        lathe(
+          [
+            [0, 0],
+            [0.012, 0],
+            [0.016, 0.016],
+            [0.015, 0.034],
+            [0.01, 0.042],
+            [0, 0.043],
+          ],
+          14,
+        ),
+        knob,
+        [0, height - 0.005, -0.02],
+      );
+    }
+    gd.finish();
+    g.userData.aircraftControl = {
+      action,
+      motion: { property: 'rotation', axis: 'x', scale: 0.6, offset: -0.3 },
+    };
+  }
   for (const side of [-1, 1]) {
     const pitch = group(cabin, `DC3-column-${side}`, [side * 0.56, deck, 7.92]),
       pd = detailKit(pitch, pitch.name);
-    pd.rod([0, 0, 0], [0, 0.76, -0.05], 0.038, m.dark);
+    // Tapered column from its floor boot to a collar under the wheel hub.
+    pd.add(
+      lathe(
+        [
+          [0, 0],
+          [0.075, 0],
+          [0.07, 0.03],
+          [0.05, 0.05],
+          [0.046, 0.08],
+          [0.034, 0.1],
+          [0, 0.1],
+        ],
+        16,
+        28,
+      ),
+      P.grip,
+    );
+    pd.add(bar([0, 0.05, 0], [0, 0.72, -0.046], 0.034, 16, 0.027), m.dark);
+    pd.add(
+      lathe(
+        [
+          [0, 0],
+          [0.036, 0],
+          [0.036, 0.03],
+          [0, 0.03],
+        ],
+        16,
+      ),
+      m.metal,
+      [0, 0.7, -0.045],
+    );
     pd.finish();
     const roll = group(pitch, `DC3-wheel-${side}`, [0, 0.76, -0.05]),
-      wd = detailKit(roll, roll.name),
-      points = Array.from({ length: 35 }, (_, i) => {
-        const a = ((140 + (i * 260) / 34) * Math.PI) / 180;
-        return [0.29 * Math.cos(a), 0.29 * Math.sin(a), 0];
-      });
-    outline(wd, points, 0.019, m.dark, false);
-    for (const a of [35, 145, 270])
-      wd.rod(
-        [0, 0, 0],
-        [0.28 * Math.cos((a * Math.PI) / 180), 0.28 * Math.sin((a * Math.PI) / 180), 0],
-        0.013,
-        m.metal,
-      );
-    ellipsoid(wd, [0, 0, 0], [0.05, 0.05, 0.03], m.metal, 16);
+      wd = detailKit(roll, roll.name);
+    douglasWheel(wd, P, m.dark, m.metal);
     wd.finish();
     bindings.push(
       // Nose up pulls the column aft; right bank turns the wheel clockwise from the seat.
@@ -299,13 +581,11 @@ export function dc3Cockpit(root, m) {
     for (const sign of [-1, 1]) {
       const g = group(cabin, `DC3-pedal-${side}-${sign}`, [
           side * 0.56 + sign * 0.16,
-          deck + 0.1,
+          deck + 0.12,
           7.98,
         ]),
         dd = detailKit(g, g.name);
-      dd.box([0.23, 0.18, 0.1], [0, 0, 0], m.dark);
-      for (let i = 0; i < 6; i++)
-        dd.rod([-0.1, -0.07 + i * 0.028, -0.055], [0.1, -0.07 + i * 0.028, -0.055], 0.004, m.metal);
+      douglasPedal(dd, P, sign);
       dd.finish();
       bindings.push({
         node: g.name,
@@ -322,27 +602,9 @@ export function dc3Cockpit(root, m) {
       d.rod([side * 0.58 + xx, deck, 7.44], [side * 0.58 + xx, 3.25, 7.44], 0.022, m.metal);
     d.rod([side * 0.58 - 0.23, 3.445, 7.34], [side * 0.58 + 0.23, 3.445, 7.59], 0.018, liner);
     d.box([0.055, 0.019, 0.04], [side * 0.58, 3.455, 7.47], m.metal);
-    for (let row = 0; row < 4; row++)
-      for (let col = 0; col < 4; col++) {
-        const zz = 6.35 + col * 0.18,
-          yy = deck + 0.06 + row * 0.19;
-        d.rod([side * 1.05, yy, zz], [side * 1.05, yy + 0.18, zz + 0.18], 0.0025, cloth);
-        d.rod([side * 1.05, yy + 0.18, zz], [side * 1.05, yy, zz + 0.18], 0.0025, cloth);
-      }
   }
-  for (const side of [-1, 1])
-    sheet(
-      d,
-      [
-        [side * 1.07, 2.4, 6.15],
-        [side * 1.09, 3.5, 6.15],
-        [side * 1.09, 3.55, 6.8],
-        [side * 0.91, 3.4, 7.65],
-        [side * 0.82, 2.55, 7.65],
-      ],
-      green,
-      [-side, 0, 0],
-    );
+  // The flight-deck sidewalls are lined from the skin by `fit` below (the straight sheets that
+  // stood here missed the curved skin and let bare aluminium show around them).
   // Original overhead: paired ignition selectors in the middle, electrical switches at the sides.
   // It lies along the sloping roof behind the header, narrowed to fit under the curved ceiling.
   const oh = group(cabin, 'DC3-overhead', [0, 4.43, 7.77]);
@@ -364,13 +626,33 @@ export function dc3Cockpit(root, m) {
     m.dark,
     [0, 0, -1],
   );
+  // Ignition selector dial plates; their pointer knobs are the engine control stations below.
   for (const side of [-1, 1]) {
-    od.add(new T.CylinderGeometry(0.053, 0.053, 0.025, 20).rotateX(Math.PI / 2), m.metal, [
-      side * 0.16,
-      0.03,
-      -0.025,
-    ]);
-    od.rod([side * 0.16, 0.03, -0.045], [side * 0.16 + 0.03, 0.06, -0.045], 0.01, m.dark);
+    od.add(
+      lathe(
+        [
+          [0, 0],
+          [0.053, 0],
+          [0.053, 0.014],
+          [0.046, 0.02],
+          [0, 0.02],
+        ],
+        24,
+      )
+        .rotateX(-Math.PI / 2)
+        // Round again under the overhead's narrowing scale.
+        .scale(1 / 0.72, 1, 1),
+      m.metal,
+      [side * 0.16, 0.03, -0.002],
+    );
+    for (let k = 0; k < 4; k++) {
+      const a = (-0.6 + k * 0.4) * Math.PI;
+      od.box(
+        [0.003, 0.012, 0.002],
+        [side * 0.16 + Math.sin(a) * 0.04, 0.03 + Math.cos(a) * 0.04, -0.023],
+        black,
+      );
+    }
     od.text('IGNITION', [side * 0.16, 0.11, -0.012], 0.012, Math.PI, ink);
     for (let i = 0; i < 7; i++)
       for (let row = 0; row < 2; row++) {
@@ -403,10 +685,6 @@ export function dc3Cockpit(root, m) {
   );
   for (const [a, b] of [
     [
-      [8.3, 0.82, deck],
-      [6.4, 1, deck],
-    ],
-    [
       [6.4, 1, 2.19],
       [6.1, 1, 2.19],
     ],
@@ -425,6 +703,22 @@ export function dc3Cockpit(root, m) {
   // Skin half width at a station and height (cockpit frame); the cabin floor and furniture
   // stay inside it where the belly sweeps up behind the wing.
   const wall = (zz, yy) => (m.skin ? m.skin(zz, yy) : 9);
+  // The flight deck runs out to the skin: a 1 m wide sheet left the belly showing beside it.
+  for (let zz = 6.4; zz < 8.3 - 1e-6; zz += 0.19) {
+    const z1 = Math.min(8.3, zz + 0.19),
+      half = (z) => Math.min(1.25, wall(z, deck + 0.005), wall(z, deck + 0.04)) - 0.012;
+    sheet(
+      d,
+      [
+        [-half(zz), deck, zz],
+        [half(zz), deck, zz],
+        [half(z1), deck, z1],
+        [-half(z1), deck, z1],
+      ],
+      m.dark,
+      [0, 1, 0],
+    );
+  }
   const floors = [
     [6.1, 1, 2.19],
     [-0.8, 1, 2.19],
@@ -521,5 +815,91 @@ export function dc3Cockpit(root, m) {
     [0, 0, 1],
   );
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Controls without a modeled part, placed where the DC-3 has them (cockpit frame; the builder
+  // converts them with dc3FrameStations once the cabin is posed). The ignition selectors' pointer
+  // knobs sit on the overhead dial plates, the master switch between them; the parking brake
+  // handle is low on the pedestal's left face, ahead of the captain's seat.
+  oh.updateMatrix();
+  const overhead = (x, y, z) => new T.Vector3(x, y, z).applyMatrix4(oh.matrix).toArray(),
+    up = [oh.rotation.x, 0, 0];
+  const stations = [
+    ...[1, -1].map((side, engine) => ({
+      action: 'engine',
+      engine,
+      style: 'rotary',
+      scale: 1.5,
+      at: overhead(side * 0.16, 0.03, -0.022),
+      rotation: up,
+    })),
+    {
+      action: 'engine',
+      style: 'guarded',
+      scale: 1.3,
+      at: overhead(0, 0.05, -0.002),
+      rotation: up,
+      label: 'MASTER',
+      labelAt: [0, 0.04, -0.002],
+      labelHeight: 0.009,
+    },
+    {
+      action: 'brake',
+      style: 'tee',
+      scale: 1.2,
+      at: [0.217, 3.06, 7.86],
+      rotation: [0, -Math.PI / 2, 0],
+      label: 'PARK BRK',
+      labelAt: [0, 0.035, -0.002],
+      labelHeight: 0.011,
+    },
+  ];
+  /** Close the nose behind the panel and line the flight deck's sidewalls, in the airframe
+   * (`body`) frame, once the cockpit group is posed in it. */
+  const fit = (body) => {
+    const holder = group(cabin, 'DC3-cockpit-fit', cabin.position.clone().negate().toArray()),
+      fd = detailKit(holder, holder.name),
+      wallLining = m.lining ?? green;
+    // Just ahead of the panel's back sheet, deck to the windscreen's lower frame: no bare skin
+    // beside or under the panel.
+    cockpitBulkhead(fd, body, { z: 8.08, yFrom: 2.9, yTo: 3.56, material: m.dark });
+    cockpitLiner(fd, body, {
+      zFrom: 5.9,
+      zTo: 8.08,
+      yFrom: 2.88,
+      yTo: 3.57,
+      zSteps: 10,
+      ySteps: 5,
+      from: 0.3,
+      inset: 0.008,
+      material: wallLining,
+    });
+    // Above the sill: the aft wall, the window posts and the strip up to the roof lining (the
+    // lining and the roof frames are left out of the skin it follows). It stops short of the
+    // windscreen's corner post: a grid over that steeply slanted post only made saw teeth.
+    const exclude = ['cockpit', 'DC3-shell-DC3-deck-lining', 'DC3-shell-DC3-engine-case'];
+    paneLiner(fd, body, {
+      zFrom: 5.9,
+      zTo: 7.82,
+      yFrom: 3.55,
+      yTo: 4.22,
+      zSteps: 56,
+      ySteps: 9,
+      material: wallLining,
+      exclude,
+    });
+    // Over the side windows the roof curves in from the window heads.
+    cockpitLiner(fd, body, {
+      zFrom: 5.9,
+      zTo: 7.5,
+      yFrom: 4.22,
+      yTo: 4.45,
+      zSteps: 10,
+      ySteps: 3,
+      from: 0.3,
+      inset: 0.008,
+      material: wallLining,
+      exclude,
+    });
+    fd.finish();
+  };
+  return { nodes: ['cockpit'], sources, derived, bindings, stations, fit };
 }

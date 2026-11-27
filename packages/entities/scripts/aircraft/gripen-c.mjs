@@ -1,6 +1,17 @@
 /** JAS 39C: single-seat, RM12, portrait CMFD cockpit. See reference-review.json.
  * Metres, +Y up, +Z forward, +X pilot left. No external stores.
  */
+import { cockpitBulkhead, skinSection, wallAt } from './cockpit-fit.mjs';
+import {
+  contour,
+  leverGeometry,
+  loftUp,
+  partPalette,
+  pedalGeometry,
+  place,
+  roundedBox,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -166,6 +177,29 @@ export function buildGripenC(s) {
       cr[i].points.map((p) => [...p, cr[i].z]),
       i === 1 ? 0.017 : 0.013,
       paint,
+      false,
+    );
+  // The frames' inboard faces are the dark canopy seal: from the seat the bow and the sill rails
+  // read black, as in the cockpit photographs, not as the gray paint they wear outside.
+  outline(
+    d,
+    cr[1].points.map(([x, y]) => [x * 0.975, y - 0.006, cr[1].z - 0.012]),
+    0.017,
+    seam,
+    false,
+  );
+  for (const k of [0, 20])
+    outline(
+      d,
+      cr
+        .slice(1, 5)
+        .map((r) => [
+          r.points[k][0] - Math.sign(r.points[k][0]) * 0.01,
+          r.points[k][1] + 0.006,
+          r.z,
+        ]),
+      0.014,
+      seam,
       false,
     );
   // Thin canopy sill bridges close the shell without putting a solid block through the pilot.
@@ -673,7 +707,7 @@ export function buildGripenC(s) {
     );
   }
   d.finish();
-  const interior = gripenCockpit(root, { metal, glass });
+  const { stations: controlStations, ...interior } = gripenCockpit(root, { metal, glass });
   Object.assign(interior.derived, {
     pitchDeflection: { op: 'multiply', args: ['pitchInput', 0.28] },
     rollDeflection: { op: 'multiply', args: ['rollInput', 0.24] },
@@ -683,7 +717,7 @@ export function buildGripenC(s) {
   cleanGeometry(root);
   return {
     root,
-    frame: gripenFrame(),
+    frame: { ...gripenFrame(), controlStations },
     enginePoints: [{ id: 'engine-1', position: [0, 1.8, -6.3] }],
     visual: {
       rotors: [],
@@ -949,16 +983,31 @@ function gripenCockpit(root, m) {
     panel,
     [0, 0, -1],
   );
+  // Fit: dark liners follow the skin from the floor up to the canopy sill, the console tops run out
+  // to them and a bulkhead closes the nose ahead of the pedals, so no painted skin shows beside
+  // the consoles, around the panel or along the sill (it did all round the old sloped walls).
+  sillLiner(d, root, {
+    zFrom: 1.95,
+    zTo: 4.16,
+    yFrom: 1.15,
+    yTo: 2.3,
+    material: panel,
+    zSteps: 24,
+    inset: 0.012,
+  });
+  consoleShelf(d, root, { zFrom: 2.2, zTo: 3.6, y: 1.68, x: 0.44, material: panel, inset: 0.025 });
+  // The floor runs out to the liners: past its edges the lower skin showed as light lines.
+  consoleShelf(d, root, {
+    zFrom: 1.95,
+    zTo: 4.16,
+    y: 1.187,
+    x: 0.19,
+    material: panel,
+    steps: 12,
+    inset: 0.025,
+  });
+  cockpitBulkhead(d, root, { z: 4.16, yFrom: 1.15, yTo: 2.06, material: panel });
   for (const side of [-1, 1]) {
-    quad(
-      d,
-      [side * 0.2, 1.17, 1.95],
-      [side * 0.26, 1.17, 4.2],
-      [side * 0.4, 1.8, 4.2],
-      [side * 0.44, 1.98, 1.95],
-      panel,
-      [-side, 0, 0],
-    );
     d.box([0.18, 0.14, 1.4], [side * 0.35, 1.61, 2.9], panel);
     const g = group(cabin, `Gripen-console-${side}`, [side * 0.35, 1.69, 2.9]);
     g.rotation.x = Math.PI / 2;
@@ -978,20 +1027,26 @@ function gripenCockpit(root, m) {
         black,
       );
       gd.text(
-        (side === 1 ? ['ENGINE', 'RADIO', 'POWER', 'FUEL'] : ['LIGHT', 'ECS', 'OXY', 'CANOPY'])[i],
+        (side === 1 ? ['ENGINE', 'RADIO', 'POWER', 'FUEL'] : ['LIGHT', 'CANOPY', 'OXY', 'ECS'])[i],
         [0, y + 0.09, -0.009],
         0.006,
         Math.PI,
         ink,
       );
+      // The throttle stands on the left RADIO plate; the ENGINE and CANOPY plates carry stations.
+      if ((side === 1 && i < 2) || (side === -1 && i === 1)) continue;
       for (let j = 0; j < 3; j++) {
-        gd.rod(
-          [-0.048 + j * 0.048, y - 0.02, -0.008],
-          [-0.048 + j * 0.048, y - 0.014, -0.034],
-          0.003,
-          m.metal,
-        );
-        gd.box([0.009, 0.009, 0.006], [-0.048 + j * 0.048, y - 0.014, -0.037], button);
+        const x = -0.048 + j * 0.048;
+        gd.add(new T.CylinderGeometry(0.004, 0.004, 0.004, 6).rotateX(Math.PI / 2), m.metal, [
+          x,
+          y - 0.02,
+          -0.007,
+        ]);
+        gd.add(new T.CylinderGeometry(0.0016, 0.0024, 0.018, 10).rotateX(-1.2), m.metal, [
+          x,
+          y - 0.016,
+          -0.016,
+        ]);
       }
     }
     gd.finish();
@@ -1020,20 +1075,10 @@ function gripenCockpit(root, m) {
     ]);
   }
   sd.finish();
+  // Short centre stick: a rubber gaiter, a slim shaft and the Gripen's rounded grip.
   const stick = group(cabin, 'Gripen-stick', [0, 1.46, 3.26]),
     st = detailKit(stick, stick.name);
-  st.add(new T.CylinderGeometry(0.06, 0.075, 0.09, 16), black, [0, 0.045, 0]);
-  st.rod([0, 0.07, 0], [0, 0.3, -0.035], 0.019, black);
-  beveledBox(st, [0.085, 0.13, 0.075], [0, 0.35, -0.045], button, 0.015);
-  for (const [x, y] of [
-    [-0.022, 0.39],
-    [0.022, 0.36],
-  ])
-    st.add(new T.CylinderGeometry(0.012, 0.012, 0.009, 10).rotateX(Math.PI / 2), black, [
-      x,
-      y,
-      -0.087,
-    ]);
+  gripenStickGeometry(st);
   st.finish();
   bindings.push(
     { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.15 },
@@ -1041,9 +1086,10 @@ function gripenCockpit(root, m) {
   );
   const th = group(cabin, 'Gripen-throttle', [0.32, 1.7, 3.04]),
     td = detailKit(th, th.name);
-  td.rod([0, 0, 0], [0, 0.12, 0], 0.012, black);
-  beveledBox(td, [0.11, 0.07, 0.13], [0, 0.15, 0], button, 0.015);
+  leverGeometry(td, { style: 'hotas-euro', height: 0.075, rake: -0.01, side: 1 });
   td.finish();
+  // The throttle's quadrant slot on the left console.
+  d.box([0.012, 0.003, 0.2], [0.32, 1.6965, 3.04], button);
   bindings.push({
     node: th.name,
     source: 'power',
@@ -1055,9 +1101,7 @@ function gripenCockpit(root, m) {
   for (const side of [-1, 1]) {
     const g = group(cabin, `Gripen-pedal-${side}`, [side * 0.14, 1.31, 3.62]),
       gd = detailKit(g, g.name);
-    gd.box([0.12, 0.14, 0.025], [0, 0, 0], m.metal);
-    for (let i = 0; i < 5; i++)
-      gd.box([0.105, 0.005, 0.005], [0, -0.052 + i * 0.026, -0.015], black);
+    pedalGeometry(gd, { style: 'fighter', side, drop: 0.06, scale: 0.92, lean: 0.34 });
     gd.finish();
     bindings.push({
       node: g.name,
@@ -1068,5 +1112,211 @@ function gripenCockpit(root, m) {
     });
   }
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Where the controls are (reference-review.json cockpit sources): the gear handle on the panel's
+  // lower left beside its lamp, the flap override and the parking brake handle on the lower right,
+  // the speed brake on the throttle grip, the engine start button forward on the left console and
+  // the canopy handle on the right console, ahead of the seat. The panel assembly sits 0.18 m lower than drawn.
+  const panelAt = (x, y) => [x, y - 0.18, z - 0.002],
+    top = [Math.PI / 2, 0, 0];
+  const stations = [
+    {
+      action: 'gear',
+      style: 'jet',
+      scale: 0.7,
+      at: panelAt(0.345, 2.17),
+      label: 'LDG GEAR',
+      labelAt: [0, 0.034, -0.002],
+      labelHeight: 0.006,
+    },
+    {
+      action: 'flaps',
+      style: 'toggle',
+      scale: 1.15,
+      at: panelAt(-0.345, 2.2),
+      label: 'FLAPS',
+      labelAt: [0, 0.028, -0.002],
+      labelHeight: 0.006,
+    },
+    {
+      action: 'brake',
+      style: 'tee',
+      scale: 0.7,
+      at: panelAt(-0.345, 2.07),
+      label: 'PARK BRK',
+      labelAt: [0, 0.026, -0.002],
+      labelHeight: 0.006,
+    },
+    {
+      action: 'speedBrake',
+      style: 'slider',
+      parent: 'Gripen-throttle',
+      at: [0.299, 1.835, 3.032],
+      rotation: [0, Math.PI / 2, 0],
+    },
+    {
+      action: 'engine',
+      style: 'button',
+      at: [0.35, 1.696, 3.38],
+      rotation: top,
+      label: 'ENG START',
+      labelAt: [0, 0.036, -0.002],
+    },
+    {
+      action: 'canopy',
+      style: 'canopy',
+      at: [-0.35, 1.696, 3.06],
+      rotation: top,
+      label: 'CANOPY',
+      labelAt: [0, -0.045, -0.002],
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
+}
+
+/** Sidewall liners from `yFrom` up to the canopy sill, `inset` inside the skin. Each station's
+ * column climbs the wall in 1 cm steps and stops below `yTo` where that side's skin ends or jumps
+ * to another surface (a shoulder or chine outboard), so the liner meets the sill instead of
+ * leaving a painted strip above its last row, and never reaches out through the skin. */
+function sillLiner(
+  d,
+  root,
+  { zFrom, zTo, yFrom, yTo, material, zSteps = 14, ySteps = 8, inset = 0.008 },
+) {
+  for (const side of [1, -1]) {
+    const columns = [];
+    for (let i = 0; i <= zSteps; i++) {
+      const z = zFrom + ((zTo - zFrom) * i) / zSteps,
+        segments = skinSection(root, z);
+      let lo = yFrom,
+        last = wallAt(segments, yFrom, side);
+      if (last === undefined) {
+        columns.push(undefined);
+        continue;
+      }
+      for (let y = yFrom + 0.01; y <= yTo + 1e-9; y += 0.01) {
+        const x = wallAt(segments, y, side);
+        if (x === undefined || Math.abs(x - last) > 0.03) break;
+        lo = y;
+        last = x;
+      }
+      columns.push(
+        Array.from({ length: ySteps + 1 }, (_, j) => {
+          const y = yFrom + ((lo - yFrom) * j) / ySteps,
+            x = wallAt(segments, y, side);
+          return x === undefined ? undefined : [x - side * inset, y, z];
+        }),
+      );
+    }
+    for (let i = 0; i < zSteps; i++)
+      for (let j = 0; j < ySteps; j++) {
+        const corners = [
+          columns[i]?.[j],
+          columns[i + 1]?.[j],
+          columns[i + 1]?.[j + 1],
+          columns[i]?.[j + 1],
+        ];
+        if (corners.every(Boolean)) quad(d, ...corners, material, [-side, 0, 0]);
+      }
+  }
+}
+/** A console top at height `y` from its outboard edge `x` out to the skin, both sides. */
+function consoleShelf(d, root, { zFrom, zTo, y, x, material, steps = 8, inset = 0.008 }) {
+  for (const side of [1, -1]) {
+    const row = [];
+    for (let i = 0; i <= steps; i++) {
+      const z = zFrom + ((zTo - zFrom) * i) / steps,
+        wall = wallAt(skinSection(root, z), y, side);
+      if (wall !== undefined) row.push([z, wall - side * inset]);
+    }
+    for (let i = 0; i + 1 < row.length; i++) {
+      const [z0, w0] = row[i],
+        [z1, w1] = row[i + 1];
+      quad(d, [side * x, y, z0], [side * x, y, z1], [w1, y, z1], [w0, y, z0], material, [0, 1, 0]);
+    }
+  }
+}
+/** Gripen centre stick: a ribbed gaiter on its pedestal, a slim raked shaft and a rounded grip
+ * whose broad head overhangs forward and to the thumb (+X) side; trim hat, two buttons and a
+ * castle switch on top, the trigger in front and a pinky paddle low on the front. */
+function gripenStickGeometry(d) {
+  const P = partPalette();
+  d.add(
+    loftUp(
+      [0, 0.02, 0.035, 0.05, 0.065, 0.08, 0.09].map((y, i) => ({
+        y,
+        points: contour(
+          0,
+          0,
+          [0.07, 0.066, 0.052, 0.046, 0.034, 0.028, 0.02][i],
+          [0.07, 0.066, 0.052, 0.046, 0.034, 0.028, 0.02][i],
+          18,
+          2,
+        ),
+      })),
+      30,
+    ),
+    P.tread,
+  );
+  const topAt = [0, 0.28, -0.03],
+    tilt = Math.atan2(-0.03, 0.28);
+  d.add(
+    loftUp([
+      { y: 0.08, points: contour(0, 0, 0.012, 0.012, 14, 2) },
+      { y: 0.28, points: contour(0, -0.03, 0.011, 0.011, 14, 2) },
+    ]),
+    P.alloy,
+  );
+  const mount = (g) => place(g, topAt, [tilt, 0, 0]);
+  const rows = [
+    [0, 0, 0.017, 0.02, 2.1],
+    [0.035, 0.002, 0.019, 0.023, 2.1],
+    [0.07, 0.003, 0.0195, 0.024, 2.1],
+    [0.1, 0.006, 0.021, 0.026, 2.3],
+    [0.118, 0.012, 0.025, 0.031, 2.6],
+    [0.13, 0.014, 0.025, 0.031, 2.7],
+    [0.136, 0.014, 0.017, 0.022, 2.5],
+  ];
+  d.add(
+    mount(
+      loftUp(rows.map(([y, cz, rx, rz, p]) => ({ y, points: contour(0.002, cz, rx, rz, 18, p) }))),
+    ),
+    P.grip,
+  );
+  d.add(
+    mount(
+      tube(
+        [
+          [0, 0.1, 0.028],
+          [0, 0.088, 0.04],
+          [0, 0.074, 0.035],
+        ],
+        0.0055,
+        10,
+      ),
+    ),
+    P.black,
+  );
+  d.add(
+    mount(place(new T.CylinderGeometry(0.0058, 0.0058, 0.007, 14), [0.008, 0.137, -0.004])),
+    P.black,
+  );
+  d.add(
+    mount(
+      place(new T.SphereGeometry(0.004, 10, 6), [0.008, 0.141, -0.004], [0, 0, 0], [1, 0.6, 1]),
+    ),
+    P.black,
+  );
+  d.add(
+    mount(place(new T.CylinderGeometry(0.0042, 0.0042, 0.005, 12), [-0.008, 0.137, 0.018])),
+    P.red,
+  );
+  d.add(
+    mount(place(new T.CylinderGeometry(0.0038, 0.0038, 0.005, 12), [0.012, 0.137, 0.022])),
+    P.black,
+  );
+  d.add(mount(place(roundedBox([0.008, 0.012, 0.012], 0.002), [0.025, 0.122, -0.002])), P.black);
+  d.add(
+    mount(place(roundedBox([0.012, 0.012, 0.008], 0.002), [0, 0.032, 0.022], [0.3, 0, 0])),
+    P.black,
+  );
 }

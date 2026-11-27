@@ -3,7 +3,21 @@
  * POH 13772-007 three-view/cabin plan and 2020 factory cockpit photograph.
  */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead } from './cockpit-fit.mjs';
+import {
+  bar,
+  contour,
+  flapSelectorGeometry,
+  lathe,
+  leverGeometry,
+  loftUp,
+  partPalette,
+  place,
+  roundedBox,
+  tube,
+} from './cockpit-parts.mjs';
 import { addG1000Readouts } from './g1000-panel.mjs';
+import { cabinHeadliner, cabinLiner, frameTrim, gaPedal } from './ga-cabin.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -527,11 +541,18 @@ export function buildCirrus(s) {
     );
   }
   d.finish();
-  const interior = cockpit(root, { paint, accent, metal, dark, halfWidth, rings });
+  const { stations: controlStations, ...interior } = cockpit(root, {
+    paint,
+    accent,
+    metal,
+    dark,
+    halfWidth,
+    rings,
+  });
   cleanGeometry(root);
   return {
     root,
-    frame: cirrusFrame(),
+    frame: { ...cirrusFrame(), controlStations },
     enginePoints: [{ id: 'engine-1', position: [0, 1.2, 2.8] }],
     visual: {
       rotors: [{ node: prop.name, axis: 'z', multiplier: 1, engine: 'engine-1' }],
@@ -557,6 +578,9 @@ function cockpit(root, m) {
     { bindings, derived, ink, black, red } = inst;
   const face = mat('Cirrus-panel', '#353c3e'),
     leather = mat('Cirrus-upholstery', '#b5b3a8'),
+    // Molded gray side panels and a light headliner (N307A cockpit photograph).
+    sidewall = mat('Cirrus-sidewall', '#8f9293'),
+    headliner = mat('Cirrus-headliner', '#c9c8c0'),
     insert = mat('Cirrus-seat-inserts', '#535b5d');
   // Factory 2020 photograph: 180px active display width, 12-inch 4:3 diagonal.
   const k = 0.24384 / 180,
@@ -679,7 +703,7 @@ function cockpit(root, m) {
     [848, 342],
   ])
     pt.vent(px(u), py(v), z - 0.02, 'round', v > 300 ? 0.068 : 0.049);
-  pt.knob(px(390), py(222), z - 0.025, 0.012);
+  // The ignition key is a control station (end of this function).
   d.text('IGNITION', at(391, 193, -0.02), 0.005, Math.PI, ink);
   for (const [u, v] of [
     [982, 203],
@@ -805,11 +829,12 @@ function cockpit(root, m) {
       face,
       [side, 0, 0],
     );
-  const flap = group(consoleFace, 'Cirrus-flap-selector', [-0.03, 0.08, -0.02]),
+  // Flap selector: an airfoil-knob lever in a slotted gate (UP, 50%, 100%).
+  const flap = group(consoleFace, 'Cirrus-flap-selector', [-0.03, 0.08, -0.012]),
     fd = detailKit(flap, flap.name);
-  fd.rod([0, 0, 0], [0, 0, -0.035], 0.004, m.metal);
-  beveledBox(fd, [0.04, 0.014, 0.025], [0, 0, -0.04], leather, 0.004);
+  flapSelectorGeometry(fd, { style: 'airfoil', scale: 1.15 });
   fd.finish();
+  consoleDetail.add(place(roundedBox([0.014, 0.09, 0.002], 0.002), [-0.03, 0.045, -0.0105]), black);
   bindings.push({
     node: flap.name,
     source: 'flapPosition',
@@ -843,10 +868,14 @@ function cockpit(root, m) {
     [0.045, 'power', black],
     [-0.045, 'mixture', red],
   ]) {
+    // Single power lever with the broad Cirrus grip; the red mixture lever beside it.
     const g = group(cabin, `Cirrus-${label}`, [x, 1, 0.56]),
       ld = detailKit(g, g.name);
-    ld.rod([0, 0, 0], [0, 0.095, 0.02], 0.007, m.metal);
-    ellipsoid(ld, [0, 0.095, 0.02], [0.022, 0.026, 0.018], col, 12);
+    void col;
+    if (label === 'power') {
+      leverGeometry(ld, { style: 'throttle-t', height: 0.09, rake: 0.02, scale: 1.25 });
+      ld.add(place(roundedBox([0.066, 0.006, 0.026], 0.003), [0, 0.124, 0.02]), m.metal);
+    } else leverGeometry(ld, { style: 'mixture', height: 0.085, rake: 0.02, scale: 0.9 });
     ld.finish();
     if (label === 'power')
       bindings.push({
@@ -862,24 +891,90 @@ function cockpit(root, m) {
   d.rod([0, 1.014, 0.27], [0.026, 1.014, 0.28], 0.007, red);
   for (const side of [-1, 1]) {
     // A Cirrus side yoke translates for pitch and rotates about its shaft for roll.
+    // Side yoke: a chrome tube sliding out of the side panel, ending in a swept handle that
+    // rises inboard to a switch head (trim hat, red autopilot disconnect).
     const g = group(cabin, `Cirrus-side-yoke-${side}`, [side * 0.56, 1.25, 0.86]),
-      yd = detailKit(g, g.name);
-    yd.rod([0, 0, 0.13], [0, 0, -0.05], 0.025, m.metal);
-    yd.rod([0, 0, -0.06], [-side * 0.055, 0.11, -0.11], 0.027, m.dark);
-    ellipsoid(yd, [-side * 0.055, 0.13, -0.11], [0.046, 0.023, 0.045], m.dark, 12);
-    yd.box([0.018, 0.01, 0.017], [-side * 0.04, 0.151, -0.1], red);
-    yd.box([0.012, 0.013, 0.02], [-side * 0.071, 0.153, -0.12], m.accent);
+      yd = detailKit(g, g.name),
+      Y = partPalette();
+    yd.add(bar([0, 0, 0.13], [0, 0, -0.045], 0.016, 16), m.metal);
+    yd.add(
+      place(
+        lathe(
+          [
+            [0.019, 0],
+            [0.021, 0.006],
+            [0.021, 0.03],
+            [0.017, 0.034],
+          ],
+          16,
+        ),
+        [0, 0, -0.04],
+        [-Math.PI / 2, 0, 0],
+      ),
+      Y.grip,
+    );
+    yd.add(
+      tube(
+        [
+          [0, 0, -0.07],
+          [-side * 0.02, 0.012, -0.095],
+          [-side * 0.055, 0.045, -0.11],
+          [-side * 0.08, 0.085, -0.11],
+        ],
+        0.016,
+        14,
+      ),
+      Y.grip,
+    );
+    yd.add(
+      place(
+        loftUp(
+          [0, 0.022, 0.04, 0.048].map((yy, i) => ({
+            y: yy,
+            points: contour(
+              0,
+              0,
+              [0.017, 0.021, 0.02, 0.012][i],
+              [0.019, 0.024, 0.022, 0.014][i],
+              16,
+              2.4,
+            ),
+          })),
+        ),
+        [-side * 0.084, 0.085, -0.11],
+        [0, 0, side * 0.35],
+      ),
+      Y.grip,
+    );
+    yd.add(place(roundedBox([0.012, 0.007, 0.012], 0.002, 1), [-side * 0.1, 0.13, -0.11]), Y.black);
+    yd.add(place(roundedBox([0.012, 0.007, 0.009], 0.002, 1), [-side * 0.08, 0.127, -0.125]), red);
     yd.finish();
+    d.add(
+      place(
+        lathe(
+          [
+            [0.017, 0],
+            [0.034, 0],
+            [0.034, 0.006],
+            [0.02, 0.01],
+            [0.017, 0.01],
+          ],
+          18,
+        ),
+        [side * 0.56, 1.25, 1.0],
+        [-Math.PI / 2, 0, 0],
+      ),
+      m.dark,
+    );
     bindings.push(
       { node: g.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.65 },
       { node: g.name, source: 'pitchInput', property: 'position', axis: 'z', scale: -0.06 },
     );
     for (const j of [-1, 1]) {
-      const pg = group(cabin, `Cirrus-pedal-${side}-${j}`, [side * 0.3 + j * 0.085, 0.82, 1.23]),
+      // Toe-brake pedals with black pads on alloy arms.
+      const pg = group(cabin, `Cirrus-pedal-${side}-${j}`, [side * 0.3 + j * 0.085, 0.84, 1.23]),
         pd = detailKit(pg, pg.name);
-      beveledBox(pd, [0.135, 0.11, 0.035], [0, 0, 0], m.metal, 0.007);
-      for (let n = 0; n < 4; n++)
-        pd.box([0.095, 0.006, 0.005], [0, -0.035 + n * 0.023, -0.02], m.dark);
+      gaPedal(pd, { side: j, drop: 0.06, width: 0.11, tread: partPalette().tread });
       pd.finish();
       bindings.push({
         node: pg.name,
@@ -897,7 +992,7 @@ function cockpit(root, m) {
     d.rod([side * 0.4, 2, 0.56], [side * 0.405, 2.018, 0.56], 0.006, m.metal);
   }
   // Cabin floor trimmed to the rounded belly; a flat box cut through the skin fore and aft.
-  fittedFloor(d, m.rings, m.dark, { y: 0.7375, front: 1.2, back: -1.08, width: 1.2 });
+  fittedFloor(d, m.rings, m.dark, { y: 0.7375, front: 1.46, back: -1.08, width: 1.2 });
   // Five-seat cabin: two deeply bolstered front seats and a rear 60/40 bench with center belt.
   for (const [n, x, zz, w] of [
     [0, 0.31, 0.28, 0.48],
@@ -949,11 +1044,77 @@ function cockpit(root, m) {
   d.text('CAPS', [0, 1.98, 0.35], 0.009, Math.PI, ink);
   inst.headingDrum('compass', [0, 1.96, 0.65], 0.021, 'trueHeading');
   d.rod([0, 1.98, 0.68], [0, 2.025, 0.65], 0.008, m.metal);
+  // Gray molded sidewalls from the floor round the door windows, a light headliner, and trim
+  // over the painted windscreen frame: from the seat the inside of the painted skin showed white.
+  // A firewall closes the footwell, which ran on into the white inside of the lower cowl.
+  cockpitBulkhead(d, root, { z: 1.47, yFrom: 0.68, yTo: 1.3, material: m.dark });
+  cabinLiner(d, root, {
+    zFrom: 1.48,
+    zTo: -1.72,
+    yFrom: 0.7,
+    yTo: 1.5,
+    material: sidewall,
+    zSteps: 14,
+    rows: 4,
+    reach: 0.74,
+  });
+  cabinLiner(d, root, {
+    zFrom: 1.3,
+    zTo: -1.72,
+    yFrom: 1.48,
+    yTo: 1.96,
+    material: sidewall,
+    zSteps: 16,
+    rows: 4,
+    reach: 0.74,
+    inset: 0.014,
+  });
+  cabinHeadliner(d, root, {
+    zFrom: 0.64,
+    zTo: -1.72,
+    yFrom: 1.96,
+    material: headliner,
+    zSteps: 12,
+    margin: 0.002,
+  });
+  const ringPoint = (i, j) => [...m.rings[i].points[j], m.rings[i].z];
+  frameTrim(
+    d,
+    [
+      ringPoint(2, 3),
+      ringPoint(3, 4),
+      ...[4, 3, 2, 1, 0, 19, 18, 17, 16].map((j) => ringPoint(4, j)),
+      ringPoint(3, 16),
+      ringPoint(2, 16),
+    ],
+    sidewall,
+    { center: 1.35 },
+  );
+  frameTrim(
+    d,
+    [3, 2, 1, 0, 19, 18, 17, 16].map((j) => ringPoint(2, j)),
+    m.dark,
+    { center: 1.35 },
+  );
   d.finish();
+  // Ignition key at the left of the panel (where the IGNITION legend sits); the parking brake
+  // pull knob low on the left panel, inboard of the side yoke.
+  const stations = [
+    { action: 'engine', style: 'key', at: at(390, 222, -0.001) },
+    {
+      action: 'brake',
+      style: 'tee',
+      at: at(400, 372, -0.031),
+      label: 'PARK BRAKE',
+      labelAt: [0, 0.022, -0.002],
+      labelHeight: 0.0045,
+    },
+  ];
   return {
     nodes: ['cockpit'],
     sources,
     derived: { ...di.derived, ...derived },
     bindings: [...di.bindings, ...bindings],
+    stations,
   };
 }

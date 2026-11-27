@@ -479,11 +479,14 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
     return false;
   };
   /** A control's own modeled nodes, without the bolted-on module's stand-ins. */
-  const authored = (controls: readonly AircraftCockpitControl[]): THREE.Object3D[] =>
-    controls
-      .flatMap((control) => control.nodes)
-      .flatMap((name) => byName.get(name) ?? [])
-      .filter((node) => !kitModule(node));
+  const authored = (controls: readonly AircraftCockpitControl[]): THREE.Object3D[] => [
+    ...new Set(
+      controls
+        .flatMap((control) => control.nodes)
+        .flatMap((name) => byName.get(name) ?? [])
+        .filter((node) => !kitModule(node)),
+    ),
+  ];
   const eye = new THREE.Vector3().fromArray(spec.pilotEye);
   /**
    * The modeled controls of the pilot's station, or undefined to draw the kit's: also when they
@@ -618,7 +621,10 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
 
   // Throttle (or collective) at the right edge: all levers move together.
   const power = common('power');
-  const levers = pick(of('power'), 0.35);
+  // The common control's own levers come first: a per-engine station nearer the eye (a
+  // condition lever, an engine control lever overhead) is not the throttle. The reach is wide
+  // enough to take in all four levers of a four-engine quadrant.
+  const levers = (power ? pick([power], 0.6) : undefined) ?? pick(of('power'), 0.6);
   const engines = spec.engines?.map((engine) => engine.id) ?? [];
   const powerSamples = [0, 1].map(
     (v): ModelSignals =>
@@ -753,9 +759,12 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
     });
   }
 
-  // Engine master: tap to start or stop.
+  // Engine master: tap to start or stop. The aircraft's own switch, key or start lever when it
+  // has one (a magneto key in a Cessna, a guarded APU switch in a Hornet), else the kit's.
   const engine = common('engine');
-  if (engine)
+  if (engine) {
+    const handle = pick([engine], 0.5);
+    const samples: ModelSignals[] = [{ engine: 0 }, { engine: 1 }];
     items.push({
       id: 'engine',
       side: 'right',
@@ -764,12 +773,17 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
       tip: { label: 'Engine', hint: 'Tap to start or stop', actions: [A.engine] },
       zone: { kind: 'tap', press: () => change(engine, value(engine) > 0.5 ? 0 : 1) },
       part: () =>
-        kitPart('engine', kitEngineSwitch(DECK_ELEVATION), deck, [{ engine: 0 }, { engine: 1 }]),
+        handle
+          ? liftedPart({ id: 'engine', model, spec: bindings, picked: handle, view: deck, samples })
+          : kitPart('engine', kitEngineSwitch(DECK_ELEVATION), deck, samples),
     });
+  }
 
-  // Parking brake: tap to set or release.
+  // Parking brake: tap to set or release; the aircraft's own handle when it has one.
   const parking = common('brake');
-  if (parking)
+  if (parking) {
+    const handle = pick([parking], 0.5);
+    const samples: ModelSignals[] = [{ brake: 0 }, { brake: 1 }];
     items.push({
       id: 'parking-brake',
       side: 'right',
@@ -778,11 +792,18 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
       tip: { label: 'Parking brake', hint: 'Tap to set or release' },
       zone: { kind: 'tap', press: () => change(parking, value(parking) > 0.5 ? 0 : 1) },
       part: () =>
-        kitPart('parking-brake', kitParkingBrake(DECK_ELEVATION), deck, [
-          { brake: 0 },
-          { brake: 1 },
-        ]),
+        handle
+          ? liftedPart({
+              id: 'parking-brake',
+              model,
+              spec: bindings,
+              picked: handle,
+              view: deck,
+              samples,
+            })
+          : kitPart('parking-brake', kitParkingBrake(DECK_ELEVATION), deck, samples),
     });
+  }
 
   // Toe brakes, held, for an airplane on its wheels.
   if (!helicopter)

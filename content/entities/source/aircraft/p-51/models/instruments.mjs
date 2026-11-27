@@ -121,8 +121,9 @@ export function instrumentParts(api) {
     for (let i = 0; i <= 40; i++) {
       const a = start + (i / 40) * sweep;
       const major = i % 5 === 0;
-      const geometry = new T.BoxGeometry(r * 0.016, r * (major ? 0.13 : 0.055), 0.001);
-      geometry.rotateZ(a).translate(...at(a, r * 0.82), -0.005);
+      // A flat printed mark facing the pilot: a box's sides and back were never seen.
+      const geometry = new T.PlaneGeometry(r * 0.016, r * (major ? 0.13 : 0.055)).rotateY(Math.PI);
+      geometry.rotateZ(a).translate(...at(a, r * 0.82), -0.0055);
       ticks.push(geometry);
     }
     mesh(instrument, `${id}-scale`, mergeGeometries(ticks), paper);

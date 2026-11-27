@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:b11ef532a61d83ad52f9dd43034853d298d256b86da29db8c4906d43436e383c",
-  "sourceHash": "sha256:6e4adca8834496c6d5f1913e9a32bfc8e144359cdd1011570fcd5f86776c6e68",
+  "hash": "sha256:1aff73411fa53507feeb26dde7c4bab0dcdcc61bcce51cdbfb818a6ddc4fd276",
+  "sourceHash": "sha256:55f029d25365b20e63582c9e13785e55d8a1268f94519b2aa02f1951d3dfc057",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,16 +31,36 @@
     }
   },
   "stats": {
-    "triangles": 6588,
-    "vertices": 7254,
-    "meshes": 15,
-    "primitives": 15,
-    "materials": 11,
+    "triangles": 7252,
+    "vertices": 8298,
+    "meshes": 21,
+    "primitives": 21,
+    "materials": 14,
     "textures": 0,
     "animations": 0,
-    "sizeBytes": 166980
+    "sizeBytes": 192080
   },
   "nodes": [
+    {
+      "name": "instrument-face-detail-alloy",
+      "triangles": 192
+    },
+    {
+      "name": "instrument-face-detail-trim",
+      "triangles": 64
+    },
+    {
+      "name": "instrument-face-detail-lettering",
+      "triangles": 312
+    },
+    {
+      "name": "instrument-face-detail-red",
+      "triangles": 48
+    },
+    {
+      "name": "instrument-face-instrument-display",
+      "triangles": 24
+    },
     {
       "name": "body-rubber-and-trim",
       "triangles": 1772
@@ -79,11 +99,15 @@
     },
     {
       "name": "handlebar-frame-rubber-and-trim",
-      "triangles": 180
+      "triangles": 192
     },
     {
       "name": "handlebar-frame-brushed-metal",
       "triangles": 136
+    },
+    {
+      "name": "handlebar-frame-tail-lamps",
+      "triangles": 12
     },
     {
       "name": "ski-left-rubber-and-trim",
@@ -113,6 +137,46 @@
   "nodesTruncated": false,
   "animations": [],
   "materials": [
+    {
+      "name": "detail-alloy",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-trim",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-lettering",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-red",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "instrument-display",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
     {
       "name": "rubber-and-trim",
       "slots": [
@@ -184,26 +248,155 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "detail-lettering",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "detail-trim",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
     }
   ],
   "collision": {
     "hulls": [
+      {
+        "node": "instrument-face-detail-alloy",
+        "points": [
+          -0.096,
+          0.8713,
+          0.3527,
+          -0.096,
+          0.8713,
+          0.4385,
+          -0.096,
+          0.9293,
+          0.3527,
+          -0.096,
+          0.9293,
+          0.4385,
+          0.096,
+          0.8713,
+          0.3527,
+          0.096,
+          0.8713,
+          0.4385,
+          0.096,
+          0.9293,
+          0.3527,
+          0.096,
+          0.9293,
+          0.4385
+        ]
+      },
+      {
+        "node": "instrument-face-detail-trim",
+        "points": [
+          -0.092,
+          0.8908,
+          0.3552,
+          -0.092,
+          0.8908,
+          0.4254,
+          -0.092,
+          0.9292,
+          0.3552,
+          -0.092,
+          0.9292,
+          0.4254,
+          0.092,
+          0.8908,
+          0.3552,
+          0.092,
+          0.8908,
+          0.4254,
+          0.092,
+          0.9292,
+          0.3552,
+          0.092,
+          0.9292,
+          0.4254
+        ]
+      },
+      {
+        "node": "instrument-face-detail-lettering",
+        "points": [
+          -0.0884,
+          0.8983,
+          0.3658,
+          -0.0884,
+          0.8983,
+          0.4218,
+          -0.0884,
+          0.93,
+          0.3658,
+          -0.0884,
+          0.93,
+          0.4218,
+          0.0884,
+          0.8983,
+          0.3658,
+          0.0884,
+          0.8983,
+          0.4218,
+          0.0884,
+          0.93,
+          0.3658,
+          0.0884,
+          0.93,
+          0.4218
+        ]
+      },
+      {
+        "node": "instrument-face-detail-red",
+        "points": [
+          -0.0526,
+          0.9047,
+          0.3691,
+          -0.0526,
+          0.9047,
+          0.3883,
+          -0.0526,
+          0.9162,
+          0.3691,
+          -0.0526,
+          0.9162,
+          0.3883,
+          0.0726,
+          0.9047,
+          0.3691,
+          0.0726,
+          0.9047,
+          0.3883,
+          0.0726,
+          0.9162,
+          0.3691,
+          0.0726,
+          0.9162,
+          0.3883
+        ]
+      },
+      {
+        "node": "instrument-face-instrument-display",
+        "points": [
+          -0.065,
+          0.9024,
+          0.3698,
+          -0.065,
+          0.9024,
+          0.3776,
+          -0.065,
+          0.9085,
+          0.3698,
+          -0.065,
+          0.9085,
+          0.3776,
+          0.065,
+          0.9024,
+          0.3698,
+          0.065,
+          0.9024,
+          0.3776,
+          0.065,
+          0.9085,
+          0.3698,
+          0.065,
+          0.9085,
+          0.3776
+        ]
+      },
       {
         "node": "body-rubber-and-trim",
         "points": [
@@ -470,57 +663,86 @@
         "points": [
           -0.345,
           0.6415,
-          0.252,
+          0.21,
           -0.345,
           0.6415,
-          0.4842,
+          0.4841,
           -0.345,
           1.045,
-          0.252,
+          0.21,
           -0.345,
           1.045,
-          0.4842,
+          0.4841,
           0.345,
           0.6415,
-          0.252,
+          0.21,
           0.345,
           0.6415,
-          0.4842,
+          0.4841,
           0.345,
           1.045,
-          0.252,
+          0.21,
           0.345,
           1.045,
-          0.4842
+          0.4841
         ]
       },
       {
         "node": "handlebar-frame-brushed-metal",
         "points": [
           -0.3312,
-          0.9881,
-          0.2582,
+          0.9831,
+          0.2327,
           -0.3312,
-          0.9881,
+          0.9831,
           0.3298,
           -0.3312,
           1.0219,
-          0.2582,
+          0.2327,
           -0.3312,
           1.0219,
           0.3298,
           0.3312,
-          0.9881,
-          0.2582,
+          0.9831,
+          0.2327,
           0.3312,
-          0.9881,
+          0.9831,
           0.3298,
           0.3312,
           1.0219,
-          0.2582,
+          0.2327,
           0.3312,
           1.0219,
           0.3298
+        ]
+      },
+      {
+        "node": "handlebar-frame-tail-lamps",
+        "points": [
+          -0.193,
+          1.018,
+          0.266,
+          -0.193,
+          1.018,
+          0.282,
+          -0.193,
+          1.034,
+          0.266,
+          -0.193,
+          1.034,
+          0.282,
+          -0.177,
+          1.018,
+          0.266,
+          -0.177,
+          1.018,
+          0.282,
+          -0.177,
+          1.034,
+          0.266,
+          -0.177,
+          1.034,
+          0.282
         ]
       },
       {

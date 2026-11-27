@@ -1287,6 +1287,20 @@
                       "Skylane.standby-altimeter-2.availableValue",
                       -100000000000000000000
                     ]
+                  },
+                  "Skylane.compass.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "trueHeading",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Skylane.compass.available": {
+                    "op": "greater",
+                    "args": [
+                      "Skylane.compass.availableValue",
+                      -100000000000000000000
+                    ]
                   }
                 },
                 "bindings": [
@@ -6039,6 +6053,22 @@
                     "responseSeconds": 0.15
                   },
                   {
+                    "node": "Skylane-compass-drum",
+                    "source": "trueHeading",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Skylane-compass-drum",
+                    "source": "Skylane.compass.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
                     "node": "Skylane-yoke-397",
                     "source": "rollInput",
                     "property": "rotation",
@@ -7516,6 +7546,20 @@
               "op": "greater",
               "args": [
                 "Skylane.standby-altimeter-2.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Skylane.compass.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "trueHeading",
+                -100000000000000000000
+              ]
+            },
+            "Skylane.compass.available": {
+              "op": "greater",
+              "args": [
+                "Skylane.compass.availableValue",
                 -100000000000000000000
               ]
             }
@@ -12268,6 +12312,22 @@
               "scale": 0.00006283185307179586,
               "period": 6.283185307179586,
               "responseSeconds": 0.15
+            },
+            {
+              "node": "Skylane-compass-drum",
+              "source": "trueHeading",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Skylane-compass-drum",
+              "source": "Skylane.compass.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
             },
             {
               "node": "Skylane-yoke-397",

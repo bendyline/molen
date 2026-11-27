@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:9941d95a2ab7bca12d3a8195c0bf4917f6efad115631d8a17de526f9830e536b",
-  "sourceHash": "sha256:e26b0e309ceeb7ce119d7adeee01ba674737762936f7bfe9e9cfb015f42f6d3e",
+  "hash": "sha256:f6cd39371d26eee86e03a439ca7049114ff520256e37274a0ab3e32e1ee8e0e5",
+  "sourceHash": "sha256:2604361d6a4dc5d0c78140cf7f2f53a43f1611233c86690e3ec21c3585ac32b6",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 13528,
-    "vertices": 10938,
-    "meshes": 26,
-    "primitives": 26,
-    "materials": 11,
+    "triangles": 13488,
+    "vertices": 11066,
+    "meshes": 30,
+    "primitives": 30,
+    "materials": 12,
     "textures": 0,
     "animations": 0,
-    "sizeBytes": 272944
+    "sizeBytes": 276392
   },
   "nodes": [
     {
@@ -123,11 +123,11 @@
     },
     {
       "name": "tank-instruments-detail-alloy",
-      "triangles": 80
+      "triangles": 156
     },
     {
       "name": "tank-instruments-detail-alloy",
-      "triangles": 128
+      "triangles": 96
     },
     {
       "name": "tank-instruments-detail-lettering",
@@ -135,7 +135,7 @@
     },
     {
       "name": "tank-instruments-detail-trim",
-      "triangles": 312
+      "triangles": 156
     },
     {
       "name": "tank-instruments-detail-red",
@@ -143,6 +143,22 @@
     },
     {
       "name": "tank-instruments-instrument-display",
+      "triangles": 12
+    },
+    {
+      "name": "tank-instruments-detail-trim",
+      "triangles": 24
+    },
+    {
+      "name": "tank-instruments-detail-green",
+      "triangles": 12
+    },
+    {
+      "name": "tank-instruments-detail-amber",
+      "triangles": 24
+    },
+    {
+      "name": "tank-instruments-detail-red",
       "triangles": 12
     }
   ],
@@ -231,6 +247,14 @@
     },
     {
       "name": "instrument-display",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-green",
       "slots": [
         "baseColor"
       ],
@@ -824,26 +848,26 @@
         "node": "tank-instruments-detail-alloy",
         "points": [
           -0.095,
-          0.933,
-          0.045,
+          0.8442,
+          -0.1656,
           -0.095,
-          0.933,
+          0.8442,
           0.235,
           -0.095,
           0.963,
-          0.045,
+          -0.1656,
           -0.095,
           0.963,
           0.235,
           0.095,
-          0.933,
-          0.045,
+          0.8442,
+          -0.1656,
           0.095,
-          0.933,
+          0.8442,
           0.235,
           0.095,
           0.963,
-          0.045,
+          -0.1656,
           0.095,
           0.963,
           0.235
@@ -911,26 +935,26 @@
         "node": "tank-instruments-detail-trim",
         "points": [
           -0.0601,
-          0.9608,
-          0.0961,
+          0.9605,
+          0.0957,
           -0.0601,
-          0.9608,
+          0.9605,
           0.1949,
           -0.0601,
           0.9959,
-          0.0961,
+          0.0957,
           -0.0601,
           0.9959,
           0.1949,
           0.0601,
-          0.9608,
-          0.0961,
+          0.9605,
+          0.0957,
           0.0601,
-          0.9608,
+          0.9605,
           0.1949,
           0.0601,
           0.9959,
-          0.0961,
+          0.0957,
           0.0601,
           0.9959,
           0.1949
@@ -992,6 +1016,122 @@
           0.0214,
           0.972,
           0.1167
+        ]
+      },
+      {
+        "node": "tank-instruments-detail-trim",
+        "points": [
+          -0.036,
+          0.8989,
+          -0.1169,
+          -0.036,
+          0.8989,
+          0.014,
+          -0.036,
+          0.9477,
+          -0.1169,
+          -0.036,
+          0.9477,
+          0.014,
+          0.036,
+          0.8989,
+          -0.1169,
+          0.036,
+          0.8989,
+          0.014,
+          0.036,
+          0.9477,
+          -0.1169,
+          0.036,
+          0.9477,
+          0.014
+        ]
+      },
+      {
+        "node": "tank-instruments-detail-green",
+        "points": [
+          -0.03,
+          0.9365,
+          -0.0112,
+          -0.03,
+          0.9365,
+          0.0069,
+          -0.03,
+          0.9472,
+          -0.0112,
+          -0.03,
+          0.9472,
+          0.0069,
+          -0.018,
+          0.9365,
+          -0.0112,
+          -0.018,
+          0.9365,
+          0.0069,
+          -0.018,
+          0.9472,
+          -0.0112,
+          -0.018,
+          0.9472,
+          0.0069
+        ]
+      },
+      {
+        "node": "tank-instruments-detail-amber",
+        "points": [
+          -0.014,
+          0.9365,
+          -0.0112,
+          -0.014,
+          0.9365,
+          0.0069,
+          -0.014,
+          0.9472,
+          -0.0112,
+          -0.014,
+          0.9472,
+          0.0069,
+          0.014,
+          0.9365,
+          -0.0112,
+          0.014,
+          0.9365,
+          0.0069,
+          0.014,
+          0.9472,
+          -0.0112,
+          0.014,
+          0.9472,
+          0.0069
+        ]
+      },
+      {
+        "node": "tank-instruments-detail-red",
+        "points": [
+          0.018,
+          0.9365,
+          -0.0112,
+          0.018,
+          0.9365,
+          0.0069,
+          0.018,
+          0.9472,
+          -0.0112,
+          0.018,
+          0.9472,
+          0.0069,
+          0.03,
+          0.9365,
+          -0.0112,
+          0.03,
+          0.9365,
+          0.0069,
+          0.03,
+          0.9472,
+          -0.0112,
+          0.03,
+          0.9472,
+          0.0069
         ]
       }
     ]

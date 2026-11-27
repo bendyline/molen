@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:53701c3484d308d509a8ded446e6d4eb57b009707d62f2c7a0e8a8561cac4ebf",
-  "sourceHash": "sha256:7fbb39dd7b2d833d072f7bb03527d2e13d934c34ef1cb215a6d43c9067e51ec3",
+  "hash": "sha256:b9ccf4620cd92737fab2f23959a4c723829f5806e573963044c37ac8d23019a8",
+  "sourceHash": "sha256:4da8a2b0d8f021b6540470590af350328d6e0d11cc034c612043cd00839becc3",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 55550,
-    "vertices": 59697,
-    "meshes": 193,
-    "primitives": 193,
-    "materials": 58,
+    "triangles": 62435,
+    "vertices": 64717,
+    "meshes": 196,
+    "primitives": 196,
+    "materials": 62,
     "textures": 10,
     "animations": 0,
-    "sizeBytes": 1840080
+    "sizeBytes": 1965612
   },
   "nodes": [
     {
@@ -255,11 +255,11 @@
     },
     {
       "name": "E175-cabin-fixed-coaming-padding",
-      "triangles": 96
+      "triangles": 111
     },
     {
       "name": "E175-cabin-fixed-instrument-panel",
-      "triangles": 134
+      "triangles": 130
     },
     {
       "name": "E175-cabin-fixed-E175-seat",
@@ -274,16 +274,28 @@
       "triangles": 48
     },
     {
+      "name": "E175-cabin-fixed-E175-grip",
+      "triangles": 160
+    },
+    {
+      "name": "E175-cabin-fixed-E175-bezel",
+      "triangles": 36
+    },
+    {
       "name": "E175-cabin-fixed-E175-floor",
-      "triangles": 70
+      "triangles": 72
+    },
+    {
+      "name": "E175-cabin-fixed-E175-wall-liner",
+      "triangles": 1840
     },
     {
       "name": "E175-cabin-fixed-E175-liner",
-      "triangles": 3040
+      "triangles": 1520
     },
     {
       "name": "E175-main-panel-fixed-E175-bezel",
-      "triangles": 406
+      "triangles": 420
     },
     {
       "name": "E175-main-panel-fixed-E175-screen",
@@ -299,7 +311,7 @@
     },
     {
       "name": "E175-main-panel-fixed-E175-lettering",
-      "triangles": 72
+      "triangles": 96
     },
     {
       "name": "E175-main-panel-fixed-E175-green",
@@ -311,7 +323,7 @@
     },
     {
       "name": "E175-main-panel-fixed-instrument-panel",
-      "triangles": 38
+      "triangles": 88
     },
     {
       "name": "E175-PFD-L-fixed-E175-ink",
@@ -540,18 +552,6 @@
     {
       "name": "E175-PFD-L-altitude-3-1-E175-ink",
       "triangles": 12
-    },
-    {
-      "name": "E175-PFD-L-altitude-3-2-E175-ink",
-      "triangles": 12
-    },
-    {
-      "name": "E175-PFD-L-altitude-3-3-E175-ink",
-      "triangles": 12
-    },
-    {
-      "name": "E175-PFD-L-altitude-3-4-E175-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -727,19 +727,11 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "E175-floor",
+      "name": "E175-grip",
       "slots": [
         "baseColor"
       ],
       "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "E175-liner",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": true,
       "alphaMode": "OPAQUE"
     },
     {
@@ -748,6 +740,30 @@
         "baseColor"
       ],
       "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "E175-floor",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "E175-wall-liner",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "E175-liner",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
       "alphaMode": "OPAQUE"
     },
     {
@@ -880,7 +896,26 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "E175-toggle",
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-knob",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-lamp",
       "slots": [
         "baseColor"
       ],
@@ -912,6 +947,41 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "E175-toggle",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-steel",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "E175-lever-e6e3da",
       "slots": [
         "baseColor"
@@ -920,7 +990,15 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "E175-grip",
+      "name": "flight-control-black",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-tread",
       "slots": [
         "baseColor"
       ],
@@ -960,6 +1038,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "E175-gear",
       "slots": [
         "baseColor"
@@ -977,64 +1063,6 @@
     },
     {
       "name": "E175-tyres",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-panel-satin",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-alloy-brushed",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-grip-rubber",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-legend-technical-font",
-      "slots": [
-        "baseColor",
-        "emissive"
-      ],
-      "doubleSided": false,
-      "alphaMode": "BLEND"
-    },
-    {
-      "name": "flight-control-legend",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -2727,6 +2755,64 @@
         ]
       },
       {
+        "node": "E175-cabin-fixed-E175-grip",
+        "points": [
+          -0.715,
+          3.1033,
+          13.8972,
+          -0.715,
+          3.1033,
+          13.9497,
+          -0.715,
+          3.4037,
+          13.8972,
+          -0.715,
+          3.4037,
+          13.9497,
+          0.715,
+          3.1033,
+          13.8972,
+          0.715,
+          3.1033,
+          13.9497,
+          0.715,
+          3.4037,
+          13.8972,
+          0.715,
+          3.4037,
+          13.9497
+        ]
+      },
+      {
+        "node": "E175-cabin-fixed-E175-bezel",
+        "points": [
+          -1.046,
+          2.829,
+          13.7459,
+          -1.046,
+          2.829,
+          13.9871,
+          -1.046,
+          3.256,
+          13.7459,
+          -1.046,
+          3.256,
+          13.9871,
+          1.046,
+          2.829,
+          13.7459,
+          1.046,
+          2.829,
+          13.9871,
+          1.046,
+          3.256,
+          13.7459,
+          1.046,
+          3.256,
+          13.9871
+        ]
+      },
+      {
         "node": "E175-cabin-fixed-E175-floor",
         "points": [
           -1.4573,
@@ -2734,54 +2820,83 @@
           10.3772,
           -1.4573,
           2.7996,
-          13.8771,
+          13.9871,
           -1.4573,
-          2.8301,
+          2.831,
           10.3772,
           -1.4573,
-          2.8301,
-          13.8771,
+          2.831,
+          13.9871,
           1.4573,
           2.7996,
           10.3772,
           1.4573,
           2.7996,
-          13.8771,
+          13.9871,
           1.4573,
-          2.8301,
+          2.831,
           10.3772,
           1.4573,
-          2.8301,
-          13.8771
+          2.831,
+          13.9871
+        ]
+      },
+      {
+        "node": "E175-cabin-fixed-E175-wall-liner",
+        "points": [
+          -1.4701,
+          2.8125,
+          10.3695,
+          -1.4701,
+          2.8125,
+          13.9871,
+          -1.4701,
+          3.7057,
+          10.3695,
+          -1.4701,
+          3.7057,
+          13.9871,
+          1.4701,
+          2.8125,
+          10.3695,
+          1.4701,
+          2.8125,
+          13.9871,
+          1.4701,
+          3.7057,
+          10.3695,
+          1.4701,
+          3.7057,
+          13.9871
         ]
       },
       {
         "node": "E175-cabin-fixed-E175-liner",
         "points": [
-          -1.4704,
-          2.8124,
+          -1.2137,
+          4.0156,
           10.3605,
-          -1.4704,
-          2.8124,
-          13.4071,
-          -1.4704,
+          -1.2137,
+          4.0156,
+          13.3968,
+          -1.2137,
           4.7287,
           10.3605,
-          -1.4704,
+          -1.2137,
           4.7287,
-          13.4071,
-          1.4704,
-          2.8124,
+          13.3968,
+          1.2137,
+          4.0156,
           10.3605,
-          1.4704,
-          2.8124,
-          13.4071,
-          1.4704,
+          1.2137,
+          4.0156,
+          13.3968,
+          1.2137,
           4.7287,
           10.3605,
-          1.4704,
+          1.2137,
           4.7287,
-          13.4071
+          13.3968
         ]
       },
       {
@@ -2818,25 +2933,25 @@
         "points": [
           -0.605,
           3.3279,
-          13.655,
+          13.6588,
           -0.605,
           3.3279,
           13.7197,
           -0.605,
           3.5469,
-          13.655,
+          13.6588,
           -0.605,
           3.5469,
           13.7197,
           0.605,
           3.3279,
-          13.655,
+          13.6588,
           0.605,
           3.3279,
           13.7197,
           0.605,
           3.5469,
-          13.655,
+          13.6588,
           0.605,
           3.5469,
           13.7197
@@ -2903,30 +3018,30 @@
       {
         "node": "E175-main-panel-fixed-E175-lettering",
         "points": [
-          -0.1864,
-          3.365,
+          -0.1844,
+          3.3597,
           13.6521,
-          -0.1864,
-          3.365,
-          13.6748,
-          -0.1864,
-          3.451,
+          -0.1844,
+          3.3597,
+          13.6804,
+          -0.1844,
+          3.4555,
           13.6521,
-          -0.1864,
-          3.451,
-          13.6748,
+          -0.1844,
+          3.4555,
+          13.6804,
           0.156,
-          3.365,
-          13.6521,
-          0.156,
-          3.365,
-          13.6748,
-          0.156,
-          3.451,
+          3.3597,
           13.6521,
           0.156,
-          3.451,
-          13.6748
+          3.3597,
+          13.6804,
+          0.156,
+          3.4555,
+          13.6521,
+          0.156,
+          3.4555,
+          13.6804
         ]
       },
       {
@@ -2963,27 +3078,27 @@
         "points": [
           -0.19,
           3.3424,
-          13.654,
+          13.6579,
           -0.19,
           3.3424,
           13.6878,
           -0.19,
-          3.4714,
-          13.654,
+          3.4706,
+          13.6579,
           -0.19,
-          3.4714,
+          3.4706,
           13.6878,
           -0.12,
           3.3424,
-          13.654,
+          13.6579,
           -0.12,
           3.3424,
           13.6878,
           -0.12,
-          3.4714,
-          13.654,
+          3.4706,
+          13.6579,
           -0.12,
-          3.4714,
+          3.4706,
           13.6878
         ]
       },
@@ -4667,93 +4782,6 @@
           0.4656,
           3.4841,
           13.6931
-        ]
-      },
-      {
-        "node": "E175-PFD-L-altitude-3-2-E175-ink",
-        "points": [
-          0.4651,
-          3.4786,
-          13.6912,
-          0.4651,
-          3.4786,
-          13.6925,
-          0.4651,
-          3.481,
-          13.6912,
-          0.4651,
-          3.481,
-          13.6925,
-          0.4656,
-          3.4786,
-          13.6912,
-          0.4656,
-          3.4786,
-          13.6925,
-          0.4656,
-          3.481,
-          13.6912,
-          0.4656,
-          3.481,
-          13.6925
-        ]
-      },
-      {
-        "node": "E175-PFD-L-altitude-3-3-E175-ink",
-        "points": [
-          0.4657,
-          3.478,
-          13.6911,
-          0.4657,
-          3.478,
-          13.692,
-          0.4657,
-          3.4786,
-          13.6911,
-          0.4657,
-          3.4786,
-          13.692,
-          0.468,
-          3.478,
-          13.6911,
-          0.468,
-          3.478,
-          13.692,
-          0.468,
-          3.4786,
-          13.6911,
-          0.468,
-          3.4786,
-          13.692
-        ]
-      },
-      {
-        "node": "E175-PFD-L-altitude-3-4-E175-ink",
-        "points": [
-          0.4681,
-          3.4786,
-          13.6912,
-          0.4681,
-          3.4786,
-          13.6925,
-          0.4681,
-          3.481,
-          13.6912,
-          0.4681,
-          3.481,
-          13.6925,
-          0.4685,
-          3.4786,
-          13.6912,
-          0.4685,
-          3.4786,
-          13.6925,
-          0.4685,
-          3.481,
-          13.6912,
-          0.4685,
-          3.481,
-          13.6925
         ]
       }
     ]

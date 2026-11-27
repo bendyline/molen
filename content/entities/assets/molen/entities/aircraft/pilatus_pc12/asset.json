@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:de84cb3330d2f989591a5b0c67c834088edce302e60697c003fba14eef17dc5e",
-  "sourceHash": "sha256:bd4d3c48f33620e6235d7278789eace5a54770513ff3e6c09467edaff2b2d9b4",
+  "hash": "sha256:67d056402917ddc88dfc7f5d2190e5be8cb1da02429e5151491f8abab9088d84",
+  "sourceHash": "sha256:2d764e5ac6ccb13f206ed15ad87da17011aaf5308019a5cb158af43b0f118cca",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 42930,
-    "vertices": 42138,
-    "meshes": 112,
-    "primitives": 112,
-    "materials": 33,
+    "triangles": 48345,
+    "vertices": 47527,
+    "meshes": 118,
+    "primitives": 118,
+    "materials": 39,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 1632304
+    "sizeBytes": 1795072
   },
   "nodes": [
     {
@@ -76,6 +76,14 @@
     {
       "name": "PC12-shell-detail-red",
       "triangles": 220
+    },
+    {
+      "name": "PC12-shell-PC12-pearl-lining",
+      "triangles": 22
+    },
+    {
+      "name": "PC12-shell-PC12-alloy-lining",
+      "triangles": 213
     },
     {
       "name": "PC12-flap--1-PC12-pearl",
@@ -203,15 +211,15 @@
     },
     {
       "name": "PC12-cabin-PC12-panel",
-      "triangles": 1047
+      "triangles": 1771
     },
     {
       "name": "PC12-cabin-PC12-trim",
-      "triangles": 735
+      "triangles": 827
     },
     {
       "name": "PC12-cabin-PC12-instrument-black",
-      "triangles": 2926
+      "triangles": 2938
     },
     {
       "name": "PC12-cabin-detail-alloy",
@@ -238,6 +246,10 @@
       "triangles": 176
     },
     {
+      "name": "PC12-cabin-PC12-trim",
+      "triangles": 320
+    },
+    {
       "name": "PC12-cabin-PC12-instrument-ink",
       "triangles": 240
     },
@@ -247,7 +259,7 @@
     },
     {
       "name": "PC12-cabin-PC12-instrument-ink-panel-print",
-      "triangles": 296
+      "triangles": 310
     },
     {
       "name": "PC12-cabin-PC12-instrument-amber-panel-print",
@@ -540,18 +552,6 @@
     {
       "name": "PC12-PFD-L-heading-0-6-PC12-instrument-ink",
       "triangles": 12
-    },
-    {
-      "name": "PC12-PFD-L-heading-1-0-PC12-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "PC12-PFD-L-heading-1-1-PC12-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "PC12-PFD-L-heading-1-2-PC12-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -623,6 +623,14 @@
     },
     {
       "name": "detail-red",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "cockpit-frame-lining",
       "slots": [
         "baseColor"
       ],
@@ -722,6 +730,17 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "PC12-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "PC12-instrument-ink",
       "slots": [
         "baseColor"
@@ -781,31 +800,20 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "PC12-leather",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-panel-satin",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "flight-control-alloy-brushed",
       "slots": [
         "baseColor",
         "roughness",
         "metalness",
         "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-knob",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -822,13 +830,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend-technical-font",
+      "name": "flight-control-black",
       "slots": [
-        "baseColor",
-        "emissive"
+        "baseColor"
       ],
       "doubleSided": false,
-      "alphaMode": "BLEND"
+      "alphaMode": "OPAQUE"
     },
     {
       "name": "flight-control-master",
@@ -839,12 +846,54 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend",
+      "name": "PC12-instrument-black-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-tread",
       "slots": [
         "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-steel",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "PC12-overhead",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "PC12-leather",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
     }
   ],
   "collision": {
@@ -1108,6 +1157,64 @@
           7.74,
           1.772,
           0.6276
+        ]
+      },
+      {
+        "node": "PC12-shell-PC12-pearl-lining",
+        "points": [
+          -0.7147,
+          2.3605,
+          0.6229,
+          -0.7147,
+          2.3605,
+          2.398,
+          -0.7147,
+          2.8495,
+          0.6229,
+          -0.7147,
+          2.8495,
+          2.398,
+          0.6416,
+          2.3605,
+          0.6229,
+          0.6416,
+          2.3605,
+          2.398,
+          0.6416,
+          2.8495,
+          0.6229,
+          0.6416,
+          2.8495,
+          2.398
+        ]
+      },
+      {
+        "node": "PC12-shell-PC12-alloy-lining",
+        "points": [
+          -0.8299,
+          1.1327,
+          0.6281,
+          -0.8299,
+          1.1327,
+          3.2478,
+          -0.8299,
+          2.8499,
+          0.6281,
+          -0.8299,
+          2.8499,
+          3.2478,
+          0.8438,
+          1.1327,
+          0.6281,
+          0.8438,
+          1.1327,
+          3.2478,
+          0.8438,
+          2.8499,
+          0.6281,
+          0.8438,
+          2.8499,
+          3.2478
         ]
       },
       {
@@ -2012,59 +2119,59 @@
       {
         "node": "PC12-cabin-PC12-panel",
         "points": [
-          -0.71,
+          -0.8332,
+          1.2,
           1.25,
-          1.71,
-          -0.71,
+          -0.8332,
+          1.2,
+          3.114,
+          -0.8332,
+          2.4875,
           1.25,
-          3.1125,
-          -0.71,
+          -0.8332,
           2.4875,
-          1.71,
-          -0.71,
-          2.4875,
-          3.1125,
-          0.71,
+          3.114,
+          0.8332,
+          1.2,
           1.25,
-          1.71,
-          0.71,
+          0.8332,
+          1.2,
+          3.114,
+          0.8332,
+          2.4875,
           1.25,
-          3.1125,
-          0.71,
+          0.8332,
           2.4875,
-          1.71,
-          0.71,
-          2.4875,
-          3.1125
+          3.114
         ]
       },
       {
         "node": "PC12-cabin-PC12-trim",
         "points": [
-          -0.6685,
-          1.2351,
+          -0.7636,
+          1.1501,
           -3.65,
-          -0.6685,
-          1.2351,
-          3.05,
-          -0.6685,
-          2.4873,
+          -0.7636,
+          1.1501,
+          3.1125,
+          -0.7636,
+          2.4874,
           -3.65,
-          -0.6685,
-          2.4873,
-          3.05,
-          0.6499,
-          1.2351,
+          -0.7636,
+          2.4874,
+          3.1125,
+          0.7636,
+          1.1501,
           -3.65,
-          0.6499,
-          1.2351,
-          3.05,
-          0.6499,
-          2.4873,
+          0.7636,
+          1.1501,
+          3.1125,
+          0.7636,
+          2.4874,
           -3.65,
-          0.6499,
-          2.4873,
-          3.05
+          0.7636,
+          2.4874,
+          3.1125
         ]
       },
       {
@@ -2268,6 +2375,35 @@
           0.7301,
           2.5,
           1.25
+        ]
+      },
+      {
+        "node": "PC12-cabin-PC12-trim",
+        "points": [
+          -0.82,
+          1.9613,
+          0.7,
+          -0.82,
+          1.9613,
+          3.45,
+          -0.82,
+          2.7999,
+          0.7,
+          -0.82,
+          2.7999,
+          3.45,
+          0.82,
+          1.9613,
+          0.7,
+          0.82,
+          1.9613,
+          3.45,
+          0.82,
+          2.7999,
+          0.7,
+          0.82,
+          2.7999,
+          3.45
         ]
       },
       {
@@ -4471,93 +4607,6 @@
           2.8396,
           0.3765,
           2.1886,
-          2.8404
-        ]
-      },
-      {
-        "node": "PC12-PFD-L-heading-1-0-PC12-instrument-ink",
-        "points": [
-          0.3713,
-          2.1908,
-          2.8396,
-          0.3713,
-          2.1908,
-          2.8404,
-          0.3713,
-          2.1911,
-          2.8396,
-          0.3713,
-          2.1911,
-          2.8404,
-          0.3732,
-          2.1908,
-          2.8396,
-          0.3732,
-          2.1908,
-          2.8404,
-          0.3732,
-          2.1911,
-          2.8396,
-          0.3732,
-          2.1911,
-          2.8404
-        ]
-      },
-      {
-        "node": "PC12-PFD-L-heading-1-1-PC12-instrument-ink",
-        "points": [
-          0.3709,
-          2.1888,
-          2.8396,
-          0.3709,
-          2.1888,
-          2.8404,
-          0.3709,
-          2.1906,
-          2.8396,
-          0.3709,
-          2.1906,
-          2.8404,
-          0.3713,
-          2.1888,
-          2.8396,
-          0.3713,
-          2.1888,
-          2.8404,
-          0.3713,
-          2.1906,
-          2.8396,
-          0.3713,
-          2.1906,
-          2.8404
-        ]
-      },
-      {
-        "node": "PC12-PFD-L-heading-1-2-PC12-instrument-ink",
-        "points": [
-          0.3709,
-          2.1863,
-          2.8396,
-          0.3709,
-          2.1863,
-          2.8404,
-          0.3709,
-          2.1881,
-          2.8396,
-          0.3709,
-          2.1881,
-          2.8404,
-          0.3713,
-          2.1863,
-          2.8396,
-          0.3713,
-          2.1863,
-          2.8404,
-          0.3713,
-          2.1881,
-          2.8396,
-          0.3713,
-          2.1881,
           2.8404
         ]
       }

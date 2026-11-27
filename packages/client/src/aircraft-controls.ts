@@ -116,11 +116,9 @@ export function createAircraftCockpit(model: THREE.Object3D, spec: AircraftSpec)
     return node ? model.worldToLocal(node.getWorldPosition(new THREE.Vector3())).x : 0;
   };
   powerNodes.sort((a, b) => localX(b) - localX(a));
-  add(
-    'power',
-    spec.model === 'helicopter' ? 'Collective' : 'All throttles',
-    independent ? [] : powerNodes,
-  );
+  // With a lever per engine, "all throttles" is all of those levers: the per-engine controls,
+  // added after it, own each lever's pick, and the common control needs no lever of its own.
+  add('power', spec.model === 'helicopter' ? 'Collective' : 'All throttles', [...powerNodes]);
   for (const [index, engine] of engines.entries()) {
     if (engines.length < 2) break;
     const names = independent ? [powerNodes[index] as string] : [];

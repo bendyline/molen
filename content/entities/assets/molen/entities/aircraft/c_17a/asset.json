@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:8a44417ae135d3999b6308db2704f322fbb837ca0eca187ea3ea672a5f71987d",
-  "sourceHash": "sha256:58b754cf4e101dab78d054e023333200c519ec4b19bf154f54d1a8694ca4a7d7",
+  "hash": "sha256:e8bf0213f565c634e4e08a8e448a9f51d8921fd3e06f48674a1f57c22078f042",
+  "sourceHash": "sha256:bf8d9fec08e9444ec1b414fd55dda4e3b7440fbc1030717678b83a0f3f243017",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 58389,
-    "vertices": 56362,
-    "meshes": 161,
-    "primitives": 161,
-    "materials": 36,
+    "triangles": 64283,
+    "vertices": 60947,
+    "meshes": 173,
+    "primitives": 173,
+    "materials": 41,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 1956220
+    "sizeBytes": 2076500
   },
   "nodes": [
     {
@@ -68,6 +68,10 @@
     {
       "name": "C17-exterior-detail-red",
       "triangles": 484
+    },
+    {
+      "name": "C17-exterior-C17-airframe-lining",
+      "triangles": 20
     },
     {
       "name": "C17-flap--1-0-C17-airframe",
@@ -191,7 +195,7 @@
     },
     {
       "name": "C17-cabin-C17-trim",
-      "triangles": 1388
+      "triangles": 1444
     },
     {
       "name": "C17-cabin-detail-alloy",
@@ -548,10 +552,6 @@
     {
       "name": "C17-pilot-vertical-0-3-C17-instrument-ink",
       "triangles": 12
-    },
-    {
-      "name": "C17-pilot-vertical-0-4-C17-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -607,6 +607,14 @@
     },
     {
       "name": "detail-red",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "cockpit-frame-lining",
       "slots": [
         "baseColor"
       ],
@@ -814,7 +822,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-panel-satin",
+      "name": "flight-control-alloy-brushed",
       "slots": [
         "baseColor",
         "roughness",
@@ -825,12 +833,41 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-alloy-brushed",
+      "name": "flight-control-steel",
       "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-black",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-knob",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-tread",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -856,7 +893,7 @@
       "alphaMode": "BLEND"
     },
     {
-      "name": "flight-control-legend",
+      "name": "flight-control-lamp",
       "slots": [
         "baseColor"
       ],
@@ -864,11 +901,11 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-master",
+      "name": "C17-panel",
       "slots": [
         "baseColor"
       ],
-      "doubleSided": false,
+      "doubleSided": true,
       "alphaMode": "OPAQUE"
     }
   ],
@@ -1075,6 +1112,35 @@
           25.925,
           7.4104,
           10.6805
+        ]
+      },
+      {
+        "node": "C17-exterior-C17-airframe-lining",
+        "points": [
+          -1.286,
+          6.18,
+          21.96,
+          -1.286,
+          6.18,
+          23.342,
+          -1.286,
+          6.9757,
+          21.96,
+          -1.286,
+          6.9757,
+          23.342,
+          1.286,
+          6.18,
+          21.96,
+          1.286,
+          6.18,
+          23.342,
+          1.286,
+          6.9757,
+          21.96,
+          1.286,
+          6.9757,
+          23.342
         ]
       },
       {
@@ -4554,35 +4620,6 @@
           23.5776,
           0.6893,
           4.8785,
-          23.5784
-        ]
-      },
-      {
-        "node": "C17-pilot-vertical-0-4-C17-instrument-ink",
-        "points": [
-          0.6893,
-          4.8788,
-          23.5776,
-          0.6893,
-          4.8788,
-          23.5784,
-          0.6893,
-          4.8817,
-          23.5776,
-          0.6893,
-          4.8817,
-          23.5784,
-          0.6899,
-          4.8788,
-          23.5776,
-          0.6899,
-          4.8788,
-          23.5784,
-          0.6899,
-          4.8817,
-          23.5776,
-          0.6899,
-          4.8817,
           23.5784
         ]
       }

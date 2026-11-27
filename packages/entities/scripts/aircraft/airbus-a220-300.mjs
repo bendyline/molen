@@ -7,7 +7,290 @@
  * Identifying M 13.04, J 19.89, G 21.79 and F 24.42 m as wing stations gives a planform of
  * 111.4 m2 against the published 112.3 m2, which is why those readings were kept.
  */
+import {
+  bar,
+  contour,
+  flapSelectorGeometry,
+  gearHandleGeometry,
+  handleGeometry,
+  lathe,
+  loftUp,
+  parkingBrakeGeometry,
+  place,
+  roundedBox,
+  stickGeometry,
+  switchGeometry,
+} from './cockpit-parts.mjs';
+import { T } from './mesh-kit.mjs';
+import { stamp } from './transport-deck.mjs';
 import { buildTransport, canoe, transportFrame } from './transport-kit.mjs';
+
+/** A220 thrust lever: a flat arm raked aft to a cream paddle grip, the A/T disconnect button on
+ * its outboard face. */
+function thrustLever(k, { P, side }) {
+  const rake = -0.1,
+    arm = 0.2,
+    top = [0, arm * Math.cos(rake), arm * Math.sin(rake)];
+  k.add(
+    place(roundedBox([0.012, arm, 0.022], 0.003, 1), [0, arm / 2, top[2] / 2], [rake, 0, 0]),
+    P.alloy,
+  );
+  k.add(
+    place(
+      loftUp([
+        { y: -0.012, points: contour(0, 0, 0.012, 0.014, 16, 2.6) },
+        { y: 0.004, points: contour(0, 0.002, 0.026, 0.02, 16, 2.8) },
+        { y: 0.034, points: contour(0, 0.004, 0.028, 0.022, 16, 3) },
+        { y: 0.046, points: contour(0, 0.002, 0.02, 0.016, 16, 2.6) },
+      ]),
+      top,
+      [rake, 0, 0],
+    ),
+    P.white,
+  );
+  k.add(
+    place(
+      new T.CylinderGeometry(0.006, 0.006, 0.005, 14),
+      [side * 0.028, top[1] + 0.024, top[2]],
+      [0, 0, Math.PI / 2],
+    ),
+    P.black,
+  );
+}
+
+const rot = (axis, scale, offset) => ({ property: 'rotation', axis, scale, offset });
+/** Flight deck after the JetBlue A220-300 cockpit photograph (airbus777, CC BY 2.0): light grey
+ * shell and pedestal, four 15.1 in displays across the panel with the standby, gear lever and
+ * autobrake in the centre strip, the fifth display on the pedestal ahead of the thrust levers,
+ * speed brake left and flap lever right of them, side-sticks and the captain's tiller outboard. */
+const a220Deck = {
+  colors: {
+    // The A220's light grey flight deck (Commons JetBlue A220 cockpit photographs).
+    panel: '#b3b9bc',
+    console: '#a9afb1',
+    glare: '#2a2f32',
+    lining: '#c3c7c6',
+    floor: '#3b4043',
+    seat: '#6f767b',
+    bezel: '#555c60',
+  },
+  pedals: { style: 'airliner', scale: 1 },
+  leverSpacing: 0.09,
+  // Side-sticks on the outboard consoles, well outboard of the seat.
+  controlX: (x) => Math.sign(x) * (Math.abs(x) + 0.37),
+  control(c, { P }) {
+    stamp(c, [0, -0.035, 0], [0, 0, 0], (t) =>
+      stickGeometry(t, { style: 'airbus', height: 0.06, shaft: 0.012, boot: false, palette: P }),
+    );
+  },
+  column(d, { x, eye: [, ey, ez], P }) {
+    d.add(
+      lathe(
+        [
+          [0, 0],
+          [0.045, 0],
+          [0.044, 0.008],
+          [0.032, 0.014],
+          [0.028, 0.026],
+          [0.016, 0.034],
+          [0, 0.034],
+        ],
+        18,
+      ),
+      P.tread,
+      [x, ey - 0.6, ez + 0.3],
+    );
+  },
+  powerLever: (k, ctx) => thrustLever(k, ctx),
+  build(c) {
+    const { d, m, P, sy, sz, floor, overhead: o } = c,
+      [ex, ey, ez] = c.eye,
+      z = sz;
+    // Four displays across; the inboard pair are EICAS (left) and the first officer's MFD.
+    const W = 0.33,
+      H = 0.25,
+      Y = sy + 0.03;
+    c.screen(d, 0.607, Y, z, W, H, 'pfd', { horizon: 'horizon-0' });
+    c.screen(d, 0.242, Y, z, W, H, 'eicas');
+    c.screen(d, -0.242, Y, z, W, H, 'map');
+    c.screen(d, -0.607, Y, z, W, H, 'pfd', { horizon: 'horizon-4' });
+    // Centre strip: standby, the gear lever on its own plate, autobrake.
+    c.standby(d, 0, sy + 0.12, z, 0.08);
+    d.box([0.1, 0.13, 0.006], [0, sy - 0.035, z - 0.003], m.bezel);
+    for (const x of [-0.025, 0, 0.025])
+      d.box([0.012, 0.01, 0.004], [x, sy + 0.012, z - 0.007], m.green);
+    c.text(d, 'LDG GEAR', [0, sy - 0.092, z - 0.007], 0.007);
+    const gear = c.control('cockpit-gear', [0, sy - 0.035, z - 0.006], [0, 0, 0], {
+      action: 'gear',
+      motion: rot('x', -0.7, 0.35),
+    });
+    stamp(gear, [0, 0, 0], [0, 0, 0], (t) =>
+      gearHandleGeometry(t, { style: 'jet', scale: 0.85, palette: P }),
+    );
+    c.tools.knob(0, sy - 0.14, z - 0.004, 0.012);
+    c.text(d, 'AUTOBRAKE', [0, sy - 0.165, z - 0.004], 0.006);
+    // Glareshield: flight control panel in the middle, EFIS and radio heads either side.
+    const fcp = Math.min(1.56, c.panelWidth - 0.2);
+    d.box([fcp, 0.075, 0.034], [0, sy + 0.205, z - 0.035], m.bezel);
+    for (let i = 0; i < 4; i++) {
+      const x = (1.5 - i) * 0.085;
+      d.box([0.05, 0.016, 0.002], [x, sy + 0.222, z - 0.053], m.amber);
+      c.tools.knob(x, sy + 0.19, z - 0.058, 0.011);
+    }
+    for (const side of [-1, 1]) {
+      for (let i = 0; i < 3; i++)
+        c.tools.knob(side * (0.42 + i * 0.07), sy + 0.195, z - 0.058, 0.009);
+      d.box([0.09, 0.024, 0.002], [side * 0.65, sy + 0.215, z - 0.053], m.green);
+      for (let i = 0; i < 4; i++)
+        d.box([0.016, 0.01, 0.004], [side * (0.27 + i * 0.024), sy + 0.222, z - 0.054], d.dark);
+    }
+    // Pedestal: the fifth display ahead of the quadrant, the thrust levers in their slots, speed
+    // brake and flap levers either side, run switches and keypads aft.
+    const top = Math.min(c.consoleY + 0.14, sy - 0.215),
+      half = 0.2,
+      fore = z + 0.05,
+      quad = ez + 0.47;
+    c.pedestal(
+      [
+        [ez - 0.34, floor],
+        [ez - 0.34, top - 0.03],
+        [ez - 0.31, top],
+        [fore, top],
+        [fore, floor],
+      ],
+      half,
+    );
+    // Laid back toward the crew on a wedge housing.
+    const display = c.face(
+      'a220-pedestal-display',
+      [0, top + 0.035, (quad + fore) / 2 - 0.01],
+      [Math.PI / 2 - 0.35, 0, 0],
+    );
+    c.screen(display, 0, 0, 0, 0.3, 0.15, 'synoptic');
+    display.box([0.32, 0.17, 0.05], [0, 0, 0.04], m.console);
+    const deck = c.face('a220-quadrant', [0, top + 0.001, 0], [Math.PI / 2, 0, 0]);
+    for (const x of [-0.045, 0.045]) deck.box([0.014, 0.19, 0.004], [x, ez + 0.375, 0], P.black);
+    for (const x of [-0.15, 0.15]) deck.box([0.012, 0.12, 0.004], [x, ez + 0.36, 0], P.black);
+    c.text(deck, 'SPD BRK', [0.15, ez + 0.28, -0.003], 0.008);
+    c.text(deck, 'FLAP', [-0.15, ez + 0.28, -0.003], 0.008);
+    for (const [i, x] of [0.045, -0.045].entries()) {
+      c.text(deck, `ENG ${i + 1}`, [x, ez + 0.2, -0.003], 0.008);
+      const run = c.control(
+        `cockpit-engine-${i}`,
+        [x, top + 0.003, ez + 0.24],
+        [Math.PI / 2, 0, 0],
+        {
+          action: 'engine',
+          engine: i,
+          motion: rot('x', 0.7, -0.7),
+        },
+      );
+      stamp(run, [0, 0, 0], [0, 0, 0], (t) =>
+        switchGeometry(t, { style: 'toggle', scale: 1.6, palette: P }),
+      );
+    }
+    for (const x of [-0.12, 0.12]) {
+      deck.box([0.13, 0.2, 0.012], [x, ez + 0.02, -0.006], m.bezel);
+      for (let r = 0; r < 5; r++)
+        for (let q = 0; q < 3; q++)
+          deck.box(
+            [0.03, 0.016, 0.006],
+            [x + (q - 1) * 0.038, ez - 0.05 + r * 0.03, -0.014],
+            d.dark,
+          );
+    }
+    const brake = c.control('cockpit-speedbrake', [0.15, top, ez + 0.33], [0, 0, 0], {
+      action: 'speedBrake',
+      motion: rot('x', -0.6),
+    });
+    stamp(brake, [0, 0, 0], [0, 0, 0], (t) =>
+      handleGeometry(t, { style: 'lever', height: 0.085, palette: P }),
+    );
+    const flap = c.control('cockpit-flaps', [-0.15, top, ez + 0.36], [0, 0, 0], {
+      action: 'flaps',
+      motion: rot('x', -0.7, 0.35),
+    });
+    stamp(flap, [0, 0, 0], [0, 0, 0], (t) =>
+      flapSelectorGeometry(t, { style: 'lever', height: 0.085, palette: { ...P, white: P.grip } }),
+    );
+    // Parking brake: the rotary handle low on the centre panel, left of the pedestal.
+    d.box([0.1, 0.075, 0.07], [0.28, sy - 0.25, z - 0.005], m.console);
+    c.text(d, 'PARK BRAKE', [0.28, sy - 0.222, z - 0.042], 0.006);
+    const park = c.control('cockpit-brake', [0.28, sy - 0.258, z - 0.041], [-Math.PI / 2, 0, 0], {
+      action: 'brake',
+      motion: rot('y', 1.57),
+    });
+    stamp(park, [0, 0, 0], [0, 0, 0], (t) =>
+      parkingBrakeGeometry(t, { style: 'rotary', scale: 0.9, palette: P }),
+    );
+    // Outboard consoles with the side-sticks, padded armrests and the captain's tiller.
+    for (const side of [-1, 1]) {
+      const inner = Math.abs(ex) + 0.28,
+        consoleTop = ey - 0.6;
+      c.sideConsole(side, { inner, top: consoleTop, aft: ez - 0.45, fore: ez + 0.52 });
+      d.add(
+        place(roundedBox([0.075, 0.04, 0.36], 0.015), [
+          side * (inner + 0.045),
+          consoleTop + 0.02,
+          ez - 0.08,
+        ]),
+        m.padded,
+      );
+      d.box(
+        [0.11, 0.004, 0.13],
+        [side * (Math.abs(ex) + 0.37), consoleTop + 0.002, ez + 0.3],
+        m.bezel,
+      );
+    }
+    d.add(
+      lathe(
+        [
+          [0, 0],
+          [0.05, 0],
+          [0.05, 0.012],
+          [0.04, 0.018],
+          [0, 0.018],
+        ],
+        20,
+      ),
+      P.grip,
+      [Math.abs(ex) + 0.5, ey - 0.6, ez + 0.44],
+    );
+    d.add(
+      bar(
+        [Math.abs(ex) + 0.5, ey - 0.58, ez + 0.44],
+        [Math.abs(ex) + 0.535, ey - 0.56, ez + 0.44],
+        0.008,
+        12,
+      ),
+      P.grip,
+    );
+    // Overhead: APU and system panels in rows of lit pushbuttons.
+    // The face is turned so its lettering reads from the seat: local +Y runs forward, -X is left.
+    const roof = c.face('a220-overhead', [0, o.y - 0.028, o.z], [-Math.PI / 2, 0, Math.PI]);
+    for (let r = 0; r < 6; r++)
+      for (let q = 0; q < 9; q++)
+        if ((r + q) % 3)
+          roof.box(
+            [0.022, 0.022, 0.008],
+            [(q - 4) * (o.w / 10), -0.2 + r * 0.08, -0.004],
+            (r * 9 + q) % 7 ? d.dark : m.bezel,
+          );
+    c.text(roof, 'APU', [-0.06, -0.21, -0.002], 0.009);
+    const apu = c.control(
+      'cockpit-engine-common',
+      [0.06, o.y - 0.032, o.z - 0.24],
+      [-Math.PI / 2, 0, 0],
+      {
+        action: 'engine',
+        motion: { property: 'position', axis: 'z', scale: 0.003 },
+      },
+    );
+    stamp(apu, [0, 0, 0], [0, 0, 0], (t) =>
+      switchGeometry(t, { style: 'korry', scale: 1.4, lit: P.lamp, palette: P }),
+    );
+  },
+};
 
 const body = [
   // Above u 1.25 the crown is read by eye off the photograph: the glazing defeats edge tracing.
@@ -61,6 +344,7 @@ export const a220 = {
   midFraction: 0.5,
   bellyAngle: 1.95,
   body,
+  deck: a220Deck,
   cockpit: {
     uStart: 1.25,
     uEnd: 3.2,

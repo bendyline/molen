@@ -213,7 +213,12 @@ for (const s of aircraft) {
   tuneAircraftPerformance(s.id, spec);
   completeAircraftArticulation(model, spec, s, modelSignals);
   completeCockpitControls(model, spec, f);
-  finishAircraftCockpit(model, spec, s.slug);
+  // The crew's eyes, as the seats below place them: a side-by-side copilot or a tandem rear seat.
+  finishAircraftCockpit(model, spec, s.slug, [
+    f.eye,
+    ...(!f.fighter && !s.tandem ? [[-f.eye[0], f.eye[1], f.eye[2]]] : []),
+    ...(s.tandem ? [f.rearEye ?? [0, f.eye[1] + 0.12, f.eye[2] - 1.25]] : []),
+  ]);
   completeAircraftCollisionParts(model, spec);
   const bytes = embedCockpitTextures(
     Buffer.from(await new GLTFExporter().parseAsync(model, { binary: true, onlyVisible: false })),

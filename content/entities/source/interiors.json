@@ -8,28 +8,43 @@
       "slug": "acura-mdx-2019",
       "category": "vehicles",
       "layout": "acura-dual",
-      "trim": "#5e5148",
+      "trim": "#c8b796",
       "selector": "buttons",
       "signature": "Stacked recessed navigation and touch displays, twin analog binnacle, push-button selector",
-      "reference": "acura-mdx-2019"
+      "reference": "acura-mdx-2019",
+      "stack": "#24282b",
+      "lowerDash": "#c8b796",
+      "stackFrame": true
     },
     "molen.entities.vehicle.acura_tl_2013": {
       "slug": "acura-tl-2013",
       "category": "vehicles",
       "layout": "acura-old",
-      "trim": "#66645e",
+      "trim": "#b3ac9f",
       "selector": "lever",
       "signature": "Deep upper navigation hood, silver waterfall radio keypad, twin analog gauges",
-      "reference": "acura-tl-2013"
+      "reference": "acura-tl-2013",
+      "stack": "#a9a8a3",
+      "vents": "chrome-slat",
+      "knobs": "concentric",
+      "dash": "#c3bfb5",
+      "dashTop": "#76777a"
     },
     "molen.entities.vehicle.alfa_romeo_giulia_2018": {
       "slug": "alfa-romeo-giulia-2018",
       "category": "vehicles",
       "layout": "alfa",
-      "trim": "#383a3a",
+      "trim": "#9a5a34",
       "selector": "lever",
       "signature": "Twin circular cowls, driver-angled integrated display, round outer vents and wheel start button",
-      "reference": "alfa-romeo-giulia-2018"
+      "reference": "alfa-romeo-giulia-2018",
+      "wheel": "modern",
+      "stack": "#24282b",
+      "centerVents": "rail",
+      "vents": {
+        "slot": "chrome-slat"
+      },
+      "climateKnobs": 3
     },
     "molen.entities.vehicle.audi_tt_2021": {
       "slug": "audi-tt-2021",
@@ -38,7 +53,8 @@
       "trim": "#34383b",
       "selector": "lever",
       "signature": "Driver-only virtual cockpit, three turbine center vents with integrated climate knobs",
-      "reference": "audi-tt-2021"
+      "reference": "audi-tt-2021",
+      "headliner": "#2a2c2e"
     },
     "molen.entities.vehicle.bmw_i3_2017": {
       "slug": "bmw-i3-2017",
@@ -47,16 +63,26 @@
       "trim": "#9b8060",
       "selector": "column",
       "signature": "Floating instrument pod and tablet above a curved wood shelf, open center footwell",
-      "reference": "bmw-i3-2017"
+      "reference": "bmw-i3-2017",
+      "dash": "#c3beb3",
+      "vents": "slat",
+      "screenSize": [
+        0.25,
+        0.11
+      ],
+      "screenBezel": "black",
+      "dashTop": "#55585a"
     },
     "molen.entities.vehicle.byd_qin_plus_2024": {
       "slug": "byd-qin-plus-2024",
       "category": "vehicles",
       "layout": "byd",
-      "trim": "#6e6159",
+      "trim": "#d6cdbb",
       "selector": "lever",
       "signature": "Small driver display and large rotating-format landscape tablet, horizontal center vents",
-      "reference": "byd-qin-plus-2024"
+      "reference": "byd-qin-plus-2024",
+      "stack": "#55595c",
+      "bandHeight": 0.12
     },
     "molen.entities.vehicle.byd_seagull_2024": {
       "slug": "byd-seagull-2024",
@@ -65,16 +91,23 @@
       "trim": "#6e8890",
       "selector": "dash",
       "signature": "Small raised cluster, wave-shaped fascia, landscape tablet and lower cylindrical switch bar",
-      "reference": "byd-seagull-2024"
+      "reference": "byd-seagull-2024",
+      "shifter": "joystick"
     },
     "molen.entities.vehicle.cadillac_cts_2010": {
       "slug": "cadillac-cts-2010",
       "category": "vehicles",
       "layout": "cts",
-      "trim": "#63554a",
+      "trim": "#3d3f41",
       "selector": "lever",
       "signature": "Twin cowl gauges, pop-up navigation hood, vertical vents and silver radio/climate stack",
-      "reference": "cadillac-cts-2010"
+      "reference": "cadillac-cts-2010",
+      "stack": "#a3a5a6",
+      "gauges": [
+        0.042,
+        0.056,
+        0.042
+      ]
     },
     "molen.entities.vehicle.chevrolet_colorado_2025": {
       "slug": "chevrolet-colorado-2025",
@@ -83,43 +116,70 @@
       "trim": "#474b49",
       "selector": "lever",
       "signature": "Separate wide driver and center screens, truck vents and physical climate bank",
-      "reference": "chevrolet-colorado-2025"
+      "reference": "chevrolet-colorado-2025",
+      "headliner": "#2b2d2f",
+      "panel": "joined",
+      "vents": {
+        "round": "turbine"
+      },
+      "centerVents": "rail",
+      "railWidth": 0.4
     },
     "molen.entities.vehicle.chevrolet_corvette_2014": {
       "slug": "chevrolet-corvette-2014",
       "category": "vehicles",
       "layout": "corvette",
-      "trim": "#454445",
+      "trim": "#a8232b",
       "selector": "lever",
       "signature": "Deep driver binnacle, angled center stack, passenger grab rail and flat-bottom wheel",
-      "reference": "chevrolet-corvette-2014"
+      "reference": "chevrolet-corvette-2014",
+      "stack": "#26292b",
+      "headliner": "#26282a",
+      "stackAngle": 10
     },
     "molen.entities.vehicle.chevrolet_equinox_2025": {
       "slug": "chevrolet-equinox-2025",
       "category": "vehicles",
       "layout": "gm-wide",
-      "trim": "#59605b",
+      "trim": "#b39a78",
       "selector": "column",
       "signature": "Driver-oriented paired wide displays, broad horizontal vents, open console storage",
-      "reference": "chevrolet-equinox-2025"
+      "reference": "chevrolet-equinox-2025",
+      "stack": "#2a2d30",
+      "panel": "joined",
+      "centerVents": "rail",
+      "vents": {
+        "round": "turbine"
+      }
     },
     "molen.entities.vehicle.chevrolet_onix_2024": {
       "slug": "chevrolet-onix-2024",
       "category": "vehicles",
       "layout": "compact-tablet",
-      "trim": "#565857",
+      "trim": "#8e9191",
       "selector": "lever",
-      "signature": "Two analog gauges, high center tablet and compact three-dial climate stack",
-      "reference": "chevrolet-onix-2024"
+      "signature": "Twin analog dials, 8 in tablet standing on the dash, twin centre vents in a light band, two-dial climate panel",
+      "reference": "chevrolet-onix-2024",
+      "screen": "floating",
+      "stack": "#2a2d30",
+      "centerVents": "rail",
+      "railWidth": 0.3,
+      "vents": {
+        "slot": "slat"
+      },
+      "bandHeight": 0.1
     },
     "molen.entities.vehicle.chevrolet_silverado_1500_2025": {
       "slug": "chevrolet-silverado-1500-2025",
       "category": "vehicles",
       "layout": "gm-wide",
-      "trim": "#705b47",
+      "trim": "#3b3d3e",
       "selector": "column",
       "signature": "Wide landscape infotainment flanked by truck vents, separate digital driver binnacle",
-      "reference": "chevrolet-silverado-1500-2025"
+      "reference": "chevrolet-silverado-1500-2025",
+      "screen": "embedded",
+      "headliner": "#2a2c2e",
+      "centerVents": "flank"
     },
     "molen.entities.vehicle.chevrolet_ssr_2005": {
       "slug": "chevrolet-ssr-2005",
@@ -128,7 +188,16 @@
       "trim": "#4d565d",
       "selector": "lever",
       "signature": "Three circular instrument recesses, round vents and compact DIN radio stack",
-      "reference": "chevrolet-ssr-2005"
+      "reference": "chevrolet-ssr-2005",
+      "wheel": "four-spoke",
+      "shifter": "ball",
+      "stack": "#62676b",
+      "dash": "#62676b",
+      "band": "#a3a6a8",
+      "climateKnobs": 3,
+      "vents": {
+        "vertical": "slat"
+      }
     },
     "molen.entities.vehicle.chevrolet_traverse_2025": {
       "slug": "chevrolet-traverse-2025",
@@ -136,8 +205,19 @@
       "layout": "gm-wide",
       "trim": "#5a605d",
       "selector": "column",
-      "signature": "Extra-wide landscape center display, separate driver screen, lower climate rail",
-      "reference": "chevrolet-traverse-2025"
+      "signature": "17.7 in landscape centre display beside an 11 in driver screen, one wide chrome-ringed vent, two-knob climate row, column shifter",
+      "reference": "chevrolet-traverse-2025",
+      "screenSize": [
+        0.4,
+        0.15
+      ],
+      "centerVents": "rail",
+      "vents": {
+        "slot": "chrome-slat",
+        "rect": "chrome-slat"
+      },
+      "stack": "#2a2d30",
+      "panel": "joined"
     },
     "molen.entities.vehicle.chevrolet_trax_2025": {
       "slug": "chevrolet-trax-2025",
@@ -146,7 +226,12 @@
       "trim": "#6a6257",
       "selector": "lever",
       "signature": "Joined driver and center screen surround, round outer vents and rectangular center vents",
-      "reference": "chevrolet-trax-2025"
+      "reference": "chevrolet-trax-2025",
+      "stack": "#2a2d30",
+      "centerVents": "rail",
+      "vents": {
+        "round": "turbine"
+      }
     },
     "molen.entities.vehicle.chevrolet_volt_2011": {
       "slug": "chevrolet-volt-2011",
@@ -155,7 +240,9 @@
       "trim": "#c4c5bd",
       "selector": "lever",
       "signature": "White center waterfall, separate recessed driver display, upright infotainment panel",
-      "reference": "chevrolet-volt-2011"
+      "reference": "chevrolet-volt-2011",
+      "shifter": "sculpted",
+      "screen": "embedded"
     },
     "molen.entities.vehicle.chrysler_300_2015": {
       "slug": "chrysler-300-2015",
@@ -164,7 +251,11 @@
       "trim": "#665448",
       "selector": "rotary",
       "signature": "Uconnect screen between vertical vents, small analog clock, wide twin-dial cluster",
-      "reference": "chrysler-300-2015"
+      "reference": "chrysler-300-2015",
+      "dash": "#4a3b31",
+      "stack": "#2b2a29",
+      "dials": "light",
+      "stackFrame": true
     },
     "molen.entities.vehicle.chrysler_pt_cruiser_2006": {
       "slug": "chrysler-pt-cruiser-2006",
@@ -173,16 +264,26 @@
       "trim": "#747a78",
       "selector": "lever",
       "signature": "Body-color fascia, hooded circular gauges and paired round center vents above radio",
-      "reference": "chrysler-pt-cruiser-2006"
+      "reference": "chrysler-pt-cruiser-2006",
+      "wheel": "four-spoke",
+      "band": "body",
+      "dials": "light",
+      "clusterHood": "body"
     },
     "molen.entities.vehicle.dacia_duster_2024": {
       "slug": "dacia-duster-2024",
       "category": "vehicles",
       "layout": "duster",
-      "trim": "#63705b",
+      "trim": "#9c6a4a",
       "selector": "lever",
       "signature": "Angled high screen, Y-themed vent separators, chunky shelf and physical HVAC row",
-      "reference": "dacia-duster-2024"
+      "reference": "dacia-duster-2024",
+      "cluster": "digital",
+      "screen": "floating",
+      "vents": "slat",
+      "headliner": "#3a3c3e",
+      "stack": "#2b2e31",
+      "band": "#4a4e50"
     },
     "molen.entities.vehicle.dodge_challenger_2018": {
       "slug": "dodge-challenger-2018",
@@ -191,7 +292,13 @@
       "trim": "#464343",
       "selector": "lever",
       "signature": "Deep twin round gauges, wide inset center screen and thick horizontal passenger fascia",
-      "reference": "dodge-challenger-2018"
+      "reference": "dodge-challenger-2018",
+      "wheel": "sport",
+      "headliner": "#26282a",
+      "centerVents": "flank",
+      "vents": {
+        "vertical": "chrome-slat"
+      }
     },
     "molen.entities.vehicle.fiat_500_2012": {
       "slug": "fiat-500-2012",
@@ -200,7 +307,11 @@
       "trim": "#bcc4ba",
       "selector": "dash",
       "signature": "Body-color dash, concentric central driver dial, round vents and dash-mounted selector",
-      "reference": "fiat-500-2012"
+      "reference": "fiat-500-2012",
+      "shifter": "ball",
+      "stack": "#3a3d40",
+      "band": "body",
+      "bandHeight": 0.15
     },
     "molen.entities.vehicle.fiat_strada_2024": {
       "slug": "fiat-strada-2024",
@@ -208,17 +319,25 @@
       "layout": "utility-tablet",
       "trim": "#575c58",
       "selector": "lever",
-      "signature": "Conventional hooded instruments, high center tablet, rectangular utility vents",
-      "reference": "fiat-strada-2024"
+      "signature": "Hooded analog instruments, touchscreen between tall vents in one framed unit, three-dial climate, round turbine outer vents",
+      "reference": "fiat-strada-2024",
+      "screen": "embedded",
+      "vents": {
+        "round": "turbine"
+      },
+      "stack": "#2a2d30"
     },
     "molen.entities.vehicle.ford_bronco_2025": {
       "slug": "ford-bronco-2025",
       "category": "vehicles",
       "layout": "bronco",
-      "trim": "#6a6556",
+      "trim": "#3e4144",
       "selector": "lever",
       "signature": "Upright rugged dashboard, rectangular touchscreen, passenger grab handle and auxiliary switches",
-      "reference": "ford-bronco-2025"
+      "reference": "ford-bronco-2025",
+      "headliner": "#2b2d2f",
+      "cluster": "digital",
+      "grabHandle": false
     },
     "molen.entities.vehicle.ford_escape_2025": {
       "slug": "ford-escape-2025",
@@ -227,16 +346,39 @@
       "trim": "#565d5e",
       "selector": "rotary",
       "signature": "Low wide tablet, horizontal vents and separate driver binnacle, rotary selector",
-      "reference": "ford-escape-2025"
+      "reference": "ford-escape-2025",
+      "panel": "separate",
+      "screenSize": [
+        0.29,
+        0.165
+      ],
+      "stack": "#2a2d30",
+      "centerVents": "rail",
+      "railWidth": 0.3,
+      "vents": {
+        "slot": "slat"
+      }
     },
     "molen.entities.vehicle.ford_explorer_2025": {
       "slug": "ford-explorer-2025",
       "category": "vehicles",
       "layout": "ford-wide",
-      "trim": "#6d594b",
+      "trim": "#5a5d60",
       "selector": "rotary",
-      "signature": "Facelift landscape screen with low climate rail, separate driver binnacle",
-      "reference": "ford-explorer-2025"
+      "signature": "Free-standing 13.2 in landscape screen over one wide vent, hooded 12.3 in driver display, volume knob and button row, rotary shifter",
+      "reference": "ford-explorer-2025",
+      "panel": "separate",
+      "screenSize": [
+        0.29,
+        0.165
+      ],
+      "centerVents": "rail",
+      "vents": {
+        "slot": "slat"
+      },
+      "climateKnobs": 1,
+      "stack": "#2e3134",
+      "lowerDash": "#c9c9c4"
     },
     "molen.entities.vehicle.ford_f_150_2025": {
       "slug": "ford-f-150-2025",
@@ -245,7 +387,12 @@
       "trim": "#6d604f",
       "selector": "lever",
       "signature": "Large inset center screen, tall outer vents, broad digital cluster and trailer-control bank",
-      "reference": "ford-f-150-2025"
+      "reference": "ford-f-150-2025",
+      "knobs": "fluted",
+      "headliner": "#2b2d2f",
+      "screen": "embedded",
+      "centerVents": "flank",
+      "stack": "#2a2d30"
     },
     "molen.entities.vehicle.ford_gt_2005": {
       "slug": "ford-gt-2005",
@@ -254,7 +401,9 @@
       "trim": "#50545a",
       "selector": "lever",
       "signature": "Seven circular instruments across a long panel, metal center tunnel and toggle bank",
-      "reference": "ford-gt-2005"
+      "reference": "ford-gt-2005",
+      "wheel": "modern",
+      "headliner": "#1e2022"
     },
     "molen.entities.vehicle.ford_maverick_2025": {
       "slug": "ford-maverick-2025",
@@ -263,7 +412,19 @@
       "trim": "#657b80",
       "selector": "rotary",
       "signature": "Facelift wide center display, exposed storage shelf and blue-gray molded trim",
-      "reference": "ford-maverick-2025"
+      "reference": "ford-maverick-2025",
+      "panel": "separate",
+      "screenSize": [
+        0.29,
+        0.165
+      ],
+      "stack": "#2a2d30",
+      "centerVents": "rail",
+      "railWidth": 0.27,
+      "vents": {
+        "slot": "slat"
+      },
+      "band": "#6a6b6e"
     },
     "molen.entities.vehicle.ford_mustang_2024": {
       "slug": "ford-mustang-2024",
@@ -272,16 +433,25 @@
       "trim": "#3f464a",
       "selector": "lever",
       "signature": "Connected driver and landscape center displays, three rectangular center vents, flat-bottom wheel",
-      "reference": "ford-mustang-2024"
+      "reference": "ford-mustang-2024",
+      "vents": "chrome-slat",
+      "headliner": "#232527",
+      "panel": "joined",
+      "climateKnobs": 0
     },
     "molen.entities.vehicle.ford_ranger_2025": {
       "slug": "ford-ranger-2025",
       "category": "vehicles",
       "layout": "ford-portrait",
-      "trim": "#5f605d",
+      "trim": "#2e3134",
       "selector": "lever",
       "signature": "Tall portrait touchscreen between vertical vents, raised cluster and truck switch bank",
-      "reference": "ford-ranger-2025"
+      "reference": "ford-ranger-2025",
+      "cluster": "digital",
+      "band": "#5f605d",
+      "vents": {
+        "vertical": "chrome-slat"
+      }
     },
     "molen.entities.vehicle.ford_transit_2021": {
       "slug": "ford-transit-2021",
@@ -290,7 +460,13 @@
       "trim": "#676b69",
       "selector": "dash",
       "signature": "Hooded analog instruments, upper display recess, dash selector and open storage shelves",
-      "reference": "ford-transit-2021"
+      "reference": "ford-transit-2021",
+      "screen": "floating",
+      "stack": "#2a2d30",
+      "shifter": "sculpted",
+      "vents": {
+        "vertical": "slat"
+      }
     },
     "molen.entities.vehicle.geely_monjaro_2024": {
       "slug": "geely-monjaro-2024",
@@ -299,16 +475,30 @@
       "trim": "#6e6759",
       "selector": "lever",
       "signature": "Continuous three-screen fascia including passenger display, long vent rail and short selector",
-      "reference": "geely-monjaro-2024"
+      "reference": "geely-monjaro-2024",
+      "vents": "slim",
+      "centerVents": "rail",
+      "climateKnobs": 0,
+      "stack": "#2a2d30",
+      "panel": "joined"
     },
     "molen.entities.vehicle.genesis_g80_2024": {
       "slug": "genesis-g80-2024",
       "category": "vehicles",
       "layout": "genesis",
-      "trim": "#776353",
+      "trim": "#cdc2ad",
       "selector": "rotary",
       "signature": "Wide upper navigation display, hooded driver cluster and lower climate panel, rotary controller",
-      "reference": "genesis-g80-2024"
+      "reference": "genesis-g80-2024",
+      "vents": "slim",
+      "centerVents": "rail",
+      "screenSize": [
+        0.33,
+        0.11
+      ],
+      "stack": "#35373a",
+      "lowerDash": "#d3c8b2",
+      "railWidth": 1.05
     },
     "molen.entities.vehicle.gmc_hummer_ev_suv_2024": {
       "slug": "gmc-hummer-ev-suv-2024",
@@ -317,25 +507,38 @@
       "trim": "#788079",
       "selector": "lever",
       "signature": "Two large separate rectangles, blocky vertical vents, square-edged console and metal grips",
-      "reference": "gmc-hummer-ev-suv-2024"
+      "reference": "gmc-hummer-ev-suv-2024",
+      "headliner": "#2b2d2f",
+      "centerVents": "rail",
+      "stack": "#2a2d30",
+      "screenSize": [
+        0.3,
+        0.17
+      ],
+      "grabHandle": false
     },
     "molen.entities.vehicle.gmc_sierra_1500_2025": {
       "slug": "gmc-sierra-1500-2025",
       "category": "vehicles",
       "layout": "gm-wide",
       "trim": "#76604b",
-      "selector": "lever",
+      "selector": "column",
       "signature": "Wide landscape center screen, digital driver binnacle, wood-toned passenger band",
-      "reference": "gmc-sierra-1500-2025"
+      "reference": "gmc-sierra-1500-2025",
+      "headliner": "#2b2d2f",
+      "screen": "embedded",
+      "centerVents": "flank",
+      "stack": "#2a2d30"
     },
     "molen.entities.vehicle.honda_accord_2025": {
       "slug": "honda-accord-2025",
       "category": "vehicles",
       "layout": "honda-mesh",
-      "trim": "#515857",
+      "trim": "#373c3f",
       "selector": "lever",
       "signature": "Long honeycomb vent band, raised landscape tablet, separate digital cluster",
-      "reference": "honda-accord-2025"
+      "reference": "honda-accord-2025",
+      "cluster": "digital"
     },
     "molen.entities.vehicle.honda_civic_2025": {
       "slug": "honda-civic-2025",
@@ -344,16 +547,20 @@
       "trim": "#444b50",
       "selector": "lever",
       "signature": "Honeycomb vent strip with projecting adjusters, smaller raised tablet and lower climate knobs",
-      "reference": "honda-civic-2025"
+      "reference": "honda-civic-2025",
+      "knobs": "fluted",
+      "headliner": "#2b2d2f",
+      "cluster": "digital"
     },
     "molen.entities.vehicle.honda_cr_v_2025": {
       "slug": "honda-cr-v-2025",
       "category": "vehicles",
       "layout": "honda-mesh",
-      "trim": "#68665e",
+      "trim": "#3a3e40",
       "selector": "lever",
       "signature": "Honeycomb fascia, raised tablet, conventional raised center tunnel and climate dials",
-      "reference": "honda-cr-v-2025"
+      "reference": "honda-cr-v-2025",
+      "cluster": "digital"
     },
     "molen.entities.vehicle.honda_element_2008": {
       "slug": "honda-element-2008",
@@ -361,8 +568,18 @@
       "layout": "element",
       "trim": "#70777a",
       "selector": "dash",
-      "signature": "Utility shelf, rectangular center audio stack, large round vents and high dash selector",
-      "reference": "honda-element-2008"
+      "signature": "Three-ring binnacle with a large centre speedometer, black centre stack with audio, three climate dials and dash selector, large round vents, utility shelf",
+      "reference": "honda-element-2008",
+      "gauges": [
+        0.044,
+        0.056,
+        0.038
+      ],
+      "vents": {
+        "round": "round"
+      },
+      "stack": "#2b2e31",
+      "band": "#2d2e2e"
     },
     "molen.entities.vehicle.honda_n_box_2024": {
       "slug": "honda-n-box-2024",
@@ -371,25 +588,43 @@
       "trim": "#a8a798",
       "selector": "dash",
       "signature": "Raised driver digital pod, shelf-like dash, upper center screen and high selector",
-      "reference": "honda-n-box-2024"
+      "reference": "honda-n-box-2024",
+      "vents": "round",
+      "wheel": "two-spoke",
+      "dash": "#c9c5bb",
+      "dashTop": "#4b4e51",
+      "screenBezel": "black"
     },
     "molen.entities.vehicle.honda_odyssey_2025": {
       "slug": "honda-odyssey-2025",
       "category": "vehicles",
       "layout": "honda-van",
-      "trim": "#72716b",
+      "trim": "#aaa79f",
       "selector": "buttons",
       "signature": "High driver cluster, inset center display, broad shelf and push-button selector stack",
-      "reference": "honda-odyssey-2025"
+      "reference": "honda-odyssey-2025",
+      "cluster": "digital",
+      "stack": "#2a2d30",
+      "centerVents": "flank",
+      "vents": {
+        "vertical": "slat"
+      },
+      "climateKnobs": 1,
+      "lowerDash": "#b8ae9e"
     },
     "molen.entities.vehicle.honda_pilot_2025": {
       "slug": "honda-pilot-2025",
       "category": "vehicles",
       "layout": "honda-suv",
-      "trim": "#666158",
+      "trim": "#3a3e40",
       "selector": "buttons",
       "signature": "Raised screen above broad horizontal vents, hooded cluster and button selector",
-      "reference": "honda-pilot-2025"
+      "reference": "honda-pilot-2025",
+      "cluster": "digital",
+      "centerVents": "rail",
+      "vents": {
+        "slot": "slat"
+      }
     },
     "molen.entities.vehicle.hummer_h3_2007": {
       "slug": "hummer-h3-2007",
@@ -398,16 +633,23 @@
       "trim": "#5b6060",
       "selector": "lever",
       "signature": "Deep round gauges, four round vents, compact radio and three rotary HVAC controls",
-      "reference": "hummer-h3-2007"
+      "reference": "hummer-h3-2007",
+      "vents": "slat",
+      "stack": "#3a3d40",
+      "climateKnobs": 3
     },
     "molen.entities.vehicle.hyundai_casper_electric_2024": {
       "slug": "hyundai-casper-electric-2024",
       "category": "vehicles",
       "layout": "casper",
-      "trim": "#a2a295",
+      "trim": "#cfcdb5",
       "selector": "column",
       "signature": "Separate instrument and media rectangles, chunky storage shelf, compact column selector",
-      "reference": "hyundai-casper-electric-2024"
+      "reference": "hyundai-casper-electric-2024",
+      "vents": "slat",
+      "dash": "#cfcdb5",
+      "dashTop": "#4f5249",
+      "screenBezel": "black"
     },
     "molen.entities.vehicle.hyundai_ioniq_5_2022": {
       "slug": "hyundai-ioniq-5-2022",
@@ -416,25 +658,36 @@
       "trim": "#b5b8af",
       "selector": "column",
       "signature": "Light-framed twin rectangular screens, open center floor and two-spoke wheel",
-      "reference": "hyundai-ioniq-5-2022"
+      "reference": "hyundai-ioniq-5-2022",
+      "band": "#2e3034"
     },
     "molen.entities.vehicle.hyundai_palisade_2025": {
       "slug": "hyundai-palisade-2025",
       "category": "vehicles",
       "layout": "hyundai-bridge",
-      "trim": "#796a58",
+      "trim": "#c2b8a6",
       "selector": "buttons",
       "signature": "Wide connected instrument and media hood, broad lower vent rail and button console",
-      "reference": "hyundai-palisade-2025"
+      "reference": "hyundai-palisade-2025",
+      "wheel": "two-spoke",
+      "centerVents": "rail",
+      "panel": "joined",
+      "stack": "#2a2d30",
+      "lowerDash": "#cbbfa9",
+      "railWidth": 1.05
     },
     "molen.entities.vehicle.hyundai_staria_2024": {
       "slug": "hyundai-staria-2024",
       "category": "vehicles",
       "layout": "staria",
-      "trim": "#727779",
+      "trim": "#3c4043",
       "selector": "buttons",
       "signature": "Very high slim driver display, vertical central screen tower and large lower storage recess",
-      "reference": "hyundai-staria-2024"
+      "reference": "hyundai-staria-2024",
+      "stack": "#2a2d30",
+      "selectorSide": "driver",
+      "dashTop": "#7b7866",
+      "lowerDash": "#7b7866"
     },
     "molen.entities.vehicle.hyundai_tucson_2025": {
       "slug": "hyundai-tucson-2025",
@@ -443,7 +696,12 @@
       "trim": "#7c827d",
       "selector": "column",
       "signature": "Facelift panoramic driver/media bridge above horizontal vent strip and physical climate knobs",
-      "reference": "hyundai-tucson-2025"
+      "reference": "hyundai-tucson-2025",
+      "centerVents": "rail",
+      "panel": "joined",
+      "stack": "#2a2d30",
+      "lowerDash": "#c4bcac",
+      "railWidth": 1.05
     },
     "molen.entities.vehicle.hyundai_veloster_2020": {
       "slug": "hyundai-veloster-2020",
@@ -452,7 +710,8 @@
       "trim": "#454c50",
       "selector": "lever",
       "signature": "Analog cluster, trapezoidal raised tablet, angular vents and driver-oriented console",
-      "reference": "hyundai-veloster-2020"
+      "reference": "hyundai-veloster-2020",
+      "vents": "chrome-slat"
     },
     "molen.entities.vehicle.isuzu_d_max_2024": {
       "slug": "isuzu-d-max-2024",
@@ -461,7 +720,8 @@
       "trim": "#595b57",
       "selector": "lever",
       "signature": "Hooded twin gauges, inset central touchscreen and broad piano-key climate switches",
-      "reference": "isuzu-d-max-2024"
+      "reference": "isuzu-d-max-2024",
+      "stack": "#2a2d30"
     },
     "molen.entities.vehicle.jaguar_i_pace_2019": {
       "slug": "jaguar-i-pace-2019",
@@ -470,7 +730,12 @@
       "trim": "#72665b",
       "selector": "buttons",
       "signature": "Wide upper infotainment plus lower climate display, digital binnacle and floating center bridge",
-      "reference": "jaguar-i-pace-2019"
+      "reference": "jaguar-i-pace-2019",
+      "vents": "chrome-slat",
+      "cluster": "digital",
+      "stack": "#2a2d30",
+      "centerVents": "rail",
+      "band": "#303131"
     },
     "molen.entities.vehicle.jeep_grand_cherokee_2025": {
       "slug": "jeep-grand-cherokee-2025",
@@ -479,16 +744,32 @@
       "trim": "#725e4d",
       "selector": "rotary",
       "signature": "Recessed center display under broad vent rail, digital driver hood and glossy lower control stack",
-      "reference": "jeep-grand-cherokee-2025"
+      "reference": "jeep-grand-cherokee-2025",
+      "vents": "slim",
+      "cluster": "digital",
+      "centerVents": "rail",
+      "stack": "#2a2d30",
+      "railWidth": 1
     },
     "molen.entities.vehicle.jeep_wrangler_2025": {
       "slug": "jeep-wrangler-2025",
       "category": "vehicles",
       "layout": "wrangler",
-      "trim": "#60594f",
+      "trim": "#9a9d9c",
       "selector": "lever",
       "signature": "Long landscape screen, four circular vents, upright body-color fascia and auxiliary levers",
-      "reference": "jeep-wrangler-2025"
+      "reference": "jeep-wrangler-2025",
+      "wheel": "modern",
+      "shifter": "sculpted",
+      "screen": "embedded",
+      "stack": "#2a2d30",
+      "centerVents": "rail",
+      "climateKnobs": 3,
+      "bandHeight": 0.14,
+      "screenSize": [
+        0.32,
+        0.12
+      ]
     },
     "molen.entities.vehicle.kia_k5_2024": {
       "slug": "kia-k5-2024",
@@ -497,16 +778,27 @@
       "trim": "#665a50",
       "selector": "lever",
       "signature": "Wide joined display surround with driver-oriented center panel, slim climate row",
-      "reference": "kia-k5-2024"
+      "reference": "kia-k5-2024",
+      "panel": "joined",
+      "stack": "#2a2d30",
+      "centerVents": "rail",
+      "railWidth": 0.38,
+      "vents": {
+        "rect": "chrome-slat"
+      }
     },
     "molen.entities.vehicle.kia_soul_2015": {
       "slug": "kia-soul-2015",
       "category": "vehicles",
       "layout": "soul",
-      "trim": "#525a5e",
+      "trim": "#c9ccca",
       "selector": "lever",
       "signature": "Circular upper speaker pods, inset center display and chunky climate dials",
-      "reference": "kia-soul-2015"
+      "reference": "kia-soul-2015",
+      "vents": "slat",
+      "dash": "#8a8f90",
+      "screen": "embedded",
+      "cornerPods": true
     },
     "molen.entities.vehicle.kia_sportage_2025": {
       "slug": "kia-sportage-2025",
@@ -515,7 +807,13 @@
       "trim": "#6a6e64",
       "selector": "rotary",
       "signature": "Angled panoramic display, distinctive tall outer vents and narrow climate bar",
-      "reference": "kia-sportage-2025"
+      "reference": "kia-sportage-2025",
+      "panel": "joined",
+      "stack": "#2a2d30",
+      "vents": {
+        "rect": "vertical"
+      },
+      "centerVents": "rail"
     },
     "molen.entities.vehicle.kia_telluride_2025": {
       "slug": "kia-telluride-2025",
@@ -524,25 +822,41 @@
       "trim": "#7d6853",
       "selector": "lever",
       "signature": "Panoramic display surround, rectangular lower vents and broad console grab rails",
-      "reference": "kia-telluride-2025"
+      "reference": "kia-telluride-2025",
+      "panel": "joined",
+      "stack": "#2a2d30",
+      "centerVents": "rail",
+      "band": "#797260",
+      "bandHeight": 0.13,
+      "vents": {
+        "rect": "chrome-slat"
+      }
     },
     "molen.entities.vehicle.land_rover_defender_90_2023": {
       "slug": "land-rover-defender-90-2023",
       "category": "vehicles",
       "layout": "defender",
-      "trim": "#7b8377",
+      "trim": "#a9a28e",
       "selector": "dash",
       "signature": "Exposed structural dash beam, shelf, inset display and high selector with large climate dials",
-      "reference": "land-rover-defender-90-2023"
+      "reference": "land-rover-defender-90-2023",
+      "vents": "slat",
+      "knobs": "concentric",
+      "cluster": "digital",
+      "screen": "embedded",
+      "lowerDash": "#988b73"
     },
     "molen.entities.vehicle.lincoln_continental_2020": {
       "slug": "lincoln-continental-2020",
       "category": "vehicles",
       "layout": "lincoln",
-      "trim": "#7a6656",
+      "trim": "#4b1a0f",
       "selector": "buttons",
       "signature": "Inset landscape touchscreen with vertical selector buttons, broad wood passenger fascia",
-      "reference": "lincoln-continental-2020"
+      "reference": "lincoln-continental-2020",
+      "stack": "#2a2d30",
+      "selectorSide": "driver",
+      "stackFrame": true
     },
     "molen.entities.vehicle.lucid_air_2022": {
       "slug": "lucid-air-2022",
@@ -551,7 +865,9 @@
       "trim": "#aa9981",
       "selector": "column",
       "signature": "Three-part curved upper glass cockpit and lower portrait pilot panel, slim vents",
-      "reference": "lucid-air-2022"
+      "reference": "lucid-air-2022",
+      "dash": "#858581",
+      "panel": "joined"
     },
     "molen.entities.vehicle.mazda_cx_5_2025": {
       "slug": "mazda-cx-5-2025",
@@ -560,25 +876,34 @@
       "trim": "#6b5a4d",
       "selector": "lever",
       "signature": "High slim landscape display, sculpted twin-level fascia and console rotary controller",
-      "reference": "mazda-cx-5-2025"
+      "reference": "mazda-cx-5-2025",
+      "vents": "chrome-slat",
+      "stack": "#2a2d30"
     },
     "molen.entities.vehicle.mazda_mx_5_miata_2016": {
       "slug": "mazda-mx-5-miata-2016",
       "category": "vehicles",
       "layout": "miata",
-      "trim": "#464b4e",
+      "trim": "#bba283",
       "selector": "lever",
       "signature": "Three-dial driver binnacle, small raised tablet and circular vents, narrow tunnel",
-      "reference": "mazda-mx-5-miata-2016"
+      "reference": "mazda-mx-5-miata-2016",
+      "wheel": "modern",
+      "headliner": "#232426",
+      "stack": "#2a2d30"
     },
     "molen.entities.vehicle.mercedes_benz_sprinter_2019": {
       "slug": "mercedes-benz-sprinter-2019",
       "category": "vehicles",
       "layout": "sprinter",
       "trim": "#68716d",
-      "selector": "dash",
+      "selector": "column",
       "signature": "W907 twin-dial cluster, integrated center screen, round turbine vents and high storage shelf",
-      "reference": "mercedes-benz-sprinter-2019"
+      "reference": "mercedes-benz-sprinter-2019",
+      "vents": "turbine",
+      "centerVents": "flank",
+      "stack": "#2a2d30",
+      "band": "#43403f"
     },
     "molen.entities.vehicle.mini_cooper_2013": {
       "slug": "mini-cooper-2013",
@@ -587,7 +912,11 @@
       "trim": "#636d71",
       "selector": "lever",
       "signature": "R56 large central white speedometer, separate wheel-top tachometer and toggle switches",
-      "reference": "mini-cooper-2013"
+      "reference": "mini-cooper-2013",
+      "vents": "turbine",
+      "headliner": "#2b2d30",
+      "dials": "dark",
+      "band": "#10100e"
     },
     "molen.entities.vehicle.mini_cooper_countryman_2012": {
       "slug": "mini-cooper-countryman-2012",
@@ -596,7 +925,11 @@
       "trim": "#817466",
       "selector": "lever",
       "signature": "R60 central white speedometer and separate tachometer, vertical center stack and console rail",
-      "reference": "mini-cooper-countryman-2012"
+      "reference": "mini-cooper-countryman-2012",
+      "vents": "turbine",
+      "dials": "dark",
+      "pod": "#a3a7a9",
+      "stack": "#1a1c1e"
     },
     "molen.entities.vehicle.nissan_370z_2009": {
       "slug": "nissan-370z-2009",
@@ -605,7 +938,8 @@
       "trim": "#484b4c",
       "selector": "lever",
       "signature": "Three driver dials plus three auxiliary pods above the center radio/display recess",
-      "reference": "nissan-370z-2009"
+      "reference": "nissan-370z-2009",
+      "wheel": "modern"
     },
     "molen.entities.vehicle.nissan_altima_2025": {
       "slug": "nissan-altima-2025",
@@ -614,25 +948,44 @@
       "trim": "#676b66",
       "selector": "lever",
       "signature": "Wide raised tablet, twin analog cluster and horizontal vents with physical climate bank",
-      "reference": "nissan-altima-2025"
+      "reference": "nissan-altima-2025",
+      "stack": "#2a2d30",
+      "centerVents": "rail",
+      "screenSize": [
+        0.27,
+        0.118
+      ],
+      "band": "#3c3e3d"
     },
     "molen.entities.vehicle.nissan_leaf_2012": {
       "slug": "nissan-leaf-2012",
       "category": "vehicles",
       "layout": "leaf",
-      "trim": "#abb7ad",
+      "trim": "#33383b",
       "selector": "puck",
       "signature": "Separate high speed display above lower digital cluster, integrated center stack and small selector puck",
-      "reference": "nissan-leaf-2012"
+      "reference": "nissan-leaf-2012",
+      "vents": "slat",
+      "dash": "#b3ae9c",
+      "centerVents": "flank"
     },
     "molen.entities.vehicle.nissan_rogue_2025": {
       "slug": "nissan-rogue-2025",
       "category": "vehicles",
       "layout": "nissan-tablet",
-      "trim": "#7a6d5d",
+      "trim": "#5f6263",
       "selector": "lever",
       "signature": "Raised large center tablet, separate driver pod and stepped passenger shelf",
-      "reference": "nissan-rogue-2025"
+      "reference": "nissan-rogue-2025",
+      "shifter": "joystick",
+      "cluster": "digital",
+      "stack": "#2a2d30",
+      "centerVents": "rail",
+      "screenSize": [
+        0.29,
+        0.12
+      ],
+      "band": "#3d3e40"
     },
     "molen.entities.vehicle.peugeot_208_2024": {
       "slug": "peugeot-208-2024",
@@ -641,7 +994,12 @@
       "trim": "#546261",
       "selector": "lever",
       "signature": "High i-Cockpit cluster above a small flat wheel, wide center screen and piano keys",
-      "reference": "peugeot-208-2024"
+      "reference": "peugeot-208-2024",
+      "vents": "chrome-slat",
+      "shifter": "joystick",
+      "headliner": "#25272a",
+      "stack": "#2a2d30",
+      "climateKnobs": 0
     },
     "molen.entities.vehicle.pontiac_solstice_2007": {
       "slug": "pontiac-solstice-2007",
@@ -650,34 +1008,46 @@
       "trim": "#4c5051",
       "selector": "lever",
       "signature": "Round vents, twin driver gauges, driver-angled radio stack and simple three-dial climate bank",
-      "reference": "pontiac-solstice-2007"
+      "reference": "pontiac-solstice-2007",
+      "vents": "turbine",
+      "dials": "light",
+      "stackAngle": 10
     },
     "molen.entities.vehicle.porsche_911_2017": {
       "slug": "porsche-911-2017",
       "category": "vehicles",
       "layout": "porsche",
-      "trim": "#57524d",
+      "trim": "#8f2a28",
       "selector": "lever",
       "signature": "Five overlapping round driver instruments, inset center screen and tall switch-lined tunnel",
-      "reference": "porsche-911-2017"
+      "reference": "porsche-911-2017",
+      "wheel": "modern",
+      "headliner": "#1e1f21",
+      "stack": "#2a2d30"
     },
     "molen.entities.vehicle.ram_1500_2025": {
       "slug": "ram-1500-2025",
       "category": "vehicles",
       "layout": "ram",
-      "trim": "#775e48",
+      "trim": "#3a3c3f",
       "selector": "rotary",
       "signature": "Tall portrait screen between vertical vents, rotary gear selector and large truck center tunnel",
-      "reference": "ram-1500-2025"
+      "reference": "ram-1500-2025",
+      "headliner": "#2a2b2d"
     },
     "molen.entities.vehicle.renault_clio_2024": {
       "slug": "renault-clio-2024",
       "category": "vehicles",
       "layout": "clio",
-      "trim": "#666e70",
+      "trim": "#3a3b3d",
       "selector": "lever",
       "signature": "Upright portrait screen, slim rectangular vents and three physical climate dials",
-      "reference": "renault-clio-2024"
+      "reference": "renault-clio-2024",
+      "cluster": "digital",
+      "vents": "slat",
+      "shifter": "ball",
+      "headliner": "#3a3b3d",
+      "band": "#cfcfcb"
     },
     "molen.entities.vehicle.renault_kwid_2024": {
       "slug": "renault-kwid-2024",
@@ -685,44 +1055,81 @@
       "layout": "economy",
       "trim": "#666b68",
       "selector": "lever",
-      "signature": "Simple hooded cluster, compact inset touchscreen, round outer vents and open shelf",
-      "reference": "renault-kwid-2024"
+      "signature": "Hooded digital cluster, 8 in touchscreen under twin vents in a dark stack, three climate dials, round outer vents, manual shifter",
+      "reference": "renault-kwid-2024",
+      "screen": "embedded",
+      "screenSize": [
+        0.18,
+        0.105
+      ],
+      "cluster": "digital",
+      "vents": {
+        "round": "round"
+      },
+      "shifter": "ball",
+      "stack": "#2a2d30",
+      "band": "#33373a",
+      "stackFrame": true
     },
     "molen.entities.vehicle.rivian_r1t_2023": {
       "slug": "rivian-r1t-2023",
       "category": "vehicles",
       "layout": "rivian",
-      "trim": "#8e7a5e",
+      "trim": "#6b5e50",
       "selector": "column",
       "signature": "Separate wide driver and center displays, curved wood fascia and open lower console",
-      "reference": "rivian-r1t-2023"
+      "reference": "rivian-r1t-2023",
+      "wheel": "modern",
+      "screen": "embedded",
+      "bandHeight": 0.17
     },
     "molen.entities.vehicle.saab_9_3_sportcombi_2011": {
       "slug": "saab-9-3-sportcombi-2011",
       "category": "vehicles",
       "layout": "saab",
-      "trim": "#606967",
+      "trim": "#cdc6b4",
       "selector": "lever",
       "signature": "Driver-angled radio/climate stack, green instrument markings, rectangular vent frames",
-      "reference": "saab-9-3-sportcombi-2011"
+      "reference": "saab-9-3-sportcombi-2011",
+      "stack": "#2a2d30",
+      "stackAngle": 8,
+      "stackFrame": true,
+      "centerVents": "rail",
+      "railWidth": 0.22,
+      "vents": {
+        "slot": "grid"
+      }
     },
     "molen.entities.vehicle.scion_xb_2006": {
       "slug": "scion-xb-2006",
       "category": "vehicles",
       "layout": "scion-center",
-      "trim": "#696d6d",
+      "trim": "#55585a",
       "selector": "lever",
-      "signature": "High central instrument pod, open driver shelf and vertical center radio/climate stack",
-      "reference": "scion-xb-2006"
+      "signature": "Round light-faced speedometer pod and warning-light window high on the centre dash, stack with round vents, 2-DIN audio and three climate dials",
+      "reference": "scion-xb-2006",
+      "gauges": [
+        0.06
+      ],
+      "dials": "light",
+      "vents": {
+        "round": "round"
+      },
+      "stack": "#3a3d40"
     },
     "molen.entities.vehicle.skoda_octavia_combi_2024": {
       "slug": "skoda-octavia-combi-2024",
       "category": "vehicles",
       "layout": "skoda",
-      "trim": "#7a7669",
+      "trim": "#3a3b3d",
       "selector": "lever",
       "signature": "High center tablet, two-spoke wheel, slim vent row and small console selector",
-      "reference": "skoda-octavia-combi-2024"
+      "reference": "skoda-octavia-combi-2024",
+      "vents": "slim",
+      "shifter": "joystick",
+      "cluster": "digital",
+      "stack": "#2a2d30",
+      "band": "#a7a9a8"
     },
     "molen.entities.vehicle.smart_fortwo_2009": {
       "slug": "smart-fortwo-2009",
@@ -731,7 +1138,12 @@
       "trim": "#8b9390",
       "selector": "lever",
       "signature": "Single driver dial, two small upper auxiliary pods, compact radio and circular vent ends",
-      "reference": "smart-fortwo-2009"
+      "reference": "smart-fortwo-2009",
+      "wheel": "modern",
+      "vents": "eyeball",
+      "shifter": "ball",
+      "stack": "#2a2d30",
+      "dials": "light"
     },
     "molen.entities.vehicle.subaru_brz_2014": {
       "slug": "subaru-brz-2014",
@@ -740,25 +1152,50 @@
       "trim": "#454b4e",
       "selector": "lever",
       "signature": "Three round instrument recesses, inset DIN media panel, round vents and three climate dials",
-      "reference": "subaru-brz-2014"
+      "reference": "subaru-brz-2014",
+      "wheel": "modern",
+      "headliner": "#26282a",
+      "stack": "#2a2d30",
+      "screenSize": [
+        0.17,
+        0.095
+      ],
+      "gauges": [
+        0.042,
+        0.054,
+        0.036
+      ],
+      "vents": {
+        "slot": "chrome-slat",
+        "round": "turbine"
+      },
+      "centerVents": "rail"
     },
     "molen.entities.vehicle.subaru_forester_2025": {
       "slug": "subaru-forester-2025",
       "category": "vehicles",
       "layout": "subaru",
-      "trim": "#6b706b",
+      "trim": "#3d4245",
       "selector": "lever",
       "signature": "Tall portrait display with vertical side vents, hooded twin analog gauges and broad tunnel",
-      "reference": "subaru-forester-2025"
+      "reference": "subaru-forester-2025",
+      "dash": "#a9aaa6",
+      "band": "#997563",
+      "bandHeight": 0.035,
+      "lowerDash": "#3e4043",
+      "vents": {
+        "rect": "slat"
+      }
     },
     "molen.entities.vehicle.subaru_outback_2025": {
       "slug": "subaru-outback-2025",
       "category": "vehicles",
       "layout": "subaru",
-      "trim": "#7a6955",
+      "trim": "#3d4245",
       "selector": "lever",
       "signature": "Portrait center display framed by vents and physical buttons, deep analog driver binnacle",
-      "reference": "subaru-outback-2025"
+      "reference": "subaru-outback-2025",
+      "band": "#8e9192"
     },
     "molen.entities.vehicle.suzuki_jimny_sierra_2024": {
       "slug": "suzuki-jimny-sierra-2024",
@@ -767,7 +1204,13 @@
       "trim": "#60665d",
       "selector": "lever",
       "signature": "Twin squared-off instrument housings, four round vents, passenger grab handle and transfer lever",
-      "reference": "suzuki-jimny-sierra-2024"
+      "reference": "suzuki-jimny-sierra-2024",
+      "wheel": "modern",
+      "shifter": "sculpted",
+      "stack": "#2a2d30",
+      "vents": {
+        "round": "turbine"
+      }
     },
     "molen.entities.vehicle.suzuki_swift_2024": {
       "slug": "suzuki-swift-2024",
@@ -776,7 +1219,9 @@
       "trim": "#7b8180",
       "selector": "lever",
       "signature": "High trapezoidal center screen, conventional twin gauges, lower climate controls",
-      "reference": "suzuki-swift-2024"
+      "reference": "suzuki-swift-2024",
+      "shifter": "ball",
+      "stack": "#2a2d30"
     },
     "molen.entities.vehicle.auto_rickshaw": {
       "slug": "auto-rickshaw",
@@ -797,28 +1242,34 @@
       "slug": "tesla-model-y-2024",
       "category": "vehicles",
       "layout": "tesla-y",
-      "trim": "#937653",
+      "trim": "#1f2123",
       "selector": "column",
       "signature": "Single landscape screen, wood fascia strip, column selector and conventional stalks",
-      "reference": "tesla-model-y-2024"
+      "reference": "tesla-model-y-2024",
+      "band": "#a47d58"
     },
     "molen.entities.vehicle.toyota_alphard_2024": {
       "slug": "toyota-alphard-2024",
       "category": "vehicles",
       "layout": "alphard",
-      "trim": "#877260",
+      "trim": "#56595b",
       "selector": "lever",
       "signature": "Broad sculpted dash with large central screen, wide driver cluster and tall console bridge",
-      "reference": "toyota-alphard-2024"
+      "reference": "toyota-alphard-2024",
+      "screen": "embedded",
+      "stack": "#0e0e0d"
     },
     "molen.entities.vehicle.toyota_camry_2025": {
       "slug": "toyota-camry-2025",
       "category": "vehicles",
       "layout": "toyota-wide",
-      "trim": "#6b716b",
+      "trim": "#a3302d",
       "selector": "lever",
       "signature": "Large landscape center display, separate driver binnacle and lower physical climate strip",
-      "reference": "toyota-camry-2025"
+      "reference": "toyota-camry-2025",
+      "vents": "slim",
+      "stack": "#2a2d30",
+      "panel": "joined"
     },
     "molen.entities.vehicle.toyota_corolla_2025": {
       "slug": "toyota-corolla-2025",
@@ -827,7 +1278,10 @@
       "trim": "#586362",
       "selector": "lever",
       "signature": "Upright central tablet, shallow rectangular vents and compact lower climate panel",
-      "reference": "toyota-corolla-2025"
+      "reference": "toyota-corolla-2025",
+      "vents": "chrome-slat",
+      "stack": "#2a2d30",
+      "centerVents": "none"
     },
     "molen.entities.vehicle.toyota_fj_cruiser_2010": {
       "slug": "toyota-fj-cruiser-2010",
@@ -836,7 +1290,9 @@
       "trim": "#80909a",
       "selector": "lever",
       "signature": "Body-color upright fascia, three upper auxiliary pods, tall radio and rugged grab handle",
-      "reference": "toyota-fj-cruiser-2010"
+      "reference": "toyota-fj-cruiser-2010",
+      "dials": "light",
+      "stack": "body"
     },
     "molen.entities.vehicle.toyota_gr_supra_2024": {
       "slug": "toyota-gr-supra-2024",
@@ -845,7 +1301,14 @@
       "trim": "#484b4a",
       "selector": "lever",
       "signature": "Driver-centered gauge pod, wide raised screen, low horizontal vents and rotary media controller",
-      "reference": "toyota-gr-supra-2024"
+      "reference": "toyota-gr-supra-2024",
+      "wheel": "modern",
+      "vents": "slim",
+      "shifter": "joystick",
+      "headliner": "#26282a",
+      "stack": "#191b20",
+      "centerVents": "rail",
+      "railWidth": 0.38
     },
     "molen.entities.vehicle.toyota_hiace_2024": {
       "slug": "toyota-hiace-2024",
@@ -854,25 +1317,45 @@
       "trim": "#7a7c76",
       "selector": "dash",
       "signature": "H200 hooded analog cluster, high dash selector, rectangular radio and broad storage shelves",
-      "reference": "toyota-hiace-2024"
+      "reference": "toyota-hiace-2024",
+      "vents": {
+        "rect": "slat",
+        "vertical": "slat"
+      },
+      "shifter": "ball",
+      "stack": "#2a2d30",
+      "centerVents": "flank",
+      "screenSize": [
+        0.17,
+        0.09
+      ],
+      "dash": "#444245",
+      "band": "#444245"
     },
     "molen.entities.vehicle.toyota_highlander_2025": {
       "slug": "toyota-highlander-2025",
       "category": "vehicles",
       "layout": "toyota-shelf",
-      "trim": "#776d61",
+      "trim": "#5d6063",
       "selector": "lever",
       "signature": "Large central screen over open passenger shelf, independent driver hood and climate rail",
-      "reference": "toyota-highlander-2025"
+      "reference": "toyota-highlander-2025",
+      "vents": "chrome-slat",
+      "screen": "embedded",
+      "stack": "#2a2d30",
+      "stackFrame": true
     },
     "molen.entities.vehicle.toyota_hilux_2024": {
       "slug": "toyota-hilux-2024",
       "category": "vehicles",
       "layout": "hilux",
-      "trim": "#646761",
+      "trim": "#46494b",
       "selector": "lever",
       "signature": "Twin deeply hooded analog gauges, raised center screen and substantial rectangular vents",
-      "reference": "toyota-hilux-2024"
+      "reference": "toyota-hilux-2024",
+      "shifter": "sculpted",
+      "stack": "#232323",
+      "vents": "chrome-slat"
     },
     "molen.entities.vehicle.toyota_prius_2024": {
       "slug": "toyota-prius-2024",
@@ -881,7 +1364,11 @@
       "trim": "#616a67",
       "selector": "lever",
       "signature": "Slim high driver cluster above small steering wheel, low wide center screen and ambient strip",
-      "reference": "toyota-prius-2024"
+      "reference": "toyota-prius-2024",
+      "stack": "#2a2d30",
+      "band": "#582d2b",
+      "bandHeight": 0.025,
+      "centerVents": "none"
     },
     "molen.entities.vehicle.toyota_rav4_2025": {
       "slug": "toyota-rav4-2025",
@@ -890,25 +1377,41 @@
       "trim": "#666e64",
       "selector": "lever",
       "signature": "Raised rectangular center display, big climate knobs, broad rubberized shelf and angular vents",
-      "reference": "toyota-rav4-2025"
+      "reference": "toyota-rav4-2025",
+      "vents": "slim",
+      "knobs": "fluted",
+      "stack": "#2a2d30",
+      "cluster": "digital"
     },
     "molen.entities.vehicle.toyota_sienna_2025": {
       "slug": "toyota-sienna-2025",
       "category": "vehicles",
       "layout": "sienna",
-      "trim": "#7d7264",
+      "trim": "#c2bfb7",
       "selector": "lever",
       "signature": "High media tablet, bridge-like center console with open lower tray and wide passenger shelf",
-      "reference": "toyota-sienna-2025"
+      "reference": "toyota-sienna-2025",
+      "cluster": "digital",
+      "stack": "#2a2d30",
+      "screenSize": [
+        0.32,
+        0.14
+      ],
+      "centerVents": "rail",
+      "railWidth": 0.36
     },
     "molen.entities.vehicle.toyota_tacoma_2025": {
       "slug": "toyota-tacoma-2025",
       "category": "vehicles",
       "layout": "toyota-truck",
-      "trim": "#6d7465",
+      "trim": "#2f5cae",
       "selector": "lever",
       "signature": "Very large landscape center display, squared driver hood and rugged grab-handle fascia",
-      "reference": "toyota-tacoma-2025"
+      "reference": "toyota-tacoma-2025",
+      "vents": "chrome-slat",
+      "shifter": "sculpted",
+      "stack": "#2a2d30",
+      "stackFrame": true
     },
     "molen.entities.vehicle.toyota_tundra_2025": {
       "slug": "toyota-tundra-2025",
@@ -917,7 +1420,12 @@
       "trim": "#79624d",
       "selector": "lever",
       "signature": "Wide center screen flanked by chunky vents, deep driver binnacle and broad console",
-      "reference": "toyota-tundra-2025"
+      "reference": "toyota-tundra-2025",
+      "vents": "chrome-slat",
+      "shifter": "sculpted",
+      "centerVents": "flank",
+      "stack": "#1b2222",
+      "stackFrame": true
     },
     "molen.entities.vehicle.toyota_yaris_2024": {
       "slug": "toyota-yaris-2024",
@@ -926,16 +1434,22 @@
       "trim": "#5c6561",
       "selector": "lever",
       "signature": "High compact center tablet, small hooded cluster, low climate stack and rounded vent ends",
-      "reference": "toyota-yaris-2024"
+      "reference": "toyota-yaris-2024",
+      "vents": "chrome-slat",
+      "stack": "#2a2d30",
+      "dash": "#535155",
+      "screenBezel": "black"
     },
     "molen.entities.vehicle.volkswagen_golf_gti_2016": {
       "slug": "volkswagen-golf-gti-2016",
       "category": "vehicles",
       "layout": "golf",
-      "trim": "#4f5454",
+      "trim": "#2b2f31",
       "selector": "lever",
       "signature": "Driver-angled inset media screen, wide horizontal vents, twin gauges and flat-bottom wheel",
-      "reference": "volkswagen-golf-gti-2016"
+      "reference": "volkswagen-golf-gti-2016",
+      "shifter": "ball",
+      "headliner": "#2a2c2e"
     },
     "molen.entities.vehicle.volkswagen_polo_2024": {
       "slug": "volkswagen-polo-2024",
@@ -944,34 +1458,54 @@
       "trim": "#676d70",
       "selector": "lever",
       "signature": "Geometric horizontal fascia, integrated center display, separate driver hood and lower HVAC dials",
-      "reference": "volkswagen-polo-2024"
+      "reference": "volkswagen-polo-2024",
+      "cluster": "digital",
+      "vents": "slat",
+      "panel": "joined",
+      "climateKnobs": 3,
+      "centerVents": "rail",
+      "railWidth": 0.3
     },
     "molen.entities.vehicle.volvo_v70_2008": {
       "slug": "volvo-v70-2008",
       "category": "vehicles",
       "layout": "volvo",
-      "trim": "#827363",
+      "trim": "#5b3d2e",
       "selector": "lever",
       "signature": "Floating narrow waterfall center stack with keypad, two large gauges and broad wood fascia",
-      "reference": "volvo-v70-2008"
+      "reference": "volvo-v70-2008",
+      "vents": "chrome-slat",
+      "stackWidth": 0.21,
+      "stackFrame": true
     },
     "molen.entities.vehicle.winnebago_view_2022": {
       "slug": "winnebago-view-2022",
       "category": "vehicles",
       "layout": "sprinter",
       "trim": "#827566",
-      "selector": "dash",
+      "selector": "column",
       "signature": "2022 View W907 Sprinter cab with integrated MBUX screen and round vents; coach palette retained",
-      "reference": "winnebago-view-2022"
+      "reference": "winnebago-view-2022",
+      "vents": "turbine",
+      "centerVents": "flank",
+      "stack": "#2a2d30"
     },
     "molen.entities.vehicle.wuling_hongguang_mini_ev_2025": {
       "slug": "wuling-hongguang-mini-ev-2025",
       "category": "vehicles",
       "layout": "wuling",
-      "trim": "#a9b3a8",
+      "trim": "#e3dccc",
       "selector": "rotary",
       "signature": "Compact twin rectangular displays, light fascia, round outer vents and small rotary selector",
-      "reference": "wuling-hongguang-mini-ev-2025"
+      "reference": "wuling-hongguang-mini-ev-2025",
+      "dash": "#b8a58f",
+      "wheel": "two-spoke",
+      "vents": {
+        "round": "turbine",
+        "slot": "chrome-slat"
+      },
+      "centerVents": "rail",
+      "screenBezel": "black"
     },
     "molen.entities.vehicle.bendy_class_a_compact": {
       "slug": "bendy-class-a-compact",
@@ -980,7 +1514,9 @@
       "trim": "#97856b",
       "selector": "buttons",
       "signature": "Compact wraparound analog coach binnacle, side-mounted transmission keys and radio",
-      "reference": "bendy-class-a-compact"
+      "reference": "bendy-class-a-compact",
+      "wheel": "four-spoke",
+      "selectorSide": "driver"
     },
     "molen.entities.vehicle.bendy_class_a_grand": {
       "slug": "bendy-class-a-grand",
@@ -989,7 +1525,9 @@
       "trim": "#a58d6e",
       "selector": "buttons",
       "signature": "Broad digital coach binnacle, twin navigation/camera screens and wood control console",
-      "reference": "bendy-class-a-grand"
+      "reference": "bendy-class-a-grand",
+      "wheel": "four-spoke",
+      "selectorSide": "driver"
     },
     "molen.entities.vehicle.bendy_class_a_touring": {
       "slug": "bendy-class-a-touring",
@@ -998,7 +1536,9 @@
       "trim": "#88755c",
       "selector": "buttons",
       "signature": "Raised analog instrument pod, center navigation display, lower camera monitor and switch bank",
-      "reference": "bendy-class-a-touring"
+      "reference": "bendy-class-a-touring",
+      "wheel": "four-spoke",
+      "selectorSide": "driver"
     },
     "molen.entities.vehicle.bendy_class_b_camper": {
       "slug": "bendy-class-b-camper",
@@ -1007,7 +1547,13 @@
       "trim": "#92958a",
       "selector": "dash",
       "signature": "Compact van cab with landscape screen, round vents, cubbies and swiveling-seat trim",
-      "reference": "bendy-class-b-camper"
+      "reference": "bendy-class-b-camper",
+      "stack": "#2a2d30",
+      "centerVents": "flank",
+      "screenSize": [
+        0.19,
+        0.11
+      ]
     },
     "molen.entities.vehicle.bendy_class_c_family": {
       "slug": "bendy-class-c-family",
@@ -1016,7 +1562,10 @@
       "trim": "#8c887b",
       "selector": "column",
       "signature": "Wide van-based analog dash, rectangular center audio, column selector and passenger cubby",
-      "reference": "bendy-class-c-family"
+      "reference": "bendy-class-c-family",
+      "stack": "#3a3c3c",
+      "band": "#4a4c4b",
+      "climateKnobs": 3
     },
     "molen.entities.vehicle.box_truck": {
       "slug": "box-truck",
@@ -1025,7 +1574,9 @@
       "trim": "#616968",
       "selector": "column",
       "signature": "Upright commercial cab with twin gauges, radio, deep storage trays and wide wheel",
-      "reference": "box-truck"
+      "reference": "box-truck",
+      "stack": "#3a3c3c",
+      "climateKnobs": 3
     },
     "molen.entities.vehicle.compact": {
       "slug": "compact",
@@ -1034,7 +1585,14 @@
       "trim": "#798176",
       "selector": "lever",
       "signature": "Simple molded dash, round outer vents, compact radio and twin driver gauges",
-      "reference": "compact"
+      "reference": "compact",
+      "stack": "#2a2d30",
+      "band": "#6c7072",
+      "screenSize": [
+        0.17,
+        0.1
+      ],
+      "climateKnobs": 3
     },
     "molen.entities.vehicle.electric_hatchback": {
       "slug": "electric-hatchback",
@@ -1043,7 +1601,10 @@
       "trim": "#a3b0aa",
       "selector": "puck",
       "signature": "Separate floating driver and media displays, slim vents and open console",
-      "reference": "electric-hatchback"
+      "reference": "electric-hatchback",
+      "screen": "floating",
+      "stack": "#2a2d30",
+      "centerVents": "rail"
     },
     "molen.entities.vehicle.offroad": {
       "slug": "offroad",
@@ -1052,7 +1613,11 @@
       "trim": "#73765b",
       "selector": "lever",
       "signature": "Upright analog fascia, four round vents, large grab handle and transfer selector",
-      "reference": "offroad"
+      "reference": "offroad",
+      "vents": "round",
+      "stack": "#2a2d30",
+      "band": "#3a3d40",
+      "climateKnobs": 3
     },
     "molen.entities.vehicle.pickup": {
       "slug": "pickup",
@@ -1061,7 +1626,14 @@
       "trim": "#786953",
       "selector": "column",
       "signature": "Wide truck binnacle, inset screen, rectangular vents and trailer switches",
-      "reference": "pickup"
+      "reference": "pickup",
+      "stack": "#2a2d30",
+      "centerVents": "flank",
+      "screenSize": [
+        0.19,
+        0.11
+      ],
+      "climateKnobs": 3
     },
     "molen.entities.vehicle.sedan": {
       "slug": "sedan",
@@ -1070,7 +1642,9 @@
       "trim": "#7c6d5d",
       "selector": "lever",
       "signature": "Twin analog binnacle, center clock and screen, satin trim and console storage",
-      "reference": "sedan"
+      "reference": "sedan",
+      "stack": "#2a2d30",
+      "band": "#6c7072"
     },
     "molen.entities.vehicle.sports_coupe": {
       "slug": "sports-coupe",
@@ -1079,7 +1653,16 @@
       "trim": "#505a61",
       "selector": "lever",
       "signature": "Three-spoke wheel, twin gauges, driver-oriented tablet and narrow console",
-      "reference": "sports-coupe"
+      "reference": "sports-coupe",
+      "wheel": "sport",
+      "shifter": "ball",
+      "headliner": "#2a2c2e",
+      "stack": "#2a2d30",
+      "band": "#74797e",
+      "screenSize": [
+        0.22,
+        0.1
+      ]
     },
     "molen.entities.vehicle.station_wagon": {
       "slug": "station-wagon",
@@ -1088,7 +1671,12 @@
       "trim": "#827867",
       "selector": "lever",
       "signature": "Broad shelf, floating center stack with radio keypad, warm trim and deep seats",
-      "reference": "station-wagon"
+      "reference": "station-wagon",
+      "stack": "#2a2d30",
+      "screenSize": [
+        0.18,
+        0.105
+      ]
     },
     "molen.entities.vehicle.suv": {
       "slug": "suv",
@@ -1097,7 +1685,12 @@
       "trim": "#817565",
       "selector": "lever",
       "signature": "Wide dash and passenger tray, high media display, paired climate dials",
-      "reference": "suv"
+      "reference": "suv",
+      "stack": "#2a2d30",
+      "screenSize": [
+        0.2,
+        0.115
+      ]
     },
     "molen.entities.vehicle.taxi": {
       "slug": "taxi",
@@ -1106,7 +1699,8 @@
       "trim": "#6b7571",
       "selector": "lever",
       "signature": "Conventional twin gauges with taxi meter, dispatch screen and central radio",
-      "reference": "taxi"
+      "reference": "taxi",
+      "stack": "#2a2d30"
     },
     "molen.entities.vehicle.van": {
       "slug": "van",
@@ -1115,7 +1709,12 @@
       "trim": "#7f837b",
       "selector": "dash",
       "signature": "High dash selector, broad storage shelves, twin gauges and inset radio/display",
-      "reference": "van"
+      "reference": "van",
+      "screenSize": [
+        0.17,
+        0.1
+      ],
+      "climateKnobs": 3
     },
     "molen.entities.watercraft.bulk_carrier": {
       "slug": "bulk-carrier",

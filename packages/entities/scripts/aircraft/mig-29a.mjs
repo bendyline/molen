@@ -2,6 +2,19 @@
  * sections from the cited three-view, analog cabin from IrasD's period photos.
  * +Y up, +Z forward, +X pilot left. Ground-contact datum.
  */
+import { cockpitBulkhead } from './cockpit-fit.mjs';
+import {
+  bar,
+  contour,
+  lathe,
+  leverGeometry,
+  loftUp,
+  partPalette,
+  pedalGeometry,
+  place,
+  roundedBox,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -141,7 +154,31 @@ export function buildMiG29A(s) {
       paint,
       false,
     );
-  // Continuous inner sills close the gap between the sloping canopy rails and tub.
+  // The frames' inboard faces are the dark canopy seal: from the seat the windscreen bow and the
+  // sill rails read dark, as in the cockpit photographs, not as the gray-green paint outside.
+  outline(
+    d,
+    cr[1].points.map(([x, yy]) => [x * 0.97, yy - 0.008, cr[1].z - 0.014]),
+    0.022,
+    seam,
+    false,
+  );
+  for (const j of [0, 16])
+    outline(
+      d,
+      cr
+        .slice(1, -1)
+        .map((r) => [
+          r.points[j][0] - Math.sign(r.points[j][0]) * 0.013,
+          r.points[j][1] + 0.006,
+          r.z,
+        ]),
+      0.018,
+      seam,
+      false,
+    );
+  // Continuous inner sills close the gap between the sloping canopy rails and tub. They face the
+  // pilot, so they wear the dark seal color: in exterior paint they lined the cockpit gray-green.
   for (const side of [-1, 1])
     for (let i = 0; i < cr.length - 1; i++) {
       const a = cr[i],
@@ -153,7 +190,7 @@ export function buildMiG29A(s) {
         [...b.points[j], b.z],
         [side * 0.44, 2.42, b.z],
         [side * 0.44, 2.42, a.z],
-        paint,
+        seam,
         [-side, 0, 0],
       );
     }
@@ -814,7 +851,7 @@ export function buildMiG29A(s) {
     d.rod([side * 1.7, 2.12, -4.1], [side * 1.7, 2.12, -4.5], 0.007, metal);
   }
   d.finish();
-  const interior = mig29Cockpit(root, { metal, glass });
+  const { stations: controlStations, ...interior } = mig29Cockpit(root, { metal, glass });
   Object.assign(interior.derived, {
     tailPitch: { op: 'multiply', args: ['pitchInput', 0.29] },
     tailRoll: { op: 'multiply', args: ['rollInput', 0.13] },
@@ -824,7 +861,7 @@ export function buildMiG29A(s) {
   cleanGeometry(root);
   return {
     root,
-    frame: mig29Frame(),
+    frame: { ...mig29Frame(), controlStations },
     enginePoints: [
       { id: 'engine-1', position: [0.87, 1.62, -5.5] },
       { id: 'engine-2', position: [-0.87, 1.62, -5.5] },
@@ -849,7 +886,10 @@ function mig29Cockpit(root, m) {
   const cabin = group(root, 'cockpit', [0, 0, -0.72]),
     ins = instrumentGeometry(cabin, 'MiG29'),
     { bindings, derived, ink, black, amber } = ins;
-  const panel = mat('MiG29-panel', '#8d969b', { side: T.DoubleSide }),
+  // Soviet cockpit blue-gray (GAF T.O. 1F-MIG29-1 photographs, Commons MiG-29 cockpit set). The
+  // panel behind the stick in the Commons close-up (refs c1.jpg) samples #82939f-#a2acb4, a light
+  // blue-gray rather than the darker green-teal used before.
+  const panel = mat('MiG29-panel', '#97a5ab', { side: T.DoubleSide }),
     trim = mat('MiG29-panel-trim', '#384346'),
     cushion = mat('MiG29-seat-cushion', '#61534a'),
     belt = mat('MiG29-harness', '#aba99c'),
@@ -1168,7 +1208,7 @@ function mig29Cockpit(root, m) {
       const yy = 0.54 - i * 0.31;
       beveledBox(gd, [0.19, 0.285, 0.024], [0, yy, 0], panel, 0.008);
       gd.text(
-        (side === 1 ? ['ENGINE', 'GEAR', 'RADIO', 'POWER'] : ['OXYGEN', 'LIGHTS', 'ECS', 'CANOPY'])[
+        (side === 1 ? ['ENGINE', 'FUEL', 'RADIO', 'POWER'] : ['OXYGEN', 'CANOPY', 'ECS', 'LIGHTS'])[
           i
         ],
         [0, yy + 0.105, -0.019],
@@ -1176,15 +1216,21 @@ function mig29Cockpit(root, m) {
         Math.PI,
         ink,
       );
+      // ENGINE (left) and CANOPY (right) carry stations; the throttle quadrant covers FUEL.
+      const station = (side === 1 && i < 2) || (side === -1 && i === 1);
       for (let j = 0; j < 3; j++) {
         const xx = -0.06 + j * 0.06;
-        gd.add(new T.CylinderGeometry(0.009, 0.011, 0.015, 10).rotateX(Math.PI / 2), black, [
+        gd.add(new T.CylinderGeometry(0.009, 0.01, 0.01, 16).rotateX(Math.PI / 2), black, [
           xx,
           yy + 0.04,
-          -0.024,
+          -0.017,
         ]);
-        gd.rod([xx, yy - 0.04, -0.018], [xx, yy - 0.025, -0.05], 0.003, m.metal);
-        gd.box([0.01, 0.014, 0.008], [xx, yy - 0.025, -0.052], i === 3 ? red : ink);
+        if (station) continue;
+        gd.add(bar([xx, yy - 0.04, -0.012], [xx, yy - 0.028, -0.03], 0.0018, 10, 0.0026), m.metal);
+        gd.add(
+          roundedBox([0.008, 0.01, 0.006], 0.002).translate(xx, yy - 0.027, -0.033),
+          i === 3 ? red : ink,
+        );
       }
       for (const xx of [-0.083, 0.083])
         for (const vv of [-0.12, 0.12])
@@ -1217,6 +1263,12 @@ function mig29Cockpit(root, m) {
   // The tub stays inside the narrow forebody and LERX underside: a full-width floor at 1.57 m
   // hung below the belly, and vertical walls down to it showed under the LERX from outside.
   d = detailKit(cabin, 'MiG29-tub');
+  // Fit: bulkheads (drawn in the model frame; the cabin sits 0.72 m aft) close the forebody around
+  // and above the panel and across the footwell's nose, so no painted skin shows beside it.
+  const fit = detailKit(group(cabin, 'MiG29-fit', [0, 0, 0.72]), 'MiG29-fit');
+  cockpitBulkhead(fit, root, { z: 4.215, yFrom: 2.0, yTo: 2.66, material: trim });
+  cockpitBulkhead(fit, root, { z: 4.495, yFrom: 1.66, yTo: 2.06, material: trim });
+  fit.finish();
   d.box([0.68, 0.035, 1.9], [0, 1.7, 3.98], panel);
   d.box([0.68, 0.32, 0.025], [0, 1.86, 5.2], panel);
   for (const side of [-1, 1]) {
@@ -1260,20 +1312,7 @@ function mig29Cockpit(root, m) {
   sd.finish();
   const stick = group(cabin, 'MiG29-stick', [0, 1.72, 4.55]),
     st = detailKit(stick, stick.name);
-  st.add(new T.CylinderGeometry(0.065, 0.085, 0.1, 16), black, [0, 0.05, 0]);
-  st.rod([0, 0.07, 0], [0, 0.59, -0.075], 0.024, black);
-  beveledBox(st, [0.075, 0.19, 0.08], [0, 0.66, -0.085], trim, 0.014);
-  beveledBox(st, [0.16, 0.11, 0.07], [0, 0.77, -0.09], trim, 0.016);
-  for (const [xx, yy, rr, color] of [
-    [-0.052, 0.78, 0.018, red],
-    [0, 0.795, 0.022, black],
-    [0.052, 0.78, 0.018, ins.sky],
-    [-0.03, 0.73, 0.02, black],
-    [0.025, 0.72, 0.014, ink],
-  ]) {
-    st.add(new T.CylinderGeometry(rr, rr, 0.012, 12).rotateX(Math.PI / 2), color, [xx, yy, -0.135]);
-    st.ring(rr + 0.003, 0.002, [xx, yy, -0.142], m.metal);
-  }
+  mig29StickGeometry(st, { blue: ins.sky, pink: mat('MiG29-stick-pink', '#d9907f') });
   st.finish();
   bindings.push(
     { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.15 },
@@ -1282,8 +1321,8 @@ function mig29Cockpit(root, m) {
   for (const side of [-1, 1]) {
     const th = group(cabin, `MiG29-throttle-${side}`, [0.36 + side * 0.032, 2.25, 4.16]),
       td = detailKit(th, th.name);
-    td.rod([0, 0, 0], [0, 0.11, 0], 0.011, black);
-    beveledBox(td, [0.055, 0.07, 0.14], [0, 0.145, 0], trim, 0.012);
+    // Twin RUD throttles: round-headed levers side by side, the switches outboard on each.
+    leverGeometry(td, { style: 'mig', height: 0.1, rake: -0.012, side, scale: 1.15 });
     td.finish();
     bindings.push({
       node: th.name,
@@ -1295,9 +1334,8 @@ function mig29Cockpit(root, m) {
     });
     const pg = group(cabin, `MiG29-pedal-${side}`, [side * 0.15, 1.8, 4.78]),
       pd = detailKit(pg, pg.name);
-    pd.box([0.13, 0.19, 0.025], [0, 0, 0], m.metal);
-    for (let j = 0; j < 5; j++)
-      pd.box([0.11, 0.006, 0.006], [0, -0.075 + j * 0.0375, -0.016], trim);
+    // Stirrup pedals with toe straps, as Soviet fighters have.
+    pedalGeometry(pd, { style: 'warbird', side, drop: 0.07, scale: 1.1, lean: 0.3 });
     pd.finish();
     bindings.push({
       node: pg.name,
@@ -1308,5 +1346,237 @@ function mig29Cockpit(root, m) {
     });
   }
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Where the controls are (GAF T.O. 1F-MIG29-1; MiG-29 cockpit photographs on Wikimedia Commons,
+  // CC BY-SA 4.0): the gear lever and the flap switch low on the panel's left, the parking brake
+  // handle low on its right, the airbrake on the left throttle, the engine start button and the
+  // engine switches forward on the left console, the canopy handle on the right console. Station
+  // positions are in the model frame: the cabin group sits 0.72 m aft.
+  const panelAt = (x, yy) => [x, yy, 4.92 - 0.72 - 0.002],
+    top = [Math.PI / 2, 0, 0],
+    plate = (side, i, dx) => [side * 0.37 + dx, 2.2525, 3.94 + 0.54 - i * 0.31 - 0.72 - 0.03];
+  const stations = [
+    {
+      action: 'gear',
+      style: 'lever',
+      scale: 0.85,
+      at: panelAt(0.25, 2.18),
+      label: 'LDG GEAR',
+      labelAt: [0, 0.034, -0.002],
+      labelHeight: 0.006,
+    },
+    {
+      action: 'flaps',
+      style: 'toggle',
+      scale: 1.15,
+      at: panelAt(0.12, 2.165),
+      label: 'FLAPS',
+      labelAt: [0, -0.026, -0.002],
+      labelHeight: 0.006,
+    },
+    {
+      action: 'brake',
+      style: 'tee',
+      scale: 0.75,
+      at: panelAt(-0.235, 2.165),
+      label: 'PARK BRK',
+      labelAt: [0.05, 0, -0.002],
+      labelHeight: 0.006,
+    },
+    {
+      action: 'speedBrake',
+      style: 'slider',
+      parent: 'MiG29-throttle-1',
+      at: [0.392, 2.39, 3.3975],
+      rotation: [-0.12, 0, 0],
+    },
+    {
+      action: 'engine',
+      style: 'button',
+      at: plate(1, 0, -0.06),
+      rotation: top,
+      label: 'START',
+      labelAt: [0, 0.032, -0.002],
+    },
+    {
+      action: 'engine',
+      engine: 1,
+      style: 'guarded',
+      at: plate(1, 0, 0),
+      rotation: top,
+      label: 'ENG R',
+      labelAt: [0, 0.032, -0.002],
+    },
+    {
+      action: 'engine',
+      engine: 0,
+      style: 'guarded',
+      at: plate(1, 0, 0.06),
+      rotation: top,
+      label: 'ENG L',
+      labelAt: [0, 0.032, -0.002],
+    },
+    {
+      action: 'canopy',
+      style: 'canopy',
+      at: plate(-1, 1, 0),
+      rotation: top,
+      label: 'CANOPY',
+      labelAt: [0, -0.045, -0.002],
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
+}
+
+/** MiG-29 control stick (RUS): a rubber boot, a raked shaft and the Soviet grip: a textured round
+ * handle under a broad head that bulges to the left, its aft face carrying the four round
+ * buttons (red, ribbed, blue lamp, trim), the wheel-brake lever arcing down its front-left. */
+function mig29StickGeometry(d, { blue, pink }) {
+  const P = partPalette();
+  d.add(
+    lathe(
+      [
+        [0, 0],
+        [0.072, 0],
+        [0.07, 0.016],
+        [0.056, 0.026],
+        [0.054, 0.04],
+        [0.04, 0.05],
+        [0.038, 0.064],
+        [0.024, 0.08],
+        [0.02, 0.1],
+        [0, 0.1],
+      ],
+      20,
+      28,
+    ),
+    P.tread,
+  );
+  d.add(
+    tube(
+      [
+        [0, 0.09, 0],
+        [0, 0.56, -0.07],
+      ],
+      0.015,
+      14,
+    ),
+    P.steel,
+  );
+  const mount = (g) => place(g, [0, 0.56, -0.07], [Math.atan2(-0.07, 0.56), 0, 0]);
+  d.add(
+    mount(
+      lathe(
+        [
+          [0, 0],
+          [0.024, 0],
+          [0.024, 0.012],
+          [0, 0.012],
+        ],
+        18,
+      ),
+    ),
+    P.alloy,
+  );
+  d.add(
+    mount(
+      lathe(
+        [
+          [0, 0.01],
+          [0.019, 0.01],
+          [0.021, 0.04],
+          [0.0205, 0.08],
+          [0.022, 0.105],
+          [0, 0.11],
+        ],
+        18,
+        50,
+      ),
+    ),
+    P.grip,
+  );
+  // Raised rings read as the photograph's knurled rubber.
+  for (let i = 0; i < 4; i++)
+    d.add(
+      mount(
+        place(
+          new T.TorusGeometry(0.021, 0.0012, 4, 20),
+          [0, 0.03 + i * 0.016, 0],
+          [Math.PI / 2, 0, 0],
+        ),
+      ),
+      P.black,
+    );
+  const head = [
+    [0.1, 0.004, 0, 0.022, 0.024, 2.2],
+    [0.115, 0.01, 0.002, 0.04, 0.03, 2.6],
+    [0.14, 0.012, 0.002, 0.052, 0.032, 2.8],
+    [0.162, 0.01, 0.002, 0.048, 0.03, 2.7],
+    [0.172, 0.008, 0.002, 0.034, 0.022, 2.4],
+  ];
+  d.add(
+    mount(
+      loftUp(head.map(([y, cx, cz, rx, rz, p]) => ({ y, points: contour(cx, cz, rx, rz, 20, p) }))),
+    ),
+    P.grip,
+  );
+  // Each button's housing runs back into the head, so its sides never show a gap where the head's
+  // aft face curves away near its edge.
+  const button = (x, y, r, material, rim = P.black) => {
+    d.add(
+      mount(
+        place(new T.CylinderGeometry(r, r * 1.05, 0.018, 18), [x, y, -0.027], [Math.PI / 2, 0, 0]),
+      ),
+      rim,
+    );
+    d.add(
+      mount(
+        place(
+          new T.CylinderGeometry(r * 0.62, r * 0.62, 0.004, 16),
+          [x, y, -0.037],
+          [Math.PI / 2, 0, 0],
+        ),
+      ),
+      material,
+    );
+  };
+  // Sized from the close-up (head about 0.1 m across): the pale-pink button in its cream ring, the
+  // ribbed button, the blue lamp, the large ribbed button below, and the white square button in
+  // its black housing on the grip front.
+  button(0.041, 0.153, 0.0145, pink, P.white);
+  button(0.011, 0.156, 0.0135, P.steel);
+  button(-0.017, 0.152, 0.0115, blue);
+  button(0.036, 0.123, 0.0145, P.steel);
+  d.add(mount(place(roundedBox([0.022, 0.024, 0.01], 0.003), [0.004, 0.118, -0.028])), P.black);
+  d.add(mount(place(roundedBox([0.014, 0.014, 0.006], 0.002), [0.004, 0.119, -0.034])), P.white);
+  // Wheel-brake lever along the front-left, and the trigger.
+  d.add(
+    mount(
+      tube(
+        [
+          [0.034, 0.135, 0.028],
+          [0.04, 0.11, 0.05],
+          [0.042, 0.06, 0.056],
+          [0.04, 0.03, 0.044],
+        ],
+        0.0045,
+        12,
+      ),
+    ),
+    P.alloy,
+  );
+  d.add(mount(place(new T.SphereGeometry(0.0065, 12, 8), [0.04, 0.03, 0.044])), P.alloy);
+  d.add(
+    mount(
+      tube(
+        [
+          [0, 0.1, 0.022],
+          [0, 0.09, 0.034],
+          [0, 0.078, 0.03],
+        ],
+        0.0055,
+        10,
+      ),
+    ),
+    P.black,
+  );
 }

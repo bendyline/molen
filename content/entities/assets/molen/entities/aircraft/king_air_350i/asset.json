@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:880be1348043c588ed08df7c262abdd517f8a7753392e6dce75b0483b44de2c1",
-  "sourceHash": "sha256:650130bca3ec8561e45a45c6f32aaf402804bef2c662edd85cefb02a75ddf930",
+  "hash": "sha256:7251524a3cca847d0d7f439c5722a549939b844ad6df5387f30e73c8bb62dae7",
+  "sourceHash": "sha256:b26e74e5a91ec877cb08559ede01147a835f43e97d9c05495166fa331c39d435",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 54537,
-    "vertices": 52074,
-    "meshes": 167,
-    "primitives": 167,
-    "materials": 35,
+    "triangles": 58977,
+    "vertices": 56367,
+    "meshes": 174,
+    "primitives": 174,
+    "materials": 42,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 1885716
+    "sizeBytes": 1992784
   },
   "nodes": [
     {
@@ -76,6 +76,14 @@
     {
       "name": "KingAir-shell-detail-lettering",
       "triangles": 48
+    },
+    {
+      "name": "KingAir-shell-KingAir-ivory-lining",
+      "triangles": 366
+    },
+    {
+      "name": "KingAir-shell-KingAir-alloy-lining",
+      "triangles": 266
     },
     {
       "name": "KingAir-flap--1-0_86-KingAir-ivory",
@@ -291,35 +299,51 @@
     },
     {
       "name": "KingAir-cabin-KingAir-panel",
-      "triangles": 44
+      "triangles": 92
     },
     {
       "name": "KingAir-cabin-KingAir-trim",
-      "triangles": 81
+      "triangles": 399
     },
     {
       "name": "KingAir-cabin-KingAir-instrument-black",
-      "triangles": 2558
+      "triangles": 2570
     },
     {
       "name": "KingAir-cabin-detail-alloy",
-      "triangles": 4240
+      "triangles": 2704
     },
     {
       "name": "KingAir-cabin-detail-trim",
-      "triangles": 2272
+      "triangles": 1420
     },
     {
       "name": "KingAir-cabin-detail-lettering",
-      "triangles": 888
+      "triangles": 504
+    },
+    {
+      "name": "KingAir-cabin-flight-control-alloy",
+      "triangles": 1100
     },
     {
       "name": "KingAir-cabin-KingAir-alloy",
-      "triangles": 4608
+      "triangles": 3852
+    },
+    {
+      "name": "KingAir-cabin-flight-control-black",
+      "triangles": 788
     },
     {
       "name": "KingAir-cabin-instrument-display",
       "triangles": 36
+    },
+    {
+      "name": "KingAir-cabin-flight-control-panel",
+      "triangles": 156
+    },
+    {
+      "name": "KingAir-cabin-flight-control-legend",
+      "triangles": 120
     },
     {
       "name": "KingAir-cabin-KingAir-cabinet",
@@ -334,12 +358,16 @@
       "triangles": 108
     },
     {
+      "name": "KingAir-cabin-KingAir-sidewall",
+      "triangles": 930
+    },
+    {
       "name": "KingAir-cabin-KingAir-instrument-ink",
       "triangles": 384
     },
     {
       "name": "KingAir-cabin-KingAir-instrument-ink-panel-print",
-      "triangles": 228
+      "triangles": 232
     },
     {
       "name": "KingAir-cabin-KingAir-instrument-ink-display-print",
@@ -524,34 +552,6 @@
     {
       "name": "KingAir-PFD-L-speed-0-4-KingAir-instrument-ink",
       "triangles": 12
-    },
-    {
-      "name": "KingAir-PFD-L-speed-0-5-KingAir-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "KingAir-PFD-L-speed-0-6-KingAir-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "KingAir-PFD-L-speed-1-0-KingAir-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "KingAir-PFD-L-speed-1-1-KingAir-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "KingAir-PFD-L-speed-1-2-KingAir-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "KingAir-PFD-L-speed-1-3-KingAir-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "KingAir-PFD-L-speed-1-4-KingAir-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -630,6 +630,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "KingAir-rubber",
       "slots": [
         "baseColor"
@@ -687,6 +695,17 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "KingAir-alloy-brushed",
       "slots": [
         "baseColor",
@@ -698,7 +717,34 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "flight-control-black",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "instrument-display",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
       "slots": [
         "baseColor"
       ],
@@ -723,6 +769,14 @@
     },
     {
       "name": "KingAir-headliner",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "KingAir-sidewall",
       "slots": [
         "baseColor"
       ],
@@ -797,7 +851,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "KingAir-prop-control",
+      "name": "flight-control-knob",
       "slots": [
         "baseColor"
       ],
@@ -805,23 +859,9 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-panel-satin",
+      "name": "flight-control-lamp",
       "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-alloy-brushed",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -838,16 +878,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend-technical-font",
-      "slots": [
-        "baseColor",
-        "emissive"
-      ],
-      "doubleSided": false,
-      "alphaMode": "BLEND"
-    },
-    {
-      "name": "flight-control-legend",
+      "name": "KingAir-clock",
       "slots": [
         "baseColor"
       ],
@@ -861,6 +892,31 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-propeller",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-steel",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
     }
   ],
   "collision": {
@@ -1124,6 +1180,64 @@
           0.025,
           4.3688,
           -7.605
+        ]
+      },
+      {
+        "node": "KingAir-shell-KingAir-ivory-lining",
+        "points": [
+          -0.7993,
+          0.9528,
+          0.4479,
+          -0.7993,
+          0.9528,
+          3.2629,
+          -0.7993,
+          2.6993,
+          0.4479,
+          -0.7993,
+          2.6993,
+          3.2629,
+          0.7871,
+          0.9528,
+          0.4479,
+          0.7871,
+          0.9528,
+          3.2629,
+          0.7871,
+          2.6993,
+          0.4479,
+          0.7871,
+          2.6993,
+          3.2629
+        ]
+      },
+      {
+        "node": "KingAir-shell-KingAir-alloy-lining",
+        "points": [
+          -0.7882,
+          0.9391,
+          0.6519,
+          -0.7882,
+          0.9391,
+          2.4996,
+          -0.7882,
+          2.7006,
+          0.6519,
+          -0.7882,
+          2.7006,
+          2.4996,
+          0.7989,
+          0.9391,
+          0.6519,
+          0.7989,
+          0.9391,
+          2.4996,
+          0.7989,
+          2.7006,
+          0.6519,
+          0.7989,
+          2.7006,
+          2.4996
         ]
       },
       {
@@ -2666,58 +2780,58 @@
       {
         "node": "KingAir-cabin-KingAir-panel",
         "points": [
-          -0.6031,
-          1.6749,
+          -0.699,
+          1.62,
           2.5475,
-          -0.6031,
-          1.6749,
-          2.5825,
-          -0.6031,
+          -0.699,
+          1.62,
+          2.636,
+          -0.699,
           2.2494,
           2.5475,
-          -0.6031,
+          -0.699,
           2.2494,
-          2.5825,
-          0.617,
-          1.6749,
+          2.636,
+          0.699,
+          1.62,
           2.5475,
-          0.617,
-          1.6749,
-          2.5825,
-          0.617,
+          0.699,
+          1.62,
+          2.636,
+          0.699,
           2.2494,
           2.5475,
-          0.617,
+          0.699,
           2.2494,
-          2.5825
+          2.636
         ]
       },
       {
         "node": "KingAir-cabin-KingAir-trim",
         "points": [
-          -0.6222,
-          1.1824,
+          -0.7823,
+          1.0702,
           -4.25,
-          -0.6222,
-          1.1824,
+          -0.7823,
+          1.0702,
           2.8,
-          -0.6222,
-          2.2495,
+          -0.7823,
+          2.2492,
           -4.25,
-          -0.6222,
-          2.2495,
+          -0.7823,
+          2.2492,
           2.8,
-          0.6222,
-          1.1824,
+          0.7823,
+          1.0702,
           -4.25,
-          0.6222,
-          1.1824,
+          0.7823,
+          1.0702,
           2.8,
-          0.6222,
-          2.2495,
+          0.7823,
+          2.2492,
           -4.25,
-          0.6222,
-          2.2495,
+          0.7823,
+          2.2492,
           2.8
         ]
       },
@@ -2725,29 +2839,29 @@
         "node": "KingAir-cabin-KingAir-instrument-black",
         "points": [
           -0.5853,
-          1.6665,
+          1.6668,
           -2.954,
           -0.5853,
-          1.6665,
-          2.92,
+          1.6668,
+          3.245,
           -0.5853,
-          2.6001,
+          2.5999,
           -2.954,
           -0.5853,
-          2.6001,
-          2.92,
+          2.5999,
+          3.245,
           0.6315,
-          1.6665,
+          1.6668,
           -2.954,
           0.6315,
-          1.6665,
-          2.92,
+          1.6668,
+          3.245,
           0.6315,
-          2.6001,
+          2.5999,
           -2.954,
           0.6315,
-          2.6001,
-          2.92
+          2.5999,
+          3.245
         ]
       },
       {
@@ -2755,115 +2869,173 @@
         "points": [
           -0.5388,
           1.6658,
-          2.511,
+          2.5175,
           -0.5388,
           1.6658,
-          2.5445,
+          2.5665,
           -0.5388,
           2.1809,
-          2.511,
+          2.5175,
           -0.5388,
           2.1809,
-          2.5445,
-          0.5548,
+          2.5665,
+          0.5474,
           1.6658,
-          2.511,
-          0.5548,
+          2.5175,
+          0.5474,
           1.6658,
-          2.5445,
-          0.5548,
+          2.5665,
+          0.5474,
           2.1809,
-          2.511,
-          0.5548,
+          2.5175,
+          0.5474,
           2.1809,
-          2.5445
+          2.5665
         ]
       },
       {
         "node": "KingAir-cabin-detail-trim",
         "points": [
           -0.5378,
-          1.6658,
-          2.515,
+          1.6659,
+          2.517,
           -0.5378,
-          1.6658,
-          2.54,
-          -0.5378,
-          2.1797,
-          2.515,
+          1.6659,
+          2.555,
           -0.5378,
           2.1797,
-          2.54,
-          0.5542,
-          1.6658,
-          2.515,
-          0.5542,
-          1.6658,
-          2.54,
-          0.5542,
+          2.517,
+          -0.5378,
           2.1797,
-          2.515,
-          0.5542,
+          2.555,
+          0.5464,
+          1.6659,
+          2.517,
+          0.5464,
+          1.6659,
+          2.555,
+          0.5464,
           2.1797,
-          2.54
+          2.517,
+          0.5464,
+          2.1797,
+          2.555
         ]
       },
       {
         "node": "KingAir-cabin-detail-lettering",
         "points": [
           -0.535,
-          1.721,
-          2.512,
+          1.8156,
+          2.514,
           -0.535,
-          1.721,
+          1.8156,
           2.53,
           -0.535,
           2.1789,
-          2.512,
+          2.514,
           -0.535,
           2.1789,
           2.53,
-          0.553,
-          1.721,
-          2.512,
-          0.553,
-          1.721,
+          0.5437,
+          1.8156,
+          2.514,
+          0.5437,
+          1.8156,
           2.53,
-          0.553,
+          0.5437,
           2.1789,
-          2.512,
-          0.553,
+          2.514,
+          0.5437,
           2.1789,
           2.53
+        ]
+      },
+      {
+        "node": "KingAir-cabin-flight-control-alloy",
+        "points": [
+          -0.2797,
+          1.717,
+          2.5298,
+          -0.2797,
+          1.717,
+          2.5476,
+          -0.2797,
+          1.8179,
+          2.5298,
+          -0.2797,
+          1.8179,
+          2.5476,
+          0.557,
+          1.717,
+          2.5298,
+          0.557,
+          1.717,
+          2.5476,
+          0.557,
+          1.8179,
+          2.5298,
+          0.557,
+          1.8179,
+          2.5476
         ]
       },
       {
         "node": "KingAir-cabin-KingAir-alloy",
         "points": [
           -0.6451,
-          1.6743,
+          1.6744,
           -2.968,
           -0.6451,
-          1.6743,
-          2.531,
+          1.6744,
+          2.5335,
           -0.6451,
-          2.6047,
+          2.6046,
           -2.968,
           -0.6451,
-          2.6047,
-          2.531,
+          2.6046,
+          2.5335,
           0.6451,
-          1.6743,
+          1.6744,
           -2.968,
           0.6451,
-          1.6743,
-          2.531,
+          1.6744,
+          2.5335,
           0.6451,
-          2.6047,
+          2.6046,
           -2.968,
           0.6451,
-          2.6047,
-          2.531
+          2.6046,
+          2.5335
+        ]
+      },
+      {
+        "node": "KingAir-cabin-flight-control-black",
+        "points": [
+          -0.2785,
+          1.6963,
+          2.526,
+          -0.2785,
+          1.6963,
+          2.546,
+          -0.2785,
+          1.7523,
+          2.526,
+          -0.2785,
+          1.7523,
+          2.546,
+          0.5558,
+          1.6963,
+          2.526,
+          0.5558,
+          1.6963,
+          2.546,
+          0.5558,
+          1.7523,
+          2.526,
+          0.5558,
+          1.7523,
+          2.546
         ]
       },
       {
@@ -2871,28 +3043,86 @@
         "points": [
           -0.0543,
           1.6779,
-          2.5255,
+          2.5405,
           -0.0543,
           1.6779,
-          2.5285,
+          2.5435,
           -0.0543,
           1.6821,
-          2.5255,
+          2.5405,
           -0.0543,
           1.6821,
-          2.5285,
+          2.5435,
           0.0855,
           1.6779,
-          2.5255,
+          2.5405,
           0.0855,
           1.6779,
-          2.5285,
+          2.5435,
           0.0855,
           1.6821,
-          2.5255,
+          2.5405,
           0.0855,
           1.6821,
-          2.5285
+          2.5435
+        ]
+      },
+      {
+        "node": "KingAir-cabin-flight-control-panel",
+        "points": [
+          0.169,
+          1.6893,
+          2.5455,
+          0.169,
+          1.6893,
+          2.5505,
+          0.169,
+          1.7593,
+          2.5455,
+          0.169,
+          1.7593,
+          2.5505,
+          0.195,
+          1.6893,
+          2.5455,
+          0.195,
+          1.6893,
+          2.5505,
+          0.195,
+          1.7593,
+          2.5455,
+          0.195,
+          1.7593,
+          2.5505
+        ]
+      },
+      {
+        "node": "KingAir-cabin-flight-control-legend",
+        "points": [
+          0.1869,
+          1.6981,
+          2.5438,
+          0.1869,
+          1.6981,
+          2.5448,
+          0.1869,
+          1.7505,
+          2.5438,
+          0.1869,
+          1.7505,
+          2.5448,
+          0.1926,
+          1.6981,
+          2.5438,
+          0.1926,
+          1.6981,
+          2.5448,
+          0.1926,
+          1.7505,
+          2.5438,
+          0.1926,
+          1.7505,
+          2.5448
         ]
       },
       {
@@ -2983,30 +3213,59 @@
         ]
       },
       {
+        "node": "KingAir-cabin-KingAir-sidewall",
+        "points": [
+          -0.7909,
+          1.2181,
+          0.84,
+          -0.7909,
+          1.2181,
+          3.2556,
+          -0.7909,
+          2.6746,
+          0.84,
+          -0.7909,
+          2.6746,
+          3.2556,
+          0.7909,
+          1.2181,
+          0.84,
+          0.7909,
+          1.2181,
+          3.2556,
+          0.7909,
+          2.6746,
+          0.84,
+          0.7909,
+          2.6746,
+          3.2556
+        ]
+      },
+      {
         "node": "KingAir-cabin-KingAir-instrument-ink",
         "points": [
           -0.4995,
-          1.7008,
-          2.528,
+          1.701,
+          2.5459,
           -0.4995,
-          1.7008,
+          1.701,
           2.5505,
           -0.4995,
           2.0104,
-          2.528,
+          2.5459,
           -0.4995,
           2.0104,
           2.5505,
-          0.5706,
-          1.7008,
-          2.528,
-          0.5706,
-          1.7008,
+          0.5705,
+          1.701,
+          2.5459,
+          0.5705,
+          1.701,
           2.5505,
-          0.5706,
+          0.5705,
           2.0104,
-          2.528,
-          0.5706,
+          2.5459,
+          0.5705,
           2.0104,
           2.5505
         ]
@@ -3016,25 +3275,25 @@
         "points": [
           -0.3452,
           1.6873,
-          2.519,
+          2.524,
           -0.3452,
           1.6873,
           2.551,
           -0.3452,
           2.1476,
-          2.519,
+          2.524,
           -0.3452,
           2.1476,
           2.551,
           0.5458,
           1.6873,
-          2.519,
+          2.524,
           0.5458,
           1.6873,
           2.551,
           0.5458,
           2.1476,
-          2.519,
+          2.524,
           0.5458,
           2.1476,
           2.551
@@ -4370,209 +4629,6 @@
           1.9852,
           2.5516,
           0.4861,
-          1.9852,
-          2.5524
-        ]
-      },
-      {
-        "node": "KingAir-PFD-L-speed-0-5-KingAir-instrument-ink",
-        "points": [
-          0.4852,
-          1.9868,
-          2.5516,
-          0.4852,
-          1.9868,
-          2.5524,
-          0.4852,
-          1.9912,
-          2.5516,
-          0.4852,
-          1.9912,
-          2.5524,
-          0.4861,
-          1.9868,
-          2.5516,
-          0.4861,
-          1.9868,
-          2.5524,
-          0.4861,
-          1.9912,
-          2.5516,
-          0.4861,
-          1.9912,
-          2.5524
-        ]
-      },
-      {
-        "node": "KingAir-PFD-L-speed-0-6-KingAir-instrument-ink",
-        "points": [
-          0.4807,
-          1.9856,
-          2.5516,
-          0.4807,
-          1.9856,
-          2.5524,
-          0.4807,
-          1.9864,
-          2.5516,
-          0.4807,
-          1.9864,
-          2.5524,
-          0.4851,
-          1.9856,
-          2.5516,
-          0.4851,
-          1.9856,
-          2.5524,
-          0.4851,
-          1.9864,
-          2.5516,
-          0.4851,
-          1.9864,
-          2.5524
-        ]
-      },
-      {
-        "node": "KingAir-PFD-L-speed-1-0-KingAir-instrument-ink",
-        "points": [
-          0.4728,
-          1.9916,
-          2.5516,
-          0.4728,
-          1.9916,
-          2.5524,
-          0.4728,
-          1.9924,
-          2.5516,
-          0.4728,
-          1.9924,
-          2.5524,
-          0.4772,
-          1.9916,
-          2.5516,
-          0.4772,
-          1.9916,
-          2.5524,
-          0.4772,
-          1.9924,
-          2.5516,
-          0.4772,
-          1.9924,
-          2.5524
-        ]
-      },
-      {
-        "node": "KingAir-PFD-L-speed-1-1-KingAir-instrument-ink",
-        "points": [
-          0.4718,
-          1.9868,
-          2.5516,
-          0.4718,
-          1.9868,
-          2.5524,
-          0.4718,
-          1.9912,
-          2.5516,
-          0.4718,
-          1.9912,
-          2.5524,
-          0.4727,
-          1.9868,
-          2.5516,
-          0.4727,
-          1.9868,
-          2.5524,
-          0.4727,
-          1.9912,
-          2.5516,
-          0.4727,
-          1.9912,
-          2.5524
-        ]
-      },
-      {
-        "node": "KingAir-PFD-L-speed-1-2-KingAir-instrument-ink",
-        "points": [
-          0.4718,
-          1.9808,
-          2.5516,
-          0.4718,
-          1.9808,
-          2.5524,
-          0.4718,
-          1.9852,
-          2.5516,
-          0.4718,
-          1.9852,
-          2.5524,
-          0.4727,
-          1.9808,
-          2.5516,
-          0.4727,
-          1.9808,
-          2.5524,
-          0.4727,
-          1.9852,
-          2.5516,
-          0.4727,
-          1.9852,
-          2.5524
-        ]
-      },
-      {
-        "node": "KingAir-PFD-L-speed-1-3-KingAir-instrument-ink",
-        "points": [
-          0.4728,
-          1.9796,
-          2.5516,
-          0.4728,
-          1.9796,
-          2.5524,
-          0.4728,
-          1.9804,
-          2.5516,
-          0.4728,
-          1.9804,
-          2.5524,
-          0.4772,
-          1.9796,
-          2.5516,
-          0.4772,
-          1.9796,
-          2.5524,
-          0.4772,
-          1.9804,
-          2.5516,
-          0.4772,
-          1.9804,
-          2.5524
-        ]
-      },
-      {
-        "node": "KingAir-PFD-L-speed-1-4-KingAir-instrument-ink",
-        "points": [
-          0.4773,
-          1.9808,
-          2.5516,
-          0.4773,
-          1.9808,
-          2.5524,
-          0.4773,
-          1.9852,
-          2.5516,
-          0.4773,
-          1.9852,
-          2.5524,
-          0.4782,
-          1.9808,
-          2.5516,
-          0.4782,
-          1.9808,
-          2.5524,
-          0.4782,
-          1.9852,
-          2.5516,
-          0.4782,
           1.9852,
           2.5524
         ]

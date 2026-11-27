@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:66b8e5b888573567ddc2a42bf5ddc6daf2e60b95606ad5f40ff18b169a97364b",
-  "sourceHash": "sha256:f515b8cbdd9dfcc6fa0c4615ad4a0efcb15d0fe59eaf69ef1d5e60c2cdc90d72",
+  "hash": "sha256:bb7679ed093a40002001150990bc7c2f0c7ecf3dc2325f53351701e3300a7032",
+  "sourceHash": "sha256:29cbc6c83e7485e9dd014c0e80460b61cee2a387c05a74db72bb9b60347bb27f",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 45032,
-    "vertices": 45442,
-    "meshes": 161,
-    "primitives": 161,
-    "materials": 32,
+    "triangles": 51158,
+    "vertices": 53471,
+    "meshes": 177,
+    "primitives": 177,
+    "materials": 39,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 1658256
+    "sizeBytes": 1839384
   },
   "nodes": [
     {
@@ -72,6 +72,14 @@
     {
       "name": "Baron-shell-detail-red",
       "triangles": 268
+    },
+    {
+      "name": "Baron-shell-Baron-ivory-lining",
+      "triangles": 371
+    },
+    {
+      "name": "Baron-shell-Baron-alloy-lining",
+      "triangles": 229
     },
     {
       "name": "Baron-flap--1-58-Baron-ivory",
@@ -283,15 +291,15 @@
     },
     {
       "name": "Baron-cabin-Baron-panel",
-      "triangles": 70
+      "triangles": 69
     },
     {
       "name": "Baron-cabin-Baron-trim",
-      "triangles": 830
+      "triangles": 901
     },
     {
       "name": "Baron-cabin-Baron-instrument-black",
-      "triangles": 2220
+      "triangles": 1652
     },
     {
       "name": "Baron-cabin-detail-alloy",
@@ -299,7 +307,7 @@
     },
     {
       "name": "Baron-cabin-detail-trim",
-      "triangles": 1636
+      "triangles": 1324
     },
     {
       "name": "Baron-cabin-detail-lettering",
@@ -311,7 +319,7 @@
     },
     {
       "name": "Baron-cabin-Baron-alloy",
-      "triangles": 2868
+      "triangles": 3764
     },
     {
       "name": "Baron-cabin-Baron-instrument-red",
@@ -322,12 +330,28 @@
       "triangles": 24
     },
     {
+      "name": "Baron-cabin-flight-control-panel",
+      "triangles": 156
+    },
+    {
+      "name": "Baron-cabin-flight-control-black",
+      "triangles": 188
+    },
+    {
+      "name": "Baron-cabin-flight-control-legend",
+      "triangles": 180
+    },
+    {
       "name": "Baron-cabin-Baron-leather",
       "triangles": 24
     },
     {
       "name": "Baron-cabin-Baron-headliner",
-      "triangles": 52
+      "triangles": 280
+    },
+    {
+      "name": "Baron-cabin-Baron-sidewall",
+      "triangles": 2428
     },
     {
       "name": "Baron-cabin-Baron-instrument-ink",
@@ -339,7 +363,7 @@
     },
     {
       "name": "Baron-cabin-Baron-instrument-ink-panel-print",
-      "triangles": 46
+      "triangles": 56
     },
     {
       "name": "Baron-PFD-horizon-fixed-Baron-instrument-black",
@@ -528,30 +552,6 @@
     {
       "name": "Baron-speed-tape-220-Baron-instrument-ink",
       "triangles": 24
-    },
-    {
-      "name": "Baron-speed-tape-220-Baron-instrument-ink-display-print",
-      "triangles": 6
-    },
-    {
-      "name": "Baron-speed-tape-230-Baron-instrument-ink",
-      "triangles": 24
-    },
-    {
-      "name": "Baron-speed-tape-230-Baron-instrument-ink-display-print",
-      "triangles": 6
-    },
-    {
-      "name": "Baron-speed-tape-240-Baron-instrument-ink",
-      "triangles": 24
-    },
-    {
-      "name": "Baron-speed-tape-240-Baron-instrument-ink-display-print",
-      "triangles": 6
-    },
-    {
-      "name": "Baron-PFD-speed-0-0-Baron-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -615,6 +615,14 @@
     },
     {
       "name": "detail-red",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "cockpit-frame-lining",
       "slots": [
         "baseColor"
       ],
@@ -714,6 +722,33 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-black",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Baron-leather",
       "slots": [
         "baseColor"
@@ -723,6 +758,14 @@
     },
     {
       "name": "Baron-headliner",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Baron-sidewall",
       "slots": [
         "baseColor"
       ],
@@ -772,25 +815,6 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Baron-prop-control",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-panel-satin",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "flight-control-alloy-brushed",
       "slots": [
         "baseColor",
@@ -802,12 +826,49 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-grip-rubber",
+      "name": "flight-control-knob",
       "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Baron-yoke",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-propeller",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-steel",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-tread",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -822,17 +883,12 @@
       "alphaMode": "BLEND"
     },
     {
-      "name": "flight-control-legend",
+      "name": "flight-control-grip-rubber",
       "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-master",
-      "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -1070,6 +1126,64 @@
           5.7654,
           2.9718,
           0.3693
+        ]
+      },
+      {
+        "node": "Baron-shell-Baron-ivory-lining",
+        "points": [
+          -0.6239,
+          0.8407,
+          -1.377,
+          -0.6239,
+          0.8407,
+          2.0972,
+          -0.6239,
+          2.1475,
+          -1.377,
+          -0.6239,
+          2.1475,
+          2.0972,
+          0.6239,
+          0.8407,
+          -1.377,
+          0.6239,
+          0.8407,
+          2.0972,
+          0.6239,
+          2.1475,
+          -1.377,
+          0.6239,
+          2.1475,
+          2.0972
+        ]
+      },
+      {
+        "node": "Baron-shell-Baron-alloy-lining",
+        "points": [
+          -0.6254,
+          0.7132,
+          -1.2768,
+          -0.6254,
+          0.7132,
+          1.3567,
+          -0.6254,
+          1.9825,
+          -1.2768,
+          -0.6254,
+          1.9825,
+          1.3567,
+          0.6115,
+          0.7132,
+          -1.2768,
+          0.6115,
+          0.7132,
+          1.3567,
+          0.6115,
+          1.9825,
+          -1.2768,
+          0.6115,
+          1.9825,
+          1.3567
         ]
       },
       {
@@ -2612,58 +2726,58 @@
       {
         "node": "Baron-cabin-Baron-trim",
         "points": [
-          -0.524,
-          0.7325,
+          -0.5664,
+          0.6999,
           -1.835,
-          -0.524,
-          0.7325,
-          1.38,
-          -0.524,
-          1.7275,
+          -0.5664,
+          0.6999,
+          1.5,
+          -0.5664,
+          1.7276,
           -1.835,
-          -0.524,
-          1.7275,
-          1.38,
-          0.524,
-          0.7325,
+          -0.5664,
+          1.7276,
+          1.5,
+          0.5667,
+          0.6999,
           -1.835,
-          0.524,
-          0.7325,
-          1.38,
-          0.524,
-          1.7275,
+          0.5667,
+          0.6999,
+          1.5,
+          0.5667,
+          1.7276,
           -1.835,
-          0.524,
-          1.7275,
-          1.38
+          0.5667,
+          1.7276,
+          1.5
         ]
       },
       {
         "node": "Baron-cabin-Baron-instrument-black",
         "points": [
-          -0.5159,
-          1,
+          -0.5161,
+          0.9049,
           -1.4425,
-          -0.5159,
-          1,
+          -0.5161,
+          0.9049,
           1.127,
-          -0.5159,
-          1.984,
+          -0.5161,
+          1.9841,
           -1.4425,
-          -0.5159,
-          1.984,
+          -0.5161,
+          1.9841,
           1.127,
-          0.5189,
-          1,
+          0.5201,
+          0.9049,
           -1.4425,
-          0.5189,
-          1,
+          0.5201,
+          0.9049,
           1.127,
-          0.5189,
-          1.984,
+          0.5201,
+          1.9841,
           -1.4425,
-          0.5189,
-          1.984,
+          0.5201,
+          1.9841,
           1.127
         ]
       },
@@ -2787,10 +2901,10 @@
         "node": "Baron-cabin-Baron-alloy",
         "points": [
           -0.538,
-          1.1403,
+          0.9261,
           -1.438,
           -0.538,
-          1.1403,
+          0.9261,
           1.142,
           -0.538,
           1.9847,
@@ -2799,10 +2913,10 @@
           1.9847,
           1.142,
           0.538,
-          1.1403,
+          0.9261,
           -1.438,
           0.538,
-          1.1403,
+          0.9261,
           1.142,
           0.538,
           1.9847,
@@ -2871,6 +2985,93 @@
         ]
       },
       {
+        "node": "Baron-cabin-flight-control-panel",
+        "points": [
+          -0.179,
+          1.2433,
+          1.1115,
+          -0.179,
+          1.2433,
+          1.1165,
+          -0.179,
+          1.2883,
+          1.1115,
+          -0.179,
+          1.2883,
+          1.1165,
+          -0.159,
+          1.2433,
+          1.1115,
+          -0.159,
+          1.2433,
+          1.1165,
+          -0.159,
+          1.2883,
+          1.1115,
+          -0.159,
+          1.2883,
+          1.1165
+        ]
+      },
+      {
+        "node": "Baron-cabin-flight-control-black",
+        "points": [
+          -0.173,
+          1.2478,
+          1.11,
+          -0.173,
+          1.2478,
+          1.112,
+          -0.173,
+          1.2838,
+          1.11,
+          -0.173,
+          1.2838,
+          1.112,
+          -0.165,
+          1.2478,
+          1.11,
+          -0.165,
+          1.2478,
+          1.112,
+          -0.165,
+          1.2838,
+          1.11,
+          -0.165,
+          1.2838,
+          1.112
+        ]
+      },
+      {
+        "node": "Baron-cabin-flight-control-legend",
+        "points": [
+          -0.1652,
+          1.2486,
+          1.1098,
+          -0.1652,
+          1.2486,
+          1.1108,
+          -0.1652,
+          1.283,
+          1.1098,
+          -0.1652,
+          1.283,
+          1.1108,
+          -0.1608,
+          1.2486,
+          1.1098,
+          -0.1608,
+          1.2486,
+          1.1108,
+          -0.1608,
+          1.283,
+          1.1098,
+          -0.1608,
+          1.283,
+          1.1108
+        ]
+      },
+      {
         "node": "Baron-cabin-Baron-leather",
         "points": [
           -0.542,
@@ -2907,25 +3108,54 @@
           -1.21,
           -0.516,
           0.88,
-          0.55,
+          0.613,
           -0.516,
-          2.0325,
+          2.131,
           -1.21,
           -0.516,
-          2.0325,
-          0.55,
-          0.38,
+          2.131,
+          0.613,
+          0.4742,
           0.88,
           -1.21,
-          0.38,
+          0.4742,
           0.88,
-          0.55,
-          0.38,
-          2.0325,
+          0.613,
+          0.4742,
+          2.131,
           -1.21,
-          0.38,
-          2.0325,
-          0.55
+          0.4742,
+          2.131,
+          0.613
+        ]
+      },
+      {
+        "node": "Baron-cabin-Baron-sidewall",
+        "points": [
+          -0.615,
+          0.66,
+          -2,
+          -0.615,
+          0.66,
+          1.49,
+          -0.615,
+          2,
+          -2,
+          -0.615,
+          2,
+          1.49,
+          0.615,
+          0.66,
+          -2,
+          0.615,
+          0.66,
+          1.49,
+          0.615,
+          2,
+          -2,
+          0.615,
+          2,
+          1.49
         ]
       },
       {
@@ -2990,29 +3220,29 @@
         "node": "Baron-cabin-Baron-instrument-ink-panel-print",
         "points": [
           -0.4136,
-          1.344,
+          1.3092,
           1.094,
           -0.4136,
-          1.344,
-          1.098,
+          1.3092,
+          1.112,
           -0.4136,
           1.6127,
           1.094,
           -0.4136,
           1.6127,
-          1.098,
+          1.112,
           0.3517,
-          1.344,
+          1.3092,
           1.094,
           0.3517,
-          1.344,
-          1.098,
+          1.3092,
+          1.112,
           0.3517,
           1.6127,
           1.094,
           0.3517,
           1.6127,
-          1.098
+          1.112
         ]
       },
       {
@@ -4376,180 +4606,6 @@
           0.3407,
           1.7863,
           1.1294
-        ]
-      },
-      {
-        "node": "Baron-speed-tape-220-Baron-instrument-ink-display-print",
-        "points": [
-          0.3459,
-          1.7838,
-          1.129,
-          0.3459,
-          1.7838,
-          1.129,
-          0.3459,
-          1.7882,
-          1.129,
-          0.3459,
-          1.7882,
-          1.129,
-          0.3556,
-          1.7838,
-          1.129,
-          0.3556,
-          1.7838,
-          1.129,
-          0.3556,
-          1.7882,
-          1.129,
-          0.3556,
-          1.7882,
-          1.129
-        ]
-      },
-      {
-        "node": "Baron-speed-tape-230-Baron-instrument-ink",
-        "points": [
-          0.3347,
-          1.7957,
-          1.1286,
-          0.3347,
-          1.7957,
-          1.1294,
-          0.3347,
-          1.7963,
-          1.1286,
-          0.3347,
-          1.7963,
-          1.1294,
-          0.3407,
-          1.7957,
-          1.1286,
-          0.3407,
-          1.7957,
-          1.1294,
-          0.3407,
-          1.7963,
-          1.1286,
-          0.3407,
-          1.7963,
-          1.1294
-        ]
-      },
-      {
-        "node": "Baron-speed-tape-230-Baron-instrument-ink-display-print",
-        "points": [
-          0.3459,
-          1.7938,
-          1.129,
-          0.3459,
-          1.7938,
-          1.129,
-          0.3459,
-          1.7982,
-          1.129,
-          0.3459,
-          1.7982,
-          1.129,
-          0.3556,
-          1.7938,
-          1.129,
-          0.3556,
-          1.7938,
-          1.129,
-          0.3556,
-          1.7982,
-          1.129,
-          0.3556,
-          1.7982,
-          1.129
-        ]
-      },
-      {
-        "node": "Baron-speed-tape-240-Baron-instrument-ink",
-        "points": [
-          0.3347,
-          1.8057,
-          1.1286,
-          0.3347,
-          1.8057,
-          1.1294,
-          0.3347,
-          1.8063,
-          1.1286,
-          0.3347,
-          1.8063,
-          1.1294,
-          0.3407,
-          1.8057,
-          1.1286,
-          0.3407,
-          1.8057,
-          1.1294,
-          0.3407,
-          1.8063,
-          1.1286,
-          0.3407,
-          1.8063,
-          1.1294
-        ]
-      },
-      {
-        "node": "Baron-speed-tape-240-Baron-instrument-ink-display-print",
-        "points": [
-          0.3459,
-          1.8038,
-          1.129,
-          0.3459,
-          1.8038,
-          1.129,
-          0.3459,
-          1.8082,
-          1.129,
-          0.3459,
-          1.8082,
-          1.129,
-          0.3556,
-          1.8038,
-          1.129,
-          0.3556,
-          1.8038,
-          1.129,
-          0.3556,
-          1.8082,
-          1.129,
-          0.3556,
-          1.8082,
-          1.129
-        ]
-      },
-      {
-        "node": "Baron-PFD-speed-0-0-Baron-instrument-ink",
-        "points": [
-          0.3535,
-          1.5696,
-          1.1216,
-          0.3535,
-          1.5696,
-          1.1224,
-          0.3535,
-          1.5704,
-          1.1216,
-          0.3535,
-          1.5704,
-          1.1224,
-          0.3571,
-          1.5696,
-          1.1216,
-          0.3571,
-          1.5696,
-          1.1224,
-          0.3571,
-          1.5704,
-          1.1216,
-          0.3571,
-          1.5704,
-          1.1224
         ]
       }
     ]

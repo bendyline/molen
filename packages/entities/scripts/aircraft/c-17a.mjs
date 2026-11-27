@@ -1,6 +1,19 @@
 /** C-17A: USAF T.O.1C-17A-1 three-view and photographed four-display flight deck.
  * +Z nose, +Y up. Explicit stations, not a scaled generic transport. */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead, cockpitLiner } from './cockpit-fit.mjs';
+import {
+  bar,
+  flapSelectorGeometry,
+  lathe,
+  leverGeometry,
+  loftUp,
+  partPalette,
+  place,
+  roundedBox,
+  contour as superEllipse,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -100,6 +113,8 @@ export function buildC17A(s) {
       roughness: 0.18,
     });
   const d = detailKit(root, 'C17-exterior'),
+    windowReveals = [],
+    reveal = { add: (geometry, material) => windowReveals.push([geometry, material]) },
     bindings = [],
     rotors = [],
     enginePoints = [];
@@ -308,6 +323,24 @@ export function buildC17A(s) {
       ),
     );
     geometry.setIndex(index);
+    // Its inside face, 12 mm in and facing the cabin, for the flight deck's light grey lining
+    // round the window reveals and across the crown (laid by the cockpit fit).
+    const inside = geometry.clone(),
+      position = inside.getAttribute('position'),
+      normals = inside.getAttribute('normal'),
+      order = inside.index.array;
+    for (let k = 0; k < position.count; k++) {
+      position.setXYZ(
+        k,
+        position.getX(k) - normals.getX(k) * 0.012,
+        position.getY(k) - normals.getY(k) * 0.012,
+        position.getZ(k) - normals.getZ(k) * 0.012,
+      );
+      normals.setXYZ(k, -normals.getX(k), -normals.getY(k), -normals.getZ(k));
+    }
+    for (let k = 0; k < order.length; k += 3)
+      [order[k + 1], order[k + 2]] = [order[k + 2], order[k + 1]];
+    windowReveals.push([inside]);
     d.add(geometry, paint);
     for (const h of holes) {
       const pane = h.map((q) => at(...q)),
@@ -397,6 +430,35 @@ export function buildC17A(s) {
     // Their solid roof was not carved in this low-poly shell; use a flush dark inset.
     sheet(d, pts, dark, [side, 1, 0]);
     outline(d, pts, 0.018, paint);
+    // The same inset seen from the cabin, on the crown lining.
+    const inner = [
+      [side * 0.79, 23.24],
+      [side * 1.14, 22.99],
+      [side * 1.17, 22.51],
+      [side * 0.8, 22.72],
+    ].map(([x, z]) => shell(x, z, false, -0.03));
+    sheet(reveal, inner, dark, [-side, -1, 0]);
+    outline(reveal, inner, 0.012, dark);
+    // Crown lining over the pilots, between the windscreen patch and the overhead, and the
+    // shoulder above the side liners aft of the side window.
+    for (const [i, j] of [
+      [4, 0],
+      [5, 0],
+      [5, 1],
+    ]) {
+      const corners = [
+          [i, j],
+          [i, j + 1],
+          [i + 1, j + 1],
+          [i + 1, j],
+        ].map(([ii, jj]) => {
+          const q = point(ii, jj),
+            n = normalAt(ii, jj);
+          return [side * (q[0] - n[0] * 0.012), q[1] - n[1] * 0.012, q[2] - n[2] * 0.012];
+        }),
+        n = normalAt(i, j);
+      quad(reveal, ...corners, undefined, [-side * n[0], -n[1], -n[2]]);
+    }
     d.rod([side * 1.4, 4.5, 24.6], [side * 1.6, 4.55, 24.25], 0.017, metal);
     d.rod([side * 1.6, 4.55, 24.25], [side * 1.65, 4.55, 24.7], 0.013, metal);
   }
@@ -785,11 +847,17 @@ export function buildC17A(s) {
     d.text('NO STEP', [side * 4.6, 2.65, 7], 0.08, (side * Math.PI) / 2, dark);
   }
   d.finish();
-  const interior = cockpit(root, { paint, dark, metal, glass });
+  const { stations: controlStations, ...interior } = cockpit(root, {
+    paint,
+    dark,
+    metal,
+    glass,
+    windowReveals,
+  });
   cleanGeometry(root);
   return {
     root,
-    frame: c17Frame(),
+    frame: { ...c17Frame(), controlStations },
     enginePoints,
     visual: { rotors, gearNodes: [], flaps: [], ailerons: [], animation: { bindings }, interior },
     modelSignals: {
@@ -807,7 +875,7 @@ function cockpit(root, m) {
     ins = instrumentGeometry(cabin, 'C17'),
     { bindings, derived, ink, black, amber } = ins;
   const face = mat('C17-panel', '#8b9490', { side: T.DoubleSide }),
-    liner = mat('C17-liner', '#a1aaa3', { side: T.DoubleSide }),
+    liner = mat('C17-liner', '#aab0b2', { side: T.DoubleSide }),
     seat = mat('C17-seat-blue', '#546f7c'),
     cushion = mat('C17-seat-cushion', '#807f73'),
     belt = mat('C17-harness', '#a0b7bc'),
@@ -819,6 +887,8 @@ function cockpit(root, m) {
       roughness: 0.1,
     }),
     green = mat('C17-green-display', '#7bcda5', { emissive: '#285c42', emissiveIntensity: 0.5 });
+  // Control parts share the library's rubber/alloy finishes, on this deck's own panel gray.
+  const P = partPalette({ panel: face });
   const sources = Object.fromEntries(
     ['airspeed', 'pitch', 'roll', 'yaw', 'verticalSpeed', 'gearPosition', 'flapPosition'].map(
       (k) => [
@@ -1188,12 +1258,23 @@ function cockpit(root, m) {
   for (let i = 0; i < 4; i++) {
     const x = 0.105 - i * 0.07;
     td.box([0.023, 0.58, 0.01], [x, 0.35, -0.055], black);
+    // Thrust levers with cross-bar grips and the reverser latch ahead of each: the console lies
+    // on its back, so each lever stands up in its own frame.
     const g = group(ped, `C17-throttle-${i + 1}`, [x, 0.25, -0.08]),
-      dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0], [0, 0.08, -0.2], 0.015, m.metal);
-    beveledBox(dd, [0.062, 0.048, 0.045], [0, 0.08, -0.2], m.dark);
-    dd.text(String(i + 1), [0, 0.08, -0.224], 0.012, Math.PI, ink);
+      upright = group(g, `${g.name}-lever`);
+    upright.rotation.x = -Math.PI / 2;
+    const dd = detailKit(upright, g.name);
+    leverGeometry(dd, {
+      style: 'thrust-boeing',
+      height: 0.17,
+      rake: 0.06,
+      side: i < 2 ? 1 : -1,
+      scale: 0.8,
+      palette: P,
+    });
     dd.finish();
+    // Engine number at the slot's aft end, and the fuel control lever behind it (a station).
+    td.text(String(i + 1), [x, 0.03, -0.05], 0.014, Math.PI, ink);
     bindings.push({
       node: g.name,
       source: 'power',
@@ -1203,10 +1284,14 @@ function cockpit(root, m) {
       offset: -0.16,
     });
   }
+  // Flap/slat handle right of centre and the spoiler handle left of it (a control station), each
+  // in a gated slot.
+  for (const xx of [-0.12, 0.12]) td.box([0.018, 0.3, 0.006], [xx, -0.42, -0.044], black);
   const flap = group(ped, 'C17-flap-lever', [-0.12, -0.47, -0.075]),
-    fd = detailKit(flap, flap.name);
-  fd.rod([0, 0, 0], [0, 0.05, -0.14], 0.011, m.metal);
-  fd.box([0.065, 0.025, 0.035], [0, 0.05, -0.14], ink);
+    fu = group(flap, `${flap.name}-upright`);
+  fu.rotation.x = -Math.PI / 2;
+  const fd = detailKit(fu, flap.name);
+  flapSelectorGeometry(fd, { style: 'lever', height: 0.1, palette: P });
   fd.finish();
   bindings.push({
     node: flap.name,
@@ -1242,9 +1327,11 @@ function cockpit(root, m) {
         const xx = x - w * 0.34 + col * w * 0.225,
           yy = y + 0.065 - row * 0.14;
         if ((col + row) % 3 === 0) op.knob(xx, yy, -0.05, 0.021);
+        // The APU start switch (a control station) takes the electrical panel's last toggle.
+        else if (label === 'ELEC' && col === 3 && row === 1) continue;
         else {
           od.box([0.055, 0.028, 0.008], [xx, yy, -0.042], black);
-          od.rod([xx, yy, -0.046], [xx, yy + 0.015, -0.083], 0.005, m.metal);
+          od.rod([xx, yy, -0.046], [xx, yy + 0.008, -0.068], 0.0035, m.metal);
         }
       }
   }
@@ -1266,24 +1353,20 @@ function cockpit(root, m) {
   // Two short control sticks, rudder pedals, blue seat shells and contrasting cushions.
   for (const side of [-1, 1]) {
     const x = side * 0.87;
+    // The centre stick: a floor housing, a rubber boot and the Globemaster grip.
+    beveledBox(d, [0.17, 0.2, 0.19], [x, 4.88, 23.12], m.dark, 0.02);
     const sg = group(cabin, `C17-stick-${side}`, [x, 4.99, 23.12]),
       sd = detailKit(sg, sg.name);
-    sd.box([0.17, 0.24, 0.19], [0, 0.05, 0], m.dark);
-    sd.rod([0, 0.13, 0], [0, 0.47, -0.055], 0.024, m.metal);
-    beveledBox(sd, [0.075, 0.18, 0.085], [0, 0.49, -0.06], m.dark);
-    sd.box([0.07, 0.028, 0.04], [0, 0.58, -0.04], m.dark);
-    ellipsoid(sd, [0.025, 0.57, -0.108], [0.012, 0.014, 0.007], ins.red, 8);
+    globemasterStick(sd, P, side);
     sd.finish();
     bindings.push(
       { node: sg.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.2 },
       { node: sg.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.2 },
     );
     for (const dx of [-0.16, 0.16]) {
-      const pg = group(cabin, `C17-pedal-${side}-${Math.sign(dx)}`, [x + dx, 4.83, 23.55]),
+      const pg = group(cabin, `C17-pedal-${side}-${Math.sign(dx)}`, [x + dx, 4.9, 23.55]),
         pd = detailKit(pg, pg.name);
-      pd.box([0.19, 0.085, 0.15], [0, 0, 0], m.dark);
-      for (let j = 0; j < 5; j++)
-        pd.rod([-0.08, 0.047, -0.06 + j * 0.027], [0.08, 0.047, -0.06 + j * 0.027], 0.004, m.metal);
+      globemasterPedal(pd, P);
       pd.finish();
       bindings.push({
         node: pg.name,
@@ -1337,5 +1420,204 @@ function cockpit(root, m) {
   for (const key of Object.keys(derived))
     if (key.startsWith('C17-copilot.') || key.startsWith('C17.altimeter--1-')) delete derived[key];
   cabin.position.y = -0.5;
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Fit, in the model frame (the cabin hangs 0.5 m lower): the foot-well end wall under the panel,
+  // between the pilots' chin windows, and sidewall liners from the floor up to the side windows and
+  // round the crown behind them, so no painted skin shows from the seats.
+  // Named as cockpit fit so the seat-frame lining leaves it alone: the C-17's deck lining, window
+  // reveals and crown are light grey in the photograph, not the fleet's dark frame trim.
+  const fit = detailKit(root, 'C17-cockpit-fit'),
+    exclude = ['cockpit', 'C17-cockpit-fit'];
+  for (const [geometry, material] of m.windowReveals) fit.add(geometry, material ?? liner);
+  sheet(fit, rect(0, 4.51, 2.66, 0.62, 23.76), face, [0, 0, -1]);
+  // Beside the panel, between the chin windows and the glare shield.
+  cockpitBulkhead(fit, root, { z: 23.63, yFrom: 4.93, yTo: 5.2, material: face, exclude });
+  cockpitLiner(fit, root, {
+    zFrom: 20.9,
+    zTo: 23.62,
+    yFrom: 4.24,
+    yTo: 5.45,
+    material: liner,
+    zSteps: 12,
+    ySteps: 6,
+    inset: 0.02,
+    exclude,
+  });
+  cockpitLiner(fit, root, {
+    zFrom: 20.9,
+    zTo: 22.2,
+    yFrom: 5.45,
+    yTo: 6.3,
+    material: liner,
+    zSteps: 6,
+    ySteps: 5,
+    inset: 0.02,
+    exclude,
+  });
+  fit.finish();
+  // Where the real controls are: the gear lever low on the centre panel by the pilot's standby
+  // instruments, the parking brake handle under the pilot's display, the spoiler handle left of
+  // centre on the console opposite the flap handle, four fuel control levers behind the thrust
+  // levers, and the APU start switch on the overhead electrical panel.
+  const onPanel = (u, v, dz = 0) => [px(u), py(v) - 0.5, z + dz],
+    consoleTop = 4.615;
+  const stations = [
+    {
+      action: 'gear',
+      style: 'jet',
+      at: onPanel(740, 757, -0.002),
+      scale: 1.15,
+      label: 'LDG GEAR',
+      labelAt: [0, 0.048, -0.002],
+    },
+    {
+      action: 'brake',
+      style: 'tee',
+      at: onPanel(420, 764, -0.002),
+      scale: 1.2,
+      label: 'PARK BRK',
+      labelAt: [0, 0.03, -0.002],
+    },
+    { action: 'speedBrake', style: 'lever', at: [0.12, consoleTop, 22.28 - 0.47], height: 0.09 },
+    ...[0, 1, 2, 3].map((i) => ({
+      action: 'engine',
+      engine: i,
+      style: 'start-lever',
+      at: [0.105 - i * 0.07, consoleTop, 22.28 - 0.1],
+      height: 0.055,
+    })),
+    {
+      action: 'engine',
+      style: 'guarded',
+      at: [0.491, 6.115, 22.305],
+      rotation: [-Math.PI / 2, 0, 0],
+      scale: 1.2,
+      label: 'APU',
+      labelAt: [0, -0.028, -0.002],
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
+}
+
+/** The Globemaster's centre stick: a tall rubber boot, a straight shaft and a fighter-derived grip
+ * with a forward-canted head carrying the trim hat, the autopilot disconnect and a thumb shelf. */
+function globemasterStick(d, P, side) {
+  const height = 0.4,
+    rake = -0.05,
+    tilt = Math.atan2(rake, height);
+  d.add(
+    lathe(
+      [
+        [0, 0],
+        [0.07, 0],
+        [0.066, 0.02],
+        [0.05, 0.03],
+        [0.048, 0.05],
+        [0.034, 0.06],
+        [0.032, 0.08],
+        [0.02, 0.11],
+        [0.018, 0.12],
+        [0, 0.12],
+      ],
+      18,
+      28,
+    ),
+    P.tread,
+  );
+  d.add(bar([0, 0.1, 0], [0, height, rake], 0.014, 14, 0.013), P.alloy);
+  const grip = loftUp([
+    { y: 0, points: superEllipse(0, 0, 0.019, 0.022, 18, 2.2) },
+    { y: 0.045, points: superEllipse(0, 0.003, 0.021, 0.025, 18, 2.2) },
+    { y: 0.09, points: superEllipse(0, 0.004, 0.021, 0.025, 18, 2.3) },
+    { y: 0.12, points: superEllipse(0, 0.012, 0.024, 0.03, 18, 2.7) },
+    { y: 0.142, points: superEllipse(0, 0.018, 0.025, 0.031, 18, 2.8) },
+    { y: 0.152, points: superEllipse(0, 0.018, 0.016, 0.022, 18, 2.4) },
+  ]);
+  const head = (p) => place(p, [0, height, rake], [tilt, 0, 0]);
+  d.add(head(grip), P.grip);
+  // Thumb shelf on the inboard side with the trim hat; red disconnect on the outboard shoulder;
+  // trigger under the finger guard.
+  d.add(
+    head(
+      place(
+        roundedBox([0.026, 0.01, 0.034], 0.004),
+        [-side * 0.02, 0.132, 0.01],
+        [0, 0, side * 0.3],
+      ),
+    ),
+    P.grip,
+  );
+  d.add(
+    head(place(new T.CylinderGeometry(0.006, 0.0065, 0.008, 14), [0.004 * side, 0.155, 0.006])),
+    P.black,
+  );
+  d.add(
+    head(place(new T.SphereGeometry(0.0045, 10, 6), [0.004 * side, 0.16, 0.006], [0, 0, 0])),
+    P.black,
+  );
+  d.add(
+    head(
+      place(
+        new T.CylinderGeometry(0.0055, 0.0055, 0.006, 14),
+        [side * 0.016, 0.148, 0.024],
+        [0.45, 0, 0],
+      ),
+    ),
+    P.red,
+  );
+  d.add(
+    head(
+      tube(
+        [
+          [0, 0.112, 0.038],
+          [0, 0.1, 0.06],
+          [0, 0.07, 0.056],
+          [0, 0.058, 0.026],
+        ],
+        0.003,
+        10,
+      ),
+    ),
+    P.alloy,
+  );
+  d.add(
+    head(
+      tube(
+        [
+          [0, 0.1, 0.038],
+          [0, 0.09, 0.048],
+          [0, 0.077, 0.044],
+        ],
+        0.005,
+        10,
+      ),
+    ),
+    P.black,
+  );
+}
+
+/** Globemaster rudder pedal: a rounded plate with a rubber face and a heel ledge, its toe-brake
+ * hinge across the top, on a central arm that runs forward under the panel. */
+function globemasterPedal(d, P, { w = 0.12, h = 0.19, lean = 0.22 } = {}) {
+  const pad = (g) => place(g, [0, 0, 0], [lean, 0, 0]);
+  d.add(pad(roundedBox([w, h, 0.018], 0.02, 1)), P.steel);
+  d.add(
+    pad(place(roundedBox([w * 0.8, h * 0.74, 0.005], 0.012, 1), [0, h * 0.03, -0.01])),
+    P.tread,
+  );
+  d.add(pad(bar([-w * 0.44, h * 0.45, -0.002], [w * 0.44, h * 0.45, -0.002], 0.006, 8)), P.alloy);
+  d.add(pad(place(new T.BoxGeometry(w * 0.88, 0.014, 0.05), [0, -h / 2 - 0.005, -0.02])), P.steel);
+  d.add(
+    pad(
+      tube(
+        [
+          [0, h * 0.32, 0.012],
+          [0, h * 0.5 + 0.04, 0.05],
+          [0, h * 0.5 + 0.09, 0.12],
+        ],
+        0.011,
+        8,
+      ),
+    ),
+    P.alloy,
+  );
 }

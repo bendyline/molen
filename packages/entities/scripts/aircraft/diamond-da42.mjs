@@ -3,7 +3,15 @@
  * Composite skin: joints/access fasteners, not a fictitious sheet-metal rivet grid.
  */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import {
+  flapSelectorGeometry,
+  leverGeometry,
+  partPalette,
+  stickGeometry,
+  tube,
+} from './cockpit-parts.mjs';
 import { addG1000Bezels, addG1000Readouts } from './g1000-panel.mjs';
+import { cabinLiner, gaGearSwitch, gaPedal } from './ga-cabin.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -608,11 +616,18 @@ export function buildDiamond(s) {
     });
   }
   d.finish();
-  const interior = cockpit(root, { paint, accent, metal, dark, skinX, rings });
+  const { stations: controlStations, ...interior } = cockpit(root, {
+    paint,
+    accent,
+    metal,
+    dark,
+    skinX,
+    rings,
+  });
   cleanGeometry(root);
   return {
     root,
-    frame: diamondFrame(),
+    frame: { ...diamondFrame(), controlStations },
     enginePoints,
     visual: { rotors, gearNodes: [], flaps, ailerons, animation: { bindings }, interior },
     modelSignals: {
@@ -898,16 +913,15 @@ function cockpit(root, m) {
   for (let row = 0; row < 12; row++)
     for (const dx of [-0.007, 0.007])
       d.box([0.008, 0.004, 0.004], [ax + dx, py(274 + row * 10), z - 0.018], m.accent);
+  // The electric master key and the two engine masters are control stations (end of function).
   for (const [u, v, col] of [
-    [235, 427, headliner],
     [362, 430, red],
     [382, 430, headliner],
     [527, 430, headliner],
     [544, 430, headliner],
   ])
     beveledBox(d, [0.016, 0.028, 0.008], at(u, v, -0.016), col, 0.002);
-  for (const u of [261, 295, 335, 510, 563, 578])
-    pt.knob(px(u), py(428), z - 0.022, u === 295 ? 0.01 : 0.006);
+  for (const u of [261, 510, 563, 578]) pt.knob(px(u), py(428), z - 0.022, 0.006);
   for (const [text, u, v] of [
     ['LIGHTS', 328, 206],
     ['ENGINE MASTER', 297, 413],
@@ -953,14 +967,10 @@ function cockpit(root, m) {
     scale: 1,
     missing: 'hide',
   });
-  const gear = group(cabin, 'DA42-gear-selector', at(453, 430, -0.023)),
+  // Landing-gear selector: the white wheel-shaped knob on its short lever.
+  const gear = group(cabin, 'DA42-gear-selector', at(453, 430, -0.002)),
     gd = detailKit(gear, gear.name);
-  gd.rod([0, 0, 0], [0, 0, -0.025], 0.004, m.metal);
-  gd.add(
-    new T.CylinderGeometry(0.01, 0.01, 0.01, 16).rotateZ(Math.PI / 2),
-    headliner,
-    [0, 0, -0.03],
-  );
+  gaGearSwitch(gd, { length: 0.024, radius: 0.011, palette: { black: headliner } });
   gd.finish();
   bindings.push({
     node: gear.name,
@@ -988,10 +998,10 @@ function cockpit(root, m) {
     bindings.push({ node: g.name, source, property: 'visible', scale: 1, missing: 'hide' });
     d.text(label, at(620, 427 + i * 8, -0.026), 0.0035, Math.PI, ink);
   }
-  const flap = group(cabin, 'DA42-flap-selector', at(653, 427, -0.024)),
+  // Flap selector: a small airfoil knob on its lever (UP, APP, LDG).
+  const flap = group(cabin, 'DA42-flap-selector', at(653, 427, -0.002)),
     fd = detailKit(flap, flap.name);
-  fd.rod([0, 0, 0], [0, 0, -0.025], 0.003, m.metal);
-  beveledBox(fd, [0.023, 0.01, 0.022], [0, 0, -0.03], headliner, 0.003);
+  flapSelectorGeometry(fd, { style: 'airfoil', scale: 0.75 });
   fd.finish();
   bindings.push({
     node: flap.name,
@@ -1013,10 +1023,10 @@ function cockpit(root, m) {
   }
   ud.finish();
   for (const side of [-1, 1]) {
+    // Power levers: flat blades under broad black T grips, one per engine.
     const g = group(cabin, `DA42-power-${side}`, [side * 0.035, 1.0, 0.43]),
       ld = detailKit(g, g.name);
-    ld.rod([0, 0, 0], [0, 0.085, 0], 0.006, m.metal);
-    beveledBox(ld, [0.065, 0.03, 0.034], [0, 0.09, 0], m.dark, 0.008);
+    leverGeometry(ld, { style: 'throttle-t', height: 0.085, scale: 0.95 });
     ld.finish();
     bindings.push({
       node: g.name,
@@ -1038,24 +1048,20 @@ function cockpit(root, m) {
     d.rod([x, 1.008, -0.1], [x, 1.008, -0.055], 0.006, red);
   }
   for (const side of [-1, 1]) {
+    // Control sticks in leather boots: a slim grip with the trim hat, PTT and autopilot
+    // disconnect under the thumb.
     const g = group(cabin, `DA42-stick-${side}`, [side * 0.28, 0.99, 0.5]),
       sd = detailKit(g, g.name);
-    sd.add(new T.ConeGeometry(0.045, 0.12, 12), m.dark, [0, 0.06, 0]);
-    sd.rod([0, 0.1, 0], [0, 0.32, 0.025], 0.022, m.dark);
-    beveledBox(sd, [0.068, 0.095, 0.075], [0, 0.34, 0.02], m.dark, 0.016);
-    sd.box([0.018, 0.009, 0.017], [-0.017, 0.394, 0.01], red);
-    sd.box([0.018, 0.01, 0.025], [0.014, 0.394, 0.015], m.accent);
+    stickGeometry(sd, { style: 'cyclic', height: 0.28, rake: 0.025, shaft: 0.012, scale: 1.05 });
     sd.finish();
     bindings.push(
       { node: g.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.26 },
       { node: g.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.3 },
     );
     for (const j of [-1, 1]) {
-      const g = group(cabin, `DA42-pedal-${side}-${j}`, [side * 0.27 + j * 0.08, 0.84, 1.21]),
+      const g = group(cabin, `DA42-pedal-${side}-${j}`, [side * 0.27 + j * 0.08, 0.86, 1.21]),
         pd = detailKit(g, g.name);
-      beveledBox(pd, [0.12, 0.105, 0.03], [0, 0, 0], m.metal, 0.006);
-      for (let i = 0; i < 4; i++)
-        pd.box([0.09, 0.006, 0.005], [0, -0.035 + i * 0.023, -0.018], m.dark);
+      gaPedal(pd, { side: j, drop: 0.05, width: 0.11, tread: partPalette().tread });
       pd.finish();
       bindings.push({
         node: g.name,
@@ -1165,6 +1171,73 @@ function cockpit(root, m) {
       0.003,
       m.dark,
     );
+  // Gray liners over the white skin below the canopy sill (the molded side panels stop short
+  // of it).
+  cabinLiner(d, root, {
+    zFrom: 1.34,
+    zTo: -1.1,
+    yFrom: 0.76,
+    yTo: 1.36,
+    material: leather,
+    zSteps: 12,
+    rows: 4,
+    reach: 0.64,
+  });
+  // Kick panels over the wing-root ribs, which stood white inside the footwell walls.
+  for (const side of [-1, 1])
+    beveledBox(d, [0.05, 0.24, 0.5], [side * 0.485, 0.9, 0.78], leather, 0.015);
+  // Padded sill rails over the white skin edge the canopy closes on.
+  for (const side of [-1, 1])
+    d.add(
+      tube(
+        Array.from({ length: 15 }, (_, i) => {
+          const zz = 1.16 - i * 0.15;
+          return [side * (m.skinX(zz, 1.25) - 0.02), 1.262, zz];
+        }),
+        0.016,
+        10,
+      ),
+      leather,
+    );
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Electric master key and the guarded L/R engine master switches on the lower left panel
+  // (under the ENGINE MASTER legend); the parking-brake knob on the lower center console.
+  const stations = [
+    {
+      action: 'engine',
+      style: 'key',
+      at: at(235, 428, -0.001),
+      label: 'ELECT MASTER',
+      labelAt: [0, 0.022, -0.002],
+      labelHeight: 0.0038,
+    },
+    {
+      action: 'engine',
+      engine: 0,
+      style: 'guarded',
+      at: at(287, 430, -0.001),
+      label: 'L',
+      labelAt: [0, -0.02, -0.002],
+      labelHeight: 0.0045,
+    },
+    {
+      action: 'engine',
+      engine: 1,
+      style: 'guarded',
+      at: at(318, 430, -0.001),
+      label: 'R',
+      labelAt: [0, -0.02, -0.002],
+      labelHeight: 0.0045,
+    },
+    {
+      action: 'brake',
+      style: 'tee',
+      at: [0, 1.135, 1.112],
+      rotation: [0.14, 0, 0],
+      label: 'PARK BRAKE',
+      labelAt: [0, 0.02, -0.002],
+      labelHeight: 0.004,
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
 }

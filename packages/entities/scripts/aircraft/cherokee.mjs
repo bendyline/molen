@@ -3,6 +3,19 @@
  */
 
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead } from './cockpit-fit.mjs';
+import {
+  contour,
+  flapSelectorGeometry,
+  lathe,
+  leverGeometry,
+  loftUp,
+  partPalette,
+  place,
+  roundedBox,
+  tube,
+} from './cockpit-parts.mjs';
+import { cabinHeadliner, cabinLiner, frameTrim, gaPedal } from './ga-cabin.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -494,11 +507,18 @@ export function buildCherokee(s) {
     loft(d, pant, paint);
   }
   d.finish();
-  const interior = cockpit(root, { paint, navy, trim, metal, rings });
+  const { stations: controlStations, ...interior } = cockpit(root, {
+    paint,
+    navy,
+    trim,
+    metal,
+    rings,
+    halfWidth,
+  });
   cleanGeometry(root);
   return {
     root,
-    frame: cherokeeFrame(),
+    frame: { ...cherokeeFrame(), controlStations },
     enginePoints: [{ id: 'engine-1', position: [0, 1.25, 2.37] }],
     visual: {
       rotors: [{ node: pg.name, axis: 'z', multiplier: 1, engine: 'engine-1' }],
@@ -523,6 +543,8 @@ function cockpit(root, m) {
   const { bindings, derived } = instruments;
   const face = mat('Cherokee-panel', '#a4a394'),
     seat = mat('Cherokee-seats', '#726b5c'),
+    sidewall = mat('Cherokee-sidewall', '#857c6b'),
+    headliner = mat('Cherokee-headliner', '#cdc6b2'),
     belt = mat('Cherokee-belts', '#c5bca3', { side: T.DoubleSide });
   const k = 0.079375 / 110,
     px = (u) => (750 - u) * k,
@@ -792,65 +814,140 @@ function cockpit(root, m) {
     pt.vent(px(u), py(v), z - 0.019, 'rect', 0.042);
   d.box([0.174, 0.083, 0.009], at(1282, 482, -0.012), m.trim);
   d.text('CHEROKEE 180', at(1282, 479, -0.02), 0.012, Math.PI, d.ivory);
-  // Twin period yokes: narrow shaft, open U grips, no opaque steering wheels.
+  // Twin Piper yokes: a squared U of black tube, the horns rising straight from a cross bar,
+  // on a chrome column with a round hub boss (PA-28 cockpit photograph, C-FGMX).
+  const P = partPalette();
   for (const u of [409, 1084]) {
     const x = px(u),
       y = py(460),
       g = group(cabin, `Cherokee-yoke-${u}`, [x, y, 0.89]),
-      dd = detailKit(g, 'yoke');
-    dd.rod([0, 0, 0.15], [0, 0, -0.2], 0.017, m.metal);
-    outline(
-      dd,
-      [
-        [-0.135, 0.075, -0.2],
-        [-0.125, -0.015, -0.2],
-        [-0.06, -0.055, -0.2],
-        [0.06, -0.055, -0.2],
-        [0.125, -0.015, -0.2],
-        [0.135, 0.075, -0.2],
-      ],
-      0.015,
-      m.trim,
-      false,
+      dd = detailKit(g, 'yoke'),
+      w = 0.13,
+      r = 0.025;
+    dd.add(
+      place(
+        lathe(
+          [
+            [0.0165, 0],
+            [0.0165, 0.35],
+            [0, 0.35],
+          ],
+          16,
+        ),
+        [0, 0, 0.15],
+        [-Math.PI / 2, 0, 0],
+      ),
+      m.metal,
     );
-    dd.box([0.055, 0.046, 0.03], [0, -0.038, -0.2], m.trim);
-    dd.text('PIPER', [0, -0.033, -0.22], 0.007, Math.PI, dd.ivory);
+    const corner = (sx) =>
+      Array.from({ length: 4 }, (_, i) => {
+        const a = (i / 3) * (Math.PI / 2);
+        return [sx * (w - r + Math.sin(a) * r), -0.045 + r - Math.cos(a) * r, -0.2];
+      });
+    dd.add(
+      tube(
+        [
+          [w, 0.085, -0.2],
+          [w, -0.045 + r, -0.2],
+          ...corner(1).reverse(),
+          ...corner(-1),
+          [-w, -0.045 + r, -0.2],
+          [-w, 0.085, -0.2],
+        ],
+        0.0115,
+        14,
+      ),
+      P.grip,
+    );
+    for (const sx of [-1, 1])
+      dd.add(
+        place(
+          loftUp(
+            [0, 0.06, 0.1, 0.11].map((yy, i) => ({
+              y: yy,
+              points: contour(
+                0,
+                0,
+                [0.015, 0.0155, 0.015, 0.008][i],
+                [0.016, 0.017, 0.016, 0.009][i],
+                16,
+                2.2,
+              ),
+            })),
+          ),
+          [sx * w, 0.005, -0.2],
+        ),
+        P.grip,
+      );
+    dd.add(
+      place(
+        lathe(
+          [
+            [0, 0],
+            [0.034, 0],
+            [0.036, 0.008],
+            [0.03, 0.016],
+            [0, 0.018],
+          ],
+          20,
+        ),
+        [0, -0.035, -0.188],
+        [-Math.PI / 2, 0, 0],
+      ),
+      P.grip,
+    );
+    dd.add(place(new T.CircleGeometry(0.02, 20).rotateY(Math.PI), [0, -0.035, -0.2065]), m.metal);
+    dd.text('PIPER', [0, -0.035, -0.207], 0.005, Math.PI, P.grip);
     dd.finish();
     bindings.push(
       { node: g.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.65 },
       { node: g.name, source: 'pitchInput', property: 'position', axis: 'z', scale: -0.04 },
     );
   }
-  // Push-pull throttle/mixture below the panel, manual flap lever and roof trim crank.
-  for (const [x, col] of [
-    [0.08, m.trim],
-    [-0.04, d.red],
-  ]) {
-    const control = group(cabin, x > 0 ? 'Cherokee-throttle' : 'Cherokee-mixture', [x, 1.03, 1.04]);
-    const cd = detailKit(control, control.name);
-    cd.rod([0, 0, 0], [0, 0, -0.18], 0.009, m.metal);
-    cd.add(new T.SphereGeometry(0.024, 12, 8), col, [0, 0, -0.19]);
-    if (x > 0)
-      control.userData.aircraftControl = {
-        action: 'power',
-        motion: { property: 'position', axis: 'z', scale: 0.07 },
-      };
-    cd.finish();
-  }
-  const flapLever = group(cabin, 'Cherokee-flap-lever', [0, 0.68, 0.1]);
+  // Throttle quadrant at the foot of the center panel: the levers pivot behind the panel and
+  // come out through a slotted face, throttle (black) then mixture (red); carburetor heat on the
+  // right. The Johnson-bar flap handle lies on the floor between the front seats.
+  const quadrant = [0.015, 0.985, 1.04];
+  beveledBox(
+    d,
+    [0.2, 0.075, 0.07],
+    [quadrant[0], quadrant[1] + 0.02, quadrant[2] - 0.03],
+    m.trim,
+    0.012,
+  );
+  for (const x of [0.065, 0.005])
+    d.add(
+      place(roundedBox([0.012, 0.05, 0.002], 0.002), [x, quadrant[1] + 0.02, quadrant[2] - 0.066]),
+      d.dark,
+    );
+  d.text('THROTTLE', [0.065, quadrant[1] + 0.065, quadrant[2] - 0.066], 0.0045, Math.PI, d.ivory);
+  d.text('MIXTURE', [0.005, quadrant[1] + 0.065, quadrant[2] - 0.066], 0.0045, Math.PI, d.ivory);
+  const throttle = group(cabin, 'Cherokee-throttle', [0.065, 0.93, 1.07]),
+    td = detailKit(throttle, throttle.name);
+  leverGeometry(td, { style: 'throttle', height: 0.15, rake: -0.15, scale: 1.15 });
+  throttle.userData.aircraftControl = {
+    action: 'power',
+    motion: { property: 'rotation', axis: 'x', scale: 0.6, offset: -0.3 },
+  };
+  td.finish();
+  const carbHeat = group(cabin, 'Cherokee-carb-heat', [-0.06, 0.95, 1.07]),
+    ch = detailKit(carbHeat, carbHeat.name);
+  leverGeometry(ch, { style: 'condition', height: 0.12, rake: -0.12, scale: 0.7 });
+  ch.finish();
+  d.text('CARB HEAT', [-0.06, quadrant[1] + 0.065, quadrant[2] - 0.066], 0.0045, Math.PI, d.ivory);
+  const flapLever = group(cabin, 'Cherokee-flap-lever', [0, 0.675, 0.47]);
   const fd = detailKit(flapLever, flapLever.name);
-  fd.rod([0, 0, 0], [0, 0.14, 0.28], 0.013, m.metal);
-  fd.box([0.055, 0.025, 0.065], [0, 0.14, 0.28], m.trim);
+  flapSelectorGeometry(fd, { style: 'johnson', height: 0.22 });
   flapLever.userData.aircraftControl = {
     action: 'flaps',
-    motion: { property: 'rotation', axis: 'x', scale: -0.45 },
+    motion: { property: 'rotation', axis: 'x', scale: 0.55 },
   };
   fd.finish();
   d.rod([0, 1.76, 0.2], [0, 1.7, 0.2], 0.009, m.metal);
   d.rod([0, 1.7, 0.2], [0.1, 1.7, 0.2], 0.008, m.metal);
   d.rod([0.1, 1.7, 0.2], [0.1, 1.66, 0.2], 0.01, m.trim);
   // The floor follows the radiused belly corners; the rear seats sit inside the narrower aft cabin.
-  fittedFloor(d, m.rings, m.trim, { y: 0.6575, front: 0.84, back: -0.96, width: 1.0 });
+  fittedFloor(d, m.rings, m.trim, { y: 0.6575, front: 1.3, back: -0.96, width: 1.0 });
   for (const zz of [0.24, -0.61])
     for (const x of zz > 0 ? [-0.26, 0.26] : [-0.225, 0.225]) {
       const w = zz > 0 ? 0.43 : 0.4;
@@ -878,11 +975,11 @@ function cockpit(root, m) {
     for (const j of [-1, 1]) {
       const pedal = group(cabin, `Cherokee-pedal-${side}-${j}`, [
         side * 0.25 + j * 0.08,
-        0.74,
+        0.77,
         1.2,
       ]);
       const pd = detailKit(pedal, pedal.name);
-      pd.box([0.12, 0.06, 0.05], [0, 0, 0], m.metal);
+      gaPedal(pd, { side: j, drop: 0.07 });
       pedal.userData.aircraftControl = {
         action: 'yaw',
         // Right rudder pushes the right pedal (-X) forward.
@@ -891,6 +988,81 @@ function cockpit(root, m) {
       pd.finish();
     }
   }
+  // Tan vinyl sidewalls and a light headliner: from the seat the inside of the painted skin
+  // showed white on every wall, the roof and the footwells. A firewall closes the footwell.
+  cockpitBulkhead(d, root, { z: 1.31, yFrom: 0.62, yTo: 1.0, material: m.trim });
+  cabinLiner(d, root, {
+    zFrom: 1.32,
+    zTo: -0.96,
+    yFrom: 0.6,
+    yTo: 1.24,
+    material: sidewall,
+    zSteps: 12,
+    rows: 4,
+    reach: 0.62,
+  });
+  cabinLiner(d, root, {
+    zFrom: 1.0,
+    zTo: -0.9,
+    yFrom: 1.22,
+    yTo: 1.7,
+    material: sidewall,
+    zSteps: 14,
+    rows: 4,
+    reach: 0.62,
+    inset: 0.014,
+  });
+  cabinHeadliner(d, root, {
+    zFrom: 0.6,
+    zTo: -0.9,
+    yFrom: 1.7,
+    material: headliner,
+    zSteps: 10,
+    margin: 0.002,
+  });
+  const ringPoint = (i, j) => [...m.rings[i].points[j], m.rings[i].z];
+  const wrap = (side) => [side * m.halfWidth(0.85, 1.3), 1.3, 0.85];
+  frameTrim(
+    d,
+    [wrap(1), ...[4, 3, 2, 1, 0, 17, 16, 15, 14].map((j) => ringPoint(3, j)), wrap(-1)],
+    sidewall,
+    { center: 1.1 },
+  );
+  frameTrim(
+    d,
+    [4, 3, 2, 1, 0, 17, 16, 15, 14].map((j) => ringPoint(2, j)),
+    m.trim,
+    { center: 1.1 },
+  );
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Ignition key below the flight instruments, left of center; the parking brake pull handle
+  // under the center panel.
+  const stations = [
+    {
+      action: 'engine',
+      style: 'key',
+      at: at(190, 575, -0.001),
+      label: 'MAGS',
+      labelAt: [0, 0.028, -0.002],
+      labelHeight: 0.0055,
+    },
+    {
+      action: 'brake',
+      style: 'tee',
+      at: at(500, 628, -0.001),
+      label: 'PARK',
+      labelAt: [0, 0.02, -0.002],
+      labelHeight: 0.0045,
+    },
+    {
+      action: 'mixture',
+      style: 'mixture',
+      at: [0.005, 0.93, 1.07],
+      height: 0.15,
+      rake: -0.15,
+      scale: 1.15,
+      motion: { property: 'rotation', axis: 'x', scale: 0.6, offset: -0.3 },
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
 }

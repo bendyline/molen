@@ -1,6 +1,19 @@
 /** PC-6/B2-H4, analog panel. Pilatus drawing 190.000.1711 and Luigi Rosa cockpit photo.
  * Original meter-scale geometry; reference pixels are never embedded in the GLB. */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead, cockpitLiner } from './cockpit-fit.mjs';
+import {
+  bar,
+  contour,
+  lathe,
+  leverGeometry,
+  loftUp,
+  partPalette,
+  place,
+  roundedBox,
+  switchGeometry,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -18,6 +31,101 @@ import {
   wing,
 } from './mesh-kit.mjs';
 
+/** A kit proxy that draws each library part it receives at `at`, turned by `rotation` (library
+ * parts draw at their own origin). */
+const offsetKit = (d, at, rotation = [0, 0, 0]) => ({
+  add: (geometry, material) => d.add(place(geometry, at, rotation), material),
+});
+/** One Porter rudder pedal at its pivot (the pad's middle): a tall alloy pad leaned forward whose
+ * upper third is the black toe-brake plate on its own hinge, side cheeks, the brake cylinder
+ * running down behind the outboard edge and the arm into the floor. `side` +1 is outboard (+X). */
+function porterPedal(d, side, metal) {
+  const P = partPalette(),
+    lean = 0.34,
+    leaned = (geometry, at = [0, 0, 0], rotation = [0, 0, 0]) =>
+      place(place(geometry, at, rotation), [0, 0, 0], [lean, 0, 0]);
+  d.add(leaned(roundedBox([0.078, 0.1, 0.01], 0.01, 1), [0, -0.022, 0]), metal);
+  d.add(
+    leaned(roundedBox([0.082, 0.05, 0.014], 0.008, 1), [0, 0.054, -0.004], [0.12, 0, 0]),
+    P.tread,
+  );
+  d.add(leaned(bar([-0.038, 0.03, 0.006], [0.038, 0.03, 0.006], 0.0055, 12)), P.steel);
+  for (const s of [-1, 1])
+    d.add(leaned(roundedBox([0.006, 0.07, 0.03], 0.0025, 1), [s * 0.041, -0.03, 0.006]), metal);
+  d.add(leaned(bar([side * 0.03, 0.04, 0.018], [side * 0.03, -0.11, 0.06], 0.0085, 12)), P.steel);
+  d.add(leaned(bar([0, -0.06, 0.008], [0, -0.13, 0.04], 0.009, 12)), P.alloy);
+}
+/** A Porter control stick from its floor pivot: rubber boot, a gently cranked alloy tube and a
+ * black moulded grip with finger ridges, the trim hat on top and the radio button under the
+ * thumb (F-GSAC photograph shows the same family of grips). Its top stays at (0, 0.69, 0). */
+function porterStick(d, metal) {
+  const P = partPalette();
+  d.add(
+    lathe(
+      [
+        [0, 0],
+        [0.05, 0],
+        [0.047, 0.012],
+        [0.036, 0.02],
+        [0.034, 0.032],
+        [0.025, 0.04],
+        [0.024, 0.052],
+        [0.016, 0.07],
+        [0, 0.07],
+      ],
+      18,
+      28,
+    ),
+    P.tread,
+  );
+  d.add(
+    tube(
+      [
+        [0, 0.05, 0],
+        [0, 0.3, 0.012],
+        [0, 0.46, 0.03],
+        [0, 0.535, 0.022],
+      ],
+      0.0125,
+      14,
+    ),
+    metal,
+  );
+  const ridge = (y, r) => ({ y, points: contour(0, 0.001, r, r * 1.2, 18, 2.2) });
+  d.add(
+    loftUp([
+      ridge(0.525, 0.015),
+      ridge(0.545, 0.0175),
+      ridge(0.565, 0.0168),
+      ridge(0.585, 0.0178),
+      ridge(0.605, 0.017),
+      ridge(0.63, 0.0182),
+      ridge(0.66, 0.0186),
+      ridge(0.678, 0.016),
+      ridge(0.69, 0.009),
+    ]),
+    P.grip,
+  );
+  d.add(
+    lathe(
+      [
+        [0, 0],
+        [0.0065, 0],
+        [0.006, 0.005],
+        [0.0035, 0.008],
+        [0, 0.0085],
+      ],
+      14,
+    ),
+    P.black,
+    [0, 0.687, 0.004],
+  );
+  d.add(
+    new T.CylinderGeometry(0.0045, 0.0045, 0.008, 14).rotateZ(Math.PI / 2),
+    P.red,
+    [0.019, 0.655, -0.004],
+  );
+}
 /** A tyre with rounded shoulders on a dished rim with a domed hub cap, the axle along X through
  * `at`: radius r, width w. It replaces flat cylinder-and-disc wheels. */
 function wheel(d, at, r, w, tyre, rim, cap = rim) {
@@ -73,6 +181,23 @@ function wheel(d, at, r, w, tyre, rim, cap = rim) {
       at,
     );
   }
+}
+/** A section point `j` of ring `i`, moved `inset` into the cabin (inboard and down). */
+const insetPoint = (sections, i, j, inset) => {
+  const [x, y] = sections[i].points[j];
+  return [x - Math.sign(x) * inset, y - inset, sections[i].z];
+};
+/** A headliner under the roof: the upper section points `js` (side to side over the top) between
+ * rings `from`..`to`, `inset` inside the skin, facing the cabin. */
+function headliner(d, sections, from, to, js, material, inset = 0.012) {
+  for (let i = from; i < to; i++)
+    for (let k = 0; k < js.length - 1; k++) {
+      const a = insetPoint(sections, i, js[k], inset),
+        b = insetPoint(sections, i + 1, js[k], inset),
+        c = insetPoint(sections, i + 1, js[k + 1], inset),
+        e = insetPoint(sections, i, js[k + 1], inset);
+      quad(d, a, b, c, e, material, [-(a[0] + c[0]) / 2, -0.3, 0]);
+    }
 }
 /** A faired leg from a to b: an elliptical section `thick` across and `chord` fore and aft,
  * tapering to `taper` of its size at b. */
@@ -300,6 +425,7 @@ export function buildPorter(s) {
         return q[j][0] + ((q[j + 1][0] - q[j][0]) * (y - q[j][1])) / (q[j + 1][1] - q[j][1]);
     return sample(z, 1);
   };
+  const sideWalls = [];
   for (const side of [-1, 1]) {
     // Windows and door seams stay on the flat cabin side; stripes and rivets follow the skin.
     const pt = (z, y, offset = 0) => [side * (skinX(z, y) + offset), y, z],
@@ -354,16 +480,13 @@ export function buildPorter(s) {
         flat(q[2] + Math.sin((i * Math.PI) / 10) * rr, q[1] + Math.cos((i * Math.PI) / 10) * rr),
       ),
     );
-    sheet(
-      d,
-      [
-        ...[4, 5, 6, 7].map((i) => p(i, side > 0 ? 3 : 11)),
-        ...[7, 6, 5, 4].map((i) => p(i, side > 0 ? 4 : 10)),
-      ],
-      white,
-      [side, 0, 0],
-      win,
-    );
+    const wall = [
+      ...[4, 5, 6, 7].map((i) => p(i, side > 0 ? 3 : 11)),
+      ...[7, 6, 5, 4].map((i) => p(i, side > 0 ? 4 : 10)),
+    ];
+    sheet(d, wall, white, [side, 0, 0], win);
+    // The cabin lines this side inside (porterCockpit), with the same window openings.
+    sideWalls.push({ side, wall, holes: win });
     for (const h of win) {
       sheet(d, h, glass, [side, 0, 0]);
       outline(d, h, 0.0045, dark);
@@ -712,11 +835,16 @@ export function buildPorter(s) {
   d.rod([0, 2.1, -0.25], [0, 2.38, -0.4], 0.012, dark);
   d.rod([0, 2.48, 1.62], [0, 3.86, -4.3], 0.0018, dark);
   d.finish();
-  const interior = porterCockpit(body, { white, red, dark, metal }, sections);
+  const { stations: controlStations, ...interior } = porterCockpit(
+    body,
+    { white, red, dark, metal },
+    sections,
+    sideWalls,
+  );
   cleanGeometry(root);
   return {
     root,
-    frame: porterFrame(),
+    frame: { ...porterFrame(), controlStations },
     enginePoints: [{ id: 'engine-1', position: pose([0, 1.2, 4.8]) }],
     visual: {
       rotors: [{ node: prop.name, engine: 'engine-1', axis: 'z', multiplier: 1 }],
@@ -733,14 +861,15 @@ export function buildPorter(s) {
     },
   };
 }
-function porterCockpit(root, m, sections) {
+function porterCockpit(root, m, sections, sideWalls) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'Porter-cockpit'),
     pt = panelTools(d),
     ins = instrumentGeometry(cabin, 'Porter'),
     { bindings, derived, ink, black } = ins,
     face = mat('Porter-panel', '#838e89'),
-    liner = mat('Porter-liner', '#b5b9ac'),
+    // Cabin trim: a mid grey, darker than the ivory paint it covers (F-GSAC photograph).
+    liner = mat('Porter-liner', '#8e9692'),
     blue = mat('Porter-upholstery', '#3a627a');
   const k = 0.0011,
     x = (u) => (800 - u) * k,
@@ -772,7 +901,10 @@ function porterCockpit(root, m, sections) {
     black,
     [0, 0, 1],
   );
-  outline(d, edge.slice(1, 8), 0.027, m.dark, false);
+  // No hood over the panel (F-GSAC photograph): the light grey windscreen frame tube runs along
+  // its top edge and the coaming behind it is the panel grey.
+  const frameTube = mat('Porter-frame-tube', '#a5adaa');
+  outline(d, edge.slice(1, 8), 0.027, frameTube, false);
   // Coaming from the panel top forward under the cowl skin (its corners and front edge stood
   // out of the cowl top).
   const fit = ([xx, yy, zz]) => [
@@ -786,7 +918,7 @@ function porterCockpit(root, m, sections) {
     fit([0.61, 1.65, z]),
     fit([0.58, 1.635, 2.85]),
     fit([-0.57, 1.635, 2.85]),
-    m.dark,
+    face,
     [0, 1, 0],
   );
   const sources = {};
@@ -925,63 +1057,149 @@ function porterCockpit(root, m, sections) {
       d.box([0.024, 0.012, 0.008], at(u, v, -0.01), black);
       d.text(['PWR', 'OIL', 'GEN', 'FUEL', 'TEMP'][col], at(u, v, -0.016), 0.0036, Math.PI, ink);
     }
+  // Lower switch row. The first slot holds the parking brake handle and the fourth the guarded
+  // start switch (control stations, end of function).
+  const switchLabels = [
+    '',
+    'BAT',
+    'GEN',
+    '',
+    'IGN',
+    'FUEL P',
+    'LTS',
+    'NAV',
+    'STROBE',
+    'TAXI',
+    'LDG',
+    'PITOT',
+    'HEAT',
+    'AVION',
+    'INST',
+  ];
   for (let i = 0; i < 15; i++) {
+    if (!switchLabels[i]) continue;
     const u = 270 + i * 65;
-    d.rod(at(u, 633, -0.025), at(u, 626, -0.045), 0.0025, m.metal);
-    d.text(['BAT', 'GEN', 'LTS', 'HEAT', 'NAV'][i % 5], at(u, 611, -0.02), 0.0045, Math.PI, ink);
+    switchGeometry(offsetKit(d, at(u, 630, -0.0005)), { style: 'toggle' });
+    d.text(switchLabels[i], at(u, 611, -0.002), 0.0045, Math.PI, ink);
   }
   d.text('SIM DATUM', at(604, 418, -0.02), 0.006, Math.PI, ink, 'display');
   d.text('NO NAV DATA', at(470, 503, -0.04), 0.006, Math.PI, ink);
-  // Tall central quadrant with black power bar, blue prop lever and red condition knob.
+  // Central engine pedestal (AOPA 2019: "Engine controls are on a pedestal at the center of the
+  // panel"): a slim grey case from the floor to the panel's lower edge, its top sloping up to the
+  // panel, the three levers out of placarded slots. Power lever under a black cylinder T-handle
+  // (F-GSAC photograph), the grey prop lever with a paddle, the red fuel-condition knob. The
+  // levers rise from the front of the case close under the panel, their heads level with its
+  // lower instrument row (photograph); the power lever's short throw keeps its T-handle clear
+  // of the panel at full power.
+  const P = partPalette();
   const q = group(cabin, 'Porter-quadrant', [0, 0.86, 2.3]),
     qd = detailKit(q, q.name);
-  beveledBox(qd, [0.24, 0.16, 0.34], [0, 0, 0], m.metal);
-  qd.rod([0, -0.2, 0.12], [0, -0.07, 0.12], 0.04, m.metal);
-  for (const [i, xx, h, color, source] of [
-    [0, 0.08, 0.38, black, 'power'],
-    [1, 0, 0.27, blue, null],
-    [2, -0.08, 0.2, m.red, null],
+  const pedestal = [
+    [-0.14, -0.2],
+    [0.35, -0.2],
+    [0.35, 0.35],
+    [0.3, 0.352],
+    [-0.12, 0.13],
+    [-0.14, 0.11],
+  ];
+  {
+    const shape = new T.Shape(pedestal.map(([zz, yy]) => new T.Vector2(zz, yy)));
+    const g = new T.ExtrudeGeometry(shape, {
+      depth: 0.21,
+      bevelEnabled: true,
+      bevelThickness: 0.005,
+      bevelSize: 0.005,
+      bevelSegments: 2,
+      curveSegments: 4,
+      steps: 1,
+    });
+    g.deleteAttribute('uv');
+    // Shape x becomes model z; the extrusion runs along -x, re-centred.
+    qd.add(g.rotateY(-Math.PI / 2).translate(0.105, 0, 0), face);
+  }
+  // Slot placards along the sloping top (it climbs 0.222 m over 0.42 m toward the panel), the
+  // lever names on the case's aft face.
+  const slope = Math.atan2(0.222, 0.42),
+    normal = [-Math.sin(slope), Math.cos(slope)],
+    onTop = (zz, out) => {
+      const yy = 0.13 + (zz + 0.12) * Math.tan(slope);
+      return [zz + normal[0] * out, yy + normal[1] * out];
+    };
+  for (const [xx, label] of [
+    [0.08, 'POWER'],
+    [0, 'PROP'],
+    [-0.08, 'COND'],
   ]) {
-    qd.box([0.016, 0.008, 0.26], [xx, 0.085, 0], black);
-    const lever = group(q, `Porter-power-${i}`, [xx, 0.07, 0]),
+    const [pz, py] = onTop(0.2, 0.0065),
+      [sz, sy] = onTop(0.2, 0.0085);
+    qd.add(
+      place(roundedBox([0.034, 0.22, 0.003], 0.0015), [xx, py, pz], [Math.PI / 2 - slope, 0, 0]),
+      black,
+    );
+    qd.add(
+      place(roundedBox([0.007, 0.2, 0.002], 0.001), [xx, sy, sz], [Math.PI / 2 - slope, 0, 0]),
+      P.grip,
+    );
+    qd.text(label, [xx, 0.085, -0.1465], 0.0055, Math.PI, ink);
+  }
+  for (const [i, xx, h, source] of [
+    [0, 0.08, 0.5, 'power'],
+    [1, 0, 0.42, null],
+    [2, -0.08, 0.36, null],
+  ]) {
+    const lever = group(q, `Porter-power-${i}`, [xx, 0.07, 0.2]),
       ld = detailKit(lever, lever.name);
-    ld.rod([0, 0, 0], [0, h, 0], 0.012, m.metal);
-    if (i === 0) ld.rod([-0.06, h, 0], [0.06, h, 0], 0.026, color);
-    else ellipsoid(ld, [0, h, 0], [0.025, 0.024, 0.035], color, 12);
+    if (i === 0) {
+      ld.add(place(roundedBox([0.01, h, 0.018], 0.003, 1), [0, h / 2, 0]), m.metal);
+      ld.add(bar([-0.05, h + 0.012, -0.004], [0.05, h + 0.012, -0.004], 0.016, 18), P.black);
+      for (const s of [-1, 1])
+        ld.add(
+          lathe(
+            [
+              [0, 0],
+              [0.0165, 0],
+              [0.017, 0.003],
+              [0.012, 0.007],
+              [0, 0.008],
+            ],
+            18,
+          ).rotateZ((-s * Math.PI) / 2),
+          P.black,
+          [s * 0.05, h + 0.012, -0.004],
+        );
+    } else if (i === 1) {
+      ld.add(place(roundedBox([0.008, h, 0.014], 0.002, 1), [0, h / 2, 0]), m.metal);
+      ld.add(
+        place(roundedBox([0.034, 0.03, 0.01], 0.004), [0, h + 0.01, -0.006], [-0.35, 0, 0]),
+        m.metal,
+      );
+    } else leverGeometry(ld, { style: 'mixture', height: h, shaft: 'round' });
     ld.finish();
     if (source)
-      bindings.push({ node: lever.name, source, property: 'rotation', axis: 'x', scale: 0.7 });
+      bindings.push({ node: lever.name, source, property: 'rotation', axis: 'x', scale: 0.3 });
   }
   qd.finish();
-  // Dual floor-mounted sticks, rudder pedals and full tubular blue crossbar.
-  d.rod([-0.6, 1.0, 2.1], [0.6, 1.0, 2.1], 0.025, blue);
+  // Dual floor-mounted sticks, rudder pedals and the padded blue knee bar ahead of the seats.
+  d.add(bar([-0.6, 1.0, 2.1], [0.6, 1.0, 2.1], 0.025, 18), blue);
   for (const side of [-1, 1]) {
     const pitch = group(cabin, `Porter-stick-pitch-${side}`, [side * 0.35, 0.67, 2.3]),
       roll = group(pitch, `Porter-stick-roll-${side}`),
       sd = detailKit(roll, roll.name);
-    sd.rod([0, 0, 0], [0, 0.52, 0.03], 0.023, m.metal);
-    sd.rod([0, 0.52, 0.03], [0, 0.69, 0], 0.027, black);
-    sd.add(new T.SphereGeometry(0.015, 10, 8), m.red, [0, 0.69, -0.016]);
+    porterStick(sd, m.metal);
     sd.finish();
     bindings.push(
       { node: pitch.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.2 },
       { node: roll.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.23 },
     );
     for (const sign of [-1, 1]) {
+      // Raised 4.5 cm so the pad's heel clears the floor.
       const pedal = group(cabin, `Porter-pedal-${side}-${sign}`, [
           side * 0.3 + sign * 0.1,
-          0.72,
+          0.765,
           2.74,
         ]),
         dd = detailKit(pedal, pedal.name);
-      dd.box([0.13, 0.12, 0.023], [0, 0, 0], m.metal);
-      for (let j = 0; j < 4; j++)
-        dd.rod(
-          [-0.05, -0.04 + j * 0.025, -0.014],
-          [0.05, -0.04 + j * 0.025, -0.014],
-          0.0025,
-          black,
-        );
+      porterPedal(dd, sign, partPalette().steel);
       dd.finish();
       bindings.push({
         node: pedal.name,
@@ -992,34 +1210,7 @@ function porterCockpit(root, m, sections) {
         scale: -sign * 0.04,
       });
     }
-    // Sidewall liner follows the skin where the lower sides turn under (it cut through them).
-    const inside = (zz) =>
-      Math.min(
-        0.6,
-        skinHalfWidth(sections, zz, 0.68) - 0.02,
-        skinHalfWidth(sections, zz, 0.915) - 0.02,
-      );
-    for (let zz = 2.595; zz > 1.5; zz -= 0.23) {
-      const za = zz,
-        zb = Math.max(1.445, zz - 0.23),
-        xa = side * inside(za),
-        xb = side * inside(zb);
-      quad(d, [xa, 0.68, za], [xb, 0.68, zb], [xb, 0.915, zb], [xa, 0.915, za], liner, [
-        -side,
-        0,
-        0,
-      ]);
-      quad(
-        d,
-        [xa, 0.915, za],
-        [xb, 0.915, zb],
-        [xb + side * 0.012, 0.915, zb],
-        [xa + side * 0.012, 0.915, za],
-        liner,
-        [0, 1, 0],
-      );
-    }
-    d.rod([side * 0.58, 1.12, 2.6], [side * 0.58, 1.12, 2.1], 0.02, m.dark);
+    d.add(bar([side * 0.58, 1.12, 2.6], [side * 0.58, 1.12, 2.1], 0.02, 14), m.dark);
   }
   fittedFloor(d, sections, m.dark, { y: 0.66, front: 2.9, back: -0.66, width: 1.18 });
   for (const [x, z] of [
@@ -1058,7 +1249,19 @@ function porterCockpit(root, m, sections) {
     [750, 625],
     [260, 623],
   ])
-    d.add(new T.SphereGeometry(0.004, 6, 4), m.metal, at(u, v, -0.015));
+    d.add(
+      lathe(
+        [
+          [0, 0],
+          [0.0042, 0],
+          [0.0036, 0.0016],
+          [0, 0.0024],
+        ],
+        10,
+      ).rotateX(-Math.PI / 2),
+      m.metal,
+      at(u, v, -0.0003),
+    );
   // F-GSAC photograph: the housing clamps to the tube along the panel top, inside the windscreen.
   const compass = group(cabin, 'Porter-compass-housing', [0, 1.7, 2.52]),
     cd = detailKit(compass, compass.name);
@@ -1067,6 +1270,93 @@ function porterCockpit(root, m, sections) {
   cd.finish();
   ins.headingDrum('compass', [0, 1.7, 2.457], 0.037, 'trueHeading');
   for (const z of [0.8, -0.3]) d.box([0.13, 0.018, 0.06], [0, 2.03, z], liner);
+  // Fit the cockpit to the airframe: a panel-grey face closes the fuselage just ahead of the panel
+  // from its upper corners to the cowl skin, a grey firewall stands ahead of the pedals, the
+  // footwell sides and the curve under the cabin sides are lined, and the flat cabin sides carry
+  // a trim panel with the same window openings, so no ivory skin shows from the seats.
+  cockpitBulkhead(d, root, { z: 2.665, yFrom: 1.42, yTo: 1.75, material: face });
+  cockpitBulkhead(d, root, { z: 2.96, yFrom: 0.6, yTo: 1.6, material: face });
+  cockpitLiner(d, root, {
+    zFrom: 2.6,
+    zTo: 2.955,
+    yFrom: 0.62,
+    yTo: 1.66,
+    material: liner,
+    zSteps: 3,
+    ySteps: 8,
+  });
+  cockpitLiner(d, root, {
+    zFrom: -0.6,
+    zTo: 2.6,
+    yFrom: 0.62,
+    yTo: 0.75,
+    material: liner,
+    zSteps: 12,
+    ySteps: 2,
+  });
+  for (const { side, wall, holes } of sideWalls) {
+    const inboard = ([px, py, pz]) => [px - side * 0.012, py, pz];
+    sheet(
+      d,
+      wall.map(inboard),
+      liner,
+      [-side, 0, 0],
+      holes.map((h) => h.map(inboard)),
+    );
+    for (const h of holes) outline(d, h.map(inboard), 0.006, m.dark);
+  }
+  // Headliner from the windscreen's aft frame back over the cabin, and dark trim inside both
+  // windscreen frames (they are painted ivory outside).
+  headliner(d, sections, 5, 8, [3, 2, 1, 0, 13, 12, 11], liner);
+  // The front frame is seen from behind and above, the aft one from below: each trim sits on the
+  // face the pilot sees.
+  for (const [i, dy, dz] of [
+    [4, -0.004, -0.016],
+    [5, -0.015, -0.004],
+  ])
+    outline(
+      d,
+      [11, 12, 13, 0, 1, 2, 3].map((j) => {
+        // Kept inside the skin and under the glass: 0.015 inboard of the sides.
+        const [px, py, pz] = insetPoint(sections, i, j, 0.015);
+        return [px, py + 0.015 + dy, pz + dz];
+      }),
+      0.012,
+      m.dark,
+      false,
+    );
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Where the controls are on the B2-H4 panel: the parking brake pull handle at the lower left
+  // of the switch row, the guarded start switch beside the battery and generator switches, and
+  // the electric flap switch under the flap position indicator. Stations are in the model frame,
+  // so they follow the airframe's tail-down pose.
+  const mount = (point) => ({ at: pose(point), rotation: [-angle, 0, 0] });
+  const stations = [
+    {
+      action: 'brake',
+      style: 'tee',
+      ...mount(at(292, 630, -0.0005)),
+      label: 'PARK BRK',
+      labelAt: [0, 0.021, -0.002],
+      labelHeight: 0.0055,
+    },
+    {
+      action: 'engine',
+      style: 'guarded',
+      ...mount(at(465, 630, -0.0005)),
+      label: 'START',
+      labelAt: [0, 0.021, -0.002],
+      labelHeight: 0.0055,
+    },
+    {
+      action: 'flaps',
+      style: 'airfoil',
+      scale: 0.72,
+      ...mount(at(400, 468, -0.0005)),
+      label: 'FLAP',
+      labelAt: [0, -0.022, -0.002],
+      labelHeight: 0.0055,
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
 }

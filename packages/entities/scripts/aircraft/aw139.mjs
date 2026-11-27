@@ -3,6 +3,15 @@
  */
 
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import {
+  bar,
+  lathe,
+  partPalette,
+  pedalGeometry,
+  place,
+  roundedBox,
+  tube,
+} from './cockpit-parts.mjs';
 import { glassDisplay } from './glass-display.mjs';
 import {
   beveledBox,
@@ -18,7 +27,14 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
-import { cabinShell } from './robinson-r44.mjs';
+import {
+  addParts,
+  authoredControl,
+  cabinShell,
+  gripBody,
+  posedKit,
+  turbineCollective,
+} from './robinson-r44.mjs';
 export const aw139Frame = () => ({
   heli: true,
   fighter: false,
@@ -573,7 +589,11 @@ export function buildAW139(s) {
   d.rod([0, 1.98, -5.47], [0, 2.2, -5.65], 0.012, paint);
   d.box([0.055, 0.06, 0.055], [0, 2.23, -3.03], d.red);
   d.finish();
-  const interior = cockpit(root, { paint, accent, trim, metal }, shell);
+  const interior = cockpit(root, { paint, accent, trim, metal }, shell, [
+    ...panes,
+    ...eyebrows,
+    ...windows,
+  ]);
   cleanGeometry(root);
   return {
     root,
@@ -604,7 +624,7 @@ function wheel(d, p, r, w, rubber, metal, paint) {
     d.ring(r * 0.4, 0.009, [p[0] + s * w * 0.57, p[1], p[2]], metal, 'x');
   }
 }
-function cockpit(root, m, shell) {
+function cockpit(root, m, shell, apertures) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'AW139-cockpit'),
     bindings = [],
@@ -699,15 +719,36 @@ function cockpit(root, m, shell) {
       for (const dx of [-15, 15]) pt.knob(px(u + dx), py(v + dy), z - 0.04, 0.009);
   }
   pt.gauge(px(552), py(1381), z - 0.019, 0.022, undefined, false);
-  pt.gauge(px(744), py(1430), z - 0.019, 0.022, undefined, false);
   for (const u of [372, 483, 855, 967]) {
     d.box([0.06, 0.012, 0.008], at(u, 1384, -0.025), d.dark);
     d.text('AW139', at(u, 1384, -0.032), 0.005, Math.PI, d.ivory);
   }
-  d.box([0.066, 0.065, 0.02], at(747, 1470, -0.02), m.trim);
-  for (let r = 0; r < 5; r++)
-    for (let c = 0; c < 5; c++)
-      d.box([0.006, 0.006, 0.006], at(734 + c * 6, 1458 + r * 6, -0.033), d.ivory);
+  // Landing-gear panel under the standby instrument, right of the chart display (Ahunt CC0 panel
+  // photo): the wheel-knob lever in its slot, three down-and-locked lamps above it.
+  d.box([0.066, 0.1, 0.012], at(747, 1428, -0.006), m.trim);
+  d.box([0.012, 0.055, 0.003], at(747, 1440, -0.0135), d.dark);
+  for (const du of [-12, 0, 12])
+    d.add(new T.CircleGeometry(0.0045, 12).rotateY(Math.PI), d.green, at(747 + du, 1408, -0.0125));
+  d.text('LDG GEAR', at(747, 1417, -0.0125), 0.0055, Math.PI, d.ivory);
+  const { d: gear } = authoredControl(cabin, 'AW139-gear-lever', at(747, 1440, -0.014), [0, 0, 0], {
+    action: 'gear',
+    motion: { property: 'rotation', axis: 'x', scale: -0.7, offset: 0.35 },
+  });
+  // The lever out of its slot to a wheel-shaped knob with the red in-transit lamp in its hub.
+  addParts(gear, [
+    [m.metal, bar([0, 0, 0], [0, 0, -0.062], 0.005, 12)],
+    [m.metal, place(roundedBox([0.012, 0.014, 0.016], 0.003), [0, 0, -0.005])],
+    [gear.ivory, place(new T.TorusGeometry(0.019, 0.007, 6, 18), [0, 0, -0.07])],
+    [
+      gear.ivory,
+      place(new T.CylinderGeometry(0.014, 0.014, 0.011, 16), [0, 0, -0.07], [Math.PI / 2, 0, 0]),
+    ],
+    [
+      gear.red,
+      place(new T.CylinderGeometry(0.008, 0.008, 0.012, 12), [0, 0, -0.07], [Math.PI / 2, 0, 0]),
+    ],
+  ]);
+  gear.finish();
   // Long sloped center console: twin FMS CDUs, engine levers, audio and flight controls.
   const pg = group(cabin, 'AW139-pedestal', [0, 1.15, 2.9]);
   pg.rotation.x = 1;
@@ -728,10 +769,47 @@ function cockpit(root, m, shell) {
         );
       }
   }
-  for (const x of [-0.055, 0.055]) {
-    pd.box([0.033, 0.16, 0.022], [x, -0.135, -0.06], face);
-    pd.rod([x, -0.1, -0.08], [x, -0.09, -0.14], 0.009, m.metal);
-    pd.box([0.027, 0.03, 0.024], [x, -0.09, -0.15], pd.red);
+  // The two engine control levers in their gate at the head of the console (OFF / FLIGHT),
+  // red-knobbed as in the panel photograph; together they are the engine master.
+  for (const [n, x] of [
+    [1, 0.055],
+    [2, -0.055],
+  ]) {
+    pd.box([0.036, 0.17, 0.022], [x, -0.135, -0.06], face);
+    pd.box([0.008, 0.13, 0.002], [x, -0.125, -0.0715], pd.dark);
+    pd.text(`ENG ${n}`, [x, -0.215, -0.0715], 0.0065, Math.PI, pd.ivory);
+    const { d: lever } = authoredControl(
+      pg,
+      `AW139-ecl-${n}`,
+      [x, -0.1, -0.072],
+      [-Math.PI / 2, 0, 0],
+      {
+        action: 'engine',
+        motion: { property: 'rotation', axis: 'x', scale: 0.6, offset: -0.3 },
+      },
+    );
+    addParts(lever, [
+      [m.metal, place(roundedBox([0.008, 0.06, 0.014], 0.002), [0, 0.03, 0])],
+      [
+        lever.red,
+        lathe(
+          [
+            [0.006, 0],
+            [0.013, 0.004],
+            [0.0145, 0.012],
+            [0.013, 0.026],
+            [0.009, 0.031],
+            [0, 0.032],
+          ],
+          18,
+        ).translate(0, 0.058, 0),
+      ],
+      [
+        lever.ivory,
+        place(new T.TorusGeometry(0.0143, 0.0011, 4, 18), [0, 0.068, 0], [Math.PI / 2, 0, 0]),
+      ],
+    ]);
+    lever.finish();
   }
   for (let r = 0; r < 4; r++)
     for (const x of [-0.2, -0.1, 0.1, 0.2]) {
@@ -744,8 +822,8 @@ function cockpit(root, m, shell) {
         pd.ivory,
       );
     }
-  pd.rod([0.27, -0.17, -0.065], [0.27, -0.1, -0.14], 0.011, m.metal);
-  pd.box([0.025, 0.1, 0.025], [0.27, -0.1, -0.15], pd.red);
+  pd.add(bar([0.27, -0.17, -0.065], [0.27, -0.1, -0.14], 0.008, 12), m.metal);
+  pd.add(place(roundedBox([0.024, 0.1, 0.024], 0.008), [0.27, -0.1, -0.15]), pd.red);
   pd.finish();
   // Cabin deck trimmed to the rolled-under belly corners of the shell. It runs on under the
   // pedals to the nose bay: ending at 2.75 it left the nose gear in view from the seats.
@@ -758,6 +836,18 @@ function cockpit(root, m, shell) {
     m.trim,
     { y: 0.6025, front: 3.74, back: -2.11, width: 2.02, thickness: 0.045 },
   );
+  // Dark trim 2 cm inside the skin, open at every window, with reveals round each opening: from
+  // the crew seats the windscreen post, roof, door skins and nose read as the dark interior of the
+  // panel photograph instead of the white exterior paint seen from behind.
+  shell.build(
+    d,
+    face,
+    apertures.map((poly) => ({ poly, material: null })),
+    shell.samples(0.4).filter((q) => q > -1.55),
+    22,
+    0.02,
+  );
+  for (const poly of apertures) shell.reveal(d, poly, 0.021, face);
   // Nose-wheel well housing between the pedal sets: the twin wheels fold forward into it.
   beveledBox(d, [0.44, 0.22, 0.66], [0, 0.71, 3.42], face, 0.03);
   // Bulkhead behind the last seat row: the cabin used to open straight down the tail boom to
@@ -796,22 +886,45 @@ function cockpit(root, m, shell) {
   for (const side of [-1, 1]) {
     const x = side * 0.48;
     addSeat(x, 0.95, 2.05);
+    // Cranked cyclic under the AW139 grip: a tall body with the SAS and trim release buttons
+    // down its front, a forward-canted head with two beepers and the red guarded release.
     const cg = group(cabin, `AW139-cyclic-${side}`, [x, 0.59, 2.4]),
       cd = detailKit(cg, 'cyclic');
-    outline(
-      cd,
+    addParts(cd, [
       [
-        [0, 0, 0],
-        [0, 0.32, 0],
-        [0, 0.46, -0.08],
-        [0, 0.6, -0.08],
+        m.trim,
+        lathe(
+          [
+            [0, 0],
+            [0.055, 0],
+            [0.052, 0.016],
+            [0.038, 0.027],
+            [0.036, 0.04],
+            [0.025, 0.055],
+            [0.021, 0.07],
+            [0, 0.07],
+          ],
+          18,
+          28,
+        ),
       ],
-      0.018,
-      m.trim,
-      false,
-    );
-    beveledBox(cd, [0.075, 0.14, 0.07], [0, 0.63, -0.08], m.trim, 0.012);
-    cd.box([0.025, 0.025, 0.018], [0, 0.67, -0.125], cd.red);
+      [
+        cd.dark,
+        tube(
+          [
+            [0, 0.05, 0],
+            [0, 0.31, 0],
+            [0, 0.37, -0.035],
+            [0, 0.45, -0.075],
+            [0, 0.5, -0.08],
+            [0, 0.55, -0.08],
+          ],
+          0.015,
+          14,
+        ),
+      ],
+    ]);
+    aw139Grip(posedKit(cd, [0, 0.545, -0.08]));
     cd.finish();
     bindings.push(
       { node: cg.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.15 },
@@ -819,15 +932,18 @@ function cockpit(root, m, shell) {
     );
     const lg = group(cabin, `AW139-collective-${side}`, [x + 0.26, 0.8, 1.83]),
       ld = detailKit(lg, 'collective');
-    ld.rod([0, 0, 0], [0, 0.24, 0.37], 0.023, m.trim);
-    beveledBox(ld, [0.1, 0.065, 0.17], [0, 0.25, 0.4], m.trim, 0.01);
+    turbineCollective(posedKit(ld, [0, 0, 0], [Math.atan2(0.37, 0.24), 0, 0]), {
+      head: 'aw139',
+      length: 0.5,
+      side: -1,
+    });
     ld.finish();
     bindings.push({ node: lg.name, source: 'power', property: 'rotation', axis: 'x', scale: -0.4 });
     for (const j of [-1, 1]) {
-      const g = group(cabin, `AW139-pedal-${side}-${j}`, [x + j * 0.13, 0.68, 3.06]),
+      // Broad pedals with toe brakes for the wheels, hung from the pedal box under the panel.
+      const g = group(cabin, `AW139-pedal-${side}-${j}`, [x + j * 0.13, 0.69, 3.06]),
         dd = detailKit(g, 'pedal');
-      dd.box([0.14, 0.04, 0.08], [0, 0, 0], m.metal);
-      dd.rod([0, 0, 0], [0, -0.09, 0.08], 0.014, m.trim);
+      pedalGeometry(dd, { style: 'airliner', side: j, scale: 0.78, lean: 0.3 });
       dd.finish();
       bindings.push({
         node: g.name,
@@ -847,11 +963,75 @@ function cockpit(root, m, shell) {
   for (let i = 0; i < 5; i++)
     for (const x of [-0.055, 0.055]) {
       od.box([0.04, 0.008, 0.08], [x, -0.025, -0.27 + i * 0.13], face);
+      // Behind the crew's heads: plain levers are enough here.
       od.rod([x, -0.03, -0.27 + i * 0.13], [x, -0.06, -0.25 + i * 0.13], 0.004, m.metal);
     }
   od.finish();
   d.finish();
   return { nodes: ['cockpit'], bindings };
+}
+
+/** The AW139 cyclic grip from its base (+Y up, trigger forward +Z, the pilot at -Z). */
+function aw139Grip(d) {
+  const P = partPalette();
+  const parts = [
+    [
+      P.alloy,
+      lathe(
+        [
+          [0, 0],
+          [0.019, 0],
+          [0.02, 0.014],
+          [0, 0.014],
+        ],
+        16,
+      ),
+    ],
+    [
+      P.grip,
+      gripBody([
+        [0.012, 0, 0.019, 0.022, 2],
+        [0.05, 0.004, 0.021, 0.025, 2],
+        [0.1, 0.008, 0.021, 0.026, 2.1],
+        [0.13, 0.016, 0.024, 0.03, 2.4],
+        [0.152, 0.026, 0.029, 0.036, 2.8],
+        [0.17, 0.032, 0.028, 0.034, 2.8],
+        [0.178, 0.034, 0.016, 0.02, 2.4],
+      ]),
+    ],
+    // Head: red guarded release, two beepers and the trim release.
+    [P.red, place(roundedBox([0.018, 0.004, 0.026], 0.0015), [0.008, 0.18, 0.03], [0.3, 0, 0])],
+    [P.black, place(new T.CylinderGeometry(0.0065, 0.0075, 0.006, 16), [-0.01, 0.18, 0.04])],
+    [P.black, place(new T.CylinderGeometry(0.0055, 0.0065, 0.006, 16), [-0.008, 0.176, 0.016])],
+    [
+      P.black,
+      place(
+        new T.CylinderGeometry(0.0055, 0.0055, 0.008, 14),
+        [0.004, 0.164, 0.002],
+        [Math.PI / 2, 0, 0],
+      ),
+    ],
+    // Radio trigger.
+    [
+      P.black,
+      tube(
+        [
+          [0, 0.128, 0.044],
+          [0, 0.116, 0.054],
+          [0, 0.104, 0.05],
+        ],
+        0.0055,
+        10,
+      ),
+    ],
+  ];
+  // SAS and trim release buttons down the front of the body.
+  for (const y of [0.085, 0.06])
+    parts.push([
+      P.red,
+      place(new T.CylinderGeometry(0.0055, 0.0055, 0.006, 14), [0, y, 0.031], [Math.PI / 2, 0, 0]),
+    ]);
+  addParts(d, parts);
 }
 
 /** Convex (z, y) outline with every corner rounded off `r` along both of its edges. */

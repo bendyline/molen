@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:8c4fd29adda44734d3532b8624824ee16053e7c1fc257393e853522162066ef6",
-  "sourceHash": "sha256:a4746fc875d1febcc73630809848400375e0108c8eec4821e83be703a13cb8cd",
+  "hash": "sha256:bf87d3bb4cc0fdc9981ccffbb50f566d63555e4a3ca34e555206954dae9da6ad",
+  "sourceHash": "sha256:83f387af281e7b1c37aa4413be07199d0620067ac4356ce3e28a31021ee8f6f3",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 37903,
-    "vertices": 43369,
-    "meshes": 194,
-    "primitives": 194,
-    "materials": 34,
+    "triangles": 44503,
+    "vertices": 49525,
+    "meshes": 228,
+    "primitives": 228,
+    "materials": 43,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 1530200
+    "sizeBytes": 1724264
   },
   "nodes": [
     {
@@ -64,6 +64,10 @@
     {
       "name": "F14-airframe-F14-upper",
       "triangles": 140
+    },
+    {
+      "name": "F14-airframe-F14-gray-lining",
+      "triangles": 294
     },
     {
       "name": "F14-nacelle--1-F14-gray",
@@ -295,19 +299,19 @@
     },
     {
       "name": "F14-cabin-F14-panel",
-      "triangles": 217
+      "triangles": 1999
     },
     {
       "name": "F14-cabin-F14-instrument-black",
-      "triangles": 1006
+      "triangles": 1178
     },
     {
       "name": "F14-cabin-F14-alloy",
-      "triangles": 860
+      "triangles": 908
     },
     {
-      "name": "F14-cabin-F14-gray",
-      "triangles": 1728
+      "name": "F14-cabin-mfd-phosphor",
+      "triangles": 528
     },
     {
       "name": "F14-cabin-F14-glass",
@@ -315,7 +319,7 @@
     },
     {
       "name": "F14-cabin-detail-trim",
-      "triangles": 3520
+      "triangles": 2272
     },
     {
       "name": "F14-cabin-detail-alloy",
@@ -324,6 +328,22 @@
     {
       "name": "F14-cabin-instrument-display",
       "triangles": 96
+    },
+    {
+      "name": "F14-cabin-mfd-phosphor",
+      "triangles": 240
+    },
+    {
+      "name": "F14-cabin-mfd-phosphor-dim",
+      "triangles": 120
+    },
+    {
+      "name": "F14-cabin-mfd-phosphor-dim",
+      "triangles": 288
+    },
+    {
+      "name": "F14-cabin-mfd-phosphor",
+      "triangles": 252
     },
     {
       "name": "F14-cabin-F14-instrument-ink",
@@ -343,7 +363,7 @@
     },
     {
       "name": "F14-cabin-F14-instrument-amber-display-print",
-      "triangles": 76
+      "triangles": 52
     },
     {
       "name": "F14-pilot-standby-fixed-F14-instrument-black",
@@ -532,26 +552,6 @@
     {
       "name": "F14-pilot-FLIGHT-speed-2-2-F14-instrument-ink",
       "triangles": 12
-    },
-    {
-      "name": "F14-pilot-FLIGHT-speed-2-3-F14-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "F14-pilot-FLIGHT-speed-2-4-F14-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "F14-pilot-FLIGHT-speed-2-5-F14-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "F14-pilot-FLIGHT-speed-2-6-F14-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "F14-pilot-FLIGHT-altitude-0-0-F14-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -603,6 +603,14 @@
         "baseColor"
       ],
       "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
@@ -676,6 +684,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "mfd-phosphor",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "detail-trim",
       "slots": [
         "baseColor"
@@ -696,6 +712,14 @@
     },
     {
       "name": "instrument-display",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "mfd-phosphor-dim",
       "slots": [
         "baseColor"
       ],
@@ -778,28 +802,9 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-green",
+      "name": "flight-control-tread",
       "slots": [
         "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "turbine-blades",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": true,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-panel-satin",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -827,6 +832,38 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-black",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-steel",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-green",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "flight-control-legend-technical-font",
       "slots": [
         "baseColor",
@@ -834,6 +871,33 @@
       ],
       "doubleSided": false,
       "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-knob",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-lamp",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     },
     {
       "name": "flight-control-legend",
@@ -844,11 +908,19 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-master",
+      "name": "flight-control-caution",
       "slots": [
         "baseColor"
       ],
       "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "turbine-blades",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
       "alphaMode": "OPAQUE"
     }
   ],
@@ -1026,6 +1098,35 @@
           3.1899,
           2.7399,
           6.03
+        ]
+      },
+      {
+        "node": "F14-airframe-F14-gray-lining",
+        "points": [
+          -0.4548,
+          2.9232,
+          4.6428,
+          -0.4548,
+          2.9232,
+          9.1314,
+          -0.4548,
+          3.555,
+          4.6428,
+          -0.4548,
+          3.555,
+          9.1314,
+          0.4548,
+          2.9232,
+          4.6428,
+          0.4548,
+          2.9232,
+          9.1314,
+          0.4548,
+          3.555,
+          4.6428,
+          0.4548,
+          3.555,
+          9.1314
         ]
       },
       {
@@ -2684,117 +2785,117 @@
       {
         "node": "F14-cabin-F14-panel",
         "points": [
-          -0.5499,
-          1.8499,
+          -0.6873,
+          1.85,
           4.65,
-          -0.5499,
-          1.8499,
-          8.5,
-          -0.5499,
-          3.1561,
+          -0.6873,
+          1.85,
+          8.96,
+          -0.6873,
+          3.156,
           4.65,
-          -0.5499,
-          3.1561,
-          8.5,
-          0.5499,
-          1.8499,
+          -0.6873,
+          3.156,
+          8.96,
+          0.6861,
+          1.85,
           4.65,
-          0.5499,
-          1.8499,
-          8.5,
-          0.5499,
-          3.1561,
+          0.6861,
+          1.85,
+          8.96,
+          0.6861,
+          3.156,
           4.65,
-          0.5499,
-          3.1561,
-          8.5
+          0.6861,
+          3.156,
+          8.96
         ]
       },
       {
         "node": "F14-cabin-F14-instrument-black",
         "points": [
-          -0.55,
-          1.8501,
+          -0.5499,
+          1.8499,
           4.66,
-          -0.55,
-          1.8501,
-          8.525,
-          -0.55,
-          3.3553,
+          -0.5499,
+          1.8499,
+          8.96,
+          -0.5499,
+          3.3555,
           4.66,
-          -0.55,
-          3.3553,
-          8.525,
-          0.55,
-          1.8501,
+          -0.5499,
+          3.3555,
+          8.96,
+          0.5499,
+          1.8499,
           4.66,
-          0.55,
-          1.8501,
-          8.525,
-          0.55,
-          3.3553,
+          0.5499,
+          1.8499,
+          8.96,
+          0.5499,
+          3.3555,
           4.66,
-          0.55,
-          3.3553,
-          8.525
+          0.5499,
+          3.3555,
+          8.96
         ]
       },
       {
         "node": "F14-cabin-F14-alloy",
         "points": [
-          -0.4555,
-          2.6185,
+          -0.5374,
+          2.378,
           6.4605,
-          -0.4555,
-          2.6185,
-          8.262,
-          -0.4555,
+          -0.5374,
+          2.378,
+          8.2905,
+          -0.5374,
           3.1595,
           6.4605,
-          -0.4555,
+          -0.5374,
           3.1595,
-          8.262,
-          0.4575,
-          2.6185,
+          8.2905,
+          0.5374,
+          2.378,
           6.4605,
-          0.4575,
-          2.6185,
-          8.262,
-          0.4575,
+          0.5374,
+          2.378,
+          8.2905,
+          0.5374,
           3.1595,
           6.4605,
-          0.4575,
+          0.5374,
           3.1595,
-          8.262
+          8.2905
         ]
       },
       {
-        "node": "F14-cabin-F14-gray",
+        "node": "F14-cabin-mfd-phosphor",
         "points": [
-          -0.411,
-          2.628,
-          6.47,
-          -0.411,
-          2.628,
-          8.265,
-          -0.411,
-          3.149,
-          6.47,
-          -0.411,
-          3.149,
-          8.265,
-          0.239,
-          2.628,
-          6.47,
-          0.239,
-          2.628,
-          8.265,
-          0.239,
-          3.149,
-          6.47,
-          0.239,
-          3.149,
-          8.265
+          -0.2479,
+          2.9217,
+          8.2611,
+          -0.2479,
+          2.9217,
+          8.2625,
+          -0.2479,
+          3.0142,
+          8.2611,
+          -0.2479,
+          3.0142,
+          8.2625,
+          -0.1553,
+          2.9217,
+          8.2611,
+          -0.1553,
+          2.9217,
+          8.2625,
+          -0.1553,
+          3.0142,
+          8.2611,
+          -0.1553,
+          3.0142,
+          8.2625
         ]
       },
       {
@@ -2911,6 +3012,122 @@
           0.3923,
           3.2036,
           8.2665
+        ]
+      },
+      {
+        "node": "F14-cabin-mfd-phosphor",
+        "points": [
+          -0.1441,
+          3.013,
+          6.4811,
+          -0.1441,
+          3.013,
+          6.4825,
+          -0.1441,
+          3.1078,
+          6.4811,
+          -0.1441,
+          3.1078,
+          6.4825,
+          0.1441,
+          3.013,
+          6.4811,
+          0.1441,
+          3.013,
+          6.4825,
+          0.1441,
+          3.1078,
+          6.4811,
+          0.1441,
+          3.1078,
+          6.4825
+        ]
+      },
+      {
+        "node": "F14-cabin-mfd-phosphor-dim",
+        "points": [
+          -0.1435,
+          3.0208,
+          6.4811,
+          -0.1435,
+          3.0208,
+          6.4825,
+          -0.1435,
+          3.1072,
+          6.4811,
+          -0.1435,
+          3.1072,
+          6.4825,
+          0.1435,
+          3.0208,
+          6.4811,
+          0.1435,
+          3.0208,
+          6.4825,
+          0.1435,
+          3.1072,
+          6.4811,
+          0.1435,
+          3.1072,
+          6.4825
+        ]
+      },
+      {
+        "node": "F14-cabin-mfd-phosphor-dim",
+        "points": [
+          -0.0958,
+          2.7166,
+          6.4811,
+          -0.0958,
+          2.7166,
+          6.4825,
+          -0.0958,
+          2.8748,
+          6.4811,
+          -0.0958,
+          2.8748,
+          6.4825,
+          0.0958,
+          2.7166,
+          6.4811,
+          0.0958,
+          2.7166,
+          6.4825,
+          0.0958,
+          2.8748,
+          6.4811,
+          0.0958,
+          2.8748,
+          6.4825
+        ]
+      },
+      {
+        "node": "F14-cabin-mfd-phosphor",
+        "points": [
+          -0.076,
+          2.7197,
+          6.4812,
+          -0.076,
+          2.7197,
+          6.4824,
+          -0.076,
+          2.8717,
+          6.4812,
+          -0.076,
+          2.8717,
+          6.4824,
+          0.076,
+          2.7197,
+          6.4812,
+          0.076,
+          2.7197,
+          6.4824,
+          0.076,
+          2.8717,
+          6.4812,
+          0.076,
+          2.8717,
+          6.4824
         ]
       },
       {
@@ -3034,25 +3251,25 @@
         "points": [
           -0.3301,
           2.6595,
-          6.466,
+          8.246,
           -0.3301,
           2.6595,
           8.246,
           -0.3301,
           3.2032,
-          6.466,
+          8.246,
           -0.3301,
           3.2032,
           8.246,
           0.3505,
           2.6595,
-          6.466,
+          8.246,
           0.3505,
           2.6595,
           8.246,
           0.3505,
           3.2032,
-          6.466,
+          8.246,
           0.3505,
           3.2032,
           8.246
@@ -4418,151 +4635,6 @@
           8.2326,
           0.0438,
           2.9176,
-          8.2334
-        ]
-      },
-      {
-        "node": "F14-pilot-FLIGHT-speed-2-3-F14-instrument-ink",
-        "points": [
-          0.0439,
-          2.912,
-          8.2326,
-          0.0439,
-          2.912,
-          8.2334,
-          0.0439,
-          2.9128,
-          8.2326,
-          0.0439,
-          2.9128,
-          8.2334,
-          0.0483,
-          2.912,
-          8.2326,
-          0.0483,
-          2.912,
-          8.2334,
-          0.0483,
-          2.9128,
-          8.2326,
-          0.0483,
-          2.9128,
-          8.2334
-        ]
-      },
-      {
-        "node": "F14-pilot-FLIGHT-speed-2-4-F14-instrument-ink",
-        "points": [
-          0.0484,
-          2.9132,
-          8.2326,
-          0.0484,
-          2.9132,
-          8.2334,
-          0.0484,
-          2.9176,
-          8.2326,
-          0.0484,
-          2.9176,
-          8.2334,
-          0.0493,
-          2.9132,
-          8.2326,
-          0.0493,
-          2.9132,
-          8.2334,
-          0.0493,
-          2.9176,
-          8.2326,
-          0.0493,
-          2.9176,
-          8.2334
-        ]
-      },
-      {
-        "node": "F14-pilot-FLIGHT-speed-2-5-F14-instrument-ink",
-        "points": [
-          0.0484,
-          2.9192,
-          8.2326,
-          0.0484,
-          2.9192,
-          8.2334,
-          0.0484,
-          2.9236,
-          8.2326,
-          0.0484,
-          2.9236,
-          8.2334,
-          0.0493,
-          2.9192,
-          8.2326,
-          0.0493,
-          2.9192,
-          8.2334,
-          0.0493,
-          2.9236,
-          8.2326,
-          0.0493,
-          2.9236,
-          8.2334
-        ]
-      },
-      {
-        "node": "F14-pilot-FLIGHT-speed-2-6-F14-instrument-ink",
-        "points": [
-          0.0439,
-          2.918,
-          8.2326,
-          0.0439,
-          2.918,
-          8.2334,
-          0.0439,
-          2.9188,
-          8.2326,
-          0.0439,
-          2.9188,
-          8.2334,
-          0.0483,
-          2.918,
-          8.2326,
-          0.0483,
-          2.918,
-          8.2334,
-          0.0483,
-          2.9188,
-          8.2326,
-          0.0483,
-          2.9188,
-          8.2334
-        ]
-      },
-      {
-        "node": "F14-pilot-FLIGHT-altitude-0-0-F14-instrument-ink",
-        "points": [
-          -0.0271,
-          2.9235,
-          8.2326,
-          -0.0271,
-          2.9235,
-          8.2334,
-          -0.0271,
-          2.9243,
-          8.2326,
-          -0.0271,
-          2.9243,
-          8.2334,
-          -0.0231,
-          2.9235,
-          8.2326,
-          -0.0231,
-          2.9235,
-          8.2334,
-          -0.0231,
-          2.9243,
-          8.2326,
-          -0.0231,
-          2.9243,
           8.2334
         ]
       }

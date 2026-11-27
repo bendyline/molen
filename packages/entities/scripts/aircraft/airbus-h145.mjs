@@ -3,6 +3,17 @@
  */
 
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import {
+  bar,
+  lathe,
+  loftUp,
+  partPalette,
+  pedalGeometry,
+  place,
+  roundedBox,
+  contour as superellipse,
+  tube,
+} from './cockpit-parts.mjs';
 import { glassDisplay } from './glass-display.mjs';
 import {
   beveledBox,
@@ -18,7 +29,14 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
-import { cabinShell } from './robinson-r44.mjs';
+import {
+  addParts,
+  authoredControl,
+  cabinShell,
+  gripBody,
+  posedKit,
+  turbineCollective,
+} from './robinson-r44.mjs';
 export const h145Frame = () => ({
   heli: true,
   fighter: false,
@@ -547,7 +565,11 @@ export function buildH145(s) {
     d.rod(onRoof(2.65, side * 0.5, 0.014), onRoof(2.45, side * 0.68, 0.014), 0.006, trim);
   }
   d.finish();
-  const interior = cockpit(root, { white, paint, trim, metal }, shell);
+  const interior = cockpit(root, { white, paint, trim, metal }, shell, [
+    ...panes,
+    ...windows,
+    ...chins,
+  ]);
   cleanGeometry(root);
   return {
     root,
@@ -567,11 +589,13 @@ export function buildH145(s) {
   };
 }
 
-function cockpit(root, m, shell) {
+function cockpit(root, m, shell, apertures) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'H145-cockpit'),
     bindings = [],
-    face = mat('H145-panel', '#384248'),
+    // Neutral near-black panel and cabin trim (H145 and UH-72B cockpit photographs), not the
+    // blue slate it was.
+    face = mat('H145-panel', '#303437'),
     upholstery = mat('H145-seats', '#51616b'),
     belt = mat('H145-harness', '#b1b2a9'),
     z = 2.24,
@@ -613,7 +637,41 @@ function cockpit(root, m, shell) {
       b = contour[(i + 1) % contour.length];
     quad(d, a, b, [b[0], b[1], z + 0.2], [a[0], a[1], z + 0.2], m.trim, [0, 1, 0]);
   }
-  outline(d, contour.slice(0, 8), 0.026, m.trim, false);
+  // The Helionix glare visor (H145 and UH-72B cockpit photographs): a broad black hood wider than
+  // the panel that overhangs the screens by some 20 cm, its ears dropping to mid-screen at the
+  // panel face and sweeping up to a shallow rolled lip at its aft edge.
+  {
+    const visor = mat('H145-visor', '#1e2225', { side: T.DoubleSide, roughness: 0.8 }),
+      half = 0.405,
+      top = py(636) + 0.016,
+      r = 0.035,
+      arc = (cx, cy, a0, a1) =>
+        [0, 1, 2, 3].map((i) => {
+          const a = a0 + ((a1 - a0) * i) / 3;
+          return [cx + Math.cos(a) * r, cy + Math.sin(a) * r];
+        }),
+      sections = [2.26, 2.2, 2.14, 2.09, 2.055, 2.035].map((zz) => {
+        const t = (zz - 2.035) / 0.225,
+          bottom = top - 0.04 - 0.22 * t ** 1.4;
+        return [
+          [half, bottom],
+          ...arc(half - r, top - r, 0, Math.PI / 2),
+          [0, top + 0.008],
+          ...arc(-half + r, top - r, Math.PI / 2, Math.PI),
+          [-half, bottom],
+        ].map(([x, y]) => [x, y, zz]);
+      });
+    for (let i = 0; i + 1 < sections.length; i++)
+      for (let j = 0; j + 1 < sections[i].length; j++) {
+        const a = sections[i][j],
+          b = sections[i][j + 1],
+          c = sections[i + 1][j + 1],
+          e = sections[i + 1][j];
+        quad(d, a, b, c, e, visor, [0, 1, 0]);
+      }
+    // Rolled lip along the aft edge.
+    outline(d, sections.at(-1), 0.012, visor, false);
+  }
   const screen = (u, v, w, h, kind) => {
     const x = px(u),
       y = py(v);
@@ -700,9 +758,31 @@ function cockpit(root, m, shell) {
         r === 0 ? d.amber : d.dark,
       );
   d.text('FIRE', [0, py(635), z - 0.032], 0.013, Math.PI, d.ivory);
-  for (const u of [610, 810]) {
-    pt.knob(px(u), py(1064), z - 0.04, 0.016 * fit);
-    d.rod(at(u, 1055, -0.043), at(u, 1083, -0.065), 0.006, d.amber);
+  // Engine main switches (FLIGHT / IDLE / OFF) at the ends of the engine control panel under
+  // the centre display (VFS photograph of N515AH, Heli-Expo 2019; ADAC ground rescue booklet):
+  // yellow levers, each with its red flip guard outboard. Together they are the engine master.
+  for (const [n, u] of [
+    [1, 612],
+    [2, 808],
+  ]) {
+    d.box([0.006, 0.034, 0.02], at(u + 16, 1060, -0.045), d.red);
+    d.add(
+      new T.CylinderGeometry(0.0075, 0.0075, 0.012, 14).rotateX(Math.PI / 2),
+      m.metal,
+      at(u, 1060, -0.039),
+    );
+    const { d: lever } = authoredControl(
+      cabin,
+      `H145-eng-mode-${n}`,
+      at(u, 1060, -0.044),
+      [0, Math.PI / 2, 0],
+      {
+        action: 'engine',
+        motion: { property: 'rotation', axis: 'z', scale: 1.05, offset: -1.05 },
+      },
+    );
+    engineMainSwitch(lever);
+    lever.finish();
   }
   for (const u of [650, 690, 730, 770]) {
     d.box([0.03 * fit, 0.045 * fit, 0.015], at(u, 1073, -0.018), m.trim);
@@ -718,7 +798,7 @@ function cockpit(root, m, shell) {
     for (const v of [655, 1036])
       d.add(new T.CircleGeometry(0.003, 8).rotateY(Math.PI), m.metal, at(u, v, -0.005));
   const pg = group(cabin, 'H145-pedestal', [0, 1.15, 1.96]);
-  d.box([0.39, 0.05, 0.16], [0, 1.46, 2.16], face);
+  d.box([0.39, 0.05, 0.05], [0, 1.46, 2.225], face);
   pg.rotation.x = 0.7;
   const pd = detailKit(pg, 'pedestal'),
     ppt = panelTools(pd);
@@ -728,17 +808,26 @@ function cockpit(root, m, shell) {
     glassDisplay(pd, x, 0.22, -0.033, 0.2, 0.18, 'map');
     ppt.knob(x - 0.09, 0.1, -0.065, 0.012);
   }
-  for (let row = 0; row < 3; row++) {
-    pd.box([0.46, 0.07, 0.015], [0, -0.02 - row * 0.094, -0.025], m.trim);
-    pd.box([0.27, 0.025, 0.003], [0, -0.01 - row * 0.094, -0.035], pd.dark);
-    pd.text(
-      ['COM 1 124.85', 'NAV 1 114.20', 'TRANSPONDER'][row],
-      [0, -0.015 - row * 0.094, -0.04],
-      0.011,
-      Math.PI,
-      pd.green,
-    );
-    for (const x of [-0.2, 0.2]) ppt.knob(x, -0.02 - row * 0.094, -0.05, 0.015);
+  // Under the navigators (VFS photograph of N515AH, Heli-Expo 2019; AERO 2016 H145): the ELT
+  // strip with its red switch and a small selector beside it, then the two crew audio
+  // panels side by side, each a row of eight receiver volume knobs above and below the
+  // transmit selector, intercom volume, red back-up switch and test/voice buttons.
+  pd.box([0.2, 0.034, 0.012], [0.03, -0.003, -0.025], m.trim);
+  pd.text('ELT', [0.105, -0.003, -0.0315], 0.009, Math.PI, pd.ivory);
+  pd.box([0.022, 0.012, 0.007], [0.03, -0.003, -0.0345], pd.red);
+  pd.box([0.06, 0.034, 0.012], [-0.13, -0.003, -0.025], m.trim);
+  ppt.knob(-0.13, -0.003, -0.0375, 0.009);
+  for (const x0 of [-0.116, 0.116]) {
+    pd.box([0.222, 0.21, 0.015], [x0, -0.14, -0.025], m.trim);
+    for (const y of [-0.065, -0.215])
+      for (let i = 0; i < 8; i++) ppt.knob(x0 - 0.0875 + i * 0.025, y, -0.039, 0.0075);
+    ppt.knob(x0, -0.14, -0.039, 0.011);
+    ppt.knob(x0 - 0.065, -0.14, -0.039, 0.012);
+    pd.text('TX', [x0, -0.115, -0.0335], 0.007, Math.PI, pd.ivory);
+    pd.box([0.016, 0.016, 0.006], [x0 + 0.045, -0.135, -0.0355], pd.dark);
+    pd.box([0.006, 0.006, 0.012], [x0 + 0.045, -0.135, -0.0435], pd.red);
+    for (const y of [-0.12, -0.155])
+      pd.box([0.018, 0.013, 0.006], [x0 + 0.087, y, -0.0355], pd.dark);
   }
   pd.finish();
   // Crew sit high in the photographs: 0.3 m above the belly, the cushion is 0.8 m under the eye.
@@ -751,6 +840,33 @@ function cockpit(root, m, shell) {
     })),
     m.trim,
     { y: 0.88, front: 2.065, back: -1.845, width: 1.6, thickness: 0.04 },
+  );
+  // Cabin lining 2 cm inside the skin, open at every window, with reveals round each opening.
+  // The headliner and door skins are light grey (UH-72A/B and H145M cabin photographs); the
+  // reveals round the windows and the windscreen post keep the dark grey of the posts.
+  const lining = mat('H145-cabin-lining', '#b9bcb8');
+  shell.build(
+    d,
+    lining,
+    apertures.map((poly) => ({ poly, material: null })),
+    shell.samples(0.35).filter((q) => q > -2.32 && q < 3.36),
+    22,
+    0.02,
+  );
+  for (const poly of apertures) shell.reveal(d, poly, 0.021, face);
+  // The slim post between the windscreen halves, seen from the seats: dark inside the glass.
+  shell.strip(
+    d,
+    [
+      [1.7, 0],
+      [3.36, 0],
+    ],
+    0.09,
+    face,
+    true,
+    false,
+    0.004,
+    -0.006,
   );
   const addSeat = (x, y, z) => {
     beveledBox(d, [0.43, 0.12, 0.48], [x, y, z], upholstery);
@@ -775,22 +891,45 @@ function cockpit(root, m, shell) {
   for (const side of [-1, 1]) {
     const x = side * 0.43;
     addSeat(x, 1.22, 1.36);
+    // Cranked cyclic with the Helionix grip: four-way trim beeper on the head, the AP/trim
+    // release and the red cargo-hook guard under the thumb, the radio trigger in front.
     const cg = group(cabin, `H145-cyclic-${side}`, [x, 0.88, 1.82]),
       cd = detailKit(cg, 'cyclic');
-    outline(
-      cd,
+    addParts(cd, [
       [
-        [0, 0, 0],
-        [0, 0.26, 0],
-        [0, 0.4, -0.21],
-        [0, 0.57, -0.21],
+        m.trim,
+        lathe(
+          [
+            [0, 0],
+            [0.05, 0],
+            [0.047, 0.014],
+            [0.035, 0.024],
+            [0.033, 0.036],
+            [0.023, 0.05],
+            [0.02, 0.065],
+            [0, 0.065],
+          ],
+          18,
+          28,
+        ),
       ],
-      0.018,
-      m.trim,
-      false,
-    );
-    beveledBox(cd, [0.065, 0.14, 0.07], [0, 0.58, -0.21], m.trim, 0.01);
-    cd.box([0.02, 0.018, 0.015], [0, 0.64, -0.25], cd.red);
+      [
+        cd.dark,
+        tube(
+          [
+            [0, 0.05, 0],
+            [0, 0.25, 0],
+            [0, 0.31, -0.07],
+            [0, 0.38, -0.18],
+            [0, 0.43, -0.207],
+            [0, 0.505, -0.21],
+          ],
+          0.014,
+          14,
+        ),
+      ],
+    ]);
+    h145Grip(posedKit(cd, [0, 0.5, -0.21]));
     cd.finish();
     bindings.push(
       { node: cg.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.15 },
@@ -798,15 +937,17 @@ function cockpit(root, m, shell) {
     );
     const lg = group(cabin, `H145-collective-${side}`, [x + 0.25, 1.01, 1.08]),
       ld = detailKit(lg, 'collective');
-    ld.rod([0, 0, 0], [0, 0.14, 0.45], 0.021, m.trim);
-    ld.box([0.065, 0.06, 0.15], [0, 0.14, 0.45], m.trim);
+    turbineCollective(posedKit(ld, [0, 0, 0], [Math.atan2(0.45, 0.14), 0, 0]), {
+      head: 'h145',
+      length: 0.52,
+      side: -1,
+    });
     ld.finish();
     bindings.push({ node: lg.name, source: 'power', property: 'rotation', axis: 'x', scale: -0.4 });
     for (const j of [-1, 1]) {
       const g = group(cabin, `H145-pedal-${side}-${j}`, [x + j * 0.12, 0.98, 2.2]),
         dd = detailKit(g, 'pedal');
-      dd.rod([-0.075, 0, 0], [0.075, 0, 0], 0.017, m.trim);
-      dd.rod([0, 0, 0], [0, -0.08, 0.06], 0.012, m.metal);
+      pedalGeometry(dd, { style: 'heli', side: j, scale: 1.12, lean: 0.25, drop: 0.04 });
       dd.finish();
       bindings.push({
         node: g.name,
@@ -818,15 +959,121 @@ function cockpit(root, m, shell) {
     }
   }
   for (const z of [0.06, -1.08]) for (const x of [-0.54, 0, 0.54]) addSeat(x, 1.2, z);
-  // Narrow overhead switch bank and rotor brake, visible from the crew seats.
-  const og = group(cabin, 'H145-overhead', [0, 2.3, 1.14]),
-    od = detailKit(og, 'overhead');
-  od.box([0.3, 0.04, 0.72], [0, 0, 0], m.trim);
-  for (let r = 0; r < 7; r++)
-    for (const x of [-0.085, 0, 0.085])
-      od.rod([x, -0.025, -0.25 + r * 0.075], [x, -0.065, -0.24 + r * 0.075], 0.004, m.metal);
+  // Overhead console (UH-72B photographs, SC National Guard 2023; UH-72A, DVIDS 2024; the H145
+  // D3 keeps this upper console): one dark moulded console on the centreline, a shield widest
+  // over the crew's heads that narrows into a neck running forward along the windscreen post
+  // between the upper panes. Circuit breakers in two blocks either side of a spine fill its aft
+  // two-thirds; rows of silver bat toggles cross its forward end. No engine controls here.
+  const og = group(cabin, 'H145-overhead', [0, 0, 0]),
+    od = detailKit(og, 'overhead'),
+    OP = partPalette(),
+    plan = [
+      // [z, half width, underside y, top y]
+      [1.06, 0.16, 2.305, 2.372],
+      [1.075, 0.212, 2.292, 2.372],
+      [1.1, 0.235, 2.288, 2.372],
+      [1.3, 0.23, 2.288, 2.372],
+      [1.48, 0.2, 2.289, 2.372],
+      [1.6, 0.152, 2.295, 2.372],
+      [1.7, 0.092, 2.305, 2.372],
+      [1.8, 0.06, 2.317, 2.372],
+      [1.95, 0.048, 2.333, 2.37],
+      [2.08, 0.045, 2.343, 2.359],
+    ];
+  od.add(
+    place(
+      loftUp(
+        plan.map(([zz, w, under, over]) => ({
+          y: zz,
+          points: superellipse(0, -(under + over) / 2, w, (over - under) / 2, 24, 6),
+        })),
+      ),
+      [0, 0, 0],
+      [Math.PI / 2, 0, 0],
+    ),
+    face,
+  );
+  const under = 2.2875,
+    halfAt = (zz) => {
+      const i = plan.findIndex(([pz]) => pz > zz);
+      const [z0, w0] = plan[i - 1],
+        [z1, w1] = plan[i];
+      return w0 + ((w1 - w0) * (zz - z0)) / (z1 - z0);
+    },
+    plate = (z0, z1, x0, x1, material) =>
+      sheet(
+        od,
+        [
+          [x0, under - 0.001, z0],
+          [x1, under - 0.001, z0],
+          [x1, under - 0.001, z1],
+          [x0, under - 0.001, z1],
+        ],
+        material,
+        [0, -1, 0],
+      );
+  // Breaker blocks: black plates, rows of breaker heads over white legend lines.
+  for (const side of [-1, 1]) {
+    plate(1.1, 1.405, side * 0.018, side * 0.198, OP.black);
+    for (let r = 0; r < 8; r++) {
+      const zz = 1.122 + r * 0.038;
+      od.box([0.17, 0.0015, 0.0025], [side * 0.108, under - 0.0017, zz - 0.012], od.ivory);
+      for (let j = 0; j < 8; j++)
+        od.box([0.0105, 0.007, 0.0105], [side * (0.036 + j * 0.0205), under - 0.004, zz], od.dark);
+    }
+  }
+  // Toggle rows at the forward end, on a black plate that follows the narrowing shield.
+  sheet(
+    od,
+    [
+      [halfAt(1.43) - 0.02, under - 0.001, 1.43],
+      [-halfAt(1.43) + 0.02, under - 0.001, 1.43],
+      [-halfAt(1.585) + 0.02, under - 0.0005, 1.585],
+      [halfAt(1.585) - 0.02, under - 0.0005, 1.585],
+    ],
+    OP.black,
+    [0, -1, 0],
+  );
+  for (const [zz, count] of [
+    [1.45, 11],
+    [1.495, 10],
+    [1.545, 8],
+  ]) {
+    const span = 0.034;
+    for (let j = 0; j < count; j++) {
+      const x = (j - (count - 1) / 2) * span;
+      od.add(bar([x, under - 0.002, zz], [x, under - 0.019, zz - 0.006], 0.0022, 8), OP.alloy);
+      od.box([0.012, 0.0015, 0.003], [x, under - 0.0017, zz + 0.014], od.ivory);
+    }
+  }
+  // Guards over the battery master and generator switches, red at the aft centre.
+  for (const x of [0.085, -0.085])
+    od.box([0.016, 0.012, 0.022], [x, under - 0.007, 1.45], OP.black);
+  od.box([0.022, 0.006, 0.03], [0, under - 0.004, 1.12], d.red);
   od.finish();
-  d.rod([0.12, 1.0, 0.72], [0.12, 1.3, 0.81], 0.012, d.red);
+  // Rotor brake (ADAC ground rescue booklet): a floor lever outboard of the pilot's (right)
+  // seat, pulled back to brake: rubber boot, grey shaft with a yellow band, release knob on top.
+  addParts(
+    d,
+    [
+      [
+        d.dark,
+        lathe(
+          [
+            [0.03, 0],
+            [0.028, 0.012],
+            [0.016, 0.04],
+            [0.011, 0.06],
+            [0, 0.062],
+          ],
+          14,
+        ).translate(0, 0.9, 0),
+      ],
+      [m.metal, bar([0, 0.92, 0], [0, 1.3, 0.11], 0.0095, 12)],
+      [d.amber, bar([0, 1.13, 0.051], [0, 1.18, 0.066], 0.0105, 12)],
+      [d.dark, place(roundedBox([0.03, 0.05, 0.03], 0.01), [0, 1.31, 0.115], [0.28, 0, 0])],
+    ].map(([material, geometry]) => [material, geometry.translate(-0.715, 0, 1.18)]),
+  );
   // Header over the clamshell doors: the tail boom's root, inside the pod's rear dome, showed
   // from the cabin as a blue disc under the ceiling.
   const header = shell.vAt(-2.3, 1.76, 1);
@@ -841,6 +1088,98 @@ function cockpit(root, m, shell) {
   );
   d.finish();
   return { nodes: ['cockpit'], bindings };
+}
+
+/** An engine main switch from its pivot, in a mount turned so local +X points at the crew and
+ * the bound rotation about local Z swings it from FLIGHT (up) through IDLE to OFF (down): an
+ * alloy stem and the yellow teardrop paddle, its broad face toward the crew. */
+function engineMainSwitch(d) {
+  const P = partPalette(),
+    up = 0.5,
+    tip = [Math.cos(up) * 0.01, Math.sin(up) * 0.01, 0];
+  addParts(d, [
+    [P.alloy, bar([0, 0, 0], tip, 0.0026, 10)],
+    [
+      P.yellow,
+      place(
+        lathe(
+          [
+            [0, 0],
+            [0.0042, 0.002],
+            [0.0046, 0.011],
+            [0.0072, 0.021],
+            [0.0078, 0.027],
+            [0.0052, 0.033],
+            [0, 0.034],
+          ],
+          14,
+        ),
+        tip,
+        [0, 0, up - Math.PI / 2],
+        [0.55, 1, 1],
+      ),
+    ],
+  ]);
+}
+
+/** The Helionix cyclic grip from its base (+Y up, trigger forward +Z, the pilot at -Z). */
+function h145Grip(d) {
+  const P = partPalette();
+  addParts(d, [
+    [
+      P.alloy,
+      lathe(
+        [
+          [0, 0],
+          [0.017, 0],
+          [0.018, 0.012],
+          [0, 0.012],
+        ],
+        16,
+      ),
+    ],
+    [
+      P.grip,
+      gripBody([
+        [0.01, 0, 0.017, 0.019, 2],
+        [0.045, 0.002, 0.0195, 0.022, 2],
+        [0.085, 0.004, 0.0195, 0.022, 2.1],
+        [0.11, 0.01, 0.023, 0.026, 2.4],
+        [0.13, 0.016, 0.027, 0.03, 2.8],
+        [0.147, 0.018, 0.026, 0.029, 2.8],
+        [0.155, 0.018, 0.015, 0.018, 2.4],
+      ]),
+    ],
+    // Four-way beeper: a cross hat on a boss, under the thumb on the head.
+    [P.black, place(new T.CylinderGeometry(0.008, 0.009, 0.006, 16), [0.004, 0.157, 0.006])],
+    [P.black, place(roundedBox([0.016, 0.004, 0.006], 0.0015), [0.004, 0.161, 0.006])],
+    [P.black, place(roundedBox([0.006, 0.004, 0.016], 0.0015), [0.004, 0.161, 0.006])],
+    // AP/trim release on the back of the head, the red cargo release under its guard.
+    [
+      P.black,
+      place(
+        new T.CylinderGeometry(0.0055, 0.0055, 0.008, 14),
+        [-0.008, 0.142, -0.012],
+        [Math.PI / 2, 0, 0],
+      ),
+    ],
+    [P.red, place(roundedBox([0.01, 0.01, 0.008], 0.002), [0.02, 0.138, -0.006])],
+    [P.black, place(roundedBox([0.003, 0.016, 0.016], 0.001), [0.027, 0.14, -0.004])],
+    [P.yellow, place(roundedBox([0.01, 0.008, 0.008], 0.002), [-0.022, 0.133, 0.012])],
+    // Radio trigger in front.
+    [
+      P.black,
+      tube(
+        [
+          [0, 0.112, 0.026],
+          [0, 0.1, 0.036],
+          [0, 0.088, 0.032],
+        ],
+        0.005,
+        10,
+      ),
+    ],
+  ]);
 }
 
 /** Convex (z, y) outline with every corner rounded off `r` along both of its edges. */

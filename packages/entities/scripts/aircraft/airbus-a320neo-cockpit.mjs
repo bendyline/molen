@@ -11,19 +11,38 @@
  *   outboard. The FCU's lower edge is set to just clear the display glass from the eye.
  * - Pedestal: two MCDUs forward, thrust levers with trim wheels either side, speedbrake left,
  *   flaps right, engine masters behind, then the parking brake and radio panels.
+ * - Controls (FCOM and the pedestal photograph "Thrust levers of an Airbus A320", CC BY-SA 3.0):
+ *   black thrust levers in a detent housing with the A/THR disconnect outboard, ENG MASTER 1/2
+ *   lift-and-throw switches with chrome knobs either side of the ENG MODE rotary, a black speed
+ *   brake knob left, the flap handle right in its 0-1-2-3-FULL gate, the PARK BRK handle turned a
+ *   quarter, side-sticks with their takeover buttons.
  */
+import {
+  bar,
+  batch,
+  emit,
+  lathe,
+  leverGeometry,
+  parkingBrakeGeometry,
+  place,
+  roundedBox,
+  switchGeometry,
+} from './cockpit-parts.mjs';
 import { flightDeck } from './flight-deck-kit.mjs';
+import { mat } from './mesh-kit.mjs';
 
 const RAD = Math.PI / 180;
 
 export function buildA320Cockpit(ctx) {
   const k = flightDeck(ctx, {
-    panel: '#6f7c88',
+    // Airbus blue-grey (Air France F-GFKH flight deck photograph, ledger reference).
+    panel: '#71889b',
     glareshield: '#1f2636',
     controller: '#4a5866',
     seat: '#5d6876',
     seatTrim: '#2a2f36',
     liner: '#c9ccca',
+    wall: '#8c959c',
     floor: '#3a4048',
     key: '#3e4954',
     lettering: '#eef0ea',
@@ -60,20 +79,18 @@ export function buildA320Cockpit(ctx) {
   k.clock(P, -0.15, -0.025, 0.06, 0.05);
   for (const [i, label] of ['LO', 'MED', 'MAX'].entries())
     k.lamp(P, -0.115 - i * 0.036, -0.078, 0.03, 0.018, 'white', label);
-  k.gearLever(P, -0.14, -0.185);
-  k.panelSheet(
-    P,
-    k.fitToSkin(P, [
-      [0.72, -0.105],
-      [0.235, -0.105],
-      [0.235, -0.285],
-      [-0.235, -0.285],
-      [-0.235, -0.105],
-      [-0.72, -0.105],
-      [-0.72, 0.1],
-      [0.72, 0.1],
-    ]),
-  );
+  // The L/G lever: a grey wheel knob, UP over DOWN, beside the lower ECAM.
+  k.gearLever(P, -0.14, -0.185, {
+    knob: mat(`${ctx.prefix}-gear-knob`, '#a3a9ad', { roughness: 0.5 }),
+  });
+  // Outboard edges follow the skin; the centre drops to the pedestal under the lower ECAM.
+  k.panelSheet(P, [
+    ...k.skinContour(P, 0.72, -0.105, 0.1),
+    [0.235, -0.105],
+    [0.235, -0.285],
+    [-0.235, -0.285],
+    [-0.235, -0.105],
+  ]);
   // Stowed sliding tables under the panel edge in front of each pilot.
   for (const side of [1, -1]) {
     P.d.box([0.42, 0.018, 0.03], [side * 0.47, -0.118, -0.012], k.m.face);
@@ -92,6 +109,8 @@ export function buildA320Cockpit(ctx) {
       panelTopY: top[1],
       halfWidth: 0.72,
       slope: 0.5,
+      // The windscreen's front edge: eye u 2.41 less the glazing's uStart 1.33 (airbus-a320neo.mjs).
+      glassFront: ez + 2.41 - 1.33,
     }),
     gy = gs.height / 2;
   k.controller(gs.S, {
@@ -161,40 +180,149 @@ export function buildA320Cockpit(ctx) {
   const Q = k.onSegment('throttle-quadrant', ped, 2);
   const qLen = Math.abs(ped[3][0] - ped[2][0]),
     qy = (dz) => qLen / 2 - dz;
-  k.levers(Q, {
+  const P2 = k.parts;
+  // Thrust levers in their detent housing (TOGA, FLX MCT, CL, IDLE marked down each slot), the
+  // A/THR instinctive disconnect on each outboard side; the housing is all the throttles together.
+  k.thrustLevers(Q, {
     xs: [0.05, -0.05],
     y: qy(0.16),
-    length: 0.16,
-    knob: [0.06, 0.028, 0.04],
-    color: 'grip',
     slot: 0.16,
+    cover: {
+      w: 0.17,
+      h: 0.22,
+      t: 0.024,
+      draw: (d) => {
+        for (const s of [1, -1])
+          for (const [i, dy] of [0.065, 0.04, 0.015, -0.045].entries())
+            d.box([0.018, 0.002, 0.001], [s * 0.074, dy, -0.0245], i === 2 ? k.m.green : k.m.paint);
+        k.label(d, 'TOGA', [0.074, 0.08, -0.0245], 0.006);
+        k.label(d, 'IDLE', [0.074, -0.058, -0.0245], 0.006);
+      },
+    },
+    draw: (d, _i, x) =>
+      leverGeometry(d, { style: 'thrust-airbus', height: 0.17, side: x > 0 ? 1 : -1, palette: P2 }),
   });
-  k.levers(Q, {
-    xs: [0.2],
-    y: qy(0.12),
-    name: 'speedbrake',
-    source: null,
-    rest: -0.4,
-    length: 0.11,
-    knob: [0.03, 0.02, 0.03],
-    slot: 0.1,
+  // Speed brake lever left (RET forward), flaps right in a five-stop gate (0 1 2 3 FULL).
+  k.speedBrakeLever(Q, {
+    x: 0.2,
+    y: qy(0.13),
+    slot: 0.12,
+    draw: (d) => {
+      const b = batch();
+      b.add(P2.alloy, bar([0, 0, 0], [0, 0.13, -0.012], 0.0055, 12));
+      b.add(
+        P2.grip,
+        place(
+          lathe(
+            [
+              [0, 0],
+              [0.011, 0.004],
+              [0.016, 0.018],
+              [0.015, 0.034],
+              [0.01, 0.044],
+              [0, 0.047],
+            ],
+            16,
+          ),
+          [0, 0.125, -0.011],
+        ),
+      );
+      emit(d, b.map);
+    },
   });
-  k.levers(Q, {
-    xs: [-0.2],
+  k.label(Q.d, 'SPEED BRAKE', [0.2, qy(0.045), -0.002], 0.006);
+  k.flapLever(Q, {
+    x: -0.2,
     y: qy(0.3),
-    name: 'flap-lever',
-    source: 'flapPosition',
-    rest: 0.35,
-    travel: -0.7,
-    length: 0.13,
-    knob: [0.045, 0.025, 0.03],
-    color: 'toggle',
     slot: 0.13,
+    marks: 5,
+    gateWidth: 0.05,
+    draw: (d) => {
+      const b = batch();
+      b.add(P2.alloy, place(roundedBox([0.008, 0.13, 0.014], 0.002, 1), [0, 0.065, 0]));
+      b.add(P2.white, bar([0.032, 0.138, 0], [-0.032, 0.138, 0], 0.011, 14));
+      for (const s of [-1, 1])
+        b.add(
+          P2.white,
+          place(
+            lathe(
+              [
+                [0.011, 0],
+                [0.008, 0.004],
+                [0, 0.005],
+              ],
+              14,
+            ),
+            [s * 0.032, 0.138, 0],
+            [0, 0, (-s * Math.PI) / 2],
+          ),
+        );
+      b.add(P2.black, place(roundedBox([0.022, 0.006, 0.012], 0.002), [0, 0.12, 0.004]));
+      emit(d, b.map);
+    },
   });
+  k.label(Q.d, 'FLAPS', [-0.2, qy(0.215), -0.002], 0.007);
   for (const side of [1, -1])
     k.trimWheel(side * (halfWidth + 0.01), base[1] - 0.14, ped[2][0] - 0.16, 0.085);
-  for (const side of [1, -1]) k.guarded(Q, side * 0.035, qy(0.36), 1, 0.03, 'key');
-  k.handle(Q, 0, qy(0.48), { colour: 'key', width: 0.05 });
+  // ENG MASTER 1 and 2 (lift and throw: ON forward) either side of the ENG MODE selector.
+  Q.d.box([0.18, 0.09, 0.004], [0, qy(0.36), -0.002], k.m.face);
+  k.label(Q.d, 'ENG', [0, qy(0.325), -0.0045], 0.008);
+  for (const [i, x] of [0.055, -0.055].entries()) {
+    k.label(Q.d, `${i + 1}`, [x, qy(0.33), -0.0045], 0.008);
+    k.label(Q.d, 'ON', [x - 0.018, qy(0.35), -0.0045], 0.005);
+    k.label(Q.d, 'OFF', [x - 0.019, qy(0.385), -0.0045], 0.005);
+    k.live(Q.g, `eng-master-${i + 1}`, [x, qy(0.367), -0.004], {
+      stand: true,
+      draw: (d) => {
+        const b = batch();
+        b.add(
+          P2.black,
+          lathe(
+            [
+              [0.013, 0],
+              [0.013, 0.005],
+              [0.009, 0.008],
+              [0.005, 0.008],
+            ],
+            16,
+          ),
+        );
+        b.add(P2.steel, bar([0, 0, 0], [0, 0.034, 0], 0.0038, 10));
+        b.add(
+          P2.alloy,
+          lathe(
+            [
+              [0.005, 0.028],
+              [0.0105, 0.032],
+              [0.0115, 0.048],
+              [0.009, 0.056],
+              [0, 0.058],
+            ],
+            16,
+          ),
+        );
+        emit(d, b.map);
+      },
+      control: {
+        action: 'engine',
+        engine: `engine-${i + 1}`,
+        motion: { property: 'rotation', axis: 'x', scale: 0.7, offset: -0.35 },
+      },
+    });
+  }
+  k.label(Q.d, 'MODE', [0, qy(0.345), -0.0045], 0.005);
+  k.live(Q.g, 'eng-mode', [0, qy(0.375), -0.004], {
+    draw: (d) => switchGeometry(d, { style: 'chicken', scale: 1.1, palette: P2 }),
+    control: { action: 'engine', style: 'chicken' },
+  });
+  // PARK BRK: a handle pulled up and turned a quarter.
+  Q.d.box([0.1, 0.08, 0.004], [0, qy(0.48), -0.002], k.m.face);
+  k.label(Q.d, 'PARK BRK', [0, qy(0.448), -0.0045], 0.006);
+  k.live(Q.g, 'park-brake', [0, qy(0.485), -0.004], {
+    stand: true,
+    draw: (d) => parkingBrakeGeometry(d, { style: 'rotary', palette: P2 }),
+    control: { action: 'brake', motion: { property: 'rotation', axis: 'z', scale: Math.PI / 2 } },
+  });
   k.handle(Q, 0, qy(0.62), { colour: 'red', width: 0.04 });
   for (const side of [1, -1]) {
     k.switchField(Q, side * 0.15, qy(0.5), 0.15, 0.2, {
@@ -215,7 +343,7 @@ export function buildA320Cockpit(ctx) {
   for (const side of [1, -1]) {
     const x = side * ex;
     k.seat(x, { z: ez, cushion: 0.82, back: 0.3, width: 0.5 });
-    k.pedals(x, ez + 0.86);
+    k.pedals(x, ez + 0.86, { variant: 'airbus' });
     const inboard = ex + 0.27,
       C = k.sideConsole(side, { z0: ez - 0.45, z1: ez + 0.5, y: ey - 0.62, inboard });
     k.sideStick(side * (ex + 0.36), { base: [ey - 0.618, ez + 0.2] });
@@ -237,7 +365,11 @@ export function buildA320Cockpit(ctx) {
           ['AIR', 'PRESS', 'ANTI ICE', 'CALLS'],
         ][c][r],
       });
-  k.floorPlate(ctx.bulkheadZ, ez + 1.05);
-  k.walls(ctx.bulkheadZ, ez + 0.55);
+  // The footwell: closed ahead of the pedal shaft and under the panel, lined and floored to it.
+  const foot = P.world([0.5, -0.105, 0.1]),
+    wellZ = ez + 1.08;
+  k.footwell({ z: wellZ, top: foot[1], from: foot[2] });
+  k.floorPlate(ctx.bulkheadZ, wellZ);
+  k.walls(ctx.bulkheadZ, ez + 0.55, { lowerTo: wellZ });
   return k.finish();
 }

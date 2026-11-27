@@ -4,7 +4,15 @@
  */
 
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
-import { roundedRegion, skinPatch, waterlines } from './huey.mjs';
+import { partPalette, pedalGeometry, stationMotion, switchGeometry } from './cockpit-parts.mjs';
+import {
+  hueyCollective,
+  hueyCyclic,
+  roundedRegion,
+  skinBacking,
+  skinPatch,
+  waterlines,
+} from './huey.mjs';
 import {
   beveledBox,
   cleanGeometry,
@@ -193,6 +201,16 @@ export function buildBell412(s) {
     skin = (t, a) => np(rowAt(t), a);
   const rowSteps = Array.from({ length: 29 }, (_, i) => (i * (rows.length - 1)) / 28),
     angleSteps = Array.from({ length: 25 }, (_, i) => ((i - 12) * Math.PI) / 24);
+  // The chin panes are lightly tinted, as on the Huey: through clear glass the bright ground under
+  // the nose read from the seat as bare white skin round the pedals.
+  const chinGlass = mat('412-chin-glazing', '#405754', {
+    transparent: true,
+    opacity: 0.66,
+    depthWrite: false,
+    side: T.DoubleSide,
+    roughness: 0.12,
+    metalness: 0.15,
+  });
   const chin = [-1, 1].map((side) => {
     const poly = roundedRegion(0.15, 3.3, 0.27, 1.52, 0.55, 0.16);
     return side > 0 ? poly : poly.map(([t, a]) => [t, -a]).reverse();
@@ -203,7 +221,7 @@ export function buildBell412(s) {
     rowSteps,
     angleSteps,
     paint,
-    chin.map((poly) => ({ poly, material: glass })),
+    chin.map((poly) => ({ poly, material: chinGlass })),
     [0, 1.0, 3.0],
   );
   // Footwell lining 3.5 cm inside the lower nose, open behind the chin windows so they read as
@@ -673,9 +691,11 @@ export function buildBell412(s) {
 }
 
 function cockpit412(root, m, sections) {
+  const parts = partPalette();
   const cabin = group(root, 'cockpit'),
     panelRoot = group(cabin, '412-instrument-panel'),
-    panel = mat('412-panel-gray', '#b3b8b5'),
+    // Charcoal, as in the cited INAER EC-IPM and AB-412 Griffon photographs (Commons).
+    panel = mat('412-panel-gray', '#2d3234'),
     cloth = mat('412-gray-fabric', '#69716d', { roughness: 0.95 }),
     floor = mat('412-floor', '#514d43'),
     bindings = [],
@@ -685,6 +705,30 @@ function cockpit412(root, m, sections) {
     // The 2.0 m width used before was a cabin-fit guess: it drew every dial 1.45 times too large
     // and put the hood through the windscreen.
     k = 0.0794 / 104;
+  // Line the painted skin round the cockpit (the walls under and between the door windows, the
+  // posts and the roof between the green roof windows) in dark gray trim: the double-sided ivory
+  // paint showed beside and below the panel and on the inside of the doors. The nose bulb has its
+  // own footwell lining.
+  // Aft of the cockpit the cabin walls and roof take the cabin's gray-beige trim.
+  {
+    const lining = mat('412-cockpit-lining', '#3d4341', { roughness: 0.92 }),
+      trim = mat('412-cabin-trim', '#8e8a7e', { roughness: 0.95 }),
+      ld = detailKit(cabin, '412-lining');
+    skinBacking(ld, root, {
+      materials: [m.paint, m.red],
+      inside: ([x, y, z]) =>
+        z > AFT_WALL + 0.01 &&
+        // The bulb's top rows and flanks too, where the footwell lining's edges stand 3.5 cm off
+        // the skin under the windscreen base and beside the panel ends.
+        (z < 2.93 || (z < 3.3 && (y > 1.33 || Math.abs(x) > 0.86))) &&
+        y > 0.72 &&
+        y < 2.3 &&
+        Math.abs(x) < 1.26,
+      lining: ([, , z]) => (z > 1.55 ? lining : trim),
+      toward: ([, , z]) => [0, 1.45, Math.min(z, 2.6)],
+    });
+    ld.finish();
+  }
   let d = detailKit(cabin, '412-cockpit-floor');
   // Clear of the belly and of the skin's lower chamfer, level with the door sills.
   fittedFloor(d, sections, floor, { y: 0.7, front: 2.65, back: AFT_WALL, width: 2.2 });
@@ -869,37 +913,53 @@ function cockpit412(root, m, sections) {
   console.rotation.x = Math.PI / 2 - 0.18;
   const pd = detailKit(console, 'pedestal'),
     pt = panelTools(pd);
-  pd.box([0.57, 1.85, 0.12], [0, 0, 0.05], m.dark);
-  for (const [y, h] of [
-    [0.65, 0.42],
-    [0.16, 0.45],
-    [-0.37, 0.49],
-    [-0.78, 0.23],
+  // A narrow pedestal from under the panel back between the seats, filled with a stack of
+  // radio and nav control heads (AB-412 Griffon photograph): each a screwed plate with knobs,
+  // small amber windows and button rows, red switch guards at the top. Local -Z faces up.
+  pd.box([0.36, 1.85, 0.12], [0, 0, 0.05], m.dark);
+  const front = -0.022;
+  for (const [y, h, kind, label] of [
+    [0.83, 0.16, 'guards'],
+    [0.64, 0.19, 'radio', '118.00'],
+    [0.435, 0.19, 'radio', '121.50'],
+    [0.235, 0.17, 'keys', '7000'],
+    [0.04, 0.19, 'radio', '108.00'],
+    [-0.16, 0.17, 'knobs'],
+    [-0.36, 0.19, 'radio', '0350'],
+    [-0.56, 0.17, 'switches'],
+    [-0.77, 0.2, 'keys'],
   ]) {
-    pd.box([0.52, h, 0.012], [0, y, -0.018], m.seam);
+    pd.box([0.33, h, 0.012], [0, y, front + 0.006], m.seam);
     for (const side of [-1, 1])
       for (const yy of [-h * 0.42, h * 0.42])
-        pd.add(new T.SphereGeometry(0.005, 5, 3), m.metal, [side * 0.245, y + yy, -0.028]);
-  }
-  for (let row = 0; row < 4; row++)
-    for (let col = 0; col < 6; col++) {
-      const x = (col - 2.5) * 0.072,
-        y = 0.79 - row * 0.085;
-      pd.rod([x, y, -0.028], [x, y + 0.02, -0.056], 0.005, m.metal);
-      pd.text(row === 0 ? 'ON' : '', [x, y - 0.025, -0.03], 0.007, Math.PI, pd.ivory);
+        pd.add(new T.SphereGeometry(0.004, 5, 3), m.metal, [side * 0.152, y + yy, front]);
+    if (label) {
+      const wy = kind === 'radio' ? y + h * 0.18 : y + h * 0.26;
+      pd.box([0.13, 0.03, 0.004], [0, wy, front - 0.002], pd.dark);
+      pd.text(label, [0, wy, front - 0.0045], 0.013, Math.PI, pd.amber);
     }
-  for (const y of [0.3, 0.12, -0.11, -0.34]) {
-    pt.buttons(0, y, -0.04, 6, 0.065);
-    for (const x of [-0.21, 0.21]) pt.knob(x, y + 0.04, -0.047, 0.018);
-    pd.box([0.22, 0.028, 0.008], [0, y + 0.048, -0.03], pd.dark);
-    pd.text(y > 0.2 ? '118.00' : 'NAV', [0, y + 0.048, -0.037], 0.012, Math.PI, pd.amber);
+    if (kind === 'radio') {
+      for (const x of [-0.115, 0.115]) pt.knob(x, y + h * 0.12, front - 0.0065, 0.017);
+      for (const x of [-0.05, 0, 0.05]) pt.knob(x, y - h * 0.06, front - 0.0065, 0.008);
+      pt.buttons(0, y - h * 0.27, front - 0.0045, 5, 0.05);
+    } else if (kind === 'keys') {
+      const rows = label ? [y - h * 0.08, y - h * 0.32] : [y + h * 0.2, y - h * 0.05, y - h * 0.3];
+      for (const yy of rows) pt.buttons(0, yy, front - 0.0045, label ? 5 : 6, label ? 0.05 : 0.046);
+    } else if (kind === 'knobs') {
+      for (const yy of [y + h * 0.18, y - h * 0.2])
+        for (let i = 0; i < 4; i++) pt.knob((i - 1.5) * 0.075, yy, front - 0.0065, 0.011);
+    } else {
+      // Toggle rows; the top head carries two red guards over the outboard switches.
+      const count = kind === 'guards' ? 4 : 6;
+      for (let i = 0; i < count; i++) {
+        const x = (i - (count - 1) / 2) * (kind === 'guards' ? 0.07 : 0.05);
+        pd.rod([x, y - 0.01, front], [x, y + 0.01, front - 0.026], 0.0045, m.metal);
+        pd.text('ON', [x, y + h * 0.33, front - 0.0005], 0.0065, Math.PI, pd.ivory);
+        if (kind === 'guards' && Math.abs(x) > 0.07)
+          pd.box([0.03, 0.055, 0.03], [x, y, front - 0.015], m.red);
+      }
+    }
   }
-  for (const side of [-1, 1]) {
-    pd.box([0.045, 0.11, 0.028], [side * 0.14, 0.6, -0.05], m.red);
-    pd.rod([side * 0.14, 0.6, -0.07], [side * 0.14, 0.65, -0.09], 0.012, m.red);
-  }
-  for (let i = 0; i < 10; i++)
-    pd.box([0.033, 0.022, 0.008], [(i - 4.5) * 0.046, -0.78, -0.035], pd.ivory);
   pd.finish();
   const overhead = group(cabin, '412-overhead', [0, 2.17, 1.83]);
   overhead.rotation.x = -Math.PI / 2;
@@ -912,6 +972,22 @@ function cockpit412(root, m, sections) {
       od.rod([x, y, -0.03], [x, y + 0.015, -0.065], 0.005, m.metal);
       if (row % 2 === 0) od.text('ON', [x, y - 0.026, -0.032], 0.008, Math.PI, od.ivory);
     }
+  // Engine fuel switches, guarded, at the front of the overhead console (412EP flight manual):
+  // ENG 1 and ENG 2 move together as the engine master.
+  for (const [k, label] of [
+    [-1, 'ENG 1 FUEL'],
+    [1, 'ENG 2 FUEL'],
+  ]) {
+    const pivot = group(overhead, `412-engine-fuel-${k}`, [k * 0.07, -0.37, -0.0225]);
+    const pk = detailKit(pivot, pivot.name);
+    switchGeometry(pk, { style: 'guarded', scale: 1.15, palette: parts });
+    pk.finish();
+    pivot.userData.aircraftControl = {
+      action: 'engine',
+      motion: stationMotion('engine', 'guarded'),
+    };
+    od.text(label, [k * 0.07, -0.33, -0.0235], 0.0085, Math.PI, od.ivory);
+  }
   od.finish();
   const seat = (x, z, yaw = 0, crew = false) => {
     // The eye is fixed by the side view and the floor by the skin; crew cushions sit 0.8 m under it.
@@ -945,22 +1021,21 @@ function cockpit412(root, m, sections) {
   for (const side of [-1, 1]) {
     const x = side * 0.55;
     seat(x, 2.05, 0, true);
+    // UH-1N-style bent cyclic from its floor gaiter, the 412 grip with its coolie-hat trim switch.
     const stick = group(cabin, `412-cyclic-${side}`, [x, 0.7, 2.38]),
       sd = detailKit(stick, 'cyclic');
-    outline(
-      sd,
-      [
+    hueyCyclic(sd, {
+      path: [
         [0, 0, 0],
-        [0, 0.4, 0],
-        [0, 0.6, -0.12],
-        [0, 0.74, -0.12],
+        [0, 0.36, 0.004],
+        [0, 0.52, -0.06],
+        [0, 0.64, -0.115],
+        [0, 0.74, -0.125],
       ],
-      0.021,
-      m.dark,
-      false,
-    );
-    beveledBox(sd, [0.07, 0.15, 0.07], [0, 0.79, -0.12], m.dark, 0.01);
-    sd.box([0.018, 0.018, 0.01], [0, 0.87, -0.16], sd.red);
+      tubeMaterial: m.dark,
+      palette: parts,
+      grip: '412',
+    });
     sd.finish();
     bindings.push(
       { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.16 },
@@ -968,9 +1043,8 @@ function cockpit412(root, m, sections) {
     );
     const collective = group(cabin, `412-collective-${side}`, [x + 0.26, 0.89, 1.86]),
       cd = detailKit(collective, 'collective');
-    cd.rod([0, 0, 0], [0, 0.15, 0.46], 0.025, m.dark);
-    cd.box([0.085, 0.065, 0.18], [0, 0.15, 0.46], m.dark);
-    for (const xx of [-0.025, 0.025]) cd.box([0.022, 0.013, 0.025], [xx, 0.19, 0.5], cd.red);
+    // Twin Pac: two twist-grip throttles in a row behind the pilot's switch box.
+    hueyCollective(cd, { end: [0, 0.15, 0.46], tubeMaterial: m.dark, palette: parts, twin: true });
     cd.finish();
     bindings.push({
       node: collective.name,
@@ -982,8 +1056,14 @@ function cockpit412(root, m, sections) {
     for (const j of [-1, 1]) {
       const pedal = group(cabin, `412-pedal-${side}-${j}`, [x + j * 0.13, 0.8, 3.1]),
         p = detailKit(pedal, 'pedal');
-      p.box([0.18, 0.08, 0.04], [0, 0, 0], m.dark);
-      p.rod([0, -0.1, 0.1], [0, 0, 0], 0.012, m.metal);
+      pedalGeometry(p, {
+        style: 'heli',
+        side: j,
+        scale: 1.15,
+        drop: 0.07,
+        lean: 0.4,
+        palette: parts,
+      });
       p.finish();
       bindings.push({
         node: pedal.name,

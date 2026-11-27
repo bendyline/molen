@@ -2,7 +2,28 @@
  * Manufacturer three-view and panel diagram, with exterior/cabin photographic checks.
  */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { skinSection, wallAt } from './cockpit-fit.mjs';
+import {
+  bar,
+  flapSelectorGeometry,
+  lathe,
+  leverGate,
+  partPalette,
+  place,
+  roundedBox,
+} from './cockpit-parts.mjs';
 import { addG1000Bezels, addG1000Readouts } from './g1000-panel.mjs';
+import {
+  beechClimatePanel,
+  beechQuadrantLever,
+  beechYoke,
+  cabinHeadliner,
+  cabinLiner,
+  frameTrim,
+  gaGearSwitch,
+  gaPedal,
+  placedKit,
+} from './ga-cabin.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -696,11 +717,18 @@ export function buildBonanza(s) {
   const firewall = ringAt(1.5).map(([x, yy]) => [x * 0.995, yy - 0.004, 1.5]);
   sheet(d, firewall, dark, [0, 0, -1]);
   sheet(d, [...firewall].reverse(), dark, [0, 0, 1]);
-  const interior = cockpit(root, { paint, accent, metal, dark, skinTop });
+  const { stations: controlStations, ...interior } = cockpit(root, {
+    paint,
+    accent,
+    metal,
+    dark,
+    skinTop,
+    ring: (i) => rings[i],
+  });
   cleanGeometry(root);
   return {
     root,
-    frame: bonanzaFrame(),
+    frame: { ...bonanzaFrame(), controlStations },
     enginePoints: [{ id: 'engine-1', position: [0, 1.43, 2.61] }],
     visual: {
       rotors: [{ node: prop.name, axis: 'z', multiplier: 1, engine: 'engine-1' }],
@@ -727,7 +755,11 @@ function cockpit(root, m) {
     face = mat('Bonanza-panel', '#383e40'),
     seat = mat('Bonanza-leather', '#41494c'),
     headliner = mat('Bonanza-headliner', '#cbc9be'),
-    blue = mat('Bonanza-prop-control', '#3f8cab');
+    // Ivory side panels and posts (Textron G36 cabin and Flying 2013 panel photographs); the
+    // taupe they were read as brown khaki round the windscreen.
+    sidewall = mat('Bonanza-sidewall', '#b9b2a3'),
+    // The molded Beech wheel is satin titanium gray round its black hub plate, not black.
+    yokeShell = mat('Bonanza-yoke', '#8f9395', { metalness: 0.35, roughness: 0.45 });
   // Panel diagram at 1376px width, calibrated with the physical 11.8-inch display bezel.
   const k = 0.29972 / 318,
     px = (u) => (690 - u) * k,
@@ -785,7 +817,19 @@ function cockpit(root, m) {
     [0, 0, 1],
   );
   const brow = edge.slice(1, 8).map((p) => at(...p));
-  outline(d, brow, 0.016, headliner, false);
+  // The hood overhangs the panel face by some 7 cm and its padded edge droops at both ends (G36
+  // panel photographs); a padded black edge (it was a headliner-colored tube that read white
+  // over the panel) on the lip.
+  const lip = brow.map(([x, y, zz], i) => [
+    x * 0.99,
+    y - (i === 0 || i === 6 ? 0.012 : 0),
+    zz - 0.07,
+  ]);
+  for (let i = 0; i < brow.length - 1; i++) {
+    quad(d, brow[i], brow[i + 1], lip[i + 1], lip[i], m.dark, [0, 1, 0]);
+    quad(d, lip[i], lip[i + 1], brow[i + 1], brow[i], m.dark, [0, -1, 0]);
+  }
+  outline(d, lip, 0.014, m.dark, false);
   // The glareshield runs forward under the windscreen and tucks 5 cm under the cowl skin past
   // the windscreen base (z 1.42). It used to stop at z 1.38, 6 cm under that base, leaving an
   // open slot over the panel through which the eye saw into the cowl and out past the spinner
@@ -876,6 +920,20 @@ function cockpit(root, m) {
     d.rod(at(u, v, -0.025), at(u, v - 9, -0.037), 0.0027, m.metal);
   }
   for (const u of [195, 238, 281, 324]) pt.knob(px(u), py(954), z - 0.025, 0.009);
+  // The pilot's sidewall switch and breaker console ahead of the left knee (G36 factory and
+  // Flying 2013 photographs): a black box on the sidewall trim, its face turned up toward the
+  // seat, three rows of rocker switches.
+  {
+    const wall = wallAt(skinSection(root, 0.86), 1.0, 1) ?? 0.53,
+      g = group(cabin, 'Bonanza-sidewall-switches', [wall - 0.07, 1.0, 0.86]);
+    g.rotation.set(0.45, Math.PI / 2, 0, 'YXZ');
+    const sd = detailKit(g, g.name);
+    beveledBox(sd, [0.3, 0.14, 0.04], [0, 0, 0], black, 0.008);
+    for (let row = 0; row < 3; row++)
+      for (let col = 0; col < 7; col++)
+        sd.box([0.012, 0.02, 0.008], [-0.12 + col * 0.04, 0.042 - row * 0.042, -0.022], m.metal);
+    sd.finish();
+  }
   d.text('BAT  ALT  AVIONICS', at(257, 818, -0.026), 0.005, Math.PI, ink);
   d.text('LIGHTS', at(465, 868, -0.026), 0.005, Math.PI, ink);
   for (let i = 0; i < 19; i++) pt.knob(px(862 + i * 20), py(950), z - 0.025, 0.0045);
@@ -918,15 +976,15 @@ function cockpit(root, m) {
     scale: 1,
     missing: 'hide',
   });
-  const gearLever = group(cabin, 'Bonanza-gear-handle', at(550, 879, -0.045)),
+  // Landing-gear switch: the wheel-shaped knob on a short lever, on the subpanel face.
+  const gearLever = group(cabin, 'Bonanza-gear-handle', at(550, 879, -0.007)),
     gd = detailKit(gearLever, gearLever.name);
-  gd.rod([0, 0, 0], [0, -0.022, -0.02], 0.003, m.metal);
-  gd.add(
-    new T.CylinderGeometry(0.012, 0.012, 0.01, 12).rotateX(Math.PI / 2),
-    black,
-    [0, -0.025, -0.023],
-  );
+  gaGearSwitch(placedKit(gd, [0, 0, 0], [-Math.PI / 4, 0, 0]), {
+    palette: { black: partPalette().white },
+  });
   gd.finish();
+  d.add(place(roundedBox([0.03, 0.05, 0.003], 0.003), at(550, 885, -0.0075)), black);
+  d.text('GEAR', at(550, 852, -0.008), 0.0045, Math.PI, ink);
   bindings.push({
     node: gearLever.name,
     source: 'gear',
@@ -950,10 +1008,13 @@ function cockpit(root, m) {
     dd.finish();
     bindings.push({ node: g.name, source: key, property: 'visible', scale: 1, missing: 'hide' });
   }
-  const fl = group(cabin, 'Bonanza-flap-handle', at(906, 851, -0.035)),
+  // Flap switch: an airfoil knob in a three-position gate (UP, APPROACH, DOWN).
+  const fl = group(cabin, 'Bonanza-flap-handle', at(906, 851, -0.007)),
     fld = detailKit(fl, fl.name);
-  fld.box([0.02, 0.009, 0.035], [0, 0, 0], ink);
+  flapSelectorGeometry(fld, { style: 'airfoil', scale: 0.9 });
   fld.finish();
+  leverGate(placedKit(d, at(906, 865, -0.0065)), { size: [0.02, 0.045], marks: 3 });
+  d.text('FLAPS', at(906, 822, -0.008), 0.0045, Math.PI, ink);
   bindings.push({
     node: fl.name,
     source: 'flapPosition',
@@ -962,70 +1023,72 @@ function cockpit(root, m) {
     scale: -0.027,
   });
   for (const u of [391, 992]) {
+    // Dual Beech control wheels: the M-shaped wheel (horns rising from a dipped cross arm, a
+    // trim/PTT switch head on each) in satin gray round the black Beechcraft hub plate, on a
+    // black column (G36 factory and Flying 2013 panel photographs).
     const g = group(cabin, `Bonanza-yoke-${u}`, at(u, 777, -0.17)),
       dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0.18], [0, 0, -0.055], 0.018, m.metal);
-    outline(
-      dd,
-      [
-        [-0.115, 0.1, -0.075],
-        [-0.13, -0.035, -0.075],
-        [-0.09, -0.045, -0.075],
-        [0.09, -0.045, -0.075],
-        [0.13, -0.035, -0.075],
-        [0.115, 0.1, -0.075],
-      ],
-      0.016,
-      m.metal,
-      false,
-    );
-    sheet(
-      dd,
-      [
-        [-0.055, -0.041, -0.092],
-        [-0.038, 0.052, -0.092],
-        [0.035, 0.052, -0.092],
-        [0.058, -0.041, -0.092],
-      ],
-      black,
-      [0, 0, -1],
-    );
-    outline(
-      dd,
-      [
-        [-0.055, -0.041, -0.092],
-        [-0.038, 0.052, -0.092],
-        [0.035, 0.052, -0.092],
-        [0.058, -0.041, -0.092],
-      ],
-      0.003,
+    beechYoke(placedKit(dd, [0, 0, -0.078]), { width: 0.25, material: yokeShell });
+    dd.add(bar([0, 0, -0.063], [0, 0, 0.18], 0.0125, 16), black);
+    dd.add(
+      place(
+        lathe(
+          [
+            [0, 0],
+            [0.0135, 0],
+            [0.0135, 0.004],
+            [0, 0.004],
+          ],
+          14,
+        ),
+        [0, 0, 0.18],
+        [-Math.PI / 2, 0, 0],
+      ),
       m.metal,
     );
-    dd.text('BEECHCRAFT', [0, -0.018, -0.096], 0.005, Math.PI, ink);
-    for (const side of [-1, 1]) {
-      beveledBox(dd, [0.027, 0.045, 0.033], [side * 0.115, 0.092, -0.074], headliner, 0.005);
-      dd.box([0.015, 0.007, 0.015], [side * 0.115, 0.115, -0.08], black);
-    }
+    dd.text('BEECHCRAFT', [0, -0.034, -0.1048], 0.004, Math.PI, ink);
     dd.finish();
     bindings.push(
       { node: g.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.65 },
       { node: g.name, source: 'pitchInput', property: 'position', axis: 'z', scale: -0.055 },
     );
   }
+  // Center pedestal under the subpanel: the T-P-M quadrant on its sloping top (the throttle a
+  // black barrel with the GO AROUND button on its left end, the propeller a fluted blue block,
+  // the mixture a fluted red barrel, each in its own slot), the Digital Climate Control panel
+  // on its face with the rudder trim knob below it, the elevator trim wheel on its left flank
+  // (G36 factory and Flying 2013 photographs).
   const pedestal = group(cabin, 'Bonanza-pedestal', [0, 1.06, 0.96]),
     dd = detailKit(pedestal, pedestal.name);
-  beveledBox(dd, [0.27, 0.3, 0.34], [0, 0, 0], face, 0.025);
-  dd.ring(0.074, 0.01, [0.137, -0.02, -0.1], black, 'x');
-  dd.text('TRIM', [0.09, 0.07, -0.181], 0.009, Math.PI, ink);
-  for (const [x, label, col] of [
-    [0.07, 'throttle', black],
-    [0, 'propeller', blue],
-    [-0.07, 'mixture', red],
+  beveledBox(dd, [0.2, 0.28, 0.3], [0, -0.01, 0.01], face, 0.02);
+  beveledBox(dd, [0.19, 0.02, 0.16], [0, 0.133, 0.03], black, 0.006);
+  dd.ring(0.07, 0.009, [0.103, -0.02, -0.06], black, 'x');
+  beechClimatePanel(dd, [0, 0.06, -0.143], { width: 0.15 });
+  dd.text('RUD TRIM', [0, -0.03, -0.141], 0.006, Math.PI, ink);
+  for (const [x, t] of [
+    [0.06, 'T'],
+    [0, 'P'],
+    [-0.06, 'M'],
+  ])
+    dd.text(t, [x, 0.115, -0.141], 0.009, Math.PI, ink);
+  for (const x of [0.06, 0, -0.06])
+    dd.box([0.01, 0.003, 0.12], [x, 0.1445, 0.03], partPalette().black);
+  for (const [x, label] of [
+    [0.06, 'throttle'],
+    [0, 'propeller'],
+    [-0.06, 'mixture'],
   ]) {
     const g = group(pedestal, `Bonanza-${label}`, [x, 0.13, 0.04]),
       ld = detailKit(g, g.name);
-    ld.rod([0, 0, 0], [0, 0.12, -0.045], 0.006, m.metal);
-    beveledBox(ld, [0.038, 0.026, 0.034], [0, 0.12, -0.045], col, 0.005);
+    // The rotor animator and the propeller collision disc take the heaviest node named
+    // 'Bonanza-propeller', which the propeller lever shares: keep it far lighter than the spinner.
+    beechQuadrantLever(ld, {
+      kind: { throttle: 'throttle', propeller: 'prop', mixture: 'mixture' }[label],
+      height: 0.1,
+      rake: -0.035,
+      length: 0.05,
+      goAround: label === 'throttle',
+    });
     ld.finish();
     if (label === 'throttle')
       bindings.push({
@@ -1037,8 +1100,23 @@ function cockpit(root, m) {
         scale: 0.7,
       });
   }
-  dd.rod([-0.08, -0.06, -0.18], [-0.08, -0.13, -0.19], 0.004, m.metal);
-  dd.box([0.03, 0.016, 0.02], [-0.08, -0.13, -0.19], black);
+  dd.add(
+    place(
+      lathe(
+        [
+          [0, 0],
+          [0.016, 0],
+          [0.016, 0.014],
+          [0.012, 0.018],
+          [0, 0.018],
+        ],
+        16,
+      ),
+      [0, -0.075, -0.14],
+      [-Math.PI / 2, 0, 0],
+    ),
+    black,
+  );
   dd.finish();
   // Cabin floor; 1.02 m keeps its aft corners inside the narrowing skin (1.06 showed through).
   d.box([1.02, 0.035, 3.05], [0, 0.75, -0.38], m.dark);
@@ -1078,11 +1156,9 @@ function cockpit(root, m) {
       d.box([0.012, 0.04, 0.085], [side * 0.51, 1.02, zz], black);
     }
     for (const j of [-1, 1]) {
-      const g = group(cabin, `Bonanza-pedal-${side}-${j}`, [side * 0.28 + j * 0.075, 0.84, 1.25]),
+      const g = group(cabin, `Bonanza-pedal-${side}-${j}`, [side * 0.28 + j * 0.075, 0.86, 1.25]),
         dd = detailKit(g, g.name);
-      dd.box([0.125, 0.065, 0.04], [0, 0, 0], m.metal);
-      for (let i = 0; i < 4; i++)
-        dd.box([0.004, 0.05, 0.004], [-0.045 + i * 0.03, 0, -0.024], black);
+      gaPedal(dd, { side: j, drop: 0.06, tread: partPalette().tread });
       dd.finish();
       bindings.push({
         node: g.name,
@@ -1099,6 +1175,69 @@ function cockpit(root, m) {
     }
   }
   beveledBox(d, [0.022, 0.32, 0.46], [-0.505, 1.04, -0.98], headliner, 0.006);
+  // Gray leather sidewalls from under the floor edge to the sills and round the windows, the
+  // headliner over the roof, and trim over the painted windscreen frame: from the seat the inside
+  // of the ivory skin showed white on every wall.
+  cabinLiner(d, root, {
+    zFrom: 1.49,
+    zTo: -2.0,
+    yFrom: 0.66,
+    yTo: 1.46,
+    material: sidewall,
+    zSteps: 12,
+    rows: 4,
+    reach: 0.68,
+  });
+  cabinLiner(d, root, {
+    zFrom: 1.45,
+    zTo: -2.0,
+    yFrom: 1.44,
+    yTo: 1.95,
+    material: sidewall,
+    zSteps: 12,
+    rows: 4,
+    reach: 0.68,
+    inset: 0.014,
+  });
+  cabinHeadliner(d, root, {
+    zFrom: 0.62,
+    zTo: -2.0,
+    yFrom: 1.95,
+    material: headliner,
+    zSteps: 8,
+    margin: 0.002,
+  });
+  // Footwell floor on to the firewall: the cabin floor stopped under the panel, over bare skin.
+  d.box([1.0, 0.035, 0.36], [0, 0.75, 1.32], m.dark);
+  const ringPoint = (i, j) => [...m.ring(i).points[j], m.ring(i).z];
+  frameTrim(
+    d,
+    [3, 2, 1, 0, 21, 20, 19].map((j) => ringPoint(3, j)),
+    headliner,
+    { center: 1.3 },
+  );
+  frameTrim(d, [ringPoint(2, 3), ringPoint(3, 3)], sidewall, { center: 1.3 });
+  frameTrim(d, [ringPoint(2, 19), ringPoint(3, 19)], sidewall, { center: 1.3 });
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Magneto/start key at the left end of the subpanel; the parking-brake pull handle below the
+  // pilot's subpanel, inboard of the yoke column.
+  const stations = [
+    {
+      action: 'engine',
+      style: 'key',
+      at: at(150, 905, -0.007),
+      label: 'MAGNETOS',
+      labelAt: [0, 0.028, -0.002],
+      labelHeight: 0.0045,
+    },
+    {
+      action: 'brake',
+      style: 'tee',
+      at: at(470, 948, -0.007),
+      label: 'PARK BRAKE',
+      labelAt: [0, 0.02, -0.002],
+      labelHeight: 0.0045,
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
 }

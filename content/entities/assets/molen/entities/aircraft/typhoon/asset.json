@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:ec4fc1d89757bad726d578266efc6bde0a6db736a84b2c99e2fcb1eee7d3bb41",
-  "sourceHash": "sha256:94de000c6b54354ba8afe0dbd7fb87c15e4985f1fbb00d387395e99b495d746f",
+  "hash": "sha256:a334fee20d4ca205819cf19610ecca32a07bfaad8068eddc7ac00f13ebf6d762",
+  "sourceHash": "sha256:517ecedf3f8b24a84b84bbbd7756d4881ec5012885f57f7a013eba0c27137819",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 23369,
-    "vertices": 22648,
-    "meshes": 110,
-    "primitives": 110,
-    "materials": 30,
+    "triangles": 30662,
+    "vertices": 29382,
+    "meshes": 130,
+    "primitives": 130,
+    "materials": 36,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 1043252
+    "sizeBytes": 1218884
   },
   "nodes": [
     {
@@ -51,7 +51,7 @@
     },
     {
       "name": "Typhoon-airframe-Typhoon-seal",
-      "triangles": 6332
+      "triangles": 6700
     },
     {
       "name": "Typhoon-airframe-Typhoon-glass",
@@ -64,6 +64,14 @@
     {
       "name": "Typhoon-airframe-Typhoon-duct",
       "triangles": 50
+    },
+    {
+      "name": "Typhoon-airframe-Typhoon-gray-lining",
+      "triangles": 152
+    },
+    {
+      "name": "Typhoon-airframe-Typhoon-alloy-lining",
+      "triangles": 17
     },
     {
       "name": "Typhoon-canard--1-Typhoon-gray",
@@ -162,16 +170,20 @@
       "triangles": 12
     },
     {
+      "name": "Typhoon-cabin-Typhoon-panel",
+      "triangles": 852
+    },
+    {
       "name": "Typhoon-cabin-Typhoon-key",
-      "triangles": 388
+      "triangles": 366
+    },
+    {
+      "name": "Typhoon-cabin-Typhoon-bezel",
+      "triangles": 12
     },
     {
       "name": "Typhoon-cabin-Typhoon-instrument-black",
-      "triangles": 1148
-    },
-    {
-      "name": "Typhoon-cabin-Typhoon-panel",
-      "triangles": 58
+      "triangles": 1028
     },
     {
       "name": "Typhoon-cabin-Typhoon-display-display-print",
@@ -540,18 +552,6 @@
     {
       "name": "Typhoon-vertical-speed-3-1-Typhoon-display",
       "triangles": 12
-    },
-    {
-      "name": "Typhoon-vertical-speed-3-2-Typhoon-display",
-      "triangles": 12
-    },
-    {
-      "name": "Typhoon-vertical-speed-3-3-Typhoon-display",
-      "triangles": 12
-    },
-    {
-      "name": "Typhoon-vertical-speed-3-4-Typhoon-display",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -606,9 +606,28 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Typhoon-exhaust",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Typhoon-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
@@ -622,7 +641,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Typhoon-instrument-black",
+      "name": "Typhoon-bezel",
       "slots": [
         "baseColor"
       ],
@@ -630,14 +649,11 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Typhoon-panel-satin",
+      "name": "Typhoon-instrument-black",
       "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
+        "baseColor"
       ],
-      "doubleSided": true,
+      "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
@@ -753,20 +769,9 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "turbine-blades",
+      "name": "flight-control-tread",
       "slots": [
         "baseColor"
-      ],
-      "doubleSided": true,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-panel-satin",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -794,16 +799,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend-technical-font",
-      "slots": [
-        "baseColor",
-        "emissive"
-      ],
-      "doubleSided": false,
-      "alphaMode": "BLEND"
-    },
-    {
-      "name": "flight-control-legend",
+      "name": "flight-control-black",
       "slots": [
         "baseColor"
       ],
@@ -816,6 +812,55 @@
         "baseColor"
       ],
       "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-steel",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-knob",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-lamp",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-caution",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "turbine-blades",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
       "alphaMode": "OPAQUE"
     }
   ],
@@ -883,28 +928,28 @@
         "node": "Typhoon-airframe-Typhoon-seal",
         "points": [
           -5.2531,
-          1.4819,
+          1.4815,
           -2.6294,
           -5.2531,
-          1.4819,
+          1.4815,
           6.8481,
           -5.2531,
-          2.9337,
+          3.2398,
           -2.6294,
           -5.2531,
-          2.9337,
+          3.2398,
           6.8481,
           5.2531,
-          1.4819,
+          1.4815,
           -2.6294,
           5.2531,
-          1.4819,
+          1.4815,
           6.8481,
           5.2531,
-          2.9337,
+          3.2398,
           -2.6294,
           5.2531,
-          2.9337,
+          3.2398,
           6.8481
         ]
       },
@@ -993,6 +1038,64 @@
           0.89,
           1.55,
           4.224
+        ]
+      },
+      {
+        "node": "Typhoon-airframe-Typhoon-gray-lining",
+        "points": [
+          -0.6389,
+          1.6346,
+          2.8526,
+          -0.6389,
+          1.6346,
+          6.2049,
+          -0.6389,
+          3.2451,
+          2.8526,
+          -0.6389,
+          3.2451,
+          6.2049,
+          0.6389,
+          1.6346,
+          2.8526,
+          0.6389,
+          1.6346,
+          6.2049,
+          0.6389,
+          3.2451,
+          2.8526,
+          0.6389,
+          3.2451,
+          6.2049
+        ]
+      },
+      {
+        "node": "Typhoon-airframe-Typhoon-alloy-lining",
+        "points": [
+          -0.4618,
+          2.6914,
+          5.5946,
+          -0.4618,
+          2.6914,
+          5.6004,
+          -0.4618,
+          2.6965,
+          5.5946,
+          -0.4618,
+          2.6965,
+          5.6004,
+          0.4612,
+          2.6914,
+          5.5946,
+          0.4612,
+          2.6914,
+          5.6004,
+          0.4612,
+          2.6965,
+          5.5946,
+          0.4612,
+          2.6965,
+          5.6004
         ]
       },
       {
@@ -1692,13 +1795,42 @@
         ]
       },
       {
+        "node": "Typhoon-cabin-Typhoon-panel",
+        "points": [
+          -0.5887,
+          1.67,
+          3.73,
+          -0.5887,
+          1.67,
+          5.835,
+          -0.5887,
+          2.8643,
+          3.73,
+          -0.5887,
+          2.8643,
+          5.835,
+          0.5886,
+          1.67,
+          3.73,
+          0.5886,
+          1.67,
+          5.835,
+          0.5886,
+          2.8643,
+          3.73,
+          0.5886,
+          2.8643,
+          5.835
+        ]
+      },
+      {
         "node": "Typhoon-cabin-Typhoon-key",
         "points": [
           -0.44,
-          2.11,
+          2.287,
           5.5185,
           -0.44,
-          2.11,
+          2.287,
           5.81,
           -0.44,
           2.86,
@@ -1707,10 +1839,10 @@
           2.86,
           5.81,
           0.44,
-          2.11,
+          2.287,
           5.5185,
           0.44,
-          2.11,
+          2.287,
           5.81,
           0.44,
           2.86,
@@ -1721,61 +1853,61 @@
         ]
       },
       {
-        "node": "Typhoon-cabin-Typhoon-instrument-black",
+        "node": "Typhoon-cabin-Typhoon-bezel",
         "points": [
-          -0.4469,
-          2.1031,
-          5.507,
-          -0.4469,
-          2.1031,
-          5.554,
-          -0.4469,
-          2.8669,
-          5.507,
-          -0.4469,
-          2.8669,
-          5.554,
-          0.4469,
-          2.1031,
-          5.507,
-          0.4469,
-          2.1031,
-          5.554,
-          0.4469,
-          2.8669,
-          5.507,
-          0.4469,
-          2.8669,
-          5.554
+          -0.325,
+          2.374,
+          5.541,
+          -0.325,
+          2.374,
+          5.541,
+          -0.325,
+          2.685,
+          5.541,
+          -0.325,
+          2.685,
+          5.541,
+          0.325,
+          2.374,
+          5.541,
+          0.325,
+          2.374,
+          5.541,
+          0.325,
+          2.685,
+          5.541,
+          0.325,
+          2.685,
+          5.541
         ]
       },
       {
-        "node": "Typhoon-cabin-Typhoon-panel",
+        "node": "Typhoon-cabin-Typhoon-instrument-black",
         "points": [
-          -0.5,
-          1.67,
-          3.73,
-          -0.5,
-          1.67,
-          5.82,
-          -0.5,
-          2.676,
-          3.73,
-          -0.5,
-          2.676,
-          5.82,
-          0.5,
-          1.67,
-          3.73,
-          0.5,
-          1.67,
-          5.82,
-          0.5,
-          2.676,
-          3.73,
-          0.5,
-          2.676,
-          5.82
+          -0.3735,
+          2.181,
+          4.85,
+          -0.3735,
+          2.181,
+          5.541,
+          -0.3735,
+          2.839,
+          4.85,
+          -0.3735,
+          2.839,
+          5.541,
+          0.365,
+          2.181,
+          4.85,
+          0.365,
+          2.181,
+          5.541,
+          0.365,
+          2.839,
+          4.85,
+          0.365,
+          2.839,
+          5.541
         ]
       },
       {
@@ -4443,93 +4575,6 @@
           5.5216,
           -0.0077,
           2.4129,
-          5.5224
-        ]
-      },
-      {
-        "node": "Typhoon-vertical-speed-3-2-Typhoon-display",
-        "points": [
-          -0.0083,
-          2.4051,
-          5.5216,
-          -0.0083,
-          2.4051,
-          5.5224,
-          -0.0083,
-          2.4084,
-          5.5216,
-          -0.0083,
-          2.4084,
-          5.5224,
-          -0.0077,
-          2.4051,
-          5.5216,
-          -0.0077,
-          2.4051,
-          5.5224,
-          -0.0077,
-          2.4084,
-          5.5216,
-          -0.0077,
-          2.4084,
-          5.5224
-        ]
-      },
-      {
-        "node": "Typhoon-vertical-speed-3-3-Typhoon-display",
-        "points": [
-          -0.0076,
-          2.4042,
-          5.5216,
-          -0.0076,
-          2.4042,
-          5.5224,
-          -0.0076,
-          2.4048,
-          5.5216,
-          -0.0076,
-          2.4048,
-          5.5224,
-          -0.0043,
-          2.4042,
-          5.5216,
-          -0.0043,
-          2.4042,
-          5.5224,
-          -0.0043,
-          2.4048,
-          5.5216,
-          -0.0043,
-          2.4048,
-          5.5224
-        ]
-      },
-      {
-        "node": "Typhoon-vertical-speed-3-4-Typhoon-display",
-        "points": [
-          -0.0042,
-          2.4051,
-          5.5216,
-          -0.0042,
-          2.4051,
-          5.5224,
-          -0.0042,
-          2.4084,
-          5.5216,
-          -0.0042,
-          2.4084,
-          5.5224,
-          -0.0035,
-          2.4051,
-          5.5216,
-          -0.0035,
-          2.4051,
-          5.5224,
-          -0.0035,
-          2.4084,
-          5.5216,
-          -0.0035,
-          2.4084,
           5.5224
         ]
       }

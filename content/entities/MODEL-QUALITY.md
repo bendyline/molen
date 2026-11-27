@@ -6,6 +6,240 @@ people, animals and the animated diorama structures. It complements the
 this page records what a whole-fleet review found, the rules that came out of it, and the
 tools that make the next review fast.
 
+## The cockpit and cabin review of 2026-11-26
+
+The owner sat in the cockpits and cars and listed five faults. Then every cockpit and every road
+car dashboard was reviewed from the seat against licensed reference photographs.
+
+1. **Fit.** Cockpits did not meet their frames: painted skin showed beside and under panels.
+2. **Overlap.** Panels stood in front of other panels.
+3. **Popped out.** Controls stood proud of their panels.
+4. **Chunky.** Detail was coarse: six-sided rods, box knobs.
+5. **Re-use.** Parts repeated across types: the same pedals, vents, wheels and switch strip.
+
+| Fault | Where | Cause | Fix |
+| --- | --- | --- | --- |
+| A strip of generic switches in front of the panel | About 35 of 54 cockpits | `cockpit-controls.mjs` bolted ENGINE / PWR ALL / SPEEDBRAKE / GEAR / FLAPS / BRAKE switches onto any cockpit that did not model those controls. | **Control stations:** each builder places each missing control where the real aircraft has it, as its own part. Examples: a fighter's gear handle on the left vertical panel, a Cessna's flap switch, a 737's start levers. "All throttles" on twins is now the set of per-engine levers rather than a switch. |
+| Rudder pedals read as floor vents | Nearly every aircraft | Every pedal was a flat box crossed by five dark bars. | Five pedal families from `cockpit-parts.mjs`: fighter, light aircraft, airliner, helicopter, warbird. Each has a lean, a tread, guards and an arm. The console's own pedals lost their bars too. |
+| White skin around the panel and in the footwell | Fighters, light aircraft, transports | Liners stopped short of the panel, and the double-sided exterior paint showed through. | `cockpit-fit.mjs` slices the model's own skin at a station and closes the gap: a bulkhead behind and beside the panel, and liners to the sill. |
+| Chunky, repeated controls | Sticks, throttles, switches across the fleet | Six-sided rods, beveled boxes and one switch shape for everything. | The parts library adds stick grips, yokes, throttle and quadrant knobs, handles and switches, with 12–24-sided round forms and cheap chamfers on switch-sized parts. |
+| One vent, one wheel in every car | All 125 road vehicles | One `vent()` (a silver box of five bars) and one wheel (a ring, a box hub, metal rods). | `cabin-parts.mjs` has eight vent families, six wheel families, hung or floor-hinged pedals, four gear selectors and four knob styles, chosen by profile layout or by explicit profile fields. Wheels now rake like real columns. |
+| Body colour inside the roof and A pillars | All road vehicles | Every car material is double-sided, so the inside of the painted shell showed from the seat. | `addCabinLiner`: painted triangles above the belt inside the cabin are copied, faced in and set 8 mm inboard as a headliner and pillar trim. The profile's `headliner` field overrides its colour. |
+| White canopy bows and sills | Fighters, helicopters, light aircraft | The exterior paint of frames the crew sees directly, with no glass between. | `lineSeatFrames` (in `cockpit-fit.mjs`) lines those triangles in dark cockpit trim. The cockpit finisher runs it from every crew eye, including a tandem rear seat. Rules:<ul><li>A triangle is lined only if the eye can see it: rays are tested against every opaque face in reach, the cockpit's own liners included.</li><li>Seals within 6 mm, a pane set into its frame and culled back faces do not count as hiding it.</li><li>Dark parts, interior nodes and rotors are skipped.</li><li>Each lining is set toward the eye that sees it and parented with its frame, so it opens with the canopy.</li></ul>It costs about 500–1,300 triangles per aircraft. |
+| Car cabins over their triangle budgets | Most road vehicles, after the new parts | The first parts were too fine for a traffic model: about 920 triangles for a slat vent, 2,600 for a turbine vent, 3,000 for a wheel, 820 for a pedal. The median car grew 9,000 triangles and 160 tests failed their 26,000–32,000 caps. | <ul><li>Each vent bezel is one chamfered sweep.</li><li>Vanes and fins are plain boxes.</li><li>Wheel rims use 8×40 sides; the old rim used 5×24.</li><li>Pedals, gauge ticks and speaker bars are boxes.</li><li>Liner slivers under 2 cm² are dropped.</li></ul>Every car is back under its cap; a vent now costs 160–630 triangles. |
+| Stack switchgear stood proud | Every road vehicle with a centre stack | The stack plate's face sat 1 cm behind the fascia line, while knobs, switch rows and vents were drawn 2.5–3.5 cm in front of it. From the seat at an angle they floated 2–4 cm off the stack. | The plate's face meets the backs of the parts it carries; knobs and switches are based on it. A climate bar carries them where a layout has no stack. |
+| Shapes the profile could not express | Mustang, Colorado, F-150, Sierra, Silverado, Tundra, Ford GT, i3, Seagull | No profile field for a joined driver-and-centre display, vents beside the screen in one bezel, a toggle bank, or a smooth shelf. | <ul><li>`panel: 'joined'`: one gloss-black panel carries both displays.</li><li>`centerVents: 'flank'`: tall vents beside the screen in a dark bezel edged in bright trim.</li><li>`centerVents: 'none'`: no vents on the stack.</li><li>The GT's eight-toggle bank and red start button.</li><li>The i3's and Seagull's swept shelf, straight or waved, replaces the stepped blocks.</li></ul> |
+| Digital clusters lost the speed needle | 16 cars given `cluster: digital` | The authored `speed-needle` binding had no node to drive. | A stated digital cluster draws a virtual dial on its screen, with a live needle. |
+| Layout faults in car dashboards | Most road vehicles | Several defects in the dashboard builder: <ul><li>right-hand-drive cabins put the glove box and grab handle on the driver's side;</li><li>centre vents straddled their stack plate or cut into an embedded screen;</li><li>twin dials overlapped at their bezels;</li><li>demister slots were bright;</li><li>wipers parked a fixed run back in z, which put them halfway up upright windscreens;</li><li>floating screens stood on a trim slab;</li><li>push-button selectors lay on the tunnel floor;</li><li>auxiliary gauges stood on posts.</li></ul> | <ul><li>Passenger furniture mirrors to the side opposite the driver.</li><li>The stack plate is sized to frame its vents.</li><li>Dials are spaced by bezel.</li><li>Demister slots are dark.</li><li>Wipers park 3 cm up the glass.</li><li>Floating screens sit on a neck.</li><li>Selectors are a P/R/N/D column on the stack.</li><li>Gauge pods are moulded humps.</li></ul> |
+
+The 54 cockpits were reworked by aircraft family against Commons and US-government photographs.
+Each was checked from every seat, by an exterior poke scan, and by a controls check: every
+supported control is modelled, none is left to the switch-strip fallback, and every control can
+be reached from the eye. Triangle growth was held to the baseline plus 12,000 per aircraft. The
+vehicle console now lifts each aircraft's own stick, pedals, throttle, gear, flaps, engine master
+and parking brake: across the fleet none falls back to the console's generic kit. The interactions
+test fails any aircraft that brings back the bolted switch module. The cockpit finisher drops
+triangles under 0.1 mm across: the import's quantization collapses them, which leaves them with
+no UV frame.
+
+All 125 road vehicles were reviewed against their cited interior photograph, or a newly found
+licensed one: 17 references were added to [the ledger](source/INTERIORS.md). The reviewers
+proposed profile fields: `vents`, `wheel`, `shifter`, `knobs`, `dash`, `stack`, `band`,
+`headliner`, `cluster`, `screen`, `dials` and `centerVents`. They also listed builder faults;
+the recurring ones were fixed in code (see the table above). On 2026-11-27 the 15 cars still
+without a photo were searched again. Six were then matched; for the Model Y, R1T and View the
+photo shows a sister model with the same dashboard. Their profiles and the builder were
+corrected:
+- the Polo's screen is joined to its cluster;
+- the Tesla's wood strip is a band of its own;
+- the Transit's tall vents keep their slats (as do the CTS's chrome ones);
+- the Sprinter's round vents flank its screen.
+
+The other nine have no licensed photo of their generation. They were compared with public press
+imagery instead (GM, Fiat, Ford, Geely, Honda, Renault and Toyota media, and a Revista Carro road
+test), studied only. All nine were corrected:
+- the Traverse's 17.7 in screen and vent rail;
+- the Explorer's free-standing screen;
+- the Kwid's touchscreen in place of the radio;
+- the Element's large centre speedometer;
+- the xB's single speedometer pod;
+- stack colours and vent families on the Onix, Trax, Strada and Monjaro.
+
+The ledger notes each source.
+
+A final per-model pass, also on 2026-11-27, compared every real car's finished dashboard with its
+own photo. Of 108 cars, 55 were fixed and 35 already matched. All 18 that needed a builder change got one. The last was the Saab 9-3's stack: it is now turned
+toward the driver, with a silver outline round one wide grid vent and the radio
+(`stackAngle`, `stackFrame`, `railWidth`). The most common fault was a centre
+stack drawn in the seat-trim colour where the car has a black one. Next came panoramic Hyundai
+and Kia displays drawn as two screens.
+
+Those builder changes added:
+- `dashTop`, `bandHeight`, `clusterHood`, `pod`, `screenBezel`, `selectorSide` and `stackWidth`;
+- the auto-rickshaw's painted dash and headset speedometer pod; the MDX's vents at its lower
+  screen, the Fiat 500's horizontal vent pair, the GT's toggle
+  bank over its radio, the Jimny's twin dial hoods, black dial faces on coloured dashboards, and
+  a passenger grab handle in rugged layouts.
+
+The fleet's own designs, boats, transit and two-wheelers were compared with licensed photos of
+their class, or with their cited photo. Results:
+- 23 fixed, among them sloped merchant-ship consoles, a wooden fishing-boat wheel, tug azimuth
+  heads, a speedboat chartplotter, the bus wheel's rake, and a snowmobile's dash and thumb
+  throttle;
+- the Class A coaches' keypad moved to the driver's side;
+- the car ferry also gained its window-head repeater dials (rudder angle, engine revolutions,
+  speed), as in the Seikan ferry wheelhouse photographs, and a white deckhead where its green
+  roof paint had shown overhead.
+
+Bicycles, skateboards, skis, the snowboard and the kick scooter have no dashboard. The generic
+Bendy cars, the fleet's own designs, have no real counterpart, so they were judged for
+plausibility. After the
+last builder change, every dashboard was rendered again from the driver's seat and at the centre
+stack, and checked sheet by sheet.
+
+Rules that came out of it:
+
+- **Every control has a place.** A control the simulation supports is modelled where the real
+  type has it, as a part of that type. A generic switch strip is a fallback, never a design.
+- **From the seat, nothing is exterior paint.** Bulkheads, liners and frame linings close every
+  view of the skin's inside, including canopy bows and car pillars.
+- **Round things are round.** Near controls use 12–24 sides. Small switches stay cheap, with
+  one chamfer. A row of bars on a box reads as a vent, so don't draw pedals or treads that way.
+- **A car is a traffic model too.** Car parts repeat in every car on the street, so count their
+  triangles. Use one swept bezel, not four rounded bars, and plain boxes for anything thinner
+  than a few millimetres.
+- **Variety comes from the type, not from noise.** Pick the real family (a Hornet grip, a
+  Cessna ram's horn, a Boeing thrust lever, turbine vents in a TT) before adding detail.
+
+Tools (local, `.artifacts/cockpit-pass/`):
+
+- `check-controls.mjs`: the interactions test for one aircraft. Its triangle count includes the
+  runtime's propeller-blur discs.
+- `console-sheet.mjs`: each aircraft's console parts. A red corner marks the console's own kit.
+- `car-cabin.mjs` and `shot.mjs`: driver, dash and centre views of any road vehicle, bus or helm.
+- `parts-sheet.mjs` and `car-parts-sheet.mjs`: every part style on one board.
+- `apply-car-review.mjs`: merges reviewer proposals into the profiles and the reference ledger.
+- `car-cost.mjs` and `car-part-tris.mjs`: a car's triangles by source line, and each part style's
+  cost.
+- `lining-count.mjs`, `lining-tint.mjs` and `lining-rays.mjs`: what the frame lining adds, a magenta
+  render of it, and the bare frame faces a fan of rays from a seat still finds.
+
+Left for later:
+
+- A follow-up on 2026-11-27 checked against licensed photographs the cockpits first laid out
+  from manuals or memory (Commons had rate-limited the review), and fixed what differed. Fixes:
+  - OV-10A: flight group, caution grid, pedestal and parking brake.
+  - Typhoon: panel grey.
+  - F-16B: the U grab handle, and a black auxiliary console.
+  - Bell 206B and 407: the fuel valve moved from the overhead to the panel.
+  - MV-22B: engine control levers on the overhead with the fire panel; gear, flaps and parking
+    brake at the foot of the pedestal.
+  - H125: light grey cabin.
+  - OH-6 and Bell 206: panel hoods.
+  - R44: carpet and seat greys.
+  - G650ER: the PlaneView II overhead, glareshield, gear handle, fuel levers, pedestal and yokes.
+  - Beechcraft: the molded yoke and white gear knob.
+
+  The [ledger](source/interior-references.json) now cites each photo used. Where Commons had no
+  licensed photo, other public imagery was studied, never shipped:
+  - Rafale C: a Flickr photo and The Aviationist. Stick and throttle blocks raised, near-black tub,
+    bare combiner.
+  - H145: a CC Flickr photo and Vertical Magazine. Broad Helionix visor.
+  - G36 and G58: Textron press photos, FLYING and Plane & Pilot. Grey molded yokes, T/P/M quadrant,
+    climate panel, glareshield lip, ivory sidewalls.
+
+  A last pass compared the four remaining areas with real photographs:
+  - **AV-8B:** left display strip, master-arm plate, armament panel and black lower-left panel,
+    from Spanish Navy AV-8B+ photos; the nozzle lever now sits inboard of the throttle.
+  - **Rafale C:** the housing under the head-level display, and the lower strips with jettison,
+    hook, the red gear knob and the engine levers.
+  - **H145:** the moulded overhead with breaker blocks; engine main switches as yellow guarded
+    levers; the rotor brake on the floor; a light grey cabin lining with dark posts, as in the
+    UH-72 and H145M photos.
+  - **G650:** the full aft pedestal, with the fuel control toggles (the red L/R handles are the
+    fire handles), flap gate, speed brake, RAT, park brake and trim.
+
+  The AV-8B consoles, pedestal and throttle and nozzle quadrant were then laid out from the public
+  NATOPS flight manual's cockpit foldout (FO-2) and quadrant figure. The fuel shutoff handle
+  moved to the left wall and the parking brake outboard of the throttle. The Rafale's parking
+  brake is a grooved grip inboard of the canopy switch, from its manual and Rafale B photos. No
+  photograph of the AV-8B's consoles was found, so those follow the manual's drawings. A Harrier
+  II GR9 cockpit photograph (MOD, OGL) shows both consoles' forward ends and matches them; the
+  right sill's TAKEOFF checklist plate, the LANDING plate's seven checks and a white ring fitting
+  on each wall were taken from it. Aft of those stations the photograph shows only the pilot's
+  legs and the canopy frame, so the aft console panels rest on the manual's foldout alone. The
+  H145 pedestal's generic radio stack became the ELT strip and twin audio panels in the
+  Heli-Expo 2019 D3 photograph.
+
+  A final side-by-side sweep set each current render against its reference photographs: all 54
+  aircraft (from the photographers' centreline viewpoint, fighters from the eye), 125 road
+  vehicles, 8 boats and 2 transit cabs. What it changed:
+  - **OV-10:** square instrument cases round every front dial, a turn-and-slip above the VSI and
+    the test-switch strip over the ADI (CHECO fig. 10: the real panel reads full).
+  - **Bell 407:** the wine-red paint showed inside the posts because a colour that dark passes
+    for trim in the frame lining; `material.userData.paint` now marks it as paint to line.
+  - **A320neo:** the panel moved from grey toward the Airbus blue-grey of its reference.
+  - **Fighters:** displays that showed only an amber INOP (F-14D, F-15C, F-16B, F-22A, F-35A,
+    F/A-18C) now show their green format, blank (`mfd-page.mjs`: radar scope frame, threat or
+    tactical rings, stores planform, navigation rose). No contact, threat, range or heading is
+    drawn, so the rule that unsimulated quantities are never invented still holds. Small "NAV
+    INOP" and "SENSORS INOP" sub-labels on otherwise live displays stay.
+  - **Golf GTI:** the stack trim darkened to the Mk7's gloss black.
+  - **Bell 412EP:** the light grey panel face (from the copyright N7506M photograph) became
+    charcoal: both open photographs, the cited INAER EC-IPM and an AB-412 Griffon, show it dark.
+  - **Cars at full size:** every road vehicle's driver, dash and stack renders were checked
+    at full resolution against its photograph (one verdict per car in
+    `.artifacts/cockpit-pass/sweep/car-verdicts/`). The clear mismatches were fixed through
+    profile fields: Acura TL parchment cabin, Chrysler 300 dark framed stack, Fiat 500 tall
+    body-colour fascia, Honda N-Box and Wuling black bezels, Hyundai Casper pale cabin, Camry
+    joined display band, Tacoma dark framed stack, Countryman black switch stack (the Mini
+    switch stack now takes `stack`), Solstice and Smart light dials, Smart dark stack,
+    Sportage tall outer vents, and the Kia Soul's dash-corner speaker pods (new `cornerPods`).
+    Also: i3 grey dash top, Corvette stack turned to the driver. Three recurring notes got
+    fields: `lowerDash` (a light lower fascia under a dark top: Genesis, Odyssey, Palisade,
+    Tucson, Explorer), `railWidth` over 0.5 m running across the fascia (Genesis, Palisade,
+    Tucson, Grand Cherokee) and `grabHandle: false` (Bronco, Hummer EV). The other minor notes
+    stay in the verdicts.
+  - **Aircraft at full size:** every aircraft's compare and seat renders were checked at full
+    resolution against all its reference images (verdicts in
+    `.artifacts/cockpit-pass/sweep/aircraft-verdicts/`). Fixed: the A220 panel to its light grey,
+    the H125 board run on under the hood's left third (clock, radio head, ELT plate), the P-51's
+    coaming checklist card removed (it hid the K-14 sight), the Twin Otter panel to near-black.
+    Two reported faults were capture artefacts: G1000 and King Air speed-tape rows hide by
+    per-row visibility bindings the review harness does not apply, and transport overheads sit
+    above the seats, out of the forward views.
+  - **Aircraft minor notes:** 23 aircraft then had their verdicts' minor differences fixed in
+    their own builders (each change recorded as `applied` in its verdict): glareshields and hoods
+    (F-22A, A400M, Q400, CH-47F, OH-6), panel colours (F-15C, F/A-18C, MiG-29A, An-124, PC-6,
+    PC-12 overhead, C-17A liner, airliner), missing parts (KAP 140 and compass in the 172S/182T,
+    Caravan trim wheel, Beaver MP/RPM dials, F-15C jettison controls, CH-47F fire handles, Q400
+    fuel handles, 737 and airliner trim wheels, C-5M throttle box, 412EP radio heads) and
+    proportions (MV-22B bezels, Typhoon rim and bezels, C-130J tiller). Left: window posts and
+    glareshield heights set in the shared transport kit.
+  - **Window posts:** the shared transport kit's window members were smooth-shaded boxes that
+    read as round tubes from the seats (737, CJ4, Q400, E175, A320neo, A220, G650ER). They are now
+    wider, shallower and flat-faced (creased normals).
+  - **Car minor notes:** 35 more cars took documented profile fields sampled from their photos
+    (lower dashes, vent rails, band heights and colours, stack frames and colours, screen sizes);
+    each is recorded as `applied` in its verdict. The rest need a builder feature the profiles do
+    not have (vents above a screen, twin dial cowls, a stack-less console, wave bands) or are
+    generic class designs.
+  Checked and left alone: AW139 and UH-60M display sizes (real 8x10 and 8x6 inch). A further
+  Openverse search for AV-8B consoles found only exteriors and a display cockpit seen from outside.
+
+  The Beechcraft builders model a 2015 G36 (E-4063–4080) and a 2016 G58 (TH-2453 onward). Their
+  factory G1000 panel is the layout modelled and photographed. The 2022+ optimized NXi panel
+  (autopilot above the audio panel, a GI 275 standby) belongs to later serials, not these
+  variants.
+- The automatic flaps of the F-22, F-35, Gripen, Rafale and Typhoon have toggles only because the
+  simulation has a flaps control.
+- The console's throttle now prefers the common power control's own levers. Before, a
+  per-engine lever nearer the eye (a condition lever, an overhead engine lever) could stand in.
+  With that fixed, the MV-22's engine control levers went back to the forward overhead console.
+- `cockpit-controls.mjs` keeps the switch module as a fallback for a new aircraft, placed by
+  `frame.controlModule`. The 38 old per-aircraft placements were removed.
+- `interior-review.json` still pins October hashes; it was not re-stamped.
+
 ## The aircraft fidelity review of 2026-11-25
 
 The owner flew the fleet in the World Explorer and found faults no earlier review had caught.

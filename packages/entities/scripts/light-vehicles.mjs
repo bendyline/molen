@@ -1090,6 +1090,48 @@ function buildElectricMoped(k) {
   void by;
 }
 
+let lcdSegment;
+/**
+ * A battery scooter's landscape LCD (Yadea/NIU class), face toward -Z, the rider's left +X: a lit
+ * battery gauge and ready lamp on the left, the speed digits' segments in the middle (unlit
+ * segments, not a frozen reading), trip and range lines on the right.
+ */
+function batteryScooterDisplay(k, p) {
+  const w = 0.15,
+    h = 0.06,
+    front = -0.007;
+  const mark = (size, x, y, material) => k.box([...size, 0.001], [x, y, front], material);
+  k.box([w + 0.016, h + 0.016, 0.023], [0, 0, 0.01], p.dark);
+  k.box([w, h, 0.004], [0, 0, -0.004], p.screen);
+  // Battery: an outline with its cap, four lit bars, and the ready lamp above.
+  const bx = 0.05;
+  for (const side of [-1, 1]) {
+    mark([0.002, 0.036], bx + side * 0.009, 0, k.ivory);
+    mark([0.018, 0.002], bx, side * 0.018, k.ivory);
+  }
+  mark([0.008, 0.003], bx, 0.0205, k.ivory);
+  for (let i = 0; i < 4; i++) mark([0.013, 0.006], bx, -0.0125 + i * 0.008, k.green);
+  mark([0.008, 0.004], bx - 0.024, 0.022, k.green);
+  // Two seven-segment digits, all segments drawn as a segment LCD shows them unlit.
+  lcdSegment ??= new T.MeshStandardMaterial({
+    name: 'lcd-segment',
+    color: '#5b7880',
+    roughness: 0.5,
+  });
+  const dw = 0.022,
+    dh = 0.04,
+    t = 0.0035;
+  for (const cx of [0.015, -0.015]) {
+    for (const y of [dh / 2 - t / 2, 0, -dh / 2 + t / 2]) mark([dw - 2 * t, t], cx, y, lcdSegment);
+    for (const sx of [-1, 1])
+      for (const sy of [-1, 1])
+        mark([t, dh / 2 - t], cx + sx * (dw / 2 - t / 2), (sy * dh) / 4, lcdSegment);
+  }
+  // Unit, trip and range readouts.
+  mark([0.012, 0.002], -0.036, -0.014, k.ivory);
+  for (const y of [0.012, 0.0, -0.022]) mark([0.024, 0.0025], -0.055, y, k.ivory);
+}
+
 /** Close detail for the mopeds: levers and switch housings, mirrors, gauges, indicators, badge. */
 function mopedDetail(root, s) {
   const G = s.cycleFrame;
@@ -1126,9 +1168,7 @@ function mopedDetail(root, s) {
     }
   }
   if (electric)
-    tilted(controls, [0, gy + 0.052, gz + 0.05], 0.85, (_k, p) =>
-      p.display(0, 0, 0, 0.13, 0.05, 'driver'),
-    );
+    tilted(controls, [0, gy + 0.052, gz + 0.05], 0.85, (k, p) => batteryScooterDisplay(k, p));
   else
     tilted(controls, [0, gy + 0.05, gz + 0.04], 0.8, (k, p) => {
       p.gauge(0, 0, 0, 0.05, k.ivory);
@@ -1274,7 +1314,7 @@ function buildAutoRickshaw(k) {
     'leg-skirt',
     { e: 3 },
   );
-  // Dash fascia behind the cowl's top, facing the driver.
+  // Dash fascia behind the cowl's top, facing the driver, painted like the body inside.
   k.shell(
     body,
     [
@@ -1282,7 +1322,7 @@ function buildAutoRickshaw(k) {
       [0.76, 0.4, 0.88, 1.02],
       [0.72, 0.36, 0.9, 0.99],
     ],
-    dark,
+    paint,
     'dash',
     { e: 3.5 },
   );
@@ -1628,8 +1668,14 @@ function autoRickshawDetail(root, s) {
     m.rotation.x = Math.PI / 2;
     m.scale.set(1, 1, 0.7);
   }
-  // Speedometer in the dash and the fare meter on its left.
-  tilted(d, [0.0, 0.98, 0.75], 0.5, (k, p) => p.gauge(0, 0, 0, 0.055, k.ivory));
+  // The speedometer rides in a pod on the handlebar headset, between the grips, turning with
+  // the bars; the fare meter stands on the dash to its left.
+  controls.add(
+    new T.CylinderGeometry(0.05, 0.042, 0.05, 16).rotateX(Math.PI / 2 - 0.9),
+    controls.dark,
+    [0, gy + 0.03, gz + 0.06],
+  );
+  tilted(controls, [0, gy + 0.045, gz + 0.045], 0.9, (k, p) => p.gauge(0, 0, 0, 0.04, k.ivory));
   d.box([0.13, 0.09, 0.08], [0.3, 1.09, 0.72], d.dark);
   d.box([0.09, 0.03, 0.004], [0.3, 1.1, 0.678], d.red);
   // Indicators at the cowl's shoulders and the tail; plate lettering front and rear.

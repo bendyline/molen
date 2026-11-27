@@ -2,6 +2,8 @@
  * Main axle datum; +Z forward, +X pilot left. See reference-review.json.
  */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead } from './cockpit-fit.mjs';
+import { leverGeometry, pedalGeometry, stickGeometry } from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -16,6 +18,7 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+import { mfdPage } from './mfd-page.mjs';
 import { petalNozzle } from './petal-nozzle.mjs';
 export const fa18Frame = () => ({
   heli: false,
@@ -720,7 +723,12 @@ export function buildFA18C(s) {
       d.box([0.008, 0.035, 0.09], [side * 0.455, 1.88, 8.8 - j * 0.13], dark);
   }
   d.finish();
-  const interior = fa18Cockpit(root, { paint, dark, metal, glass });
+  const { stations: controlStations, ...interior } = fa18Cockpit(root, {
+    paint,
+    dark,
+    metal,
+    glass,
+  });
   Object.assign(interior.derived, {
     pitchDeflection: { op: 'multiply', args: ['pitchInput', 0.3] },
     rollDeflection: { op: 'multiply', args: ['rollInput', 0.13] },
@@ -730,7 +738,7 @@ export function buildFA18C(s) {
   cleanGeometry(root);
   return {
     root,
-    frame: fa18Frame(),
+    frame: { ...fa18Frame(), controlStations },
     enginePoints: [
       { id: 'engine-1', position: [ENGINE_X, 2.1, -4.9] },
       { id: 'engine-2', position: [-ENGINE_X, 2.1, -4.9] },
@@ -760,7 +768,10 @@ function fa18Cockpit(root, m) {
     pt = panelTools(d),
     ins = instrumentGeometry(cabin, 'FA18'),
     { bindings, derived, ink, black, amber } = ins;
-  const panel = mat('FA18-panel', '#51595c', { side: T.DoubleSide }),
+  // Light grey below the black upper block (DDIs, UFC, hood), as in the Hornet photos; the UFC
+  // keys and windows keep a near-black face.
+  const panel = mat('FA18-panel', '#80878c', { side: T.DoubleSide }),
+    key = mat('FA18-key', '#3a4144'),
     seat = mat('FA18-seat', '#60634a'),
     belt = mat('FA18-harness', '#919583'),
     green = mat('FA18-display', '#71d488', {
@@ -838,12 +849,22 @@ function fa18Cockpit(root, m) {
     [597, 782],
     [345, 782],
   ];
+  // The face splits at the foot of the DDI row: black above (round the DDIs and UFC up to the
+  // hood), grey below round the MPCD and standby instruments.
+  const split = 580;
   sheet(
     d,
-    edge.map((p) => at(...p)),
+    [[345, split], ...edge.slice(1, 11), [1069, split]].map((p) => at(...p)),
+    black,
+    [0, 0, -1],
+    [rect(499, 451, 87, 62)],
+  );
+  sheet(
+    d,
+    [[1069, split], ...edge.slice(11), [345, split]].map((p) => at(...p)),
     panel,
     [0, 0, -1],
-    [circle(887, 652, 38), rect(499, 451, 87, 62)],
+    [circle(887, 652, 38)],
   );
   outline(
     d,
@@ -896,16 +917,20 @@ function fa18Cockpit(root, m) {
   ins.readout('DDI-altitude', at(535, 510, -0.028), 'feet', 5, 0.008, green, true, true);
   text('GEO FT', 535, 497, 5, green, 'display');
   display(920, 456, 192, 188, 'DDI');
-  text('INOP', 920, 456, 13, amber, 'display');
-  display(710, 722, 181, 175, 'MPCD');
+  // Blank radar format on the right DDI and rings on the RWR scope: neither is simulated.
+  mfdPage(d, at(920, 456, -0.01), 192 * 0.62 * k, 188 * 0.62 * k, 'radar');
+  // The moving-map display is DDI-sized and sits right under the UFC's HUD control strip, filling
+  // the centre between the knees.
+  const mv = 668;
+  display(710, mv, 192, 188, 'MPCD');
   // Simplified true-heading presentation, no invented map or navigation solution.
-  const hg = group(cabin, 'FA18-heading', at(710, 714, -0.029)),
+  const hg = group(cabin, 'FA18-heading', at(710, mv + 2, -0.029)),
     hd = detailKit(hg, hg.name);
   for (let j = 0; j < 72; j++) {
     const a = (j * Math.PI) / 36,
       p = (r) => [-Math.sin(a) * r, Math.cos(a) * r, 0];
-    hd.rod(p(j % 6 ? 0.05 : 0.045), p(0.055), 0.0006, green);
-    if (j % 6 === 0) hd.text(String(j / 2), p(0.035), 0.007, Math.PI, green);
+    hd.rod(p(j % 6 ? 0.051 : 0.046), p(0.056), 0.0006, green);
+    if (j % 6 === 0) hd.text(String(j / 2), p(0.036), 0.0075, Math.PI, green);
   }
   hd.finish();
   bindings.push({
@@ -917,8 +942,8 @@ function fa18Cockpit(root, m) {
     period: Math.PI * 2,
   });
   ins.available('heading', 'trueHeading', hg.name);
-  text('TRUE', 710, 782, 6, green, 'display');
-  d.rod(at(710, 653, -0.03), at(710, 665, -0.03), 0.001, ink);
+  text('TRUE', 710, mv + 64, 6, green, 'display');
+  d.rod(at(710, mv - 59, -0.03), at(710, mv - 47, -0.03), 0.001, ink);
   ins.horizon('standby', at(887, 652, 0.01), 0.068, 0.068, {
     round: true,
     blankBackdrop: true,
@@ -970,17 +995,16 @@ function fa18Cockpit(root, m) {
     },
   );
   pt.gauge(...at(997, 652).slice(0, 2), z - 0.008, 43 * k, black, false);
-  text('RWR', 997, 640, 7);
-  text('INOP', 997, 660, 8, amber, 'display');
+  mfdPage(d, at(997, 652, -0.012), 66 * k, 66 * k, 'tews');
   // UFC keypad, five option fields, scratchpad and physical radio controls.
   box(710, 394, 190, 124);
-  box(674, 351, 64, 18, panel);
+  box(674, 351, 64, 18, key);
   text('----', 674, 351, 8, green, 'display');
   for (let row = 0; row < 4; row++)
     for (let col = 0; col < 3; col++) {
       const u = 653 + col * 21,
         v = 374 + row * 21;
-      box(u, v, 16, 16, panel);
+      box(u, v, 16, 16, key);
       text(
         [
           ['1', '2', '3'],
@@ -994,7 +1018,7 @@ function fa18Cockpit(root, m) {
       );
     }
   for (let j = 0; j < 5; j++) {
-    box(750, 352 + j * 21, 45, 15, panel);
+    box(750, 352 + j * 21, 45, 15, key);
     text('--', 750, 352 + j * 21, 6, green, 'display');
     d.add(
       new T.CylinderGeometry(0.005, 0.006, 0.012, 10).rotateX(Math.PI / 2),
@@ -1011,7 +1035,7 @@ function fa18Cockpit(root, m) {
       );
   box(710, 477, 194, 27);
   for (let j = 0; j < 7; j++) {
-    box(652 + j * 21, 471, 16, 16, panel);
+    box(652 + j * 21, 471, 16, 16, key);
     text(['AP', 'IFF', 'TCN', 'ILS', 'DL', 'BCN', 'ON'][j], 652 + j * 21, 471, 4);
   }
   box(710, 530, 196, 64);
@@ -1050,7 +1074,8 @@ function fa18Cockpit(root, m) {
   ]) {
     box(u, v, w, h);
     text(label, u, v - h * 0.36, 5);
-    text('--', u, v, 8, amber, 'display');
+    // The gear panel carries the landing-gear handle (a control station) instead of a readout.
+    if (label !== 'GEAR') text('--', u, v, 8, amber, 'display');
   }
   for (let j = 0; j < 3; j++) {
     const g = group(cabin, `FA18-gear-lamp-${j}`, at(365 + j * 9, 746, -0.029)),
@@ -1190,6 +1215,8 @@ function fa18Cockpit(root, m) {
       } else if (label === 'OBOGS') {
         knob(0.04, y - 0.025, 0.014);
         toggle(-0.045, y - 0.025);
+      } else if (label === 'ELECT') {
+        // The APU and engine switches are control stations (see the end of this function).
       } else {
         for (let q = 0; q < (label === 'POWER' ? 4 : 3); q++) {
           const x = label === 'POWER' ? -0.055 + (q % 2) * 0.11 : -0.055 + q * 0.055;
@@ -1224,16 +1251,10 @@ function fa18Cockpit(root, m) {
   sd.box([0.06, 0.04, 0.025], [0, 0.12, 0.15], m.metal);
   sd.ring(0.045, 0.009, [0, 0.13, 0.43], amber);
   sd.finish();
+  // The Hornet grip on a booted stick, its trim hat and castle switch under the thumb.
   const stick = group(cabin, 'FA18-stick', [0, 1.72, 6.15]),
     st = detailKit(stick, stick.name);
-  st.rod([0, 0, 0], [0, 0.55, -0.05], 0.022, black);
-  beveledBox(st, [0.075, 0.115, 0.07], [0, 0.61, -0.06], black, 0.01);
-  for (const p of [
-    [-0.025, 0.66, -0.09],
-    [0.025, 0.65, -0.09],
-    [0, 0.62, -0.1],
-  ])
-    st.add(new T.SphereGeometry(0.009, 8, 6), panel, p);
+  stickGeometry(st, { style: 'hornet', height: 0.5, rake: -0.045, shaft: 0.012 });
   st.finish();
   bindings.push(
     {
@@ -1252,10 +1273,9 @@ function fa18Cockpit(root, m) {
     },
   );
   for (const side of [-1, 1]) {
-    const g = group(cabin, `FA18-pedal-${side}`, [side * 0.13, 1.8, 6.4]),
+    const g = group(cabin, `FA18-pedal-${side}`, [side * 0.13, 1.82, 6.4]),
       gd = detailKit(g, g.name);
-    gd.box([0.13, 0.15, 0.035], [0, 0, 0], m.metal);
-    for (let j = 0; j < 5; j++) gd.box([0.11, 0.004, 0.004], [0, -0.06 + j * 0.03, -0.02], black);
+    pedalGeometry(gd, { style: 'fighter', side, drop: 0.08 });
     gd.finish();
     bindings.push({
       node: g.name,
@@ -1266,10 +1286,10 @@ function fa18Cockpit(root, m) {
     });
   }
   for (let j = 0; j < 2; j++) {
-    const g = group(cabin, `FA18-throttle-${j}`, [0.28 + j * 0.07, 2.2, 5.91]),
+    // The outboard (left engine) grip carries the switches; the inboard one is a hand rest.
+    const g = group(cabin, `FA18-throttle-${j}`, [0.282 + j * 0.056, 2.19, 5.91]),
       gd = detailKit(g, g.name);
-    gd.rod([0, 0, 0], [0, 0.1, 0], 0.012, black);
-    gd.box([0.06, 0.05, 0.09], [0, 0.11, 0], black);
+    leverGeometry(gd, { style: j ? 'hotas-left' : 'hotas-right', height: 0.065, side: 1 });
     gd.finish();
     bindings.push({
       node: g.name,
@@ -1280,6 +1300,86 @@ function fa18Cockpit(root, m) {
       offset: -0.3,
     });
   }
+  // Close the fuselage behind and beside the panel down to the floor, so no painted skin shows
+  // around the panel or under it into the footwell.
+  cockpitBulkhead(d, root, { z: 6.672, yFrom: 1.64, yTo: 2.7, material: panel });
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Where the real controls are (NATOPS FO-5): gear handle and flap switch on the left vertical
+  // panel, emergency/parking brake handle below it, hook handle on the right vertical panel,
+  // canopy control on the right sill, speed brake on the outboard throttle grip, APU and engine
+  // switches on the right console's electrical panel.
+  const top = [Math.PI / 2, 0, 0];
+  const stations = [
+    {
+      action: 'gear',
+      style: 'jet',
+      at: at(373, 668, -0.027),
+      label: 'LDG GEAR',
+      labelAt: [0, -0.07, -0.002],
+    },
+    {
+      action: 'flaps',
+      style: 'toggle',
+      at: at(432, 762, -0.002),
+      label: 'FLAP',
+      labelAt: [0.03, 0, -0.002],
+      scale: 1.3,
+    },
+    {
+      action: 'brake',
+      style: 'loop',
+      at: at(392, 840, 0.02),
+      label: 'PARK BRK',
+      labelAt: [0, 0.03, -0.002],
+    },
+    {
+      action: 'tailHook',
+      style: 'hook',
+      at: at(1046, 612, -0.002),
+      label: 'HOOK',
+      labelAt: [0, 0.035, -0.002],
+    },
+    {
+      action: 'canopy',
+      style: 'canopy',
+      at: [-0.43, 2.33, 5.3],
+      rotation: [0, -Math.PI / 2, 0],
+      label: 'CANOPY',
+      labelAt: [0, -0.03, -0.002],
+    },
+    {
+      action: 'speedBrake',
+      style: 'slider',
+      parent: 'FA18-throttle-1',
+      at: [0.345, 2.353, 5.902],
+      rotation: [Math.PI / 2 - 0.2, 0, 0],
+    },
+    {
+      action: 'engine',
+      style: 'guarded',
+      at: [-0.275, 2.182, 6.14],
+      rotation: top,
+      label: 'APU',
+      labelAt: [0, 0.045, -0.002],
+    },
+    {
+      action: 'engine',
+      engine: 0,
+      style: 'guarded',
+      at: [-0.33, 2.182, 6.14],
+      rotation: top,
+      label: 'L ENG',
+      labelAt: [0, 0.045, -0.002],
+    },
+    {
+      action: 'engine',
+      engine: 1,
+      style: 'guarded',
+      at: [-0.385, 2.182, 6.14],
+      rotation: top,
+      label: 'R ENG',
+      labelAt: [0, 0.045, -0.002],
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
 }

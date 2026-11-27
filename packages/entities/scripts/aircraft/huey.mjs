@@ -2,6 +2,18 @@
  * Rotor mast is z=0. The nose is 11 ft 8.65 in forward, independently of rotor envelope.
  * Construction landmarks are meters; window apertures and panels are individually authored.
  */
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import {
+  bar,
+  contour,
+  lathe,
+  loftUp,
+  partPalette,
+  pedalGeometry,
+  place,
+  roundedBox,
+  tube,
+} from './cockpit-parts.mjs';
 import {
   cleanGeometry,
   detailKit,
@@ -619,11 +631,11 @@ export function buildHuey(s) {
     );
   }
   d.finish();
-  const interior = addHueyCockpit(root);
+  const { stations: controlStations, ...interior } = addHueyCockpit(root, paint);
   cleanGeometry(root);
   return {
     root,
-    frame: f,
+    frame: { ...f, controlStations },
     enginePoints: [],
     visual: {
       rotors: [
@@ -639,9 +651,31 @@ export function buildHuey(s) {
   };
 }
 
-function addHueyCockpit(root) {
+function addHueyCockpit(root, paint) {
   const cabin = group(root, 'cockpit', [0, -0.29, 0]),
-    d = detailKit(cabin, 'huey-cockpit');
+    d = detailKit(cabin, 'huey-cockpit'),
+    parts = partPalette();
+  // Line the olive-drab skin inside the cockpit (doors, posts below the roof, the roof between the
+  // eyebrow windows) in lusterless interior black-green, as Army cockpits are finished; the nose
+  // footwell already has its own lining. Model-frame coordinates (the cabin group sits 0.29 m low).
+  {
+    const lining = mat('huey-cockpit-lining', '#30362e', { roughness: 0.95 }),
+      ld = detailKit(cabin, 'huey-lining');
+    skinBacking(ld, root, {
+      materials: [paint],
+      // The forward limit takes whole faces (every corner aft of it), so the slender side-skin
+      // faces there leave no sawtooth edge.
+      inside: ([x, y, z], corners) =>
+        z > 0.95 &&
+        Math.max(...corners.map((p) => p[2])) < 2.86 &&
+        y > 0.5 &&
+        y < 2.62 &&
+        Math.abs(x) < 1.2,
+      lining: () => lining,
+      toward: ([, , z]) => [0, 1.55, Math.min(z, 2.6)],
+    });
+    ld.finish();
+  }
   const panel = mat('huey-panel', '#343a36'),
     coaming = mat('huey-coaming', '#202622', { roughness: 0.95, side: T.DoubleSide }),
     floor = mat('huey-floor', '#495044'),
@@ -926,18 +960,33 @@ function addHueyCockpit(root) {
   pedestal.rotation.x = Math.PI / 2 - 0.1;
   const cd = detailKit(pedestal, 'huey-pedestal');
   cd.box([0.41, 1.47, 0.46], [0, 0, 0.21], panel);
+  // Radio knobs: a skirted base under a fluted cap with its index line (MS knob shapes).
   const knob = (x, y, r = 0.017) => {
-    cd.add(new T.CylinderGeometry(r, r, 0.022, 8).rotateX(Math.PI / 2), cd.dark, [x, y, -0.049]);
-    cd.box([0.003, r * 0.8, 0.003], [x, y + r * 0.35, -0.062], ink);
+    cd.add(
+      lathe(
+        [
+          [0, 0],
+          [r, 0],
+          [r, 0.004],
+          [r * 0.7, 0.008],
+          [r * 0.62, 0.021],
+          [0, 0.021],
+        ],
+        10,
+      ).rotateX(-Math.PI / 2),
+      cd.dark,
+      [x, y, -0.03],
+    );
+    cd.box([0.002, r * 0.5, 0.002], [x, y + r * 0.3, -0.0515], ink);
   };
-  const toggle = (x, y, color = cd.metal) => {
-    cd.rod([x, y, -0.037], [x, y + 0.013, -0.073], 0.005, color);
-  };
+  const switches = partBatch(),
+    toggle = (x, y) => batToggle(switches, parts, [x, y, -0.03]);
   // Fuel/system switches, paired communications controllers, navigation receiver and audio.
   // Exact radio installations vary; these groupings follow the cited Greek Army cockpit.
   cd.box([0.37, 0.21, 0.008], [0, 0.57, -0.026], coaming);
   for (const x of [-0.13, -0.07, 0, 0.07, 0.13]) toggle(x, 0.55);
-  cd.box([0.055, 0.06, 0.04], [0.07, 0.61, -0.064], cd.red);
+  // The MAIN FUEL switch at [0.07, 0.62] is a control station (end of this function).
+  cd.text('MAIN FUEL', [0.07, 0.655, -0.0305], 0.009, Math.PI, ink);
   knob(-0.12, 0.64, 0.025);
   for (const y of [0.31, 0.12]) {
     cd.box([0.37, 0.17, 0.008], [0, y, -0.026], coaming);
@@ -958,6 +1007,7 @@ function addHueyCockpit(root) {
   // Map-case lid and latch occupy the aft end instead of another cloned radio.
   cd.box([0.37, 0.29, 0.025], [0, -0.56, -0.033], panel);
   cd.rod([-0.07, -0.56, -0.055], [0.07, -0.56, -0.055], 0.009, cd.metal);
+  switches.emit(cd);
   cd.finish();
   // Seat frames, fabric pads, armor sides, four-point harness and floor-mounted curved cyclics.
   // The eye is fixed by the side view; the cushion sits 0.8 m under it on raised seat legs.
@@ -996,23 +1046,21 @@ function addHueyCockpit(root) {
       );
     }
     d.box([0.065, 0.042, 0.025], [x, 1.2 + seatLift, 1.92 - seatAft], d.metal);
+    // The long bent cyclic out of its floor gaiter, the UH-1 grip on top (TM 55-1520-210-10).
     const stick = group(cabin, `huey-cyclic-${side}`, [x, 0.8, 2.16]),
       sd = detailKit(stick, 'cyclic');
-    outline(
-      sd,
-      [
+    hueyCyclic(sd, {
+      path: [
         [0, 0, 0],
-        [0, 0.42, 0],
-        [0, 0.6, -0.14],
-        [0, 0.76, -0.19],
+        [0, 0.36, 0.004],
+        [0, 0.52, -0.07],
+        [0, 0.65, -0.165],
+        [0, 0.75, -0.19],
       ],
-      0.023,
-      sd.dark,
-      false,
-    );
-    const grip = sd.box([0.075, 0.16, 0.067], [0, 0.8, -0.18], coaming);
-    grip.rotation.x = 0.2;
-    sd.box([0.025, 0.018, 0.018], [-0.024, 0.89, -0.2], sd.red);
+      floor: 0.0575,
+      tubeMaterial: sd.dark,
+      palette: parts,
+    });
     sd.finish();
     bindings.push(
       { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.13 },
@@ -1020,9 +1068,8 @@ function addHueyCockpit(root) {
     );
     const collective = group(cabin, `huey-collective-${side}`, [x + 0.26, 0.95, 1.57]),
       ld = detailKit(collective, 'collective');
-    ld.rod([0, 0, 0], [0, 0.31, 0.48], 0.025, ld.dark);
-    ld.box([0.07, 0.06, 0.19], [0, 0.32, 0.48], coaming);
-    ld.box([0.022, 0.014, 0.024], [-0.018, 0.36, 0.53], ld.red);
+    // Twist-grip throttle and the pilot's switch box, cocked up like a pistol, on the tip.
+    hueyCollective(ld, { end: [0, 0.31, 0.48], tubeMaterial: ld.dark, palette: parts });
     ld.finish();
     bindings.push({
       node: collective.name,
@@ -1038,9 +1085,14 @@ function addHueyCockpit(root) {
           2.61,
         ]),
         pd = detailKit(pedal, 'pedal');
-      pd.box([0.17, 0.11, 0.025], [0, 0, 0], d.dark);
-      for (let r = 0; r < 4; r++)
-        pd.box([0.14, 0.004, 0.005], [0, (r - 1.5) * 0.021, -0.017], d.metal);
+      pedalGeometry(pd, {
+        style: 'heli',
+        side: pedalSide,
+        scale: 1.12,
+        drop: 0.12,
+        lean: 0.42,
+        palette: parts,
+      });
       pd.finish();
       bindings.push({
         node: pedal.name,
@@ -1055,9 +1107,9 @@ function addHueyCockpit(root) {
   d.box([0.53, 0.05, 0.66], [0, 2.58, 1.97], panel);
   for (let r = 0; r < 3; r++)
     for (let c = 0; c < 8; c++)
-      d.add(new T.CylinderGeometry(0.008, 0.008, 0.013, 6), d.dark, [
+      d.add(new T.CylinderGeometry(0.0065, 0.0065, 0.012, 8), d.dark, [
         (c - 3.5) * 0.055,
-        2.545,
+        2.549,
         1.71 + r * 0.042,
       ]);
   for (const x of [-0.14, 0.14])
@@ -1067,10 +1119,30 @@ function addHueyCockpit(root) {
       d.add(new T.CylinderGeometry(0.022, 0.022, 0.019, 8), d.dark, [x, 2.535, z]);
       d.box([0.005, 0.006, 0.025], [x, 2.522, z], ink);
     }
+  // Overhead toggles hang down, tipped forward.
   for (const z of [1.92, 2.04, 2.16])
-    for (const x of [-0.2, -0.08]) d.rod([x, 2.54, z], [x, 2.51, z + 0.012], 0.005, d.metal);
+    for (const x of [-0.2, -0.08]) {
+      d.add(new T.CylinderGeometry(0.0042, 0.0042, 0.006, 12), d.metal, [x, 2.548, z]);
+      const bat = d.add(new T.CylinderGeometry(0.0025, 0.0015, 0.018, 10), d.metal, [
+        x,
+        2.537,
+        z + 0.003,
+      ]);
+      bat.rotation.x = -0.35;
+    }
   d.finish();
-  return { nodes: ['cockpit'], bindings };
+  // MAIN FUEL switch on the pedestal's engine panel, guarded (TM 55-1520-210-10, fig 2-5).
+  root.updateMatrixWorld(true);
+  const stations = [
+    {
+      action: 'engine',
+      style: 'guarded',
+      at: pedestal.localToWorld(new T.Vector3(0.07, 0.62, -0.03)).toArray(),
+      rotation: [pedestal.rotation.x, 0, 0],
+      scale: 1.15,
+    },
+  ];
+  return { nodes: ['cockpit'], bindings, stations };
 }
 
 /** Monotone cubic through samples at row index 0..n-1: smooth between rows, no overshoot. */
@@ -1241,4 +1313,425 @@ export function skinPatch(d, point, us, vs, body, regions, inside, inward = fals
     d.add(geometry, material);
   }
   return normal;
+}
+
+const cylinder = (r, h, at, rotation = [0, 0, 0], sides = 16, r2 = r) =>
+  place(new T.CylinderGeometry(r2, r, h, sides), at, rotation);
+/** A knurled round grip up local +Y from `y`: `ribs` shallow flutes round radius `r`. */
+const knurled = (r, h, ribs = 20, depth = 0.08, y = 0) =>
+  loftUp(
+    [0, h * 0.06, h * 0.94, h].map((dy, i) => ({
+      y: y + dy,
+      points: Array.from({ length: ribs * 2 }, (_, j) => {
+        const a = (j / (ribs * 2)) * Math.PI * 2,
+          rr = r * (j % 2 ? 1 - depth : 1) * (i === 0 || i === 3 ? 0.93 : 1);
+        return [Math.cos(a) * rr, Math.sin(a) * rr];
+      }),
+    })),
+    30,
+  );
+/** A bat toggle on its hex nut and bushing, facing -Z from `at` and tipped up. */
+export function batToggle(b, P, at, length = 0.018) {
+  b.add(P.alloy, cylinder(0.0062, 0.003, [at[0], at[1], at[2] - 0.0015], [Math.PI / 2, 0, 0], 6));
+  b.add(P.alloy, cylinder(0.0042, 0.004, [at[0], at[1], at[2] - 0.005], [Math.PI / 2, 0, 0], 8));
+  const tip = [at[0], at[1] + Math.sin(0.35) * length, at[2] - 0.007 - Math.cos(0.35) * length];
+  b.add(P.alloy, bar([at[0], at[1], at[2] - 0.006], tip, 0.0015, 8, 0.0025));
+}
+/**
+ * The UH-1 family's cyclic grip (UH-1H, 212/412), base at the origin, up +Y, trigger toward +Z:
+ * a thick hand-hold under a broad head canted forward. The crown plate carries the force-trim
+ * button, the hoist switch and the red cargo-release button under its guard; the two-stage
+ * radio/ICS trigger sits under the forefinger. `glass` adds the 412's coolie-hat trim switch.
+ */
+export function hueyGripInto(b, P, variant = 'uh-1h') {
+  const L = (rows) =>
+    loftUp(
+      rows.map(([y, cz, rx, rz, power = 2.2]) => ({
+        y,
+        points: contour(0, cz, rx, rz, 16, power),
+      })),
+    );
+  b.add(
+    P.alloy,
+    lathe(
+      [
+        [0, -0.02],
+        [0.0175, -0.02],
+        [0.0185, -0.004],
+        [0.02, 0.006],
+        [0.0172, 0.012],
+        [0, 0.012],
+      ],
+      14,
+    ),
+  );
+  b.add(
+    P.grip,
+    L([
+      [0.008, 0, 0.0185, 0.02],
+      [0.04, 0.002, 0.0205, 0.022],
+      [0.078, 0.004, 0.021, 0.0225],
+      [0.103, 0.01, 0.0215, 0.026, 2.4],
+      [0.122, 0.018, 0.0235, 0.031, 2.8],
+      [0.136, 0.022, 0.023, 0.032, 3],
+      [0.143, 0.022, 0.019, 0.027, 3],
+      [0.146, 0.022, 0.012, 0.018, 2.6],
+    ]),
+  );
+  // Crown plate, the switches standing on it.
+  b.add(P.black, place(roundedBox([0.04, 0.004, 0.05], 0.004), [0, 0.146, 0.022], [0.12, 0, 0]));
+  b.add(P.black, cylinder(0.006, 0.008, [0.009, 0.151, 0.01], [0.12, 0, 0], 14));
+  b.add(
+    P.black,
+    place(new T.SphereGeometry(0.0045, 12, 8), [0.009, 0.155, 0.01], [0, 0, 0], [1, 0.55, 1]),
+  );
+  b.add(P.red, cylinder(0.0048, 0.006, [-0.01, 0.15, 0.03], [0.12, 0, 0], 12));
+  b.add(
+    P.yellow,
+    place(roundedBox([0.015, 0.012, 0.004], 0.0015), [-0.01, 0.154, 0.039], [0.7, 0, 0]),
+  );
+  b.add(
+    P.black,
+    place(roundedBox([0.008, 0.009, 0.012], 0.002), [0.009, 0.151, 0.034], [0.12, 0, 0]),
+  );
+  if (variant === '412') {
+    b.add(P.black, cylinder(0.0042, 0.006, [-0.01, 0.152, 0.008], [0.12, 0, 0], 12));
+    b.add(
+      P.alloy,
+      place(roundedBox([0.006, 0.014, 0.01], 0.002), [-0.025, 0.132, 0.02], [0, 0, 0.2]),
+    );
+  }
+  // Two-stage radio / ICS trigger, and the trigger guard below it.
+  b.add(
+    P.black,
+    tube(
+      [
+        [0, 0.112, 0.041],
+        [0, 0.1, 0.053],
+        [0, 0.084, 0.05],
+      ],
+      0.0052,
+      10,
+    ),
+  );
+  b.add(
+    P.alloy,
+    tube(
+      [
+        [0, 0.12, 0.04],
+        [0, 0.11, 0.066],
+        [0, 0.074, 0.062],
+        [0, 0.064, 0.024],
+      ],
+      0.0028,
+      10,
+    ),
+  );
+  // Left-side thumb switch (force-trim release).
+  b.add(P.black, cylinder(0.005, 0.007, [0.023, 0.126, 0.012], [0, 0, Math.PI / 2], 12));
+}
+/**
+ * A UH-1 family cyclic from its floor pivot: a rubber gaiter at `floor`, the tube bent through
+ * `path` (smoothed, 12-sided) and the UH-1 grip on its end, aligned with the tube's last run.
+ */
+export function hueyCyclic(
+  d,
+  { path, floor = 0, radius = 0.015, tubeMaterial, palette, grip = 'uh-1h' },
+) {
+  const P = partPalette(palette),
+    b = partBatch();
+  const points = smoothPath(path, 12);
+  b.add(tubeMaterial ?? P.black, tube(points, radius, 12));
+  b.add(
+    P.tread,
+    lathe(
+      [
+        [0, floor],
+        [0.055, floor],
+        [0.053, floor + 0.01],
+        [0.038, floor + 0.018],
+        [0.036, floor + 0.03],
+        [0.026, floor + 0.04],
+        [0.025, floor + 0.052],
+        [radius * 1.35, floor + 0.075],
+        [radius * 1.3, floor + 0.085],
+        [0, floor + 0.085],
+      ],
+      14,
+      28,
+    ),
+  );
+  b.emit(d);
+  const top = points.at(-1),
+    back = points.at(-3);
+  hueyGripInto(b, P, grip);
+  b.emit(d, top, [Math.atan2(top[2] - back[2], top[1] - back[1]), 0, 0]);
+}
+/** Catmull-Rom points through a polyline's stations, `count` + 1 of them. */
+function smoothPath(points, count) {
+  const n = points.length - 1;
+  return Array.from({ length: count + 1 }, (_, s) => {
+    const at = Math.min(n - 1e-9, (s / count) * n),
+      i = Math.floor(at),
+      u = at - i,
+      a = points[Math.max(0, i - 1)],
+      p = points[i],
+      c = points[i + 1],
+      e = points[Math.min(n, i + 2)];
+    return p.map((v, k) => {
+      const m = (c[k] - a[k]) / 2,
+        o = (e[k] - v) / 2;
+      return v + u * (m + u * (3 * (c[k] - v) - 2 * m - o + u * (2 * (v - c[k]) + m + o)));
+    });
+  });
+}
+/**
+ * A UH-1 family collective from its pivot beside the seat, lying forward and up to `end`
+ * ([0, rise, run]): the lever tube with its friction collar, the knurled twist-grip throttle
+ * (two in a row on the twin-engine 212/412) and the pilot's switch box on the tip, angled up
+ * from the lever like a pistol: landing and search light switches and the governor-RPM switch on
+ * its face, the idle-stop release on its side and the starter trigger under it.
+ */
+export function hueyCollective(d, { end, palette, tubeMaterial, twin = false }) {
+  const P = partPalette(palette);
+  const length = Math.hypot(end[1], end[2]),
+    pitch = Math.atan2(end[1], end[2]),
+    along = [Math.PI / 2, 0, 0],
+    b = partBatch();
+  const grips = twin ? 2 : 1,
+    gripLength = twin ? 0.1 : 0.13,
+    start = length - grips * (gripLength + 0.012) - 0.02;
+  b.add(
+    P.tread,
+    lathe(
+      [
+        [0, -0.035],
+        [0.04, -0.035],
+        [0.038, -0.02],
+        [0.027, -0.008],
+        [0.023, 0.016],
+        [0, 0.016],
+      ],
+      12,
+    ).rotateX(Math.PI / 2),
+  );
+  b.add(tubeMaterial ?? P.black, cylinder(0.018, start, [0, 0, start / 2], along, 16));
+  b.add(P.steel, place(knurled(0.027, 0.03, 10, 0.12), [0, 0, 0.08], along));
+  for (let i = 0; i < grips; i++) {
+    const z = start + i * (gripLength + 0.012);
+    b.add(P.alloy, cylinder(0.021, 0.012, [0, 0, z + 0.006], along, 16));
+    b.add(P.grip, place(knurled(0.023, gripLength, 16, 0.07), [0, 0, z + 0.012], along));
+    b.add(P.white, place(roundedBox([0.0025, 0.002, 0.03], 0.0008), [0, 0.0228, z + 0.05]));
+  }
+  // The switch box, cocked up 0.45 rad from the lever on a short neck.
+  const tip = length - 0.01,
+    cock = -0.45,
+    box = (size, at, material, r = 0.008) =>
+      b.add(material, place(roundedBox(size, r, 1), at, [cock, 0, 0]));
+  // A point in the box's frame (origin on the lever tip, cocked up) in the lever's frame.
+  const at = (x, y, z) => [
+    x,
+    y * Math.cos(cock) - z * Math.sin(cock),
+    tip + y * Math.sin(cock) + z * Math.cos(cock),
+  ];
+  b.add(P.black, cylinder(0.02, 0.03, [0, 0, tip], along, 14));
+  box([0.06, 0.055, 0.1], at(0, 0.02, 0.05), P.grip, 0.012);
+  box([0.05, 0.006, 0.08], at(0, 0.049, 0.05), P.black, 0.003);
+  for (const [x, z] of [
+    [-0.015, 0.02],
+    [0.015, 0.02],
+    [-0.015, 0.055],
+    [0.015, 0.055],
+  ]) {
+    const p = at(x, 0.052, z);
+    b.add(P.alloy, cylinder(0.0045, 0.004, p, [cock, 0, 0], 8));
+    b.add(
+      P.alloy,
+      place(new T.CylinderGeometry(0.0014, 0.0022, 0.016, 8), at(x, 0.06, z - 0.003), [
+        cock - 0.3,
+        0,
+        0,
+      ]),
+    );
+  }
+  b.add(P.white, cylinder(0.008, 0.008, at(0, 0.054, 0.085), [cock, 0, 0], 16));
+  b.add(P.black, cylinder(0.0055, 0.008, at(0.032, 0.02, 0.04), [0, 0, Math.PI / 2], 12));
+  // Starter trigger, curled under the box like a pistol's.
+  const t0 = at(0, -0.008, 0.03),
+    t1 = at(0, -0.03, 0.04),
+    t2 = at(0, -0.035, 0.062);
+  b.add(P.black, tube([t0, t1, t2], 0.005, 10));
+  b.add(
+    P.alloy,
+    tube(
+      [at(0, -0.008, 0.012), at(0, -0.045, 0.03), at(0, -0.046, 0.075), at(0, -0.008, 0.085)],
+      0.003,
+      10,
+    ),
+  );
+  b.emit(d, [0, 0, 0], [-pitch, 0, 0]);
+}
+
+/** Collect part geometry by material, then add it to a kit once, rotated (XYZ) and moved as a
+ * whole: a grip drawn upright can stand on the end of a bent tube. */
+export function partBatch() {
+  const byMaterial = new Map();
+  return {
+    add(material, ...geometries) {
+      if (!byMaterial.has(material)) byMaterial.set(material, []);
+      byMaterial.get(material).push(...geometries);
+    },
+    emit(d, at = [0, 0, 0], rotation = [0, 0, 0]) {
+      const turn = new T.Matrix4().compose(
+        new T.Vector3(...at),
+        new T.Quaternion().setFromEuler(new T.Euler(...rotation)),
+        new T.Vector3(1, 1, 1),
+      );
+      for (const [material, list] of byMaterial) {
+        const parts = list.map((g) => {
+          const flat = g.index ? g.toNonIndexed() : g;
+          flat.deleteAttribute('uv');
+          if (!flat.getAttribute('normal')) flat.computeVertexNormals();
+          return flat;
+        });
+        d.add(mergeGeometries(parts).applyMatrix4(turn), material);
+      }
+      byMaterial.clear();
+    },
+  };
+}
+
+/**
+ * Line the inside of the airframe's own opaque skin within a cabin region. The fuselage paint is
+ * double-sided, so from the seats the cabin showed the painted skin's back faces (near-white on a
+ * white aircraft) round the panel, in the footwells and below the sills. Every triangle drawn in
+ * one of `materials`, outside any node named in `exclude`, whose model-frame centroid passes
+ * `inside(c, corners)` gets a copy `inset` inside the skin, facing `toward(c)` (a point inside the cabin),
+ * in the material `lining(c)` returns (null leaves that face bare). A face that other skin hides
+ * from `toward(c)`, or that has skin within 9 cm straight through it (a tube, rail or frame), is
+ * left bare: their linings stood outside the skin and showed from outside. Corner normals are averaged over the
+ * faces that share them, so neighbouring faces stay joined after the inset. Call it after the
+ * exterior kits finish; `d` is a kit inside the cabin group.
+ */
+export function skinBacking(
+  d,
+  root,
+  { materials, inside, lining, toward, inset = 0.006, exclude = ['cockpit'] },
+) {
+  root.updateMatrixWorld(true);
+  const toRoot = root.matrixWorld.clone().invert(),
+    toKit = d.root.matrixWorld.clone().invert().multiply(root.matrixWorld),
+    names = new Set(materials.map((m) => (typeof m === 'string' ? m : m.name)));
+  const all = [];
+  root.traverse((mesh) => {
+    if (!mesh.isMesh || Array.isArray(mesh.material) || !names.has(mesh.material.name)) return;
+    for (let p = mesh; p && p !== root; p = p.parent) if (exclude.includes(p.name)) return;
+    const matrix = toRoot.clone().multiply(mesh.matrixWorld),
+      position = mesh.geometry.getAttribute('position'),
+      index = mesh.geometry.index,
+      count = index ? index.count : position.count;
+    for (let i = 0; i < count; i += 3) {
+      const v = [0, 1, 2].map((k) =>
+        new T.Vector3()
+          .fromBufferAttribute(position, index ? index.getX(i + k) : i + k)
+          .applyMatrix4(matrix),
+      );
+      all.push({ v, c: v[0].clone().add(v[1]).add(v[2]).divideScalar(3) });
+    }
+  });
+  const candidates = [],
+    box = new T.Box3();
+  for (const face of all) {
+    const c = [face.c.x, face.c.y, face.c.z];
+    if (
+      !inside(
+        c,
+        face.v.map((p) => p.toArray()),
+      )
+    )
+      continue;
+    face.material = lining(c);
+    if (!face.material) continue;
+    const n = face.v[1].clone().sub(face.v[0]).cross(face.v[2].clone().sub(face.v[0]));
+    if (n.lengthSq() < 1e-14) continue;
+    face.from = new T.Vector3(...toward(c));
+    if (n.dot(face.from.clone().sub(face.c)) < 0) n.negate();
+    face.n = n;
+    candidates.push(face);
+    box.expandByPoint(face.c).expandByPoint(face.from);
+  }
+  box.expandByScalar(0.05);
+  // Möller-Trumbore against the skin near the cabin: is anything between the point and the face?
+  const blockers = all.filter((f) => f.v.some((p) => box.containsPoint(p)));
+  const e1 = new T.Vector3(),
+    e2 = new T.Vector3(),
+    h = new T.Vector3(),
+    s0 = new T.Vector3(),
+    q = new T.Vector3(),
+    dir = new T.Vector3();
+  const hit = (face, origin, length) => {
+    for (const other of blockers) {
+      if (other === face) continue;
+      const [a, b, c] = other.v;
+      e1.subVectors(b, a);
+      e2.subVectors(c, a);
+      h.crossVectors(dir, e2);
+      const det = e1.dot(h);
+      if (Math.abs(det) < 1e-12) continue;
+      const f = 1 / det;
+      s0.subVectors(origin, a);
+      const u = f * s0.dot(h);
+      if (u < 0 || u > 1) continue;
+      q.crossVectors(s0, e1);
+      const w = f * dir.dot(q);
+      if (w < 0 || u + w > 1) continue;
+      const t = f * e2.dot(q);
+      if (t > 0 && t < length) return true;
+    }
+    return false;
+  };
+  const hidden = (face) => {
+    dir.copy(face.c).sub(face.from);
+    const length = dir.length();
+    dir.divideScalar(length);
+    // Skin within 3 cm of the face (a fold it lies beside) does not hide it.
+    if (hit(face, face.from, length - 0.03)) return true;
+    // A tube, rail or frame has its own far side within 9 cm straight out through it (the far
+    // half faces away from the cabin and is hidden behind the near half). Looking outward only:
+    // inward, the skin beyond a sharp fold (the nose's beltline) would count too.
+    dir.copy(face.n).normalize().negate();
+    // From just inside the face, so a second skin lying on it counts too.
+    return hit(face, face.c.clone().addScaledVector(dir, -0.002), 0.092);
+  };
+  const faces = [],
+    corners = new Map(),
+    key = (p) => `${Math.round(p.x * 1e4)},${Math.round(p.y * 1e4)},${Math.round(p.z * 1e4)}`;
+  for (const face of candidates) {
+    if (hidden(face)) continue;
+    const { v, n, material } = face;
+    // Area-weighted corner normals (the cross product's length is twice the area).
+    for (const p of v) {
+      const k = key(p);
+      corners.set(k, (corners.get(k) ?? new T.Vector3()).add(n));
+    }
+    faces.push({ v, n: n.clone().normalize(), material });
+  }
+  const out = new Map();
+  for (const { v, n, material } of faces) {
+    const moved = v.map((p) => {
+      const m = corners.get(key(p)).clone().normalize();
+      return p.clone().addScaledVector(m.dot(n) > 0.4 ? m : n, inset);
+    });
+    if (moved[1].clone().sub(moved[0]).cross(moved[2].clone().sub(moved[0])).dot(n) < 0)
+      [moved[1], moved[2]] = [moved[2], moved[1]];
+    const list = out.get(material) ?? [];
+    out.set(material, list);
+    for (const p of moved) list.push(...p.applyMatrix4(toKit).toArray());
+  }
+  for (const [material, list] of out) {
+    const geometry = new T.BufferGeometry();
+    geometry.setAttribute('position', new T.Float32BufferAttribute(list, 3));
+    geometry.computeVertexNormals();
+    d.add(geometry, material);
+  }
 }

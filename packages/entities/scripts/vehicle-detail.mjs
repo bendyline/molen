@@ -359,6 +359,34 @@ export function addCycleDetail(root, s) {
     const console = detailKit(root, 'tank-instruments');
     console.add(new T.CylinderGeometry(0.085, 0.095, 0.03, 20), console.metal, [0, 0.948, 0.14]);
     tilted(console, [0, 0.968, 0.14], 1.25, (k, p) => p.gauge(0, 0, 0, 0.066, k.ivory));
+    // The chrome tank console behind it, laid along the tank's slope toward the seat: a window
+    // of indicator lamps, then the ignition switch. A deep slab, sunk at its middle, meets the
+    // crowned tank at both ends.
+    const slope = 0.4,
+      along = [0, Math.sin(slope), Math.cos(slope)],
+      up = [0, Math.cos(slope), -Math.sin(slope)];
+    const on = (u, h) => [0, 1, 2].map((i) => [0, 0.9, -0.055][i] + along[i] * u + up[i] * h);
+    const laid = (mesh) => {
+      mesh.rotation.x = -slope;
+      return mesh;
+    };
+    laid(console.box([0.1, 0.024, 0.23], on(0, 0), console.metal));
+    laid(console.box([0.072, 0.006, 0.03], on(0.065, 0.015), console.dark));
+    for (const [x, lamp] of [
+      [-0.024, console.green],
+      [-0.008, console.amber],
+      [0.008, console.amber],
+      [0.024, console.red],
+    ])
+      laid(console.box([0.012, 0.004, 0.018], [x, ...on(0.065, 0.018).slice(1)], lamp));
+    laid(
+      console.add(
+        new T.CylinderGeometry(0.024, 0.026, 0.012, 16),
+        console.metal,
+        on(-0.045, 0.018),
+      ),
+    );
+    laid(console.box([0.005, 0.004, 0.022], on(-0.045, 0.0245), console.dark));
     console.finish();
   } else if (scooter) {
     tilted(controls, [0, 1.062, 0.3], 0.75, (k, p) => {
@@ -366,10 +394,11 @@ export function addCycleDetail(root, s) {
       p.gauge(-0.075, -0.012, 0.004, 0.022);
     });
   } else {
-    // Twin clocks above the top yoke.
+    // Twin clocks above the top yoke, speedometer and tachometer in matching cream faces as a
+    // twin-shock standard's are (a dark face beside a light one read as two odd parts).
     tilted(controls, [0, G.headTop + 0.11, G.pivot[2] + 0.05], 0.75, (k, p) => {
       p.gauge(-0.062, 0, 0, 0.048, k.ivory);
-      p.gauge(0.062, 0, 0, 0.048);
+      p.gauge(0.062, 0, 0, 0.048, k.ivory);
     });
   }
   if (!bike) {
@@ -687,6 +716,9 @@ export function addTransitDetail(root, rail = false, shape = {}) {
   const control = new T.Group();
   control.name = rail ? 'traction-lever' : 'steering-wheel';
   control.position.set(rail ? 0.27 : 0.55, floor + 1.25, front - 1.04);
+  // A city bus's wheel lies back square to its raked column (about 37 degrees from flat), not
+  // upright as a car's; the steering binding turns it about its own axis.
+  if (!rail) control.rotation.x = Math.atan2(0.75, 0.56);
   root.add(control);
   const c = detailKit(control, 'cab-control');
   if (rail) {
@@ -695,6 +727,12 @@ export function addTransitDetail(root, rail = false, shape = {}) {
   } else {
     c.ring(0.22, 0.02, [0, 0, 0], c.dark);
     for (const x of [-0.2, 0.2]) c.rod([0, 0, 0], [x, 0, 0], 0.014);
+    // The broad padded hub of a bus wheel.
+    c.add(
+      new T.CylinderGeometry(0.06, 0.07, 0.045, 16).rotateX(Math.PI / 2),
+      c.dark,
+      [0, 0, -0.012],
+    );
   }
   c.finish();
 }

@@ -14,10 +14,35 @@
  *   +0.006 moving tapes and cards, +0.0045 screen mask, +0.003 fixed symbols, +0.002 digits,
  *   0 panel face, -0.006 bezel face.
  */
+import {
+  bar,
+  batch,
+  contour,
+  disc,
+  emit,
+  gearHandleGeometry,
+  lathe,
+  loftUp,
+  partPalette,
+  pedalGeometry,
+  place,
+  roundedBox,
+  stationMotion,
+  stickGeometry,
+  tube,
+  yokeGeometry,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import { beveledBox, detailKit, group, mat, sheet, T } from './mesh-kit.mjs';
 
 const PI = Math.PI;
+/** A kit seen through a mounting transform: library parts drawn in their own frame (levers stand
+ * on +Y, forward +Z) land rotated and moved into the host's. */
+export const onFrame = (d, at = [0, 0, 0], rotation = [0, 0, 0]) => ({
+  add: (geometry, material) => d.add(place(geometry, at, rotation), material),
+});
+/** A lever-frame part standing out of a deck surface (along its -Z, forward up the surface). */
+export const standing = (d, at = [0, 0, 0]) => onFrame(d, at, [-PI / 2, 0, 0]);
 export const rect = (x, y, w, h, z = 0) => [
   [x - w / 2, y - h / 2, z],
   [x + w / 2, y - h / 2, z],
@@ -159,6 +184,12 @@ function telemetry(engines) {
       path: ['engines', `engine-${i}`, 'rpm'],
     };
     derived[`rpm${i}`] = { op: 'multiply', args: [`engine${i}`, 100] };
+    // Each thrust lever follows its own engine's lever setting. The aircraft runtime supplies this
+    // signal (falling back to the common throttle); a parked model reads the input directly.
+    sources[`engines.engine-${i}.power`] = {
+      component: 'aircraftInput',
+      path: ['engines', `engine-${i}`, 'power'],
+    };
   }
   return { sources, derived };
 }
@@ -208,10 +239,18 @@ export function flightDeck(ctx, style) {
     seat: flat('seat', style.seat, { roughness: 0.95 }),
     seatTrim: flat('seat-frame', style.seatTrim ?? '#2b2e31'),
     liner: flat('liner', style.liner ?? '#c7cac6', { side: T.DoubleSide, roughness: 0.92 }),
+    // Lower sidewalls and the footwell sides, darker than the roof lining.
+    wall: flat('wall-liner', style.wall ?? style.liner ?? '#c7cac6', {
+      side: T.DoubleSide,
+      roughness: 0.92,
+    }),
     floor: flat('floor', style.floor ?? '#3a3e41', { roughness: 1 }),
     metal: shared('detail-alloy', '#a0a7aa', { metalness: 0.6, roughness: 0.35 }),
     grip: flat('grip', style.grip ?? '#1f2224', { roughness: 0.7 }),
   };
+  // The shared parts library's palette (cockpit-parts.mjs), panel plates in this deck's controller
+  // colour so a lever gate or switch plate reads as part of its console.
+  const parts = partPalette({ panel: m.face, legend: m.paint, ...style.parts });
   const cd = detailKit(cabin, n('cabin-fixed'));
   kits.push(cd);
   const register = (ins) => {
@@ -890,30 +929,81 @@ export function flightDeck(ctx, style) {
       }
   }
 
-  /** Landing gear lever with a wheel-shaped knob, live: down when the gear is down. */
-  function gearLever(S, x, y, { knob = 'white' } = {}) {
-    S.d.box([0.07, 0.13, 0.008], [x, y, -0.004], m.face);
-    S.d.box([0.012, 0.09, 0.004], [x, y, -0.009], m.black);
-    label(S.d, 'UP', [x - 0.026, y + 0.04, -0.009], 0.008);
-    label(S.d, 'DN', [x - 0.026, y - 0.04, -0.009], 0.008);
-    const g = group(S.g, n('gear-lever'), [x, y, -0.01]),
-      d = detailKit(g, g.name);
-    d.rod([0, 0, 0], [0, 0.045, -0.035], 0.006, m.metal);
-    d.add(
-      new T.CylinderGeometry(0.018, 0.018, 0.022, 14).rotateZ(PI / 2),
-      knob === 'white' ? m.toggle : m.grip,
-      [0, 0.05, -0.04],
-    );
-    d.finish();
-    // Rest is up (handle raised); gear down swings it through the slot.
-    bind({
-      node: g.name,
-      source: 'gearPosition',
-      property: 'rotation',
-      axis: 'x',
-      scale: PI * 0.8,
-      responseSeconds: 0.5,
+  /**
+   * Landing gear lever, live: a lever with a wheel-shaped knob standing out of the panel in a
+   * slotted escutcheon, knob up with the gear up and down with it down. `marks` are the legends at
+   * the slot's ends (and middle, for the 737's OFF).
+   */
+  function gearLever(S, x, y, { marks = ['UP', 'DN'], lamp = false, scale = 0.78, knob } = {}) {
+    gate(S.d, x, y, { w: 0.07, h: 0.13, marks: marks.length });
+    for (const [i, text] of marks.entries())
+      label(
+        S.d,
+        text,
+        [x - 0.024, y + 0.045 - (i * 0.09) / Math.max(1, marks.length - 1), -0.0068],
+        0.008,
+      );
+    // Rest-relative: the lever points at the crew at rest; up for gear up, down for gear down. The
+    // old lever turned 0.8 pi with the gear and put its knob through the panel when down.
+    return live(S.g, 'gear-lever', [x, y, -0.006], {
+      draw: (d) =>
+        gearHandleGeometry(d, {
+          style: 'jet',
+          scale,
+          palette: {
+            ...parts,
+            ...(knob ? { white: knob } : {}),
+            ...(lamp ? {} : { lamp: knob ?? parts.white }),
+          },
+        }),
+      binding: {
+        source: 'gearPosition',
+        property: 'rotation',
+        axis: 'x',
+        scale: -0.7,
+        offset: 0.35,
+        responseSeconds: 0.5,
+      },
     });
+  }
+  /** A lever's escutcheon on a surface: a plate, its slot and `marks` detent lines beside it. */
+  function gate(d, x, y, { w, h, marks = 3, z = 0 }) {
+    d.box([w, h, 0.004], [x, y, z - 0.002], m.face);
+    d.box([0.009, h * 0.82, 0.002], [x, y, z - 0.0045], m.black);
+    for (let i = 0; i < marks; i++)
+      d.box(
+        [w * 0.22, 0.0018, 0.001],
+        [x + w * 0.3, y - h * 0.36 + (i * h * 0.72) / Math.max(1, marks - 1), z - 0.0045],
+        m.paint,
+      );
+  }
+  /**
+   * A live control: a pivot group named `name` under `parentGroup` at `at`, turned to `rest`, its
+   * geometry drawn by `draw(kit)` (a lever-frame part stands out of the surface when `stand`), with
+   * an optional interior binding and an optional cockpit control (`userData.aircraftControl`), so
+   * the pilot's hand and the console work it. A control's motion defaults to the library's.
+   */
+  function live(
+    parentGroup,
+    name,
+    at,
+    { rest = [0, 0, 0], stand = false, draw, binding, control },
+  ) {
+    const g = group(parentGroup, n(name), at);
+    g.rotation.set(...rest);
+    const d = detailKit(g, g.name);
+    draw(stand ? standing(d) : d, d);
+    d.finish();
+    if (binding) bind({ node: g.name, ...binding });
+    if (control)
+      g.userData.aircraftControl = {
+        action: control.action,
+        ...(control.engine ? { engine: control.engine } : {}),
+        ...(control.motion === null
+          ? {}
+          : { motion: control.motion ?? stationMotion(control.action, control.style) }),
+      };
+    return g;
   }
   /** Digital clock or chronometer face. */
   function clock(S, x, y, w = 0.06, h = 0.05) {
@@ -951,26 +1041,59 @@ export function flightDeck(ctx, style) {
   }
   /** Pull handle, e.g. the parking brake: a T or a striped grip on a short shaft. */
   function handle(S, x, y, { colour = 'red', width = 0.06 } = {}) {
-    S.d.rod([x, y, -0.002], [x, y, -0.03], 0.006, m.metal);
-    S.d.box([width, 0.016, 0.018], [x, y, -0.036], m[colour]);
+    S.d.add(
+      place(
+        lathe(
+          [
+            [0.012, 0],
+            [0.012, 0.003],
+            [0.009, 0.005],
+            [0.006, 0.005],
+          ],
+          14,
+        ),
+        [x, y, 0],
+        [-PI / 2, 0, 0],
+      ),
+      m.metal,
+    );
+    S.d.add(bar([x, y, -0.004], [x, y, -0.03], 0.0055, 12), m.metal);
+    beveledBox(
+      S.d,
+      [width, 0.018, 0.02],
+      [x, y, -0.038],
+      colour === 'red' ? parts.red : m[colour],
+      0.005,
+    );
   }
-  /** Stabilizer trim wheel standing in the pedestal's side, with a white stripe. */
+  /** Stabilizer trim wheel standing in the pedestal's side: a black wheel with a rounded rim, a
+   * white stripe across its face that shows it turning, and a folding crank handle. */
   function trimWheel(x, y, z, r = 0.11) {
-    const g = group(cabin, n(`trim-wheel-${x > 0 ? 'L' : 'R'}`), [x, y, z]),
+    const s = Math.sign(x),
+      g = group(cabin, n(`trim-wheel-${x > 0 ? 'L' : 'R'}`), [x, y, z]),
       d = detailKit(g, g.name);
-    d.ring(r, 0.012, [0, 0, 0], m.grip, 'x');
-    d.add(new T.CylinderGeometry(r * 0.9, r * 0.9, 0.025, 24).rotateZ(PI / 2), m.grip);
-    for (let i = 0; i < 2; i++)
-      d.box(
-        [0.03, 0.012, r * 0.6],
-        [Math.sign(x) * 0.003, 0, (i - 0.5) * r * 1.0],
-        m.toggle,
-      ).rotation.x = i * 0.0;
-    d.add(new T.CylinderGeometry(0.012, 0.012, 0.05, 8).rotateZ(PI / 2), m.toggle, [
-      Math.sign(x) * 0.03,
-      r * 0.7,
-      0,
-    ]);
+    d.add(
+      place(
+        lathe(
+          [
+            [0, -0.012],
+            [r * 0.9, -0.012],
+            [r, -0.006],
+            [r, 0.006],
+            [r * 0.9, 0.012],
+            [0, 0.012],
+          ],
+          28,
+          50,
+        ),
+        [0, 0, 0],
+        [0, 0, PI / 2],
+      ),
+      m.grip,
+    );
+    d.box([0.002, 0.016, r * 1.9], [s * 0.0125, 0, 0], m.toggle).rotation.x = 0.4;
+    d.add(bar([s * 0.012, r * 0.68, 0], [s * 0.045, r * 0.68, 0], 0.006, 12), m.metal);
+    d.add(bar([s * 0.045, r * 0.68, 0], [s * 0.08, r * 0.68, 0], 0.011, 14), m.grip);
     d.finish();
   }
   /** Head-up display: a combiner glass on arms hanging from the roof. at: [x, y, z] of its centre. */
@@ -998,6 +1121,8 @@ export function flightDeck(ctx, style) {
   }
 
   // ---------------------------------------------------------------- structure
+  /** Where the windscreen glass begins, once the glareshield is built (see glareshield). */
+  let glassFrontZ;
   /** Body-frame half-breadth available at (z, y), less a margin. */
   const room = (z, y, margin = 0.03) => Math.max(0, ctx.skin(z, y) - margin);
   /**
@@ -1013,9 +1138,34 @@ export function flightDeck(ctx, style) {
     halfWidth,
     slope = 0.12,
     step = 0.04,
+    glassFront,
   }) {
     const d = cd,
       zs = [];
+    // Close the nose across the front edge of the windscreen, from its sill to the crown: a ray
+    // over the shield that misses the glass otherwise met the bare inside of the painted nose.
+    glassFrontZ = glassFront;
+    if (glassFront !== undefined) {
+      const y0 = ctx.sill(glassFront) - 0.015,
+        y1 = ctx.crown(glassFront) - 0.004,
+        // Up to where the skin still leaves room: a sliver at the crown stood above the faceted
+        // skin, which runs under the drawn crown at the nose.
+        edge = Array.from({ length: 21 }, (_, i) => {
+          const y = y0 + ((y1 - y0) * i) / 20;
+          return [room(glassFront, y, 0.012), y];
+        }).filter(([x]) => x > 0.06);
+      // Where the glass's foot crosses the nose top there is no band to close.
+      if (edge.length > 2)
+        sheet(
+          d,
+          [
+            ...edge.map(([x, y]) => [x, y, glassFront]),
+            ...edge.reverse().map(([x, y]) => [-x, y, glassFront]),
+          ],
+          m.shield,
+          [0, 0, -1],
+        );
+    }
     for (let z = lipZ; z < lipZ + 1.4; z += step) zs.push(z);
     const tops = zs
       .map((z) => {
@@ -1039,6 +1189,24 @@ export function flightDeck(ctx, style) {
         [0, z1 - z0, y0 - y1],
       );
     }
+    // Skirts from the shield's edges up to the windscreen sill, where the sill stands above the
+    // shield: between them the inside of the painted nose showed.
+    for (const s of [-1, 1])
+      for (let i = 0; i < tops.length - 1; i++) {
+        const edge = [tops[i], tops[i + 1]].map(([z, y, w]) => {
+          const up = Math.max(y, ctx.sill(z) - 0.012);
+          return [
+            [s * w, y, z],
+            [s * room(z, up, 0.012), up, z],
+          ];
+        });
+        // Only where the sill stands over the shield, and inside the skin at the sill.
+        if (
+          edge.some(([[x0, y0], [x1, y1]]) => y1 - y0 < 0.004 || Math.abs(x1) < Math.abs(x0) - 0.01)
+        )
+          continue;
+        sheet(d, [edge[0][0], edge[1][0], edge[1][1], edge[0][1]], m.shield, [-s, 0.5, 0]);
+      }
     // Rolled leather lip.
     d.rod(
       [tops[0][2], topY - 0.008, lipZ - 0.004],
@@ -1102,11 +1270,42 @@ export function flightDeck(ctx, style) {
     }
   }
   /** Lining heights as section angles: below the side windows and over the roof. */
-  const below = (z) => ctx.angle(z, ctx.sill(z)) + 0.04,
+  // The lining tucks under the window sill member: a 0.04 rad margin left a band of painted skin.
+  const below = (z) => ctx.angle(z, ctx.sill(z)) + 0.012,
     floorAngle = (z) => ctx.angle(z, floor + 0.01),
     aboveWindows = (z) => Math.max(0, ctx.angle(z, ctx.top(z)) - 0.04);
+  /** Linings: under the side windows from the floor up (on to `lowerTo`, the footwell, when
+   * given), and over the roof. */
   function walls(fromZ, toZ, options = {}) {
-    lining({ fromZ, toZ, from: below, to: floorAngle, ...options });
+    const { lowerTo = toZ, ...rest } = options;
+    // The transport kit's coaming lines the nose from 0.45 m ahead of the eye forward, from the
+    // windscreen sill down to 0.6 m under the eye: ahead of that the lining runs under it, tucked
+    // up behind its lower edge (nearer the skin), or the two fought in the same depth.
+    // Its rows step 0.08 m aft from the glass's front edge while short of that line.
+    let coamingZ = eye[2] + 0.45;
+    if (glassFrontZ !== undefined) {
+      const span = glassFrontZ - eye[2],
+        k = Math.ceil((span - 0.45) / 0.08 - 1e-9) - 1;
+      coamingZ = eye[2] + span - k * 0.08;
+    }
+    lining({
+      fromZ,
+      toZ: Math.min(lowerTo, coamingZ),
+      from: below,
+      to: floorAngle,
+      material: m.wall,
+      ...rest,
+    });
+    if (lowerTo > coamingZ)
+      lining({
+        fromZ: coamingZ,
+        toZ: lowerTo,
+        from: (z) => ctx.angle(z, eye[1] - 0.57),
+        to: floorAngle,
+        material: m.wall,
+        ...rest,
+        inset: 0.024,
+      });
     lining({
       fromZ,
       toZ,
@@ -1213,13 +1412,9 @@ export function flightDeck(ctx, style) {
   function tiller(S, x, y) {
     const { d } = S;
     d.add(new T.CylinderGeometry(0.02, 0.025, 0.03, 12).rotateX(PI / 2), m.knob, [x, y, -0.015]);
-    d.ring(0.06, 0.009, [x, y, -0.035], m.grip);
-    d.rod([x + 0.06, y, -0.035], [x - 0.06, y, -0.035], 0.006, m.grip);
-    d.add(new T.CylinderGeometry(0.009, 0.009, 0.04, 8).rotateX(PI / 2), m.grip, [
-      x + 0.045,
-      y + 0.02,
-      -0.055,
-    ]);
+    d.add(new T.TorusGeometry(0.06, 0.009, 8, 28), m.grip, [x, y, -0.035]);
+    d.add(bar([x + 0.06, y, -0.035], [x - 0.06, y, -0.035], 0.006, 12), m.grip);
+    d.add(bar([x + 0.045, y + 0.02, -0.035], [x + 0.045, y + 0.02, -0.075], 0.009, 12), m.grip);
   }
   /** Clip a panel outline's corners inside the nose: |x| no wider than the skin allows there. */
   function fitToSkin(S, contour, margin = 0.035) {
@@ -1229,10 +1424,55 @@ export function flightDeck(ctx, style) {
       return [Math.sign(x) * Math.min(Math.abs(x), r), v];
     });
   }
+  /**
+   * A panel outline from v0 (bottom) to v1 (top) on surface S whose sides follow the skin, no
+   * wider than `half`: corners alone let the skin curve away between them and show bare paint.
+   */
+  function skinContour(S, half, v0, v1, { steps = 8, margin = 0.035 } = {}) {
+    const side = (s) =>
+      Array.from({ length: steps + 1 }, (_, i) => {
+        const v = v0 + ((v1 - v0) * i) / steps,
+          [, y, z] = S.world([s * half, v, 0.05]);
+        return [s * Math.min(half, room(z, y, margin)), v];
+      });
+    return [...side(-1), ...side(1).reverse()];
+  }
+  /**
+   * Close the nose ahead of the crew's feet: a wall across the fuselage at station z from the floor
+   * up to `top`, and a ceiling at `top` from the main panel's foot (`from`) forward to it. Under the
+   * panel the crew then sees the footwell, not the inside of the painted skin.
+   */
+  function footwell({ z, top, from, material = m.bezel, margin = 0.02 }) {
+    const steps = 12,
+      wall = [];
+    for (let i = 0; i <= steps; i++) {
+      const y = floor + ((top - floor) * i) / steps;
+      wall.push([room(z, y, margin), y]);
+    }
+    sheet(
+      cd,
+      [...wall.map(([x, y]) => [x, y, z]), ...wall.reverse().map(([x, y]) => [-x, y, z])],
+      material,
+      [0, 0, -1],
+    );
+    const zs = [];
+    for (let i = 0; i <= 6; i++) zs.push(from + ((z - from) * i) / 6);
+    sheet(
+      cd,
+      [
+        ...zs.map((zz) => [room(zz, top, margin), top, zz]),
+        ...zs.reverse().map((zz) => [-room(zz, top, margin), top, zz]),
+      ],
+      material,
+      [0, -1, 0],
+    );
+  }
   /** Flat floor from the bulkhead forward, clipped to the skin. */
   function floorPlate(fromZ, toZ) {
     const zs = [];
-    for (let z = fromZ; z <= toZ + 1e-6; z += 0.1) zs.push(z);
+    for (let z = fromZ; z < toZ - 0.02; z += 0.1) zs.push(z);
+    // Always to toZ itself: a 0.1 m step short of the footwell wall left a slot onto the belly.
+    zs.push(toZ);
     const y = floor + 0.002;
     sheet(
       cd,
@@ -1277,8 +1517,71 @@ export function flightDeck(ctx, style) {
       m.seatTrim,
     );
   }
-  /** Rudder pedals: two per station, live, right pedal forward for right yaw. */
-  function pedals(x, z, { spread = 0.13, rise = 0.12, tag = '' } = {}) {
+  /**
+   * One hung airliner rudder pedal at its pad centre, by type. boeing: the parts library's broad
+   * rounded plate and heel rest; airbus: a tapered pad, wider at the toe, under a raised toe-brake
+   * strip; embraer: a squarer pad in a cast frame with a heel cup. Each arm rises forward to the
+   * pedal shaft under the panel.
+   */
+  function pedalPart(d, variant, side) {
+    if (variant === 'boeing') return pedalGeometry(d, { style: 'airliner', side, palette: parts });
+    const pad = batch(),
+      slab = (wb, wt, h, t, z = 0, n = 16) =>
+        loftUp(
+          [-1, -0.86, 0.86, 1].map((f, i) => {
+            const end = i === 0 || i === 3,
+              w = (wb + ((wt - wb) * (f + 1)) / 2) * (end ? 0.93 : 1);
+            return {
+              y: (f * h) / 2,
+              points: contour(0, z, w / 2, (t / 2) * (end ? 0.6 : 1), n, 4),
+            };
+          }),
+        );
+    let top;
+    if (variant === 'airbus') {
+      pad.add(parts.steel, slab(0.095, 0.13, 0.18, 0.016));
+      pad.add(parts.tread, slab(0.078, 0.11, 0.135, 0.006, -0.009));
+      pad.add(parts.steel, bar([-0.06, 0.074, -0.012], [0.06, 0.074, -0.012], 0.0065, 12));
+      pad.add(parts.steel, place(roundedBox([0.1, 0.014, 0.04], 0.005), [0, -0.094, -0.016]));
+      top = 0.09;
+    } else {
+      pad.add(parts.alloy, slab(0.13, 0.13, 0.165, 0.014));
+      pad.add(parts.tread, slab(0.105, 0.105, 0.13, 0.006, -0.008));
+      // Heel cup: a curved lip across the foot of the pad, a guard up its outboard edge.
+      pad.add(
+        parts.alloy,
+        tube(
+          [
+            [-0.06, -0.085, -0.004],
+            [0, -0.094, -0.034],
+            [0.06, -0.085, -0.004],
+          ],
+          0.007,
+          12,
+        ),
+      );
+      pad.add(
+        parts.alloy,
+        place(roundedBox([0.008, 0.12, 0.03], 0.003), [side * 0.067, -0.01, -0.012]),
+      );
+      top = 0.1;
+    }
+    pad.add(
+      parts.alloy,
+      tube(
+        [
+          [0, top * 0.8, 0.01],
+          [0, top + 0.05, 0.05],
+          [0, top + 0.11, 0.12],
+        ],
+        0.011,
+        12,
+      ),
+    );
+    emit(d, pad.map, [0, 0, 0], [variant === 'airbus' ? 0.22 : 0.26, 0, 0]);
+  }
+  /** Rudder pedals: two per station, live, right pedal forward for right yaw, hung from a shaft. */
+  function pedals(x, z, { spread = 0.13, rise = 0.12, tag = '', variant = 'boeing' } = {}) {
     for (const side of [-1, 1]) {
       const g = group(cabin, n(`pedal${tag}-${x > 0 ? 'L' : 'R'}-${side > 0 ? 'left' : 'right'}`), [
           x + side * spread,
@@ -1286,11 +1589,7 @@ export function flightDeck(ctx, style) {
           z,
         ]),
         d = detailKit(g, g.name);
-      const plate = beveledBox(d, [0.13, 0.2, 0.025], [0, 0, 0], m.metal, 0.008);
-      plate.rotation.x = 0.45;
-      for (let j = 0; j < 4; j++)
-        d.box([0.11, 0.006, 0.006], [0, -0.07 + j * 0.045, -0.02 + j * 0.02], m.grip);
-      d.rod([0, -0.08, 0.06], [0, -rise, 0.12], 0.015, m.metal);
+      pedalPart(d, variant, side);
       d.finish();
       bind({
         node: g.name,
@@ -1300,6 +1599,15 @@ export function flightDeck(ctx, style) {
         scale: side > 0 ? -0.05 : 0.05,
       });
     }
+    // The pedal shaft the arms hang from, and its hangers up into the footwell.
+    const shaftY = floor + rise + 0.175,
+      shaftZ = z + 0.16;
+    cd.add(
+      bar([x + spread + 0.05, shaftY, shaftZ], [x - spread - 0.05, shaftY, shaftZ], 0.016, 14),
+      m.grip,
+    );
+    for (const s of [-1, 1])
+      cd.box([0.03, 0.3, 0.05], [x + s * (spread + 0.04), shaftY + 0.13, shaftZ], m.grip);
   }
   /**
    * Control column and wheel. style 'boeing' (W wheel, floor column), 'ram' (ram's-horn wheel),
@@ -1314,77 +1622,107 @@ export function flightDeck(ctx, style) {
     const side = x > 0 ? 'L' : 'R',
       col = group(cabin, n(`yoke-column${tag}-${side}`), [x, pivot[0], pivot[1]]),
       cdk = detailKit(col, col.name),
-      hub = [0, wheel[0] - pivot[0], wheel[1] - pivot[1]];
-    if (style === 'panel') {
-      cdk.box([0.06, 0.06, Math.abs(hub[2]) + 0.05], [0, hub[1], hub[2] / 2 + 0.02], body);
-    } else {
-      // Column rising from the floor, bent aft at the top to the hub.
-      const knee = [0, hub[1] * 0.82, hub[2] + 0.1];
-      cdk.rod([0, 0, 0], knee, 0.032, body);
-      cdk.rod(knee, [0, hub[1], hub[2] + 0.035], 0.026, body);
-      cdk.box([0.16, 0.06, 0.2], [0, 0.03, 0], m.seatTrim);
-    }
+      hub = [0, wheel[0] - pivot[0], wheel[1] - pivot[1]],
+      hubMaterial = hubColor ? flat(`hub-${hubColor.slice(1)}`, hubColor) : body;
+    // Column: a ribbed rubber gaiter where it leaves the floor, a straight tube, then a gooseneck
+    // that bends aft into the wheel's hub.
+    const [, h, a] = hub,
+      thick = style === 'boeing' ? 0.03 : 0.036;
+    cdk.add(
+      lathe(
+        [
+          [0.075, 0],
+          [0.068, 0.018],
+          [0.05, 0.03],
+          [0.048, 0.052],
+          [thick + 0.006, 0.08],
+          [thick + 0.004, 0.09],
+        ],
+        14,
+        28,
+      ),
+      parts.tread,
+    );
+    cdk.add(
+      tube(
+        [
+          [0, 0.07, 0],
+          [0, h * 0.6, 0.012],
+          [0, h * 0.82, 0.004],
+          [0, h * 0.94, a * 0.35 + 0.02],
+          [0, h, a + 0.075],
+          [0, h, a + 0.045],
+        ],
+        thick,
+        16,
+      ),
+      body,
+    );
+    cdk.box([0.17, 0.016, 0.24], [0, 0.008, 0], m.seatTrim);
     cdk.finish();
     const w = group(col, n(`yoke${tag}-${side}`), hub),
       wd = detailKit(w, w.name),
       half = width / 2;
+    // A collar where the gooseneck enters the hub.
+    wd.add(bar([0, 0, 0.012], [0, 0, 0.05], thick + 0.006, 18), hubMaterial);
     if (style === 'boeing') {
-      // W wheel: a bar with rounded horns rising at each end, centre plate.
-      const path = [
-        [half * 0.95, 0.13],
-        [half, 0.06],
-        [half * 0.92, -0.02],
-        [half * 0.55, -0.045],
-        [0.06, -0.035],
-        [-0.06, -0.035],
-        [-half * 0.55, -0.045],
-        [-half * 0.92, -0.02],
-        [-half, 0.06],
-        [-half * 0.95, 0.13],
-      ];
-      for (let i = 0; i < path.length - 1; i++)
-        wd.rod(
-          [...path[i], -0.02],
-          [...path[i + 1], -0.02],
-          0.017,
-          i < 2 || i > path.length - 4 ? grips : body,
-        );
-      beveledBox(
-        wd,
-        [0.15, 0.1, 0.03],
-        [0, -0.005, -0.012],
-        hubColor ? flat(`hub-${hubColor.slice(1)}`, hubColor) : m.panel,
-        0.01,
-      );
-      wd.box([0.1, 0.05, 0.004], [0, 0.005, -0.03], m.bezel);
+      // The 737 wheel: horns with trim switches and the autopilot disconnect, a broad flat rim,
+      // and the checklist clip standing over the hub.
+      yokeGeometry(wd, {
+        style: 'boeing',
+        width,
+        palette: { ...parts, grip: grips, steel: hubMaterial },
+      });
+      wd.box([0.095, 0.12, 0.004], [0, 0.085, -0.03], parts.white).rotation.x = -0.12;
+      wd.add(bar([0.04, 0.142, -0.035], [-0.04, 0.142, -0.035], 0.0045, 12), parts.alloy);
+      for (const t of [-0.032, 0.032]) wd.box([0.006, 0.05, 0.006], [t, 0.04, -0.03], parts.alloy);
     } else {
-      // Ram's horn: grips rise from a centre bar, flaring outward.
-      const path = [
-        [half * 0.86, 0.12],
-        [half, 0.03],
-        [half * 0.82, -0.05],
-        [half * 0.3, -0.06],
-        [-half * 0.3, -0.06],
-        [-half * 0.82, -0.05],
-        [-half, 0.03],
-        [-half * 0.86, 0.12],
-      ];
-      for (let i = 0; i < path.length - 1; i++)
-        wd.rod(
-          [...path[i], -0.02],
-          [...path[i + 1], -0.02],
-          i < 2 || i > path.length - 4 ? 0.02 : 0.016,
-          i < 2 || i > path.length - 4 ? grips : body,
+      // The E-Jet wheel (SP-LIN deck photograph): from a deep hub block each arm sweeps out and up
+      // into a horn raked outboard, capped by a switch head (trim on top, the autopilot
+      // disconnect outboard), all in the deck's light grey with rubber on the grips.
+      const k = half / 0.19;
+      for (const s of [-1, 1]) {
+        wd.add(
+          tube(
+            [
+              [s * 0.05 * k, -0.018, 0],
+              [s * 0.105 * k, -0.002, -0.006],
+              [s * 0.14 * k, 0.04, -0.012],
+            ],
+            0.017,
+            14,
+          ),
+          body,
         );
-      beveledBox(
-        wd,
-        [0.12, 0.08, 0.035],
-        [0, -0.03, -0.01],
-        hubColor ? flat(`hub-${hubColor.slice(1)}`, hubColor) : body,
-        0.012,
-      );
+        wd.add(
+          place(
+            loftUp([
+              { y: 0, points: contour(0, 0, 0.018, 0.021, 14, 2.2) },
+              { y: 0.04, points: contour(0, -0.002, 0.02, 0.023, 14, 2.2) },
+              { y: 0.085, points: contour(0, -0.002, 0.019, 0.022, 14, 2.2) },
+              { y: 0.1, points: contour(0, 0, 0.016, 0.019, 14, 2.2) },
+            ]),
+            [s * 0.138 * k, 0.035, -0.012],
+            [0, 0, -s * 0.42],
+          ),
+          grips,
+        );
+        const head = [s * (0.138 * k + 0.044), 0.13, -0.012];
+        wd.add(place(roundedBox([0.046, 0.028, 0.042], 0.009), head, [0, 0, -s * 0.42]), body);
+        wd.add(
+          place(roundedBox([0.012, 0.006, 0.012], 0.002), [head[0] - s * 0.004, 0.145, -0.016]),
+          parts.black,
+        );
+        wd.add(
+          disc(0.0055, 0.006, [head[0] + s * 0.022, 0.124, -0.012], [0, 0, PI / 2]),
+          parts.red,
+        );
+      }
+      wd.add(place(roundedBox([0.12, 0.075, 0.055], 0.014), [0, -0.028, 0]), hubMaterial);
+      wd.add(place(roundedBox([0.07, 0.04, 0.004], 0.005), [0, -0.02, -0.029]), m.bezel);
+      // The maker's roundel on the column's face.
+      wd.add(disc(0.018, 0.003, [0, -0.02, -0.031], [PI / 2, 0, 0], 18), parts.white);
     }
-    for (const s of [-1, 1]) wd.box([0.025, 0.016, 0.02], [s * half * 0.88, 0.12, -0.03], m.key);
     wd.finish();
     bind({ node: col.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.11 });
     bind({ node: w.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.75 });
@@ -1394,51 +1732,107 @@ export function flightDeck(ctx, style) {
     const side = x > 0 ? 'L' : 'R',
       g = group(cabin, n(`side-stick${tag}-${side}`), [x, base[0], base[1]]),
       d = detailKit(g, g.name);
-    d.add(new T.CylinderGeometry(0.03, 0.045, 0.04, 12), m.grip, [0, 0.02, 0]);
-    const grip = beveledBox(d, [0.045, 0.13, 0.055], [0, 0.11, 0.005], m.grip, 0.015);
-    grip.rotation.x = 0.12;
-    d.box([0.03, 0.012, 0.03], [0, 0.18, 0.008], m.key);
-    d.box([0.01, 0.018, 0.01], [-Math.sign(x) * 0.024, 0.15, 0], m.red);
+    // The parts library's Airbus grip, raked a little forward on a short shaft out of its gaiter.
+    stickGeometry(d, { style: 'airbus', height: 0.1, rake: 0.012, shaft: 0.011, palette: parts });
     d.finish();
-    cd.add(new T.CylinderGeometry(0.06, 0.06, 0.01, 16), m.grip, [x, base[0] + 0.004, base[1]]);
+    // Fixed bezel ring the gaiter sits in.
+    cd.add(
+      place(
+        lathe(
+          [
+            [0.046, 0],
+            [0.064, 0],
+            [0.064, 0.006],
+            [0.056, 0.011],
+            [0.047, 0.011],
+          ],
+          24,
+        ),
+        [x, base[0], base[1]],
+      ),
+      m.face,
+    );
     bind({ node: g.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.28 });
     bind({ node: g.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.32 });
   }
-  /** Power or thrust levers, live, on a pedestal surface. Pivot below the slot; forward is +Y. */
-  function levers(
+  /**
+   * Thrust levers, live, one per engine, on a pedestal surface: pivots under the slots, forward is
+   * +Y. `draw(kit, index, x)` draws a lever standing +Y from its pivot (a parts-library lever or
+   * the type's own). Each lever follows its own engine's power, which falls back to the common
+   * throttle, and is that engine's cockpit control; `cover` is the quadrant housing the levers run
+   * in, which the crew takes as all the throttles together.
+   */
+  function thrustLevers(
     S,
     {
       xs,
       y = 0,
-      length = 0.17,
-      knob = [0.05, 0.035, 0.03],
-      source = 'power',
-      name = 'thrust-lever',
+      draw,
       travel = 0.9,
       rest = -0.45,
-      color = 'grip',
       slot = 0.16,
+      engines = ['engine-1', 'engine-2'],
+      cover,
     },
   ) {
-    const finish = color.startsWith('#') ? flat(`lever-${color.slice(1)}`, color) : m[color];
-    xs.forEach((lx, i) => {
-      if (slot) S.d.box([0.012, slot, 0.004], [lx, y, -0.002], m.black);
-      const g = group(S.g, n(`${name}-${i + 1}`), [lx, y - 0.02, 0.06]),
-        d = detailKit(g, g.name);
-      d.rod([0, 0, 0], [0, 0, -length], 0.008, m.metal);
-      beveledBox(d, knob, [0, 0, -length - knob[2] / 2 + 0.01], finish, 0.008);
-      d.finish();
-      // Lever stands out of the surface along -Z; rotating about X swings its knob along Y.
-      g.rotation.x = rest;
-      if (source)
-        bind({
-          node: g.name,
-          source,
+    if (cover)
+      live(S.g, 'thrust-quadrant', [cover.x ?? 0, y + (cover.dy ?? 0), 0], {
+        draw: (d) => {
+          beveledBox(
+            d,
+            [cover.w, cover.h, cover.t ?? 0.016],
+            [0, 0, -(cover.t ?? 0.016) / 2],
+            cover.material ?? m.face,
+            0.005,
+          );
+          cover.draw?.(d);
+        },
+        control: { action: 'power', motion: null },
+      });
+    const top = cover ? -(cover.t ?? 0.016) : 0;
+    return xs.map((lx, i) => {
+      if (slot) S.d.box([0.012, slot, 0.002], [lx, y, top - 0.001], m.black);
+      return live(S.g, `thrust-lever-${i + 1}`, [lx, y - 0.02, 0.06], {
+        rest: [rest, 0, 0],
+        stand: true,
+        draw: (d) => draw(d, i, lx),
+        binding: {
+          source: `engines.${engines[i]}.power`,
           property: 'rotation',
           axis: 'x',
           scale: travel,
-          ...(source === 'flapPosition' ? { responseSeconds: 0.4 } : {}),
-        });
+        },
+        control: { action: 'power', engine: engines[i], motion: null },
+      });
+    });
+  }
+  /** Flap lever, live, in a detent gate with `marks` stops: forward for flaps up. */
+  function flapLever(
+    S,
+    { x, y = 0, rest = 0.35, travel = -0.7, slot = 0.14, marks = 5, gateWidth = 0.05, draw },
+  ) {
+    gate(S.d, x, y, { w: gateWidth, h: slot + 0.02, marks });
+    return live(S.g, 'flap-lever-1', [x, y - 0.02, 0.06], {
+      rest: [rest, 0, 0],
+      stand: true,
+      draw,
+      binding: {
+        source: 'flapPosition',
+        property: 'rotation',
+        axis: 'x',
+        scale: travel,
+        responseSeconds: 0.4,
+      },
+    });
+  }
+  /** Speed brake lever, live: forward and down at rest, pulled aft to extend. */
+  function speedBrakeLever(S, { x, y = 0, rest = 0.3, travel = -0.6, slot = 0.12, draw }) {
+    S.d.box([0.012, slot, 0.002], [x, y, -0.001], m.black);
+    return live(S.g, 'speedbrake-1', [x, y - 0.02, 0.06], {
+      rest: [rest, 0, 0],
+      stand: true,
+      draw,
+      control: { action: 'speedBrake', motion: { property: 'rotation', axis: 'x', scale: travel } },
     });
   }
   /** A box console with a sloped top, profile given in the body frame as [z, y] from fore to aft. */
@@ -1542,12 +1936,18 @@ export function flightDeck(ctx, style) {
     sideConsole,
     tiller,
     fitToSkin,
+    skinContour,
+    footwell,
     floorPlate,
     seat,
     pedals,
     yoke,
     sideStick,
-    levers,
+    thrustLevers,
+    flapLever,
+    speedBrakeLever,
+    live,
+    parts,
     prism,
     onSegment,
     finish,

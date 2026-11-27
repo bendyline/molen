@@ -2,6 +2,18 @@
  * General-arrangement proportions are checked against the cited drawings/photos;
  * the older drawing's TF39 engines are replaced by CF6/F138 nacelles. */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead, cockpitLiner } from './cockpit-fit.mjs';
+import {
+  bar,
+  flapSelectorGeometry,
+  lathe,
+  loftUp,
+  partPalette,
+  place,
+  roundedBox,
+  contour as superEllipse,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -684,11 +696,17 @@ export function buildC5M(s) {
       bz,
     ]);
   bulkhead.push([bulkhead.at(-1)[0], 6.4, bz], [bulkhead[0][0], 6.4, bz]);
-  const interior = cockpit(root, { paint, dark, metal, glass, bulkhead });
+  const { stations: controlStations, ...interior } = cockpit(root, {
+    paint,
+    dark,
+    metal,
+    glass,
+    bulkhead,
+  });
   cleanGeometry(root);
   return {
     root,
-    frame: c5Frame(),
+    frame: { ...c5Frame(), controlStations },
     enginePoints,
     visual: { rotors, gearNodes: [], flaps: [], ailerons: [], animation: { bindings }, interior },
     modelSignals: {
@@ -711,6 +729,8 @@ function cockpit(root, m) {
     cushion = mat('C5-cushion', '#b9beb9'),
     belt = mat('C5-belt', '#657582'),
     green = mat('C5-display-green', '#84d2a1', { emissive: '#285c38', emissiveIntensity: 0.5 });
+  // Control parts share the library's rubber/alloy finishes, on this deck's own panel gray.
+  const P = partPalette({ panel: face });
   const sources = Object.fromEntries(
     ['airspeed', 'pitch', 'roll', 'yaw', 'verticalSpeed', 'gearPosition', 'flapPosition'].map(
       (k) => [
@@ -1008,14 +1028,33 @@ function cockpit(root, m) {
   const td = detailKit(ped, ped.name),
     tp = panelTools(td);
   beveledBox(td, [1.18, 2.5, 0.42], [0, 0, 0.08], face);
+  // C-5M AMP photograph: the throttles stand in a raised black box right under the centre panel,
+  // two banks of two under their T-grips either side of a centre control block, with the fuel
+  // shutoff levers behind them; the FMS keypads sit just aft of the box.
+  const boxTop = -0.27;
+  beveledBox(td, [0.84, 0.82, 0.14], [0, 0.81, boxTop + 0.07], black, 0.012);
+  for (const side of [-1, 1]) {
+    td.box([0.2, 0.5, 0.006], [side * 0.24, 0.84, boxTop - 0.003], face);
+    for (const x of [0.19, 0.29])
+      td.box([0.016, 0.42, 0.004], [side * x, 0.86, boxTop - 0.008], black);
+  }
+  td.box([0.2, 0.44, 0.04], [0, 0.85, boxTop - 0.02], face);
+  td.box([0.15, 0.06, 0.004], [0, 0.98, boxTop - 0.042], black);
+  for (const [x, y] of [
+    [-0.05, 0.86],
+    [0.05, 0.86],
+    [0, 0.74],
+  ])
+    tp.knob(x, y, boxTop - 0.05, 0.016);
+  td.box([0.045, 0.045, 0.012], [0.05, 0.71, boxTop - 0.046], P.white);
   for (let i = 0; i < 4; i++) {
-    const x = 0.27 - i * 0.18;
-    td.box([0.03, 0.65, 0.01], [x, 0.74, -0.14], black);
-    const g = group(ped, `C5-throttle-${i + 1}`, [x, 0.55, -0.15]),
-      dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0], [0, 0.1, -0.29], 0.023, m.metal);
-    dd.rod([-0.075, 0.1, -0.29], [0.075, 0.1, -0.29], 0.038, m.metal);
-    dd.box([0.15, 0.06, 0.07], [0, 0.1, -0.29], m.dark);
+    const x = [0.29, 0.19, -0.19, -0.29][i];
+    // The pedestal lies on its back: each lever stands up in its own frame.
+    const g = group(ped, `C5-throttle-${i + 1}`, [x, 0.8, boxTop - 0.01]),
+      upright = group(g, `${g.name}-lever`);
+    upright.rotation.x = -Math.PI / 2;
+    const dd = detailKit(upright, g.name);
+    galaxyThrottle(dd, P, String(i + 1), ink, 0.16);
     dd.finish();
     bindings.push({
       node: g.name,
@@ -1027,12 +1066,13 @@ function cockpit(root, m) {
     });
   }
   for (const x of [-0.41, 0.41]) {
-    td.box([0.3, 0.64, 0.025], [x, -0.12, -0.15], m.dark);
-    td.box([0.24, 0.13, 0.006], [x, 0.085, -0.17], black);
-    td.text('FMS --', [x, 0.085, -0.175], 0.016, Math.PI, green);
+    const fy = 0.07;
+    td.box([0.3, 0.64, 0.025], [x, fy, -0.15], m.dark);
+    td.box([0.24, 0.13, 0.006], [x, fy + 0.205, -0.17], black);
+    td.text('FMS --', [x, fy + 0.205, -0.175], 0.016, Math.PI, green);
     for (let r = 0; r < 7; r++)
       for (let c = 0; c < 6; c++)
-        td.box([0.026, 0.024, 0.008], [x - 0.11 + c * 0.044, -0.03 - r * 0.043, -0.176], face);
+        td.box([0.026, 0.024, 0.008], [x - 0.11 + c * 0.044, fy + 0.09 - r * 0.043, -0.176], face);
   }
   for (const yy of [0.11, -0.22, -0.54, -0.88]) {
     td.box([0.41, 0.25, 0.02], [0, yy, -0.15], m.dark);
@@ -1041,14 +1081,24 @@ function cockpit(root, m) {
     for (const x of [-0.15, 0, 0.15]) tp.knob(x, yy - 0.04, -0.18, 0.02);
   }
   for (const side of [-1, 1])
-    for (const yy of [-0.67, -1.02]) {
+    for (const yy of [-0.43, -0.72]) {
       td.box([0.3, 0.23, 0.02], [side * 0.41, yy, -0.15], m.dark);
       for (let i = 0; i < 4; i++) tp.knob(side * 0.41 - 0.1 + i * 0.067, yy, -0.18, 0.017);
     }
+  // Flap lever right of the quadrant, the spoiler handle (a control station) mirrored on the left,
+  // each in a gated slot; the four fuel shutoff levers (stations) stand behind the throttles.
+  for (const xx of [-0.51, 0.51]) td.box([0.022, 0.42, 0.008], [xx, 0.66, -0.135], black);
+  for (const [xx, label] of [
+    [-0.51, 'FLAPS'],
+    [0.51, 'SPOILER'],
+  ])
+    td.text(label, [xx, 0.42, -0.135], 0.018, Math.PI, ink);
+  td.text('FUEL SHUTOFF', [0, 0.43, boxTop - 0.002], 0.014, Math.PI, ink);
   const flap = group(ped, 'C5-flap-lever', [-0.51, 0.58, -0.16]),
-    fl = detailKit(flap, flap.name);
-  fl.rod([0, 0, 0], [0, 0, -0.2], 0.017, m.metal);
-  fl.box([0.12, 0.045, 0.065], [0, 0, -0.2], ink);
+    fu = group(flap, `${flap.name}-upright`);
+  fu.rotation.x = -Math.PI / 2;
+  const fl = detailKit(fu, flap.name);
+  flapSelectorGeometry(fl, { style: 'lever', height: 0.13, scale: 1.15, palette: P });
   fl.finish();
   bindings.push({
     node: flap.name,
@@ -1073,7 +1123,8 @@ function cockpit(root, m) {
       for (let j = 0; j < 5; j++) {
         const xx = x - 0.29 + j * 0.145;
         od.box([0.07, 0.045, 0.013], [xx, yy + 0.025, -0.06], black);
-        od.rod([xx, yy - 0.06, -0.075], [xx, yy - 0.02, -0.115], 0.009, m.metal);
+        // Bat toggles about 2 cm proud (they stood 6 cm out of the panel, 18 mm thick).
+        od.rod([xx, yy - 0.045, -0.06], [xx, yy - 0.038, -0.082], 0.0035, m.metal);
         if (row % 2 === 0) op.knob(xx, yy - 0.1, -0.08, 0.018);
       }
     }
@@ -1083,9 +1134,42 @@ function cockpit(root, m) {
     const x = side * 0.86;
     const col = group(cabin, `C5-column-${side}`, [x, 7.46, 31.65]),
       cd = detailKit(col, col.name);
-    cd.rod([0, 0, 0], [0, 0.62, 0.02], 0.06, m.dark);
-    for (let j = 0; j < 5; j++)
-      beveledBox(cd, [0.25 - j * 0.02, 0.045, 0.23 - j * 0.018], [0, j * 0.05, 0.01], m.dark, 0.01);
+    // A tapered column out of a pleated floor boot.
+    cd.add(
+      lathe(
+        [
+          [0, 0],
+          [0.13, 0],
+          [0.125, 0.03],
+          [0.095, 0.05],
+          [0.1, 0.075],
+          [0.075, 0.1],
+          [0.08, 0.125],
+          [0.058, 0.15],
+          [0.055, 0.17],
+          [0, 0.17],
+        ],
+        18,
+        28,
+      ),
+      P.tread,
+    );
+    cd.add(bar([0, 0.15, 0.003], [0, 0.6, 0.02], 0.05, 16, 0.042), m.dark);
+    cd.add(
+      place(
+        lathe(
+          [
+            [0.048, 0],
+            [0.056, 0.012],
+            [0.056, 0.04],
+            [0.046, 0.05],
+          ],
+          16,
+        ),
+        [0, 0.57, 0.019],
+      ),
+      P.steel,
+    );
     cd.finish();
     bindings.push({
       node: col.name,
@@ -1096,26 +1180,7 @@ function cockpit(root, m) {
     });
     const yoke = group(col, `C5-yoke-${side}`, [0, 0.65, 0.02]),
       yd = detailKit(yoke, yoke.name);
-    outline(
-      yd,
-      [
-        [-0.22, 0.15, 0],
-        [-0.23, -0.06, 0],
-        [-0.12, -0.13, 0],
-        [0.12, -0.13, 0],
-        [0.23, -0.06, 0],
-        [0.22, 0.15, 0],
-      ],
-      0.027,
-      m.dark,
-      false,
-    );
-    beveledBox(yd, [0.15, 0.16, 0.07], [0, -0.07, -0.015], m.dark);
-    yd.box([0.08, 0.1, 0.008], [0, -0.06, -0.056], seat);
-    for (const xx of [-0.22, 0.22]) {
-      yd.rod([xx, 0.02, 0], [xx, 0.19, 0], 0.035, m.dark);
-      yd.box([0.04, 0.028, 0.024], [xx, 0.19, -0.028], ins.red);
-    }
+    galaxyYoke(yd, P, side, seat);
     yd.finish();
     bindings.push({
       node: yoke.name,
@@ -1127,9 +1192,7 @@ function cockpit(root, m) {
     for (const dx of [-0.18, 0.18]) {
       const pg = group(cabin, `C5-pedal-${side}-${Math.sign(dx)}`, [x + dx, 7.62, 31.95]),
         pd = detailKit(pg, pg.name);
-      pd.box([0.23, 0.28, 0.05], [0, 0, 0], m.metal);
-      for (let j = 0; j < 7; j++)
-        pd.rod([-0.1, -0.11 + j * 0.034, -0.03], [0.1, -0.11 + j * 0.034, -0.03], 0.005, m.dark);
+      galaxyPedal(pd, P, Math.sign(dx));
       pd.finish();
       bindings.push({
         node: pg.name,
@@ -1179,8 +1242,199 @@ function cockpit(root, m) {
   ed.finish();
   sheet(d, m.bulkhead, liner, [0, 0, 1], [rect(0.7, 8.05, 0.8, 1.9, 26.95)]);
   d.box([5.75, 0.06, 31], [0, 2.7, 10], liner);
+  // Fit: the nose closed ahead of the panel's foot down to the floor, and sidewall liners from the
+  // floor to the side windows and round the crown behind them, so no painted skin shows.
+  const fit = detailKit(cabin, 'C5-fit');
+  cockpitBulkhead(fit, root, { z: 32.14, yFrom: 7.45, yTo: 7.97, material: face });
+  cockpitLiner(fit, root, {
+    zFrom: 28,
+    zTo: 31.6,
+    yFrom: 7.45,
+    yTo: 8.48,
+    material: liner,
+    zSteps: 12,
+    ySteps: 6,
+    inset: 0.025,
+  });
+  cockpitLiner(fit, root, {
+    zFrom: 31.6,
+    zTo: 32.12,
+    yFrom: 7.45,
+    yTo: 7.95,
+    material: liner,
+    zSteps: 2,
+    ySteps: 3,
+    inset: 0.025,
+  });
+  fit.finish();
   d.finish();
   for (const b of bindings) b.source = b.source.replace('C5-copilot.', 'C5-pilot.');
   for (const key of Object.keys(derived)) if (key.startsWith('C5-copilot.')) delete derived[key];
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Where the real controls are: the gear lever low on the centre panel, the parking brake handle
+  // on the pilot's outboard panel strip, the spoiler handle on the pedestal opposite the flap lever,
+  // four fuel shutoff levers behind the throttles and the APU master beside them.
+  const onPanel = (u, v, dz = 0) => [px(u), py(v), z + dz],
+    pedestalTop = 7.96,
+    throttleBoxTop = 8.1;
+  const stations = [
+    {
+      action: 'gear',
+      style: 'jet',
+      at: onPanel(250, 232, -0.002),
+      scale: 1.2,
+      label: 'LDG GEAR',
+      labelAt: [0, 0.05, -0.002],
+    },
+    {
+      action: 'brake',
+      style: 'tee',
+      at: onPanel(30, 152, -0.002),
+      scale: 1.2,
+      label: 'PARK BRK',
+      labelAt: [0, 0.03, -0.002],
+    },
+    {
+      action: 'speedBrake',
+      style: 'lever',
+      at: [0.51, pedestalTop, 30.7 + 0.58],
+      height: 0.11,
+      scale: 1.15,
+    },
+    ...[0, 1, 2, 3].map((i) => ({
+      action: 'engine',
+      engine: i,
+      style: 'start-lever',
+      at: [[0.29, 0.19, -0.19, -0.29][i], throttleBoxTop, 30.7 + 0.52],
+      height: 0.06,
+      scale: 1.1,
+    })),
+    {
+      action: 'engine',
+      style: 'guarded',
+      at: [0.51, pedestalTop, 30.7 + 1.08],
+      rotation: [Math.PI / 2, 0, 0],
+      scale: 1.2,
+      label: 'APU',
+      labelAt: [0, 0.032, -0.002],
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
+}
+
+/** Galaxy throttle: a flat lever raked forward under a T-handle grip, its engine number on the
+ * grip face and the reverse-thrust latch along the lever's front. */
+function galaxyThrottle(d, P, label, ink, height = 0.2, rake = 0.07) {
+  const tilt = Math.atan2(rake, height),
+    length = Math.hypot(height, rake);
+  d.add(
+    place(roundedBox([0.012, length, 0.024], 0.003, 1), [0, height / 2, rake / 2], [tilt, 0, 0]),
+    P.alloy,
+  );
+  const grip = place(
+    loftUp([
+      { y: -0.04, points: superEllipse(0, 0, 0.012, 0.014, 16, 2) },
+      { y: -0.034, points: superEllipse(0, 0, 0.016, 0.018, 16, 2) },
+      { y: 0.034, points: superEllipse(0, 0, 0.017, 0.019, 16, 2.2) },
+      { y: 0.04, points: superEllipse(0, 0, 0.012, 0.014, 16, 2) },
+    ]),
+    [0, 0, 0],
+    [0, 0, Math.PI / 2],
+  );
+  const head = (g) => place(g, [0, height, rake], [tilt, 0, 0]);
+  d.add(head(grip), P.grip);
+  d.add(head(place(roundedBox([0.016, 0.024, 0.02], 0.004), [0, -0.012, 0])), P.grip);
+  // Reverser latch on the lever's front.
+  d.add(
+    head(
+      tube(
+        [
+          [0.006, -0.025, 0.016],
+          [0.006, -0.07, 0.02],
+          [0.006, -0.11, 0.016],
+        ],
+        0.004,
+        10,
+      ),
+    ),
+    P.steel,
+  );
+  const r = 0.0195;
+  d.text(
+    label,
+    [0, height + r * Math.sin(tilt), rake - r * Math.cos(tilt)],
+    0.011,
+    Math.PI,
+    ink,
+  ).rotation.x = tilt;
+}
+
+/** The Galaxy's U-shaped handwheel: a hub with the chart clip, a swept U-bar and two upright grips
+ * capped by switch heads (trim and push-to-talk outboard, autopilot release inboard). Origin at
+ * the column head. */
+function galaxyYoke(d, P, side, plate) {
+  d.add(place(roundedBox([0.15, 0.13, 0.07], 0.022), [0, -0.075, -0.012]), P.grip);
+  d.add(place(roundedBox([0.085, 0.09, 0.006], 0.006), [0, -0.07, -0.048]), plate);
+  d.add(place(roundedBox([0.07, 0.012, 0.012], 0.004), [0, -0.025, -0.05]), P.alloy);
+  for (const s of [-1, 1]) {
+    d.add(
+      tube(
+        [
+          [s * 0.06, -0.1, -0.005],
+          [s * 0.15, -0.125, -0.01],
+          [s * 0.205, -0.095, -0.014],
+          [s * 0.225, -0.03, -0.016],
+        ],
+        0.017,
+        14,
+      ),
+      P.grip,
+    );
+    const grip = loftUp([
+      { y: 0, points: superEllipse(0, 0, 0.018, 0.021, 16, 2.2) },
+      { y: 0.05, points: superEllipse(0, 0.001, 0.02, 0.023, 16, 2.2) },
+      { y: 0.12, points: superEllipse(0, 0.002, 0.0205, 0.023, 16, 2.2) },
+      { y: 0.15, points: superEllipse(0, 0, 0.018, 0.021, 16, 2.2) },
+    ]);
+    d.add(place(grip, [s * 0.225, -0.035, -0.016], [0, 0, -s * 0.05]), P.grip);
+    d.add(
+      place(roundedBox([0.036, 0.03, 0.04], 0.01), [s * 0.232, 0.128, -0.02], [0, 0, -s * 0.05]),
+      P.grip,
+    );
+  }
+  d.add(place(roundedBox([0.012, 0.012, 0.008], 0.003), [side * 0.236, 0.146, -0.04]), P.black);
+  d.add(place(roundedBox([0.01, 0.014, 0.008], 0.003), [side * 0.218, 0.13, -0.042]), P.black);
+  d.add(
+    place(
+      new T.CylinderGeometry(0.006, 0.006, 0.006, 14),
+      [-side * 0.232, 0.14, -0.042],
+      [Math.PI / 2, 0, 0],
+    ),
+    P.red,
+  );
+}
+
+/** Galaxy rudder pedal: a broad plate with a rubber face between raised side lips, a heel ledge and
+ * the toe-brake hinge across its top, on an outboard arm running forward to the pedal box. */
+function galaxyPedal(d, P, side, { w = 0.13, h = 0.21, lean = 0.2 } = {}) {
+  const pad = (g) => place(g, [0, 0, 0], [lean, 0, 0]);
+  d.add(pad(roundedBox([w, h, 0.016], 0.014, 1)), P.steel);
+  d.add(pad(place(new T.BoxGeometry(w * 0.74, h * 0.74, 0.004), [0, h * 0.03, -0.009])), P.tread);
+  for (const s of [-1, 1])
+    d.add(pad(place(new T.BoxGeometry(0.008, h * 0.8, 0.012), [s * w * 0.45, 0, -0.01])), P.steel);
+  d.add(pad(bar([-w * 0.46, h * 0.44, -0.003], [w * 0.46, h * 0.44, -0.003], 0.006, 8)), P.alloy);
+  d.add(pad(place(new T.BoxGeometry(w * 0.9, 0.014, 0.05), [0, -h / 2 - 0.005, -0.02])), P.steel);
+  d.add(
+    pad(
+      tube(
+        [
+          [side * w * 0.3, h * 0.3, 0.012],
+          [side * w * 0.3, h * 0.5 + 0.04, 0.05],
+          [side * w * 0.3, h * 0.5 + 0.09, 0.11],
+        ],
+        0.011,
+        8,
+      ),
+    ),
+    P.alloy,
+  );
 }

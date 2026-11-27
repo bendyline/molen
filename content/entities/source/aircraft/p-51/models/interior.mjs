@@ -2,12 +2,22 @@
 import * as T from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import {
+  bar,
+  contour,
+  lathe,
+  loftUp,
+  place,
+  roundedBox,
+  tube,
+} from '../../../../../../packages/entities/scripts/aircraft/cockpit-parts.mjs';
 import { finishCockpit } from '../../../../../../packages/entities/scripts/aircraft/cockpit-surfaces.mjs';
+import { detailKit } from '../../../../../../packages/entities/scripts/aircraft/mesh-kit.mjs';
 import { instrumentParts } from './instruments.mjs';
 
 export function addInterior(parent, layout, api) {
   const { group, box, rod, sphere, mesh, silver, dark, green, rubber, yellow, red } = api;
-  const { plate, gauge, screw, placard, toggle, grip, text } = instrumentParts(api);
+  const { plate, gauge, screw, placard, toggle, text } = instrumentParts(api);
   const cabin = group(parent, layout.root);
   plate(cabin, 'instrument-panel', layout.panelOutline, layout.panelZ);
   for (const instrument of layout.gauges) gauge(cabin, instrument);
@@ -28,8 +38,14 @@ export function addInterior(parent, layout, api) {
     action: 'brake',
     motion: { property: 'position', axis: 'z', scale: -0.025 },
   };
-  rod(brake, 'brake-shaft', [0, 0, 0], [0, 0, -0.055], 0.007, silver);
-  box(brake, 'brake-handle', [0.076, 0.018, 0.02], [0, 0, -0.06], yellow);
+  mesh(brake, 'brake-shaft', bar([0, 0, 0], [0, 0, -0.052], 0.0045, 12), silver);
+  // A T-handle with rounded ends, pulled straight out of the lower panel.
+  mesh(
+    brake,
+    'brake-handle',
+    place(roundedBox([0.062, 0.016, 0.017], 0.006), [0, 0, -0.06]),
+    yellow,
+  );
   for (const [i, color] of [green, red, yellow].entries())
     sphere(
       cabin,
@@ -57,7 +73,8 @@ export function addInterior(parent, layout, api) {
     ].map((p) => new T.Vector3(...p)),
   );
   mesh(cabin, 'windscreen-support-frame', new T.TubeGeometry(coaming, 48, 0.018, 8, false), silver);
-  addChecklist(cabin, api);
+  // No checklist card on the coaming: the K-14 sight stands alone above the panel centre in
+  // every P-51D cockpit photograph, and the card hid it from the seat.
   const sight = group(cabin, 'k14-gunsight', [0, 2.19, panelZ + 0.1]);
   box(sight, 'sight-mount', [0.09, 0.07, 0.11], [0, -0.085, 0.04], dark);
   const body = mesh(
@@ -109,10 +126,89 @@ export function addInterior(parent, layout, api) {
       action: ['power', 'propeller', 'mixture'][i],
       motion: { property: 'rotation', axis: 'x', scale: 0.65, offset: i === 0 ? 0 : -0.65 },
     };
-    rod(lever, `engine-lever-${i}`, [0, 0, 0], [-0.017, 0.1, 0.04], 0.006, silver);
-    sphere(lever, `engine-lever-knob-${i}`, [0.018, 0.024, 0.018], [-0.017, 0.115, 0.04], color);
+    mesh(
+      lever,
+      `engine-lever-${i}`,
+      bar([0, 0, 0], [-0.017, 0.1, 0.04], 0.0048, 12, 0.004),
+      silver,
+    );
+    const top = [-0.017, 0.1, 0.04];
+    if (i === 0) {
+      // The throttle's grip points inboard: a fat twist grip (the K-14 sight ranging) with the
+      // microphone button at its end.
+      mesh(
+        lever,
+        `engine-lever-knob-${i}`,
+        place(
+          lathe(
+            [
+              [0.009, 0],
+              [0.017, 0.006],
+              [0.019, 0.02],
+              [0.0195, 0.05],
+              [0.017, 0.066],
+              [0.011, 0.074],
+              [0, 0.075],
+            ],
+            18,
+          ),
+          [top[0] + 0.004, top[1] + 0.006, top[2]],
+          [0, 0, Math.PI / 2],
+        ),
+        color,
+      );
+      mesh(
+        lever,
+        `throttle-grip-ring-${i}`,
+        place(
+          new T.TorusGeometry(0.0196, 0.0018, 6, 20),
+          [top[0] - 0.016, top[1] + 0.006, top[2]],
+          [0, Math.PI / 2, 0],
+        ),
+        silver,
+      );
+      mesh(
+        lever,
+        `throttle-mic-button`,
+        place(
+          new T.CylinderGeometry(0.005, 0.005, 0.006, 12),
+          [top[0] - 0.072, top[1] + 0.006, top[2]],
+          [0, 0, Math.PI / 2],
+        ),
+        red,
+      );
+    } else if (i === 1)
+      mesh(
+        lever,
+        `engine-lever-knob-${i}`,
+        place(
+          lathe(
+            [
+              [0, 0],
+              [0.007, 0],
+              [0.015, 0.006],
+              [0.0165, 0.016],
+              [0.013, 0.024],
+              [0, 0.026],
+            ],
+            16,
+          ),
+          top,
+        ),
+        color,
+      );
+    else
+      mesh(lever, `engine-lever-knob-${i}`, new T.SphereGeometry(0.017, 16, 12), color, [
+        top[0],
+        top[1] + 0.012,
+        top[2],
+      ]);
   }
-  placard(cabin, 'throttle-placard', 'THROTTLE PROP MIX', [0.32, 1.66, 0.37], 0.2, 0.0013);
+  // On the quadrant case's inboard face, reading aft to forward along the levers; it used to hang
+  // off the console's edge ahead of the case.
+  const quadrantLabel = group(cabin, 'throttle-placard-mount', [0.3255, 1.7, 0.21]);
+  quadrantLabel.rotation.y = Math.PI / 2;
+  placard(quadrantLabel, 'throttle-placard', 'MIX   PROP   THROTTLE', [0, 0, 0], 0.22, 0.0012);
   // Close-view quadrant gates and mounting hardware; the levers keep their existing pivots.
   for (let i = 0; i < 3; i++) {
     box(throttle, `quadrant-slot-${i}`, [0.045, 0.005, 0.055], [0, 0.06, 0.09 - i * 0.083], silver);
@@ -126,8 +222,30 @@ export function addInterior(parent, layout, api) {
   }
   for (const side of [-1, 1]) {
     const lamp = group(cabin, `panel-lamp-${side}`, [side * 0.385, 2.07, 0.475]);
-    rod(lamp, 'lamp-neck', [0, 0, 0], [-side * 0.035, 0.02, -0.02], 0.005, silver);
-    box(lamp, 'lamp-shade', [0.032, 0.021, 0.035], [-side * 0.035, 0.02, -0.02], dark);
+    mesh(lamp, 'lamp-neck', bar([0, 0, 0], [-side * 0.03, 0.018, -0.017], 0.0045, 12), silver);
+    // A round spot-lamp hood aimed down at the panel face.
+    const hood = mesh(
+      lamp,
+      'lamp-shade',
+      lathe(
+        [
+          [0, -0.014],
+          [0.008, -0.014],
+          [0.011, -0.006],
+          [0.0125, 0.012],
+          [0.0105, 0.013],
+          [0.0095, 0.004],
+          [0, 0.004],
+        ],
+        16,
+      ),
+      dark,
+      [-side * 0.035, 0.02, -0.02],
+    );
+    hood.quaternion.setFromUnitVectors(
+      new T.Vector3(0, 1, 0),
+      new T.Vector3(-side * 0.35, -0.55, 0.75).normalize(),
+    );
     for (const z of [-0.2, 0.11, 0.42]) {
       box(
         cabin,
@@ -213,52 +331,49 @@ export function addInterior(parent, layout, api) {
     box(cabin, `lap-belt-${side}`, [0.17, 0.025, 0.01], [side * 0.09, 1.61, -0.08], api.white);
   }
   box(cabin, 'harness-buckle', [0.04, 0.035, 0.015], [0, 1.62, -0.072], silver);
+  // The stick: an olive tube out of a leather boot, under the black bakelite pistol grip with the
+  // gun trigger in front and the bomb button on top (Cripes A'Mighty 3rd cockpit photographs).
   const stick = group(cabin, 'control-stick', [0, 1.39, 0.25]);
-  sphere(stick, 'stick-boot', [0.063, 0.075, 0.063], [0, 0, 0], rubber);
-  rod(stick, 'stick-shaft', [0, 0, 0], [0, 0.32, -0.03], 0.016, silver);
-  grip(stick, 'stick-grip', [0, 0.365, -0.045]);
+  mesh(
+    stick,
+    'stick-boot',
+    lathe(
+      [
+        [0, 0],
+        [0.058, 0],
+        [0.056, 0.012],
+        [0.044, 0.02],
+        [0.043, 0.032],
+        [0.032, 0.04],
+        [0.03, 0.052],
+        [0.021, 0.064],
+        [0.017, 0.082],
+        [0.015, 0.09],
+        [0, 0.09],
+      ],
+      18,
+      30,
+    ),
+    rubber,
+  );
+  mesh(stick, 'stick-shaft', bar([0, 0.08, 0], [0, 0.32, -0.03], 0.0135, 14, 0.0125), green);
+  pistolGrip(stick, [0, 0.318, -0.03], Math.atan2(-0.03, 0.32) - 0.05, api);
+  // Cast aluminium pedals: a rubber-treaded pad between side rails, a leather toe strap across
+  // its top and a heel lip, on the arm down to the rudder bar. Their pads stand 3 cm higher than
+  // the first boxes so the treads clear the footboards.
   for (const side of [-1, 1]) {
-    rod(
-      cabin,
-      `pedal-link-${side}`,
-      [side * 0.145, 1.32, panelZ - 0.21],
-      [side * 0.145, 1.4, panelZ - 0.09],
-      0.009,
-      silver,
-    );
-    const pedal = box(
-      cabin,
-      `rudder-pedal-${side}`,
-      [0.16, 0.12, 0.025],
-      [side * 0.145, 1.42, panelZ - 0.075],
-      silver,
-    );
-    // The pad's top leans forward, away from the foot, so its treaded face looks up and aft at
-    // the pilot; the treads sit on that face.
-    pedal.rotation.x = 0.28;
-    for (let i = 0; i < 5; i++)
-      box(
-        pedal,
-        `pedal-tread-${side}-${i}`,
-        [0.13, 0.008, 0.007],
-        [0, -0.04 + i * 0.021, -0.016],
-        dark,
-      );
-  }
-  for (const side of [-1, 1]) {
-    const pedal = group(cabin, `rudder-control-${side}`);
-    for (const name of [
-      `pedal-link-${side}`,
-      `rudder-pedal-${side}`,
-      ...Array.from({ length: 5 }, (_, i) => `pedal-tread-${side}-${i}`),
-    ])
-      pedal.attach(cabin.getObjectByName(name));
+    const pedal = group(cabin, `rudder-control-${side}`, [side * 0.145, 1.45, panelZ - 0.075]);
+    const kit = detailKit(pedal, `rudder-pedal-${side}`);
+    mustangPedal(kit, side, api);
+    kit.finish();
     // Right rudder pushes the right pedal (-X) forward.
     pedal.userData.aircraftControl = {
       action: 'yaw',
       motion: { property: 'position', axis: 'z', scale: -side * 0.035 },
     };
   }
+  addLeftConsoleControls(cabin, api);
+  addCanopyCrank(cabin, api);
   for (const name of ['instrument-panel', 'lower-switch-panel']) {
     const panel = cabin.getObjectByName(name);
     panel.material = panel.material.clone();
@@ -279,70 +394,6 @@ export function addInterior(parent, layout, api) {
 }
 
 /** Two-column card and canopy-release warning transcribed from the supplied cockpit photo. */
-function addChecklist(cabin, api) {
-  const { group, box, rod, mesh, dark, silver } = api;
-  const { text, screw } = instrumentParts(api);
-  const header = new T.MeshStandardMaterial({
-    name: 'checklist-red-header',
-    color: '#a23b32',
-    roughness: 0.8,
-  });
-  const paper = new T.MeshStandardMaterial({
-    name: 'warning-cream-card',
-    color: '#e2d7b5',
-    roughness: 0.85,
-  });
-  const warningInk = new T.MeshStandardMaterial({
-    name: 'warning-red-print',
-    color: '#a22519',
-    emissive: '#a22519',
-    emissiveIntensity: 0.12,
-    roughness: 0.8,
-  });
-  // Hung 2.5 cm lower than at the old panel station, so its top clip stays under the pilot's
-  // forward sightline now that it is closer to the eye.
-  const card = group(cabin, 'takeoff-landing-checklist', [0, 2.19, 0.485]);
-  mesh(card, 'checklist-backing', new RoundedBoxGeometry(0.25, 0.125, 0.008, 1, 0.003), dark);
-  box(card, 'checklist-divider', [0.002, 0.119, 0.002], [0, 0, -0.005], paper);
-  const columns = [
-    {
-      x: 0.062,
-      title: 'BEFORE TAKE OFF',
-      rows: ['TRIM TABS', 'FUEL BOOST', 'HYD-PRESSURE', 'BATTERY & GENERATOR'],
-    },
-    { x: -0.062, title: 'BEFORE LANDING', rows: ['MIXTURE', 'FUEL BOOST', 'PROP', 'LANDING GEAR'] },
-  ];
-  for (const { x, title, rows } of columns) {
-    box(card, `checklist-header-${title}`, [0.119, 0.022, 0.002], [x, 0.05, -0.005], header);
-    text(card, `checklist-title-${title}`, title, x, 0.05, -0.007, 0.0018);
-    for (const [i, value] of rows.entries())
-      text(
-        card,
-        `checklist-${value}-${x}`,
-        value,
-        x,
-        0.023 - i * 0.022,
-        -0.006,
-        value.length > 15 ? 0.0015 : 0.0018,
-      );
-    box(card, `checklist-clip-${x}`, [0.017, 0.022, 0.012], [x, -0.068, 0.005], silver);
-    screw(card, `checklist-mount-${x}`, x, 0.068, 0.008, 0.003);
-    rod(card, `checklist-support-${x}`, [x, 0.067, 0.008], [x, 0.105, 0.125], 0.003, silver);
-  }
-  box(card, 'checklist-top-clip', [0.14, 0.012, 0.02], [0, 0.068, 0.005], silver);
-  const warning = group(cabin, 'canopy-release-warning', [0, 2.12, 0.505]);
-  box(warning, 'warning-card', [0.165, 0.05, 0.003], [0, 0, 0], paper);
-  text(warning, 'warning-title', 'WARNING', 0, 0.014, -0.003, 0.0028, warningInk);
-  for (const [i, line] of [
-    'BEFORE EMERGENCY RELEASE',
-    'OF CANOPY IN FLIGHT DROP',
-    'SEAT AND LOWER HEAD AS',
-    'FAR AS POSSIBLE',
-  ].entries())
-    text(warning, `warning-line-${i}`, line, 0, 0.001 - i * 0.007, -0.003, 0.0014, warningInk);
-}
-
-/** Reference-informed sheet-metal lining and fittings, inside the existing fuselage envelope. */
 function addSidewalls(cabin, api) {
   const { group, box, rod, mesh, cabinWidth, green, dark, rubber, silver, red } = api;
   const { plate, placard } = instrumentParts(api);
@@ -497,4 +548,327 @@ function addSidewalls(cabin, api) {
   walls.clear();
   for (const [material, geometries] of batches)
     mesh(walls, `sidewall-${material.name}`, mergeGeometries(geometries), material);
+}
+
+/** One rudder pedal at its pivot, leaned top-forward as the box pedals were: a cast pad between
+ * side rails, a rubber tread, a leather toe strap and a heel lip, the arm running down to the bar. */
+function mustangPedal(kit, side, api) {
+  const { silver, rubber, brown } = api;
+  const w = 0.1,
+    h = 0.15,
+    lean = 0.28;
+  const add = (geometry, material) => kit.add(geometry.rotateX(lean), material);
+  add(roundedBox([w, h, 0.009], 0.012), silver);
+  add(place(roundedBox([w * 0.76, h * 0.56, 0.003], 0.008), [0, -h * 0.1, -0.005]), rubber);
+  for (const x of [-1, 1])
+    add(bar([x * w * 0.5, -h * 0.48, -0.004], [x * w * 0.5, h * 0.46, -0.004], 0.0055, 12), silver);
+  add(place(roundedBox([w * 1.04, 0.012, 0.032], 0.004), [0, -h / 2 + 0.002, -0.014]), silver);
+  add(place(roundedBox([w * 1.02, 0.028, 0.005], 0.0025), [0, h * 0.3, -0.017]), brown);
+  for (const x of [-1, 1])
+    add(place(new T.BoxGeometry(0.006, 0.02, 0.016), [x * w * 0.5, h * 0.3, -0.01]), silver);
+  add(
+    bar([side * w * 0.2, -h * 0.42, 0.006], [side * w * 0.2, -h * 0.5 - 0.06, 0.05], 0.0085, 12),
+    silver,
+  );
+}
+
+/** A mount fixed in the cockpit (rotated to its panel) and the moving pivot inside it. */
+function station(cabin, name, at, rotation = [0, 0, 0]) {
+  const mount = new T.Group();
+  mount.name = `${name}-mount`;
+  mount.position.fromArray(at);
+  mount.rotation.set(...rotation);
+  cabin.add(mount);
+  const pivot = new T.Group();
+  pivot.name = name;
+  mount.add(pivot);
+  return { mount, pivot };
+}
+
+/** The bakelite pistol grip on the stick top: a palm swell under a domed head, the gun trigger
+ * in front and the bomb button on top. +Y runs up the grip, the trigger faces +Z. */
+function pistolGrip(stick, at, tilt, api) {
+  const { mesh, rubber, silver, dark, red } = api;
+  const head = new T.Group();
+  head.name = 'stick-grip-head';
+  head.position.fromArray(at);
+  head.rotation.x = tilt;
+  stick.add(head);
+  mesh(
+    head,
+    'stick-grip-collar',
+    lathe(
+      [
+        [0, 0],
+        [0.0155, 0],
+        [0.0165, 0.004],
+        [0.0165, 0.013],
+        [0.014, 0.017],
+        [0, 0.017],
+      ],
+      16,
+    ),
+    silver,
+  );
+  const sections = [
+    [0.015, 0, 0.015, 0.016, 2],
+    [0.03, 0.002, 0.0175, 0.02, 2.1],
+    [0.058, 0.004, 0.019, 0.023, 2.2],
+    [0.088, 0.004, 0.0192, 0.024, 2.2],
+    [0.106, 0.0, 0.0205, 0.0275, 2.4],
+    [0.121, -0.004, 0.0195, 0.0265, 2.4],
+    [0.13, -0.004, 0.0135, 0.0185, 2.2],
+    [0.134, -0.004, 0.006, 0.008, 2],
+  ];
+  mesh(
+    head,
+    'stick-grip',
+    loftUp(
+      sections.map(([y, cz, rx, rz, power]) => ({ y, points: contour(0, cz, rx, rz, 18, power) })),
+    ),
+    rubber,
+  );
+  mesh(
+    head,
+    'stick-trigger',
+    tube(
+      [
+        [0, 0.1, 0.02],
+        [0, 0.094, 0.036],
+        [0, 0.078, 0.039],
+        [0, 0.068, 0.028],
+      ],
+      0.0046,
+      10,
+    ),
+    dark,
+  );
+  mesh(
+    head,
+    'stick-bomb-button',
+    place(new T.CylinderGeometry(0.0055, 0.0055, 0.006, 14), [0, 0.133, 0.004], [0.25, 0, 0]),
+    red,
+  );
+  mesh(
+    head,
+    'stick-thumb-switch',
+    place(roundedBox([0.006, 0.01, 0.008], 0.002), [0.019, 0.112, -0.004], [0, 0, -0.3]),
+    dark,
+  );
+}
+
+/** Landing gear handle forward of the throttle quadrant, flap handle at the console's aft end,
+ * ignition switch on the panel's lower left (Cripes A'Mighty 3rd left-side photographs). */
+function addLeftConsoleControls(cabin, api) {
+  const { mesh, silver, dark, rubber } = api;
+  const { text } = instrumentParts(api);
+  // Gear handle on the console's inboard face; it swings in a vertical slot (UP above, DOWN
+  // below) and points at the pilot's knee.
+  const gear = station(cabin, 'landing-gear-handle', [0.348, 1.594, 0.455], [0, Math.PI / 2, 0]);
+  mesh(
+    gear.mount,
+    'gear-escutcheon',
+    place(roundedBox([0.044, 0.13, 0.004], 0.004, 1), [0, 0, 0.0025]),
+    dark,
+  );
+  mesh(gear.mount, 'gear-escutcheon-slot', new T.BoxGeometry(0.008, 0.074, 0.002), rubber);
+  text(gear.mount, 'gear-up-legend', 'UP', 0, 0.047, -0.0015, 0.0014);
+  text(gear.mount, 'gear-down-legend', 'DOWN', 0, -0.047, -0.0015, 0.0012);
+  text(gear.mount, 'gear-legend', 'GEAR', 0, 0.059, -0.0015, 0.0011);
+  mesh(
+    gear.pivot,
+    'gear-handle-lever',
+    tube(
+      [
+        [0, 0, 0.002],
+        [0, 0, -0.03],
+        [0, 0.008, -0.07],
+      ],
+      0.0052,
+      12,
+    ),
+    silver,
+  );
+  mesh(
+    gear.pivot,
+    'gear-handle-knob',
+    place(
+      lathe(
+        [
+          [0, 0],
+          [0.009, 0],
+          [0.016, 0.004],
+          [0.018, 0.012],
+          [0.015, 0.02],
+          [0, 0.022],
+        ],
+        18,
+      ),
+      [0, 0.009, -0.068],
+      [-Math.PI / 2 - 0.2, 0, 0],
+    ),
+    rubber,
+  );
+  // Gear down (1) holds the knob down, up (0) lifts it.
+  gear.pivot.userData.aircraftControl = {
+    action: 'gear',
+    motion: { property: 'rotation', axis: 'x', scale: -0.8, offset: 0.4 },
+  };
+
+  // Flap handle in its notched quadrant on the console top: forward is UP, aft is DOWN.
+  const flaps = station(cabin, 'flap-control-handle', [0.397, 1.662, -0.235]);
+  mesh(
+    flaps.mount,
+    'flap-quadrant',
+    place(roundedBox([0.034, 0.005, 0.13], 0.003, 1), [0, 0.0005, 0]),
+    dark,
+  );
+  mesh(
+    flaps.mount,
+    'flap-quadrant-slot',
+    new T.BoxGeometry(0.008, 0.002, 0.1).translate(0, 0.003, 0),
+    rubber,
+  );
+  for (let i = 0; i < 6; i++)
+    mesh(
+      flaps.mount,
+      `flap-quadrant-notch-${i}`,
+      new T.BoxGeometry(0.008, 0.0012, 0.0018).translate(0.011, 0.0034, 0.04 - i * 0.016),
+      silver,
+    );
+  const legend = new T.Group();
+  legend.name = 'flap-legend';
+  legend.position.set(0, 0.004, 0);
+  legend.rotation.x = Math.PI / 2;
+  flaps.mount.add(legend);
+  text(legend, 'flap-legend-up', 'UP', -0.004, 0.054, 0, 0.0011);
+  text(legend, 'flap-legend-down', 'DN', -0.004, -0.054, 0, 0.0011);
+  mesh(
+    flaps.pivot,
+    'flap-handle-lever',
+    bar([0, 0, 0], [0, 0.082, -0.006], 0.0045, 12, 0.004),
+    silver,
+  );
+  mesh(
+    flaps.pivot,
+    'flap-handle-knob',
+    new T.SphereGeometry(0.0125, 16, 12),
+    rubber,
+    [0, 0.09, -0.007],
+  );
+  flaps.pivot.userData.aircraftControl = {
+    action: 'flaps',
+    motion: { property: 'rotation', axis: 'x', scale: -0.7, offset: 0.35 },
+  };
+  const placardGroup = new T.Group();
+  placardGroup.name = 'flap-placard';
+  placardGroup.position.set(0.397, 1.6625, -0.33);
+  placardGroup.rotation.x = Math.PI / 2;
+  cabin.add(placardGroup);
+  mesh(placardGroup, 'flap-placard-plate', new T.BoxGeometry(0.07, 0.022, 0.002), rubber);
+  text(placardGroup, 'flap-placard-print', 'FLAPS', 0, 0, -0.0015, 0.0018);
+
+  // Ignition switch (OFF, L, R, BOTH) on the panel's lower left, below the clock.
+  const ignition = station(cabin, 'ignition-switch', [0.335, 1.735, 0.536]);
+  mesh(
+    ignition.mount,
+    'ignition-bezel',
+    lathe(
+      [
+        [0, 0],
+        [0.019, 0],
+        [0.019, 0.003],
+        [0.016, 0.005],
+        [0, 0.005],
+      ],
+      20,
+    ).rotateX(-Math.PI / 2),
+    dark,
+  );
+  for (const [label, x, y] of [
+    ['OFF', 0.026, 0.008],
+    ['L', 0.012, 0.025],
+    ['R', -0.012, 0.025],
+    ['BOTH', -0.03, 0.008],
+  ])
+    text(ignition.mount, `ignition-${label}`, label, x, y, -0.002, 0.0009);
+  text(ignition.mount, 'ignition-legend', 'IGNITION', 0, -0.03, -0.002, 0.0012);
+  mesh(
+    ignition.pivot,
+    'ignition-knob',
+    place(new T.CylinderGeometry(0.008, 0.009, 0.008, 16), [0, 0, -0.008], [Math.PI / 2, 0, 0]),
+    rubber,
+  );
+  mesh(
+    ignition.pivot,
+    'ignition-lever',
+    place(roundedBox([0.009, 0.034, 0.011], 0.003), [0, 0.004, -0.014]),
+    rubber,
+  );
+  mesh(
+    ignition.pivot,
+    'ignition-pointer',
+    place(roundedBox([0.0025, 0.012, 0.001], 0.0005), [0, 0.012, -0.02]),
+    api.white,
+  );
+  // Rest is OFF, the lever tipped to the left; BOTH turns it clockwise past L and R.
+  ignition.pivot.userData.aircraftControl = {
+    action: 'engine',
+    motion: { property: 'rotation', axis: 'z', scale: 2.2, offset: -1.1 },
+  };
+}
+
+/** The canopy hand crank on the right wall below the sill, its handle toward the pilot. */
+function addCanopyCrank(cabin, api) {
+  const { mesh, cabinWidth, silver, green, rubber } = api;
+  const { text } = instrumentParts(api);
+  // Between the wall ribs at z 0.18 and 0.48, under the instruction placard.
+  const y = 1.845,
+    z = 0.3;
+  const crank = station(
+    cabin,
+    'canopy-crank',
+    [-(cabinWidth(y, z) - 0.012), y, z],
+    [0, -Math.PI / 2, 0],
+  );
+  mesh(
+    crank.mount,
+    'canopy-crank-housing',
+    lathe(
+      [
+        [0, 0],
+        [0.034, 0],
+        [0.034, 0.008],
+        [0.026, 0.016],
+        [0.014, 0.018],
+        [0, 0.018],
+      ],
+      20,
+    ).rotateX(-Math.PI / 2),
+    green,
+  );
+  text(crank.mount, 'canopy-crank-legend', 'CANOPY', 0, -0.046, -0.002, 0.0012);
+  mesh(
+    crank.pivot,
+    'canopy-crank-hub',
+    place(new T.CylinderGeometry(0.011, 0.012, 0.012, 16), [0, 0, -0.024], [Math.PI / 2, 0, 0]),
+    silver,
+  );
+  mesh(
+    crank.pivot,
+    'canopy-crank-arm',
+    place(roundedBox([0.016, 0.07, 0.009], 0.004), [0, 0.027, -0.03]),
+    green,
+  );
+  mesh(
+    crank.pivot,
+    'canopy-crank-handle',
+    bar([0, 0.056, -0.03], [0, 0.056, -0.08], 0.0085, 14, 0.0095),
+    rubber,
+  );
+  // Winding the hood back takes several turns of the crank.
+  crank.pivot.userData.aircraftControl = {
+    action: 'canopy',
+    motion: { property: 'rotation', axis: 'z', scale: -9.4 },
+  };
 }

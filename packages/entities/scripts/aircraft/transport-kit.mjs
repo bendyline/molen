@@ -12,8 +12,10 @@
  * monotonically so nothing overshoots the traced outline. Windows, doors and seams are placed by
  * (u, h) on that same surface, so they cannot float off the skin.
  */
+import { toCreasedNormals } from 'three/addons/utils/BufferGeometryUtils.js';
 import { addAircraftCockpit } from '../aircraft-interiors.mjs';
 import { cleanGeometry, detailKit, mat, T } from './mesh-kit.mjs';
+import { transportDeck } from './transport-deck.mjs';
 
 const PI = Math.PI;
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -540,8 +542,9 @@ function windowFrames(parent, M, ck, zOf, material) {
           .map((t) => [lerp(uLow, uTop, t), lerp(y0, y1, t)])
           .filter(([u, y]) => M.crown(u) > y + 0.01)
           .map(([u, y]) => onSkin(u, y, side)),
-        0.034,
+        // Wide, shallow flat-faced posts (737, Q400 and CJ4 flight deck photographs), not tubes.
         0.045,
+        0.03,
       );
     }
     // Sill and header, where they run along the side of the nose (not across the crown).
@@ -561,7 +564,11 @@ function windowFrames(parent, M, ck, zOf, material) {
       0.034,
       0.04,
     );
-  return indexedMesh(parent, 'cockpit-window-frames', positions, indices, material);
+  // Creased normals keep each member's faces flat: averaged across the box corners they shaded
+  // as round tubes from the seats.
+  const frames = indexedMesh(parent, 'cockpit-window-frames', positions, indices, material);
+  frames.geometry = toCreasedNormals(frames.geometry, Math.PI / 5);
+  return frames;
 }
 
 /** Half rings of 2*H nodes in four bands, so node lines run exactly along the lower and upper edges
@@ -1358,7 +1365,29 @@ export function buildTransport(s, A) {
         },
         angle: (z, y) => M.angle(zNose - z, y),
       })
-    : addAircraftCockpit(body, s, { ...frame.body, deck: deckFit(A, M) });
+    : A.deck
+      ? transportDeck(body, s, {
+          ...frame.body,
+          deck: deckFit(A, M),
+          // The type's own panel, controls and pedestal (its builder's `deck`), and the measured
+          // skin the shared deck shell is fitted against, in the body frame.
+          layout: A.deck,
+          shell: {
+            glass: [zOf(ck.uEnd), zOf(ck.uStart)],
+            bulkhead: zOf(A.eye.bulkhead),
+            skin: (z, y) => skinHalf(A, M, zNose - z, y),
+            sill: (z) => ck.low(zNose - z),
+            top: (z) => ck.top(zNose - z),
+            crown: (z) => M.crown(zNose - z),
+            angle: (z, y) => M.angle(zNose - z, y),
+            // Skin point at section angle a from the crown, offset along its normal (inward < 0).
+            point: (z, a, side, offset = 0) => {
+              const [x, y] = M.point(zNose - z, a, side, offset);
+              return [x, y, z];
+            },
+          },
+        })
+      : addAircraftCockpit(body, s, { ...frame.body, deck: deckFit(A, M) });
   coaming(
     body.getObjectByName('cockpit'),
     A,

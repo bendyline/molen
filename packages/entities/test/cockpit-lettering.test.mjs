@@ -63,9 +63,13 @@ it.each([
   expect(label.parent).toBe(scene.getObjectByName('needle-airspeed').parent);
   expect(label.material.map.image.width).toBe(1024);
   expect(label.material.depthWrite).toBe(false);
-  const legend = scene.getObjectByName('flight-engine-common-legend');
-  expect(legend.material.userData.molenCockpitLettering).toBe(font);
-  expect(legend.parent.name).toBe('flight-controls');
+  // Every control is the aircraft's own part (no bolted switch module), and its legends are
+  // printed in the cockpit's font.
+  expect(scene.getObjectByName('flight-controls')).toBeUndefined();
+  scene.traverse((node) => {
+    if (node.isMesh && /-legend/.test(node.name))
+      expect(node.material.userData.molenCockpitLettering, node.name).toBe(font);
+  });
   const definition = JSON.parse(
     await readFile(new URL(`source/aircraft/${slug}/entity.types.json`, root)),
   );

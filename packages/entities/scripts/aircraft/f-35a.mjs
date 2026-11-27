@@ -2,6 +2,18 @@
  * +Z forward, +X pilot left. Public display mock-up guides the panel, not production software.
  */
 import { smoothSurface } from '../surface-normals.mjs';
+import { cockpitBulkhead, skinSection, wallAt } from './cockpit-fit.mjs';
+import {
+  bar,
+  contour,
+  lathe,
+  loftUp,
+  partPalette,
+  pedalGeometry,
+  place,
+  roundedBox,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -16,6 +28,7 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+import { mfdPage } from './mfd-page.mjs';
 
 export const f35Frame = () => ({
   heli: false,
@@ -186,7 +199,7 @@ export function buildF35A(s) {
     dark,
     false,
   );
-  for (const j of [0, 20])
+  for (const j of [0, 20]) {
     outline(
       d,
       cr.map((r) => [...r.points[j], r.z]),
@@ -194,6 +207,22 @@ export function buildF35A(s) {
       edge,
       false,
     );
+    // The frame's inboard face is the dark canopy seal: from the seat the sill rail reads black,
+    // as in the cockpit photographs, not as the gray skin it is outside.
+    outline(
+      d,
+      cr
+        .slice(1, -1)
+        .map((r) => [
+          r.points[j][0] - Math.sign(r.points[j][0]) * 0.012,
+          r.points[j][1] + 0.006,
+          r.z,
+        ]),
+      0.017,
+      dark,
+      false,
+    );
+  }
   for (const i of [0, 6])
     outline(
       d,
@@ -977,7 +1006,7 @@ export function buildF35A(s) {
       [side, 0, 0],
     );
   d.finish();
-  const interior = f35Cockpit(root, { metal });
+  const { stations: controlStations, ...interior } = f35Cockpit(root, { metal });
   Object.assign(interior.derived, {
     pitchDeflection: { op: 'multiply', args: ['pitchInput', 0.32] },
     rollDeflection: { op: 'multiply', args: ['rollInput', 0.13] },
@@ -991,7 +1020,7 @@ export function buildF35A(s) {
   cleanGeometry(root);
   return {
     root,
-    frame: f35Frame(),
+    frame: { ...f35Frame(), controlStations },
     enginePoints: [{ id: 'engine-1', position: [0, 1.8, -4.35] }],
     visual: {
       rotors: [],
@@ -1073,10 +1102,12 @@ function f35Cockpit(root, m) {
     [0.34, 2.54],
     [0.37, 2.46],
     [0.37, 2.388],
-    [0.13, 2.388],
-    [0.13, 2.17],
-    [-0.13, 2.17],
-    [-0.13, 2.388],
+    // The centre pedestal is wide enough for the gear handle on its left and the parking brake
+    // on its right, either side of the keypad and the standby display.
+    [0.165, 2.388],
+    [0.165, 2.17],
+    [-0.165, 2.17],
+    [-0.165, 2.388],
   ];
   const holes = [rect(-0.03, 2.55, 0.102, 0.077), rect(-0.043, 2.3, 0.064, 0.05)];
   sheet(
@@ -1117,9 +1148,10 @@ function f35Cockpit(root, m) {
   for (const x of [-0.127, 0.127])
     d.rod([x, 2.443, z - 0.027], [x, 2.632, z - 0.027], 0.0008, button);
   txt('TACTICAL', 0.19, 2.56, 0.008, amber, undefined, 'display');
-  txt('INOP', 0.19, 2.54, 0.012, amber, undefined, 'display');
+  // Blank tactical and sensor formats in the side portals: neither picture is simulated.
+  mfdPage(d, [0.19, 2.5, z - 0.014], 0.11, 0.11, 'tactical');
   txt('SENSORS', -0.19, 2.56, 0.008, amber, undefined, 'display');
-  txt('INOP', -0.19, 2.54, 0.012, amber, undefined, 'display');
+  mfdPage(d, [-0.19, 2.5, z - 0.014], 0.11, 0.11, 'radar');
   ins.horizon('attitude', [-0.03, 2.55, z + 0.012], 0.1, 0.075, { blankBackdrop: true });
   txt('TAS', 0.079, 2.573, 0.006, green, undefined, 'display');
   ins.readout('speed', [0.079, 2.552, z - 0.036], 'knots', 3, 0.009, green);
@@ -1184,52 +1216,69 @@ function f35Cockpit(root, m) {
   // No conventional HUD. The real helmet display is not synthesized by this model.
   d.box([0.86, 0.05, 1.9], [0, 1.695, 5.85], panel);
   d.box([0.74, 0.58, 0.035], [0, 2.01, 6.8], panel);
-  for (const side of [-1, 1]) {
-    // The wall's aft top corner stays inside the skin under the canopy rail (x 0.47 there);
-    // at 0.48 it and its sill tube broke out beside the canopy.
-    quad(
-      d,
-      [side * 0.48, 1.72, 5.05],
-      [side * 0.43, 2.55, 5.05],
-      [side * 0.37, 2.3, 6.8],
-      [side * 0.37, 1.72, 6.8],
-      panel,
-      [-side, 0, 0],
-    );
-    outline(
-      d,
-      [
-        [side * 0.43, 2.55, 5.05],
-        [side * 0.37, 2.3, 6.8],
-      ],
-      0.016,
-      black,
-      false,
-    );
-  }
+  // Fit: dark liners follow the skin from the floor up to the canopy sill, the consoles' tops run
+  // out to them, and a bulkhead closes the nose ahead of the footwell, so no painted skin shows
+  // beside the consoles, under the panel or along the sill.
+  sillLiner(d, root, {
+    zFrom: 5.15,
+    zTo: 6.84,
+    yFrom: 1.69,
+    yTo: 2.56,
+    material: panel,
+    zSteps: 18,
+    inset: 0.016,
+  });
+  consoleShelf(d, root, {
+    zFrom: 4.98,
+    zTo: 6.84,
+    y: 1.718,
+    x: 0.42,
+    material: panel,
+    steps: 10,
+    inset: 0.025,
+  });
+  consoleShelf(d, root, {
+    zFrom: 5.05,
+    zTo: 6.25,
+    y: 2.015,
+    x: 0.45,
+    material: panel,
+    inset: 0.025,
+  });
+  cockpitBulkhead(d, root, { z: 6.84, yFrom: 1.69, yTo: 2.42, material: panel });
   for (const side of [-1, 1]) {
     d.box([0.18, 0.15, 1.2], [side * 0.36, 1.94, 5.65], panel);
     const g = group(cabin, `F35-console-${side}`, [side * 0.36, 2.02, 5.65]);
     g.rotation.x = Math.PI / 2;
     const gd = detailKit(g, g.name);
     for (const [j, label] of (side === 1
-      ? ['POWER', 'COMM', 'FUEL', 'START']
-      : ['CANOPY', 'ECS', 'LIGHT', 'OXY']
+      ? ['FLCS', 'THROTTLE', 'FUEL', 'ENGINE']
+      : ['CANOPY', 'STICK', 'LIGHT', 'OXY']
     ).entries()) {
       const v = 0.46 - j * 0.28;
       gd.box([0.15, 0.24, 0.007], [0, v, 0], black);
+      // The throttle quadrant and the side-stick block stand on the second plates; the first and
+      // last carry the flap, canopy and engine controls (stations below), the rest small knobs.
+      if (j === 1) {
+        if (side === 1) gd.box([0.012, 0.2, 0.004], [0.012, v, -0.004], panel);
+        continue;
+      }
       gd.text(label, [0, v + 0.085, -0.009], 0.009, Math.PI, ink);
-      for (const x of [-0.04, 0.04]) {
-        gd.add(new T.CylinderGeometry(0.008, 0.01, 0.012, 12).rotateX(Math.PI / 2), button, [
+      const stationPlate = j === 0 || (side === 1 && j === 3);
+      for (const x of stationPlate ? [-0.045, 0.045] : [-0.04, 0.04]) {
+        gd.add(new T.CylinderGeometry(0.008, 0.009, 0.01, 16).rotateX(Math.PI / 2), button, [
           x,
-          v - 0.04,
-          -0.015,
+          v - 0.05,
+          -0.0085,
         ]);
-        gd.rod([x, v + 0.02, -0.012], [x, v + 0.028, -0.032], 0.003, m.metal);
+        if (!stationPlate)
+          gd.add(bar([x, v + 0.02, -0.0035], [x, v + 0.028, -0.02], 0.0016, 10, 0.0024), m.metal);
       }
     }
     gd.finish();
   }
+  // The side-stick's raised block on the right console.
+  d.add(place(roundedBox([0.085, 0.024, 0.11], 0.008), [-0.345, 2.031, 5.945]), black);
   d.box([0.4, 0.3, 0.42], [0, 1.85, 5.68], black);
   const sg = group(cabin, 'F35-US16E-seat', [0, 2.02, 5.55]);
   sg.rotation.x = -0.2;
@@ -1258,13 +1307,7 @@ function f35Cockpit(root, m) {
   sd.finish();
   const stick = group(cabin, 'F35-stick', [-0.34, 2.04, 5.94]),
     st = detailKit(stick, stick.name);
-  st.rod([0, 0, 0], [0, 0.1, -0.025], 0.016, black);
-  beveledBox(st, [0.062, 0.12, 0.07], [0, 0.17, -0.025], black, 0.012);
-  for (const p of [
-    [-0.02, 0.23, -0.06],
-    [0.02, 0.2, -0.06],
-  ])
-    st.add(new T.SphereGeometry(0.009, 8, 6), button, p);
+  f35StickGeometry(st);
   st.finish();
   bindings.push(
     { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.08 },
@@ -1272,9 +1315,7 @@ function f35Cockpit(root, m) {
   );
   const throttle = group(cabin, 'F35-throttle', [0.34, 2.04, 5.81]),
     td = detailKit(throttle, throttle.name);
-  td.rod([0, 0, 0], [0, 0.11, 0], 0.014, black);
-  beveledBox(td, [0.11, 0.075, 0.105], [0, 0.13, 0], black, 0.01);
-  td.add(new T.SphereGeometry(0.009, 8, 6), button, [-0.05, 0.16, -0.025]);
+  f35ThrottleGeometry(td);
   td.finish();
   bindings.push({
     node: throttle.name,
@@ -1287,8 +1328,7 @@ function f35Cockpit(root, m) {
   for (const side of [-1, 1]) {
     const g = group(cabin, `F35-pedal-${side}`, [side * 0.15, 1.85, 6.55]),
       gd = detailKit(g, g.name);
-    gd.box([0.13, 0.13, 0.03], [0, 0, 0], m.metal);
-    for (let j = 0; j < 5; j++) gd.box([0.11, 0.004, 0.004], [0, -0.05 + j * 0.025, -0.02], black);
+    pedalGeometry(gd, { style: 'fighter', side, drop: 0.06, scale: 0.95, lean: 0.36 });
     gd.finish();
     bindings.push({
       node: g.name,
@@ -1313,5 +1353,248 @@ function f35Cockpit(root, m) {
   txt('ENGINE --', 0.19, 2.473, 0.007, amber, undefined, 'display');
   txt('FUEL --', -0.19, 2.473, 0.007, amber, undefined, 'display');
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Where the real controls are (public mock-up and demonstrator photographs): the gear handle
+  // on the left of the centre pedestal beside the standby display, the parking brake handle on
+  // its right, speed brake on the throttle grip, the flap override forward and the engine start
+  // switch aft on the left console, the canopy switch forward on the right console.
+  const top = [Math.PI / 2, 0, 0],
+    plate = (side, j) => [side * 0.36, 2.0235, 5.65 + 0.46 - j * 0.28 + 0.03];
+  const stations = [
+    {
+      action: 'gear',
+      style: 'jet',
+      scale: 0.72,
+      at: [0.135, 2.262, z - 0.002],
+      label: 'LDG GEAR',
+      labelAt: [0, 0.045, -0.002],
+      labelHeight: 0.0065,
+    },
+    {
+      action: 'brake',
+      style: 'tee',
+      scale: 0.8,
+      at: [-0.135, 2.262, z - 0.002],
+      label: 'PARK BRK',
+      labelAt: [0, 0.045, -0.002],
+      labelHeight: 0.0065,
+    },
+    {
+      action: 'speedBrake',
+      style: 'slider',
+      parent: 'F35-throttle',
+      at: [0.329, 2.176, 5.8],
+      rotation: [Math.PI / 2 - 0.15, 0, 0],
+    },
+    {
+      action: 'flaps',
+      style: 'toggle',
+      scale: 1.2,
+      at: plate(1, 0),
+      rotation: top,
+      label: 'FLAPS',
+      labelAt: [0, 0.03, -0.002],
+    },
+    {
+      action: 'engine',
+      style: 'guarded',
+      at: plate(1, 3),
+      rotation: top,
+      label: 'ENG START',
+      labelAt: [0, 0.035, -0.002],
+    },
+    {
+      action: 'canopy',
+      style: 'paddle',
+      scale: 1.3,
+      at: plate(-1, 0),
+      rotation: top,
+      label: 'CANOPY',
+      labelAt: [0, 0.035, -0.002],
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
+}
+
+/** Sidewall liners from `yFrom` up to the canopy sill, `inset` inside the skin. Each station's
+ * column climbs the wall in 1 cm steps and stops below `yTo` where that side's skin ends or jumps
+ * to another surface (a shoulder or chine outboard), so the liner meets the sill instead of
+ * leaving a painted strip above its last row, and never reaches out through the skin. */
+function sillLiner(
+  d,
+  root,
+  { zFrom, zTo, yFrom, yTo, material, zSteps = 14, ySteps = 8, inset = 0.008 },
+) {
+  for (const side of [1, -1]) {
+    const columns = [];
+    for (let i = 0; i <= zSteps; i++) {
+      const z = zFrom + ((zTo - zFrom) * i) / zSteps,
+        segments = skinSection(root, z);
+      let lo = yFrom,
+        last = wallAt(segments, yFrom, side);
+      if (last === undefined) {
+        columns.push(undefined);
+        continue;
+      }
+      for (let y = yFrom + 0.01; y <= yTo + 1e-9; y += 0.01) {
+        const x = wallAt(segments, y, side);
+        if (x === undefined || Math.abs(x - last) > 0.03) break;
+        lo = y;
+        last = x;
+      }
+      columns.push(
+        Array.from({ length: ySteps + 1 }, (_, j) => {
+          const y = yFrom + ((lo - yFrom) * j) / ySteps,
+            x = wallAt(segments, y, side);
+          return x === undefined ? undefined : [x - side * inset, y, z];
+        }),
+      );
+    }
+    for (let i = 0; i < zSteps; i++)
+      for (let j = 0; j < ySteps; j++) {
+        const corners = [
+          columns[i]?.[j],
+          columns[i + 1]?.[j],
+          columns[i + 1]?.[j + 1],
+          columns[i]?.[j + 1],
+        ];
+        if (corners.every(Boolean)) quad(d, ...corners, material, [-side, 0, 0]);
+      }
+  }
+}
+/** A console top at height `y` from its outboard edge `x` out to the skin, both sides. */
+function consoleShelf(d, root, { zFrom, zTo, y, x, material, steps = 8, inset = 0.008 }) {
+  for (const side of [1, -1]) {
+    const row = [];
+    for (let i = 0; i <= steps; i++) {
+      const z = zFrom + ((zTo - zFrom) * i) / steps,
+        wall = wallAt(skinSection(root, z), y, side);
+      if (wall !== undefined) row.push([z, wall - side * inset]);
+    }
+    for (let i = 0; i + 1 < row.length; i++) {
+      const [z0, w0] = row[i],
+        [z1, w1] = row[i + 1];
+      quad(d, [side * x, y, z0], [side * x, y, z1], [w1, y, z1], [w0, y, z0], material, [0, 1, 0]);
+    }
+  }
+}
+/** F-35 side-stick: a slim grip with a forward-hooked head on a short booted pedestal, raked
+ * forward and canted inboard. Thumb switches on the inboard (+X) flank, trigger in front. */
+function f35StickGeometry(d) {
+  const P = partPalette();
+  d.add(
+    lathe(
+      [
+        [0, -0.006],
+        [0.03, -0.006],
+        [0.03, 0.002],
+        [0.026, 0.006],
+        [0, 0.006],
+      ],
+      18,
+    ),
+    P.steel,
+  );
+  d.add(
+    lathe(
+      [
+        [0, 0.004],
+        [0.024, 0.004],
+        [0.022, 0.014],
+        [0.017, 0.02],
+        [0.016, 0.028],
+        [0.012, 0.035],
+        [0.011, 0.042],
+        [0, 0.042],
+      ],
+      18,
+      28,
+    ),
+    P.tread,
+  );
+  const mount = (g) => place(g, [0, 0.038, 0], [0.12, 0, -0.07]);
+  const rows = [
+    [0, 0, 0.015, 0.018, 2.2],
+    [0.02, 0.002, 0.017, 0.021, 2.2],
+    [0.06, 0.004, 0.0175, 0.022, 2.2],
+    [0.095, 0.006, 0.018, 0.023, 2.3],
+    [0.115, 0.012, 0.02, 0.028, 2.5],
+    [0.132, 0.018, 0.021, 0.031, 2.6],
+    [0.145, 0.02, 0.017, 0.026, 2.4],
+    [0.15, 0.02, 0.009, 0.014, 2.2],
+  ];
+  d.add(
+    mount(loftUp(rows.map(([y, cz, rx, rz, p]) => ({ y, points: contour(0, cz, rx, rz, 18, p) })))),
+    P.grip,
+  );
+  d.add(
+    mount(
+      tube(
+        [
+          [0, 0.106, 0.026],
+          [0, 0.097, 0.037],
+          [0, 0.083, 0.033],
+        ],
+        0.005,
+        10,
+      ),
+    ),
+    P.black,
+  );
+  d.add(
+    mount(place(new T.CylinderGeometry(0.006, 0.006, 0.007, 14), [0.003, 0.152, 0.014])),
+    P.black,
+  );
+  d.add(
+    mount(
+      place(new T.SphereGeometry(0.0042, 10, 6), [0.003, 0.156, 0.014], [0, 0, 0], [1, 0.6, 1]),
+    ),
+    P.black,
+  );
+  d.add(
+    mount(
+      place(new T.CylinderGeometry(0.0045, 0.0045, 0.005, 12), [-0.006, 0.149, 0.032], [0.5, 0, 0]),
+    ),
+    P.red,
+  );
+  d.add(mount(place(roundedBox([0.006, 0.011, 0.01], 0.002), [0.02, 0.126, 0.004])), P.black);
+  d.add(mount(place(roundedBox([0.006, 0.008, 0.008], 0.002), [0.017, 0.14, -0.008])), P.black);
+  d.add(
+    mount(place(roundedBox([0.012, 0.012, 0.008], 0.002), [0, 0.03, 0.022], [0.3, 0, 0])),
+    P.black,
+  );
+}
+/** F-35 throttle (left console): a short lever under a broad, mouse-shaped grip that bulges
+ * inboard (-X) under the thumb; switches on the inboard flank, top and front. */
+function f35ThrottleGeometry(d) {
+  const P = partPalette();
+  d.add(place(roundedBox([0.014, 0.07, 0.024], 0.003), [0, 0.035, 0]), P.alloy);
+  const rows = [
+    [0.06, 0, 0, 0.02, 0.034],
+    [0.075, -0.004, 0.004, 0.028, 0.05],
+    [0.1, -0.007, 0.008, 0.031, 0.056],
+    [0.12, -0.006, 0.006, 0.027, 0.05],
+    [0.132, -0.004, 0.002, 0.019, 0.036],
+    [0.137, -0.003, 0, 0.009, 0.018],
+  ];
+  d.add(
+    loftUp(rows.map(([y, cx, cz, rx, rz]) => ({ y, points: contour(cx, cz, rx, rz, 18, 2.6) }))),
+    P.grip,
+  );
+  for (const [x, y, z] of [
+    [-0.037, 0.1, -0.012],
+    [-0.035, 0.1, 0.018],
+    [-0.03, 0.118, 0.034],
+  ])
+    d.add(place(roundedBox([0.008, 0.01, 0.011], 0.002), [x, y, z]), P.black);
+  d.add(
+    place(
+      new T.CylinderGeometry(0.006, 0.006, 0.008, 14),
+      [-0.034, 0.088, -0.03],
+      [0, 0, Math.PI / 2],
+    ),
+    P.black,
+  );
+  d.add(place(new T.CylinderGeometry(0.005, 0.005, 0.006, 14), [-0.01, 0.136, 0.018]), P.black);
+  d.add(place(roundedBox([0.014, 0.01, 0.008], 0.002), [0, 0.098, 0.058]), P.black);
+  d.add(place(roundedBox([0.01, 0.008, 0.008], 0.002), [0.012, 0.11, 0.054]), P.black);
 }

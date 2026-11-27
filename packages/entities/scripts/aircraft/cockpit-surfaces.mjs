@@ -1,10 +1,11 @@
 /** Small, original cockpit finishes. No photographs, baked lighting or host canvas dependency. */
 import { mkdir, readdir, rm, writeFile } from 'node:fs/promises';
 import { PNG } from 'pngjs';
-import { Float32BufferAttribute, Vector3 } from 'three';
+import { Float32BufferAttribute, FrontSide, MeshStandardMaterial, Vector3 } from 'three';
 import library from '../../../../content/entities/source/cockpit-materials/library.json' with {
   type: 'json',
 };
+import { lineSeatFrames } from './cockpit-fit.mjs';
 import {
   cockpitFontProfiles,
   cockpitFontTexture,
@@ -141,8 +142,11 @@ export function finishCockpit(cabin, select) {
       b.fromBufferAttribute(p, i + 1).multiply(scale);
       c.fromBufferAttribute(p, i + 2).multiply(scale);
       const n = b.clone().sub(a).cross(c.clone().sub(a));
-      // Rounded primitives can contain collapsed pole triangles. They have no UV tangent frame.
-      if (n.lengthSq() > 1e-18) indices.push(i, i + 1, i + 2);
+      // Rounded primitives can contain collapsed pole triangles, and a sheet cut round holes
+      // leaves slivers; neither has a UV tangent frame once the import quantizes positions. A
+      // triangle under 0.1 mm across its narrowest is dropped.
+      const longest = Math.max(a.distanceTo(b), b.distanceTo(c), c.distanceTo(a));
+      if (n.lengthSq() > 1e-18 && n.length() / longest > 1e-4) indices.push(i, i + 1, i + 2);
       const axes = [Math.abs(n.x), Math.abs(n.y), Math.abs(n.z)];
       const dominant = axes.indexOf(Math.max(...axes));
       const u = dominant === 0 ? 2 : 0,
@@ -160,7 +164,12 @@ export function finishCockpit(cabin, select) {
 }
 
 /** Apply an explicit aircraft profile only within its cabin and added physical control module. */
-export function finishAircraftCockpit(model, spec, slug) {
+/**
+ * Finish an aircraft's cockpit: textures, lettering and a lining on exterior frames the crew sees
+ * directly. `eyes` are the crew eye points in the model frame; by default the pilot's and, beside
+ * a pilot sitting off the centreline, a copilot's mirrored one.
+ */
+export function finishAircraftCockpit(model, spec, slug, eyes) {
   const profile = library.profiles[slug];
   if (!profile) throw Error(`Missing cockpit finish profile: ${slug}`);
   const fonts = cockpitFontProfiles[slug];
@@ -195,6 +204,29 @@ export function finishAircraftCockpit(model, spec, slug) {
       // Printed markings, screen faces, colored annunciators and existing upholstery stay clear.
     });
   }
+  // Canopy bows, sills and window posts seen from a seat with no glass between showed the
+  // exterior paint (often near white) inside: line them in dark cockpit trim.
+  const eye = spec.pilotEye;
+  const crew = eyes ?? (Math.abs(eye[0]) > 0.15 ? [eye, [-eye[0], eye[1], eye[2]]] : [eye]);
+  lineSeatFrames(
+    model,
+    crew.map((point) => new Vector3(...point)),
+    new MeshStandardMaterial({
+      name: 'cockpit-frame-lining',
+      color: '#3a4044',
+      metalness: 0.05,
+      roughness: 0.85,
+      side: FrontSide,
+    }),
+    {
+      // Interior parts are never lined, declared or not (an OH-6's rear cabin, a seat), nor
+      // rotating ones.
+      exclude: [
+        ...new Set([...(spec.visual.interior?.nodes ?? []), 'flight-controls']),
+        /interior|cockpit|seat|rotor|blade|propeller/i,
+      ],
+    },
+  );
   return model;
 }
 

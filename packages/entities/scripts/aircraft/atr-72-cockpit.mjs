@@ -5,6 +5,18 @@
  * coordinates and carried by one scaled group.
  */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitLiner } from './cockpit-fit.mjs';
+import {
+  bar,
+  contour,
+  gearHandleGeometry,
+  loftUp,
+  partPalette,
+  place,
+  roundedBox,
+  switchGeometry,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -18,6 +30,114 @@ import {
   T,
 } from './mesh-kit.mjs';
 
+/** A kit proxy that places a library part at `at` / `rotation` inside an existing kit. */
+const placed = (d, at, rotation = [0, 0, 0], scale) => ({
+  add: (geometry, material) => d.add(place(geometry, at, rotation, scale), material),
+});
+/** Quadrant parts are drawn in the lever frame (+Y up, +Z forward) and laid into the pedestal's
+ * own frame, which lies on its back (local -Z up, +Y forward). */
+const upright = [-Math.PI / 2, 0, 0];
+const stand = (geometry, at = [0, 0, 0], rotation = [0, 0, 0]) =>
+  place(place(geometry, at, rotation), [0, 0, 0], upright);
+/** ATR power lever (-600 quadrant photographs): a cranked arm with the reverse latch under a
+ * broad, rounded black head. */
+function atrPowerLever(d, P, height) {
+  d.add(
+    stand(
+      tube(
+        [
+          [0, 0, 0],
+          [0, height * 0.45, 0.012],
+          [0, height * 0.8, -0.004],
+          [0, height - 0.02, 0],
+        ],
+        0.0065,
+        12,
+      ),
+    ),
+    P.steel,
+  );
+  d.add(stand(roundedBox([0.044, 0.05, 0.05], 0.016), [0, height + 0.004, 0]), P.grip);
+  // Reverse latch: a trigger bar under the head and the link down the arm.
+  d.add(stand(roundedBox([0.03, 0.008, 0.012], 0.003), [0, height - 0.034, -0.014]), P.black);
+  d.add(stand(bar([0, height - 0.035, -0.008], [0, height * 0.55, -0.008], 0.0028, 8)), P.alloy);
+}
+/** ATR condition lever: a square black knob with its lift button on top and a side tab. */
+function atrConditionLever(d, P, height, side) {
+  d.add(stand(bar([0, 0, 0], [0, height - 0.02, 0], 0.0055, 12)), P.steel);
+  d.add(stand(roundedBox([0.036, 0.042, 0.036], 0.006), [0, height, 0]), P.grip);
+  d.add(stand(roundedBox([0.022, 0.006, 0.022], 0.002), [0, height + 0.023, 0]), P.black);
+  d.add(stand(roundedBox([0.03, 0.01, 0.012], 0.004), [side * 0.028, height - 0.026, 0]), P.grip);
+}
+/** ATR flap lever: a cream block knob on a short shaft. */
+function atrFlapLever(d, P, height, cream) {
+  d.add(stand(bar([0, 0, 0], [0, height - 0.015, 0], 0.0055, 12)), P.steel);
+  d.add(stand(roundedBox([0.06, 0.032, 0.042], 0.009), [0, height, -0.004]), cream);
+}
+/** ATR control wheel (-600 photographs): a deep black hub box carrying the chart clip, arms out
+ * of its lower corners and tall horns, gently curved inboard, under rocker-switch heads. Hub at
+ * the origin, horns facing -Z. */
+function atrYoke(d, P) {
+  d.add(roundedBox([0.15, 0.125, 0.06], 0.016).translate(0, 0.0, -0.02), P.grip);
+  d.add(roundedBox([0.11, 0.012, 0.012], 0.003).translate(0, 0.066, -0.035), P.alloy);
+  d.add(roundedBox([0.12, 0.09, 0.004], 0.006).translate(0, -0.004, -0.052), P.black);
+  for (const s of [-1, 1]) {
+    d.add(
+      tube(
+        [
+          [s * 0.06, -0.045, -0.02],
+          [s * 0.12, -0.06, -0.022],
+          [s * 0.165, -0.045, -0.024],
+          [s * 0.185, -0.005, -0.026],
+        ],
+        0.0175,
+        14,
+      ),
+      P.grip,
+    );
+    d.add(
+      loftUp([
+        { y: -0.012, points: contour(s * 0.186, -0.026, 0.0165, 0.019, 14, 2.2) },
+        { y: 0.06, points: contour(s * 0.188, -0.027, 0.0175, 0.02, 14, 2.2) },
+        { y: 0.12, points: contour(s * 0.182, -0.03, 0.017, 0.02, 14, 2.2) },
+        { y: 0.15, points: contour(s * 0.176, -0.032, 0.021, 0.026, 14, 2.6) },
+        { y: 0.172, points: contour(s * 0.174, -0.032, 0.02, 0.025, 14, 2.6) },
+        { y: 0.18, points: contour(s * 0.174, -0.032, 0.011, 0.014, 14, 2.4) },
+      ]),
+      P.grip,
+    );
+    d.add(roundedBox([0.012, 0.006, 0.016], 0.002).translate(s * 0.174, 0.181, -0.034), P.black);
+    d.add(
+      new T.CylinderGeometry(0.005, 0.005, 0.006, 12)
+        .rotateX(Math.PI / 2)
+        .translate(s * 0.166, 0.158, -0.06),
+      P.red,
+    );
+  }
+}
+/** ATR rudder pedal: a tall black plate with pale tread bars, on its hinge arm to the floor. */
+function atrPedal(d, P, tread) {
+  const lean = [0.24, 0, 0];
+  d.add(place(roundedBox([0.12, 0.2, 0.018], 0.016, 1), [0, 0, 0], lean), P.grip);
+  for (let j = 0; j < 5; j++)
+    d.add(
+      place(new T.BoxGeometry(0.09, 0.008, 0.003), [0, -0.07 + j * 0.035, -0.0095], lean),
+      tread,
+    );
+  d.add(
+    tube(
+      [
+        [0, -0.08, 0.02],
+        [0, -0.12, 0.06],
+        [0, -0.15, 0.12],
+      ],
+      0.01,
+      12,
+    ),
+    P.steel,
+  );
+  d.add(bar([-0.05, -0.15, 0.12], [0.05, -0.15, 0.12], 0.014, 14), P.steel);
+}
 /** Flight deck stations: the seated eye, the panel face and the raised floor over the nose gear. */
 export const atr72Deck = { eye: [0.5, 3.02, 10.92], panelZ: 11.68, floor: 1.78 };
 
@@ -42,7 +162,8 @@ export function buildATR72Cockpit(root, m, sections) {
   const face = mat('ATR72-panel', '#627d8c'),
     liner = mat('ATR72-liner', '#d2d7d3', { side: T.DoubleSide }),
     seat = mat('ATR72-upholstery', '#677477'),
-    green = mat('ATR72-panel-print', '#83a99b');
+    green = mat('ATR72-panel-print', '#83a99b'),
+    cream = mat('ATR72-flap-knob', '#d8cca6', { roughness: 0.5 });
   const k = 2.04 / 1242,
     px = (u) => (666 - u) * k,
     py = (v) => 2.55 + (800 - v) * k,
@@ -283,13 +404,16 @@ export function buildATR72Cockpit(root, m, sections) {
     }
   const gear = group(panel, 'ATR72-gear-lever', at(803, 822, -0.027)),
     gd = detailKit(gear, gear.name);
-  gd.rod([0, 0, 0], [0, -0.035, -0.035], 0.006, m.metal);
-  gd.add(
-    new T.CylinderGeometry(0.014, 0.014, 0.027, 16).rotateZ(Math.PI / 2),
-    black,
-    [0, -0.04, -0.04],
-  );
+  // LDG GEAR lever: an alloy lever with a black wheel knob round its red lamp (the panel group
+  // is drawn at 0.67 scale, so the part is drawn 1.5 times larger).
+  const P = partPalette();
+  gearHandleGeometry(placed(gd, [0, 0, 0.012], [-0.78, 0, 0]), {
+    style: 'jet',
+    scale: 1.05,
+    palette: { white: P.grip },
+  });
   gd.finish();
+  d.box([0.024, 0.1, 0.003], at(803, 822, -0.0165), black);
   bindings.push({
     node: gear.name,
     source: 'gearPosition',
@@ -334,33 +458,21 @@ export function buildATR72Cockpit(root, m, sections) {
   // Two independent pitch columns and rectangular ram-horn wheels with top-mounted switches.
   for (const side of [-1, 1]) {
     const pilotX = side * eye[0];
+    // The column: a tapering grey post rising from the floor and bending aft to the wheel hub.
     const column = group(cabin, `ATR72-column-${side}`, [pilotX, floor + 0.065, panelZ - 0.2]),
       kit = detailKit(column, column.name);
-    beveledBox(kit, [0.11, 0.65, 0.13], [0, 0.28, -0.06], face);
+    kit.add(
+      loftUp([
+        { y: -0.04, points: contour(0, -0.04, 0.06, 0.07, 16, 3) },
+        { y: 0.25, points: contour(0, -0.06, 0.05, 0.06, 16, 3) },
+        { y: 0.5, points: contour(0, -0.09, 0.044, 0.05, 16, 3) },
+        { y: 0.6, points: contour(0, -0.115, 0.04, 0.045, 16, 3) },
+      ]),
+      face,
+    );
     const wheel = group(column, `ATR72-yoke-${side}`, [0, 0.61, -0.14]),
       wd = detailKit(wheel, wheel.name);
-    outline(
-      wd,
-      [
-        [-0.18, 0.16, 0],
-        [-0.2, 0.03, 0],
-        [-0.16, -0.04, 0],
-        [-0.08, -0.04, 0],
-        [0, 0.02, 0],
-        [0.08, -0.04, 0],
-        [0.16, -0.04, 0],
-        [0.2, 0.03, 0],
-        [0.18, 0.16, 0],
-      ],
-      0.019,
-      black,
-      false,
-    );
-    beveledBox(wd, [0.17, 0.13, 0.035], [0, 0, -0.016], m.dark, 0.012);
-    for (const sign of [-1, 1]) {
-      wd.box([0.04, 0.036, 0.035], [sign * 0.18, 0.16, -0.005], black);
-      wd.box([0.015, 0.006, 0.012], [sign * 0.18, 0.18, -0.008], ink);
-    }
+    atrYoke(wd, P);
     wd.finish();
     kit.finish();
     bindings.push(
@@ -374,14 +486,7 @@ export function buildATR72Cockpit(root, m, sections) {
           panelZ + 0.12,
         ]),
         dd = detailKit(g, g.name);
-      dd.box([0.18, 0.12, 0.04], [0, 0, 0], m.metal);
-      for (let j = 0; j < 5; j++)
-        dd.rod(
-          [-0.075, -0.045 + j * 0.02, -0.025],
-          [0.075, -0.045 + j * 0.02, -0.025],
-          0.003,
-          m.dark,
-        );
+      atrPedal(dd, P, green);
       dd.finish();
       bindings.push({
         node: g.name,
@@ -459,17 +564,13 @@ export function buildATR72Cockpit(root, m, sections) {
     [3, -0.14, null],
     [4, -0.215, 'flapPosition'],
   ]) {
+    // The -600 quadrant: power levers with broad heads, square condition knobs with lift buttons
+    // and side tabs, and the cream flap knob.
     const g = group(ped, `ATR72-power-lever-${i}`, [x, 0.06, -0.08]),
       dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0], [0, 0, -0.095], 0.006, m.metal);
-    beveledBox(
-      dd,
-      [i === 4 ? 0.075 : 0.055, 0.044, 0.027],
-      [0, 0, -0.11],
-      i === 4 ? liner : black,
-      0.008,
-    );
-    if (i < 2) dd.text(String(i + 1), [0, 0, -0.125], 0.018, Math.PI, ink);
+    if (i < 2) atrPowerLever(dd, P, 0.15);
+    else if (i < 4) atrConditionLever(dd, P, 0.12, i === 2 ? 1 : -1);
+    else atrFlapLever(dd, P, 0.09, cream);
     dd.finish();
     if (source)
       bindings.push({
@@ -482,6 +583,28 @@ export function buildATR72Cockpit(root, m, sections) {
   }
   pd.box([0.19, 0.014, 0.014], [0.095, 0.27, -0.1], m.accent);
   pd.text('GUST LOCK', [0.1, 0.29, -0.11], 0.008, Math.PI, ink);
+  // PARKING brake: the striped lever in its own slot at the quadrant's left side; set, it is
+  // pulled back.
+  pd.box([0.015, 0.2, 0.007], [0.225, 0.1, -0.075], black);
+  pd.text('PARKING', [0.225, 0.23, -0.08], 0.008, Math.PI, ink);
+  const parking = group(ped, 'ATR72-parking-brake', [0.225, 0.08, -0.08]),
+    pk = detailKit(parking, parking.name);
+  {
+    // Built standing (lever frame), raked forward, then laid into the pedestal frame.
+    const lay = (geometry, at) => stand(geometry, at, [0.3, 0, 0]);
+    pk.add(stand(bar([0, 0, 0], [0, 0.04, 0], 0.005, 12)), P.steel);
+    pk.add(lay(roundedBox([0.018, 0.13, 0.024], 0.006), [0, 0.1, 0.012]), P.black);
+    for (let j = 0; j < 4; j++)
+      pk.add(
+        lay(roundedBox([0.0186, 0.006, 0.0246], 0.001), [0, 0.11 + j * 0.016, 0.012]),
+        j % 2 ? P.white : P.yellow,
+      );
+  }
+  pk.finish();
+  parking.userData.aircraftControl = {
+    action: 'brake',
+    motion: { property: 'rotation', axis: 'x', scale: -0.5 },
+  };
   for (const [y0, label] of [
     [-0.22, 'RADIO'],
     [-0.38, 'AUDIO'],
@@ -511,7 +634,14 @@ export function buildATR72Cockpit(root, m, sections) {
       od.box([0.184, 0.117, 0.008], [x, yy, -0.028], face);
       outline(od, rect(x, yy, 0.184, 0.117, -0.034), 0.001, ink);
       od.text(labels[c][r], [x, yy + 0.042, -0.036], 0.007, Math.PI, ink);
+      // ENG START carries the start rotary between the START 1 / START 2 pushbuttons, and the
+      // BAT block its battery switch (control stations, below).
+      if (labels[c][r] === 'START') {
+        switchGeometry(placed(od, [x, yy - 0.012, -0.032]), { style: 'pointer', scale: 1.6 });
+        continue;
+      }
       for (let j = 0; j < 4; j++) {
+        if (labels[c][r] === 'BAT' && j > 1) continue;
         od.box([0.025, 0.019, 0.008], [x - 0.063 + j * 0.042, yy + 0.008, -0.035], black);
         od.box([0.015, 0.004, 0.002], [x - 0.063 + j * 0.042, yy + 0.011, -0.041], ink);
       }
@@ -541,6 +671,21 @@ export function buildATR72Cockpit(root, m, sections) {
     const zz = panelZ + ((deckTip - panelZ) * i) / 12,
       x = i === 12 ? 0 : meet(zz);
     deckOutline.push([x, deck(x, zz), zz]);
+  }
+  // Behind the panel's back sheet, from the foot-well roof up under the deck, so the coaming's
+  // falling sides meet the deck with no nose skin showing between them.
+  {
+    const backZ = panelZ + 0.095,
+      under = Array.from({ length: 17 }, (_, i) => {
+        const x = deckEdge - (2 * deckEdge * i) / 16;
+        return [x, deck(Math.abs(x), backZ) - 0.004, backZ];
+      });
+    sheet(
+      cd,
+      [[wall(backZ, 2.3), 2.3, backZ], ...under, [-wall(backZ, 2.3), 2.3, backZ]],
+      face,
+      [0, 0, -1],
+    );
   }
   for (const side of [-1, 1]) {
     sheet(
@@ -674,7 +819,46 @@ export function buildATR72Cockpit(root, m, sections) {
     );
     cd.box([0.04, 0.011, 0.03], [x + 0.04, 2.015 + lift, zz + 0.04], m.metal);
   }
+  // Fit the flight deck to the airframe, so no painted skin shows from the seats: the blue-grey
+  // of the panel down the sidewalls from the door bulkhead to the nose bay, under the windows,
+  // and the cabin liner above them to the crown.
+  cockpitLiner(cd, root, {
+    zFrom: 10.17,
+    zTo: 12.02,
+    yFrom: floor,
+    yTo: 2.86,
+    material: face,
+    zSteps: 14,
+    ySteps: 12,
+  });
   d.finish();
   cd.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Where the -600's remaining controls are: the battery switch and the START 1 / START 2
+  // pushbuttons on the overhead's ELEC and ENG START panels (its frame: rotated about X).
+  const ohTilt = -Math.PI / 2 + 0.25,
+    onOverhead = (x, y, zl = -0.032) => [
+      x,
+      3.36 + y * Math.cos(ohTilt) - zl * Math.sin(ohTilt),
+      11.18 + y * Math.sin(ohTilt) + zl * Math.cos(ohTilt),
+    ],
+    overheadFace = [ohTilt, 0, 0];
+  const stations = [
+    {
+      action: 'engine',
+      style: 'toggle',
+      at: onOverhead(0.142, -0.17),
+      rotation: overheadFace,
+    },
+    ...[0, 1].map((engine) => ({
+      action: 'engine',
+      engine,
+      style: 'korry',
+      at: onOverhead(0.1 + (engine ? -0.055 : 0.055), 0.09 + 0.004),
+      rotation: overheadFace,
+      label: `START ${engine + 1}`,
+      labelAt: [0, -0.022, -0.001],
+      labelHeight: 0.0055,
+    })),
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
 }

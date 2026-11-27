@@ -3,6 +3,17 @@
  * separate tandem-canopy photograph, and distinct front/rear panel references.
  */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead } from './cockpit-fit.mjs';
+import {
+  bar,
+  lathe,
+  leverGeometry,
+  partPalette,
+  place,
+  roundedBox,
+  stickGeometry,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -17,8 +28,38 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+import { mfdPage } from './mfd-page.mjs';
 import { petalNozzle } from './petal-nozzle.mjs';
 
+/** Falcon rudder pedal, drawn at its pad center: a narrow plate with three tread ribs, a
+ * heel cup and an outboard guard, on a short arm into the floor. Force-sensing, it barely
+ * moves, but reads as a pedal. The top leans forward. */
+function falconPedal(kit, side) {
+  const P = partPalette(),
+    out = side >= 0 ? 1 : -1,
+    lean = 0.34;
+  const parts = [
+    [P.steel, roundedBox([0.078, 0.145, 0.011], 0.008, 1)],
+    [P.steel, place(roundedBox([0.082, 0.026, 0.03], 0.004, 1), [0, -0.064, -0.014])],
+    [P.steel, place(new T.BoxGeometry(0.005, 0.08, 0.026), [out * 0.04, 0.01, -0.011])],
+    [
+      P.alloy,
+      tube(
+        [
+          [0, -0.03, 0.008],
+          [0, -0.075, 0.025],
+          [0, -0.1, 0.05],
+        ],
+        0.007,
+        8,
+      ),
+    ],
+  ];
+  for (const y of [-0.025, 0.012, 0.049])
+    parts.push([P.tread, place(new T.BoxGeometry(0.062, 0.016, 0.004), [0, y, -0.0065])]);
+  for (const [material, geometry] of parts)
+    kit.add(place(geometry, [0, 0, 0], [lean, 0, 0]), material);
+}
 export const f16Frame = () => ({
   heli: false,
   fighter: true,
@@ -637,7 +678,13 @@ export function buildF16B(s) {
   md.add(new T.SphereGeometry(1, 12, 8).scale(0.015, 0.065, 0.23), dark);
   md.finish();
   d.finish();
-  const interior = f16Cockpits(root, { paint, upper, dark, metal, glass });
+  const { stations: controlStations, ...interior } = f16Cockpits(root, {
+    paint,
+    upper,
+    dark,
+    metal,
+    glass,
+  });
   cleanGeometry(root);
   const derived = {
     ...interior.derived,
@@ -662,7 +709,7 @@ export function buildF16B(s) {
   interior.derived = derived;
   return {
     root,
-    frame: f16Frame(),
+    frame: { ...f16Frame(), controlStations },
     enginePoints: [{ id: 'engine-1', position: [0, 1.86, -4.6] }],
     visual: {
       rotors: [],
@@ -687,9 +734,19 @@ function f16Cockpits(root, m) {
     pt = panelTools(d),
     ins = instrumentGeometry(cabin, 'F16');
   const { bindings, derived, ink, black, amber } = ins,
-    panel = mat('F16-panel-gray', '#67716e', { side: T.DoubleSide }),
+    panel = mat('F16-panel-gray', '#545c5b', { side: T.DoubleSide }),
     seat = mat('F16-seat-cushion', '#515747'),
-    belt = mat('F16-harness', '#aaa98f');
+    belt = mat('F16-harness', '#aaa98f'),
+    P = partPalette();
+  // Console switch parts built once, protruding along +Y from a console top: a toggle's bushing.
+  const bushing = lathe(
+    [
+      [0.0045, 0],
+      [0.0045, 0.004],
+      [0, 0.004],
+    ],
+    10,
+  );
   const sources = {
     trueAirspeed: { component: 'aircraftState', path: ['airspeed'] },
     altitude: { component: 'transform', path: ['pos', 1] },
@@ -981,6 +1038,30 @@ function f16Cockpits(root, m) {
         d.rod(at(u, v, -0.04), at(u, v - 8, -0.052), 0.0025, m.metal);
       }
       d.text('HUD', at(770, 437, -0.046), 0.009, Math.PI, ink);
+      // The black U-shaped grab handle under the HUD control panel, ribbed across its middle
+      // (Commons "General Dynamics F-16A ... Cockpit FrontPanel Wide ... NMUSAF", Valder137).
+      d.add(
+        tube(
+          [
+            at(688, 600, -0.03),
+            at(688, 608, -0.066),
+            at(700, 615, -0.078),
+            at(840, 615, -0.078),
+            at(852, 608, -0.066),
+            at(852, 600, -0.03),
+          ],
+          0.006,
+          12,
+        ),
+        m.dark,
+      );
+      d.add(bar(at(728, 615, -0.078), at(812, 615, -0.078), 0.0085, 12), black);
+      for (let j = 0; j < 7; j++)
+        d.add(
+          new T.TorusGeometry(0.0088, 0.0012, 4, 12).rotateY(Math.PI / 2),
+          m.dark,
+          at(734 + j * 12, 615, -0.078),
+        );
       const hud = [
         [665, 371],
         [668, 45],
@@ -1021,7 +1102,8 @@ function f16Cockpits(root, m) {
         m.dark,
         false,
       );
-    // The real unmodeled receiver/engine/fuel instruments remain visibly unavailable.
+    // The stores control panel's window and the radar/EO display between the knees (F-16A,
+    // NMUSAF photograph), as blank formats: neither is simulated.
     const displays = rear
       ? [
           [526, 459, 188, 145],
@@ -1031,10 +1113,10 @@ function f16Cockpits(root, m) {
           [515, 677, 186, 148],
           [768, 1103, 171, 158],
         ];
-    for (const [u, v, w, h] of displays) {
+    for (const [i, [u, v, w, h]] of displays.entries()) {
       d.box([w * k + 0.025, h * k + 0.025, 0.022], at(u, v, -0.018), m.dark);
       d.box([w * k, h * k, 0.004], at(u, v, -0.032), black);
-      d.text('INOP', at(u, v, -0.035), 0.014, Math.PI, amber);
+      mfdPage(d, at(u, v, -0.0352), w * k * 0.86, h * k * 0.86, i === 0 ? 'stores' : 'radar');
       for (let j = 0; j < 5; j++)
         for (const sign of [-1, 1])
           d.box(
@@ -1139,20 +1221,47 @@ function f16Cockpits(root, m) {
       base = rear ? 1.58 : 1.46;
     // The floor stays inside the narrowing belly (a full-width plate poked out below it).
     d.box([rear ? 0.86 : 0.56, 0.035, 1.34], [0, base, seatZ + 0.13], m.dark);
+    const deck = base + 0.396;
     for (const side of [-1, 1]) {
       d.box([0.155, 0.23, 1.08], [side * 0.39, base + 0.27, seatZ + 0.13], panel);
       for (let j = 0; j < 4; j++) {
-        d.box([0.14, 0.012, 0.2], [side * 0.39, base + 0.39, seatZ - 0.22 + j * 0.23], m.dark);
+        const pz = seatZ - 0.22 + j * 0.23;
+        d.box([0.14, 0.012, 0.2], [side * 0.39, base + 0.39, pz], m.dark);
+        // The forward panels carry the throttle and the side-stick; the front cockpit's left
+        // middle panel carries the JFS and ALT FLAPS switches (control stations).
+        if (j === 3 || (!rear && side === 1 && j === 2)) continue;
         for (let q = 0; q < 3; q++) {
-          d.rod(
-            [side * 0.39 + (q - 1) * 0.038, base + 0.4, seatZ - 0.22 + j * 0.23],
-            [side * 0.39 + (q - 1) * 0.038, base + 0.423, seatZ - 0.22 + j * 0.23 + 0.008],
-            0.003,
+          const x = side * 0.39 + (q - 1) * 0.038;
+          d.add(place(bushing.clone(), [x, deck, pz]), m.metal);
+          d.add(
+            bar([x, deck + 0.003, pz], [x, deck + 0.019, pz + 0.007], 0.0015, 8, 0.0025),
             m.metal,
           );
         }
       }
     }
+    // Throttle track on the left console, and the side-stick's housing and forearm rest on the
+    // right.
+    d.add(
+      place(roundedBox([0.016, 0.004, 0.26], 0.0015), [0.38, deck + 0.001, seatZ + 0.55]),
+      black,
+    );
+    d.add(
+      place(roundedBox([0.075, 0.034, 0.085], 0.008), [-0.365, deck + 0.017, seatZ + 0.55]),
+      m.dark,
+    );
+    d.add(
+      place(
+        roundedBox([0.085, 0.03, 0.2], 0.012),
+        [-0.37, deck + 0.05, seatZ + 0.36],
+        [0.06, 0, 0],
+      ),
+      black,
+    );
+    d.add(
+      place(roundedBox([0.03, 0.045, 0.05], 0.006), [-0.37, deck + 0.022, seatZ + 0.32]),
+      m.dark,
+    );
     const sg = group(cabin, `F16-${prefix}-seat`, [
       0,
       base + (rear ? 0.48 : 0.49),
@@ -1179,11 +1288,32 @@ function f16Cockpits(root, m) {
     }
     sd.box([0.07, 0.04, 0.02], [0, 0.12, 0.05], m.metal);
     sd.finish();
+    // Force-sensing side-stick: a short raked grip with the palm swell on the right, on a
+    // rubber boot over its housing.
     const stick = group(cabin, `F16-${prefix}-sidestick`, [-0.365, base + 0.43, seatZ + 0.55]),
       dd = detailKit(stick, stick.name);
-    dd.rod([0, 0, 0], [0, 0.15, 0.015], 0.017, m.dark);
-    dd.box([0.045, 0.055, 0.055], [0, 0.16, 0.015], m.dark);
-    dd.add(new T.SphereGeometry(0.009, 8, 6), d.red, [0.025, 0.18, 0.015]);
+    dd.add(
+      lathe(
+        [
+          [0, -0.006],
+          [0.026, -0.006],
+          [0.024, 0.004],
+          [0.016, 0.012],
+          [0.013, 0.02],
+          [0, 0.02],
+        ],
+        16,
+      ),
+      P.tread,
+    );
+    stickGeometry(dd, {
+      style: 'f16',
+      height: 0.032,
+      rake: 0.012,
+      shaft: 0.011,
+      boot: false,
+      scale: 1.05,
+    });
     dd.finish();
     // Force stick has only millimetres of visual deflection, not a center-stick arc.
     bindings.push(
@@ -1202,9 +1332,10 @@ function f16Cockpits(root, m) {
         scale: 0.025,
       },
     );
+    // The F-16 throttle: one big sculpted grip on a short arm that slides along its track.
     const throttle = group(cabin, `F16-${prefix}-throttle`, [0.38, base + 0.4, seatZ + 0.45]),
       td = detailKit(throttle, throttle.name);
-    td.box([0.055, 0.07, 0.06], [0, 0.045, 0], m.dark);
+    leverGeometry(td, { style: 'hotas-f16', height: 0.022, side: 1 });
     td.finish();
     bindings.push({
       node: throttle.name,
@@ -1216,9 +1347,7 @@ function f16Cockpits(root, m) {
     for (const side of [-1, 1]) {
       const g = group(cabin, `F16-${prefix}-pedal-${side}`, [side * 0.13, base + 0.12, z + 0.09]),
         pd = detailKit(g, g.name);
-      pd.box([0.12, 0.15, 0.045], [0, 0, 0], m.metal);
-      for (let j = 0; j < 5; j++)
-        pd.box([0.1, 0.005, 0.003], [0, -0.055 + j * 0.027, -0.025], m.dark);
+      falconPedal(pd, side);
       pd.finish();
       bindings.push({
         node: g.name,
@@ -1228,6 +1357,25 @@ function f16Cockpits(root, m) {
         scale: -side * 0.055,
       });
     }
+    // Left auxiliary console: a panel sloping from the console's forward end up to the main
+    // panel, carrying the gear lamps (and in front the gear handle and parking brake switch).
+    // The rear one stands upright just forward of its gear lamps.
+    const aux = (t) =>
+      rear ? [base + 0.375 + t * 0.405, 3.624] : [base + 0.375 + t * 0.3, seatZ + 0.67 + t * 0.3];
+    const auxEdge = [
+      [0.25, ...aux(0)],
+      [0.47, ...aux(0)],
+      [0.47, ...aux(1)],
+      [0.25, ...aux(1)],
+    ];
+    // A black panel face in a gray frame, like the consoles (the gray face stood out from them).
+    sheet(d, auxEdge, black, rear ? [0, 0, -1] : [0, 1, -1]);
+    outline(
+      d,
+      auxEdge.map(([x, y, zz]) => [x, y + (rear ? 0 : 0.002), zz - 0.002]),
+      0.003,
+      panel,
+    );
     for (let j = 0; j < 3; j++) {
       const lamp = group(cabin, `F16-${prefix}-gear-lamp-${j}`, [
           0.34 + (j - 1) * 0.02,
@@ -1271,6 +1419,83 @@ function f16Cockpits(root, m) {
     );
     d.rod([side * 0.48, 2.12, 2.5], [side * 0.48, 2.12, 5.8], 0.022, m.dark);
   }
+  // Close the nose behind the front panel and its footwell, so no painted skin shows around the
+  // panel, the glare shield or past the pedals.
+  cockpitBulkhead(d, root, { z: 5.78, yFrom: 1.5, yTo: 2.44, material: panel });
+  // The footwell floor runs on from the cockpit floor to that bulkhead, under the pedals.
+  sheet(
+    d,
+    [
+      [0.38, 1.505, 5.3],
+      [0.38, 1.505, 5.781],
+      [-0.38, 1.505, 5.781],
+      [-0.38, 1.505, 5.3],
+    ],
+    m.dark,
+    [0, 1, 0],
+  );
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Front cockpit controls (F-16A/B -1 cockpit arrangement): the gear handle and the anti-skid /
+  // parking brake switch on the left auxiliary console, JFS and ALT FLAPS switches on the left
+  // console, speed brake on the throttle grip, canopy control on the right wall.
+  const top = [Math.PI / 2, 0, 0],
+    slope = [Math.PI / 4, 0, 0];
+  const stations = [
+    {
+      action: 'gear',
+      style: 'jet',
+      scale: 0.9,
+      at: [0.29, 1.947, 5.33],
+      rotation: slope,
+      label: 'LDG GEAR',
+      labelAt: [0, -0.042, -0.002],
+      labelHeight: 0.0065,
+    },
+    {
+      action: 'brake',
+      style: 'paddle',
+      scale: 1.2,
+      at: [0.43, 1.947, 5.33],
+      rotation: slope,
+      label: 'PARK BRK',
+      labelAt: [0, 0.03, -0.002],
+      labelHeight: 0.0055,
+    },
+    {
+      action: 'engine',
+      style: 'guarded',
+      at: [0.415, 1.857, 4.77],
+      rotation: top,
+      label: 'JFS',
+      labelAt: [0, 0.036, -0.002],
+      labelHeight: 0.0065,
+    },
+    {
+      action: 'flaps',
+      style: 'toggle',
+      scale: 1.2,
+      at: [0.358, 1.857, 4.77],
+      rotation: top,
+      label: 'ALT FLAPS',
+      labelAt: [0, 0.036, -0.002],
+      labelHeight: 0.0055,
+    },
+    {
+      action: 'speedBrake',
+      style: 'slider',
+      parent: 'F16-front-throttle',
+      at: [0.387, 1.994, 4.98],
+      rotation: [Math.PI / 2 - 0.2, 0, 0],
+    },
+    {
+      action: 'canopy',
+      style: 'canopy',
+      at: [-0.515, 2.0, 4.95],
+      rotation: [0, -Math.PI / 2, 0],
+      label: 'CANOPY',
+      labelAt: [0, -0.03, -0.002],
+      labelHeight: 0.0065,
+    },
+  ];
+  return { nodes: ['cockpit'], sources, derived, bindings, stations };
 }

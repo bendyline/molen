@@ -4,6 +4,7 @@
  */
 import { createAircraftCockpit } from '../../../client/dist/aircraft.mjs';
 import { cockpitText } from './cockpit-lettering.mjs';
+import { controlStation, pedalGeometry } from './cockpit-parts.mjs';
 import { detailKit, group, mat, T } from './mesh-kit.mjs';
 
 export function completeCockpitControls(model, spec, frame = {}) {
@@ -46,14 +47,57 @@ export function completeCockpitControls(model, spec, frame = {}) {
     };
   }
   const missing = createAircraftCockpit(model, spec).controls.filter((c) => !c.nodes.length);
+  // Stations put each remaining control where the real aircraft has it, as its own part from
+  // the shared library (cockpit-parts.mjs); the bolted module below is only a fallback.
+  const ink = mat('flight-control-legend', '#e0e5da');
+  const write = (kit, host, label, at, height) => {
+    if (frame.letteringFont)
+      cockpitText(host, `${host.name}-legend`, label, at, height, ink, frame.letteringFont, 0.08);
+    else kit.text(label, at, height, Math.PI, ink);
+  };
+  const stationParent =
+    model.getObjectByName(frame.controlParent ?? spec.visual.interior?.nodes?.[0] ?? '') ?? model;
+  for (const station of frame.controlStations ?? []) {
+    const engineId = station.engine === undefined ? undefined : engineIds[station.engine];
+    if (station.engine !== undefined && engineId === undefined)
+      throw Error(`${spec.label}: station ${station.action} names engine ${station.engine}`);
+    const control = missing.find((c) => c.action === station.action && c.engine === engineId);
+    if (!control)
+      throw Error(
+        `${spec.label}: no unmodeled ${station.action}${engineId ? ` (${engineId})` : ''} control for its station`,
+      );
+    missing.splice(missing.indexOf(control), 1);
+    if (station.action === 'yaw') {
+      for (const side of [-1, 1]) {
+        const at = [station.at[0] + side * (station.spacing ?? 0.1), station.at[1], station.at[2]];
+        const pedalGroup = group(stationParent, `flight-rudder-pedal-${side}`);
+        model.add(pedalGroup);
+        pedalGroup.position.fromArray(at);
+        stationParent.attach(pedalGroup);
+        const kit = detailKit(pedalGroup, pedalGroup.name);
+        pedalGeometry(kit, { ...station, side });
+        kit.finish();
+        pedalGroup.userData.aircraftControl = {
+          action: 'yaw',
+          motion: { property: 'position', axis: 'z', scale: -side * 0.035 },
+        };
+      }
+      continue;
+    }
+    const name = `cockpit-${station.action}-${engineId ?? 'common'}`;
+    controlStation(model, stationParent, name, station.action, { ...station, engineId }, write);
+  }
   if (!missing.length) return model;
+  if (frame.controlStations)
+    console.warn(
+      `${spec.label}: falling back to the bolted control module for ${missing.map((c) => c.label).join(', ')}`,
+    );
   const eye = spec.pilotEye;
   const panelZ = frame.panelZ ?? eye[2] + 0.74;
   const floor = frame.floor ?? eye[1] - 1.05;
   const controls = group(model, 'flight-controls');
   const dark = mat('flight-control-panel', '#30383b', { roughness: 0.82 });
   const black = mat('flight-control-grip', '#141b1d', { roughness: 0.78 });
-  const ink = mat('flight-control-legend', '#e0e5da');
   const alloy = mat('flight-control-alloy', '#9aa4a2', { metalness: 0.7 });
   const red = mat('flight-control-master', '#a54438');
   const blue = mat('flight-control-propeller', '#3679ab');
@@ -68,81 +112,12 @@ export function completeCockpitControls(model, spec, frame = {}) {
     return { columns, open, rows, width: columns * pitch + 0.018, height: rows * 0.105 + 0.015 };
   };
   const standard = grid(Math.min(moduleControls.length, (frame.cabinWidth ?? 1.2) < 1 ? 7 : 8));
-  // A lower fascia joins the existing instrument panel. It does not cover the flight displays.
-  // The shared transport deck (aircraft-interiors.mjs, fitted by deckFit) has a ledge along the
-  // panel foot 0.6875 m under the eye: the module stands on it, its folded brackets inside the
-  // panel board. Each placement below was measured on the built model against the panel,
-  // pedestal, console and displays.
-  const ledge = eye[1] - 0.6875 + standard.height / 2 + 0.0025;
-  const mounts = {
-    ...Object.fromEntries(
-      ['Airbus H125', 'Beechcraft Bonanza G36'].map((label) => [
-        label,
-        [0, eye[1] - 0.5, panelZ - 0.055],
-      ]),
-    ),
-    'Gulfstream G650ER': [0, ledge, panelZ - 0.055],
-    // Clear of the console's forward end and of the standby dials on the pilot's side.
-    'Cessna Citation CJ4': [-0.14, ledge, panelZ - 0.043],
-    // The centre of the ledge carries the pedestal display, so the module stands to its right.
-    'Airbus A220-300': [-0.567, ledge - 0.005, panelZ - 0.055],
-    // Two rows on the ledge would hide the displays' lower edge: it rests on the console's
-    // forward switch row instead, ahead of the power levers.
-    'De Havilland Canada Dash 8-400': [0, eye[1] - 0.648, eye[2] + 0.3],
-    // The aircraft's own flight decks: on the pedestal, clear of throttles and displays.
-    'Airbus A320neo': [0, eye[1] - 0.74, eye[2] + 0.47],
-    // Between the aft pedestal and the throttle quadrant, behind the trim wheels and levers.
-    'Boeing 737-800': [0, eye[1] - 0.638, eye[2] + 0.185],
-    'Embraer E175': [0, eye[1] - 0.63, eye[2] + 0.47],
-    'Cessna 172S Skyhawk': [-0.42, 1.13, 1.065],
-    'Beechcraft Baron G58': [0, 1.395, 1.065],
-    'Mikoyan MiG-29A': [0, 2.1, 4.105],
-    'Robinson R44 Raven II': [-0.13, 0.98, 1.4],
-    'Boeing C-17A Globemaster III': [0, 4.89, 23.18],
-    // On the face of the glareshield housing, under its radio heads. The housing stands 0.17 m
-    // aft of the panel, so a module on the panel itself sat inside it.
-    'Antonov An-124-100 Ruslan': [0, 9.005, 28.0125],
-    'Douglas DC-3': [0, 4.1, 6.95],
-    'P-51D Mustang': [-0.16, 1.48, 0.485],
-    // On the pedestal, between the cyclic roots and the panel post.
-    'OH-6': [0, 1.115, 0.96],
-    // On the forward end of the pedestal top, ahead of the thrust levers.
-    'Bendy Small Airliner': [0, 4.02, 16.33],
-    'Airbus A400M Atlas': [0, eye[1] - 1, panelZ - 0.055],
-    // On the forward end of the centre console, under the panel's lower edge: lower, the yokes
-    // and the console itself hid it.
-    'Lockheed Martin C-130J Super Hercules': [0, eye[1] - 0.805, panelZ - 0.055],
-    // Flat on the forward end of the pedestal, between the lever labels and the FMS keyboards.
-    'ATR 72-600': [0, 2.247, 11.3, { tilt: Math.PI / 2 }],
-    // In the pedestal's centre strip, between the FMS keypads and below the engine levers.
-    'Leonardo AW139': [0, 1.014, 2.572, { columns: 1, tilt: 1 }],
-    // Below the lower panel on the pilot's side, at the switch bolster's height; the centre
-    // console stood in front of the old place.
-    'Cirrus SR22T G6': [0.4, eye[1] - 0.65, panelZ - 0.055],
-    // Under the pilot-side corner of the panel; the pedestal fills the centre below the panel.
-    'Airbus H145 D3': [-0.315, 1.46, panelZ - 0.055],
-    // On the centre panel between the engine display and the left map, above the pedestal.
-    'Boeing CH-47F Chinook': [0.172, 1.84, panelZ - 0.055],
-    'Bell Boeing MV-22B Osprey': [0, 1.95, panelZ - 0.18],
-    'Sikorsky UH-60M Black Hawk': [0, 1.21, panelZ - 0.055],
-    // At the panel's foot under the HLD, five wide so the front consoles stay clear of it. The
-    // seat cushion, now under the eye, hid the old place in the footwell.
-    'Dassault Rafale C': [0, 2.22, panelZ - 0.055, { columns: 5 }],
-    // The quadrant's levers and the pilot's wheel stand in front of the middle three columns;
-    // the starters and gear switch that sat there are on the panel (beech-18-cockpit.mjs).
-    'Beechcraft Model 18': [0, eye[1] - 0.7, panelZ - 0.055, { columns: 7, skip: [2, 3, 4] }],
-    'Eurofighter Typhoon': [0, eye[1] - 0.7, panelZ - 0.14],
-    'Lockheed Martin F-22A Raptor': [0, 1.99, panelZ - 0.055],
-    'De Havilland Canada DHC-2 Beaver': [0.4, eye[1] - 0.5, panelZ - 0.055],
-    // Flat on the aft end of the left console, behind the flap lever: the panel's lower centre
-    // carries the heading dial, and the console's forward end the power and condition levers.
-    'North American Rockwell OV-10A Bronco': [0.38, 1.64, 2.22, { columns: 1, tilt: Math.PI / 2 }],
-  };
-  // An optional fourth element fits the module to a tighter space: `columns` sets the grid width,
-  // `skip` leaves those columns empty where something stands in front of them, and `tilt` lays
-  // the module back by that many radians onto a sloped or flat console (pi/2 lies flat, top row
-  // forward). A console module rests on its side cheeks, so it has no hanger brackets.
-  const [mx, my, mz, fit = {}] = mounts[spec.label] ?? [0, eye[1] - 0.7, panelZ - 0.055];
+  // Every catalog aircraft now models its controls (frame.controlStations or its own nodes), so
+  // this module only appears for a new aircraft whose stations are not written yet: a lower
+  // fascia under the panel, to be replaced. `frame.controlModule` = [x, y, z, fit] places it; the
+  // optional fit takes `columns` (grid width), `skip` (columns left empty where something stands
+  // in front) and `tilt` (radians laid back onto a console; pi/2 lies flat, top row forward).
+  const [mx, my, mz, fit = {}] = frame.controlModule ?? [0, eye[1] - 0.7, panelZ - 0.055];
   const { columns, open, rows, width, height } =
     fit.columns || fit.skip ? grid(fit.columns ?? standard.columns, fit.skip) : standard;
   const tilted = fit.tilt !== undefined;
@@ -261,8 +236,7 @@ export function completeCockpitControls(model, spec, frame = {}) {
       backing.rod([at[0], floor, at[2] + 0.08], at, 0.009, alloy);
       const pedal = group(controls, `flight-rudder-pedal-${side}`, at);
       const d = detailKit(pedal, pedal.name);
-      d.box([0.13, 0.085, 0.025], [0, 0, 0], black);
-      for (let i = -2; i <= 2; i++) d.box([0.11, 0.003, 0.003], [0, i * 0.014, -0.014], alloy);
+      pedalGeometry(d, { style: frame.pedalStyle ?? 'ga', side, drop: 0.12 });
       pedal.userData.aircraftControl = {
         action: 'yaw',
         // Right rudder pushes the right pedal (-X) forward.

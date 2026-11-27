@@ -7476,6 +7476,8 @@
                   "pedestal-top",
                   "power-lever-0",
                   "power-lever-1",
+                  "trim-wheel-L",
+                  "trim-wheel-R",
                   "main-panel",
                   "control-column",
                   "pedal-right",
@@ -33908,6 +33910,14 @@
                   "Skyhawk.standby-altimeter-2.available": {
                     "op": "greater",
                     "args": ["Skyhawk.standby-altimeter-2.availableValue", -100000000000000000000]
+                  },
+                  "Skyhawk.compass.availableValue": {
+                    "op": "coalesce",
+                    "args": ["trueHeading", -100000000000000000000]
+                  },
+                  "Skyhawk.compass.available": {
+                    "op": "greater",
+                    "args": ["Skyhawk.compass.availableValue", -100000000000000000000]
                   }
                 },
                 "bindings": [
@@ -35846,6 +35856,22 @@
                     "responseSeconds": 0.15
                   },
                   {
+                    "node": "Skyhawk-compass-drum",
+                    "source": "trueHeading",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Skyhawk-compass-drum",
+                    "source": "Skyhawk.compass.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
                     "node": "Skyhawk-yoke-405",
                     "source": "rollInput",
                     "property": "rotation",
@@ -36772,6 +36798,14 @@
             "Skyhawk.standby-altimeter-2.available": {
               "op": "greater",
               "args": ["Skyhawk.standby-altimeter-2.availableValue", -100000000000000000000]
+            },
+            "Skyhawk.compass.availableValue": {
+              "op": "coalesce",
+              "args": ["trueHeading", -100000000000000000000]
+            },
+            "Skyhawk.compass.available": {
+              "op": "greater",
+              "args": ["Skyhawk.compass.availableValue", -100000000000000000000]
             }
           },
           "bindings": [
@@ -38708,6 +38742,22 @@
               "scale": 0.00006283185307179586,
               "period": 6.283185307179586,
               "responseSeconds": 0.15
+            },
+            {
+              "node": "Skyhawk-compass-drum",
+              "source": "trueHeading",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Skyhawk-compass-drum",
+              "source": "Skyhawk.compass.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
             },
             {
               "node": "Skyhawk-yoke-405",
@@ -45033,6 +45083,34 @@
                     "property": "position",
                     "axis": "z",
                     "scale": -0.05
+                  },
+                  {
+                    "node": "Caravan-pedal--1-a",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.035
+                  },
+                  {
+                    "node": "Caravan-pedal--1-b",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.035
+                  },
+                  {
+                    "node": "Caravan-pedal-1-a",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.035
+                  },
+                  {
+                    "node": "Caravan-pedal-1-b",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.035
                   }
                 ]
               }
@@ -49196,6 +49274,34 @@
               "scale": -0.05
             },
             {
+              "node": "Caravan-pedal--1-a",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": 0.035
+            },
+            {
+              "node": "Caravan-pedal--1-b",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": -0.035
+            },
+            {
+              "node": "Caravan-pedal-1-a",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": 0.035
+            },
+            {
+              "node": "Caravan-pedal-1-b",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": -0.035
+            },
+            {
               "node": "Caravan-elevator--1",
               "source": "elevator",
               "property": "rotation",
@@ -51563,6 +51669,14 @@
                   "Skylane.standby-altimeter-2.available": {
                     "op": "greater",
                     "args": ["Skylane.standby-altimeter-2.availableValue", -100000000000000000000]
+                  },
+                  "Skylane.compass.availableValue": {
+                    "op": "coalesce",
+                    "args": ["trueHeading", -100000000000000000000]
+                  },
+                  "Skylane.compass.available": {
+                    "op": "greater",
+                    "args": ["Skylane.compass.availableValue", -100000000000000000000]
                   }
                 },
                 "bindings": [
@@ -53501,6 +53615,22 @@
                     "responseSeconds": 0.15
                   },
                   {
+                    "node": "Skylane-compass-drum",
+                    "source": "trueHeading",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Skylane-compass-drum",
+                    "source": "Skylane.compass.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
                     "node": "Skylane-yoke-397",
                     "source": "rollInput",
                     "property": "rotation",
@@ -54441,6 +54571,14 @@
             "Skylane.standby-altimeter-2.available": {
               "op": "greater",
               "args": ["Skylane.standby-altimeter-2.availableValue", -100000000000000000000]
+            },
+            "Skylane.compass.availableValue": {
+              "op": "coalesce",
+              "args": ["trueHeading", -100000000000000000000]
+            },
+            "Skylane.compass.available": {
+              "op": "greater",
+              "args": ["Skylane.compass.availableValue", -100000000000000000000]
             }
           },
           "bindings": [
@@ -56377,6 +56515,22 @@
               "scale": 0.00006283185307179586,
               "period": 6.283185307179586,
               "responseSeconds": 0.15
+            },
+            {
+              "node": "Skylane-compass-drum",
+              "source": "trueHeading",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Skylane-compass-drum",
+              "source": "Skylane.compass.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
             },
             {
               "node": "Skylane-yoke-397",
@@ -138374,102 +138528,6 @@
               "materials": ["F14-gray"],
               "node": "F14-gear-right-F14-gray"
             },
-            "body-F14-pilot-console--1-0-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-pilot-console--1-0-F14-gray"
-            },
-            "body-F14-pilot-console--1-1-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-pilot-console--1-1-F14-gray"
-            },
-            "body-F14-pilot-console--1-2-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-pilot-console--1-2-F14-gray"
-            },
-            "body-F14-pilot-console--1-3-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-pilot-console--1-3-F14-gray"
-            },
-            "body-F14-pilot-console--1-4-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-pilot-console--1-4-F14-gray"
-            },
-            "body-F14-pilot-console--1-5-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-pilot-console--1-5-F14-gray"
-            },
-            "body-F14-pilot-console-1-0-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-pilot-console-1-0-F14-gray"
-            },
-            "body-F14-pilot-console-1-1-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-pilot-console-1-1-F14-gray"
-            },
-            "body-F14-pilot-console-1-2-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-pilot-console-1-2-F14-gray"
-            },
-            "body-F14-pilot-console-1-3-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-pilot-console-1-3-F14-gray"
-            },
-            "body-F14-pilot-console-1-4-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-pilot-console-1-4-F14-gray"
-            },
-            "body-F14-pilot-console-1-5-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-pilot-console-1-5-F14-gray"
-            },
-            "body-F14-RIO-console--1-0-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-RIO-console--1-0-F14-gray"
-            },
-            "body-F14-RIO-console--1-1-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-RIO-console--1-1-F14-gray"
-            },
-            "body-F14-RIO-console--1-2-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-RIO-console--1-2-F14-gray"
-            },
-            "body-F14-RIO-console--1-3-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-RIO-console--1-3-F14-gray"
-            },
-            "body-F14-RIO-console--1-4-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-RIO-console--1-4-F14-gray"
-            },
-            "body-F14-RIO-console--1-5-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-RIO-console--1-5-F14-gray"
-            },
-            "body-F14-RIO-console-1-0-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-RIO-console-1-0-F14-gray"
-            },
-            "body-F14-RIO-console-1-1-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-RIO-console-1-1-F14-gray"
-            },
-            "body-F14-RIO-console-1-2-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-RIO-console-1-2-F14-gray"
-            },
-            "body-F14-RIO-console-1-3-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-RIO-console-1-3-F14-gray"
-            },
-            "body-F14-RIO-console-1-4-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-RIO-console-1-4-F14-gray"
-            },
-            "body-F14-RIO-console-1-5-F14-gray": {
-              "materials": ["F14-gray"],
-              "node": "F14-RIO-console-1-5-F14-gray"
-            },
             "upper-F14-airframe-F14-upper": {
               "materials": ["F14-upper"],
               "node": "F14-airframe-F14-upper"
@@ -139370,78 +139428,6 @@
                 "body-F14-gear-right-F14-gray": {
                   "color": "#a9b0b6"
                 },
-                "body-F14-pilot-console--1-0-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-1-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-2-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-3-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-4-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-5-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-0-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-1-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-2-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-3-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-4-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-5-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-0-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-1-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-2-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-3-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-4-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-5-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-0-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-1-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-2-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-3-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-4-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-5-F14-gray": {
-                  "color": "#a9b0b6"
-                },
                 "fin-1": {
                   "color": "#16181b",
                   "zones": [
@@ -139597,78 +139583,6 @@
                   "color": "#8b939a"
                 },
                 "body-F14-gear-right-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-pilot-console--1-0-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-pilot-console--1-1-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-pilot-console--1-2-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-pilot-console--1-3-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-pilot-console--1-4-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-pilot-console--1-5-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-pilot-console-1-0-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-pilot-console-1-1-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-pilot-console-1-2-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-pilot-console-1-3-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-pilot-console-1-4-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-pilot-console-1-5-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-RIO-console--1-0-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-RIO-console--1-1-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-RIO-console--1-2-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-RIO-console--1-3-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-RIO-console--1-4-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-RIO-console--1-5-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-RIO-console-1-0-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-RIO-console-1-1-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-RIO-console-1-2-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-RIO-console-1-3-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-RIO-console-1-4-F14-gray": {
-                  "color": "#8b939a"
-                },
-                "body-F14-RIO-console-1-5-F14-gray": {
                   "color": "#8b939a"
                 },
                 "fin-1": {
@@ -139897,78 +139811,6 @@
                   "color": "#a9b0b6"
                 },
                 "body-F14-gear-right-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-0-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-1-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-2-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-3-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-4-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-5-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-0-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-1-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-2-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-3-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-4-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-5-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-0-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-1-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-2-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-3-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-4-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-5-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-0-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-1-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-2-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-3-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-4-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-5-F14-gray": {
                   "color": "#a9b0b6"
                 },
                 "fin-1": {
@@ -140222,78 +140064,6 @@
                   "color": "#a9b0b6"
                 },
                 "body-F14-gear-right-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-0-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-1-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-2-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-3-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-4-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console--1-5-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-0-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-1-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-2-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-3-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-4-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-pilot-console-1-5-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-0-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-1-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-2-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-3-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-4-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console--1-5-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-0-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-1-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-2-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-3-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-4-F14-gray": {
-                  "color": "#a9b0b6"
-                },
-                "body-F14-RIO-console-1-5-F14-gray": {
                   "color": "#a9b0b6"
                 },
                 "fin-1": {
@@ -273916,7 +273686,7 @@
                     "source": "power",
                     "property": "rotation",
                     "axis": "x",
-                    "scale": 0.7
+                    "scale": 0.3
                   },
                   {
                     "node": "Porter-stick-pitch--1",
@@ -274608,7 +274378,7 @@
               "source": "power",
               "property": "rotation",
               "axis": "x",
-              "scale": 0.7
+              "scale": 0.3
             },
             {
               "node": "Porter-stick-pitch--1",
@@ -292244,54 +292014,6 @@
                 "nodes": ["cockpit"],
                 "bindings": [
                   {
-                    "node": "horizon-0",
-                    "source": "roll",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": -1
-                  },
-                  {
-                    "node": "horizon-0",
-                    "source": "pitch",
-                    "property": "position",
-                    "axis": "y",
-                    "scale": -0.09,
-                    "min": -0.05344062493909858,
-                    "max": 0.05344062493909858
-                  },
-                  {
-                    "node": "horizon-4",
-                    "source": "roll",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": -1
-                  },
-                  {
-                    "node": "horizon-4",
-                    "source": "pitch",
-                    "property": "position",
-                    "axis": "y",
-                    "scale": -0.09,
-                    "min": -0.05344062493909858,
-                    "max": 0.05344062493909858
-                  },
-                  {
-                    "node": "needle-standby-0",
-                    "source": "airspeed",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": 0.04,
-                    "offset": 0
-                  },
-                  {
-                    "node": "needle-standby-1",
-                    "source": "altitude",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": 0.02,
-                    "offset": 0
-                  },
-                  {
                     "node": "control-0",
                     "source": "pitchInput",
                     "property": "rotation",
@@ -292362,6 +292084,54 @@
                     "axis": "x",
                     "scale": 0.6,
                     "offset": -0.3
+                  },
+                  {
+                    "node": "horizon-0",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1
+                  },
+                  {
+                    "node": "horizon-0",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.09,
+                    "min": -0.0495,
+                    "max": 0.0495
+                  },
+                  {
+                    "node": "horizon-4",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1
+                  },
+                  {
+                    "node": "horizon-4",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.09,
+                    "min": -0.0495,
+                    "max": 0.0495
+                  },
+                  {
+                    "node": "needle-standby-0",
+                    "source": "airspeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.04,
+                    "offset": 0
+                  },
+                  {
+                    "node": "needle-standby-1",
+                    "source": "altitude",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.02,
+                    "offset": 0
                   }
                 ]
               }
@@ -294358,9 +294128,17 @@
                     "component": "aircraftState",
                     "path": ["engines", "engine-1", "rpm"]
                   },
+                  "engines.engine-1.power": {
+                    "component": "aircraftInput",
+                    "path": ["engines", "engine-1", "power"]
+                  },
                   "engine2": {
                     "component": "aircraftState",
                     "path": ["engines", "engine-2", "rpm"]
+                  },
+                  "engines.engine-2.power": {
+                    "component": "aircraftInput",
+                    "path": ["engines", "engine-2", "power"]
                   }
                 },
                 "derived": {
@@ -295461,7 +295239,8 @@
                     "source": "gearPosition",
                     "property": "rotation",
                     "axis": "x",
-                    "scale": 2.5132741228718345,
+                    "scale": -0.7,
+                    "offset": 0.35,
                     "responseSeconds": 0.5
                   },
                   {
@@ -295508,14 +295287,14 @@
                   },
                   {
                     "node": "E175-thrust-lever-1",
-                    "source": "power",
+                    "source": "engines.engine-1.power",
                     "property": "rotation",
                     "axis": "x",
                     "scale": 0.9
                   },
                   {
                     "node": "E175-thrust-lever-2",
-                    "source": "power",
+                    "source": "engines.engine-2.power",
                     "property": "rotation",
                     "axis": "x",
                     "scale": 0.9
@@ -300921,9 +300700,17 @@
               "component": "aircraftState",
               "path": ["engines", "engine-1", "rpm"]
             },
+            "engines.engine-1.power": {
+              "component": "aircraftInput",
+              "path": ["engines", "engine-1", "power"]
+            },
             "engine2": {
               "component": "aircraftState",
               "path": ["engines", "engine-2", "rpm"]
+            },
+            "engines.engine-2.power": {
+              "component": "aircraftInput",
+              "path": ["engines", "engine-2", "power"]
             },
             "speedBrake": {
               "component": "aircraftState",
@@ -302028,7 +301815,8 @@
               "source": "gearPosition",
               "property": "rotation",
               "axis": "x",
-              "scale": 2.5132741228718345,
+              "scale": -0.7,
+              "offset": 0.35,
               "responseSeconds": 0.5
             },
             {
@@ -302075,14 +301863,14 @@
             },
             {
               "node": "E175-thrust-lever-1",
-              "source": "power",
+              "source": "engines.engine-1.power",
               "property": "rotation",
               "axis": "x",
               "scale": 0.9
             },
             {
               "node": "E175-thrust-lever-2",
-              "source": "power",
+              "source": "engines.engine-2.power",
               "property": "rotation",
               "axis": "x",
               "scale": 0.9
@@ -310767,54 +310555,6 @@
                 "nodes": ["cockpit"],
                 "bindings": [
                   {
-                    "node": "horizon-0",
-                    "source": "roll",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": -1
-                  },
-                  {
-                    "node": "horizon-0",
-                    "source": "pitch",
-                    "property": "position",
-                    "axis": "y",
-                    "scale": -0.09,
-                    "min": -0.056100000000000004,
-                    "max": 0.056100000000000004
-                  },
-                  {
-                    "node": "horizon-4",
-                    "source": "roll",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": -1
-                  },
-                  {
-                    "node": "horizon-4",
-                    "source": "pitch",
-                    "property": "position",
-                    "axis": "y",
-                    "scale": -0.09,
-                    "min": -0.056100000000000004,
-                    "max": 0.056100000000000004
-                  },
-                  {
-                    "node": "needle-standby-0",
-                    "source": "airspeed",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": 0.04,
-                    "offset": 0
-                  },
-                  {
-                    "node": "needle-standby-1",
-                    "source": "altitude",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": 0.02,
-                    "offset": 0
-                  },
-                  {
                     "node": "control-0",
                     "source": "pitchInput",
                     "property": "rotation",
@@ -310885,6 +310625,54 @@
                     "axis": "x",
                     "scale": 0.6,
                     "offset": -0.3
+                  },
+                  {
+                    "node": "horizon-0",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1
+                  },
+                  {
+                    "node": "horizon-0",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.09,
+                    "min": -0.055,
+                    "max": 0.055
+                  },
+                  {
+                    "node": "horizon-4",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1
+                  },
+                  {
+                    "node": "horizon-4",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.09,
+                    "min": -0.055,
+                    "max": 0.055
+                  },
+                  {
+                    "node": "needle-standby-0",
+                    "source": "airspeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.04,
+                    "offset": 0
+                  },
+                  {
+                    "node": "needle-standby-1",
+                    "source": "altitude",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.02,
+                    "offset": 0
                   }
                 ]
               }
@@ -314158,9 +313946,17 @@
                     "component": "aircraftState",
                     "path": ["engines", "engine-1", "rpm"]
                   },
+                  "engines.engine-1.power": {
+                    "component": "aircraftInput",
+                    "path": ["engines", "engine-1", "power"]
+                  },
                   "engine2": {
                     "component": "aircraftState",
                     "path": ["engines", "engine-2", "rpm"]
+                  },
+                  "engines.engine-2.power": {
+                    "component": "aircraftInput",
+                    "path": ["engines", "engine-2", "power"]
                   }
                 },
                 "derived": {
@@ -315284,7 +315080,8 @@
                     "source": "gearPosition",
                     "property": "rotation",
                     "axis": "x",
-                    "scale": 2.5132741228718345,
+                    "scale": -0.7,
+                    "offset": 0.35,
                     "responseSeconds": 0.5
                   },
                   {
@@ -315331,14 +315128,14 @@
                   },
                   {
                     "node": "B738-thrust-lever-1",
-                    "source": "power",
+                    "source": "engines.engine-1.power",
                     "property": "rotation",
                     "axis": "x",
                     "scale": 0.9
                   },
                   {
                     "node": "B738-thrust-lever-2",
-                    "source": "power",
+                    "source": "engines.engine-2.power",
                     "property": "rotation",
                     "axis": "x",
                     "scale": 0.9
@@ -320752,9 +320549,17 @@
               "component": "aircraftState",
               "path": ["engines", "engine-1", "rpm"]
             },
+            "engines.engine-1.power": {
+              "component": "aircraftInput",
+              "path": ["engines", "engine-1", "power"]
+            },
             "engine2": {
               "component": "aircraftState",
               "path": ["engines", "engine-2", "rpm"]
+            },
+            "engines.engine-2.power": {
+              "component": "aircraftInput",
+              "path": ["engines", "engine-2", "power"]
             },
             "speedBrake": {
               "component": "aircraftState",
@@ -321849,7 +321654,8 @@
               "source": "gearPosition",
               "property": "rotation",
               "axis": "x",
-              "scale": 2.5132741228718345,
+              "scale": -0.7,
+              "offset": 0.35,
               "responseSeconds": 0.5
             },
             {
@@ -321896,14 +321702,14 @@
             },
             {
               "node": "B738-thrust-lever-1",
-              "source": "power",
+              "source": "engines.engine-1.power",
               "property": "rotation",
               "axis": "x",
               "scale": 0.9
             },
             {
               "node": "B738-thrust-lever-2",
-              "source": "power",
+              "source": "engines.engine-2.power",
               "property": "rotation",
               "axis": "x",
               "scale": 0.9
@@ -331312,9 +331118,17 @@
                     "component": "aircraftState",
                     "path": ["engines", "engine-1", "rpm"]
                   },
+                  "engines.engine-1.power": {
+                    "component": "aircraftInput",
+                    "path": ["engines", "engine-1", "power"]
+                  },
                   "engine2": {
                     "component": "aircraftState",
                     "path": ["engines", "engine-2", "rpm"]
+                  },
+                  "engines.engine-2.power": {
+                    "component": "aircraftInput",
+                    "path": ["engines", "engine-2", "power"]
                   }
                 },
                 "derived": {
@@ -332529,19 +332343,20 @@
                     "source": "gearPosition",
                     "property": "rotation",
                     "axis": "x",
-                    "scale": 2.5132741228718345,
+                    "scale": -0.7,
+                    "offset": 0.35,
                     "responseSeconds": 0.5
                   },
                   {
                     "node": "A20N-thrust-lever-1",
-                    "source": "power",
+                    "source": "engines.engine-1.power",
                     "property": "rotation",
                     "axis": "x",
                     "scale": 0.9
                   },
                   {
                     "node": "A20N-thrust-lever-2",
-                    "source": "power",
+                    "source": "engines.engine-2.power",
                     "property": "rotation",
                     "axis": "x",
                     "scale": 0.9
@@ -337947,9 +337762,17 @@
               "component": "aircraftState",
               "path": ["engines", "engine-1", "rpm"]
             },
+            "engines.engine-1.power": {
+              "component": "aircraftInput",
+              "path": ["engines", "engine-1", "power"]
+            },
             "engine2": {
               "component": "aircraftState",
               "path": ["engines", "engine-2", "rpm"]
+            },
+            "engines.engine-2.power": {
+              "component": "aircraftInput",
+              "path": ["engines", "engine-2", "power"]
             },
             "speedBrake": {
               "component": "aircraftState",
@@ -339168,19 +338991,20 @@
               "source": "gearPosition",
               "property": "rotation",
               "axis": "x",
-              "scale": 2.5132741228718345,
+              "scale": -0.7,
+              "offset": 0.35,
               "responseSeconds": 0.5
             },
             {
               "node": "A20N-thrust-lever-1",
-              "source": "power",
+              "source": "engines.engine-1.power",
               "property": "rotation",
               "axis": "x",
               "scale": 0.9
             },
             {
               "node": "A20N-thrust-lever-2",
-              "source": "power",
+              "source": "engines.engine-2.power",
               "property": "rotation",
               "axis": "x",
               "scale": 0.9
@@ -347604,54 +347428,6 @@
                 "nodes": ["cockpit"],
                 "bindings": [
                   {
-                    "node": "horizon-0",
-                    "source": "roll",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": -1
-                  },
-                  {
-                    "node": "horizon-0",
-                    "source": "pitch",
-                    "property": "position",
-                    "axis": "y",
-                    "scale": -0.09,
-                    "min": -0.056100000000000004,
-                    "max": 0.056100000000000004
-                  },
-                  {
-                    "node": "horizon-3",
-                    "source": "roll",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": -1
-                  },
-                  {
-                    "node": "horizon-3",
-                    "source": "pitch",
-                    "property": "position",
-                    "axis": "y",
-                    "scale": -0.09,
-                    "min": -0.056100000000000004,
-                    "max": 0.056100000000000004
-                  },
-                  {
-                    "node": "needle-standby-0",
-                    "source": "airspeed",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": 0.04,
-                    "offset": 0
-                  },
-                  {
-                    "node": "needle-standby-1",
-                    "source": "altitude",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": 0.02,
-                    "offset": 0
-                  },
-                  {
                     "node": "control-0",
                     "source": "pitchInput",
                     "property": "rotation",
@@ -347722,6 +347498,54 @@
                     "axis": "x",
                     "scale": 0.6,
                     "offset": -0.3
+                  },
+                  {
+                    "node": "horizon-0",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1
+                  },
+                  {
+                    "node": "horizon-0",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.09,
+                    "min": -0.0484,
+                    "max": 0.0484
+                  },
+                  {
+                    "node": "horizon-3",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1
+                  },
+                  {
+                    "node": "horizon-3",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.09,
+                    "min": -0.0484,
+                    "max": 0.0484
+                  },
+                  {
+                    "node": "needle-standby-0",
+                    "source": "airspeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.04,
+                    "offset": 0
+                  },
+                  {
+                    "node": "needle-standby-1",
+                    "source": "altitude",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.02,
+                    "offset": 0
                   }
                 ]
               }
@@ -350012,54 +349836,6 @@
                 "nodes": ["cockpit"],
                 "bindings": [
                   {
-                    "node": "horizon-0",
-                    "source": "roll",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": -1
-                  },
-                  {
-                    "node": "horizon-0",
-                    "source": "pitch",
-                    "property": "position",
-                    "axis": "y",
-                    "scale": -0.09,
-                    "min": -0.03903625,
-                    "max": 0.03903625
-                  },
-                  {
-                    "node": "horizon-3",
-                    "source": "roll",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": -1
-                  },
-                  {
-                    "node": "horizon-3",
-                    "source": "pitch",
-                    "property": "position",
-                    "axis": "y",
-                    "scale": -0.09,
-                    "min": -0.03903625,
-                    "max": 0.03903625
-                  },
-                  {
-                    "node": "needle-standby-0",
-                    "source": "airspeed",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": 0.04,
-                    "offset": 0
-                  },
-                  {
-                    "node": "needle-standby-1",
-                    "source": "altitude",
-                    "property": "rotation",
-                    "axis": "z",
-                    "scale": 0.02,
-                    "offset": 0
-                  },
-                  {
                     "node": "control-0",
                     "source": "pitchInput",
                     "property": "rotation",
@@ -350130,6 +349906,54 @@
                     "axis": "x",
                     "scale": 0.6,
                     "offset": -0.3
+                  },
+                  {
+                    "node": "horizon-0",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1
+                  },
+                  {
+                    "node": "horizon-0",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.09,
+                    "min": -0.051699999999999996,
+                    "max": 0.051699999999999996
+                  },
+                  {
+                    "node": "horizon-3",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1
+                  },
+                  {
+                    "node": "horizon-3",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.09,
+                    "min": -0.051699999999999996,
+                    "max": 0.051699999999999996
+                  },
+                  {
+                    "node": "needle-standby-0",
+                    "source": "airspeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.04,
+                    "offset": 0
+                  },
+                  {
+                    "node": "needle-standby-1",
+                    "source": "altitude",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.02,
+                    "offset": 0
                   }
                 ]
               }

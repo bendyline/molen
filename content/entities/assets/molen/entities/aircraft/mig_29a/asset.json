@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:8371a409e43ed925fb3e462d65e72dcf723782d304397e93246d2dcea11cd8f2",
-  "sourceHash": "sha256:e46c61d7e5b8b9e71816d862039e6776950f20bc9cf1d249e78a884ac13eba2f",
+  "hash": "sha256:c868be74f6785770b290dcb14a3d331c91904a1c8e4b5dab6737f4f3e6626118",
+  "sourceHash": "sha256:bf1b2ac33f9e11ca3bebe9417a06bb428c8f2cc9cc6e38edda5412c06baec05b",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 43556,
-    "vertices": 42591,
-    "meshes": 118,
-    "primitives": 118,
-    "materials": 30,
+    "triangles": 49469,
+    "vertices": 47314,
+    "meshes": 137,
+    "primitives": 137,
+    "materials": 35,
     "textures": 10,
     "animations": 0,
-    "sizeBytes": 1494172
+    "sizeBytes": 1632832
   },
   "nodes": [
     {
@@ -47,11 +47,11 @@
     },
     {
       "name": "MiG29-airframe-MiG29-gray-green",
-      "triangles": 2426
+      "triangles": 2384
     },
     {
       "name": "MiG29-airframe-MiG29-seal",
-      "triangles": 7292
+      "triangles": 7610
     },
     {
       "name": "MiG29-airframe-MiG29-alloy",
@@ -68,6 +68,10 @@
     {
       "name": "MiG29-airframe-MiG29-nozzle",
       "triangles": 1268
+    },
+    {
+      "name": "MiG29-airframe-MiG29-gray-green-lining",
+      "triangles": 175
     },
     {
       "name": "MiG29-intake-door-right-MiG29-gray-green",
@@ -547,11 +551,7 @@
     },
     {
       "name": "MiG29-console--1-MiG29-instrument-black",
-      "triangles": 480
-    },
-    {
-      "name": "MiG29-console--1-MiG29-alloy",
-      "triangles": 864
+      "triangles": 768
     }
   ],
   "nodesTruncated": true,
@@ -611,6 +611,14 @@
         "baseColor"
       ],
       "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "cockpit-frame-lining",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
@@ -756,20 +764,17 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "turbine-blades",
+      "name": "flight-control-tread",
       "slots": [
         "baseColor"
       ],
-      "doubleSided": true,
+      "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-panel-satin",
+      "name": "flight-control-steel",
       "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -797,16 +802,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend-technical-font",
+      "name": "flight-control-black",
       "slots": [
-        "baseColor",
-        "emissive"
+        "baseColor"
       ],
       "doubleSided": false,
-      "alphaMode": "BLEND"
+      "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend",
+      "name": "flight-control-knob",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "MiG29-stick-pink",
       "slots": [
         "baseColor"
       ],
@@ -819,6 +831,31 @@
         "baseColor"
       ],
       "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-caution",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "turbine-blades",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
       "alphaMode": "OPAQUE"
     }
   ],
@@ -892,10 +929,10 @@
           1.0874,
           6.3194,
           -5.6835,
-          2.8094,
+          3.2987,
           -6.6101,
           -5.6835,
-          2.8094,
+          3.2987,
           6.3194,
           5.6835,
           1.0874,
@@ -904,10 +941,10 @@
           1.0874,
           6.3194,
           5.6835,
-          2.8094,
+          3.2987,
           -6.6101,
           5.6835,
-          2.8094,
+          3.2987,
           6.3194
         ]
       },
@@ -1025,6 +1062,35 @@
           1.4066,
           2.1468,
           -0.621
+        ]
+      },
+      {
+        "node": "MiG29-airframe-MiG29-gray-green-lining",
+        "points": [
+          -0.509,
+          1.6488,
+          2.1409,
+          -0.509,
+          1.6488,
+          5.1789,
+          -0.509,
+          3.3079,
+          2.1409,
+          -0.509,
+          3.3079,
+          5.1789,
+          0.4409,
+          1.6488,
+          2.1409,
+          0.4409,
+          1.6488,
+          5.1789,
+          0.4409,
+          3.3079,
+          2.1409,
+          0.4409,
+          3.3079,
+          5.1789
         ]
       },
       {
@@ -4481,59 +4547,30 @@
       {
         "node": "MiG29-console--1-MiG29-instrument-black",
         "points": [
-          -0.4405,
-          2.2565,
-          2.859,
-          -0.4405,
-          2.2565,
-          3.811,
-          -0.4405,
-          2.2715,
-          2.859,
-          -0.4405,
-          2.2715,
-          3.811,
-          -0.2995,
-          2.2565,
-          2.859,
-          -0.2995,
-          2.2565,
-          3.811,
-          -0.2995,
-          2.2715,
-          2.859,
-          -0.2995,
-          2.2715,
-          3.811
-        ]
-      },
-      {
-        "node": "MiG29-console--1-MiG29-alloy",
-        "points": [
-          -0.4565,
-          2.2539,
-          2.7065,
-          -0.4565,
-          2.2539,
-          3.8835,
-          -0.4565,
-          2.2913,
-          2.7065,
-          -0.4565,
-          2.2913,
-          3.8835,
-          -0.2835,
-          2.2539,
-          2.7065,
-          -0.2835,
-          2.2539,
-          3.8835,
-          -0.2835,
-          2.2913,
-          2.7065,
-          -0.2835,
-          2.2913,
-          3.8835
+          -0.44,
+          2.252,
+          2.86,
+          -0.44,
+          2.252,
+          3.81,
+          -0.44,
+          2.262,
+          2.86,
+          -0.44,
+          2.262,
+          3.81,
+          -0.3,
+          2.252,
+          2.86,
+          -0.3,
+          2.252,
+          3.81,
+          -0.3,
+          2.262,
+          2.86,
+          -0.3,
+          2.262,
+          3.81
         ]
       }
     ]

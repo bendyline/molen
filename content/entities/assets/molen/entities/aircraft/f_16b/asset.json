@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:6d50c30cfa89df65a5275188f46d2386e3cff3de180c427eedceffec7446e3f4",
-  "sourceHash": "sha256:ed43d2b67a5a05e9a79f14a763eaa3b6c56c698aa46d792a7875e02a36bc0914",
+  "hash": "sha256:599faed27c9e1915e4b150829304df8e50e3d47a0e96125fa536626730b88075",
+  "sourceHash": "sha256:446402fb1f8a67d19f8c716fdc69b7d7e63b2f16ecea63deaf61fd01d6a5a9cd",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 46010,
-    "vertices": 44702,
-    "meshes": 140,
-    "primitives": 140,
-    "materials": 35,
+    "triangles": 51573,
+    "vertices": 52285,
+    "meshes": 159,
+    "primitives": 159,
+    "materials": 42,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 1563956
+    "sizeBytes": 1760464
   },
   "nodes": [
     {
@@ -80,6 +80,14 @@
     {
       "name": "F16-airframe-detail-red",
       "triangles": 12
+    },
+    {
+      "name": "F16-airframe-F16-light-gray-lining",
+      "triangles": 57
+    },
+    {
+      "name": "F16-airframe-F16-alloy-lining",
+      "triangles": 100
     },
     {
       "name": "F16-flaperon--1-F16-light-gray",
@@ -235,19 +243,19 @@
     },
     {
       "name": "F16-cabin-F16-panel-gray",
-      "triangles": 732
+      "triangles": 869
     },
     {
       "name": "F16-cabin-F16-seals",
-      "triangles": 1514
+      "triangles": 3084
     },
     {
       "name": "F16-cabin-F16-instrument-black",
-      "triangles": 800
+      "triangles": 1604
     },
     {
       "name": "F16-cabin-detail-trim",
-      "triangles": 7196
+      "triangles": 4700
     },
     {
       "name": "F16-cabin-detail-alloy",
@@ -259,7 +267,7 @@
     },
     {
       "name": "F16-cabin-F16-alloy",
-      "triangles": 2736
+      "triangles": 3630
     },
     {
       "name": "F16-cabin-detail-lettering",
@@ -268,6 +276,38 @@
     {
       "name": "F16-cabin-F16-canopy",
       "triangles": 4
+    },
+    {
+      "name": "F16-cabin-mfd-phosphor",
+      "triangles": 120
+    },
+    {
+      "name": "F16-cabin-mfd-phosphor-dim",
+      "triangles": 144
+    },
+    {
+      "name": "F16-cabin-mfd-phosphor",
+      "triangles": 240
+    },
+    {
+      "name": "F16-cabin-mfd-phosphor-dim",
+      "triangles": 120
+    },
+    {
+      "name": "F16-cabin-mfd-phosphor",
+      "triangles": 120
+    },
+    {
+      "name": "F16-cabin-mfd-phosphor-dim",
+      "triangles": 144
+    },
+    {
+      "name": "F16-cabin-mfd-phosphor",
+      "triangles": 240
+    },
+    {
+      "name": "F16-cabin-mfd-phosphor-dim",
+      "triangles": 120
     },
     {
       "name": "F16-cabin-F16-instrument-ink",
@@ -283,7 +323,7 @@
     },
     {
       "name": "F16-cabin-F16-instrument-amber-panel-print",
-      "triangles": 88
+      "triangles": 56
     },
     {
       "name": "F16-front-attitude-837-fixed-F16-instrument-black",
@@ -512,46 +552,6 @@
     {
       "name": "F16-front-altitude-counter-4-4-F16-instrument-ink",
       "triangles": 12
-    },
-    {
-      "name": "F16-front-altitude-counter-4-5-F16-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "F16-front-altitude-counter-4-6-F16-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "F16-front-altitude-counter-minus-F16-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "F16-front-heading-card-F16-instrument-ink",
-      "triangles": 864
-    },
-    {
-      "name": "F16-front-heading-card-F16-instrument-ink-panel-print",
-      "triangles": 36
-    },
-    {
-      "name": "F16-front-VSI-face-F16-instrument-black",
-      "triangles": 128
-    },
-    {
-      "name": "F16-front-VSI-face-detail-alloy",
-      "triangles": 240
-    },
-    {
-      "name": "F16-front-VSI-face-F16-instrument-ink",
-      "triangles": 120
-    },
-    {
-      "name": "F16-front-VSI-face-F16-instrument-ink-dial-print",
-      "triangles": 28
-    },
-    {
-      "name": "F16-front-VSI-F16-instrument-ink",
-      "triangles": 24
     }
   ],
   "nodesTruncated": true,
@@ -631,6 +631,14 @@
     },
     {
       "name": "detail-red",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "cockpit-frame-lining",
       "slots": [
         "baseColor"
       ],
@@ -722,6 +730,22 @@
       "alphaMode": "BLEND"
     },
     {
+      "name": "mfd-phosphor",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "mfd-phosphor-dim",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "F16-instrument-ink",
       "slots": [
         "baseColor"
@@ -797,20 +821,9 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "turbine-blades",
+      "name": "flight-control-tread",
       "slots": [
         "baseColor"
-      ],
-      "doubleSided": true,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "flight-control-panel-satin",
-      "slots": [
-        "baseColor",
-        "roughness",
-        "metalness",
-        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -838,13 +851,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend-technical-font",
+      "name": "flight-control-black",
       "slots": [
-        "baseColor",
-        "emissive"
+        "baseColor"
       ],
       "doubleSided": false,
-      "alphaMode": "BLEND"
+      "alphaMode": "OPAQUE"
     },
     {
       "name": "flight-control-master",
@@ -855,11 +867,52 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend",
+      "name": "flight-control-steel",
       "slots": [
         "baseColor"
       ],
       "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-knob",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-lamp",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-caution",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "turbine-blades",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
       "alphaMode": "OPAQUE"
     }
   ],
@@ -1153,6 +1206,64 @@
           0.74,
           1.8175,
           4.61
+        ]
+      },
+      {
+        "node": "F16-airframe-F16-light-gray-lining",
+        "points": [
+          -0.6586,
+          1.5031,
+          2.5011,
+          -0.6586,
+          1.5031,
+          6.0476,
+          -0.6586,
+          2.4522,
+          2.5011,
+          -0.6586,
+          2.4522,
+          6.0476,
+          0.6586,
+          1.5031,
+          2.5011,
+          0.6586,
+          1.5031,
+          6.0476,
+          0.6586,
+          2.4522,
+          2.5011,
+          0.6586,
+          2.4522,
+          6.0476
+        ]
+      },
+      {
+        "node": "F16-airframe-F16-alloy-lining",
+        "points": [
+          -0.6014,
+          2.1088,
+          3.4341,
+          -0.6014,
+          2.1088,
+          5.543,
+          -0.6014,
+          2.1183,
+          3.4341,
+          -0.6014,
+          2.1183,
+          5.543,
+          0.6004,
+          2.1088,
+          3.4341,
+          0.6004,
+          2.1088,
+          5.543,
+          0.6004,
+          2.1183,
+          3.4341,
+          0.6004,
+          2.1183,
+          5.543
         ]
       },
       {
@@ -2260,28 +2371,28 @@
       {
         "node": "F16-cabin-F16-panel-gray",
         "points": [
-          -0.52,
+          -0.5816,
           1.4599,
           2.45,
-          -0.52,
-          1.4599,
-          5.9,
-          -0.52,
-          2.6709,
-          2.45,
-          -0.52,
-          2.6709,
-          5.9,
-          0.52,
-          1.4599,
-          2.45,
-          0.52,
+          -0.5816,
           1.4599,
           5.9,
-          0.52,
+          -0.5816,
           2.6709,
           2.45,
-          0.52,
+          -0.5816,
+          2.6709,
+          5.9,
+          0.5817,
+          1.4599,
+          2.45,
+          0.5817,
+          1.4599,
+          5.9,
+          0.5817,
+          2.6709,
+          2.45,
+          0.5817,
           2.6709,
           5.9
         ]
@@ -2318,28 +2429,28 @@
       {
         "node": "F16-cabin-F16-instrument-black",
         "points": [
-          -0.3519,
-          1.8744,
-          3.746,
-          -0.3519,
-          1.8744,
+          -0.4125,
+          1.8351,
+          3.16,
+          -0.4125,
+          1.8351,
           5.534,
-          -0.3519,
+          -0.4125,
           2.6666,
-          3.746,
-          -0.3519,
+          3.16,
+          -0.4125,
           2.6666,
           5.534,
-          0.2776,
-          1.8744,
-          3.746,
-          0.2776,
-          1.8744,
+          0.47,
+          1.8351,
+          3.16,
+          0.47,
+          1.8351,
           5.534,
-          0.2776,
+          0.47,
           2.6666,
-          3.746,
-          0.2776,
+          3.16,
+          0.47,
           2.6666,
           5.534
         ]
@@ -2434,29 +2545,29 @@
       {
         "node": "F16-cabin-F16-alloy",
         "points": [
-          -0.4306,
-          1.859,
-          2.6772,
-          -0.4306,
-          1.859,
+          -0.4322,
+          1.8559,
+          2.6755,
+          -0.4322,
+          1.8559,
           5.5353,
-          -0.4306,
-          2.5772,
-          2.6772,
-          -0.4306,
-          2.5772,
+          -0.4322,
+          2.5773,
+          2.6755,
+          -0.4322,
+          2.5773,
           5.5353,
-          0.4306,
-          1.859,
-          2.6772,
-          0.4306,
-          1.859,
+          0.4322,
+          1.8559,
+          2.6755,
+          0.4322,
+          1.8559,
           5.5353,
-          0.4306,
-          2.5772,
-          2.6772,
-          0.4306,
-          2.5772,
+          0.4322,
+          2.5773,
+          2.6755,
+          0.4322,
+          2.5773,
           5.5353
         ]
       },
@@ -2516,6 +2627,238 @@
           0.0832,
           2.7928,
           5.65
+        ]
+      },
+      {
+        "node": "F16-cabin-mfd-phosphor",
+        "points": [
+          0.1544,
+          2.2473,
+          5.5029,
+          0.1544,
+          2.2473,
+          5.5043,
+          0.1544,
+          2.3089,
+          5.5029,
+          0.1544,
+          2.3089,
+          5.5043,
+          0.252,
+          2.2473,
+          5.5029,
+          0.252,
+          2.2473,
+          5.5043,
+          0.252,
+          2.3089,
+          5.5029,
+          0.252,
+          2.3089,
+          5.5043
+        ]
+      },
+      {
+        "node": "F16-cabin-mfd-phosphor-dim",
+        "points": [
+          0.1616,
+          2.263,
+          5.5029,
+          0.1616,
+          2.263,
+          5.5043,
+          0.1616,
+          2.2723,
+          5.5029,
+          0.1616,
+          2.2723,
+          5.5043,
+          0.2448,
+          2.263,
+          5.5029,
+          0.2448,
+          2.263,
+          5.5043,
+          0.2448,
+          2.2723,
+          5.5029,
+          0.2448,
+          2.2723,
+          5.5043
+        ]
+      },
+      {
+        "node": "F16-cabin-mfd-phosphor",
+        "points": [
+          -0.0492,
+          1.8915,
+          5.5029,
+          -0.0492,
+          1.8915,
+          5.5043,
+          -0.0492,
+          1.9773,
+          5.5029,
+          -0.0492,
+          1.9773,
+          5.5043,
+          0.0508,
+          1.8915,
+          5.5029,
+          0.0508,
+          1.8915,
+          5.5043,
+          0.0508,
+          1.9773,
+          5.5029,
+          0.0508,
+          1.9773,
+          5.5043
+        ]
+      },
+      {
+        "node": "F16-cabin-mfd-phosphor-dim",
+        "points": [
+          -0.0486,
+          1.8985,
+          5.5029,
+          -0.0486,
+          1.8985,
+          5.5043,
+          -0.0486,
+          1.9767,
+          5.5029,
+          -0.0486,
+          1.9767,
+          5.5043,
+          0.0502,
+          1.8985,
+          5.5029,
+          0.0502,
+          1.8985,
+          5.5043,
+          0.0502,
+          1.9767,
+          5.5029,
+          0.0502,
+          1.9767,
+          5.5043
+        ]
+      },
+      {
+        "node": "F16-cabin-mfd-phosphor",
+        "points": [
+          0.0385,
+          2.5354,
+          3.7429,
+          0.0385,
+          2.5354,
+          3.7443,
+          0.0385,
+          2.5981,
+          3.7429,
+          0.0385,
+          2.5981,
+          3.7443,
+          0.1408,
+          2.5354,
+          3.7429,
+          0.1408,
+          2.5354,
+          3.7443,
+          0.1408,
+          2.5981,
+          3.7429,
+          0.1408,
+          2.5981,
+          3.7443
+        ]
+      },
+      {
+        "node": "F16-cabin-mfd-phosphor-dim",
+        "points": [
+          0.046,
+          2.5513,
+          3.7429,
+          0.046,
+          2.5513,
+          3.7443,
+          0.046,
+          2.5608,
+          3.7429,
+          0.046,
+          2.5608,
+          3.7443,
+          0.1333,
+          2.5513,
+          3.7429,
+          0.1333,
+          2.5513,
+          3.7443,
+          0.1333,
+          2.5608,
+          3.7429,
+          0.1333,
+          2.5608,
+          3.7443
+        ]
+      },
+      {
+        "node": "F16-cabin-mfd-phosphor",
+        "points": [
+          -0.1591,
+          2.5235,
+          3.7429,
+          -0.1591,
+          2.5235,
+          3.7443,
+          -0.1591,
+          2.6169,
+          3.7429,
+          -0.1591,
+          2.6169,
+          3.7443,
+          -0.0584,
+          2.5235,
+          3.7429,
+          -0.0584,
+          2.5235,
+          3.7443,
+          -0.0584,
+          2.6169,
+          3.7429,
+          -0.0584,
+          2.6169,
+          3.7443
+        ]
+      },
+      {
+        "node": "F16-cabin-mfd-phosphor-dim",
+        "points": [
+          -0.1585,
+          2.531,
+          3.7429,
+          -0.1585,
+          2.531,
+          3.7443,
+          -0.1585,
+          2.6163,
+          3.7429,
+          -0.1585,
+          2.6163,
+          3.7443,
+          -0.059,
+          2.531,
+          3.7429,
+          -0.059,
+          2.531,
+          3.7443,
+          -0.059,
+          2.6163,
+          3.7429,
+          -0.059,
+          2.6163,
+          3.7443
         ]
       },
       {
@@ -2609,28 +2952,28 @@
         "node": "F16-cabin-F16-instrument-amber-panel-print",
         "points": [
           -0.335,
-          1.9304,
-          3.745,
+          2.212,
+          3.747,
           -0.335,
-          1.9304,
+          2.212,
           5.507,
           -0.335,
-          2.5809,
-          3.745,
+          2.5257,
+          3.747,
           -0.335,
-          2.5809,
+          2.5257,
           5.507,
           0.2336,
-          1.9304,
-          3.745,
+          2.212,
+          3.747,
           0.2336,
-          1.9304,
+          2.212,
           5.507,
           0.2336,
-          2.5809,
-          3.745,
+          2.5257,
+          3.747,
           0.2336,
-          2.5809,
+          2.5257,
           5.507
         ]
       },
@@ -4285,296 +4628,6 @@
           0.0481,
           2.0746,
           5.5144
-        ]
-      },
-      {
-        "node": "F16-front-altitude-counter-4-5-F16-instrument-ink",
-        "points": [
-          0.0475,
-          2.0758,
-          5.5136,
-          0.0475,
-          2.0758,
-          5.5144,
-          0.0475,
-          2.0791,
-          5.5136,
-          0.0475,
-          2.0791,
-          5.5144,
-          0.0481,
-          2.0758,
-          5.5136,
-          0.0481,
-          2.0758,
-          5.5144,
-          0.0481,
-          2.0791,
-          5.5136,
-          0.0481,
-          2.0791,
-          5.5144
-        ]
-      },
-      {
-        "node": "F16-front-altitude-counter-4-6-F16-instrument-ink",
-        "points": [
-          0.0441,
-          2.0749,
-          5.5136,
-          0.0441,
-          2.0749,
-          5.5144,
-          0.0441,
-          2.0755,
-          5.5136,
-          0.0441,
-          2.0755,
-          5.5144,
-          0.0474,
-          2.0749,
-          5.5136,
-          0.0474,
-          2.0749,
-          5.5144,
-          0.0474,
-          2.0755,
-          5.5136,
-          0.0474,
-          2.0755,
-          5.5144
-        ]
-      },
-      {
-        "node": "F16-front-altitude-counter-minus-F16-instrument-ink",
-        "points": [
-          0.0711,
-          2.0749,
-          5.5136,
-          0.0711,
-          2.0749,
-          5.5144,
-          0.0711,
-          2.0755,
-          5.5136,
-          0.0711,
-          2.0755,
-          5.5144,
-          0.0744,
-          2.0749,
-          5.5136,
-          0.0744,
-          2.0749,
-          5.5144,
-          0.0744,
-          2.0755,
-          5.5136,
-          0.0744,
-          2.0755,
-          5.5144
-        ]
-      },
-      {
-        "node": "F16-front-heading-card-F16-instrument-ink",
-        "points": [
-          -0.0912,
-          2.0384,
-          5.5154,
-          -0.0912,
-          2.0384,
-          5.5166,
-          -0.0912,
-          2.1184,
-          5.5154,
-          -0.0912,
-          2.1184,
-          5.5166,
-          -0.0112,
-          2.0384,
-          5.5154,
-          -0.0112,
-          2.0384,
-          5.5166,
-          -0.0112,
-          2.1184,
-          5.5154,
-          -0.0112,
-          2.1184,
-          5.5166
-        ]
-      },
-      {
-        "node": "F16-front-heading-card-F16-instrument-ink-panel-print",
-        "points": [
-          -0.0818,
-          2.0472,
-          5.516,
-          -0.0818,
-          2.0472,
-          5.516,
-          -0.0818,
-          2.1092,
-          5.516,
-          -0.0818,
-          2.1092,
-          5.516,
-          -0.0206,
-          2.0472,
-          5.516,
-          -0.0206,
-          2.0472,
-          5.516,
-          -0.0206,
-          2.1092,
-          5.516,
-          -0.0206,
-          2.1092,
-          5.516
-        ]
-      },
-      {
-        "node": "F16-front-VSI-face-F16-instrument-black",
-        "points": [
-          -0.1768,
-          2.3256,
-          5.5325,
-          -0.1768,
-          2.3256,
-          5.5425,
-          -0.1768,
-          2.3864,
-          5.5325,
-          -0.1768,
-          2.3864,
-          5.5425,
-          -0.116,
-          2.3256,
-          5.5325,
-          -0.116,
-          2.3256,
-          5.5425,
-          -0.116,
-          2.3864,
-          5.5325,
-          -0.116,
-          2.3864,
-          5.5425
-        ]
-      },
-      {
-        "node": "F16-front-VSI-face-detail-alloy",
-        "points": [
-          -0.1769,
-          2.3255,
-          5.532,
-          -0.1769,
-          2.3255,
-          5.533,
-          -0.1769,
-          2.3865,
-          5.532,
-          -0.1769,
-          2.3865,
-          5.533,
-          -0.1159,
-          2.3255,
-          5.532,
-          -0.1159,
-          2.3255,
-          5.533,
-          -0.1159,
-          2.3865,
-          5.532,
-          -0.1159,
-          2.3865,
-          5.533
-        ]
-      },
-      {
-        "node": "F16-front-VSI-face-F16-instrument-ink",
-        "points": [
-          -0.1712,
-          2.3337,
-          5.5317,
-          -0.1712,
-          2.3337,
-          5.5323,
-          -0.1712,
-          2.3783,
-          5.5317,
-          -0.1712,
-          2.3783,
-          5.5323,
-          -0.1187,
-          2.3337,
-          5.5317,
-          -0.1187,
-          2.3337,
-          5.5323,
-          -0.1187,
-          2.3783,
-          5.5317,
-          -0.1187,
-          2.3783,
-          5.5323
-        ]
-      },
-      {
-        "node": "F16-front-VSI-face-F16-instrument-ink-dial-print",
-        "points": [
-          -0.1664,
-          2.338,
-          5.532,
-          -0.1664,
-          2.338,
-          5.532,
-          -0.1664,
-          2.3734,
-          5.532,
-          -0.1664,
-          2.3734,
-          5.532,
-          -0.1257,
-          2.338,
-          5.532,
-          -0.1257,
-          2.338,
-          5.532,
-          -0.1257,
-          2.3734,
-          5.532,
-          -0.1257,
-          2.3734,
-          5.532
-        ]
-      },
-      {
-        "node": "F16-front-VSI-F16-instrument-ink",
-        "points": [
-          -0.147,
-          2.3532,
-          5.5294,
-          -0.147,
-          2.3532,
-          5.5306,
-          -0.147,
-          2.3791,
-          5.5294,
-          -0.147,
-          2.3791,
-          5.5306,
-          -0.1458,
-          2.3532,
-          5.5294,
-          -0.1458,
-          2.3532,
-          5.5306,
-          -0.1458,
-          2.3791,
-          5.5294,
-          -0.1458,
-          2.3791,
-          5.5306
         ]
       }
     ]

@@ -3,7 +3,19 @@
  */
 
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import {
+  bar,
+  contour,
+  lathe,
+  loftUp,
+  partPalette,
+  pedalGeometry,
+  place,
+  roundedBox,
+  tube,
+} from './cockpit-parts.mjs';
 import { glassDisplay } from './glass-display.mjs';
+import { batToggle, partBatch, skinBacking } from './huey.mjs';
 import {
   beveledBox,
   cleanGeometry,
@@ -608,7 +620,211 @@ function wheel(d, at, r, w, rubber, metal, paint) {
       ]);
   }
 }
+const cylinder = (r, h, at, rotation = [0, 0, 0], sides = 16, r2 = r) =>
+  place(new T.CylinderGeometry(r2, r, h, sides), at, rotation);
+/**
+ * The Black Hawk cyclic grip, base at the origin, up +Y, trigger toward +Z: a thick hand-hold
+ * under a broad, flat-topped head. The crown carries the four-way trim hat and the go-around
+ * button, the left shoulder the stabilator-release and SAS switches on a raised pad, the right
+ * the red cargo-hook release under its cover, and the two-stage radio/ICS trigger sits in front.
+ */
+function sikorskyGripInto(b, P) {
+  const L = (rows) =>
+    loftUp(
+      rows.map(([y, cz, rx, rz, power = 2.4]) => ({
+        y,
+        points: contour(0, cz, rx, rz, 16, power),
+      })),
+    );
+  b.add(
+    P.alloy,
+    lathe(
+      [
+        [0, -0.024],
+        [0.02, -0.024],
+        [0.021, 0.004],
+        [0.019, 0.012],
+        [0, 0.012],
+      ],
+      14,
+    ),
+  );
+  b.add(
+    P.grip,
+    L([
+      [0.008, 0, 0.02, 0.022, 2.2],
+      [0.045, 0.002, 0.0225, 0.024, 2.2],
+      [0.085, 0.006, 0.023, 0.026, 2.4],
+      [0.112, 0.014, 0.026, 0.032, 2.8],
+      [0.135, 0.02, 0.03, 0.036, 3.2],
+      [0.152, 0.022, 0.029, 0.035, 3.2],
+      [0.158, 0.022, 0.022, 0.028, 3],
+    ]),
+  );
+  // Thumb pad on the left shoulder with two switches; the crown's trim hat and go-around button.
+  b.add(
+    P.grip,
+    place(roundedBox([0.018, 0.03, 0.036], 0.006, 1), [0.03, 0.138, 0.016], [0, 0, -0.25]),
+  );
+  b.add(P.black, cylinder(0.0045, 0.006, [0.04, 0.142, 0.006], [0, 0, Math.PI / 2 - 0.25], 10));
+  b.add(
+    P.black,
+    place(roundedBox([0.006, 0.01, 0.01], 0.002, 1), [0.04, 0.136, 0.026], [0, 0, -0.25]),
+  );
+  b.add(P.black, cylinder(0.0065, 0.008, [0.004, 0.161, 0.012], [0, 0, 0], 12));
+  b.add(
+    P.black,
+    place(new T.SphereGeometry(0.005, 10, 6), [0.004, 0.165, 0.012], [0, 0, 0], [1, 0.55, 1]),
+  );
+  b.add(P.white, cylinder(0.0048, 0.005, [-0.012, 0.16, 0.03], [0, 0, 0], 10));
+  b.add(P.red, cylinder(0.005, 0.006, [-0.03, 0.14, 0.02], [0, 0, Math.PI / 2], 10));
+  b.add(P.black, place(roundedBox([0.004, 0.016, 0.016], 0.0015, 1), [-0.034, 0.14, 0.02]));
+  b.add(
+    P.black,
+    tube(
+      [
+        [0, 0.12, 0.05],
+        [0, 0.106, 0.064],
+        [0, 0.088, 0.06],
+      ],
+      0.0058,
+      8,
+    ),
+  );
+  b.add(
+    P.black,
+    tube(
+      [
+        [0, 0.096, 0.03],
+        [0, 0.084, 0.044],
+        [0, 0.072, 0.04],
+      ],
+      0.0052,
+      8,
+    ),
+  );
+}
+/** The Black Hawk cyclic from its floor pivot: a rubber boot, the tube bent aft through `path`
+ * and the grip on its end. */
+function sikorskyCyclic(d, { path, floor = 0, tubeMaterial, palette }) {
+  const P = partPalette(palette),
+    b = partBatch();
+  const points = [];
+  for (let i = 0; i < path.length - 1; i++)
+    for (let k = 0; k < (i === path.length - 2 ? 5 : 4); k++) {
+      const u = k / 4,
+        a = path[i],
+        c = path[i + 1];
+      points.push(a.map((v, j) => v + (c[j] - v) * u));
+    }
+  b.add(tubeMaterial ?? P.black, tube(points, 0.0175, 12));
+  b.add(
+    P.tread,
+    lathe(
+      [
+        [0, floor],
+        [0.07, floor],
+        [0.068, floor + 0.012],
+        [0.05, floor + 0.022],
+        [0.048, floor + 0.04],
+        [0.034, floor + 0.052],
+        [0.032, floor + 0.07],
+        [0.024, floor + 0.1],
+        [0.022, floor + 0.11],
+        [0, floor + 0.11],
+      ],
+      14,
+      28,
+    ),
+  );
+  b.emit(d);
+  const top = points.at(-1),
+    back = points.at(-2);
+  sikorskyGripInto(b, P);
+  b.emit(d, top, [Math.atan2(top[2] - back[2], top[1] - back[1]), 0, 0]);
+}
+/**
+ * The Black Hawk collective from its pivot beside the seat to `end` ([0, rise, run]): a plain
+ * lever (engine power is on the overhead, so there is no twist grip) ending in a rubber hand
+ * grip under the large switch head: the searchlight hat, landing-light and servo switches on its
+ * top, the go-around and trim-release buttons at its front and the ICS trigger beneath.
+ */
+function sikorskyCollective(d, { end, palette, tubeMaterial }) {
+  const P = partPalette(palette),
+    b = partBatch();
+  const length = Math.hypot(end[1], end[2]),
+    pitch = Math.atan2(end[1], end[2]),
+    along = [Math.PI / 2, 0, 0];
+  b.add(
+    P.tread,
+    lathe(
+      [
+        [0, -0.04],
+        [0.045, -0.04],
+        [0.043, -0.022],
+        [0.03, -0.008],
+        [0.026, 0.02],
+        [0, 0.02],
+      ],
+      12,
+    ).rotateX(Math.PI / 2),
+  );
+  b.add(
+    tubeMaterial ?? P.black,
+    cylinder(0.019, length - 0.16, [0, 0, (length - 0.16) / 2], along, 14),
+  );
+  b.add(P.grip, cylinder(0.0235, 0.11, [0, 0, length - 0.105], along, 16, 0.024));
+  const head = partBatch(),
+    tilt = -0.32;
+  head.add(P.grip, place(roundedBox([0.07, 0.066, 0.1], 0.016, 1), [0, 0.012, 0.045]));
+  head.add(P.black, place(roundedBox([0.054, 0.006, 0.07], 0.003, 1), [0, 0.046, 0.045]));
+  head.add(P.black, cylinder(0.008, 0.01, [0.012, 0.052, 0.06], [0, 0, 0], 12));
+  head.add(
+    P.black,
+    place(new T.SphereGeometry(0.006, 10, 6), [0.012, 0.057, 0.06], [0, 0, 0], [1, 0.55, 1]),
+  );
+  for (const [x, z] of [
+    [-0.014, 0.025],
+    [-0.014, 0.055],
+    [0.014, 0.028],
+  ]) {
+    head.add(P.alloy, cylinder(0.0042, 0.004, [x, 0.05, z], [0, 0, 0], 8));
+    head.add(
+      P.alloy,
+      place(new T.CylinderGeometry(0.0014, 0.0022, 0.015, 8), [x, 0.058, z - 0.003], [-0.3, 0, 0]),
+    );
+  }
+  head.add(P.white, cylinder(0.007, 0.008, [0, 0.02, 0.097], along, 12));
+  head.add(P.red, cylinder(0.0055, 0.008, [0.037, 0.02, 0.05], [0, 0, Math.PI / 2], 10));
+  head.add(
+    P.black,
+    tube(
+      [
+        [0, -0.02, 0.03],
+        [0, -0.034, 0.042],
+        [0, -0.034, 0.062],
+      ],
+      0.005,
+      8,
+    ),
+  );
+  b.emit(d, [0, 0, 0], [-pitch, 0, 0]);
+  // The head rides on the lever's tip, cocked up a little more than the lever.
+  const tip = [0, Math.sin(pitch) * (length - 0.05), Math.cos(pitch) * (length - 0.05)];
+  head.emit(d, tip, [-pitch + tilt, 0, 0]);
+}
+/** An engine power control lever hanging from the overhead quadrant: a flat bar under a square
+ * grip with a finger lift, pivot at the origin, the lever down local +Y. */
+function powerControlLever(d, P, length = 0.1) {
+  const b = partBatch();
+  b.add(P.alloy, place(roundedBox([0.008, length, 0.016], 0.002, 1), [0, length / 2, 0]));
+  b.add(P.grip, place(roundedBox([0.03, 0.026, 0.034], 0.007, 1), [0, length + 0.01, 0]));
+  b.add(P.white, place(roundedBox([0.031, 0.004, 0.012], 0.0012, 1), [0, length + 0.021, 0.012]));
+  b.add(P.black, place(roundedBox([0.02, 0.008, 0.01], 0.002, 1), [0, length - 0.006, -0.018]));
+  b.emit(d);
+}
 function cockpit(root, m) {
+  const parts = partPalette();
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'UH60-cockpit'),
     bindings = [],
@@ -626,6 +842,20 @@ function cockpit(root, m) {
     py = (v) => 1.58 - (v - 230) * k,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz],
     pt = panelTools(d);
+  // Line the olive skin round the cockpit in the flat dark gray of Army cockpits: the doors below
+  // and round their windows, the posts, the roof and the footwells under the panel, where the
+  // painted skin's back faces showed.
+  {
+    const lining = mat('UH60-cockpit-lining', '#33393a', { roughness: 0.93 }),
+      ld = detailKit(cabin, 'UH60-lining');
+    skinBacking(ld, root, {
+      materials: [m.paint],
+      inside: ([x, y, ww]) => ww > 1.9 && ww < 4.7 && y > 0.45 && y < 2.25 && Math.abs(x) < 1.2,
+      lining: () => lining,
+      toward: ([, , ww]) => [0, 1.35, Math.min(ww, 3.3)],
+    });
+    ld.finish();
+  }
   const contour = [
     [80, 290],
     [110, 247],
@@ -764,14 +994,10 @@ function cockpit(root, m) {
       for (let i = 0; i < 4; i++)
         pd.box([0.016, 0.016, 0.01], [x + side * 0.102, 0.38 - i * 0.03, -0.055], face);
   }
+  const consoleSwitches = partBatch();
   for (let r = 0; r < 7; r++)
     for (const x of [-0.07, 0.07]) {
-      pd.rod(
-        [x, 0.4 - r * 0.11, -0.03],
-        [x, 0.41 - r * 0.11, -0.066],
-        0.004,
-        r === 2 ? pd.red : m.metal,
-      );
+      batToggle(consoleSwitches, parts, [x, 0.4 - r * 0.11, -0.02], 0.017);
       pd.text(
         ['ENG', 'FUEL', 'GEN', 'SAS', 'BOOST', 'TRIM', 'TEST'][r],
         [x, 0.44 - r * 0.11, -0.066],
@@ -786,9 +1012,14 @@ function cockpit(root, m) {
       ppt.knob(x + ((i % 2) - 0.5) * 0.09, -0.11 - Math.floor(i / 2) * 0.1, -0.055, 0.013);
     beveledBox(pd, [0.22, 0.12, 0.1], [x, -0.38, -0.055], m.trim, 0.025);
   }
-  pd.rod([0, -0.39, -0.03], [0, -0.39, -0.15], 0.015, m.metal);
-  pd.box([0.13, 0.025, 0.03], [0, -0.39, -0.16], m.trim);
-  pd.text('PARK', [0, -0.35, -0.16], 0.008, Math.PI, pd.ivory);
+  // Parking-brake T-handle on its shaft.
+  consoleSwitches.add(parts.alloy, bar([0, -0.39, -0.02], [0, -0.39, -0.07], 0.006, 12));
+  consoleSwitches.add(
+    parts.red,
+    place(roundedBox([0.07, 0.018, 0.02], 0.006, 1), [0, -0.39, -0.078]),
+  );
+  consoleSwitches.emit(pd);
+  pd.text('PARK BRK', [0, -0.355, -0.021], 0.008, Math.PI, pd.ivory);
   pd.finish();
   // Cabin floor, stopping short of the nose where the belly narrows (it showed through at z 3.3).
   d.box([1.94, 0.045, 4.95], [0, 0.56, 0.695], m.trim);
@@ -825,22 +1056,21 @@ function cockpit(root, m) {
     const x = side * 0.56;
     // Armored crew seats ride high: the cushion sits 0.8 m under the eye.
     addSeat(cabin, x, 1.05, 2.61, true);
+    // Floor-mounted cyclic, jogged aft, with the Black Hawk grip (Army UH-60M cockpit photos).
     const cg = group(cabin, `UH60-cyclic-${side}`, [x, 0.58, 2.96]),
       cd = detailKit(cg, 'cyclic');
-    outline(
-      cd,
-      [
+    sikorskyCyclic(cd, {
+      path: [
         [0, 0, 0],
-        [0, 0.42, 0],
-        [0, 0.56, -0.2],
-        [0, 0.75, -0.2],
+        [0, 0.38, 0],
+        [0, 0.5, -0.12],
+        [0, 0.58, -0.2],
+        [0, 0.66, -0.21],
       ],
-      0.02,
-      m.trim,
-      false,
-    );
-    beveledBox(cd, [0.075, 0.16, 0.075], [0, 0.77, -0.2], m.trim, 0.012);
-    cd.box([0.025, 0.02, 0.015], [0, 0.84, -0.245], cd.red);
+      floor: 0.003,
+      tubeMaterial: m.trim,
+      palette: parts,
+    });
     cd.finish();
     bindings.push(
       { node: cg.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.15 },
@@ -848,16 +1078,20 @@ function cockpit(root, m) {
     );
     const lg = group(cabin, `UH60-collective-${side}`, [x + 0.27, 0.87, 2.39]),
       ld = detailKit(lg, 'collective');
-    ld.rod([0, 0, 0], [0, 0.23, 0.43], 0.026, m.trim);
-    beveledBox(ld, [0.11, 0.07, 0.2], [0, 0.24, 0.45], m.trim, 0.01);
-    for (const u of [-0.035, 0.035]) ld.box([0.02, 0.014, 0.025], [u, 0.29, 0.48], ld.dark);
+    sikorskyCollective(ld, { end: [0, 0.23, 0.43], tubeMaterial: m.trim, palette: parts });
     ld.finish();
     bindings.push({ node: lg.name, source: 'power', property: 'rotation', axis: 'x', scale: -0.4 });
     for (const j of [-1, 1]) {
       const g = group(cabin, `UH60-pedal-${side}-${j}`, [x + j * 0.14, 0.8, 3.52]),
         dd = detailKit(g, 'pedal');
-      dd.box([0.15, 0.05, 0.09], [0, 0, 0], m.metal);
-      dd.rod([0, 0, 0], [0, -0.1, 0.1], 0.016, m.trim);
+      pedalGeometry(dd, {
+        style: 'heli',
+        side: j,
+        scale: 1.25,
+        drop: 0.09,
+        lean: 0.45,
+        palette: parts,
+      });
       dd.finish();
       bindings.push({
         node: g.name,
@@ -867,6 +1101,20 @@ function cockpit(root, m) {
         scale: -j * 0.04,
       });
     }
+  }
+  // Heel plates under the pedals, rising from the cabin floor's front edge into the nose: the
+  // pedals stood over the bare belly.
+  for (const side of [-1, 1]) {
+    const x0 = side * 0.56;
+    quad(
+      d,
+      [x0 - 0.27, 0.583, 3.17],
+      [x0 + 0.27, 0.583, 3.17],
+      [x0 + 0.24, 0.655, 3.78],
+      [x0 - 0.24, 0.655, 3.78],
+      m.trim,
+      [0, 1, -0.1],
+    );
   }
   for (const side of [-1, 1]) {
     const cg = group(cabin, `UH60-crew-seat-${side}`, [side * 0.86, 0, 1.6]);
@@ -879,17 +1127,54 @@ function cockpit(root, m) {
   const og = group(cabin, 'UH60-overhead', [0, 2.1, 2.33]),
     od = detailKit(og, 'overhead');
   od.box([0.51, 0.055, 1.13], [0, 0, 0], m.trim);
-  for (let r = 0; r < 10; r++)
+  // Switch panels aft; forward, the engine control quadrant (end of this function).
+  for (let r = 0; r < 8; r++)
     for (const x of [-0.17, -0.06, 0.06, 0.17]) {
       od.box([0.075, 0.007, 0.07], [x, -0.032, -0.46 + r * 0.1], face);
-      od.rod(
-        [x, -0.04, -0.46 + r * 0.1],
-        [x, -0.075, -0.45 + r * 0.1],
-        0.004,
+      od.add(new T.CylinderGeometry(0.004, 0.004, 0.006, 8), m.metal, [x, -0.038, -0.46 + r * 0.1]);
+      const bat = od.add(
+        new T.CylinderGeometry(0.0024, 0.0015, 0.017, 8),
         r === 2 ? od.red : m.metal,
+        [x, -0.048, -0.457 + r * 0.1],
       );
+      bat.rotation.x = 0.35;
     }
+  // Quadrant plate with the two power control lever slots and their detents.
+  od.box([0.3, 0.012, 0.22], [0, -0.034, 0.42], face);
+  for (const x of [-0.06, 0.06]) {
+    od.box([0.012, 0.004, 0.16], [x, -0.041, 0.42], od.dark);
+    // Facing down, read with the nose up the page.
+    for (const [zz, label] of [
+      [0.36, 'OFF'],
+      [0.42, 'IDLE'],
+      [0.48, 'FLY'],
+    ])
+      od.text(label, [x + 0.028, -0.0415, zz], 0.0065, 0, od.ivory).rotation.set(Math.PI / 2, 0, 0);
+  }
+  for (const x of [-0.13, 0.13]) {
+    // ENG EMER OFF T-handles at the quadrant's outer corners.
+    od.add(new T.CylinderGeometry(0.005, 0.005, 0.03, 10), m.metal, [x, -0.055, 0.5]);
+    od.box([0.05, 0.014, 0.018], [x, -0.074, 0.5], od.red);
+  }
   od.finish();
+  // ENG 1 and ENG 2 POWER CONT levers (OFF / IDLE / FLY), moving together as the engine master:
+  // forward is FLY. The levers hang from the quadrant, so their rest pose turns them upside down.
+  for (const [x, label] of [
+    [0.06, 'ENG 1'],
+    [-0.06, 'ENG 2'],
+  ]) {
+    const lever = group(og, `UH60-power-lever-${label.at(-1)}`, [x, -0.04, 0.42]);
+    lever.rotation.x = Math.PI;
+    const lk = detailKit(lever, lever.name);
+    powerControlLever(lk, parts, 0.085);
+    // On the grip's aft face, upright to the pilot (the lever frame is upside down).
+    lk.text(label, [0, 0.093, 0.0175], 0.0055, 0, lk.ivory).rotation.set(0, 0, Math.PI);
+    lk.finish();
+    lever.userData.aircraftControl = {
+      action: 'engine',
+      motion: { property: 'rotation', axis: 'x', scale: -0.7, offset: 0.35 },
+    };
+  }
   d.finish();
   return { nodes: ['cockpit'], bindings };
 }

@@ -2,8 +2,199 @@
  * Panel width checked against Beech Detail Specification 131: 45.75 inches.
  * Photograph is a perspective reference, not a surveyed orthographic drawing. */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { cockpitBulkhead, cockpitLiner, skinSection, wallAt } from './cockpit-fit.mjs';
+import {
+  bar,
+  lathe,
+  partPalette,
+  place,
+  roundedBox,
+  switchGeometry,
+  tube,
+} from './cockpit-parts.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
-import { beveledBox, detailKit, ellipsoid, group, mat, outline, sheet, T } from './mesh-kit.mjs';
+import { beveledBox, detailKit, group, mat, outline, sheet, T } from './mesh-kit.mjs';
+
+/** The Beech "butterfly" control wheel (C-45H and D18S photos): one frame loops out from the
+ * hub into two rounded lobes, the outer uprights are the hand grips, and a clock sits in the hub.
+ * Hub at the origin, facing the pilot (-Z). */
+function butterflyWheel(wd, P, frame, face) {
+  const shape = [
+    [0, 0.042],
+    [0.085, 0.066],
+    [0.18, 0.112],
+    [0.222, 0.098],
+    [0.236, 0],
+    [0.222, -0.098],
+    [0.18, -0.112],
+    [0.085, -0.066],
+    [0, -0.042],
+  ];
+  const loop = [
+    ...shape,
+    ...shape
+      .slice(1, -1)
+      .reverse()
+      .map(([x, y]) => [-x, y]),
+  ];
+  const curve = new T.CatmullRomCurve3(
+    loop.map(([x, y]) => new T.Vector3(x, y, 0)),
+    true,
+    'centripetal',
+  );
+  const points = curve
+    .getSpacedPoints(36)
+    .slice(0, 36)
+    .map((p) => p.toArray());
+  wd.add(tube(points, 0.0115, 10, true), frame);
+  // Thicker hand grips on the outer uprights.
+  for (const s of [-1, 1])
+    wd.add(
+      tube(
+        [
+          [s * 0.229, -0.074, 0],
+          [s * 0.2375, -0.03, 0],
+          [s * 0.2375, 0.03, 0],
+          [s * 0.229, 0.074, 0],
+        ],
+        0.0165,
+        12,
+      ),
+      P.grip,
+    );
+  // Hub boss with the wheel clock (lathe +Y turned to face the pilot).
+  wd.add(
+    lathe(
+      [
+        [0, -0.03],
+        [0.03, -0.03],
+        [0.05, -0.012],
+        [0.052, 0.008],
+        [0.046, 0.018],
+        [0, 0.018],
+      ],
+      16,
+    ).rotateX(-Math.PI / 2),
+    frame,
+  );
+  wd.add(
+    new T.CylinderGeometry(0.034, 0.034, 0.003, 16, 1, true)
+      .rotateX(Math.PI / 2)
+      .translate(0, 0, -0.019),
+    P.alloy,
+  );
+  wd.add(new T.CircleGeometry(0.032, 16).rotateY(Math.PI).translate(0, 0, -0.0205), face);
+}
+
+/** Beech rudder pedal: a rubber-faced plate leaning forward on a cast arm hinged at the floor,
+ * with the toe-brake cylinder outboard. Origin at the middle of the pad. */
+function beechPedal(pd, P, out) {
+  const lean = [0.32, 0, 0];
+  pd.add(place(roundedBox([0.104, 0.148, 0.012], 0.01, 1), [0, 0, 0], lean), P.steel);
+  pd.add(place(roundedBox([0.088, 0.128, 0.005], 0.008, 1), [0, 0, -0.0075], lean), P.grip);
+  // Moulded tread ribs in the same rubber, low enough to read as a pad, not a grille.
+  for (let j = 0; j < 3; j++)
+    pd.add(
+      place(new T.BoxGeometry(0.074, 0.008, 0.004), [0, -0.034 + j * 0.034, -0.0105], lean),
+      P.grip,
+    );
+  pd.add(
+    place(bar([-0.05, 0.068, 0.006], [0.05, 0.068, 0.006], 0.0055, 10), [0, 0, 0], lean),
+    P.alloy,
+  );
+  // Arm from the back of the pad down to its floor hinge.
+  pd.add(
+    tube(
+      [
+        [0, -0.03, 0.03],
+        [0, -0.09, 0.06],
+        [0, -0.13, 0.085],
+      ],
+      0.0095,
+      10,
+    ),
+    P.alloy,
+  );
+  pd.add(
+    new T.CylinderGeometry(0.014, 0.014, 0.05, 12).rotateZ(Math.PI / 2).translate(0, -0.135, 0.088),
+    P.steel,
+  );
+  pd.add(bar([out * 0.038, 0.05, 0.035], [out * 0.038, -0.1, 0.11], 0.0075, 10, 0.0085), P.steel);
+}
+
+/** Sidewall lining between window panes, like cockpitLiner but triangle by triangle: a cell
+ * with three of its four corners on skin still gets the triangle between them, so the lining
+ * reaches the window frames instead of stopping a whole sample short of them. */
+function paneLiner(
+  d,
+  body,
+  { zFrom, zTo, yFrom, yTo, zSteps, ySteps, inset = 0.006, from = 0.05, material },
+) {
+  const grid = [];
+  for (let i = 0; i <= zSteps; i++) {
+    const z = zFrom + ((zTo - zFrom) * i) / zSteps,
+      segments = skinSection(body, z);
+    grid.push(
+      Array.from({ length: ySteps + 1 }, (_, j) => {
+        const y = yFrom + ((yTo - yFrom) * j) / ySteps;
+        return {
+          z,
+          y,
+          x: { 1: wallAt(segments, y, 1, from), [-1]: wallAt(segments, y, -1, from) },
+        };
+      }),
+    );
+  }
+  const positions = [],
+    u = new T.Vector3(),
+    v = new T.Vector3();
+  for (const side of [1, -1]) {
+    const at = (p) => (p.x[side] === undefined ? undefined : [p.x[side] - side * inset, p.y, p.z]);
+    const tri = (...corners) => {
+      if (corners.some((c) => !c)) return false;
+      const [a, b, c] = corners;
+      u.set(b[0] - a[0], b[1] - a[1], b[2] - a[2]);
+      v.set(c[0] - a[0], c[1] - a[1], c[2] - a[2]);
+      // Face inboard.
+      positions.push(...a, ...(u.cross(v).x * -side >= 0 ? [...b, ...c] : [...c, ...b]));
+      return true;
+    };
+    for (let i = 0; i < zSteps; i++)
+      for (let j = 0; j < ySteps; j++) {
+        const [p, q, r, w] = [grid[i][j], grid[i + 1][j], grid[i + 1][j + 1], grid[i][j + 1]].map(
+          at,
+        );
+        if (p && q && r && w) {
+          tri(p, q, r);
+          tri(p, r, w);
+        } else tri(p, q, r) || tri(p, r, w) || tri(p, q, w) || tri(q, r, w);
+      }
+  }
+  if (!positions.length) return;
+  const geometry = new T.BufferGeometry();
+  geometry.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
+  geometry.computeVertexNormals();
+  d.add(geometry, material);
+}
+
+/** Convert stations authored in the cockpit group's frame into the model frame that
+ * completeCockpitControls expects (the airframe sits pitched on its tail wheel). */
+export function cockpitFrameStations(root, cabin, stations) {
+  root.updateMatrixWorld(true);
+  const frame = root.matrixWorld.clone().invert().multiply(cabin.matrixWorld),
+    turn = new T.Quaternion();
+  frame.decompose(new T.Vector3(), turn, new T.Vector3());
+  return stations.map((station) => {
+    const local = new T.Quaternion().setFromEuler(new T.Euler(...(station.rotation ?? [0, 0, 0])));
+    const e = new T.Euler().setFromQuaternion(turn.clone().multiply(local), 'XYZ');
+    return {
+      ...station,
+      at: new T.Vector3(...station.at).applyMatrix4(frame).toArray(),
+      rotation: [e.x, e.y, e.z],
+    };
+  });
+}
+
 export function beech18Cockpit(root, m) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'Beech18-cockpit'),
@@ -14,7 +205,8 @@ export function beech18Cockpit(root, m) {
     liner = mat('Beech18-liner', '#aaa58a'),
     wood = mat('Beech18-wheel-wood', '#5b3020'),
     brown = mat('Beech18-controls-brown', '#6e3f2d'),
-    yellow = mat('Beech18-prop-control', '#ce991e');
+    yellow = mat('Beech18-prop-control', '#ce991e'),
+    P = partPalette();
   const k = 1.16205 / 725,
     x = (u) => (1018 - u) * k,
     y = (v) => 1.79 + (450 - v) * k,
@@ -244,29 +436,27 @@ export function beech18Cockpit(root, m) {
     [1205, 405],
   ])
     d.add(new T.SphereGeometry(0.004, 6, 4), m.metal, at(u, v, -0.014));
-  // Starter and landing gear switches on the panel's lower edge, right of centre and under the
-  // engine temperature gauges. From the seat the quadrant's levers and the pilot's wheel hide the
-  // lower centre, where the systems module's middle stood (cockpit-controls.mjs).
-  for (const [u, name, label, action, engine] of [
-    [1068, 'Beech18-starter-1', 'START L', 'engine', 'engine-1'],
-    [1110, 'Beech18-starter-2', 'START R', 'engine', 'engine-2'],
-    [1152, 'Beech18-gear-switch', 'GEAR', 'gear'],
+  // Starter switches on the panel's lower edge, right of centre and under the engine
+  // temperature gauges, with the guarded ignition master beside them (a control station). The
+  // landing gear lever is on the quadrant's left face, as in the C-45H photo.
+  for (const [u, name, label, engine] of [
+    [1068, 'Beech18-starter-1', 'START L', 'engine-1'],
+    [1110, 'Beech18-starter-2', 'START R', 'engine-2'],
   ]) {
     d.box([0.03, 0.026, 0.004], at(u, 683, -0.003), black);
     d.text(label, at(u, 667, -0.006), 0.0055, Math.PI, ink);
     const g = group(cabin, name, at(u, 683, -0.005)),
       gd = detailKit(g, name);
-    gd.rod([0, 0, 0], [0, 0.006, -0.024], 0.0028, m.metal);
-    if (action === 'gear')
-      gd.add(new T.CylinderGeometry(0.008, 0.008, 0.006, 12), black, [0, 0.007, -0.027]);
-    else gd.add(new T.SphereGeometry(0.0045, 8, 6), black, [0, 0.006, -0.025]);
+    switchGeometry(gd, { style: 'toggle', scale: 1.15 });
     gd.finish();
+    // Up for on, as the shared toggle stations move.
     g.userData.aircraftControl = {
-      action,
-      ...(engine ? { engine } : {}),
-      motion: { property: 'rotation', axis: 'x', scale: -0.5 },
+      action: 'engine',
+      engine,
+      motion: { property: 'rotation', axis: 'x', scale: 0.7, offset: -0.7 },
     };
   }
+  d.box([0.03, 0.026, 0.004], at(1152, 683, -0.003), black);
   // Downward-tilted switch subpanels, flanking the centre quadrant.
   for (const side of [-1, 1]) {
     const sub = group(cabin, `Beech18-subpanel-${side}`, [side * 0.38, 1.37, 2.93]);
@@ -278,73 +468,182 @@ export function beech18Cockpit(root, m) {
         const xx = -0.177 + i * 0.05,
           yy = -0.027 + row * 0.05;
         sd.rod([xx, yy, -0.02], [xx, yy + 0.008, -0.042], 0.003, m.metal);
-        sd.text(
-          ['BAT', 'GEN', 'LTS', 'NAV', 'PUMP', 'HEAT', 'ICE', 'START'][i],
-          [xx, yy + 0.016, -0.024],
-          0.0044,
-          Math.PI,
-          ink,
-        );
+        // One legend per column, over the top row (both rows repeated it).
+        if (row === 1)
+          sd.text(
+            ['BAT', 'GEN', 'LTS', 'NAV', 'PUMP', 'HEAT', 'ICE', 'START'][i],
+            [xx, yy + 0.016, -0.024],
+            0.0044,
+            Math.PI,
+            ink,
+          );
       }
     sd.finish();
   }
+  // Throttle quadrant hanging under the panel centre (C-45H/D18S photos): propeller levers with
+  // ball knobs, throttles with tall turned wooden knobs, mixtures with flat paddles.
   const q = group(cabin, 'Beech18-quadrant', [0, 1.08, 2.78]),
     qd = detailKit(q, q.name);
-  beveledBox(qd, [0.34, 0.39, 0.45], [0, 0, -0.08], green, 0.035);
-  for (const [i, xx, label, color, source] of [
-    [0, 0.13, 'P', yellow, null],
-    [1, 0.08, 'P', yellow, null],
-    [2, 0.027, 'T', brown, 'power'],
-    [3, -0.027, 'T', brown, 'power'],
-    [4, -0.08, 'M', brown, null],
-    [5, -0.13, 'M', brown, null],
+  beveledBox(qd, [0.3, 0.39, 0.45], [0, 0, -0.08], green, 0.03);
+  const throttleKnob = lathe(
+    [
+      [0, 0],
+      [0.009, 0],
+      [0.013, 0.008],
+      [0.0165, 0.022],
+      [0.0175, 0.036],
+      [0.014, 0.046],
+      [0.006, 0.05],
+      [0, 0.0505],
+    ],
+    16,
+  );
+  for (const [i, xx, label, source] of [
+    [0, 0.13, 'P', null],
+    [1, 0.08, 'P', null],
+    [2, 0.027, 'T', 'power'],
+    [3, -0.027, 'T', 'power'],
+    [4, -0.08, 'M', null],
+    [5, -0.13, 'M', null],
   ]) {
-    qd.box([0.015, 0.012, 0.32], [xx, 0.2, -0.09], black);
+    // Lever slot in the quadrant top.
+    qd.box([0.009, 0.003, 0.32], [xx, 0.1955, -0.09], black);
     const lever = group(q, `Beech18-lever-${i}`, [xx, 0.19, 0.01]),
-      ld = detailKit(lever, lever.name);
-    ld.rod([0, 0, 0], [0, 0.24, -0.03], 0.009, m.metal);
-    ellipsoid(ld, [0, 0.25, -0.03], [0.022, 0.024, 0.022], color, 12);
-    ld.text(label, [0, 0.25, -0.054], 0.011, Math.PI, ink);
+      ld = detailKit(lever, lever.name),
+      top = [0, 0.24, -0.03],
+      tilt = Math.atan2(-0.03, 0.24);
+    // Flat lever blade from the slot to the knob.
+    ld.add(
+      place(roundedBox([0.007, 0.245, 0.013], 0.002, 1), [0, 0.12, -0.015], [tilt, 0, 0]),
+      P.alloy,
+    );
+    if (label === 'P') {
+      ld.add(new T.SphereGeometry(0.0175, 14, 9), yellow, [0, 0.257, -0.032]);
+      ld.text(label, [0, 0.257, -0.05], 0.0105, Math.PI, ink);
+    } else if (label === 'T') {
+      ld.add(place(throttleKnob.clone(), top, [tilt, 0, 0]), wood);
+      ld.text(label, [0, 0.262, -0.049], 0.0105, Math.PI, ink);
+    } else {
+      ld.add(
+        place(roundedBox([0.032, 0.024, 0.012], 0.005), [0, 0.254, -0.032], [tilt, 0, 0]),
+        brown,
+      );
+      ld.text(label, [0, 0.254, -0.0385], 0.0105, Math.PI, ink);
+    }
     ld.finish();
     if (source)
       bindings.push({ node: lever.name, source, property: 'rotation', axis: 'x', scale: 0.7 });
   }
-  qd.ring(0.049, 0.009, [0, -0.03, -0.315], black);
-  qd.rod([0, -0.03, -0.32], [0.03, -0.09, -0.32], 0.009, m.metal);
+  throttleKnob.dispose();
+  // Elevator trim knob on the quadrant's aft face, its crank handle on the rim.
+  qd.add(
+    lathe(
+      [
+        [0, 0],
+        [0.05, 0],
+        [0.052, 0.01],
+        [0.046, 0.022],
+        [0.03, 0.03],
+        [0, 0.032],
+      ],
+      20,
+    ).rotateX(-Math.PI / 2),
+    black,
+    [0, -0.04, -0.305],
+  );
+  qd.add(bar([0.032, -0.072, -0.33], [0.032, -0.072, -0.36], 0.006, 12), m.metal);
+  qd.text('TRIM', [0, 0.024, -0.307], 0.009, Math.PI, ink);
+  // Fuel selector valves on the floor at the quadrant's foot.
   for (const side of [-1, 1]) {
     pt.gauge(side * 0.11, 0.74, 2.5, 0.043, undefined, false);
     d.text('FUEL --', [side * 0.11, 0.74, 2.48], 0.008, Math.PI, ink);
-    qd.rod([side * 0.11, -0.11, -0.31], [side * 0.1, -0.17, -0.34], 0.01, brown);
-    qd.rod([side * 0.14, -0.24, -0.29], [side * 0.14, -0.3, -0.31], 0.01, m.metal);
+    qd.add(bar([side * 0.11, -0.11, -0.31], [side * 0.1, -0.17, -0.34], 0.009, 12), brown);
+    qd.add(bar([side * 0.14, -0.24, -0.29], [side * 0.14, -0.3, -0.31], 0.009, 12), m.metal);
   }
+  // Landing gear lever in its slot on the quadrant's left face ("UP - WHEELS - DOWN"), the
+  // white grip pointing aft; it drops for gear down.
+  qd.box([0.004, 0.13, 0.016], [0.151, 0.02, -0.22], black);
+  qd.text('UP', [0.153, 0.085, -0.22], 0.009, Math.PI / 2, ink);
+  qd.text('DOWN', [0.153, -0.06, -0.22], 0.009, Math.PI / 2, ink);
+  const gear = group(q, 'Beech18-gear-switch', [0.158, 0.02, -0.22]),
+    gd = detailKit(gear, gear.name);
+  gd.add(
+    new T.CylinderGeometry(0.012, 0.012, 0.012, 16).rotateZ(Math.PI / 2).translate(0.002, 0, 0),
+    m.metal,
+  );
+  gd.add(
+    tube(
+      [
+        [0.006, 0, 0],
+        [0.022, 0, -0.02],
+        [0.026, 0, -0.07],
+      ],
+      0.0055,
+      12,
+    ),
+    m.metal,
+  );
+  gd.add(
+    lathe(
+      [
+        [0, 0],
+        [0.009, 0],
+        [0.012, 0.012],
+        [0.012, 0.04],
+        [0.009, 0.05],
+        [0, 0.052],
+      ],
+      16,
+    )
+      .rotateX(-Math.PI / 2)
+      .translate(0.026, 0, -0.068),
+    P.white,
+  );
+  gd.finish();
+  gear.userData.aircraftControl = {
+    action: 'gear',
+    motion: { property: 'rotation', axis: 'x', scale: -0.6, offset: 0.3 },
+  };
+  // Flap switch lever at the quadrant's lower right, over its FLAP placard.
+  qd.box([0.05, 0.022, 0.003], [-0.09, -0.165, -0.307], liner);
+  qd.text('FLAP', [-0.09, -0.165, -0.309], 0.009, Math.PI, ink);
+  qd.box([0.016, 0.05, 0.004], [-0.09, -0.11, -0.307], black);
+  const flap = group(q, 'Beech18-flap-lever', [-0.09, -0.11, -0.31]),
+    fd = detailKit(flap, flap.name);
+  fd.add(new T.CylinderGeometry(0.008, 0.008, 0.008, 16).rotateX(Math.PI / 2), m.metal);
+  fd.add(bar([0, 0, -0.003], [0, 0, -0.045], 0.0035, 12, 0.003), m.metal);
+  fd.add(place(roundedBox([0.03, 0.009, 0.018], 0.003), [0, 0, -0.05]), black);
+  fd.finish();
+  flap.userData.aircraftControl = {
+    action: 'flaps',
+    motion: { property: 'rotation', axis: 'x', scale: -0.5, offset: 0.25 },
+  };
   qd.finish();
-  // Paired bow-tie wheels on individual columns; pitch shaft and wheel roll are separate.
+  // Paired butterfly wheels on push-pull shafts out of the panel; pitch shaft and wheel roll
+  // are separate. The shaft slides in a sleeve that runs into the panel.
   for (const side of [-1, 1]) {
     const pitch = group(cabin, `Beech18-column-${side}`, [side * 0.36, 1.62, 2.66]),
       roll = group(pitch, `Beech18-wheel-${side}`),
       wd = detailKit(roll, roll.name),
-      material = side === 1 ? wood : m.dark;
-    d.rod([side * 0.36, 1.62, 2.72], [side * 0.36, 1.62, 3], 0.037, green);
-    const points = [
-      [-0.2, 0.13],
-      [-0.23, 0.1],
-      [-0.23, -0.1],
-      [-0.2, -0.13],
-      [-0.1, -0.1],
-      [0, -0.08],
-      [0.1, -0.1],
-      [0.2, -0.13],
-      [0.23, -0.1],
-      [0.23, 0.1],
-      [0.2, 0.13],
-      [0.1, 0.09],
-      [0, 0.075],
-      [-0.1, 0.09],
-    ].map(([a, b]) => [a, b, 0]);
-    outline(wd, points, 0.019, material);
-    for (const a of [-1, 1]) wd.rod([0, 0, 0], [a * 0.15, 0.065, 0], 0.019, green);
-    ellipsoid(wd, [0, 0, 0], [0.055, 0.04, 0.025], green, 16);
-    wd.text('BEECH', [0, 0, -0.028], 0.009, Math.PI, ink);
+      shaft = detailKit(pitch, `${pitch.name}-shaft`);
+    d.add(bar([side * 0.36, 1.62, 2.74], [side * 0.36, 1.62, 3], 0.025, 16), black);
+    d.add(
+      lathe(
+        [
+          [0.026, 0],
+          [0.045, 0],
+          [0.045, 0.006],
+          [0.03, 0.014],
+          [0.026, 0.014],
+        ],
+        20,
+      ).rotateX(-Math.PI / 2),
+      m.metal,
+      [side * 0.36, 1.62, 2.996],
+    );
+    shaft.add(bar([0, 0, 0.02], [0, 0, 0.36], 0.0165, 16), m.metal);
+    shaft.finish();
+    butterflyWheel(wd, P, black, liner);
     wd.finish();
     bindings.push(
       { node: pitch.name, source: 'pitchInput', property: 'position', axis: 'z', scale: -0.08 },
@@ -354,18 +653,11 @@ export function beech18Cockpit(root, m) {
     for (const sign of [-1, 1]) {
       const ped = group(cabin, `Beech18-pedal-${side}-${sign}`, [
           side * 0.36 + sign * 0.105,
-          0.77,
+          0.845,
           3.04,
         ]),
         pd = detailKit(ped, ped.name);
-      pd.box([0.15, 0.16, 0.04], [0, 0, 0], m.metal);
-      for (let j = 0; j < 8; j++)
-        pd.rod(
-          [-0.065 + j * 0.018, -0.066, -0.025],
-          [-0.065 + j * 0.018, 0.066, -0.025],
-          0.003,
-          m.dark,
-        );
+      beechPedal(pd, P, sign);
       pd.finish();
       bindings.push({
         node: ped.name,
@@ -385,21 +677,20 @@ export function beech18Cockpit(root, m) {
     fd.ring(0.065, 0.002, [0, 0, -0.015], m.metal);
     for (let j = 0; j < 3; j++) {
       const a = (j * 2 * Math.PI) / 3;
-      ellipsoid(
-        fd,
-        [Math.cos(a) * 0.035, Math.sin(a) * 0.035, 0],
-        [0.03, 0.019, 0.004],
-        m.dark,
-        10,
-      );
+      fd.add(new T.SphereGeometry(1, 8, 4).scale(0.03, 0.019, 0.004).rotateZ(a), m.dark, [
+        Math.cos(a) * 0.035,
+        Math.sin(a) * 0.035,
+        0,
+      ]);
     }
     fd.finish();
   }
   // Green upholstered seats, belts and six passenger places behind the pilots.
   // The rear cabin narrows and its floor rises; a rectangular floor would escape the shell.
   const floors = [
-    [3.2, 0.55, 0.71],
-    [2.4, 0.64, 0.71],
+    // Out to the sidewall liners (trimmed to the skin), so no skin shows beside the pedals.
+    [3.2, 0.7, 0.71],
+    [2.4, 0.7, 0.71],
     [0.6, 0.64, 0.74],
     [-0.8, 0.55, 0.91],
     [-1.6, 0.45, 1.07],
@@ -458,19 +749,115 @@ export function beech18Cockpit(root, m) {
     liner,
     [0, 0, 1],
   );
-  const overhead = group(cabin, 'Beech18-overhead-radio', [0, 2.14, 2.4]),
+  // The ADF control box hangs flat under the roof at the windscreen header (Alberta D18S): at
+  // eye height it filled the view to the right.
+  const overhead = group(cabin, 'Beech18-overhead-radio', [0, 2.15, 2.6]),
     od = detailKit(overhead, overhead.name);
-  beveledBox(od, [0.33, 0.18, 0.19], [0, 0, 0], m.dark, 0.02);
-  od.text('ADF  --', [0, 0.015, -0.102], 0.014, Math.PI, ink);
+  beveledBox(od, [0.27, 0.06, 0.16], [0, 0, 0], m.dark, 0.012);
+  od.text('ADF  --', [0, 0.015, -0.082], 0.009, Math.PI, ink);
   for (let i = 0; i < 4; i++)
-    od.add(new T.CylinderGeometry(0.015, 0.015, 0.02, 12).rotateX(Math.PI / 2), black, [
-      -0.11 + i * 0.075,
-      -0.042,
-      -0.11,
+    od.add(new T.CylinderGeometry(0.01, 0.01, 0.014, 16).rotateX(Math.PI / 2), black, [
+      -0.096 + i * 0.064,
+      -0.01,
+      -0.086,
     ]);
   od.finish();
   ins.headingDrum('compass', [0, 1.93, 2.78], 0.038, 'trueHeading');
   for (const zz of [1.1, 0, -1.1]) d.box([0.16, 0.016, 0.06], [0, 2.11, zz], liner);
   d.finish();
-  return { nodes: ['cockpit'], sources, derived, bindings };
+  // Controls without a modeled part, placed where the D18S has them (cockpit frame; the builder
+  // converts them with cockpitFrameStations once the cabin is posed).
+  const stations = [
+    // Guarded ignition master beside the starter switches on the panel's lower edge.
+    {
+      action: 'engine',
+      style: 'guarded',
+      at: at(1152, 683, -0.006),
+      label: 'MASTER',
+      labelAt: [0, 0.026, -0.0015],
+      labelHeight: 0.0055,
+    },
+    // Parking brake pull handle low on the quadrant's left face, under the gear lever.
+    {
+      action: 'brake',
+      style: 'tee',
+      at: [0.152, 1.08 - 0.115, 2.78 - 0.22],
+      rotation: [0, -Math.PI / 2, 0],
+      label: 'PARK BRK',
+      labelAt: [0, 0.026, -0.0015],
+      labelHeight: 0.0075,
+    },
+  ];
+  /** Close the nose behind the panel and line the sidewalls to the sill, in the airframe
+   * (`body`) frame, once the cockpit group is posed in it. */
+  const fit = (body) => {
+    const holder = group(cabin, 'Beech18-cockpit-fit', cabin.position.clone().negate().toArray()),
+      fd = detailKit(holder, holder.name);
+    // Just ahead of the panel's back sheet, floor to the windscreen frame: no ivory skin beside
+    // or under the panel. The liners run from the seats to it, under the side-window sill.
+    cockpitBulkhead(fd, body, { z: 3.69, yFrom: 1.25, yTo: 2.3, material: green });
+    cockpitLiner(fd, body, {
+      zFrom: 1.75,
+      zTo: 3.69,
+      yFrom: 1.25,
+      yTo: 2.16,
+      zSteps: 10,
+      ySteps: 6,
+      from: 0.5,
+      inset: 0.006,
+      material: green,
+    });
+    // The window posts and the strips between the panes: finely sampled, so only skin between
+    // the glass is lined (cells crossing a pane are left open).
+    paneLiner(fd, body, {
+      zFrom: 1.75,
+      zTo: 3.69,
+      yFrom: 2.13,
+      yTo: 2.8,
+      zSteps: 64,
+      ySteps: 12,
+      from: 0.5,
+      material: green,
+    });
+    // The wing root runs through the cabin at knee height (root cap at x 0.4): its leading edge
+    // showed ivory in the outer footwells ahead of the seats. Box it in as a kick panel whose top
+    // falls with the wing's upper surface toward the leading edge, clear of the pedals' sightline.
+    const [z0, z1, y0, ya, yb] = [2.95, 3.36, 1.26, 1.79, 1.66],
+      aft = skinSection(body, z0),
+      ahead = skinSection(body, z1),
+      edge = (z, y, side) => wallAt(z === z0 ? aft : ahead, y, side, 0.5) - side * 0.006;
+    for (const side of [1, -1]) {
+      const x0 = side * 0.395;
+      sheet(
+        fd,
+        [
+          [x0, y0, z0],
+          [x0, y0, z1],
+          [x0, yb, z1],
+          [x0, ya, z0],
+        ],
+        green,
+        [-side, 0, 0],
+      );
+      sheet(
+        fd,
+        [
+          [x0, ya, z0],
+          [x0, yb, z1],
+          [edge(z1, yb, side), yb, z1],
+          [edge(z0, ya, side), ya, z0],
+        ],
+        green,
+        [0, 1, 0.3],
+      );
+      sheet(
+        fd,
+        [[x0, y0, z0], [x0, ya, z0], ...[ya, 1.55, 1.4, y0].map((y) => [edge(z0, y, side), y, z0])],
+        green,
+        [0, 0, -1],
+      );
+    }
+    fd.finish();
+  };
+  return { nodes: ['cockpit'], sources, derived, bindings, stations, fit };
 }

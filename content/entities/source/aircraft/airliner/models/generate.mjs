@@ -18,10 +18,28 @@ import * as T from 'three';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
 import { completeCockpitControls } from '../../../../../../packages/entities/scripts/aircraft/cockpit-controls.mjs';
 import {
+  bar,
+  batch,
+  emit,
+  gearHandleGeometry,
+  lathe,
+  leverGeometry,
+  parkingBrakeGeometry,
+  partPalette,
+  pedalGeometry,
+  place,
+  roundedBox,
+  stationMotion,
+  switchGeometry,
+  tube,
+  yokeGeometry,
+} from '../../../../../../packages/entities/scripts/aircraft/cockpit-parts.mjs';
+import {
   embedCockpitTextures,
   finishAircraftCockpit,
   writeCockpitTextures,
 } from '../../../../../../packages/entities/scripts/aircraft/cockpit-surfaces.mjs';
+import { standing } from '../../../../../../packages/entities/scripts/aircraft/flight-deck-kit.mjs';
 import {
   beveledBox,
   group,
@@ -288,7 +306,8 @@ const LIP = { u: 2.62, h: 2.6 }; // aft edge of the glareshield
 
 const deckMaterials = () => ({
   lining: mat('deck-lining', '#c9ced0', { side: T.DoubleSide, flatShading: false }),
-  panel: mat('deck-panel', '#5a666d', { side: T.DoubleSide }),
+  // Boeing light blue-grey, as in the 737-300 deck photograph.
+  panel: mat('deck-panel', '#7d93a6', { side: T.DoubleSide }),
   hood: mat('deck-glareshield', '#23282c', { side: T.DoubleSide, roughness: 0.9 }),
   floor: mat('deck-floor', '#33383c', { side: T.DoubleSide, roughness: 0.95 }),
   frame: mat('deck-window-trim', '#7b8387', { side: T.DoubleSide }),
@@ -298,6 +317,33 @@ const deckMaterials = () => ({
   sky: mat('display-sky', '#2d6ea8', { roughness: 0.4 }),
   earth: mat('display-earth', '#7a5230', { roughness: 0.4 }),
 });
+
+/** The shared cockpit parts palette (cockpit-parts.mjs). */
+const parts = partPalette();
+/**
+ * A live cockpit control: a pivot group drawn by `draw(kit)` (a lever-frame part stands out of
+ * its surface when `stand`), turned to `rest`, carrying the control the pilot's hand and the
+ * console work (glTF extras; the runtime binds its motion). Interior bindings for this bundle are
+ * hand-kept in entity.types.json, so new controls move through their extras alone.
+ */
+function liveControl(
+  parent,
+  name,
+  at,
+  { action, engine, motion, style, draw, stand = false, rest = 0 },
+) {
+  const g = group(parent, name, at);
+  g.rotation.x = rest;
+  const d = detailKit(g, `${name}-part`);
+  draw(stand ? standing(d) : d);
+  d.finish();
+  g.userData.aircraftControl = {
+    action,
+    ...(engine ? { engine } : {}),
+    motion: motion ?? stationMotion(action, style),
+  };
+  return g;
+}
 
 /** Indexed quad strip over rows of points; double sided materials carry these. */
 function gridGeometry(rows) {
@@ -574,11 +620,18 @@ function mainPanel(body, D) {
     tools.gauge(s * 0.86, 0.075, z, 0.028);
     tools.buttons(s * 0.9, -0.09, -0.004, 6, 0.03);
   }
-  k.box([0.1, 0.14, 0.012], [-0.265, -0.2, -0.004], k.dark);
-  k.rod([-0.265, -0.17, -0.01], [-0.265, -0.17, -0.1], 0.0065, k.metal);
-  k.add(new T.CylinderGeometry(0.026, 0.026, 0.024, 12), k.ivory, [-0.265, -0.17, -0.1]);
-  tools.knob(0.265, -0.19, -0.012, 0.024);
+  // Gear lever left of the lower centre display, where the pedestal leaves it in the captain's
+  // view: a wheel knob with its red in-transit lamp in a slotted plate, UP over DOWN.
+  k.box([0.1, 0.13, 0.012], [0.265, -0.16, -0.004], k.dark);
+  k.box([0.01, 0.1, 0.002], [0.265, -0.16, -0.0105], k.metal);
+  k.text('UP', [0.235, -0.11, -0.0105], 0.01, Math.PI);
+  k.text('DN', [0.235, -0.21, -0.0105], 0.01, Math.PI);
+  tools.knob(-0.265, -0.19, -0.012, 0.024);
   k.finish();
+  liveControl(face, 'gear-handle', [0.265, -0.16, -0.011], {
+    action: 'gear',
+    draw: (d) => gearHandleGeometry(d, { style: 'jet', scale: 0.85, palette: parts }),
+  });
 }
 
 /** Centre pedestal: profile extruded across the deck, then the units laid on its faces. */
@@ -616,26 +669,77 @@ function pedestal(body, d, D) {
   // Quadrant strip with its two slots, then speedbrake and flap handles beside it, radios aft.
   b.box([0.2, 0.3, 0.01], [0, 0.12, -0.002], b.dark);
   for (const s of [-1, 1]) b.box([0.016, 0.26, 0.002], [s * 0.045, 0.12, -0.008], b.metal);
-  for (const [s, cap] of [
-    [1, b.dark],
-    [-1, b.ivory],
-  ]) {
-    b.box([0.012, 0.22, 0.002], [s * 0.17, 0.12, -0.003], b.metal);
-    b.rod([s * 0.17, 0.11, -0.006], [s * 0.17, 0.12, -0.1], 0.006, b.metal);
-    b.box([0.06, 0.035, 0.03], [s * 0.17, 0.12, -0.105], cap);
-  }
+  for (const s of [1, -1]) b.box([0.012, 0.22, 0.002], [s * 0.17, 0.12, -0.003], b.metal);
+  for (const [i, x] of [0.05, -0.05].entries())
+    b.text(`${i + 1}`, [x, 0.27, -0.003], 0.014, Math.PI);
+  b.text('SPD BRK', [0.17, 0.245, -0.003], 0.009, Math.PI);
+  b.text('FLAPS', [-0.17, 0.245, -0.003], 0.009, Math.PI);
+  b.text('PARK', [0.17, -0.1, -0.003], 0.009, Math.PI);
+  // Flap detents beside the slot, 0 to FULL.
+  for (let i = 0; i < 6; i++)
+    b.box([0.014, 0.002, 0.001], [-0.192, 0.03 + i * 0.036, -0.0045], b.ivory);
   for (const row of [0, 1]) {
     radio.display(0, -0.12 - row * 0.11, -0.012, 0.3, 0.05, 'mode');
     radio.buttons(0, -0.165 - row * 0.11, -0.012, 12, 0.033);
   }
   b.finish();
+  // Speed brake (a black T bar, pulled aft to extend) and the flap lever (an ivory block on a
+  // blade) either side of the power levers.
+  liveControl(up, 'speedbrake-lever', [0.17, 0.12, 0.04], {
+    action: 'speedBrake',
+    motion: { property: 'rotation', axis: 'x', scale: -0.6 },
+    stand: true,
+    rest: 0.3,
+    draw: (d) => {
+      const k = batch();
+      k.add(parts.alloy, bar([0, 0, 0], [0, 0.135, -0.01], 0.0055, 12));
+      k.add(parts.grip, bar([0.032, 0.14, -0.011], [-0.032, 0.14, -0.011], 0.011, 14));
+      k.add(parts.white, bar([0.006, 0.152, -0.011], [-0.006, 0.152, -0.011], 0.004, 10));
+      emit(d, k.map);
+    },
+  });
+  liveControl(up, 'flap-lever', [-0.17, 0.12, 0.04], {
+    action: 'flaps',
+    stand: true,
+    style: 'lever',
+    draw: (d) => {
+      const k = batch();
+      k.add(parts.alloy, place(roundedBox([0.008, 0.13, 0.014], 0.002, 1), [0, 0.065, 0]));
+      k.add(parts.white, place(roundedBox([0.05, 0.028, 0.034], 0.008), [0, 0.142, -0.004]));
+      k.add(parts.black, place(roundedBox([0.036, 0.004, 0.02], 0.002), [0, 0.1575, -0.004]));
+      emit(d, k.map);
+    },
+  });
+  // Start levers aft of the power levers (CUTOFF aft), the parking brake lever aft left.
+  for (const [i, engine] of ['left', 'right'].entries())
+    liveControl(up, `start-lever-${engine}`, [i ? -0.02 : 0.02, 0.0, -0.007], {
+      action: 'engine',
+      engine,
+      style: 'start-lever',
+      stand: true,
+      draw: (d) => leverGeometry(d, { style: 'start-lever', height: 0.045, palette: parts }),
+    });
+  liveControl(up, 'parking-brake', [0.19, -0.055, 0], {
+    action: 'brake',
+    style: 'lever',
+    stand: true,
+    draw: (d) => parkingBrakeGeometry(d, { style: 'lever', palette: parts }),
+  });
   // Thrust levers: the throttle axis runs through the quadrant, so a lever swings fore and aft.
+  // Their handles are pale grey, not black (737-300 photograph).
+  const knobs = { ...parts, black: mat('deck-thrust-knob', '#d9d5c9', { roughness: 0.8 }) };
   for (const [i, x] of [0.045, -0.045].entries()) {
     const node = `power-lever-${i}`,
       lever = group(body, node, [x, 2.05, zOf(3.33)]),
       p = detailKit(lever, `${node}-handle`);
-    p.rod([0, 0, 0], [0, 0.2, 0], 0.009, p.metal);
-    p.rod([-0.03, 0.2, 0], [0.03, 0.2, 0], 0.014, p.dark);
+    // Thrust lever: a curved arm, the reverser piggyback, a black grip with TO/GA under it and
+    // the autothrottle disconnect at its outboard end.
+    leverGeometry(p, {
+      style: 'thrust-boeing',
+      height: 0.2,
+      side: x > 0 ? 1 : -1,
+      palette: knobs,
+    });
     p.finish();
     bindings.push({
       node,
@@ -645,6 +749,43 @@ function pedestal(body, d, D) {
       scale: 0.6,
       offset: -0.3,
     });
+  }
+  // Stabilizer trim wheels: big black wheels either side of the quadrant, standing proud of the
+  // pedestal top, with white stripes round the rim and a folding crank (737-300 photograph).
+  for (const s of [1, -1]) {
+    const r = 0.13,
+      g = group(body, `trim-wheel-${s > 0 ? 'L' : 'R'}`, [s * 0.268, 2.03, zOf(3.12)]),
+      w = detailKit(g, g.name);
+    w.add(
+      place(
+        lathe(
+          [
+            [0, -0.012],
+            [r * 0.9, -0.012],
+            [r, -0.006],
+            [r, 0.006],
+            [r * 0.9, 0.012],
+            [0, 0.012],
+          ],
+          28,
+          50,
+        ),
+        [0, 0, 0],
+        [0, 0, Math.PI / 2],
+      ),
+      parts.grip,
+    );
+    for (let i = 0; i < 10; i++) {
+      const a = (i * Math.PI) / 5;
+      w.box(
+        [0.0125, 0.003, 0.018],
+        [0, Math.cos(a) * (r + 0.0005), Math.sin(a) * (r + 0.0005)],
+        parts.white,
+      ).rotation.x = a;
+    }
+    w.add(bar([s * 0.012, r * 0.68, 0], [s * 0.045, r * 0.68, 0], 0.006, 12), parts.alloy);
+    w.add(bar([s * 0.045, r * 0.68, 0], [s * 0.08, r * 0.68, 0], 0.011, 14), parts.grip);
+    w.finish();
   }
 }
 
@@ -717,18 +858,41 @@ function controls(body, D) {
       yokeName = `control-yoke${suffix}`,
       column = group(body, name, [x, EYE.floor + 0.02, zOf(2.87)]),
       c = detailKit(column, `${name}-post`);
-    c.rod([0, 0, 0], [0, 0.68, -0.1], 0.03, m.panel);
-    c.box([0.09, 0.09, 0.12], [0, 0.02, 0], m.shell);
+    // Column: a rubber gaiter in the floor well, a tube bending aft into the wheel's hub.
+    c.add(
+      lathe(
+        [
+          [0.07, 0],
+          [0.062, 0.02],
+          [0.046, 0.034],
+          [0.045, 0.06],
+          [0.034, 0.08],
+          [0.033, 0.09],
+        ],
+        14,
+      ),
+      parts.tread,
+    );
+    c.add(
+      tube(
+        [
+          [0, 0.07, 0],
+          [0, 0.45, -0.01],
+          [0, 0.6, -0.045],
+          [0, 0.66, -0.08],
+          [0, 0.68, -0.07],
+        ],
+        0.028,
+        16,
+      ),
+      m.panel,
+    );
     c.finish();
     const yoke = group(column, yokeName, [0, 0.68, -0.1]),
       y = detailKit(yoke, `${yokeName}-trim`);
-    y.box([0.075, 0.06, 0.05], [0, 0, 0], m.shell);
-    y.rod([-0.14, 0, 0], [0.14, 0, 0], 0.016, y.dark);
-    for (const s of [-1, 1]) {
-      y.rod([s * 0.14, 0, 0], [s * 0.17, 0.08, 0], 0.021, y.dark);
-      y.rod([s * 0.17, 0.08, 0], [s * 0.15, 0.13, 0], 0.021, y.dark);
-    }
-    y.box([0.06, 0.02, 0.012], [0, 0.012, -0.03], y.ivory);
+    // An airliner wheel from the parts library: horns with switch heads over a broad rim.
+    y.add(bar([0, 0, 0.012], [0, 0, 0.04], 0.032, 16), m.shell);
+    yokeGeometry(y, { style: 'boeing', width: 0.33, palette: { ...parts, steel: m.shell } });
     y.finish();
     bindings.push(
       { node: yokeName, source: 'pitchInput', property: 'rotation', axis: 'x', scale: 0.2 },
@@ -740,10 +904,8 @@ function controls(body, D) {
         pedal = group(body, node, [x + s * 0.13, EYE.floor + 0.17, zOf(2.5)]),
         p = detailKit(pedal, `${node}-plate`);
       pedal.rotation.x = 0.3;
-      p.box([0.11, 0.24, 0.025], [0, 0, 0], p.metal);
-      for (let i = 0; i < 4; i++)
-        p.box([0.09, 0.006, 0.004], [0, (i - 1.5) * 0.05, -0.014], p.dark);
-      p.rod([0, -0.1, 0.01], [0, -0.17, 0.12], 0.012, p.dark);
+      // A hung airliner pedal from the parts library; the group carries its lean.
+      pedalGeometry(p, { style: 'airliner', side: s, lean: 0, scale: 1.05, palette: parts });
       p.finish();
       bindings.push({
         node,
@@ -768,6 +930,20 @@ function overhead(body, D) {
     for (let row = 0; row < 7; row++) {
       const y = 0.11 + row * 0.17;
       k.box([0.35, 0.14, 0.004], [x, y, -0.002], k.dark);
+      if (c === 1 && row === 0) {
+        // The APU master (OFF ON START): the crew's single engine master; the start levers on
+        // the pedestal are each engine's.
+        k.text('APU', [x, y + 0.045, -0.0045], 0.014, Math.PI);
+        for (const [i, text] of ['OFF', 'ON', 'START'].entries())
+          k.text(text, [x + 0.03 - i * 0.03, y + 0.02, -0.0045], 0.007, Math.PI);
+        k.box([0.05, 0.03, 0.006], [x + 0.11, y - 0.012, -0.004], k.amber);
+        liveControl(ceiling, 'apu-master', [x, y - 0.015, -0.004], {
+          action: 'engine',
+          style: 'pointer',
+          draw: (d) => switchGeometry(d, { style: 'pointer', scale: 1.3, palette: parts }),
+        });
+        continue;
+      }
       k.box([0.26, 0.008, 0.001], [x, y + 0.05, -0.0045], k.ivory);
       for (let i = 0; i < 5; i++) {
         const sx = x + (i - 2) * 0.062;
